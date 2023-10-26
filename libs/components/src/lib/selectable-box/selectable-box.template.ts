@@ -11,10 +11,9 @@ import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 
-const getClasses = ({ connotation, spacing, tight, checked, clickable }: SelectableBox) => classNames(
+const getClasses = ({ connotation, tight, checked, clickable }: SelectableBox) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`spacing-${spacing}`, Boolean(spacing)],
 	['tight', tight],
 	['checked', checked],
 	['clickable', clickable],

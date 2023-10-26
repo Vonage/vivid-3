@@ -28,7 +28,6 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlAriaLabelledby).toBe(null);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
-			expect(element.spacing).toBe(undefined);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -77,15 +76,6 @@ describe('vwc-selectable-box', () => {
 
 			expect(control).not.toBe(null);
 			expect(control?.getAttribute('current-checked')).toBe('false');
-		});
-	});
-
-	describe('spacing', () => {
-		it('should set spacing class on the base element', async function () {
-			element.spacing = 'small';
-			await elementUpdated(element);
-
-			expect(baseElement?.classList?.contains('spacing-small')).toBe(true);
 		});
 	});
 
@@ -142,7 +132,7 @@ describe('vwc-selectable-box', () => {
 	describe('change event', () => {
 		const spy = jest.fn();
 
-		beforeEach(() => {
+		beforeEach(async () => {
 			element.addEventListener('change', spy);
 		});
 
@@ -164,6 +154,18 @@ describe('vwc-selectable-box', () => {
 			expect(element.checked).toBe(true);
 		});
 
+		describe('radio', () => {
+			it('should emit the change event when the control element changes', async () => {
+				element.controlType = 'radio';
+				await elementUpdated(element);
+				const controlElement = getControlElement(element);
+				controlElement.dispatchEvent(new Event('change'));
+
+				expect(spy).toHaveBeenCalled();
+				expect(element.checked).toBe(true);
+			});
+		})
+
 		describe('clickable', () => {
 			beforeEach(async () => {
 				element.clickable = true;
@@ -175,6 +177,17 @@ describe('vwc-selectable-box', () => {
 				
 				expect(spy).toHaveBeenCalled();
 				expect(element.checked).toBe(true);
+			});
+
+			describe('radio', () => {
+				it('should not emit the change event when the radio is already checked', async () => {
+					element.controlType = 'radio';
+					element.checked = true;
+					await elementUpdated(element);
+					baseElement.click();
+
+					expect(spy).not.toHaveBeenCalled();
+				});
 			});
 
 			describe('keyboard', () => {

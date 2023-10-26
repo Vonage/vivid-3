@@ -72,32 +72,30 @@ Setting the `clickable` attribute makes the whole card clickable, just make sure
 </vwc-layout>
 ```
 
-### Spacing
-
-Set the `spacing` attribute to change the box's spacing.
-It accepts a subset of predefined values.
-
-- Type: `'small'`, `'medium'`
-- Default: `'medium'`
-
-```html preview
-<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box spacing="medium" style="max-inline-size: 450px"> Box with medium spacing </vwc-selectable-box>
-  <vwc-selectable-box spacing="small" style="max-inline-size: 450px"> Box with small spacing </vwc-selectable-box>
-</vwc-layout>
-```
-
 ### Tight
 
-By default, the selectable box is styled in a spacious manner. Enabling the `tight` member willremove the padding around the box's content. The control element will still be positioned according to the `size` setting.
+By default, the selectable box is styled in a spacious manner. Enabling the `tight` member willremove the padding around the box's content.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box tight spacing="medium" style="max-inline-size: 450px"> Tight box with medium spacing </vwc-selectable-box>
-  <vwc-selectable-box tight spacing="small" style="max-inline-size: 450px"> Tight box with small </vwc-selectable-box>
+  <vwc-selectable-box tight style="max-inline-size: 450px">Tight box</vwc-selectable-box>
+</vwc-layout>
+```
+
+## CSS Variables
+
+### Spacing
+
+Use the `--selectable-box-spacing` variable to set the amount of spacing applied to the selectable box.
+
+- Default: `16px`
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+  <vwc-selectable-box style="--selectable-box-spacing: 8px; max-inline-size: 450px">Custom spaced box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -130,7 +128,7 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 </vwc-layout>
 ```
 
-## Use case
+## Use cases
 
 ### Text based boxes
 
@@ -167,17 +165,17 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ```html preview
 <vwc-layout role="group">
-  <vwc-selectable-box spacing="small" aria-label="Bright ideas" tight style="inline-size: fit-content" clickable>
+  <vwc-selectable-box aria-label="Bright ideas" tight style="inline-size: fit-content" clickable>
     <img style="display: block" src="https://doodleipsum.com/350x200?bg=C863D9&i=0b3f4112a9c5e358c439c4be74380e54" alt="Lots of ideas" />
   </vwc-selectable-box>
-  <vwc-selectable-box spacing="small" aria-label="Take a load off" tight style="inline-size: fit-content" clickable>
+  <vwc-selectable-box aria-label="Take a load off" tight style="inline-size: fit-content" clickable>
     <img
       style="display: block"
       src="https://doodleipsum.com/350x200/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
       alt="Sitting on Floor"
     />
   </vwc-selectable-box>
-  <vwc-selectable-box spacing="small" aria-label="Get located" tight style="inline-size: fit-content" clickable>
+  <vwc-selectable-box aria-label="Get located" tight style="inline-size: fit-content" clickable>
     <img style="display: block" src="https://doodleipsum.com/350x200?bg=7463D9&i=6af2fcb146f3b99cfa1371242b2eee55" alt="Get located" />
   </vwc-selectable-box>
 </vwc-layout>

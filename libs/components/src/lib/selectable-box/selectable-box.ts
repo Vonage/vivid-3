@@ -10,13 +10,6 @@ import type { Connotation } from '../enums.js';
 export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
 
 /**
- * Types of selectable-box connotation.
- *
- * @public
- */
-export type SelectableBoxSpacing = 'small' | 'medium';
-
-/**
  * Types of selectable-box control-type.
  *
  * @public
@@ -83,15 +76,6 @@ export class SelectableBox extends FoundationElement {
 	 * HTML Attribute: control-type
 	 */
 	@attr({ attribute: 'control-type' }) controlType?: SelectableBoxControlType;
-
-	/**
-	 * The amount of spacing the selectable box should have.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-	@attr spacing?: SelectableBoxSpacing;
 
 	/**
 	* Removes the padding around the box's slot content
