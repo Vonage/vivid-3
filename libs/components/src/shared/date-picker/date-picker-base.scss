@@ -32,6 +32,25 @@
 	padding: 12px;
 	gap: 12px;
 
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 8px;
+		gap: 8px;
+	}
+}
+
+.segments {
+	display: flex;
+	gap: 24px;
+}
+
+.segment {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
 	.header {
 		display: flex;
 		align-items: center;
@@ -49,14 +68,6 @@
 		border-radius: 6px;
 		font: var(#{constants.$vvd-typography-base-extended});
 		padding-inline: 6px;
-	}
-
-	.footer {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		padding: 8px;
-		gap: 8px;
 	}
 }
 
