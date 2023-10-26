@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { Connotation, Size } from '../enums.js';
+import type { Connotation } from '../enums.js';
 
 /**
  * Types of selectable-box connotation.
@@ -14,7 +14,7 @@ export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
  *
  * @public
  */
-export type SelectableBoxSize = Size.Normal | Size.Condensed;
+export type SelectableBoxSpacing = 'small' | 'medium';
 
 /**
  * Types of selectable-box control-type.
@@ -91,7 +91,7 @@ export class SelectableBox extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: SelectableBoxSize;
+	@attr spacing?: SelectableBoxSpacing;
 
 	/**
 	* Removes the padding around the box's slot content

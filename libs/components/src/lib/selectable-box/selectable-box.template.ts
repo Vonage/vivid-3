@@ -11,10 +11,10 @@ import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 
-const getClasses = ({ connotation, size, tight, checked, clickable }: SelectableBox) => classNames(
+const getClasses = ({ connotation, spacing, tight, checked, clickable }: SelectableBox) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
-	[`size-${size}`, Boolean(size)],
+	[`spacing-${spacing}`, Boolean(spacing)],
 	['tight', tight],
 	['checked', checked],
 	['clickable', clickable],
@@ -83,7 +83,6 @@ export const SelectableBoxTemplate: (
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 		@click="${x => x.clickable ? x._handleCheckedChange() : null}"
 	>
-		${(x) => x.clickable ? focusTemplate : ''}
 		${checkbox(context)}
 		${radio(context)}
 		<slot></slot>

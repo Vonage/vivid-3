@@ -28,7 +28,7 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlAriaLabelledby).toBe(null);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
-			expect(element.size).toBe(undefined);
+			expect(element.spacing).toBe(undefined);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -80,12 +80,12 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
-	describe('size', () => {
-		it('should set size class on the base element', async function () {
-			element.size = Size.Condensed;
+	describe('spacing', () => {
+		it('should set spacing class on the base element', async function () {
+			element.spacing = 'small';
 			await elementUpdated(element);
 
-			expect(baseElement?.classList?.contains(`size-${Size.Condensed}`)).toBe(true);
+			expect(baseElement?.classList?.contains('size-small')).toBe(true);
 		});
 	});
 

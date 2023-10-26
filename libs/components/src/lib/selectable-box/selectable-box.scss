@@ -30,32 +30,29 @@
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
-	#{variables.$size-unit}: 16px;
+	#{variables.$spacing-unit}: 16px;
 
 	position: relative;
-	padding: var(#{variables.$size-unit});
+	padding: var(#{variables.$spacing-unit});
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: 6px;
 	inline-size: 100%;
-	padding-block-start: calc(var(#{variables.$size-unit}) + 36px);
+	padding-block-start: calc(var(#{variables.$spacing-unit}) + 36px);
 	text-align: start;
 
-	&.size-condensed {
-		#{variables.$size-unit}: 8px;
+	&.spacing-small {
+		#{variables.$spacing-unit}: 8px;
 	}
 
 	&.tight {
-		min-height: calc(var(#{variables.$size-unit}) * 2 + 22px);
+		overflow: hidden;
+		min-height: calc(var(#{variables.$spacing-unit}) * 2 + 22px);
 		padding: 0;
 	}
 
 	&.clickable {
 		cursor: pointer;
-	}
-
-	&::slotted(img) {
-		vertical-align: middle;;
 	}
 }
 
@@ -72,6 +69,6 @@
 
 .control {
 	position: absolute;
-	inset-block-start: var(#{variables.$size-unit});
-	inset-inline-end: var(#{variables.$size-unit});
+	inset-block-start: var(#{variables.$spacing-unit});
+	inset-inline-end: var(#{variables.$spacing-unit});
 }
