@@ -32,13 +32,6 @@
 	}
 
 	.slider {
-		position: relative;
-		background-color: var(#{constants.$vvd-color-neutral-50});
-		block-size: 4px;
-		border-radius: 2px;
-		cursor: pointer;
-		margin-inline-end: 16px;
-		margin-inline-start: 8px;
 		min-inline-size: 200px;
 	}
 

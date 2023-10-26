@@ -2,6 +2,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
+import type { Slider } from '../slider/slider';
 
 /**
  * Types of audio player connotation.
@@ -10,7 +11,6 @@ import type { Connotation } from '../enums';
  */
 export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
 
-const PADDING = 16;
 /**
  * Base class for audio-player
  *
@@ -32,7 +32,7 @@ export class AudioPlayer extends FoundationElement {
 	 * HTML Attribute: src
 	 */
 	@attr src?: string;
-	
+
 	/**
 	 * Indicates whether audio player is disabled.
 	 *
@@ -66,7 +66,7 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_sliderEl!: HTMLDivElement;
+	_sliderEl!: Slider;
 
 	/**
 	 * @internal
@@ -78,28 +78,12 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_controlEl!: HTMLDivElement;
 
-	override connectedCallback() {
-		super.connectedCallback();
-		this.addEventListener('mouseup', this._onMouseUp);
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this.removeEventListener('mouseup', this._onMouseUp);
-	}
-
-	/**
-	 * @internal
-	 */
-	_onMouseDown(_event: MouseEvent) {
-		this.addEventListener('mousemove', this._rewind, false);
-	}
-
 	/**
 	 * @internal
 	 */
 	_togglePlay() {
 		if (this.paused) {
+			this._updateProgress();
 			this._playerEl!.play();
 		} else {
 			this._playerEl!.pause();
@@ -113,8 +97,7 @@ export class AudioPlayer extends FoundationElement {
 	_updateProgress() {
 		const current: number = this._playerEl!.currentTime;
 		const percent = (current / this._playerEl.duration) * 100;
-		const progress = this._controlEl.querySelector('.progress') as HTMLElement;
-		if (progress) progress.style.width = percent + '%';
+		this._sliderEl.value = percent.toString();
 
 		const currentTime = this._controlEl.querySelector('.current-time');
 		if (currentTime) currentTime.textContent = this._formatTime(current);
@@ -132,36 +115,12 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_rewind(event: MouseEvent) {
-		if (this._inRange(event) && this._playerEl.duration) {
-			this._playerEl.currentTime = this._playerEl.duration * this._getCoefficient(event);
+	_rewind() {
+		this._playerEl.pause();
+		this.paused = true;
+		if (this._playerEl.duration) {
+			this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
 		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_getCoefficient(event: MouseEvent) {
-		const offsetX = event.clientX - this._sliderEl.offsetLeft - PADDING;
-		const width = this._sliderEl.clientWidth;
-		return offsetX / width;
-	}
-
-	/**
-	 * @internal
-	 */
-	_onMouseUp() {
-		this.removeEventListener('mousemove', this._rewind, false);
-	}
-
-	/**
-	 * @internal
-	 */
-	_inRange(event: MouseEvent) {
-		const min = this._sliderEl.offsetLeft + PADDING;
-		const max = min + this._sliderEl.offsetWidth;
-		if (event.clientX < min || event.clientX > max) return false;
-		return true;
 	}
 
 	/**
