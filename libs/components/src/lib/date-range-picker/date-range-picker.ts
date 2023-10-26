@@ -10,7 +10,6 @@ import {
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
-import { monthOfDate } from '../../shared/date-picker/calendar/month';
 import {
 	formatPresentationDateRange,
 	formatRange,
@@ -195,11 +194,9 @@ export class DateRangePicker extends DatePickerBase {
 			this._presentationValue = '';
 		}
 
-		// Ensure we are switched to the month of the new selected dates
-		if (this.start) {
-			this._selectedMonth = monthOfDate(this.start);
-		} else if (this.end) {
-			this._selectedMonth = monthOfDate(this.end);
+		const dateToEnsureVisibilityOf = this.start || this.end;
+		if (dateToEnsureVisibilityOf) {
+			this._adjustSelectedMonthToEnsureVisibilityOf(dateToEnsureVisibilityOf);
 		}
 
 		this.#updateFormValue();
@@ -244,6 +241,15 @@ export class DateRangePicker extends DatePickerBase {
 			this.end = this.initialEnd;
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	@observable override _numCalendars = 2;
+	/**
+	 * @internal
+	 */
+	override _hideDatesOutsideMonth = true;
 
 	#getVisibleRange(): Partial<DateRange> {
 		const candidates = [this.start, this.end].filter(isDefined);

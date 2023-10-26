@@ -3,7 +3,6 @@ import { type ErrorText, errorText, type FormElement, formElements } from '../..
 import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
 import { type DateStr, isValidDateStr } from '../../shared/date-picker/calendar/dateStr';
 import { formatPresentationDate, parsePresentationDate } from '../../shared/date-picker/calendar/presentationDate';
-import { monthOfDate } from '../../shared/date-picker/calendar/month';
 
 /**
  * Single date picker component.
@@ -28,8 +27,7 @@ export class DatePicker extends DatePickerBase {
 				this.value,
 				this.locale.datePicker
 			);
-			// Ensure we are switched to the month of the new selected date
-			this._selectedMonth = monthOfDate(this.value);
+			this._adjustSelectedMonthToEnsureVisibilityOf(this.value);
 		} else {
 			this._presentationValue = '';
 		}
