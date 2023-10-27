@@ -164,7 +164,7 @@ describe('vwc-selectable-box', () => {
 				expect(spy).toHaveBeenCalled();
 				expect(element.checked).toBe(true);
 			});
-		})
+		});
 
 		describe('clickable', () => {
 			beforeEach(async () => {
