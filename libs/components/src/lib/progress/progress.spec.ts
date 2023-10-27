@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import {Connotation, Shape} from '../enums';
 import {Progress} from './progress';
 import '.';
@@ -171,13 +171,29 @@ describe('vwc-progress', () => {
 		});
 	});
 
-	/* Failing because role=progress must have an accessible name (aria-label or aria-labelled by) */
-	xdescribe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.ariaLabel = 'Label';
+			element.ariaLabelledby = 'heading1';
+			element.ariaDescribedby = 'paragraph1';
 			element.min = 10;
 			element.max = 90;
+			element.value = 20;
 			await elementUpdated(element);
+		});
 
+		it('should set the correct a11y attributes', () => {
+			const baseElement = getBaseElement(element);
+			expect(baseElement?.getAttribute('role')).toBe('progressbar');
+			expect(baseElement?.getAttribute('aria-label')).toBe('Label');
+			expect(baseElement?.getAttribute('aria-labelledby')).toBe('heading1');
+			expect(baseElement?.getAttribute('aria-describedby')).toBe('paragraph1');
+			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
+			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
+			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
+		});
+		
+		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

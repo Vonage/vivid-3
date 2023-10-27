@@ -51,12 +51,14 @@ export const ProgressTemplate: (
 ) => ViewTemplate<Progress> = (_: ElementDefinitionContext) => {
 	return html`
     <div
-      role="progressbar"
-	  aria-label="${x => x.ariaLabel}"
-      aria-valuenow="${x => x.value}"
-      aria-valuemin="${x => x.min}"
-      aria-valuemax="${x => x.max}"
-      class="${getClasses}"
+		role="progressbar"
+		aria-label="${x => x.ariaLabel}"
+		aria-labelledby="${x => x.ariaLabelledby}"
+		aria-describedby="${x => x.ariaDescribedby}"
+		aria-valuenow="${x => x.value}"
+		aria-valuemin="${x => x.min}"
+		aria-valuemax="${x => x.max}"
+		class="${getClasses}"
     >
 		<div class="progress">
 		  ${when(x => typeof x.value === 'number', determinate())}

@@ -912,13 +912,42 @@ describe('vwc-number-field', () => {
 		});
 	});
 
-	/* Failing because increment and decrement buttons don't have an accessible name: aria-label */
-	xdescribe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('a11y', () => {
+		beforeEach(async () => {
 			element.label = 'Label';
 			element.errorText = 'Error';
 			await elementUpdated(element);
-			
+		});
+
+		describe('add and subtract buttons', () => {
+			it('renders a localized "aria-label" on the add button', async () => {
+				const addButton = element.shadowRoot?.getElementById('add');
+				expect(addButton?.getAttribute('aria-label')).toBe('Increment');
+			});
+
+			it('renders a localized "aria-label" on the subtract button', async () => {
+				const subtractButton = element.shadowRoot?.getElementById('subtract');
+				expect(subtractButton?.getAttribute('aria-label')).toBe('Decrement');
+			});
+
+			describe('aria overrides', () => {
+				it('renders the correct text for "aria-label" in the add button', async () => {
+					element.addButtonAriaLabel = 'Add label';
+					await elementUpdated(element);
+					const addButton = element.shadowRoot?.getElementById('add');
+					expect(addButton?.getAttribute('aria-label')).toBe('Add label');
+				});
+
+				it('renders the correct text for "aria-label" in the subtract button', async () => {
+					element.subtractButtonAriaLabel = 'Subtract label';
+					await elementUpdated(element);
+					const subtractButton = element.shadowRoot?.getElementById('subtract');
+					expect(subtractButton?.getAttribute('aria-label')).toBe('Subtract label');
+				});
+			});
+		});
+
+		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

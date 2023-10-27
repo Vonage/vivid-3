@@ -8,7 +8,8 @@ import {
 	FormElementCharCount,
 	FormElementHelperText,
 	formElements,
-	FormElementSuccessText
+	FormElementSuccessText,
+	Localized,
 } from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
 
@@ -46,6 +47,8 @@ function makeStep(element: NumberField, direction: number) {
 @errorText
 @formElements
 export class NumberField extends FastNumberField {
+	@attr({attribute: 'add-button-aria-label'}) addButtonAriaLabel: string | null = null;
+	@attr({attribute: 'subtract-button-aria-label'}) subtractButtonAriaLabel: string | null = null;
 	@attr appearance?: NumberFieldAppearance;
 	@attr shape?: NumberFieldShape;
 	@attr autoComplete?: string;
@@ -102,5 +105,6 @@ export interface NumberField extends AffixIcon,
 	FormElement,
 	FormElementCharCount,
 	FormElementHelperText,
-	FormElementSuccessText {}
-applyMixins(NumberField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+	FormElementSuccessText,
+	Localized {}
+applyMixins(NumberField, Localized, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);

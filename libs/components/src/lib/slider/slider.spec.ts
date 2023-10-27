@@ -41,7 +41,9 @@ describe('vwc-slider', () => {
 	describe('disabled', () => {
 		it('should set disabled class when disabled is true', async () => {
 			const classes = await setBoolAttributeOn(element, 'disabled');
+			const control = await getControlElement(element);
 			expect(classes).toContain('disabled');
+			expect(control.getAttribute('aria-disabled')).toBe('true');
 		});
 	});
 
@@ -139,14 +141,31 @@ describe('vwc-slider', () => {
 		});
 	});
 
-	/* Fails as the component does not have an accessible name: aria-label */
-	xdescribe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.ariaLabel = 'Label';
+			element.ariaLabelledby = 'heading1';
+			element.ariaDescribedby = 'paragraph1';
 			element.min = 3;
 			element.max = 10;
 			element.value = '5';
 			await elementUpdated(element);
+		});
 
+		it('should set the correct a11y attributes', () => {
+			const control = getControlElement(element);
+			expect(control?.getAttribute('role')).toBe('slider');
+			expect(control?.getAttribute('aria-label')).toBe('Label');
+			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
+			expect(control?.getAttribute('aria-describedby')).toBe('paragraph1');
+			expect(control?.getAttribute('aria-valuemin')).toBe('3');
+			expect(control?.getAttribute('aria-valuemax')).toBe('10');
+			expect(control?.getAttribute('aria-valuetext')).toBe(null);
+			expect(control?.getAttribute('aria-valuenow')).toBe('5');
+			expect(control?.getAttribute('aria-orientation')).toBe('horizontal');
+		});
+
+		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

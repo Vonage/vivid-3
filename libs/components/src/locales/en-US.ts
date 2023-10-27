@@ -71,6 +71,13 @@ const enUS: Locale = {
 			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Remove file',
 	},
+	dialog: {
+		dismissButtonLabel: 'Close',
+	},
+	numberField: {
+		addButtonLabel: 'Increment',
+		subtractButtonLabel: 'Decrement',
+	},
 };
 
 export default enUS;

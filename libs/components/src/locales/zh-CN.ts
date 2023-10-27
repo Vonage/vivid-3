@@ -71,6 +71,13 @@ const zhCN: Locale = {
 			'文件太大 ({{filesize}}MiB)。最大文件大小: {{maxFilesize}}MiB。',
 		removeFileLabel: '删除文件',
 	},
+	dialog: {
+		dismissButtonLabel: '关',
+	},
+	numberField: {
+		addButtonLabel: '增量',
+		subtractButtonLabel: '递减',
+	},
 };
 
 export default zhCN;

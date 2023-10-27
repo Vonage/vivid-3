@@ -8,6 +8,9 @@ import { limit } from '@microsoft/fast-web-utilities';
  * @public
  */
 export class Slider extends FastSlider {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({attribute: 'aria-labelledby'}) ariaLabelledby: string | null = null;
+	@attr({attribute: 'aria-describedby'}) ariaDescribedby: string | null = null;
 	/**
 	 * Display markers on/off
 	 * 

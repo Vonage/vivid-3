@@ -29,6 +29,9 @@ export const ProgressRingTemplate: (
 ) => html`
 <div
         role="progressbar"
+        aria-label="${x => x.ariaLabel}"
+        aria-labelledby="${x => x.ariaLabelledby}"
+        aria-describedby="${x => x.ariaDescribedby}"
         aria-valuenow="${x => x.value}"
         aria-valuemin="${x => x.min}"
         aria-valuemax="${x => x.max}"

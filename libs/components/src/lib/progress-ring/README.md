@@ -3,9 +3,7 @@
 Progress-ring is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
 ```js
-<script type="module">
-  import '@vonage/vivid/progress-ring';
-</script>
+<script type="module">import '@vonage/vivid/progress-ring';</script>
 ```
 
 ```html preview
@@ -88,13 +86,19 @@ Use the `size` attribute/property to set the progress ring's size.
 <vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
 ```
 
+## Accessibility
+
+- The progress ring's `role` is `progressbar` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `progress-ring` element.
+- `aria-labelledby` and `aria-describedby` can also be used.
+
 ## Use Cases
 
 ### Determinate State
 
 Set the `min`, `max` and `value` in order to show the determinate state.
 
-In the example below, we set the value to `12.5` while the range is `0` to `50`.  This means, 25% of the progress bar will be filled.
+In the example below, we set the value to `12.5` while the range is `0` to `50`. This means, 25% of the progress bar will be filled.
 
 ```html preview
 <vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
@@ -105,6 +109,5 @@ In the example below, we set the value to `12.5` while the range is `0` to `50`.
 Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show an indeterminate state.
 
 ```html preview blocks
-<vwc-progress-ring min="0" max="50"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
+<vwc-progress-ring min="0" max="50"></vwc-progress-ring> <vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
 ```

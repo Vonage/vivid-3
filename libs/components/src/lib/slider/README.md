@@ -3,9 +3,7 @@
 Represents a slider custom element.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/slider';
-</script>
+<script type="module">import '@vonage/vivid/slider';</script>
 ```
 
 ```html preview
@@ -28,7 +26,7 @@ Use `min` to set the lowest value allowed for the slider.
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
+  slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
 </script>
 ```
 
@@ -46,7 +44,7 @@ Use `max` to set the greatest value allowed for the slider.
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
+  slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
 </script>
 ```
 
@@ -64,7 +62,7 @@ Use `step` to set determine the granularity with which values can be incremented
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
+  slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
 </script>
 ```
 
@@ -111,3 +109,9 @@ Use `value` to set the value of the slider.
 ```html preview blocks
 <vwc-slider value="3"></vwc-slider>
 ```
+
+## Accessibility
+
+- The slider's `role` is `slider` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `slider` element.
+- `aria-labelledby` and `aria-describedby` can also be used.

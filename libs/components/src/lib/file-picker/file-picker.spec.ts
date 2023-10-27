@@ -38,7 +38,7 @@ describe('vwc-file-picker', () => {
 
 	beforeEach(async () => {
 		element = fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}>Drag & drop or click to upload</${COMPONENT_TAG}>`
 		) as FilePicker;
 	});
 
@@ -281,7 +281,7 @@ describe('vwc-file-picker', () => {
 	});
 
 	/* Failing because element with role of button has no accessible name: aria-label */
-	xdescribe('a11y', () => {
+	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Test label';
 			element.helperText = 'Helper text';

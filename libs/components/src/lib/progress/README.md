@@ -3,9 +3,7 @@
 Progress is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
 
 ```js
-<script type="module">
-  import '@vonage/vivid/progress';
-</script>
+<script type="module">import '@vonage/vivid/progress';</script>
 ```
 
 ## Members
@@ -88,13 +86,19 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 <vwc-progress min="0" max="50" value="25" shape="sharp"></vwc-progress>
 ```
 
+## Accessibility
+
+- The progress's `role` is `progressbar` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `progress` element.
+- `aria-labelledby` and `aria-describedby` can also be used.
+
 ## Use Cases
 
 ### Determinate State
 
 Set the `min`, `max` and `value` in order to show the determinate state.
 
-In the example below, we set the value to `12.5` while the range is `0` to `50`.  This means, 25% of the progress bar will be filled.
+In the example below, we set the value to `12.5` while the range is `0` to `50`. This means, 25% of the progress bar will be filled.
 
 ```html preview
 <vwc-progress min="0" max="50" value="12.5"></vwc-progress>
