@@ -3,7 +3,9 @@
 Represents a slider custom element.
 
 ```js
-<script type="module">import '@vonage/vivid/slider';</script>
+<script type="module">
+  import '@vonage/vivid/slider';
+</script>
 ```
 
 ```html preview
@@ -26,7 +28,7 @@ Use `min` to set the lowest value allowed for the slider.
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-  slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
+  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
 </script>
 ```
 
@@ -44,7 +46,7 @@ Use `max` to set the greatest value allowed for the slider.
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-  slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
+  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
 </script>
 ```
 
@@ -62,7 +64,7 @@ Use `step` to set determine the granularity with which values can be incremented
 <div>Current value: <span id="slidervalue"></span></div>
 
 <script>
-  slider.addEventListener('change', (e) => (slidervalue.innerText = slider.value));
+  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
 </script>
 ```
 

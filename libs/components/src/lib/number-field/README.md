@@ -1,10 +1,12 @@
-# number-field
+# Number field
 
 Represents a number-field custom element. Follows the [`HTMLInput` of `type=text` specifications](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text).
 If you'd like to know why we follow the `text` field type, you can read more about it [here](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/).
 
 ```js
-<script type="module">import '@vonage/vivid/number-field';</script>
+<script type="module">
+  import '@vonage/vivid/number-field';
+</script>
 ```
 
 ```html preview
@@ -14,12 +16,12 @@ If you'd like to know why we follow the `text` field type, you can read more abo
 ## Members
 
 ### Label
-
 Add a `label` attribute to add label to the number field.  
 The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
 
 - Type: `string` | `undefined`
 - Default: `undefined`
+
 
 ```html preview
 <vwc-number-field label="My Label"></vwc-number-field>
@@ -78,7 +80,8 @@ Use the `shape` attribute to change the number field's edges.
 - Default: `'rounded'`
 
 ```html preview blocks
-<vwc-number-field label="Pill" shape="pill"></vwc-number-field> <vwc-number-field label="Rounded" shape="rounded"></vwc-number-field>
+<vwc-number-field label="Pill" shape="pill"></vwc-number-field>
+<vwc-number-field label="Rounded" shape="rounded"></vwc-number-field>
 ```
 
 ### Appearance
@@ -91,8 +94,8 @@ Set the `appearance` attribute to change the number filed's appearance.
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
 ```html preview blocks
-<vwc-number-field placeholder="appearance" label="fieldset" appearance="fieldset"></vwc-number-field>
-<vwc-number-field placeholder="appearance" label="ghost" appearance="ghost"></vwc-number-field>
+<vwc-number-field placeholder="appearance" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field placeholder="appearance" label='ghost' appearance='ghost'></vwc-number-field>
 ```
 
 ### Disabled
@@ -103,7 +106,7 @@ Add the `disabled` attribute to disable the number field.
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field disabled value="disabled" label="fieldset" appearance="fieldset"></vwc-number-field>
+<vwc-number-field disabled value="disabled" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
 
 ### Readonly
@@ -114,18 +117,18 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field readonly value="8" label="fieldset" appearance="fieldset"></vwc-number-field>
+<vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
 ```
 
 ## Methods
 
 <div class="table-wrapper">
 
-| Name       | Returns | Description                                   |
-| ---------- | ------- | --------------------------------------------- |
-| `stepUp`   | `void`  | Increase value by step (1 if step is not set) |
-| `stepDown` | `void`  | Decrease value by step (1 if step is not set) |
-|            |
+| Name            | Returns  | Description                                   |
+|-----------------|----------|-----------------------------------------------|
+| `stepUp`        | `void`   | Increase value by step (1 if step is not set) |
+| `stepDown`      | `void`   | Decrease value by step (1 if step is not set) |
+|                 |
 
 </div>
 
