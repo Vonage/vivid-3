@@ -9,7 +9,7 @@ import type { Slider } from '../slider/slider';
  *
  * @public
  */
-export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
+export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent>;
 
 /**
  * Base class for audio-player
