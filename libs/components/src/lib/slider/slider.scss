@@ -1,12 +1,7 @@
 @use "../focus/partials/variables" as focus-variables;
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "partials/variables" as variables;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent cta,
-	$shades: primary,
-	$default: accent,
-);
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+
 
 $track-thickness: 2px;
 
@@ -25,8 +20,6 @@ $track-thickness: 2px;
 }
 
 .control {
-	@include connotation.connotation (slider);
-
 	#{variables.$thumb-size}: 12px;
 	#{variables.$thumb-interaction-indicator-size}: 36px;
 

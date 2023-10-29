@@ -6,11 +6,10 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Slider } from './slider';
 
-const getClasses = ({ disabled, connotation }: Slider) =>
+const getClasses = ({ disabled}: Slider) =>
 	classNames(
 		'control',
 		['disabled', Boolean(disabled)],
-		[`connotation-${connotation}`, Boolean(connotation)],
 	);
 
 const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
