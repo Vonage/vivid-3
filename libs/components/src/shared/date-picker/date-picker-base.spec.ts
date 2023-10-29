@@ -32,7 +32,8 @@ describe.each([
 	let textField: TextField;
 	let calendarButton: Button;
 	let popup: Popup;
-	let titleAction: HTMLButtonElement;
+
+	const getTitleAction = () => element.shadowRoot!.querySelector('.title-action') as HTMLButtonElement;
 
 	const getDateButton = (date: string) =>
 		element.shadowRoot!.querySelector(
@@ -65,7 +66,7 @@ describe.each([
 			`[aria-label="${label}"],[label="${label}"]`
 		) as Button;
 
-	const getDialogTitle = () => titleAction.textContent!.trim();
+	const getDialogTitle = () => getTitleAction().textContent!.trim();
 
 	async function openPopup() {
 		calendarButton.click();
@@ -73,7 +74,7 @@ describe.each([
 	}
 
 	async function openMonthView() {
-		titleAction.click();
+		getTitleAction().click();
 		await elementUpdated(element);
 	}
 
@@ -82,9 +83,6 @@ describe.each([
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
 		calendarButton = element.shadowRoot!.querySelector('#calendar-button') as Button;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
-		titleAction = element.shadowRoot!.querySelector(
-			'.title-action'
-		) as HTMLButtonElement;
 		setupDelegatesFocusPolyfill(element);
 	});
 
@@ -154,15 +152,22 @@ describe.each([
 				expect(getButtonByLabel('Previous month').disabled).toBe(false);
 			});
 
-			it('should disable previous year button if the previous year is earlier than min', async () => {
-				expect(getButtonByLabel('Previous year').disabled).toBe(true);
-			});
+			describe('with single calendar', () => {
+				beforeEach(async () => {
+					element._numCalendars = 1;
+					await elementUpdated(element);
+				});
 
-			it('should enable previous year button if the previous year is not earlier than min', async () => {
-				getButtonByLabel('Next year').click();
-				await elementUpdated(element);
+				it('should disable previous year button if the previous year is earlier than min', async () => {
+					expect(getButtonByLabel('Previous year').disabled).toBe(true);
+				});
 
-				expect(getButtonByLabel('Previous year').disabled).toBe(false);
+				it('should enable previous year button if the previous year is not earlier than min', async () => {
+					getButtonByLabel('Next year').click();
+					await elementUpdated(element);
+
+					expect(getButtonByLabel('Previous year').disabled).toBe(false);
+				});
 			});
 		});
 
@@ -179,8 +184,15 @@ describe.each([
 				).toBe(true);
 			});
 
-			it('should disable previous year button if the previous year is earlier than min', async () => {
-				expect(getButtonByLabel('Previous year').disabled).toBe(true);
+			describe('with single calendar', () => {
+				beforeEach(async () => {
+					element._numCalendars = 1;
+					await elementUpdated(element);
+				});
+
+				it('should disable previous year button if the previous year is earlier than min', async () => {
+					expect(getButtonByLabel('Previous year').disabled).toBe(true);
+				});
 			});
 		});
 	});
@@ -215,15 +227,22 @@ describe.each([
 				expect(getButtonByLabel('Next month').disabled).toBe(false);
 			});
 
-			it('should disable next year button if the next year is later than max', async () => {
-				expect(getButtonByLabel('Next year').disabled).toBe(true);
-			});
+			describe('with single calendar', () => {
+				beforeEach(async () => {
+					element._numCalendars = 1;
+					await elementUpdated(element);
+				});
 
-			it('should enable next year button if the next year is not later than max', async () => {
-				getButtonByLabel('Previous year').click();
-				await elementUpdated(element);
+				it('should disable next year button if the next year is later than max', async () => {
+					expect(getButtonByLabel('Next year').disabled).toBe(true);
+				});
 
-				expect(getButtonByLabel('Next year').disabled).toBe(false);
+				it('should enable next year button if the next year is not later than max', async () => {
+					getButtonByLabel('Previous year').click();
+					await elementUpdated(element);
+
+					expect(getButtonByLabel('Next year').disabled).toBe(false);
+				});
 			});
 		});
 
@@ -240,8 +259,15 @@ describe.each([
 				).toBe(true);
 			});
 
-			it('should disable next year button if the next year is later than max', async () => {
-				expect(getButtonByLabel('Next year').disabled).toBe(true);
+			describe('with single calendar', () => {
+				beforeEach(async () => {
+					element._numCalendars = 1;
+					await elementUpdated(element);
+				});
+
+				it('should disable next year button if the next year is later than max', async () => {
+					expect(getButtonByLabel('Next year').disabled).toBe(true);
+				});
 			});
 		});
 	});
@@ -354,20 +380,6 @@ describe.each([
 			expect(getDateButton('2023-08-10').classList).toContain('current');
 		});
 
-		it('should switch to the previous year when clicking the previous year button', async () => {
-			getButtonByLabel('Previous year').click();
-			await elementUpdated(element);
-
-			expect(getDialogTitle()).toBe('August 2022');
-		});
-
-		it('should switch to the next year when clicking the next year button', async () => {
-			getButtonByLabel('Next year').click();
-			await elementUpdated(element);
-
-			expect(getDialogTitle()).toBe('August 2024');
-		});
-
 		it('should switch to the previous month when clicking the previous month button', async () => {
 			getButtonByLabel('Previous month').click();
 			await elementUpdated(element);
@@ -380,6 +392,39 @@ describe.each([
 			await elementUpdated(element);
 
 			expect(getDialogTitle()).toBe('September 2023');
+		});
+
+		describe('with single calendar', () => {
+			beforeEach(async () => {
+				element._numCalendars = 1;
+				await elementUpdated(element);
+			});
+
+			it('should switch to the previous year when clicking the previous year button', async () => {
+				getButtonByLabel('Previous year').click();
+				await elementUpdated(element);
+
+				expect(getDialogTitle()).toBe('August 2022');
+			});
+
+			it('should switch to the next year when clicking the next year button', async () => {
+				getButtonByLabel('Next year').click();
+				await elementUpdated(element);
+
+				expect(getDialogTitle()).toBe('August 2024');
+			});
+		});
+
+		describe('with multiple calendars', () => {
+			beforeEach(async () => {
+				element._numCalendars = 2;
+				await elementUpdated(element);
+			});
+
+			it('should hide the buttons to change year', async () => {
+				expect(getButtonByLabel('Previous year')).toBe(null);
+				expect(getButtonByLabel('Next year')).toBe(null);
+			});
 		});
 	});
 
@@ -444,6 +489,8 @@ describe.each([
 
 	describe('month picker', () => {
 		beforeEach(async () => {
+			element._numCalendars = 1;
+			await elementUpdated(element);
 			await openPopup();
 			await openMonthView();
 		});
@@ -478,7 +525,7 @@ describe.each([
 		});
 
 		it('should close the month picker when clicking on the title action', async () => {
-			titleAction.click();
+			getTitleAction().click();
 			await elementUpdated(element);
 
 			expect(element.shadowRoot!.querySelector('.month-grid')).toBeNull();
@@ -487,6 +534,8 @@ describe.each([
 
 	describe('month grid button', () => {
 		beforeEach(async () => {
+			element._numCalendars = 1;
+			await elementUpdated(element);
 			await openPopup();
 			await openMonthView();
 		});
