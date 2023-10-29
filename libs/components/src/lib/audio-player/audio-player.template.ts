@@ -6,8 +6,7 @@ import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 
-const getClasses = ({ connotation, disabled, duration }: AudioPlayer) => classNames(
-	[`connotation-${connotation}`, Boolean(connotation)],
+const getClasses = ({ disabled, duration }: AudioPlayer) => classNames(
 	['disabled', Boolean(disabled) || !Boolean(duration)],
 );
 
@@ -19,7 +18,6 @@ function renderButton(context: ElementDefinitionContext) {
 	aria-lablel="${x => x.paused ? 'play-button' : 'pause-button'}" 
 	size='condensed' 
 	?disabled="${x => x.disabled || !x.duration}" 
-	connotation="${x => x.connotation}"
   ></${buttonTag}>`;
 }
 
@@ -30,7 +28,7 @@ function renderSlider(context: ElementDefinitionContext) {
 	${ref('_sliderEl')} class="slider" 
 	value="0" max="100" 
 	?disabled="${x => x.disabled || !x.duration}"
-	connotation="${x => x.connotation}"
+	@mouseup="${x => x._rewind()}" @keyup="${x => x._rewind()}"
 	@mousedown="${x => x._rewind()}">
 	</${sliderTag}>`;
 }

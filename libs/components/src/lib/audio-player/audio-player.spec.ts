@@ -151,8 +151,13 @@ describe('vwc-audio-player', () => {
 			const slider = getBaseElement(element).querySelector('vwc-slider') as Slider;
 			element._rewind = jest.fn();
 
-			slider.dispatchEvent(new MouseEvent('mousedown'));
+			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 
+			slider.dispatchEvent(new MouseEvent('mousedown', { clientX: 50 }));
+			slider.value = '99';
 			await elementUpdated(element);
 
 			expect(element._rewind).toHaveBeenCalled();
