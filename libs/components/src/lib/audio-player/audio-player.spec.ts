@@ -10,25 +10,20 @@ const COMPONENT_TAG = 'vwc-audio-player';
 
 describe('vwc-audio-player', () => {
 	let element: AudioPlayer;
-	// let play: any;
-	// let pause: any;
+	let play: any;
+	let pause: any;
 
-	// global.Audio = jest.fn().mockImplementation(() => ({
-	// 	pause: jest.fn(),
-	// 	play: jest.fn(),
-	// }));
+	beforeEach(() => {
+		play = HTMLMediaElement.prototype.play;
+		HTMLMediaElement.prototype.play = jest.fn();
+		pause = HTMLMediaElement.prototype.pause;
+		HTMLMediaElement.prototype.pause = jest.fn();
+	});
 
-	// beforeEach(() => {
-	// 	play = HTMLMediaElement.prototype.play;
-	// 	HTMLMediaElement.prototype.play = jest.fn();
-	// 	pause = HTMLMediaElement.prototype.pause;
-	// 	HTMLMediaElement.prototype.pause = jest.fn();
-	// });
-
-	// afterAll(() => {
-	// 	HTMLMediaElement.prototype.pause = pause;
-	// 	HTMLMediaElement.prototype.play = play;
-	// });
+	afterAll(() => {
+		HTMLMediaElement.prototype.pause = pause;
+		HTMLMediaElement.prototype.play = play;
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -144,20 +139,66 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(pauseButton.icon).toEqual('play-solid');
 		});
-	});
 
-	describe('rewind', function () {
-		it('should call rewind when the slider is clicked', async function () {
-			const slider = getBaseElement(element).querySelector('vwc-slider') as Slider;
-			element._rewind = jest.fn();
-
+		it('should pause when rewind is called', async function () {
 			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 
-			slider.dispatchEvent(new MouseEvent('mousedown', { clientX: 50 }));
-			slider.value = '99';
+			audio.currentTime = 200;
+			element.paused = false;
+			await elementUpdated(element);
+
+			element._rewind();
+			await elementUpdated(element);
+
+			expect(element.paused).toEqual(true);
+		});
+
+		it('should pause when finished', async function () {
+			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			element.paused = false;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
+			await elementUpdated(element);
+
+			const event = new Event('timeupdate');
+			audio.currentTime = audio.duration;
+			audio.dispatchEvent(event);
+
+			await elementUpdated(element);
+			expect(element.paused).toEqual(true);
+		});
+	});
+
+	describe('rewind', function () {
+		it('should call rewind when the slider is mouseup', async function () {
+			const slider = getBaseElement(element).querySelector('.slider') as Slider;
+			element._rewind = jest.fn();
+
+			slider.dispatchEvent(new MouseEvent('mouseup'));
+			await elementUpdated(element);
+
+			expect(element._rewind).toHaveBeenCalled();
+		});
+
+		it('should call rewind when the slider is mousedown', async function () {
+			const slider = getBaseElement(element).querySelector('.slider') as Slider;
+			element._rewind = jest.fn();
+
+			slider.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(element._rewind).toHaveBeenCalled();
+		});
+
+		it('should call rewind when the slider is keyup', async function () {
+			const slider = getBaseElement(element).querySelector('.slider') as Slider;
+			element._rewind = jest.fn();
+
+			slider.dispatchEvent(new MouseEvent('keyup'));
 			await elementUpdated(element);
 
 			expect(element._rewind).toHaveBeenCalled();
@@ -211,29 +252,6 @@ describe('vwc-audio-player', () => {
 
 			element._updateTotalTime();
 			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('1:00');
-			audioConstructor.mockRestore();
-		});
-
-		it('should update total time when updateTotalTime is called', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			audio.currentTime = 1000;
-
-			const event = new MouseEvent('click', {
-				clientX: 50,
-			});
-
-			const slider = getBaseElement(element).querySelector('.slider') as HTMLElement;
-			Object.defineProperty(slider, 'offsetLeft', { value: 0, writable: false });
-			Object.defineProperty(slider, 'offsetWidth', { value: 100, writable: false });
-			Object.defineProperty(slider, 'clientWidth', { value: 200, writable: false });
-
-			slider.dispatchEvent(event);
-
-			await elementUpdated(element);
-			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('0:00');
 			audioConstructor.mockRestore();
 		});
 	});

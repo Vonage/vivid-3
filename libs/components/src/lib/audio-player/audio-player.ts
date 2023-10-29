@@ -95,7 +95,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_updateProgress() {
-		const current: number = this._playerEl!.currentTime;
+		const current: number = this._playerEl.currentTime;
 		const percent = (current / this._playerEl.duration) * 100;
 		this._sliderEl.value = percent.toString();
 
@@ -122,9 +122,7 @@ export class AudioPlayer extends FoundationElement {
 	_rewind() {
 		this._playerEl.pause();
 		this.paused = true;
-		if (this._playerEl.duration) {
-			this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
-		}
+		this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
 	}
 
 	/**
