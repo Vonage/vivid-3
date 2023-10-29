@@ -111,3 +111,14 @@ Use `value` to set the value of the slider.
 ```html preview blocks
 <vwc-slider value="3"></vwc-slider>
 ```
+
+### Connotation
+
+Use the `connotation` attribute to set the slider's color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview
+<vwc-slider connotation="cta"></vwc-slider>
+```

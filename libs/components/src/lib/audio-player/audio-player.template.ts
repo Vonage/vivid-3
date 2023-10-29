@@ -30,6 +30,7 @@ function renderSlider(context: ElementDefinitionContext) {
 	${ref('_sliderEl')} class="slider" 
 	value="0" max="100" 
 	?disabled="${x => x.disabled || !x.duration}"
+	connotation="${x => x.connotation}"
 	@mousedown="${x => x._rewind()}">
 	</${sliderTag}>`;
 }

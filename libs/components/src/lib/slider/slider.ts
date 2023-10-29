@@ -1,6 +1,14 @@
 import { attr } from '@microsoft/fast-element';
 import { Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
+import type { Connotation } from '../enums';
+
+/**
+ * Types of audio player connotation.
+ *
+ * @public
+ */
+export type SliderConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
 
 /**
  * Base class for slider
@@ -8,6 +16,13 @@ import { limit } from '@microsoft/fast-web-utilities';
  * @public
  */
 export class Slider extends FastSlider {
+	/**
+	 * The connotation the slider should have.
+	 *
+	 * @public
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: SliderConnotation;
 	/**
 	 * Display markers on/off
 	 * 

@@ -99,6 +99,10 @@ export class AudioPlayer extends FoundationElement {
 		const percent = (current / this._playerEl.duration) * 100;
 		this._sliderEl.value = percent.toString();
 
+		if (percent === 100) {
+			this.paused = true;
+		}
+
 		const currentTime = this._controlEl.querySelector('.current-time');
 		if (currentTime) currentTime.textContent = this._formatTime(current);
 	}

@@ -1,6 +1,6 @@
 # Audio Player
 
-Represents a audio player custom element.
+The `vwc-audio-player` component is used to play audio files. It is based on the [HTML5 audio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio).
 
 ```js
 <script type="module">
