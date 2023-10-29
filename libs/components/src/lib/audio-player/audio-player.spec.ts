@@ -1,6 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Button } from '../button/button';
+import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 import { audioPlayerDefinition } from './definition';
 import '.';
@@ -145,26 +146,18 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	// describe('rewind', function () {
-	// 	it('should call rewind when the slider is clicked', async function () {
-	// 		const slider = getBaseElement(element).querySelector('.slider') as HTMLElement;
-	// 		element._rewind = jest.fn();
+	describe('rewind', function () {
+		it('should call rewind when the slider is clicked', async function () {
+			const slider = getBaseElement(element).querySelector('vwc-slider') as Slider;
+			element._rewind = jest.fn();
 
-	// 		const event = new MouseEvent('click', {
-	// 			clientX: 50,
-	// 		});
+			slider.dispatchEvent(new MouseEvent('mousedown'));
 
-	// 		Object.defineProperty(slider, 'offsetLeft', { value: 0, writable: false });
-	// 		Object.defineProperty(slider, 'offsetWidth', { value: 100, writable: false });
-	// 		Object.defineProperty(slider, 'clientWidth', { value: 200, writable: false });
+			await elementUpdated(element);
 
-
-	// 		slider.dispatchEvent(event);
-	// 		await elementUpdated(element);
-
-	// 		expect(element._rewind).toHaveBeenCalled();
-	// 	});
-	// });
+			expect(element._rewind).toHaveBeenCalled();
+		});
+	});
 
 	describe('updateProgress', function () {
 		it('should call updateProgress when timeupdate', async function () {
@@ -237,22 +230,6 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('0:00');
 			audioConstructor.mockRestore();
-		});
-	});
-
-	describe('mouse down', function () {
-		it('should call rewind when mousedown on slider', async function () {
-			const pin = getBaseElement(element).querySelector('.slider') as HTMLElement;
-			element._rewind = jest.fn();
-
-			const event = new MouseEvent('mousedown', {
-				clientX: 100,
-			});
-
-			pin.dispatchEvent(event);
-			await elementUpdated(element);
-
-			expect(element._rewind).toHaveBeenCalled();
 		});
 	});
 });
