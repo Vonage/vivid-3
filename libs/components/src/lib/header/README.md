@@ -1,6 +1,6 @@
 # Header
 
-The header component can be used to display a header at the top of the page.
+The header component can be used to display a header at the top of a page or section.
 
 ```js
 <script type="module">
