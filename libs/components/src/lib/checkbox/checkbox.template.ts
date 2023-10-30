@@ -41,6 +41,9 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 
 	return html`<div class="${getClasses}"
 			role="checkbox"
+			aria-label="${x => x.ariaLabel}"
+			aria-labelledby="${x => x.ariaLabelledby}"
+			aria-describedby="${x => x.ariaDescribedby}"
 			aria-checked="${x => x.checked}"
 			aria-required="${x => x.required}"
 			aria-disabled="${x => x.disabled}"

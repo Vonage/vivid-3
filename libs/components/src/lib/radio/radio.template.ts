@@ -27,6 +27,9 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 	return html<Radio>`
 	<div class="${getClasses}"
 		role="radio"
+		aria-label="${x => x.ariaLabel}"
+		aria-labelledby="${x => x.ariaLabelledby}"
+		aria-describedby="${x => x.ariaDescribedby}"
 		aria-checked="${x => x.checked}"
 		aria-required="${x => x.required}"
 		aria-disabled="${x => x.disabled}"

@@ -72,3 +72,9 @@ Use the `value` member to set the radio's value.
 ```html preview
 <vwc-radio value="my-value"></vwc-radio>
 ```
+
+## Accessibility
+
+- If a label is not provided either through the `label` attribute, then the checkbox will needs accessible label.
+- It is then the consumer's concern to add `aria-label` to the `checkbox` element.
+- `aria-labelledby` and `aria-describedby` can also be used.
