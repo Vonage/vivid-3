@@ -1,6 +1,12 @@
 import { attr } from '@microsoft/fast-element';
 import { Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
+import type { Connotation } from '../enums';
+
+export type SliderConnotation =
+	Connotation.Accent |
+	Connotation.CTA;
+
 
 /**
  * Base class for slider
@@ -17,6 +23,13 @@ export class Slider extends FastSlider {
 	@attr({
 		mode: 'boolean',
 	}) markers = false;
+
+	/**
+	 * slider connotation
+	 *
+	 * @public
+	 */
+	@attr connotation?: SliderConnotation;
 
 	/**
 	 * TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3

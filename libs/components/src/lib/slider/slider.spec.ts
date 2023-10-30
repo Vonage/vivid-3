@@ -1,6 +1,7 @@
 import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { Connotation } from '../enums';
 import { Slider } from './slider';
 import '.';
 import { sliderDefinition } from './definition';
@@ -136,6 +137,31 @@ describe('vwc-slider', () => {
 
 			expect(spy).toHaveBeenCalled();
 			expect(spy.mock.calls.length).toEqual(1);
+		});
+	});
+
+	describe('connotation', function () {
+		const possibleConnotations = [Connotation.Accent,
+			Connotation.CTA
+		];
+
+		it('should leave connotation class empty if not set', async function () {
+			possibleConnotations.forEach(connotation => {
+				expect(getControlElement(element)
+					?.classList
+					.contains(connotation))
+					.toEqual(false);
+			});
+		});
+
+		it('should set a connotation class', async function () {
+			const connotation = possibleConnotations[1];
+			(element.connotation as Connotation) = connotation;
+			await elementUpdated(element);
+			expect(getControlElement(element)
+				?.classList
+				.contains(`connotation-${connotation}`))
+				.toEqual(true);
 		});
 	});
 
