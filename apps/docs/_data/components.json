@@ -279,5 +279,10 @@
 		"title": "split-button",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/split-button/README.md"
+	},
+	{
+		"title": "selectable-box",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/selectable-box/README.md"
 	}
 ]
