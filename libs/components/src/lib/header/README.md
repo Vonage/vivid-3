@@ -224,7 +224,7 @@ A *fixed* header as primary element containing a [side drawer](../side-drawer) c
 
 ### Side Drawer with Header
 
-A side drawer as primary element containing a header containing application content.
+A [side drawer](../side-drawer) as primary element containing a header containing application content.
 
 ```html preview full
 <style>
