@@ -41,7 +41,7 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 		aria-label="${x => x.ariaLabel}"
 		aria-labelledby="${x => x.ariaLabelledby}"
 		aria-describedby="${x => x.ariaDescribedby}"
-		aria-valuetext="${x => x.valueTextFormatter(x.value)}"
+		aria-valuetext="${x => x.ariaValuetext || x.valueTextFormatter(x.value)}"
 		aria-valuenow="${x => x.value}"
 		aria-valuemin="${x => x.min}"
 		aria-valuemax="${x => x.max}"

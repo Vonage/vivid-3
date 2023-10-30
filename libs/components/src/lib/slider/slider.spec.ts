@@ -146,6 +146,7 @@ describe('vwc-slider', () => {
 			element.ariaLabel = 'Label';
 			element.ariaLabelledby = 'heading1';
 			element.ariaDescribedby = 'paragraph1';
+			element.ariaValuetext = '5 bits';
 			element.min = 3;
 			element.max = 10;
 			element.value = '5';
@@ -160,7 +161,7 @@ describe('vwc-slider', () => {
 			expect(control?.getAttribute('aria-describedby')).toBe('paragraph1');
 			expect(control?.getAttribute('aria-valuemin')).toBe('3');
 			expect(control?.getAttribute('aria-valuemax')).toBe('10');
-			expect(control?.getAttribute('aria-valuetext')).toBe(null);
+			expect(control?.getAttribute('aria-valuetext')).toBe('5 bits');
 			expect(control?.getAttribute('aria-valuenow')).toBe('5');
 			expect(control?.getAttribute('aria-orientation')).toBe('horizontal');
 		});
