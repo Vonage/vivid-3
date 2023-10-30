@@ -93,6 +93,28 @@ export class Menu extends FastMenu {
 		}
 	}
 
+	constructor() {
+		super();
+
+		const handleFocusOut = this.handleFocusOut;
+		this.handleFocusOut = (e: FocusEvent) => {
+			/**
+			 * Fast menu doesn't support having arbitrary elements in the menu and handleFocusOut will throw if there are
+			 * no menuitem children. Therefore, we need to skip calling it in that case.
+			 */
+			const privates = this as unknown as {
+				menuItems: Element[] | undefined;
+				isFocusableElement: (el: Element) => el is HTMLElement;
+			};
+			const isSafeToCallSuper = privates.menuItems!.some(privates.isFocusableElement);
+			if (!isSafeToCallSuper) {
+				return;
+			}
+
+			handleFocusOut(e);
+		};
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
