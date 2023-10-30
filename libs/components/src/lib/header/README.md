@@ -265,7 +265,7 @@ A [side drawer](../side-drawer) as primary element containing a header containin
 
 ### Header with Banner
 
-Banners are placed at the top of the screen below the header.
+[Banners](../banner) are placed at the top of the screen below the header.
 In this example, the banner sticks to the top of the window.
 
 ```html preview full
