@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Number field
-=======
 # Number Field
->>>>>>> main
 
 The number-field component allows users to enter a number in a text field. It follows the [native number field](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) specification.
 
