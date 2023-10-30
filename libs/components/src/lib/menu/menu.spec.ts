@@ -195,12 +195,6 @@ describe('vwc-menu', () => {
 				document.activeElement?.dispatchEvent(arrowDownEvent);
 			}
 
-			function focusOutOfBody() {
-				const focusOutEvent = new FocusEvent('focusout');
-				const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
-				bodyElement.dispatchEvent(focusOutEvent);
-			}
-
 			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
 
 			element.innerHTML = `
@@ -217,6 +211,12 @@ describe('vwc-menu', () => {
 
 			expect(focusableElementAfterMouseDown.id).toEqual('id2');
 			expect(focusableElementAfterFocusOut.id).toEqual('id1');
+		});
+
+		it('should ignore focusout when there are no menuitems', async () => {
+			await elementUpdated(element);
+
+			expect(() => focusOutOfBody()).not.toThrow();
 		});
 	});
 
@@ -473,4 +473,10 @@ describe('vwc-menu', () => {
 		key: keyArrowDown,
 		bubbles: true,
 	} as KeyboardEventInit);
+
+	function focusOutOfBody() {
+		const focusOutEvent = new FocusEvent('focusout');
+		const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
+		bodyElement.dispatchEvent(focusOutEvent);
+	}
 });
