@@ -15,7 +15,9 @@ function renderButton(context: ElementDefinitionContext) {
 
 	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${x => x._togglePlay()}"
 	icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
-	aria-label="${x => x.paused ? 'play-button' : 'pause-button'}" 
+	aria-label="${x => x.paused 
+		? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel 
+		: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}" 
 	size='condensed' 
 	?disabled="${x => x.disabled || !x.duration}" 
   ></${buttonTag}>`;
@@ -25,7 +27,8 @@ function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
 	return html<AudioPlayer>`<${sliderTag}
-	${ref('_sliderEl')} class="slider" 
+	${ref('_sliderEl')} class="slider"
+	aria-label="${x => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
 	@mousedown="${x => x._rewind()}"
 	@mouseup="${x => x._rewind()}" 
 	@keyup="${x => x._rewind()}"

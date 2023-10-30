@@ -258,8 +258,6 @@ describe('vwc-audio-player', () => {
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
-			await elementUpdated(element);
-			
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
