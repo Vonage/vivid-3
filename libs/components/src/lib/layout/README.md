@@ -129,6 +129,8 @@ The grid container creates as many column tracks as possible without overflowing
 
 With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
 
+With `fill`, the empty tracks remain and take up space in the layout.
+
 With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
 
 - Type: `'fit'` | `'fill'`
