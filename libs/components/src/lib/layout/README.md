@@ -37,7 +37,7 @@ The component uses a [CSS grid layout](https://developer.mozilla.org/en-US/docs/
 
 ### Column Spacing
 
-Use the `column-spacing` attribute to control the gap between columns.
+Use the `column-spacing` attribute to choose a predefined value for the [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap).
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
