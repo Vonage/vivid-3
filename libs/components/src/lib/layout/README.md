@@ -62,7 +62,7 @@ Use the `column-spacing` attribute to choose a predefined value for the [column-
 
 ### Row Spacing
 
-Use the `row-spacing` attribute to control the gap of a row.
+Use the `row-spacing` attribute to choose a predefined value for the [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap).
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'default to column-spacing value'`
