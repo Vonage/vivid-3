@@ -26,12 +26,10 @@ function renderSlider(context: ElementDefinitionContext) {
 
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider" 
-	aria-label="audio progress bar"
 	@mousedown="${x => x._rewind()}"
 	@mouseup="${x => x._rewind()}" 
 	@keyup="${x => x._rewind()}"
 	value="0" max="100" 
-	aria-disabled="${x => x.disabled || !x.duration}" 
 	?disabled="${x => x.disabled || !x.duration}">
 	</${sliderTag}>`;
 }
@@ -46,7 +44,7 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
 
 	return html<AudioPlayer>`
-    <div class="base ${getClasses}" aria-disabled="${x => x.disabled}" aria-label="${x => x.ariaLabel}">
+    <div class="base ${getClasses}">
       <div class="controls" ${ref('_controlEl')}>
 	  	${renderButton(context)}
       	${when(x => x.timestamp, renderTimestamp())}
