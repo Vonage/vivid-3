@@ -10,7 +10,7 @@ While `text-field` follows [the W3C specifictation](https://developer.mozilla.or
 - `tel`
 - `url`
 
-If you wish to use `type="number"`, refer to the [`number-field`](/number-field) component.
+If you wish to use `type="number"`, refer to the [`number-field`](../number-field) component.
 
 ```js
 <script type="module">
@@ -254,6 +254,16 @@ In this example we need to call `.reportValidity()` to show the error because th
 		</div>
 	</vwc-layout>
 </form>
+```
+
+### Numeric input
+
+When collecting input which is made up of digits, but not a number in the mathematical sense, use the text-field with `inputmode="numeric"` and `pattern="[0-9]*"`.
+
+For mathematical numbers, refer to the [`number-field`](../number-field) component instead.
+
+```html preview
+<vwc-text-field label="ZIP Code" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 10001"></vwc-text-field>
 ```
 
 ## Accessibility
