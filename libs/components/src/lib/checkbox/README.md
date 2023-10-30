@@ -153,3 +153,9 @@ The default slot allows you to use rich content as the checkbox's label.
 	I agree to <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
 </vwc-checkbox>
 ```
+
+## Accessibility
+
+- If a label is not provided either through the `label` attribute or the `default` slot, then the checkbox will needs accessible label.
+- It is then the consumer's concern to add `aria-label` to the `checkbox` element.
+- `aria-labelledby` and `aria-describedby` can also be used.
