@@ -184,16 +184,6 @@ describe('vwc-audio-player', () => {
 			expect(element._rewind).toHaveBeenCalled();
 		});
 
-		it('should call rewind when the slider is mousedown', async function () {
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
-			element._rewind = jest.fn();
-
-			slider.dispatchEvent(new MouseEvent('mousedown'));
-			await elementUpdated(element);
-
-			expect(element._rewind).toHaveBeenCalled();
-		});
-
 		it('should call rewind when the slider is keyup', async function () {
 			const slider = getBaseElement(element).querySelector('.slider') as Slider;
 			element._rewind = jest.fn();

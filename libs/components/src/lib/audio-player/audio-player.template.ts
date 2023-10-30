@@ -27,9 +27,8 @@ function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
 	return html<AudioPlayer>`<${sliderTag}
-	${ref('_sliderEl')} class="slider"
+	${ref('_sliderEl')} class="slider" 
 	aria-label="${x => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-	@mousedown="${x => x._rewind()}"
 	@mouseup="${x => x._rewind()}" 
 	@keyup="${x => x._rewind()}"
 	value="0" max="100" 
