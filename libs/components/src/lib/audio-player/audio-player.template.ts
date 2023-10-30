@@ -26,7 +26,6 @@ function renderSlider(context: ElementDefinitionContext) {
 
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider" 
-	@mousedown="${x => x._rewind()}"
 	@mouseup="${x => x._rewind()}" 
 	@keyup="${x => x._rewind()}"
 	value="0" max="100" 
