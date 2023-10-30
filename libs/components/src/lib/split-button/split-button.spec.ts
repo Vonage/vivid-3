@@ -1,9 +1,14 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
 import { splitButtonDefinition } from './definition';
-import  '.';
+import '.';
 
 const COMPONENT_TAG = 'vwc-split-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -120,20 +125,12 @@ describe('vwc-split-button', () => {
 
 
 	describe('disabled', function () {
-		it('should set disabled class when disabled is true', async () => {
-			const appearance = 'filled';
-			(element as any).appearance = appearance;
-			element.toggleAttribute('disabled', true);
-			await elementUpdated(element);
-
-			const controlHasDisabledClass = getControlElement(element)?.classList.contains('disabled');
-			expect(controlHasDisabledClass).toBeTruthy();
-		});
-
-		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
+		it('should disable control and indicator buttons when disabled is true', async () => {
 			element.disabled = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
+
+			expect(element.action.disabled).toBe(true);
+			expect(element.indicator.disabled).toBe(true);
 		});
 	});
 
@@ -159,12 +156,12 @@ describe('vwc-split-button', () => {
 				expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
 			});
 		});
-	
+
 		describe('aria-expanded', function () {
 			it('should set "aria-expanded" on indicator if set on host', async function () {
 				element.setAttribute('aria-expanded', 'true');
 				await elementUpdated(element);
-	
+
 				const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
 				expect(indicator.getAttribute('aria-expanded')).toEqual('true');
 			});
