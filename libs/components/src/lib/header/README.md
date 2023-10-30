@@ -167,7 +167,7 @@ The component's internal *header* element.
 
 ### Fixed Header with Side Drawer
 
-A *fixed* header as primary element containing a side drawer containing application content.
+A *fixed* header as primary element containing a [side drawer](../side-drawer) component. containing application content.
 
 ```html preview full
 <style>
