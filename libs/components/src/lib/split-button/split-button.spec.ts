@@ -28,6 +28,7 @@ describe('vwc-split-button', () => {
 			expect(element.size).toBeUndefined();
 			expect(element.indicator).toBeInstanceOf(HTMLButtonElement);
 			expect(element.action).toBeInstanceOf(HTMLButtonElement);
+			expect(element.getAttribute('role')).toEqual('presentation');
 		});
 	});
 
