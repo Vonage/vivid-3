@@ -4,7 +4,7 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	getControlElement, 
+	getControlElement,
 	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { TextArea } from './text-area';
@@ -176,6 +176,28 @@ describe('vwc-text-area', () => {
 				.toBeNull();
 		});
 	});
+
+	describe('minlength', function () {
+		const value = '8';
+		const propertyName = 'minlength';
+		const proxyPropertyName = 'minLength';
+
+		it('should set minlength attribute on the input', async function () {
+
+			(element as any)[propertyName] = value;
+			await elementUpdated(element);
+			expect(getTextareaElement(element)
+				?.getAttribute(propertyName))
+				.toEqual(value);
+		});
+
+		it('should set minLength on proxy input', function () {
+			(element as any)[propertyName] = value;
+			expect((element.proxy as any)[proxyPropertyName])
+				.toEqual(Number(value));
+		});
+	});
+
 
 	describe('maxlength', function () {
 		const value = '8';
@@ -581,7 +603,7 @@ describe('vwc-text-area', () => {
 			element.charCount = true;
 
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
