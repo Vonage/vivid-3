@@ -38,6 +38,7 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 	<div
 		role="slider"
 		tabindex="${x => (x.disabled ? null : 0)}"
+		aria-label="${x => x.ariaLabel ? x.ariaLabel : 'slider'}"
 		aria-valuetext="${x => x.valueTextFormatter(x.value)}"
 		aria-valuenow="${x => x.value}"
 		aria-valuemin="${x => x.min}"

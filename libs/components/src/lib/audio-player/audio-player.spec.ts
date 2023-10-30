@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
@@ -253,6 +253,14 @@ describe('vwc-audio-player', () => {
 			element._updateTotalTime();
 			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('1:00');
 			audioConstructor.mockRestore();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			await elementUpdated(element);
+			
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

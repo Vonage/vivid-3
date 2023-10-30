@@ -15,7 +15,7 @@ function renderButton(context: ElementDefinitionContext) {
 
 	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${x => x._togglePlay()}"
 	icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
-	aria-lablel="${x => x.paused ? 'play-button' : 'pause-button'}" 
+	aria-label="${x => x.paused ? 'play-button' : 'pause-button'}" 
 	size='condensed' 
 	?disabled="${x => x.disabled || !x.duration}" 
   ></${buttonTag}>`;
@@ -31,6 +31,7 @@ function renderSlider(context: ElementDefinitionContext) {
 	@mouseup="${x => x._rewind()}" 
 	@keyup="${x => x._rewind()}"
 	value="0" max="100" 
+	aria-disabled="${x => x.disabled || !x.duration}" 
 	?disabled="${x => x.disabled || !x.duration}">
 	</${sliderTag}>`;
 }
