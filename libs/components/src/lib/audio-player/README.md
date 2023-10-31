@@ -22,7 +22,7 @@ Use the `src` attribute to add source to the audio-player.
 ```
 
 
-### Time stamp
+### Time Stamp
 
 Use the `timestamp` attribute to add timestamp to the audio-player.
 
