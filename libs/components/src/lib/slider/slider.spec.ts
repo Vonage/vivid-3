@@ -143,7 +143,7 @@ describe('vwc-slider', () => {
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Accent,
 			Connotation.CTA
-		];
+		] as const;
 
 		it('should leave connotation class empty if not set', async function () {
 			possibleConnotations.forEach(connotation => {
