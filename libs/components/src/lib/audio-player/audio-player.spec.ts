@@ -1,5 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { Connotation } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
@@ -93,21 +94,21 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	// describe('connotation', function () {
-	// 	it('should set the connotation class on base', async function () {
-	// 		const connotation = Connotation.CTA;
-	// 		const connotationClassExistsBeforeTheChange = getBaseElement(element).classList.contains(`connotation-${connotation}`);
+	describe('connotation', function () {
+		it('should set the connotation class on base', async function () {
+			const connotation = Connotation.CTA;
+			const connotationClassExistsBeforeTheChange = getBaseElement(element).classList.contains(`connotation-${connotation}`);
 
-	// 		element.connotation = connotation;
-	// 		await elementUpdated(element);
-	// 		const connotationClassExistsAfterChange = getBaseElement(element).classList.contains(`connotation-${connotation}`);
+			element.connotation = connotation;
+			await elementUpdated(element);
+			const connotationClassExistsAfterChange = getBaseElement(element).classList.contains(`connotation-${connotation}`);
 
-	// 		expect(connotationClassExistsBeforeTheChange)
-	// 			.toEqual(false);
-	// 		expect(connotationClassExistsAfterChange)
-	// 			.toEqual(true);
-	// 	});
-	// });
+			expect(connotationClassExistsBeforeTheChange)
+				.toEqual(false);
+			expect(connotationClassExistsAfterChange)
+				.toEqual(true);
+		});
+	});
 
 	describe('disabled', () => {
 		it('should set disabled class on the base element', async function () {

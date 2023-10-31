@@ -7,6 +7,7 @@ import styles from './audio-player.scss';
 
 import { AudioPlayer } from './audio-player';
 import { AudioPlayerTemplate as template } from './audio-player.template';
+export type { AudioPlayerConnotation } from './audio-player';
 
 export const audioPlayerDefinition =
 	AudioPlayer.compose<FoundationElementDefinition>({

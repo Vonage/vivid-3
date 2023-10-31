@@ -44,7 +44,7 @@ Use the `noseek` attribute to remove the seek from the audio-player.
 <vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" noseek></vwc-audio-player>
 ```
 
-<!-- ### Connotation
+### Connotation
 
 Use the `connotation` attribute to set the audio-player's color.
 
@@ -52,8 +52,8 @@ Use the `connotation` attribute to set the audio-player's color.
 - Default: `'accent'`
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" type="audio/mpeg" connotation="cta"></vwc-audio-player>
-``` -->
+<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" connotation="cta"></vwc-audio-player>
+```
 
 ### Disabled
 
