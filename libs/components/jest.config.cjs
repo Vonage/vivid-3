@@ -4,6 +4,7 @@ module.exports = {
 	testEnvironment: 'jsdom',
 	extensionsToTreatAsEsm: ['.ts'],
 	globals: {},
+	globalSetup: './jestGlobalSetup.cjs',
 	transform: {
 		'^.+\\.[tj]s?$': [
 			'ts-jest',
