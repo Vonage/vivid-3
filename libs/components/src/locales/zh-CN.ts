@@ -75,6 +75,13 @@ const zhCN: Locale = {
 		playButtonLabel: '草創',
 		pauseButtonLabel: '停',
 		sliderLabel: '音訊進度條',
+  },
+  dialog: {
+		dismissButtonLabel: '关',
+	},
+	numberField: {
+		incrementButtonLabel: '增量',
+		decrementButtonLabel: '递减',
 	},
 };
 

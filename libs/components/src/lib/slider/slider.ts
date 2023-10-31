@@ -14,8 +14,8 @@ export type SliderConnotation =
  * @public
  */
 export class Slider extends FastSlider {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	
+	@attr({attribute: 'aria-valuetext'}) ariaValuetext: string | null = null;
+  
 	/**
 	 * Display markers on/off
 	 * 

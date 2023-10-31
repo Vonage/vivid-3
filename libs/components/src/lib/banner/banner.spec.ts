@@ -294,6 +294,9 @@ describe('vwc-banner', () => {
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
+			element.removable = true;
+			await elementUpdated(element);
+			
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
