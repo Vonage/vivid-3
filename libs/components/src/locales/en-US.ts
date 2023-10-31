@@ -75,8 +75,8 @@ const enUS: Locale = {
 		playButtonLabel: 'Play',
 		pauseButtonLabel: 'Pause',
 		sliderLabel: 'Audio progress bar',
-  },
-    dialog: {
+	},
+	dialog: {
 		dismissButtonLabel: 'Close',
 	},
 	numberField: {

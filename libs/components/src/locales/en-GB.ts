@@ -75,7 +75,7 @@ const enGB: Locale = {
 		playButtonLabel: 'Play',
 		pauseButtonLabel: 'Pause',
 		sliderLabel: 'Audio progress bar',
-  },
+	},
 	dialog: {
 		dismissButtonLabel: 'Close',
 	},
