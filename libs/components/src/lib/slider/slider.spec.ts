@@ -145,11 +145,11 @@ describe('vwc-slider', () => {
 			Connotation.CTA
 		] as const;
 
-		it('should leave connotation class empty if not set', async function () {
+		it('should not set any connotation classes when no connotation is set', async function () {
 			possibleConnotations.forEach(connotation => {
 				expect(getControlElement(element)
 					?.classList
-					.contains(connotation))
+					.contains(`connotation-${connotation}`))
 					.toEqual(false);
 			});
 		});
