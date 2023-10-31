@@ -47,8 +47,8 @@ function makeStep(element: NumberField, direction: number) {
 @errorText
 @formElements
 export class NumberField extends FastNumberField {
-	@attr({attribute: 'add-button-aria-label'}) addButtonAriaLabel: string | null = null;
-	@attr({attribute: 'subtract-button-aria-label'}) subtractButtonAriaLabel: string | null = null;
+	@attr({attribute: 'increment-button-aria-label'}) incrementButtonAriaLabel: string | null = null;
+	@attr({attribute: 'decrement-button-aria-label'}) decrementButtonAriaLabel: string | null = null;
 	@attr appearance?: NumberFieldAppearance;
 	@attr shape?: NumberFieldShape;
 	@attr autoComplete?: string;

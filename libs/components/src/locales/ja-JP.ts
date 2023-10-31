@@ -75,8 +75,8 @@ const jaJP: Locale = {
 		dismissButtonLabel: '閉じる',
 	},
 	numberField: {
-		addButtonLabel: '増加',
-		subtractButtonLabel: '減少',
+		incrementButtonLabel: '増加',
+		decrementButtonLabel: '減少',
 	},
 };
 

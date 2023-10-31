@@ -75,8 +75,8 @@ const zhCN: Locale = {
 		dismissButtonLabel: '关',
 	},
 	numberField: {
-		addButtonLabel: '增量',
-		subtractButtonLabel: '递减',
+		incrementButtonLabel: '增量',
+		decrementButtonLabel: '递减',
 	},
 };
 

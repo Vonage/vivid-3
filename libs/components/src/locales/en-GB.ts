@@ -75,8 +75,8 @@ const enGB: Locale = {
 		dismissButtonLabel: 'Close',
 	},
 	numberField: {
-		addButtonLabel: 'Increment',
-		subtractButtonLabel: 'Decrement',
+		incrementButtonLabel: 'Increment',
+		decrementButtonLabel: 'Decrement',
 	},
 };
 

@@ -92,7 +92,6 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 
 - The progress's `role` is `progressbar` which means it needs an accessible label.
 - It is the consumer's concern to add `aria-label` to the `progress` element.
-- `aria-labelledby` and `aria-describedby` can also be used.
 
 ## Use Cases
 

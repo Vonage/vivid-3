@@ -45,6 +45,12 @@ describe('vwc-slider', () => {
 			expect(classes).toContain('disabled');
 			expect(control.getAttribute('aria-disabled')).toBe('true');
 		});
+
+		it('should set aria-disabled to true', async () => {
+			await setBoolAttributeOn(element, 'disabled');
+			const control = await getControlElement(element);
+			expect(control.getAttribute('aria-disabled')).toBe('true');
+		});
 	});
 
 	describe('markers', () => {
@@ -144,8 +150,6 @@ describe('vwc-slider', () => {
 	describe('a11y', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
-			element.ariaLabelledby = 'heading1';
-			element.ariaDescribedby = 'paragraph1';
 			element.ariaValuetext = '5 bits';
 			element.min = 3;
 			element.max = 10;
@@ -153,12 +157,14 @@ describe('vwc-slider', () => {
 			await elementUpdated(element);
 		});
 
+		it('should set component element role to presentation', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
+		});
+
 		it('should set the correct a11y attributes', () => {
 			const control = getControlElement(element);
 			expect(control?.getAttribute('role')).toBe('slider');
 			expect(control?.getAttribute('aria-label')).toBe('Label');
-			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
-			expect(control?.getAttribute('aria-describedby')).toBe('paragraph1');
 			expect(control?.getAttribute('aria-valuemin')).toBe('3');
 			expect(control?.getAttribute('aria-valuemax')).toBe('10');
 			expect(control?.getAttribute('aria-valuetext')).toBe('5 bits');

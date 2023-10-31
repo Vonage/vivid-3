@@ -1,4 +1,4 @@
 export interface NumberFieldLocale {
-	addButtonLabel: string;
-	subtractButtonLabel: string;
+	incrementButtonLabel: string;
+	decrementButtonLabel: string;
 }

@@ -39,11 +39,10 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html`<div class="${getClasses}"
+	return html`<template role="${x => x.ariaLabel ? 'presentation' : null}">
+		<div class="${getClasses}"
 			role="checkbox"
 			aria-label="${x => x.ariaLabel}"
-			aria-labelledby="${x => x.ariaLabelledby}"
-			aria-describedby="${x => x.ariaDescribedby}"
 			aria-checked="${x => x.checked}"
 			aria-required="${x => x.required}"
 			aria-disabled="${x => x.disabled}"
@@ -60,5 +59,6 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
 		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-		${when(x => x.successText, getFeedbackTemplate('success', context))}`;
+		${when(x => x.successText, getFeedbackTemplate('success', context))}
+	</template>`;
 };

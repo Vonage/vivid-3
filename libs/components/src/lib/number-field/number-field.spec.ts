@@ -932,14 +932,14 @@ describe('vwc-number-field', () => {
 
 			describe('aria overrides', () => {
 				it('renders the correct text for "aria-label" in the add button', async () => {
-					element.addButtonAriaLabel = 'Add label';
+					element.incrementButtonAriaLabel = 'Add label';
 					await elementUpdated(element);
 					const addButton = element.shadowRoot?.getElementById('add');
 					expect(addButton?.getAttribute('aria-label')).toBe('Add label');
 				});
 
 				it('renders the correct text for "aria-label" in the subtract button', async () => {
-					element.subtractButtonAriaLabel = 'Subtract label';
+					element.decrementButtonAriaLabel = 'Subtract label';
 					await elementUpdated(element);
 					const subtractButton = element.shadowRoot?.getElementById('subtract');
 					expect(subtractButton?.getAttribute('aria-label')).toBe('Subtract label');

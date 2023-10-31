@@ -116,4 +116,3 @@ Use `value` to set the value of the slider.
 
 - The slider's `role` is `slider` which means it needs an accessible label.
 - It is the consumer's concern to add `aria-label` to the `slider` element.
-- `aria-labelledby` and `aria-describedby` can also be used.

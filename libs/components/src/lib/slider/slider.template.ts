@@ -34,13 +34,11 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 	const focusTemplate = focusTemplateFactory(context);
 
 	/* eslint-disable @typescript-eslint/indent */
-	return html<Slider>`
+	return html<Slider>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 	<div
 		role="slider"
 		tabindex="${x => (x.disabled ? null : 0)}"
 		aria-label="${x => x.ariaLabel}"
-		aria-labelledby="${x => x.ariaLabelledby}"
-		aria-describedby="${x => x.ariaDescribedby}"
 		aria-valuetext="${x => x.ariaValuetext || x.valueTextFormatter(x.value)}"
 		aria-valuenow="${x => x.value}"
 		aria-valuemin="${x => x.min}"

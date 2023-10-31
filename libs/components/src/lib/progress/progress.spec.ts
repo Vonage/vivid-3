@@ -174,20 +174,20 @@ describe('vwc-progress', () => {
 	describe('a11y', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
-			element.ariaLabelledby = 'heading1';
-			element.ariaDescribedby = 'paragraph1';
 			element.min = 10;
 			element.max = 90;
 			element.value = 20;
 			await elementUpdated(element);
 		});
 
+		it('should set the component element role attribute to presentation', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
+		});
+
 		it('should set the correct a11y attributes', () => {
 			const baseElement = getBaseElement(element);
 			expect(baseElement?.getAttribute('role')).toBe('progressbar');
 			expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			expect(baseElement?.getAttribute('aria-labelledby')).toBe('heading1');
-			expect(baseElement?.getAttribute('aria-describedby')).toBe('paragraph1');
 			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
 			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
 			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');

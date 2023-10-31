@@ -24,12 +24,10 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => clas
 export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<Radio>`
+	return html<Radio>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 	<div class="${getClasses}"
 		role="radio"
 		aria-label="${x => x.ariaLabel}"
-		aria-labelledby="${x => x.ariaLabelledby}"
-		aria-describedby="${x => x.ariaDescribedby}"
 		aria-checked="${x => x.checked}"
 		aria-required="${x => x.required}"
 		aria-disabled="${x => x.disabled}"
@@ -41,5 +39,5 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 		</div>
 		${when(x => x.label, html<Radio>`<label class="label">${x => x.label}</label>`)}
 	</div>
-	`;
+</template>`;
 };

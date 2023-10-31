@@ -159,13 +159,13 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 
 - If no label is set - it is highly recommended that `aria-label` will be added.
 - `aria-labelledby` and `aria-describedby` can also be used.
-- The add / subtract buttons are automatically given a localized version of the words "Increment" and "Decrement" respectively. These can be overriden using `add-button-aria-label` and `subtract-button-aria-label`.
+- The add / subtract buttons are automatically given a localized version of the words "Increment" and "Decrement" respectively. These can be overriden using `increment-button-aria-label` and `decrement-button-aria-label`.
 
 ```html
 <vwc-number-field
   aria-label="choose a number"
-  add-button-aria-label="Add"
-  subtract-button-aria-label="Subtract"
+  increment-button-aria-label="Add"
+  decrement-button-aria-label="Subtract"
 ></vwc-number-field>
 ```
 
