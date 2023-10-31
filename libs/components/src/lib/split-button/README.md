@@ -168,8 +168,8 @@ Add the `disabled` attribute to disable the split button.
 </style>
 
 <vwc-split-button id="splitButton" appearance="filled" icon="compose-line" aria-label="Write a new message">
+	<vwc-tooltip id="tooltip" text="Write a new message"></vwc-tooltip>
 </vwc-split-button>
-<vwc-tooltip id="tooltip" text="Write a new message"></vwc-tooltip>
 
 <script>
   window.onload = function(){
