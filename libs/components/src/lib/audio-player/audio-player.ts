@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
+import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
 
 /**
@@ -18,6 +19,9 @@ export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent |
  */
 
 export class AudioPlayer extends FoundationElement {
+	@attr({attribute: 'play-button-aria-label'}) playButtonAriaLabel: string | null = null;
+	@attr({attribute: 'pause-button-aria-label'}) pauseButtonAriaLabel: string | null = null;
+	@attr({attribute: 'slider-aria-label'}) sliderAriaLabel: string | null = null;
 	/**
 	 * The connotation the audio-player should have.
 	 *
@@ -137,3 +141,6 @@ export class AudioPlayer extends FoundationElement {
 		return min + ':' + ((sec < 10) ? ('0' + sec) : sec);
 	}
 }
+
+export interface AudioPlayer extends Localized {}
+applyMixins(AudioPlayer, Localized);

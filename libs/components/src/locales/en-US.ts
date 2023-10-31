@@ -71,6 +71,11 @@ const enUS: Locale = {
 			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Remove file',
 	},
+	audioPlayer: {
+		playButtonLabel: 'Play',
+		pauseButtonLabel: 'Pause',
+		sliderLabel: 'Audio progress bar',
+	},
 };
 
 export default enUS;
