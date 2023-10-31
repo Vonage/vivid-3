@@ -21,6 +21,10 @@
 	min-inline-size: 80px;
 }
 
+:host(:focus-visible) {
+	outline: none;
+}
+
 .base {
 	@include connotation.connotation (data-grid-cell);
 	@include appearance.appearance;
@@ -51,7 +55,7 @@
 
 	pointer-events: none;
 
-	.base:not(.active) > & {
+	:host(:not(:focus)) .base > & {
 		display: none;
 	}
 }
