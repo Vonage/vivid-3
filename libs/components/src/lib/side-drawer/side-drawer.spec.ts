@@ -24,6 +24,11 @@ describe('vwc-side-drawer', () => {
 			expect(element.trailing).toBeFalsy();
 			expect(element.modal).toBeFalsy();
 		});
+
+		it('should render the inert attribute on the control element', async () => {
+			const control = getControlElement(element);
+			expect(control.hasAttribute('inert')).toBe(true);
+		});
 	});
 
 	describe('show', () => {
@@ -98,6 +103,23 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
+	describe('open', () => {
+		it('should not render inert attribute on the control element', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			const control = getControlElement(element);
+			expect(control.hasAttribute('inert')).toBe(false);
+		});
+
+		it('should not render inert attribute on app content element when not a modal', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			expect(appContent?.hasAttribute('inert')).toBe(false);
+		});
+	});
+
 	describe('modal', () => {
 		it('should set "modal" to true and add "modal" class', async () => {
 			const control = getControlElement(element);
@@ -134,6 +156,25 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
+	describe('modal', () => {
+		it('should not render inert attribute on app content element when close', async () => {
+			element.modal = true;
+			await elementUpdated(element);
+
+			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			expect(appContent?.hasAttribute('inert')).toBe(false);
+		});
+
+		it('should render inert attribute on app content element when open', async () => {
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
+
+			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			expect(appContent?.hasAttribute('inert')).toBe(true);
+		});
+	});
+
 	describe('scrim', () => {
 		it('should close after clicking on scrim', async () => {
 			element.modal = true;
@@ -147,22 +188,23 @@ describe('vwc-side-drawer', () => {
 	});
 
 	describe('keydown', () => {
-		it('should close after keydown on Escape', async () => {
+		let control: HTMLElement;
+		
+		beforeEach(async () => {
 			element.modal = true;
 			element.open = true;
 			await elementUpdated(element);
-			const aside: any = element.shadowRoot?.querySelector('aside');
-			aside?.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Escape' }));
+			control = getControlElement(element);
+		});
+
+		it('should close after keydown on Escape', async () => {
+			control.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Escape' }));
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
 
 		it('should leave open after keydown that is not Escape', async () => {
-			element.modal = true;
-			element.open = true;
-			// await elementUpdated(element);
-			const aside = element.shadowRoot?.querySelector('aside') as HTMLElement;
-			aside.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+			control.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
 			expect(element.open).toEqual(true);
 		});
 	});
