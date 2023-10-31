@@ -90,6 +90,15 @@ Toggles markers display.
 <vwc-slider markers></vwc-slider>
 ```
 
+### Connotation
+
+- Type: `'accent'` | `'cta'` 
+- Default: `'accent'`
+
+```html preview blocks
+<vwc-slider connotation="cta"></vwc-slider>
+```
+
 ### Disabled
 
 Toggle the `disabled` member to disable/enable the slider.
