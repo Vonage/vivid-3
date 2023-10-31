@@ -78,6 +78,9 @@ const zhCN: Locale = {
 		incrementButtonLabel: '增量',
 		decrementButtonLabel: '递减',
 	},
+	splitButton: {
+		showMoreActionsLabel: '显示更多操作',
+	}
 };
 
 export default zhCN;

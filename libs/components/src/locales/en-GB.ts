@@ -78,6 +78,9 @@ const enGB: Locale = {
 		incrementButtonLabel: 'Increment',
 		decrementButtonLabel: 'Decrement',
 	},
+	splitButton: {
+		showMoreActionsLabel: 'Show more actions',
+	}
 };
 
 export default enGB;

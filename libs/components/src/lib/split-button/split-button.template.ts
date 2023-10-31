@@ -46,7 +46,7 @@ function indicatorButton(context: ElementDefinitionContext) {
 		${ref('_indicator')}
 		class="indicator ${getClasses}"
 		?disabled="${(x) => x.disabled}"
-		aria-label="Open for more actions"
+		aria-label="${(x) => x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
 		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}">
 			${() => focusTemplate}

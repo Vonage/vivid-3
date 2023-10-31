@@ -157,6 +157,19 @@ describe('vwc-split-button', () => {
 			});
 		});
 
+		describe('indicator', function () {
+			it('should have a localised "aria-label"', async function () {
+				expect(element.indicator.getAttribute('aria-label')).toBe('Show more actions');
+			});
+
+			it('should allow overriding the "aria-label" with indicatorAriaLabel', async function () {
+				element.indicatorAriaLabel = 'Custom aria label';
+				await elementUpdated(element);
+
+				expect(element.indicator.getAttribute('aria-label')).toBe('Custom aria label');
+			});
+		});
+
 		describe('aria-expanded', function () {
 			it('should set "aria-expanded" on indicator if set on host', async function () {
 				element.setAttribute('aria-expanded', 'true');
