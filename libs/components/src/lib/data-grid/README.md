@@ -692,3 +692,44 @@ vwc-data-grid {max-block-size: 200px;}
 		});
 </script>
 ```
+
+### Delegate focus to child elements
+
+If you want a child element to take focus instead of the cell itself, use the `cellFocusTargetCallback` of the column definition to return the element that should take focus.
+
+```html preview
+<vwc-data-grid>
+	<vwc-data-grid-row row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			Cell 1.1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			<vwc-button appearance="outlined" label="Action" connotation="alert"></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			Cell 2.1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			<vwc-button appearance="outlined" label="Action" connotation="alert"></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+
+<script>
+	for(const cell of document.querySelectorAll('vwc-data-grid-cell')) {
+    cell.columnDefinition = {
+			cellFocusTargetCallback: () => cell.querySelector('vwc-button'),
+		};
+	}
+</script>
+```
