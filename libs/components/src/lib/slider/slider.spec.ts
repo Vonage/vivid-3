@@ -154,9 +154,8 @@ describe('vwc-slider', () => {
 			});
 		});
 
-		it('should set a connotation class', async function () {
-			const connotation = possibleConnotations[1];
-			(element.connotation as Connotation) = connotation;
+		it.each(possibleConnotations)('should set the connotation class for "%s"', async function (connotation) {
+			element.connotation = connotation;
 			await elementUpdated(element);
 			expect(getControlElement(element)
 				?.classList
