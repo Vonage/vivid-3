@@ -97,16 +97,18 @@ describe('vwc-audio-player', () => {
 	describe('connotation', function () {
 		it('should set the connotation class on base', async function () {
 			const connotation = Connotation.CTA;
-			const connotationClassExistsBeforeTheChange = getBaseElement(element).classList.contains(`connotation-${connotation}`);
+			const sliderConnotationBefore = (getBaseElement(element).querySelector('.slider') as Slider).connotation;
+			const buttonConnotationBefore = (getBaseElement(element).querySelector('.pause') as Button).connotation;
 
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = getBaseElement(element).classList.contains(`connotation-${connotation}`);
+			const sliderConnotationAfter =  (getBaseElement(element).querySelector('.slider') as Slider).connotation;
+			const buttonConnotationAfter =  (getBaseElement(element).querySelector('.pause') as Button).connotation;
 
-			expect(connotationClassExistsBeforeTheChange)
-				.toEqual(false);
-			expect(connotationClassExistsAfterChange)
-				.toEqual(true);
+			expect(sliderConnotationBefore).toBeUndefined();
+			expect(buttonConnotationBefore).toBeUndefined();
+			expect(sliderConnotationAfter).toEqual(connotation);
+			expect(buttonConnotationAfter).toEqual(connotation);
 		});
 	});
 
