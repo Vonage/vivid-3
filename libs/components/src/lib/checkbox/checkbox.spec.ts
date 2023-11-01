@@ -266,5 +266,38 @@ describe('vwc-checkbox', () => {
 
 			expect(await axe(element)).toHaveNoViolations();
 		});
+
+		it('should not render a role attribute on the component element', async () => {
+			expect(element.getAttribute('role')).toBe(null);
+		});
+
+		it('should render the correct a11y attributes', async () => {
+			const baseElement = getBaseElement(element);
+
+			expect(baseElement?.getAttribute('role')).toBe('checkbox');
+		});
+
+		describe('aria-label', () => {
+			beforeEach(async () => {
+				element.ariaLabel = 'Label';
+				await elementUpdated(element);
+			});
+
+			it('should render role as presentation on the component element', async () => {
+				expect(element.getAttribute('role')).toBe('presentation');
+			});
+	
+			it('should render the correct a11y attributes', async () => {
+				const baseElement = getBaseElement(element);
+				
+				expect(baseElement?.getAttribute('role')).toBe('checkbox');
+				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
+			});
+
+			it('should pass html a11y test', async () => {
+				expect(await axe(element)).toHaveNoViolations();
+			});
+		});
+		
 	});
 });

@@ -20,6 +20,11 @@ $low-ink-color: --_low-ink-color;
 $size: #{size.$vvd-size-ultra-condensed};
 $gutter: 2px;
 
+:host {
+	display: inline-flex;
+	flex-direction: column;
+	vertical-align: middle;
+}
 :host([disabled]) {
 	cursor: not-allowed;
 }

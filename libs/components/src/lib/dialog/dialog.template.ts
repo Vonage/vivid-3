@@ -64,14 +64,13 @@ function subtitle() {
  */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
-	  <${buttonTag}
-			  size="condensed"
-			  class="dismiss-button"
-			  icon="close-line"
-			  @click="${x => {
-		x.open = false;
-	}}">
-	  </${buttonTag}>`;
+	<${buttonTag}
+		aria-label="${x => x.dismissButtonAriaLabel || x.locale.dialog.dismissButtonLabel}"
+		size="condensed"
+		class="dismiss-button"
+		icon="close-line"
+		@click="${x => x.open = false}"
+	></${buttonTag}>`;
 }
 
 function handleEscapeKey(dialog: Dialog, event: Event) {

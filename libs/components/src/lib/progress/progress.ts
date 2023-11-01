@@ -18,6 +18,8 @@ export type ProgressShape =
  * @public
  */
 export class Progress extends BaseProgress {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	
 	/**
 	* Indicates the progress' shape.
 	*

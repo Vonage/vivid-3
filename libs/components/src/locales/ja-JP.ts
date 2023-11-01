@@ -71,6 +71,13 @@ const jaJP: Locale = {
 			'ファイルが大きすぎます ({{filesize}}MiB)。最大ファイルサイズ: {{maxFilesize}}MiB。',
 		removeFileLabel: 'ファイルを削除',
 	},
+	dialog: {
+		dismissButtonLabel: '閉じる',
+	},
+	numberField: {
+		incrementButtonLabel: '増加',
+		decrementButtonLabel: '減少',
+	},
 };
 
 export default jaJP;
