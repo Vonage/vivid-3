@@ -54,3 +54,16 @@ Use the `disabled` attribute to disable the audio-player.
 ```html preview
 <vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" disabled></vwc-audio-player>
 ```
+
+
+## CSS Variables
+
+### Minimum inline Size
+
+Use the `--audio-player-min-inline-size` variable to set the audio player's minimum inline size.
+
+- Default: `200px`
+
+```html preview
+<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" style="--audio-player-min-inline-size: 100px;"></vwc-audio-player>
+```

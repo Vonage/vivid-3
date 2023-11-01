@@ -1,4 +1,5 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
 
 .base {
 	display: inline-flex;
@@ -8,13 +9,13 @@
 	user-select: none;
 
 	.slider {
-		min-inline-size: 200px;
+		min-inline-size: var(#{variables.$audio-player-min-inline-size}, 200px);
 	}
 
 	.controls {
-		gap: 16px;
 		display: flex;
 		align-items: center;
+		gap: 16px;
 	}
 
 	.time-stamp {
