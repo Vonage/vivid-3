@@ -285,6 +285,13 @@ Click on "Edit code" to be able to modify the variables.
 ### Tabs
 
 ```html variables-preview[tabs]
+<style>
+  vwc-tab[aria-selected="true"] {
+    --vvd-tabs-accent-primary: var(--vvd-color-announcement-500);
+    --vvd-tab-accent-primary: var(--vvd-color-announcement-500);
+    --vvd-tab-accent-faint: var(--vvd-color-announcement-50);
+  }
+</style>
 <vwc-tabs activeid="apps">
     <vwc-tab label="Appetizers" id="apps"></vwc-tab>
     <vwc-tab label="Entrees" id="entrees"></vwc-tab>

@@ -1,13 +1,14 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	listenToFormSubmission
+	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import {TextFieldType} from '@microsoft/fast-foundation';
-import {Icon} from '../icon/icon';
-import {TextField} from './text-field';
+import { TextFieldType } from '@microsoft/fast-foundation';
+import { Icon } from '../icon/icon';
+import { TextField } from './text-field';
 import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-text-field';
@@ -24,6 +25,14 @@ describe('vwc-text-field', () => {
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({badInput: true}, errorMessage);
 		element.validate();
+	}
+
+	function getLabel() {
+		return element.querySelector('label[slot=_label]') as HTMLLabelElement;
+	}
+
+	function getInput() {
+		return element.querySelector('input[slot=_control]') as HTMLInputElement;
 	}
 
 	let element: TextField;
@@ -46,7 +55,7 @@ describe('vwc-text-field', () => {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = getLabel();
 			expect(labelElement)
 				.toBeTruthy();
 			expect(labelElement?.textContent?.trim())
@@ -54,9 +63,30 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should show label only if label is set', async function () {
-			const labelElement = element.shadowRoot?.querySelector('label');
+			const labelElement = getLabel();
 			expect(labelElement)
 				.toBeNull();
+		});
+
+		it('should remove label if label is removed', async function () {
+			element.label = 'label';
+			await elementUpdated(element);
+			element.label = '';
+			await elementUpdated(element);
+
+			const labelElement = getLabel();
+			expect(labelElement).toBeNull();
+		});
+
+		it('should associate the label with the input via a unique id', async function () {
+			element.label = 'label';
+			await elementUpdated(element);
+
+			const labelElement = getLabel();
+			const inputElement = getInput();
+			expect(inputElement.id).toBeTruthy();
+			expect(labelElement.htmlFor)
+				.toBe(inputElement.id);
 		});
 	});
 
@@ -122,7 +152,7 @@ describe('vwc-text-field', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.hasAttribute('autofocus'))
 				.toEqual(true);
 		});
@@ -134,7 +164,7 @@ describe('vwc-text-field', () => {
 
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute('placeholder'))
 				.toEqual(placeholderText);
 		});
@@ -155,7 +185,7 @@ describe('vwc-text-field', () => {
 
 			element.type = typeText;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute('type'))
 				.toEqual(typeText);
 		});
@@ -167,7 +197,7 @@ describe('vwc-text-field', () => {
 		it('should set list attribute on the input', async function () {
 			element.list = dataListID;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute('list'))
 				.toEqual(dataListID);
 		});
@@ -182,7 +212,7 @@ describe('vwc-text-field', () => {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute(propertyName))
 				.toEqual(value);
 		});
@@ -203,7 +233,7 @@ describe('vwc-text-field', () => {
 
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
+			expect(getInput()
 				?.getAttribute(propertyName))
 				.toEqual(value);
 		});
@@ -294,7 +324,7 @@ describe('vwc-text-field', () => {
 	describe('events', function () {
 		it('should emit an input event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('input', () => res(true)));
-			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+			const innerInput = getInput();
 			innerInput.dispatchEvent(new InputEvent('input', {
 				bubbles: true,
 				composed: true
@@ -305,7 +335,7 @@ describe('vwc-text-field', () => {
 
 		it('should emit a change event', async function () {
 			const inputPromise = new Promise(res => element.addEventListener('change', () => res(true)));
-			const innerInput = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+			const innerInput = getInput();
 			innerInput.dispatchEvent(new InputEvent('change', {
 				bubbles: true,
 				composed: true
@@ -581,7 +611,7 @@ describe('vwc-text-field', () => {
 
 	describe('autocomplete', function () {
 		it('should set autocomplete on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
+			const internalInput = getInput();
 			const autoCompleteDefault = internalInput.getAttribute('autocomplete');
 
 			element.autoComplete = 'off';
@@ -589,15 +619,6 @@ describe('vwc-text-field', () => {
 			expect(autoCompleteDefault).toBeNull();
 			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
 
-		});
-	});
-
-	describe('name', function () {
-		it('should reflect the name on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector('input') as HTMLElement;
-			element.name = 'off';
-			await elementUpdated(element);
-			expect(internalInput.getAttribute('name')).toEqual('off');
 		});
 	});
 
@@ -703,4 +724,49 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('focus event', function () {
+		it('should emit a focus event when the input receives focus', async function () {
+			const internalInput = getInput();
+			const focusSpy = jest.fn();
+			element.addEventListener('focus', focusSpy);
+			internalInput.focus();
+			expect(focusSpy).toHaveBeenCalled();
+		});
+	});
+
+	describe('blur event', function () {
+		it('should emit a blur event when the input is blurred', async function () {
+			const internalInput = getInput();
+			const blurSpy = jest.fn();
+			element.addEventListener('blur', blurSpy);
+			internalInput.focus();
+			internalInput.blur();
+			expect(blurSpy).toHaveBeenCalled();
+		});
+	});
+
+	describe('focus method', function () {
+		it('should focus the input', async function () {
+			element.focus();
+			expect(document.activeElement).toEqual(getInput());
+		});
+
+		it('should do nothing when element is unconnected', async function () {
+			const unconnectedElement = document.createElement(COMPONENT_TAG_NAME) as TextField;
+			expect(() => unconnectedElement.focus()).not.toThrow();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.value = 'Value text';
+			element.helperText = 'Helper text';
+			element.errorText = 'Error text';
+			element.charCount = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from './listbox';
@@ -255,6 +255,12 @@ describe('vwc-listbox', () => {
 
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

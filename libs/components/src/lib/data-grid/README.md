@@ -1,6 +1,6 @@
-# data-grid
+# Data Grid
 
-Represents a data-grid custom element.
+The data grid allows users to interact with data in a tabular format.
 
 ```js
 <script type="module">import '@vonage/vivid/data-grid';</script>
@@ -19,10 +19,10 @@ Represents a data-grid custom element.
 
 ## Members
 ### Generate-header
-Use `generate-header"` for data grid header visibility mode.
+Use `generate-header` for data grid header visibility mode.
 
-- Type: `none` | `default`| `sticky`
-- Default: `default`
+- Type: `'none'` | `'default'` | `'sticky'`
+- Default: `'default'`
 
 ```html preview
 <style>
@@ -57,8 +57,8 @@ vwc-data-grid {max-block-size: 300px;}
 
 ### selectionMode
 
-- Type: `none` | `single-cell` | `multi-cell` | `single-row` | `multi-row`
-- Default: `none`
+- Type: `'none'` | `'single-cell'` | `'multi-cell'` | `'single-row'` | `'multi-row'`
+- Default: `'none'`
 
 Use the `selection-mode` attribute to specify the selection mode of the grid.
 
@@ -215,7 +215,7 @@ The template used to render rows. Note you need to use `html` from `fast-element
 <script>
 		import { html } from '@microsoft/fast-element';
     grid = document.querySelector('vwc-data-grid');
-    grid.rowItemTemplate = html`<div>All rows will look like me!</civ>`;
+    grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -235,7 +235,7 @@ The template used to render cells in generated rows. Note you need to use `html`
 <script>
 		import { html } from '@microsoft/fast-element';
 		grid = document.querySelector('vwc-data-grid');
-		grid.cellItemTemplate = html`<div>All cells will look like me!</civ>`;
+		grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -255,7 +255,7 @@ The template used to render cells in generated header rows. Note you need to use
 <script>
 		import { html } from '@microsoft/fast-element';
 		grid = document.querySelector('vwc-data-grid');
-		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</civ>`;
+		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</div>`;
 		grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -573,68 +573,72 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
 Here's an example of sorting when building the grid manually:
 
 ```html preview
-	<vwc-data-grid>
-		
-	</vwc-data-grid>
 
-	<script>
-		data = [
-			{ data1: '111', data2: '312' },
-			{ data1: '211', data2: '212' },
-			{ data1: '311', data2: '112' },
-			{ data1: '411', data2: '612' },
-			{ data1: '511', data2: '512' },
-			{ data1: '611', data2: '412' }
-		];
-		
-    sort = (sortDirection) => (a, b) => {
-			const nameA = a.data2;
-			const nameB = b.data2;
-            
-        if (sortDirection === 'none') return 0;
-        if (sortDirection === 'ascending') {
-						return nameA > nameB ? -1 : 1;
-				} else {
-            return nameA < nameB ? -1 : 1;
-				}
-				return 0;
-		};
-    
-    headerRow = `
-    	<vwc-data-grid-row role="row" class="header" row-type="header">
-			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-				data1 - can't sort me
-			</vwc-data-grid-cell>
-			<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
-				data2 - sort me
-			</vwc-data-grid-cell>
-		</vwc-data-grid-row>
-    `;
-    
-		function addDataToGrid(sortDirection = "none") {
-			const newData = Array.from(data).sort(sort(sortDirection));
-			const dataRows = newData.reduce((acc, row) => {
-				return acc + `
-						<vwc-data-grid-row>
-							<vwc-data-grid-cell>
-								${row.data1}
-							</vwc-data-grid-cell>
-							<vwc-data-grid-cell>${row.data2}</vwc-data-grid-cell>
-						</vwc-data-grid-row>`;
-																	}, '');
-			grid.innerHTML = headerRow.replace('aria-sort="none"', `aria-sort="${sortDirection}"`) + dataRows;
-    }
+<vwc-data-grid>
+	<vwc-data-grid-row row-type='header'>
+		<vwc-data-grid-cell cell-type='columnheader'>
+			Not Sortable
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type='columnheader' aria-sort='none'>
+			Sortable
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
 
-		grid = document.querySelector('vwc-data-grid');
-		addDataToGrid();
-		
-		grid.addEventListener('sort', (e) => {
-				console.log(e.detail);
-				e.target.ariaSort = e.detail.sortDirection === "ascending" ? "descending" : 
-					e.detail.sortDirection === "descending" ? "none" : "ascending";
-				addDataToGrid(e.target.ariaSort);
-		});
-	</script>
+<script>
+	grid = document.querySelector('vwc-data-grid');
+
+	data = [
+		{ data1: '111', data2: '312' },
+		{ data1: '211', data2: '212' },
+		{ data1: '311', data2: '112' },
+		{ data1: '411', data2: '612' },
+		{ data1: '511', data2: '512' },
+		{ data1: '611', data2: '412' }
+	];
+
+	gridRowForEntry = new Map(data.map((entry) => {
+		const gridRow = document.createElement('vwc-data-grid-row');
+		gridRow.innerHTML = `
+			<vwc-data-grid-cell>
+				${entry.data1}
+			</vwc-data-grid-cell>
+			<vwc-data-grid-cell>
+				${entry.data2}
+			</vwc-data-grid-cell>
+		`;
+		return [entry, gridRow];
+	}));
+
+	compare = (sortDirection) => (a, b) => {
+		const nameA = a.data2;
+		const nameB = b.data2;
+
+		if (sortDirection === 'none') return 0;
+		if (sortDirection === 'ascending') {
+			return nameA > nameB ? -1 : 1;
+		} else {
+			return nameA < nameB ? -1 : 1;
+		}
+		return 0;
+	};
+
+	function renderData(sortDirection = "none") {
+		const sortedData = Array.from(data).sort(compare(sortDirection));
+		for (const entry of sortedData) {
+			grid.appendChild(gridRowForEntry.get(entry));
+		}
+	}
+
+	renderData();
+
+	grid.addEventListener('sort', (e) => {
+		console.log(e.detail);
+		e.target.ariaSort = e.detail.sortDirection === "ascending" ? "descending" :
+			e.detail.sortDirection === "descending" ? "none" : "ascending";
+		renderData(e.target.ariaSort);
+	});
+</script>
 ```
 
 Here's an example of sorting the data-grid when building it with `rowsData`:
@@ -686,5 +690,46 @@ vwc-data-grid {max-block-size: 200px;}
 					 return 0;
 			 });
 		});
+</script>
+```
+
+### Delegate focus to child elements
+
+If you want a child element to take focus instead of the cell itself, use the `cellFocusTargetCallback` of the column definition to return the element that should take focus.
+
+```html preview
+<vwc-data-grid>
+	<vwc-data-grid-row row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			Cell 1.1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			<vwc-button appearance="outlined" label="Action" connotation="alert"></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			Cell 2.1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			<vwc-button appearance="outlined" label="Action" connotation="alert"></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+
+<script>
+	for(const cell of document.querySelectorAll('vwc-data-grid-cell')) {
+    cell.columnDefinition = {
+			cellFocusTargetCallback: () => cell.querySelector('vwc-button'),
+		};
+	}
 </script>
 ```

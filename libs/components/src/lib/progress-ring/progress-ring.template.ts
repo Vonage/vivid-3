@@ -26,9 +26,10 @@ export const ProgressRingTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ProgressRing> = (
 	_: ElementDefinitionContext
-) => html`
+) => html`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 <div
         role="progressbar"
+        aria-label="${x => x.ariaLabel}"
         aria-valuenow="${x => x.value}"
         aria-valuemin="${x => x.min}"
         aria-valuemax="${x => x.max}"
@@ -78,5 +79,5 @@ export const ProgressRingTemplate: (
             `
 	)}
     </div>
-`;
+</template>`;
 

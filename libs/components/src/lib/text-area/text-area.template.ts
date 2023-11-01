@@ -48,10 +48,11 @@ export const TextAreaTemplate: (
 	  <div class="${getClasses}">
 		${when(x => x.charCount && x.maxlength, renderCharCount())}
 		${when(x => x.label, renderLabel())}
-			<textarea class="control"
+			<textarea class="control" id="control"
 				?autofocus="${x => x.autofocus}"
 				placeholder="${x => x.placeholder ? x.placeholder : null}"
 				name="${x => x.name ? x.name : null}"
+				minlength="${x => x.minlength ? x.minlength : null}"
 				maxlength="${x => x.maxlength ? x.maxlength : null}"
 				rows="${x => x.rows ? x.rows : null}"
 				cols="${x => x.cols ? x.cols : null}"
@@ -60,7 +61,6 @@ export const TextAreaTemplate: (
 				?disabled="${x => x.disabled}"
 				?required="${x => x.required}"
 				?spellcheck="${x => x.spellcheck}"
-				:value="${x => x.value}"
 				aria-atomic="${x => x.ariaAtomic}"
 				aria-busy="${x => x.ariaBusy}"
 				aria-controls="${x => x.ariaControls}"

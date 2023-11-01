@@ -1,11 +1,11 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
-import { MenuItem, MenuItemRole } from './menu-item';
+import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
 import { menuItemDefinition } from './definition';
 
 const MENU_TAG = 'vwc-menu';
@@ -85,40 +85,18 @@ describe('vwc-menu-item', () => {
 			expect(icon).toBeInstanceOf(Icon);
 		});
 
-		it('should set a checkbox-checked-line icon when checked=true and role is checkbox', async () => {
-			element.role = MenuItemRole.menuitemcheckbox;
-			element.checked = true;
+		it.each([
+			['checkbox-checked-line', true, MenuItemRole.menuitemcheckbox],
+			['checkbox-unchecked-line', false, MenuItemRole.menuitemcheckbox],
+			['radio-checked-line', true, MenuItemRole.menuitemradio],
+			['radio-unchecked-line', false, MenuItemRole.menuitemradio],
+		])('should set a %s icon when checked=%s and role is %s', async (expectedIcon, checked, role) => {
+			element.role = role;
+			element.checked = checked;
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon.name).toEqual('checkbox-checked-line');
-		});
-
-		it('should set a checkbox-unchecked-line icon when checked=false and role is checkbox', async () => {
-			element.role = MenuItemRole.menuitemcheckbox;
-			element.checked = false;
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon.name).toEqual('checkbox-unchecked-line');
-		});
-
-		it('should set a radio-checked-line icon when checked=true and role is radio', async () => {
-			element.role = MenuItemRole.menuitemradio;
-			element.checked = true;
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon.name).toEqual('radio-checked-line');
-		});
-
-		it('should set a radio-unchecked-line icon when checked=false and role is radio', async () => {
-			element.role = MenuItemRole.menuitemradio;
-			element.checked = false;
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon.name).toEqual('radio-unchecked-line');
+			expect(icon.name).toEqual(expectedIcon);
 		});
 
 		it('should enable default of click event if role is presentation', async function () {
@@ -141,6 +119,34 @@ describe('vwc-menu-item', () => {
 			expect(event?.defaultPrevented).toEqual(true);
 		});
 
+	});
+
+	describe('check-trailing', () => {
+		it('should set trailing class if role=checkbox', async function () {
+			element.checkTrailing = true;
+			element.role = MenuItemRole.menuitemcheckbox;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('trailing')).toBeTruthy();
+		});
+	});
+
+	describe('check-appearance', () => {
+		it.each([
+			['check-line', true, MenuItemRole.menuitemcheckbox],
+			['', false, MenuItemRole.menuitemcheckbox],
+			['check-line', true, MenuItemRole.menuitemradio],
+			['', false, MenuItemRole.menuitemradio],
+		])('should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only',
+			async function (expectedIcon, checked, role) {
+				element.checkedAppearance = CheckAppearance.TickOnly;
+				element.checked = checked;
+				element.role = role;
+				await elementUpdated(element);
+
+				const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+				expect(icon.name).toBe(expectedIcon);
+			});
 	});
 
 	describe('text', () => {
@@ -388,7 +394,7 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
 		});
-		
+
 		it.each(['Enter', ' '])('should expand first menuitem when "%s" is pressed', async (key) => {
 			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
@@ -429,6 +435,20 @@ describe('vwc-menu-item', () => {
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			const container = (await fixture(
+				`<div role="menu"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
+			));
+			element = (container.querySelector(COMPONENT_TAG) as MenuItem);
+			element.text = 'Menu item';
+			element.role = MenuItemRole.menuitem;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

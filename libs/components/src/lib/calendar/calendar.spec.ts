@@ -1,5 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Calendar } from './calendar';
 import '.';
@@ -7,8 +6,6 @@ import '../calendar-event';
 import { getValidDateString } from './helpers/calendar.date-functions';
 import type { CalendarEventContext } from './helpers/calendar.event-context';
 import { calendarDefinition } from './definition';
-
-expect.extend(toHaveNoViolations);
 
 const COMPONENT_TAG = 'vwc-calendar';
 
@@ -33,7 +30,6 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('datetime', () => {
-
 		it('should show recent monday as first day of \'2022-01-01\' week', async () => {
 			const date = '2022-01-01';
 
@@ -56,7 +52,7 @@ describe('vwc-calendar', () => {
 
 			const today = getValidDateString(new Date());
 			const sunday = getSundayOfWeek(today);
-
+			
 			expect(firstColumnDate).toEqual(sunday);
 		});
 
@@ -307,18 +303,8 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass accessibility test', async () => {
-			const { shadowRoot } = element;
-			if (!shadowRoot) { return; }
-
-			const results = await axe(shadowRoot.innerHTML, {
-				rules: {
-					// components should not be tested as page content
-					'region': { enabled: false }
-				}
-			});
-
-			expect(results).toHaveNoViolations();
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

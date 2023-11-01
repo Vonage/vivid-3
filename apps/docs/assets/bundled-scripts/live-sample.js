@@ -1,6 +1,6 @@
 import { EditorView, minimalSetup } from "codemirror"
 import { keymap } from "@codemirror/view"
-import { bracketMatching } from "@codemirror/language"
+import { bracketMatching, indentUnit } from "@codemirror/language"
 import { html } from "@codemirror/lang-html"
 import { Compartment } from '@codemirror/state'
 import { oneDark } from '@codemirror/theme-one-dark'
@@ -24,7 +24,7 @@ window.setEditorsTheme = function() {
 function addButtonsHandlers() {
 	const copyCodeButtons = document.querySelectorAll('vwc-button[id^="buttonCopy"]')
 	copyCodeButtons.forEach(btn => btn.addEventListener('click', codeCopyButtonClick))
-	
+
 	const codePenButtons = document.querySelectorAll('vwc-button[id^="buttonCPen"]')
 	codePenButtons.forEach(btn => btn.addEventListener('click', openCodePen))
 }
@@ -58,7 +58,8 @@ function addSamplesEditors() {
 				EditorView.updateListener.of(sampleChanged(idx)),
 				minimalSetup,
 				bracketMatching(),
-				html()
+				html(),
+				indentUnit.of("\t")
 			],
 			parent: cbd,
 			root: window.document
@@ -156,4 +157,5 @@ function switchLocale(event) {
 	const { iframe } = samplesEditors.get(+select.dataset.index);
 
 	iframe.contentWindow.setLocale(iframe.contentWindow.locales[select.value]);
+	iframe.contentWindow.document.documentElement.lang = select.value;
 }

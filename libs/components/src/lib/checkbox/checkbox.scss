@@ -20,6 +20,15 @@ $low-ink-color: --_low-ink-color;
 $size: #{size.$vvd-size-ultra-condensed};
 $gutter: 2px;
 
+:host {
+	display: inline-flex;
+	flex-direction: column;
+	vertical-align: middle;
+}
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .base {
 	@include connotation.connotation(checkbox);
 	@include appearance.appearance;
@@ -44,7 +53,6 @@ $gutter: 2px;
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 }

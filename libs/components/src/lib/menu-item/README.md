@@ -94,8 +94,14 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 </vwc-menu>
 ```
 
-#### Icon with Checkbox or Radiobutton
-When icon is added to `menuitemcheckbox` or `menuitemradio` the checkbox or the radio will be trailing
+### Check trailing
+
+When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the `check-trailing` attribute to change where the checkbox / radio indicator is placed .
+
+If the `icon` attribute is present, the indicator will be trailing by default.
+
+- Type: `boolean`
+- Default: `false`
 
 ```html preview
 <style>
@@ -104,12 +110,37 @@ When icon is added to `menuitemcheckbox` or `menuitemradio` the checkbox or the 
   }
 </style>
 <vwc-menu open>
-  <vwc-menu-item icon="image-line" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-  <vwc-menu-item icon="file-1-line" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-trailing></vwc-menu-item>
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-trailing></vwc-menu-item>
+	<vwc-menu-item icon="image-line" role="menuitemcheckbox" text="Check 3"></vwc-menu-item>
   <vwc-divider></vwc-divider>
-  <vwc-menu-item icon="image-line" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
-  <vwc-menu-item icon="file-1-line" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+  <vwc-menu-item role="menuitemradio" text="Radio 1" check-trailing></vwc-menu-item>
+  <vwc-menu-item role="menuitemradio" text="Radio 2" check-trailing></vwc-menu-item>
+	<vwc-menu-item icon="image-line" role="menuitemradio" text="Radio 3"></vwc-menu-item>
 </vwc-menu open>
+```
+
+### Check appearance
+
+When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the `check-appearance` attribute to change the appearance of the checkbox / radio indicator.
+
+
+- Type: `'normal'` | `'tick-only'`
+- Default: `'normal'`
+
+```html preview
+<style>
+	html { 
+		block-size: 400px; 
+	}
+</style>
+<vwc-menu open>
+	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
+	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-appearance="tick-only"></vwc-menu-item>
+	<vwc-divider></vwc-divider>
+	<vwc-menu-item role="menuitemradio" text="Radio 1" check-appearance="tick-only"></vwc-menu-item>
+	<vwc-menu-item role="menuitemradio" text="Radio 1" check-appearance="tick-only"></vwc-menu-item>
+</vwc-menu>
 ```
 
 ### Checked

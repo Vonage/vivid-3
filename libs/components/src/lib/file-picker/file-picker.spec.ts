@@ -1,4 +1,11 @@
-import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	getControlElement
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Size } from '../enums';
@@ -8,13 +15,35 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-file-picker';
 
+async function generateFile(fileName: string, sizeMb: number, type = 'text/plain'): Promise<File> {
+	const blob = new Blob(['x'.repeat(sizeMb * 1024 * 1024)], { type });
+	return new File([blob], fileName, { type: blob.type });
+}
+
+function getHiddenInput() {
+	return document.querySelector('input[type=file]') as HTMLInputElement;
+}
+
+function addFiles(files: File[]) {
+	// Use hidden input element that dropzone adds to the body to add files
+	const hiddenInput = getHiddenInput();
+	Object.defineProperty(hiddenInput, 'files', {
+		value: files
+	});
+	hiddenInput.dispatchEvent(new Event('change'));
+}
+
 describe('vwc-file-picker', () => {
 	let element: FilePicker;
 
 	beforeEach(async () => {
 		element = fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}>Drag & drop or click to upload</${COMPONENT_TAG}>`
 		) as FilePicker;
+	});
+
+	afterEach(() => {
+		element.remove();
 	});
 
 	describe('basic', () => {
@@ -71,7 +100,7 @@ describe('vwc-file-picker', () => {
 
 	describe('helper text', function () {
 		it('should render the helper text when attribute is set on file picker', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
+			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-message');
 			const helperText = 'Helper Text';
 			element.helperText = helperText;
 			await elementUpdated(element);
@@ -81,6 +110,35 @@ describe('vwc-file-picker', () => {
 				?.textContent
 				?.trim())
 				.toEqual(helperText);
+		});
+	});
+
+	describe('error text', function () {
+		it('should render the error text when attribute is set', async function () {
+			const errorTextElementWithoutAttribute = element.shadowRoot?.querySelector('.error-message');
+			element.errorText = 'Error Text';
+			await elementUpdated(element);
+			expect(errorTextElementWithoutAttribute)
+				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.error-message')
+				?.textContent
+				?.trim())
+				.toEqual('Error Text');
+		});
+
+		it('should hide helper text if error text is set', async function () {
+			element.helperText = 'Helper Text';
+			element.errorText = 'Error Text';
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.helper-message')).toBe(null);
+			expect(element.shadowRoot?.querySelector('.error-message')).not.toBe(null);
+		});
+	});
+
+	describe('value', function () {
+		it('should be set to a fake path when a file is added', async function () {
+			addFiles([await generateFile('london.png', 1)]);
+			expect(element.value).toBe('C:\\fakepath\\london.png');
 		});
 	});
 
@@ -103,7 +161,7 @@ describe('vwc-file-picker', () => {
 			]);
 
 			expect(getErrorMessage(0)).toBe('');
-			expect(getErrorMessage(1)).toBe('You can not select any more files.');
+			expect(getErrorMessage(1)).toBe("You can't select any more files.");
 		});
 
 		it('should add multiple attribute to the hidden file input when maxFiles is not set', function() {
@@ -154,23 +212,31 @@ describe('vwc-file-picker', () => {
 	});
 
 	describe('change', function () {
-		it('should fire "change" event when a file is added', async () => {
-			const onChange = jest.fn();
+		it('should fire "change" event after a file is added', async () => {
+			let filesLengthInChangeHandler = -1;
+			const onChange = jest.fn().mockImplementation(() => {
+				filesLengthInChangeHandler = element.files.length;
+			});
 			element.addEventListener('change', onChange);
 
 			addFiles([await generateFile('london.png', 1)]);
 
 			expect(onChange).toHaveBeenCalledTimes(1);
+			expect(filesLengthInChangeHandler).toBe(1);
 		});
 
-		it('should fire "change" event when a file is removed', async () => {
+		it('should fire "change" event after a file is removed', async () => {
 			addFiles([await generateFile('london.png', 1)]);
-			const onChange = jest.fn();
+			let filesLengthInChangeHandler = -1;
+			const onChange = jest.fn().mockImplementation(() => {
+				filesLengthInChangeHandler = element.files.length;
+			});
 			element.addEventListener('change', onChange);
 
 			getRemoveButton(0).click();
 
 			expect(onChange).toHaveBeenCalledTimes(1);
+			expect(filesLengthInChangeHandler).toBe(0);
 		});
 	});
 
@@ -214,23 +280,16 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	async function generateFile(fileName: string, sizeMb: number, type = 'text/plain'): Promise<File> {
-		const blob = new Blob(['x'.repeat(sizeMb * 1024 * 1024)], { type });
-		return new File([blob], fileName, { type: blob.type });
-	}
+	/* Failing because element with role of button has no accessible name: aria-label */
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Test label';
+			element.helperText = 'Helper text';
+			await elementUpdated(element);
 
-	function getHiddenInput() {
-		return document.querySelector('input[type=file]') as HTMLInputElement;
-	}
-
-	function addFiles(files: File[]) {
-		// Use hidden input element that dropzone adds to the body to add files
-		const hiddenInput = getHiddenInput();
-		Object.defineProperty(hiddenInput, 'files', {
-			value: files
+			expect(await axe(element)).toHaveNoViolations();
 		});
-		hiddenInput.dispatchEvent(new Event('change'));
-	}
+	});
 
 	function getErrorMessage(forFileAtIndex: number) {
 		return element.shadowRoot?.querySelectorAll('.preview-list .dz-error-message')[forFileAtIndex]?.textContent?.trim();
@@ -239,4 +298,56 @@ describe('vwc-file-picker', () => {
 	function getRemoveButton(forFileAtIndex: number) {
 		return element.shadowRoot?.querySelectorAll('.preview-list .remove-btn')[forFileAtIndex] as Button;
 	}
+});
+
+describe('form associated vwc-file-picker', function () {
+	let formWrapper: HTMLDivElement;
+
+	beforeEach(function () {
+		formWrapper = document.createElement('div');
+		document.body.appendChild(formWrapper);
+	});
+
+	afterEach(function () {
+		formWrapper.remove();
+	});
+
+	it('should reset the value and files when the form is reset', async function () {
+		const {
+			form: formElement,
+			element
+		} = createFormHTML<FilePicker>({
+			fieldName: 'file',
+			formId: 'form-id',
+			componentTagName: COMPONENT_TAG,
+			formWrapper
+		});
+
+		addFiles([await generateFile('london.png', 1)]);
+		const valueBeforeReset = element.value;
+		const numFilesBeforeReset = element.files.length;
+
+		formElement.reset();
+
+		expect(valueBeforeReset).toBe('C:\\fakepath\\london.png');
+		expect(numFilesBeforeReset).toBeGreaterThan(0);
+		expect(element.value).toBe('');
+		expect(element.files.length).toBe(0);
+	});
+
+	it('should update the form value when name attribute is added', async function () {
+		const {
+			form: formElement,
+			element
+		} = createFormHTML<FilePicker>({
+			formId: 'form-id',
+			componentTagName: COMPONENT_TAG,
+			formWrapper
+		});
+		addFiles([await generateFile('london.png', 1)]);
+
+		element.name = 'file';
+
+		expect(new FormData(formElement).get('file')).toBeTruthy();
+	});
 });

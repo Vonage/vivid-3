@@ -4,6 +4,33 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.39.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.38.0...vivid-v3.39.0) (2023-10-17)
+
+
+### Features
+
+* **menu-item:** support tick-only appearance (VIV-1222) ([#1404](https://github.com/Vonage/vivid-3/issues/1404)) ([ac3c132](https://github.com/Vonage/vivid-3/commit/ac3c13288f35648c42789a49591adef7318873ea))
+
+## [3.38.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.37.0...vivid-v3.38.0) (2023-10-11)
+
+
+### Features
+
+* **button:** add icon slot (VIV-1340) ([#1403](https://github.com/Vonage/vivid-3/issues/1403)) ([8ba169c](https://github.com/Vonage/vivid-3/commit/8ba169c6934a5b224714af9d726b44338a48cd57))
+* **date-picker:** update design (VIV-1327) ([#1385](https://github.com/Vonage/vivid-3/issues/1385)) ([d074936](https://github.com/Vonage/vivid-3/commit/d0749364cd89ec3448483d7048703e608ac1f886))
+* **date-range-picker:** add component (VIV-1283) ([#1395](https://github.com/Vonage/vivid-3/issues/1395)) ([b07e852](https://github.com/Vonage/vivid-3/commit/b07e852ef774361cb97733853892396dd80890e9))
+* **file-picker:** add support for form association (VIV-802) ([#1381](https://github.com/Vonage/vivid-3/issues/1381)) ([3a843dd](https://github.com/Vonage/vivid-3/commit/3a843dda45b60db2bd56c9c1309dca1766830696))
+* **nav-item:** add icon slot(VIV-1303) ([#1390](https://github.com/Vonage/vivid-3/issues/1390)) ([9b0cea7](https://github.com/Vonage/vivid-3/commit/9b0cea7a00322c6483a54ae31f08231c06b143c1))
+* **note:** add icon slot (VIV-1337) ([#1393](https://github.com/Vonage/vivid-3/issues/1393)) ([f35dbdd](https://github.com/Vonage/vivid-3/commit/f35dbdd1f9615d97171aa228cf52f5534b66834e))
+
+
+### Bug Fixes
+
+* **data-grid:** update divider color (VIV-1291) ([#1398](https://github.com/Vonage/vivid-3/issues/1398)) ([a77039c](https://github.com/Vonage/vivid-3/commit/a77039c0ad413b07b957d8f166a0ace34e366cca))
+* **dialog:** prevent close when clicking inside and mouseup outside (VIV-1346) ([#1399](https://github.com/Vonage/vivid-3/issues/1399)) ([adc427e](https://github.com/Vonage/vivid-3/commit/adc427e370c5120a9aa3b383871c5bea4137c2d2))
+* **disabled:** adds a consistent cursor to disabled elements (VIV-999) ([#1401](https://github.com/Vonage/vivid-3/issues/1401)) ([588f2f3](https://github.com/Vonage/vivid-3/commit/588f2f3b9a74167484c9ac382b171090eed5458c))
+* **pagination:** fix numbers getting cut off when &gt; 999 pages (VIV-1320) ([#1400](https://github.com/Vonage/vivid-3/issues/1400)) ([782ce59](https://github.com/Vonage/vivid-3/commit/782ce59b3a8b57d2cb4a21f9b41bc342a2921677))
+
 ## [3.37.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.36.0...vivid-v3.37.0) (2023-09-25)
 
 

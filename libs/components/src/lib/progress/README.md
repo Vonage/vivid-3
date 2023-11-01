@@ -88,6 +88,11 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 <vwc-progress min="0" max="50" value="25" shape="sharp"></vwc-progress>
 ```
 
+## Accessibility
+
+- The progress's `role` is `progressbar` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `progress` element.
+
 ## Use Cases
 
 ### Determinate State

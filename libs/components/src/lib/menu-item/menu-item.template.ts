@@ -4,22 +4,26 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
-import { MenuItem, MenuItemRole } from './menu-item';
+import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 
-const getCheckIcon = (affixIconTemplate: any, x: MenuItem, iconType: string) => {
+const getIndicatorIcon = (x: MenuItem) => {
+	if (x.checkedAppearance === CheckAppearance.TickOnly) {
+		return x.checked ? 'check-line' : '';
+	}
+
+	const iconType = x.role === MenuItemRole.menuitemcheckbox ? 'checkbox' : 'radio';
 	const iconStatus = x.checked ? 'checked' : 'unchecked';
-	const icon = `${iconType}-${iconStatus}-solid`;
-	return affixIconTemplate(icon);
+	return `${iconType}-${iconStatus}-2-line`;
 };
 
 const getClasses = ({
-	disabled, checked, role, text, textSecondary, icon, metaSlottedContent
+	disabled, checked, role, text, textSecondary, icon, metaSlottedContent, checkTrailing
 }: MenuItem) => classNames(
 	'base',
 	['disabled', Boolean(disabled)],
 	['selected', role !== MenuItemRole.menuitem && Boolean(checked)],
-	['trailing', role !== MenuItemRole.menuitem && Boolean(icon)],
+	['trailing', role !== MenuItemRole.menuitem && (checkTrailing || Boolean(icon))],
 	['item-checkbox', role === MenuItemRole.menuitemcheckbox],
 	['item-radio', role === MenuItemRole.menuitemradio],
 	['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)],
@@ -31,18 +35,11 @@ function handleClick(x: MenuItem, { event }: ExecutionContext<MenuItem>) {
 	return (x as any).role === MenuItemRole.presentation;
 }
 
-function checkbox(context: ElementDefinitionContext) {
-	const affixIconTemplate = affixIconTemplateFactory(context);
+function checkIndicator(context: ElementDefinitionContext) {
+	const iconTag = context.tagFor(Icon);
 
-	return html<MenuItem>`${when(x => x.role === MenuItemRole.menuitemcheckbox,
-		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'checkbox')}</span>`)}`;
-}
-
-function radio(context: ElementDefinitionContext) {
-	const affixIconTemplate = affixIconTemplateFactory(context);
-
-	return html<MenuItem>`${when(x => x.role === MenuItemRole.menuitemradio,
-		html`<span class="action">${x => getCheckIcon(affixIconTemplate, x, 'radio')}</span>`)}`;
+	return html<MenuItem>`${when(x => x.role === MenuItemRole.menuitemcheckbox || x.role === MenuItemRole.menuitemradio,
+		html`<span class="action"><${iconTag} class="icon" name="${x => getIndicatorIcon(x)}"></${iconTag}></span>`)}`;
 }
 
 function text() {
@@ -81,8 +78,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		<div class="${getClasses}">
 			${() => focusTemplate}
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-			${checkbox(context)}
-			${radio(context)}
+			${checkIndicator(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
 			${when(x => x.hasSubmenu, html`<${iconTag} class="chevron" name="chevron-right-line"></${iconTag}>`)}

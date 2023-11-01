@@ -1,4 +1,5 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture, getBaseElement,
@@ -908,6 +909,46 @@ describe('vwc-number-field', () => {
 			expect(initialErrorMessage).not.toBe('');
 			expect(errorTextMessage).toBe(forcedErrorMessage);
 			expect(errorMessageAfterRemovalOfErrorText).toBe(initialErrorMessage);
+		});
+	});
+
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.label = 'Label';
+			element.errorText = 'Error';
+			await elementUpdated(element);
+		});
+
+		describe('add and subtract buttons', () => {
+			it('renders a localized "aria-label" on the add button', async () => {
+				const addButton = element.shadowRoot?.getElementById('add');
+				expect(addButton?.getAttribute('aria-label')).toBe('Increment');
+			});
+
+			it('renders a localized "aria-label" on the subtract button', async () => {
+				const subtractButton = element.shadowRoot?.getElementById('subtract');
+				expect(subtractButton?.getAttribute('aria-label')).toBe('Decrement');
+			});
+
+			describe('aria overrides', () => {
+				it('renders the correct text for "aria-label" in the add button', async () => {
+					element.incrementButtonAriaLabel = 'Add label';
+					await elementUpdated(element);
+					const addButton = element.shadowRoot?.getElementById('add');
+					expect(addButton?.getAttribute('aria-label')).toBe('Add label');
+				});
+
+				it('renders the correct text for "aria-label" in the subtract button', async () => {
+					element.decrementButtonAriaLabel = 'Subtract label';
+					await elementUpdated(element);
+					const subtractButton = element.shadowRoot?.getElementById('subtract');
+					expect(subtractButton?.getAttribute('aria-label')).toBe('Subtract label');
+				});
+			});
+		});
+
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

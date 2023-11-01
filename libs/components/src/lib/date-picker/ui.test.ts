@@ -167,7 +167,7 @@ test.describe('constraints validation', async () => {
 			</form>`
 		});
 
-		await page.locator('vwc-text-field #control').fill('invalid date');
+		await page.locator('vwc-text-field input').fill('invalid date');
 		await page.getByRole('button', { name: 'Submit' }).click();
 
 		await expect(page.locator('vwc-date-picker .error-message')).toBeVisible();

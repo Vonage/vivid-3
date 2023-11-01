@@ -88,6 +88,11 @@ Use the `size` attribute/property to set the progress ring's size.
 <vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
 ```
 
+## Accessibility
+
+- The progress ring's `role` is `progressbar` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `progress-ring` element.
+
 ## Use Cases
 
 ### Determinate State

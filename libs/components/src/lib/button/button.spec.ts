@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
@@ -39,6 +39,10 @@ describe('vwc-button', () => {
 	});
 
 	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
+		
 		it('adds an icon to the button', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
@@ -179,15 +183,6 @@ describe('vwc-button', () => {
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
-	describe('aria-label', function () {
-		it('should set aria-label on the button if set', async () => {
-			const ariaLabel = 'close';
-			element.ariaLabel = ariaLabel;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label'))
-				.toEqual(ariaLabel);
-		});
-	});
 	describe('title', function () {
 		it('should set title on the button if set', async () => {
 			const titleText = 'close';
@@ -205,6 +200,31 @@ describe('vwc-button', () => {
 				.toEqual(false);
 			expect(getControlElement(element).hasAttribute('title'))
 				.toEqual(false);
+		});
+	});
+	describe('a11y', function () {
+		it('should set aria-label on the button if set', async () => {
+			const ariaLabel = 'close';
+			element.ariaLabel = ariaLabel;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label'))
+				.toEqual(ariaLabel);
+		});
+
+		it('should pass html a11y test', async () => {
+			element.label = 'Home';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		describe('icon-only', () => {
+			it('should pass html a11y test', async () => {
+				element.icon = 'home';
+				await elementUpdated(element);
+				
+				expect(await axe(element)).toHaveNoViolations();
+			});
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
@@ -195,12 +195,6 @@ describe('vwc-menu', () => {
 				document.activeElement?.dispatchEvent(arrowDownEvent);
 			}
 
-			function focusOutOfBody() {
-				const focusOutEvent = new FocusEvent('focusout');
-				const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
-				bodyElement.dispatchEvent(focusOutEvent);
-			}
-
 			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
 
 			element.innerHTML = `
@@ -217,6 +211,12 @@ describe('vwc-menu', () => {
 
 			expect(focusableElementAfterMouseDown.id).toEqual('id2');
 			expect(focusableElementAfterFocusOut.id).toEqual('id1');
+		});
+
+		it('should ignore focusout when there are no menuitems', async () => {
+			await elementUpdated(element);
+
+			expect(() => focusOutOfBody()).not.toThrow();
 		});
 	});
 
@@ -451,6 +451,19 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.open = true;
+			element.innerHTML = `
+				<div role="menuitem" id="id1">Menu Item 1</div>
+				<div role="menuitem" id="id2">Menu Item 2</div>
+			`;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,
@@ -460,4 +473,10 @@ describe('vwc-menu', () => {
 		key: keyArrowDown,
 		bubbles: true,
 	} as KeyboardEventInit);
+
+	function focusOutOfBody() {
+		const focusOutEvent = new FocusEvent('focusout');
+		const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
+		bodyElement.dispatchEvent(focusOutEvent);
+	}
 });

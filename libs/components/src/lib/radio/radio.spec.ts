@@ -1,4 +1,4 @@
-import { createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
+import { axe, createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Radio } from './radio';
@@ -115,6 +115,48 @@ describe('vwc-radio', () => {
 					.toEqual(fieldName);
 				expect(formDataValue)
 					.toEqual(checked);
+			});
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'lorem';
+			element.checked = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should not render a role attribute on the component element', async () => {
+			expect(element.getAttribute('role')).toBe(null);
+		});
+
+		it('should render the correct a11y attributes', async () => {
+			const baseElement = getBaseElement(element);
+
+			expect(baseElement?.getAttribute('role')).toBe('radio');
+		});
+
+		describe('aria-label', () => {
+			beforeEach(async () => {
+				element.ariaLabel = 'Label';
+				await elementUpdated(element);
+			});
+
+			it('should render role as presentation on the component element', async () => {
+				expect(element.getAttribute('role')).toBe('presentation');
+			});
+
+			it('should render the correct a11y attributes', async () => {
+				const baseElement = getBaseElement(element);
+				
+				expect(baseElement?.getAttribute('role')).toBe('radio');
+				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
+			});
+
+			it('should pass html a11y test', async () => {
+				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

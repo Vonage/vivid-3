@@ -1,6 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '../icon/index.ts';
 import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
@@ -300,31 +300,6 @@ describe('vwc-data-grid-cell', () => {
 			expect(sortIcons?.length).toEqual(0);
 		});
 
-		it('should fire "sort" event when clicked', async function () {
-			element.ariaSort = 'none';
-			element.innerHTML = 'Name';
-			await elementUpdated(element);
-			const spy = jest.fn();
-			element.addEventListener('sort', spy);
-			element.click();
-			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Name', sortDirection: 'none'});
-		});
-
-		it('should fire "sort" event when clicked with data key from config', async function () {
-			element.innerHTML = 'Name';
-			element.columnDefinition = {
-				sortDirection: DataGridCellSortStates.ascending,
-				sortable: true,
-				columnDataKey: 'Not Name',
-			};
-			await elementUpdated(element);
-			const spy = jest.fn();
-			element.addEventListener('sort', spy);
-			element.click();
-			expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
-		});
-
 		it('should set aria-sort from columnDefinition', async function () {
 			element.columnDefinition = {
 				columnDataKey: 'Name',
@@ -353,6 +328,87 @@ describe('vwc-data-grid-cell', () => {
 			};
 			await elementUpdated(element);
 			expect(element.ariaSort).toEqual(null);
+		});
+	});
+
+	describe('sort event', () => {
+		let onSortSpy: jest.Mock;
+		beforeEach(async () => {
+			element.cellType = 'columnheader';
+			element.innerHTML = 'Name';
+			await elementUpdated(element);
+			onSortSpy = jest.fn();
+			element.addEventListener('sort', onSortSpy);
+		});
+
+		describe('without aria-sort', () => {
+			it('should not emit "sort" event when clicked', async () => {
+				element.click();
+				expect(onSortSpy).not.toHaveBeenCalled();
+			});
+
+			it.each(['Enter', ' '])('should not emit "sort" event when "%s" is pressed', async function (key) {
+				element.dispatchEvent(new KeyboardEvent('keydown', {key}));
+				expect(onSortSpy).not.toHaveBeenCalled();
+			});
+		});
+
+		describe('with aria-sort', () => {
+			beforeEach(async () => {
+				element.ariaSort = 'none';
+				await elementUpdated(element);
+			});
+
+			it('should emit "sort" event when clicked', async function () {
+				element.click();
+
+				expect(onSortSpy).toHaveBeenCalledTimes(1);
+				expect(onSortSpy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Name', sortDirection: 'none'});
+			});
+
+			it.each(['Enter', ' '])('should fire "sort" event when "%s" is pressed', async function (key) {
+				element.dispatchEvent(new KeyboardEvent('keydown', {key}));
+
+				expect(onSortSpy).toHaveBeenCalledTimes(1);
+				expect(onSortSpy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Name', sortDirection: 'none'});
+			});
+		});
+
+		describe('with columnDefinition', () => {
+			beforeEach(async () => {
+				element.columnDefinition = {
+					sortDirection: DataGridCellSortStates.ascending,
+					sortable: true,
+					columnDataKey: 'Not Name',
+				};
+				await elementUpdated(element);
+			});
+
+			it('should fire "sort" event when clicked with data key from config', async function () {
+				element.click();
+				expect(onSortSpy).toHaveBeenCalledTimes(1);
+				expect(onSortSpy.mock.calls[0][0].detail).toEqual({columnDataKey: 'Not Name', sortDirection: 'ascending'});
+			});
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(`
+				<div role="grid">
+					<div role="row">
+						<${COMPONENT_TAG}></${COMPONENT_TAG}>
+					</div>
+				</div>
+			`)) as DataGridCell;
+			element.columnDefinition = {
+				columnDataKey: 'Name',
+				sortDirection: DataGridCellSortStates.ascending,
+				sortable: true
+			};
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
