@@ -278,11 +278,11 @@ describe('vwc-selectable-box', () => {
 
 		/* these are skipped until aria-label and aria-labelledby 
 		   can be passed down the checkbox's control element */
-		xit('should pass html a11y test', async () => {
+		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
-		xdescribe('clickable', () => {
+		describe('clickable', () => {
 			it('should pass html a11y test', async () => {
 				expect(await axe(element)).toHaveNoViolations();
 			});

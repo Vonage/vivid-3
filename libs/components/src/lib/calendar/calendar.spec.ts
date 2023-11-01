@@ -30,7 +30,6 @@ describe('vwc-calendar', () => {
 	});
 
 	describe('datetime', () => {
-
 		it('should show recent monday as first day of \'2022-01-01\' week', async () => {
 			const date = '2022-01-01';
 
@@ -53,7 +52,7 @@ describe('vwc-calendar', () => {
 
 			const today = getValidDateString(new Date());
 			const sunday = getSundayOfWeek(today);
-
+			
 			expect(firstColumnDate).toEqual(sunday);
 		});
 

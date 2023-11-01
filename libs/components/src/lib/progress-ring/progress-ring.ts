@@ -15,6 +15,7 @@ export type ProgressRingConnotation =
  * @public
  */
 export class ProgressRing extends BaseProgress {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr connotation?: ProgressRingConnotation;
 	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 }

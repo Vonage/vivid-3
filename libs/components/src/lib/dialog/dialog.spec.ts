@@ -72,6 +72,7 @@ describe('vwc-dialog', () => {
 			expect(element.subtitle).toEqual(undefined);
 			expect(element.headline).toEqual(undefined);
 			expect(element.fullWidthBody).toEqual(false);
+			expect(element.dismissButtonAriaLabel).toEqual(null);
 		});
 	});
 
@@ -459,8 +460,22 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
 		});
 
-		/* Failing because dismiss button has no text */
-		xit('should pass html a11y test', async () => {
+		describe('dismiss-button-aria-label', () => {
+			it('should set "aria-label" on the dismiss button', async () => {
+				const labelId = 'label';
+				element.setAttribute('dismiss-button-aria-label', labelId);
+				await elementUpdated(element);
+				const dismissButton = element.shadowRoot?.querySelector('.dismiss-button');
+				expect(dismissButton?.getAttribute('aria-label')).toBe(labelId);
+			});
+		});
+
+		it('should set localised "aria-label" on the dismiss button', async () => {
+			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button');
+			expect(dismissButton?.getAttribute('aria-label')).toBe('Close');
+		});
+
+		it('should pass html a11y test', async () => {
 			element.open = true;
 			element.setAttribute('aria-label', 'Test dialog');
 			await elementUpdated(element);
