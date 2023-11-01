@@ -131,6 +131,23 @@ describe('vwc-side-drawer', () => {
 			hasClassModal = control.classList.contains('modal');
 			expect(hasClassModal).toEqual(true);
 		});
+
+		it('should not render inert attribute on app content element when closed', async () => {
+			element.modal = true;
+			await elementUpdated(element);
+
+			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			expect(appContent?.hasAttribute('inert')).toBe(false);
+		});
+
+		it('should render inert attribute on app content element when open', async () => {
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
+
+			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			expect(appContent?.hasAttribute('inert')).toBe(true);
+		});
 	});
 
 	describe('alternate', () => {
@@ -153,25 +170,6 @@ describe('vwc-side-drawer', () => {
 
 			hasClassTrailing = control.classList.contains('trailing');
 			expect(hasClassTrailing).toEqual(true);
-		});
-	});
-
-	describe('modal', () => {
-		it('should not render inert attribute on app content element when close', async () => {
-			element.modal = true;
-			await elementUpdated(element);
-
-			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
-			expect(appContent?.hasAttribute('inert')).toBe(false);
-		});
-
-		it('should render inert attribute on app content element when open', async () => {
-			element.modal = true;
-			element.open = true;
-			await elementUpdated(element);
-
-			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
-			expect(appContent?.hasAttribute('inert')).toBe(true);
 		});
 	});
 
