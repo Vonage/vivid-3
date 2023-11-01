@@ -22,26 +22,15 @@ Use the `src` attribute to add source to the audio-player.
 ```
 
 
-### Time Stamp
+### No Time
 
-Use the `timestamp` attribute to add timestamp to the audio-player.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" timestamp></vwc-audio-player>
-```
-
-### No Seek
-
-Use the `noseek` attribute to remove the seek from the audio-player.
+Use the `notime` attribute to remove the time stamp from the audio-player.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" noseek></vwc-audio-player>
+<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" notime></vwc-audio-player>
 ```
 
 ### Connotation

@@ -12,13 +12,17 @@
 	}
 
 	.controls {
+		gap: 16px;
 		display: flex;
 		align-items: center;
 	}
 
-	.current-time,
-	.total-time {
-		margin-inline: 6px;
-		min-inline-size: 32px;
+	.time-stamp {
+		display: inline-flex;
+		.current-time,
+		.total-time {
+			margin-inline: 6px;
+			min-inline-size: 32px;
+		}
 	}
 }

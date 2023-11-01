@@ -30,8 +30,7 @@ function renderSlider(context: ElementDefinitionContext) {
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider" 
 	aria-label="${x => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-	@mouseup="${x => x._rewind()}" 
-	@keyup="${x => x._rewind()}"
+	@change="${x => x._rewind()}" 
 	value="0" max="100" 
 	connotation="${x => x.connotation}"
 	?disabled="${x => x.disabled || !x.duration}">
@@ -39,9 +38,12 @@ function renderSlider(context: ElementDefinitionContext) {
 }
 
 function renderTimestamp() {
-	return html`<span class="current-time">0:00</span>
-	<span>/</span>
-	<span class="total-time">0:00</span>`;
+	return html`
+	<div class="time-stamp" ${ref('_timeStampEl')}>
+		<span class="current-time">0:00</span>
+		<span>/</span>
+		<span class="total-time">0:00</span>
+	</div>`;
 }
 
 export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition
@@ -49,10 +51,10 @@ export const AudioPlayerTemplate: (context: ElementDefinitionContext, definition
 
 	return html<AudioPlayer>`
     <div class="base ${getClasses}">
-      <div class="controls" ${ref('_controlEl')}>
+      <div class="controls">
 	  	${renderButton(context)}
-      	${when(x => x.timestamp, renderTimestamp())}
-		${when(x => !x.noseek, renderSlider(context))}
+      	${when(x => !x.notime, renderTimestamp())}
+		${renderSlider(context)}
       </div>
       <audio ${ref('_playerEl')} src="${x => x.src}"
       @timeupdate="${x => x._updateProgress()}" @loadedmetadata="${x => x._updateTotalTime()}"></audio>

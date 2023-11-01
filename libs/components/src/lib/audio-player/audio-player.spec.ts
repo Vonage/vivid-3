@@ -38,48 +38,32 @@ describe('vwc-audio-player', () => {
 			expect(element).toBeInstanceOf(AudioPlayer);
 			expect(element.src).toEqual('https://download.samplelib.com/mp3/sample-6s.mp3');
 			expect(element.connotation).toBeUndefined();
-			expect(element.timestamp).toEqual(true);
-			expect(element.noseek).toEqual(false);
+			expect(element.notime).toEqual(false);
 			expect(element.disabled).toEqual(false);
 			expect(element.paused).toEqual(true);
 		});
 	});
 
-	describe('timestamp', function () {
-		it('should add the timestamp when equal to true', async function () {
-			element.timestamp = false;
+	describe('notime', function () {
+		it('should remove the time stamp when equal to true', async function () {
+			element.notime = false;
 			await elementUpdated(element);
 
 			const controls = getBaseElement(element).querySelector('.controls') as HTMLDivElement;
 			const currentTimeClassExistsBeforeTheChange = controls.querySelector('.current-time');
 			const totalTimeClassExistsBeforeTheChange = controls.querySelector('.total-time');
 
-			element.timestamp = true;
+			element.notime = true;
 			await elementUpdated(element);
 
 			const currentTimeClassExistsAfterTheChange = controls.querySelector('.current-time');
 			const totalTimeClassExistsAfterTheChange = controls.querySelector('.total-time');
 
-			expect(currentTimeClassExistsBeforeTheChange).toBeFalsy();
-			expect(totalTimeClassExistsBeforeTheChange).toBeFalsy();
+			expect(currentTimeClassExistsBeforeTheChange).toBeTruthy();
+			expect(totalTimeClassExistsBeforeTheChange).toBeTruthy();
 
-			expect(currentTimeClassExistsAfterTheChange).toBeTruthy();
-			expect(totalTimeClassExistsAfterTheChange).toBeTruthy();
-		});
-	});
-
-	describe('noseek', function () {
-		it('should remove the slider when equal to true', async function () {
-			const controls = getBaseElement(element).querySelector('.controls') as HTMLDivElement;
-			const sliderClassExistsBeforeTheChange = controls.querySelector('.slider');
-
-			element.noseek = true;
-			await elementUpdated(element);
-
-			const sliderClassExistsAfterTheChange = controls.querySelector('.slider');
-
-			expect(sliderClassExistsBeforeTheChange).toBeTruthy();
-			expect(sliderClassExistsAfterTheChange).toBeFalsy();
+			expect(currentTimeClassExistsAfterTheChange).toBeFalsy();
+			expect(totalTimeClassExistsAfterTheChange).toBeFalsy();
 		});
 	});
 
@@ -102,8 +86,8 @@ describe('vwc-audio-player', () => {
 
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const sliderConnotationAfter =  (getBaseElement(element).querySelector('.slider') as Slider).connotation;
-			const buttonConnotationAfter =  (getBaseElement(element).querySelector('.pause') as Button).connotation;
+			const sliderConnotationAfter = (getBaseElement(element).querySelector('.slider') as Slider).connotation;
+			const buttonConnotationAfter = (getBaseElement(element).querySelector('.pause') as Button).connotation;
 
 			expect(sliderConnotationBefore).toBeUndefined();
 			expect(buttonConnotationBefore).toBeUndefined();
@@ -122,6 +106,10 @@ describe('vwc-audio-player', () => {
 
 	describe('paused', function () {
 		it('should pause audio on click', async function () {
+			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 			const pauseButton = getBaseElement(element).querySelector('.pause') as HTMLButtonElement;
 			expect(element.paused).toEqual(true);
 			pauseButton.click();
@@ -131,6 +119,10 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should change button icon', async function () {
+			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 			const pauseButton = getBaseElement(element).querySelector('.pause') as Button;
 			expect(pauseButton.icon).toEqual('play-solid');
 
@@ -177,21 +169,11 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('rewind', function () {
-		it('should call rewind when the slider is mouseup', async function () {
+		it('should call rewind when the slider has changeed', async function () {
 			const slider = getBaseElement(element).querySelector('.slider') as Slider;
 			element._rewind = jest.fn();
 
-			slider.dispatchEvent(new MouseEvent('mouseup'));
-			await elementUpdated(element);
-
-			expect(element._rewind).toHaveBeenCalled();
-		});
-
-		it('should call rewind when the slider is keyup', async function () {
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
-			element._rewind = jest.fn();
-
-			slider.dispatchEvent(new MouseEvent('keyup'));
+			slider.dispatchEvent(new Event('change'));
 			await elementUpdated(element);
 
 			expect(element._rewind).toHaveBeenCalled();
@@ -213,14 +195,17 @@ describe('vwc-audio-player', () => {
 
 		it('should update current time when updateProgress is called', async function () {
 			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 
-			audio.currentTime = 1000;
+			audio.currentTime = 200;
 			await elementUpdated(element);
 
 			element._updateProgress();
 
 			await elementUpdated(element);
-			expect(getBaseElement(element).querySelector('.current-time')?.textContent).toEqual('16:40');
+			expect(getBaseElement(element).querySelector('.current-time')?.textContent).toEqual('3:20');
 		});
 	});
 

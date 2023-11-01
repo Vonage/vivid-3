@@ -19,9 +19,9 @@ export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent |
  */
 
 export class AudioPlayer extends FoundationElement {
-	@attr({attribute: 'play-button-aria-label'}) playButtonAriaLabel: string | null = null;
-	@attr({attribute: 'pause-button-aria-label'}) pauseButtonAriaLabel: string | null = null;
-	@attr({attribute: 'slider-aria-label'}) sliderAriaLabel: string | null = null;
+	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel: string | null = null;
+	@attr({ attribute: 'pause-button-aria-label' }) pauseButtonAriaLabel: string | null = null;
+	@attr({ attribute: 'slider-aria-label' }) sliderAriaLabel: string | null = null;
 	/**
 	 * The connotation the audio-player should have.
 	 *
@@ -50,16 +50,9 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 *
 	 * @public
-	 * HTML Attribute: timestamp
+	 * HTML Attribute: notime
 	 */
-	@attr({ mode: 'boolean' }) timestamp = false;
-
-	/**
-	 *
-	 * @public
-	 * HTML Attribute: noseek
-	 */
-	@attr({ mode: 'boolean' }) noseek = false;
+	@attr({ mode: 'boolean' }) notime = false;
 
 	/**
 	 *
@@ -80,7 +73,7 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_controlEl!: HTMLDivElement;
+	_timeStampEl!: HTMLDivElement;
 
 	/**
 	 * @internal
@@ -104,21 +97,21 @@ export class AudioPlayer extends FoundationElement {
 
 		if (this._sliderEl) {
 			this._sliderEl.value = percent.toString();
+			this._sliderEl.ariaValuetext = this._formatTime(current);
 		}
+		const currentTime = this._timeStampEl.querySelector('.current-time');
+		if (currentTime) currentTime.textContent = this._formatTime(current);
 
 		if (percent === 100) {
 			this.paused = true;
 		}
-
-		const currentTime = this._controlEl.querySelector('.current-time');
-		if (currentTime) currentTime.textContent = this._formatTime(current);
 	}
 
 	/**
 	 * @internal
 	 */
 	_updateTotalTime() {
-		const totalTime = this._controlEl.querySelector('.total-time');
+		const totalTime = this._timeStampEl.querySelector('.total-time');
 		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
 		if (this._playerEl) this.duration = this._playerEl.duration;
 	}
@@ -142,5 +135,5 @@ export class AudioPlayer extends FoundationElement {
 	}
 }
 
-export interface AudioPlayer extends Localized {}
+export interface AudioPlayer extends Localized { }
 applyMixins(AudioPlayer, Localized);
