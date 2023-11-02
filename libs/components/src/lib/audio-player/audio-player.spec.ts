@@ -168,28 +168,6 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('rewind', function () {
-		it('should call rewind when mouseup', async function () {
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
-			element._rewind = jest.fn();
-
-			slider.dispatchEvent(new MouseEvent('mouseup'));
-			await elementUpdated(element);
-
-			expect(element._rewind).toHaveBeenCalled();
-		});
-
-		it('should call rewind when keyup', async function () {
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
-			element._rewind = jest.fn();
-
-			slider.dispatchEvent(new KeyboardEvent('keyup'));
-			await elementUpdated(element);
-
-			expect(element._rewind).toHaveBeenCalled();
-		});
-	});
-
 	describe('updateProgress', function () {
 		it('should call updateProgress when timeupdate', async function () {
 			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;

@@ -79,6 +79,22 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_timeStampEl!: HTMLDivElement;
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.addEventListener('keydown', this._rewind);
+		this.addEventListener('mousedown', this._rewind);
+		this.addEventListener('keyup', this._rewind);
+		document.addEventListener('mouseup', this._rewind);
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.removeEventListener('keydown', this._rewind);
+		this.removeEventListener('mousedown', this._rewind);
+		this.removeEventListener('keyup', this._rewind);
+		document.removeEventListener('mouseup', this._rewind);
+	}
+
 	/**
 	 * @internal
 	 */
@@ -126,11 +142,13 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_rewind() {
-		this._playerEl.pause();
+	_rewind = () => {
 		this.paused = true;
-		this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
-	}
+		if (this._playerEl) {
+			this._playerEl.pause();
+			this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
+		}
+	};
 
 	/**
 	 * @internal

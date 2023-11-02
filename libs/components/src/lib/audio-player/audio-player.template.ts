@@ -30,8 +30,6 @@ function renderSlider(context: ElementDefinitionContext) {
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider" 
 	aria-label="${x => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-	@mouseup="${x => x._rewind()}" 
-	@keyup="${x => x._rewind()}" 
 	value="0" max="100" 
 	connotation="${x => x.connotation}"
 	?disabled="${x => x.disabled || !x.duration}">
