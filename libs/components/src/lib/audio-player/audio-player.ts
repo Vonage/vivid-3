@@ -108,7 +108,7 @@ export class AudioPlayer extends FoundationElement {
 			this.paused = true;
 		}
 
-		if (this.notime) return;
+		if (!this._timeStampEl) return;
 		const currentTime = this._timeStampEl.querySelector('.current-time');
 		if (currentTime) currentTime.textContent = this._formatTime(current);
 	}
@@ -118,7 +118,7 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_updateTotalTime() {
 		if (this._playerEl) this.duration = this._playerEl.duration;
-		if (this.notime) return;
+		if (!this._timeStampEl) return;
 		const totalTime = this._timeStampEl.querySelector('.total-time');
 		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
 	}
