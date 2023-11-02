@@ -30,10 +30,10 @@ const getScrimClasses = ({
  * @public
  */
 export const sideDrawerTemplate: FoundationElementTemplate<ViewTemplate<SideDrawer>> = () => html`
-	<aside class="${getClasses}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
+	<div class="${getClasses}" ?inert="${x => !x.open}" part="base ${(x) => x.alternate ? 'vvd-theme-alternate' : ''}"
 	 @keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}">
-    <slot></slot>
-	</aside>
+    	<slot></slot>
+	</div>
 
 	<div class="side-drawer-app-content" ?inert="${x => x.open && x.modal}">
 		<slot name="app-content"></slot>
