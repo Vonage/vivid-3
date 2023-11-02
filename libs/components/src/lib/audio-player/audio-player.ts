@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, nullableNumberConverter, observable } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
@@ -45,8 +45,6 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) disabled = false;
 
-	@attr({ converter: nullableNumberConverter }) duration?: number;
-
 	/**
 	 *
 	 * @public
@@ -59,6 +57,12 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	@observable paused = true;
+
+	/**
+	 *
+	 * @internal
+	 */
+	@observable duration?: number;
 
 	/**
 	 * @internal
