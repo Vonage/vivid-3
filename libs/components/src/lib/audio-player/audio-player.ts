@@ -103,21 +103,24 @@ export class AudioPlayer extends FoundationElement {
 			this._sliderEl.value = percent.toString();
 			this._sliderEl.ariaValuetext = this._formatTime(current);
 		}
-		const currentTime = this._timeStampEl.querySelector('.current-time');
-		if (currentTime) currentTime.textContent = this._formatTime(current);
 
 		if (percent === 100) {
 			this.paused = true;
 		}
+
+		if (this.notime) return;
+		const currentTime = this._timeStampEl.querySelector('.current-time');
+		if (currentTime) currentTime.textContent = this._formatTime(current);
 	}
 
 	/**
 	 * @internal
 	 */
 	_updateTotalTime() {
+		if (this._playerEl) this.duration = this._playerEl.duration;
+		if (this.notime) return;
 		const totalTime = this._timeStampEl.querySelector('.total-time');
 		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
-		if (this._playerEl) this.duration = this._playerEl.duration;
 	}
 
 	/**
