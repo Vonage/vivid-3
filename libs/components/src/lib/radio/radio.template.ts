@@ -24,7 +24,7 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => clas
 export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
 
-	return html<Radio>`<template role="presentation">
+	return html<Radio>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 	<div class="${getClasses}"
 		role="radio"
 		aria-label="${x => x.ariaLabel}"

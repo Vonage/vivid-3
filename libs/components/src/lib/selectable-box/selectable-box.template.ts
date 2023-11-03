@@ -30,7 +30,7 @@ function checkbox(context: ElementDefinitionContext) {
 	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
 		<${checkboxTag}
 			aria-label="${x => !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
-			tabindex="${x => x.clickable ? '-1' : '0'}"
+			tabindex="${x => x.clickable ? '-1' : null}"
 			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control checkbox" 
@@ -46,7 +46,7 @@ function radio(context: ElementDefinitionContext) {
 	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
 		<${radioTag}
 			aria-label="${x => !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
-			tabindex="${x => x.clickable ? '-1' : '0'}"
+			tabindex="${x => x.clickable ? '-1' : null}"
 			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
@@ -84,5 +84,5 @@ export const SelectableBoxTemplate: (
 		${radio(context)}
 		<slot></slot>
 	</div>
-<//template>`;
+</template>`;
 };
