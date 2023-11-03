@@ -25,6 +25,8 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
  * @event change - Fired when the checked state changes
  */
 export class SelectableBox extends FoundationElement {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+
 	/**
 	* Controls the checked state of the box
 	*
@@ -49,24 +51,6 @@ export class SelectableBox extends FoundationElement {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: SelectableBoxConnotation;
-
-	/**
-	 * Adds an accessible label to selectable box
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: control-aria-label
-	 */
-	@attr({ attribute: 'control-aria-label' }) controlAriaLabel: string | null = null;
-
-	/**
-	 * Links a piece of content as an accessible label
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: control-aria-labelledby
-	 */
-	@attr({ attribute: 'control-aria-labelledby' }) controlAriaLabelledby: string | null = null;
 
 	/**
 	 * The type of control the box should have: checkbox or radio.
@@ -98,8 +82,9 @@ export class SelectableBox extends FoundationElement {
 	 * @internal
 	 */
 	_handleKeydown(event: KeyboardEvent) {
+		if (!this.clickable) return true;
 		if (event.code === 'Space' || event.code === 'Enter' && this.clickable) 
-			this._handleCheckedChange();
+			return this._handleCheckedChange();
 		return true;
 	}
 }
