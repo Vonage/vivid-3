@@ -112,6 +112,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_updateProgress() {
+		let currentTime: HTMLElement | null;
 		const current: number = this._playerEl.currentTime;
 		const percent = (current / this._playerEl.duration) * 100;
 
@@ -124,19 +125,22 @@ export class AudioPlayer extends FoundationElement {
 			this.paused = true;
 		}
 
-		if (!this._timeStampEl) return;
-		const currentTime = this._timeStampEl.querySelector('.current-time');
-		if (currentTime) currentTime.textContent = this._formatTime(current);
+		if (this._timeStampEl) {
+			currentTime = this._timeStampEl.querySelector('.current-time');
+			if (currentTime) currentTime.textContent = this._formatTime(current);
+		}
 	}
 
 	/**
 	 * @internal
 	 */
 	_updateTotalTime() {
+		let totalTime: HTMLElement | null;
 		if (this._playerEl) this.duration = this._playerEl.duration;
-		if (!this._timeStampEl) return;
-		const totalTime = this._timeStampEl.querySelector('.total-time');
-		if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
+		if (this._timeStampEl) {
+			totalTime = this._timeStampEl.querySelector('.total-time');
+			if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
+		}
 	}
 
 	/**
