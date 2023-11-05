@@ -7,13 +7,22 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { Elevation } from '../elevation/elevation';
-import type { Card } from './card';
+import type {Card} from './card';
 
-const getClasses = (_: Card) => classNames(
+
+const getClasses = ({appearance, footerSlottedContent, graphicSlottedContent, headline, subtitle, icon}: Card) => classNames(
 	'base',
-	['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
-	['hide-header', shouldHideHeader(_)]
+	['hide-footer', !footerSlottedContent || !footerSlottedContent.length],
+	['hide-header', !headline  && !subtitle && !icon && (!graphicSlottedContent || !graphicSlottedContent.length)],
+	[`appearance-${appearance}`, Boolean(appearance)],
 );
+
+
+// function shouldHideHeader(card:Card) {
+// 	// eslint-disable-next-line max-len
+// 	return 	!card.headline  && !card.subtitle && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
+// }
+
 
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
@@ -53,10 +62,7 @@ function renderHeader(iconTag: string) {
 		</header>`;
 }
 
-function shouldHideHeader(card:Card) {
-	// eslint-disable-next-line max-len
-	return 	!card.headline  && !card.subtitle && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
-}
+
 
 function renderMetaSlot() {
 	return html`
@@ -84,7 +90,7 @@ export const CardTemplate: (
 	const iconTag = context.tagFor(Icon);
 
 	return html<Card>`
-	<${elevationTag} dp=${(x => x.elevation ?? '4')}>
+	<${elevationTag} ?no-shadow=${x => x.appearance == 'ghost'} dp=${(x => x.elevation ?? '4') }>
 
 		<div class="${getClasses}">
 			<div class="wrapper">
