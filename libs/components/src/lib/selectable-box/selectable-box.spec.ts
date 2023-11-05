@@ -24,12 +24,14 @@ describe('vwc-selectable-box', () => {
 				FoundationElementRegistry
 			);
 			expect(element).toBeInstanceOf(SelectableBox);
-			expect(element.controlAriaLabel).toBe(null);
-			expect(element.controlAriaLabelledby).toBe(null);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
+		});
+
+		it('should render the role attribute set to "presentation"', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
 		});
 	});
 
@@ -154,6 +156,22 @@ describe('vwc-selectable-box', () => {
 			expect(element.checked).toBe(true);
 		});
 
+		describe('keyboard (not clickable)', () => {
+			it('should not emit the change event with Space keypress', async () => {
+				baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Space' }));
+				
+				expect(spy).not.toHaveBeenCalled();
+				expect(element.checked).toBe(false);
+			});
+
+			it('should not emit the change event with Enter keypress', async () => {
+				baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Enter' }));
+				
+				expect(spy).not.toHaveBeenCalled();
+				expect(element.checked).toBe(false);
+			});
+		});
+
 		describe('radio', () => {
 			it('should emit the change event when the control element changes', async () => {
 				element.controlType = 'radio';
@@ -204,26 +222,39 @@ describe('vwc-selectable-box', () => {
 					expect(spy).toHaveBeenCalled();
 					expect(element.checked).toBe(true);
 				});
+
+				it('should not emit the change event another key is pressed', async () => {
+					baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: '65' }));
+					
+					expect(spy).not.toHaveBeenCalled();
+					expect(element.checked).toBe(false);
+				});
 			});
 		});
 	});
 
 	describe('a11y', () => {
 		beforeEach(async () => {
-			element.controlAriaLabel = 'Box 1';
-			element.controlAriaLabelledby = 'heading1';
+			element.ariaLabel = 'Box 1';
 			await elementUpdated(element);
+		});
+
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should put the correct a11y attributes on the control element', async () => {
 			const control = getControlElement(element);
 			
-			expect(control?.getAttribute('tabindex')).toBe('0');
+			expect(control?.getAttribute('tabindex')).toBe(null);
 			expect(control?.getAttribute('aria-label')).toBe('Box 1');
-			expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
 		});
 
 		describe('radio', () => {
+			it('should pass html a11y test', async () => {
+				expect(await axe(element)).toHaveNoViolations();
+			});
+
 			it('should put the correct a11y attributes on the control element', async () => {
 				element.controlType = 'radio';
 				await elementUpdated(element);
@@ -232,7 +263,6 @@ describe('vwc-selectable-box', () => {
 
 				expect(control?.getAttribute('tabindex')).toBe('0');
 				expect(control?.getAttribute('aria-label')).toBe('Box 1');
-				expect(control?.getAttribute('aria-labelledby')).toBe('heading1');
 			});
 		});
 
@@ -249,6 +279,20 @@ describe('vwc-selectable-box', () => {
 				expect(control?.getAttribute('aria-hidden')).toBe('true');
 			});
 
+			it('should put the correct a11y attributes on the base element', async () => {
+				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
+				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
+				expect(baseElement?.getAttribute('role')).toBe('button');
+				expect(baseElement?.getAttribute('tabindex')).toBe('0');
+			});
+
+			it('should add the aria-pressed attribute to the base element when checked is true', async () => {
+				element.checked = true;
+				await elementUpdated(element);
+				
+				expect(baseElement?.getAttribute('aria-pressed')).toBe('true');
+			});
+
 			describe('radio', () => {
 				it('should put the correct a11y attributes on the control element', async () => {
 					element.controlType = 'radio';
@@ -258,33 +302,6 @@ describe('vwc-selectable-box', () => {
 					expect(control?.getAttribute('tabindex')).toBe('-1');
 					expect(control?.getAttribute('aria-hidden')).toBe('true');
 				});
-			});
-
-			it('should put the correct a11y attributes on the base element', async () => {
-				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
-				expect(baseElement?.getAttribute('aria-labelledby')).toBe('heading1');
-				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
-				expect(baseElement?.getAttribute('role')).toBe('button');
-				expect(baseElement?.getAttribute('tabindex')).toBe('0');
-			});
-
-			it('should add the aria-checked attribute to the base element when checked is true', async () => {
-				element.checked = true;
-				await elementUpdated(element);
-				
-				expect(baseElement?.getAttribute('aria-pressed')).toBe('true');
-			});
-		});
-
-		/* these are skipped until aria-label and aria-labelledby 
-		   can be passed down the checkbox's control element */
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('clickable', () => {
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});
