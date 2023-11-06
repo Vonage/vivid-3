@@ -47,7 +47,7 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 			aria-required="${x => x.required}"
 			aria-disabled="${x => x.disabled}"
 			aria-readonly="${x => x.readOnly}"
-			tabindex="${x => (x.disabled ? null : 0)}"
+			tabindex="${x => (x.tabindex !== null ? x.tabindex : x.disabled ? null : 0)}"
 			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 			@click="${(x, c) => x.clickHandler(c.event)}">
 			<div class="control">
