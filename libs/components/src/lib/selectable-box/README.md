@@ -22,8 +22,8 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box connotation="accent" style="max-inline-size: 450px"> Accent box </vwc-selectable-box>
-  <vwc-selectable-box connotation="cta" style="max-inline-size: 450px"> CTA box </vwc-selectable-box>
+  <vwc-selectable-box connotation="accent" style="max-inline-size: 450px">Accent box</vwc-selectable-box>
+  <vwc-selectable-box connotation="cta" style="max-inline-size: 450px">CTA box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -38,8 +38,8 @@ When `control-type` is set to `radio`, it is the consuming app's responsibility 
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px"> Checkbox control </vwc-selectable-box>
-  <vwc-selectable-box control-type="radio" style="max-inline-size: 450px"> Radio control </vwc-selectable-box>
+  <vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px">Checkbox control</vwc-selectable-box>
+  <vwc-selectable-box control-type="radio" style="max-inline-size: 450px">Radio control</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -52,8 +52,8 @@ Set the `checked` attribute to indicate the checked state of the box.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px"> Checked checkbox box </vwc-selectable-box>
-  <vwc-selectable-box control-type="radio" checked style="max-inline-size: 450px"> Checked radio box </vwc-selectable-box>
+  <vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px">Checked checkbox box</vwc-selectable-box>
+  <vwc-selectable-box control-type="radio" checked style="max-inline-size: 450px">Checked radio box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -67,8 +67,8 @@ Setting the `clickable` attribute makes the whole card clickable, just make sure
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box clickable style="max-inline-size: 450px"> Clickable accent box </vwc-selectable-box>
-  <vwc-selectable-box clickable connotation="cta" style="max-inline-size: 450px"> Clickable CTA box </vwc-selectable-box>
+  <vwc-selectable-box clickable style="max-inline-size: 450px">Clickable accent box</vwc-selectable-box>
+  <vwc-selectable-box clickable connotation="cta" style="max-inline-size: 450px">Clickable CTA box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -111,22 +111,9 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 ## Accessibility
 
-To ensure the selectable box has an accessible label, it is neccessary to provide an `control-aria-label` attribute or associate a piece of content as a label using the `control-aria-labelledby` attribute, as in the examples below.
+To ensure the selectable box has an accessible label, it is neccessary to provide an `aria-label` attribute.
 
 Also, the boxes need a parent element to have a `role` attribute set to `group`.
-
-```html preview
-<vwc-layout role="group" gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box control-aria-label="Box 1" style="max-inline-size: 450px">
-    <div>Use the control-aria-label attribute to make the box accessible.</div>
-  </vwc-selectable-box>
-
-  <vwc-selectable-box control-aria-labelledby="box2-heading" style="max-inline-size: 450px">
-    <h3 id="box2-heading">Accessible selectable box</h3>
-    <p>Use the control-aria-labelledby attribute to make the box accessible.</p>
-  </vwc-selectable-box>
-</vwc-layout>
-```
 
 ## Use cases
 

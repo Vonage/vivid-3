@@ -30,6 +30,7 @@ export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Co
 @formElements
 export class Checkbox extends FoundationCheckbox {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({attribute: 'tabindex'}) tabindex: string | null = null;
 	
 	/**
 	 * The connotation the checklist should have.
