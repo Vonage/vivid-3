@@ -1,0 +1,29 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "partials/variables" as variables;
+
+.base {
+	display: inline-flex;
+	align-items: center;
+	padding: 8px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	user-select: none;
+
+	.slider {
+		min-inline-size: var(#{variables.$audio-player-min-inline-size}, 200px);
+	}
+
+	.controls {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.time-stamp {
+		display: inline-flex;
+		.current-time,
+		.total-time {
+			margin-inline: 6px;
+			min-inline-size: 32px;
+		}
+	}
+}
