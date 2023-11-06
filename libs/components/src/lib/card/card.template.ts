@@ -5,15 +5,23 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Elevation } from '../elevation/elevation';
 import type {Card} from './card';
 
 
-const getClasses = ({appearance, footerSlottedContent, graphicSlottedContent, headline, subtitle, icon}: Card) => classNames(
+const getClasses = ({
+	appearance,
+	footerSlottedContent,
+	graphicSlottedContent,
+	headline,
+	subtitle,
+	icon
+}: Card) => classNames(
 	'base',
 	['hide-footer', !footerSlottedContent || !footerSlottedContent.length],
-	['hide-header', !headline  && !subtitle && !icon && (!graphicSlottedContent || !graphicSlottedContent.length)],
+	['hide-header', !headline && !subtitle && !icon && (!graphicSlottedContent || !graphicSlottedContent.length)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 );
 
@@ -26,7 +34,7 @@ const getClasses = ({appearance, footerSlottedContent, graphicSlottedContent, he
 
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
-	  <${iconTag} class="icon" inline name="${x => x.icon}"></${iconTag}>`;
+		<${iconTag} class="icon" inline name="${x => x.icon}"></${iconTag}>`;
 }
 
 function Headline() {
@@ -76,23 +84,11 @@ function text() {
 	`;
 }
 
-/**
- * The template for the Card component.
- *
- * @param context - element definition context
- * @public
- */
-export const CardTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Card> = (context: ElementDefinitionContext) => {
-	const elevationTag = context.tagFor(Elevation);
+function renderCardContent(context: ElementDefinitionContext)  {
 	const iconTag = context.tagFor(Icon);
 
-	return html<Card>`
-	<${elevationTag} ?no-shadow=${x => x.appearance == 'ghost'} dp=${(x => x.elevation ?? '4') }>
-
-		<div class="${getClasses}">
+	return html`
+	<div class="${getClasses}">
 			<div class="wrapper">
 				<div class="vwc-card-media">
 					<slot name="media"></slot>
@@ -111,7 +107,37 @@ export const CardTemplate: (
 				</div>
 			</div>
 		</div>
+	`;
+}
 
-	</${elevationTag}>
-`;
+/**
+ * The template for the Card component.
+ *
+ * @param context - element definition context
+ * @public
+ */
+export const CardTemplate: (
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition,
+	elevationTag: string
+) => ViewTemplate<Card> = (context: ElementDefinitionContext) => {
+	const elevationTag = context.tagFor(Elevation);
+
+	return html<Card>`
+		${when(x => (x.appearance !== Appearance.Ghost) && (x.appearance !== Appearance.Outlined), html`
+			<${elevationTag} dp=${(x => x.elevation ?? '4')}>
+			  ${renderCardContent(context)}
+			</${elevationTag}>
+		`)}
+
+		${when(x => (x.appearance === Appearance.Outlined), html`
+			<${elevationTag} dp='0')}>
+			  ${renderCardContent(context)}
+			</${elevationTag}>
+		`)}
+
+		${when(x => (x.appearance === Appearance.Ghost), html`
+			${renderCardContent(context)}
+		`)}
+	`;
 };

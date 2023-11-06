@@ -12,7 +12,7 @@ import type {
  * @public
  */
 export type CardAppearance = Extract<Appearance,
-Appearance.Elevated | Appearance.Ghost | Appearance.Duotone>;
+Appearance.Elevated | Appearance.Ghost | Appearance.Outlined>;
 
 
 

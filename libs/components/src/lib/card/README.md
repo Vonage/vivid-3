@@ -43,6 +43,20 @@ Control the elevation depth by adding the `elevation` attribute.
 <vwc-card elevation="12" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
 
+### Appearance
+
+
+
+- Type: `elevated` | `outlined` | `ghost`
+- Default: `elevated`
+
+```html preview
+<vwc-card appearance="elevated" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+<vwc-card appearance="outlined" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+<vwc-card appearance="ghost" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+```
+
+
 ### Icon
 
 Add the `icon` attribute to add icon on the right of the card headline.
