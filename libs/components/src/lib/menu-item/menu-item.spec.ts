@@ -86,10 +86,10 @@ describe('vwc-menu-item', () => {
 		});
 
 		it.each([
-			['checkbox-checked-line', true, MenuItemRole.menuitemcheckbox],
-			['checkbox-unchecked-line', false, MenuItemRole.menuitemcheckbox],
-			['radio-checked-line', true, MenuItemRole.menuitemradio],
-			['radio-unchecked-line', false, MenuItemRole.menuitemradio],
+			['checkbox-checked-2-line', true, MenuItemRole.menuitemcheckbox],
+			['checkbox-unchecked-2-line', false, MenuItemRole.menuitemcheckbox],
+			['radio-checked-2-line', true, MenuItemRole.menuitemradio],
+			['radio-unchecked-2-line', false, MenuItemRole.menuitemradio],
 		])('should set a %s icon when checked=%s and role is %s', async (expectedIcon, checked, role) => {
 			element.role = role;
 			element.checked = checked;
