@@ -22,7 +22,6 @@ Add a `headline` attribute to add card headline title.
 ```
 
 ### Subtitle
-
 Add a `subtitle` attribute to add card subtitle.
 
 - Type: `string`
@@ -32,28 +31,28 @@ Add a `subtitle` attribute to add card subtitle.
 <vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
 
-### Elevation
-
-Control the elevation depth by adding the `elevation` attribute.
-
-- Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
-- Default: `4`
-
-```html preview
-<vwc-card elevation="12" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
-```
-
 ### Appearance
-
-
-
 - Type: `elevated` | `outlined` | `ghost`
 - Default: `elevated`
 
 ```html preview
-<vwc-card appearance="elevated" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
-<vwc-card appearance="outlined" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
-<vwc-card appearance="ghost" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+<vwc-layout>
+<vwc-card appearance="elevated" headline="Vivid Card - Appearance Elevated" subtitle="this is the default appearance"></vwc-card>
+<vwc-card appearance="outlined" headline="Vivid Card - Appearance Outlined" subtitle="set a border to the card same as elevation='0' "></vwc-card>
+<vwc-card appearance="ghost" headline="Vivid Card - Appearance Ghost" subtitle="present the card tepmlat without background or shadow"></vwc-card>
+</vwc-layout>
+```
+
+### Elevation
+
+Control the elevation depth by adding the `elevation` attribute.  
+The elevation is applied only with `appearance='elevated'`
+
+- Type: `2` | `4` | `8` | `12` | `16` | `24`
+- Default: `4`
+
+```html preview
+<vwc-card elevation="12" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
 
 
