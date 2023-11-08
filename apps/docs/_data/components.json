@@ -284,5 +284,10 @@
 		"title": "selectable-box",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/selectable-box/README.md"
+	},
+	{
+		"title": "audio-player",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/audio-player/README.md"
 	}
 ]

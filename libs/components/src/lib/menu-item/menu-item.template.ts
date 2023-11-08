@@ -14,7 +14,7 @@ const getIndicatorIcon = (x: MenuItem) => {
 
 	const iconType = x.role === MenuItemRole.menuitemcheckbox ? 'checkbox' : 'radio';
 	const iconStatus = x.checked ? 'checked' : 'unchecked';
-	return `${iconType}-${iconStatus}-line`;
+	return `${iconType}-${iconStatus}-2-line`;
 };
 
 const getClasses = ({
