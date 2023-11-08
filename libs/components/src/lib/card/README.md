@@ -33,6 +33,7 @@ Add a `subtitle` attribute to add card subtitle.
 ```
 
 ### Appearance
+Set the `appearance` attribute to change the card's appearance.
 
 - Type: `elevated` | `outlined` | `ghost`
 - Default: `elevated`
