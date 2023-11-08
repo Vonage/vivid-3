@@ -22,6 +22,7 @@ Add a `headline` attribute to add card headline title.
 ```
 
 ### Subtitle
+
 Add a `subtitle` attribute to add card subtitle.
 
 - Type: `string`
@@ -32,6 +33,7 @@ Add a `subtitle` attribute to add card subtitle.
 ```
 
 ### Appearance
+
 - Type: `elevated` | `outlined` | `ghost`
 - Default: `elevated`
 
@@ -52,7 +54,7 @@ The elevation is applied only with the default appearance (`appearance='elevated
 - Default: `4`
 
 ```html preview
-<vwc-card elevation="0" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+<vwc-card elevation="12" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
 
 
