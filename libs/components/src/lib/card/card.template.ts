@@ -10,27 +10,11 @@ import { Icon } from '../icon/icon';
 import { Elevation } from '../elevation/elevation';
 import type {Card} from './card';
 
-
-const getClasses = ({
-	appearance,
-	footerSlottedContent,
-	graphicSlottedContent,
-	headline,
-	subtitle,
-	icon
-}: Card) => classNames(
+const getClasses = (_: Card) => classNames(
 	'base',
-	['hide-footer', !footerSlottedContent || !footerSlottedContent.length],
-	['hide-header', !headline && !subtitle && !icon && (!graphicSlottedContent || !graphicSlottedContent.length)],
-	[`appearance-${appearance}`, Boolean(appearance)],
+	['hide-footer', !_.footerSlottedContent || !_.footerSlottedContent.length],
+	['hide-header', shouldHideHeader(_)]
 );
-
-
-// function shouldHideHeader(card:Card) {
-// 	// eslint-disable-next-line max-len
-// 	return 	!card.headline  && !card.subtitle && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
-// }
-
 
 function renderHeaderIcon(iconTag: string) {
 	return html<Card>`
@@ -70,7 +54,10 @@ function renderHeader(iconTag: string) {
 		</header>`;
 }
 
-
+function shouldHideHeader(card:Card) {
+	// eslint-disable-next-line max-len
+	return 	!card.headline  && !card.subtitle && !card.icon && (!card.graphicSlottedContent || !card.graphicSlottedContent.length);
+}
 
 function renderMetaSlot() {
 	return html`

@@ -35,7 +35,7 @@ export class Card extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: appearance
 	 */
-	@attr appearance?: CardAppearance;
+	@attr appearance?: string;
 
 	/**
 	 * the text of the card heading
