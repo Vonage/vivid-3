@@ -51,13 +51,15 @@ export class Checkbox extends FoundationCheckbox {
 			return true;
 		}
 
-		switch (event.key) {
-			case keySpace:
-				if (this.indeterminate) {
-					this.indeterminate = false;
-				}
-				this.checked = !this.checked;
-				break;
+		if (!this.disabled && !this.readOnly) {
+			switch (event.key) {
+				case keySpace:
+					if (this.indeterminate) {
+						this.indeterminate = false;
+					}
+					this.checked = !this.checked;
+					break;
+			}
 		}
 		return false;
 	};

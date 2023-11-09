@@ -8,51 +8,69 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
+import { CheckMark } from '../check-mark/check-mark'; 
 import { Radio } from '../radio/radio';
+import { RadioMark } from '../radio-mark/radio-mark';
 import { SelectableBox } from './selectable-box';
 
-const getClasses = ({ connotation, tight, checked, clickable }: SelectableBox) => classNames(
+const getClasses = ({ connotation, tight, checked, containerClickable }: SelectableBox) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	['tight', tight],
 	['checked', checked],
-	['clickable', clickable],
-	['readonly', !clickable],
+	['clickable', containerClickable],
+	['readonly', !containerClickable],
 );
 
 function handleControlChange(x: SelectableBox) {
-	if (!x.clickable) x._handleCheckedChange();
+	if (!x.containerClickable) x._handleCheckedChange();
 }
 
 function checkbox(context: ElementDefinitionContext) {
 	const checkboxTag = context.tagFor(Checkbox);
+	const checkMarkTag = context.tagFor(CheckMark);
 	
-	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
-		<${checkboxTag}
-			aria-label="${x => !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
-			tabindex="${x => x.clickable ? '-1' : null}"
-			aria-hidden="${x => x.clickable}"
-			@change="${x => handleControlChange(x)}"
-			class="control checkbox" 
-			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
-			:checked="${x => x.checked}"
-		></${checkboxTag}>`)}
+	return html<SelectableBox>`
+		${when(x => x.controlType !== 'radio' && !x.containerClickable, html`
+			<${checkboxTag}
+				aria-label="${x => x.ariaLabel}"
+				@change="${x => handleControlChange(x)}"
+				class="control checkbox" 
+				connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+				:checked="${x => x.checked}"
+			></${checkboxTag}>
+		`)}
+		${when(x => x.controlType !== 'radio' && x.containerClickable, html`
+			<${checkMarkTag}
+				class="control checkbox" 
+				connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+				:checked="${x => x.checked}"
+			></${checkMarkTag}>
+		`)}
 	`;
 }
 
 function radio(context: ElementDefinitionContext) {
 	const radioTag = context.tagFor(Radio);
+	const radioMarkTag = context.tagFor(RadioMark);
 
-	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
+	return html<SelectableBox>`
+	${when(x => x.controlType === 'radio' && !x.containerClickable, html`
 		<${radioTag}
-			aria-label="${x => !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
-			tabindex="${x => x.clickable ? '-1' : null}"
-			aria-hidden="${x => x.clickable}"
+			aria-label="${x => x.ariaLabel}"
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${x => x.checked}"
-		></${radioTag}>`)}
+		></${radioTag}>
+	`)}
+	${when(x => x.controlType === 'radio' && x.containerClickable, html`
+		<${radioMarkTag}
+			class="control radio" 
+			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
+			:checked="${x => x.checked}"
+		></${radioMarkTag}>
+	`)}
 	`;
 }
 
@@ -72,14 +90,14 @@ export const SelectableBoxTemplate: (
 	return html<SelectableBox>`<template role="presentation">
 	<div
 		class="${getClasses}"
-		tabindex="${x => x.clickable ? '0' : null}"
-		role="${x => x.clickable ? 'button' : null}"
-		aria-pressed="${x => x.clickable && x.checked ? x.checked : null}"
-		aria-label="${x => x.clickable ? x.ariaLabel : null}"
+		tabindex="${x => x.containerClickable ? '0' : null}"
+		role="${x => x.containerClickable ? 'button' : null}"
+		aria-pressed="${x => x.containerClickable && x.checked ? x.checked : null}"
+		aria-label="${x => x.containerClickable ? x.ariaLabel : null}"
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
-		@click="${x => x.clickable ? x._handleCheckedChange() : null}"
+		@click="${x => x.containerClickable ? x._handleCheckedChange() : null}"
 	>
-		${(x) => x.clickable ? focusTemplate : ''}
+		${(x) => x.containerClickable ? focusTemplate : ''}
 		${checkbox(context)}
 		${radio(context)}
 		<slot></slot>

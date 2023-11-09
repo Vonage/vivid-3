@@ -65,11 +65,12 @@ describe('vwc-checkbox', () => {
 	});
 
 	describe('checked', () => {
-		it('should set checked class when checked is true', async () => {
+		it('should set checked attribute on check-mark when checked is true', async () => {
 			element.toggleAttribute('checked', true);
 			await elementUpdated(element);
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
 
-			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
+			expect(checkMark?.hasAttribute('checked')).toBeTruthy();
 		});
 	});
 
@@ -80,31 +81,40 @@ describe('vwc-checkbox', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
+
+		it('should set disabled attribute on check-mark', async () => {
+			element.toggleAttribute('disabled', true);
+			await elementUpdated(element);
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+			expect(checkMark?.hasAttribute('disabled')).toBeTruthy();
+		});
 	});
 
 	describe('readonly', function () {
-		it('should set readonly class when readonly is true', async () => {
-			expect(element.shadowRoot?.querySelector('.readonly')).toBeFalsy();
+		it('should set readonly attribute on check-mark when it is true', async () => {
 			element.toggleAttribute('readonly', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.readonly')).toBeTruthy();
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+			expect(checkMark?.hasAttribute('readonly')).toBeTruthy();
 		});
 	});
 
 	describe('indeterminate', () => {
-		it('should set checked class when indeterminate is true', async () => {
+		it('should set indeterminate attribute on check-mark when it is set', async () => {
 			element.indeterminate = true;
 
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.checked')).toBeTruthy();
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+			expect(checkMark?.hasAttribute('indeterminate')).toBeTruthy();
 		});
 
 		it('should set `indeterminate` to false when `checked` by click', async () => {
 			element.indeterminate = true;
 			getBaseElement(element).click();
-
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+			
 			expect(element.indeterminate).toBeFalsy();
-			expect(element.shadowRoot?.querySelector('.checked')).toBeFalsy();
+			expect(checkMark?.hasAttribute('indeterminate')).toBeFalsy();
 		});
 
 		it('should set `indeterminate` to false when `checked` by keypress', async () => {
@@ -120,10 +130,8 @@ describe('vwc-checkbox', () => {
 			const connotation = Connotation.CTA;
 			(element as any).connotation = 'cta';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.base')
-				?.classList
-				.contains(`connotation-${connotation}`))
-				.toEqual(true);
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+			expect(checkMark?.getAttribute('connotation')).toBe(connotation);
 		});
 	});
 
@@ -232,11 +240,12 @@ describe('vwc-checkbox', () => {
 		it('should check the checkbox when clicked outside the anchor', async () => {
 			element.querySelector('a')?.click();
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+			expect(checkMark?.hasAttribute('checked')).toBeFalsy();
 
 			getBaseElement(element).click();
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
+			expect(checkMark?.hasAttribute('checked')).toBeTruthy();
 		});
 
 		it('should check the checkbox when keypressed outside the anchor', async () => {
@@ -244,11 +253,13 @@ describe('vwc-checkbox', () => {
 
 			element.querySelector('a')?.dispatchEvent(new KeyboardEvent('keypress', { bubbles: true, composed: true, key: 'Enter' }));
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
+			const checkMark = element.shadowRoot?.querySelector('vwc-check-mark');
+
+			expect(checkMark?.hasAttribute('checked')).toBeFalsy();
 
 			getBaseElement(element)?.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('checked')).toBeTruthy();
+			expect(checkMark?.hasAttribute('checked')).toBeTruthy();
 		});
 
 		it('should not add hide-label class to .base if slotted', async function () {

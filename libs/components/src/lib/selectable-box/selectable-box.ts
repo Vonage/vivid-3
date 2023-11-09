@@ -41,7 +41,7 @@ export class SelectableBox extends FoundationElement {
 	* @public
 	* HTML Attribute: clickable
 	*/
-	@attr({ mode: 'boolean'}) clickable = false;
+	@attr({ attribute: 'container-clickable', mode: 'boolean'}) containerClickable = false;
 
 	/**
 	 * The connotation the selectable box should have.
@@ -75,14 +75,14 @@ export class SelectableBox extends FoundationElement {
 	_handleCheckedChange() {
 		if (this.controlType === 'radio' && this.checked) return;
 		this.checked = !this.checked;
-		this.$emit('change');
+		if (this.containerClickable) this.$emit('change');
 	}
 
 	/**
 	 * @internal
 	 */
 	_handleKeydown(event: KeyboardEvent) {
-		if ((event.code === 'Space' || event.code === 'Enter') && this.clickable) 
+		if ((event.code === 'Space' || event.code === 'Enter') && this.containerClickable) 
 			return this._handleCheckedChange();
 		return true;
 	}

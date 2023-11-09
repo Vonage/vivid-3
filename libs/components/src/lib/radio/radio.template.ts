@@ -4,14 +4,12 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
 import { focusTemplateFactory } from '../../shared/patterns/focus';
+import { RadioMark } from '../radio-mark/radio-mark';
 import type { Radio } from './radio';
 
 
-const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => classNames(
+const getClasses = ({ disabled }: Radio) => classNames(
 	'base',
-	[`connotation-${connotation}`, Boolean(connotation)],
-	['checked', Boolean(checked)],
-	['readonly', Boolean(readOnly)],
 	['disabled', Boolean(disabled)]
 );
 
@@ -23,6 +21,7 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => clas
  */
 export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {
 	const focusTemplate = focusTemplateFactory(context);
+	const radioMarkTag = context.tagFor(RadioMark);
 
 	return html<Radio>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 	<div class="${getClasses}"
@@ -34,9 +33,14 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 		@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 	>
-		<div class="control">
+		<${radioMarkTag}
+			:checked="${x => x.checked}"
+			:readOnly="${x => x.readOnly}"
+			:disabled="${x => x.disabled}"
+			connotation="${x => x.connotation}"
+		>
 			${() => focusTemplate}
-		</div>
+		</${radioMarkTag}>
 		${when(x => x.label, html<Radio>`<label class="label">${x => x.label}</label>`)}
 	</div>
 </template>`;
