@@ -29,8 +29,7 @@ function actionButton(context: ElementDefinitionContext) {
 		${ref('_action')}
 		class="control ${getClasses} ${(x) => !x.label && !!x.icon ? 'icon-only' : ''}"
 		aria-label="${(x) => x.ariaLabel}"
-		?disabled="${(x) => (x.disabled)}"
-		aria-disabled="${(x) => x.disabled}">
+		?disabled="${(x) => x.disabled}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon)}
 		<span class="text">${(x) => x.label}</span>
@@ -46,9 +45,8 @@ function indicatorButton(context: ElementDefinitionContext) {
 	<button
 		${ref('_indicator')}
 		class="indicator ${getClasses}"
-		?disabled="${(x) => (x.disabled)}"
-		aria-disabled="${(x) => x.disabled}"
-		aria-label="Open for more actions"
+		?disabled="${(x) => x.disabled}"
+		aria-label="${(x) => x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
 		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}">
 			${() => focusTemplate}
@@ -67,9 +65,11 @@ export const SplitButtonTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<SplitButton> = (context: ElementDefinitionContext) => {
 	return html<SplitButton>`
-		<div class="base" role="group">
-			${actionButton(context)}
-			${indicatorButton(context)}
-			<slot></slot>
-		</div>`;
+		<template role="presentation">
+			<div class="base" role="group">
+				${actionButton(context)}
+				${indicatorButton(context)}
+				<slot></slot>
+			</div>
+		</template>`;
 };

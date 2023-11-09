@@ -83,6 +83,9 @@ const enUS: Locale = {
 		incrementButtonLabel: 'Increment',
 		decrementButtonLabel: 'Decrement',
 	},
+	splitButton: {
+		showMoreActionsLabel: 'Show more actions',
+	}
 };
 
 export default enUS;
