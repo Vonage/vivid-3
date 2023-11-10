@@ -99,12 +99,12 @@ describe('vwc-select', () => {
 				.toBeNull();
 		});
 
-		it('should set arialabel on host', async function () {
+		it('should not set aria-labelledby on host', async function () {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label'))
-				.toEqual(labelText);
+				.toEqual(null);
 		});
 	});
 
@@ -112,16 +112,6 @@ describe('vwc-select', () => {
 		it('should reflect on the host', async function () {
 			const ariaLabel = 'label';
 			element.ariaLabel = ariaLabel;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label'))
-				.toEqual(ariaLabel);
-		});
-
-		it('should set ariaLabel on the host overriding label', async function () {
-			const ariaLabel = 'arialabel';
-			const label = 'label';
-			element.ariaLabel = ariaLabel;
-			element.label = label;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label'))
 				.toEqual(ariaLabel);
@@ -606,7 +596,7 @@ describe('vwc-select', () => {
 				<option value="3">3</option>
 			`;
 			element.selectedIndex = 2;
-			element.label = 'Label';
+			element.ariaLabel = 'Label';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
