@@ -7,7 +7,39 @@ Represents a switch custom element.
 ```
 
 ```html preview
-<vwc-switch></vwc-switch>
+<style>
+.grid {display: grid; grid-template-columns: 160px 210px 210px; grid-template-rows: auto auto; gap: 8px; margin-block: 16px;}
+</style>
+<div class="grid">
+<vwc-switch label="unchecked"></vwc-switch>
+<vwc-switch disabled label="unchecked + disabled"></vwc-switch>
+<vwc-switch readonly label="unchecked + readonly"></vwc-switch>
+</div>
+
+<div class="grid">
+<vwc-switch checked label="checked"></vwc-switch>
+<vwc-switch checked disabled label="checked + disabled"></vwc-switch>
+<vwc-switch checked readonly label="checked + readonly"></vwc-switch>
+</div>
+
+
+<div class="grid">
+<vwc-switch checked label="checked" connotation="cta"></vwc-switch>
+<vwc-switch checked disabled label="checked + disabled" connotation="cta"></vwc-switch>
+<vwc-switch checked readonly label="checked + readonly" connotation="cta"></vwc-switch>
+</div>
+
+<div class="grid">
+<vwc-switch checked label="checked" connotation="alert"></vwc-switch>
+<vwc-switch checked disabled label="checked + disabled" connotation="alert"></vwc-switch>
+<vwc-switch checked readonly label="checked + readonly" connotation="alert"></vwc-switch>
+</div>
+
+<div class="grid">
+<vwc-switch checked label="checked" connotation="success"></vwc-switch>
+<vwc-switch checked disabled label="checked + disabled" connotation="success"></vwc-switch>
+<vwc-switch checked readonly label="checked + readonly" connotation="success"></vwc-switch>
+</div>
 ```
 
 ## Members
