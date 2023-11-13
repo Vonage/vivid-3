@@ -120,7 +120,7 @@ export class Alert extends FoundationElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.addEventListener('keydown', this.#closeOnEscape);
-		this.controlEl = this.shadowRoot?.querySelector('.control') as HTMLDivElement;
+		this.controlEl = this.shadowRoot!.querySelector('.control') as HTMLDivElement;
 		if (this.controlEl) this.controlEl.addEventListener('transitionend', this.#onTransitionEnd);
 		this.#setupTimeout();
 	}
