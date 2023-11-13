@@ -1,6 +1,7 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
+import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 export type AlertConnotation =
@@ -30,6 +31,7 @@ export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'botto
  * @event close - Fired when the alert is closed
  */
 export class Alert extends FoundationElement {
+	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel: string | null = null;
 	// timeout to close the alert
 	#timeoutID?: NodeJS.Timeout;
 
@@ -97,7 +99,7 @@ export class Alert extends FoundationElement {
 	 * @public
 	 * HTML Attribute: open
 	 */
-	@attr({ mode: 'boolean'	}) open = false;
+	@attr({ mode: 'boolean' }) open = false;
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 		this.$emit(newValue ? 'open' : 'close');
@@ -128,11 +130,11 @@ export class Alert extends FoundationElement {
 		}
 	}
 
-	#closeOnEscape = (e:KeyboardEvent) => {
+	#closeOnEscape = (e: KeyboardEvent) => {
 		if (this.removable && e.key === 'Escape') this.open = false;
 	};
 }
 
 applyMixins(Alert, AffixIcon);
-
-export interface Alert extends AffixIcon {}
+export interface Alert extends Localized, AffixIcon { }
+applyMixins(Alert, Localized);

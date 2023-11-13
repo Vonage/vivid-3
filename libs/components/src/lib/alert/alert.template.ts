@@ -30,6 +30,7 @@ function renderIcon(context: ElementDefinitionContext) {
 function renderDismissButton(buttonTag: string) {
 	return html`
 		<${buttonTag}
+			aria-label="${x => x.dismissButtonAriaLabel || x.locale.alert.dismissButtonLabel}"
 			size="condensed"
 			class="dismiss-button"
 			icon="close-line"
@@ -59,7 +60,7 @@ export const AlertTemplate: (
 					${when(x => x.headline,
 		html`<header class="headline">${(x) => x.headline}</header>`)}
 					${when(x => x.text,
-		html`<div class="main-text">${(x) => x.text}</div>`)}
+			html`<div class="main-text">${(x) => x.text}</div>`)}
 					<slot name="main">
 					</slot>
 				</div>

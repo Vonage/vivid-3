@@ -76,6 +76,9 @@ const zhCN: Locale = {
 		pauseButtonLabel: '停',
 		sliderLabel: '音訊進度條',
 	},
+	alert: {
+		dismissButtonLabel: '关',
+	},
 	dialog: {
 		dismissButtonLabel: '关',
 	},
