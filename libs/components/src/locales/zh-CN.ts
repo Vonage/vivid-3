@@ -78,6 +78,8 @@ const zhCN: Locale = {
 	},
 	alert: {
 		dismissButtonLabel: '关',
+		headlineLabel: '标题',
+		textLabel: '文本',
 	},
 	dialog: {
 		dismissButtonLabel: '关',

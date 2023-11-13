@@ -32,6 +32,8 @@ export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'botto
  */
 export class Alert extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel: string | null = null;
+	@attr({ attribute: 'headline-aria-label' }) headlineAriaLabel: string | null = null;
+	@attr({ attribute: 'text-aria-label' }) textAriaLabel: string | null = null;
 	// timeout to close the alert
 	#timeoutID?: NodeJS.Timeout;
 
