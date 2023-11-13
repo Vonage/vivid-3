@@ -42,7 +42,7 @@ Set the `appearance` attribute to change the card's appearance.
 <vwc-layout>
 <vwc-card appearance="elevated" headline="Vivid Card - Appearance Elevated" subtitle="this is the default appearance"></vwc-card>
 <vwc-card appearance="outlined" headline="Vivid Card - Appearance Outlined" subtitle="set a border to the card same as elevation='0' "></vwc-card>
-<vwc-card appearance="ghost" headline="Vivid Card - Appearance Ghost" subtitle="present the card tepmlat without background or shadow"></vwc-card>
+<vwc-card appearance="ghost" headline="Vivid Card - Appearance Ghost" subtitle="present the card template without background or shadow"></vwc-card>
 </vwc-layout>
 ```
 
