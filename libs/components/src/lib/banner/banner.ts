@@ -1,5 +1,5 @@
 import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 import {Connotation} from '../enums';
 import {AffixIcon} from '../../shared/patterns/affix';
 
@@ -71,6 +71,15 @@ export class Banner extends FoundationElement {
 		}
 		this.remove();
 	};
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+
+	@observable actionItemsSlottedContent?: HTMLElement[];
 }
 
 applyMixins(Banner, AffixIcon);
