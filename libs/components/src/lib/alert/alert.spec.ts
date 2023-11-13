@@ -317,6 +317,14 @@ describe('vwc-alert', () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
+		it('should set alertdialog on the control when removable', async () => {
+			element.removable = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			expect(control.getAttribute('role')).toBe('alertdialog');
+		});
+
 		it('should set a role of alert on the control', async () => {
 			const control = getControlElement(element);
 			expect(control.getAttribute('role')).toBe('alert');
