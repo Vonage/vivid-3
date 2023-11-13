@@ -39,7 +39,7 @@ Set the `appearance` attribute to change the split button's appearance.
 Use `icon` to set an icon to the split button.
 View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the split button's purpose.
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label` must be provided to ensure that the user can understand the split button's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -53,13 +53,13 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-
 Use `split-indicator` to set an indicator icon to the split button.
 View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the indicator's purpose.
+See the [Accessibility notes](#accessibility) if you would like to customize the split indicator's default aria-label.
 
 - Type: `string`
 - Default: `chevron-down-line`
 
 ```html preview
-<vwc-split-button appearance="filled" label='Split Indicator' split-indicator="more-vertical-solid" aria-label="Show more options"></vwc-split-button>
+<vwc-split-button appearance="filled" label='Split Indicator' split-indicator="more-vertical-solid"></vwc-split-button>
 ```
 
 ### Shape
@@ -157,8 +157,33 @@ Add the `disabled` attribute to disable the split button.
 </script>
 ```
 
+### Split Button with Tooltip
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+		text-align: center;
+  }
+</style>
+
+<vwc-split-button id="splitButton" appearance="filled" icon="compose-line" aria-label="Write a new message">
+	<vwc-tooltip id="tooltip" text="Write a new message"></vwc-tooltip>
+</vwc-split-button>
+
+<script>
+  window.onload = function(){
+		tooltip.anchor = splitButton.action;
+  }
+</script>
+```
+
 ## Accessibility
 
-- `aria-expanded` - When the anchor is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.
+- `aria-expanded` - When the menu is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.
 
 - `aria-haspopup` - Split button's [aria-haspopup](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup) is always set to "true". The menu must be set to the indicator of a split button.
+
+- `aria-label` - When icon-only button is used, an [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) should be provided to ensure that the user can understand the button's purpose.
+
+- `indicator-aria-label` - The indicator has a default `aria-label`, which will be a localised version of "Show more actions". You can override this by setting the `indicator-aria-label` attribute.

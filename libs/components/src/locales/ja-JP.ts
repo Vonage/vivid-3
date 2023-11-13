@@ -83,6 +83,9 @@ const jaJP: Locale = {
 		incrementButtonLabel: '増加',
 		decrementButtonLabel: '減少',
 	},
+	splitButton: {
+		showMoreActionsLabel: 'Show more actions',
+	}
 };
 
 export default jaJP;
