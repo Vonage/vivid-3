@@ -94,6 +94,12 @@ export class Alert extends FoundationElement {
 	@attr connotation?: AlertConnotation;
 
 	/**
+	 *
+	 * @internal
+	 */
+	controlEl?: HTMLDivElement;
+
+	/**
 	 * indicates whether the alert is open
 	 *
 	 * @public
@@ -104,18 +110,24 @@ export class Alert extends FoundationElement {
 		if (oldValue === undefined) return;
 		this.$emit(newValue ? 'open' : 'close');
 		this.#setupTimeout();
+		if (newValue) {
+			this.style.display = 'block';
+		}
 	}
 
 	override connectedCallback(): void {
-		this.#setupTimeout();
-		this.addEventListener('keydown', this.#closeOnEscape);
 		super.connectedCallback();
+		this.addEventListener('keydown', this.#closeOnEscape);
+		this.controlEl = this.shadowRoot?.querySelector('.control') as HTMLDivElement;
+		if (this.controlEl) this.controlEl.addEventListener('transitionend', this.#onTransitionEnd);
+		this.#setupTimeout();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		if (this.#timeoutID) clearTimeout(this.#timeoutID);
 		this.removeEventListener('keydown', this.#closeOnEscape);
+		if (this.controlEl) this.controlEl.removeEventListener('transitionend', this.#onTransitionEnd);
 	}
 
 	get conditionedIcon() {
@@ -132,6 +144,12 @@ export class Alert extends FoundationElement {
 
 	#closeOnEscape = (e: KeyboardEvent) => {
 		if (this.removable && e.key === 'Escape') this.open = false;
+	};
+
+	#onTransitionEnd = () => {
+		if (!this.open) {
+			this.style.display = 'none';
+		}
 	};
 }
 
