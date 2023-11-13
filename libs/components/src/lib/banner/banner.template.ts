@@ -20,11 +20,12 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton(buttonTag: string) {
 	return html<Banner>`
 	  <${buttonTag}
-				part="vvd-theme-alternate"
-			  size="condensed"
-			  class="dismiss-button"
-			  icon="close-line"
-			  @click="${x => x.remove()}">
+	  		aria-label="${x => x.dismissButtonAriaLabel || x.locale.banner.dismissButtonLabel}"
+			part="vvd-theme-alternate"
+			size="condensed"
+			class="dismiss-button"
+			icon="close-line"
+			@click="${x => x.remove()}">
 	  </${buttonTag}>`;
 }
 
