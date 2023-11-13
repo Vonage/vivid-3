@@ -164,6 +164,20 @@ describe('vwc-alert', () => {
 		});
 	});
 
+	describe('transitionend', function () {
+		it('should be display none when not open', async function () {
+			element.open = true;
+			await elementUpdated(element);
+			expect(element.style.display).toEqual('block');
+
+			element.open = false;
+			getControlElement(element).dispatchEvent(new Event('transitionend'));
+			await elementUpdated(element);
+
+			expect(element.style.display).toEqual('none');
+		});
+	});
+
 	describe('icon', function () {
 
 		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
