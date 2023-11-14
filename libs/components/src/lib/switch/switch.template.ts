@@ -9,7 +9,7 @@ import {focusTemplateFactory} from '../../shared/patterns';
 import type { Switch } from './switch';
 
 const getClasses = (_: Switch) => classNames('control',
-	['appearance-filled', _.checked || (_.checked&& !_.disabled) || (_.checked && !_.readOnly)],
+	['appearance-filled', _.checked],
 	['checked', _.checked],
 	['disabled', _.disabled],
 	['readonly', _.readOnly],

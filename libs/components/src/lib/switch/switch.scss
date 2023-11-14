@@ -72,21 +72,16 @@
 	margin-inline-start: auto ;
 	transition: all 0.2s ease-in-out 0s;
 
-	.control.appearance-filled &,
-	.control.appearance-filled.readonly & {
-		background-color: var(#{constants.$vvd-color-neutral-100});
-	}
-
-	.control.appearance-filled.disabled & {
-		background-color:var(#{appearance.get-appearance-token(text)});
-	}
-
-	//.control.appearance-filled.readonly & {
-	//	background-color: var(#{constants.$vvd-color-canvas});
-	//}
-
 	.control:not(.appearance-filled) & {
 		background-color: var(#{appearance.get-appearance-token(outline)});
+	}
+
+	.control:not(.appearance-filled):where(.readonly) & {
+		background-color: var(#{constants.$vvd-color-neutral-600});
+	}
+
+	.control.appearance-filled & {
+		background-color: var(#{constants.$vvd-color-neutral-100});
 	}
 
 	.control:not(.checked) & {
@@ -95,6 +90,14 @@
 
 	.control.checked & {
 		transform: translateX(calc(-1 * var(#{variables.$gutter})));
+	}
+
+	.control.appearance-filled.disabled & {
+		background-color:var(#{appearance.get-appearance-token(text)});
+	}
+
+	.control.appearance-filled.readonly & {
+		background-color: var(#{constants.$vvd-color-neutral-50});
 	}
 }
 
