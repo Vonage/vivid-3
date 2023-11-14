@@ -18,11 +18,11 @@
 $size: #{size.$vvd-size-ultra-condensed};
 
 :host {
-    display: inline-flex;
+	display: inline-flex;
 }
 
 .base {
-    @include connotation.connotation(checkbox);
+	@include connotation.connotation(checkbox);
 	@include appearance.appearance;
 }
 
