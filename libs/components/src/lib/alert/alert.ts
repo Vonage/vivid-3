@@ -113,7 +113,7 @@ export class Alert extends FoundationElement {
 		this.$emit(newValue ? 'open' : 'close');
 		this.#setupTimeout();
 		if (newValue) {
-			this.style.display = 'block';
+			this.style.display = 'inline';
 		}
 	}
 
