@@ -1,13 +1,13 @@
-import {html, when} from '@microsoft/fast-element';
-import type {ViewTemplate} from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
-import {affixIconTemplateFactory, IconWrapper} from '../../shared/patterns/affix';
+import { classNames } from '@microsoft/fast-web-utilities';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { Button } from '../button/button';
-import type {Banner} from './banner';
+import type { Banner } from './banner';
 
 const getClasses = (_: Banner) => classNames(
 	'control',
@@ -20,11 +20,12 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton(buttonTag: string) {
 	return html<Banner>`
 	  <${buttonTag}
-				part="vvd-theme-alternate"
-			  size="condensed"
-			  class="dismiss-button"
-			  icon="close-line"
-			  @click="${x => x.remove()}">
+	  		aria-label="${x => x.dismissButtonAriaLabel || x.locale.banner.dismissButtonLabel}"
+			part="vvd-theme-alternate"
+			size="condensed"
+			class="dismiss-button"
+			icon="close-line"
+			@click="${x => x.remove()}">
 	  </${buttonTag}>`;
 }
 
@@ -42,7 +43,8 @@ export const BannerTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Banner>`
-	  <div class="${getClasses}" tabindex="0">
+	  <div class="${getClasses}" 
+	  tabindex="${x => (x.removable || (x.actionItemsSlottedContent && x.actionItemsSlottedContent.length) ? '0' : null)}">
 		  <header class="header">
 					<div class="content">
             ${x => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
@@ -51,7 +53,7 @@ export const BannerTemplate: (
 						 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
 									${x => x.text}
             </div>
-						<slot class="action-items" name="action-items"></slot>
+						<slot class="action-items" ${slotted('actionItemsSlottedContent')} name="action-items"></slot>
 					</div>
 
 			  ${when(x => x.removable, renderDismissButton(buttonTag))}
