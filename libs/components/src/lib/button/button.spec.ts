@@ -42,7 +42,7 @@ describe('vwc-button', () => {
 		it('should have an icon slot', async () => {
 			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
 		});
-		
+
 		it('adds an icon to the button', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
@@ -170,6 +170,18 @@ describe('vwc-button', () => {
 			expect(controlIconOnlyBefore).toBeNull();
 			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
 		});
+
+		it('should set icon-only class if slot name="icon" is slotted', async () => {
+			const iconOnlyClassExistsWithoutSlot = getControlElement(element).classList.contains('icon-only');
+			const slottedElement = document.createElement('span');
+			slottedElement.slot = 'icon';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			expect(iconOnlyClassExistsWithoutSlot).toEqual(false);
+			expect(getControlElement(element).classList.contains('icon-only')).toEqual(true);
+		});
+
 	});
 
 	describe('disabled', function () {
@@ -222,7 +234,7 @@ describe('vwc-button', () => {
 			it('should pass html a11y test', async () => {
 				element.icon = 'home';
 				await elementUpdated(element);
-				
+
 				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
