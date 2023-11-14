@@ -84,6 +84,9 @@ const zhCN: Locale = {
 	dialog: {
 		dismissButtonLabel: '关',
 	},
+	banner: {
+		dismissButtonLabel: '关',
+	},
 	numberField: {
 		incrementButtonLabel: '增量',
 		decrementButtonLabel: '递减',

@@ -32,16 +32,32 @@ Add a `subtitle` attribute to add card subtitle.
 <vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
 
+### Appearance
+Set the `appearance` attribute to change the card's appearance.
+
+- Type: `elevated` | `outlined` | `ghost`
+- Default: `elevated`
+
+```html preview
+<vwc-layout>
+<vwc-card appearance="elevated" headline="Vivid Card - Appearance Elevated" subtitle="this is the default appearance"></vwc-card>
+<vwc-card appearance="outlined" headline="Vivid Card - Appearance Outlined" subtitle="set a border to the card same as elevation='0' "></vwc-card>
+<vwc-card appearance="ghost" headline="Vivid Card - Appearance Ghost" subtitle="present the card template without background or shadow"></vwc-card>
+</vwc-layout>
+```
+
 ### Elevation
 
-Control the elevation depth by adding the `elevation` attribute.
+Control the elevation depth by adding the `elevation` attribute.  
+The elevation is applied only with the default appearance (`appearance='elevated'`).
 
-- Type: `0` | `2` | `4` | `8` | `12` | `16` | `24`
+- Type: `2` | `4` | `8` | `12` | `16` | `24`
 - Default: `4`
 
 ```html preview
 <vwc-card elevation="12" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
 ```
+
 
 ### Icon
 
