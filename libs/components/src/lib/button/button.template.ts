@@ -16,14 +16,14 @@ const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean)
 };
 
 const getClasses = ({
-	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size
+	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size, iconSlottedContent
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
-	['icon-only', !label && !!icon],
+	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 	['icon-trailing', iconTrailing],
 	['stacked', Boolean(stacked)],
 );
