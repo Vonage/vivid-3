@@ -165,18 +165,12 @@
 		"title": "radio-group",
 		"markdown": "./libs/components/src/lib/radio-group/README.md",
 		"children": [
-			"radio",
-			"radio-mark"
+			"radio"
 		]
 	},
 	{
 		"title": "radio",
 		"markdown": "./libs/components/src/lib/radio/README.md",
-		"parent": "radio-group"
-	},
-	{
-		"title": "radio-mark",
-		"markdown": "./libs/components/src/lib/radio-mark/README.md",
 		"parent": "radio-group"
 	},
 	{
