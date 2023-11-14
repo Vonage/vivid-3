@@ -1,9 +1,12 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import {axe, elementUpdated, fixture} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {Appearance} from '../enums';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
 import '.';
 import { cardDefinition } from './definition';
+
+
 
 const COMPONENT_TAG = 'vwc-card';
 const ICON_SELECTOR = 'vwc-icon';
@@ -20,6 +23,7 @@ describe('vwc-card', () => {
 			expect(cardDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Card);
 			expect(element.icon).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 		});
 	});
 
@@ -145,6 +149,39 @@ describe('vwc-card', () => {
 
 			expect(baseElementHasNoHeader).toEqual(false);
 		});
+	});
+
+	describe('card appearance', function () {
+		it('should have elevation element wrapper when as default appearance or elevated', async function () {
+
+			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
+
+			expect(elevationTag).toBeTruthy();
+			expect(elevationTag?.getAttribute('dp')).toEqual('4');
+
+		});
+
+		it('should have no elevation element wrapper when appearance is ghost', async function () {
+			element.appearance = Appearance.Ghost;
+			await elementUpdated(element);
+
+			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
+
+			expect(elevationTag).toBeFalsy();
+
+		});
+
+		it('should have elevation element wrapper with dp="0" when appearance is outlined', async function () {
+			element.appearance = Appearance.Outlined;
+			await elementUpdated(element);
+
+			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
+
+			expect(elevationTag).toBeTruthy();
+			expect(elevationTag?.getAttribute('dp')).toEqual('0');
+
+		});
+
 	});
 
 	describe('card elevation', () => {
