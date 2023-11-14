@@ -1,7 +1,7 @@
-import {axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import type {Icon} from '../icon/icon';
-import {Button} from '../button/button';
-import {Connotation} from '../enums';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import type { Icon } from '../icon/icon';
+import { Button } from '../button/button';
+import { Connotation } from '../enums';
 import { Banner } from './banner';
 import type { BannerConnotation } from './banner';
 import '.';
@@ -13,7 +13,7 @@ async function toggleRemovable(element: Banner, removable = true) {
 	await elementUpdated(element);
 }
 
-function getBannerMessageAttribute(element: Banner, attribute: string ) {
+function getBannerMessageAttribute(element: Banner, attribute: string) {
 	return element.shadowRoot?.querySelector('.banner-message')
 		?.getAttribute(attribute);
 }
@@ -133,6 +133,27 @@ describe('vwc-banner', () => {
 		});
 	});
 
+	describe('tabindex', function () {
+		it('should not set tabindex on control', async () => {
+			expect(getControlElement(element).tabIndex).toEqual(-1);
+		});
+
+		it('should set tabindex 0 on control when removable', async () => {
+			element.removable = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).tabIndex).toEqual(0);
+		});
+
+		it('should set tabindex 0 on control when banner has action items', async () => {
+			const slotted = document.createElement('div');
+			slotted.slot = 'action-items';
+			element.appendChild(slotted);
+			await elementUpdated(element);
+			expect(getControlElement(element).tabIndex).toEqual(0);
+		});
+	});
+
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Information,
 			Connotation.Announcement,
@@ -163,7 +184,7 @@ describe('vwc-banner', () => {
 
 	describe('icon', function () {
 		const getIcon = () => element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
-		
+
 		it('should have an icon slot', async () => {
 			expect(getIcon()).toBeTruthy();
 		});
@@ -296,7 +317,7 @@ describe('vwc-banner', () => {
 		it('should pass html a11y test', async () => {
 			element.removable = true;
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
@@ -306,7 +327,7 @@ describe('vwc-banner', () => {
 				expect(role)
 					.toEqual('status');
 			});
-	
+
 			it('should change role to role text', async function () {
 				element.role = 'alert';
 				await elementUpdated(element);
@@ -315,7 +336,7 @@ describe('vwc-banner', () => {
 					.toEqual('alert');
 				expect(await axe(element)).toHaveNoViolations();
 			});
-	
+
 			it('should change role when role attribute is set', async function () {
 				element.setAttribute('role', 'alert');
 				await elementUpdated(element);
@@ -325,14 +346,14 @@ describe('vwc-banner', () => {
 				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
-	
+
 		describe('aria live', function () {
 			it('should be set to "live" on init', function () {
 				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
 				expect(ariaLive)
 					.toEqual('polite');
 			});
-	
+
 			it('should change aria-live to ariaLive text', async function () {
 				element.ariaLive = 'assertive';
 				await elementUpdated(element);
@@ -340,7 +361,7 @@ describe('vwc-banner', () => {
 				expect(ariaLive)
 					.toEqual('assertive');
 			});
-	
+
 			it('should change reflect aria-live inside the message', async function () {
 				element.setAttribute('aria-live', 'assertive');
 				await elementUpdated(element);
