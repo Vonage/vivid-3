@@ -79,6 +79,9 @@ const enGB: Locale = {
 	dialog: {
 		dismissButtonLabel: 'Close',
 	},
+	banner: {
+		dismissButtonLabel: 'Close',
+	},
 	numberField: {
 		incrementButtonLabel: 'Increment',
 		decrementButtonLabel: 'Decrement',

@@ -1,6 +1,7 @@
 import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {attr, observable} from '@microsoft/fast-element';
 import {Connotation} from '../enums';
+import { Localized } from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns/affix';
 
 export type BannerConnotation =
@@ -28,8 +29,8 @@ const defaultConnotation =
  * @slot action-items - Add action items to banner using this slot.
  */
 export class Banner extends FoundationElement {
-	@attr
-	override role: string | null = null;
+	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel: string | null = null;
+	@attr override role: string | null = null;
 	@attr({attribute: 'action-href'}) actionHref: string | undefined;
 	@attr({attribute: 'action-text'}) actionText: string | undefined;
 	@attr({mode: 'boolean'}) removable = false;
@@ -71,9 +72,18 @@ export class Banner extends FoundationElement {
 		}
 		this.remove();
 	};
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+
+	@observable actionItemsSlottedContent?: HTMLElement[];
 }
 
 applyMixins(Banner, AffixIcon);
 
-export interface Banner extends AffixIcon {
-}
+export interface Banner extends Localized, AffixIcon{ }
+applyMixins(Banner, Localized);
