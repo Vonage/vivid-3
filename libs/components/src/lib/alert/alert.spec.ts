@@ -86,6 +86,23 @@ describe('vwc-alert', () => {
 		});
 	});
 
+	describe('focus', () => {
+		it('should focus when opened', async () => {
+			const spy = jest.fn();
+			const alertText: HTMLElement = element.shadowRoot?.querySelector('.alert-text') as HTMLElement;
+			alertText.focus = spy;
+			element.removable = true;
+			
+			element.open = false;
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(0);
+			
+			element.open = true;
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Accent,
 			Connotation.Information,

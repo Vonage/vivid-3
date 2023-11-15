@@ -113,12 +113,15 @@ export class Alert extends FoundationElement {
 		this.#setupTimeout();
 		if (newValue) {
 			this.style.display = 'inline';
-			if (this.removable) {
-				const base = this.shadowRoot!.querySelector('.alert-text') as HTMLElement;
-				base?.setAttribute('tabindex', '0');
-				base.focus();
-				base?.removeAttribute('tabindex');
+			const alertText = this.shadowRoot!.querySelector('.alert-text') as HTMLElement;
+			if (this.removable && alertText) {
+				alertText.setAttribute('tabindex', '0');
+				alertText.focus();
+				alertText.removeAttribute('tabindex');
 			}
+		}
+		else{
+			this.style.display = 'none';
 		}
 	}
 
