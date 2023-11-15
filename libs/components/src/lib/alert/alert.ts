@@ -1,6 +1,7 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
+import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 export type AlertConnotation =
@@ -30,6 +31,8 @@ export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'botto
  * @event close - Fired when the alert is closed
  */
 export class Alert extends FoundationElement {
+	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel: string | null = null;
+	
 	// timeout to close the alert
 	#timeoutID?: NodeJS.Timeout;
 
@@ -92,28 +95,49 @@ export class Alert extends FoundationElement {
 	@attr connotation?: AlertConnotation;
 
 	/**
+	 *
+	 * @internal
+	 */
+	controlEl?: HTMLDivElement;
+
+	/**
 	 * indicates whether the alert is open
 	 *
 	 * @public
 	 * HTML Attribute: open
 	 */
-	@attr({ mode: 'boolean'	}) open = false;
+	@attr({ mode: 'boolean' }) open = false;
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 		this.$emit(newValue ? 'open' : 'close');
 		this.#setupTimeout();
+		if (newValue) {
+			this.style.display = 'inline';
+			const alertText = this.shadowRoot!.querySelector('.alert-text') as HTMLElement;
+			if (this.removable && alertText) {
+				alertText.setAttribute('tabindex', '0');
+				alertText.focus();
+				alertText.removeAttribute('tabindex');
+			}
+		}
+		else{
+			this.style.display = 'none';
+		}
 	}
 
 	override connectedCallback(): void {
-		this.#setupTimeout();
-		this.addEventListener('keydown', this.#closeOnEscape);
 		super.connectedCallback();
+		this.addEventListener('keydown', this.#closeOnEscape);
+		this.controlEl = this.shadowRoot!.querySelector('.control') as HTMLDivElement;
+		if (this.controlEl) this.controlEl.addEventListener('transitionend', this.#onTransitionEnd);
+		this.#setupTimeout();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		if (this.#timeoutID) clearTimeout(this.#timeoutID);
 		this.removeEventListener('keydown', this.#closeOnEscape);
+		if (this.controlEl) this.controlEl.removeEventListener('transitionend', this.#onTransitionEnd);
 	}
 
 	get conditionedIcon() {
@@ -128,11 +152,17 @@ export class Alert extends FoundationElement {
 		}
 	}
 
-	#closeOnEscape = (e:KeyboardEvent) => {
+	#closeOnEscape = (e: KeyboardEvent) => {
 		if (this.removable && e.key === 'Escape') this.open = false;
+	};
+
+	#onTransitionEnd = () => {
+		if (!this.open) {
+			this.style.display = 'none';
+		}
 	};
 }
 
 applyMixins(Alert, AffixIcon);
-
-export interface Alert extends AffixIcon {}
+export interface Alert extends Localized, AffixIcon { }
+applyMixins(Alert, Localized);
