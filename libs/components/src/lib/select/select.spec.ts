@@ -99,7 +99,7 @@ describe('vwc-select', () => {
 				.toBeNull();
 		});
 
-		it('should not set aria-labelledby on host', async function () {
+		it('should not set aria-label on host', async function () {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
