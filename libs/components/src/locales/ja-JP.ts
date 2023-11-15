@@ -76,7 +76,13 @@ const jaJP: Locale = {
 		pauseButtonLabel: '休止',
 		sliderLabel: 'オーディオプログレスバー',
 	},
+	alert: {
+		dismissButtonLabel: '閉じる',
+	},
 	dialog: {
+		dismissButtonLabel: '閉じる',
+	},
+	banner: {
 		dismissButtonLabel: '閉じる',
 	},
 	numberField: {
