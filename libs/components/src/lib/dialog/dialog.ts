@@ -1,5 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable} from '@microsoft/fast-element';
+import { Localized } from '../../shared/patterns';
 
 // eslint-disable-next-line compat/compat
 export const isDialogSupported = Boolean(HTMLDialogElement && HTMLDialogElement.prototype.showModal);
@@ -50,6 +51,7 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
+	@attr({attribute: 'dismiss-button-aria-label'}) dismissButtonAriaLabel: string | null = null;
 
 	#modal = false;
 
@@ -170,3 +172,6 @@ export class Dialog extends FoundationElement {
 	@observable actionItemsSlottedContent?: HTMLElement[];
 
 }
+
+export interface Dialog extends Localized {}
+applyMixins(Dialog, Localized);

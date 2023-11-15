@@ -4,6 +4,7 @@ import type {
 	Appearance, Connotation, Shape, Size
 } from '../enums.js';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { Localized } from '../../shared/patterns';
 
 /**
  * Types of split button connotation.
@@ -136,7 +137,17 @@ export class SplitButton extends FoundationElement {
 
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 	@attr({ attribute: 'aria-expanded' }) override ariaExpanded: string | null = null;
+
+	/**
+	 * Defines a string value that labels the indicator element.
+	 *
+	 * {@link https://www.w3.org/TR/wai-aria-1.1/#aria-label}
+	 * @public
+	 * @remarks
+	 * HTML Attribute: indicator-aria-label
+	 */
+	@attr({ attribute: 'indicator-aria-label' }) indicatorAriaLabel: string | null = null;
 }
 
-export interface SplitButton extends AffixIcon { }
-applyMixins(SplitButton, AffixIcon);
+export interface SplitButton extends AffixIcon, Localized { }
+applyMixins(SplitButton, AffixIcon, Localized);

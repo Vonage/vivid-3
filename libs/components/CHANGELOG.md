@@ -4,6 +4,28 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.40.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.39.0...vivid-v3.40.0) (2023-10-31)
+
+
+### Features
+
+* **data-grid-cell:** emit sort event on enter and space (VIV-1233) ([#1430](https://github.com/Vonage/vivid-3/issues/1430)) ([42e641f](https://github.com/Vonage/vivid-3/commit/42e641fda7997296aa1c1384bde57c4b058fb88e))
+* **date-range-picker:** dual calendar view (VIV-1339) ([#1415](https://github.com/Vonage/vivid-3/issues/1415)) ([b3b2233](https://github.com/Vonage/vivid-3/commit/b3b2233e637348959755623b2d260c01616f5ccd))
+* **selectable-box:** add component (VIV-1173) ([#1417](https://github.com/Vonage/vivid-3/issues/1417)) ([fb52330](https://github.com/Vonage/vivid-3/commit/fb523309a558ad86526688693c2063073a9ce725))
+* **slider:** add cta connotation (VIV-1373) ([#1429](https://github.com/Vonage/vivid-3/issues/1429)) ([7791d80](https://github.com/Vonage/vivid-3/commit/7791d80c4b2d7190ee886b817fca99598d722111))
+
+
+### Bug Fixes
+
+* **a11y:** adds a11y attributes to fulfil axe tests (VIV-1361) ([#1426](https://github.com/Vonage/vivid-3/issues/1426)) ([3a2246c](https://github.com/Vonage/vivid-3/commit/3a2246c9a662d93a18e6de9ec909f9458ee94d40))
+* **banner:** set display: block to host (VIV-1357) ([#1419](https://github.com/Vonage/vivid-3/issues/1419)) ([a2b5a45](https://github.com/Vonage/vivid-3/commit/a2b5a45eb353c3a6485a8dec0f7199a3520bc590))
+* **checkbox:** add display: flex to host (VIV-1293) ([#1423](https://github.com/Vonage/vivid-3/issues/1423)) ([75dcfe5](https://github.com/Vonage/vivid-3/commit/75dcfe550703f22755009bb7d2ef37a4002d0c3c))
+* **components:** fix min/maxlength validation (VIV-1174) ([#1420](https://github.com/Vonage/vivid-3/issues/1420)) ([d940074](https://github.com/Vonage/vivid-3/commit/d940074730a23cb0c88e4c55cc4cd3a3d0eb7dd5))
+* **data-grid:** fix focus appearance (VIV-1336) ([#1422](https://github.com/Vonage/vivid-3/issues/1422)) ([006b561](https://github.com/Vonage/vivid-3/commit/006b561f4c87ce3665f26b4a7a62773a1f14fe93))
+* **data-grid:** sticky header background color when row-select (VIV-1365) ([#1421](https://github.com/Vonage/vivid-3/issues/1421)) ([8eb17d9](https://github.com/Vonage/vivid-3/commit/8eb17d9c740a2810f663c7b13705a933e077dd1e))
+* **menu:** fix error when there are no menu items (VIV-1368) ([#1424](https://github.com/Vonage/vivid-3/issues/1424)) ([4eb89c3](https://github.com/Vonage/vivid-3/commit/4eb89c3745af25ea1bf76c4466a34a843caf0815))
+* **text-field:** fix text field not supporting autofill from certain password managers (VIV-1353) ([#1408](https://github.com/Vonage/vivid-3/issues/1408)) ([2dfb1a0](https://github.com/Vonage/vivid-3/commit/2dfb1a005eb5105e0d716320cec3cf903043d46c))
+
 ## [3.39.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.38.0...vivid-v3.39.0) (2023-10-17)
 
 

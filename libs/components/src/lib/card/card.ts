@@ -1,6 +1,21 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable} from '@microsoft/fast-element';
 
+import type {
+	Appearance,
+} from '../enums.js';
+
+
+/**
+ * Types of avatar appearance.
+ *
+ * @public
+ */
+export type CardAppearance = Extract<Appearance,
+Appearance.Elevated | Appearance.Ghost | Appearance.Outlined>;
+
+
+
 /**
  * Base class for card
  *
@@ -12,6 +27,15 @@ import {attr, observable} from '@microsoft/fast-element';
  * @slot main - Assign nodes to main slot to fully override a card's predefined flow and style with your own.
  */
 export class Card extends FoundationElement {
+
+	/**
+	 * The appearance the card should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	@attr appearance?: CardAppearance;
 
 	/**
 	 * the text of the card heading

@@ -29,9 +29,8 @@ function checkbox(context: ElementDefinitionContext) {
 	
 	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
 		<${checkboxTag}
-			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : null}"
-			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : null}"
-			tabindex="${x => x.clickable ? '-1' : '0'}"
+			aria-label="${x => !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
+			tabindex="${x => x.clickable ? '-1' : null}"
 			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control checkbox" 
@@ -46,9 +45,8 @@ function radio(context: ElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
 		<${radioTag}
-			aria-label="${x => !x.clickable && x.controlAriaLabel ? x.controlAriaLabel : null}"
-			aria-labelledby="${x => !x.clickable && x.controlAriaLabelledby ? x.controlAriaLabelledby : ''}"
-			tabindex="${x => x.clickable ? '-1' : '0'}"
+			aria-label="${x => !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
+			tabindex="${x => x.clickable ? '-1' : null}"
 			aria-hidden="${x => x.clickable}"
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
@@ -71,14 +69,13 @@ export const SelectableBoxTemplate: (
 	context: ElementDefinitionContext
 ) => {
 	const focusTemplate = focusTemplateFactory(context);
-	return html<SelectableBox>`
+	return html<SelectableBox>`<template role="presentation">
 	<div
 		class="${getClasses}"
 		tabindex="${x => x.clickable ? '0' : null}"
 		role="${x => x.clickable ? 'button' : null}"
 		aria-pressed="${x => x.clickable && x.checked ? x.checked : null}"
-		aria-label="${x => x.clickable ? x.controlAriaLabel : null}"
-		aria-labelledby="${x => x.clickable ? x.controlAriaLabelledby : null}"
+		aria-label="${x => x.clickable ? x.ariaLabel : null}"
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 		@click="${x => x.clickable ? x._handleCheckedChange() : null}"
 	>
@@ -87,5 +84,5 @@ export const SelectableBoxTemplate: (
 		${radio(context)}
 		<slot></slot>
 	</div>
-`;
+</template>`;
 };

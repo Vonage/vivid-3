@@ -1,6 +1,12 @@
 import { attr } from '@microsoft/fast-element';
 import { Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
+import type { Connotation } from '../enums';
+
+export type SliderConnotation =
+	Connotation.Accent |
+	Connotation.CTA;
+
 
 /**
  * Base class for slider
@@ -8,6 +14,8 @@ import { limit } from '@microsoft/fast-web-utilities';
  * @public
  */
 export class Slider extends FastSlider {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({attribute: 'aria-valuetext'}) ariaValuetext: string | null = null;
 	/**
 	 * Display markers on/off
 	 * 
@@ -17,6 +25,13 @@ export class Slider extends FastSlider {
 	@attr({
 		mode: 'boolean',
 	}) markers = false;
+
+	/**
+	 * slider connotation
+	 *
+	 * @public
+	 */
+	@attr connotation?: SliderConnotation;
 
 	/**
 	 * TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3

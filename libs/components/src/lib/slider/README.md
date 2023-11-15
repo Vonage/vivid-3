@@ -90,6 +90,15 @@ Toggles markers display.
 <vwc-slider markers></vwc-slider>
 ```
 
+### Connotation
+
+- Type: `'accent'` | `'cta'` 
+- Default: `'accent'`
+
+```html preview blocks
+<vwc-slider connotation="cta"></vwc-slider>
+```
+
 ### Disabled
 
 Toggle the `disabled` member to disable/enable the slider.
@@ -111,3 +120,8 @@ Use `value` to set the value of the slider.
 ```html preview blocks
 <vwc-slider value="3"></vwc-slider>
 ```
+
+## Accessibility
+
+- The slider's `role` is `slider` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `slider` element.

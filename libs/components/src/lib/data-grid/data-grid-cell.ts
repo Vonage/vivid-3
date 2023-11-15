@@ -13,6 +13,7 @@ declare interface DataGridCellExtension {
 /**
  * Base class for data-grid
  *
+ * @event sort - Event that fires when a sortable column header is clicked
  * @public
  */
 export class DataGridCell extends FoundationDataGridCell {

@@ -2,6 +2,7 @@ export * from './accordion-item/definition';
 export * from './accordion/definition';
 export * from './action-group/definition';
 export * from './alert/definition';
+export * from './audio-player/definition';
 export * from './avatar/definition';
 export * from './badge/definition';
 export * from './banner/definition';
