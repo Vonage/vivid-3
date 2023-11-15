@@ -78,8 +78,6 @@ const jaJP: Locale = {
 	},
 	alert: {
 		dismissButtonLabel: '閉じる',
-		headlineLabel: '見出し',
-		textLabel: '文章',
 	},
 	dialog: {
 		dismissButtonLabel: '閉じる',

@@ -78,8 +78,6 @@ const enUS: Locale = {
 	},
 	alert: {
 		dismissButtonLabel: 'Close',
-		headlineLabel: 'Headline',
-		textLabel: 'Text',
 	},
 	dialog: {
 		dismissButtonLabel: 'Close',
