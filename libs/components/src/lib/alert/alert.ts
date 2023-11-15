@@ -32,8 +32,7 @@ export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'botto
  */
 export class Alert extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel: string | null = null;
-	@attr({ attribute: 'headline-aria-label' }) headlineAriaLabel: string | null = null;
-	@attr({ attribute: 'text-aria-label' }) textAriaLabel: string | null = null;
+	
 	// timeout to close the alert
 	#timeoutID?: NodeJS.Timeout;
 
@@ -114,6 +113,12 @@ export class Alert extends FoundationElement {
 		this.#setupTimeout();
 		if (newValue) {
 			this.style.display = 'inline';
+			if (this.removable) {
+				const base = this.shadowRoot!.querySelector('.alert-text') as HTMLElement;
+				base?.setAttribute('tabindex', '0');
+				base.focus();
+				base?.removeAttribute('tabindex');
+			}
 		}
 	}
 

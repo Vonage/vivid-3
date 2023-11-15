@@ -53,15 +53,16 @@ export const AlertTemplate: (
 
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='8' exportparts="vvd-theme-alternate">
-		<div class="${getControlClasses}" role="${x => x.removable ? 'alertdialog' : 'alert'}" aria-live="assertive">
+		<div 
+			class="${getControlClasses}" 
+			role="${x => x.removable ? 'alertdialog' : 'alert'}"
+			aria-live="assertive" 
+		>
 			<div part="vvd-theme-alternate" class="${getClasses}">
 				${when(x => x.icon || x.connotation, renderIcon(context))}
 				<div class="alert-text">
-					${when(x => x.headline,
-		html`<header class="headline" aria-labelledby="${x => x.headlineAriaLabel || x.locale.alert.headlineLabel}">
-		${(x) => x.headline}</header>`)}
-					${when(x => x.text,
-		html`<div class="main-text" aria-describedby="${x => x.textAriaLabel || x.locale.alert.textLabel}">${(x) => x.text}</div>`)}
+					${when(x => x.headline, html`<header class="headline">${(x) => x.headline}</header>`)}
+					${when(x => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}
 					<slot name="main">
 					</slot>
 				</div>
