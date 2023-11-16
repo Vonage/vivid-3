@@ -4,7 +4,7 @@ import type { CheckboxOptions, FoundationElementTemplate } from '@microsoft/fast
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { CheckMark } from '../check-mark/check-mark';
+import { CheckMark } from '../../shared/patterns/check-mark/check-mark';
 import type { Checkbox } from './checkbox';
 
 const getClasses = ({

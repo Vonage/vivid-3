@@ -7,12 +7,13 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { RadioMark } from './radio-mark';
 
-const getClasses = ({ connotation, checked, readOnly, disabled }: RadioMark) => classNames(
+const getClasses = ({ connotation, checked, readOnly, disabled, noHover }: RadioMark) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	['checked', Boolean(checked)],
 	['readonly', Boolean(readOnly)],
-	['disabled', Boolean(disabled)]
+	['disabled', Boolean(disabled)],
+	['no-hover', Boolean(noHover)]
 );
 
 /**

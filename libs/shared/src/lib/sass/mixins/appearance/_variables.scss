@@ -216,7 +216,12 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(primary)}),
 			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
-		)
+		),
+    duotone: (
+      text: var(#{connotation.get-connotation-token(fierce)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
+      outline: var(#{connotation.get-connotation-token(firm)}),
+    )
   ),
 	selectedAndDisabled: (
 		listitem: (

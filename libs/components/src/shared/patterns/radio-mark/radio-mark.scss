@@ -1,20 +1,20 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/utils" as utils;
+@use "../../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../../shared/src/lib/sass/utils" as utils;
 
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use "../../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment intermediate backdrop firm,
 	$default: accent,
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use "../../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset,
 	$states: idle hover checked checkedAndHover disabled readonly,
 	$default: fieldset,
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../../../dist/libs/tokens/scss/size.variables" as size;
 
 $control-size: #{size.$vvd-size-ultra-condensed};
 $control-border: 2px;
@@ -26,6 +26,10 @@ $control-border: 2px;
 .base {
 	@include connotation.connotation (radio);
 	@include appearance.appearance;
+
+	&.no-hover {
+		pointer-events: none;
+	}
 }
 
 .control {

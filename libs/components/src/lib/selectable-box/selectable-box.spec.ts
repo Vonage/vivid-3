@@ -122,7 +122,7 @@ describe('vwc-selectable-box', () => {
 		});
 		
 		it('should set checked class on the base element', async function () {
-			expect(baseElement?.classList?.contains('checked')).toBe(true);
+			expect(baseElement?.classList?.contains('selected')).toBe(true);
 		});
 
 		it('should set the checked attribute on the control element', async () => {

@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type { RadioConnotation } from '../radio/radio';
+import type { RadioConnotation } from '../../../lib/radio/radio';
 
 /**
  * Base class for radio-mark
@@ -34,6 +34,15 @@ export class RadioMark extends FoundationElement {
 	 * HTML Attribute: disabled
 	 */
 	@attr({ mode: 'boolean'}) disabled? = false;
+
+	/**
+	 * The disables the hover styles when set to true
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: noHover
+	 */
+	@attr({ attribute: 'no-hover', mode: 'boolean'}) noHover? = false;
 
 	/**
 	 * The readonly state of the check mark.

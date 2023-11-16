@@ -1,7 +1,7 @@
 import type { RadioOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { focusRegistries } from '../focus/definition';
-import { radioMarkRegistries } from '../radio-mark/definition';
+import { radioMarkRegistries } from '../../shared/patterns/radio-mark/definition';
 import styles from './radio.scss';
 
 import { Radio } from './radio';

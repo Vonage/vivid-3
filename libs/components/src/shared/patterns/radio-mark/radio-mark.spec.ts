@@ -58,6 +58,17 @@ describe('vwc-radio-mark', () => {
 		});
 	});
 
+	describe('no-hover', () => {
+		it('should render the correct class', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} no-hover></${COMPONENT_TAG}>`
+			)) as RadioMark;
+			const baseElement = getBaseElement(element);
+			
+			expect(baseElement.classList.contains('no-hover')).toBe(true);
+		});
+	});
+
 	describe('connotation', () => {
 		it('should render the correct class', async () => {
 			element = (await fixture(

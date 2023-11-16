@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../icon/icon';
+import { Icon } from '../../../lib/icon/icon';
 import type { CheckMark } from './check-mark';
 
 const getClasses = ({
@@ -14,6 +14,7 @@ const getClasses = ({
 	checked,
 	disabled,
 	indeterminate,
+	noHover
 }: CheckMark) =>
 	classNames(
 		'base',
@@ -21,6 +22,7 @@ const getClasses = ({
 		['readonly', Boolean(readOnly)],
 		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],
+		['no-hover', Boolean(noHover)],
 	);
 
 

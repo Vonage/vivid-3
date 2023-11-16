@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
+import { registerFactory } from '../../design-system';
+import { iconRegistries } from '../../../lib/icon/definition';
 import styles from './check-mark.scss';
 
 import { CheckMark } from './check-mark';

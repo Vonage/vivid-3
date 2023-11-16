@@ -4,7 +4,7 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { RadioMark } from '../radio-mark/radio-mark';
+import { RadioMark } from '../../shared/patterns/radio-mark/radio-mark';
 import type { Radio } from './radio';
 
 

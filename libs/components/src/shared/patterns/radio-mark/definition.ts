@@ -1,5 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { registerFactory } from '../../design-system';
 import styles from './radio-mark.scss';
 
 import { RadioMark } from './radio-mark';

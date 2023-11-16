@@ -1,6 +1,6 @@
 import type { CheckboxOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { checkMarkRegistries } from '../check-mark/definition';
+import { checkMarkRegistries } from '../../shared/patterns/check-mark/definition';
 import { focusRegistries } from '../focus/definition';
 import styles from './checkbox.scss';
 

@@ -12,21 +12,6 @@ Represents a content box to used in a group where one or more can be selected.
 
 ## Members
 
-### Connotation
-
-Set the `connotation` attribute to change the box's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'`, `'cta'`
-- Default: `'accent'`
-
-```html preview
-<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box connotation="accent" style="max-inline-size: 450px">Accent box</vwc-selectable-box>
-  <vwc-selectable-box connotation="cta" style="max-inline-size: 450px">CTA box</vwc-selectable-box>
-</vwc-layout>
-```
-
 ### Control type
 
 Set the `control-type` attribute to change the box's selectable control
@@ -43,17 +28,18 @@ When `control-type` is set to `radio`, it is the consuming app's responsibility 
 </vwc-layout>
 ```
 
-### Checked
+### Connotation
 
-Set the `checked` attribute to indicate the checked state of the box.
+Set the `connotation` attribute to change the box's connotation.
+It accepts a subset of predefined values.
 
-- Type: `boolean`
-- Default: `false`
+- Type: `'accent'`, `'cta'`
+- Default: `'accent'`
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px">Checked checkbox box</vwc-selectable-box>
-  <vwc-selectable-box control-type="radio" checked style="max-inline-size: 450px">Checked radio box</vwc-selectable-box>
+  <vwc-selectable-box connotation="accent" style="max-inline-size: 450px">Accent box</vwc-selectable-box>
+  <vwc-selectable-box connotation="cta" style="max-inline-size: 450px">CTA box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -69,6 +55,20 @@ Setting the `container-clickable` attribute makes the whole card clickable, just
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
   <vwc-selectable-box container-clickable style="max-inline-size: 450px">Clickable accent box</vwc-selectable-box>
   <vwc-selectable-box container-clickable connotation="cta" style="max-inline-size: 450px">Clickable CTA box</vwc-selectable-box>
+</vwc-layout>
+```
+
+### Checked
+
+Set the `checked` attribute to indicate the checked state of the box.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+  <vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px">Checked checkbox box</vwc-selectable-box>
+  <vwc-selectable-box control-type="radio" checked style="max-inline-size: 450px">Checked radio box</vwc-selectable-box>
 </vwc-layout>
 ```
 

@@ -8,16 +8,16 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
-import { CheckMark } from '../check-mark/check-mark'; 
+import { CheckMark } from '../../shared/patterns/check-mark/check-mark'; 
 import { Radio } from '../radio/radio';
-import { RadioMark } from '../radio-mark/radio-mark';
+import { RadioMark } from '../../shared/patterns/radio-mark/radio-mark';
 import { SelectableBox } from './selectable-box';
 
 const getClasses = ({ connotation, tight, checked, containerClickable }: SelectableBox) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	['tight', tight],
-	['checked', checked],
+	['selected', checked],
 	['clickable', containerClickable],
 	['readonly', !containerClickable],
 );
@@ -45,6 +45,7 @@ function checkbox(context: ElementDefinitionContext) {
 				class="control checkbox" 
 				connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 				:checked="${x => x.checked}"
+				no-hover
 			></${checkMarkTag}>
 		`)}
 	`;
@@ -69,6 +70,7 @@ function radio(context: ElementDefinitionContext) {
 			class="control radio" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${x => x.checked}"
+			no-hover
 		></${radioMarkTag}>
 	`)}
 	`;
