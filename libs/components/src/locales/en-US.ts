@@ -76,6 +76,9 @@ const enUS: Locale = {
 		pauseButtonLabel: 'Pause',
 		sliderLabel: 'Audio progress bar',
 	},
+	alert: {
+		dismissButtonLabel: 'Close',
+	},
 	dialog: {
 		dismissButtonLabel: 'Close',
 	},
