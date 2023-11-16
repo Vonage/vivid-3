@@ -128,6 +128,19 @@ If set, the `icon` attribute is ignored.
 </vwc-badge>
 ```
 
+## CSS Variables
+
+### Minimum inline Size
+
+Use the `--badge-min-inline-size` variable to set the badge's minimum inline size.
+
+- Default: `auto`
+
+```html preview
+<vwc-badge text='badge' style="--badge-min-inline-size: 100px;"></vwc-badge>
+```
+
+
 ## Accessibility
 
 Badges are informative elements and cannot be interacted with.

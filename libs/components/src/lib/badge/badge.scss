@@ -34,6 +34,7 @@
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
 	padding-inline: 8px;
 	vertical-align: middle;
+	min-inline-size: var(#{variables.$badge-min-inline-size}, auto);
 
 	&:not(.icon-only) {
 		max-inline-size: 100%;
