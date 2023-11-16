@@ -32,9 +32,9 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	min-inline-size: var(#{variables.$badge-min-inline-size}, auto);
 	padding-inline: 8px;
 	vertical-align: middle;
-	min-inline-size: var(#{variables.$badge-min-inline-size}, auto);
 
 	&:not(.icon-only) {
 		max-inline-size: 100%;
