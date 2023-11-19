@@ -4,14 +4,14 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information,
 	$shades: primary primary-text intermediate soft contrast pale fierce,
-	$default: accent
+	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled duotone subtle,
 	$states: idle,
-	$default: filled
+	$default: filled,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
@@ -21,12 +21,13 @@
 }
 
 .base {
-	@include connotation.connotation(badge);
+	@include connotation.connotation (badge);
 	@include appearance.appearance;
 
 	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
 
 	display: inline-flex;
+	width: 100%;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -34,7 +35,6 @@
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
-	width: 100%;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
 	padding-inline: 8px;
 	vertical-align: middle;
