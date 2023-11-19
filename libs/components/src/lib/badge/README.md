@@ -132,7 +132,7 @@ If set, the `icon` attribute is ignored.
 
 ### Trim Text
 ```html preview
-<vwc-badge text='with overflowing text' style="display: block; inline-size: 60px;"></vwc-badge>
+<vwc-badge text='with overflowing text' style="inline-size: 60px;"></vwc-badge>
 ```
 
 ### Custom Width
