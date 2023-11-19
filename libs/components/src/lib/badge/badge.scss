@@ -27,7 +27,6 @@
 	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
 
 	display: inline-flex;
-	inline-size: 100%;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
@@ -36,6 +35,7 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	inline-size: 100%;
 	padding-inline: 8px;
 	vertical-align: middle;
 

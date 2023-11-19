@@ -128,6 +128,18 @@ If set, the `icon` attribute is ignored.
 </vwc-badge>
 ```
 
+## Use Cases
+
+### Trim Text
+```html preview
+<vwc-badge text='with overflowing text' style="display: block; inline-size: 60px;"></vwc-badge>
+```
+
+### Custom Width
+```html preview
+<vwc-badge text='with min-width' style="min-width: 300px;"></vwc-badge>
+```
+
 ## Accessibility
 
 Badges are informative elements and cannot be interacted with.
