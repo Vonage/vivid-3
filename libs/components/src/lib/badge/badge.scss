@@ -27,7 +27,7 @@
 	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
 
 	display: inline-flex;
-	width: 100%;
+	inline-size: 100%;
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
