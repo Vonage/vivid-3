@@ -247,7 +247,7 @@ describe('vwc-switch', () => {
 	});
 
 	describe('appearance', function () {
-		it('should apply filled appearance style when checked and not disabled, nor read-only', async function () {
+		it('should apply filled appearance style when checked', async function () {
 			const control = getControlElement(element);
 
 			const appearanceFilledClassExistsBeforeChecked = control?.classList.contains('appearance-filled');
@@ -270,8 +270,8 @@ describe('vwc-switch', () => {
 
 			expect(appearanceFilledClassExistsBeforeChecked).toEqual(false);
 			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);
-			expect(appearanceFilledClassExistsAfterDisabled).toEqual(false);
-			expect(appearanceFilledClassExistsAfterReadonly).toEqual(false);
+			expect(appearanceFilledClassExistsAfterDisabled).toEqual(true);
+			expect(appearanceFilledClassExistsAfterReadonly).toEqual(true);
 		});
 	});
 
