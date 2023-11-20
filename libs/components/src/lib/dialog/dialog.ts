@@ -63,6 +63,10 @@ export class Dialog extends FoundationElement {
 		return this.#dialog?.returnValue;
 	}
 
+
+	/**
+	 * @internal
+	 */
 	get modal() {
 		return this.#modal;
 	}
@@ -82,6 +86,9 @@ export class Dialog extends FoundationElement {
 		return this.#dialogElement as HTMLDialogElement;
 	}
 
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean) {
 		if (oldValue === undefined) {
 			return;
@@ -160,15 +167,16 @@ export class Dialog extends FoundationElement {
 
 
 	/**
-	 *
-	 * Slot observer:
-	 *
 	 * @internal
 	 */
-
-
 	@observable bodySlottedContent?: HTMLElement[];
+	/**
+	 * @internal
+	 */
 	@observable footerSlottedContent?: HTMLElement[];
+	/**
+	 * @internal
+	 */
 	@observable actionItemsSlottedContent?: HTMLElement[];
 
 }
