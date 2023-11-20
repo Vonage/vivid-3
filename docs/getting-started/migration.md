@@ -133,12 +133,11 @@ This is needed to ensure that vivid-2 tokens are not overridden by vivid-3 token
 ```
 
 ## Step 5: Adding the Spezia Font
-
-[Follow the instructions](docs/getting-started/fonts-and-tokens) to set the Spezia Font.
+[Follow the instructions](/getting-started/fonts-and-tokens) to set the Spezia Font.
 
 ## Step 6: Setting custom prefix
 
-Read about the vivid 3.x [scroped elements](docs/getting-started/advanced/#scoped-elements).
+Read about the vivid 3.x [scroped elements](/getting-started/advanced/#scoped-elements).
 
 Register the first vivid-3 component that you wish to migrate from vivid-2.
 
@@ -161,7 +160,7 @@ It is necessary to add the `vvd-component` class to every component to avoid a c
 
 ## Step 8: Extra - Typography and Theming
 
-[Follow the instructions](docs/getting-started/dvanced#styles-optional) to align with vivid typography.
+[Follow the instructions](/getting-started/advanced#styles-optional) to align with vivid typography.
 
 ## Step 9: Done!
 
