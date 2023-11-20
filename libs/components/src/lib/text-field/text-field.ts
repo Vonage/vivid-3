@@ -3,6 +3,7 @@ import {
 	TextField as FoundationTextfield,
 } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
+import { memoizeWith } from 'ramda';
 import type { Appearance, Shape } from '../enums';
 import {
 	AffixIcon,
@@ -27,18 +28,37 @@ export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 // See bug: https://bugs.webkit.org/show_bug.cgi?id=223814
 // As a workaround we add a stylesheet to root of text-field to apply the styles
 const safariWorkaroundClassName = '_vvd-3-text-field-safari-workaround';
-const safariWorkaroundStyleSheet = new CSSStyleSheet();
-safariWorkaroundStyleSheet.replaceSync(`
+const getSafariWorkaroundStyleSheet = memoizeWith(() => '', () => {
+	const styleSheet = new CSSStyleSheet();
+
+	// Prevent error in environments that do not support `replaceSync` like JSDOM
+	const supportsReplaceSync = 'replaceSync' in styleSheet;
+	// istanbul ignore else
+	if (supportsReplaceSync) {
+		styleSheet.replaceSync(`
 .${safariWorkaroundClassName}::placeholder {
 	opacity: 1 !important;
 	-webkit-text-fill-color: var(--_low-ink-color) !important;
 }`);
+	}
+
+	return styleSheet;
+});
 
 const installSafariWorkaroundStyle = (forElement: TextField) => {
 	const root = forElement.getRootNode() as ShadowRoot | Document;
+	const workaroundStyleSheet = getSafariWorkaroundStyleSheet();
 
-	if (!root.adoptedStyleSheets.includes(safariWorkaroundStyleSheet)) {
-		root.adoptedStyleSheets = [...root.adoptedStyleSheets, safariWorkaroundStyleSheet];
+
+	// Prevent error in environments that do not support `adoptedStyleSheets` like JSDOM
+	const supportsAdoptedStyleSheets = 'adoptedStyleSheets' in root;
+	// istanbul ignore if
+	if (!supportsAdoptedStyleSheets) {
+		return;
+	}
+
+	if (!root.adoptedStyleSheets.includes(workaroundStyleSheet)) {
+		root.adoptedStyleSheets = [...root.adoptedStyleSheets, workaroundStyleSheet];
 	}
 };
 
