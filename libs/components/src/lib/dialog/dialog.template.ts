@@ -8,6 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
+import { focusTemplateFactory } from '../../shared/patterns';
 import type {Dialog} from './dialog';
 
 const getClasses = ({
@@ -93,6 +94,7 @@ export const DialogTemplate: (
 	const elevationTag = context.tagFor(Elevation);
 	const iconTag = context.tagFor(Icon);
 	const buttonTag = context.tagFor(Button);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Dialog>`
 	<${elevationTag} dp="8">
@@ -103,6 +105,7 @@ export const DialogTemplate: (
 				aria-label="${x => x.ariaLabel}"
 				aria-describedby="${x => x.ariaDescribedBy}"
 		>
+			${() => focusTemplate}
 			<slot name="main">
 				<div class="main-wrapper">
 					<div class="header ${x => x.subtitle ? 'border' : ''}">
