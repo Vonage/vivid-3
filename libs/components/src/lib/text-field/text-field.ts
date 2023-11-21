@@ -27,6 +27,7 @@ export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 // Safari does not support styling the `::placeholder` pseudo-element on slotted input
 // See bug: https://bugs.webkit.org/show_bug.cgi?id=223814
 // As a workaround we add a stylesheet to root of text-field to apply the styles
+// Once fixed in Safari we can remove the workaround (VIV-1413)
 const safariWorkaroundClassName = '_vvd-3-text-field-safari-workaround';
 const getSafariWorkaroundStyleSheet = memoizeWith(() => '', () => {
 	const styleSheet = new CSSStyleSheet();
