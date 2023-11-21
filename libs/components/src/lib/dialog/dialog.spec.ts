@@ -389,12 +389,14 @@ describe('vwc-dialog', () => {
 		expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeNull();
 	});
 
-	it('should ignore cancel events on the dialog', async () => {
+	it('should preventDefault of cancel events on the dialog', async () => {
+		const cancelEvent = new Event('cancel');
+		cancelEvent.preventDefault = jest.fn();
 		await showDialog();
 
-		getBaseElement(element).dispatchEvent(new Event('cancel'));
+		getBaseElement(element).dispatchEvent(cancelEvent);
 
-		expect((getBaseElement(element) as HTMLDialogElement).open).toBe(true);
+		expect(cancelEvent.preventDefault).toHaveBeenCalled();
 	});
 
 	describe( 'dialog body', () => {
