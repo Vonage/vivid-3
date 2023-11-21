@@ -1,8 +1,7 @@
 # Dialog
 Represents a part of an application that a user interacts with to perform a task.
 
-All [native attributes of `dialog`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) are supported as well as some enhancements.
-
+The dialog is uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
 
 ```js
 <script type="module">
@@ -17,11 +16,25 @@ All [native attributes of `dialog`](https://developer.mozilla.org/en-US/docs/Web
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open>
+<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
+
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
-	<vwc-button slot="action-items" label="Cancel" appearance="outlined"></vwc-button>
-	<vwc-button slot="action-items" label="Ok" appearance="filled"></vwc-button>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeDialog()"></vwc-button>
+	<vwc-button slot="action-items" label="Ok" appearance="filled" onclick="closeDialog()"></vwc-button>
 </vwc-dialog>
+
+<script>
+	const dialog = document.querySelector('vwc-dialog');
+  
+	function openDialog() {
+		dialog.showModal();
+	}
+  
+  function closeDialog() {
+		dialog.close();
+	}
+</script>
 ```
 
 ## Members
@@ -90,7 +103,9 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 
 ### Open
 
-Sets or returns whether a dialog should be open or not
+Sets or returns whether a dialog should be open or not.
+
+Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal()` instead. 
 
 - Type: `boolean`
 - Default: `false`
@@ -288,7 +303,7 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ### Z-index
 
-When the dialog is not set as `modal` its initial z-index can be changed if needed by setting `--dialog-z-index`.
+When the dialog is not modal its initial z-index can be changed if needed by setting `--dialog-z-index`.
 
 ### Inline min & max size
 
@@ -358,6 +373,23 @@ vwc-dialog {
 - The dismiss button is automatically given a localized version of the word "Close". This can be overriden using `dismiss-button-aria-label`.
 
 ## Use Cases
+
+### Modal Dialog
+
+Use the `showModal` method to open a dialog as a modal. The dialog will be positioned in the center of the screen and interaction outside the dialog will be blocked.
+
+```html preview
+<vwc-button label="Open Modal Dialog"></vwc-button>
+
+<vwc-dialog headline="Modal Dialog"></vwc-dialog>
+
+<script>
+  function openDialog() {
+    dialog = document.querySelector('vwc-dialog');
+    dialog.showModal();
+  }
+</script>
+```
 
 ### Dialog Form
 
