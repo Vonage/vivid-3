@@ -130,7 +130,7 @@ Dialog can by default be dismissed by:
 
 Specify the `non-dismissible` attribute to disable this behavior.
 
-You may also specify a space-separated list of the above values to disable only some of the dismissal methods.
+You may instead specify a space-separated list of the above values to disable only some of the dismissal methods.
 
 - Type: `string`
 - Default: `undefined`
