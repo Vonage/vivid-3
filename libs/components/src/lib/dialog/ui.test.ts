@@ -35,7 +35,7 @@ test('should set preventDefault to false on keydown event', async ({ page }: { p
 
 });
 
-test.only('should not close dialog element on escape when not dismissible via esc', async ({ page }: { page: Page }) => {
+test('should not close dialog element on escape when not dismissible via esc', async ({ page }: { page: Page }) => {
 	const template = `
 		<vwc-dialog id="dialog" non-dismissible="esc"></vwc-dialog>
 		<vwc-button id="button" onclick='dialog.showModal()'>Open</vwc-button>
