@@ -26,7 +26,7 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(intermediate)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(primary)}),
+      text: var(#{connotation.get-connotation-token(contrast)}),
       fill: transparent,
       outline: transparent,
     ),
@@ -63,8 +63,8 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(primary)}),
-      fill: var(#{connotation.get-connotation-token(faint)}),
+			text: var(#{connotation.get-connotation-token(contrast)}),
+			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 95%),
       outline: transparent,
     ),
 		listitem: (
@@ -100,8 +100,8 @@ $states-mapping: (
       outline: var(#{connotation.get-connotation-token(firm)}),
     ),
     ghost: (
-      text: var(#{connotation.get-connotation-token(primary)}),
-      fill: var(#{connotation.get-connotation-token(soft)}),
+			text: var(#{connotation.get-connotation-token(contrast)}),
+			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 90%),
       outline: transparent,
     ),
 		listitem: (
@@ -208,8 +208,8 @@ $states-mapping: (
   ),
   selectedAndHover: (
     ghost: (
-      text: var(#{connotation.get-connotation-token(primary-text)}),
-      fill: var(#{connotation.get-connotation-token(primary-increment)}),
+      text: var(#{connotation.get-connotation-token(contrast)}),
+			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 75%),
       outline: transparent,
     ),
 		listitem: (

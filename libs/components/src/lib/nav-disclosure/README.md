@@ -11,6 +11,41 @@ The arrow points up when the content is visible.
 </script>
 ```
 
+## USE CASE - ONLY FOR CHECKING OPACITY!!!
+
+
+```html preview
+<style>
+.wrapper {
+display: grid; grid-template-columns: 300px 300px 300px; gap: 32px;
+}
+</style>
+<div class="wrapper">
+<vwc-nav style="background-color: var(--vvd-color-canvas); padding: 8px;">
+  <vwc-nav-disclosure label="1st level item" open>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+    <vwc-nav-item aria-current="page" href="#" text="2nd level item"></vwc-nav-item>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
+</vwc-nav>
+<vwc-nav style="background-color: var(--vvd-color-neutral-50); padding: 8px;">
+  <vwc-nav-disclosure label="1st level item" open>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+    <vwc-nav-item aria-current="page" href="#" text="2nd level item"></vwc-nav-item>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
+</vwc-nav>
+<vwc-nav style="background-color: var(--vvd-color-neutral-100); padding: 8px;">
+  <vwc-nav-disclosure label="1st level item" open>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+    <vwc-nav-item aria-current="page" href="#" text="2nd level item"></vwc-nav-item>
+    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+  </vwc-nav-disclosure>
+</vwc-nav>
+</div>
+```
+
+
 ## Members
 
 ### Label
@@ -133,3 +168,6 @@ Use the `meta` slot to add additional content to the nav-disclosure.
 The nav-disclosure has a `role` button.
 Nav-disclosure has `aria-expanded` set to true when the content is visible. Otherwise, it is set to false.
 Nav-disclosure has a value specified for `aria-controls` that refers to the content.
+
+
+
