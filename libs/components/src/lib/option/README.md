@@ -1,5 +1,6 @@
 # Option
-Generally used inside Select or Combobox
+
+The option component is generally used inside select or combobox.
 
 ```js
 <script type='module'>

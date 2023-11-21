@@ -19,9 +19,7 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 
 ### Open
 
-_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
-
-`open` property from _popup_ propagate through _menu_ and sets its open state.
+The `open` attribute controls the visibility of the menu.
 
 - Type: `boolean`
 - Default: `false`
@@ -50,8 +48,8 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 </style>
 
 <div style="position: relative">
-  <vwc-button id="button1" label="ID anchor" onclick="menu1.open = !menu1.open" appearance="outlined"></vwc-button>
-  <vwc-button id="button2" label="HTMLElement anchor" onclick="menu2.open = !menu2.open" appearance="outlined"></vwc-button>
+  <vwc-button id="button1" label="ID anchor" appearance="outlined"></vwc-button>
+  <vwc-button id="button2" label="HTMLElement anchor" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu1" anchor="button1">
     <vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
@@ -63,6 +61,13 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 </div>
 
 <script>
+	const button1 = document.getElementById('button1');
+	const button2 = document.getElementById('button2');
+	const menu1 = document.getElementById('menu1');
+	const menu2 = document.getElementById('menu2');
+	
+  button1.addEventListener('click', () => menu1.open = !menu1.open);
+  button2.addEventListener('click', () => menu2.open = !menu2.open);
 	menu2.anchor = button2;
 </script>
 ```
@@ -81,33 +86,45 @@ Use the auto dismiss property to automatically close the menu when the user clic
 	}
 </style>
 <div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" open auto-dismiss>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
  </vwc-menu>
 </div>
+
+<script>
+	const button = document.getElementById('button');
+	const menu = document.getElementById('menu');
+
+	button.addEventListener('click', () => menu.open = !menu.open);
+</script>
 ```
 
 ### Placement
 
-_Menu_ internally uses _popup_ to display an element and its descendants above the rest of the document.
-
-`placement` property from _popup_ propagate through _menu_ and sets its position in accordance to its anchor.
+Use the `placement` attribute to control the position of the menu relative to its anchor.
 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'bottom'`
 
 ```html preview
 <div style="position: relative; text-align: end;">
-  <vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" placement="left-start" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
   </vwc-menu>
 </div>
+
+<script>
+	const button = document.getElementById('button');
+	const menu = document.getElementById('menu');
+  	
+	button.addEventListener('click', () => menu.open = !menu.open);
+</script>
 ```
 
 ## Slots
@@ -116,7 +133,7 @@ _Menu_ internally uses _popup_ to display an element and its descendants above t
 
 The default slot for the menu items.
 
-While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu`item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
+While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu `item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
 ```html preview
 <vwc-menu open>
@@ -251,9 +268,9 @@ Use the `--menu-block-size` variable to set the menu's block size.
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
 Menu component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
 
-A common practice used in apps / frameworks to promote a Menu component to top other elements z-axis, is to utilise a service that dynamically appends a Menu component to the end of the body element, when called for.
+A common practice used in apps / frameworks to promote a menu component to top other elements z-axis, is to utilise a service that dynamically appends a menu component to the end of the body element, when called for.
 
-This helps ensure elements don't render over top a Menu undesirebly.
+This helps ensure elements don't render on top of a menu undesirably.
 
 ## Use Cases
 
@@ -266,7 +283,7 @@ This helps ensure elements don't render over top a Menu undesirebly.
 	}
 </style>
 <div style="position: relative">
-  <vwc-button id="button" label="Select" onclick="menu.open = !menu.open" appearance="filled"></vwc-button>
+  <vwc-button id="button" label="Select" appearance="filled"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" placement="bottom-start" open>
     <vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
@@ -277,6 +294,13 @@ This helps ensure elements don't render over top a Menu undesirebly.
     <vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
   </vwc-menu>
 </div>
+
+<script>
+	const menu = document.getElementById('menu');
+	const button = document.getElementById('button');
+
+	button.addEventListener('click', () => menu.open = !menu.open);
+</script>
 ```
 
 ### Menu Anchor
@@ -302,6 +326,13 @@ This helps ensure elements don't render over top a Menu undesirebly.
   	<vwc-menu-item role="presentation" text="Logout" icon="quit-line"></vwc-menu-item>
 	 </a>
   </vwc-menu>
-  <vwc-button id="button" icon="close-line" onclick="menu.open = !menu.open"></vwc-button>
+  <vwc-button id="button" icon="close-line"></vwc-button>
 </div>
+
+<script>
+	const menu = document.getElementById('menu');
+	const button = document.getElementById('button');
+
+	button.addEventListener('click', () => menu.open = !menu.open);
+</script>
 ```

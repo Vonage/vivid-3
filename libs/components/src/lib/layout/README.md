@@ -1,6 +1,8 @@
 # Layout
 
-Using layout, elements can be arranged easily in a variety of sizes and spaces that suit vivid design.
+Using layout, elements can be arranged easily in a grid using sizes and spaces that suit vivid design.
+
+The component uses a [CSS grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout).
 
 ```js
 <script type='module'>
@@ -35,7 +37,7 @@ Using layout, elements can be arranged easily in a variety of sizes and spaces t
 
 ### Column Spacing
 
-Use the `column-spacing` attribute to set the initial preferred `gap` of a column.
+Use the `column-spacing` attribute to choose a predefined value for the [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap).
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'medium'`
@@ -60,7 +62,7 @@ Use the `column-spacing` attribute to set the initial preferred `gap` of a colum
 
 ### Row Spacing
 
-Use the `row-spacing` attribute to set the initial preferred `gap` of a row.
+Use the `row-spacing` attribute to choose a predefined value for the [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap).
 
 - Type: `'small'` | `'medium'` | `'large'`
 - Default: `'default to column-spacing value'`
@@ -85,7 +87,7 @@ Use the `row-spacing` attribute to set the initial preferred `gap` of a row.
 
 ### Column Basis
 
-Use the `column-basis` attribute to set the initial preferred `min-width` of a column.
+Use the `column-basis` attribute to control the `min-width` of columns.
 Use `block` to get full-width elements stacking one after the other.
 
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
@@ -121,11 +123,13 @@ Use `block` to get full-width elements stacking one after the other.
 
 ### Auto Sizing
 
-Use the `auto-sizing` attribute to set the initial preferred `auto-sizing`.
+The `auto-sizing` attribute controls how the grid's behaves with empty column tracks.
 
-When the [repeat()](#css-custom-properties) function is set to `fit` or `fill`, the grid container creates as many grid tracks (columns/rows) as possible without overflowing the container.
+The grid container creates as many column tracks as possible without overflowing the container.
 
 With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
+
+With `fill`, the empty tracks remain and take up space in the layout.
 
 With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
 
@@ -145,7 +149,7 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 
 ### Gutters
 
-Use the `gutters` attribute to set the initial preferred `margin`.
+Use the `gutters` attribute to add a margin to the component.
 
 - Type: `'small'` | `'small-inline'` | `'small-block'` | `'medium'` | `'medium-inline'` | `'medium-block'` | `'large'` | `'large-inline'` | `'large-block'`
 
@@ -201,9 +205,11 @@ Use the `gutters` attribute to set the initial preferred `margin`.
 
 ### Grid-template-columns
 
-Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) of the layout by setting `--layout-grid-template-columns`.
+Use custom [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) by setting `--layout-grid-template-columns`.
 
-- Default: `auto`
+This will override the `auto-sizing` and `column-basis` attributes.
+
+- Default: `repeat(<auto-sizing>, minmax(<column-basis>, 1fr))`
 
 ```html preview full
 <vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
@@ -218,7 +224,7 @@ Control the [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web
 
 Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) of the layout by setting `--layout-grid-template-rows`.  
 
-- Default: `auto`
+- Default: `min-content`
 
 ```html preview full
 <vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
@@ -226,19 +232,21 @@ Control the [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CS
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
-    <vwc-card elevation="2"></vwc-card>
+	<vwc-card elevation="2"></vwc-card>
   <vwc-card elevation="2"></vwc-card>
 </vwc-layout>
 ```
 
 ### Grid-gap
-#### Layout-row-gap
-Control the grid [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap) by setting `--layout-column-gap`.
-
 #### Layout-column-gap
-Control the grid [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) by setting `--layout-row-gap`.
+Use a custom [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap) by setting `--layout-column-gap`.
 
-- Default: `medium`
+This will override the `column-spacing` attribute.
+
+#### Layout-row-gap
+Use a custom [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap) by setting `--layout-row-gap`.
+
+This will override the `row-spacing` attribute.
 
 ```html preview full
 <vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">
