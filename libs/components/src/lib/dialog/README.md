@@ -121,6 +121,45 @@ Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal
 <vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
 ```
 
+### Non-dismissible
+
+Dialog can by default be dismissed by:
+- clicking the close button (`close-button`)
+- clicking on the scrim (`scrim`)
+- pressing the `ESC` key (`esc`)
+
+Specify the `non-dismissible` attribute to disable this behavior.
+
+You may also specify a space-separated list of the above values to disable only some of the dismissal methods.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<style>
+	html { /* for demo purposes */
+		block-size: 230px;
+	}
+</style>
+
+<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
+<vwc-dialog headline="Modal Dialog" non-dismissible>
+	<vwc-button slot="action-items" label="Close" appearance="filled" onclick="closeDialog()"></vwc-button>
+</vwc-dialog>
+
+<script>
+	const dialog = document.querySelector('vwc-dialog');
+  
+  function openDialog() {
+    dialog.showModal();
+  }
+
+	function closeDialog() {
+		dialog.close();
+	}
+</script>
+```
+
 ### Return Value
 
 Use `returnValue` to get or set the return value. Often used to indicate which button the user pressed to close it.
@@ -393,14 +432,15 @@ Use the `showModal` method to open a dialog as a modal. The dialog will be posit
 
 ### Dialog Form
 
+You can use a `form` with `method=dialog` inside a dialog. This will make the dialog close when the form is submitted. 
+
 ```html preview
 <style>
   html { /* for demo purposes */
     block-size: 400px;
   }
 </style>
-<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Dialog With Form">
+<vwc-dialog headline="Dialog With Form" open>
   <form slot="body" method="dialog">
    <vwc-layout column-basis="block">
         <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
@@ -409,25 +449,4 @@ Use the `showModal` method to open a dialog as a modal. The dialog will be posit
       </vwc-layout>
   </form>
 </vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.show();
-  }
-</script>
-```
-
-### Modal Dialog with Scrim
-
-```html preview
-<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Modal Dialog"></vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.showModal();
-  }
-</script>
 ```

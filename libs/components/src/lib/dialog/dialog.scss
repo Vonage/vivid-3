@@ -44,6 +44,10 @@ $dialog-space-size: 24px;
 		outline: none;
 	}
 
+	.focus-indicator {
+		pointer-events: none;
+	}
+
 	&:not(:focus-visible) .focus-indicator {
 		display: none;
 	}

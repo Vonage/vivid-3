@@ -35,6 +35,30 @@ test('should set preventDefault to false on keydown event', async ({ page }: { p
 
 });
 
+test.only('should not close dialog element on escape when not dismissible via esc', async ({ page }: { page: Page }) => {
+	const template = `
+		<vwc-dialog id="dialog" non-dismissible="esc"></vwc-dialog>
+		<vwc-button id="button" onclick='dialog.showModal()'>Open</vwc-button>
+	`;
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.waitForLoadState('networkidle');
+
+	await page.click('#button');
+
+	await page.keyboard.press('Escape');
+
+	const dialog = await page.locator('dialog');
+	await expect(dialog).toHaveAttribute('open', '');
+});
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>

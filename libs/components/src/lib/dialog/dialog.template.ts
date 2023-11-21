@@ -75,7 +75,7 @@ function renderDismissButton(buttonTag: string) {
 }
 
 function handleEscapeKey(dialog: Dialog, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
+	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal && dialog._isDismissibleVia('esc')) {
 		dialog.open = false;
 	}
 	return true;
@@ -100,6 +100,7 @@ export const DialogTemplate: (
 	<${elevationTag} dp="8">
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@cancel="${(_, c) => c.event.preventDefault()}"
 				returnValue="${x => x.returnValue}"
 				aria-labelledby="${x => x.ariaLabelledBy}"
 				aria-label="${x => x.ariaLabel}"
@@ -114,7 +115,7 @@ export const DialogTemplate: (
 							</slot>
 							${when(x => x.headline, headline())}
 							${when(x => x.subtitle, subtitle())}
-							${renderDismissButton(buttonTag)}
+							${when(x => x._isDismissibleVia('close-button'), renderDismissButton(buttonTag))}
 					</div>
 					<div class="body ${x => x.fullWidthBody? 'full-width' : ''}" >
 						<slot name="body" ${slotted('bodySlottedContent')}></slot>

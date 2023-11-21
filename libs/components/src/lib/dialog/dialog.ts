@@ -24,6 +24,13 @@ let dialogPolyfill: any;
 export type IconPlacement = 'top' | 'side';
 
 /**
+ * Types of dialog dismissal methods
+ *
+ * @public
+ */
+export type DismissalMethod = 'close-button' | 'esc' | 'scrim';
+
+/**
  * Base class for dialog
  *
  * @public
@@ -52,6 +59,7 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
 	@attr({attribute: 'dismiss-button-aria-label'}) dismissButtonAriaLabel: string | null = null;
+	@attr({attribute: 'non-dismissible'}) nonDismissible: string | undefined;
 
 	#modal = false;
 
@@ -103,7 +111,7 @@ export class Dialog extends FoundationElement {
 	}
 
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog) {
+		if (event.target !== this.#dialog || !this._isDismissibleVia('scrim')) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();
@@ -151,6 +159,22 @@ export class Dialog extends FoundationElement {
 		this.#handleModal(true);
 		this.#dialog.showModal();
 		this.open = true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_isDismissibleVia(method: DismissalMethod) {
+		if (this.nonDismissible === undefined || this.nonDismissible === null) {
+			return true;
+		}
+
+		if (this.nonDismissible === '') {
+			return false;
+		}
+
+		const methods = this.nonDismissible.split(' ');
+		return !methods.includes(method);
 	}
 
 	override connectedCallback() {

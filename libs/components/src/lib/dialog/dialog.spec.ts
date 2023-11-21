@@ -139,6 +139,33 @@ describe('vwc-dialog', () => {
 		});
 	});
 
+	describe('nonDismissible', () => {
+		beforeEach(async () => {
+			await showModalDialog();
+		});
+
+		it('should disable all dismiss methods when set to empty string', async () => {
+			element.nonDismissible = '';
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeNull();
+		});
+
+		it('should not disable all dismiss methods when set to specific method', async () => {
+			element.nonDismissible = 'anything';
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.dismiss-button')).not.toBeNull();
+		});
+
+		it('should allow specifying multiple dismiss methods separated by space', async () => {
+			element.nonDismissible = 'anything close-button';
+			await elementUpdated(element);
+
+			expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeNull();
+		});
+	});
+
 	describe('scrimClick', function () {
 
 		function createMouseEventOutsideTheDialog(type: string) {
@@ -211,6 +238,16 @@ describe('vwc-dialog', () => {
 			dialogElement?.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
+		});
+
+		it('should leave the dialog open on scrim click when non dismissible via scrim', async function () {
+			element.nonDismissible = 'scrim';
+			await elementUpdated(element);
+
+			const event = createMouseEventOutsideTheDialog('mousedown');
+			dialogElement?.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
 		});
 
 		it('should leave dialog open when anything but the scrim is clicked', async function () {
@@ -345,6 +382,21 @@ describe('vwc-dialog', () => {
 		expect(spy).toHaveBeenCalledTimes(1);
 	});
 
+	it('should hide dismiss button when not dismissible via close-button', async () => {
+		element.nonDismissible = 'close-button';
+		await elementUpdated(element);
+
+		expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeNull();
+	});
+
+	it('should ignore cancel events on the dialog', async () => {
+		await showDialog();
+
+		getBaseElement(element).dispatchEvent(new Event('cancel'));
+
+		expect((getBaseElement(element) as HTMLDialogElement).open).toBe(true);
+	});
+
 	describe( 'dialog body', () => {
 		it('should have body slot ', async function () {
 			const bodySlotElement = element.shadowRoot?.
@@ -424,6 +476,13 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should remain open on escape key when not dismissible via esc', async function () {
+			await showModalDialog();
+			element.nonDismissible = 'esc';
+			await triggerEscapeKey();
+			expect(element.open).toEqual(true);
+		});
+
 		it('should remain open on escape key when not modal', async function () {
 			await showDialog();
 			await triggerEscapeKey();
@@ -479,8 +538,8 @@ describe('vwc-dialog', () => {
 			element.open = true;
 			element.setAttribute('aria-label', 'Test dialog');
 			await elementUpdated(element);
-			
-			
+
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
