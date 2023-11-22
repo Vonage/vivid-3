@@ -43,18 +43,18 @@ It accepts a subset of predefined values.
 </vwc-layout>
 ```
 
-### Container Clickable
+### Entire box Clickable
 
 By default, the card's control element (checkbox or radio) is the clickable element. This allows you to use other clickable elements within the box.
-Setting the `container-clickable` attribute makes the whole card clickable, just make sure the card does not contain other clickable elements.
+Setting the `entire-box-clickable` attribute makes the whole card clickable, just make sure the card does not contain other clickable elements.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box container-clickable style="max-inline-size: 450px">Clickable accent box</vwc-selectable-box>
-  <vwc-selectable-box container-clickable connotation="cta" style="max-inline-size: 450px">Clickable CTA box</vwc-selectable-box>
+  <vwc-selectable-box entire-box-clickable style="max-inline-size: 450px">Clickable accent box</vwc-selectable-box>
+  <vwc-selectable-box entire-box-clickable connotation="cta" style="max-inline-size: 450px">Clickable CTA box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -152,17 +152,17 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ```html preview
 <vwc-layout role="group">
-  <vwc-selectable-box aria-label="Bright ideas" tight style="inline-size: fit-content" container-clickable>
+  <vwc-selectable-box aria-label="Bright ideas" tight style="inline-size: fit-content" entire-box-clickable>
     <img style="display: block" src="https://doodleipsum.com/350x200?bg=C863D9&i=0b3f4112a9c5e358c439c4be74380e54" alt="Lots of ideas" />
   </vwc-selectable-box>
-  <vwc-selectable-box aria-label="Take a load off" tight style="inline-size: fit-content" container-clickable>
+  <vwc-selectable-box aria-label="Take a load off" tight style="inline-size: fit-content" entire-box-clickable>
     <img
       style="display: block"
       src="https://doodleipsum.com/350x200/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
       alt="Sitting on Floor"
     />
   </vwc-selectable-box>
-  <vwc-selectable-box aria-label="Get located" tight style="inline-size: fit-content" container-clickable>
+  <vwc-selectable-box aria-label="Get located" tight style="inline-size: fit-content" entire-box-clickable>
     <img style="display: block" src="https://doodleipsum.com/350x200?bg=7463D9&i=6af2fcb146f3b99cfa1371242b2eee55" alt="Get located" />
   </vwc-selectable-box>
 </vwc-layout>
