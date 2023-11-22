@@ -27,7 +27,7 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.entireBoxClickable).toBe(false);
-			expect(element.entireBoxClickable).toBe(false);
+			expect(element.clickable).toBe(false);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -444,8 +444,10 @@ describe('vwc-selectable-box', () => {
 				expect(await axe(element)).toHaveNoViolations();
 			});
 
-			it('should render the check-mark component', async () => {
-				expect(element.shadowRoot?.querySelector('vwc-check-mark')).toBeTruthy();
+			it('should render the inert attribute on the control element', async () => {
+				const controlElement = getControlElement(element);
+
+				expect(controlElement?.getAttribute('inert')).toBe('true');
 			});
 
 			it('should put the correct a11y attributes on the base element', async () => {
@@ -473,8 +475,10 @@ describe('vwc-selectable-box', () => {
 					expect(await axe(element)).toHaveNoViolations();
 				});
 
-				it('should render the radio-mark component', async () => {
-					expect(element.shadowRoot?.querySelector('vwc-radio-mark')).toBeTruthy();
+				it('should render the inert attribute on the control element', async () => {
+					const controlElement = getControlElement(element);
+	
+					expect(controlElement?.getAttribute('inert')).toBe('true');
 				});
 			});
 		});
@@ -489,8 +493,10 @@ describe('vwc-selectable-box', () => {
 				expect(await axe(element)).toHaveNoViolations();
 			});
 
-			it('should render the check-mark component', async () => {
-				expect(element.shadowRoot?.querySelector('vwc-check-mark')).toBeTruthy();
+			it('should render the inert attribute on the control element', async () => {
+				const controlElement = getControlElement(element);
+
+				expect(controlElement?.getAttribute('inert')).toBe('true');
 			});
 
 			it('should put the correct a11y attributes on the base element', async () => {
@@ -518,8 +524,10 @@ describe('vwc-selectable-box', () => {
 					expect(await axe(element)).toHaveNoViolations();
 				});
 
-				it('should render the radio-mark component', async () => {
-					expect(element.shadowRoot?.querySelector('vwc-radio-mark')).toBeTruthy();
+				it('should render the inert attribute on the control element', async () => {
+					const controlElement = getControlElement(element);
+	
+					expect(controlElement?.getAttribute('inert')).toBe('true');
 				});
 			});
 		});

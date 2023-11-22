@@ -48,18 +48,16 @@ describe('vwc-radio', () => {
 		let base: HTMLElement;
 		beforeEach(() => base = getBaseElement(element));
 
-		it('should set the element property and the attribute on radio-mark when the attribute is set', async () => {
-			await setBoolAttributeOn(element, 'checked');
-			const radioMark = element.shadowRoot?.querySelector('vwc-radio-mark');
-			expect(radioMark?.hasAttribute('checked')).toBeTruthy();
+		it('should set the element property and the base class when the attribute is set', async () => {
+			const classes = await setBoolAttributeOn(element, 'checked');
 			expect(element.checked).toBeTruthy();
+			expect(classes.contains('checked')).toBeTruthy();
 		});
 
-		it('should set the element attribute and the attribute on radio-mark when the property is set', async () => {
+		it('should set the element attribute and the base class when the property is set', async () => {
 			element.checked = true;
 			await elementUpdated(element);
-			const radioMark = element.shadowRoot?.querySelector('vwc-radio-mark');
-			expect(radioMark?.hasAttribute('checked')).toBeTruthy();
+			expect(base.classList.contains('checked')).toBeTruthy();
 			expect(element.checked).toBeTruthy();
 		});
 
@@ -77,28 +75,21 @@ describe('vwc-radio', () => {
 	});
 
 	describe('connotation', function () {
-		it('should set the connotation attribute on radio-mark', async function () {
+		it('should set the connotation class on base', async function () {
 			const connotation = Connotation.CTA;
 			(element as any).connotation = 'cta';
 			await elementUpdated(element);
-			const radioMark = element.shadowRoot?.querySelector('vwc-radio-mark');
-			expect(radioMark?.getAttribute('connotation')).toBe(connotation);
+			expect(element.shadowRoot?.querySelector('.base')
+				?.classList
+				.contains(`connotation-${connotation}`))
+				.toEqual(true);
 		});
 	});
 
 	describe('disabled', () => {
-		it('should set attribute on radio-mark when disabled is true', async () => {
-			await setBoolAttributeOn(element, 'disabled');
-			const radioMark = element.shadowRoot?.querySelector('vwc-radio-mark');
-			expect(radioMark?.hasAttribute('disabled')).toBeTruthy();
-		});
-	});
-
-	describe('readonly', () => {
-		it('should set attribute on radio-mark when readonly is true', async () => {
-			await setBoolAttributeOn(element, 'readonly');
-			const radioMark = element.shadowRoot?.querySelector('vwc-radio-mark');
-			expect(radioMark?.hasAttribute('readonly')).toBeTruthy();
+		it('should set disabled class when disabled is true', async () => {
+			const classes = await setBoolAttributeOn(element, 'disabled');
+			expect(classes.contains('disabled')).toBeTruthy();
 		});
 	});
 
