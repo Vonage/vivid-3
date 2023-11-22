@@ -58,6 +58,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await addFile(page, 'tooBig.png', 100000, 'image/png');
 	await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
 
+	// Wait for icons to load
+	await page.waitForLoadState('networkidle');
+
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/file-picker.png'
 	);
