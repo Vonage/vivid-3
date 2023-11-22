@@ -28,7 +28,7 @@ const getStateClasses = ({
 
 function renderLabel() {
 	return html<Select>`
-	  <label for="control" class="label">
+	  <label for="control" class="label" id="label">
 		  ${x => x.label}
 	  </label>`;
 }
@@ -113,7 +113,7 @@ export const SelectTemplate: (
 
 	return html<Select>`
 		<template class="base"
-			aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}"
+			aria-label="${x => x.ariaLabel}"
 			aria-activedescendant="${x => x.ariaActiveDescendant}"
 			aria-controls="${x => x.ariaControls}"
 			aria-disabled="${x => x.ariaDisabled}"
