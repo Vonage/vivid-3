@@ -76,13 +76,22 @@ const zhCN: Locale = {
 		pauseButtonLabel: '停',
 		sliderLabel: '音訊進度條',
 	},
+	alert: {
+		dismissButtonLabel: '关',
+	},
 	dialog: {
+		dismissButtonLabel: '关',
+	},
+	banner: {
 		dismissButtonLabel: '关',
 	},
 	numberField: {
 		incrementButtonLabel: '增量',
 		decrementButtonLabel: '递减',
 	},
+	splitButton: {
+		showMoreActionsLabel: '显示更多操作',
+	}
 };
 
 export default zhCN;

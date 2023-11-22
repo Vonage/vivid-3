@@ -1,6 +1,6 @@
 # Note
 
-`vwc-note` component is designated to layout connotated notification content.
+The note component is used to display a short message to the user.
 
 ```js
 <script type="module">
@@ -9,8 +9,8 @@
 ```
 
 ```html preview
-<vwc-note connotation="success" icon="check-circle" headline="Pascal's theological argument">
-  Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses (eternity in Hell).
+<vwc-note connotation="success" icon="check-circle" headline="Changes saved successfully">
+	Your changes have been saved successfully. You can now continue working.
 </vwc-note>
 ```
 

@@ -7,6 +7,7 @@ import styles from './card.scss';
 import { Card } from './card';
 import { CardTemplate as template } from './card.template';
 
+export type { CardAppearance } from './card';
 
 /**
  * The Card component is a container for content and actions.

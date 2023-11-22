@@ -76,13 +76,22 @@ const enGB: Locale = {
 		pauseButtonLabel: 'Pause',
 		sliderLabel: 'Audio progress bar',
 	},
+	alert: {
+		dismissButtonLabel: 'Close',
+	},
 	dialog: {
+		dismissButtonLabel: 'Close',
+	},
+	banner: {
 		dismissButtonLabel: 'Close',
 	},
 	numberField: {
 		incrementButtonLabel: 'Increment',
 		decrementButtonLabel: 'Decrement',
 	},
+	splitButton: {
+		showMoreActionsLabel: 'Show more actions',
+	}
 };
 
 export default enGB;

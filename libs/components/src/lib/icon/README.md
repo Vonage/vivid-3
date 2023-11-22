@@ -1,6 +1,8 @@
 # Icon
 
-Find the icon you want to use on the [vivid icons search platform](../../icons/icons-gallery).
+The icon component is used to display icons.
+
+See the list of available icons in the [icons gallery](../../icons/icons-gallery).
 
 ```js
 <script name='module'>
@@ -17,7 +19,7 @@ Find the icon you want to use on the [vivid icons search platform](../../icons/i
 ### Name
 
 Use `name` to set the icon of choice.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+See the list of available icons in the [icons gallery](../../icons/icons-gallery).
 
 - Type: `string`
 - Default: `undefined`
@@ -65,8 +67,6 @@ If the predefined sizes are not enough, you can use the `font-size` property to 
 
 ### Connotation
 
-If the component is used without a `connotation`, it will use the current text color.
-
 Set the `connotation` attribute to change the icon's connotation and thereby color.
 It accepts a subset of predefined values.
 
@@ -78,9 +78,6 @@ It accepts a subset of predefined values.
 	li {
 		list-style: none;
 	}
-	.custom {
-		color: var(--vvd-color-announcement-400);
-	}
 </style>
 <ul>
 	<li><vwc-icon name='heart-solid' connotation='accent'></vwc-icon> accent</li>
@@ -89,15 +86,27 @@ It accepts a subset of predefined values.
 	<li><vwc-icon name='heart-solid' connotation='success'></vwc-icon> success</li>
 	<li><vwc-icon name='heart-solid' connotation='alert'></vwc-icon> alert</li>
 	<li><vwc-icon name='heart-solid' connotation='information'></vwc-icon> information</li>
-	<li class="custom"><vwc-icon name='heart-solid'></vwc-icon> none - using text color</li>
 </ul>
+```
+
+### Custom Color
+
+If the component is used without a `connotation`, it will use the current text color.
+
+```html preview
+<style>
+	#icon {
+		color: var(--vvd-color-announcement-400);
+	}
+</style>
+<vwc-icon id="icon" name='heart-solid'></vwc-icon>
 ```
 
 ## Slots
 
 ### Default
 
-While `name` property resolves an icon from the Vivid predefined set of icons, it's also possible to manually assign an svg element (or image element with svg as its source) to the icon slot.
+While the `name` property can be used to select an icon from the Vivid predefined set of icons, it's also possible to manually assign an svg element (or image element with svg as its source) to the icon slot.
 
 ```html preview
 <vwc-icon size="3"> 
