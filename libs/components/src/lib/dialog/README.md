@@ -1,7 +1,7 @@
 # Dialog
 Represents a part of an application that a user interacts with to perform a task.
 
-The dialog is uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
+The dialog uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
 
 ```js
 <script type="module">
