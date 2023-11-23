@@ -269,5 +269,10 @@ describe('vwc-tabs', () => {
 		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
+
+		it('should set the role of tablist on the tablist div', async () => {
+			const tablist = element.shadowRoot?.querySelector('.tablist');
+			expect(tablist?.getAttribute('role')).toBe('tablist');
+		});
 	});
 });
