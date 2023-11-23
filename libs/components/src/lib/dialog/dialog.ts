@@ -59,7 +59,7 @@ export class Dialog extends FoundationElement {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
 	@attr({attribute: 'dismiss-button-aria-label'}) dismissButtonAriaLabel: string | null = null;
-	@attr({attribute: 'non-dismissible'}) nonDismissible: string | undefined;
+	@attr ({attribute: 'no-light-dismiss', mode: 'boolean'}) noLightDismiss = false;
 
 	#modal = false;
 
@@ -111,7 +111,7 @@ export class Dialog extends FoundationElement {
 	}
 
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog || !this._isDismissibleVia('scrim')) {
+		if (event.target !== this.#dialog || this.noLightDismiss) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();
@@ -159,22 +159,6 @@ export class Dialog extends FoundationElement {
 		this.#handleModal(true);
 		this.#dialog.showModal();
 		this.open = true;
-	}
-
-	/**
-	 * @internal
-	 */
-	_isDismissibleVia(method: DismissalMethod) {
-		if (this.nonDismissible === undefined || this.nonDismissible === null) {
-			return true;
-		}
-
-		if (this.nonDismissible === '') {
-			return false;
-		}
-
-		const methods = this.nonDismissible.split(' ');
-		return !methods.includes(method);
 	}
 
 	override connectedCallback() {

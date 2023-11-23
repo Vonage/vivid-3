@@ -121,19 +121,12 @@ Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal
 <vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
 ```
 
-### Non-dismissible
+### No-light-dismiss
 
-Dialog can by default be dismissed by:
-- clicking the close button (`close-button`)
-- clicking on the scrim (`scrim`)
-- pressing the `ESC` key (`esc`)
+Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside of it.
 
-Specify the `non-dismissible` attribute to disable this behavior.
-
-You may instead specify a space-separated list of the above values to disable only some of the dismissal methods.
-
-- Type: `string`
-- Default: `undefined`
+- Type: `boolean`
+- Default: `false`
 
 ```html preview
 <style>
@@ -142,22 +135,8 @@ You may instead specify a space-separated list of the above values to disable on
 	}
 </style>
 
-<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Modal Dialog" non-dismissible>
-	<vwc-button slot="action-items" label="Close" appearance="filled" onclick="closeDialog()"></vwc-button>
-</vwc-dialog>
-
-<script>
-	const dialog = document.querySelector('vwc-dialog');
-  
-  function openDialog() {
-    dialog.showModal();
-  }
-
-	function closeDialog() {
-		dialog.close();
-	}
-</script>
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
+<vwc-dialog no-light-dismiss headline="Headline"></vwc-dialog>
 ```
 
 ### Return Value
