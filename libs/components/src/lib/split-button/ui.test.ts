@@ -53,6 +53,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	<div style="margin: 5px;">
 		<vwc-split-button appearance="ghost" label='accent' connotation='accent'></vwc-split-button>
 		<vwc-split-button appearance="ghost" label='cta' connotation='cta'></vwc-split-button>
+		<vwc-split-button appearance="ghost" label='success' connotation='success'></vwc-split-button>
+		<vwc-split-button appearance="ghost" label='alert' connotation='alert'></vwc-split-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-split-button appearance="filled" label='accent' connotation='accent'></vwc-split-button>
