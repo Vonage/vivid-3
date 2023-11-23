@@ -18,7 +18,8 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
   }
 </style>
 
-<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
+<vwc-button label="Open non-modal Dialog" onclick="openNonModal()"></vwc-button>
+<vwc-button label="Open modal Dialog" onclick="openModal()"></vwc-button>
 
 <vwc-dialog icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
@@ -29,7 +30,13 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
 <script>
 	const dialog = document.querySelector('vwc-dialog');
   
-	function openDialog() {
+	function openNonModal() {
+    if (dialog.open) dialog.close();
+		dialog.show();
+	}
+
+	function openModal() {
+		if (dialog.open) dialog.close();
 		dialog.showModal();
 	}
   
