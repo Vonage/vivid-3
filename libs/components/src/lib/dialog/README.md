@@ -3,6 +3,8 @@ Represents a part of an application that a user interacts with to perform a task
 
 The dialog uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
 
+Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog. Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
+
 ```js
 <script type="module">
   import '@vonage/vivid/dialog';
@@ -397,16 +399,8 @@ vwc-dialog {
 Use the `showModal` method to open a dialog as a modal. The dialog will be positioned in the center of the screen and interaction outside the dialog will be blocked.
 
 ```html preview
-<vwc-button label="Open Modal Dialog"></vwc-button>
-
+<vwc-button label="Open Modal Dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
 <vwc-dialog headline="Modal Dialog"></vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.showModal();
-  }
-</script>
 ```
 
 ### Dialog Form
