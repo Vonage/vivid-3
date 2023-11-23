@@ -93,12 +93,14 @@ Use the `size` attribute to set the split button's to one of the predefined bloc
 Set the `connotation` attribute to change the split button's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'cta'`
+- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
 - Default: `'accent'`
 
 ```html preview
 <vwc-split-button appearance='filled' label='accent' connotation='accent'></vwc-split-button>
 <vwc-split-button appearance='filled' label='cta' connotation='cta'></vwc-split-button>
+<vwc-split-button appearance='filled' label='success' connotation='success'></vwc-split-button>
+<vwc-split-button appearance='filled' label='alert' connotation='alert'></vwc-split-button>
 ```
 
 ### Disabled

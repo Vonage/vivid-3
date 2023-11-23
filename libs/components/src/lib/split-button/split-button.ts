@@ -11,7 +11,7 @@ import { Localized } from '../../shared/patterns';
  *
  * @public
  */
-export type SplitButtonConnotation = Extract<Connotation, Connotation.Accent | Connotation.CTA>;
+export type SplitButtonConnotation = Extract<Connotation, Connotation.Accent | Connotation.CTA | Connotation.Success | Connotation.Alert>;
 
 /**
  * Types of split button appearance.
