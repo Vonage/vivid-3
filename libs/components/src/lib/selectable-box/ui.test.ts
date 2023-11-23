@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['selectable-box', 'checkbox', 'radio', 'layout'];
+const components = ['selectable-box', 'checkbox', 'radio', 'layout', 'card'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(

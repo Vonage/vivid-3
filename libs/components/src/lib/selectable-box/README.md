@@ -117,33 +117,24 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ## Use cases
 
-### Text based boxes
+### Selectable Card
 
 ```html preview
 <vwc-layout role="group">
   <vwc-selectable-box control-aria-labelledby="box1-heading" style="max-inline-size: 450px">
-    <h4 id="box1-heading">Add-on 1</h4>
-    <ul>
-      <li><b>ADD DATA</b> - <a href="#">data add-ons</a> available to you</li>
-      <li><b>ADD DATA</b> - <a href="#"> minutes add-ons</a> available to you</li>
-      <li><b>ADD DATA</b> - <a href="#"> international add-ons</a>, so you can call abroad from the UK</li>
-    </ul>
+    <vwc-card headline="Card Component" subtitle="My IOS is Android" appearance="ghost">
+  <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: #A4C439" ></vwc-icon>
+</vwc-card>
   </vwc-selectable-box>
   <vwc-selectable-box control-aria-labelledby="box2-heading" style="max-inline-size: 450px">
-    <h4 id="box2-heading">Add-on 2</h4>
-    <ul>
-      <li><b>ADD DATA</b> - <a href="#">data add-ons</a> available to you</li>
-      <li><b>ADD DATA</b> - <a href="#"> minutes add-ons</a> available to you</li>
-      <li><b>ADD DATA</b> - <a href="#"> international add-ons</a>, so you can call abroad from the UK</li>
-    </ul>
+       <vwc-card headline="Card Component" subtitle="My IOS is Apple" appearance="ghost">
+  <vwc-icon slot="graphic" name="apple-color" style="font-size: 44px; color: #555555" ></vwc-icon>
+</vwc-card>
   </vwc-selectable-box>
   <vwc-selectable-box control-aria-labelledby="box3-heading" style="max-inline-size: 450px">
-    <h4 id="box3-heading">Add-on 3</h4>
-    <ul>
-      <li><b>ADD DATA</b> - <a href="#">data add-ons</a> available to you</li>
-      <li><b>ADD DATA</b> - <a href="#"> minutes add-ons</a> available to you</li>
-      <li><b>ADD DATA</b> - <a href="#"> international add-ons</a>, so you can call abroad from the UK</li>
-    </ul>
+           <vwc-card headline="Card Component" subtitle="My IOS is Windows" appearance="ghost">
+  <vwc-icon slot="graphic" name="windows-color" style="font-size: 44px;"></vwc-icon>
+</vwc-card>
   </vwc-selectable-box>
 </vwc-layout>
 ```
