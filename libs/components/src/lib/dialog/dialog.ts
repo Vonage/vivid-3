@@ -24,13 +24,6 @@ let dialogPolyfill: any;
 export type IconPlacement = 'top' | 'side';
 
 /**
- * Types of dialog dismissal methods
- *
- * @public
- */
-export type DismissalMethod = 'close-button' | 'esc' | 'scrim';
-
-/**
  * Base class for dialog
  *
  * @public
