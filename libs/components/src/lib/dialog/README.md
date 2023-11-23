@@ -377,11 +377,11 @@ vwc-dialog {
 
 <div class="table-wrapper">
 
-| Namen       | Returns | Description                                                                                                                                                                                                                                                                                                                         |
-|-------------| ------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `show`      | `void`  | Shows the dialog. Positioned in a top position by default.                                                                                                                                                                                                                                                                          |
-| `close`     | `void`  | Closes the dialog.                                                                                                                                                                                                                                                                                                                  |
-| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal). |
+| Namen       | Returns | Description                                                                                                                                                                                                                                                                                                                       |
+|-------------| ------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `show`      | `void`  | Shows the dialog. Positioned in a top position by default.                                                                                                                                                                                                                                                            |
+| `close`     | `void`  | Closes the dialog.                                                                                                                                                                                                                                                                                                                |
+| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. |
 
 </div>
 
@@ -396,8 +396,7 @@ vwc-dialog {
 
 ### Modal Dialog
 
-Use the `showModal` method to open a dialog as a modal. The dialog will be positioned in the center of the screen and interaction outside the dialog will be blocked.
-
+Use the `showModal` method to open a dialog as a modal. It will display in the [top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer). Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
 ```html preview
 <vwc-button label="Open Modal Dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
 <vwc-dialog headline="Modal Dialog"></vwc-dialog>
