@@ -4,6 +4,31 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.41.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.40.0...vivid-v3.41.0) (2023-11-22)
+
+
+### Features
+
+* **audio-player:** new component (VIV-942) ([#1411](https://github.com/Vonage/vivid-3/issues/1411)) ([e1f31e1](https://github.com/Vonage/vivid-3/commit/e1f31e1af90e210f9ae68f94d3594d50b0706483))
+* **badge:** add min-inline-size (VIV-1403) ([#1448](https://github.com/Vonage/vivid-3/issues/1448)) ([dc85c29](https://github.com/Vonage/vivid-3/commit/dc85c29c4c7f4621e09376541acdd4bef61c753b))
+* **card:** add appearance (VIV-1161) ([#1439](https://github.com/Vonage/vivid-3/issues/1439)) ([9a8d7d8](https://github.com/Vonage/vivid-3/commit/9a8d7d868787af1d18fab3687f3f397ac4bd4fff))
+* **split-button:** add attribute for indicator aria-label and localize default (VIV-1261) ([#1432](https://github.com/Vonage/vivid-3/issues/1432)) ([bb4cb62](https://github.com/Vonage/vivid-3/commit/bb4cb62ee205bb7330b94e12c9202fa651754d25))
+
+
+### Bug Fixes
+
+* a11y error on tabs ([6b3750b](https://github.com/Vonage/vivid-3/commit/6b3750b7c456afcd4c0ed41e0878cc61004bd61f))
+* **alert:** accessability (VIV-1381) ([#1443](https://github.com/Vonage/vivid-3/issues/1443)) ([f27706b](https://github.com/Vonage/vivid-3/commit/f27706b33eac482f59c2d5c7b32e25e8f4cb5e26))
+* **banner:** accessibility (VIV-1384) ([#1444](https://github.com/Vonage/vivid-3/issues/1444)) ([0eb3c99](https://github.com/Vonage/vivid-3/commit/0eb3c99a1d0881ba25c83ee2705973a284c9b2d1))
+* **button:** correct padding and size when only slotted icon (VIV-1398) ([#1442](https://github.com/Vonage/vivid-3/issues/1442)) ([e1a31a9](https://github.com/Vonage/vivid-3/commit/e1a31a9740af4ed196bfaaf48b7186e16f4a82a2))
+* **menu-item:** update checkbox and radio icons to fit figma (VIV-1318) ([#1397](https://github.com/Vonage/vivid-3/issues/1397)) ([3fac98c](https://github.com/Vonage/vivid-3/commit/3fac98cf82dc90e1ba4e8636d78fca24b96739d9))
+* **selectable-box:** keypress when not clickable (VIV-1380) ([#1436](https://github.com/Vonage/vivid-3/issues/1436)) ([e3932cd](https://github.com/Vonage/vivid-3/commit/e3932cdf880fe4ee363e34fe4b6f9e65d257e8ef))
+* **select:** aria-label repeating the label text in screenreader and not updating when changed dynamically (VIV-1379) ([#1440](https://github.com/Vonage/vivid-3/issues/1440)) ([040652f](https://github.com/Vonage/vivid-3/commit/040652f8d86c4af9008259619d273d703d56a453))
+* **side-drawer:** side drawer accessibility (VIV-1270) ([#1433](https://github.com/Vonage/vivid-3/issues/1433)) ([a60905c](https://github.com/Vonage/vivid-3/commit/a60905cd4312d9f1022b530fc80633b875dbce93))
+* **switch:** read-only and disabled style (VIV-1382) ([#1445](https://github.com/Vonage/vivid-3/issues/1445)) ([ab8b776](https://github.com/Vonage/vivid-3/commit/ab8b77618e70622d79c2298655fa0b17814ac35a))
+* **tabs:** a11y error on tabs (VIV-1394) ([#1455](https://github.com/Vonage/vivid-3/issues/1455)) ([6b3750b](https://github.com/Vonage/vivid-3/commit/6b3750b7c456afcd4c0ed41e0878cc61004bd61f))
+* **text-field:** fix errors in non-DOM or JSDOM environments (VIV-1393) ([#1451](https://github.com/Vonage/vivid-3/issues/1451)) ([92c20c1](https://github.com/Vonage/vivid-3/commit/92c20c1b089800a3daceb8f17f7d81b8605642ea))
+
 ## [3.40.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.39.0...vivid-v3.40.0) (2023-10-31)
 
 
