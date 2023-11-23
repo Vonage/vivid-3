@@ -143,6 +143,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			${when((x, c) =>
 		!c.parentContext.parentContext.parent._hideDatesOutsideMonth || !x.isOutsideMonth,
 	html<CalendarGridDate>`
+		<span role="gridcell">
 			<button
 							class="${(x, c) =>
 		classNames(
@@ -155,7 +156,6 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			['end', c.parentContext.parentContext.parent._isDateRangeEnd(x.date)],
 			['outside-month', x.isOutsideMonth]
 		)}"
-							role="gridcell"
 							?disabled="${(x, c) =>
 		!c.parentContext.parentContext.parent._isDateInValidRange(x.date)}"
 							tabindex="${(x, c) =>
@@ -174,7 +174,8 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 		)}"
 						>
 							${() => focusTemplate} ${(x) => x.label}
-						</button>`
+						</button>
+		</span>`
 	)}
 				</div>
 			`
@@ -202,6 +203,7 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 					${repeat(
 		(x) => x,
 		html<MonthPickerGridCell>`
+			<span role="gridcell">
 							<button
 								class="${(x, c) =>
 		classNames(
@@ -222,7 +224,6 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 				),
 			]
 		)}"
-								role="gridcell"
 								tabindex="${(x, c) =>
 		c.parentContext.parentContext.parent._tabbableMonth &&
 									areMonthsEqual(x.month, c.parentContext.parentContext.parent._tabbableMonth)
@@ -249,6 +250,7 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 							>
 								${() => focusTemplate} ${(x) => x.label}
 							</button>
+				</span>
 						`
 	)}
 				</div>
