@@ -33,7 +33,7 @@ jobs:
           path: dist/
           key: ${{ runner.os }}-dist-${{ hashFiles('libs/**/*.*') }}
 
-      - run: npx nx run components:e2e:no-build
+      - run: scripts/visual-tests/run.tests.sh
       - uses: actions/upload-artifact@v3
         if: always()
         with:

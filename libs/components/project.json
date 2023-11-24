@@ -28,14 +28,6 @@
 				"parallel": false
 			},
 			"configurations": {
-				"no-build": {
-					"commands": [
-						{
-							"command": "./scripts/visual-tests/run.tests.in.container.sh",
-							"forwardAllArgs": true
-						}
-					]
-				},
 				"watch": {
 					"commands": [
 						{
