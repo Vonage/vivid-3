@@ -15,6 +15,9 @@ export const dateRangePickerDefinition =
 		baseName: 'date-range-picker',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 /**
