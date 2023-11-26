@@ -76,14 +76,14 @@ export const CalendarTemplate: (
 ) => ViewTemplate<Calendar> = () => html`
   <div role="grid" @keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}>
     ${DaysTemplate}
-    <div role="row" class="calendar-row">
+    <div class="calendar-row">
       ${HoursTemplate}
       <div class="calendar-grid-presentation" role="presentation">
         <div class="hours" role="list">
           ${repeat(x => Array.from({ length: x.hoursAsDatetime.length + 1 }),	html<string>`
             <div role="listitem"></div>`)}
         </div>
-        <div class="columns" role="presentation">
+        <div class="columns" role="row">
           ${repeat(x => Array.from(Array(x._days)), ColumnTemplate, { positioning: true })}
         </div>
         <slot></slot>
