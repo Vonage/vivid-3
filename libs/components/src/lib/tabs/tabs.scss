@@ -106,6 +106,7 @@
 		block-size: 80%;
 		grid-area: 1 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
+		border-radius: 2px;
 	}
 
 	.base:not(.orientation-vertical) & {
