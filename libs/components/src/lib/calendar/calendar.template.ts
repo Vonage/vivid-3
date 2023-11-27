@@ -46,7 +46,7 @@ const DaysTemplate = () => {
 									<!-- TODO add to column aria-labelledby or describedby to count
                   events and related day e.g. "3 events, Sunday, March 8" -->
 									<em tabindex="0" role="button" aria-label=${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, {
-		weekday: 'long', month: 'long', day: 'numeric'
+		weekday: 'long', month: 'long', day: '2-digit'
 	}).format(x)}>
 										${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, { day: '2-digit' }).format(x)}
 									</em>
