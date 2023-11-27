@@ -104,9 +104,9 @@
 	.base.orientation-vertical & {
 		align-self: center;
 		block-size: 80%;
+		border-radius: 2px;
 		grid-area: 1 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
-		border-radius: 2px;
 	}
 
 	.base:not(.orientation-vertical) & {
