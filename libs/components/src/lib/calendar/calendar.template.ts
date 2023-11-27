@@ -18,7 +18,7 @@ import {
  */
 const HoursTemplate = () => {
 	return html`
-  <div class="row-headers" role="presentation">
+  <div class="row-headers" role="row">
     ${repeat(x => x.hoursAsDatetime, html<string>`<span role="rowheader">
       <time datetime="${(x: Date, c) =>	new Intl.DateTimeFormat(c.parent.locales, {
 		hour: 'numeric', minute: 'numeric',	hour12: false
@@ -76,7 +76,7 @@ export const CalendarTemplate: (
 ) => ViewTemplate<Calendar> = () => html`
   <div role="grid" @keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}>
     ${DaysTemplate}
-    <div class="calendar-row">
+    <div class="calendar-row" role="rowgroup">
       ${HoursTemplate}
       <div class="calendar-grid-presentation" role="presentation">
         <div class="hours" role="list">
