@@ -24,6 +24,7 @@ export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Co
 /**
  * Base class for checkbox
  *
+ * @event input - Event that emits when the component checked state changes
  * @public
  */
 @errorText
@@ -31,7 +32,7 @@ export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Co
 export class Checkbox extends FoundationCheckbox {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'tabindex'}) tabindex: string | null = null;
-	
+
 	/**
 	 * The connotation the checklist should have.
 	 *
@@ -40,6 +41,17 @@ export class Checkbox extends FoundationCheckbox {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: CheckboxConnotation;
+
+	/**
+	 * @internal
+	 */
+	override checkedChanged(prev: boolean | undefined, next: boolean): void {
+		super.checkedChanged(prev, next);
+
+		if (prev !== undefined) {
+			this.$emit('input');
+		}
+	}
 
 	/**
 	 * !remove method as will be implemented by fast-foundation in version after 2.46.9

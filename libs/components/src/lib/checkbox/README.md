@@ -154,6 +154,17 @@ The default slot allows you to use rich content as the checkbox's label.
 </vwc-checkbox>
 ```
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Description                             |
+|----------|-----------------------------------------|
+| `input`  | Emitted when the checked state changes. |
+| `change` | Emitted when the checked state changes. |
+
+</div>
+
 ## Accessibility
 
 - If a label is not provided either through the `label` attribute or the `default` slot, then the checkbox needs an accessible label.
