@@ -289,5 +289,10 @@
 		"title": "audio-player",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
+	},
+	{
+		"title": "appearance-ui",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/appearance-ui/README.md"
 	}
 ]
