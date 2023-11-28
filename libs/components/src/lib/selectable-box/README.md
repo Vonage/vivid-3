@@ -121,17 +121,17 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ```html preview
 <vwc-layout role="group" aria-label="pick your ios">
-  <vwc-selectable-box tight clickable style="max-inline-size: 450px">
+  <vwc-selectable-box tight clickable-box style="max-inline-size: 450px">
     <vwc-card headline="Card Component" subtitle="My IOS is Android" appearance="ghost">
       <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: #A4C439" ></vwc-icon>
     </vwc-card>
   </vwc-selectable-box>
-  <vwc-selectable-box tight clickable style="max-inline-size: 450px">
+  <vwc-selectable-box tight clickable-box style="max-inline-size: 450px">
     <vwc-card headline="Card Component" subtitle="My IOS is Apple" appearance="ghost">
       <vwc-icon slot="graphic" name="apple-color" style="font-size: 44px; color: #555555" ></vwc-icon>
     </vwc-card>
   </vwc-selectable-box>
-  <vwc-selectable-box tight clickable  style="max-inline-size: 450px">
+  <vwc-selectable-box tight clickable-box  style="max-inline-size: 450px">
     <vwc-card headline="Card Component" subtitle="My IOS is Windows" appearance="ghost">
       <vwc-icon slot="graphic" name="windows-color" style="font-size: 44px;"></vwc-icon>
     </vwc-card>
