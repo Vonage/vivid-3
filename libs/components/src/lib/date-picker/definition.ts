@@ -14,6 +14,9 @@ export const datePickerDefinition =
 		baseName: 'date-picker',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 /**
