@@ -29,9 +29,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.locator('vwc-selectable-box').nth(8).getByRole('button').focus();
-
 	await page.waitForLoadState('networkidle');
+
+	await page.locator('vwc-selectable-box.clickable').nth(1).getByRole('button').focus();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/selectable-box.png'

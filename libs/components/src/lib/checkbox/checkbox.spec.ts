@@ -282,6 +282,13 @@ describe('vwc-checkbox', () => {
 			expect(element.getAttribute('role')).toBe(null);
 		});
 
+		it('should render a tabindex on the base element when passed', async () => {
+			element.tabindex = '-1';
+			await elementUpdated(element);
+			const baseElement = getBaseElement(element);
+			expect(baseElement.getAttribute('tabindex')).toBe('-1');
+		});
+
 		it('should render the correct a11y attributes', async () => {
 			const baseElement = getBaseElement(element);
 

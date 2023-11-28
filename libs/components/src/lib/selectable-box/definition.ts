@@ -18,7 +18,12 @@ export const selectableBoxDefinition =
 /**
  * @internal
  */
-export const selectableBoxRegistries = [selectableBoxDefinition(), ...checkboxRegistries, ...focusRegistries, ...radioRegistries];
+export const selectableBoxRegistries = [
+	selectableBoxDefinition(), 
+	...checkboxRegistries, 
+	...focusRegistries, 
+	...radioRegistries, 
+];
 
 /**
  * Registers the selectable-box element with the design system.
