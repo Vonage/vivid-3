@@ -43,7 +43,7 @@ It accepts a subset of predefined values.
 </vwc-layout>
 ```
 
-### Entire box Clickable
+### Clickable box
 
 By default, the card's control element (checkbox or radio) is the clickable element. This allows you to use other clickable elements within the box.
 Setting the `clickable-box` attribute makes the whole card clickable, just make sure the card does not contain other clickable elements.

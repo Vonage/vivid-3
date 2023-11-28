@@ -11,13 +11,13 @@ import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import { SelectableBox } from './selectable-box';
 
-const getClasses = ({ connotation, tight, checked, clickableBox }: SelectableBox) => classNames(
+const getClasses = ({ connotation, tight, checked, clickableBox, clickable }: SelectableBox) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	['tight', tight],
 	['selected', checked],
-	['clickable', clickableBox],
-	['readonly', !clickableBox],
+	['clickable', clickableBox || clickable],
+	['readonly', !clickableBox && !clickable],
 );
 
 function handleControlChange(x: SelectableBox) {
@@ -29,12 +29,12 @@ function checkbox(context: ElementDefinitionContext) {
 	
 	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
 		<${checkboxTag}
-			aria-label="${x => !x.clickableBox && x.ariaLabel ? x.ariaLabel : null}"
+			aria-label="${x => (!x.clickableBox && !x.clickable) && x.ariaLabel ? x.ariaLabel : null}"
 			@change="${x => handleControlChange(x)}"
 			class="control checkbox" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${x => x.checked}"
-			inert="${x => x.clickableBox ? true : null}"
+			inert="${x => x.clickableBox || x.clickable ? true : null}"
 		></${checkboxTag}>`)}
 	`;
 }
@@ -44,12 +44,12 @@ function radio(context: ElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(x => x.controlType === 'radio', html`
 		<${radioTag}
-			aria-label="${x => !x.clickableBox && x.ariaLabel ? x.ariaLabel : null}"
+			aria-label="${x => (!x.clickableBox && !x.clickable) && x.ariaLabel ? x.ariaLabel : null}"
 			@change="${x => handleControlChange(x)}"
 			class="control radio" 
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${x => x.checked}"
-			inert="${x => x.clickableBox ? true : null}"
+			inert="${x => x.clickableBox || x.clickable ? true : null}"
 		></${radioTag}>`)}
 	`;
 }
@@ -70,14 +70,14 @@ export const SelectableBoxTemplate: (
 	return html<SelectableBox>`<template role="presentation">
 	<div
 		class="${getClasses}"
-		tabindex="${x => x.clickableBox ? '0' : null}"
-		role="${x => x.clickableBox ? 'button' : null}"
-		aria-pressed="${x => (x.clickableBox) && x.checked ? x.checked : null}"
-		aria-label="${x => x.clickableBox ? x.ariaLabel : null}"
+		tabindex="${x => x.clickableBox || x.clickable ? '0' : null}"
+		role="${x => x.clickableBox || x.clickable ? 'button' : null}"
+		aria-pressed="${x => (x.clickableBox || x.clickable) && x.checked ? x.checked : null}"
+		aria-label="${x => x.clickableBox || x.clickable ? x.ariaLabel : null}"
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
-		@click="${x => x.clickableBox ? x._handleCheckedChange() : null}"
+		@click="${x => x.clickableBox || x.clickable ? x._handleCheckedChange() : null}"
 	>
-		${(x) => x.clickableBox ? focusTemplate : ''}
+		${(x) => x.clickableBox || x.clickable ? focusTemplate : ''}
 		${checkbox(context)}
 		${radio(context)}
 		<slot></slot>

@@ -27,6 +27,7 @@ describe('vwc-selectable-box', () => {
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
 			expect(element.clickableBox).toBe(false);
+			expect(element.clickable).toBe(false);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
 		});
@@ -56,6 +57,17 @@ describe('vwc-selectable-box', () => {
 			it('should set connotation attribute on the control element', async function () {
 				element = (await fixture(
 					`<${COMPONENT_TAG} clickable-box connotation="cta"></${COMPONENT_TAG}>`
+				)) as SelectableBox;
+				const control = getControlElement(element);
+
+				expect(control?.getAttribute('connotation')).toBe('cta');
+			});
+		});
+
+		describe('clickable', () => {
+			it('should set connotation attribute on the control element', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG} clickable connotation="cta"></${COMPONENT_TAG}>`
 				)) as SelectableBox;
 				const control = getControlElement(element);
 
@@ -148,6 +160,15 @@ describe('vwc-selectable-box', () => {
 	describe('clickableBox', () => {
 		it('should set clickable class on the base element', async function () {
 			element.clickableBox = true;
+			await elementUpdated(element);
+			
+			expect(baseElement?.classList?.contains('clickable')).toBe(true);
+		});
+	});
+
+	describe('clickable', () => {
+		it('should set clickable class on the base element', async function () {
+			element.clickable = true;
 			await elementUpdated(element);
 			
 			expect(baseElement?.classList?.contains('clickable')).toBe(true);
@@ -278,6 +299,64 @@ describe('vwc-selectable-box', () => {
 					element = (await fixture(
 						`<${COMPONENT_TAG} control-type="radio" checked clickable-box></${COMPONENT_TAG}>`
 					)) as SelectableBox;
+					element.addEventListener('change', spy);
+					baseElement.click();
+
+					expect(spy).not.toHaveBeenCalled();
+					expect(element.checked).toBe(true);
+				});
+			});
+
+			describe('keyboard', () => {
+				it('should emit the change event when the checked state changes with Space keypress', async () => {
+					baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Space' }));
+					
+					expect(spy).toHaveBeenCalled();
+					expect(element.checked).toBe(true);
+				});
+
+				it('should emit the change event when the checked state changes with Enter keypress', async () => {
+					baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: 'Enter' }));
+					
+					expect(spy).toHaveBeenCalled();
+					expect(element.checked).toBe(true);
+				});
+
+				it('should not emit the change event another key is pressed', async () => {
+					baseElement.dispatchEvent(new KeyboardEvent('keydown', { composed: true, code: '65' }));
+					
+					expect(spy).not.toHaveBeenCalled();
+					expect(element.checked).toBe(false);
+				});
+			});
+		});
+
+		describe('clickable', () => {
+			beforeEach(async () => {
+				element.clickable = true;
+				await elementUpdated(element);
+			});
+
+			it('should emit the change event when the checked state changes', async () => {
+				baseElement.click();
+				
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(element.checked).toBe(true);
+			});
+
+			describe('radio', () => {
+				it('should emit the change event when the checked state changes', async () => {
+					baseElement.click();
+					
+					expect(spy).toHaveBeenCalledTimes(1);
+					expect(element.checked).toBe(true);
+				});
+
+				it('should not emit the change event when the radio is already checked', async () => {
+					element = (await fixture(
+						`<${COMPONENT_TAG} control-type="radio" checked clickable></${COMPONENT_TAG}>`
+					)) as SelectableBox;
+					element.addEventListener('change', spy);
 					baseElement.click();
 
 					expect(spy).not.toHaveBeenCalled();
@@ -385,6 +464,49 @@ describe('vwc-selectable-box', () => {
 
 				it('should pass html a11y test', async () => {
 					expect(await axe(element)).toHaveNoViolations();
+				});
+
+				it('should render the inert attribute on the control element', async () => {
+					const controlElement = getControlElement(element);
+	
+					expect(controlElement?.getAttribute('inert')).toBe('true');
+				});
+			});
+		});
+
+		describe('clickable', () => {
+			beforeEach(async () => {
+				element.clickable = true;
+				await elementUpdated(element);
+			});
+
+			it('should render the inert attribute on the control element', async () => {
+				const controlElement = getControlElement(element);
+
+				expect(controlElement?.getAttribute('inert')).toBe('true');
+			});
+
+			it('should put the correct a11y attributes on the base element', async () => {
+				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
+				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
+				expect(baseElement?.getAttribute('role')).toBe('button');
+				expect(baseElement?.getAttribute('tabindex')).toBe('0');
+			});
+
+			it('should add the aria-pressed attribute to the base element when checked is true', async () => {
+				element = (await fixture(
+					`<${COMPONENT_TAG} aria-label="Box 1" checked clickable></${COMPONENT_TAG}>`
+				)) as SelectableBox;
+				baseElement = getBaseElement(element);
+
+				expect(baseElement?.getAttribute('aria-pressed')).toBe('true');
+			});
+
+			describe('radio', () => {
+				beforeEach(async () => {
+					element = (await fixture(
+						`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1" clickable></${COMPONENT_TAG}>`
+					)) as SelectableBox;
 				});
 
 				it('should render the inert attribute on the control element', async () => {
