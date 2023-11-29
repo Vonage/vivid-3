@@ -12,21 +12,6 @@ Represents a content box to used in a group where one or more can be selected.
 
 ## Members
 
-### Connotation
-
-Set the `connotation` attribute to change the box's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'`, `'cta'`
-- Default: `'accent'`
-
-```html preview
-<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box connotation="accent" style="max-inline-size: 450px">Accent box</vwc-selectable-box>
-  <vwc-selectable-box connotation="cta" style="max-inline-size: 450px">CTA box</vwc-selectable-box>
-</vwc-layout>
-```
-
 ### Control type
 
 Set the `control-type` attribute to change the box's selectable control
@@ -43,6 +28,36 @@ When `control-type` is set to `radio`, it is the consuming app's responsibility 
 </vwc-layout>
 ```
 
+### Connotation
+
+Set the `connotation` attribute to change the box's connotation.
+It accepts a subset of predefined values.
+
+- Type: `'accent'`, `'cta'`
+- Default: `'accent'`
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+  <vwc-selectable-box connotation="accent" style="max-inline-size: 450px">Accent box</vwc-selectable-box>
+  <vwc-selectable-box connotation="cta" style="max-inline-size: 450px">CTA box</vwc-selectable-box>
+</vwc-layout>
+```
+
+### Clickable box
+
+By default, the card's control element (checkbox or radio) is the clickable element. This allows you to use other clickable elements within the box.
+Setting the `clickable-box` attribute makes the whole card clickable, just make sure the card does not contain other clickable elements.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-layout gutters="small" row-spacing="small" column-basis="block">
+  <vwc-selectable-box clickable-box style="max-inline-size: 450px">Clickable accent box</vwc-selectable-box>
+  <vwc-selectable-box clickable-box connotation="cta" style="max-inline-size: 450px">Clickable CTA box</vwc-selectable-box>
+</vwc-layout>
+```
+
 ### Checked
 
 Set the `checked` attribute to indicate the checked state of the box.
@@ -54,21 +69,6 @@ Set the `checked` attribute to indicate the checked state of the box.
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
   <vwc-selectable-box control-type="checkbox" checked style="max-inline-size: 450px">Checked checkbox box</vwc-selectable-box>
   <vwc-selectable-box control-type="radio" checked style="max-inline-size: 450px">Checked radio box</vwc-selectable-box>
-</vwc-layout>
-```
-
-### Clickable
-
-By default, the card's control element (checkbox or radio) is the clickable element. This allows you to use other clickable elements within the box.
-Setting the `clickable` attribute makes the whole card clickable, just make sure the card does not contain other clickable elements.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-  <vwc-selectable-box clickable style="max-inline-size: 450px">Clickable accent box</vwc-selectable-box>
-  <vwc-selectable-box clickable connotation="cta" style="max-inline-size: 450px">Clickable CTA box</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -121,20 +121,20 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ```html preview
 <vwc-layout role="group" aria-label="pick your ios">
-  <vwc-selectable-box tight clickable control-aria-labelledby="box1-heading" style="max-inline-size: 450px">
+  <vwc-selectable-box tight clickable-box style="max-inline-size: 450px">
     <vwc-card headline="Card Component" subtitle="My IOS is Android" appearance="ghost">
-  <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: #A4C439" ></vwc-icon>
-</vwc-card>
+      <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: #A4C439" ></vwc-icon>
+    </vwc-card>
   </vwc-selectable-box>
-  <vwc-selectable-box tight clickable control-aria-labelledby="box2-heading" style="max-inline-size: 450px">
-       <vwc-card headline="Card Component" subtitle="My IOS is Apple" appearance="ghost">
-  <vwc-icon slot="graphic" name="apple-color" style="font-size: 44px; color: #555555" ></vwc-icon>
-</vwc-card>
+  <vwc-selectable-box tight clickable-box style="max-inline-size: 450px">
+    <vwc-card headline="Card Component" subtitle="My IOS is Apple" appearance="ghost">
+      <vwc-icon slot="graphic" name="apple-color" style="font-size: 44px; color: #555555" ></vwc-icon>
+    </vwc-card>
   </vwc-selectable-box>
-  <vwc-selectable-box tight clickable control-aria-labelledby="box3-heading" style="max-inline-size: 450px">
-           <vwc-card headline="Card Component" subtitle="My IOS is Windows" appearance="ghost">
-  <vwc-icon slot="graphic" name="windows-color" style="font-size: 44px;"></vwc-icon>
-</vwc-card>
+  <vwc-selectable-box tight clickable-box  style="max-inline-size: 450px">
+    <vwc-card headline="Card Component" subtitle="My IOS is Windows" appearance="ghost">
+      <vwc-icon slot="graphic" name="windows-color" style="font-size: 44px;"></vwc-icon>
+    </vwc-card>
   </vwc-selectable-box>
 </vwc-layout>
 ```
@@ -143,17 +143,17 @@ Also, the boxes need a parent element to have a `role` attribute set to `group`.
 
 ```html preview
 <vwc-layout role="group">
-  <vwc-selectable-box aria-label="Bright ideas" tight style="inline-size: fit-content" clickable>
+  <vwc-selectable-box aria-label="Bright ideas" tight style="inline-size: fit-content" clickable-box>
     <img style="display: block" src="https://doodleipsum.com/350x200?bg=C863D9&i=0b3f4112a9c5e358c439c4be74380e54" alt="Lots of ideas" />
   </vwc-selectable-box>
-  <vwc-selectable-box aria-label="Take a load off" tight style="inline-size: fit-content" clickable>
+  <vwc-selectable-box aria-label="Take a load off" tight style="inline-size: fit-content" clickable-box>
     <img
       style="display: block"
       src="https://doodleipsum.com/350x200/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
       alt="Sitting on Floor"
     />
   </vwc-selectable-box>
-  <vwc-selectable-box aria-label="Get located" tight style="inline-size: fit-content" clickable>
+  <vwc-selectable-box aria-label="Get located" tight style="inline-size: fit-content" clickable-box>
     <img style="display: block" src="https://doodleipsum.com/350x200?bg=7463D9&i=6af2fcb146f3b99cfa1371242b2eee55" alt="Get located" />
   </vwc-selectable-box>
 </vwc-layout>
