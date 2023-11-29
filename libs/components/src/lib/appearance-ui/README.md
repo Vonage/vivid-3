@@ -179,14 +179,7 @@ span {max-width: 80px;}
 <vwc-appearance-ui connotation="announcement" active appearance="outlined"></vwc-appearance-ui>
 
 <span><b>selected</b></span>
-<vwc-appearance-ui selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="accent" selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="cta" selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="success" selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="alert" selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="warning" selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="information" selected appearance="outlined"></vwc-appearance-ui>
-<vwc-appearance-ui connotation="announcement" selected appearance="outlined"></vwc-appearance-ui>
+<span class="one-example" class="one-example">not set</span>
 
 <span><b>selected & hover</b></span>
 <span class="one-example" class="one-example">not set</span>
@@ -243,7 +236,14 @@ span {max-width: 80px;}
 <vwc-appearance-ui connotation="announcement" active appearance="duotone"></vwc-appearance-ui>
 
 <span><b>selected</b></span>
-<span class="one-example" class="one-example">not set</span>
+<vwc-appearance-ui selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="accent" selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="cta" selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="success" selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="alert" selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="warning" selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="information" selected appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="announcement" selected appearance="duotone"></vwc-appearance-ui>
 
 <span><b>selected & hover</b></span>
 <span class="one-example" class="one-example">not set</span>
