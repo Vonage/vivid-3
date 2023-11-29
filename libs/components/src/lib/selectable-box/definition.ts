@@ -13,16 +13,19 @@ export const selectableBoxDefinition =
 		baseName: 'selectable-box',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 /**
  * @internal
  */
 export const selectableBoxRegistries = [
-	selectableBoxDefinition(), 
-	...checkboxRegistries, 
-	...focusRegistries, 
-	...radioRegistries, 
+	selectableBoxDefinition(),
+	...checkboxRegistries,
+	...focusRegistries,
+	...radioRegistries,
 ];
 
 /**
