@@ -2,6 +2,7 @@
 
 This is a visual presentation of all the states we have in all connotations.  
 Design in Figma for idle state can be found [here](https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=20330-124791&mode=design&t=Q0raKkM0qZVJmn7d-0).
+Design in Figam for all states for accent & cta [here](https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=11411-61542&mode=design&t=TLV67XkgT4uhsAbB-0)
 
 ## Filled
 ### Used in: 
