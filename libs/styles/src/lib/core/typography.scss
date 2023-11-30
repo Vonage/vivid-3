@@ -66,7 +66,7 @@ $selectors: (
 	}
 
 	#{map.get($selectors, "bold")} {
-		font: var(#{constants.$vvd-typography-base-bold});
+		font-weight: 600;
 	}
 
 	#{map.get($selectors, "code")} {
@@ -76,68 +76,63 @@ $selectors: (
 	.headline {
 		font: var(#{constants.$vvd-typography-headline});
 		margin-block: 40px;
-
-		&.tight {
-			margin-block: 0;
-		}
 	}
 
 	.subtitle {
 		font: var(#{constants.$vvd-typography-subtitle});
 		margin-block: 40px;
-
-		&.tight {
-			margin-block: 0;
-		}
 	}
 
 	h1,
 	.heading1 {
 		font: var(#{constants.$vvd-typography-heading-1});
 		margin-block: 32px;
-
-		&.tight {
-			margin-block: 0;
-		}
 	}
 
 	h2,
 	.heading2 {
 		font: var(#{constants.$vvd-typography-heading-2});
 		margin-block: 32px;
-
-		&.tight {
-			margin-block: 0;
-		}
 	}
 
 	h3,
 	.heading3 {
 		font: var(#{constants.$vvd-typography-heading-3});
 		margin-block: 24px;
-
-		&.tight {
-			margin-block: 0;
-		}
 	}
 
 	h4,
 	.heading4 {
 		font: var(#{constants.$vvd-typography-heading-4});
 		margin-block: 24px;
+	}
+
+	.headline,
+	.subtitle,
+	h1,
+	.heading1,
+	h2,
+	.heading2,
+	h3,
+	.heading3,
+	h4,
+	.heading4 {
+
+		#{map.get($selectors, "bold")} {
+			font-weight: 500;
+		}
 
 		&.tight {
 			margin-block: 0;
 		}
+
 	}
+
+
 
 	small,
 	figcaption {
 		font: var(#{constants.$vvd-typography-base-condensed});
-
-		#{map.get($selectors, "bold")} {
-			font: var(#{constants.$vvd-typography-base-condensed-bold});
-		}
 	}
 
 	sub,

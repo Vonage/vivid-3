@@ -4,15 +4,15 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: firm pale soft,
+	$shades: firm pale fierce faint,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: selectablebox,
-	$states: idle hover checked checkedAndHover,
-	$default: selectablebox
+	$appearances: duotone,
+	$states: idle hover selected selectedAndHover,
+	$default: duotone
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 

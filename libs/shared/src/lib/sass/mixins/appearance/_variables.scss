@@ -40,11 +40,6 @@ $states-mapping: (
       fill: var(#{connotation.get-connotation-token(soft)}),
       outline: transparent,
     ),
-    selectablebox: (
-      text: var(#{connotation.get-connotation-token(firm)}),
-      fill: var(#{constants.$vvd-color-canvas}),
-      outline: var(#{connotation.get-connotation-token(pale)}),
-    ),
   ),
   hover: (
     filled: (
@@ -216,7 +211,12 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(primary)}),
 			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
-		)
+		),
+    duotone: (
+      text: var(#{connotation.get-connotation-token(fierce)}),
+      fill: var(#{connotation.get-connotation-token(faint)}),
+      outline: var(#{connotation.get-connotation-token(firm)}),
+    )
   ),
 	selectedAndDisabled: (
 		listitem: (
@@ -236,11 +236,6 @@ $states-mapping: (
       fill: transparent,
       outline: var(#{connotation.get-connotation-token(primary)}),
     ),
-    selectablebox: (
-      text: var(#{connotation.get-connotation-token(firm)}),
-      fill: var(#{connotation.get-connotation-token(soft)}),
-      outline: var(#{connotation.get-connotation-token(pale)}),
-    ),
   ),
   checkedAndHover: (
     fieldset: (
@@ -252,11 +247,6 @@ $states-mapping: (
       text: var(#{connotation.get-connotation-token(primary)}),
       fill: var(#{connotation.get-connotation-token(faint)}),
       outline: var(#{connotation.get-connotation-token(primary)}),
-    ),
-    selectablebox: (
-      text: var(#{connotation.get-connotation-token(firm)}),
-      fill: var(#{connotation.get-connotation-token(soft)}),
-      outline: var(#{connotation.get-connotation-token(firm)}),
     ),
   )
 );
