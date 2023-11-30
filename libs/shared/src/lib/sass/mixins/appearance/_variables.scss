@@ -21,7 +21,7 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(firm)}),
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
 			outline: var(#{connotation.get-connotation-token(pale)}),
 		),
@@ -58,7 +58,7 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(firm)}),
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
 			outline: var(#{connotation.get-connotation-token(firm)}),
 		),
@@ -95,7 +95,7 @@ $states-mapping: (
 			outline: var(#{connotation.get-connotation-token(firm)}),
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: var(#{connotation.get-connotation-token(pale)}),
 		),
@@ -206,8 +206,8 @@ $states-mapping: (
 			outline: notset,
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
-			fill: var(#{connotation.get-connotation-token(faint)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: var(#{connotation.get-connotation-token(pale)}),
 		),
 		fieldset: (
@@ -243,8 +243,8 @@ $states-mapping: (
 			outline: notset,
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
-			fill: var(#{connotation.get-connotation-token(faint)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: var(#{connotation.get-connotation-token(pale)}),
 		),
 		fieldset: (
@@ -317,8 +317,8 @@ $states-mapping: (
 			outline: notset,
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
-			fill: var(#{connotation.get-connotation-token(faint)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: var(#{connotation.get-connotation-token(pale)}),
 		),
 		fieldset: (
@@ -354,8 +354,8 @@ $states-mapping: (
 			outline: notset,
 		),
 		duotone: (
-			text: var(#{connotation.get-connotation-token(fierce)}),
-			fill: var(#{connotation.get-connotation-token(faint)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: var(#{connotation.get-connotation-token(pale)}),
 		),
 		fieldset: (
