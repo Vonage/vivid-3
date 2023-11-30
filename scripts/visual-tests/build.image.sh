@@ -14,17 +14,25 @@ if [[ ! -f "./dockerfile" ]]; then
 	exit 1
 fi
 
-if [[ $# -ne 2 ]]; then
+if [[ $# -ne 3 ]]; then
 	echo "❗ Wrong number of arguments."
-	echo "Usage: build.image.sh builder version"
+	echo "Usage: build.image.sh builder version action"
 	echo "  builder: name of the builder to use."
 	echo "  version: new version of the image using x.y.z format."
-	echo "Example: ./scripts/visual-tests/build.image.sh mybuilder 2.0.1"
+	echo "  action: 'push' to push the image to docker hub, 'load' to load it locally for testing."
+	echo "Example: ./scripts/visual-tests/build.image.sh mybuilder 2.0.1 push"
 	echo
 	echo "Here's the list of installed builders:"
 	docker buildx ls
 	exit 1
 fi
 
-docker buildx use $1
-docker buildx build --platform linux/amd64,linux/arm64 -t drizzt99/vonage:$2 --push .
+docker buildx use "$1"
+
+platform="linux/amd64,linux/arm64"
+if [[ $3 == "load" ]]; then
+	# Cannot load multi-arch images, so we need to build for the current platform only
+	platform="linux/arm64"
+fi
+
+docker buildx build --platform "$platform" -t "drizzt99/vonage:$2" "--$3" .

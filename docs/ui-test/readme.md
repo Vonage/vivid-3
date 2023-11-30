@@ -58,7 +58,11 @@ After you have docker installed, run:
 
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
-`npx nx run components:e2e --task=update`
+`npx nx run components:e2e --update-snapshots`
+
+All arguments are passed to playwright, so if you want to update a single component's snapshots, run:
+
+`npx nx run components:e2e --update-snapshots button`
 
 ## Updating the docker image
 
@@ -66,7 +70,7 @@ The docker image comes with the browsers and playwright ready for action.  If, f
 
 1. Login to docker hub if you aren't already (`docker login`).
 2. If you don't already have a `docker-container`-based builder, you'll need to create one and activate it by [following the instructions from this page](https://docs.docker.com/build/building/multi-platform/#getting-started). (This is a one-time thing.)
-3. As the image you'll build is multi-platform, [it can't reside locally](https://github.com/docker/buildx/issues/166#issuecomment-544827163). This means you'll build, tag and push the image in a single command. From the `dockerfile` location, use `./scripts/visual-tests/build.image.sh mybuilder 2.x.x` using the builder created in step 2 and a new version number.
+3. As the image you'll build is multi-platform, [it can't reside locally](https://github.com/docker/buildx/issues/166#issuecomment-544827163). This means you'll build, tag and push the image in a single command. From the `dockerfile` location, use `./scripts/visual-tests/build.image.sh mybuilder 2.x.x push` using the builder created in step 2 and a new version number.
 4. Update the relevant `yml` files that are using this image to use the new version.
 
 ## Updating playwright version
