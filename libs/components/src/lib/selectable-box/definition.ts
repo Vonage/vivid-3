@@ -13,12 +13,20 @@ export const selectableBoxDefinition =
 		baseName: 'selectable-box',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 /**
  * @internal
  */
-export const selectableBoxRegistries = [selectableBoxDefinition(), ...checkboxRegistries, ...focusRegistries, ...radioRegistries];
+export const selectableBoxRegistries = [
+	selectableBoxDefinition(),
+	...checkboxRegistries,
+	...focusRegistries,
+	...radioRegistries,
+];
 
 /**
  * Registers the selectable-box element with the design system.
