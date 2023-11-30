@@ -73,7 +73,7 @@ $states-mapping: (
       outline: transparent,
     ),
     duotone: (
-      text: var(#{connotation.get-connotation-token(fierce)}),
+      text: var(#{connotation.get-connotation-token(firm)}),
       fill: transparent,
       outline: var(#{connotation.get-connotation-token(firm)}),
     ),
@@ -110,7 +110,7 @@ $states-mapping: (
       outline: transparent,
     ),
     duotone: (
-      text: var(#{connotation.get-connotation-token(fierce)}),
+      text: var(#{connotation.get-connotation-token(firm)}),
       fill: var(#{connotation.get-connotation-token(faint)}),
       outline: var(#{connotation.get-connotation-token(pale)}),
     )
@@ -213,7 +213,7 @@ $states-mapping: (
 			outline: transparent,
 		),
     duotone: (
-      text: var(#{connotation.get-connotation-token(fierce)}),
+      text: var(#{connotation.get-connotation-token(firm)}),
       fill: var(#{connotation.get-connotation-token(faint)}),
       outline: var(#{connotation.get-connotation-token(firm)}),
     )
