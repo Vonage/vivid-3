@@ -42,7 +42,7 @@ Set the `appearance` attribute to change the button's appearance.
 Use `icon` to set an icon to the button.
 View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the button's purpose.
+Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the button's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -213,7 +213,7 @@ If set, the `icon` attribute is ignored.
 ```
 
 ## Accessibility 
-When deciding between `aria-label`, `aria-labelledby` or `title`, keep in mind that `aria-label`, `aria-labelledby` are better for accessibility.  
+When deciding between `aria-label` or `title`, keep in mind that `aria-label` is better for accessibility.  
 The assistive technology will read the `aria-label` text rather than the `title` if both are set.
 
 ## Use Cases
