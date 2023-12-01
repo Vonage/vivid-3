@@ -99,9 +99,7 @@ export const DialogTemplate: (
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				returnValue="${x => x.returnValue}"
-				aria-labelledby="${x => x.ariaLabelledBy}"
 				aria-label="${x => x.ariaLabel}"
-				aria-describedby="${x => x.ariaDescribedBy}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">
