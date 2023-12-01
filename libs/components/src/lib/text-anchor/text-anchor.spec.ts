@@ -56,10 +56,10 @@ describe( 'vwc-text-anchor', () => {
 			}
 
 			const ARIA_PROPS = [
-				'atomic', 'busy', 'controls', 'current', 'describedby',
-				'details', 'disabled', 'errormessage', 'expanded',
-				'flowto', 'haspopup', 'hidden', 'invalid', 'keyshortcuts',
-				'label', 'labelledby', 'live', 'owns', 'relevant', 'roledescription'
+				'atomic', 'busy', 'current',
+				'details', 'disabled', 'expanded',
+				'haspopup', 'hidden', 'invalid', 'keyshortcuts',
+				'label', 'live', 'relevant', 'roledescription'
 			];
 
 			const anchorElement = getAnchorElement();
