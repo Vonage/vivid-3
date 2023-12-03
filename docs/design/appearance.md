@@ -26,7 +26,7 @@ Design in Figma for all states for accent & cta [here](https://www.figma.com/fil
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
@@ -85,7 +85,7 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
@@ -154,7 +154,7 @@ span {max-width: 80px;}
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
@@ -208,7 +208,7 @@ span {max-width: 80px;}
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
@@ -270,7 +270,7 @@ span {max-width: 80px;}
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
@@ -332,7 +332,7 @@ span {max-width: 80px;}
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
@@ -404,7 +404,7 @@ only `accent` is being used
 
 ```html preview
 <style>
-.grid {display: grid; grid-template-columns: 80px repeat(7, auto); row-gap: 12px; align-items: center;}
+.grid {display: grid; grid-template-columns: 80px repeat(7, auto); inline-size: 820px; row-gap: 12px; align-items: center;}
 span {max-width: 80px;}
 .not-set {grid-column: 1/-1;}
 .one-example {grid-column: 2/-1;}
