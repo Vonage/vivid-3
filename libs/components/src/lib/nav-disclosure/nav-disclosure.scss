@@ -37,8 +37,10 @@
 	inline-size: 100%;
 	min-block-size: $min-block-size;
 	padding-inline: $gutter;
+	padding-block: 10px;
 	text-decoration: none;
 	vertical-align: middle;
+
 
 	@include appearance.appearance;
 	@include connotation.connotation (nav-disclosure);
