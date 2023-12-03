@@ -27,6 +27,8 @@ const getClasses = ({connotation, appearance, hovered, active, selected, disable
  */
 export const AppearanceUiTemplate: (
 	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<AppearanceUi> = (
-) => html` <span class="${getClasses}">VIVID</span>`;
+	definition: FoundationElementDefinition,
+) => ViewTemplate<AppearanceUi> = () => {
+	return html` <span class="${getClasses}">${x => (x.connotation ? x.connotation : 'accent')}</span>
+	`;
+};

@@ -1,13 +1,28 @@
-# Appearance Ui
+# Appearance
 
-This is a visual presentation of all the states we have in all connotations.  
+---
 
+Vivid appearance is setting the way the component looks (ghost, outline, filled, etc).  
+Appearance is also connected to connotation and setting colors to each state in the appearance.
+
+---
+
+This is a visual presentation of all the states we have in all connotations in all appearances.  
+Not all components have all appearances or connotation.  
+
+**Design**  
 Design in Figma for idle state can be found [here](https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=20330-124791&mode=design&t=Q0raKkM0qZVJmn7d-0).  
 Design in Figma for all states for accent & cta [here](https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=11411-61542&mode=design&t=TLV67XkgT4uhsAbB-0)
 
+<hr>
+
 ## Filled
-### Used in: 
+### Used in
 `avatar`, `badge`, `banner`, `button`, `calender-event`, `fab`, `slider`, `split-button`, `switch`
+
+### Important to know
+`warning`, `information` and `announcement` connotation are not in use.
+
 
 ```html preview
 <style>
@@ -63,7 +78,10 @@ span {max-width: 80px;}
 
 ## Ghost
 ### Used in
-`accordion-item`, `action-group`, `button`, `combobox`, `list-box`, `nav`, `nav-item`, `nav-disclosure`, `progress-ring`, `select`, `split-button`, `tab`, `text-area`, `text-field`, `tree-item` 
+`accordion-item`, `action-group`, `button`, `combobox`, `list-box`, `nav`, `nav-item`, `nav-disclosure`, `progress-ring`, `select`, `split-button`, `tab`, `text-area`, `text-field`, `tree-item`
+
+### Important to know
+currently ghost appearance is not being used in `warning`, `information` and `announcement` connotation
 
 ```html preview
 <style>
@@ -381,6 +399,8 @@ same colors as ghost - only selected + selected and hover are different
 
 ### Used in
 `option`, `data-grid` , `menu-item`, `date-picker`
+### Important to know
+only `accent` is being used
 
 ```html preview
 <style>
@@ -447,13 +467,5 @@ span {max-width: 80px;}
 ```
 
 
-## comments
-- there are 7 connotation and the first one is without setting a connotation - falls to default (=accent)
-- Last update: 12.2023
-
-**Selected + Checked**
-- selected and checked are the same in terms of style + other behaviours.
-- Not all appearances has selected/checked state. theses are the one that does:
-	- selected: `data-grid`, `menu-item`, `nav-item`, `nav-disclosure`, `option`, `tab`, `tag`, `tree-item`
-	- checked: `checkbox`, `radio`, `selectable-box`, 
+## Last update: 12.2023
 

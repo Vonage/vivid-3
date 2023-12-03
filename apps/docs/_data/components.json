@@ -292,7 +292,7 @@
 	},
 	{
 		"title": "appearance-ui",
-		"status": "alpha",
+		"status": "underlying",
 		"markdown": "./libs/components/src/lib/appearance-ui/README.md"
 	}
 ]
