@@ -11,7 +11,7 @@ Each component is using at least one appearance.
 The appearance control the colors that are set for text, fill and outline.  
 The 3 colors are changing according to stats (idle, hover, disabled, etc).  
 
-![img.png](../assets/images/customization-variables.png)
+![appearance-colors](/assets/images/appearance-colors.png)
 
 ### Code
 Using appearance in components? follow the [ReadMe](https://github.com/Vonage/vivid-3/blob/a0d4f01958fb166abd750088aa49e22578285004/libs/shared/src/lib/sass/mixins/ReadMe.md)
