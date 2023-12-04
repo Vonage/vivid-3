@@ -262,6 +262,9 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 </div>
 
+## Accessibility 
+
+The Menu requires an accessible name. It is the consumer's concern to provide an `aria-label` to the Menu.
 
 ## Caveat
 

@@ -452,15 +452,27 @@ describe('vwc-menu', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+		beforeEach(async () => {
 			element.open = true;
+			element.ariaLabel = 'A11y label';
 			element.innerHTML = `
 				<div role="menuitem" id="id1">Menu Item 1</div>
 				<div role="menuitem" id="id2">Menu Item 2</div>
 			`;
 			await elementUpdated(element);
+		});
 
+		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should render the aria-label on the menu element', async () => {
+			const menu = element.shadowRoot?.querySelector('[role="menu"]');
+			expect(menu?.getAttribute('aria-label')).toBe('A11y label');
+		});
+
+		it('should render the element with a role of presentation', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
 		});
 	});
 

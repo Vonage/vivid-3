@@ -15,6 +15,7 @@ type AnchorType = string | HTMLElement;
  * @event close - Fired when the menu is closed
  */
 export class Menu extends FastMenu {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 
 	#observer?: MutationObserver;
 	#anchorEl: HTMLElement | null = null;

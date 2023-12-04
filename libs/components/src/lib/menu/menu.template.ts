@@ -39,7 +39,7 @@ export const MenuTemplate: (
 	}
 
 	return html<Menu>`
-		<template>
+		<template role="presentation">
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
@@ -54,6 +54,7 @@ export const MenuTemplate: (
 				<div
 					class="body"
 					role="menu"
+					aria-label="${x => x.ariaLabel}"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
 				>
