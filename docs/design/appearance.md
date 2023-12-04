@@ -6,15 +6,26 @@ Vivid appearance is setting the way the component looks (ghost, outline, filled,
 Appearance is also connected to connotation and setting colors to each state in the appearance.
 
 ---
+## How does it work?
+Each component is using at least one appearance.  
+The appearance control the colors that are set for text, fill and outline.  
+The 3 colors are changing according to stats (idle, hover, disabled, etc).  
 
-This is a visual presentation of all the states we have in all connotations in all appearances.  
-Not all components have all appearances or connotation.  
+![img.png](../assets/images/customization-variables.png)
 
-**Design**  
+### Code
+Using appearance in components? follow the [ReadMe](https://github.com/Vonage/vivid-3/blob/a0d4f01958fb166abd750088aa49e22578285004/libs/shared/src/lib/sass/mixins/ReadMe.md)
+
+### Design
 Design in Figma for idle state can be found [here](https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=20330-124791&mode=design&t=Q0raKkM0qZVJmn7d-0).  
 Design in Figma for all states for accent & cta [here](https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=11411-61542&mode=design&t=TLV67XkgT4uhsAbB-0)
 
-<hr>
+---
+
+This page is a visual presentation for all the states we have in all connotations in all appearances.  
+Not all components have all appearances or connotation.  
+
+---
 
 ## Filled
 ### Used in
