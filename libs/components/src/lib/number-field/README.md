@@ -158,7 +158,6 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 ## Accessibility
 
 - If no label is set - it is highly recommended that `aria-label` will be added.
-- `aria-labelledby` and `aria-describedby` can also be used.
 - The add / subtract buttons are automatically given a localized version of the words "Increment" and "Decrement" respectively. These can be overriden using `increment-button-aria-label` and `decrement-button-aria-label`.
 
 ```html
