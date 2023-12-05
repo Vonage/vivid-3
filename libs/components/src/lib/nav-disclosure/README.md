@@ -127,20 +127,3 @@ Use the `meta` slot to add additional content to the nav-disclosure.
   </vwc-nav-disclosure>
 <vwc-nav>
 ```
-
-### Padding - only for VQA
-
-Use the `meta` slot to add additional content to the nav-disclosure.
-
-```html preview
-<vwc-nav style="inline-size: 230px; display:block;">
-  <vwc-nav-item href="#" text="first item"></vwc-nav-item>
-  <vwc-nav-disclosure label="1st level item with long text" icon="profile">
-    <vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
-    <vwc-nav-item href="#" text="2nd level item with long text" aria-current="page"></vwc-nav-item>
-  </vwc-nav-disclosure>
-   <vwc-nav-item href="#" text="third item"></vwc-nav-item>
-    <vwc-nav-item href="#" text="forth item"></vwc-nav-item>
-<vwc-nav>
-```
-
