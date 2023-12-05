@@ -1,0 +1,21 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "description": "Vue Wrappers For Vivid",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@vonage/vivid": "^3.42.0",
+    "@vonage/vivid-vue": "*",
+    "glob": "^10.0.0",
+    "sass": "^1.61.0",
+    "vitepress": "^1.0.0-alpha.65",
+    "vue": "^3.2.47"
+  },
+  "scripts": {
+    "lint": "yarn run -T eslint --ext .vue src",
+    "lint:fix": "yarn run -T eslint --fix --ext .vue docs",
+    "docs:dev": "vitepress dev docs --open",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  }
+}

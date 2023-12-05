@@ -1,0 +1,28 @@
+{
+  "name": "generator",
+  "version": "0.0.1",
+  "scripts": {
+    "generate:components": "tsx src/generateComponents.ts",
+    "generate:webTypes": "tsx src/generateWebTypes.ts",
+    "generate:storybookTemplates": "tsx src/generateStorybookTemplates.ts",
+    "generate:docs": "tsx src/generateDocs.ts",
+    "update:icons": "tsx src/updateVividIcons.ts",
+    "lint": "yarn run -T eslint --ext .ts src",
+    "lint:fix": "yarn run -T eslint --fix --ext .ts src"
+  },
+  "dependencies": {
+    "@microsoft/fast-web-utilities": "^6.0.0",
+    "@vonage/vivid": "^3.42.0",
+    "node-fetch": "^3.3.1"
+  },
+  "devDependencies": {
+    "@microsoft/fast-foundation": "^2.47.1-0",
+    "@types/jsdom": "^21",
+    "@types/node": "^18.15.11",
+    "custom-elements-manifest": "^2.0.0",
+    "jsdom": "^21.1.1",
+    "markdown-table": "2.0.0",
+    "tsx": "^3.12.6",
+    "typescript": "^4.5.4"
+  }
+}
