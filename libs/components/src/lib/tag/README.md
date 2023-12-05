@@ -113,17 +113,7 @@ Toggle the `selected` attribute to select and deselect the tag.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label="selectable" selectable></vwc-tag>
-	  <vwc-tag label="selectable" selectable selected></vwc-tag>
-	  <vwc-tag label="selectable" selectable connotation="cta"></vwc-tag>
-	  <vwc-tag label="selectable" selectable selected connotation="cta"></vwc-tag>
-</vwc-tag-group>
-<hr>
-<vwc-tag-group>
-  <vwc-tag label="selectable" selectable  appearance='duotone'></vwc-tag>
-	  <vwc-tag label="selectable" selectable selected  appearance='duotone'></vwc-tag>
-	  <vwc-tag label="selectable" selectable connotation="cta"  appearance='duotone'></vwc-tag>
-	  <vwc-tag label="selectable" selectable selected connotation="cta"  appearance='duotone'></vwc-tag>
+  <vwc-tag label="selectable" selectable selected></vwc-tag>
 </vwc-tag-group>
 ```
 
