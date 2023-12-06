@@ -4,6 +4,15 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.42.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.42.0...vivid-v3.42.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* **nav-item, nav-disclosure:** add padding-block (VIV-1334) ([#1476](https://github.com/Vonage/vivid-3/issues/1476)) ([8b0f66d](https://github.com/Vonage/vivid-3/commit/8b0f66dc6ae61ad5afb1a1221e59faa58d165fd9))
+* **note:** adjust accent background color to other connotations (VIV-1397) ([#1473](https://github.com/Vonage/vivid-3/issues/1473)) ([3110f92](https://github.com/Vonage/vivid-3/commit/3110f92683d0c4fb868d04e1f3aa8cda2373742e))
+* **tag:** selected state colors (VIV-1425) ([#1472](https://github.com/Vonage/vivid-3/issues/1472)) ([83da9cb](https://github.com/Vonage/vivid-3/commit/83da9cba2f8886e559d42229248513d66da23528))
+
 ## [3.42.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.41.0...vivid-v3.42.0) (2023-11-30)
 
 
