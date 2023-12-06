@@ -1,5 +1,5 @@
 import { onBeforeMount, Ref, ref } from 'vue';
-import { CustomComponentPrefix } from '@/init/prefix';
+import { CustomComponentPrefix } from '../init/prefix';
 
 /**
  * Convenience function to register component with prefix set during initialisation.

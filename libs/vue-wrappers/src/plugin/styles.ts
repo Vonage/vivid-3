@@ -1,9 +1,9 @@
 // @ts-ignore
-import tokensVivid2CompatCss from '@vonage/vivid/styles/tokens/vivid-2-compat.css?raw';
+import tokensVivid2CompatCss from '../../../../dist/libs/styles/tokens/vivid-2-compat.css?raw';
 // @ts-ignore
-import coreThemeCss from '@vonage/vivid/styles/core/theme.css?raw';
+import coreThemeCss from '../../../../dist/libs/styles/core/theme.css?raw';
 // @ts-ignore
-import coreTypographyCss from '@vonage/vivid/styles/core/typography.css?raw';
+import coreTypographyCss from '../../../../dist/libs/styles/core/typography.css?raw';
 
 export interface Style {
   name: string;

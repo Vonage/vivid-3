@@ -63,7 +63,7 @@ export function generateDocPageForComponent({
   methods,
 }: ComponentDef): string {
   let text = `# ${wrappedClassName}
-  
+
 ${escapeMarkdown(description)}\n`;
   if (attributes.length > 0) {
     text += `\n## Props

@@ -45,10 +45,10 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
     { name: 'defineComponent', fromModule: vueModule },
     { name: 'ref', fromModule: vueModule },
     { name: 'h', fromModule: vueModule },
-    { name: 'isVue2', fromModule: '@/utils/vue' },
+    { name: 'isVue2', fromModule: '../../utils/vue' },
     { name: 'VNodeData', fromModule: vueModule },
     { name: componentDef.registerFunctionName, fromModule: '@vonage/vivid' },
-    { name: 'registerComponent', fromModule: '@/utils/register' },
+    { name: 'registerComponent', fromModule: '../../utils/register' },
   ];
 
   if (componentDef.attributes.length > 0) {
@@ -144,7 +144,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
     )
     .join(',');
 
-  if (namedSlotsSource) imports.push({ name: 'handleNamedSlot', fromModule: '@/utils/slots' });
+  if (namedSlotsSource) imports.push({ name: 'handleNamedSlot', fromModule: '../../utils/slots' });
 
   const renderAttributeType = (type: TypeUnion): string => {
     const values = Array.from(new Set(type.map(t => t.vuePropType)).values());
@@ -214,8 +214,8 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
   const renderMethodBody = isVue3Stub
     ? 'return null;'
     : `
-    if (isVue2) { 
-        return h(this.componentName, { 
+    if (isVue2) {
+        return h(this.componentName, {
             ref: 'element',
             attrs: { ${propsV2Src} },
             class: 'vvd-component',
@@ -225,9 +225,9 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
             ${hasDefaultSlot ? `this.$slots.default,` : ''}
             ${namedSlotsSource}
         ]);
-      } 
+      }
       // @ts-ignore
-      return h(this.componentName, { 
+      return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
           ${[propsV3Src, eventsV3Src].filter(Boolean).join(',')}
@@ -273,12 +273,12 @@ export default defineComponent({
   ],
   setup(props, ctx) {
     const componentName = registerComponent('${componentDef.name}', ${componentDef.registerFunctionName});
-    
+
     const element = ref<${componentDef.className} | null>(null);
     ctx.expose({
       ${methodDefinitionsSrc}
     });
-    
+
     return { componentName, element };
   },
   render() {

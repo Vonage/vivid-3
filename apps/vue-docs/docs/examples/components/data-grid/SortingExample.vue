@@ -7,7 +7,8 @@
         cell-type="columnheader"
         role="columnheader"
         :aria-sort="column.sortDirection"
-        >{{ column.title }}
+      >
+        {{ column.title }}
       </VDataGridCell>
     </VDataGridRow>
     <VDataGridRow v-for="employee in data" :key="employee.id">

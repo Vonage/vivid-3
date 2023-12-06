@@ -1,48 +1,22 @@
 {
   "name": "@vonage/vivid-vue",
-  "version": "3.23.0",
+  "version": "3.41.0",
   "description": "A Vue wrapper library for Vivid components.",
   "author": "Vonage",
   "license": "ISC",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.es.js",
-  "types": "./dist/index.d.ts",
-  "web-types": "./dist/web-types.json",
+  "main": "./index.umd.js",
+  "module": "./index.es.js",
+  "types": "./index.d.ts",
+  "web-types": "./web-types.json",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "types": "./index.d.ts",
+      "import": "./index.es.js",
+      "require": "./index.umd.js"
     }
-  },
-  "scripts": {
-    "lint": "yarn run -T eslint --ext .ts src",
-    "lint:fix": "yarn run -T eslint --fix --ext .ts src",
-    "build:lib": "vite build",
-    "build:types": "yarn run -T tsc --emitDeclarationOnly && tsc-alias && tsx scripts/buildTypings.ts",
-    "clean": "rimraf --glob 'src/generated/components/*' && rimraf dist"
   },
   "peerDependencies": {
     "vue": "^2.7.0 || >=3.0.0"
   },
-  "dependencies": {
-    "@vonage/vivid": "^3.42.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.15.11",
-    "glob": "^8.0.3",
-    "glob-promise": "^6.0.2",
-    "rimraf": "^5.0.1",
-    "tsc-alias": "^1.8.5",
-    "tsx": "^3.12.7",
-    "vite": "^4.2.1",
-    "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-vue2": "^2.0.3",
-    "vue": "^2.7.8",
-    "vue-template-compiler": "^2.7.14",
-    "vue3": "npm:vue@3.3.7"
-  }
+  "dependencies": {}
 }

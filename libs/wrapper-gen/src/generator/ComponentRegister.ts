@@ -1,4 +1,4 @@
-import fs from 'fs';
+import * as fs from 'fs';
 import { execSync } from 'child_process';
 import * as path from 'path';
 import { ComponentDef } from './ComponentDef';
@@ -15,15 +15,15 @@ import { icons } from './icons';
 type DefinitionOverride = (def: ComponentDef) => void;
 type ComponentSpecs = [string, DefinitionOverride];
 
-const LibraryGeneratedFolder = '../lib/src/generated';
+const LibraryGeneratedFolder = '../vue-wrappers/src/generated';
 
-const ComponentsFolder = '../lib/src/generated/components';
+const ComponentsFolder = '../vue-wrappers/src/generated/components';
 
-const LibraryDistFolder = '../lib/dist';
+const LibraryDistFolder = '../vue-wrappers';
 
-const StorybooksTemplatesFolder = '../stories/src/generated';
+const StorybooksTemplatesFolder = '../vue-wrappers/stories/generated';
 
-const DocsComponentsFolder = '../docs/docs/components';
+const DocsComponentsFolder = '../../apps/vue-docs/docs/components';
 
 function generateComponentFor(component: ComponentDef) {
   fs.writeFileSync(
@@ -35,6 +35,7 @@ function generateComponentFor(component: ComponentDef) {
     path.resolve(path.join(ComponentsFolder, `${component.wrappedClassName}.vue3.ts`)),
     renderComponent(component, true)
   );
+  // eslint-disable-next-line no-console
   console.log(`${component.wrappedClassName} generated.`);
   return component.wrappedClassName;
 }
@@ -52,9 +53,9 @@ function generateStorybookTemplateFor(component: ComponentDef) {
 
 function formatFiles(filesArg: string) {
   // Run prettier first as eslint will destroy the code otherwise
-  execSync(`yarn run -T prettier --write ${filesArg}`);
+  execSync(`npx prettier --write ${filesArg}`);
 
-  execSync(`yarn run -T eslint --fix ${filesArg}`);
+  execSync(`npx eslint --fix ${filesArg}`);
 }
 
 function generateDocsFor(component: ComponentDef) {

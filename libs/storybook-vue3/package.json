@@ -1,9 +1,5 @@
 {
-  "name": "vue3",
-  "version": "0.0.1",
-  "dependencies": {
-    "@vonage/vivid-vue": "*"
-  },
+  "name": "storybook-vue3",
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.2",
     "@storybook/addon-interactions": "^7.0.2",
@@ -11,21 +7,14 @@
     "@storybook/blocks": "^7.0.2",
     "@storybook/builder-vite": "^7.0.2",
     "@storybook/testing-library": "^0.0.14-next.2",
-    "@storybook/vue": "^7.0.2",
-    "@storybook/vue-vite": "^7.0.2",
     "@storybook/vue3": "^7.0.2",
     "@storybook/vue3-vite": "^7.0.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitejs/plugin-vue": "^4.1.0",
-    "@vonage/vivid": "^3.42.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.2",
-    "vite": "^4.2.1",
     "vue": "^3.2.45"
-  },
-  "scripts": {
-    "storybook:vue3": "storybook dev -p 6003"
   }
 }

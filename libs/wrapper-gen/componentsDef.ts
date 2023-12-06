@@ -7,7 +7,7 @@ const vividIconType = [
   {
     text: `IconId`,
     vuePropType: 'String',
-    importFromModule: '@/generated/icons',
+    importFromModule: '../icons',
     resolvedType: icons.map(icon => ({ text: `'${icon}'`, vuePropType: 'String' })),
   },
 ];

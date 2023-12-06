@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
 import components from '../components/_index.json';
 import { getComponentsMenu } from "./components";
-import { version } from '../../../lib/package.json';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { version } from '../../../../libs/components/package.json';
 
 
 // https://vitepress.dev/reference/site-config
@@ -21,7 +22,7 @@ export default defineConfig({
         items: [
           {
             text: 'Releases',
-            link: 'https://github.com/Vonage/vivid-vue/releases',
+            link: 'https://github.com/Vonage/vivid-3/releases',
           },
         ],
       },
@@ -50,7 +51,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Vonage/vivid-vue' }
+      { icon: 'github', link: 'https://github.com/Vonage/vivid-3' }
     ]
   },
   head: [
@@ -71,4 +72,5 @@ export default defineConfig({
       crossorigin: "anonymous"
     }]
   ],
+	outDir: '../../../dist/apps/docs/vivid-vue'
 })

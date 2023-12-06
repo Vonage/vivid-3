@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { promise as glob } from 'glob-promise';
+import * as glob from 'glob';
 
 /**
  * Replace imports from 'vue3' with 'vue', which is the name of the package that consumers will have installed.
@@ -36,8 +36,8 @@ const addTsIgnoreToPlugin = (filePath: string) => {
  * We ignore the error with @ts-ignore, so that the type will evaluate to any, which we can then check with IsAny.
  */
 const generateVueVersionSwitch = async () => {
-  const componentTypesPath = path.join(__dirname, '../dist/generated/components');
-  const vue3Definitions = await glob('*.vue3.d.ts', { cwd: componentTypesPath });
+  const componentTypesPath = path.join(__dirname, '../../../dist/libs/vue-wrappers/generated/components');
+  const vue3Definitions = glob.sync('*.vue3.d.ts', { cwd: componentTypesPath });
 
   for (const vue3Definition of vue3Definitions) {
     updateVue3Imports(path.join(componentTypesPath, vue3Definition));
@@ -68,8 +68,8 @@ export default _default;
 };
 
 const main = async () => {
-  updateVue3Imports(path.join(__dirname, '../dist/plugin/index.d.ts'));
-  addTsIgnoreToPlugin(path.join(__dirname, '../dist/plugin/index.d.ts'));
+  updateVue3Imports(path.join(__dirname, '../../../dist/libs/vue-wrappers/plugin/index.d.ts'));
+  addTsIgnoreToPlugin(path.join(__dirname, '../../../dist/libs/vue-wrappers/plugin/index.d.ts'));
   await generateVueVersionSwitch();
 };
 

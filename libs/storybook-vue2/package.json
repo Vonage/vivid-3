@@ -1,9 +1,5 @@
 {
-  "name": "vue2",
-  "version": "0.0.1",
-  "dependencies": {
-    "@vonage/vivid-vue": "*"
-  },
+  "name": "storybook-vue2",
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.2",
     "@storybook/addon-interactions": "^7.0.2",
@@ -15,14 +11,9 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitejs/plugin-vue": "^4.1.0",
-    "@vonage/vivid": "^3.42.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.2",
-    "vite": "^4.2.1",
-    "vue": "^2.7.8"
-  },
-  "scripts": {
-    "storybook:vue2": "storybook dev -p 6002"
+    "vue": "2.7.8"
   }
 }
