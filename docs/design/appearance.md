@@ -215,7 +215,7 @@ span {max-width: 80px;}
 ```
 ## Duotone
 ### Used in
-`avatar`, `badge`, `tag`
+`avatar`, `badge`, `selectable-box`, `tag`
 
 ```html preview
 <style>
@@ -262,7 +262,13 @@ span {max-width: 80px;}
 <vwc-appearance-ui connotation="announcement" selected appearance="duotone"></vwc-appearance-ui>
 
 <span><b>selected & hover</b></span>
-<span class="one-example" class="one-example">not set</span>
+<vwc-appearance-ui connotation="accent" selected hovered appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="cta" selected hovered appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="success" selected hovered appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="alert" selected hovered appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="warning" selected hovered appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="information" selected hovered appearance="duotone"></vwc-appearance-ui>
+<vwc-appearance-ui connotation="announcement" selected hovered appearance="duotone"></vwc-appearance-ui>
 
 <span><b>disabled</b></span>
 <vwc-appearance-ui disabled appearance="duotone" class="one-example"></vwc-appearance-ui>
