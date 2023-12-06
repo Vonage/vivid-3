@@ -39,6 +39,11 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(primary)}),
 			fill: transparent,
 			outline: transparent,
+		),
+		harmony: (
+			text: var(#{connotation.get-connotation-token(fierce)}),
+			fill: var(#{connotation.get-connotation-token(faint)}),
+			outline: var(#{connotation.get-connotation-token(intermediate)}),
 		)
 	),
 	hover: (
