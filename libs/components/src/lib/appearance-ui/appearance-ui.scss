@@ -14,6 +14,11 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	column-gap: 8px;
+}
 .base {
 	@include connotation.connotation (appearanceUI);
 	@include appearance.appearance;

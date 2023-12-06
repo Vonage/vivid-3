@@ -7,9 +7,8 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { AppearanceUi } from './appearance-ui';
 
-const getClasses = ({connotation, appearance, hovered, active, selected, disabled, readonly} : AppearanceUi) => classNames(
+const getClasses = ({appearance, hovered, active, selected, disabled, readonly} : AppearanceUi) => classNames(
 	'base',
-	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	['hover', Boolean(hovered)],
 	['active', Boolean(active)],
@@ -29,6 +28,14 @@ export const AppearanceUiTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition,
 ) => ViewTemplate<AppearanceUi> = () => {
-	return html` <span class="${getClasses}">${x => (x.connotation ? x.connotation : 'accent')}</span>
+	return html` <div class="wrapper">
+		<span class="${getClasses} connotation-accent">accent</span>
+		<span class="${getClasses} connotation-cta">cta</span>
+		<span class="${getClasses} connotation-success">success</span>
+		<span class="${getClasses} connotation-alert">alert</span>
+		<span class="${getClasses} connotation-warning">warning</span>
+		<span class="${getClasses} connotation-information">information</span>
+		<span class="${getClasses} connotation-announcement">announcement</span>
+	</div>
 	`;
 };

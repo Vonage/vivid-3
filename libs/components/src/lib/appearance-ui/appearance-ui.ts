@@ -1,22 +1,9 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type {
-	Appearance, Connotation
+	Appearance
 } from '../enums.js';
 
-/**
- * Types of button connotation.
- *
- * @public
- */
-export type AppearanceUIConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Alert
-| Connotation.Warning
-| Connotation.Information
-| Connotation.Announcement>;
 
 /**
  * Types of appearances.
@@ -40,15 +27,6 @@ Appearance.Filled
  * @public
  */
 export class AppearanceUi extends FoundationElement {
-	/**
-	 * The connotation.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: connotation
-	 */
-	@attr connotation?: AppearanceUIConnotation;
-
 	/**
 	 * The appearance.
 	 *
