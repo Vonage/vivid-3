@@ -14,14 +14,17 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 
+:host {
+	// using field-set as appearance causes accent to look like a field.
+	// if we will be using fieldset to components other then input types - we may consider adding appearance.
+	--_vvd-note-accent-backdrop: var(--vvd-note-accent-backdrop, var(#{constants.$vvd-color-neutral-50}));
+}
 
 .base {
 	@include connotation.connotation (note);
 	@include appearance.appearance;
 
-	// using field-set as appearance causes accent to look like a field.
-	// if we will be using fieldset to components other then input types - we may consider adding appearance.
-	--vvd-note-accent-backdrop: var(#{constants.$vvd-color-neutral-50});
+	--vvd-note-accent-backdrop: var(--_vvd-note-accent-backdrop);
 
 	display: flex;
 	align-items: flex-start;
