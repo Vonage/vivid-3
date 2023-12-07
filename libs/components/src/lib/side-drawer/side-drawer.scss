@@ -4,6 +4,9 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 
+:host {
+	display: block;
+}
 
 $inline-size: 280px;
 
@@ -35,6 +38,10 @@ $inline-size: 280px;
 		}
 	}
 
+	.side-drawer-app-content {
+		block-size: 100%;
+	}
+
 	&.open:not(.modal) {
 		&.trailing + {
 			.side-drawer-app-content {
@@ -53,6 +60,7 @@ $inline-size: 280px;
 		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 }
+
 
 .scrim {
 	@include scrim-mixins.scrim-variables;
