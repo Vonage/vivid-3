@@ -13,7 +13,8 @@
     },
 		{
 			"title": "appearance",
-			"markdown": "./docs/design/appearance.md"
+			"markdown": "./docs/design/appearance.md",
+			"status": "underlying"
 		},
     {
         "title": "sizing",
