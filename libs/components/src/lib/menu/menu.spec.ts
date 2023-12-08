@@ -114,6 +114,28 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('esc key press', () => {
+		it('should set "open" to false', async () => {
+			element.open = true;
+			element.autoDismiss = true;
+
+			await elementUpdated(element);
+
+			getBaseElement(element)
+				.dispatchEvent(new KeyboardEvent('keydown', {
+					'key': 'Escape',
+					bubbles: true,
+					composed: true
+				}));
+			
+
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
 	describe('focus', () => {
 		function createMenuItem(type = 'menuitem') {
 			const div = document.createElement('div');

@@ -42,6 +42,11 @@ button.addEventListener('click', toggleMenu);
 const menu = document.querySelector('vwc-menu#dark-mode-menu');
 menu.addEventListener('click', event => setTheme(event.target.text?.toLowerCase()));
 
+menu.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === 'Space')
+        return setTheme(event.target.text?.toLowerCase());
+});
+
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));
 
 setTheme(theme);
