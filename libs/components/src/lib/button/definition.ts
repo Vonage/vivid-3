@@ -12,6 +12,8 @@ import { buttonTemplate as template } from './button.template';
 
 export type { ButtonAppearance, ButtonConnotation, ButtonShape, ButtonSize } from './button';
 
+export {Button} from './button';
+
 /**
  *
  * @internal

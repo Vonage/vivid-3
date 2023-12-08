@@ -22,6 +22,22 @@
 			"style": "scss",
 			"linter": "eslint",
 			"unitTestRunner": "jest"
+		},
+		"@nx/react": {
+			"application": {
+				"style": "scss",
+				"linter": "eslint",
+				"bundler": "vite",
+				"babel": true
+			},
+			"component": {
+				"style": "scss"
+			},
+			"library": {
+				"style": "scss",
+				"linter": "eslint",
+				"unitTestRunner": "none"
+			}
 		}
 	},
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -35,6 +51,9 @@
 		},
 		"lint": {
 			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+		},
+		"e2e": {
+			"inputs": ["default", "^production"]
 		}
 	},
 	"namedInputs": {
