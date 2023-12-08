@@ -4,6 +4,35 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.42.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.42.0...vivid-v3.42.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* **nav-item, nav-disclosure:** add padding-block (VIV-1334) ([#1476](https://github.com/Vonage/vivid-3/issues/1476)) ([8b0f66d](https://github.com/Vonage/vivid-3/commit/8b0f66dc6ae61ad5afb1a1221e59faa58d165fd9))
+* **note:** adjust accent background color to other connotations (VIV-1397) ([#1473](https://github.com/Vonage/vivid-3/issues/1473)) ([3110f92](https://github.com/Vonage/vivid-3/commit/3110f92683d0c4fb868d04e1f3aa8cda2373742e))
+* **tag:** selected state colors (VIV-1425) ([#1472](https://github.com/Vonage/vivid-3/issues/1472)) ([83da9cb](https://github.com/Vonage/vivid-3/commit/83da9cba2f8886e559d42229248513d66da23528))
+
+## [3.42.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.41.0...vivid-v3.42.0) (2023-11-30)
+
+
+### Features
+
+* **checkbox:** add input event and documentation (VIV-1240) ([#1457](https://github.com/Vonage/vivid-3/issues/1457)) ([f05d348](https://github.com/Vonage/vivid-3/commit/f05d348c6d1094a7d0c7e0ef2056d9ff92b22adf))
+* **selectable-box:** deprecates clickable prop in favour of clickable-box ([21b6ec6](https://github.com/Vonage/vivid-3/commit/21b6ec6ae3a0385028ccaeb8213a40cb434ef4df))
+* **split-button:** add success and alert connotations (VIV-1404) ([#1459](https://github.com/Vonage/vivid-3/issues/1459)) ([4cf7a14](https://github.com/Vonage/vivid-3/commit/4cf7a14c05aba28a2c800a17d0c1087e7a5c5a9b))
+* **ui-tests:** pass arguments to docker container (VIV-1332) ([#1462](https://github.com/Vonage/vivid-3/issues/1462)) ([29ee6f9](https://github.com/Vonage/vivid-3/commit/29ee6f9c8aaa3ecc43f63da99afbbaa38c9cc06b))
+
+
+### Bug Fixes
+
+* **avatar:** add missing color for subtle appearance (VIV-1409) ([#1470](https://github.com/Vonage/vivid-3/issues/1470)) ([d29423e](https://github.com/Vonage/vivid-3/commit/d29423e641fbe366e5340ed7f888bd054365b624))
+* **calendar:** small a11y fixes (VIV-1390) ([#1464](https://github.com/Vonage/vivid-3/issues/1464)) ([8f2124e](https://github.com/Vonage/vivid-3/commit/8f2124e6e924fccf8a52a0dcd26f926f0a75c630))
+* **date-picker,date-range-picker,slider:** fix component being focusable in safari (VIV-1331) ([#1463](https://github.com/Vonage/vivid-3/issues/1463)) ([1d54c78](https://github.com/Vonage/vivid-3/commit/1d54c7843d259eb9641b73ace60d1d99a66c8853))
+* **date-picker:** wrap button with span for role="gridcell" (VIV-1391) ([#1456](https://github.com/Vonage/vivid-3/issues/1456)) ([9b2337c](https://github.com/Vonage/vivid-3/commit/9b2337c385f7e6ef11227c5a68205a9932ea389a))
+* **selectable-box:** ui focus test (VIV-000) ([#1471](https://github.com/Vonage/vivid-3/issues/1471)) ([02a6927](https://github.com/Vonage/vivid-3/commit/02a692797d43cd2739a9fae581bcc43d78f4e583))
+* **tabs:** indicator border-radius (VIV-1419) ([#1465](https://github.com/Vonage/vivid-3/issues/1465)) ([250fa92](https://github.com/Vonage/vivid-3/commit/250fa92860d992cdacea61ba75f7327ca11d750c))
+
 ## [3.41.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.40.0...vivid-v3.41.0) (2023-11-22)
 
 
