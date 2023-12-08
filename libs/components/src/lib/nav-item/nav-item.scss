@@ -55,6 +55,7 @@
 	}
 
 	&:not(.icon-only) {
+		padding-block: 10px;
 		padding-inline: $gutter;
 	}
 }
