@@ -63,6 +63,7 @@ describe('vwc-tabs', () => {
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.activeid).toEqual('apps');
 			expect(element.activetab).toBeTruthy();
+			expect(element.tight).toBeFalsy();
 		});
 	});
 
@@ -195,6 +196,16 @@ describe('vwc-tabs', () => {
 				expect(scrollToSpy)
 					.toHaveBeenCalledWith({top: offsetTop - scrollHeight / 2 + offsetHeight / 2, left: 0, behavior: 'smooth'});
 			});
+		});
+	});
+
+	describe('tight', () => {
+		it('should set tight property', async () => {
+			const tight = true;
+			expect(getBaseElement(element).classList.contains('tight')).toBeFalsy();
+			element.tight = tight;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('tight')).toBeTruthy();
 		});
 	});
 

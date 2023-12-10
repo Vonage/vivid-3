@@ -95,6 +95,10 @@
 		overflow-x: hidden;
 		overflow-y: auto;
 	}
+
+	:not(.base.tight) & {
+		padding: 16px;
+	}
 }
 
 .active-indicator {

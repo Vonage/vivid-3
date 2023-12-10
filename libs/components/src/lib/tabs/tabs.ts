@@ -22,14 +22,22 @@ export type TabsConnotation = Extract<Connotation,
 export class Tabs extends FoundationTabs {
 
 	@observable tablist?: HTMLElement;
+
 	/**
 	 * The connotation the tabs should have.
 	 *
 	 * @public
-	 * @remarks
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: TabsConnotation;
+
+	/**
+	 *
+	 * @public
+	 * HTML Attribute: tight
+	 */
+	@attr({mode: 'boolean'}) tight = false;
+
 	connotationChanged() {
 		this.#updateTabsConnotation();
 	}

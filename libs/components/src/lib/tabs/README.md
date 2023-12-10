@@ -10,34 +10,18 @@ The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` element
 ```
 
 ```html preview full
-<vwc-tabs activeid="apps">
-    <vwc-tab label="Appetizers" id="apps"></vwc-tab>
-    <vwc-tab label="Entrees" id="entrees"></vwc-tab>
-    <vwc-tab label="Desserts" id="desserts"></vwc-tab>
-    <vwc-tab-panel id="appsPanel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
+<vwc-tabs>
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+        Tab one content
     </vwc-tab-panel>
-    <vwc-tab-panel id="entreesPanel">
-        <ol>
-            <li>Mushroom-Sausage Ragù</li>
-            <li>Tomato Bread Soup with Steamed Mussels</li>
-            <li>Grilled Fish with Artichoke Caponata</li>
-            <li>Celery Root and Mushroom Lasagna</li>
-            <li>Osso Buco with Citrus Gremolata</li>
-        </ol>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
     </vwc-tab-panel>
-    <vwc-tab-panel id="dessertsPanel">
-        <ol>
-            <li>Tiramisu</li>
-            <li>Spumoni</li>
-            <li>Limoncello and Ice Cream with Biscotti</li>
-        </ol>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
     </vwc-tab-panel>
 </vwc-tabs>
 ```
@@ -52,34 +36,18 @@ Add a `orientation` attribute to control the orientation.
 - Default: `'horizontal'`
 
 ```html preview full
-<vwc-tabs activeid="entrees" orientation="vertical">
-    <vwc-tab label="Appetizers" id="apps"></vwc-tab>
-    <vwc-tab label="Entrees" id="entrees"></vwc-tab>
-    <vwc-tab label="Desserts" id="desserts"></vwc-tab>
-    <vwc-tab-panel id="appsPanel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
+<vwc-tabs orientation="vertical">
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+        Tab one content
     </vwc-tab-panel>
-    <vwc-tab-panel id="entreesPanel">
-        <ol>
-            <li>Mushroom-Sausage Ragù</li>
-            <li>Tomato Bread Soup with Steamed Mussels</li>
-            <li>Grilled Fish with Artichoke Caponata</li>
-            <li>Celery Root and Mushroom Lasagna</li>
-            <li>Osso Buco with Citrus Gremolata</li>
-        </ol>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
     </vwc-tab-panel>
-    <vwc-tab-panel id="dessertsPanel">
-        <ol>
-            <li>Tiramisu</li>
-            <li>Spumoni</li>
-            <li>Limoncello and Ice Cream with Biscotti</li>
-        </ol>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
     </vwc-tab-panel>
 </vwc-tabs>
 ```
@@ -91,34 +59,18 @@ Add a `orientation` attribute to control the orientation.
 Setting a connotation will only affect the active tab
 
 ```html preview full
-<vwc-tabs activeid="entrees" connotation="cta">
-    <vwc-tab label="Appetizers" id="apps"></vwc-tab>
-    <vwc-tab label="Entrees" id="entrees"></vwc-tab>
-    <vwc-tab label="Desserts" id="desserts"></vwc-tab>
-    <vwc-tab-panel id="appsPanel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
+<vwc-tabs connotation="cta">
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+        Tab one content
     </vwc-tab-panel>
-    <vwc-tab-panel id="entreesPanel">
-        <ol>
-            <li>Mushroom-Sausage Ragù</li>
-            <li>Tomato Bread Soup with Steamed Mussels</li>
-            <li>Grilled Fish with Artichoke Caponata</li>
-            <li>Celery Root and Mushroom Lasagna</li>
-            <li>Osso Buco with Citrus Gremolata</li>
-        </ol>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
     </vwc-tab-panel>
-    <vwc-tab-panel id="dessertsPanel">
-        <ol>
-            <li>Tiramisu</li>
-            <li>Spumoni</li>
-            <li>Limoncello and Ice Cream with Biscotti</li>
-        </ol>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
     </vwc-tab-panel>
 </vwc-tabs>
 ```
@@ -131,34 +83,42 @@ Add an `activeid` attribute of the active tab.
 - Default: `''`
 
 ```html preview full
-<vwc-tabs activeid="entrees">
-    <vwc-tab label="Appetizers" id="apps"></vwc-tab>
-    <vwc-tab label="Entrees" id="entrees"></vwc-tab>
-    <vwc-tab label="Desserts" id="desserts"></vwc-tab>
-    <vwc-tab-panel id="appsPanel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
+<vwc-tabs activeid="two">
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+        Tab one content
     </vwc-tab-panel>
-    <vwc-tab-panel id="entreesPanel">
-        <ol>
-            <li>Mushroom-Sausage Ragù</li>
-            <li>Tomato Bread Soup with Steamed Mussels</li>
-            <li>Grilled Fish with Artichoke Caponata</li>
-            <li>Celery Root and Mushroom Lasagna</li>
-            <li>Osso Buco with Citrus Gremolata</li>
-        </ol>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
     </vwc-tab-panel>
-    <vwc-tab-panel id="dessertsPanel">
-        <ol>
-            <li>Tiramisu</li>
-            <li>Spumoni</li>
-            <li>Limoncello and Ice Cream with Biscotti</li>
-        </ol>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
+    </vwc-tab-panel>
+</vwc-tabs>
+```
+
+### Tight
+
+Enabling the `tight` member will remove padding from the tabs panel.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview full
+<vwc-tabs tight>
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+        Tab one content
+    </vwc-tab-panel>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
+    </vwc-tab-panel>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
     </vwc-tab-panel>
 </vwc-tabs>
 ```
