@@ -90,6 +90,18 @@ describe('vwc-radio-group', () => {
 		});
 	});
 
+	describe('change', () => {
+		it('should be fired when a user toggles the radio-group', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+
+			getBaseElement(radios[2]).click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	describe('click', () => {
 		it('should update when a radio is clicked', async () => {
 			getBaseElement(radios[2]).click();
