@@ -11,7 +11,7 @@ const components = ['appearance-ui'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		path.join(new URL('.', import.meta.url).pathname, '../../../../../docs/design/appearance.md')
 	).reduce(
 		(htmlString: string, block: string) =>
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,

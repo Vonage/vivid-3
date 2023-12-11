@@ -8,8 +8,8 @@ Appearance is also connected to connotation and setting colors to each state in 
 ---
 ## How does it work?
 Each component is using at least one appearance.  
-The appearance control the colors that are set for text, fill and outline.  
-The 3 colors are changing according to stats (idle, hover, disabled, etc).  
+The appearance controls the colors that are set for text, fill and outline.  
+The 3 colors are changing according to states (idle, hover, disabled, etc).  
 
 ![appearance-colors](/assets/images/appearance-colors.png)
 
