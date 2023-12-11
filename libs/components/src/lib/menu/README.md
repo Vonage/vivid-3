@@ -48,8 +48,8 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 </style>
 
 <div style="position: relative">
-  <vwc-button id="button1" label="ID anchor" appearance="outlined" aria-haspopup="true" aria-expanded="false"></vwc-button>
-  <vwc-button id="button2" label="HTMLElement anchor" appearance="outlined" aria-haspopup="true" aria-expanded="false"></vwc-button>
+  <vwc-button id="button1" label="ID anchor" appearance="outlined"></vwc-button>
+  <vwc-button id="button2" label="HTMLElement anchor" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu1" anchor="button1">
     <vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
@@ -86,7 +86,7 @@ Use the auto dismiss property to automatically close the menu when the user clic
 	}
 </style>
 <div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" appearance="outlined" aria-haspopup="true" aria-expanded="true"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" open auto-dismiss>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
@@ -111,7 +111,7 @@ Use the `placement` attribute to control the position of the menu relative to it
 
 ```html preview
 <div style="position: relative; text-align: end;">
-  <vwc-button id="button" label="Toggle Menu" appearance="outlined" aria-haspopup="true" aria-expanded="false"></vwc-button>
+  <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" placement="left-start" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
@@ -285,7 +285,7 @@ This helps ensure elements don't render on top of a menu undesirably.
 	}
 </style>
 <div style="position: relative">
-  <vwc-button id="button" label="Select" appearance="filled" aria-haspopup="true" aria-expanded="true"></vwc-button>
+  <vwc-button id="button" label="Select" appearance="filled"></vwc-button>
 
   <vwc-menu id="menu" anchor="button" placement="bottom-start" open>
     <vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
@@ -328,7 +328,7 @@ This helps ensure elements don't render on top of a menu undesirably.
   	<vwc-menu-item role="presentation" text="Logout" icon="quit-line"></vwc-menu-item>
 	 </a>
   </vwc-menu>
-  <vwc-button id="button" icon="close-line" aria-haspopup="true" aria-expanded="true"></vwc-button>
+  <vwc-button id="button" icon="close-line"></vwc-button>
 </div>
 
 <script>
