@@ -7,7 +7,7 @@ vivid.3.x can be installed alongside vivid.2.x allowing you to migrate easily an
 This is a step-by-step guide for integrating vivid-3.x alongside vivid-2.
 
 <vwc-note connotation="information" icon="info-solid" headline="Using Vue.js?">
-	<div>Consider using the official <a href="https://vonage.github.io/vivid-vue/" target="_blank" rel="noopener noreferrer">wrappers for Vivid Vue</a>, which will ease the migration process.</div>
+	<div>Consider using the official <a href="/vivid-vue/" target="_blank" rel="noopener noreferrer">wrappers for Vivid Vue</a>, which will ease the migration process.</div>
 </vwc-note>
 
 ## Step 1: Pre Installation

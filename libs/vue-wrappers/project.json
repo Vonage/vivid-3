@@ -1,0 +1,55 @@
+{
+	"name": "vue-wrappers",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/vue-wrappers/src",
+	"projectType": "library",
+	"targets": {
+		"vite-build": {
+			"dependsOn": ["^build"],
+			"executor": "@nx/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/vue-wrappers",
+				"buildLibsFromSource": false
+			}
+		},
+		"build": {
+			"dependsOn": ["vite-build"],
+			"executor": "nx:run-commands",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"cwd": "libs/vue-wrappers",
+				"commands": [
+					"npx tsc --emitDeclarationOnly --project ./tsconfig.lib.json",
+					"npx tsx scripts/buildTypings.ts",
+					"npx tsx scripts/updateDependencyVersion.ts",
+					"cp web-types.json ../../dist/libs/vue-wrappers/"
+				],
+				"parallel": false
+			}
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"libs/vue-wrappers/**/*.ts",
+					"libs/vue-wrappers/package.json"
+				]
+			}
+		},
+		"clean": {
+			"executor": "nx:run-commands",
+			"options": {
+				"cwd": "libs/vue-wrappers",
+				"commands": [
+					"rm web-types.json",
+					"npx rimraf --glob 'src/generated/**/*.ts'",
+					"npx rimraf --glob 'stories/generated/*'"
+				]
+			}
+		}
+	},
+	"tags": [],
+	"implicitDependencies": ["wrapper-gen"]
+}

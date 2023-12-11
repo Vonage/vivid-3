@@ -1,19 +1,37 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx", "ban"],
+  "plugins": ["@nrwl/nx", "ban", "unused-imports"],
   "overrides": [
     {
       "files": ["*.spec.ts", "ui.test.ts"],
       "rules": {
         "ban/ban": [
           2,
-          { "name": ["describe", "only"], "message": "don't focus tests" },
-          { "name": "fdescribe", "message": "don't focus tests" },
-          { "name": ["it", "only"], "message": "don't focus tests" },
-          { "name": "fit", "message": "don't focus tests" },
-          { "name": ["test", "only"], "message": "don't focus tests" },
-          { "name": "ftest", "message": "don't focus tests" }
+          {
+            "name": ["describe", "only"],
+            "message": "don't focus tests"
+          },
+          {
+            "name": "fdescribe",
+            "message": "don't focus tests"
+          },
+          {
+            "name": ["it", "only"],
+            "message": "don't focus tests"
+          },
+          {
+            "name": "fit",
+            "message": "don't focus tests"
+          },
+          {
+            "name": ["test", "only"],
+            "message": "don't focus tests"
+          },
+          {
+            "name": "ftest",
+            "message": "don't focus tests"
+          }
         ]
       }
     },
@@ -39,7 +57,8 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
       "rules": {
-        "no-console": 2
+        "no-console": 2,
+        "unused-imports/no-unused-imports": "error"
       }
     },
     {
