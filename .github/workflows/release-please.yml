@@ -20,9 +20,7 @@ jobs:
           TAG_NAME=vivid-vue-v$(node -p "require('./libs/vue-wrappers/package.json').version")
           echo "Vivid-vue tag name: ${TAG_NAME}"
 
-          git show-ref --tags --verify --quiet "refs/tags/${TAG_NAME}"
-          exit_code=$?
-          if [[ $exit_code -eq 0 ]]; then
+          if git show-ref --tags --verify --quiet "refs/tags/${TAG_NAME}"; then
             echo "Tag ${TAG_NAME} exists"
           else
             echo "Tag ${TAG_NAME} does not exist"
