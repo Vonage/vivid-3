@@ -1,0 +1,22 @@
+{
+	"bootstrap-sha": "3f548d7c4a9264505451d7c6880654ff1ba66730",
+	"packages": {
+		"libs/components": {
+			"component": "vivid",
+			"package-name": "vivid"
+		},
+		"libs/vue-wrappers": {
+			"component": "vivid-vue",
+			"skip-github-release": true
+		}
+	},
+	"plugins": [
+		{
+			"type": "linked-versions",
+			"groupName": "vivid",
+			"components": [
+				"vivid", "vivid-vue"
+			]
+		}
+	]
+}
