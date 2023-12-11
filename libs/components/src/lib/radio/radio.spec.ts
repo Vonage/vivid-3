@@ -119,6 +119,18 @@ describe('vwc-radio', () => {
 		});
 	});
 
+	describe('change', () => {
+		it('should be fired when a user toggles the radio', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+
+			getBaseElement(element).click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'lorem';

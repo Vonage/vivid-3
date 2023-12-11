@@ -398,6 +398,17 @@ You can specify width on the `vwc-select` if required (the listbox will not be a
 
 </div>
 
+## Events
+
+<div class="table-wrapper">
+
+| Name   | Description                     |
+| ------ | ------------------------------- |
+| input  | Emitted when the value updates. |
+| change | Emitted when the value updates. |
+
+</div>
+
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).

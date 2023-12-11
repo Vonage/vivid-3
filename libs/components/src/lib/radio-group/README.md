@@ -73,3 +73,13 @@ Set the `orientation` member to set the orientation (`horizontal` or `vertical`)
   <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name   | Description                     |
+| ------ | ------------------------------- |
+| change | Emitted when the value changes. |
+
+</div>

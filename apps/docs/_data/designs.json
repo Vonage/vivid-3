@@ -11,6 +11,11 @@
         "title": "typography",
         "markdown": "./docs/design/typography.md"
     },
+		{
+			"title": "appearance",
+			"markdown": "./docs/design/appearance.md",
+			"status": "underlying"
+		},
     {
         "title": "sizing",
         "markdown": "./docs/design/sizing.md",
