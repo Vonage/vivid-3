@@ -263,24 +263,7 @@ Use the `--menu-block-size` variable to set the menu's block size.
 </div>
 
 ## Accessibility
-To facilitate accessibility for the toggle button, two ARIA roles need to be assigned to it:
-
-#### aria-haspopup
-`aria-haspopup="menu"` indicates the element can trigger a popup and what kind of popup with menu will be displayed.
-more about `aria-haspopup` in [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup)
-
-#### aria-expanded
-When a menu is displayed, the button that toggles the visibility of that menu has `aria-expanded="true"` set. When the menu is hidden, `aria-expanded` can be omitted or set as  `aria-expanded="flase"`.   
-more about `aria-expanded` in [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded)
-
-```html
-<vwc-button aria-haspopup="true" aria-expanded="false" label="button"></vwc-button>
-<vwc-menu anchor="button">
-  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-</vwc-menu>
-```
-
+The menu will set appropriate values for the `aria-haspopup` and `aria-expanded` attribute on the anchor element.
 
 ## Caveat
 
