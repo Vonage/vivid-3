@@ -1,0 +1,7 @@
+{
+  "name": "vue-docs",
+  "devDependencies": {
+    "vue": "^3.2.47",
+    "vitepress": "1.0.0-alpha.65"
+  }
+}
