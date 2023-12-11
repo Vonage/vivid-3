@@ -1,0 +1,57 @@
+{
+  "extends": [
+		"../../.eslintrc.json",
+		"plugin:vue/vue3-recommended"
+	],
+	"parser": "vue-eslint-parser",
+	"parserOptions": {
+		"parser": "@typescript-eslint/parser"
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	},
+  "ignorePatterns": ["!**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"rules": {}
+		},
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {}
+		},
+		{
+			"files": ["*.js", "*.jsx"],
+			"rules": {}
+		},
+		{
+			"files": ["*.json"],
+			"parser": "jsonc-eslint-parser"
+		},
+		{
+			"files": ["*.vue"],
+			"rules": {
+				"vue/multi-word-component-names": 0,
+				"vue/no-multiple-template-root": 0,
+				"vue/component-name-in-template-casing": ["error", "PascalCase" , {
+					"registeredComponentsOnly": false,
+					"ignores": []
+				}],
+				"vue/html-self-closing": ["error", {
+					"html": {
+						"void": "always",
+						"normal": "always",
+						"component": "always"
+					},
+					"svg": "always",
+					"math": "always"
+				}],
+				"vue/no-deprecated-slot-attribute": "off",
+				"vue/max-attributes-per-line": "off",
+				"vue/singleline-html-element-content-newline": "off"
+			}
+		}
+	]
+}
