@@ -52,14 +52,18 @@ $low-ink-color: --_low-ink-color;
 
 .label:not(slot),
 .label::slotted(label) {
-	color: var(#{constants.$vvd-color-canvas-text});
-	contain: inline-size;
-	font: var(#{constants.$vvd-typography-base});
-	grid-column: 1 / 4;
-	grid-row: 1;
+	/* As label is in light dom, use !important and initial to prevent values getting overridden by global CSS resets etc. */
+	box-sizing: initial !important;
+	padding: initial !important;
+	margin: initial !important;
+	color: var(#{constants.$vvd-color-canvas-text}) !important;
+	contain: inline-size !important;
+	font: var(#{constants.$vvd-typography-base}) !important;
+	grid-column: 1 / 4 !important;
+	grid-row: 1 !important;
 
 	.char-count + & {
-		grid-column: 1 / 3;
+		grid-column: 1 / 3 !important;
 	}
 }
 
@@ -122,27 +126,29 @@ $low-ink-color: --_low-ink-color;
 .control {
 	&:not(slot),
 	&::slotted(input) {
+		/* As input is in light dom, use !important and initial to prevent values getting overridden by global CSS resets etc. */
 		// ! note: input is required to stretch fully so that
 		// ! autofill indication applies on all fieldset area
-		width: 100%;
-		box-sizing: border-box;
-		border: 0 none;
-		appearance: none; /* for box-shadow visibility on IOS */
-		background-color: transparent;
-		block-size: 100%;
-		border-radius: inherit;
-		color: inherit;
-		font: inherit;
-		padding-block: 0;
-		padding-inline-end: var(#{variables.$text-field-gutter});
-		padding-inline-start: var(#{variables.$text-field-gutter});
+		width: 100% !important;
+		box-sizing: border-box !important;
+		border: 0 none !important;
+		margin: initial !important;
+		appearance: none !important; /* for box-shadow visibility on IOS */
+		background-color: transparent !important;
+		block-size: 100% !important;
+		border-radius: inherit !important;
+		color: inherit !important;
+		font: inherit !important;
+		padding-block: 0 !important;
+		padding-inline-end: var(#{variables.$text-field-gutter}) !important;
+		padding-inline-start: var(#{variables.$text-field-gutter}) !important;
 	}
 
 	&:not(slot):disabled,
 	&::slotted(input:disabled) {
-		cursor: not-allowed;
-		opacity: 1; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}); /* 1. sets text fill to current `color` for safari */
+		cursor: not-allowed !important;
+		opacity: 1 !important; /* 2. correct opacity on iOS */
+		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
 	// &::slotted(input)::placeholder - not working in safari, see workaround in text-field.ts
@@ -153,12 +159,12 @@ $low-ink-color: --_low-ink-color;
 
 	&:not(slot):focus-visible,
 	&::slotted(input:focus-visible) {
-		outline: none;
+		outline: none !important;
 	}
 
 	.has-icon &:not(slot),
 	.has-icon &::slotted(input) {
-		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2);
+		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter}) * 2) !important;
 	}
 }
 
