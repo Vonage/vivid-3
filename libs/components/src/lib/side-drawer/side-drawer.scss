@@ -38,10 +38,6 @@ $inline-size: 280px;
 		}
 	}
 
-	.side-drawer-app-content {
-		block-size: 100%;
-	}
-
 	&.open:not(.modal) {
 		&.trailing + {
 			.side-drawer-app-content {
@@ -59,6 +55,10 @@ $inline-size: 280px;
 	@media (prefers-reduced-motion: no-preference) {
 		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	}
+}
+
+.side-drawer-app-content {
+	block-size: 100%;
 }
 
 
