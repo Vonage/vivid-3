@@ -49,12 +49,11 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 
 <div style="position: relative">
   <vwc-button id="button1" label="ID anchor" appearance="outlined"></vwc-button>
-  <vwc-button id="button2" label="HTMLElement anchor" appearance="outlined"></vwc-button>
-
   <vwc-menu id="menu1" anchor="button1" aria-label="ID anchor menu example">
     <vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
   </vwc-menu>
 
+  <vwc-button id="button2" label="HTMLElement anchor" appearance="outlined"></vwc-button>
   <vwc-menu id="menu2" aria-label="HTML elelemt menu example">
     <vwc-menu-item text="My anchor is an HTMLElement"></vwc-menu-item>
   </vwc-menu>
@@ -265,6 +264,8 @@ Use the `--menu-block-size` variable to set the menu's block size.
 ## Accessibility 
 
 The Menu requires an accessible name. It is the consumer's concern to provide an `aria-label` to the Menu.
+
+If you are using menu with the `anchor` prop, it is important to place the menu directly after the anchor element in the source code so that the correct tab order is maintained.
 
 ## Caveat
 
