@@ -58,6 +58,10 @@ Setting the `clickable-box` attribute makes the whole card clickable, just make 
 </vwc-layout>
 ```
 
+#### Deprecated prop: `clickable`
+
+The `clickable` prop is deprecated (as of 11/23) and directly replaced with `clickable-box`. `clickable` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
 ### Checked
 
 Set the `checked` attribute to indicate the checked state of the box.
