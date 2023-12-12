@@ -378,5 +378,29 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
 		)
+	),
+	error: (
+		fieldset: (
+			text: notSet,
+			fill: var(#{constants.$vvd-color-alert-50}),
+			outline: var(#{constants.$vvd-color-alert-500}),
+		),
+		ghost: (
+			text: notSet,
+			fill: var(#{constants.$vvd-color-alert-50}),
+			outline: transparent,
+		),
+	),
+	success: (
+		fieldset: (
+			text: notSet,
+			fill: var(#{constants.$vvd-color-success-50}),
+			outline: var(#{constants.$vvd-color-success-500}),
+		),
+		ghost: (
+			text: notSet,
+			fill: var(#{constants.$vvd-color-success-50}),
+			outline: transparent,
+		),
 	)
 );
