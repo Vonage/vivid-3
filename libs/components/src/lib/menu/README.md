@@ -262,6 +262,8 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 </div>
 
+## Accessibility
+The menu will set appropriate values for the `aria-haspopup` and `aria-expanded` attribute on the anchor element.
 
 ## Caveat
 
