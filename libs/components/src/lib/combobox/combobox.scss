@@ -1,5 +1,6 @@
 @use "../focus/partials/variables" as focus-variables;
 @use "../popup/partials/variables" as popup-variables;
+@use "../text-field/partials/variables" as text-field-variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: backdrop intermediate primary soft,
@@ -18,9 +19,8 @@
 	position: relative;
 }
 
-.control {
-	display: flex;
-	padding-inline-end: 44px !important;
+.base {
+	#{text-field-variables.$text-field-gutter-end}: 44px;
 }
 
 .icon {
