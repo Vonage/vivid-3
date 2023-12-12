@@ -8,6 +8,10 @@
 	display: block;
 }
 
+.side-drawer-app-content {
+	block-size: 100%;
+}
+
 $inline-size: 280px;
 
 .control {
@@ -56,11 +60,6 @@ $inline-size: 280px;
 		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 }
-
-.side-drawer-app-content {
-	block-size: 100%;
-}
-
 
 .scrim {
 	@include scrim-mixins.scrim-variables;
