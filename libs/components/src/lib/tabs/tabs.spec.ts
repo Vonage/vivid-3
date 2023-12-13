@@ -63,7 +63,7 @@ describe('vwc-tabs', () => {
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.activeid).toEqual('apps');
 			expect(element.activetab).toBeTruthy();
-			expect(element.tight).toBeFalsy();
+			expect(element.gutters).toBeFalsy();
 		});
 	});
 
@@ -199,13 +199,13 @@ describe('vwc-tabs', () => {
 		});
 	});
 
-	describe('tight', () => {
-		it('should set tight property', async () => {
-			const tight = true;
-			expect(getBaseElement(element).classList.contains('tight')).toBeFalsy();
-			element.tight = tight;
+	describe('gutters', () => {
+		it('should set gutters property', async () => {
+			const gutters = true;
+			expect(getBaseElement(element).classList.contains('gutters')).toBeFalsy();
+			element.gutters = gutters;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('tight')).toBeTruthy();
+			expect(getBaseElement(element).classList.contains('gutters')).toBeTruthy();
 		});
 	});
 

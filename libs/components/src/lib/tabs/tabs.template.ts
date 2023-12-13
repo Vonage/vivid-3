@@ -3,12 +3,12 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 
 const getClasses = ({
-	connotation, orientation, tight
+	connotation, orientation, gutters
 }: Tabs) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`orientation-${orientation}`, Boolean(orientation)],
-	['tight', Boolean(tight)]
+	['gutters', Boolean(gutters)]
 );
 
 /**

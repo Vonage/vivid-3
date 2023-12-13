@@ -96,8 +96,8 @@
 		overflow-y: auto;
 	}
 
-	:not(.base.tight) & {
-		padding: 16px;
+	.base.gutters & {
+		margin: 16px;
 	}
 }
 

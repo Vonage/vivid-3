@@ -34,9 +34,9 @@ export class Tabs extends FoundationTabs {
 	/**
 	 *
 	 * @public
-	 * HTML Attribute: tight
+	 * HTML Attribute: gutters
 	 */
-	@attr({mode: 'boolean'}) tight = false;
+	@attr({mode: 'boolean'}) gutters = false;
 
 	connotationChanged() {
 		this.#updateTabsConnotation();

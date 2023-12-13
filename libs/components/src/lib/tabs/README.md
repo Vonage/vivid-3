@@ -99,15 +99,15 @@ Add an `activeid` attribute of the active tab.
 </vwc-tabs>
 ```
 
-### Tight
+### Gutters
 
-Enabling the `tight` member will remove padding from the tabs panel.
+Enabling the `gutters` member will add margin to the tabs panel.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview full
-<vwc-tabs tight>
+<vwc-tabs gutters>
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
