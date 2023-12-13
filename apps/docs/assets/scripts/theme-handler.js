@@ -42,7 +42,7 @@ button.addEventListener('click', toggleMenu);
 const menu = document.querySelector('vwc-menu#dark-mode-menu');
 menu.addEventListener('change', event => {
   if (event.target.checked)
-    setTheme(event.target.text?.toLowerCase()));
+    setTheme(event.target.text?.toLowerCase());
 });
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));
 
