@@ -267,6 +267,8 @@ The Menu requires an accessible name. It is the consumer's concern to provide an
 
 If you are using menu with the `anchor` prop, it is important to place the menu directly after the anchor element in the source code so that the correct tab order is maintained.
 
+The menu will set appropriate values for the `aria-haspopup` and `aria-expanded` attribute on the anchor element.
+
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).

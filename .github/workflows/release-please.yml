@@ -20,9 +20,7 @@ jobs:
           TAG_NAME=vivid-vue-v$(node -p "require('./libs/vue-wrappers/package.json').version")
           echo "Vivid-vue tag name: ${TAG_NAME}"
 
-          git show-ref --tags --verify --quiet "refs/tags/${TAG_NAME}"
-          exit_code=$?
-          if [[ $exit_code -eq 0 ]]; then
+          if git show-ref --tags --verify --quiet "refs/tags/${TAG_NAME}"; then
             echo "Tag ${TAG_NAME} exists"
           else
             echo "Tag ${TAG_NAME} does not exist"
@@ -55,7 +53,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: release-please
-    if: ${{ needs.release-please.outputs.releases_created }}
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -79,7 +77,7 @@ jobs:
   npm-publish:
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ needs.release-please.outputs.releases_created }}
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -105,7 +103,7 @@ jobs:
   github-publish:
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ needs.release-please.outputs.releases_created }}
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -130,5 +128,5 @@ jobs:
 
   deploy-deno:
     needs: release-please
-    if: ${{ needs.release-please.outputs.releases_created }}
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
     uses: ./.github/workflows/_deploy-deno.yml
