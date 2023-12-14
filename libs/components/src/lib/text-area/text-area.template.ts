@@ -13,9 +13,9 @@ const getClasses = ({ value, errorValidationMessage, disabled, placeholder, read
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
-	['error connotation-alert', Boolean(errorValidationMessage)],
+	['error', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
-	['success connotation-success', !!successText]
+	['success', !!successText]
 );
 
 /**
