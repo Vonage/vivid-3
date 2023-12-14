@@ -276,13 +276,14 @@ Select `base` part to access the component's internal *base* element (which repr
   background-color: var(--vvd-color-information-50);
   block-size: 100%;
   padding: 16px;
+  box-sizing: border-box;
 }
 </style>
 <vwc-side-drawer class="side-drawer" open>
 	<vwc-layout gutters="small">
 			Side Drawer content
   </vwc-layout>  
-  <div class="content" gutters="small-inline" slot="app-content">
+  <div class="content" slot="app-content">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
  </div>
 
