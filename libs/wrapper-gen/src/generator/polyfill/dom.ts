@@ -1,4 +1,5 @@
-import { JSDOM } from 'jsdom';
+import { DOMWindow, JSDOM } from 'jsdom';
+import MediaQueryList from 'happy-dom/lib/match-media/MediaQueryList';
 
 const dom = new JSDOM('<!doctype html><html><body></body></html>', {
   url: 'http://localhost/',
@@ -7,7 +8,7 @@ const dom = new JSDOM('<!doctype html><html><body></body></html>', {
 // Install globally
 for (const key of Object.getOwnPropertyNames(dom.window)) {
   if (!(key in global)) {
-    global[key] = dom.window[key];
+		(global as unknown as DOMWindow)[key] = dom.window[key];
   }
 }
 
@@ -20,6 +21,6 @@ global.matchMedia =
       addListener: () => {},
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       removeListener: () => {},
-    } as any));
+    } as unknown as MediaQueryList));
 
-(global as any).window = global;
+(global as {window: typeof global}).window = global;

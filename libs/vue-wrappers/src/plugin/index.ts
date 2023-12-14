@@ -39,7 +39,7 @@ const appendStyle = (css: string) => {
 };
 
 export const vivid3: Plugin<VividConfiguration> = {
-  install(app: App<any>, options: VividConfiguration) {
+  install(app: App, options: VividConfiguration) {
     const addRootClassTo = options.addRootClassTo ?? 'root';
     switch (addRootClassTo) {
       case 'root':
