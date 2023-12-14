@@ -26,7 +26,7 @@ Use the `label` attribute to add text to the FAB.
 Use `icon` to set an icon to the FAB.
 View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the FAB's purpose.
+Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the FAB's purpose.
 
 - Type: `string`
 - Default: `undefined`

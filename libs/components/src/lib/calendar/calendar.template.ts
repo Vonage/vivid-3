@@ -18,7 +18,7 @@ import {
  */
 const HoursTemplate = () => {
 	return html`
-  <div class="row-headers" role="presentation">
+  <div class="row-headers" role="row">
     ${repeat(x => x.hoursAsDatetime, html<string>`<span role="rowheader">
       <time datetime="${(x: Date, c) =>	new Intl.DateTimeFormat(c.parent.locales, {
 		hour: 'numeric', minute: 'numeric',	hour12: false
@@ -46,7 +46,7 @@ const DaysTemplate = () => {
 									<!-- TODO add to column aria-labelledby or describedby to count
                   events and related day e.g. "3 events, Sunday, March 8" -->
 									<em tabindex="0" role="button" aria-label=${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, {
-		weekday: 'long', month: 'long', day: 'numeric'
+		weekday: 'long', month: 'long', day: '2-digit'
 	}).format(x)}>
 										${(x: Date, c) => new Intl.DateTimeFormat(c.parent.locales, { day: '2-digit' }).format(x)}
 									</em>
@@ -76,14 +76,14 @@ export const CalendarTemplate: (
 ) => ViewTemplate<Calendar> = () => html`
   <div role="grid" @keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}>
     ${DaysTemplate}
-    <div role="row" class="calendar-row">
+    <div class="calendar-row" role="rowgroup">
       ${HoursTemplate}
       <div class="calendar-grid-presentation" role="presentation">
         <div class="hours" role="list">
           ${repeat(x => Array.from({ length: x.hoursAsDatetime.length + 1 }),	html<string>`
             <div role="listitem"></div>`)}
         </div>
-        <div class="columns" role="presentation">
+        <div class="columns" role="row">
           ${repeat(x => Array.from(Array(x._days)), ColumnTemplate, { positioning: true })}
         </div>
         <slot></slot>

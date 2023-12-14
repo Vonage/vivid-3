@@ -102,9 +102,7 @@ export const DialogTemplate: (
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
 				returnValue="${x => x.returnValue}"
-				aria-labelledby="${x => x.ariaLabelledBy}"
 				aria-label="${x => x.ariaLabel}"
-				aria-describedby="${x => x.ariaDescribedBy}"
 		>
 			${() => focusTemplate}
 			<slot name="main">

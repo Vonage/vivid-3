@@ -396,7 +396,6 @@ vwc-dialog {
 
 - The dialog's role is `dialog`. When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
 - It is the consumer's concern to add `aria-label` to the dialog element.
-- `aria-labelledby` and `aria-describedby` can also be used.
 - The dismiss button is automatically given a localized version of the word "Close". This can be overriden using `dismiss-button-aria-label`.
 
 ## Use Cases

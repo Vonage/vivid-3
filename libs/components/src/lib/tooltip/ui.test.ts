@@ -27,10 +27,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
   }
 </style>
 <div class="wrapper">
-  <vwc-button id="anchor" aria-describedby="tooltip" appearance='outlined' label='This is an anchor'></vwc-button>
+  <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
   <vwc-button id="anchor2"
   						style="position: absolute; top: 20px;"
-  						aria-describedby="tooltip"
   						appearance='outlined'
   						label='This is an anchor'></vwc-button>
   <vwc-tooltip id="tooltip1" anchor="anchor" open text="right" placement="right">

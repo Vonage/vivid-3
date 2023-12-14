@@ -13,7 +13,7 @@ const getClasses = ({
 	'base',
 	['disabled', disabled],
 	['selectable', selectable],
-	['active', selectable && selected],
+	['selected', selectable && selected],
 	['removable', removable && !selectable],
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`appearance-${appearance}`, Boolean(appearance)],

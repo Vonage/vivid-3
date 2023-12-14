@@ -19,7 +19,7 @@ Avatars are used to represent a user or a system entity. They can be used to rep
 Use `icon` to set an icon to the avatar.
 View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: An icon on its own doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the avatar.
+Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the avatar.
 
 - Type: `string`
 - Default: `user-line`

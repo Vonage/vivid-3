@@ -15,6 +15,9 @@ export const sliderDefinition = Slider.compose<SliderOptions>({
 	baseName: 'slider',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 /**

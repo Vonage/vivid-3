@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['selectable-box', 'checkbox', 'radio', 'layout'];
+const components = ['selectable-box', 'checkbox', 'radio', 'layout', 'card'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
@@ -29,9 +29,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.locator('vwc-selectable-box').nth(8).getByRole('button').focus();
-
 	await page.waitForLoadState('networkidle');
+
+	await page.locator('vwc-selectable-box').nth(6).focus();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/selectable-box.png'
