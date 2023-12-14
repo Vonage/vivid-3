@@ -25,7 +25,7 @@ const getStateClasses = ({
 	icon,
 }: TextField) =>
 	classNames(
-		['error connotation-alert', Boolean(errorValidationMessage)],
+		['error', Boolean(errorValidationMessage)],
 		['disabled', disabled],
 		['has-value', Boolean(value)],
 		['readonly', readOnly],
@@ -34,7 +34,7 @@ const getStateClasses = ({
 		[`shape-${shape}`, Boolean(shape)],
 		['no-label', !label],
 		['has-icon', !!icon],
-		['success connotation-success', Boolean(successText)],
+		['success', Boolean(successText)],
 		['action-items', !!actionItemsSlottedContent?.length],
 		['leading-action-items', !!leadingActionItemsSlottedContent?.length],
 		['no-leading', !(leadingActionItemsSlottedContent?.length || icon)]

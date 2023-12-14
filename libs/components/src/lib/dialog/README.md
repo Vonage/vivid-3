@@ -1,8 +1,9 @@
 # Dialog
 Represents a part of an application that a user interacts with to perform a task.
 
-All [native attributes of `dialog`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) are supported as well as some enhancements.
+The dialog uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
 
+Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog. Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
 
 ```js
 <script type="module">
@@ -17,11 +18,32 @@ All [native attributes of `dialog`](https://developer.mozilla.org/en-US/docs/Web
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open>
+<vwc-button label="Open non-modal Dialog" onclick="openNonModal()"></vwc-button>
+<vwc-button label="Open modal Dialog" onclick="openModal()"></vwc-button>
+
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
-	<vwc-button slot="action-items" label="Cancel" appearance="outlined"></vwc-button>
-	<vwc-button slot="action-items" label="Ok" appearance="filled"></vwc-button>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeDialog()"></vwc-button>
+	<vwc-button slot="action-items" label="Ok" appearance="filled" onclick="closeDialog()"></vwc-button>
 </vwc-dialog>
+
+<script>
+	const dialog = document.querySelector('vwc-dialog');
+  
+	function openNonModal() {
+    if (dialog.open) dialog.close();
+		dialog.show();
+	}
+
+	function openModal() {
+		if (dialog.open) dialog.close();
+		dialog.showModal();
+	}
+  
+  function closeDialog() {
+		dialog.close();
+	}
+</script>
 ```
 
 ## Members
@@ -90,7 +112,9 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 
 ### Open
 
-Sets or returns whether a dialog should be open or not
+Sets or returns whether a dialog should be open or not.
+
+Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal()` instead. 
 
 - Type: `boolean`
 - Default: `false`
@@ -104,6 +128,24 @@ Sets or returns whether a dialog should be open or not
 
 <vwc-button label="Toggle Dialog Open" onclick="dialog.open = !dialog.open"></vwc-button>
 <vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
+```
+
+### No-light-dismiss
+
+Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside of it.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<style>
+	html { /* for demo purposes */
+		block-size: 230px;
+	}
+</style>
+
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
+<vwc-dialog no-light-dismiss headline="Headline"></vwc-dialog>
 ```
 
 ### Return Value
@@ -288,7 +330,7 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ### Z-index
 
-When the dialog is not set as `modal` its initial z-index can be changed if needed by setting `--dialog-z-index`.
+When the dialog is not modal its initial z-index can be changed if needed by setting `--dialog-z-index`.
 
 ### Inline min & max size
 
@@ -342,11 +384,11 @@ vwc-dialog {
 
 <div class="table-wrapper">
 
-| Namen       | Returns | Description                                                                                                                                                                                                                                                                                                                         |
-|-------------| ------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `show`      | `void`  | Shows the dialog. Positioned in a top position by default.                                                                                                                                                                                                                                                                          |
-| `close`     | `void`  | Closes the dialog.                                                                                                                                                                                                                                                                                                                  |
-| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal). |
+| Namen       | Returns | Description                                                                                                                                                                                                                                                                                                                       |
+|-------------| ------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `show`      | `void`  | Shows the dialog. Positioned in a top position by default.                                                                                                                                                                                                                                                            |
+| `close`     | `void`  | Closes the dialog.                                                                                                                                                                                                                                                                                                                |
+| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. |
 
 </div>
 
@@ -358,7 +400,17 @@ vwc-dialog {
 
 ## Use Cases
 
+### Modal Dialog
+
+Use the `showModal` method to open a dialog as a modal. It will display in the [top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer). Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
+```html preview
+<vwc-button label="Open Modal Dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
+<vwc-dialog headline="Modal Dialog"></vwc-dialog>
+```
+
 ### Dialog Form
+
+You can use a `form` with `method=dialog` inside a dialog. This will make the dialog close when the form is submitted. 
 
 ```html preview
 <style>
@@ -366,8 +418,7 @@ vwc-dialog {
     block-size: 400px;
   }
 </style>
-<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Dialog With Form">
+<vwc-dialog headline="Dialog With Form" open>
   <form slot="body" method="dialog">
    <vwc-layout column-basis="block">
         <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
@@ -376,25 +427,4 @@ vwc-dialog {
       </vwc-layout>
   </form>
 </vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.show();
-  }
-</script>
-```
-
-### Modal Dialog with Scrim
-
-```html preview
-<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Modal Dialog"></vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.showModal();
-  }
-</script>
 ```

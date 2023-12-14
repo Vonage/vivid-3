@@ -1,8 +1,6 @@
-import * as path from 'path';
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,14 +8,48 @@ import {
 const components = ['text-field', 'button', 'select', 'divider'];
 
 test('should show the component', async ({page}: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	)
-		.reduce(
-			(htmlString: string, block: string) =>
-				`${htmlString} <div style="margin: 5px;">${block}</div>`,
-			''
-		);
+	const template = `
+	<div style="display: flex; flex-direction: column; row-gap: 5px; inline-size: 260px; margin: 6px;">
+		<vwc-text-field label="My Label"></vwc-text-field>
+		<vwc-text-field placeholder="My Placeholder"></vwc-text-field>
+		<vwc-text-field label="With default value" value="5"></vwc-text-field>
+		<vwc-text-field label="Helper text below" helper-text="Help text"></vwc-text-field>
+		<vwc-text-field label="Username" value="Vlad" success-text="Valid username"></vwc-text-field>
+		<vwc-text-field label="Username" value="Vlad" success-text="Valid username" appearance="ghost"></vwc-text-field>
+		<vwc-text-field value="some text" label='Enter some text' error-text="Please take this seriously"></vwc-text-field>
+		<vwc-text-field value="some text" label='Enter some text' error-text="Please take this seriously" appearance="ghost">
+		</vwc-text-field>
+		<vwc-text-field label="Char count example" char-count maxlength="15"></vwc-text-field>
+		<vwc-text-field icon="search-line" label="Search..."></vwc-text-field>
+		<vwc-text-field label="Pill" shape="pill"></vwc-text-field>
+		<vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
+		<vwc-text-field placeholder="appearance" label='fieldset' appearance='fieldset'></vwc-text-field>
+		<vwc-text-field placeholder="appearance" label='ghost' appearance='ghost'></vwc-text-field>
+		<vwc-text-field disabled icon="chat-line" value="disabled" label='fieldset' appearance='fieldset'></vwc-text-field>
+		<vwc-text-field readonly icon="chat-line" value="readonly text" label='fieldset' appearance='fieldset'></vwc-text-field>
+		<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+			<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' appearance='ghost'></vwc-button>
+		</vwc-text-field>
+		<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+		<div slot="leading-action-items" style="display: flex; align-items: center; column-gap: 2px;">
+		<vwc-select aria-label="Options Selector" appearance="ghost" style=" --focus-inset: 2px;">
+		<vwc-option value="1" text="ALL" selected></vwc-option>
+		</vwc-select>
+		<vwc-divider orientation="vertical" style="height: 20px;"></vwc-divider>
+		</div>
+		</vwc-text-field>
+		<form method="post" action="">
+			<vwc-layout column-spacing="small" column-basis="block">
+			<vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email"
+			icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+			<div style="display: flex; gap: 12px;">
+			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+			</div>
+			</vwc-layout>
+		</form>
+	</div>
+	`;
 
 	await page.setViewportSize({ width: 300, height: 1500 });
 
