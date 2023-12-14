@@ -39,6 +39,18 @@ $dialog-space-size: 24px;
 			@include scrim-mixins.scrim-variables;
 		}
 	}
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	.focus-indicator {
+		pointer-events: none;
+	}
+
+	&:not(:focus-visible) .focus-indicator {
+		display: none;
+	}
 }
 
 .main-wrapper {
