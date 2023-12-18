@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { WebTypesTag } from './tags';
 
-export function generateWebTypesWithTags(tags: WebTypesTag[]): Record<string, any> {
+export function generateWebTypesWithTags(tags: WebTypesTag[]): Record<string, unknown> {
   const { version } = JSON.parse(fs.readFileSync('../vue-wrappers/package.json', 'utf-8'));
   return {
     framework: 'vue',

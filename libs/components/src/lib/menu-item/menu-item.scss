@@ -24,7 +24,7 @@
 }
 
 :host([disabled]) {
-	cursor: not-allowed;
+	pointer-events: none;
 }
 
 .base {
@@ -60,10 +60,6 @@
 
 	&:not(.disabled) {
 		cursor: pointer;
-	}
-
-	&.disabled {
-		pointer-events: none;
 	}
 }
 
