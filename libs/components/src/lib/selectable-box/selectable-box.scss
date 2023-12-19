@@ -1,5 +1,6 @@
 @use "../focus/partials/variables" as focus-variables;
 @use "partials/variables" as variables;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -34,7 +35,7 @@
 	padding: var(#{variables.$spacing-var}, 16px);
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: 100%;
 	padding-block-start: calc(var(#{variables.$spacing-var}, 16px) + 36px);
 	text-align: start;

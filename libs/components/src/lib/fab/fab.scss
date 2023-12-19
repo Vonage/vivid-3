@@ -17,6 +17,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 .control {
@@ -60,7 +61,7 @@
 	}
 
 	&.icon-only {
-		border-radius: 50%;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		padding-inline: 0;
 		place-content: center;
 

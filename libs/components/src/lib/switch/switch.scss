@@ -16,6 +16,8 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+
 
 :host(.disabled) {
 	cursor: not-allowed;
@@ -111,7 +113,7 @@
 	#{focus-variables.$focus-inset}: -4px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	border-radius: 14px;
+	border-radius: #{border-radius-variables.$border-radius-expanded};
 
 	.control:not(:focus-visible) & {
 		display: none;

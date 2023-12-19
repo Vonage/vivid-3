@@ -12,6 +12,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../lib/focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 :host {
 	display: inline-block;
@@ -65,7 +66,7 @@
 
 	.title-action {
 		block-size: 24px;
-		border-radius: 6px;
+		border-radius: #{border-radius-variables.$border-radius-normal};
 		font: var(#{constants.$vvd-typography-base-extended});
 		padding-inline: 6px;
 	}
@@ -106,7 +107,7 @@
 		justify-content: center;
 		aspect-ratio: 1/1;
 		block-size: 28px;
-		border-radius: 50%;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		font: var(#{constants.$vvd-typography-base});
 		margin-inline: 6px;
 
@@ -175,7 +176,7 @@
 		justify-content: center;
 		aspect-ratio: 1/1;
 		block-size: 48px;
-		border-radius: 50%;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		font: var(#{constants.$vvd-typography-base-extended});
 		text-transform: uppercase;
 

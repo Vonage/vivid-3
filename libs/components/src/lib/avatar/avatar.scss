@@ -16,6 +16,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 .base {
@@ -46,11 +47,11 @@
 	}
 
 	&:not(.shape-pill) {
-		border-radius: 6px;
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
 	&.shape-pill {
-		border-radius: 50%;
+		border-radius: #{border-radius-variables.$border-radius-full};
 	}
 
 	.initials {
