@@ -49,6 +49,12 @@ module.exports = function (eleventyConfig) {
 		: pages.filter(page => page?.status !== 'underlying');
   });
 
+	eleventyConfig.addFilter("githubEditLink", function (filePath) {
+		// Transform local path, e.g. "./libs/components/src/lib/alert/README.md"
+		const relativeFilePath = filePath.replace(/^\.\//, '');
+		return `https://github.com/Vonage/vivid-3/edit/main/${relativeFilePath}`;
+	});
+
 	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
 		const swFilePath = path.resolve('dist/apps/docs/sw.js');
 		const fileContents = fs.readFileSync(swFilePath).toString();

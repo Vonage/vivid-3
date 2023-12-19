@@ -27,3 +27,10 @@ permalink: "components/{{ component.title | slug }}/"
 {% block content %}
 	{% renderFile component.markdown %}
 {% endblock %}
+
+{% block footer %}
+	<footer class="footer">
+		<vwc-divider></vwc-divider>
+  	<a href="{{ component.markdown | githubEditLink }}"><vwc-icon name="edit-line"></vwc-icon> Edit this page on GitHub</a>
+  </footer>
+{% endblock %}
