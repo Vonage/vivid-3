@@ -97,7 +97,7 @@ slot[name="icon"]{
 		position: absolute;
 		background: currentColor;
 		block-size: 2px;
-		border-radius: 2px;
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 		content: "";
 		inline-size: 100%;
 		inset-block-end: 0;
