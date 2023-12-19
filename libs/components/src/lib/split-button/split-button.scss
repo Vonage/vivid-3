@@ -17,6 +17,8 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+
 
 :host {
 	display: inline-block;
@@ -59,6 +61,8 @@
 	border-inline-end: 0;
 	gap: var(#{variables.$icon-gap});
 	isolation: isolate;
+	border-top-left-radius: var(#{variables.$border-radius});
+	border-bottom-left-radius: var(#{variables.$border-radius});
 
 	&:focus-visible {
 		outline: none;
@@ -91,11 +95,14 @@
 
 	/* shape */
 	&:not(.shape-pill) {
-		border-radius: 6px 0 0 6px;
+		//border-radius: 6px 0 0 6px;
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-normal};
+
 	}
 
 	&.shape-pill {
-		border-radius: 24px 0 0 24px;
+		//border-radius: 24px 0 0 24px;
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
 	/* size */
@@ -124,6 +131,8 @@
 .indicator {
 	border-inline-start: 0;
 	inline-size: var(#{variables.$inline-size});
+	border-top-right-radius: var(#{variables.$border-radius});
+	border-bottom-right-radius: var(#{variables.$border-radius});
 
 	&:focus-visible {
 		outline: none;
@@ -140,11 +149,11 @@
 
 	/* Shape */
 	&:not(.shape-pill) {
-		border-radius: 0 6px 6px 0;
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-normal};
 	}
 
 	&.shape-pill {
-		border-radius: 0 24px 24px 0;
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
 	/* size */
