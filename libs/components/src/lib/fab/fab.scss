@@ -17,6 +17,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 .control {
@@ -55,12 +56,12 @@
 	}
 
 	&:not(.size-expanded) {
-		#{variables.$border-radius}: 24px;
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		#{variables.$block-size}: #{size.$vvd-size-normal};
 	}
 
 	&.icon-only {
-		border-radius: 50%;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		padding-inline: 0;
 		place-content: center;
 
