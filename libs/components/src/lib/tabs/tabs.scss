@@ -13,6 +13,7 @@
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 .base {
@@ -104,7 +105,7 @@
 	.base.orientation-vertical & {
 		align-self: center;
 		block-size: 80%;
-		border-radius: 2px;
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 		grid-area: 1 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 	}

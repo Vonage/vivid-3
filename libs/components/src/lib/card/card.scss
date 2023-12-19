@@ -1,13 +1,13 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/card-variables" as card-variables;
-
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 :host {
 	display: flex;
 }
 
 .base {
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: 100%;
 	text-align: start;
 }

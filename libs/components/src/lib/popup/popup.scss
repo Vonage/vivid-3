@@ -1,5 +1,6 @@
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/utils" as utils;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 .control {
 	background: var(#{utils.get-color-token(surface-4dp)});
@@ -14,7 +15,7 @@
 
 .popup-wrapper {
 	z-index: 10;
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: fit-content;
 
 	&:not(.absolute) {
