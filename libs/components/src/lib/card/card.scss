@@ -7,9 +7,9 @@
 }
 
 .base {
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: 100%;
 	text-align: start;
-	border-radius: #{border-radius-variables.$border-radius-normal};
 }
 
 .wrapper {
