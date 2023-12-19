@@ -10,7 +10,7 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset ghost,
-	$states: idle hover disabled readonly,
+	$states: idle hover disabled readonly error success,
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;

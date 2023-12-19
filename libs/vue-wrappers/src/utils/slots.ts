@@ -2,7 +2,7 @@ import { VNode } from 'vue';
 import { isVue2 } from './vue';
 
 interface V3Node extends VNode {
-  props: Record<string, any>;
+  props: Record<string, unknown>;
 }
 type ChildrenFunction = () => V3Node[];
 
