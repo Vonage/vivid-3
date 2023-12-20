@@ -13,6 +13,7 @@
 	$default: fieldset
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 :host {
 	display: inline-block;
@@ -57,11 +58,11 @@
 
 /* Shape */
 .base:not(.shape-pill) {
-	#{variables.$listbox-border-radius}: 6px;
+	#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-normal};
 }
 
 .base.shape-pill {
-	#{variables.$listbox-border-radius}: 24px;
+	#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 }
 
 ::slotted([role="option"]) {

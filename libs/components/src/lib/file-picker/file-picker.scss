@@ -1,5 +1,6 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 $low-ink-color: --_low-ink-color;
 
@@ -30,7 +31,7 @@ $low-ink-color: --_low-ink-color;
 	padding: 16px;
 	border: 1px dashed var(#{constants.$vvd-color-neutral-400});
 	background-color: var(#{constants.$vvd-color-cta-50});
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	color: var(#{constants.$vvd-color-neutral-600});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
@@ -54,7 +55,7 @@ $low-ink-color: --_low-ink-color;
 	display: grid;
 	box-sizing: border-box;
 	padding: 6px 12px;
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	grid-template-columns: 1fr auto;
 	grid-template-rows: auto auto;
 	inline-size: 100%;

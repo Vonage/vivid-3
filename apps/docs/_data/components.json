@@ -21,8 +21,7 @@
 	},
 	{
 		"title": "alert",
-		"markdown": "./libs/components/src/lib/alert/README.md",
-		"status": "alpha"
+		"markdown": "./libs/components/src/lib/alert/README.md"
 	},
 	{
 		"title": "breadcrumb-item",
@@ -46,7 +45,6 @@
 	},
 	{
 		"title": "date-picker",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/date-picker/README.md",
 		"children": [
 			"date-range-picker"
@@ -54,7 +52,6 @@
 	},
 	{
 		"title": "date-range-picker",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/date-range-picker/README.md",
 		"parent": "date-picker"
 	},
@@ -154,7 +151,6 @@
 	},
 	{
 		"title": "avatar",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/avatar/README.md"
 	},
 	{
@@ -187,7 +183,6 @@
 	},
 	{
 		"title": "tabs",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tabs/README.md",
 		"children": [
 			"tab"
@@ -195,13 +190,11 @@
 	},
 	{
 		"title": "tab",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tab/README.md",
 		"parent": "tabs"
 	},
 	{
 		"title": "combobox",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/combobox/README.md"
 	},
 	{
@@ -225,7 +218,6 @@
 	},
 	{
 		"title": "data-grid",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/data-grid/README.md"
 	},
 	{
@@ -234,7 +226,6 @@
 	},
 	{
 		"title": "tree-view",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tree-view/README.md",
 		"children": [
 			"tree-item"
@@ -242,13 +233,11 @@
 	},
 	{
 		"title": "tree-item",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tree-item/README.md",
 		"parent": "tree-view"
 	},
 	{
 		"title": "tag-group",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tag-group/README.md",
 		"children": [
 			"tag"
@@ -256,38 +245,31 @@
 	},
 	{
 		"title": "tag",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/tag/README.md",
 		"parent": "tag-group"
 	},
 	{
 		"title": "pagination",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/pagination/README.md"
 	},
 	{
 		"title": "empty-state",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/empty-state/README.md"
 	},
 	{
 		"title": "file-picker",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/file-picker/README.md"
 	},
 	{
 		"title": "split-button",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/split-button/README.md"
 	},
 	{
 		"title": "selectable-box",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/selectable-box/README.md"
 	},
 	{
 		"title": "audio-player",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
 	}
 ]

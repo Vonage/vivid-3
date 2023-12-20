@@ -1,5 +1,6 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 .base {
 	display: flex;
@@ -38,7 +39,7 @@
 	--focus-inset: -4px -8px;
 	--focus-stroke-gap-color: transparent;
 
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	.control:not(:focus-visible)>& {
 		display: none;
 	}
