@@ -59,12 +59,12 @@ $low-ink-color: --_low-ink-color;
 	margin: initial !important;
 	color: var(#{constants.$vvd-color-canvas-text}) !important;
 	contain: inline-size !important;
-	font: var(#{constants.$vvd-typography-base}) !important;
-	grid-column: 1 / 4 !important;
-	grid-row: 1 !important;
+	font: var(#{constants.$vvd-typography-base});
+	grid-column: 1 / 4;
+	grid-row: 1;
 
 	.char-count + & {
-		grid-column: 1 / 3 !important;
+		grid-column: 1 / 3;
 	}
 }
 
@@ -139,7 +139,7 @@ $low-ink-color: --_low-ink-color;
 		block-size: 100% !important;
 		border-radius: inherit !important;
 		color: inherit !important;
-		font: inherit !important;
+		font: inherit;
 		padding-block: 0 !important;
 		padding-inline-end: var(#{variables.$text-field-gutter-end}) !important;
 		padding-inline-start: var(#{variables.$text-field-gutter-start}) !important;
@@ -160,7 +160,7 @@ $low-ink-color: --_low-ink-color;
 
 	&:not(slot):focus-visible,
 	&::slotted(input:focus-visible) {
-		outline: none !important;
+		outline: none;
 	}
 
 	.has-icon &:not(slot),
