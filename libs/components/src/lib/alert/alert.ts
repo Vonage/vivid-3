@@ -32,7 +32,7 @@ export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'botto
  */
 export class Alert extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel: string | null = null;
-	
+
 	// timeout to close the alert
 	#timeoutID?: NodeJS.Timeout;
 
@@ -99,6 +99,13 @@ export class Alert extends FoundationElement {
 	 * @internal
 	 */
 	controlEl?: HTMLDivElement;
+
+	/**
+	 * alert state
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean', attribute: 'in-flow', }) inFlow = false;
 
 	/**
 	 * indicates whether the alert is open

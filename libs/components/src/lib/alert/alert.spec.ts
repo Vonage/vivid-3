@@ -29,6 +29,7 @@ describe('vwc-alert', () => {
 			expect(element.removable).toBeFalsy();
 			expect(element.timeoutms).toBe(0);
 			expect(element.placement).toEqual('bottom');
+			expect(element.inFlow).toBeFalsy();
 		});
 	});
 
@@ -92,11 +93,11 @@ describe('vwc-alert', () => {
 			const alertText: HTMLElement = element.shadowRoot?.querySelector('.alert-text') as HTMLElement;
 			alertText.focus = spy;
 			element.removable = true;
-			
+
 			element.open = false;
 			await elementUpdated(element);
 			expect(spy).toHaveBeenCalledTimes(0);
-			
+
 			element.open = true;
 			await elementUpdated(element);
 			expect(spy).toHaveBeenCalledTimes(1);
@@ -359,6 +360,14 @@ describe('vwc-alert', () => {
 		it('should set a role of alert on the control', async () => {
 			const control = getControlElement(element);
 			expect(control.getAttribute('role')).toBe('alert');
+		});
+	});
+
+	describe('in-flow', () => {
+		it('should add class .in-flow to .control when set', async () => {
+			element.inFlow = true;
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.in-flow')).toBeTruthy();
 		});
 	});
 });
