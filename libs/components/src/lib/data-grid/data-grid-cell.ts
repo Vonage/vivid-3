@@ -87,9 +87,9 @@ export class DataGridCell extends FoundationDataGridCell {
 			});
 		}
 
-		const hasInternalFocusQueue =
-			(isHeaderCell && this.columnDefinition?.headerCellInternalFocusQueue) ||
-			this.columnDefinition?.cellInternalFocusQueue;
+		const hasInternalFocusQueue = isHeaderCell
+			? this.columnDefinition?.headerCellInternalFocusQueue
+			: this.columnDefinition?.cellInternalFocusQueue;
 		if (!hasInternalFocusQueue) {
 			this.$emit('cell-click', {
 				cell: this,
