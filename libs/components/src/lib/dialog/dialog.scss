@@ -3,6 +3,7 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 $dialog-space-size: 24px;
 
@@ -11,7 +12,7 @@ $dialog-space-size: 24px;
 	padding: 0;
 	border: none;
 	background-color: transparent;
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
 	max-inline-size: var(#{variables.$dialog-max-inline-size}, var(#{variables.$dialog-default-max-inline-size}));
