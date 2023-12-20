@@ -447,13 +447,43 @@ The default slot, where all the content is rendered.
 
 <div class="table-wrapper">
 
-| Name           | Description                   |
-| -------------- | ----------------------------- |
-| `row-focused`  | Fires when a row is focused.  |
-| `cell-focused` | Fires when a cell is focused. |
-
+| Name            | Description                      |
+|-----------------|----------------------------------|
+| `row-focused`   | Fires when a row is focused.     |
+| `cell-focused`  | Fires when a cell is focused.    |
+| `cell-click`    | Fires when a cell is clicked on. |
 
 </div>
+
+### Cell-click
+
+The `cell-click` event is fired when a cell is clicked on or when the enter or space key is pressed on a focused cell.
+
+Event details: `{ cell, row, isHeaderCell, columnDataKey }`
+
+```html preview
+
+```html preview
+<vwc-data-grid></vwc-data-grid>
+<script>
+    grid = document.querySelector('vwc-data-grid');
+    grid.columnDefinitions = [
+				{columnDataKey: 'data1', title: 'Column 1'},
+				{columnDataKey: 'data2', title: 'Column 2'},
+		];
+    grid.rowsData = [
+        {data1: 'data11', data2: 'data12'},
+        {data1: 'data21', data2: 'data22'},
+    ];
+    
+    grid.addEventListener('cell-click', (e) => {
+				console.log('clicked on cell', e.detail.cell.gridColumn, 'row', e.detail.row.rowIndex);
+        if (!e.detail.isHeaderCell) {
+          console.log('key', e.detail.columnDataKey, 'of row data', e.detail.row.rowData);
+        }
+		});
+</script>
+```
 
 ## CSS Variable
 When Row is set to sticky there's a default canvas background-color.  

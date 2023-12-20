@@ -1,6 +1,10 @@
-import { type ColumnDefinition, DataGridCell as FoundationDataGridCell } from '@microsoft/fast-foundation';
+import {
+	type ColumnDefinition,
+	DataGridCell as FoundationDataGridCell,
+} from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type {DataGridCellSortStates} from './data-grid.options';
+import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import type { DataGridCellSortStates } from './data-grid.options';
 
 declare interface ColumnDefinitionExtended extends ColumnDefinition {
 	sortDirection?: DataGridCellSortStates | null;
@@ -13,8 +17,9 @@ declare interface DataGridCellExtension {
 /**
  * Base class for data-grid
  *
- * @event sort - Event that fires when a sortable column header is clicked
  * @public
+ * @event sort - Event that fires when a sortable column header is clicked
+ * @event cell-click - Event that fires when a cell is clicked
  */
 export class DataGridCell extends FoundationDataGridCell {
 	/**
@@ -61,6 +66,48 @@ export class DataGridCell extends FoundationDataGridCell {
 				this.style.removeProperty('grid-column');
 			}
 		};
+	}
+
+	#getColumnDataKey() {
+		return this.columnDefinition && this.columnDefinition.columnDataKey
+			? this.columnDefinition.columnDataKey
+			: this.textContent!.trim();
+	}
+	/**
+	 * @internal
+	 */
+	_handleClick() {
+		const isHeaderCell = this.cellType === 'columnheader';
+		const isSortable = isHeaderCell && this.ariaSort !== null;
+
+		if (isSortable) {
+			this.$emit('sort', {
+				columnDataKey: this.#getColumnDataKey(),
+				sortDirection: this.ariaSort,
+			});
+		}
+
+		const hasInternalFocusQueue =
+			(isHeaderCell && this.columnDefinition?.headerCellInternalFocusQueue) ||
+			this.columnDefinition?.cellInternalFocusQueue;
+		if (!hasInternalFocusQueue) {
+			this.$emit('cell-click', {
+				cell: this,
+				row: this.parentElement,
+				isHeaderCell: isHeaderCell,
+				columnDataKey: this.#getColumnDataKey(),
+			});
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	_handleKeyDown(e: KeyboardEvent) {
+		if (e.target === this && (e.key === keyEnter || e.key === keySpace)) {
+			this._handleClick();
+		}
+		return true;
 	}
 }
 
