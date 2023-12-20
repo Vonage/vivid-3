@@ -297,7 +297,7 @@ export const DatePickerBaseTemplate: (
 		</${textFieldTag}>
 		<${popupTag}
 					?open="${(x) => x._popupOpen}"
-					anchor="text-field"
+					:anchor="${(x) => x._textFieldEl}"
 					placement="bottom-start"
 					class="popup">
 			<div class="dialog" role="dialog" ${ref(
