@@ -34,10 +34,10 @@
 	align-items: center;
 	justify-content: center;
 	border: 0 none;
-	border-radius: var(#{variables.$button-border-radius});
 	margin: 0;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
+	border-radius: var(#{variables.$button-border-radius});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	gap: var(#{variables.$icon-gap});
@@ -90,33 +90,6 @@
 	}
 
 
-	/* Shape */
-	&:not(.shape-pill) {
-		#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-normal};
-
-		&.size-condensed,
-		&.size-super-condensed {
-			&:not(.stacked) {
-				#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
-			}
-		}
-	}
-
-	&.shape-pill {
-		&:not(.icon-only, .stacked) {
-			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
-		}
-
-		&.stacked {
-			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
-		}
-
-		&.icon-only {
-			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-full};
-		}
-	}
-
-
 	/* Size */
 	&:not(.stacked) {
 		&.size-super-condensed {
@@ -135,6 +108,37 @@
 			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
 		}
 	}
+
+
+	/* Shape */
+	/* stylelint-disable */
+	/* disabling because of order issues */
+	&:not(.shape-pill) {
+		#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-normal};
+
+		&.size-condensed,
+		&.size-super-condensed {
+			&:not(.stacked) {
+				#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+			}
+		}
+	}
+	/* stylelint-enable */
+
+	&.shape-pill {
+		&:not(.icon-only, .stacked) {
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
+		}
+
+		&.stacked {
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
+		}
+
+		&.icon-only {
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-full};
+		}
+	}
+
 
 	&.stacked {
 		flex-direction: column;

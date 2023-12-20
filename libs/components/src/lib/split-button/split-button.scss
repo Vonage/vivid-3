@@ -93,20 +93,6 @@
 		inline-size: inherit;
 	}
 
-	/* shape */
-	&:not(.shape-pill) {
-		#{variables.$border-radius}: #{border-radius-variables.$border-radius-normal};
-
-		&.size-super-condensed,
-		&.super-condensed {
-			#{variables.$border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
-		}
-	}
-
-	&.shape-pill {
-		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
-	}
-
 	/* size */
 	&.size-super-condensed {
 		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
@@ -119,6 +105,20 @@
 	}
 	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
 		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
+	}
+
+	/* shape */
+	&:not(.shape-pill) {
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-normal};
+
+		&.size-super-condensed,
+		&.super-condensed {
+			#{variables.$border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		}
+	}
+
+	&.shape-pill {
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
 	.text {
@@ -149,21 +149,7 @@
 		cursor: not-allowed;
 	}
 
-	/* Shape */
-	&:not(.shape-pill) {
-		#{variables.$border-radius}: #{border-radius-variables.$border-radius-normal};
-
-		&.size-super-condensed,
-		&.super-condensed {
-			#{variables.$border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
-		}
-	}
-
-	&.shape-pill {
-		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
-	}
-
-	/* size */
+	/* Separator */
 	&::before {
 		position: absolute;
 		background-color: var(#{appearance.get-appearance-token(text)});
@@ -185,7 +171,7 @@
 		}
 	}
 
-
+	/* size */
 	&.size-super-condensed {
 		@include mixins.get-size-properties-indicator(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed}, #{size.$vvd-size-super-condensed});
 	}
@@ -197,6 +183,20 @@
 	}
 	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
 		@include mixins.get-size-properties-indicator(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-extended}, #{size.$vvd-size-condensed});
+	}
+
+	/* Shape */
+	&:not(.shape-pill) {
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-normal};
+
+		&.size-super-condensed,
+		&.super-condensed {
+			#{variables.$border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		}
+	}
+
+	&.shape-pill {
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 }
 
