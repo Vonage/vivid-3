@@ -13,9 +13,11 @@
 	$default: subtle
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+
 
 $block-size: 6px;
-$rounded-border-radius: 3px;
+$rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 
 .base {
 	height: $block-size;
