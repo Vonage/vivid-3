@@ -15,7 +15,7 @@ const renderImports = (imports: Import[], typeImport = false) => {
     if (!importsFromModule.has(fromModule)) {
       importsFromModule.set(fromModule, []);
     }
-    importsFromModule.get(fromModule)!.push(as ? `${name} as ${as}` : name);
+    importsFromModule.get(fromModule)?.push(as ? `${name} as ${as}` : name);
   }
   return Array.from(importsFromModule.entries())
     .map(([fromModule, names]) => `import ${typeImport ? 'type ' : ''}{ ${names.join(', ')} } from '${fromModule}';`)

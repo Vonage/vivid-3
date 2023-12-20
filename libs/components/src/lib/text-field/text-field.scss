@@ -1,5 +1,6 @@
 @use "partials/variables" as variables;
 @use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -10,7 +11,7 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset ghost,
-	$states: idle hover disabled readonly,
+	$states: idle hover disabled readonly error success,
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -106,11 +107,11 @@ $low-ink-color: --_low-ink-color;
 
 	/* Shape */
 	.base:not(.shape-pill) & {
-		border-radius: 6px;
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
 	.base.shape-pill & {
-		border-radius: 24px;
+		border-radius: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 }
 

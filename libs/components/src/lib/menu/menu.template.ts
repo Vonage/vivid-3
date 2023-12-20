@@ -21,6 +21,13 @@ const getClasses = ({
 		['hide-body', items && !(items as unknown as HTMLElement[]).length]
 	);
 
+function handleEscapeKey(menu: Menu, event: Event) {
+	if ((event as KeyboardEvent).key === 'Escape' && menu.open) {
+		menu.open = false;
+	}
+	return true;
+}
+
 /**
  * The template for the Menu component.
  *
@@ -39,11 +46,12 @@ export const MenuTemplate: (
 	}
 
 	return html<Menu>`
-		<template>
+		<template role="presentation">
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x.anchor}
+				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
 				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"
 			>
@@ -54,6 +62,7 @@ export const MenuTemplate: (
 				<div
 					class="body"
 					role="menu"
+					aria-label="${x => x.ariaLabel}"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
 				>

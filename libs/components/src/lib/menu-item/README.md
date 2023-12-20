@@ -8,7 +8,7 @@
 
 ```html preview
 
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
@@ -23,7 +23,7 @@
 Use the `text` attribute to set the menu item's text.
 
 ```html preview
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
@@ -38,7 +38,7 @@ Use the `text-secondary` attribute (or `textSecondary` property) to set the menu
 Note: to improve readability, **avoid long text and multiple lines** where possible.
 
 ```html preview
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
  <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
 </vwc-menu>
 ```
@@ -57,7 +57,7 @@ set `role` to change the role of the menu item
   }
 </style>
 
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
   <vwc-divider></vwc-divider>
@@ -87,7 +87,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 - Default: `undefined`
 
 ```html preview
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
 </vwc-menu>
 ```
@@ -107,7 +107,7 @@ If the `icon` attribute is present, the indicator will be trailing by default.
     block-size: 300px; 
   }
 </style>
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-trailing></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-trailing></vwc-menu-item>
 	<vwc-menu-item icon="image-line" role="menuitemcheckbox" text="Check 3"></vwc-menu-item>
@@ -132,7 +132,7 @@ When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the
 		block-size: 400px; 
 	}
 </style>
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-appearance="tick-only"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
@@ -149,7 +149,7 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 - Default: `false`
 
 ```html preview
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
@@ -162,7 +162,7 @@ The disabled state of the element
 - Default: `false`
 
 ```html preview
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
 ```
@@ -185,7 +185,7 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
     block-size: 170px;
   }
 </style>
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Available" role="menuitemradio">
    <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
   </vwc-menu-item>
@@ -208,7 +208,7 @@ Assign menu to the `submenu` slot to create a submenu.
 		block-size: 250px;
 	}
 </style>
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
     <vwc-menu-item text="Menu item 1">
       <vwc-menu slot="submenu">
           <vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
@@ -265,7 +265,7 @@ vwc-menu {
  --menu-max-inline-size: 200px;
 }
 </style>
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
  <vwc-menu-item text="primary text with long text and auto line clamp"
 	text-secondary="secondary text and auto line clamp"></vwc-menu-item>
 </vwc-menu>
@@ -283,7 +283,7 @@ To create a menu item that is anchored to a URL do the following:
 If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
 
 ```html preview
-<vwc-menu open>
+<vwc-menu open aria-label="Example menu">
 	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
   	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
 	</a>
