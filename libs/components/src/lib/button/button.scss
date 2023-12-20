@@ -34,6 +34,7 @@
 	align-items: center;
 	justify-content: center;
 	border: 0 none;
+	border-radius: var(#{variables.$button-border-radius});
 	margin: 0;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
@@ -91,20 +92,27 @@
 
 	/* Shape */
 	&:not(.shape-pill) {
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-normal};
+
+		&.size-condensed,
+		&.size-super-condensed {
+			&:not(.stacked) {
+				#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+			}
+		}
 	}
 
 	&.shape-pill {
 		&:not(.icon-only, .stacked) {
-			border-radius: #{border-radius-variables.$border-radius-extra-expanded};
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		}
 
 		&.stacked {
-			border-radius: #{border-radius-variables.$border-radius-extra-expanded};
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		}
 
 		&.icon-only {
-			border-radius: #{border-radius-variables.$border-radius-full};
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-full};
 		}
 	}
 
