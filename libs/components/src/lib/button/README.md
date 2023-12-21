@@ -86,22 +86,6 @@ Use the `size` attribute to set the button's to one of the predefined block size
 <vwc-button appearance='filled' label='condensed' size='condensed'></vwc-button>
 <vwc-button appearance='filled' label='normal' size='normal'></vwc-button>
 <vwc-button appearance='filled' label='expanded' size='expanded'></vwc-button>
-<hr>
-<vwc-button shape='pill' appearance='filled' label='super-condensed' size='super-condensed'></vwc-button>
-<vwc-button shape='pill' appearance='filled' label='condensed' size='condensed'></vwc-button>
-<vwc-button shape='pill' appearance='filled' label='normal' size='normal'></vwc-button>
-<vwc-button shape='pill' appearance='filled' label='expanded' size='expanded'></vwc-button>
-<hr>
-<vwc-button stacked icon='message-sent-line' appearance='filled' label='super-condensed' size='super-condensed'></vwc-button>
-<vwc-button stacked icon='message-sent-line' appearance='filled' label='condensed' size='condensed'></vwc-button>
-<vwc-button stacked icon='message-sent-line' appearance='filled' label='normal' size='normal'></vwc-button>
-<vwc-button stacked icon='message-sent-line' appearance='filled' label='expanded' size='expanded'></vwc-button>
-<hr>
-<vwc-button stacked icon='message-sent-line' shape='pill' appearance='filled' label='super-condensed' size='super-condensed'></vwc-button>
-<vwc-button stacked icon='message-sent-line' shape='pill' appearance='filled' label='condensed' size='condensed'></vwc-button>
-<vwc-button stacked icon='message-sent-line' shape='pill' appearance='filled' label='normal' size='normal'></vwc-button>
-<vwc-button stacked icon='message-sent-line' shape='pill' appearance='filled' label='expanded' size='expanded'></vwc-button>
-
 ```
 
 ### Stacked
