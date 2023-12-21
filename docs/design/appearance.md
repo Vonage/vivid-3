@@ -306,7 +306,47 @@ span {max-width: 80px;}
 </div>
 ```
 
+## Ghost-light
+### Used in
+`nav-item`, `nav-disclosure`
 
+### Important to know
+currently ghost-light appearance is being used only with `accent` connotation
+
+```html preview
+<style>
+.grid {display: grid; grid-template-columns: 80px auto; inline-size: 820px; row-gap: 12px; align-items: center;}
+span {max-width: 80px;}
+.not-set {grid-column: 1/-1;}
+.one-example {grid-column: 2/-1;}
+</style>
+<div class="grid">
+<span><b>idle</b></span>
+<vwc-appearance-ui appearance="ghost-light"></vwc-appearance-ui>
+
+<span><b>hover</b></span>
+<vwc-appearance-ui hovered appearance="ghost-light"></vwc-appearance-ui>
+
+<span><b>active</b></span>
+<vwc-appearance-ui active appearance="ghost-light"></vwc-appearance-ui>
+
+<span><b>selected</b></span>
+<vwc-appearance-ui selected appearance="ghost-light"></vwc-appearance-ui>
+
+
+<span><b>selected & hover</b></span>
+<vwc-appearance-ui selected appearance="ghost-light" hovered></vwc-appearance-ui>
+
+<span><b>disabled</b></span>
+<vwc-appearance-ui disabled appearance="ghost-light" class="one-example"></vwc-appearance-ui>
+
+<span><b>selected & disabled</b></span>
+<vwc-appearance-ui selected appearance="ghost-light" disabled class="one-example"></vwc-appearance-ui>
+
+<span><b>readonly</b></span>
+<vwc-appearance-ui readonly appearance="ghost-light" class="one-example"></vwc-appearance-ui>
+</div>
+```
 
 ## Last update: 12.2023
 

@@ -29,6 +29,7 @@ export enum Appearance {
 	Fieldset = 'fieldset',
 	Subtle = 'subtle',
 	Ghost = 'ghost',
+	GhostLight = 'ghost-light',
 	Listitem ='listitem',
 	Elevated = 'elevated'
 }

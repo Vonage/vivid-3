@@ -13,6 +13,7 @@ import type {
 export type AppearanceUIAppearance = Extract<Appearance,
 Appearance.Filled
 | Appearance.Ghost
+| Appearance.GhostLight
 | Appearance.Outlined
 | Appearance.Duotone
 | Appearance.Fieldset
