@@ -10,6 +10,7 @@
 	$default: fieldset,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 :host {
@@ -46,11 +47,11 @@
 
 /* Shape */
 .base:not(.shape-pill) {
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 }
 
 .base.shape-pill {
-	border-radius: 24px;
+	border-radius: #{border-radius-variables.$border-radius-extra-expanded};
 }
 
 /* Separator */

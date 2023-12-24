@@ -50,6 +50,7 @@ export class Dialog extends FoundationElement {
 	@attr ({attribute: 'full-width-body', mode: 'boolean'}) fullWidthBody = false;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'dismiss-button-aria-label'}) dismissButtonAriaLabel: string | null = null;
+	@attr ({attribute: 'no-light-dismiss', mode: 'boolean'}) noLightDismiss = false;
 
 	#modal = false;
 
@@ -61,6 +62,10 @@ export class Dialog extends FoundationElement {
 		return this.#dialog?.returnValue;
 	}
 
+
+	/**
+	 * @internal
+	 */
 	get modal() {
 		return this.#modal;
 	}
@@ -80,6 +85,9 @@ export class Dialog extends FoundationElement {
 		return this.#dialogElement as HTMLDialogElement;
 	}
 
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean) {
 		if (oldValue === undefined) {
 			return;
@@ -94,7 +102,7 @@ export class Dialog extends FoundationElement {
 	}
 
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog) {
+		if (event.target !== this.#dialog || this.noLightDismiss) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();
@@ -158,15 +166,16 @@ export class Dialog extends FoundationElement {
 
 
 	/**
-	 *
-	 * Slot observer:
-	 *
 	 * @internal
 	 */
-
-
 	@observable bodySlottedContent?: HTMLElement[];
+	/**
+	 * @internal
+	 */
 	@observable footerSlottedContent?: HTMLElement[];
+	/**
+	 * @internal
+	 */
 	@observable actionItemsSlottedContent?: HTMLElement[];
 
 }

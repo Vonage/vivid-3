@@ -15,6 +15,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 $low-ink-color: --_low-ink-color;
 $size: #{size.$vvd-size-ultra-condensed};
@@ -65,7 +66,7 @@ $gutter: 2px;
 	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: $size;
-	border-radius: 5px;
+	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: $size;
@@ -104,7 +105,7 @@ label {
 	#{focus-variables.$focus-inset}: -3px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 
 	.base:not(:focus-visible) & {
 		display: none;

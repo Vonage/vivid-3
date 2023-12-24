@@ -213,6 +213,16 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should leave the dialog open on scrim click when no light dismiss', async function () {
+			element.noLightDismiss = true;
+			await elementUpdated(element);
+
+			const event = createMouseEventOutsideTheDialog('mousedown');
+			dialogElement?.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+
 		it('should leave dialog open when anything but the scrim is clicked', async function () {
 			const event = createMouseEventInsideTheDialog('mousedown');
 			dialogElement?.dispatchEvent(event);
@@ -345,6 +355,16 @@ describe('vwc-dialog', () => {
 		expect(spy).toHaveBeenCalledTimes(1);
 	});
 
+	it('should preventDefault of cancel events on the dialog', async () => {
+		const cancelEvent = new Event('cancel');
+		cancelEvent.preventDefault = jest.fn();
+		await showDialog();
+
+		getBaseElement(element).dispatchEvent(cancelEvent);
+
+		expect(cancelEvent.preventDefault).toHaveBeenCalled();
+	});
+
 	describe( 'dialog body', () => {
 		it('should have body slot ', async function () {
 			const bodySlotElement = element.shadowRoot?.
@@ -465,8 +485,8 @@ describe('vwc-dialog', () => {
 			element.open = true;
 			element.setAttribute('aria-label', 'Test dialog');
 			await elementUpdated(element);
-			
-			
+
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.44.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.43.0...vivid-vue-v3.44.0) (2023-12-20)
+
+
+### Bug Fixes
+
+* **vue-wrappers:** fix linter errors (VIV-000) ([#1499](https://github.com/Vonage/vivid-3/issues/1499)) ([269c283](https://github.com/Vonage/vivid-3/commit/269c2830e9d36b9304b6dad7b9dfd079023f2bfd))
+
 ## [3.43.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.42.1...vivid-vue-v3.43.0) (2023-12-11)
 
 

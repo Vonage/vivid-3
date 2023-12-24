@@ -14,6 +14,7 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../focus/partials/variables" as focus-variables;
 @use "partials/variables" as variables;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 $low-ink-color: --_low-ink-color;
 
@@ -71,11 +72,11 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&:not(.shape-pill) {
-		#{variables.$select-control-border-radius}: 6px;
+		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-normal};
 	}
 
 	&.shape-pill {
-		#{variables.$select-control-border-radius}: 24px;
+		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 }
 
@@ -139,6 +140,6 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	:host([multiple]) & {
-		#{variables.$select-control-border-radius}: 6px;
+		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-normal};
 	}
 }

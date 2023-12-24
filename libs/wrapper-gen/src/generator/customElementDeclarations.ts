@@ -130,7 +130,7 @@ and don't support IDL attribute binding.`,
 
   // Only checkbox and radio differ from the base class
   if (className === 'FormAssociatedCheckbox' || className === 'FormAssociatedRadio') {
-    declaration.attributes!.push(
+    declaration.attributes.push(
       {
         name: 'checked',
         description: `Provides the default checkedness of the input element`,

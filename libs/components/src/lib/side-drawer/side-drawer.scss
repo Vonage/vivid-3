@@ -4,6 +4,13 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 
+:host {
+	display: block;
+}
+
+.side-drawer-app-content {
+	block-size: 100%;
+}
 
 $inline-size: 280px;
 

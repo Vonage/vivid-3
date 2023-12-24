@@ -5,25 +5,23 @@ const updateHeaderElevationShadow = (isShadowed) => {
 	sideHeader.elevationShadow = isShadowed;
 }
 
-const getAsideElement = () => sidedrawer.shadowRoot.querySelector('aside');
+const getSideDrawerBase = () => sidedrawer.shadowRoot.querySelector('[part~="base"]');
 
 const onScroll = () => {
 	const isWindowScrolled = window.scrollY > 0;
-	const isAsideScrolled = getAsideElement().scrollTop > 0;
-	updateHeaderElevationShadow(isWindowScrolled || isAsideScrolled);
+	const isSideDrawerScrolled = getSideDrawerBase().scrollTop > 0;
+	updateHeaderElevationShadow(isWindowScrolled || isSideDrawerScrolled);
 	// save sideDrawer's scroll in sessionStorage
-	if (getAsideElement().scrollTop) {
-		sessionStorage.setItem("scroll", getAsideElement().scrollTop);
+	if (getSideDrawerBase().scrollTop) {
+		sessionStorage.setItem("scroll", getSideDrawerBase().scrollTop);
 	}
 }
 
 const setScrollFromSessionStorage = () => {
 	// set sideDrawer's scroll from sessionStorage
-	const asideElement = getAsideElement();
-	if (asideElement.offsetHeight > 0) {
-		asideElement.scrollTop = sessionStorage.getItem("scroll") ?? 0;
-	}
-	else {
+	if (getSideDrawerBase().offsetHeight > 0) {
+		getSideDrawerBase().scrollTop = sessionStorage.getItem('scroll') ?? 0;
+	} else {
 		requestAnimationFrame(setScrollFromSessionStorage);
 	}
 }
@@ -34,6 +32,6 @@ const setScrollFromSessionStorage = () => {
 
 	customElements.whenDefined('vwc-side-drawer').then(() => {
 		setScrollFromSessionStorage();
-		getAsideElement().addEventListener('scroll', onScroll);
+		getSideDrawerBase().addEventListener('scroll', onScroll);
 	});
 })();

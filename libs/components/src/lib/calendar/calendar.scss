@@ -1,6 +1,7 @@
 @use "partials/variables" as variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 ol {
@@ -50,7 +51,7 @@ ol {
 	display: grid;
 	overflow: hidden;
 	background: var(#{constants.$vvd-color-surface-2dp});
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	counter-reset: listing;
 	filter: var(#{constants.$vvd-shadow-surface-2dp});
 	gap: variables.$gap;
