@@ -202,10 +202,10 @@ describe('vwc-tabs', () => {
 	describe('gutters', () => {
 		it('should set gutters property', async () => {
 			const gutters = TabsSize.Small;
-			expect(getBaseElement(element).classList.contains('gutters')).toBeFalsy();
+			expect(getBaseElement(element).classList.toString()).not.toContain(`gutters-${gutters}`);
 			element.gutters = gutters;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('gutters')).toBeTruthy();
+			expect(getBaseElement(element).classList.toString()).toContain(`gutters-${gutters}`);
 		});
 	});
 
