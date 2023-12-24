@@ -101,13 +101,14 @@ Add an `activeid` attribute of the active tab.
 
 ### Gutters
 
-Enabling the `gutters` member will add margin to the tabs panel.
+Use the `gutters` attribute to add a margin to the component.
 
-- Type: `boolean`
-- Default: `false`
+- Type: `'small'`
+
+- Default: `none`
 
 ```html preview full
-<vwc-tabs gutters>
+<vwc-tabs gutters="small">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>

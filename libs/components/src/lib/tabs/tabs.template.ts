@@ -8,7 +8,7 @@ const getClasses = ({
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`orientation-${orientation}`, Boolean(orientation)],
-	['gutters', Boolean(gutters)]
+	[`gutters-${gutters}`, Boolean(gutters)],
 );
 
 /**

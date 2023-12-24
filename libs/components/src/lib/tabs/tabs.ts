@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { Tabs as FoundationTabs, TabsOrientation } from '@microsoft/fast-foundation';
-import type { Connotation } from '../enums.js';
+import type { Connotation, TabsSize } from '../enums.js';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 
@@ -9,9 +9,10 @@ export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
  *
  * @public
  */
-export type TabsConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+export type TabsConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
+
+export type Gutters = Extract<TabsSize, TabsSize.Small >;
+
 
 /**
  * Base class for tabs
@@ -32,11 +33,11 @@ export class Tabs extends FoundationTabs {
 	@attr connotation?: TabsConnotation;
 
 	/**
+	 * sets the initial preferred margin from predefined available options
 	 *
 	 * @public
-	 * HTML Attribute: gutters
 	 */
-	@attr({mode: 'boolean'}) gutters = false;
+	@attr gutters?: Gutters;
 
 	connotationChanged() {
 		this.#updateTabsConnotation();
@@ -58,7 +59,7 @@ export class Tabs extends FoundationTabs {
 		this.#patchActiveID();
 	}
 
-	override tabsChanged(): 	void {
+	override tabsChanged(): void {
 		super.tabsChanged();
 		this.patchIndicatorStyleTransition();
 		this.#patchActiveID();
@@ -114,7 +115,7 @@ export class Tabs extends FoundationTabs {
 			}
 		}
 
-		this.#tabListWrapper.scrollTo({top, left, behavior: 'smooth'});
+		this.#tabListWrapper.scrollTo({ top, left, behavior: 'smooth' });
 	}
 	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
 	#patchActiveID() {
