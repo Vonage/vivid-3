@@ -28,6 +28,31 @@ The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` element
 
 ## Members
 
+### Gutters
+
+Use the `gutters` attribute to add a margin to the component.
+
+- Type: `'small'`
+
+- Default: `none`
+
+```html preview full
+<vwc-tabs gutters="small">
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+        Tab one content
+    </vwc-tab-panel>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
+    </vwc-tab-panel>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
+    </vwc-tab-panel>
+</vwc-tabs>
+```
+
 ### Orientation
 
 Add a `orientation` attribute to control the orientation.
@@ -36,7 +61,7 @@ Add a `orientation` attribute to control the orientation.
 - Default: `'horizontal'`
 
 ```html preview full
-<vwc-tabs orientation="vertical">
+<vwc-tabs gutters="small" orientation="vertical">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -59,7 +84,7 @@ Add a `orientation` attribute to control the orientation.
 Setting a connotation will only affect the active tab
 
 ```html preview full
-<vwc-tabs connotation="cta">
+<vwc-tabs gutters="small" connotation="cta">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -83,32 +108,7 @@ Add an `activeid` attribute of the active tab.
 - Default: `''`
 
 ```html preview full
-<vwc-tabs activeid="two">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-        Tab one content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
-</vwc-tabs>
-```
-
-### Gutters
-
-Use the `gutters` attribute to add a margin to the component.
-
-- Type: `'small'`
-
-- Default: `none`
-
-```html preview full
-<vwc-tabs gutters="small">
+<vwc-tabs gutters="small" activeid="two">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
