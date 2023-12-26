@@ -96,8 +96,8 @@
 
 .tabpanel {
 	// this is for making overflow inside grid to work
-	min-inline-size: 0;
 	min-block-size: 0;
+	min-inline-size: 0;
 
 	.base.orientation-vertical & {
 		block-size: 100%;
