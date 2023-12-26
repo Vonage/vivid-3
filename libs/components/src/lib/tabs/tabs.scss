@@ -18,6 +18,9 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
+:host {
+	display: block;
+}
 
 .base {
 	@include appearance.appearance;
@@ -36,6 +39,7 @@
 	&:not(.orientation-vertical) {
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
+		max-block-size: 100%;
 	}
 }
 
@@ -93,6 +97,7 @@
 .tabpanel {
 	// this is for making overflow inside grid to work
 	min-inline-size: 0;
+	min-block-size: 0;
 
 	.base.orientation-vertical & {
 		block-size: 100%;

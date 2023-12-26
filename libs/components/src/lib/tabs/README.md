@@ -138,3 +138,45 @@ Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that
 | `change` | Fires a custom `change` event when a tab is clicked or during keyboard navigation. |
 
 </div>
+
+## Use Case
+Tab panel with scroll.  
+There are two ways to set tab-panel with scroll:
+- add fixed `block-size` + `overflow-y` on the slotted panel
+- add `block-size` to `vwc-tabs` and then set `block-size: 100%` on the slotted panel (see code bellow).
+
+```html preview full
+<style>
+  .tabs {
+		block-size: 200px;  
+  }
+  .my-panel {block-size: 100%; overflow-y: auto;}
+</style>
+<vwc-tabs class="tabs">
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+      <div class="my-panel">
+        <ol>
+            <li>Stuffed artichokes</li>
+            <li>Bruschetta</li>
+            <li>Oven-baked polenta</li>
+            <li>Salami and Fig Crostini with Ricotta</li>
+            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
+             <li>Stuffed artichokes</li>
+            <li>Bruschetta</li>
+            <li>Oven-baked polenta</li>
+            <li>Salami and Fig Crostini with Ricotta</li>
+            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
+        </ol>
+      </div>
+    </vwc-tab-panel>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
+    </vwc-tab-panel>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
+    </vwc-tab-panel>
+</vwc-tabs>
+```
