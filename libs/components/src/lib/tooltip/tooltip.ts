@@ -22,9 +22,14 @@ export class Tooltip extends FoundationElement {
 
 	@attr({ mode: 'boolean'	}) open = false;
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.#updateListeners();
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		document.removeEventListener('keydown', this.#closeOnEscape);
+		this.#updateListeners();
 	}
 
 	/**
@@ -57,18 +62,24 @@ export class Tooltip extends FoundationElement {
 		this.open = false;
 	};
 
+	#updateListeners() {
+		document.removeEventListener('keydown', this.#closeOnEscape);
+		if (this.open && this.isConnected) {
+			document.addEventListener('keydown', this.#closeOnEscape);
+		}
+	}
+
 	#closeOnEscape = (e:KeyboardEvent) => {
 		if (e.key === 'Escape') this.#hide();
 	};
 
-	openChanged(_: boolean, newValue: boolean): void {
-		if (_ === undefined) return;
+	/**
+	 * @internal
+	 */
+	openChanged(oldValue?: boolean): void {
+		if (oldValue === undefined) return;
 
-		if (newValue) {
-			document.addEventListener('keydown', this.#closeOnEscape);
-		} else {
-			document.removeEventListener('keydown', this.#closeOnEscape);
-		}
+		this.#updateListeners();
 	}
 }
 
