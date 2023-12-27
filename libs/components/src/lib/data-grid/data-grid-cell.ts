@@ -3,7 +3,6 @@ import {
 	DataGridCell as FoundationDataGridCell,
 } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import type { DataGridCellSortStates } from './data-grid.options';
 
 declare interface ColumnDefinitionExtended extends ColumnDefinition {
@@ -73,10 +72,11 @@ export class DataGridCell extends FoundationDataGridCell {
 			? this.columnDefinition.columnDataKey
 			: this.textContent!.trim();
 	}
+
 	/**
 	 * @internal
 	 */
-	_handleClick() {
+	_handleInteraction() {
 		const isHeaderCell = this.cellType === 'columnheader';
 		const isSortable = isHeaderCell && this.ariaSort !== null;
 
@@ -98,16 +98,6 @@ export class DataGridCell extends FoundationDataGridCell {
 				columnDataKey: this.#getColumnDataKey(),
 			});
 		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_handleKeyDown(e: KeyboardEvent) {
-		if (e.target === this && (e.key === keyEnter || e.key === keySpace)) {
-			this._handleClick();
-		}
-		return true;
 	}
 }
 
