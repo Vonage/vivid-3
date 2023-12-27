@@ -50,7 +50,7 @@ export const MenuTemplate: (
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
-				:anchor=${(x) => x.anchor}
+				:anchor=${(x) => x._anchorEl}
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
 				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"
