@@ -51,8 +51,9 @@ $alert-transition-delay: --transition-delay;
 		margin-inline: 16px;
 	}
 
-	&:where(.in-flow) {
+	&:where(.strategy-static) {
 		position: static;
+		margin: 0;
 		inline-size: auto;
 	}
 

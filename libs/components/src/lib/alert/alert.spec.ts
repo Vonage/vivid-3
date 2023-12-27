@@ -29,7 +29,7 @@ describe('vwc-alert', () => {
 			expect(element.removable).toBeFalsy();
 			expect(element.timeoutms).toBe(0);
 			expect(element.placement).toEqual('bottom');
-			expect(element.inFlow).toBeFalsy();
+			expect(element.strategy).toEqual('fixed');
 		});
 	});
 
@@ -364,10 +364,10 @@ describe('vwc-alert', () => {
 	});
 
 	describe('in-flow', () => {
-		it('should add class .in-flow to .control when set', async () => {
-			element.inFlow = true;
+		it('should add class .strategy-static to .control when set', async () => {
+			element.strategy = 'static';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.in-flow')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.strategy-static')).toBeTruthy();
 		});
 	});
 });

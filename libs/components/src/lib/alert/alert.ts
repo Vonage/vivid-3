@@ -21,6 +21,8 @@ const connotationIconMap = new Map([
 
 export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
 
+export type AlertStrategy = 'fixed' | 'static';
+
 /**
  * Base class for alert
  *
@@ -105,7 +107,7 @@ export class Alert extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'boolean', attribute: 'in-flow', }) inFlow = false;
+	@attr({ mode: 'fromView'}) strategy?: AlertStrategy = 'fixed';
 
 	/**
 	 * indicates whether the alert is open

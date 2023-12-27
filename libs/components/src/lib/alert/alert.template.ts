@@ -15,11 +15,11 @@ const getClasses = ({ connotation }: Alert) => classNames(
 	[`connotation-${connotation}`, Boolean(connotation)],
 );
 
-const getControlClasses = ({ open, placement, inFlow }: Alert) => classNames(
+const getControlClasses = ({ open, placement, strategy }: Alert) => classNames(
 	'control',
 	['open', open],
 	[`placement-${placement}`, Boolean(placement)],
-	['in-flow', Boolean(inFlow)],
+	[`strategy-${strategy}`, Boolean(strategy)],
 );
 
 function renderIcon(context: ElementDefinitionContext) {
