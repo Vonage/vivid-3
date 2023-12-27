@@ -22,7 +22,7 @@ export const ToggletipTemplate:
 		<${popup}
 			class="${getClasses}"
 			arrow
-			:anchor="${x => x.anchor}"
+			:anchor="${x => x._anchorEl}"
 			:open="${x => x.open}"
 			?alternate="${x => !x.alternate}"
 			placement="${x => x.placement}"

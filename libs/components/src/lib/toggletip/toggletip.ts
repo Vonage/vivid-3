@@ -1,8 +1,7 @@
 import { attr, DOM } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
-
-type AnchorType = string | HTMLElement;
+import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
  * Base class for toggletip
@@ -11,23 +10,8 @@ type AnchorType = string | HTMLElement;
  * @slot - The content to display in the toggletip.
  * @slot action-items - The content to display in the toggletip action items.
  */
+@anchored
 export class Toggletip extends FoundationElement {
-
-	#observer?: MutationObserver;
-	#anchorEl: HTMLElement | null = null;
-	#observeMissingAnchor = (anchorId: string) => {
-		this.#observer = new MutationObserver(() => {
-			const anchor = document.getElementById(anchorId as string);
-			if (anchor) {
-				this.#anchorEl = anchor;
-				this.#setupAnchor(this.#anchorEl);
-				this.#observer!.disconnect();
-				this.#observer = undefined;
-			}
-		});
-		this.#observer.observe(document.body, { childList: true, subtree: true });
-	};
-
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
 	/**
@@ -56,26 +40,6 @@ export class Toggletip extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement = 'right';
 
 	/**
-	 * id or direct reference to the toggletip's anchor element
-	 *
-	 * @public
-	 * HTML Attribute: anchor
-	 */
-	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
-
-	anchorChanged(_: AnchorType, newValue: AnchorType) {
-		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-		this.#observer?.disconnect();
-
-		this.#anchorEl = newValue instanceof HTMLElement ? newValue : document.getElementById(newValue);
-		if (this.#anchorEl) {
-			this.#setupAnchor(this.#anchorEl);
-		} else {
-			this.#observeMissingAnchor(newValue as string);
-		}
-	}
-
-	/**
 	 * indicates whether the toggletip is open
 	 *
 	 * @public
@@ -95,22 +59,33 @@ export class Toggletip extends FoundationElement {
 			this.removeAttribute('role');
 		}
 
-		if (this.#anchorEl) {
-			this.#anchorEl.ariaExpanded = this.open.toString();
+		if (this._anchorEl) {
+			this.#updateAnchor(this._anchorEl);
 		}
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-		this.#observer?.disconnect();
 		document.removeEventListener('keydown', this.#closeOnEscape);
+	}
+
+	/**
+	 * @internal
+	 */
+	_anchorElChanged(oldValue?: HTMLElement, newValue?: HTMLElement): void {
+		if (oldValue) this.#cleanupAnchor(oldValue);
+		if (newValue) this.#setupAnchor(newValue);
 	}
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);
 		a.ariaLabel = (a.ariaLabel ?? '') + this.#ANCHOR_ARIA_LABEL_SUFFIX;
+		this.#updateAnchor(a);
 		// TODO aria-controls="myid"
+	}
+
+	#updateAnchor(a: HTMLElement) {
+		a.setAttribute('aria-expanded', this.open.toString());
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
@@ -132,3 +107,5 @@ export class Toggletip extends FoundationElement {
 		if (e.key === 'Escape') this.open = false;
 	};
 }
+
+export interface Toggletip extends Anchored {}
