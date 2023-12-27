@@ -133,7 +133,7 @@ Placement will have no effect on the alert, and it will behave as an element in 
 - Default: `fixed`
 
 ```html preview
-<vwc-alert strategy="static" text="An important information for you" open icon="megaphone-solid"></vwc-alert>
+<vwc-alert strategy="static" text="Alert with position static" open icon="megaphone-solid"></vwc-alert>
 ```
 
 ### Removable
