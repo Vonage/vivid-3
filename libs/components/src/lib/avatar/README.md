@@ -92,12 +92,12 @@ Use the `size` attribute/property to set the avatar's to one of the predefined b
 - Default: `'normal'`
 
 ```html preview
+<vwc-avatar size='condensed' initials="JD"></vwc-avatar>
+<vwc-avatar size='normal' initials="JD"></vwc-avatar>
+<vwc-avatar size='expanded' initials="JD"></vwc-avatar>
 <vwc-avatar size='condensed' shape="pill"></vwc-avatar>
 <vwc-avatar size='normal' shape="pill"></vwc-avatar>
 <vwc-avatar size='expanded' shape="pill"></vwc-avatar>
-<vwc-avatar size='condensed' shape="pill" initials="JD"></vwc-avatar>
-<vwc-avatar size='normal' shape="pill" initials="JD"></vwc-avatar>
-<vwc-avatar size='expanded' shape="pill" initials="JD"></vwc-avatar>
 ```
 
 ## Slots
