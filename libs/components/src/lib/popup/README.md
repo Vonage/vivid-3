@@ -13,20 +13,23 @@ Popup's goal is to provide additional, helpful content. To trigger the Popup, it
 
 ### Anchor
 
-Use the `anchor` attribute to reference the ID to element in the popup’s owner document.
+Use the `anchor` property to set the anchor element of the popup.
 
 The popup is positioned in a fixed manner to its anchor.
 
-- Type: `string`
-- Default: `''`
+- Type: `HTMLElement`
+- Default: `undefined`
 
 ```html preview center
 <span id="anchor">
   ⚓️
 </span>
-<vwc-popup anchor="anchor" open>
+<vwc-popup id="popup" open>
   This is a popup.
 </vwc-popup>
+<script>
+	popup.anchor = anchor;
+</script>
 ```
 
 ### Open
@@ -38,13 +41,14 @@ Use the `open` attribute to indicate whether the popup is open.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" open>
+<vwc-popup id="popup" open>
   <vwc-layout gutters="small">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
 
 <script>
+	popup.anchor = anchor;
   anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
@@ -58,13 +62,14 @@ Add the `dismissible` attribute to add a close button to the popup.
 
 ```html preview center
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
-<vwc-popup id="popup" anchor="anchor" open dismissible>
+<vwc-popup id="popup" open dismissible>
   <vwc-layout gutters="small">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   </vwc-layout>
 </vwc-popup>
 
 <script>
+	popup.anchor = anchor;
   anchor.addEventListener('click', () => popup.open = !popup.open);
 </script>
 ```
@@ -78,11 +83,14 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 
 ```html preview center
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
-<vwc-popup anchor="anchor" open arrow>
+<vwc-popup id="popup" open arrow>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
+<script>
+	popup.anchor = anchor;
+</script>
 ```
 
 ### Alternate
@@ -94,11 +102,14 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 
 ```html preview center
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
-<vwc-popup anchor="anchor" open alternate>
+<vwc-popup id="popup" open alternate>
   <vwc-layout gutters="small" style="200px">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </vwc-layout>
 </vwc-popup>
+<script>
+	popup.anchor = anchor;
+</script>
 ```
 
 ### Placement
@@ -123,42 +134,45 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 
 <div id="anchor" class="square"></div>
 
-<vwc-popup id="popup" anchor="anchor" open placement="right-end">
+<vwc-popup class="popup" open placement="right-end">
   right-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="right">
+<vwc-popup class="popup" open placement="right">
   right
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="right-start">
+<vwc-popup class="popup" open placement="right-start">
   right-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="left-end">
+<vwc-popup class="popup" open placement="left-end">
   left-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="left">
+<vwc-popup class="popup" open placement="left">
   left
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="left-start">
+<vwc-popup class="popup" open placement="left-start">
   left-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="top-end">
+<vwc-popup class="popup" open placement="top-end">
   top-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="top">
+<vwc-popup class="popup" open placement="top">
   top
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="top-start">
+<vwc-popup class="popup" open placement="top-start">
   top-start
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="bottom-end">
+<vwc-popup class="popup" open placement="bottom-end">
   bottom-end
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="bottom">
+<vwc-popup class="popup" open placement="bottom">
   bottom
 </vwc-popup>
-<vwc-popup id="popup" anchor="anchor" open placement="bottom-start">
+<vwc-popup class="popup" open placement="bottom-start">
   bottom-start
 </vwc-popup>
+<script>
+	document.querySelectorAll('.popup').forEach(popup => popup.anchor = anchor);
+</script>
 ```
 
 ## Methods
