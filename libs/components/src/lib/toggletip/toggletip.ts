@@ -50,23 +50,26 @@ export class Toggletip extends FoundationElement {
 		if (oldValue === undefined) return;
 
 		if (newValue) {
-			document.addEventListener('click', this.#closeOnClickOutside);
-			document.addEventListener('keydown', this.#closeOnEscape);
 			this.setAttribute('role', 'status');
 		} else {
-			document.removeEventListener('click', this.#closeOnClickOutside);
-			document.removeEventListener('keydown', this.#closeOnEscape);
 			this.removeAttribute('role');
 		}
+
+		this.#updateListeners();
 
 		if (this._anchorEl) {
 			this.#updateAnchor(this._anchorEl);
 		}
 	}
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.#updateListeners();
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		document.removeEventListener('keydown', this.#closeOnEscape);
+		this.#updateListeners();
 	}
 
 	/**
@@ -98,6 +101,15 @@ export class Toggletip extends FoundationElement {
 		// being caught by the document click handler (added by openChanged)
 		if (!this.open) DOM.queueUpdate(() => this.open = true);
 	};
+
+	#updateListeners() {
+		document.removeEventListener('click', this.#closeOnClickOutside);
+		document.removeEventListener('keydown', this.#closeOnEscape);
+		if (this.open && this.isConnected) {
+			document.addEventListener('click', this.#closeOnClickOutside);
+			document.addEventListener('keydown', this.#closeOnEscape);
+		}
+	}
 
 	#closeOnClickOutside = (e: Event) => {
 		if (!this.contains(e.target as Node)) this.open = false;
