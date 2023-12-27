@@ -462,8 +462,6 @@ The `cell-click` event is fired when a cell is clicked on or when the enter or s
 Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 
 ```html preview
-
-```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
     grid = document.querySelector('vwc-data-grid');
