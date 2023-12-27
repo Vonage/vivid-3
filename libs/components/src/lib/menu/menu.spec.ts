@@ -8,10 +8,10 @@ import {
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
+import type { Popup } from '../popup/popup.ts';
 import { Menu } from './menu';
 import { menuDefinition } from './definition';
 import '.';
-import { Popup } from '../popup/popup.ts';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -72,38 +72,55 @@ describe('vwc-menu', () => {
 				.toEqual(false);
 		});
 
-		it('should remove the listener on attribute change', async function () {
-			let spy1, spy2;
-			jest.spyOn(document, 'addEventListener').mockImplementation(function (_: string, cb: any) {
-				spy1 = cb;
+		describe('removing listeners', () => {
+			let lastAddedListener: (() => void) | undefined;
+			let lastRemovedListener:(() => void) | undefined;
+			beforeEach(() => {
+				lastAddedListener = undefined;
+				lastRemovedListener = undefined;
+				jest.spyOn(document, 'addEventListener').mockImplementation(function(_: string, cb: any) {
+					lastAddedListener = cb;
+				});
+				jest.spyOn(document, 'removeEventListener').mockImplementation(function(_: string, cb: any) {
+					lastRemovedListener = cb;
+				});
 			});
-			jest.spyOn(document, 'removeEventListener').mockImplementation(function (_: string, cb: any) {
-				spy2 = cb;
+			afterEach(() => {
+				jest.mocked(document.addEventListener).mockRestore();
+				jest.mocked(document.removeEventListener).mockRestore();
 			});
-			element.open = true;
-			element.autoDismiss = true;
-			await elementUpdated(element);
-			element.autoDismiss = false;
-			await elementUpdated(element);
 
-			expect(spy1).toBe(spy2);
+			it('should remove the listener on attribute change', async function() {
+				element.open = true;
+				element.autoDismiss = true;
+				await elementUpdated(element);
+				element.autoDismiss = false;
+				await elementUpdated(element);
+
+				expect(lastAddedListener).toBe(lastRemovedListener);
+			});
+
+			it('should remove the listener when disconnected', async function() {
+				element.open = true;
+				element.autoDismiss = true;
+				await elementUpdated(element);
+				element.remove();
+				await elementUpdated(element);
+
+				expect(lastAddedListener).toBe(lastRemovedListener);
+			});
 		});
 
-		it('should remove the listener on destruction', async function () {
-			let spy1, spy2;
-			jest.spyOn(document, 'addEventListener').mockImplementation(function (_: string, cb: any) {
-				spy1 = cb;
-			});
-			jest.spyOn(document, 'removeEventListener').mockImplementation(function (_: string, cb: any) {
-				spy2 = cb;
-			});
+		it('should add the listener again when reconnected', () => {
 			element.open = true;
 			element.autoDismiss = true;
-			await elementUpdated(element);
+			const parent = element.parentElement!;
 			element.remove();
-			await elementUpdated(element);
+			parent.appendChild(element);
 
-			expect(spy1).toBe(spy2);
+			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+			expect(element.open).toBe(false);
 		});
 
 		it('should leave "open" true when clicked outside and auto-dismiss false', async () => {

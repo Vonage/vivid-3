@@ -33,14 +33,10 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: auto-dismiss
 	 */
 	@attr({ mode: 'boolean', attribute: 'auto-dismiss' }) autoDismiss = false;
-	autoDismissChanged(oldValue: boolean, newValue: boolean): void {
+	autoDismissChanged(oldValue?: boolean) {
 		if (oldValue === undefined) return;
 
-		if (newValue) {
-			document.addEventListener('click', this.#closeOnClickOutside);
-		} else {
-			document.removeEventListener('click', this.#closeOnClickOutside);
-		}
+		this.#updateClickOutsideListener();
 	}
 
 	/**
@@ -82,9 +78,14 @@ export class Menu extends FastMenu {
 		};
 	}
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.#updateClickOutsideListener();
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		document.removeEventListener('click', this.#closeOnClickOutside);
+		this.#updateClickOutsideListener();
 	}
 
 	/**
@@ -116,6 +117,13 @@ export class Menu extends FastMenu {
 		// DOM.queueUpdate() is required to prevent the click event from
 		// being caught by the document click handler (added by openChanged)
 		if (!this.open) DOM.queueUpdate(() => this.open = true);
+	};
+
+	#updateClickOutsideListener = () => {
+		document.removeEventListener('click', this.#closeOnClickOutside);
+		if (this.autoDismiss && this.isConnected) {
+			document.addEventListener('click', this.#closeOnClickOutside);
+		}
 	};
 
 	#closeOnClickOutside = (e: Event) => {
