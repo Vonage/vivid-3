@@ -53,6 +53,9 @@ export enum LayoutSize {
 	Large = 'large',
 }
 
+export enum TabsSize {
+	Small = 'small',
+}
 
 export enum Position {
 	Top = 'TOP',

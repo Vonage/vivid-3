@@ -1,4 +1,7 @@
+@use "sass:map";
 @use "../tabs/partials/variables" as variables;
+@use "partials/mixins" as mixins;
+
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
@@ -95,6 +98,12 @@
 		block-size: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
+	}
+
+	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
+		.base.gutters-#{$space} & {
+			margin: map.get(variables.$spaces, $space);
+		}
 	}
 }
 
