@@ -4,6 +4,26 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.44.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.43.0...vivid-v3.44.0) (2023-12-20)
+
+
+### Features
+
+* **dialog:** add non-dismissive attribute (VIV-1351) ([#1453](https://github.com/Vonage/vivid-3/issues/1453)) ([2f5e24b](https://github.com/Vonage/vivid-3/commit/2f5e24bb6818177be42a816eabc69d3b47fc7c7c))
+
+
+### Bug Fixes
+
+* **date-picker, date-range-picker:** fix popup not being anchored (VIV-1439) ([#1496](https://github.com/Vonage/vivid-3/issues/1496)) ([a148062](https://github.com/Vonage/vivid-3/commit/a148062a2aa024c5cd34cb14ae6dc0a800d071bd))
+* **menu-item:** prevent click event when disabled (VIV-1440) ([#1488](https://github.com/Vonage/vivid-3/issues/1488)) ([c3d05dd](https://github.com/Vonage/vivid-3/commit/c3d05dd8de06728d3802df50e4e8ff7b27763174))
+* **menu:** accessible name with aria-label attribute (VIV-1395) ([#1477](https://github.com/Vonage/vivid-3/issues/1477)) ([9512b1c](https://github.com/Vonage/vivid-3/commit/9512b1c681553e4ee044e835c94e5696a60e97dd))
+* prevent click event on menu-item when disabled ([c3d05dd](https://github.com/Vonage/vivid-3/commit/c3d05dd8de06728d3802df50e4e8ff7b27763174))
+* **select, radio:** document input and change events and add tests (VIV-1402) ([#1484](https://github.com/Vonage/vivid-3/issues/1484)) ([6c254b3](https://github.com/Vonage/vivid-3/commit/6c254b3e77e3dd1dabcab26d6cf0309c11e889ab))
+* **side-drawer:** add block-size to content (VIV-1352) ([#1481](https://github.com/Vonage/vivid-3/issues/1481)) ([6bca42d](https://github.com/Vonage/vivid-3/commit/6bca42da68a28f2f19a8ed49c0f87bf1a0d01e54))
+* **text-field, number-field:** success and error colors for ghost appearance (VIV-1360) ([#1497](https://github.com/Vonage/vivid-3/issues/1497)) ([09728b6](https://github.com/Vonage/vivid-3/commit/09728b64b94eba87e9974da293a48254affea80e))
+* **text-field:** fix input styles getting overridden by css resets (VIV-1433) ([#1498](https://github.com/Vonage/vivid-3/issues/1498)) ([7246dc8](https://github.com/Vonage/vivid-3/commit/7246dc8d3c13f23d8e7dd62e2ee9e649d2d0efb6))
+* **vue-wrappers:** fix missing presentation role for menu item (VIV-1463) ([#1507](https://github.com/Vonage/vivid-3/issues/1507)) ([6013902](https://github.com/Vonage/vivid-3/commit/6013902d586ef150531c7c5a6bc0b7d08b340d08))
+
 ## [3.43.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.42.1...vivid-v3.43.0) (2023-12-11)
 
 

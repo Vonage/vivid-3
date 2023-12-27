@@ -5,12 +5,12 @@ import {
   AccordionExpandMode,
   ComboboxAutocomplete,
   DividerRole,
-  MenuItemRole,
   SelectPosition,
   SliderMode,
   TabsOrientation,
   TextFieldType,
 } from '@microsoft/fast-foundation';
+import { MenuItemRole } from '@vonage/vivid';
 import { Direction, Orientation } from '@microsoft/fast-web-utilities';
 import { TypeUnion } from './types';
 
@@ -23,7 +23,6 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
   ComboboxAutocomplete: typeFromEnumObj(ComboboxAutocomplete),
   SelectPosition: typeFromEnumObj(SelectPosition),
   DividerRole: typeFromEnumObj(DividerRole),
-  MenuItemRole: typeFromEnumObj(MenuItemRole),
   SliderMode: typeFromEnumObj(SliderMode),
   TabsOrientation: typeFromEnumObj(TabsOrientation),
   TextFieldType: typeFromEnumObj(TextFieldType),
@@ -153,6 +152,7 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
   DateStr: [{ text: 'string', vuePropType: 'String' }],
 
   // Menu item:
+	MenuItemRole: typeFromEnumObj(MenuItemRole),
   CheckAppearance: [
     { text: "'normal'", vuePropType: 'String' },
     { text: "'tick-only'", vuePropType: 'String' },

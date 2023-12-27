@@ -343,17 +343,19 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 ### ColumnDefinition
 <div class="table-wrapper">
 
-| Name                            | Type                                                                 | Description                                                  |
-|---------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------|
-| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from |
-| `title`                         | `string`                                                             | The title of the column                                      |
-| `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                          |
-| `headerCellFocusTargetCallback` | `(cell) => HTMLElement`                                              | Callback function that is called when header cell is focused |
-| `cellTemplate`                  | `ViewTemplate`                                                       | A custom template for a cell                                 |
-| `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that is called when cell is focused        |
-| `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
-| `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
-| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                           |
+| Name                            | Type                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|---------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `title`                         | `string`                                                             | The title of the column                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `headerCellInternalFocusQueue`  | `boolean`                                                            | Indicates whether the header cell has in internal focus queue. This should be set to `true` for header cells that host controls that need to use arrow keys or have multiple focusable internal elements. When the user hits the Enter or F2 key the element specified by the `headerCellFocusTargetCallback` function will be focused (see keyboard interactions described [here](https://w3c.github.io/aria-practices/#grid)).                                                                                                                           |
+| `headerCellFocusTargetCallback` | `(cell) => HTMLElement`                                              | Callback function that takes the cell node as a parameter and returns the HTMLElement to focus in a custom cell. This enables authors to direct focus in a custom cell with interactive elements. When `headerCellInternalFocusQueue` is `false` this function is called when the cell is first focused to immediately move focus to a cell element, for example a cell that contains a button could move focus directly to the button when focused. When `headerCellInternalFocusQueue` is `true` this function is called when the user hits Enter or F2. |
+| `cellTemplate`                  | `ViewTemplate`                                                       | A custom template for a cell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `cellInternalFocusQueue`        | `boolean`                                                            | Indicates whether the cell has in internal focus queue. This should be set to `true` for cells that host controls that need to use arrow keys or have multiple focusable internal elements. When the user hits the Enter or F2 key the element specified by the `cellFocusTargetCallback` function will be focused (see keyboard interactions described [here](https://w3c.github.io/aria-practices/#grid)).                                                                                                                                               |
+| `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that takes the cell node as a parameter and returns the `HTMLElement` to focus in a custom cell. This enables authors to direct focus in a custom cell with interactive elements. When `cellInternalFocusQueue` is `false` this function is called when the cell is first focused to immediately move focus to a cell element, for example a cell that contains a button could move focus directly to the button when focused. When `cellInternalFocusQueue` is `true` this function is called when the user hits Enter or F2.           |
+| `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `sortable`                      | `boolean`                                                            | Whether this column is sortable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 </div>
 
@@ -693,43 +695,48 @@ vwc-data-grid {max-block-size: 200px;}
 </script>
 ```
 
-### Delegate focus to child elements
+### Focusable child elements
 
-If you want a child element to take focus instead of the cell itself, use the `cellFocusTargetCallback` of the column definition to return the element that should take focus.
+If your cell contains a focusable child element that you would like to delegate focus to, use the `cellFocusTargetCallback` of the column definition to return the child element. It will now take focus instead of the cell.
+
+If you cell contains multiple focusable elements or elements that require arrow keys to operate, combine this will `cellInternalFocusQueue` of the column definition. This will allow users to press Enter or F2 when the cell has focus to move focus into the cell and operate the elements as usual.
 
 ```html preview
 <vwc-data-grid>
-	<vwc-data-grid-row row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader">
-			Column 1
-		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader">
-			Column 2
-		</vwc-data-grid-cell>
-	</vwc-data-grid-row>
-	<vwc-data-grid-row>
-		<vwc-data-grid-cell>
-			Cell 1.1
-		</vwc-data-grid-cell>
-		<vwc-data-grid-cell>
-			<vwc-button appearance="outlined" label="Action" connotation="alert"></vwc-button>
-		</vwc-data-grid-cell>
-	</vwc-data-grid-row>
-	<vwc-data-grid-row>
-		<vwc-data-grid-cell>
-			Cell 2.1
-		</vwc-data-grid-cell>
-		<vwc-data-grid-cell>
-			<vwc-button appearance="outlined" label="Action" connotation="alert"></vwc-button>
-		</vwc-data-grid-cell>
-	</vwc-data-grid-row>
+  <vwc-data-grid-row row-type="header">
+    <vwc-data-grid-cell cell-type="columnheader">
+      Column 1
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell cell-type="columnheader">
+      Column 2
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      Cell 1.1
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell id="single-action">
+      <vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      Cell 2.1
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell id="multiple-actions">
+      <vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
+      <vwc-button appearance="outlined" label="Action 2" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
 </vwc-data-grid>
 
 <script>
-	for(const cell of document.querySelectorAll('vwc-data-grid-cell')) {
-    cell.columnDefinition = {
-			cellFocusTargetCallback: () => cell.querySelector('vwc-button'),
-		};
-	}
+  document.querySelector("#single-action").columnDefinition = {
+    cellFocusTargetCallback: (cell) => cell.querySelector("vwc-button")
+  };
+  document.querySelector("#multiple-actions").columnDefinition = {
+    cellInternalFocusQueue: true,
+    cellFocusTargetCallback: (cell) => cell.querySelector("vwc-button")
+  };
 </script>
 ```
