@@ -107,7 +107,7 @@ export class Alert extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ mode: 'fromView'}) strategy?: AlertStrategy = 'fixed';
+	@attr strategy?: AlertStrategy;
 
 	/**
 	 * indicates whether the alert is open

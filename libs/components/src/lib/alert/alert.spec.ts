@@ -29,7 +29,7 @@ describe('vwc-alert', () => {
 			expect(element.removable).toBeFalsy();
 			expect(element.timeoutms).toBe(0);
 			expect(element.placement).toEqual('bottom');
-			expect(element.strategy).toEqual('fixed');
+			expect(element.strategy).toBeUndefined();
 		});
 	});
 
