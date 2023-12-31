@@ -444,10 +444,6 @@ th {
   text-align: center;
 }
 
-.welcome h2 {
-	font: var(--vvd-typography-base-extended-bold);
-}
-
 @media (min-width: 960px) {
 .welcome {
     margin-inline: -32px;
