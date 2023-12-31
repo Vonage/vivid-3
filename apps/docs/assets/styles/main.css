@@ -442,16 +442,22 @@ th {
 .welcome {
   align-items: center;
   text-align: center;
+}
 
-  h2 {
-    font: var(--vvd-typography-base-extended-bold);
-  }
+.welcome h2 {
+	font: var(--vvd-typography-base-extended-bold);
 }
 
 @media (min-width: 960px) {
 .welcome {
     margin-inline: -32px;
   }
+}
+
+@media (max-width: 960px) {
+	.welcome {
+		margin-inline: -16px;
+	}
 }
 
 .buttons-wrapper {
