@@ -443,11 +443,14 @@ th {
   align-items: center;
   text-align: center;
 
+  h2 {
+    font: var(--vvd-typography-base-extended-bold);
+  }
 }
 
 @media (min-width: 960px) {
 .welcome {
-  margin-inline: -32px;
+    margin-inline: -32px;
   }
 }
 
