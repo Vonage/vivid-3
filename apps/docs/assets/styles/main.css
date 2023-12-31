@@ -451,3 +451,15 @@ th {
     margin-inline: 10px;
   }
 }
+
+@media (min-width: 960px) {
+.welcome {
+  margin-inline: -32px;
+  }
+}
+
+.buttons-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
