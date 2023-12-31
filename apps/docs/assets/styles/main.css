@@ -239,6 +239,30 @@ article.article > h1 {
 }
 /* #endregion article */
 
+/* #region footer */
+
+.footer {
+	padding-inline: 16px;
+	padding-block: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+@media (min-width: 960px) {
+	.footer {
+		padding-inline: 32px;
+	}
+}
+
+.footer a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* #endregion footer */
+
 /* #region code fence demo */
 
 .cbd-iframe-container {
