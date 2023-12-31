@@ -441,7 +441,6 @@ th {
 
 .welcome {
   align-items: center;
-  margin-inline: -32px;
   text-align: center;
 
   #quickStart {
