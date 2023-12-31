@@ -95,11 +95,12 @@
 }
 
 .tabpanel {
+	box-sizing: border-box;
+	block-size: 100%;
+
 	// this is for making overflow inside grid to work
 	min-block-size: 0;
 	min-inline-size: 0;
-	box-sizing: border-box;
-	block-size: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
 
