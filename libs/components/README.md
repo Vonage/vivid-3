@@ -1,7 +1,7 @@
 
 <div class="welcome">
   <h1>Welcome to VIVID@3</h1>
-  <h3>Vonage's design system platform targeted to provide incorporated, battery-charged web components.</h3>
+  <h2>Vonage's design system platform targeted to provide incorporated, battery-charged web components.</h2>
   <div>
     <vwc-button id="quickStart" label='Quick Start' appearance='outlined' icon='rocket-line'></vwc-button>
     <vwc-button id="advanced" label='Advanced' appearance='outlined' icon='code-line'></vwc-button>
@@ -100,7 +100,7 @@
 
 <vwc-layout column-basis="small" gutters="large">
  <vwc-card headline="Design guidelines" subtitle="Vivid Design foundations, principles, styles and best practices.">
-<svg slot="media" width="100%" height="394" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="welcome-media" slot="media" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="940" height="788" fill="white"/>
 <path d="M541.08 553.046H377.751C359.846 553.046 339.941 538.517 333.301 520.6L265.167 338.445C258.528 320.529 267.655 306 285.566 306H448.885C466.789 306 486.694 320.529 493.334 338.445L561.468 520.6C568.115 538.517 558.987 553.046 541.076 553.046H541.08Z" fill="url(#paint0_linear_72_228)"/>
 <path d="M617.465 354.204H449.899C433.166 354.204 414.562 367.779 408.354 384.523L357.121 522.721C350.913 539.465 359.444 553.04 376.184 553.04H543.749C560.482 553.04 579.086 539.465 585.294 522.721L636.527 384.523C642.735 367.779 634.198 354.204 617.465 354.204Z" fill="url(#paint1_linear_72_228)"/>
@@ -182,7 +182,7 @@
 </vwc-card>
 
 <vwc-card headline="Vivid 2 migration" subtitle="Migration guidlines for a smoth and easy adoption.">
-<svg slot="media" width="100%" height="394" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="welcome-media" slot="media" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="940" height="788" fill="white"/>
 <path d="M352.312 488.213C351.178 433.263 336.183 376.874 310.09 329.435C283.626 281.322 246.92 244.78 206.731 226.538C197.392 222.298 187.886 219.042 178.478 216.861L178.562 215.614C187.995 217.8 197.526 221.065 206.891 225.316C247.196 243.612 284.013 280.269 310.562 328.537C336.78 376.204 351.847 432.894 352.988 488.167L352.312 488.213Z" fill="url(#paint0_linear_1_3)"/>
 <path d="M111 140.41L111.203 223.603L144.502 242.829L155.904 249.26L168.382 256.615L207.152 279L206.93 195.795L111 140.41Z" fill="#D3E9FC"/>
@@ -277,7 +277,7 @@
 </vwc-card>
 
 <vwc-card headline="Icons gallery" subtitle="Vivid's Icons Gallery contains a wide range of high-quality icons.">
-<svg slot="media" width="100%" height="394" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="welcome-media" slot="media" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_768_335)">
 <rect width="940" height="788" fill="white"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M563.867 472.812L460.995 468.41L493.634 552.933L538.287 540.387L540.69 700.001L540.69 700.99H593.833C599.431 700.99 603.97 696.492 603.97 690.943C603.97 685.394 599.432 680.896 593.833 680.896H586.841C587.783 665.353 597.458 505.597 597.357 504.282C596.826 486.314 581.835 472.28 563.867 472.812Z" fill="#6405D1"/>

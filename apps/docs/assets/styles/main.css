@@ -451,3 +451,8 @@ th {
     margin-inline: 10px;
   }
 }
+
+.welcome-media {
+  inline-size: 100%;
+  block-size: auto;
+}
