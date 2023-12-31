@@ -441,15 +441,20 @@ th {
 
 .welcome {
   align-items: center;
-  margin-inline: -32px;
   text-align: center;
 
-  #quickStart {
-    margin-inline: 10px;
+}
+
+@media (min-width: 960px) {
+.welcome {
+  margin-inline: -32px;
   }
-  #advanced {
-    margin-inline: 10px;
-  }
+}
+
+.buttons-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .welcome-media {
