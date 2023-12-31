@@ -141,18 +141,15 @@ Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that
 
 ## Use Case
 Tab panel with scroll.  
-There are two ways to set tab-panel with scroll:
-- add fixed `block-size` + `overflow-y` on the slotted panel
-- add `block-size` to `vwc-tabs` and then set `block-size: 100%` on the slotted panel (see code bellow).
+Add `block-size` to `vwc-tabs` (see code bellow).
 
 ```html preview full
 <style>
   .tabs {
 		block-size: 200px;  
   }
-  .my-panel {block-size: 100%; overflow-y: auto;}
 </style>
-<vwc-tabs class="tabs">
+<vwc-tabs class="tabs" gutters="small">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -180,3 +177,4 @@ There are two ways to set tab-panel with scroll:
     </vwc-tab-panel>
 </vwc-tabs>
 ```
+

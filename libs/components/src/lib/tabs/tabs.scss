@@ -98,16 +98,14 @@
 	// this is for making overflow inside grid to work
 	min-block-size: 0;
 	min-inline-size: 0;
-
-	.base.orientation-vertical & {
-		block-size: 100%;
-		overflow-x: hidden;
-		overflow-y: auto;
-	}
+	box-sizing: border-box;
+	block-size: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
 		.base.gutters-#{$space} & {
-			margin: map.get(variables.$spaces, $space);
+			padding: map.get(variables.$spaces, $space);
 		}
 	}
 }
