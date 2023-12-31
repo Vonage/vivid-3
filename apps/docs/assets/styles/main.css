@@ -443,12 +443,6 @@ th {
   align-items: center;
   text-align: center;
 
-  #quickStart {
-    margin-inline: 10px;
-  }
-  #advanced {
-    margin-inline: 10px;
-  }
 }
 
 @media (min-width: 960px) {
