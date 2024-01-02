@@ -140,6 +140,10 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
     { text: "'bottom-start'", vuePropType: 'String' },
     { text: "'bottom-end'", vuePropType: 'String' },
   ],
+	AlertStrategy: [
+		{text: "'fixed'", vuePropType: 'String' },
+		{text: "'static'", vuePropType: 'String' },
+	],
 
   // Data grid:
   GenerateHeaderOptions: [

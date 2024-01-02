@@ -15,10 +15,11 @@ const getClasses = ({ connotation }: Alert) => classNames(
 	[`connotation-${connotation}`, Boolean(connotation)],
 );
 
-const getControlClasses = ({ open, placement }: Alert) => classNames(
+const getControlClasses = ({ open, placement, strategy }: Alert) => classNames(
 	'control',
 	['open', open],
 	[`placement-${placement}`, Boolean(placement)],
+	[`strategy-${strategy}`, Boolean(strategy)],
 );
 
 function renderIcon(context: ElementDefinitionContext) {
@@ -53,10 +54,10 @@ export const AlertTemplate: (
 
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='8' exportparts="vvd-theme-alternate">
-		<div 
-			class="${getControlClasses}" 
+		<div
+			class="${getControlClasses}"
 			role="${x => x.removable ? 'alertdialog' : 'alert'}"
-			aria-live="assertive" 
+			aria-live="assertive"
 		>
 			<div part="vvd-theme-alternate" class="${getClasses}">
 				${when(x => x.icon || x.connotation, renderIcon(context))}

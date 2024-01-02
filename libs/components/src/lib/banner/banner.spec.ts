@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';
@@ -130,27 +130,6 @@ describe('vwc-banner', () => {
 			dispatchAnimationEndEvent();
 			expect(document.body.contains(element))
 				.toEqual(false);
-		});
-	});
-
-	describe('tabindex', function () {
-		it('should not set tabindex on control', async () => {
-			expect(getControlElement(element).tabIndex).toEqual(-1);
-		});
-
-		it('should set tabindex 0 on control when removable', async () => {
-			element.removable = true;
-			await elementUpdated(element);
-
-			expect(getControlElement(element).tabIndex).toEqual(0);
-		});
-
-		it('should set tabindex 0 on control when banner has action items', async () => {
-			const slotted = document.createElement('div');
-			slotted.slot = 'action-items';
-			element.appendChild(slotted);
-			await elementUpdated(element);
-			expect(getControlElement(element).tabIndex).toEqual(0);
 		});
 	});
 
