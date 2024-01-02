@@ -1,6 +1,18 @@
 @use "../focus/partials/variables" as focus-variables;
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "partials/variables" as variables;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent cta,
+	$shades: primary,
+	$default: accent
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: filled,
+	$default: filled
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 $track-thickness: 2px;
@@ -15,7 +27,14 @@ $track-thickness: 2px;
 	min-height: calc(var(#{variables.$thumb-interaction-indicator-size}) * 5);
 }
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .control {
+	@include connotation.connotation (slider);
+	@include appearance.appearance;
+
 	#{variables.$thumb-size}: 12px;
 	#{variables.$thumb-interaction-indicator-size}: 36px;
 
@@ -37,14 +56,14 @@ $track-thickness: 2px;
 	.track {
 		position: absolute;
 		background: var(#{variables.$track-background-color});
-		border-radius: 4px;
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 
 		.track-start {
 			position: absolute;
 			left: 0;
 			height: 100%;
 			background: var(#{variables.$track-start-background-color});
-			border-radius: 4px;
+			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		}
 	}
 
@@ -61,7 +80,7 @@ $track-thickness: 2px;
 			width: var(#{variables.$thumb-interaction-indicator-size});
 			height: var(#{variables.$thumb-interaction-indicator-size});
 			background-color: var(#{variables.$track-start-background-color});
-			border-radius: 50%;
+			border-radius: #{border-radius-variables.$border-radius-full};
 			content: "";
 			opacity: var(#{variables.$thumb-interaction-indicator-alpha}, 0);
 			transition: opacity 0.2s ease-out 0s;
@@ -73,7 +92,7 @@ $track-thickness: 2px;
 			width: var(#{variables.$thumb-size});
 			height: var(#{variables.$thumb-size});
 			background-color: var(#{variables.$track-start-background-color});
-			border-radius: 50%;
+			border-radius: #{border-radius-variables.$border-radius-full};
 			content: "";
 			inset: calc((var(#{variables.$thumb-interaction-indicator-size}) - var(#{variables.$thumb-size})) / 2);
 		}
@@ -136,13 +155,12 @@ $track-thickness: 2px;
 		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-100)});
 		#{variables.$track-start-background-color}: var(#{utils.get-color-token(neutral-500)});
 
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 
 	&:not(.disabled) {
 		#{variables.$track-background-color}: var(#{utils.get-color-token(neutral-300)});
-		#{variables.$track-start-background-color}: var(#{utils.get-color-token(canvas-text)});
+		#{variables.$track-start-background-color}: var(#{appearance.get-appearance-token(fill)});
 
 		.thumb-container {
 			&:hover {
@@ -159,7 +177,7 @@ $track-thickness: 2px;
 	#{focus-variables.$focus-inset}: -3px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	border-radius: 50%;
+	border-radius: #{border-radius-variables.$border-radius-full};
 
 	.control:not(:focus-visible) & {
 		display: none;

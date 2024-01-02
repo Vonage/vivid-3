@@ -21,6 +21,10 @@
 	min-inline-size: 80px;
 }
 
+:host(:focus-visible) {
+	outline: none;
+}
+
 .base {
 	@include connotation.connotation (data-grid-cell);
 	@include appearance.appearance;
@@ -30,14 +34,10 @@
 	box-sizing: border-box;
 	align-items: center;
 	padding: 8px 12px;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-400});
+	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	block-size: #{size.$vvd-size-expanded};
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
-
-	&:focus-visible {
-		outline: none;
-	}
 
 	:host([cell-type="columnheader"]) & {
 		border-color: var(#{constants.$vvd-color-canvas-text});
@@ -55,7 +55,7 @@
 
 	pointer-events: none;
 
-	.base:not(.active) > & {
+	:host(:not(:focus)) .base > & {
 		display: none;
 	}
 }

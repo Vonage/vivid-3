@@ -1,10 +1,10 @@
 import { children, elements, html, ref, slotted, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
-import type { TreeItem } from './tree-item';
+import { TreeItem } from './tree-item';
 
 const getClasses = ({
 	disabled, selected }: TreeItem) => classNames(
@@ -48,12 +48,12 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 			aria-disabled="${x => x.disabled}"
 			@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
 			@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
-			${children({ property: 'childItems', filter: elements(), })}
+			${children({ property: 'childItems', filter: elements(context.tagFor(TreeItem)) })}
 			>
 			<div class="${getClasses}">
 				${() => focusTemplate}
 				${when(x => x.childItems && x.childItems.length > 0, expandCollapseButton(context))}
-				${x => affixIconTemplate(x.icon)}
+				${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 				${x => x.text as string}
 			</div>
 			${when(x => x.childItems && x.childItems.length > 0 && x.expanded,

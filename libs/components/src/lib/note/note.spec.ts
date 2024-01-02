@@ -1,7 +1,7 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Connotation} from '../enums';
-import {Note} from './note';
+import { Connotation } from '../enums';
+import { Note } from './note';
 import '.';
 import { noteDefinition } from './definition';
 
@@ -21,33 +21,50 @@ describe('vwc-note', () => {
 		});
 	});
 
-	it('should render the headline when headline is set', async function() {
-		const headlineText = 'headline';
-		const headlineElementWhenNull = element.shadowRoot?.querySelector('.headline');
-		element.headline = headlineText;
-		await elementUpdated(element);
-		expect(headlineElementWhenNull).toBeNull();
-		expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
+	describe('headline', () => {
+		it('should render the headline when headline is set', async function () {
+			const headlineText = 'headline';
+			const headlineElementWhenNull = element.shadowRoot?.querySelector('.headline');
+			element.headline = headlineText;
+			await elementUpdated(element);
+			expect(headlineElementWhenNull).toBeNull();
+			expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
+		});
 	});
 
-	it('should render an icon when icon is set', async function () {
-		const icon = 'user-line';
-		element.setAttribute('icon', icon);
-		await elementUpdated(element);
-		const iconElement = element.shadowRoot?.querySelector('vwc-icon');
-		expect(iconElement?.getAttribute('name')).toEqual(icon);
-		expect(element.icon).toEqual(icon);
+	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
+		
+		it('should render an icon when icon is set', async function () {
+			const icon = 'user-line';
+			element.setAttribute('icon', icon);
+			await elementUpdated(element);
+			const iconElement = element.shadowRoot?.querySelector('vwc-icon');
+			expect(iconElement?.getAttribute('name')).toEqual(icon);
+			expect(element.icon).toEqual(icon);
+		});
 	});
 
-
-	it('should set connotation class on the base element', async function() {
-		const connotation = Connotation.Information;
-		const baseElement = element.shadowRoot?.querySelector('.base');
-		const connotationClassExistsWhenNull = baseElement?.classList?.contains(`connotation-${connotation}`);
-		element.connotation = connotation;
-		await elementUpdated(element);
-		expect(connotationClassExistsWhenNull).toEqual(false);
-		expect(baseElement?.classList?.contains(`connotation-${connotation}`)).toEqual(true);
+	describe('connotation', () => {
+		it('should set connotation class on the base element', async function () {
+			const connotation = Connotation.Information;
+			const baseElement = element.shadowRoot?.querySelector('.base');
+			const connotationClassExistsWhenNull = baseElement?.classList?.contains(`connotation-${connotation}`);
+			element.connotation = connotation;
+			await elementUpdated(element);
+			expect(connotationClassExistsWhenNull).toEqual(false);
+			expect(baseElement?.classList?.contains(`connotation-${connotation}`)).toEqual(true);
+		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.headline = 'Headline';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

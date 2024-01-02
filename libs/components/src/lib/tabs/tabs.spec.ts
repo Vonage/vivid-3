@@ -1,7 +1,7 @@
-import {elementUpdated, fixture, getBaseElement} from '@vivid-nx/shared';
-import {Connotation} from '@vonage/vivid';
-import type {Tab} from '../tab/tab';
-import {Tabs} from './tabs';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { Connotation, TabsSize } from '../enums';
+import type { Tab } from '../tab/tab';
+import { Tabs } from './tabs';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
@@ -63,6 +63,7 @@ describe('vwc-tabs', () => {
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.activeid).toEqual('apps');
 			expect(element.activetab).toBeTruthy();
+			expect(element.gutters).toBeFalsy();
 		});
 	});
 
@@ -113,27 +114,27 @@ describe('vwc-tabs', () => {
 			it('should scrollTo with 0 if index is 0', async function () {
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: 0, behavior: 'smooth'});
+				expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
 			});
 
 			it('should scrollTo height 0 if index is 0 and orientation vertical', async function () {
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: 0, behavior: 'smooth'});
+				expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
 			});
 
 			it('should scroll to tablist wrapper width when index is last', async function () {
 				element.activeid = element.tabs[2].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({top: 0, left: scrollWidth, behavior: 'smooth'});
+				expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: scrollWidth, behavior: 'smooth' });
 			});
 
 			it('should scroll to tablist wrapper height when index is last and orientation vertical', async function () {
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[2].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({top: scrollHeight, left: 0, behavior: 'smooth'});
+				expect(scrollToSpy).toHaveBeenCalledWith({ top: scrollHeight, left: 0, behavior: 'smooth' });
 			});
 
 			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
@@ -163,7 +164,7 @@ describe('vwc-tabs', () => {
 				element.activeid = midTab.id;
 				await elementUpdated(element);
 				expect(scrollToSpy)
-					.toHaveBeenCalledWith({top: 0, left: offsetLeft - scrollWidth / 2 + offsetWidth / 2, behavior: 'smooth'});
+					.toHaveBeenCalledWith({ top: 0, left: offsetLeft - scrollWidth / 2 + offsetWidth / 2, behavior: 'smooth' });
 			});
 
 			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
@@ -193,8 +194,18 @@ describe('vwc-tabs', () => {
 				element.activeid = midTab.id;
 				await elementUpdated(element);
 				expect(scrollToSpy)
-					.toHaveBeenCalledWith({top: offsetTop - scrollHeight / 2 + offsetHeight / 2, left: 0, behavior: 'smooth'});
+					.toHaveBeenCalledWith({ top: offsetTop - scrollHeight / 2 + offsetHeight / 2, left: 0, behavior: 'smooth' });
 			});
+		});
+	});
+
+	describe('gutters', () => {
+		it('should set gutters property', async () => {
+			const gutters = TabsSize.Small;
+			expect(getBaseElement(element).classList.toString()).not.toContain(`gutters-${gutters}`);
+			element.gutters = gutters;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.toString()).toContain(`gutters-${gutters}`);
 		});
 	});
 
@@ -265,4 +276,14 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should set the role of tablist on the tablist div', async () => {
+			const tablist = element.shadowRoot?.querySelector('.tablist');
+			expect(tablist?.getAttribute('role')).toBe('tablist');
+		});
+	});
 });

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getBaseElement, setAttribute} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement, setAttribute } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type {Icon} from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
@@ -85,10 +85,10 @@ describe('vwc-breadcrumb-item', () => {
 		it('should set aria labels', async function () {
 
 			const ARIA_PROPS = [
-				'atomic', 'busy', 'controls', 'current', 'describedby',
-				'details', 'disabled', 'errormessage', 'expanded',
-				'flowto', 'haspopup', 'hidden', 'invalid', 'keyshortcuts',
-				'label', 'labelledby', 'live', 'owns', 'relevant', 'roledescription'
+				'atomic', 'busy', 'current',
+				'details', 'disabled', 'expanded',
+				'haspopup', 'hidden', 'invalid', 'keyshortcuts',
+				'label', 'live', 'relevant', 'roledescription'
 			];
 
 			function setAriaLabelsOnElementObject() {
@@ -180,6 +180,20 @@ describe('vwc-breadcrumb-item', () => {
 			await setAttribute(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element = (await fixture(
+				`<div role="list"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
+			)) as BreadcrumbItem;
+
+			element.href = '#';
+			element.text = 'stam';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

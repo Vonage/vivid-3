@@ -5,6 +5,8 @@ import styles from './slider.scss';
 
 import { Slider } from './slider';
 import { SliderTemplate as template } from './slider.template';
+export type { SliderConnotation } from './slider';
+
 
 /**
  * The slider element.
@@ -13,6 +15,9 @@ export const sliderDefinition = Slider.compose<SliderOptions>({
 	baseName: 'slider',
 	template: template as any,
 	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 
 /**

@@ -7,7 +7,7 @@ vivid.3.x can be installed alongside vivid.2.x allowing you to migrate easily an
 This is a step-by-step guide for integrating vivid-3.x alongside vivid-2.
 
 <vwc-note connotation="information" icon="info-solid" headline="Using Vue.js?">
-	<div>Consider using the official <a href="https://vonage.github.io/vivid-vue/" target="_blank" rel="noopener noreferrer">wrappers for Vivid Vue</a>, which will ease the migration process.</div>
+	<div>Consider using the official <a href="/vivid-vue/" target="_blank" rel="noopener noreferrer">wrappers for Vivid Vue</a>, which will ease the migration process.</div>
 </vwc-note>
 
 ## Step 1: Pre Installation
@@ -133,12 +133,11 @@ This is needed to ensure that vivid-2 tokens are not overridden by vivid-3 token
 ```
 
 ## Step 5: Adding the Spezia Font
-
-[Follow the instructions](docs/getting-started/fonts-and-tokens) to set the Spezia Font.
+[Follow the instructions](/getting-started/fonts-and-tokens) to set the Spezia Font.
 
 ## Step 6: Setting custom prefix
 
-Read about the vivid 3.x [scroped elements](docs/getting-started/advanced/#scoped-elements).
+Read about the vivid 3.x [scroped elements](/getting-started/advanced/#scoped-elements).
 
 Register the first vivid-3 component that you wish to migrate from vivid-2.
 
@@ -161,7 +160,7 @@ It is necessary to add the `vvd-component` class to every component to avoid a c
 
 ## Step 8: Extra - Typography and Theming
 
-[Follow the instructions](docs/getting-started/dvanced#styles-optional) to align with vivid typography.
+[Follow the instructions](/getting-started/advanced#styles-optional) to align with vivid typography.
 
 ## Step 9: Done!
 

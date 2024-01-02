@@ -27,7 +27,7 @@ Read more about [vwc-tree-view](../../components/tree-view).
 Use `icon` to set an icon to the tree item.
 Check out the [vivid icons gallery](../../icons/icons-gallery) for a list of available icons.
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the tree item's purpose.
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the tree item's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -89,6 +89,19 @@ Use the `expanded` attribute to set the tree-item's open state.
         <vwc-tree-item slot="item" text="Tree Item 1 - 1"></vwc-tree-item>
     </vwc-tree-item>
     <vwc-tree-item text="Tree Item 2"></vwc-tree-item>
+</vwc-tree-view>
+```
+
+### Icon
+
+Set the `icon` slot to show an icon before the tree item's text.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-tree-view>
+    <vwc-tree-item text="Tree Item">
+        <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+    </vwc-tree-item>
 </vwc-tree-view>
 ```
 

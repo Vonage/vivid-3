@@ -1,6 +1,6 @@
 # Listbox
 
-Listbox displays list of [vwc-option](../../components/option) and allow users to select from them. 
+Listbox displays a list of [vwc-option](../../components/option) and allows users to select from them.
 There are two types of listboxes: single-select and multi-select.
 Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/listbox) to learn more about Listbox's Keyboard Interaction and Accessibility.
 
@@ -53,6 +53,38 @@ Set the `appearance` attribute to change the listbox's appearance.
   <vwc-option value="1" text="Option"></vwc-option>
   <vwc-option value="2" text="Option"></vwc-option>
   <vwc-option value="3" text="Option"></vwc-option>
+</vwc-listbox>
+```
+
+### Orientation
+
+Set the `orientation` property to change the listbox options' flow.
+
+- Type: `'vertical'` | `'horizontal'`
+- Default: `'vertical'`
+
+```html preview
+<vwc-listbox orientation="horizontal">
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-listbox>
+```
+
+### Shape
+
+Use the `shape` attribute to set the listbox's (and its descendent options) edges.
+
+note that `shape`'s `pill` value is **only supported** when the `orientation` is set to `horizontal`.
+
+- Type: `'rounded'` | `'pill'`
+- Default: `'rounded'`
+
+```html preview
+<vwc-listbox shape="pill" orientation="horizontal" >
+  <vwc-option value="1" text="Option 1"></vwc-option>
+  <vwc-option value="2" text="Option 2"></vwc-option>
+  <vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-listbox>
 ```
 

@@ -1,4 +1,4 @@
-import {elementUpdated, fixture, getControlElement} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Connotation} from '../enums';
 import { Switch } from './switch';
@@ -247,7 +247,7 @@ describe('vwc-switch', () => {
 	});
 
 	describe('appearance', function () {
-		it('should apply filled appearance style when checked and not disabled, nor read-only', async function () {
+		it('should apply filled appearance style when checked', async function () {
 			const control = getControlElement(element);
 
 			const appearanceFilledClassExistsBeforeChecked = control?.classList.contains('appearance-filled');
@@ -270,8 +270,19 @@ describe('vwc-switch', () => {
 
 			expect(appearanceFilledClassExistsBeforeChecked).toEqual(false);
 			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);
-			expect(appearanceFilledClassExistsAfterDisabled).toEqual(false);
-			expect(appearanceFilledClassExistsAfterReadonly).toEqual(false);
+			expect(appearanceFilledClassExistsAfterDisabled).toEqual(true);
+			expect(appearanceFilledClassExistsAfterReadonly).toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.checked = true;
+			element.value = 'test';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

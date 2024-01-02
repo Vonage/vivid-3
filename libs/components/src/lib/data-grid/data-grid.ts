@@ -29,12 +29,23 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * @slot - Default slot.
  */
 export class DataGrid extends FoundationDataGrid {
-
-	@attr({attribute: 'aria-rowcount'})
-	override ariaRowCount: string | null = null;
-
+	/**
+	 * Indicates the selection mode.
+	 *
+	 * @public
+	 * HTML Attribute: selection-mode
+	 */
 	@attr({attribute: 'selection-mode'})
 		selectionMode?: DataGridSelectionMode;
+
+	/**
+	 * Indicates the aria-rowcount.
+	 *
+	 * @public
+	 * HTML Attribute: aria-rowcount
+	 */
+	@attr({attribute: 'aria-rowcount'})
+	override ariaRowCount: string | null = null;
 
 	get #selectedRows(): DataGridRow[] {
 		return this.rowElements.filter((row: HTMLElement) => row.getAttribute('aria-selected') === 'true') as DataGridRow[];

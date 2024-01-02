@@ -15,6 +15,7 @@ type AnchorType = string | HTMLElement;
  * @event close - Fired when the menu is closed
  */
 export class Menu extends FastMenu {
+	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 
 	#observer?: MutationObserver;
 	#anchorEl: HTMLElement | null = null;
@@ -91,6 +92,28 @@ export class Menu extends FastMenu {
 		if (this.#anchorEl) {
 			this.#anchorEl.ariaExpanded = this.open.toString();
 		}
+	}
+
+	constructor() {
+		super();
+
+		const handleFocusOut = this.handleFocusOut;
+		this.handleFocusOut = (e: FocusEvent) => {
+			/**
+			 * Fast menu doesn't support having arbitrary elements in the menu and handleFocusOut will throw if there are
+			 * no menuitem children. Therefore, we need to skip calling it in that case.
+			 */
+			const privates = this as unknown as {
+				menuItems: Element[] | undefined;
+				isFocusableElement: (el: Element) => el is HTMLElement;
+			};
+			const isSafeToCallSuper = privates.menuItems!.some(privates.isFocusableElement);
+			if (!isSafeToCallSuper) {
+				return;
+			}
+
+			handleFocusOut(e);
+		};
 	}
 
 	override disconnectedCallback(): void {

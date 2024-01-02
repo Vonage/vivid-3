@@ -1,6 +1,4 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const codeBlockDemo = require("./transformers/code-block-demo");
-const variablesPreview = require("./transformers/variables-preview");
 const markdownLibrary = require("./libraries/markdown-it");
 const CleanCSS = require("clean-css");
 const fs = require("fs");
@@ -38,9 +36,6 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  eleventyConfig.addTransform('codeBlockDemo', codeBlockDemo);
-  eleventyConfig.addTransform('variablesPreview', variablesPreview);
-
   eleventyConfig.setUseGitIgnore(false);
 
   eleventyConfig.addFilter("cssmin", function (code) {
@@ -53,6 +48,12 @@ module.exports = function (eleventyConfig) {
 		? pages
 		: pages.filter(page => page?.status !== 'underlying');
   });
+
+	eleventyConfig.addFilter("githubEditLink", function (filePath) {
+		// Transform local path, e.g. "./libs/components/src/lib/alert/README.md"
+		const relativeFilePath = filePath.replace(/^\.\//, '');
+		return `https://github.com/Vonage/vivid-3/edit/main/${relativeFilePath}`;
+	});
 
 	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
 		const swFilePath = path.resolve('dist/apps/docs/sw.js');

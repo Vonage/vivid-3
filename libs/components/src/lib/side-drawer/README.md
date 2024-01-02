@@ -146,7 +146,7 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 
 When side drawer is opened, `--side-drawer-app-content-offset` controls the offset of the side drawer's application content from the window's edge.
 some designs may choose side-drawer to overlap the app-content, so the app-content should be offset by the side-drawer's width.
-Additionally, as aside element (which represents the actual side-drawer), is styled with `position: fixed`, customizing its inline size directly will not affect the application content offset interchangeably. Hence, using this CSS custom property is mandatory to account for side-drawer inline size altercations.
+Additionally, as the *base* element (which represents the actual side-drawer), is styled with `position: fixed`, customizing its inline size directly will not affect the application content offset interchangeably. Hence, using this CSS custom property is mandatory to account for side-drawer inline size altercations.
 
 - Default: `280px`
 
@@ -180,7 +180,7 @@ Additionally, as aside element (which represents the actual side-drawer), is sty
 
 ### Base
 
-Select `base` part to access the component's internal *aside* element.
+Select `base` part to access the component's internal *base* element (which represents the actual side-drawer).
 
 ```html preview full
 <style>
@@ -259,4 +259,33 @@ Select `base` part to access the component's internal *aside* element.
     el.setAttribute('aria-current', 'page');
   }
 </script>
+```
+
+### Full content height
+```html preview full
+<style>
+  html { /* for demo purposes */
+    block-size: 250px;
+  }
+.side-drawer {
+	block-size: 100vh;
+}
+.content {
+	display: flex;
+	align-items: center;
+  background-color: var(--vvd-color-information-50);
+  block-size: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+</style>
+<vwc-side-drawer class="side-drawer" open>
+	<vwc-layout gutters="small">
+			Side Drawer content
+  </vwc-layout>  
+  <div class="content" slot="app-content">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+ </div>
+
+</vwc-side-drawer>
 ```

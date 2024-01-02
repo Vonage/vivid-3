@@ -1,7 +1,7 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
-import type {Icon} from '../icon/icon';
-import {Button} from '../button/button';
-import {Connotation} from '../enums';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import type { Icon } from '../icon/icon';
+import { Button } from '../button/button';
+import { Connotation } from '../enums';
 import { Banner } from './banner';
 import type { BannerConnotation } from './banner';
 import '.';
@@ -13,7 +13,7 @@ async function toggleRemovable(element: Banner, removable = true) {
 	await elementUpdated(element);
 }
 
-function getBannerMessageAttribute(element: Banner, attribute: string ) {
+function getBannerMessageAttribute(element: Banner, attribute: string) {
 	return element.shadowRoot?.querySelector('.banner-message')
 		?.getAttribute(attribute);
 }
@@ -84,54 +84,6 @@ describe('vwc-banner', () => {
 				.toEqual(messageText);
 			expect(propertyTextWithAttribute)
 				.toEqual(messageText);
-		});
-	});
-
-	describe('role', function () {
-		it('should be set to "status" on init', function () {
-			const role = getBannerMessageAttribute(element, 'role');
-			expect(role)
-				.toEqual('status');
-		});
-
-		it('should change role to role text', async function () {
-			element.role = 'alert';
-			await elementUpdated(element);
-			const role = getBannerMessageAttribute(element, 'role');
-			expect(role)
-				.toEqual('alert');
-		});
-
-		it('should change role when role attribute is set', async function () {
-			element.setAttribute('role', 'alert');
-			await elementUpdated(element);
-			const role = getBannerMessageAttribute(element, 'role');
-			expect(role)
-				.toEqual('alert');
-		});
-	});
-
-	describe('aria live', function () {
-		it('should be set to "live" on init', function () {
-			const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-			expect(ariaLive)
-				.toEqual('polite');
-		});
-
-		it('should change aria-live to ariaLive text', async function () {
-			element.ariaLive = 'assertive';
-			await elementUpdated(element);
-			const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-			expect(ariaLive)
-				.toEqual('assertive');
-		});
-
-		it('should change reflect aria-live inside the message', async function () {
-			element.setAttribute('aria-live', 'assertive');
-			await elementUpdated(element);
-			const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-			expect(ariaLive)
-				.toEqual('assertive');
 		});
 	});
 
@@ -210,10 +162,10 @@ describe('vwc-banner', () => {
 	});
 
 	describe('icon', function () {
-		let getIcon: () => Icon;
+		const getIcon = () => element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
 
-		beforeEach(function () {
-			getIcon = () => element.shadowRoot?.querySelector('.icon > vwc-icon') as Icon;
+		it('should have an icon slot', async () => {
+			expect(getIcon()).toBeTruthy();
 		});
 
 		it('should set the icon according to connotation information by default', function () {
@@ -337,6 +289,65 @@ describe('vwc-banner', () => {
 			const spy = jest.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.removable = true;
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		describe('role', function () {
+			it('should be set to "status" on init', function () {
+				const role = getBannerMessageAttribute(element, 'role');
+				expect(role)
+					.toEqual('status');
+			});
+
+			it('should change role to role text', async function () {
+				element.role = 'alert';
+				await elementUpdated(element);
+				const role = getBannerMessageAttribute(element, 'role');
+				expect(role)
+					.toEqual('alert');
+				expect(await axe(element)).toHaveNoViolations();
+			});
+
+			it('should change role when role attribute is set', async function () {
+				element.setAttribute('role', 'alert');
+				await elementUpdated(element);
+				const role = getBannerMessageAttribute(element, 'role');
+				expect(role)
+					.toEqual('alert');
+				expect(await axe(element)).toHaveNoViolations();
+			});
+		});
+
+		describe('aria live', function () {
+			it('should be set to "live" on init', function () {
+				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
+				expect(ariaLive)
+					.toEqual('polite');
+			});
+
+			it('should change aria-live to ariaLive text', async function () {
+				element.ariaLive = 'assertive';
+				await elementUpdated(element);
+				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
+				expect(ariaLive)
+					.toEqual('assertive');
+			});
+
+			it('should change reflect aria-live inside the message', async function () {
+				element.setAttribute('aria-live', 'assertive');
+				await elementUpdated(element);
+				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
+				expect(ariaLive)
+					.toEqual('assertive');
+			});
 		});
 	});
 });

@@ -30,6 +30,7 @@ export enum Appearance {
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 	Listitem ='listitem',
+	Elevated = 'elevated'
 }
 
 export enum Size {
@@ -52,6 +53,9 @@ export enum LayoutSize {
 	Large = 'large',
 }
 
+export enum TabsSize {
+	Small = 'small',
+}
 
 export enum Position {
 	Top = 'TOP',

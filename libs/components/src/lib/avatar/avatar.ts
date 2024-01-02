@@ -21,7 +21,7 @@ export type AvatarConnotation = Extract<Connotation,
  * @public
  */
 export type AvatarAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Duotone>;
+Appearance.Filled | Appearance.Outlined | Appearance.Duotone | Appearance.Subtle>;
 
 /**
  * Types of avatar shape.

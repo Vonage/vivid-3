@@ -1,7 +1,7 @@
 # Action Group
 
-Action group is a visible boundary containing action buttons or other form elements, related to each other.
-Note: this element is purely a visual presentation and have no semantic meaning.
+The action group component should be used when you have a set of related actions or
+options that need to be grouped together within a limited space.
 
 ```js
 <script type="module">
@@ -22,7 +22,7 @@ Note: this element is purely a visual presentation and have no semantic meaning.
 
 ### Appearance
 
-Set the `appearance` attribute to change the action-Group's appearance.
+Set the `appearance` attribute to change the action-group's appearance.
 
 - Type: `'fieldset'` | `'ghost'`
 - Default: `'fieldset'`
@@ -45,8 +45,8 @@ Set the `appearance` attribute to change the action-Group's appearance.
 
 ### Shape
 
-Use the `shape` attribute to set the action-Group's edges.  
-When using shape - pay in mind setting the slotted elements with the same shape property.
+Use the `shape` attribute to set the action-group's edges.  
+When using shape, remember to also set it on any slotted elements.
 
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
@@ -62,8 +62,8 @@ When using shape - pay in mind setting the slotted elements with the same shape 
 
 ### Tight
 
-By default, action group is styled in a spacious manner which visually extends the baseline row size and inline gapping.
-enabling the `tight` member will result in a dense style that fits the "normal" baseline.
+By default, action group is styled in a spacious manner which visually extends the baseline row size and includes an inline gap.
+Enabling the `tight` member will result in a dense style that fits the "normal" baseline.
 
 - Type: `boolean`
 - Default: `false`
@@ -102,21 +102,6 @@ Use `<vwc-divider>` for adding separator between the action elements
 </vwc-action-group>
 ```
 
-### semi-split button
-
-```html preview
-<vwc-action-group shape="pill">
-  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
-    <vwc-divider orientation="vertical"></vwc-divider>
-  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
-</vwc-action-group>
-
-<vwc-action-group shape="pill" tight>
-  <vwc-button label='My Action' appearance='ghost' shape="pill"></vwc-button>
-  <vwc-button shape="pill" icon="chevron-down-solid"></vwc-button>
-</vwc-action-group>
-```
-
 ### Composed Search
 
 ```html preview
@@ -127,17 +112,28 @@ Use `<vwc-divider>` for adding separator between the action elements
 </vwc-action-group>
 ```
 
-### Radio Group
+### Toggle buttons
 
-Note: This is a simplified example illustrating a styled radio group and is not intended to be a complete implementation of the [Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
 
 ```html preview
-<vwc-action-group role="radiogroup" aria-label="Text Alignment">
-    <vwc-button type="button" role="radio" icon="align-left-line" aria-checked="false" tabindex="0" aria-label="Text Align Left"></vwc-button>
-    <vwc-button type="button" role="radio" icon="align-center-line" aria-checked="true" tabindex="-1" aria-label="Text Align Center" appearance="filled"></vwc-button>
-    <vwc-button type="button" role="radio" icon="align-right-line" aria-checked="false" tabindex="-1" aria-label="Text Align Right"></vwc-button>
+<vwc-action-group role="region" aria-label="Text Alignment">
+    <vwc-button icon="align-left-line" aria-label="Text Align Left" onclick="onClick(event)"></vwc-button>
+    <vwc-button aria-pressed="true" icon="align-center-line" aria-label="Text Align Center" appearance="filled" onclick="onClick(event)"></vwc-button>
+    <vwc-button icon="align-right-line" aria-label="Text Align Right" onclick="onClick(event)"></vwc-button>
 </vwc-action-group>
+
+<script>
+function onClick(event) {
+    currentPressed = document.querySelector('vwc-button[aria-pressed="true"]');
+    currentPressed?.removeAttribute('aria-pressed');
+    currentPressed?.removeAttribute('appearance');
+    event.currentTarget.setAttribute('aria-pressed', 'true');
+    event.currentTarget.setAttribute('appearance', 'filled');
+  }
+</script>
 ```
+
+
 
 <!-- TODO: Update the example when will be a dropdown component / the popup will not be underlying -->
 

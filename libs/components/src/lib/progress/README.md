@@ -23,7 +23,7 @@ Use `min`, `max` in order to determine the range of the progress.
 
 ### Value
 
-Use `value` in order to set the state of the progress. String value will set the state to `indetermintate`.
+Use `value` in order to set the state of the progress. A non-number value will set the state to `indetermintate`.
 
 - Type: `number` | `string`
 - Default: `undefined`
@@ -87,6 +87,11 @@ Use the `shape` attribute in order to set `rounded` and `sharp` borders.
 <vwc-progress min="0" max="50" value="25" shape="rounded"></vwc-progress>
 <vwc-progress min="0" max="50" value="25" shape="sharp"></vwc-progress>
 ```
+
+## Accessibility
+
+- The progress's `role` is `progressbar` which means it needs an accessible label.
+- It is the consumer's concern to add `aria-label` to the `progress` element.
 
 ## Use Cases
 

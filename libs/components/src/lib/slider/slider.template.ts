@@ -6,16 +6,17 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Slider } from './slider';
 
-const getClasses = ({ disabled}: Slider) =>
+const getClasses = ({ disabled, connotation }: Slider) =>
 	classNames(
 		'control',
 		['disabled', Boolean(disabled)],
+		[`connotation-${connotation}`, Boolean(connotation)],
 	);
 
 const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 	const placeholder = isHorizontal
-		? [ 'right' , 'center', ''    , '100% repeat-x' ]
-		: [ 'bottom', 'top'   , '100%', 'repeat-y'      ];
+		? ['right', 'center', '', '100% repeat-x']
+		: ['bottom', 'top', '100%', 'repeat-y'];
 
 	return html`
 	<div class="mark" style="
@@ -34,11 +35,12 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 	const focusTemplate = focusTemplateFactory(context);
 
 	/* eslint-disable @typescript-eslint/indent */
-	return html<Slider>`
+	return html<Slider>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 	<div
 		role="slider"
 		tabindex="${x => (x.disabled ? null : 0)}"
-		aria-valuetext="${x => x.valueTextFormatter(x.value)}"
+		aria-label="${x => x.ariaLabel}"
+		aria-valuetext="${x => x.ariaValuetext || x.valueTextFormatter(x.value)}"
 		aria-valuenow="${x => x.value}"
 		aria-valuemin="${x => x.min}"
 		aria-valuemax="${x => x.max}"
@@ -50,8 +52,8 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 			<div ${ref('track')} class="track">
 				<div class="track-start" style="${x => x.position}"></div>
 				${x => x.markers
-					? getMarkersTemplate(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))
-					: void 0}
+			? getMarkersTemplate(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))
+			: void 0}
 			</div>
 			<div ${ref('thumb')} class="thumb-container" style="${x => x.position}">
 				${() => focusTemplate}

@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
@@ -34,12 +34,13 @@ export const FilePickerTemplate: (
 		${x => {x.setButtonTag(context.tagFor(Button));}}
 		<div class="base" aria-label="${x => x.label}">
 			${when(x => x.label, html<FilePicker>`<label>${x => x.label}</label>`)}
-			<div class="${getClasses}" tabindex="0" role="button"
+			<div ${ref('control')} class="${getClasses}" tabindex="0" role="button"
 					 @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 				<slot class="main"></slot>
 				${() => focusTemplate}
 			</div>
-			${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
+			${when(x => !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
+			${when(x => x.errorValidationMessage, getFeedbackTemplate('error', context))}
 			<div class="preview-list"></div>
 		</div>
 	`;

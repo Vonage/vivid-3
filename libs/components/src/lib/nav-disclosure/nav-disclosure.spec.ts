@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
@@ -53,19 +53,6 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('icon', () => {
-		it('should add an icon to the nav disclosure', async () => {
-			element.icon = 'home';
-			await elementUpdated(element);
-
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
-		});
-	});
-
 	describe('label', () => {
 		it('should set label property value as text content', async () => {
 			const label = 'lorem';
@@ -89,26 +76,53 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
+	describe('icon', () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
+			element.icon = 'home';
+			await elementUpdated(element);
+
+			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			expect(icon)
+				.toBeInstanceOf(Icon);
+			expect(icon?.name)
+				.toEqual('home');
+		});
+	});
+
 	describe('meta slot', () => {
 		it('should have meta slot', async () => {
 			expect(element.shadowRoot?.querySelector('slot[name="meta"]')).toBeTruthy();
 		});
 	});
 
-	describe('aria-current', function () {
-		it('should not set aria-current on the nav-disclosure if opened', async function () {
-			const ariaCurrent = 'true';
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
 			element.open = true;
-			element.ariaCurrent = ariaCurrent;
+			element.ariaCurrent = 'true';
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-current')).toBeNull();
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 
-		it('should set aria-current on the nav-disclosure if closed', async function () {
-			const ariaCurrent = 'true';
-			element.setAttribute('aria-current', ariaCurrent);
-			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-current')).not.toBeNull();
+		describe('aria-current', function () {
+			it('should not set aria-current on the nav-disclosure if opened', async function () {
+				const ariaCurrent = 'true';
+				element.open = true;
+				element.ariaCurrent = ariaCurrent;
+				await elementUpdated(element);
+				expect(getControlElement(element).getAttribute('aria-current')).toBeNull();
+			});
+	
+			it('should set aria-current on the nav-disclosure if closed', async function () {
+				const ariaCurrent = 'true';
+				element.setAttribute('aria-current', ariaCurrent);
+				await elementUpdated(element);
+				expect(getControlElement(element).getAttribute('aria-current')).not.toBeNull();
+			});
 		});
 	});
 });

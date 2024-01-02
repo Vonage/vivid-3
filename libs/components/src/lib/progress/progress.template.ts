@@ -49,19 +49,20 @@ export const ProgressTemplate: (
 	context: ElementDefinitionContext,
 	definition: ProgressOptions
 ) => ViewTemplate<Progress> = (_: ElementDefinitionContext) => {
-	return html`
+	return html`<template role="${x => x.ariaLabel ? 'presentation' : null}">
     <div
-      role="progressbar"
-      aria-valuenow="${x => x.value}"
-      aria-valuemin="${x => x.min}"
-      aria-valuemax="${x => x.max}"
-      class="${getClasses}"
+		role="progressbar"
+		aria-label="${x => x.ariaLabel}"
+		aria-valuenow="${x => x.value}"
+		aria-valuemin="${x => x.min}"
+		aria-valuemax="${x => x.max}"
+		class="${getClasses}"
     >
 		<div class="progress">
 		  ${when(x => typeof x.value === 'number', determinate())}
 		  ${when(x => typeof x.value !== 'number', indeterminate())}
     	</div>
 	</div>
-  `;
+  </template>`;
 };
 

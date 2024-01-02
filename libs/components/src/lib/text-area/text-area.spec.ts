@@ -1,9 +1,11 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
-	getControlElement, listenToFormSubmission
+	getControlElement,
+	listenToFormSubmission
 } from '@vivid-nx/shared';
 import { TextArea } from './text-area';
 import '.';
@@ -39,27 +41,21 @@ describe('vwc-text-area', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-area', async () => {
-			const elmProps = {
-				charCount: undefined,
-				cols: 20,
-				dirtyValue: false,
-				disabled: false,
-				errorValidationMessage: '',
-				helperText: undefined,
-				label: undefined,
-				maxlength: undefined,
-				minlength: undefined,
-				name: undefined,
-				placeholder: undefined,
-				readOnly: undefined,
-				required: false,
-				rows: undefined,
-				userValid: true,
-				value: '',
-			};
-			Object.keys(elmProps).forEach((key) => {
-				expect((element as any)[key]).toEqual((elmProps as any)[key]);
-			});
+			expect(element.charCount).toBe( undefined);
+			expect(element.cols).toBe( 20);
+			expect(element.dirtyValue).toBe( false);
+			expect(element.disabled).toBe( false);
+			expect(element.errorValidationMessage).toBe( '');
+			expect(element.helperText).toBe( undefined);
+			expect(element.label).toBe( undefined);
+			expect(element.maxlength).toBe( undefined);
+			expect(element.minlength).toBe( undefined);
+			expect(element.name).toBe( undefined);
+			expect(element.placeholder).toBe( undefined);
+			expect(element.readOnly).toBe( undefined);
+			expect(element.required).toBe( false);
+			expect(element.rows).toBe( undefined);
+			expect(element.value).toBe( '');
 			expect(element)
 				.toBeInstanceOf(TextArea);
 		});
@@ -180,6 +176,28 @@ describe('vwc-text-area', () => {
 				.toBeNull();
 		});
 	});
+
+	describe('minlength', function () {
+		const value = '8';
+		const propertyName = 'minlength';
+		const proxyPropertyName = 'minLength';
+
+		it('should set minlength attribute on the input', async function () {
+
+			(element as any)[propertyName] = value;
+			await elementUpdated(element);
+			expect(getTextareaElement(element)
+				?.getAttribute(propertyName))
+				.toEqual(value);
+		});
+
+		it('should set minLength on proxy input', function () {
+			(element as any)[propertyName] = value;
+			expect((element.proxy as any)[proxyPropertyName])
+				.toEqual(Number(value));
+		});
+	});
+
 
 	describe('maxlength', function () {
 		const value = '8';
@@ -522,7 +540,7 @@ describe('vwc-text-area', () => {
 			await elementUpdated(element);
 			expect(element.validationMessage).toBe(forcedErrorMessage);
 		});
-		
+
 		it('should restore the current error state when removed', async function () {
 			element.required = true;
 			setToBlurred();
@@ -572,6 +590,21 @@ describe('vwc-text-area', () => {
 				.toEqual(false);
 			expect(activeClassWhenDisabled)
 				.toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Label';
+			element.value = 'Value text';
+			element.resize = 'both';
+			element.helperText = 'Helper text';
+			element.errorText = 'Error text';
+			element.charCount = true;
+
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

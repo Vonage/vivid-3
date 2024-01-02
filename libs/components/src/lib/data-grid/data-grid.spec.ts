@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
 import {DataGrid, DataGridSelectionMode} from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
@@ -160,6 +160,20 @@ describe('vwc-data-grid', () => {
 		it('should remove the header row completely if generateHeader is none', async () => {
 			element.generateHeader = 'none';
 			expect(element.querySelector(rowElementTag)).toBeNull();
+		});
+	});
+
+	describe('ariaRowCount', () => {
+		it('should reflect on element', async function () {
+			element.ariaRowCount = '2';
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-rowcount')).toEqual('2');
+		});
+
+		it('should match ', async function () {
+			element.setAttribute('aria-rowcount', '2');
+			await elementUpdated(element);
+			expect(element.ariaRowCount).toEqual('2');
 		});
 	});
 
@@ -333,18 +347,15 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
-	describe('ariaRowCount', () => {
-		it('should reflect on element', async function () {
-			element.ariaRowCount = '2';
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.rowsData = [
+				{ id: '1', name: 'Person 1' },
+				{ id: '2', name: 'Person 2' },
+			];
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-rowcount')).toEqual('2');
-		});
 
-		it('should match ', async function () {
-			element.setAttribute('aria-rowcount', '2')
-			await elementUpdated(element);
-			expect(element.ariaRowCount).toEqual('2');
+			expect(await axe(element)).toHaveNoViolations();
 		});
-
 	});
 });

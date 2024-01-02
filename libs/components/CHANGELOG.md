@@ -4,6 +4,199 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.44.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.43.0...vivid-v3.44.0) (2023-12-20)
+
+
+### Features
+
+* **dialog:** add non-dismissive attribute (VIV-1351) ([#1453](https://github.com/Vonage/vivid-3/issues/1453)) ([2f5e24b](https://github.com/Vonage/vivid-3/commit/2f5e24bb6818177be42a816eabc69d3b47fc7c7c))
+
+
+### Bug Fixes
+
+* **date-picker, date-range-picker:** fix popup not being anchored (VIV-1439) ([#1496](https://github.com/Vonage/vivid-3/issues/1496)) ([a148062](https://github.com/Vonage/vivid-3/commit/a148062a2aa024c5cd34cb14ae6dc0a800d071bd))
+* **menu-item:** prevent click event when disabled (VIV-1440) ([#1488](https://github.com/Vonage/vivid-3/issues/1488)) ([c3d05dd](https://github.com/Vonage/vivid-3/commit/c3d05dd8de06728d3802df50e4e8ff7b27763174))
+* **menu:** accessible name with aria-label attribute (VIV-1395) ([#1477](https://github.com/Vonage/vivid-3/issues/1477)) ([9512b1c](https://github.com/Vonage/vivid-3/commit/9512b1c681553e4ee044e835c94e5696a60e97dd))
+* prevent click event on menu-item when disabled ([c3d05dd](https://github.com/Vonage/vivid-3/commit/c3d05dd8de06728d3802df50e4e8ff7b27763174))
+* **select, radio:** document input and change events and add tests (VIV-1402) ([#1484](https://github.com/Vonage/vivid-3/issues/1484)) ([6c254b3](https://github.com/Vonage/vivid-3/commit/6c254b3e77e3dd1dabcab26d6cf0309c11e889ab))
+* **side-drawer:** add block-size to content (VIV-1352) ([#1481](https://github.com/Vonage/vivid-3/issues/1481)) ([6bca42d](https://github.com/Vonage/vivid-3/commit/6bca42da68a28f2f19a8ed49c0f87bf1a0d01e54))
+* **text-field, number-field:** success and error colors for ghost appearance (VIV-1360) ([#1497](https://github.com/Vonage/vivid-3/issues/1497)) ([09728b6](https://github.com/Vonage/vivid-3/commit/09728b64b94eba87e9974da293a48254affea80e))
+* **text-field:** fix input styles getting overridden by css resets (VIV-1433) ([#1498](https://github.com/Vonage/vivid-3/issues/1498)) ([7246dc8](https://github.com/Vonage/vivid-3/commit/7246dc8d3c13f23d8e7dd62e2ee9e649d2d0efb6))
+* **vue-wrappers:** fix missing presentation role for menu item (VIV-1463) ([#1507](https://github.com/Vonage/vivid-3/issues/1507)) ([6013902](https://github.com/Vonage/vivid-3/commit/6013902d586ef150531c7c5a6bc0b7d08b340d08))
+
+## [3.43.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.42.1...vivid-v3.43.0) (2023-12-11)
+
+
+### Miscellaneous Chores
+
+* **vivid:** Synchronize vivid versions
+
+## [3.42.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.42.0...vivid-v3.42.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* **nav-item, nav-disclosure:** add padding-block (VIV-1334) ([#1476](https://github.com/Vonage/vivid-3/issues/1476)) ([8b0f66d](https://github.com/Vonage/vivid-3/commit/8b0f66dc6ae61ad5afb1a1221e59faa58d165fd9))
+* **note:** adjust accent background color to other connotations (VIV-1397) ([#1473](https://github.com/Vonage/vivid-3/issues/1473)) ([3110f92](https://github.com/Vonage/vivid-3/commit/3110f92683d0c4fb868d04e1f3aa8cda2373742e))
+* **tag:** selected state colors (VIV-1425) ([#1472](https://github.com/Vonage/vivid-3/issues/1472)) ([83da9cb](https://github.com/Vonage/vivid-3/commit/83da9cba2f8886e559d42229248513d66da23528))
+
+## [3.42.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.41.0...vivid-v3.42.0) (2023-11-30)
+
+
+### Features
+
+* **checkbox:** add input event and documentation (VIV-1240) ([#1457](https://github.com/Vonage/vivid-3/issues/1457)) ([f05d348](https://github.com/Vonage/vivid-3/commit/f05d348c6d1094a7d0c7e0ef2056d9ff92b22adf))
+* **selectable-box:** deprecates clickable prop in favour of clickable-box ([21b6ec6](https://github.com/Vonage/vivid-3/commit/21b6ec6ae3a0385028ccaeb8213a40cb434ef4df))
+* **split-button:** add success and alert connotations (VIV-1404) ([#1459](https://github.com/Vonage/vivid-3/issues/1459)) ([4cf7a14](https://github.com/Vonage/vivid-3/commit/4cf7a14c05aba28a2c800a17d0c1087e7a5c5a9b))
+* **ui-tests:** pass arguments to docker container (VIV-1332) ([#1462](https://github.com/Vonage/vivid-3/issues/1462)) ([29ee6f9](https://github.com/Vonage/vivid-3/commit/29ee6f9c8aaa3ecc43f63da99afbbaa38c9cc06b))
+
+
+### Bug Fixes
+
+* **avatar:** add missing color for subtle appearance (VIV-1409) ([#1470](https://github.com/Vonage/vivid-3/issues/1470)) ([d29423e](https://github.com/Vonage/vivid-3/commit/d29423e641fbe366e5340ed7f888bd054365b624))
+* **calendar:** small a11y fixes (VIV-1390) ([#1464](https://github.com/Vonage/vivid-3/issues/1464)) ([8f2124e](https://github.com/Vonage/vivid-3/commit/8f2124e6e924fccf8a52a0dcd26f926f0a75c630))
+* **date-picker,date-range-picker,slider:** fix component being focusable in safari (VIV-1331) ([#1463](https://github.com/Vonage/vivid-3/issues/1463)) ([1d54c78](https://github.com/Vonage/vivid-3/commit/1d54c7843d259eb9641b73ace60d1d99a66c8853))
+* **date-picker:** wrap button with span for role="gridcell" (VIV-1391) ([#1456](https://github.com/Vonage/vivid-3/issues/1456)) ([9b2337c](https://github.com/Vonage/vivid-3/commit/9b2337c385f7e6ef11227c5a68205a9932ea389a))
+* **selectable-box:** ui focus test (VIV-000) ([#1471](https://github.com/Vonage/vivid-3/issues/1471)) ([02a6927](https://github.com/Vonage/vivid-3/commit/02a692797d43cd2739a9fae581bcc43d78f4e583))
+* **tabs:** indicator border-radius (VIV-1419) ([#1465](https://github.com/Vonage/vivid-3/issues/1465)) ([250fa92](https://github.com/Vonage/vivid-3/commit/250fa92860d992cdacea61ba75f7327ca11d750c))
+
+## [3.41.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.40.0...vivid-v3.41.0) (2023-11-22)
+
+
+### Features
+
+* **audio-player:** new component (VIV-942) ([#1411](https://github.com/Vonage/vivid-3/issues/1411)) ([e1f31e1](https://github.com/Vonage/vivid-3/commit/e1f31e1af90e210f9ae68f94d3594d50b0706483))
+* **badge:** add min-inline-size (VIV-1403) ([#1448](https://github.com/Vonage/vivid-3/issues/1448)) ([dc85c29](https://github.com/Vonage/vivid-3/commit/dc85c29c4c7f4621e09376541acdd4bef61c753b))
+* **card:** add appearance (VIV-1161) ([#1439](https://github.com/Vonage/vivid-3/issues/1439)) ([9a8d7d8](https://github.com/Vonage/vivid-3/commit/9a8d7d868787af1d18fab3687f3f397ac4bd4fff))
+* **split-button:** add attribute for indicator aria-label and localize default (VIV-1261) ([#1432](https://github.com/Vonage/vivid-3/issues/1432)) ([bb4cb62](https://github.com/Vonage/vivid-3/commit/bb4cb62ee205bb7330b94e12c9202fa651754d25))
+
+
+### Bug Fixes
+
+* a11y error on tabs ([6b3750b](https://github.com/Vonage/vivid-3/commit/6b3750b7c456afcd4c0ed41e0878cc61004bd61f))
+* **alert:** accessability (VIV-1381) ([#1443](https://github.com/Vonage/vivid-3/issues/1443)) ([f27706b](https://github.com/Vonage/vivid-3/commit/f27706b33eac482f59c2d5c7b32e25e8f4cb5e26))
+* **banner:** accessibility (VIV-1384) ([#1444](https://github.com/Vonage/vivid-3/issues/1444)) ([0eb3c99](https://github.com/Vonage/vivid-3/commit/0eb3c99a1d0881ba25c83ee2705973a284c9b2d1))
+* **button:** correct padding and size when only slotted icon (VIV-1398) ([#1442](https://github.com/Vonage/vivid-3/issues/1442)) ([e1a31a9](https://github.com/Vonage/vivid-3/commit/e1a31a9740af4ed196bfaaf48b7186e16f4a82a2))
+* **menu-item:** update checkbox and radio icons to fit figma (VIV-1318) ([#1397](https://github.com/Vonage/vivid-3/issues/1397)) ([3fac98c](https://github.com/Vonage/vivid-3/commit/3fac98cf82dc90e1ba4e8636d78fca24b96739d9))
+* **selectable-box:** keypress when not clickable (VIV-1380) ([#1436](https://github.com/Vonage/vivid-3/issues/1436)) ([e3932cd](https://github.com/Vonage/vivid-3/commit/e3932cdf880fe4ee363e34fe4b6f9e65d257e8ef))
+* **select:** aria-label repeating the label text in screenreader and not updating when changed dynamically (VIV-1379) ([#1440](https://github.com/Vonage/vivid-3/issues/1440)) ([040652f](https://github.com/Vonage/vivid-3/commit/040652f8d86c4af9008259619d273d703d56a453))
+* **side-drawer:** side drawer accessibility (VIV-1270) ([#1433](https://github.com/Vonage/vivid-3/issues/1433)) ([a60905c](https://github.com/Vonage/vivid-3/commit/a60905cd4312d9f1022b530fc80633b875dbce93))
+* **switch:** read-only and disabled style (VIV-1382) ([#1445](https://github.com/Vonage/vivid-3/issues/1445)) ([ab8b776](https://github.com/Vonage/vivid-3/commit/ab8b77618e70622d79c2298655fa0b17814ac35a))
+* **tabs:** a11y error on tabs (VIV-1394) ([#1455](https://github.com/Vonage/vivid-3/issues/1455)) ([6b3750b](https://github.com/Vonage/vivid-3/commit/6b3750b7c456afcd4c0ed41e0878cc61004bd61f))
+* **text-field:** fix errors in non-DOM or JSDOM environments (VIV-1393) ([#1451](https://github.com/Vonage/vivid-3/issues/1451)) ([92c20c1](https://github.com/Vonage/vivid-3/commit/92c20c1b089800a3daceb8f17f7d81b8605642ea))
+
+## [3.40.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.39.0...vivid-v3.40.0) (2023-10-31)
+
+
+### Features
+
+* **data-grid-cell:** emit sort event on enter and space (VIV-1233) ([#1430](https://github.com/Vonage/vivid-3/issues/1430)) ([42e641f](https://github.com/Vonage/vivid-3/commit/42e641fda7997296aa1c1384bde57c4b058fb88e))
+* **date-range-picker:** dual calendar view (VIV-1339) ([#1415](https://github.com/Vonage/vivid-3/issues/1415)) ([b3b2233](https://github.com/Vonage/vivid-3/commit/b3b2233e637348959755623b2d260c01616f5ccd))
+* **selectable-box:** add component (VIV-1173) ([#1417](https://github.com/Vonage/vivid-3/issues/1417)) ([fb52330](https://github.com/Vonage/vivid-3/commit/fb523309a558ad86526688693c2063073a9ce725))
+* **slider:** add cta connotation (VIV-1373) ([#1429](https://github.com/Vonage/vivid-3/issues/1429)) ([7791d80](https://github.com/Vonage/vivid-3/commit/7791d80c4b2d7190ee886b817fca99598d722111))
+
+
+### Bug Fixes
+
+* **a11y:** adds a11y attributes to fulfil axe tests (VIV-1361) ([#1426](https://github.com/Vonage/vivid-3/issues/1426)) ([3a2246c](https://github.com/Vonage/vivid-3/commit/3a2246c9a662d93a18e6de9ec909f9458ee94d40))
+* **banner:** set display: block to host (VIV-1357) ([#1419](https://github.com/Vonage/vivid-3/issues/1419)) ([a2b5a45](https://github.com/Vonage/vivid-3/commit/a2b5a45eb353c3a6485a8dec0f7199a3520bc590))
+* **checkbox:** add display: flex to host (VIV-1293) ([#1423](https://github.com/Vonage/vivid-3/issues/1423)) ([75dcfe5](https://github.com/Vonage/vivid-3/commit/75dcfe550703f22755009bb7d2ef37a4002d0c3c))
+* **components:** fix min/maxlength validation (VIV-1174) ([#1420](https://github.com/Vonage/vivid-3/issues/1420)) ([d940074](https://github.com/Vonage/vivid-3/commit/d940074730a23cb0c88e4c55cc4cd3a3d0eb7dd5))
+* **data-grid:** fix focus appearance (VIV-1336) ([#1422](https://github.com/Vonage/vivid-3/issues/1422)) ([006b561](https://github.com/Vonage/vivid-3/commit/006b561f4c87ce3665f26b4a7a62773a1f14fe93))
+* **data-grid:** sticky header background color when row-select (VIV-1365) ([#1421](https://github.com/Vonage/vivid-3/issues/1421)) ([8eb17d9](https://github.com/Vonage/vivid-3/commit/8eb17d9c740a2810f663c7b13705a933e077dd1e))
+* **menu:** fix error when there are no menu items (VIV-1368) ([#1424](https://github.com/Vonage/vivid-3/issues/1424)) ([4eb89c3](https://github.com/Vonage/vivid-3/commit/4eb89c3745af25ea1bf76c4466a34a843caf0815))
+* **text-field:** fix text field not supporting autofill from certain password managers (VIV-1353) ([#1408](https://github.com/Vonage/vivid-3/issues/1408)) ([2dfb1a0](https://github.com/Vonage/vivid-3/commit/2dfb1a005eb5105e0d716320cec3cf903043d46c))
+
+## [3.39.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.38.0...vivid-v3.39.0) (2023-10-17)
+
+
+### Features
+
+* **menu-item:** support tick-only appearance (VIV-1222) ([#1404](https://github.com/Vonage/vivid-3/issues/1404)) ([ac3c132](https://github.com/Vonage/vivid-3/commit/ac3c13288f35648c42789a49591adef7318873ea))
+
+## [3.38.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.37.0...vivid-v3.38.0) (2023-10-11)
+
+
+### Features
+
+* **button:** add icon slot (VIV-1340) ([#1403](https://github.com/Vonage/vivid-3/issues/1403)) ([8ba169c](https://github.com/Vonage/vivid-3/commit/8ba169c6934a5b224714af9d726b44338a48cd57))
+* **date-picker:** update design (VIV-1327) ([#1385](https://github.com/Vonage/vivid-3/issues/1385)) ([d074936](https://github.com/Vonage/vivid-3/commit/d0749364cd89ec3448483d7048703e608ac1f886))
+* **date-range-picker:** add component (VIV-1283) ([#1395](https://github.com/Vonage/vivid-3/issues/1395)) ([b07e852](https://github.com/Vonage/vivid-3/commit/b07e852ef774361cb97733853892396dd80890e9))
+* **file-picker:** add support for form association (VIV-802) ([#1381](https://github.com/Vonage/vivid-3/issues/1381)) ([3a843dd](https://github.com/Vonage/vivid-3/commit/3a843dda45b60db2bd56c9c1309dca1766830696))
+* **nav-item:** add icon slot(VIV-1303) ([#1390](https://github.com/Vonage/vivid-3/issues/1390)) ([9b0cea7](https://github.com/Vonage/vivid-3/commit/9b0cea7a00322c6483a54ae31f08231c06b143c1))
+* **note:** add icon slot (VIV-1337) ([#1393](https://github.com/Vonage/vivid-3/issues/1393)) ([f35dbdd](https://github.com/Vonage/vivid-3/commit/f35dbdd1f9615d97171aa228cf52f5534b66834e))
+
+
+### Bug Fixes
+
+* **data-grid:** update divider color (VIV-1291) ([#1398](https://github.com/Vonage/vivid-3/issues/1398)) ([a77039c](https://github.com/Vonage/vivid-3/commit/a77039c0ad413b07b957d8f166a0ace34e366cca))
+* **dialog:** prevent close when clicking inside and mouseup outside (VIV-1346) ([#1399](https://github.com/Vonage/vivid-3/issues/1399)) ([adc427e](https://github.com/Vonage/vivid-3/commit/adc427e370c5120a9aa3b383871c5bea4137c2d2))
+* **disabled:** adds a consistent cursor to disabled elements (VIV-999) ([#1401](https://github.com/Vonage/vivid-3/issues/1401)) ([588f2f3](https://github.com/Vonage/vivid-3/commit/588f2f3b9a74167484c9ac382b171090eed5458c))
+* **pagination:** fix numbers getting cut off when &gt; 999 pages (VIV-1320) ([#1400](https://github.com/Vonage/vivid-3/issues/1400)) ([782ce59](https://github.com/Vonage/vivid-3/commit/782ce59b3a8b57d2cb4a21f9b41bc342a2921677))
+
+## [3.37.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.36.0...vivid-v3.37.0) (2023-09-25)
+
+
+### Features
+
+* **accordion-item and tree-item:** add icon slot (VIV-1323) ([#1383](https://github.com/Vonage/vivid-3/issues/1383)) ([1b3954f](https://github.com/Vonage/vivid-3/commit/1b3954fa804fc0fae49b1dee1d53231faab9021d))
+* **banner and badge:** add icon slot (VIV-1302) ([#1386](https://github.com/Vonage/vivid-3/issues/1386)) ([fec4495](https://github.com/Vonage/vivid-3/commit/fec4495663ae1743367e4da0f9e9f614d61ceddd))
+* **date-picker:** add support for form association (VIV-1272) ([#1377](https://github.com/Vonage/vivid-3/issues/1377)) ([070ad49](https://github.com/Vonage/vivid-3/commit/070ad49ad8317e24c92d007347d3e64d13d1a31a))
+* **fab:** add icon slot and slot observer in affix pattern (VIV-1310) ([#1380](https://github.com/Vonage/vivid-3/issues/1380)) ([3f22512](https://github.com/Vonage/vivid-3/commit/3f22512721217aa042bb7bb2bd738aa11ca2d123))
+* **number-field:** add error text handling to number-field (VIV-1316) ([#1391](https://github.com/Vonage/vivid-3/issues/1391)) ([ff143ae](https://github.com/Vonage/vivid-3/commit/ff143ae3a4cd25d627d5c259eaa0e8552c5eedc5))
+
+
+### Bug Fixes
+
+* **menu:** align chevron when submenu (VIV-1330) ([#1387](https://github.com/Vonage/vivid-3/issues/1387)) ([62647db](https://github.com/Vonage/vivid-3/commit/62647db05a4b58558503a171c17c53a12a73e710))
+* **nav-disclosure, fab, tab:** add slot annotations (VIV-000) ([#1378](https://github.com/Vonage/vivid-3/issues/1378)) ([b948664](https://github.com/Vonage/vivid-3/commit/b948664517990165b0ac437585abb452b1294e15))
+* **number-field:** can now accept decimals and negative values from user (VIV-1326) ([#1384](https://github.com/Vonage/vivid-3/issues/1384)) ([6f946e4](https://github.com/Vonage/vivid-3/commit/6f946e40dd715b6be171a25574adeeafee42bb34))
+
+## [3.36.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.35.0...vivid-v3.36.0) (2023-09-13)
+
+
+### Features
+
+* **menu-item:** add submenu (VIV-1230) ([#1359](https://github.com/Vonage/vivid-3/issues/1359)) ([f915c01](https://github.com/Vonage/vivid-3/commit/f915c01d7972f97b315748fdbcad166d351fe2f3))
+* **nav-disclosure:** add icon slot (VIV-1289) ([#1367](https://github.com/Vonage/vivid-3/issues/1367)) ([8181b3a](https://github.com/Vonage/vivid-3/commit/8181b3a8e933ab25bece1e56ab8b9d83f19d07cf))
+* **tab, tag:** add icon slot (VIV-1305) ([#1372](https://github.com/Vonage/vivid-3/issues/1372)) ([fb9e5f9](https://github.com/Vonage/vivid-3/commit/fb9e5f927f463d739cd9adf492a04a94418c9c27))
+
+
+### Bug Fixes
+
+* **form-elements:** fix validation logic (VIV-1287) ([#1358](https://github.com/Vonage/vivid-3/issues/1358)) ([99df5e4](https://github.com/Vonage/vivid-3/commit/99df5e491f9d0857b76bb405983b54869ba0589d))
+* **tabs:** style (VIV-1170) ([#1369](https://github.com/Vonage/vivid-3/issues/1369)) ([4ab33c8](https://github.com/Vonage/vivid-3/commit/4ab33c8395e48058b6a1debbbbddf5ce2c6e21b2))
+* **tree-item:** fix hover contrast ([95caf59](https://github.com/Vonage/vivid-3/commit/95caf591c91b567ee5444fc8c87b230185b0f54b))
+* **tree-item:** fix hover contrast (VIV-1267) ([#1370](https://github.com/Vonage/vivid-3/issues/1370)) ([95caf59](https://github.com/Vonage/vivid-3/commit/95caf591c91b567ee5444fc8c87b230185b0f54b))
+
+## [3.35.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.34.0...vivid-v3.35.0) (2023-09-06)
+
+
+### Features
+
+* **avatar:** add subtle appearance (VIV-1229) ([#1365](https://github.com/Vonage/vivid-3/issues/1365)) ([95eb886](https://github.com/Vonage/vivid-3/commit/95eb88698ecf80a11a37b7932ad15694103059a9))
+
+
+### Bug Fixes
+
+* **progress-ring:** add missing size attr (VIV-1298) ([#1363](https://github.com/Vonage/vivid-3/issues/1363)) ([71d501f](https://github.com/Vonage/vivid-3/commit/71d501ffd08af4256d82a03e45e29b07e74bfa44))
+
+## [3.34.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.33.0...vivid-v3.34.0) (2023-09-04)
+
+
+### Features
+
+* **date-picker:** add min and max attributes (VIV-1273) ([#1353](https://github.com/Vonage/vivid-3/issues/1353)) ([a2df190](https://github.com/Vonage/vivid-3/commit/a2df190a60f82597987168c53dcc62feeb23ee88))
+* **listbox:** add shape and orientation (VIV-863) ([#1345](https://github.com/Vonage/vivid-3/issues/1345)) ([a8e2297](https://github.com/Vonage/vivid-3/commit/a8e2297eef3ca98676490ba2f2b6b3e59487e133))
+* **text-field:** leading action-items slot (VIV-1239)  ([#1351](https://github.com/Vonage/vivid-3/issues/1351)) ([6705702](https://github.com/Vonage/vivid-3/commit/6705702faa6759e4f3795b9d00abbc7c6aa7e94a))
+
+
+### Bug Fixes
+
+* **menu-item:** add default menuitem role (VIV-1219) ([#1360](https://github.com/Vonage/vivid-3/issues/1360)) ([ddd25f9](https://github.com/Vonage/vivid-3/commit/ddd25f953c288d036263b7efe39fed912d1627b9))
+* **menu:** hide body if no menu-items are slotted (VIV-1269) ([#1355](https://github.com/Vonage/vivid-3/issues/1355)) ([c031c79](https://github.com/Vonage/vivid-3/commit/c031c79768a0c0079dc61fd01eed470b5773410b))
+* **menu:** set inline-size of max-content (VIV-1255) ([#1313](https://github.com/Vonage/vivid-3/issues/1313)) ([772f624](https://github.com/Vonage/vivid-3/commit/772f624d63aa5e7ddd134dc84ebbded54a899ae6))
+
 ## [3.33.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.32.0...vivid-v3.33.0) (2023-08-24)
 
 

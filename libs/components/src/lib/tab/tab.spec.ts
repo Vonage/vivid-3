@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import {Icon} from '../icon/icon';
 import { Tab } from './tab';
@@ -39,7 +39,11 @@ describe('vwc-tab', () => {
 	});
 
 	describe('icon', () => {
-		it('should add an icon to the tab when icon is set', async () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
@@ -105,6 +109,17 @@ describe('vwc-tab', () => {
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y tests', async () => {
+			element = (await fixture(`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`)) as Tab;
+			element.label = 'Label';
+			element.ariaSelected = 'true';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -35,13 +35,15 @@ body {
 a {
   color: var(--vvd-color-cta-600);
 }
-a:visited {
-  color: var(--vvd-color-information-600);
-}
+
 a:hover {
   color: var(--vvd-color-cta-700);
 }
-a:hover:visited {
+a:visited {
+	color: var(--vvd-color-information-600);
+}
+
+a:visited:hover {
   color: var(--vvd-color-information-700);
 }
 a:active {
@@ -132,11 +134,14 @@ vwc-header {
   align-items: center;
   column-gap: 8px;
   text-decoration: none;
+	font: var(--vvd-typography-base-extended-bold);
 }
 
-.logo-wrapper:any-link {
-  color: var(--vvd-color-neutral-800);
+.logo-wrapper .text {
+	color: var(--vvd-color-neutral-800);
 }
+
+
 
 vwc-nav-item > vwc-badge {
   margin-inline-start: auto;
@@ -233,6 +238,30 @@ article.article > h1 {
   z-index: 1;
 }
 /* #endregion article */
+
+/* #region footer */
+
+.footer {
+	padding-inline: 16px;
+	padding-block: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+@media (min-width: 960px) {
+	.footer {
+		padding-inline: 32px;
+	}
+}
+
+.footer a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* #endregion footer */
 
 /* #region code fence demo */
 

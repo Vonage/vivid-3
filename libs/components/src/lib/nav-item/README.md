@@ -28,7 +28,7 @@ Add a `text` attribute to add text to the nav item.
 Use `icon` to set an icon to the nav item.
 View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the nav item's purpose.
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the nav item's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -67,3 +67,18 @@ Use the `meta` slot to add additional content to the nav item.
 </vwc-nav>
 ```
 
+### Icon
+
+Set the `icon` slot to show an icon before the nav-item's text.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item href="#" text="Account">
+	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#">
+	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	</vwc-nav-item>
+</vwc-nav>
+```

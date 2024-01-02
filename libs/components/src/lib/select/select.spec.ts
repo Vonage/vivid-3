@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';
 
@@ -99,12 +99,12 @@ describe('vwc-select', () => {
 				.toBeNull();
 		});
 
-		it('should set arialabel on host', async function () {
+		it('should not set aria-label on host', async function () {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label'))
-				.toEqual(labelText);
+				.toEqual(null);
 		});
 	});
 
@@ -112,16 +112,6 @@ describe('vwc-select', () => {
 		it('should reflect on the host', async function () {
 			const ariaLabel = 'label';
 			element.ariaLabel = ariaLabel;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label'))
-				.toEqual(ariaLabel);
-		});
-
-		it('should set ariaLabel on the host overriding label', async function () {
-			const ariaLabel = 'arialabel';
-			const label = 'label';
-			element.ariaLabel = ariaLabel;
-			element.label = label;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label'))
 				.toEqual(ariaLabel);
@@ -595,6 +585,21 @@ describe('vwc-select', () => {
 
 			await elementUpdated(element);
 			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('2');
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.innerHTML = `
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			`;
+			element.selectedIndex = 2;
+			element.ariaLabel = 'Label';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

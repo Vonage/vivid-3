@@ -8,6 +8,7 @@ import {classNames} from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
+import { focusTemplateFactory } from '../../shared/patterns';
 import type {Dialog} from './dialog';
 
 const getClasses = ({
@@ -64,14 +65,13 @@ function subtitle() {
  */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
-	  <${buttonTag}
-			  size="condensed"
-			  class="dismiss-button"
-			  icon="close-line"
-			  @click="${x => {
-		x.open = false;
-	}}">
-	  </${buttonTag}>`;
+	<${buttonTag}
+		aria-label="${x => x.dismissButtonAriaLabel || x.locale.dialog.dismissButtonLabel}"
+		size="condensed"
+		class="dismiss-button"
+		icon="close-line"
+		@click="${x => x.open = false}"
+	></${buttonTag}>`;
 }
 
 function handleEscapeKey(dialog: Dialog, event: Event) {
@@ -94,16 +94,17 @@ export const DialogTemplate: (
 	const elevationTag = context.tagFor(Elevation);
 	const iconTag = context.tagFor(Icon);
 	const buttonTag = context.tagFor(Button);
+	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Dialog>`
 	<${elevationTag} dp="8">
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@cancel="${(_, c) => c.event.preventDefault()}"
 				returnValue="${x => x.returnValue}"
-				aria-labelledby="${x => x.ariaLabelledBy}"
 				aria-label="${x => x.ariaLabel}"
-				aria-describedby="${x => x.ariaDescribedBy}"
 		>
+			${() => focusTemplate}
 			<slot name="main">
 				<div class="main-wrapper">
 					<div class="header ${x => x.subtitle ? 'border' : ''}">

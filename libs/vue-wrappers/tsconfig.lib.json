@@ -1,0 +1,16 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"rootDir": "./src",
+		"outDir": "../../dist/libs/vue-wrappers",
+		"declaration": true,
+		"noPropertyAccessFromIndexSignature": false,
+		"types": ["node"],
+		"paths": {
+			"@vonage/vivid": ["dist/libs/components"],
+			"@vonage/vivid/*": ["dist/libs/components/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.d.ts"],
+	"exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+}

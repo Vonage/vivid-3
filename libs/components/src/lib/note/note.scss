@@ -2,17 +2,18 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent success information alert warning,
-	$shades: primary intermediate backdrop,
+	$shades: intermediate faint fierce,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-	$appearances: fieldset,
+	$appearances: harmony,
 	$states: idle,
-	$default: fieldset,
+	$default: harmony,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 .base {
@@ -23,9 +24,9 @@
 	align-items: flex-start;
 	padding: #{size.$vvd-size-ultra-condensed};
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
+	color: var(--vvd-color-canvas-text);
 	column-gap: 16px;
 
 	@supports(contain: content) {
@@ -37,7 +38,7 @@
 	}
 }
 
-.icon {
+slot[name="icon"] {
 	color: var(#{appearance.get-appearance-token(outline)});
 	font-size: #{size.$vvd-size-super-condensed};
 }

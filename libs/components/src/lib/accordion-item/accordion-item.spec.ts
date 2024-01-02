@@ -1,6 +1,6 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {AccordionItem} from './accordion-item';
+import { AccordionItem } from './accordion-item';
 import '.';
 import { accordionItemDefinition } from './definition';
 
@@ -15,7 +15,7 @@ describe('vwc-accordion-item', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG}><div>Accordion content</div></${COMPONENT_TAG}>`
 		)) as AccordionItem;
 	});
 
@@ -54,18 +54,19 @@ describe('vwc-accordion-item', () => {
 	});
 
 	describe('icon', () => {
-		it('should render an icon when the icon property is set', async () => {
-			const headerSecondChild = () => element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+		});
 
-			const secondChildWithoutIcon = headerSecondChild();
+		it('should render an icon when the icon property is set', async () => {
+			const secondChildWithoutIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(3)') as HTMLSpanElement;
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			const secondChildWithIcon = headerSecondChild();
+			const secondChildWithIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
 
 			expect(secondChildWithoutIcon.classList).toContain('heading-content');
 			expect(secondChildWithoutIcon.classList).not.toContain('icon');
 			expect(secondChildWithIcon.classList).not.toContain('heading-content');
-			expect(secondChildWithIcon.classList).toContain('icon');
 			expect(secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
 		});
 
@@ -107,15 +108,8 @@ describe('vwc-accordion-item', () => {
 		});
 	});
 
-	describe('aria expanded', () => {
-		it('should set aria-expanded to false', async () => {
-			const button = element.shadowRoot?.querySelector('.heading-button');
-			expect(button?.getAttribute('aria-expanded')).toEqual('false');
-		});
-	});
-
 	describe('meta', function () {
-		it('should render meta', async function() {
+		it('should render meta', async function () {
 			const metaText = 'Some meta text';
 			element.meta = metaText;
 			await elementUpdated(element);
@@ -136,6 +130,43 @@ describe('vwc-accordion-item', () => {
 
 			expect(accordionButton?.classList.contains(`size-${size}`)).toBeTruthy();
 			expect(accordionRegion?.classList.contains(`size-${size}`)).toBeTruthy();
+		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.id = 'test1';
+			element.heading = 'Accordion item heading';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should link the header button and content region using aria', async () => {
+			const TEST_ID = 'test';
+			element.id = TEST_ID;
+			element.heading = 'Accordion item heading';
+			await elementUpdated(element);
+
+			const accordionButton = element.shadowRoot?.getElementById(TEST_ID);
+			const accordionRegion = element.shadowRoot?.getElementById(`${TEST_ID}-panel`);
+
+			expect(accordionButton?.getAttribute('aria-controls')).toBe(`${TEST_ID}-panel`);
+			expect(accordionRegion?.getAttribute('aria-labelledby')).toBe(TEST_ID);
+		});
+
+		it('should set aria-expanded to false when closed', async () => {
+			const button = element.shadowRoot?.querySelector('.heading-button');
+			expect(button?.getAttribute('aria-expanded')).toEqual('false');
+		});
+
+		it('should set aria-expanded to true when expanded', async () => {
+			element.expanded = true;
+			await elementUpdated(element);
+
+			const button = element.shadowRoot?.querySelector('.heading-button');
+			
+			expect(button?.getAttribute('aria-expanded')).toEqual('true');
 		});
 	});
 });

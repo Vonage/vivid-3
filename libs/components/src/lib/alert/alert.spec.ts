@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import type { Button } from '../button/button';
 import { Connotation } from '../enums';
@@ -86,6 +86,23 @@ describe('vwc-alert', () => {
 		});
 	});
 
+	describe('focus', () => {
+		it('should focus when opened', async () => {
+			const spy = jest.fn();
+			const alertText: HTMLElement = element.shadowRoot?.querySelector('.alert-text') as HTMLElement;
+			alertText.focus = spy;
+			element.removable = true;
+			
+			element.open = false;
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(0);
+			
+			element.open = true;
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
 	describe('connotation', function () {
 		const possibleConnotations = [Connotation.Accent,
 			Connotation.Information,
@@ -161,6 +178,20 @@ describe('vwc-alert', () => {
 			element.icon = 'home';
 			element.connotation = Connotation.Alert;
 			expect(element.conditionedIcon).toEqual('home');
+		});
+	});
+
+	describe('transitionend', function () {
+		it('should be display none when not open', async function () {
+			element.open = true;
+			await elementUpdated(element);
+			expect(element.style.display).toEqual('inline');
+
+			element.open = false;
+			getControlElement(element).dispatchEvent(new Event('transitionend'));
+			await elementUpdated(element);
+
+			expect(element.style.display).toEqual('none');
 		});
 	});
 
@@ -302,6 +333,32 @@ describe('vwc-alert', () => {
 				expect(spy).not.toHaveBeenCalled();
 			});
 		});
+	});
 
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.text = 'Alert text';
+			element.headline = 'Alert heading';
+			element.open = true;
+			element.connotation = Connotation.Alert;
+			await elementUpdated(element);
+		});
+
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should set alertdialog on the control when removable', async () => {
+			element.removable = true;
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			expect(control.getAttribute('role')).toBe('alertdialog');
+		});
+
+		it('should set a role of alert on the control', async () => {
+			const control = getControlElement(element);
+			expect(control.getAttribute('role')).toBe('alert');
+		});
 	});
 });

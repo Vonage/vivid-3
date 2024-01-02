@@ -1,7 +1,8 @@
 # Button
 
 A button represents an action that the user can take. Use buttons to enable important actions.
-All native attributes of `button` are supported as well as some enhancements.
+
+All [native attributes of `<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) are supported as well as some enhancements.
 
 
 ```js
@@ -39,9 +40,9 @@ Set the `appearance` attribute to change the button's appearance.
 ### Icon
 
 Use `icon` to set an icon to the button.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label`, `aria-labelledby` or `title` must be provided to ensure that the user can understand the button's purpose.
+Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the button's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -171,8 +172,48 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
+## Slots
+
+### Icon
+
+Set the `icon` slot to show an icon before the button's label.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<style>
+	.color-animation {
+		animation: heightChange 1.5s infinite; 
+	}
+	@keyframes heightChange {
+			0% {
+				clip-path: inset(0% 0% 0% 0%);
+			}
+				25% {
+				clip-path: inset(0% 0% 45% 0%);
+			}
+			  50% {
+				clip-path: inset(0% 0% 80% 0%);
+			}
+				100% {
+				clip-path: inset(0% 0% 0% 0%);
+			}
+	}
+</style>
+<vwc-button>
+  <vwc-icon slot="icon">
+  	<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  		<g>
+        <path d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z" fill="var(--vvd-color-success-400)" />
+    		<path d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z" fill="currentColor" id="animation" class="color-animation" />
+    		<path d="M3 10.3333C3 9.59695 2.32843 9 1.5 9C0.671573 9 0 9.59695 0 10.3333C0 15.7728 4.58052 20.2613 10.5 20.9175V24H13.5V20.9175C19.4195 20.2613 24 15.7728 24 10.3333C24 9.59695 23.3284 9 22.5 9C21.6716 9 21 9.59695 21 10.3333C21 14.7516 16.9706 18.3333 12 18.3333C7.02943 18.3333 3 14.7516 3 10.3333Z" fill="currentColor" />
+  		</g>
+</svg>
+  </vwc-icon>
+</vwc-button>
+```
+
 ## Accessibility 
-When setting an `aria-label`, `aria-labelledby` or 'title', keep in mind that `aria-label`, `aria-labelledby` are better for A11Y.  
+When deciding between `aria-label` or `title`, keep in mind that `aria-label` is better for accessibility.  
 The assistive technology will read the `aria-label` text rather than the `title` if both are set.
 
 ## Use Cases
@@ -189,7 +230,7 @@ The assistive technology will read the `aria-label` text rather than the `title`
 </vwc-button>
 
 <script>
-  button.addEventListener('click', () => {
+  document.getElementById('button').addEventListener('click', () => {
     button.ariaPressed = !button.ariaPressed;
     button.icon = button.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
     button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';

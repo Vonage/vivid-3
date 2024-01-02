@@ -1,9 +1,14 @@
-import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
 import { splitButtonDefinition } from './definition';
-import  '.';
+import '.';
 
 const COMPONENT_TAG = 'vwc-split-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -28,6 +33,7 @@ describe('vwc-split-button', () => {
 			expect(element.size).toBeUndefined();
 			expect(element.indicator).toBeInstanceOf(HTMLButtonElement);
 			expect(element.action).toBeInstanceOf(HTMLButtonElement);
+			expect(element.getAttribute('role')).toEqual('presentation');
 		});
 	});
 
@@ -119,20 +125,12 @@ describe('vwc-split-button', () => {
 
 
 	describe('disabled', function () {
-		it('should set disabled class when disabled is true', async () => {
-			const appearance = 'filled';
-			(element as any).appearance = appearance;
-			element.toggleAttribute('disabled', true);
-			await elementUpdated(element);
-
-			const controlHasDisabledClass = getControlElement(element)?.classList.contains('disabled');
-			expect(controlHasDisabledClass).toBeTruthy();
-		});
-
-		it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
+		it('should disable control and indicator buttons when disabled is true', async () => {
 			element.disabled = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-disabled')).toEqual('true');
+
+			expect(element.action.disabled).toBe(true);
+			expect(element.indicator.disabled).toBe(true);
 		});
 	});
 
@@ -142,22 +140,44 @@ describe('vwc-split-button', () => {
 		});
 	});
 
-	describe('aria-label', function () {
-		it('should set "aria-label" on control if set on host', async function () {
-			const labelId = 'label';
-			element.setAttribute('aria-label', labelId);
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Button label';
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
+
+			expect(await axe(element)).toHaveNoViolations();
 		});
-	});
 
-	describe('aria-expanded', function () {
-		it('should set "aria-expanded" on indicator if set on host', async function () {
-			element.setAttribute('aria-expanded', 'true');
-			await elementUpdated(element);
+		describe('aria-label', function () {
+			it('should set "aria-label" on control if set on host', async function () {
+				const labelId = 'label';
+				element.setAttribute('aria-label', labelId);
+				await elementUpdated(element);
+				expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
+			});
+		});
 
-			const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
-			expect(indicator.getAttribute('aria-expanded')).toEqual('true');
+		describe('indicator', function () {
+			it('should have a localised "aria-label"', async function () {
+				expect(element.indicator.getAttribute('aria-label')).toBe('Show more actions');
+			});
+
+			it('should allow overriding the "aria-label" with indicatorAriaLabel', async function () {
+				element.indicatorAriaLabel = 'Custom aria label';
+				await elementUpdated(element);
+
+				expect(element.indicator.getAttribute('aria-label')).toBe('Custom aria label');
+			});
+		});
+
+		describe('aria-expanded', function () {
+			it('should set "aria-expanded" on indicator if set on host', async function () {
+				element.setAttribute('aria-expanded', 'true');
+				await elementUpdated(element);
+
+				const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
+				expect(indicator.getAttribute('aria-expanded')).toEqual('true');
+			});
 		});
 	});
 });

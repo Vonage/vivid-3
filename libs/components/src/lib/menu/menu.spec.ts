@@ -1,4 +1,4 @@
-import { ADD_TEMPLATE_TO_FIXTURE, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
@@ -114,6 +114,28 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('esc key press', () => {
+		it('should set "open" to false', async () => {
+			element.open = true;
+			element.autoDismiss = true;
+
+			await elementUpdated(element);
+
+			getBaseElement(element)
+				.dispatchEvent(new KeyboardEvent('keydown', {
+					'key': 'Escape',
+					bubbles: true,
+					composed: true
+				}));
+			
+
+			await elementUpdated(element);
+
+			expect(element.open)
+				.toEqual(false);
+		});
+	});
+
 	describe('focus', () => {
 		function createMenuItem(type = 'menuitem') {
 			const div = document.createElement('div');
@@ -195,12 +217,6 @@ describe('vwc-menu', () => {
 				document.activeElement?.dispatchEvent(arrowDownEvent);
 			}
 
-			function focusOutOfBody() {
-				const focusOutEvent = new FocusEvent('focusout');
-				const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
-				bodyElement.dispatchEvent(focusOutEvent);
-			}
-
 			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
 
 			element.innerHTML = `
@@ -217,6 +233,12 @@ describe('vwc-menu', () => {
 
 			expect(focusableElementAfterMouseDown.id).toEqual('id2');
 			expect(focusableElementAfterFocusOut.id).toEqual('id1');
+		});
+
+		it('should ignore focusout when there are no menuitems', async () => {
+			await elementUpdated(element);
+
+			expect(() => focusOutOfBody()).not.toThrow();
 		});
 	});
 
@@ -395,6 +417,32 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('menu items', () => {
+		it('should have default slot ', async function () {
+			const actionsSlotElement = element.shadowRoot?.querySelector('.body slot');
+
+			expect(actionsSlotElement).toBeDefined();
+		});
+
+		it('should set hide-body class on base if no items are slotted', async function () {
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).toContain('hide-body');
+		});
+
+		it('should remove hide-body class from base if items is slotted', async function () {
+			const slottedElement = document.createElement('div');
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			const baseElementClasses = getBaseElement(element)?.classList;
+
+			expect(baseElementClasses).not.toContain('hide-body');
+		});
+	});
+
 	describe('open event', () => {
 		it('should dispatch a non-bubbling open event when the menu is opened', async () => {
 			const spy = jest.fn();
@@ -425,6 +473,31 @@ describe('vwc-menu', () => {
 		});
 	});
 
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.open = true;
+			element.ariaLabel = 'A11y label';
+			element.innerHTML = `
+				<div role="menuitem" id="id1">Menu Item 1</div>
+				<div role="menuitem" id="id2">Menu Item 2</div>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should render the aria-label on the menu element', async () => {
+			const menu = element.shadowRoot?.querySelector('[role="menu"]');
+			expect(menu?.getAttribute('aria-label')).toBe('A11y label');
+		});
+
+		it('should render the element with a role of presentation', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
+		});
+	});
+
 	const arrowUpEvent = new KeyboardEvent('keydown', {
 		key: keyArrowUp,
 		bubbles: true,
@@ -434,4 +507,10 @@ describe('vwc-menu', () => {
 		key: keyArrowDown,
 		bubbles: true,
 	} as KeyboardEventInit);
+
+	function focusOutOfBody() {
+		const focusOutEvent = new FocusEvent('focusout');
+		const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
+		bodyElement.dispatchEvent(focusOutEvent);
+	}
 });

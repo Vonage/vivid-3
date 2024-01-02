@@ -10,7 +10,7 @@ While `text-field` follows [the W3C specifictation](https://developer.mozilla.or
 - `tel`
 - `url`
 
-If you wish to use `type="number"`, refer to the [`number-field`](/number-field) component.
+If you wish to use `type="number"`, refer to the [`number-field`](../number-field) component.
 
 ```js
 <script type="module">
@@ -68,6 +68,7 @@ Add the `helper-text` to add some helper text below the text field.
 ### Success text
 
 Add the `success-text` to add some success text below the text field.
+If provided, `success-text` will take precedence over errors.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -79,7 +80,7 @@ Add the `success-text` to add some success text below the text field.
 ### Error text
 
 It is possible to force the text field's error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
 
 - Type: `string`
 - Default: `undefined`
@@ -167,60 +168,102 @@ You can add action items elements using the `action-items` slot.
 </vwc-text-field>
 ```
 
+
+### Leading Action-items
+You can add action items elements using the `leading-action-items` slot.  
+
+```html preview
+<style>
+.leading-action-items {
+	display: flex;
+	align-items: center;
+	column-gap: 2px;
+}
+vwc-select {
+  --focus-inset: 2px;
+}
+vwc-divider {
+    height: 20px;
+}
+</style>
+<vwc-text-field icon="search" placeholder="search" label='search' appearance='fieldset' class="text-field">
+<div slot="leading-action-items" class="leading-action-items">
+	<vwc-select aria-label="Options Selector" appearance="ghost">
+		<vwc-option value="1" text="ALL" selected></vwc-option>
+	</vwc-select>
+	<vwc-divider orientation="vertical"></vwc-divider>
+</div>
+</vwc-text-field>
+```
+
+
 ## CSS Variables
-### Inline end-Padding
-Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-tiems` slot.
+### Inline end-Padding - **Deprecated**
+This css variable is not in use anymore.  
+Don't worry if it is set - the design still be the same :)  
+<br>
+~~Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-items` slot.~~
 
 
 ## Use Cases
 ```html preview
 <style>
-.text-field {
-  --text-field-inline-end-padding: 106px;
-}
+.action-items { display: flex; }
 </style>
 <vwc-text-field icon="search" placeholder="search" label='search our documentation' appearance='fieldset' class="text-field" shape='pill'>
-	<vwc-button slot="action-items" size='condensed' icon="image-line" aria-label='search images' shape='pill' appearance='ghost'></vwc-button>
-	<vwc-button slot="action-items" size='condensed' icon="microphone-2-line" aria-label='record' shape='pill' appearance='ghost'></vwc-button>
-	<vwc-button slot="action-items" size='condensed' icon="close-line" aria-label='clear field' shape='pill' appearance='ghost'></vwc-button>
+	<div slot="action-items" class="action-items">
+		<vwc-button size='condensed' icon="image-line" aria-label='search images' shape='pill' appearance='ghost'></vwc-button>
+		<vwc-button size='condensed' icon="microphone-2-line" aria-label='record' shape='pill' appearance='ghost'></vwc-button>
+		<vwc-button size='condensed' icon="close-line" aria-label='clear field' shape='pill' appearance='ghost'></vwc-button>
+	</div>
 </vwc-text-field>
 ```
+
 
 ### Validation
 
 You can validate the text field like any other native `input`.
 Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
-In addition, we programatically *"dirtied"* the field and then called `validate` because the change was not done by a user.
+In this example we need to call `.reportValidity()` to show the error because the change was not done by a user.
 
 ```html preview
-<vwc-text-field pattern="123"></vwc-text-field>
+<vwc-text-field id="field" pattern="123" value="5"></vwc-text-field>
 
 <script>
-  textField = document.querySelector('vwc-text-field');
-  interval = setInterval(() => {
-    if (!textField.checkValidity) return;
-    textField.value = 5;
-    textField.dirtyValue = true;
-    textField.checkValidity();
-    clearInterval(interval);
-  }, 50);
+	window.onload = () => {
+		document.getElementById('field').reportValidity();
+  };
 </script>
 ```
 
-### In Form
+### In a Form
 
 ```html preview blocks
 <style>
-vwc-button {
-  justify-self: flex-start;
-}
+	.buttons {
+		display: flex;
+		gap: 12px;
+	}
 </style>
 <form method="post" action="">
-  <vwc-layout column-spacing="small" column-basis="block">
-    <vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
-    <vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
-  </vwc-layout>
+	<vwc-layout column-spacing="small" column-basis="block">
+		<vwc-text-field required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" char-count style="justify-self: flex-start;"></vwc-text-field>
+		<div class="buttons">
+			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
+	</vwc-layout>
 </form>
+```
+
+### Numeric input
+
+When collecting input which is made up of digits, but not a number in the mathematical sense, use the text-field with `inputmode="numeric"` and `pattern="[0-9]*"`.
+
+For mathematical numbers, refer to the [`number-field`](../number-field) component instead.
+
+```html preview
+<vwc-text-field label="ZIP Code" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 10001"></vwc-text-field>
 ```
 
 ## Accessibility

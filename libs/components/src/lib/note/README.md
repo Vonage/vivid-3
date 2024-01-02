@@ -1,6 +1,6 @@
 # Note
 
-`vwc-note` component is designated to layout connotated notification content.
+The note component is used to display a short message to the user.
 
 ```js
 <script type="module">
@@ -9,8 +9,8 @@
 ```
 
 ```html preview
-<vwc-note connotation="success" icon="check-circle" headline="Pascal's theological argument">
-  Pascal argues that a rational person should live as though God exists and seek to believe in God. If God does not actually exist, such a person will have only a finite loss (some pleasures, luxury, etc.), whereas if God does exist, he stands to receive infinite gains (as represented by eternity in Heaven) and avoid infinite losses (eternity in Hell).
+<vwc-note connotation="success" icon="check-circle" headline="Changes saved successfully">
+	Your changes have been saved successfully. You can now continue working.
 </vwc-note>
 ```
 
@@ -34,7 +34,7 @@ Add a `icon='icon-name'` attribute to set a decorative icon.
 - Default: `undefined`
 
 ```html preview
-<vwc-note icon="home"></vwc-note>
+<vwc-note icon="home" headline="Note With Icon"></vwc-note>
 ```
 
 ### Connotation
@@ -62,5 +62,16 @@ Any slotted content will appear below the headline.
 ```html preview
 <vwc-note icon="home" headline="Note Headline" connotation="information">
   <p>This is the text that explains about something important!</p>
+</vwc-note>
+```
+
+### Icon
+
+Set the `icon` slot to show an icon before the note's headline.
+If set, the `icon` attribute is ignored.
+
+```html preview
+<vwc-note headline="Note With Icon Slot">
+  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 </vwc-note>
 ```

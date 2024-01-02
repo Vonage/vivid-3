@@ -16,6 +16,7 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 $control-size: #{size.$vvd-size-ultra-condensed};
@@ -25,6 +26,10 @@ $control-border: 2px;
 	:host(:focus-visible) {
 		outline: none;
 	}
+}
+
+:host([disabled]) {
+	cursor: not-allowed;
 }
 
 .base {
@@ -41,7 +46,6 @@ $control-border: 2px;
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 }
@@ -50,7 +54,7 @@ $control-border: 2px;
 	position: relative;
 	flex-shrink: 0;
 	block-size: $control-size;
-	border-radius: 50%;
+	border-radius: #{border-radius-variables.$border-radius-full};
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 	inline-size: $control-size;
 
@@ -83,7 +87,7 @@ label {
 	#{focus-variables.$focus-inset}: -3px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	border-radius: 50%;
+	border-radius: #{border-radius-variables.$border-radius-full};
 
 	:host(:not(:focus-visible)) & {
 		display: none;

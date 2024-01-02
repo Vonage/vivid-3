@@ -1,4 +1,5 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture, getBaseElement,
@@ -8,8 +9,8 @@ import {
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {Shape} from '../enums';
 import { NumberField } from './number-field';
-import '.';
 import { numberFieldDefinition } from './definition';
+import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
@@ -131,7 +132,6 @@ describe('vwc-number-field', () => {
 		const value = '8';
 		const propertyName = 'step';
 		it('should set step attribute on the input', async function () {
-
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
 			expect(getControlElement(element)
@@ -144,6 +144,11 @@ describe('vwc-number-field', () => {
 		const value = 8;
 		const propertyName = 'max';
 		const proxyPropertyName = 'max';
+
+		it('should set proxy\'s step to empty if invalid value', function () {
+			element.setAttribute('step', 'invalid');
+			expect(element.proxy.step).toEqual('');
+		});
 
 		it('should set max attribute on the input', async function () {
 
@@ -449,6 +454,10 @@ describe('vwc-number-field', () => {
 		});
 	});
 
+	function typeInput(input: string) {
+		element.control.value = input;
+		element.control.dispatchEvent(new Event('input'));
+	}
 	describe('value', function () {
 		it('should set \'has-value\' class when there is a value', async function () {
 			const activeClassWhenEnabled = getRootElement(element)
@@ -464,6 +473,109 @@ describe('vwc-number-field', () => {
 			expect(activeClassWhenDisabled)
 				.toEqual(true);
 		});
+
+		it('should allow negative sign as first char when typing', async function () {
+			typeInput('-');
+			const valueWhenNegativeIsFirstChar = element.value;
+
+			element.value = '5';
+			typeInput('5-');
+			await elementUpdated(element);
+			const valueWhenNegativeIsNotFirstChar = element.value;
+
+			expect(valueWhenNegativeIsNotFirstChar).toEqual('5');
+			expect(valueWhenNegativeIsFirstChar).toEqual('-');
+		});
+
+		it('should prevent typing invalid characters', function () {
+			typeInput('a');
+			const valueWhenInvalidChar = element.value;
+			element.value = '0.5';
+			typeInput('0.5.');
+			const valueWhenInvalidCharInDecimal = element.value;
+			element.value = '0.5';
+			typeInput('0.5a');
+			const valueWhenInvalidCharInEndOfNumber = element.value;
+
+			expect(valueWhenInvalidChar).toEqual('');
+			expect(valueWhenInvalidCharInDecimal).toEqual('0.5');
+			expect(valueWhenInvalidCharInEndOfNumber).toEqual('0.5');
+		});
+
+		it('should allow negative zero', async function () {
+			typeInput('-0');
+			const valueWhenNegativeZero = element.value;
+			typeInput('-0.');
+			const valueWhenNegativeZeroWithDecimal = element.value;
+			typeInput('-0.0');
+			const valueWhenNegativeZeroWithDecimalAndZero = element.value;
+
+			expect(valueWhenNegativeZero).toEqual('-0');
+			expect(valueWhenNegativeZeroWithDecimal).toEqual('-0.');
+			expect(valueWhenNegativeZeroWithDecimalAndZero).toEqual('-0.0');
+		});
+
+		it('should allow for decimal values by user', async function () {
+			element.value = '5';
+			typeInput('5.');
+			const valueWhenDecimalLastChar = element.value;
+
+			typeInput('5.5');
+			const valueWhenDecimalMiddleChar = element.value;
+
+			typeInput('.');
+			const valueWhenDecimalOnlyChar = element.value;
+
+			typeInput('.5');
+			const valueWhenDecimalFirstChar = element.value;
+
+			expect(valueWhenDecimalLastChar).toEqual('5.');
+			expect(valueWhenDecimalMiddleChar).toEqual('5.5');
+			expect(valueWhenDecimalOnlyChar).toEqual('.');
+			expect(valueWhenDecimalFirstChar).toEqual('.5');
+		});
+
+		it('should clear invalid programmatically added invalid value', async function () {
+			element.value = '5.5.';
+			const valueWithTwoDecimalPoints = element.value;
+			element.value = '6.';
+			const valueWithInvalidDecimalPoint = element.value;
+			element.value = '-';
+			const valueWithNegativeSignAlone = element.value;
+			element.value = '5a';
+			const valueWithInvalidCharacter = element.value;
+			expect(valueWithTwoDecimalPoints).toEqual('');
+			expect(valueWithInvalidDecimalPoint).toEqual('');
+			expect(valueWithNegativeSignAlone).toEqual('');
+			expect(valueWithInvalidCharacter).toEqual('');
+		});
+
+		it('should validate input if value fits step', async () => {
+			element.step = 0.1;
+			typeInput('5.5');
+			expect(element.validationMessage).toEqual('');
+		});
+
+		it('should be invalid if value is not in max boundary', async function () {
+			element.max = 6;
+			element.valueAsNumber = 6+1;
+			await elementUpdated(element);
+			expect(element.checkValidity()).toBe(false);
+		});
+
+		it('should be invalid if value is not in min boundary', async function () {
+			element.min = 6;
+			element.valueAsNumber = 6-1;
+			await elementUpdated(element);
+			expect(element.checkValidity()).toBe(false);
+		});
+
+		it('should be invalid if required and empty', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			expect(element.checkValidity()).toBe(false);
+		});
+
 	});
 
 	describe('appearance', function () {
@@ -527,7 +639,7 @@ describe('vwc-number-field', () => {
 			expect((getControlElement(element) as HTMLInputElement).value).toEqual('11');
 		});
 
-		it('should add by step when clicking the add button', async function() {
+		it('should increment by step when clicking the add button', async function() {
 			element.value = '10';
 			element.step = 5;
 			addButton?.click();
@@ -550,8 +662,7 @@ describe('vwc-number-field', () => {
 			expect(subtractButton.getAttribute('shape')).toEqual(Shape.Pill);
 		});
 
-		it('should set step as 1 when step is null', async function () {
-			(element as any)['step'] = null;
+		it('should set step as 1 with default step', async function () {
 			element.value = '8';
 			await elementUpdated(element);
 			addButton.click();
@@ -602,6 +713,24 @@ describe('vwc-number-field', () => {
 			expect(inertWhenReadOnly).toEqual(true);
 			expect(inertWhenDisabled).toEqual(true);
 		});
+
+		it('should increase decimals correctly', async function () {
+			element.step = 0.1;
+			await elementUpdated(element);
+			for (let i = 0.1; i <= 1; i+=0.1) {
+				addButton.click();
+				expect(element.value).toEqual(Number(i.toFixed(12)).toString());
+			}
+		});
+
+		it('should decrease decimals correctly', async function () {
+			element.step = 0.1;
+			await elementUpdated(element);
+			for (let i = -0.1; i >= -1; i-=0.1) {
+				subtractButton.click();
+				expect(element.value).toEqual(Number(i.toFixed(12)).toString());
+			}
+		});
 	});
 
 	describe('minlength and maxlength', function () {
@@ -613,4 +742,214 @@ describe('vwc-number-field', () => {
 			expect(getControlElement(element).getAttribute('minlength')).toEqual('2');
 		});
 	});
+
+	describe('valueAsNumber', function () {
+		it('should return NaN if no value', function () {
+			element.value = '';
+			expect(element.valueAsNumber).toEqual(NaN);
+		});
+
+		it('should return the value as a number type', async function () {
+			element.value = '5';
+			await elementUpdated(element);
+			expect(element.valueAsNumber).toEqual(5);
+		});
+
+		it('should set the number value as a string', async function () {
+			element.valueAsNumber = 5e3;
+			await elementUpdated(element);
+			expect(element.value).toEqual('5000');
+		});
+	});
+
+	describe('stepUp', function () {
+		it('should increase the value by one when no step is given', function () {
+			element.value = '5';
+			element.stepUp();
+			expect(element.value).toEqual('6');
+		});
+
+		it('should set value to minimum if value invalid and boundary is positive', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = 2;
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(2);
+		});
+
+		it('should set the value to max if value invalid and boundary is negative', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = -10;
+			element.max = -2;
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(-2);
+		});
+
+		it('should set value as step if minimum does not exist or zero', () => {
+			element.step = 0.00534;
+			element.value = 'a';
+			element.min = 0;
+
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(0.00534);
+		});
+
+		it('should set value to zero if boundary crosses signs', () => {
+			element.max = 10;
+			element.min = -10;
+			element.step = 5;
+			element.stepUp();
+			expect(element.valueAsNumber).toBe(0);
+		});
+
+		it('should increase the value by step value', function () {
+			element.value = '5';
+			element.step = 5;
+			element.stepUp();
+			expect(element.value).toEqual('10');
+		});
+	});
+
+	describe('stepDown', function () {
+		it('should decrease the value by one when no step is given', function () {
+			element.value = '5';
+			element.stepDown();
+			expect(element.value).toEqual('4');
+		});
+
+		it('should decrease the value by step value', function () {
+			element.value = '5';
+			element.step = 5;
+			element.stepDown();
+			expect(element.value).toEqual('0');
+		});
+
+		it('should set value to minimum if value invalid and boundary is positive', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = 2;
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(2);
+		});
+
+		it('should set the value to max if value invalid and boundary is negative', function () {
+			element.step = 4;
+			element.value = 'a';
+			element.min = -10;
+			element.max = -2;
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(-2);
+		});
+
+		it('should set value as negative step if minimum does not exist or zero', () => {
+			element.step = 0.00534;
+			element.value = 'a';
+			element.min = 0;
+
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(-0.00534);
+		});
+
+		it('should set value to zero if boundary crosses signs', () => {
+			element.max = 10;
+			element.min = -10;
+			element.step = 5;
+			element.stepDown();
+			expect(element.valueAsNumber).toBe(0);
+		});
+	});
+
+	describe('errorText', function () {
+		const forcedErrorMessage = 'BAD!';
+
+		it('should force the input in custom error mode', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(element.validationMessage).toBe(forcedErrorMessage);
+			expect(element.validity.valid).toBeFalsy();
+		});
+
+		it('should add the error class', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			expect(getBaseElement(element)
+				.classList
+				.contains('error'))
+				.toEqual(true);
+		});
+
+		it('should display the given error message', async function () {
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+			const errorElement = element.shadowRoot?.querySelector('.error-message');
+			expect(errorElement).toBeDefined();
+		});
+
+		it('should restore the native error state when removed', async function () {
+			let initialErrorMessage = '';
+
+			element.max = 123;
+			typeInput('124');
+			setToBlurred();
+			await elementUpdated(element);
+
+			initialErrorMessage = element.validationMessage;
+
+			element.errorText = forcedErrorMessage;
+			await elementUpdated(element);
+
+
+			const errorTextMessage = element.validationMessage;
+
+			element.errorText = '';
+			await elementUpdated(element);
+
+			const errorMessageAfterRemovalOfErrorText = element.validationMessage;
+			expect(initialErrorMessage).not.toBe('');
+			expect(errorTextMessage).toBe(forcedErrorMessage);
+			expect(errorMessageAfterRemovalOfErrorText).toBe(initialErrorMessage);
+		});
+	});
+
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.label = 'Label';
+			element.errorText = 'Error';
+			await elementUpdated(element);
+		});
+
+		describe('add and subtract buttons', () => {
+			it('renders a localized "aria-label" on the add button', async () => {
+				const addButton = element.shadowRoot?.getElementById('add');
+				expect(addButton?.getAttribute('aria-label')).toBe('Increment');
+			});
+
+			it('renders a localized "aria-label" on the subtract button', async () => {
+				const subtractButton = element.shadowRoot?.getElementById('subtract');
+				expect(subtractButton?.getAttribute('aria-label')).toBe('Decrement');
+			});
+
+			describe('aria overrides', () => {
+				it('renders the correct text for "aria-label" in the add button', async () => {
+					element.incrementButtonAriaLabel = 'Add label';
+					await elementUpdated(element);
+					const addButton = element.shadowRoot?.getElementById('add');
+					expect(addButton?.getAttribute('aria-label')).toBe('Add label');
+				});
+
+				it('renders the correct text for "aria-label" in the subtract button', async () => {
+					element.decrementButtonAriaLabel = 'Subtract label';
+					await elementUpdated(element);
+					const subtractButton = element.shadowRoot?.getElementById('subtract');
+					expect(subtractButton?.getAttribute('aria-label')).toBe('Subtract label');
+				});
+			});
+		});
+
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });
+

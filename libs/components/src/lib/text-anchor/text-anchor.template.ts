@@ -5,13 +5,13 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { TextAnchor } from './text-anchor';
 
-const getClasses = ({text, icon}: TextAnchor) => classNames(
+const getClasses = ({text}: TextAnchor) => classNames(
 	'control',
-	['icon-only', !text && !!icon],
+	['icon-only', !text],
 );
 
 /**
@@ -41,28 +41,23 @@ export const textAnchorTemplate: (
         type="${x => x.type}"
         aria-atomic="${x => x.ariaAtomic}"
         aria-busy="${x => x.ariaBusy}"
-        aria-controls="${x => x.ariaControls}"
         aria-current="${x => x.ariaCurrent}"
-        aria-describedby="${x => x.ariaDescribedby}"
         aria-details="${x => x.ariaDetails}"
         aria-disabled="${x => x.ariaDisabled}"
         aria-errormessage="${x => x.ariaErrormessage}"
         aria-expanded="${x => x.ariaExpanded}"
-        aria-flowto="${x => x.ariaFlowto}"
         aria-haspopup="${x => x.ariaHaspopup}"
         aria-hidden="${x => x.ariaHidden}"
         aria-invalid="${x => x.ariaInvalid}"
         aria-keyshortcuts="${x => x.ariaKeyshortcuts}"
         aria-label="${x => x.ariaLabel}"
-        aria-labelledby="${x => x.ariaLabelledby}"
         aria-live="${x => x.ariaLive}"
-        aria-owns="${x => x.ariaOwns}"
         aria-relevant="${x => x.ariaRelevant}"
         aria-roledescription="${x => x.ariaRoledescription}"
         ${ref('control')}
     >
       ${() => focusTemplate}
-      ${x => affixIconTemplate(x.icon)}
+      ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
       ${x => x.text}
 			${x => x.getBodyTemplate?.() ?? ''}
     </a>

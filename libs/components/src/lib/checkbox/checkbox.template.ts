@@ -39,13 +39,15 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html`<div class="${getClasses}"
+	return html`<template role="${x => x.ariaLabel ? 'presentation' : null}">
+		<div class="${getClasses}"
 			role="checkbox"
+			aria-label="${x => x.ariaLabel}"
 			aria-checked="${x => x.checked}"
 			aria-required="${x => x.required}"
 			aria-disabled="${x => x.disabled}"
 			aria-readonly="${x => x.readOnly}"
-			tabindex="${x => (x.disabled ? null : 0)}"
+			tabindex="${x => (x.tabindex !== null ? x.tabindex : x.disabled ? null : 0)}"
 			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 			@click="${(x, c) => x.clickHandler(c.event)}">
 			<div class="control">
@@ -57,5 +59,6 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 		</div>
 		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
 		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-		${when(x => x.successText, getFeedbackTemplate('success', context))}`;
+		${when(x => x.successText, getFeedbackTemplate('success', context))}
+	</template>`;
 };

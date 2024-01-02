@@ -15,12 +15,17 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "partials/menu-item-variables" as menu-item-variables;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 
 @supports selector(:focus-visible) {
 	:host(:focus-visible) {
 		outline: none;
 	}
+}
+
+:host([disabled]) {
+	pointer-events: none;
 }
 
 .base {
@@ -57,15 +62,10 @@
 	&:not(.disabled) {
 		cursor: pointer;
 	}
-
-	&.disabled {
-		cursor: not-allowed;
-		pointer-events: none;
-	}
 }
 
 .focus-indicator {
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	:host(:not(:focus-visible)) & {
 		display: none;
 	}
@@ -111,6 +111,9 @@
 	}
 }
 
+.chevron {
+	margin-inline-start: auto;
+}
 
 .text {
 	display: flex;

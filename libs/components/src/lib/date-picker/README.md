@@ -1,4 +1,4 @@
-# Date picker
+# Date Picker
 
 The date picker component is used to select a date from a calendar.
 
@@ -113,13 +113,84 @@ It will always contain a valid date in the format `YYYY-MM-DD` when a date is se
 <vwc-date-picker label="Start date" value="2023-01-01"></vwc-date-picker>
 ```
 
+### Min
+
+Set the `min` attribute to configure the earliest date to accept. The user will be prevented from choosing an earlier date, however it is still possible to manually enter one.
+
+- Type: `string` | `undefined`
+- Date format: `YYYY-MM-DD`
+- Default: `undefined`
+
+```html preview locale-switcher
+<style>
+	html {
+		block-size: 460px; /* for demo purposes */
+	}
+</style>
+<vwc-date-picker
+	label="Start date"
+	min="2023-06-10"
+	value="2023-06-15"
+></vwc-date-picker>
+```
+
+### Max
+
+Set the `max` attribute to configure the latest date to accept. The user will be prevented from choosing an later date, however it is still possible to manually enter one.
+
+- Type: `string` | `undefined`
+- Date format: `YYYY-MM-DD`
+- Default: `undefined`
+
+```html preview locale-switcher
+<style>
+	html {
+		block-size: 460px; /* for demo purposes */
+	}
+</style>
+<vwc-date-picker
+	label="Start date"
+	max="2023-06-20"
+	value="2023-06-15"
+></vwc-date-picker>
+```
+
 ## Events
 
 <div class="table-wrapper">
 
 | Name   | Description                                   |
-| ------ | --------------------------------------------- |
+|--------|-----------------------------------------------|
 | input  | Emitted when the date is changed by the user. |
 | change | Emitted when the date is changed by the user. |
+| focus  | Emitted when the component receives focus.    |
+| blur   | Emitted when the component loses focus.       |
 
 </div>
+
+## Use cases
+
+### In a form
+
+```html preview locale-switcher
+<style>
+	html {
+		block-size: 460px; /* for demo purposes */
+	}
+	.buttons {
+		display: flex;
+		gap: 12px;
+	}
+</style>
+<form>
+	<vwc-layout column-spacing="small" column-basis="block">
+		<div>
+			<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+		</div>
+		<div class="buttons">
+			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
+	</vwc-layout>
+</form>
+```

@@ -1,5 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import {attr, observable} from '@microsoft/fast-element';
+import { Localized } from '../../shared/patterns';
 
 // eslint-disable-next-line compat/compat
 export const isDialogSupported = Boolean(HTMLDialogElement && HTMLDialogElement.prototype.showModal);
@@ -31,7 +32,7 @@ export type IconPlacement = 'top' | 'side';
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.
  * @slot main - Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
- * @event close - Fired when the dialog is closed
+ * @event close - Fired when the dialog is closed.
  */
 export class Dialog extends FoundationElement {
 	/**
@@ -47,9 +48,9 @@ export class Dialog extends FoundationElement {
 	@attr subtitle?: string;
 	@attr headline?: string;
 	@attr ({attribute: 'full-width-body', mode: 'boolean'}) fullWidthBody = false;
-	@attr({attribute: 'aria-labelledby'}) ariaLabelledBy: string | null = null;
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	@attr({attribute: 'aria-describedby'}) ariaDescribedBy: string | null = null;
+	@attr({attribute: 'dismiss-button-aria-label'}) dismissButtonAriaLabel: string | null = null;
+	@attr ({attribute: 'no-light-dismiss', mode: 'boolean'}) noLightDismiss = false;
 
 	#modal = false;
 
@@ -61,6 +62,10 @@ export class Dialog extends FoundationElement {
 		return this.#dialog?.returnValue;
 	}
 
+
+	/**
+	 * @internal
+	 */
 	get modal() {
 		return this.#modal;
 	}
@@ -80,6 +85,9 @@ export class Dialog extends FoundationElement {
 		return this.#dialogElement as HTMLDialogElement;
 	}
 
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean) {
 		if (oldValue === undefined) {
 			return;
@@ -94,7 +102,7 @@ export class Dialog extends FoundationElement {
 	}
 
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog) {
+		if (event.target !== this.#dialog || this.noLightDismiss) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();
@@ -146,27 +154,31 @@ export class Dialog extends FoundationElement {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.#dialog.addEventListener('click', this.#handleScrimClick);
+		this.#dialog.addEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.addEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.#dialog.removeEventListener('click', this.#handleScrimClick);
+		this.#dialog.removeEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
 
 	/**
-	 *
-	 * Slot observer:
-	 *
 	 * @internal
 	 */
-
-
 	@observable bodySlottedContent?: HTMLElement[];
+	/**
+	 * @internal
+	 */
 	@observable footerSlottedContent?: HTMLElement[];
+	/**
+	 * @internal
+	 */
 	@observable actionItemsSlottedContent?: HTMLElement[];
 
 }
+
+export interface Dialog extends Localized {}
+applyMixins(Dialog, Localized);

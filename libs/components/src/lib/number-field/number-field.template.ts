@@ -12,9 +12,6 @@ import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
 import type {NumberField} from './number-field';
 
-const ADD = 1;
-const SUBTRACT = -1;
-
 const getStateClasses = ({
 	errorValidationMessage,
 	disabled,
@@ -26,7 +23,7 @@ const getStateClasses = ({
 	label,
 	successText
 }: NumberField) => classNames(
-	['error connotation-alert', Boolean(errorValidationMessage)],
+	['error', Boolean(errorValidationMessage)],
 	['disabled', disabled],
 	['has-value', Boolean(value)],
 	['readonly', readOnly],
@@ -34,7 +31,7 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['no-label', !label],
-	['success connotation-success', !!successText]
+	['success', !!successText]
 );
 
 function renderLabel() {
@@ -42,10 +39,6 @@ function renderLabel() {
 	  <label for="control" class="label">
 		  ${x => x.label}
 	  </label>`;
-}
-
-function adjustValueByStep(numberField: NumberField, direction = ADD) {
-	numberField.value = (Number(numberField.value) + direction * (numberField.step ? numberField.step : 1)).toString();
 }
 
 function setControlButtonShape(numberField: NumberField) {
@@ -67,18 +60,20 @@ function numberControlButtons(context: ElementDefinitionContext) {
 			<div class="control-buttons"
 			     ?inert="${x => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
-					  					aria-controls="control"
+								aria-label=${x => x.decrementButtonAriaLabel || x.locale.numberField.decrementButtonLabel}
 					            shape="${ setControlButtonShape }"
+								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
-					            @click="${x => adjustValueByStep(x, SUBTRACT)}"></${buttonTag}>
+					            @click="${x => x.stepDown()}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
-					  					aria-controls="control"
+								aria-label=${x => x.incrementButtonAriaLabel || x.locale.numberField.incrementButtonLabel}
 					            shape="${ setControlButtonShape }"
+								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
-					            @click="${x => adjustValueByStep(x)}"></${buttonTag}>
+					            @click="${x => x.stepUp()}"></${buttonTag}>
 		    </div>
 	`;
 }
@@ -123,21 +118,16 @@ export const NumberFieldTemplate: (
 							 type="text"
 							 aria-atomic="${x => x.ariaAtomic}"
 							 aria-busy="${x => x.ariaBusy}"
-							 aria-controls="${x => x.ariaControls}"
 							 aria-current="${x => x.ariaCurrent}"
-							 aria-describedby="${x => x.ariaDescribedby}"
 							 aria-details="${x => x.ariaDetails}"
 							 aria-disabled="${x => x.ariaDisabled}"
 							 aria-errormessage="${x => x.ariaErrormessage}"
-							 aria-flowto="${x => x.ariaFlowto}"
 							 aria-haspopup="${x => x.ariaHaspopup}"
 							 aria-hidden="${x => x.ariaHidden}"
 							 aria-invalid="${x => x.ariaInvalid}"
 							 aria-keyshortcuts="${x => x.ariaKeyshortcuts}"
 							 aria-label="${x => x.ariaLabel}"
-							 aria-labelledby="${x => x.ariaLabelledby}"
 							 aria-live="${x => x.ariaLive}"
-							 aria-owns="${x => x.ariaOwns}"
 							 aria-relevant="${x => x.ariaRelevant}"
 							 aria-roledescription="${x => x.ariaRoledescription}"
 							 ${ref('control')}

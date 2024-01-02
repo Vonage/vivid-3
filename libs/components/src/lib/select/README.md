@@ -143,6 +143,7 @@ Add the `helper-text` to add some helper text below the select.
 ### Success text
 
 Add the `success-text` to add some success text below the select.
+If provided, `success-text` will take precedence over errors.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -166,7 +167,7 @@ Add the `success-text` to add some success text below the select.
 ### Error text
 
 It is possible to force the select error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overriden by `error-text` (and, if applicable, restored once it is removed).
+Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
 
 - Type: `string`
 - Default: `undefined`
@@ -315,7 +316,7 @@ Set the `meta` slot to show meta information after the selected option label.
 
 ### Icon
 
-Set the `icon` slot to show an icon before the selected option label.
+Set the `icon` slot to show an icon before the selected option text.
 If set, the `icon` attribute is ignored.
 
 ```html preview
@@ -394,6 +395,17 @@ You can specify width on the `vwc-select` if required (the listbox will not be a
 | `options`         | `Option[]` | `[]`        | A read-only list of options.                                     |
 | `selectedOptions` | `Option[]` | `[]`        | A read-only collection of the selected options.                  |
 | `selectedIndex`   | `number`   | `undefined` | The index of the selected option or -1 if no option is selected. |
+
+</div>
+
+## Events
+
+<div class="table-wrapper">
+
+| Name   | Description                     |
+| ------ | ------------------------------- |
+| input  | Emitted when the value updates. |
+| change | Emitted when the value updates. |
 
 </div>
 

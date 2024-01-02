@@ -1,4 +1,4 @@
-import {elementUpdated, fixture} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import {Connotation} from '../enums';
 import {ProgressRing} from './progress-ring';
 import '.';
@@ -157,6 +157,33 @@ describe('vwc-progress-ring', () => {
 			element.setAttribute('size', sizeValue.toString());
 			await elementUpdated(element);
 			expect(baseElement?.classList.contains(expectedClass)).toEqual(true);
+		});
+	});
+
+	describe('a11y', () => {
+		beforeEach(async () => {
+			element.ariaLabel = 'Label';
+			element.min = 10;
+			element.max = 90;
+			element.value = 20;
+			await elementUpdated(element);
+		});
+
+		it('should set the component element role attribute to presentation', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
+		});
+
+		it('should set the correct a11y attributes', () => {
+			const baseElement = getBaseElement(element);
+			expect(baseElement?.getAttribute('role')).toBe('progressbar');
+			expect(baseElement?.getAttribute('aria-label')).toBe('Label');
+			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
+			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
+			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
+		});
+		
+		it('should pass html a11y test', async () => {
+			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -16,11 +16,16 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 @supports selector(:focus-visible) {
 	:host(:focus-visible) {
 		outline: none;
 	}
+}
+
+:host([disabled]) {
+	cursor: not-allowed;
 }
 
 .control {
@@ -36,7 +41,7 @@
 	box-sizing: border-box;
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -64,7 +69,6 @@
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 
@@ -76,7 +80,7 @@
 .expandCollapseButton {
 	display: flex;
 	align-items: center;
-	border-radius: 6px;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	font-size: 20px;
 
 	.expandCollapseIcon {
@@ -85,6 +89,10 @@
 
 	&:hover {
 		background-color: var(#{constants.$vvd-color-neutral-100});
+
+		.selected & {
+			background-color: var(#{constants.$vvd-color-neutral-700});
+		}
 	}
 }
 
@@ -102,7 +110,7 @@
 	}
 }
 
-.icon {
+slot[name="icon"] {
 	font-size: 20px;
 	line-height: 1;
 

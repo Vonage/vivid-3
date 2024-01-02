@@ -1,8 +1,11 @@
+@use "../text-field/partials/variables" as text-field-variables;
 @forward "../text-field/text-field.scss";
 
-.control {
-	padding-inline-end: 70px;
+.base {
+	#{text-field-variables.$text-field-gutter-end}: 70px;
+}
 
+.control {
 	&::-webkit-outer-spin-button,
 	&::-webkit-inner-spin-button {
 		appearance: none;

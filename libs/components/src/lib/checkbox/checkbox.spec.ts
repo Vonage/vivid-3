@@ -1,4 +1,5 @@
 import {
+	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -183,7 +184,18 @@ describe('vwc-checkbox', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
 		});
+	});
 
+	describe.each(['input', 'change'])('%s event', (eventName) => {
+		it('should be fired when a user toggles the checkbox', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			getBaseElement(element).click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
 	});
 
 	describe('form association', function () {
@@ -219,7 +231,7 @@ describe('vwc-checkbox', () => {
 		});
 
 		beforeEach(async () => {
-			element = (await fixture(`<${COMPONENT_TAG} 
+			element = (await fixture(`<${COMPONENT_TAG}
 			label="I agree to" error-text="You need to accept the Terms of service"
 				aria-label="I agree to Vonage Terms of Service">
 				<a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
@@ -256,5 +268,54 @@ describe('vwc-checkbox', () => {
 
 			expect(baseElementClasses).not.toContain('hide-label');
 		});
+	});
+
+	describe('a11y', () => {
+		it('should pass html a11y test', async () => {
+			element.label = 'Checkbox label';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should not render a role attribute on the component element', async () => {
+			expect(element.getAttribute('role')).toBe(null);
+		});
+
+		it('should render a tabindex on the base element when passed', async () => {
+			element.tabindex = '-1';
+			await elementUpdated(element);
+			const baseElement = getBaseElement(element);
+			expect(baseElement.getAttribute('tabindex')).toBe('-1');
+		});
+
+		it('should render the correct a11y attributes', async () => {
+			const baseElement = getBaseElement(element);
+
+			expect(baseElement?.getAttribute('role')).toBe('checkbox');
+		});
+
+		describe('aria-label', () => {
+			beforeEach(async () => {
+				element.ariaLabel = 'Label';
+				await elementUpdated(element);
+			});
+
+			it('should render role as presentation on the component element', async () => {
+				expect(element.getAttribute('role')).toBe('presentation');
+			});
+
+			it('should render the correct a11y attributes', async () => {
+				const baseElement = getBaseElement(element);
+
+				expect(baseElement?.getAttribute('role')).toBe('checkbox');
+				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
+			});
+
+			it('should pass html a11y test', async () => {
+				expect(await axe(element)).toHaveNoViolations();
+			});
+		});
+
 	});
 });

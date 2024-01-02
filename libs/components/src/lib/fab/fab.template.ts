@@ -3,16 +3,16 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
 const getClasses = ({
-	connotation, size, icon, label, iconTrailing, disabled
+	connotation, size, icon, label, iconTrailing, disabled, iconSlottedContent
 }: Fab) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`size-${size}`, Boolean(size)],
-	['icon-only', !label && !!icon],
+	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 	['icon-trailing', iconTrailing],
 	['disabled', disabled],
 );
@@ -46,29 +46,23 @@ export const FabTemplate: (
             value="${(x) => x.value}"
             aria-atomic="${(x) => x.ariaAtomic}"
             aria-busy="${(x) => x.ariaBusy}"
-            aria-controls="${(x) => x.ariaControls}"
             aria-current="${(x) => x.ariaCurrent}"
-            aria-describedby="${(x) => x.ariaDescribedby}"
             aria-details="${(x) => x.ariaDetails}"
             aria-disabled="${(x) => x.ariaDisabled}"
-            aria-errormessage="${(x) => x.ariaErrormessage}"
             aria-expanded="${(x) => x.ariaExpanded}"
-            aria-flowto="${(x) => x.ariaFlowto}"
             aria-haspopup="${(x) => x.ariaHaspopup}"
             aria-hidden="${(x) => x.ariaHidden}"
             aria-invalid="${(x) => x.ariaInvalid}"
             aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
             aria-label="${(x) => x.ariaLabel}"
-            aria-labelledby="${(x) => x.ariaLabelledby}"
             aria-live="${(x) => x.ariaLive}"
-            aria-owns="${(x) => x.ariaOwns}"
             aria-pressed="${(x) => x.ariaPressed}"
             aria-relevant="${(x) => x.ariaRelevant}"
             aria-roledescription="${(x) => x.ariaRoledescription}"
             ${ref('control')}
         >
             ${() => focusTemplate}
-            ${x => affixIconTemplate(x.icon)}
+					  ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
             ${(x) => x.label}
         </button>
 `;

@@ -13,9 +13,9 @@ const getClasses = ({ value, errorValidationMessage, disabled, placeholder, read
 	['readonly', readOnly],
 	['placeholder', Boolean(placeholder)],
 	['disabled', disabled],
-	['error connotation-alert', Boolean(errorValidationMessage)],
+	['error', Boolean(errorValidationMessage)],
 	['has-value', Boolean(value)],
-	['success connotation-success', !!successText]
+	['success', !!successText]
 );
 
 /**
@@ -48,10 +48,11 @@ export const TextAreaTemplate: (
 	  <div class="${getClasses}">
 		${when(x => x.charCount && x.maxlength, renderCharCount())}
 		${when(x => x.label, renderLabel())}
-			<textarea class="control"
+			<textarea class="control" id="control"
 				?autofocus="${x => x.autofocus}"
 				placeholder="${x => x.placeholder ? x.placeholder : null}"
 				name="${x => x.name ? x.name : null}"
+				minlength="${x => x.minlength ? x.minlength : null}"
 				maxlength="${x => x.maxlength ? x.maxlength : null}"
 				rows="${x => x.rows ? x.rows : null}"
 				cols="${x => x.cols ? x.cols : null}"
@@ -60,24 +61,18 @@ export const TextAreaTemplate: (
 				?disabled="${x => x.disabled}"
 				?required="${x => x.required}"
 				?spellcheck="${x => x.spellcheck}"
-				:value="${x => x.value}"
 				aria-atomic="${x => x.ariaAtomic}"
 				aria-busy="${x => x.ariaBusy}"
-				aria-controls="${x => x.ariaControls}"
 				aria-current="${x => x.ariaCurrent}"
-				aria-describedby="${x => x.ariaDescribedby}"
 				aria-details="${x => x.ariaDetails}"
 				aria-disabled="${x => x.ariaDisabled}"
 				aria-errormessage="${x => x.ariaErrormessage}"
-				aria-flowto="${x => x.ariaFlowto}"
 				aria-haspopup="${x => x.ariaHaspopup}"
 				aria-hidden="${x => x.ariaHidden}"
 				aria-invalid="${x => x.ariaInvalid}"
 				aria-keyshortcuts="${x => x.ariaKeyshortcuts}"
 				aria-label="${x => x.ariaLabel}"
-				aria-labelledby="${x => x.ariaLabelledby}"
 				aria-live="${x => x.ariaLive}"
-				aria-owns="${x => x.ariaOwns}"
 				aria-relevant="${x => x.ariaRelevant}"
 				aria-roledescription="${x => x.ariaRoledescription}"
 				@input="${(x) => x.handleTextInput()}"

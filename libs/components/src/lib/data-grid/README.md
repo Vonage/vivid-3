@@ -1,6 +1,6 @@
-# data-grid
+# Data Grid
 
-Represents a data-grid custom element.
+The data grid allows users to interact with data in a tabular format.
 
 ```js
 <script type="module">import '@vonage/vivid/data-grid';</script>
@@ -19,10 +19,10 @@ Represents a data-grid custom element.
 
 ## Members
 ### Generate-header
-Use `generate-header"` for data grid header visibility mode.
+Use `generate-header` for data grid header visibility mode.
 
-- Type: `none` | `default`| `sticky`
-- Default: `default`
+- Type: `'none'` | `'default'` | `'sticky'`
+- Default: `'default'`
 
 ```html preview
 <style>
@@ -57,8 +57,8 @@ vwc-data-grid {max-block-size: 300px;}
 
 ### selectionMode
 
-- Type: `none` | `single-cell` | `multi-cell` | `single-row` | `multi-row`
-- Default: `none`
+- Type: `'none'` | `'single-cell'` | `'multi-cell'` | `'single-row'` | `'multi-row'`
+- Default: `'none'`
 
 Use the `selection-mode` attribute to specify the selection mode of the grid.
 
@@ -215,7 +215,7 @@ The template used to render rows. Note you need to use `html` from `fast-element
 <script>
 		import { html } from '@microsoft/fast-element';
     grid = document.querySelector('vwc-data-grid');
-    grid.rowItemTemplate = html`<div>All rows will look like me!</civ>`;
+    grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -235,7 +235,7 @@ The template used to render cells in generated rows. Note you need to use `html`
 <script>
 		import { html } from '@microsoft/fast-element';
 		grid = document.querySelector('vwc-data-grid');
-		grid.cellItemTemplate = html`<div>All cells will look like me!</civ>`;
+		grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
     grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -255,7 +255,7 @@ The template used to render cells in generated header rows. Note you need to use
 <script>
 		import { html } from '@microsoft/fast-element';
 		grid = document.querySelector('vwc-data-grid');
-		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</civ>`;
+		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</div>`;
 		grid.rowsData = [
         {data1: 'data11', data2: 'data12'},
         {data1: 'data21', data2: 'data22'},
@@ -343,18 +343,21 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 ### ColumnDefinition
 <div class="table-wrapper">
 
-| Name                            | Type                                                                 | Description                                                  |
-|---------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------|
-| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from |
-| `title`                         | `string`                                                             | The title of the column                                      |
-| `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                          |
-| `headerCellFocusTargetCallback` | `(cell) => HTMLElement`                                              | Callback function that is called when header cell is focused |
-| `cellTemplate`                  | `ViewTemplate`                                                       | A custom template for a cell                                 |
-| `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that is called when cell is focused        |
-| `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                        |
-| `sortable`                      | `boolean`                                                            | Whether this column is sortable                              |
-| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                           |
-| `filterable`                    | `boolean`                                                            | Adds actionable filter icon if true.                         |
+| Name                            | Type                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `title`                         | `string`                                                             | The title of the column                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `headerCellInternalFocusQueue`  | `boolean`                                                            | Indicates whether the header cell has in internal focus queue. This should be set to `true` for header cells that host controls that need to use arrow keys or have multiple focusable internal elements. When the user hits the Enter or F2 key the element specified by the `headerCellFocusTargetCallback` function will be focused (see keyboard interactions described [here](https://w3c.github.io/aria-practices/#grid)).                                                                                                                           |
+| `headerCellFocusTargetCallback` | `(cell) => HTMLElement`                                              | Callback function that takes the cell node as a parameter and returns the HTMLElement to focus in a custom cell. This enables authors to direct focus in a custom cell with interactive elements. When `headerCellInternalFocusQueue` is `false` this function is called when the cell is first focused to immediately move focus to a cell element, for example a cell that contains a button could move focus directly to the button when focused. When `headerCellInternalFocusQueue` is `true` this function is called when the user hits Enter or F2. |
+| `cellTemplate`                  | `ViewTemplate`                                                       | A custom template for a cell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `cellInternalFocusQueue`        | `boolean`                                                            | Indicates whether the cell has in internal focus queue. This should be set to `true` for cells that host controls that need to use arrow keys or have multiple focusable internal elements. When the user hits the Enter or F2 key the element specified by the `cellFocusTargetCallback` function will be focused (see keyboard interactions described [here](https://w3c.github.io/aria-practices/#grid)).                                                                                                                                               |
+| `cellFocusTargetCallback`       | `(cell) => HTMLElement`                                              | Callback function that takes the cell node as a parameter and returns the `HTMLElement` to focus in a custom cell. This enables authors to direct focus in a custom cell with interactive elements. When `cellInternalFocusQueue` is `false` this function is called when the cell is first focused to immediately move focus to a cell element, for example a cell that contains a button could move focus directly to the button when focused. When `cellInternalFocusQueue` is `true` this function is called when the user hits Enter or F2.           |
+| `isRowHeader`                   | `boolean`                                                            | Whether this column is the row header                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `sortable`                      | `boolean`                                                            | Whether this column is sortable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `sortDirection`                 | `'none'` &#124; `'ascending'` &#124; `'descending'` &#124; `'other'` | Define the column's sort direction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `filterable`                    | `boolean`                                                            | Adds actionable filter icon if true.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
 
 </div>
 
@@ -610,68 +613,72 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
 Here's an example of sorting when building the grid manually:
 
 ```html preview
-	<vwc-data-grid>
-		
-	</vwc-data-grid>
 
-	<script>
-		data = [
-			{ data1: '111', data2: '312' },
-			{ data1: '211', data2: '212' },
-			{ data1: '311', data2: '112' },
-			{ data1: '411', data2: '612' },
-			{ data1: '511', data2: '512' },
-			{ data1: '611', data2: '412' }
-		];
-		
-    sort = (sortDirection) => (a, b) => {
-			const nameA = a.data2;
-			const nameB = b.data2;
-            
-        if (sortDirection === 'none') return 0;
-        if (sortDirection === 'ascending') {
-						return nameA > nameB ? -1 : 1;
-				} else {
-            return nameA < nameB ? -1 : 1;
-				}
-				return 0;
-		};
-    
-    headerRow = `
-    	<vwc-data-grid-row role="row" class="header" row-type="header">
-			<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-				data1 - can't sort me
-			</vwc-data-grid-cell>
-			<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
-				data2 - sort me
-			</vwc-data-grid-cell>
-		</vwc-data-grid-row>
-    `;
-    
-		function addDataToGrid(sortDirection = "none") {
-			const newData = Array.from(data).sort(sort(sortDirection));
-			const dataRows = newData.reduce((acc, row) => {
-				return acc + `
-						<vwc-data-grid-row>
-							<vwc-data-grid-cell>
-								${row.data1}
-							</vwc-data-grid-cell>
-							<vwc-data-grid-cell>${row.data2}</vwc-data-grid-cell>
-						</vwc-data-grid-row>`;
-																	}, '');
-			grid.innerHTML = headerRow.replace('aria-sort="none"', `aria-sort="${sortDirection}"`) + dataRows;
-    }
+<vwc-data-grid>
+	<vwc-data-grid-row row-type='header'>
+		<vwc-data-grid-cell cell-type='columnheader'>
+			Not Sortable
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type='columnheader' aria-sort='none'>
+			Sortable
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
 
-		grid = document.querySelector('vwc-data-grid');
-		addDataToGrid();
-		
-		grid.addEventListener('sort', (e) => {
-				console.log(e.detail);
-				e.target.ariaSort = e.detail.sortDirection === "ascending" ? "descending" : 
-					e.detail.sortDirection === "descending" ? "none" : "ascending";
-				addDataToGrid(e.target.ariaSort);
-		});
-	</script>
+<script>
+	grid = document.querySelector('vwc-data-grid');
+
+	data = [
+		{ data1: '111', data2: '312' },
+		{ data1: '211', data2: '212' },
+		{ data1: '311', data2: '112' },
+		{ data1: '411', data2: '612' },
+		{ data1: '511', data2: '512' },
+		{ data1: '611', data2: '412' }
+	];
+
+	gridRowForEntry = new Map(data.map((entry) => {
+		const gridRow = document.createElement('vwc-data-grid-row');
+		gridRow.innerHTML = `
+			<vwc-data-grid-cell>
+				${entry.data1}
+			</vwc-data-grid-cell>
+			<vwc-data-grid-cell>
+				${entry.data2}
+			</vwc-data-grid-cell>
+		`;
+		return [entry, gridRow];
+	}));
+
+	compare = (sortDirection) => (a, b) => {
+		const nameA = a.data2;
+		const nameB = b.data2;
+
+		if (sortDirection === 'none') return 0;
+		if (sortDirection === 'ascending') {
+			return nameA > nameB ? -1 : 1;
+		} else {
+			return nameA < nameB ? -1 : 1;
+		}
+		return 0;
+	};
+
+	function renderData(sortDirection = "none") {
+		const sortedData = Array.from(data).sort(compare(sortDirection));
+		for (const entry of sortedData) {
+			grid.appendChild(gridRowForEntry.get(entry));
+		}
+	}
+
+	renderData();
+
+	grid.addEventListener('sort', (e) => {
+		console.log(e.detail);
+		e.target.ariaSort = e.detail.sortDirection === "ascending" ? "descending" :
+			e.detail.sortDirection === "descending" ? "none" : "ascending";
+		renderData(e.target.ariaSort);
+	});
+</script>
 ```
 
 Here's an example of sorting the data-grid when building it with `rowsData`:
@@ -695,7 +702,7 @@ vwc-data-grid {max-block-size: 200px;}
     grid.rowsData = Array.from(data);
     grid.columnDefinitions = [
 				{columnDataKey: 'data1', title: 'Custom Title 1', sortable: true},
-				{columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
+				{columnDataKey: 'data2', title: 'Custom Title 2', sortable: true, filterable: true},
 		];
     grid.addEventListener('sort', (e) => {
         console.log(e.detail);
@@ -726,11 +733,54 @@ vwc-data-grid {max-block-size: 200px;}
 </script>
 ```
 
+### Focusable child elements
+
+If your cell contains a focusable child element that you would like to delegate focus to, use the `cellFocusTargetCallback` of the column definition to return the child element. It will now take focus instead of the cell.
+
+If you cell contains multiple focusable elements or elements that require arrow keys to operate, combine this will `cellInternalFocusQueue` of the column definition. This will allow users to press Enter or F2 when the cell has focus to move focus into the cell and operate the elements as usual.
+
+```html preview
+<vwc-data-grid>
+  <vwc-data-grid-row row-type="header">
+    <vwc-data-grid-cell cell-type="columnheader">
+      Column 1
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell cell-type="columnheader">
+      Column 2
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      Cell 1.1
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell id="single-action">
+      <vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      Cell 2.1
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell id="multiple-actions">
+      <vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
+      <vwc-button appearance="outlined" label="Action 2" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+</vwc-data-grid>
+
+<script>
+  document.querySelector("#single-action").columnDefinition = {
+    cellFocusTargetCallback: (cell) => cell.querySelector("vwc-button")
+  };
+  document.querySelector("#multiple-actions").columnDefinition = {
+    cellInternalFocusQueue: true,
+    cellFocusTargetCallback: (cell) => cell.querySelector("vwc-button")
+  };
+</script>
+```
 
 ### Filterable Columns
-
 In order for a grid column to show as filterable, use the `filterable` attribute on the filterable column header.
-
 ```html preview
 	<vwc-data-grid>
 		
@@ -742,7 +792,6 @@ In order for a grid column to show as filterable, use the `filterable` attribute
 			<vwc-button label="Cancel" onclick="menu.open = false"></vwc-button>
 		</div>
 	</vwc-menu>
-
 	<script>
 		grid = document.querySelector('vwc-data-grid');
 		menu = document.querySelector('vwc-menu');

@@ -1,7 +1,9 @@
 # Dialog
-Represents a part of an application that a user interacts with to perform a task
-All native attributes of `dialog` are supported as well as some enhancements.
+Represents a part of an application that a user interacts with to perform a task.
 
+The dialog uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
+
+Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog. Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
 
 ```js
 <script type="module">
@@ -16,11 +18,32 @@ All native attributes of `dialog` are supported as well as some enhancements.
   }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle" open>
+<vwc-button label="Open non-modal Dialog" onclick="openNonModal()"></vwc-button>
+<vwc-button label="Open modal Dialog" onclick="openModal()"></vwc-button>
+
+<vwc-dialog icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
-	<vwc-button slot="action-items" label="Cancel" appearance="outlined"></vwc-button>
-	<vwc-button slot="action-items" label="Ok" appearance="filled"></vwc-button>
+	<vwc-button slot="action-items" label="Cancel" appearance="outlined" onclick="closeDialog()"></vwc-button>
+	<vwc-button slot="action-items" label="Ok" appearance="filled" onclick="closeDialog()"></vwc-button>
 </vwc-dialog>
+
+<script>
+	const dialog = document.querySelector('vwc-dialog');
+  
+	function openNonModal() {
+    if (dialog.open) dialog.close();
+		dialog.show();
+	}
+
+	function openModal() {
+		if (dialog.open) dialog.close();
+		dialog.showModal();
+	}
+  
+  function closeDialog() {
+		dialog.close();
+	}
+</script>
 ```
 
 ## Members
@@ -89,7 +112,9 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 
 ### Open
 
-Sets or returns whether a dialog should be open or not
+Sets or returns whether a dialog should be open or not.
+
+Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal()` instead. 
 
 - Type: `boolean`
 - Default: `false`
@@ -105,6 +130,24 @@ Sets or returns whether a dialog should be open or not
 <vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
 ```
 
+### No-light-dismiss
+
+Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside of it.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<style>
+	html { /* for demo purposes */
+		block-size: 230px;
+	}
+</style>
+
+<vwc-button label="Open modal dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
+<vwc-dialog no-light-dismiss headline="Headline"></vwc-dialog>
+```
+
 ### Return Value
 
 Use `returnValue` to get or set the return value. Often used to indicate which button the user pressed to close it.
@@ -114,12 +157,12 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 
 ```html preview
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
-  }
+	html { /* for demo purposes */
+		block-size: 250px;
+	}
 </style>
 <vwc-dialog open
-            headline="Returning Dialog">
+						headline="Returning Dialog">
 	<vwc-button slot="action-items" appearance="outlined" label="Cancel"></vwc-button>
 	<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 </vwc-dialog>
@@ -168,7 +211,8 @@ Use the `graphic` slot in order to replace the icon.
 ### Body
 
 Use the `body` slot in order to add custom HTML to the dialog.  
-Body slot after a header containing a subtitle will have a top separator.
+
+When using in combination with a `subheader`, a separator will be added between the two.
 
 ```html preview
 <style>
@@ -211,14 +255,15 @@ To remove the body inline padding use `full-width-body`.
 </style>
 <vwc-dialog open icon-placement="side" icon="info" headline="Dialog Headline" full-width-body>
   <div slot="body">
-  <vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
-  <vwc-layout column-basis="block" gutters="medium-inline">
-    <form>
-      <vwc-layout column-basis="block">
-        <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
-        <vwc-text-area label="Additional Note (Optional)"></vwc-text-area></vwc-layout>
-    </form>
+		<vwc-progress min="0" max="50" value="12.5" shape="sharp" connotation="pacific"></vwc-progress>
+		<vwc-layout column-basis="block" gutters="medium-inline">
+			<form>
+				<vwc-layout column-basis="block">
+					<vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
+					<vwc-text-area label="Additional Note (Optional)"></vwc-text-area></vwc-layout>
+			</form>
     </vwc-layout>
+	</div>
 </vwc-dialog>
 
 ```
@@ -255,7 +300,7 @@ When used in combination with `action-items` slot, the `footer` content will app
 </style>
 <vwc-dialog open
   headline="Dialog with footer"
-  subtitle="this is an example of the dialog with a checkbox inside footer">
+  subtitle="This is an example of the dialog with a checkbox inside footer">
 	<vwc-checkbox slot="footer" label="I agree"></vwc-checkbox>
 	<vwc-button slot="action-items" appearance="filled" label="Ok"></vwc-button>
 </vwc-dialog>
@@ -264,7 +309,7 @@ When used in combination with `action-items` slot, the `footer` content will app
 ### Main
 
 Dialog is battery charged with an opinionated template.
-Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
+Assign nodes to the `main` slot to fully override a dialog’s predefined template with your own.
 Note that all styles will be overridden including the dialog's padding. See the example below on how to set padding to a dialog using the `main` slot.
 
 ```html preview
@@ -285,14 +330,15 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ### Z-index
 
-When the dialog is not set as `modal` its initial z-index can be changed if needed by setting `--dialog-z-index`.
+When the dialog is not modal its initial z-index can be changed if needed by setting `--dialog-z-index`.
 
-### Inline min & Max size
+### Inline min & max size
 
-The Dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size`.   
-This can be changed with setting a new value.  
-setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.  
-When setting a new value for `--dialog-min-inline-size` and `--dialog-max-inline-size` take in consideration if defendant value are needed for mobile.  
+The dialog has a default `--dialog-min-inline-size` and `--dialog-max-inline-size`, which can be changed if needed.
+
+Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.
+
+When setting a new value for `--dialog-min-inline-size` and `--dialog-max-inline-size` take in consideration if different values are needed for mobile.  
 
 ```html preview
 <style>
@@ -304,12 +350,12 @@ vwc-dialog {
 }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 ```
 
 ### Block-Size
 
-The Dialog has default `--dialog-max-block-size`, if content is larger - there will be scroll.
+The dialog has a default `--dialog-max-block-size`. If the content is larger, the dialog will be scrollable.
 
 ```html preview
 <style>
@@ -321,7 +367,7 @@ vwc-dialog {
 }
 </style>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle content" open></vwc-dialog>
+<vwc-dialog icon="info" headline="Headline" subtitle="Subtitle content" open></vwc-dialog>
 ```
 
 ## Events
@@ -338,23 +384,33 @@ vwc-dialog {
 
 <div class="table-wrapper">
 
-| Name| Returns  | Description  |
-| ----------- | ------- | ---------------- |
-| `show`      | `void`  | Shows the dialog. Positioned in a top position by default. |
-| `close`     | `void`  | Closes the dialog.       |
-| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).  |
+| Namen       | Returns | Description                                                                                                                                                                                                                                                                                                                       |
+|-------------| ------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `show`      | `void`  | Shows the dialog. Positioned in a top position by default.                                                                                                                                                                                                                                                            |
+| `close`     | `void`  | Closes the dialog.                                                                                                                                                                                                                                                                                                                |
+| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog. |
 
 </div>
 
 ## Accessibility
 
-- The dialog's role is `dialog`.  When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
-- It is consumer's concern to add `aria-label` to the dialog element.
-- `aria-labelledby` and `aria-describedby` can also be used.
+- The dialog's role is `dialog`. When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
+- It is the consumer's concern to add `aria-label` to the dialog element.
+- The dismiss button is automatically given a localized version of the word "Close". This can be overriden using `dismiss-button-aria-label`.
 
 ## Use Cases
 
+### Modal Dialog
+
+Use the `showModal` method to open a dialog as a modal. It will display in the [top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer). Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
+```html preview
+<vwc-button label="Open Modal Dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
+<vwc-dialog headline="Modal Dialog"></vwc-dialog>
+```
+
 ### Dialog Form
+
+You can use a `form` with `method=dialog` inside a dialog. This will make the dialog close when the form is submitted. 
 
 ```html preview
 <style>
@@ -362,8 +418,7 @@ vwc-dialog {
     block-size: 400px;
   }
 </style>
-<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Dialog With Form">
+<vwc-dialog headline="Dialog With Form" open>
   <form slot="body" method="dialog">
    <vwc-layout column-basis="block">
         <vwc-text-field label="Agent Name" placeholder="Search for an agent" icon="search-line"></vwc-text-field>
@@ -372,25 +427,4 @@ vwc-dialog {
       </vwc-layout>
   </form>
 </vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.show();
-  }
-</script>
-```
-
-### Modal Dialog with Scrim
-
-```html preview
-<vwc-button label="Open Modal Dialog" onclick="openDialog()"></vwc-button>
-<vwc-dialog headline="Modal Dialog"></vwc-dialog>
-
-<script>
-  function openDialog() {
-    dialog = document.querySelector('vwc-dialog');
-    dialog.showModal();
-  }
-</script>
 ```

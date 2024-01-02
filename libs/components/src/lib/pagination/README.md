@@ -1,6 +1,6 @@
 # Pagination
 
-Represents a pagination custom element.
+The pagination component is used to navigate through a series of pages.
 
 ```js
 <script type="module">
@@ -51,17 +51,13 @@ Set the `shape` attribute to change the pagination's buttons shapes.
 ```
 
 ### Selected Index
-Set the `selectedIndex` attribute to change the pagination's currently selected index. Note that this is a Zero Index counter. It is set to -1 if total pages is 0.
+Set the `selected-index` attribute to change the pagination's currently selected index. Note that the value is zero-indexed. It is set to -1 if total pages is 0.
 
 - Type: `number`
 - Default: `0`
 
 ```html preview
-<vwc-pagination total="20"></vwc-pagination>
-<script>
-		pagination = document.querySelector('vwc-pagination');
-		pagination.selectedIndex = 5;
-</script>
+<vwc-pagination total="20" selected-index="5"></vwc-pagination>
 ```
 
 ### Nav Icons

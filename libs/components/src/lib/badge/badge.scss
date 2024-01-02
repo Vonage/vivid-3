@@ -3,7 +3,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information,
-	$shades: primary primary-text intermediate soft contrast pale fierce,
+	$shades: primary primary-text intermediate soft contrast pale fierce firm,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
@@ -15,7 +15,12 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
+
+:host {
+	display: inline-block;
+}
 
 .base {
 	@include connotation.connotation (badge);
@@ -32,6 +37,7 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	column-gap: 8px;
 	font: var(#{constants.$vvd-typography-base-condensed-bold});
+	inline-size: 100%;
 	padding-inline: 8px;
 	vertical-align: middle;
 
@@ -64,20 +70,20 @@
 /* Shape */
 
 .base:not(.shape-pill) {
-	border-radius: 4px;
+	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 }
 .base.shape-pill {
-	border-radius: 14px;
+	border-radius: #{border-radius-variables.$border-radius-expanded};
 }
 
 /* Icon */
-.icon {
-	display: flex;
+slot[name="icon"] {
 	flex-shrink: 0;
 	font-size: calc(var(#{variables.$badge-block-size}) / 1.6667);
 	line-height: 1;
 
 	.icon-trailing & {
+		display: flex;
 		order: 1;
 	}
 }

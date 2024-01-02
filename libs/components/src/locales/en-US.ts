@@ -13,7 +13,7 @@ const enUS: Locale = {
 				'July',
 				'August',
 				'September',
-				'Oktober',
+				'October',
 				'November',
 				'December',
 			],
@@ -27,7 +27,7 @@ const enUS: Locale = {
 				'Jul',
 				'Aug',
 				'Sep',
-				'Okt',
+				'Oct',
 				'Nov',
 				'Dec',
 			],
@@ -48,6 +48,9 @@ const enUS: Locale = {
 		dateFormat: 'MM/dd/yyyy',
 		dateFormatPlaceholder: 'MM/DD/YYYY',
 		chooseDateLabel: 'Choose date',
+		changeDateLabel: /* istanbul ignore next */ (date: string) => `Change date, ${date}`,
+		chooseDatesLabel: 'Choose dates',
+		changeDatesLabel: /* istanbul ignore next */ (range: string) => `Change dates, ${range}`,
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
@@ -55,7 +58,40 @@ const enUS: Locale = {
 		clearLabel: 'Clear',
 		okLabel: 'OK',
 		invalidDateError: 'Please enter a valid date.',
+		invalidDateRangeError: 'Please enter a valid date range.',
+		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`The start date must be ${minDate} or later.`,
+		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`The end date must be ${maxDate} or earlier.`,
 	},
+	filePicker: {
+		invalidFileTypeError: "You can't select files of this type.",
+		maxFilesExceededError: "You can't select any more files.",
+		fileTooBigError:
+			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+		removeFileLabel: 'Remove file',
+	},
+	audioPlayer: {
+		playButtonLabel: 'Play',
+		pauseButtonLabel: 'Pause',
+		sliderLabel: 'Audio progress bar',
+	},
+	alert: {
+		dismissButtonLabel: 'Close',
+	},
+	dialog: {
+		dismissButtonLabel: 'Close',
+	},
+	banner: {
+		dismissButtonLabel: 'Close',
+	},
+	numberField: {
+		incrementButtonLabel: 'Increment',
+		decrementButtonLabel: 'Decrement',
+	},
+	splitButton: {
+		showMoreActionsLabel: 'Show more actions',
+	}
 };
 
 export default enUS;

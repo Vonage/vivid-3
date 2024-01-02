@@ -3,9 +3,9 @@ import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 
@@ -16,14 +16,14 @@ const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean)
 };
 
 const getClasses = ({
-	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size
+	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size, iconSlottedContent
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[getAppearanceClassName(appearance as ButtonAppearance, disabled), Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	[`size-${size}`, Boolean(size)],
-	['icon-only', !label && !!icon],
+	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 	['icon-trailing', iconTrailing],
 	['stacked', Boolean(stacked)],
 );
@@ -34,9 +34,6 @@ function renderIconOrPending(
 	pending: boolean,
 	size: ButtonSize | undefined = Size.Normal
 ) {
-	let content = '';
-	let classes = 'icon';
-
 	if (pending && size != Size.SuperCondensed) {
 		const progressTag = context.tagFor(ProgressRing);
 		const progressSize = {
@@ -44,14 +41,12 @@ function renderIconOrPending(
 			[Size.Normal]: '-5',
 			[Size.Expanded]: '-4',
 		};
-		content = `<${progressTag} size="${progressSize[size]}"></${progressTag}>`;
-		classes += ' pending';
-	} else if (icon) {
-		const iconTag = context.tagFor(Icon);
-		content = `<${iconTag} name="${icon}"></${iconTag}>`;
-	}
+		return html`<span class="icon pending"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
 
-	return content ? html`<span class="${classes}">${content}</span>` : null;
+	} else {
+		const affixIconTemplate = affixIconTemplateFactory(context);
+		return affixIconTemplate(icon, IconWrapper.Slot);
+	}
 }
 
 /**
@@ -82,22 +77,16 @@ export const buttonTemplate: (
 		value="${(x) => x.value}"
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
-		aria-controls="${(x) => x.ariaControls}"
 		aria-current="${(x) => x.ariaCurrent}"
-		aria-describedby="${(x) => x.ariaDescribedby}"
 		aria-details="${(x) => x.ariaDetails}"
 		aria-disabled="${(x) => x.ariaDisabled}"
-		aria-errormessage="${(x) => x.ariaErrormessage}"
 		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-flowto="${(x) => x.ariaFlowto}"
 		aria-haspopup="${(x) => x.ariaHaspopup}"
 		aria-hidden="${(x) => x.ariaHidden}"
 		aria-invalid="${(x) => x.ariaInvalid}"
 		aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
 		aria-label="${(x) => x.ariaLabel}"
-		aria-labelledby="${(x) => x.ariaLabelledby}"
 		aria-live="${(x) => x.ariaLive}"
-		aria-owns="${(x) => x.ariaOwns}"
 		aria-pressed="${(x) => x.ariaPressed}"
 		aria-relevant="${(x) => x.ariaRelevant}"
 		aria-roledescription="${(x) => x.ariaRoledescription}"

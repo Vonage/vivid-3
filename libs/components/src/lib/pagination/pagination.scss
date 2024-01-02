@@ -1,21 +1,41 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 .control {
 	display: inline-flex;
 	justify-content: space-between;
 
 	&:not(.shape-pill) {
-		border-radius: 4px;
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 	}
 	&.shape-pill {
-		border-radius: 14px;
+		border-radius: #{border-radius-variables.$border-radius-expanded};
 	}
 }
 
 .buttons-wrapper {
 	display: flex;
 	column-gap: 4px;
+}
+
+.vwc-pagination-button {
+	&[size="super-condensed"] {
+		--base-size: #{size.$vvd-size-super-condensed};
+	}
+
+	&[size="condensed"] {
+		--base-size: #{size.$vvd-size-condensed};
+	}
+
+	&[size="normal"] {
+		--base-size: #{size.$vvd-size-normal};
+	}
+
+	&::part(button) {
+		// Prevent label from being cut off at certain sizes
+		padding-inline: 0;
+	}
 }
 
 .dots {

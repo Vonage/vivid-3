@@ -1,12 +1,20 @@
 /* eslint-disable max-len */
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import type { Size } from '../enums';
-import { FormElementHelperText } from '../../shared/patterns';
-import type { Button } from '../button/button';
 import { Connotation } from '../enums';
+import {
+	type ErrorText,
+	errorText,
+	type FormElement,
+	FormElementHelperText,
+	formElements,
+	Localized
+} from '../../shared/patterns';
+import type { Button } from '../button/button';
+import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
  * Types of file uploader size.
@@ -15,6 +23,8 @@ import { Connotation } from '../enums';
  */
 export type FileUploaderSize = Extract<Size, Size.Normal | Size.Expanded>;
 
+const isFormAssociatedTryingToSetFormValueToFakePath = (value: File | string | FormData | null) => typeof value === 'string';
+
 /**
  * File-picker component
  *
@@ -22,7 +32,9 @@ export type FileUploaderSize = Extract<Size, Size.Normal | Size.Expanded>;
  * @event change - Emitted when a file is added or removed.
  */
 
-export class FilePicker extends FoundationElement {
+@errorText
+@formElements
+export class FilePicker extends FormAssociatedFilePicker {
 	#dropzone?: Dropzone;
 
 	/**
@@ -33,15 +45,6 @@ export class FilePicker extends FoundationElement {
 	get files(): File[] {
 		return this.#dropzone?.getAcceptedFiles() ?? [];
 	}
-
-	/**
-	 * Indicates the file picker's label.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: label
-	 */
-	@attr label?: string;
 
 	/**
 	 * The max files that can be selected.
@@ -102,6 +105,16 @@ export class FilePicker extends FoundationElement {
 	 */
 	@attr size?: FileUploaderSize;
 
+	override nameChanged(previous: string, next: string) {
+		super.nameChanged!(previous, next);
+		this.#updateFormValue();
+	}
+
+	/**
+	 * @internal
+	 */
+	control!: HTMLElement;
+
 	/**
 	 * Used internally to hold the tag that button is registered at.
 	 */
@@ -123,7 +136,7 @@ export class FilePicker extends FoundationElement {
 		) as HTMLDivElement;
 		this.#dropzone = new Dropzone(control, {
 			url: '/', // dummy url, we do not use dropzone's upload functionality
-			maxFiles: this.maxFiles ?? null as any,
+			maxFiles: this.maxFiles ?? (null as any),
 			maxFilesize: this.maxFileSize,
 			acceptedFiles: this.accept,
 			autoProcessQueue: false,
@@ -137,23 +150,25 @@ export class FilePicker extends FoundationElement {
     <div class="dz-size"><span data-dz-size></span></div>
   </div>
   <div class="dz-error-message"><span data-dz-errormessage></span></div>
-  <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed"></${this.buttonTag}>
+  <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${this.locale.filePicker.removeFileLabel}"></${this.buttonTag}>
 </div>`,
-			// Replace "upload" with "select" in dict messages
-			dictInvalidFileType: "You can't select files of this type.",
-			dictMaxFilesExceeded: 'You can not select any more files.',
+			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
+			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
+			dictFileTooBig: this.locale.filePicker.fileTooBigError,
 		});
 
-		this.#dropzone.on('addedfile', (file) => {
-			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector(
-					'.remove-btn'
-				) as Button;
-				removeButton.addEventListener('click', (e) => {
-					e.preventDefault();
-					e.stopPropagation();
-					this.#dropzone!.removeFile(file as File as DropzoneFile);
-				});
+		this.#dropzone.on('addedfiles', (files) => {
+			for (const file of files) {
+				if (file.previewElement) {
+					const removeButton = file.previewElement.querySelector(
+						'.remove-btn'
+					) as Button;
+					removeButton.addEventListener('click', (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						this.#dropzone!.removeFile(file as File as DropzoneFile);
+					});
+				}
 			}
 
 			this.#handleFilesChanged();
@@ -165,7 +180,9 @@ export class FilePicker extends FoundationElement {
 
 		this.#dropzone.on('error', (file) => {
 			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector('.remove-btn') as Button;
+				const removeButton = file.previewElement.querySelector(
+					'.remove-btn'
+				) as Button;
 				removeButton.connotation = Connotation.Alert;
 			}
 		});
@@ -210,8 +227,46 @@ export class FilePicker extends FoundationElement {
 
 	#handleFilesChanged(): void {
 		this.$emit('change');
+		this.#updateFormValue();
+	}
+
+	#updateFormValue() {
+		const files = this.files;
+
+		if (!this.name) {
+			this.setFormValue(null);
+		} else {
+			const formData = new FormData();
+			for (const file of files) {
+				formData.append(this.name, file);
+			}
+			this.setFormValue(formData);
+		}
+
+		this.#setValueToAFakePathLikeNativeInput();
+	}
+
+	#setValueToAFakePathLikeNativeInput() {
+		this.value = this.files.length > 0 ? `C:\\fakepath\\${this.files[0].name}` : '';
+	}
+
+	override setFormValue = (value: File | string | FormData | null, state?: File | string | FormData | null) => {
+		if (isFormAssociatedTryingToSetFormValueToFakePath(value)) {
+			return;
+		}
+
+		super.setFormValue(value, state);
+	};
+
+	override validate(): void {
+		super.validate(this.control);
+	}
+
+	override formResetCallback(): void {
+		super.formResetCallback();
+		this.#dropzone!.removeAllFiles();
 	}
 }
 
-export interface FilePicker extends FormElementHelperText { }
-applyMixins(FilePicker, FormElementHelperText);
+export interface FilePicker extends FormElementHelperText, Localized, ErrorText, FormElement, FormElementHelperText {}
+applyMixins(FilePicker, FormElementHelperText, Localized);

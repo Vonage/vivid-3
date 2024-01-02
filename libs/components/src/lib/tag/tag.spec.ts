@@ -1,4 +1,4 @@
-import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Tag } from './tag';
@@ -39,7 +39,11 @@ describe('vwc-tag', () => {
 	});
 
 	describe('icon', () => {
-		it('adds an icon to the tag', async () => {
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
@@ -50,6 +54,7 @@ describe('vwc-tag', () => {
 				.toEqual('home');
 		});
 	});
+
 
 	describe('label', () => {
 		it('set label property to node', async () => {
@@ -320,6 +325,37 @@ describe('vwc-tag', () => {
 
 			expect(spy.mock.calls.length)
 				.toEqual(0);
+		});
+	});
+
+	describe('a11y', () => {
+		describe('selectable', () => {
+			it('should pass html a11y test', async () => {
+				element.label = 'lorem';
+				element.selectable = true;
+				await elementUpdated(element);
+				const exposedHTMLString = `
+					<div role="listbox" aria-label="tag group">
+						${element.shadowRoot?.innerHTML}
+					</div>
+				`;
+				
+				expect(await axe(exposedHTMLString)).toHaveNoViolations();
+			});
+		});
+
+		describe('removable', () => {
+			it('should pass html a11y test', async () => {
+				element.removable = true;
+				await elementUpdated(element);
+				const exposedHTMLString = `
+					<div role="listbox" aria-label="tag group">
+						${element.shadowRoot?.innerHTML}
+					</div>
+				`;
+
+				expect(await axe(exposedHTMLString)).toHaveNoViolations();
+			});
 		});
 	});
 });

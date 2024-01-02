@@ -4,7 +4,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
@@ -28,7 +28,7 @@ const getStateClasses = ({
 
 function renderLabel() {
 	return html<Select>`
-	  <label for="control" class="label">
+	  <label for="control" class="label" id="label">
 		  ${x => x.label}
 	  </label>`;
 }
@@ -43,15 +43,13 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 }
 
 function selectValue(context: ElementDefinitionContext) {
-	const affixIconTemplate = affixIconTemplateFactory(context, false);
+	const affixIconTemplate = affixIconTemplateFactory(context);
 	const focusTemplate = focusTemplateFactory(context);
 	return html<Select>`
 		<div class="control ${getStateClasses}" ${ref('_anchor')}
 			id="control" ?disabled="${x => x.disabled}">
 			<div class="selected-value">
-				<slot name="icon">
-					${when(x => x.icon, html<Select>`${x => affixIconTemplate(x.icon)}`)}
-				</slot>
+				${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 				<span class="text">${x => x.displayValue}</span>
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			</div>
@@ -88,7 +86,7 @@ function renderControl(context: ElementDefinitionContext) {
 						?hidden="${x => (x.collapsible ? !x.open : false)}"
 						${ref('listbox')}>
 						${when(x => x.placeholder, renderPlaceholder(context))}
-						${when(x => x.multiple, focusTemplate)}		
+						${when(x => x.multiple, focusTemplate)}
 						<slot
 							${slotted({ filter: Listbox.slottedOptionFilter as any, flatten: true, property: 'slottedOptions' })}>
 						</slot>
@@ -115,7 +113,7 @@ export const SelectTemplate: (
 
 	return html<Select>`
 		<template class="base"
-			aria-label="${x => x.ariaLabel ? x.ariaLabel : x.label}"
+			aria-label="${x => x.ariaLabel}"
 			aria-activedescendant="${x => x.ariaActiveDescendant}"
 			aria-controls="${x => x.ariaControls}"
 			aria-disabled="${x => x.ariaDisabled}"

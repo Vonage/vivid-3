@@ -48,6 +48,9 @@ const zhCN: Locale = {
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '选择日期',
+		changeDateLabel: /* istanbul ignore next */ (date: string) => `更改日期, ${date}`,
+		chooseDatesLabel: '选择日期',
+		changeDatesLabel: /* istanbul ignore next */ (range: string) => `更改日期, ${range}`,
 		prevYearLabel: '上一年',
 		prevMonthLabel: '上个月',
 		nextMonthLabel: '下个月',
@@ -55,7 +58,40 @@ const zhCN: Locale = {
 		clearLabel: '清除',
 		okLabel: '确定',
 		invalidDateError: '请输入有效的日期。',
+		invalidDateRangeError: '请输入有效的日期范围。',
+		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`开始日期必须是${minDate}或之后。`,
+		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`结束日期必须是${maxDate}或之前。`,
 	},
+	filePicker: {
+		invalidFileTypeError: '您不能选择此类型的文件。',
+		maxFilesExceededError: '您不能再选择任何文件。',
+		fileTooBigError:
+			'文件太大 ({{filesize}}MiB)。最大文件大小: {{maxFilesize}}MiB。',
+		removeFileLabel: '删除文件',
+	},
+	audioPlayer: {
+		playButtonLabel: '草創',
+		pauseButtonLabel: '停',
+		sliderLabel: '音訊進度條',
+	},
+	alert: {
+		dismissButtonLabel: '关',
+	},
+	dialog: {
+		dismissButtonLabel: '关',
+	},
+	banner: {
+		dismissButtonLabel: '关',
+	},
+	numberField: {
+		incrementButtonLabel: '增量',
+		decrementButtonLabel: '递减',
+	},
+	splitButton: {
+		showMoreActionsLabel: '显示更多操作',
+	}
 };
 
 export default zhCN;

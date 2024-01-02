@@ -5,15 +5,18 @@ import { focusRegistries } from '../focus/definition';
 import { buttonRegistries } from '../button/definition';
 import { textFieldRegistries } from '../text-field/definition';
 import { dividerRegistries } from '../divider/definition';
-import styles from './date-picker.scss';
+import styles from '../../shared/date-picker/date-picker-base.scss';
+import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
 import { DatePicker } from './date-picker';
-import { DatePickerTemplate as template } from './date-picker.template';
 
 export const datePickerDefinition =
 	DatePicker.compose<FoundationElementDefinition>({
 		baseName: 'date-picker',
 		template: template as any,
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	});
 
 /**

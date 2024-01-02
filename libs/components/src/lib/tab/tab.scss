@@ -1,6 +1,7 @@
 @use "../tabs/partials/variables" as tabs-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
@@ -28,6 +29,10 @@
 	grid-column: 1 / auto;
 }
 
+:host([disabled]) {
+	cursor: not-allowed;
+}
+
 .base {
 	$min-block-size: 40px;
 	@include appearance.appearance;
@@ -41,7 +46,7 @@
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
+	font: var(#{constants.$vvd-typography-base-bold});
 	gap: var(#{tabs-variables.$tabs-tablist-gutter});
 	min-block-size: $min-block-size;
 	vertical-align: middle;
@@ -52,7 +57,7 @@
 	}
 
 	&:not(.shape-sharp) {
-		border-radius: 6px;
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
 	&:not(.disabled) {
@@ -60,7 +65,6 @@
 	}
 
 	&.disabled {
-		cursor: not-allowed;
 		pointer-events: none;
 	}
 
@@ -70,19 +74,22 @@
 }
 
 .focus-indicator {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	:host(:not(:focus-visible)) & {
 		display: none;
 	}
 }
 
-.icon {
+slot[name="icon"]{
 	font-size: 20px;
+	line-height: 1;
 
 	.icon-trailing & {
+		display: inline-block;
 		order: 1;
 		margin-inline-start: auto;
 	}
-
 }
 
 :host(:not(.vertical)) {
@@ -90,10 +97,11 @@
 		position: absolute;
 		background: currentColor;
 		block-size: 2px;
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 		content: "";
-		inline-size: calc(100% + var(#{tabs-variables.$tabs-tablist-gutter}) * 2);
+		inline-size: 100%;
 		inset-block-end: 0;
-		margin-inline: calc(var(#{tabs-variables.$tabs-tablist-gutter}) * -2);
+		inset-inline-start: 0;
 		pointer-events: none;
 		transition-property: opacity;
 	}
