@@ -51,6 +51,12 @@ $alert-transition-delay: --transition-delay;
 		margin-inline: 16px;
 	}
 
+	&:where(.strategy-static) {
+		position: static;
+		margin: 0;
+		inline-size: auto;
+	}
+
 	&:not(.open) {
 		opacity: 0;
 		transform: scale(0.8);
