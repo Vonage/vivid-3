@@ -392,6 +392,59 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 
+	describe('cell-click event', () => {
+		let onCellClickSpy: jest.Mock;
+		let expectedDetail: object;
+		beforeEach(async () => {
+			element.cellType = 'default';
+			element.innerHTML = 'Name';
+			await elementUpdated(element);
+			onCellClickSpy = jest.fn();
+			element.addEventListener('cell-click', onCellClickSpy);
+			expectedDetail = {cell: element, row: element.parentElement, isHeaderCell: false, columnDataKey: 'Name'};
+		});
+
+		it('should emit "cell-click" event when clicked', async () => {
+			element.click();
+			expect(onCellClickSpy).toHaveBeenCalledTimes(1);
+			expect(onCellClickSpy.mock.calls[0][0].detail).toEqual(expectedDetail);
+		});
+
+		describe.each(['Enter', ' '])('when "%s" is pressed',  (key) => {
+			it('should emit "cell-click" event', async () => {
+				element.dispatchEvent(new KeyboardEvent('keydown', { key }));
+				expect(onCellClickSpy).toHaveBeenCalledTimes(1);
+				expect(onCellClickSpy.mock.calls[0][0].detail).toEqual(expectedDetail);
+			});
+
+			it('should not emit "cell-click" event if the cell has an internal focus queue', async () => {
+				element.columnDefinition = {
+					cellInternalFocusQueue: true,
+					columnDataKey: 'Name'
+				};
+				element.dispatchEvent(new KeyboardEvent('keydown', { key }));
+				expect(onCellClickSpy).not.toHaveBeenCalled();
+			});
+
+			it('should not emit "cell-click" event it is a header cell with an internal focus queue', async () => {
+				element.cellType = 'columnheader';
+				element.columnDefinition = {
+					headerCellInternalFocusQueue: true,
+					columnDataKey: 'Name'
+				};
+				element.dispatchEvent(new KeyboardEvent('keydown', { key }));
+				expect(onCellClickSpy).not.toHaveBeenCalled();
+			});
+		});
+
+		it('should set isHeaderCell if cellType is "columnheader"', async () => {
+			element.cellType = 'columnheader';
+			element.click();
+			expect(onCellClickSpy).toHaveBeenCalledTimes(1);
+			expect(onCellClickSpy.mock.calls[0][0].detail.isHeaderCell).toBe(true);
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element = (await fixture(`
