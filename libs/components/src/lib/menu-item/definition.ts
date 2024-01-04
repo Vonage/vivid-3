@@ -7,7 +7,7 @@ import styles from './menu-item.scss';
 import { MenuItem } from './menu-item';
 import { MenuItemTemplate as template } from './menu-item.template';
 
-export type { MenuItemRole } from './menu-item';
+export { MenuItemRole } from './menu-item';
 
 
 /**
