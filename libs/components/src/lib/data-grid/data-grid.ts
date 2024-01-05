@@ -27,6 +27,7 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  *
  * @public
  * @slot - Default slot.
+ * @event cell-click - Event that fires when a cell is clicked
  */
 export class DataGrid extends FoundationDataGrid {
 	/**
