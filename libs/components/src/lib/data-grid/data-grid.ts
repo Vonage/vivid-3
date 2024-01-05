@@ -1,8 +1,8 @@
 import { DataGrid as FoundationDataGrid } from '@microsoft/fast-foundation';
-import {attr, DOM} from '@microsoft/fast-element';
-import type {DataGridCell} from './data-grid-cell';
-import type {DataGridRow} from './data-grid-row';
-import {DataGridRowTypes, GenerateHeaderOptions} from './data-grid.options';
+import { attr, DOM, Observable } from '@microsoft/fast-element';
+import type { DataGridCell } from './data-grid-cell';
+import type { DataGridRow } from './data-grid-row';
+import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
 
 interface SelectionMetaData {
 	target: EventTarget | null
@@ -108,7 +108,7 @@ export class DataGrid extends FoundationDataGrid {
 		this.addEventListener('keydown', this.#handleKeypress);
 
 		// Override toggleGeneratedHeader to generate the header row even if the grid is empty
-		const privates = (this as unknown) as {
+		const privates = this as unknown as {
 			generatedHeader: DataGridRow | null;
 			rowsPlaceholder: HTMLElement | null;
 			rowElementTag: string;
@@ -121,7 +121,8 @@ export class DataGrid extends FoundationDataGrid {
 			}
 
 			if (
-				this.generateHeader !== GenerateHeaderOptions.none
+				this.generateHeader !== GenerateHeaderOptions.none &&
+				this.columnDefinitions !== null
 			) {
 				const generatedHeaderElement: HTMLElement = document.createElement(
 					this.rowElementTag
@@ -133,6 +134,7 @@ export class DataGrid extends FoundationDataGrid {
 					this.generateHeader === GenerateHeaderOptions.sticky
 						? DataGridRowTypes.stickyHeader
 						: DataGridRowTypes.header;
+				/* istanbul ignore next */
 				if (this.firstChild !== null || privates.rowsPlaceholder !== null) {
 					this.insertBefore(
 						generatedHeaderElement,
@@ -142,6 +144,26 @@ export class DataGrid extends FoundationDataGrid {
 				return;
 			}
 		};
+	}
+
+	#changeHandler = {
+		handleChange(dataGrid: DataGrid, propertyName: string) {
+			if (propertyName === 'columnDefinitions') {
+				if (dataGrid.$fastController.isConnected) {
+					(dataGrid as any).toggleGeneratedHeader();
+				}
+			}
+		}
+	};
+
+	override connectedCallback() {
+		super.connectedCallback();
+		Observable.getNotifier(this).subscribe(this.#changeHandler, 'columnDefinitions');
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		Observable.getNotifier(this).unsubscribe(this.#changeHandler, 'columnDefinitions');
 	}
 
 	#setSelectedState = (cell: DataGridCell | DataGridRow, selectedState: boolean) => {
