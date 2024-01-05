@@ -175,6 +175,25 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 </script>
 ```
 
+### Strategy
+
+Use the `strategy` attribute to set the placement strategy.
+
+- Type: `'fixed'` | `'absolute'`
+- Default: `'fixed'`
+
+```html preview center
+<span id="anchor">
+  ⚓️
+</span>
+<vwc-popup id="popup" strategy="absolute" open>
+  This is a popup.
+</vwc-popup>
+<script>
+	popup.anchor = anchor;
+</script>
+```
+
 ## Methods
 
 <div class="table-wrapper">

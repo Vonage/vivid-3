@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, size } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
 
 /**
@@ -11,7 +11,14 @@ import type { Placement, Strategy } from '@floating-ui/dom';
  */
 export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {
-		let middleware = [inline(), flip(), hide()];
+		let middleware = [inline(), flip(), hide(), size({
+			apply({availableWidth, availableHeight, elements}) {
+				Object.assign(elements.floating.style, {
+					maxWidth: `${availableWidth}px`,
+					maxHeight: `${availableHeight}px`,
+				});
+			},
+		}),];
 		if (this.arrow) {
 			middleware = [offset(12), ...middleware, arrow({ element: this.arrowEl, padding: 10 })];
 		}
