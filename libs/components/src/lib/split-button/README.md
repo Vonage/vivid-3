@@ -180,6 +180,19 @@ Add the `disabled` attribute to disable the split button.
 </script>
 ```
 
+### Icon
+
+Set the `icon` slot to show an icon.  
+If set, the `icon` attribute is ignored.  
+Note: Icon, by its own, doesn't make a discernible text. An `aria-label` must be provided to ensure that the user can understand the split button's purpose.
+
+
+```html preview
+<vwc-split-button appearance='outlined' label='submit'>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-split-button>
+```
+
 ## Accessibility
 
 - `aria-expanded` - When the menu is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.

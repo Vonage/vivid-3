@@ -81,6 +81,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-split-button style="inline-size: 400px" appearance='filled' shape="rounded" label='A very long button'>
 		</vwc-split-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-split-button appearance='outlined' label='submit'>
+			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		</vwc-split-button>
+		<vwc-split-button appearance='outlined' aria-label='submit'>
+			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		</vwc-split-button>
+	</div>
 `;
 
 	page.setViewportSize({ width: 600, height: 720 });
