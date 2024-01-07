@@ -29,6 +29,7 @@
 	justify-content: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$avatar-size});
+	border-radius: var(#{variables.$avatar-border-radius});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: var(#{variables.$avatar-size});
@@ -47,11 +48,14 @@
 	}
 
 	&:not(.shape-pill) {
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		#{variables.$avatar-border-radius}: #{border-radius-variables.$border-radius-normal};
+		&.size-condensed {
+			#{variables.$avatar-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		}
 	}
 
 	&.shape-pill {
-		border-radius: #{border-radius-variables.$border-radius-full};
+		#{variables.$avatar-border-radius}: #{border-radius-variables.$border-radius-full};
 	}
 
 	.initials {

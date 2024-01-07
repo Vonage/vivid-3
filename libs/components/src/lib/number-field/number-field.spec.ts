@@ -46,6 +46,7 @@ describe('vwc-number-field', () => {
 			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
 			expect(getControlElement(element).getAttribute('type')).toEqual('text');
+			expect(getControlElement(element).getAttribute('step')).toBe('1');
 		});
 	});
 
@@ -137,6 +138,14 @@ describe('vwc-number-field', () => {
 			expect(getControlElement(element)
 				?.getAttribute(propertyName))
 				.toEqual(value);
+		});
+
+		it('should not set step attribute on the input if not provided', async function () {
+			(element as any)[propertyName] = '';
+			await elementUpdated(element);
+			expect(getControlElement(element)
+				?.getAttribute(propertyName))
+				.toBe(null);
 		});
 	});
 
@@ -952,4 +961,3 @@ describe('vwc-number-field', () => {
 		});
 	});
 });
-

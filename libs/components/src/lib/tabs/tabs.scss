@@ -1,4 +1,7 @@
+@use "sass:map";
 @use "../tabs/partials/variables" as variables;
+@use "partials/mixins" as mixins;
+
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
@@ -15,6 +18,9 @@
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
+:host {
+	display: block;
+}
 
 .base {
 	@include appearance.appearance;
@@ -33,6 +39,7 @@
 	&:not(.orientation-vertical) {
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
+		max-block-size: 100%;
 	}
 }
 
@@ -88,13 +95,19 @@
 }
 
 .tabpanel {
-	// this is for making overflow inside grid to work
-	min-inline-size: 0;
+	box-sizing: border-box;
+	block-size: 100%;
 
-	.base.orientation-vertical & {
-		block-size: 100%;
-		overflow-x: hidden;
-		overflow-y: auto;
+	// this is for making overflow inside grid to work
+	min-block-size: 0;
+	min-inline-size: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
+		.base.gutters-#{$space} & {
+			padding: map.get(variables.$spaces, $space);
+		}
 	}
 }
 

@@ -43,8 +43,7 @@ export const BannerTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Banner>`
-	  <div class="${getClasses}" 
-	  tabindex="${x => (x.removable || (x.actionItemsSlottedContent && x.actionItemsSlottedContent.length) ? '0' : null)}">
+	  <div class="${getClasses}">
 		  <header class="header">
 					<div class="content">
             ${x => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
