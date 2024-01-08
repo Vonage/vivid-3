@@ -1,6 +1,5 @@
 import { applyMixins, Select as FoundationSelect } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
-import type { Popup } from '../popup/popup';
 import {
 	AffixIconWithTrailing,
 	errorText,
@@ -29,9 +28,10 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 @errorText
 @formElements
 export class Select extends FoundationSelect {
-
-	_popup!: Popup;
-	_anchor!: HTMLElement;
+	/**
+	 * @internal
+	 */
+	@observable _anchor!: HTMLElement;
 
 	/**
 	* The appearance attribute.
@@ -82,7 +82,6 @@ export class Select extends FoundationSelect {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this._popup.anchor = this._anchor;
 	}
 
 	override get displayValue(): string {
@@ -91,7 +90,7 @@ export class Select extends FoundationSelect {
 		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholder ?? '';
 	}
 
-	override setDefaultSelectedOption(): void {		
+	override setDefaultSelectedOption(): void {
 		const options = Array.from(this.children).filter(Listbox.slottedOptionFilter as any);
 
 		const selectedIndex = options.findIndex(
