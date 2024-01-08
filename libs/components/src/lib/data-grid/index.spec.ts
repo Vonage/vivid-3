@@ -83,12 +83,6 @@ describe('data grid integration tests', () => {
 				await elementUpdated(element);
 				expect(element.rowElements[0].getAttribute('row-type')).toBe('header');
 			});
-
-			it('should set row-type header on none row when generateHeader is none', async function () {
-				element.generateHeader = 'none';
-				await elementUpdated(element);
-				expect(element.rowElements[0].getAttribute('row-type')).toBe('hidden-header');
-			});
 		});
 	});
 

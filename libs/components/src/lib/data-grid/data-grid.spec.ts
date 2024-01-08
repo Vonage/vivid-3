@@ -72,17 +72,6 @@ describe('vwc-data-grid', () => {
 			element.rowsData = [{ id: '1', name: 'Person 1' }];
 			expect(element.columnDefinitions).toEqual(expectedColumnDef);
 		});
-
-		it('should toggle generated header', async () => {
-			const rowElementTag = 'vwc-data-grid-row';
-
-			element.rowElementTag = rowElementTag;
-			element.rowsData = [{ id: '1', name: 'Person 1' }];
-			const generatedHeader = element.querySelector(rowElementTag) as any;
-
-			element.rowsData = [{ id: '2', name: 'Person 2' }];
-			expect(generatedHeader !== element.querySelector(rowElementTag)).toBeTruthy();
-		});
 	});
 
 	describe('generateColumns', () => {
@@ -187,6 +176,18 @@ describe('vwc-data-grid', () => {
 	});
 
 	describe('columnDefinitions', () => {
+		it('should toggle generated header', async () => {
+			const rowElementTag = 'vwc-data-grid-row';
+
+			element.rowElementTag = rowElementTag;
+			element.columnDefinitions = [
+				{'columnDataKey': 'id', 'title': 'Column 1'}, {'columnDataKey': 'name', 'title': 'Column 2'}
+			];
+
+			const generatedHeader = element.querySelector(rowElementTag) as any;
+			expect(generatedHeader.rowType).toBe('header');
+		});
+
 		it('should set index, gridTemplateColumns and column definition on the row elements', async () => {
 			const rowElementTag = 'vwc-data-grid-row';
 

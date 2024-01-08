@@ -27,25 +27,9 @@ function renderSortIcons<T extends DataGridCell>(c: ElementDefinitionContext) {
 		`;
 }
 
-function isSortable<T extends DataGridCell>(x: T) {
-	return x.cellType === 'columnheader' && x.ariaSort !== null;
-}
-
-function emitSortEvent<T extends DataGridCell>(x: T) {
-	x.$emit('sort',
-		{columnDataKey: (x.columnDefinition && x.columnDefinition.columnDataKey) ?
-			x.columnDefinition.columnDataKey : x.textContent!.trim(), sortDirection: x.ariaSort});
-}
-
-function handleClick<T extends DataGridCell>(x: T) {
-	if (isSortable(x)) {
-		emitSortEvent(x);
-	}
-}
-
 function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
-	if (isSortable(x) && (e.key === keyEnter || e.key === keySpace)) {
-		emitSortEvent(x);
+	if (e.key === keyEnter || e.key === keySpace) {
+		x._handleInteraction();
 	}
 	return true;
 }
@@ -56,7 +40,7 @@ export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDef
         <template
             tabindex="-1"
             role="${x => DataGridCellRole[x.cellType] ?? DataGridCellRole.default}"
-						@click="${handleClick}"
+						@click="${(x) => x._handleInteraction()}"
 						@keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
         >
 					<div class="base">
