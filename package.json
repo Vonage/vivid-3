@@ -19,7 +19,7 @@
     "@codemirror/theme-one-dark": "^6.1.0",
     "@floating-ui/dom": "^1.2.0",
     "@microsoft/fast-element": "^1.12.0",
-    "@microsoft/fast-foundation": "^2.49.2",
+    "@microsoft/fast-foundation": "^2.49.4",
     "@microsoft/fast-web-utilities": "^6.0.0",
     "codemirror": "^6.0.1",
     "core-js": "^3.27.0",

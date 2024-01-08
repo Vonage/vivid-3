@@ -5,6 +5,7 @@ import {attr} from '@microsoft/fast-element';
  * Base class for data-grid
  *
  * @public
+ * @event cell-click - Event that fires when a cell is clicked
  */
 export class DataGridRow extends FoundationDataGridRow {
 	/**

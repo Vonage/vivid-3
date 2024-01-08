@@ -5,8 +5,8 @@ import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
-import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
-import { menuItemDefinition } from './definition';
+import { CheckAppearance, MenuItem } from './menu-item';
+import { menuItemDefinition, MenuItemRole } from './definition';
 
 const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';

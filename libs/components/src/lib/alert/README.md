@@ -125,6 +125,17 @@ Use the `placement` attribute to set the location of the alert.
 <vwc-alert class="small-alert" placement="bottom-end" text="bottom-end" open></vwc-alert>
 ```
 
+### Strategy
+Sets the alert as `position:static` and not `fixed`.  
+Placement will have no effect on the alert, and it will behave as an element in page flow.
+
+- Type: `fixed` | `static`
+- Default: `fixed`
+
+```html preview
+<vwc-alert strategy="static" text="Alert with position static" open icon="megaphone-solid"></vwc-alert>
+```
+
 ### Removable
 
 Use the `removable` attribute to add a close button to the alert.
