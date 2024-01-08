@@ -39,7 +39,7 @@ Set the `appearance` attribute to change the split button's appearance.
 Use `icon` to set an icon to the split button.
 View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
 
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label` must be provided to ensure that the user can understand the split button's purpose.
+Note: Icon, by its own, doesn't make a discernible text. If there's no label on the button, an `aria-label` must be provided to ensure that the user can understand the split button's purpose.
 
 - Type: `string`
 - Default: `undefined`
@@ -178,6 +178,19 @@ Add the `disabled` attribute to disable the split button.
 		tooltip.anchor = splitButton.action;
   }
 </script>
+```
+
+### Icon
+
+Set the `icon` slot to show an icon.  
+If set, the `icon` attribute is ignored.  
+Note: Icon, by its own, doesn't make a discernible text. If there's no label on the button, an `aria-label` must be provided to ensure that the user can understand the split button's purpose.
+
+
+```html preview
+<vwc-split-button appearance='outlined' label='submit'>
+		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+</vwc-split-button>
 ```
 
 ## Accessibility
