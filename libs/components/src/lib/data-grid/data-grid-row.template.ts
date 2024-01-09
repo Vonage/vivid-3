@@ -40,7 +40,6 @@ export const DataGridRowTemplate = (context: ElementDefinitionContext) => {
         <template
             role="row"
             class="${x => (x.rowType !== 'default' ? x.rowType : '')}"
-            aria-selected="${x => (x.ariaSelected === 'true' ? 'true' : 'false')}"
             :defaultCellItemTemplate="${cellItemTemplate}"
             :defaultHeaderCellItemTemplate="${headerCellItemTemplate}"
             ${children({
