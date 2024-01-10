@@ -2,7 +2,6 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
 
@@ -28,7 +27,6 @@ export const FabTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Fab> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
         <button
@@ -61,7 +59,6 @@ export const FabTemplate: (
             aria-roledescription="${(x) => x.ariaRoledescription}"
             ${ref('control')}
         >
-            ${() => focusTemplate}
 					  ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
             ${(x) => x.label}
         </button>
