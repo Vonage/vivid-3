@@ -138,7 +138,7 @@ Add the `disabled` attribute to disable the split button.
   }
 </style>
 
-<vwc-split-button id="splitButton" appearance="filled" label="A default split button" aria-expanded="true">
+<vwc-split-button id="splitButton" appearance="filled" label="A default split button">
   <vwc-menu id="menu" placement="bottom-end" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
     <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -152,8 +152,7 @@ Add the `disabled` attribute to disable the split button.
       alert("clicked on action"); 
     };
     splitButton.indicator.onclick = () => { 
-      menu.open = !menu.open; 
-      splitButton.ariaExpanded = menu.open;
+      menu.open = !menu.open;
     };
   }
 </script>
@@ -194,10 +193,6 @@ Note: Icon, by its own, doesn't make a discernible text. If there's no label on 
 ```
 
 ## Accessibility
-
-- `aria-expanded` - When the menu is open, [aria-expanded](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded) should be set to true, and when it is closed, it should be set to false.
-
-- `aria-haspopup` - Split button's [aria-haspopup](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup) is always set to "true". The menu must be set to the indicator of a split button.
 
 - `aria-label` - When icon-only button is used, an [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) should be provided to ensure that the user can understand the button's purpose.
 

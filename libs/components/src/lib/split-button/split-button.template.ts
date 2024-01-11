@@ -48,7 +48,6 @@ function indicatorButton(context: ElementDefinitionContext) {
 		class="indicator ${getClasses}"
 		?disabled="${(x) => x.disabled}"
 		aria-label="${(x) => x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
-		aria-haspopup="true"
 		aria-expanded="${(x) => x.ariaExpanded}">
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.splitIndicator)}
