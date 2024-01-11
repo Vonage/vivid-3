@@ -105,7 +105,7 @@ label {
 	#{focus-variables.$focus-inset}: -3px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	border-radius: #{border-radius-variables.$border-radius-normal};
+	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 
 	.base:not(:focus-visible) & {
 		display: none;
