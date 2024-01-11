@@ -1,4 +1,4 @@
-import { applyMixins, TextArea as FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, TextArea as FoundationTextArea } from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import {
 	errorText,
@@ -20,7 +20,7 @@ export type TextAreaWrap = 'hard' | 'soft' | 'off';
  */
 @errorText
 @formElements
-export class TextArea extends FoundationElement {
+export class TextArea extends FoundationTextArea {
 	/**
 	 * The wrap attribute
 	 *

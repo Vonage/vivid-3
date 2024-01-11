@@ -199,13 +199,6 @@ ComponentRegister.registerComponent('tab');
 ComponentRegister.registerComponent('tabs');
 ComponentRegister.registerComponent('tab-panel');
 ComponentRegister.registerComponent('text-area', component => {
-  component.attributes = [
-    {
-      name: 'current-value',
-      description: 'The current value of the text-area.',
-      type: [{ text: 'string', vuePropType: 'String' }],
-    },
-  ];
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'input',
