@@ -30,7 +30,11 @@ function actionButton(context: ElementDefinitionContext) {
 		${ref('_action')}
 		class="control ${getClasses}"
 		aria-label="${(x) => x.ariaLabel}"
-		?disabled="${(x) => x.disabled}">
+		?disabled="${(x) => x.disabled}"
+		@click="${(x) => x.$emit('action-click', undefined, {
+		bubbles: false,
+	})}"
+	>
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 		<span class="text">${(x) => x.label}</span>
@@ -48,7 +52,11 @@ function indicatorButton(context: ElementDefinitionContext) {
 		class="indicator ${getClasses}"
 		?disabled="${(x) => x.disabled}"
 		aria-label="${(x) => x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
-		aria-expanded="${(x) => x.ariaExpanded}">
+		aria-expanded="${(x) => x.ariaExpanded}"
+		@click="${(x) => x.$emit('indicator-click', undefined, {
+		bubbles: false,
+	})}"
+	>
 			${() => focusTemplate}
 			${x => affixIconTemplate(x.splitIndicator)}
 	</button>

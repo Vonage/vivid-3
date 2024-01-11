@@ -127,6 +127,17 @@ Add the `disabled` attribute to disable the split button.
 
 </div>
 
+## Events
+
+<div class="table-wrapper">
+
+| Name              | Description                                 |
+|-------------------|---------------------------------------------|
+| `action-click`    | Fired when the action button is clicked.    |
+| `indicator-click` | Fired when the indicator button is clicked. |
+
+</div>
+
 ## Use Cases
 
 ### Split Button with anchored Menu
@@ -148,12 +159,12 @@ Add the `disabled` attribute to disable the split button.
 <script>
   window.onload = function(){ 
     menu.anchor = splitButton.indicator;
-    splitButton.action.onclick  = () => {
+    splitButton.addEventListener('action-click', () => {
       alert("clicked on action"); 
-    };
-    splitButton.indicator.onclick = () => { 
-      menu.open = !menu.open;
-    };
+    });
+    splitButton.addEventListener('indicator-click', () => {
+			menu.open = !menu.open;
+		});
   }
 </script>
 ```

@@ -39,6 +39,8 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  *
  * @public
  * @slot - Default slot.
+ * @event action-click - Event emitted when the action button is clicked
+ * @event indicator-click - Event emitted when the indicator button is clicked
  */
 export class SplitButton extends FoundationElement {
 	/**
