@@ -1,17 +1,17 @@
 import ComponentRegister from './src/generator/ComponentRegister';
 import { ComponentDef } from './src/generator/ComponentDef';
-import { icons } from './src/generator/icons';
 
 // Update icon attributes
-const vividIconType = [
-  {
-    text: `IconId`,
-    vuePropType: 'String',
-    importFromModule: '../icons',
-    resolvedType: icons.map(icon => ({ text: `'${icon}'`, vuePropType: 'String' })),
-  },
-];
-ComponentRegister.addGlobalDefinitionOverride((component: ComponentDef) => {
+ComponentRegister.addGlobalDefinitionOverride((component: ComponentDef, {icons}) => {
+  const vividIconType = [
+    {
+      text: `IconId`,
+      vuePropType: 'String',
+      importFromModule: '../icons',
+      resolvedType: icons.map(icon => ({ text: `'${icon}'`, vuePropType: 'String' })),
+    },
+  ];
+
   for (const attribute of component.attributes) {
     if (attribute.name === 'icon' || (component.name === 'icon' && attribute.name === 'name')) {
       attribute.description += '\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/';

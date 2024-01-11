@@ -10,9 +10,9 @@ import { getTagFromComponentDefinition } from '../webTypes/tags';
 import { renderStorybookTemplate } from './renderStorybookTemplate';
 import { generateDocPageForComponent } from '../docs';
 import { renderIcons } from './renderIcons';
-import { icons } from './icons';
+import { loadedIcons } from './icons';
 
-type DefinitionOverride = (def: ComponentDef) => void;
+type DefinitionOverride = (def: ComponentDef, metadata: {icons: string[]}) => void;
 type ComponentSpecs = [string, DefinitionOverride];
 
 const LibraryGeneratedFolder = '../vue-wrappers/src/generated';
@@ -80,22 +80,23 @@ export default class ComponentRegister {
     this.componentsSpecs.push([name, override]);
   }
 
-  private static getComponentDefs(): ComponentDef[] {
+  private static async getComponentDefs(): Promise<ComponentDef[]> {
+    const icons = await loadedIcons;
     return this.componentsSpecs.map(([name, componentOverride]) => {
       const component = parseComponent(name);
       for (const override of [...this.globalDefinitionsOverride, componentOverride]) {
-        override(component);
+        override(component, {icons});
       }
       return component;
     });
   }
 
-  static generateComponents() {
+  static async generateComponents() {
     // auto-generate icons
-    fs.writeFileSync(path.join(LibraryGeneratedFolder, 'icons.ts'), renderIcons(icons));
+    fs.writeFileSync(path.join(LibraryGeneratedFolder, 'icons.ts'), renderIcons(await loadedIcons));
 
     // auto-generate components
-    const components = this.getComponentDefs().map(generateComponentFor);
+    const components = (await this.getComponentDefs()).map(generateComponentFor);
 
     // auto-generate index file for folder
     fs.writeFileSync(path.join(ComponentsFolder, 'index.ts'), renderIndex(components));
@@ -103,22 +104,22 @@ export default class ComponentRegister {
     formatFiles(`${LibraryGeneratedFolder}/*`);
   }
 
-  static generateWebTypes() {
+  static async generateWebTypes() {
     fs.writeFileSync(
       path.join(LibraryDistFolder, 'web-types.json'),
-      JSON.stringify(generateWebTypesWithTags(this.getComponentDefs().map(generateWebTypesFor)), null, 1)
+      JSON.stringify(generateWebTypesWithTags((await this.getComponentDefs()).map(generateWebTypesFor)), null, 1)
     );
   }
 
-  static generateStorybookTemplates() {
-    for (const component of this.getComponentDefs()) {
+  static async generateStorybookTemplates() {
+    for (const component of await this.getComponentDefs()) {
       generateStorybookTemplateFor(component);
     }
     formatFiles(`${StorybooksTemplatesFolder}/*`);
   }
 
-  static generateDocs() {
-    const docs = this.getComponentDefs().map(generateDocsFor);
+  static async generateDocs() {
+    const docs = (await this.getComponentDefs()).map(generateDocsFor);
     fs.writeFileSync(
       path.join(DocsComponentsFolder, '_index.json'),
       JSON.stringify(
