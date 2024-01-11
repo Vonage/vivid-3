@@ -1,13 +1,13 @@
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import {children, elements, ExecutionContext, html} from '@microsoft/fast-element';
+import { children, elements, ExecutionContext, html, slotted } from '@microsoft/fast-element';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
-import {DataGridSelectionMode} from './data-grid';
-import {DataGridRowTypes, GenerateHeaderOptions} from './data-grid.options';
+import { DataGridSelectionMode } from './data-grid';
+import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
 
-function createRowItemTemplate(context: ElementDefinitionContext)  {
+function createRowItemTemplate(context: ElementDefinitionContext) {
 	const rowTag = context.tagFor(DataGridRow);
-	return html `
+	return html`
     <${rowTag}
         :rowData="${x => x}"
         :cellItemTemplate="${(_, c) => c.parent.cellItemTemplate}"
@@ -57,10 +57,10 @@ export const DataGridTemplate = (context: ElementDefinitionContext) => {
 		filter: elements('[role=row]'),
 	})}
         >
-					<div class="base">
-						${setHeaderRow}
-            <slot></slot>
-					</div>
+			<div class="base">
+				${setHeaderRow}
+				<slot ${slotted('slottedRowElements')}></slot>
+			</div>
         </template>
     `;
 };

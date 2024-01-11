@@ -1,5 +1,5 @@
 import { DataGrid as FoundationDataGrid } from '@microsoft/fast-foundation';
-import { attr, DOM, Observable } from '@microsoft/fast-element';
+import { attr, DOM, observable, Observable } from '@microsoft/fast-element';
 import type { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
@@ -31,6 +31,23 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * @event cell-click - Event that fires when a cell is clicked
  */
 export class DataGrid extends FoundationDataGrid {
+	/**
+	 *
+	 * Rows slot observer:
+	 *
+	 * @internal
+	 */
+	@observable slottedRowElements?: HTMLElement[];
+
+	/**
+	 *
+	 *
+	 * @internal
+	 */
+	slottedRowElementsChanged(_oldValue: HTMLElement[], _newValue: HTMLElement[]) {
+		this.#initSelections();
+	}
+
 	/**
 	 * Indicates the selection mode.
 	 *
