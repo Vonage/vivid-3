@@ -1,6 +1,6 @@
-import {attr} from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { arrow, autoUpdate, computePosition, flip, hide, inline, offset } from '@floating-ui/dom';
+import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, size } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
 
 /**
@@ -11,7 +11,14 @@ import type { Placement, Strategy } from '@floating-ui/dom';
  */
 export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {
-		let middleware = [inline(), flip(), hide()];
+		let middleware = [inline(), flip(), hide(), size({
+			apply({availableWidth, availableHeight, elements}) {
+				Object.assign(elements.floating.style, {
+					maxWidth: `${availableWidth}px`,
+					maxHeight: `${availableHeight}px`,
+				});
+			},
+		}),];
 		if (this.arrow) {
 			middleware = [offset(12), ...middleware, arrow({ element: this.arrowEl, padding: 10 })];
 		}
@@ -35,6 +42,7 @@ export class Popup extends FoundationElement {
 	}) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
+		this.#updateAutoUpdate();
 	}
 
 	/**
@@ -84,22 +92,32 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) strategy?: Strategy = 'fixed';
 
 	/**
-	 * ID reference to element in the popup’s owner document or HTMLElement.
+	 * The element to anchor the popup to.
 	 *
 	 * @public
-	 * HTML Attribute: anchor
 	 */
-	@attr anchor?: string | HTMLElement;
+	@observable anchor?: HTMLElement;
 
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		this.#cleanup?.();
+	/**
+	 * @internal
+	 */
+	anchorChanged() {
+		this.#updateAutoUpdate();
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-		super.attributeChangedCallback(name, oldValue, newValue);
+	override connectedCallback() {
+		super.connectedCallback();
+		this.#updateAutoUpdate();
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#updateAutoUpdate();
+	}
+
+	#updateAutoUpdate() {
 		this.#cleanup?.();
-		if (this.anchorEl && this.popupEl) {
+		if (this.anchorEl && this.open && this.popupEl) {
 			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () => this.updatePosition());
 		}
 	}
@@ -149,11 +167,8 @@ export class Popup extends FoundationElement {
 		});
 	}
 
-	/**
-	 * Gets the anchor element by id
-	 */
 	get anchorEl(): HTMLElement | null {
-		return this.anchor instanceof HTMLElement ? this.anchor : document.getElementById(this.anchor ? this.anchor : '');
+		return this.anchor ?? null;
 	}
 
 	show(): void {

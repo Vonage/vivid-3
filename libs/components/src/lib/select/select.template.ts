@@ -73,10 +73,10 @@ function renderControl(context: ElementDefinitionContext) {
 			${when(x => x.label, renderLabel())}
 			<div class="control-wrapper">
 				${when(x => !x.multiple, selectValue(context))}
-				<${popupTag} class="popup" ${ref('_popup')}
+				<${popupTag} class="popup"
 					style="${setFixedDropdownVarWidth}"
 					?open="${x => (x.collapsible ? x.open : true)}"
-					anchor="control"
+					:anchor="${x => x._anchor}"
 					placement="bottom-start"
 					strategy="${x => x.fixedDropdown ? null : 'absolute'}">
 					<div class="listbox"

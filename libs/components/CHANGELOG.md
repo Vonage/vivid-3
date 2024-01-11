@@ -4,6 +4,26 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.45.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.44.0...vivid-v3.45.0) (2024-01-08)
+
+
+### Features
+
+* **alert:** add option for non-fixed alert (VIV-1315) ([#1509](https://github.com/Vonage/vivid-3/issues/1509)) ([238147f](https://github.com/Vonage/vivid-3/commit/238147f0054d366d6f3a2cd45264653e875f4fcc))
+* **data-grid:** add cell-click event (VIV-1443) ([#1510](https://github.com/Vonage/vivid-3/issues/1510)) ([0b80835](https://github.com/Vonage/vivid-3/commit/0b80835aaf9ca083b2020f10f7701d70db895bb4))
+* **split-button:** icon slot (VIV-1442) ([#1523](https://github.com/Vonage/vivid-3/issues/1523)) ([7ccfc11](https://github.com/Vonage/vivid-3/commit/7ccfc1189d9c3ee1a8952d9404e6de9b7e7f3e5b))
+* **tabs:** add gutters attribute (VIV-1422) ([#1486](https://github.com/Vonage/vivid-3/issues/1486)) ([ca03b53](https://github.com/Vonage/vivid-3/commit/ca03b53a4cb17cbb39e463b996eec77d88345019))
+
+
+### Bug Fixes
+
+* **banner:** fix control being focusable (VIV-1414) ([#1503](https://github.com/Vonage/vivid-3/issues/1503)) ([a3271bd](https://github.com/Vonage/vivid-3/commit/a3271bd27ddf2dd015f8daf5c84b0ff9af40baa8))
+* **button, split-button, avatar:** change condensed & super-condensed to 4px border-radius (VIV-1464) ([#1508](https://github.com/Vonage/vivid-3/issues/1508)) ([866ddbe](https://github.com/Vonage/vivid-3/commit/866ddbed44aeab38c9d9122d91287a6ae8369c38))
+* **data-grid:** add scroll preview (VIV-1448) ([#1515](https://github.com/Vonage/vivid-3/issues/1515)) ([987f51a](https://github.com/Vonage/vivid-3/commit/987f51a4469d7812cf3f57d1f0af7404099dcd6c))
+* **data-grid:** set header if there's no data (VIV-1435) ([#1522](https://github.com/Vonage/vivid-3/issues/1522)) ([620dc0a](https://github.com/Vonage/vivid-3/commit/620dc0ac0ebf4dbc505323b0d36193b22788d0c1))
+* **popup, tooltip, toggletip:** fix anchored components not handling being reconnected to DOM (VIV-1412) ([#1516](https://github.com/Vonage/vivid-3/issues/1516)) ([da2cb0e](https://github.com/Vonage/vivid-3/commit/da2cb0e2ec750c4a9a56f3b4c33e218f5cf36a76))
+* **tabs:** add panel scroll support when height set on tabs (VIV-1468) ([#1514](https://github.com/Vonage/vivid-3/issues/1514)) ([a1beb85](https://github.com/Vonage/vivid-3/commit/a1beb853519b721d08022f5aaa730f5c4ca8003b))
+
 ## [3.44.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.43.0...vivid-v3.44.0) (2023-12-20)
 
 

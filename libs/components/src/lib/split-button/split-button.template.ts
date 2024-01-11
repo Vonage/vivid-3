@@ -6,17 +6,18 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { focusTemplateFactory } from '../../shared/patterns/focus';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import {affixIconTemplateFactory, IconWrapper} from '../../shared/patterns/affix';
 import type { SplitButton } from './split-button';
 
 const getClasses = ({
-	connotation, appearance, shape, disabled, size
+	connotation, appearance, shape, disabled, size, label, icon, iconSlottedContent
 }: SplitButton) => classNames(
 	[`connotation-${connotation}`, Boolean(connotation)],
 	['disabled', disabled],
 	[`shape-${shape}`, Boolean(shape)],
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`size-${size}`, Boolean(size)],
+	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 
 );
 
@@ -27,11 +28,11 @@ function actionButton(context: ElementDefinitionContext) {
 	return html<SplitButton>`
 	<button
 		${ref('_action')}
-		class="control ${getClasses} ${(x) => !x.label && !!x.icon ? 'icon-only' : ''}"
+		class="control ${getClasses}"
 		aria-label="${(x) => x.ariaLabel}"
 		?disabled="${(x) => x.disabled}">
 			${() => focusTemplate}
-			${x => affixIconTemplate(x.icon)}
+			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 		<span class="text">${(x) => x.label}</span>
 	</button>
 	`;

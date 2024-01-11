@@ -278,6 +278,15 @@ const VividMixins: Record<string, schema.Attribute[]> = {
     },
   ],
   Localized: [],
+	Anchored: [
+		{
+			name: 'anchor',
+			description: 'ID or direct reference to the component\'s anchor element.',
+			type: {
+				text: 'string | HTMLElement'
+			}
+		}
+	]
 };
 
 /**

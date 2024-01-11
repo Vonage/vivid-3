@@ -13,21 +13,19 @@ import '.';
 const COMPONENT_TAG = 'vwc-popup';
 
 describe('vwc-popup', () => {
-	/**
-	 *
-	 */
+	let element: Popup;
+	let anchor: Button;
+
 	async function setupPopupToOpenWithAnchor() {
-		const anchor = await setAnchor();
-		element.anchor = 'anchor';
+		element.anchor = anchor;
 		await elementUpdated(element);
 		element.open = true;
 		return anchor;
 	}
 
-	let element: Popup;
-
 	beforeEach(async () => {
 		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
+		anchor = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
 		global.ResizeObserver = jest.fn()
 			.mockImplementation(() => ({
 				observe: jest.fn(),
@@ -40,21 +38,28 @@ describe('vwc-popup', () => {
 		jest.clearAllMocks();
 	});
 
-	describe('clean observable', () => {
-		it('should clean observable on disconnectedCallback', async function () {
+	describe('cleanup autoUpdate', () => {
+		it('should cleanup autoUpdate when element is removed', async function () {
 			const cleanupMock = jest.fn();
 			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
-			element.disconnectedCallback();
+			element.remove();
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 
-		it('should clean observable when anchor is undefined', async function () {
+		it('should cleanup autoUpdate when popup is closed', async function () {
 			const cleanupMock = jest.fn();
 			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
-			element.anchor = '';
-			await elementUpdated(element);
+			element.open = false;
+			expect(cleanupMock).toHaveBeenCalled();
+		});
+
+		it('should cleanup autoUpdate when anchor is removed', async function () {
+			const cleanupMock = jest.fn();
+			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
+			await setupPopupToOpenWithAnchor();
+			element.anchor = undefined;
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 	});
@@ -130,6 +135,21 @@ describe('vwc-popup', () => {
 				.toEqual('5px');
 			expect(element.arrowEl.style.top)
 				.toEqual('10px');
+		});
+
+		it('should not compute position if popup is not open', async function () {
+			await element.updatePosition();
+			expect(floatingUI.computePosition)
+				.not
+				.toHaveBeenCalled();
+		});
+
+		it('should not compute position if there is no anchor', async function () {
+			element.open = true;
+			await element.updatePosition();
+			expect(floatingUI.computePosition)
+				.not
+				.toHaveBeenCalled();
 		});
 	});
 
@@ -254,26 +274,6 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('anchorEl', () => {
-		it('should set anchorEl', async () => {
-			const anchorEl = await setAnchor();
-			element.anchor = 'anchor';
-			await elementUpdated(element);
-
-			expect(element.anchorEl)
-				.toEqual(anchorEl);
-		});
-
-		it('should set anchorEl as an element', async function () {
-			const anchorEl = await setAnchor();
-			element.anchor = anchorEl;
-			await elementUpdated(element);
-
-			expect(element.anchorEl)
-				.toEqual(anchorEl);
-		});
-	});
-
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.open = true;
@@ -286,7 +286,7 @@ describe('vwc-popup', () => {
 			expect(getControlElement(element)
 				.getAttribute('aria-hidden'))
 				.toEqual('true');
-			
+
 			element.open = true;
 			await elementUpdated(element);
 
@@ -295,12 +295,4 @@ describe('vwc-popup', () => {
 				.toEqual('false');
 		});
 	});
-	/**
-	 *
-	 */
-	async function setAnchor() {
-		const anchorEl = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-		await elementUpdated(anchorEl);
-		return anchorEl;
-	}
 });
