@@ -240,7 +240,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
   /**
    * Forward methods like this:
    * focus: (arg: string): void => {
-   *   element.value?.focus(arg);
+   *   this.element?.focus(arg);
    * },
    */
   const methodDefinitionsSrc = componentDef.methods
@@ -250,7 +250,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
         ${renderJsDoc(method.description)}
         ${method.name}(${method.args
           .map(a => `${a.name}: ${a.type.map(t => t.text).join(' | ')}`)
-          .join(', ')}): ${method.returnType.map(t => t.text).join(' | ')} { return (element.value as any)?.${
+          .join(', ')}): ${method.returnType.map(t => t.text).join(' | ')} { return (this.element as any)?.${
           method.name
         }(${method.args.map(a => a.name).join(', ')}); }`
     )
@@ -271,13 +271,13 @@ export default defineComponent({
   emits: [
     ${eventDefinitionsSrc}
   ],
+  methods: {
+  	${methodDefinitionsSrc}
+	},
   setup(props, ctx) {
     const componentName = registerComponent('${componentDef.name}', ${componentDef.registerFunctionName});
 
     const element = ref<${componentDef.className} | null>(null);
-    ctx.expose({
-      ${methodDefinitionsSrc}
-    });
 
     return { componentName, element };
   },
