@@ -134,6 +134,7 @@ $track-thickness: 2px;
 		@include focus.focus;
 		#{focus-variables.$focus-inset}: -3px;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{variables.$thumb-interaction-indicator-alpha}: 0.05;
 
 		border-radius: #{border-radius-variables.$border-radius-full};
 	}
@@ -169,13 +170,18 @@ $track-thickness: 2px;
 		inset: calc((var(#{variables.$thumb-interaction-indicator-size}) - var(#{variables.$thumb-size})) / 2);
 	}
 
-	.control:not(.disabled) {
+
 		&:hover {
-			#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+			.control:not(.disabled) & {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.12;
+			}
 		}
 		&:active {
-			#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+			.control:not(.disabled) & {
+				#{variables.$thumb-interaction-indicator-alpha}: 0.25;
+			}
 		}
-	}
+
+
 }
 
