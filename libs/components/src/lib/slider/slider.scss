@@ -156,10 +156,6 @@ $track-thickness: 2px;
 		inline-size: var(#{variables.$thumb-interaction-indicator-size});
 		opacity: var(#{variables.$thumb-interaction-indicator-alpha}, 0);
 		transition: opacity 0.2s ease-out 0s;
-
-		.control:focus-visible & {
-			#{variables.$thumb-interaction-indicator-alpha}: 0.12;
-		}
 	}
 
 	&::after {
@@ -181,7 +177,5 @@ $track-thickness: 2px;
 			#{variables.$thumb-interaction-indicator-alpha}: 0.25;
 		}
 	}
-
-
 }
 
