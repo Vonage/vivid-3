@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.46.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.45.0...vivid-v3.46.0) (2024-01-15)
+
+
+### Features
+
+* **split-button, vue-wrappers:** add split-button to vivid-vue (VIV-1497) ([#1530](https://github.com/Vonage/vivid-3/issues/1530)) ([aec0bc8](https://github.com/Vonage/vivid-3/commit/aec0bc8f4f1adcf60896567a0037ee579dced762))
+
+
+### Bug Fixes
+
+* **data-grid:** hover on rows (VIV-1455) ([#1525](https://github.com/Vonage/vivid-3/issues/1525)) ([fdc7d54](https://github.com/Vonage/vivid-3/commit/fdc7d5496894268a98fd492725a82a214aa390fe))
+* **dialog:** fix dialog polyfill (VIV-1491) ([#1524](https://github.com/Vonage/vivid-3/issues/1524)) ([fe667fa](https://github.com/Vonage/vivid-3/commit/fe667fa9246103aa7d7d5241d0a487cee7a139ad))
+* **vue-wrappers:** fix text-area missing props (VIV-1503) ([#1533](https://github.com/Vonage/vivid-3/issues/1533)) ([62a7bfb](https://github.com/Vonage/vivid-3/commit/62a7bfbe988165292e82e793fea5e5cfdb851762))
+
 ## [3.45.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.44.0...vivid-v3.45.0) (2024-01-08)
 
 
