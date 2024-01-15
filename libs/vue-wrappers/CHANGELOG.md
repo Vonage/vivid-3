@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.46.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.45.0...vivid-vue-v3.46.0) (2024-01-15)
+
+
+### Features
+
+* **split-button, vue-wrappers:** add split-button to vivid-vue (VIV-1497) ([#1530](https://github.com/Vonage/vivid-3/issues/1530)) ([aec0bc8](https://github.com/Vonage/vivid-3/commit/aec0bc8f4f1adcf60896567a0037ee579dced762))
+
+
+### Bug Fixes
+
+* **vue-wrappers:** fix text-area missing props (VIV-1503) ([#1533](https://github.com/Vonage/vivid-3/issues/1533)) ([62a7bfb](https://github.com/Vonage/vivid-3/commit/62a7bfbe988165292e82e793fea5e5cfdb851762))
+
 ## [3.45.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.44.0...vivid-vue-v3.45.0) (2024-01-08)
 
 

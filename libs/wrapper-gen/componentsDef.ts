@@ -178,6 +178,7 @@ ComponentRegister.registerComponent('slider', component => {
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
+ComponentRegister.registerComponent('split-button');
 ComponentRegister.registerComponent('switch', component => {
   component.attributes.push({
     name: 'current-checked',
