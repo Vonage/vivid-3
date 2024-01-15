@@ -768,3 +768,45 @@ If you cell contains multiple focusable elements or elements that require arrow 
   };
 </script>
 ```
+
+### Add and remove rows dynamically
+
+You can add and remove rows dynamically by manipulating the `rowsData`.
+
+
+```html preview
+<style>
+	vwc-data-grid {max-block-size: 200px;}
+</style>
+<vwc-button label="Add item" appearance="outlined" onclick="push()"></vwc-button>
+<vwc-button label="Remove last item" appearance="outlined" onclick="pop()"></vwc-button>
+<vwc-button label="Remove first item" appearance="outlined" onclick="shift()"></vwc-button>
+<vwc-data-grid selection-mode="single-row"></vwc-data-grid>
+
+<script>
+	let count = 1
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [];
+	grid.generateHeader = 'sticky';
+
+	for (let i = 0; i < 3; i++){
+		push();
+	}
+  
+	function push() {
+		grid.rowsData.push({
+			data1: `data${count}1`,
+			data2: `data${count}2`
+		});
+		count++
+	}
+
+	function pop() {
+		grid.rowsData.pop();
+	}
+
+	function shift() {
+		grid.rowsData.shift();
+	}
+</script>
+```
