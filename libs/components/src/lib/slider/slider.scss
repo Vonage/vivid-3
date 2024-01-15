@@ -17,9 +17,11 @@
 
 
 $track-thickness: 2px;
+:host {
+	display: inline-block;
+}
 
 :host(:not([orientation="vertical"])) {
-	display: inline-block;
 	inline-size: 100%;
 }
 
