@@ -10,7 +10,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset,
-	$states: idle hover checked checkedAndHover disabled readonly,
+	$states: idle hover checked checkedAndHover disabled readonly error success,
 	$default: fieldset
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
@@ -70,6 +70,12 @@ $gutter: 2px;
 	box-shadow: inset 0 0 0 2px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: $size;
+
+	.checked.error &,
+	.checked.success & {
+		background-color: var(#{appearance.get-appearance-token(outline)});
+		color: var(#{constants.$vvd-color-canvas});
+	}
 }
 
 .indicator {

@@ -24,8 +24,8 @@ const getClasses = ({
 		['readonly', Boolean(readOnly)],
 		['checked', Boolean(checked) || Boolean(indeterminate)],
 		['disabled', Boolean(disabled)],
-		['error connotation-alert', Boolean(errorValidationMessage)],
-		['success connotation-success', !!successText],
+		['error', Boolean(errorValidationMessage)],
+		['success', !!successText],
 		['hide-label', !label && !slottedContent?.length],
 	);
 

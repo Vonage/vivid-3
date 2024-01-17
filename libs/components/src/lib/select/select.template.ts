@@ -21,8 +21,8 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['has-meta', Boolean(metaSlottedContent?.length)],
-	['error connotation-alert', Boolean(errorValidationMessage)],
-	['success connotation-success', !!successText],
+	['error', Boolean(errorValidationMessage)],
+	['success', !!successText],
 	['has-meta', Boolean(metaSlottedContent?.length)],
 );
 

@@ -4,7 +4,7 @@
 
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent success alert,
+	$connotations: accent,
 	$shades: primary backdrop intermediate firm faint soft,
 	$default: accent,
 );
