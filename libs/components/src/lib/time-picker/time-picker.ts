@@ -6,7 +6,8 @@ import {
 	type FormElement,
 	FormElementHelperText,
 	formElements,
-	Localized
+	Localized,
+	TrappedFocus
 } from '../../shared/patterns';
 import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
@@ -153,16 +154,11 @@ export class TimePicker extends FormAssociatedTimePicker {
 		return this.clock ? this.clock === '12h' : this.locale.timePicker.defaultTo12HourClock;
 	}
 
-	#getFocusableEls() {
-		const focusableEls = this.shadowRoot!.querySelectorAll(`
+	#getFocusableEls = () =>
+		this.shadowRoot!.querySelectorAll(`
 			.dialog [tabindex="0"],
 			.dialog .vwc-button:not(:disabled)
-		`);
-		return {
-			firstFocusableEl: focusableEls[0] as HTMLElement,
-			lastFocusableEl: focusableEls[focusableEls.length - 1] as HTMLElement,
-		};
-	}
+		`) as NodeListOf<HTMLElement>;
 
 	/**
 	 * @internal
@@ -272,23 +268,8 @@ export class TimePicker extends FormAssociatedTimePicker {
 			return false;
 		}
 
-		// Trap focus inside the dialog
-		if (event.key === 'Tab') {
-			const { firstFocusableEl, lastFocusableEl } = this.#getFocusableEls();
-
-			if (event.shiftKey) {
-				// Shift + tab
-				if (this.shadowRoot!.activeElement === firstFocusableEl) {
-					lastFocusableEl.focus();
-					return false;
-				}
-			} else {
-				// Tab
-				if (this.shadowRoot!.activeElement === lastFocusableEl) {
-					firstFocusableEl.focus();
-					return false;
-				}
-			}
+		if (this._trappedFocus(event, this.#getFocusableEls)) {
+			return false;
 		}
 
 		// Otherwise, don't prevent default
@@ -386,8 +367,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 				this.#scrollToItem('meridies', this._selectedMeridiem, 'start');
 			}
 
-			const {firstFocusableEl} = this.#getFocusableEls();
-			firstFocusableEl.focus();
+			this.#getFocusableEls()[0].focus();
 		}
 	}
 
@@ -642,5 +622,6 @@ export interface TimePicker
 	ErrorText,
 	FormElement,
 	FormElementHelperText,
-	Localized {}
-applyMixins(TimePicker, Localized, FormElementHelperText);
+	Localized,
+	TrappedFocus {}
+applyMixins(TimePicker, Localized, FormElementHelperText, TrappedFocus);
