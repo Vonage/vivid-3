@@ -18,8 +18,7 @@
 		},
     {
         "title": "sizing",
-        "markdown": "./docs/design/sizing.md",
-				"status": "alpha"
+        "markdown": "./docs/design/sizing.md"
     },
     {
         "title": "customization",

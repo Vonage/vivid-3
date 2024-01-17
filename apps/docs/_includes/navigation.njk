@@ -27,11 +27,14 @@
         <vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
         <vwc-nav-disclosure label="Components" open {% if page.url.includes('/components/') %} aria-current="true" {% endif %}>
             {% for item in components | publicPageFilter | sort(false, false, 'title') %}
-                {% if item.children and item.status != "alpha" %}
+                {% if item.children %}
                     <vwc-nav-disclosure label="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/components/' + item.title + '/') == page.url %} open aria-current="true" {% endif %}
                         {% for child in item.children %}
                             {% if ('/components/' + child + '/') == page.url %} open aria-current="true" {% endif %}
                         {% endfor %}>
+                        {% if (item.status) == "alpha" %}
+                            <vwc-badge slot="meta" text="alpha" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
+                        {% endif %}
                         {% if (item.status) == "underlying" %}
                             <vwc-badge slot="meta" text="underlying" connotation="information" appearance="subtle" shape="pill"></vwc-badge>
                         {% endif %}
@@ -40,8 +43,11 @@
                             <vwc-nav-item href="{{ ('/components/' + child) | url }}" text="{{ child | replace("-", " ") | capitalize }}" {% if ('/components/' + child + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
                         {% endfor %}
                     </vwc-nav-disclosure>
-                {% elif item.parent == null and item.status != "alpha" %}
+                {% elif item.parent == null %}
                     <vwc-nav-item href="{{ ('/components/' + item.title) | url }}" text="{{ item.title | replace("-", " ") | capitalize }}" {% if ('/components/' + item.title + '/') == page.url %} aria-current="page" {% endif %}>
+                        {% if (item.status) == "alpha" %}
+                            <vwc-badge slot="meta" text="alpha" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
+                        {% endif %}
                         {% if (item.status) == "underlying" %}
                             <vwc-badge slot="meta" text="underlying" connotation="information" appearance="subtle" shape="pill"></vwc-badge>
                         {% endif %}

@@ -46,7 +46,7 @@ module.exports = function (eleventyConfig) {
     const isServing = process.argv.includes('--serve');
     return isServing
 		? pages
-		: pages.filter(page => page?.status !== 'underlying');
+		: pages.filter(page => page?.status !== 'underlying' && page?.status !== 'alpha');
   });
 
 	eleventyConfig.addFilter("githubEditLink", function (filePath) {
