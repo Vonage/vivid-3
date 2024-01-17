@@ -158,6 +158,28 @@ describe('vwc-split-button', () => {
 		});
 	});
 
+	describe('action-click', () => {
+		it('should fire a non-bubbling action-click event when action button is clicked', async () => {
+			const spy = jest.fn();
+			element.addEventListener('action-click', spy);
+			element.action.click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ bubbles: false }));
+		});
+	});
+
+	describe('indicator-click', () => {
+		it('should fire a non-bubbling indicator-click event when indicator button is clicked', async () => {
+			const spy = jest.fn();
+			element.addEventListener('indicator-click', spy);
+			element.indicator.click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ bubbles: false }));
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Button label';
