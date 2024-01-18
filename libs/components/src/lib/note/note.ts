@@ -14,6 +14,7 @@ export type NoteConnotation =
  *
  * @public
  * @slot - Any slotted content will appear below the headline.
+ * @slot icon - Add an icon to the component.
  */
 export class Note extends FoundationElement {
 	/**
