@@ -70,16 +70,7 @@
 		overflow-y: hidden;
 
 		// Make scrollbar appearance less intrusive
-		scrollbar-color: var(#{constants.$vvd-color-neutral-500}) transparent;
 		scrollbar-width: thin;
-		&::-webkit-scrollbar {
-			background-color: transparent;
-			inline-size: 8px;
-		}
-		&::-webkit-scrollbar-thumb {
-			background-color: var(#{constants.$vvd-color-neutral-500});
-			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		}
 
 		// Hide scrollbar when not hovering
 		&:hover {
