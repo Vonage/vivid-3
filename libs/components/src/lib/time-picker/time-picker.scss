@@ -19,7 +19,6 @@
 }
 
 .base {
-	display: inline-block;
 	inline-size: 100%;
 }
 
@@ -107,7 +106,6 @@
 		@include connotation.connotation (time-picker);
 		@include appearance.appearance;
 
-		position: relative;
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
@@ -117,7 +115,7 @@
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		color: var(#{appearance.get-appearance-token(text)});
 		cursor: pointer;
-		font-size: 14px;
+		font: var(#{constants.$vvd-typography-base});
 		inline-size: $item-inline-size;
 	}
 }

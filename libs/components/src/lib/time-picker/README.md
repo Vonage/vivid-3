@@ -160,7 +160,7 @@ The time picker will display the time in 12h or 24h format depending on the conf
 Use the `clock` attribute to override this behavior.
 
 - Type: `'12h'` | `'24h'` | `undefined`
-- Default: `undefined`
+- Default: locale dependent
 
 ```html preview locale-switcher
 <style>
