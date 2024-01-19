@@ -1,6 +1,6 @@
 
 <div class="welcome">
-  <h1>Welcome to VIVID@3</h1>
+  <h1>Welcome to Vivid@3</h1>
   <h2 class="font-base-extended-bold">Vonage's design system platform targeted to provide incorporated, battery-charged web components.</h2>
   <div class="buttons-wrapper">
     <vwc-button id="quickStart" label='Quick Start' appearance='outlined' icon='rocket-line'></vwc-button>
