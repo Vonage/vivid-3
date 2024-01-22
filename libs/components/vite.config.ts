@@ -94,6 +94,7 @@ export default defineConfig({
 			formats: ['es'],
 		},
 		minify: false,
+		cssMinify: true,
 		target: 'esnext',
 		rollupOptions: {
 			input,
