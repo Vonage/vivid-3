@@ -83,6 +83,11 @@ ComponentRegister.registerComponent('date-picker', component => {
     eventName: 'input',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
+	addVueModel(component, {
+		attributeName: 'value',
+		eventName: 'clear-click',
+		valueMapping: '(event.target as HTMLInputElement).value',
+	});
 });
 ComponentRegister.registerComponent('date-range-picker', component => {
   // Remove start and end attributes as we will replace them with v-model props
