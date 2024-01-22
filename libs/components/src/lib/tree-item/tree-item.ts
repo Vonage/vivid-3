@@ -8,6 +8,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
  *
  * @public
  * @slot item - To specify a child tree item.
+ * @slot icon - Add an icon to the component.
  */
 export class TreeItem extends FastTreeItem {
 	/**

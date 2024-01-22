@@ -10,6 +10,7 @@ import { TextAnchor } from '../text-anchor/text-anchor';
  *
  * @public
  * @slot meta - A slot to add additional content to the nav item.
+ * @slot icon - Add an icon to the component.
  */
 export class NavItem extends TextAnchor {
 	override getBodyTemplate() {
