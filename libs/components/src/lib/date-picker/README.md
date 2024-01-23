@@ -159,12 +159,13 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 
 <div class="table-wrapper">
 
-| Name   | Description                                   |
-|--------|-----------------------------------------------|
-| input  | Emitted when the date is changed by the user. |
-| change | Emitted when the date is changed by the user. |
-| focus  | Emitted when the component receives focus.    |
-| blur   | Emitted when the component loses focus.       |
+| Name        | Description                                   |
+|-------------|-----------------------------------------------|
+| input       | Emitted when the date is changed by the user. |
+| change      | Emitted when the date is changed by the user. |
+| focus       | Emitted when the component receives focus.    |
+| blur        | Emitted when the component loses focus.       |
+| clear-click | Emitted when clear button is pressed.         |
 
 </div>
 

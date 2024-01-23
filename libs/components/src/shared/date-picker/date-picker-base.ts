@@ -27,6 +27,8 @@ const ValidDateFilter: ValueConverter = {
 /**
  * Base class for date-picker
  *
+ * @event clear-click - Event emitted when the clear value changes
+ *
  * @public
  */
 export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
