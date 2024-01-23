@@ -4,23 +4,34 @@
     <VButton label="Remove last item" appearance="outlined" @click="pop" />
     <VButton label="Remove first item" appearance="outlined" @click="shift" />
     <VButton label="Update items" appearance="outlined" @click="update" />
-    <VDataGrid selection-mode="single-row" generate-header="sticky" :rows-data="data" />
+    <VButton label="Replace items" appearance="outlined" @click="replace" />
+    <VDataGrid selection-mode="single-row" style="max-block-size: 500px;">
+      <VDataGridRow row-type="header">
+        <VDataGridCell cell-type="columnheader">
+          Column 1
+        </VDataGridCell>
+        <VDataGridCell cell-type="columnheader">
+          Column 2
+        </VDataGridCell>
+      </VDataGridRow>
+      <VDataGridRow v-for="row in data" :key="row.id">
+        <VDataGridCell>{{ row.data1 }}</VDataGridCell>
+        <VDataGridCell>{{ row.data2 }}</VDataGridCell>
+      </VDataGridRow>
+    </VDataGrid>
   </div>
 </template>
 <script setup lang="ts">
-  import { VDataGrid, VButton } from '@vonage/vivid-vue';
+  import { VDataGrid, VDataGridRow, VDataGridCell, VButton } from '@vonage/vivid-vue';
+	import { ref } from 'vue';
 
-  let ORIGINAL_DATA = [{ data1: 'data01', data2: 'data02'}];
-  let data = Array.from(ORIGINAL_DATA);
-  let count = 1
+  let data = ref<{id: number, data1: string, data2: string}[]>([]);
 
-	for (let i = 0; i < 3; i++) {
-    push();
-  }
-
+	let count = 1;
   function push() {
-    data.push(
+    data.value.push(
       {
+				id: count,
         data1: `data${count}1`,
         data2: `data${count}2`
       }
@@ -28,16 +39,29 @@
     count++;
   }
 
+	for (let i = 0; i < 1000; i++) {
+		push();
+	}
+
   function pop() {
-    data.pop();
+    data.value.pop();
   }
 
   function shift() {
-    data.shift();
+    data.value.shift();
   }
 
   function update() {
-    // implement update logic here
+		for (const row of data.value) {
+			row.data1 = `${row.data1} changed`;
+		}
   }
+
+	function replace() {
+		data.value = data.value.map((row) => ({
+			...row,
+			data2: `${row.data2} replaced`
+		}));
+	}
 
 </script>
