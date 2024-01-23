@@ -43,6 +43,7 @@ export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Si
  * Base class for button
  *
  * @public
+ * @slot icon - Add an icon to the component.
  */
 export class Button extends FoundationButton {
 	@attr({converter: {fromView: (value) => value || null, toView: (value) => value || null}})
