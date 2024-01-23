@@ -13,6 +13,7 @@ export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 /**
  * @slot - Default slot.
+ * @slot icon - Add an icon to the component.
  */
 export class AccordionItem extends FASTAccordionItem {
 	/**
