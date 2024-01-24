@@ -111,7 +111,8 @@
 	},
 	{
 		"title": "fab",
-		"markdown": "./libs/components/src/lib/fab/README.md"
+		"markdown": "./libs/components/src/lib/fab/README.md",
+		"figma": "https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?node-id=19313%3A96162&t=lbzhKm5fwRzilAwF-1"
 	},
 	{
 		"title": "action-group",
@@ -222,7 +223,8 @@
 	},
 	{
 		"title": "toggletip",
-		"markdown": "./libs/components/src/lib/toggletip/README.md"
+		"markdown": "./libs/components/src/lib/toggletip/README.md",
+		"figma": "https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/branch/C9VZeRowJGzDiC4NLFezTn/Vivid-UI-Kit---3.0-WIP?node-id=20623%3A129100&t=y8uM758UHHYz7hAu-1"
 	},
 	{
 		"title": "tree-view",
@@ -250,7 +252,8 @@
 	},
 	{
 		"title": "pagination",
-		"markdown": "./libs/components/src/lib/pagination/README.md"
+		"markdown": "./libs/components/src/lib/pagination/README.md",
+		"figma": "https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/branch/h4CzeyuEVuTrtR0TnvMtot/Vivid-UI-Kit---3.0-WIP?node-id=20641%3A128257&t=5aIP4qBvtMMiJpD4-1"
 	},
 	{
 		"title": "empty-state",

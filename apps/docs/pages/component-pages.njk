@@ -25,7 +25,20 @@ permalink: "components/{{ component.title | slug }}/"
 
 
 {% block content %}
-	{% renderFile component.markdown %}
+	{% if component.figma %}
+        <vwc-tabs class="componentsTabs" activeid="dev">
+            <vwc-tab label="Dev" id="dev"></vwc-tab>
+            <vwc-tab label="Figma" id="figma"></vwc-tab>
+            <vwc-tab-panel id="devPanel">
+                {% renderFile component.markdown %}
+            </vwc-tab-panel>
+            <vwc-tab-panel id="figmaPanel">
+                <iframe class="figmaIframe" src="https://www.figma.com/embed?embed_host=share&url={{ component.figma }}" loading="lazy"></iframe>
+            </vwc-tab-panel>
+        </vwc-tabs>
+    {% else %}
+        {% renderFile component.markdown %}
+    {% endif %}
 {% endblock %}
 
 {% block footer %}

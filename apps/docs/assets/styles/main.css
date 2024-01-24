@@ -170,6 +170,20 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
+.componentsTabs {
+  width: 1200px;
+  display: inline-block;
+  margin-block: 12px;
+}
+
+.figmaIframe {
+  width: 1200px;
+  height: 1900px;
+  border: none;  
+  margin-block: 20px;
+  border-radius: 6px;  
+}
+
 @media (min-width: 960px) {
   article > pre,
   article > .cbd-container {
