@@ -163,6 +163,7 @@ article ul {
   margin: 0;
 }
 
+.components-tabs,
 article > pre,
 article > .cbd-container {
   margin-block: 12px;
@@ -170,24 +171,22 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
-.componentsTabs {
-  width: 1200px;
-  display: inline-block;
-  margin-block: 12px;
-}
-
-.figmaIframe {
-  width: 1200px;
-  height: 1900px;
+.figma-iframe {
   border: none;  
-  margin-block: 20px;
   border-radius: 6px;  
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 64px);
 }
 
 @media (min-width: 960px) {
+  .components-tabs,
   article > pre,
   article > .cbd-container {
     max-inline-size: 1200px;
+  }
+  .figma-iframe {
+    max-width: 1200px;
+    max-height: 1900px;
   }
 }
 

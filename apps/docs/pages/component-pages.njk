@@ -26,14 +26,14 @@ permalink: "components/{{ component.title | slug }}/"
 
 {% block content %}
 	{% if component.figma %}
-        <vwc-tabs class="componentsTabs" activeid="dev">
-            <vwc-tab label="Dev" id="dev"></vwc-tab>
+        <vwc-tabs gutters="small" class="components-tabs" activeid="components">
+            <vwc-tab label="Web Components" id="components"></vwc-tab>
             <vwc-tab label="Figma" id="figma"></vwc-tab>
-            <vwc-tab-panel id="devPanel">
+            <vwc-tab-panel id="componentsPanel">
                 {% renderFile component.markdown %}
             </vwc-tab-panel>
             <vwc-tab-panel id="figmaPanel">
-                <iframe class="figmaIframe" src="https://www.figma.com/embed?embed_host=share&url={{ component.figma }}" loading="lazy"></iframe>
+                <iframe class="figma-iframe" src="https://www.figma.com/embed?embed_host=share&url={{ component.figma }}" loading="lazy"></iframe>
             </vwc-tab-panel>
         </vwc-tabs>
     {% else %}
