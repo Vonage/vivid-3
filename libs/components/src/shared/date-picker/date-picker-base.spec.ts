@@ -605,6 +605,15 @@ describe.each([
 
 			expect(popup.open).toBe(false);
 		});
+
+
+		it('should fire a clear-click event when clear button is clicked', async () => {
+			const spy = jest.fn();
+			element.addEventListener('clear-click', spy);
+			getButtonByLabel('Clear').click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
 	});
 
 	describe('form association', () => {
