@@ -174,8 +174,8 @@ article > .cbd-container {
 .figma-iframe {
   border: none;  
   border-radius: 6px;  
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 64px);
+  width: calc(100vw - 32px);
+  height: calc(100vh - 64px);
 }
 
 @media (min-width: 960px) {
@@ -185,8 +185,8 @@ article > .cbd-container {
     max-inline-size: 1200px;
   }
   .figma-iframe {
-    max-width: 1200px;
-    max-height: 1900px;
+    width: 1200px;
+    height: 1900px;
   }
 }
 
