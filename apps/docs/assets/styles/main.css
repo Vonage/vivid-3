@@ -258,6 +258,7 @@ article.article > h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+	align-self: flex-start;
 }
 
 /* #endregion footer */
@@ -465,4 +466,10 @@ th {
 .welcome-media {
   inline-size: 100%;
   block-size: auto;
+}
+
+a:focus-visible {
+	outline: 2px solid var(--vvd-color-canvas-text);
+	outline-offset: 1px;
+	border-radius: 2px;
 }

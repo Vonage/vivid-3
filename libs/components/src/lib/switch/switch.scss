@@ -1,5 +1,6 @@
 @use "partials/variables" as variables;
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -29,12 +30,16 @@
 
 	display: inline-flex;
 	gap: 8px;
+	border-radius: #{border-radius-variables.$border-radius-expanded};
 
-	@supports selector(:focus-visible) {
-		&:focus-visible {
-			outline: none;
-		}
+	#{focus-variables.$focus-inset}: -4px;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+
+	&:focus-visible {
+		@include focus.focus;
 	}
+
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -52,7 +57,6 @@
 .switch {
 	#{variables.$switch-inline-size}: calc(#{size.$vvd-size-ultra-condensed} * 1.8);
 
-	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -107,15 +111,4 @@
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-inset}: -4px;
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	border-radius: #{border-radius-variables.$border-radius-expanded};
-
-	.control:not(:focus-visible) & {
-		display: none;
-	}
 }
