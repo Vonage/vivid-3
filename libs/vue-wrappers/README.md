@@ -2,7 +2,7 @@
 
 Vue wrapper library for Vivid web components.
 
-[View Documentation](https://vivid.deno.dev/getting-started/vue.js/)
+[View Documentation](https://vivid.deno.dev/getting-started/vue/)
 
 ## Development
 

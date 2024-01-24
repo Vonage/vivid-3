@@ -117,4 +117,4 @@ This stylesheet is only needed if you are using both Vivid 2 and Vivid 3 compone
 
 It is needed to solve the clashing of token names between Vivid 2 and Vivid 3.
 
-Learn more in the [Vivid 2 to Vivid 3 Migration Guide](/guides/migration).
+Learn more in the [Vivid 2 to Vivid 3 Migration Guide](/guides/vivid-2-migration).
