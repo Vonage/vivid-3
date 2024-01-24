@@ -1,7 +1,23 @@
-# vue-wrappers
+# Vivid Vue
 
-This library was generated with [Nx](https://nx.dev).
+Vue wrapper library for Vivid web components.
 
-## Building
+[View Documentation](https://vivid.deno.dev/getting-started/vue.js/)
 
-Run `nx build vue-wrappers` to build the library.
+## Development
+
+### Building
+
+```sh
+nx build vue-wrappers
+```
+
+### Storybook
+
+You can run storybook to preview the components for either Vue 2 or Vue 3 by running:
+
+```sh
+nx run storybook-vue2:dev
+# or
+nx run storybook-vue3:dev
+```

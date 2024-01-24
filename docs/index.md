@@ -1,12 +1,30 @@
 
 <div class="welcome">
-  <h1>Welcome to Vivid@3</h1>
-  <h2 class="font-base-extended-bold">Vonage's design system platform targeted to provide incorporated, battery-charged web components.</h2>
-  <div class="buttons-wrapper">
-    <vwc-button id="quickStart" label='Quick Start' appearance='outlined' icon='rocket-line'></vwc-button>
-    <vwc-button id="advanced" label='Advanced' appearance='outlined' icon='code-line'></vwc-button>
-  </div>
+	<div><img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration"></div>
+	<div class="welcome__hero">
+		<div>
+			<h1 class="tight">Welcome to Vivid</h1>
+			<div class="welcome__subtitle heading4 tight">Build safe, simple and intuitive interfaces using Vonage's design system.</div>
+		</div>
+		<div class="welcome__getting-started">
+			<div class="font-base-extended">Getting started with:</div>
+			<div class="welcome__buttons">
+				<vwc-button id="vue" label="Vue.js" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
+				<vwc-button id="webComponents" label="Web Components" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
+			</div>
+		</div>
+	</div>
 </div>
+
+## What Is Vivid?
+
+Vivid provides guidelines, components and tools to help product teams work more efficiently, deliver faster and safer, while providing end-users a single Vonage unique look & feel.
+
+Crafted as [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), the Vivid component library is interoperable with any modern JavaScript framework, or no framework at all.
+
+For Vue.js users, we offer a first-class integration through a [native Vue wrapper library](/getting-started/vue/).
+
+## Features
 
 <vwc-layout gutters="large-block">
   <vwc-empty-state headline="Scaling design with system thinking">
@@ -94,12 +112,10 @@
 </vwc-empty-state>
 </vwc-layout>
 
-### Popular
-
----
+## Popular Pages
 
 <vwc-layout column-basis="small" gutters="large">
- <vwc-card headline="Design guidelines" subtitle="Vivid Design foundations, principles, styles and best practices.">
+ <vwc-card headline="Design Guidelines" subtitle="Vivid Design foundations, principles, styles and best practices.">
 <svg class="welcome-media" slot="media" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="940" height="788" fill="white"/>
 <path d="M541.08 553.046H377.751C359.846 553.046 339.941 538.517 333.301 520.6L265.167 338.445C258.528 320.529 267.655 306 285.566 306H448.885C466.789 306 486.694 320.529 493.334 338.445L561.468 520.6C568.115 538.517 558.987 553.046 541.076 553.046H541.08Z" fill="url(#paint0_linear_72_228)"/>
@@ -181,7 +197,7 @@
 <vwc-button id="design" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 
-<vwc-card headline="Vivid 2 migration" subtitle="Migration guidlines for a smoth and easy adoption.">
+<vwc-card headline="Vivid 2 Migration" subtitle="Migration guidelines for a smooth and easy adoption.">
 <svg class="welcome-media" slot="media" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="940" height="788" fill="white"/>
 <path d="M352.312 488.213C351.178 433.263 336.183 376.874 310.09 329.435C283.626 281.322 246.92 244.78 206.731 226.538C197.392 222.298 187.886 219.042 178.478 216.861L178.562 215.614C187.995 217.8 197.526 221.065 206.891 225.316C247.196 243.612 284.013 280.269 310.562 328.537C336.78 376.204 351.847 432.894 352.988 488.167L352.312 488.213Z" fill="url(#paint0_linear_1_3)"/>
@@ -276,7 +292,7 @@
 <vwc-button id="migration" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 
-<vwc-card headline="Icons gallery" subtitle="Vivid's Icons Gallery contains a wide range of high-quality icons.">
+<vwc-card headline="Icons Gallery" subtitle="Vivid's Icons Gallery contains a wide range of high-quality icons.">
 <svg class="welcome-media" slot="media" viewBox="0 0 940 788" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_768_335)">
 <rect width="940" height="788" fill="white"/>
@@ -386,18 +402,56 @@
 </vwc-card>
 </vwc-layout>
 
+## Support Matrix
+
+This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/Vonage/vivid-3/blob/main/.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
+
+## Authors
+
+See also the list of [contributors](https://github.com/Vonage/vivid-3/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/Vonage/vivid-3/blob/main/LICENSE.md) file for details
+
+<!-- ## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc -->
+
+## Built With ♡ And
+
+- [Fast](https://www.fast.design) - to extend element classes and compile code to native web components
+- [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
+- [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
+- [Floating UI](https://floating-ui.com) - for positioning floating elements
+- [Dropzone](https://dropzone.dev) - for handling dropped files
+
+## Have questions?
+
+Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) Slack channel.
+
 <script>
-  quickStart.onclick = () => {
-    window.location.href = '/getting-started/quick-start';
+  vue.onclick = () => {
+    window.location.href = '/getting-started/vue';
   }
-  advanced.onclick = () => {
-    window.location.href = '/getting-started/advanced/';
+  webComponents.onclick = () => {
+    window.location.href = '/getting-started/web-components';
   }
   design.onclick = () => {
     window.location.href = '/designs/guidelines/';
   }
   migration.onclick = () => {
-    window.location.href = '/getting-started/vivid-2-migration/';
+    window.location.href = '/guides/vivid-2-migration/';
   }
   iconsGallery.onclick = () => {
     window.location.href = '/icons/icons-gallery/';

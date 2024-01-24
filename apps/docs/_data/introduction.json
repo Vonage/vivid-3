@@ -1,26 +1,16 @@
 [
 	{
-		"title": "quick-start",
-		"markdown": "./docs/getting-started/quick-start.md"
+		"title": "Vue",
+		"slug": "vue",
+		"markdown": "./docs/getting-started/vue.md"
 	},
 	{
-		"title": "advanced",
-		"markdown": "./docs/getting-started/advanced.md"
+		"title": "Web Components",
+		"markdown": "./docs/getting-started/web-components.md"
 	},
 	{
-		"title": "localization",
-		"markdown": "./docs/getting-started/localization.md"
-	},
-	{
-		"title": "fonts-and-tokens",
-		"markdown": "./docs/getting-started/fonts-and-tokens.md"
-	},
-	{
-		"title": "vivid-2-migration",
-		"markdown": "./docs/getting-started/migration.md"
-	},
-	{
-		"title": "new-in-vivid-3",
-		"markdown": "./docs/getting-started/new-in-vivid-3.md"
+		"title": "Using a CDN",
+		"slug": "cdn",
+		"markdown": "./docs/getting-started/cdn.md"
 	}
 ]

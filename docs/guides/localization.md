@@ -1,6 +1,6 @@
 # Localization
 
-Localization is the process of adapting a product to a specific locale or market, including translating text, formatting dates, numbers, and more.
+Vivid supports localization, which includes translation of visible and accessible text, as well as formatting of dates and numbers, by providing different locale files for each supported language.
 
 The default locale of Vivid is English (United States).
 

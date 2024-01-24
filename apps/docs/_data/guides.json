@@ -1,0 +1,21 @@
+[
+	{
+		"title": "Styles",
+		"slug": "styles",
+		"markdown": "./docs/guides/styles.md"
+	},
+	{
+		"title": "Custom Prefix",
+		"slug": "prefix",
+		"markdown": "./docs/guides/prefix.md"
+	},
+	{
+		"title": "Localization",
+		"markdown": "./docs/guides/localization.md"
+	},
+	{
+		"title": "Migrating From Vivid 2",
+		"slug": "vivid-2-migration",
+		"markdown": "./docs/guides/migration.md"
+	}
+]
