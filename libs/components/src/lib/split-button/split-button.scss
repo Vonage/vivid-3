@@ -138,12 +138,12 @@
 }
 
 .indicator {
+	position: relative;
 	border-bottom-right-radius: var(#{variables.$border-radius});
 	border-inline-start: 0;
 	border-top-right-radius: var(#{variables.$border-radius});
 	inline-size: var(#{variables.$inline-size});
 	isolation: isolate;
-	position: relative;
 
 	&:not(.appearance-filled) {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;

@@ -29,8 +29,8 @@
 	@include appearance.appearance;
 
 	display: inline-flex;
-	gap: 8px;
 	border-radius: #{border-radius-variables.$border-radius-expanded};
+	gap: 8px;
 
 	#{focus-variables.$focus-inset}: -4px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
