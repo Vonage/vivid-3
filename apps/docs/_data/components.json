@@ -271,5 +271,9 @@
 	{
 		"title": "audio-player",
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
+	},
+	{
+		"title": "video-player",
+		"markdown": "./libs/components/src/lib/video-player/README.md"
 	}
 ]
