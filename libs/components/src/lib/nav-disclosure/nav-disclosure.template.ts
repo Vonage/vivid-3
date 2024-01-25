@@ -6,7 +6,6 @@ import type {
 } from '@microsoft/fast-foundation';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { NavDisclosure } from './nav-disclosure';
 
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
@@ -24,7 +23,6 @@ export const NavDisclosureTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<NavDisclosure> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
 	return html`<details class="base" ${ref('details')} ?open=${x => x.open}>
@@ -38,7 +36,6 @@ export const NavDisclosureTemplate: (
 						<slot name="meta"></slot>
 			${when(x => x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-up-solid'></${iconTag}>`)}
 			${when(x => !x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-down-solid'></${iconTag}>`)}
-			${() => focusTemplate}
         </summary>
         <div class="content" id="disclosure-content">
 			<slot></slot>

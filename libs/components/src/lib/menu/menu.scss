@@ -1,6 +1,8 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 
 .base {
 	display: flex;
@@ -22,11 +24,11 @@
 }
 
 ::slotted(a[role="menuitem"]:focus) {
+	@include focus.focus;
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	display: block;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	box-shadow: inset 0 0 0 3px currentColor;
-	outline: 2px solid currentColor;
-	outline-offset: -2px;
 }
 
 .header {
