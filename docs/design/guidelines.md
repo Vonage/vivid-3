@@ -10,7 +10,7 @@ The core guidelines are driven by the [Vonage Brand Toolkit](https://drive.googl
 ## Design tokens
 
 Design tokens are a set of values that maintain a design system. 
-They represent anything defined by design: font size in pixel, a color as an RGB value, an opacity as a number, etc. 
+They represent anything defined by design: font size in pixel, a color, an opacity as a number, etc. 
 
 The Design Tokens are the design system's Single Source of Truth.
 
