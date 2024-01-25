@@ -134,8 +134,6 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
     })
     .join(',');
 
-  const hasDefaultSlot = componentDef.slots.findIndex(slot => slot.name === 'default') > -1;
-
   const namedSlotsSource = componentDef.slots
     .filter(slot => slot.name !== 'default')
     .map(
@@ -222,7 +220,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
             ${domPropsV2Src ? `domProps: { ${domPropsV2Src} },` : ''}
             on: { ${eventsSrc} },
         }, [
-            ${hasDefaultSlot ? `this.$slots.default,` : ''}
+            this.$slots.default,
             ${namedSlotsSource}
         ]);
       }
@@ -232,7 +230,8 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
           class: 'vvd-component',
           ${[propsV3Src, eventsV3Src].filter(Boolean).join(',')}
       } as unknown as VNodeData, [
-          ${hasDefaultSlot ? `// @ts-ignore\nthis.$slots.default && this.$slots.default(),` : ''}
+          // @ts-ignore
+          this.$slots.default && this.$slots.default(),
           ${namedSlotsSource}
       ]);
     `;

@@ -182,6 +182,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 | input:end   | Emitted when the end value changes.                     |
 | focus       | Emitted when the component receives focus.              |
 | blur        | Emitted when the component loses focus.                 |
+| clear-click | Emitted when clear button is pressed.                   |
 
 </div>
 

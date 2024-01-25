@@ -135,6 +135,7 @@ $track-thickness: 2px;
 
 	:focus-visible & {
 		@include focus.focus;
+
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 		#{variables.$thumb-interaction-indicator-alpha}: 0.05;
 

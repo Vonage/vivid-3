@@ -325,7 +325,8 @@ export const DatePickerBaseTemplate: (
 						class="vwc-button"
 						size="condensed"
 						label="${(x) => x.locale.datePicker.clearLabel}"
-						@click="${(x) => x._onClearClick()}"
+						@click="${(x) => x._onClearClick()},
+										${(x) => x.$emit('clear-click')}"
 					></${buttonTag}>
 					<${buttonTag}
 						tabindex="3"
