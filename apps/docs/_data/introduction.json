@@ -6,10 +6,5 @@
 	{
 		"title": "Vue",
 		"markdown": "./docs/getting-started/vue.md"
-	},
-	{
-		"title": "Using a CDN",
-		"slug": "cdn",
-		"markdown": "./docs/getting-started/cdn.md"
 	}
 ]
