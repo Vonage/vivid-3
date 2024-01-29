@@ -148,6 +148,8 @@ And include in HTML:
 <dashboard-button label="Click me"></dashboard-button>
 ```
 
+Remember to not include the default side effect import (`import '@vonage/vivid/button';`) anywhere when using the register function as it will register the default prefix.
+
 </vwc-tab-panel>
 </vwc-tabs>
 
