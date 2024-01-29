@@ -263,6 +263,15 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('scroll', () => {
+		it('should set class "scroll" is panel-scroll is set', async () => {
+			element.panelScroll = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('scroll')).toBeTruthy();
+
+		});
+	});
+
 	describe('activetab', () => {
 		it('should set activetab property', async () => {
 			const tab: Tab = element.querySelector('#entrees') as Tab;
