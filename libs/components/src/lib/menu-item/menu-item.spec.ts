@@ -345,6 +345,14 @@ describe('vwc-menu-item', () => {
 			expect(metaSlotElement).toBeTruthy();
 		});
 
+		it('should render trailing-meta slot', async function () {
+			const trailingMetaSlotElement = element.shadowRoot?.querySelector('.base slot[name="trailing-meta"]');
+			await elementUpdated(element);
+
+			expect(trailingMetaSlotElement).toBeTruthy();
+		});
+
+
 		it('should render submenu slot', async function () {
 			const submenuSlotElement = element.shadowRoot?.querySelector('slot[name="submenu"]');
 			await elementUpdated(element);
