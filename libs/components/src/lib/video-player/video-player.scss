@@ -1,7 +1,10 @@
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
-.control {
-    border: 1px solid green;
+@font-face {
+    font-family: VideoJS;
+    src: url("../../../../../node_modules/video.js/dist/font/VideoJS.woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .video-js { 
@@ -18,5 +21,9 @@
     
     .vjs-remaining-time { 
         display: none; 
+    }
+
+    .vjs-texttrack-settings {
+        display: none;
     }
 }

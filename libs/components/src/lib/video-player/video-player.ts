@@ -58,7 +58,8 @@ export class VideoPlayer extends FoundationElement {
 		for(let x = 0; x < trackEles.length; x++) {
 			videoEle.appendChild(trackEles[x]);
 		}
-		this.shadowRoot?.querySelector('.control')?.appendChild(videoEle);
+		const control = this.shadowRoot?.querySelector('.control')
+		control?.appendChild(videoEle);
 		const srcEles = this.querySelectorAll('source');
 		const sources = Array.from(srcEles).map((el) => ({
 			src: el.getAttribute('src'),
@@ -71,6 +72,8 @@ export class VideoPlayer extends FoundationElement {
 			preload: 'auto',
 			autoplay: this.autoplay ? 'muted' : false,
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
+		}, () => {
+			control?.classList.add('ready');
 		});
 	}
 
