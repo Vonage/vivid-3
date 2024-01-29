@@ -1,12 +1,11 @@
 [
 	{
-		"title": "Vue",
-		"slug": "vue",
-		"markdown": "./docs/getting-started/vue.md"
-	},
-	{
 		"title": "Web Components",
 		"markdown": "./docs/getting-started/web-components.md"
+	},
+	{
+		"title": "Vue",
+		"markdown": "./docs/getting-started/vue.md"
 	},
 	{
 		"title": "Using a CDN",
