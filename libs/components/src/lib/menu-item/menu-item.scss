@@ -21,7 +21,7 @@
 
 
 :host(:focus-visible) {
-	@include focus.focus;
+	outline: none;
 }
 
 :host([disabled]) {
@@ -62,7 +62,7 @@
 		cursor: pointer;
 	}
 
-	:host(:focus-visible) & {
+	:host(:not([role="presentation"]):focus-visible) & {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 

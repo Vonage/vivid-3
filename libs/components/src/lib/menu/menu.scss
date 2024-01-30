@@ -23,7 +23,7 @@
 	text-decoration: none;
 }
 
-::slotted(a[role="menuitem"]:focus) {
+::slotted(a[role="menuitem"]:focus-visible) {
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
