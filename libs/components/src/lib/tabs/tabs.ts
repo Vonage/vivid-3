@@ -44,7 +44,7 @@ export class Tabs extends FoundationTabs {
 	 *
 	 * @public
 	 */
-	@attr ({mode: 'boolean',attribute: 'panel-scroll', }) panelScroll = false;
+	@attr ({mode: 'boolean',attribute: 'scrollable-panel', }) scrollablePanel = false;
 
 	connotationChanged() {
 		this.#updateTabsConnotation();

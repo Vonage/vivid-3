@@ -3,13 +3,13 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 
 const getClasses = ({
-	connotation, orientation, gutters, panelScroll
+	connotation, orientation, gutters, scrollablePanel
 }: Tabs) => classNames(
 	'base',
 	[`connotation-${connotation}`, Boolean(connotation)],
 	[`orientation-${orientation}`, Boolean(orientation)],
 	[`gutters-${gutters}`, Boolean(gutters)],
-	['scroll', Boolean(panelScroll)]
+	['scroll', Boolean(scrollablePanel)]
 );
 
 /**

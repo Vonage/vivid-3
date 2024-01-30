@@ -125,7 +125,7 @@ Add an `activeid` attribute of the active tab.
 ```
 
 ### Panel Scroll
-Add `panel-scroll` to allow scroll.  
+Add `scrollable-panel` to allow scroll.  
 Add `block-size` to `vwc-tabs` to make it scroll.
 
 #### horizontal
@@ -135,7 +135,7 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 		block-size: 200px;  
   }
 </style>
-<vwc-tabs class="tabs" gutters="small" panel-scroll>
+<vwc-tabs class="tabs" gutters="small" scrollable-panel>
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -164,16 +164,13 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 </vwc-tabs>
 ```
 #### Vertical
-In `orientation="vertical"` adding `block-size` to `vwc-tabs` will add scroll to the tabs and to the tab-panel.  
-For only scroll on the tab-panel - use the `--tabs-vertical-max-height` variable.
-
 ```html preview full
 <style>
   .tabs {
-		block-size: 100px;  
+		block-size: 150px;  
   }
 </style>
-<vwc-tabs class="tabs" gutters="small" panel-scroll orientation="vertical">
+<vwc-tabs class="tabs" gutters="small" scrollable-panel orientation="vertical">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -206,44 +203,6 @@ For only scroll on the tab-panel - use the `--tabs-vertical-max-height` variable
 ### Slots
 
 Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that when activated, displays the `tab panel`.
-
-
-### CSS Variable
-This variable only effect `orientation="vertical`.  
-For scroll only in the panel - set a value for the `--tabs-vertical-max-height` variable.
-
-```html preview full
-<style>
-vwc-tabs {--tabs-vertical-max-height: 200px;}
-</style>
-<vwc-tabs class="tabs" gutters="small" orientation="vertical">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-      <div class="my-panel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-             <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
-      </div>
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
-</vwc-tabs>
-```
 
 
 ## Events

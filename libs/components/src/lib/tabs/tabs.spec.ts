@@ -264,8 +264,8 @@ describe('vwc-tabs', () => {
 	});
 
 	describe('scroll', () => {
-		it('should set class "scroll" is panel-scroll is set', async () => {
-			element.panelScroll = true;
+		it('should set class "scroll" if scrollable-panel is set', async () => {
+			element.scrollablePanel = true;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('scroll')).toBeTruthy();
 
