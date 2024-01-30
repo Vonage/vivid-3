@@ -5,7 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import {focusTemplateFactory} from '../../shared/patterns';
 import type { Switch } from './switch';
 
 const getClasses = (_: Switch) => classNames('control',
@@ -25,8 +24,7 @@ const getClasses = (_: Switch) => classNames('control',
 export const SwitchTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Switch> = (context) => {
-	const focusTemplate = focusTemplateFactory(context);
+) => ViewTemplate<Switch> = () => {
 	return html<Switch>`
 		<div
 				class="${getClasses}"
@@ -40,7 +38,6 @@ export const SwitchTemplate: (
 		>
 			<div class="switch">
 				<span class="checked-indicator"></span>
-				${() => focusTemplate}
 			</div>
 			${when(x => x.label, html<Switch>`<div class="label">
 				${x => x.label}

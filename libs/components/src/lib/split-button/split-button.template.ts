@@ -5,7 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import {affixIconTemplateFactory, IconWrapper} from '../../shared/patterns/affix';
 import type { SplitButton } from './split-button';
 
@@ -23,7 +22,6 @@ const getClasses = ({
 
 function actionButton(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<SplitButton>`
 	<button
@@ -35,7 +33,6 @@ function actionButton(context: ElementDefinitionContext) {
 		bubbles: false,
 	})}"
 	>
-			${() => focusTemplate}
 			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 		<span class="text">${(x) => x.label}</span>
 	</button>
@@ -44,7 +41,6 @@ function actionButton(context: ElementDefinitionContext) {
 
 function indicatorButton(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<SplitButton>`
 	<button
@@ -57,7 +53,6 @@ function indicatorButton(context: ElementDefinitionContext) {
 		bubbles: false,
 	})}"
 	>
-			${() => focusTemplate}
 			${x => affixIconTemplate(x.splitIndicator)}
 	</button>
 	`;
