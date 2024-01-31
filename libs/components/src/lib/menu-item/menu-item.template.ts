@@ -78,6 +78,7 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 			${checkIndicator(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
+			<slot name="trailing-meta" ${slotted('trailingMetaSlottedContent')}></slot>
 			${when(x => x.hasSubmenu, html`<${iconTag} class="chevron" name="chevron-right-line"></${iconTag}>`)}
 		</div>
 		<slot name="submenu" ${slotted({ property: 'slottedSubmenu', filter: elements(context.tagFor(Menu)) })}></slot>

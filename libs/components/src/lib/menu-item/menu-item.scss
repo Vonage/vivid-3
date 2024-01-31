@@ -86,13 +86,11 @@
 	color: var(#{appearance.get-appearance-token(text)});
 
 	.base.trailing & {
-		order: 1;
-		margin-inline-start: auto;
+		order: 2;
 	}
 
 	.base.has-meta & {
-		order: 1;
-		margin-inline-start: auto;
+		order: 2;
 	}
 }
 
@@ -106,18 +104,18 @@
 
 	.base.has-meta & {
 		order: 1;
-		margin-inline-start: auto;
 	}
 }
 
 .chevron {
-	margin-inline-start: auto;
+	order: 3;
 }
 
 .text {
 	display: flex;
 	overflow: hidden;
 	flex-direction: column;
+	margin-inline-end: auto;
 }
 
 .text-primary,
