@@ -18,7 +18,7 @@ Which stylesheets you should load will depend on your project's needs.
 
 **Optional utilities:**
 * [Spezia Font Kit](#spezia-font-kit)
-* [Vivid 2 Compatibility](#vivid-2-compatibility)
+* [Vivid 2.x Compatibility](#vivid-2x-compatibility)
 
 ## Loading Styles
 
@@ -106,15 +106,15 @@ To avoid FOIT (Flash Of Invisible Text), you can also preload the fonts in your 
 </head>
 ```
 
-### Vivid 2 Compatibility
+### Vivid 2.x Compatibility
 
 **Stylesheet:**
 ```js
 '@vonage/vivid/styles/tokens/vivid-2-compat.css';
 ```
 
-This stylesheet is only needed if you are using both Vivid 2 and Vivid 3 components on the same page.
+This stylesheet is only needed if you are using both Vivid 2.x and Vivid 3.x components on the same page.
 
-It is needed to solve the clashing of token names between Vivid 2 and Vivid 3.
+It is needed to solve the clashing of token names between Vivid 2.x and Vivid 3.x.
 
-Learn more in the [Vivid 2 to Vivid 3 Migration Guide](/guides/vivid-2-migration).
+Learn more in the [Vivid 2.x to Vivid 3.x Migration Guide](/guides/vivid-2-migration).

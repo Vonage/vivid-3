@@ -1,17 +1,17 @@
-# Migrating From Vivid 2 to Vivid 3
+# Migrating From Vivid 2.x to Vivid 3.x
 
-Vivid 3 has been rewritten from scratch.
+Vivid 3.x has been rewritten from scratch.
 
-It comes with almost all components that are available in Vivid 2, and many new ones.
+It comes with almost all components that are available in Vivid 2.x, and many new ones.
 All of them are better in both code and semantics. All the components are aligned with the HTML spec and are accessible.
 
-If you are migrating to Vivid 3, you can install it alongside Vivid 2 for an easy and gradual migration.
+If you are migrating to Vivid 3.x, you can install it alongside Vivid 2.x for an easy and gradual migration.
 
-## Differences Between Vivid 2 and Vivid 3
+## Differences Between Vivid 2.x and Vivid 3.x
 
 ### General Naming Changes
 
-|                                           | Before (Vivid 2)           | After (Vivid 3)                                                |
+|                                           | Before (Vivid 2.x)         | After (Vivid 3.x)                                                |
 |-------------------------------------------|----------------------------|----------------------------------------------------------------|
 |                                           | `heading`                  | `headline`                                                     |
 | icon                                      | `type`                     | `name`                                                         |
@@ -25,7 +25,7 @@ If you are migrating to Vivid 3, you can install it alongside Vivid 2 for an eas
 
 ### Components Naming Changes
 
-| Before (Vivid 2)                          | After (Vivid 3)    | Comments                            |
+| Before (Vivid 2.x)                        | After (Vivid 3.x)    | Comments                            |
 |-------------------------------------------|--------------------|-------------------------------------|
 | `chip`, `chip-set`<br/>`tag`, `tag-group` | `tag`, `tag-group` |                                     |
 | `circular-progress`                       | `progress-ring`    |                                     |
@@ -39,10 +39,10 @@ If you are migrating to Vivid 3, you can install it alongside Vivid 2 for an eas
 
 ### List & List Item Components Changes
 
-In Vivid 3 we created separate components for different uses for the former `list-item`.  
+In Vivid 3.x we created separate components for different uses for the former `list-item`.  
 This is for better accessibility and HTML standards.
 
-| Usage                                      | Before (Vivid 2)                                              | After (Vivid 3)                                                                                           |
+| Usage                                      | Before (Vivid 2.x)                                            | After (Vivid 3.x)                                                                                           |
 |--------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | navigation                                 | `vwc-list`<br/>`vwc-list-item`<br/>`vwc-list-expansion-panel` | `nav`<br/> `nav-item`<br/> `nav-disclosure`                                                               |
 | menu                                       | `vwc-list`<br/>`vwc-list-item`                                | `menu-item`<br/> `menu-item` with `role="menuitemcheckbox"` <br/> `menu-item` with `role="menuitemradio"` |
@@ -50,11 +50,11 @@ This is for better accessibility and HTML standards.
 |                                            | `vwc-radio-list-item`                                         | `menu-item` with `role="menuitemradio"`                                                                   |
 | option<br/> Use inside `Select`/`Combobox` | `vwc-list-item`                                               | `option`                                                                                                  |
 
-## Installing Vivid 3 Alongside Vivid 2
+## Installing Vivid 3.x Alongside Vivid 2.x
 
 ### Step 1: Pre Installation
 
-The project needs to import Vivid 2 components individually and not as a whole package.
+The project needs to import Vivid 2.x components individually and not as a whole package.
 
 Before:
 
@@ -68,7 +68,7 @@ After:
 ```json
 "@vonage/vvd-context": "^2.x.x",
 "@vonage/vvd-core": "^2.x.x",
-//import all Vivid 2 components you are using in the project
+//import all Vivid 2.x components you are using in the project
 "@vonage/vwc-accordion": "^2.x.x",
 "@vonage/vwc-action-group": "^2.x.x",
 "@vonage/vwc-audio": "^2.x.x",
@@ -76,7 +76,7 @@ After:
 ...
 ```
 
-### Step 2: Make Sure Your Vivid 2 Components Are Imported Correctly
+### Step 2: Make Sure Your Vivid 2.x Components Are Imported Correctly
 
 Before:
 
@@ -90,18 +90,18 @@ After:
 import { VWCButton } from '@vonage/vwc-button';
 ```
 
-### Step 3: Install Vivid 3
+### Step 3: Install Vivid 3.x
 
-You can now install Vivid 3 as usual by following the Getting Started guides.
+You can now install Vivid 3.x as usual by following the Getting Started guides.
 
 Make sure you follow the instructions for:
 - Using a [custom prefix](/guides/prefix/) (e.g. `vwc-3`)
-- Loading the Vivid 2 compatibility styles (`@vonage/vivid/styles/tokens/vivid-2-compat.css`)
+- Loading the Vivid 2.x compatibility styles (`@vonage/vivid/styles/tokens/vivid-2-compat.css`)
 
-### Step 4: Moving the Vivid 2 Class
+### Step 4: Moving the Vivid 2.x Class
 
-You need to add the Vivid 2 class `vvd-scheme-main` to a descendant element of the `vvd-root`.
-This is needed to ensure that Vivid 2 tokens are not overridden by Vivid 3 tokens.
+You need to add the Vivid 2.x class `vvd-scheme-main` to a descendant element of the `vvd-root`.
+This is needed to ensure that Vivid 2.x tokens are not overridden by Vivid 3.x tokens.
 
 ```html
 <html class="vvd-root">
@@ -113,22 +113,22 @@ This is needed to ensure that Vivid 2 tokens are not overridden by Vivid 3 token
 
 ### Step 5: Start Using Components
 
-You are now ready to start using Vivid 3 components.
-You will need to add the `vvd-component` class to every component to avoid a collision between Vivid 2 and Vivid 3 tokens.
+You are now ready to start using Vivid 3.x components.
+You will need to add the `vvd-component` class to every component to avoid a collision between Vivid 2.x and Vivid 3.x tokens.
 If you are using Vivid Vue, this is done automatically for you.
 
 ```html
 <vwc-3-button
   class="vvd-component"
-  label="Scoped Vivid 3 Button"
+  label="Scoped Vivid 3.x Button"
 ></vwc-3-button>
 ```
 
 ### Cleanup: Once the Migration Is Complete
 
-After using Vivid 3 **exclusively**, follow these steps:
+After using Vivid 3.x **exclusively**, follow these steps:
 
-- Remove Vivid 2 from your package.json. You should only have `@vonage/vivid": "^3.x"`.
+- Remove Vivid 2.x from your package.json. You should only have `@vonage/vivid": "^3.x"`.
 - Remove the `vvd-component` class from all the components.
 - Remove the `vvd-scheme-main` class from the body.
 - Remove the import of `vivid2-compat.css`.
@@ -137,7 +137,7 @@ After using Vivid 3 **exclusively**, follow these steps:
 
 <vwc-accordion>
   <vwc-accordion-item heading="'No matching version found for' Error">
-    Vivid 3 should be pulled from npm and not from GitHub packages. Check your .npmrc file to make sure you are not pulling from GitHub packages. We'd advise uninstalling all vivid components via npm uninstall or yarn remove and reinstalling them afterward.
+    Vivid 3.x should be pulled from npm and not from GitHub packages. Check your .npmrc file to make sure you are not pulling from GitHub packages. We'd advise uninstalling all vivid components via npm uninstall or yarn remove and reinstalling them afterward.
   </vwc-accordion-item>
   <vwc-accordion-item heading="403 in CI after installing from npm">
     This is probably due to your lock file still pointing at the wrong registry. See uninstall of point one.

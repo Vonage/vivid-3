@@ -14,7 +14,7 @@
 		"markdown": "./docs/guides/localization.md"
 	},
 	{
-		"title": "Migrating From Vivid 2",
+		"title": "Migrating From Vivid 2.x",
 		"slug": "vivid-2-migration",
 		"markdown": "./docs/guides/migration.md"
 	}
