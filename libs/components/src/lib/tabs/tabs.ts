@@ -39,6 +39,13 @@ export class Tabs extends FoundationTabs {
 	 */
 	@attr gutters?: Gutters;
 
+	/**
+	 * sets overflow to the tab-panel
+	 *
+	 * @public
+	 */
+	@attr ({mode: 'boolean',attribute: 'scrollable-panel', }) scrollablePanel = false;
+
 	connotationChanged() {
 		this.#updateTabsConnotation();
 	}
