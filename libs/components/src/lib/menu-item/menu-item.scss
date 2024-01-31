@@ -16,12 +16,12 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "partials/menu-item-variables" as menu-item-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 
 
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
+:host(:focus-visible) {
+	outline: none;
 }
 
 :host([disabled]) {
@@ -35,7 +35,6 @@
 	@include appearance.appearance;
 	@include connotation.connotation (menu-item);
 
-	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -46,7 +45,6 @@
 	padding-block: 2px;
 	padding-inline: $gutter;
 
-
 	&:not(.two-lines) {
 		min-block-size: #{size.$vvd-size-normal};
 	}
@@ -55,6 +53,7 @@
 		min-block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 	}
 
+
 	@supports(user-select: none) {
 		user-select: none;
 	}
@@ -62,12 +61,12 @@
 	&:not(.disabled) {
 		cursor: pointer;
 	}
-}
 
-.focus-indicator {
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	:host(:not(:focus-visible)) & {
-		display: none;
+	:host(:not([role="presentation"]):focus-visible) & {
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 }
 
@@ -87,13 +86,11 @@
 	color: var(#{appearance.get-appearance-token(text)});
 
 	.base.trailing & {
-		order: 1;
-		margin-inline-start: auto;
+		order: 2;
 	}
 
 	.base.has-meta & {
-		order: 1;
-		margin-inline-start: auto;
+		order: 2;
 	}
 }
 
@@ -107,18 +104,18 @@
 
 	.base.has-meta & {
 		order: 1;
-		margin-inline-start: auto;
 	}
 }
 
 .chevron {
-	margin-inline-start: auto;
+	order: 3;
 }
 
 .text {
 	display: flex;
 	overflow: hidden;
 	flex-direction: column;
+	margin-inline-end: auto;
 }
 
 .text-primary,

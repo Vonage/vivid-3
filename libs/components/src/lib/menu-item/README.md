@@ -197,6 +197,23 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
   </vwc-menu-item>
 </vwc-menu> 
 ```
+### trailing-meta
+Assign nodes to the `trailing-meta` slot to set a badge or an additional icon.
+
+```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 170px;
+  }
+</style>
+<vwc-menu open aria-label="Example menu">
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1">
+  </vwc-menu-item>
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2">
+    <vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+  </vwc-menu-item>
+</vwc-menu> 
+```
 
 ### Submenu
 
@@ -283,9 +300,11 @@ To create a menu item that is anchored to a URL do the following:
 If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
 
 ```html preview
-<vwc-menu open aria-label="Example menu">
+<vwc-menu open aria-label="Example menu" >
 	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
-  	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
+  	<vwc-menu-item role="presentation" text="Go to Vonage" icon='vonage-solid'>
+  		<vwc-icon name='open-line' slot="trailing-meta" size="-5"></vwc-icon>
+  	</vwc-menu-item>
 	</a>
 </vwc-menu>
 ```

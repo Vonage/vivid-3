@@ -12,7 +12,8 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
@@ -29,6 +30,7 @@ $low-ink-color: --_low-ink-color;
 	flex-direction: column;
 	gap: 4px;
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
 }
 
 :host([disabled]) {
@@ -78,6 +80,10 @@ $low-ink-color: --_low-ink-color;
 	&.shape-pill {
 		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
+
+	:host(:focus-visible) & {
+		@include focus.focus;
+	}
 }
 
 .listbox {
@@ -87,6 +93,12 @@ $low-ink-color: --_low-ink-color;
 	padding: 4px;
 	gap: 2px;
 	overflow-y: auto;
+
+	:host([multiple]:focus-visible) & {
+		@include focus.focus;
+
+		border-radius: #{border-radius-variables.$border-radius-normal};
+	}
 }
 
 .icon {
@@ -126,20 +138,5 @@ $low-ink-color: --_low-ink-color;
 
 	:host([multiple]) & {
 		position: static;
-	}
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	border-radius: var(#{variables.$select-control-border-radius});
-	pointer-events: none;
-
-	:host(:not(:focus-visible)) & {
-		display: none;
-	}
-
-	:host([multiple]) & {
-		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-normal};
 	}
 }
