@@ -1,27 +1,27 @@
 [
     {
-        "title": "guidelines",
+        "title": "Guidelines",
         "markdown": "./docs/design/guidelines.md"
     },
     {
-        "title": "color",
+        "title": "Color",
         "markdown": "./docs/design/color.md"
     },
     {
-        "title": "typography",
+        "title": "Typography",
         "markdown": "./docs/design/typography.md"
     },
 		{
-			"title": "appearance",
+			"title": "Appearance",
 			"markdown": "./docs/design/appearance.md",
 			"status": "underlying"
 		},
     {
-        "title": "sizing",
+        "title": "Sizing",
         "markdown": "./docs/design/sizing.md"
     },
     {
-        "title": "customization",
+        "title": "Customization",
         "markdown": "./docs/design/customization.md",
         "status": "underlying"
     }
