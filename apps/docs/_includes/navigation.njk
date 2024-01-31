@@ -4,7 +4,6 @@
     {% endset %}
     <script>{{ componentsFilter | safe }}</script>
     <vwc-nav class="side-nav">
-    		<vwc-nav-item href="{{ '/' | url }}" text="Introduction" {% if ('/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
         <vwc-nav-disclosure label="Getting Started" {% if page.url.includes('/getting-started/') %} open aria-current="true" {% endif %}>
             {% for item in introduction %}
                 <vwc-nav-item href="{{ ('/getting-started/' + (item | pageSlug)) | url }}" text="{{ item.title }}" {% if ('/getting-started/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
