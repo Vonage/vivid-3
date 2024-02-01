@@ -22,25 +22,34 @@ function getPlaybackRatesArray(playbackRates: string | undefined): number[] {
  */
 export class VideoPlayer extends FoundationElement {
 	/**
-	 * Indicates the text's text.
+	 * Reference to am image which is displayed before the video is played
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: poster
 	 */
 	@attr poster?: string;
 
 	/**
-	 * Indicates the text's text.
+	 * Allows the video will play automatically (muted)
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: autoplay
 	 */
 	@attr autoplay?: boolean;
 
 	/**
-	 * Indicates the text's text.
+	 * Allows the video to loop back to the beginning when finished
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: loop
+	 */
+	@attr loop?: boolean;
+
+	/**
+	 * Sets the available playback rates. When an empty string, no choices will be available
 	 *
 	 * @public
 	 * @remarks
@@ -70,10 +79,9 @@ export class VideoPlayer extends FoundationElement {
 			poster: this.poster,
 			controls: true,
 			preload: 'auto',
+			loop: !!this.loop,
 			autoplay: this.autoplay ? 'muted' : false,
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
-		}, () => {
-			control?.classList.add('ready');
 		});
 	}
 

@@ -28,7 +28,7 @@ module.exports = {
 		],
 	},
 	transformIgnorePatterns: [
-		'/node_modules/(?!(@microsoft|exenv-es6|@vivid-nx)/)',
+		'/node_modules/(?!(@microsoft|exenv-es6|@vivid-nx|video.js)/)',
 	],
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
 	coverageDirectory: '../../coverage/libs/components',

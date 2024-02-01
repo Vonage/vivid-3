@@ -21,5 +21,7 @@ export const VideoPlayerTemplate: (
 ) => ViewTemplate<VideoPlayer> = (
 	// context: ElementDefinitionContext
 ) => html<VideoPlayer>`
-	<div class="${getClasses} video-js vjs-16-9"><slot></slot></div>
+	<div class="${getClasses} video-js vjs-16-9">
+		<slot></slot>
+	</div>
 `;
