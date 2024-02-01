@@ -18,7 +18,37 @@ Use the `text` attribute to set the alert's main text.
 - Default: `undefined`
 
 ```html preview
-<vwc-alert text="An important information for you" open></vwc-alert>
+<style>
+.wrapper {
+display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 300px;
+}
+.content {
+	cursor: pointer;
+	margin-top: auto;
+	background-color: var(--vvd-color-cta-600);
+	color: white;
+}
+.content:hover {
+	background-color: var(--vvd-color-announcement-200);
+		color: black;
+}
+</style>
+<div class="wrapper">
+<vwc-alert text="An important information for you" class="alertClass"></vwc-alert>
+
+<vwc-button appearance='outlined' label="Show/Hide alert" onclick="toggleAlert()"></vwc-button>
+<h3 class="content tight">I can't be hovered in the area where alert overlaps me in the middle (or whenever it exists). Pls help</h3>
+</div>
+<script>
+  alert = document.querySelector('vwc-alert');
+  function toggleAlert() {
+    alert.open = !alert.open;
+  }
+</script>
+
 ```
 
 ### Headline
