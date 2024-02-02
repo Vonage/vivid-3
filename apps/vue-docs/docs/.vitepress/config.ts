@@ -30,22 +30,8 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Introduction',
-        collapsed: false,
-        items: [
-          {
-            text: 'What is Vivid Vue',
-            link: '/introduction/what-is-vivid-vue.md'
-          },
-          {
-            text: 'Getting Started',
-            link: '/introduction/getting-started.md'
-          }
-        ],
-      },
-      {
         text: 'Components',
-        collapsed: true,
+        collapsed: false,
         items: getComponentsMenu(components)
       }
     ],

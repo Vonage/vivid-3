@@ -101,8 +101,11 @@
 	// this is for making overflow inside grid to work
 	min-block-size: 0;
 	min-inline-size: 0;
-	overflow-x: hidden;
-	overflow-y: auto;
+
+	.base.scroll & {
+		overflow-y: auto;
+	}
+
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
 		.base.gutters-#{$space} & {

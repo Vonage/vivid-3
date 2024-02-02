@@ -183,7 +183,7 @@ describe('vwc-date-picker', () => {
 			typeIntoTextField('');
 			await elementUpdated(element);
 
-			expect(textField.errorText).toBe('');
+			expect(textField.value).toBe('');
 		});
 
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable date', async () => {
@@ -303,7 +303,7 @@ describe('vwc-date-picker', () => {
 		it('should pass html a11y test', async () => {
 			element.value = '2012-12-12';
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

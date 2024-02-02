@@ -1,7 +1,8 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
 @use "partials/mixins" as mixins;
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
@@ -28,7 +29,6 @@
 	@include connotation.connotation (button);
 	@include appearance.appearance;
 
-	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -57,10 +57,14 @@
 		inline-size: 100%;
 	}
 
-	@supports selector(:focus-visible) {
-		&:focus-visible{
-			outline: none;
-		}
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	&.appearance-filled {
+		#{focus-variables.$focus-stroke-gap-color}: unset;
+	}
+
+	&:focus-visible{
+		@include focus.focus;
 	}
 
 	@supports(user-select: none) {
@@ -179,17 +183,6 @@ slot[name="icon"] {
 
 	.control:not(.stacked) > & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
-	}
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	.appearance-filled & {
-		#{focus-variables.$focus-stroke-gap-color}: unset;
-	}
-	.control:not(:focus-visible) > & {
-		display: none;
 	}
 }
 

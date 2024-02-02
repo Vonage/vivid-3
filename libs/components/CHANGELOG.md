@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.48.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.47.0...vivid-v3.48.0) (2024-01-31)
+
+
+### Features
+
+* **menu-item:** slot trailing-meta (VIV-1522) ([#1554](https://github.com/Vonage/vivid-3/issues/1554)) ([cdd6e37](https://github.com/Vonage/vivid-3/commit/cdd6e37ee056979ce73d55bfb0f4d4dec56f2e69))
+* **tabs:** add tab scroll panel as property (VIV-1528) ([#1555](https://github.com/Vonage/vivid-3/issues/1555)) ([73450ff](https://github.com/Vonage/vivid-3/commit/73450ffa84e1df4a40f6a2acbbe4438fe8c2ec45))
+
 ## [3.47.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.46.0...vivid-v3.47.0) (2024-01-24)
 
 
