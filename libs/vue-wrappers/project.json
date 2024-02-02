@@ -21,8 +21,8 @@
 				"cwd": "libs/vue-wrappers",
 				"commands": [
 					"npx tsc --emitDeclarationOnly --project ./tsconfig.lib.json",
-					"npx tsx scripts/buildTypings.ts",
-					"npx tsx scripts/updateDependencyVersion.ts",
+					"npx tsx scripts/buildTypings.cts",
+					"npx tsx scripts/updateDependencyVersion.cts",
 					"cp web-types.json ../../dist/libs/vue-wrappers/"
 				],
 				"parallel": false

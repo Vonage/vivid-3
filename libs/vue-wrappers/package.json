@@ -4,15 +4,16 @@
   "description": "A Vue wrapper library for Vivid components.",
   "author": "Vonage",
   "license": "ISC",
-  "main": "./index.umd.js",
-  "module": "./index.es.js",
+  "type": "module",
+  "module": "./index.js",
+  "main": "./index.cjs",
   "types": "./index.d.ts",
   "web-types": "./web-types.json",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.es.js",
-      "require": "./index.umd.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
   },
   "peerDependencies": {
