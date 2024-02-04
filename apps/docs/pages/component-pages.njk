@@ -4,7 +4,7 @@ pagination:
     data: components
     size: 1
     alias: component
-permalink: "components/{{ component.title | slug }}/"
+permalink: "components/{{ component | pageSlug }}/"
 ---
 
 {% extends '../_layouts/base.njk' %}

@@ -2,7 +2,7 @@
 
 ## Typefaces
 
-Set the font custom properties of your choice (or all) to override the default typography styles with your own.
+Vivid defines a set of typefaces presets that are used by the components.
 
 ```css
 --vvd-typography-headline
@@ -20,60 +20,6 @@ Set the font custom properties of your choice (or all) to override the default t
 --vvd-typography-base-extended-bold
 ```
 
-
-```html preview
-<style>
-  :root {
-  --vvd-typography-heading-4: 500 20px/1.4 Georgia;
-  --vvd-typography-base-code: 400 16px monospace;
-  --vvd-typography-base-bold: 500 16px Georgia;
-  }
-</style>
-<vwc-header>
-  This header typeface is set by '--vvd-typography-heading-4' 
-</vwc-header>
-<pre>/*
- * This block of code typeface is set by '--vvd-typography-base-code'
- */
-</pre>
-<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
-```
-
----
-
-## Font size
-
-Use `--vvd-size-font-scale-base` to define the base font size which all typefaces sizes are based on.
-
-- Default: `'16px'`
-
-Note that when using the [core styles](/#core-optional) with the `vvd-root` class set on the root element (i.e., `<html>`), the user-agent's default font size is unset (generally default to `'16px'`) and the `--vvd-size-font-scale-base` custom property is set to `'1rem'` to ensure end user's font size preferences are respected.
-
-```html preview
-<style>
- .vvd-root:root {
-  --vvd-size-font-scale-base: 1.3rem;
- }
-</style>
-
-<vwc-header>
-  This header's title is 30% larger
-</vwc-header>
-
-<pre>/*
- * This block of code too
- */
-</pre>
-
-<vwc-button appearance="filled" label="And the button label"></vwc-button>
-```
-
----
-
-## Typefaces preset
-
-The following CSS custom properties can be referred to style the text in your application with the Vivid design language:
-
 ```html preview
 <div style="font: var(--vvd-typography-headline)">headline</div>
 <div style="font: var(--vvd-typography-subtitle)">subtitle</div>
@@ -90,17 +36,13 @@ The following CSS custom properties can be referred to style the text in your ap
 <div style="font: var(--vvd-typography-base-code)">base-code</div>
 ```
 
+## Core Typography
 
+Vivid provides an optional [core typography](/guides/styles/#core-typography) stylesheet that applies the Vivid typography presets to HTML elements such as `h1`, `h2`, `p` etc. and adds utility classes (e.g. `font-base`) to apply the typography to any element.
 
-## Using Vivid Typography
+All headings and `p` elements also receive a `margin-block`. Use the `tight` class to remove it.
 
-The Vivid typography css is optional. To use it, you will need to [include the typography styles](/getting-started/advanced).
-
-The typography style target both HTML tags and css classes.  
-All `headlines` and `p` elements also get `margin-block`.  
-Use the class `tight` to remove `margin-block`.  
-
-### HTML tags
+### HTML Tags
 
 ```html preview
 <style>
@@ -134,7 +76,7 @@ Use the class `tight` to remove `margin-block`.
 </div>
 ```
 
-### Css Classes
+### CSS Classes
 
 ```html preview
 <style>
@@ -161,3 +103,51 @@ Use the class `tight` to remove `margin-block`.
 </div>
 ```
 
+## Font Size
+
+Use `--vvd-size-font-scale-base` to define the base font size which all typefaces sizes are based on.
+
+- Default: `'16px'`
+
+Note that when using the [core typography](/guides/styles/#core-typography) styles with the `vvd-root` class set on the `<html>` element, the font-size is unset and the `--vvd-size-font-scale-base` custom property is set to `'1rem'` to ensure the end user's font size preferences are respected.
+
+```html preview
+<style>
+ .vvd-root:root {
+  --vvd-size-font-scale-base: 1.3rem;
+ }
+</style>
+
+<vwc-header>
+  This header's title is 30% larger
+</vwc-header>
+
+<pre>/*
+ * This block of code too
+ */
+</pre>
+
+<vwc-button appearance="filled" label="And the button label"></vwc-button>
+```
+
+## Customizing Typefaces
+
+Set the font custom properties of your choice (or all) to override the default typography styles with your own.
+
+```html preview
+<style>
+  :root {
+  --vvd-typography-heading-4: 500 20px/1.4 Georgia;
+  --vvd-typography-base-code: 400 16px monospace;
+  --vvd-typography-base-bold: 500 16px Georgia;
+  }
+</style>
+<vwc-header>
+  This header typeface is set by '--vvd-typography-heading-4' 
+</vwc-header>
+<pre>/*
+ * This block of code typeface is set by '--vvd-typography-base-code'
+ */
+</pre>
+<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
+```

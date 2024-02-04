@@ -119,6 +119,7 @@ vwc-header {
 .header-content-wrapper {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .header-content-wrapper > * {
@@ -271,6 +272,7 @@ article.article > h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+	align-self: flex-start;
 }
 
 /* #endregion footer */
@@ -453,8 +455,10 @@ th {
 /* #endregion table */
 
 .welcome {
+  padding: 44px;
+  display: flex;
+  gap: 32px;
   align-items: center;
-  text-align: center;
 }
 
 @media (min-width: 960px) {
@@ -469,13 +473,43 @@ th {
 	}
 }
 
-.buttons-wrapper {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
+@media (min-width: 1360px) {
+  .welcome {
+    flex-direction: row-reverse;
+  }
+}
+
+.welcome__hero {
+  max-width: 600px;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+}
+
+.welcome h1 {
+  margin-block-end: 16px !important;
+}
+
+.welcome__getting-started {
+  margin-block-start: 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  flex-wrap: wrap;
+}
+
+.welcome__buttons {
+  display: flex;
+  gap: 8px;
 }
 
 .welcome-media {
   inline-size: 100%;
   block-size: auto;
+}
+
+a:focus-visible {
+	outline: 2px solid var(--vvd-color-canvas-text);
+	outline-offset: 1px;
+	border-radius: 2px;
 }

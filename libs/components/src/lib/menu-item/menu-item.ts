@@ -22,6 +22,7 @@ export enum CheckAppearance {
  *
  * @public
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
+ * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
  */
 export class MenuItem extends FastMenuItem {
@@ -58,11 +59,12 @@ export class MenuItem extends FastMenuItem {
 
 	/**
 	 *
-	 * Meta slot observer:
+	 * Meta & Trailing-meta slot observer:
 	 *
 	 * @internal
 	 */
 	@observable metaSlottedContent?: HTMLElement[];
+	@observable trailingMetaSlottedContent?: HTMLElement[];
 	/**
 	 *
 	 * Submenu slot observer:

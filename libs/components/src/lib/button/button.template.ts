@@ -2,7 +2,6 @@ import { ViewTemplate, when } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
@@ -59,7 +58,6 @@ export const buttonTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
 	<button
@@ -93,10 +91,7 @@ export const buttonTemplate: (
 		title="${x => x.title}"
 		${ref('control')}
 	>
-		${() => focusTemplate}
-
 		${x => renderIconOrPending(context, x.icon, x.pending, x.size)}
-
 		${when(x => x.label, html`<span class="text">${(x) => x.label}</span>`)}
 	</button>
 `;

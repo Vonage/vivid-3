@@ -11,14 +11,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template =`
 		<style>
 			div {
-				width: 100%;
-				height: 1550px;
+				width: 250px;
+				height: 1800px;
 				position: relative
 			}
 		</style>
 
 		<div>
-			<vwc-menu open style="--menu-block-size: auto; --menu-max-inline-size: 184px;">
+			<vwc-menu open style="--menu-block-size: auto; --menu-max-inline-size: 230px;">
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 				<vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
 				<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text"></vwc-menu-item>
@@ -67,6 +67,27 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-menu-item text="Busy" role="menuitemcheckbox" checked>
 					<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
 				</vwc-menu-item>
+				<vwc-menu-item text="Available" icon="image-line">
+			 <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
+					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+			</vwc-menu-item>
+			<vwc-menu-item text="Away" role="menuitemradio" icon="image-line">
+				<vwc-badge slot="meta" appearance='filled' connotation='warning' shape='pill' icon='clock-line'></vwc-badge>
+					 <vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+			</vwc-menu-item>
+			<vwc-menu-item text="Busy" role="menuitemcheckbox" icon="image-line">
+				<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
+					 <vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+			</vwc-menu-item>
+			<vwc-menu-item text="Available" icon="image-line">
+			 <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
+					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+					<vwc-menu slot="submenu"><vwc-menu-item text="Menu item 1.1"></vwc-menu-item></vwc-menu>
+			</vwc-menu-item>
+			<vwc-menu-item text="Go to AI Studio" icon="ai-3-line">
+					<vwc-icon name='open-line' slot="trailing-meta"></vwc-icon>
+					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+			</vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
