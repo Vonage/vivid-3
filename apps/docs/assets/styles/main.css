@@ -174,25 +174,25 @@ article > .cbd-container {
 @media (min-width: 960px) {
   article > pre,
   article > .cbd-container {
-    max-inline-size: 1200px;
+    max-inline-size: 1000px;
   }
 }
 
-.welcome,
 article.article > h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: var(--vvd-color-neutral-800);
-  background-color: var(--vvd-color-neutral-100);
-  padding-block: 60px;
+  padding-block: 40px;
   border-bottom: 1px solid var(--vvd-color-neutral-200);
+  text-align: center;
+  font-weight: 600;
+  max-inline-size: 1000px;
+  background-image: linear-gradient(to left,rgba(255,0,0,0), var(--vvd-color-cta-50), rgba(255,0,0,0));
 }
 
 @media (min-width: 960px) {
   article.article > h1 {
-    padding-inline: 32px;
-    margin-inline: -32px;
     margin-block-start: 0;
   }
 }
@@ -221,6 +221,11 @@ article.article > h1 {
   display: none;
 }
 
+.heading-wrapper > h2 {
+  text-align: center;
+  background-image: linear-gradient(to left,rgba(255,0,0,0), var(--vvd-color-cta-50), rgba(255,0,0,0));
+}
+
 .article {
   padding-inline: 16px;
   word-break: break-word;
@@ -228,7 +233,8 @@ article.article > h1 {
 
 @media (min-width: 960px) {
   .article {
-    padding-inline: 32px;
+    padding-inline: 124px;
+    max-inline-size: 1000px;
   }
 }
 
@@ -247,11 +253,12 @@ article.article > h1 {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-inline-size: 1000px;
 }
 
 @media (min-width: 960px) {
   .footer {
-    padding-inline: 32px;
+    padding-inline: 124px;
   }
 }
 
@@ -274,6 +281,7 @@ article.article > h1 {
   overflow: hidden;
   border: none;
   width: 100%;
+  height: 30px;
   border-radius: 6px 6px 0 0;
 }
 
@@ -443,20 +451,23 @@ th {
 
 .welcome {
   padding: 44px;
+  background-image: linear-gradient(to left,rgba(255,0,0,0), var(--vvd-color-neutral-100), rgba(255,0,0,0));
   display: flex;
   gap: 32px;
   align-items: center;
+  border-bottom: 1px solid var(--vvd-color-neutral-200);
+  max-inline-size: 1200px;
 }
 
 @media (min-width: 960px) {
 .welcome {
-    margin-inline: -32px;
+    margin-inline: -64px;
   }
 }
 
 @media (max-width: 960px) {
 	.welcome {
-		margin-inline: -16px;
+		margin-inline: -32px;
 	}
 }
 
