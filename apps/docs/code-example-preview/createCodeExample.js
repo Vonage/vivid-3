@@ -67,7 +67,7 @@ const renderiFrame = (
 				<div>${localeSwitcher}</div>
 				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
 					<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
-					<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="compose-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+					<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
 					<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
 				</vwc-action-group>
 			</div>
@@ -125,7 +125,7 @@ const layout = (code, optionsList) => {
 	if (optionsList.includes('full')) return code;
 	if (optionsList.includes('center')) return `<div id="_target" class="center">${code}</div>`;
 	if (optionsList.includes('blocks')) return useLayout(code, true, 'block');
-	if (optionsList.includes('blocks')) return useLayout(code, true, 'medium');
+	if (optionsList.includes('columns')) return useLayout(code, true, 'medium');
 	return useLayout(`<div id="_target">${code}</div>`, false);
 }
 
