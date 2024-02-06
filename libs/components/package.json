@@ -15,7 +15,7 @@
       "import": "./*/index.js",
       "require": "./*/index.cjs"
     },
-    "./locales/*.js": {
+    "./locales/*": {
       "types": "./locales/*.d.ts",
       "import": "./locales/*.js",
       "require": "./locales/*.cjs"
