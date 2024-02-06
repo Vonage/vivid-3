@@ -4,7 +4,7 @@ pagination:
     data: introduction
     size: 1
     alias: doc
-permalink: "getting-started/{{ doc.title | slug }}/"
+permalink: "getting-started/{{ doc | pageSlug }}/"
 ---
 
 {% extends '../_layouts/base.njk' %}

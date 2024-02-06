@@ -27,6 +27,7 @@ const defaultConnotation =
  *
  * @public
  * @slot action-items - Add action items to banner using this slot.
+ * @slot icon - Add an icon to the component.
  */
 export class Banner extends FoundationElement {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel: string | null = null;
