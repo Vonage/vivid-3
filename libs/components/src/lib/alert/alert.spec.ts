@@ -194,6 +194,11 @@ describe('vwc-alert', () => {
 
 			expect(element.style.display).toEqual('none');
 		});
+		it('should be display contents when is open', async function () {
+			element.open = true;
+			await elementUpdated(element);
+			expect(element.style.display).toEqual('contents');
+		});
 	});
 
 	describe('icon', function () {
