@@ -199,7 +199,7 @@ If set, the `icon` attribute is ignored.
 			}
 	}
 </style>
-<vwc-button>
+<vwc-button aria-label="Mute">
   <vwc-icon slot="icon">
   	<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   		<g>
@@ -213,6 +213,11 @@ If set, the `icon` attribute is ignored.
 ```
 
 ## Accessibility 
+
+Add an `aria-label` or `title` attribute if the button does not have a label or the label is not descriptive enough.
+
+Icons are purely decorative and are hidden from assistive technology. Ensure that the button's purpose is still clear without the icon.
+
 When deciding between `aria-label` or `title`, keep in mind that `aria-label` is better for accessibility.  
 The assistive technology will read the `aria-label` text rather than the `title` if both are set.
 
