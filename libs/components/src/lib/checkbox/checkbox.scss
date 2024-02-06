@@ -79,12 +79,13 @@ $gutter: 2px;
 
 		&::before {
 			@include focus.focus;
+
+			position: absolute;
+			display: block;
+			block-size: $size;
+			border-radius: 2px;
 			content: "";
 			inline-size: $size;
-			block-size: $size;
-			display: block;
-			border-radius: 2px;
-			position: absolute;
 		}
 	}
 }

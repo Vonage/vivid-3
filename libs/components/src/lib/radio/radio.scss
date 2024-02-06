@@ -81,12 +81,13 @@ $control-border: 2px;
 
 		&::before {
 			@include focus.focus;
+
+			position: absolute;
+			display: block;
+			block-size: $control-size;
+			border-radius: inherit;
 			content: "";
 			inline-size: $control-size;
-			block-size: $control-size;
-			display: block;
-			border-radius: inherit;
-			position: absolute;
 		}
 	}
 }
