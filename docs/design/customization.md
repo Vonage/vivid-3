@@ -1,11 +1,8 @@
 # Customization
 
----
-
 Colors can be overridden by setting CSS variables.  
 Each component has a set of tokens that are needed for full customization of the component and its states (hover, selected, active etc.).
 
----
 
 ## CSS Variables
 The exposed CSS variables follow this structure:
