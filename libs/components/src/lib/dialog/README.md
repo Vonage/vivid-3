@@ -314,6 +314,9 @@ Note that all styles will be overridden including the dialog's padding. See the 
 
 ```html preview
 <style>
+	html {
+		block-size: 100px; /* for demo purposes */
+	}
   .demo-main {
     padding: 8px;
   }
@@ -404,6 +407,11 @@ vwc-dialog {
 
 Use the `showModal` method to open a dialog as a modal. It will display in the [top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer). Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 400px;
+  }
+</style>
 <vwc-button label="Open Modal Dialog" onclick="document.querySelector('vwc-dialog').showModal()"></vwc-button>
 <vwc-dialog headline="Modal Dialog"></vwc-dialog>
 ```

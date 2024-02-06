@@ -37,6 +37,11 @@ Use the `label` member to set the combobox's label.
 Set the `value` attribute to set the default value for the input field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview
+<style>
+	html {
+		block-size: 200px; /* for demo purposes */
+	}
+</style>
 <vwc-combobox value="First Option">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -70,6 +75,11 @@ Add a `placeholder` attribute to add placeholder text to the input.
 See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) for more information.
 
 ```html preview
+<style>
+	html {
+		block-size: 200px; /* for demo purposes */
+	}
+</style>
 <vwc-combobox autocomplete="both">
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>
@@ -84,6 +94,11 @@ Use the `open` member to set the combobox's open state.
 - Default: `false`
 
 ```html preview
+<style>
+	html {
+		block-size: 200px; /* for demo purposes */
+	}
+</style>
 <vwc-combobox open>
   <vwc-option text="First Option"></vwc-option>
   <vwc-option text="Second Option"></vwc-option>
@@ -148,6 +163,11 @@ Add the `disabled` attribute to disable the combobox.
 Place [vwc-option](../../components/option) elements inside the default slot to create the list of suggested options.
 
 ```html preview
+<style>
+	html {
+		block-size: 200px; /* for demo purposes */
+	}
+</style>
 <vwc-combobox>
  <vwc-option text="First Option"></vwc-option>
  <vwc-option text="Second Option"></vwc-option>

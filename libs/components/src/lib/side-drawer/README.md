@@ -105,6 +105,11 @@ Use the `trailing` attribute to set the side of the drawer.
 The default slot sets assigned nodes to the side drawer itself.
 
 ```html preview full
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
@@ -152,6 +157,9 @@ Additionally, as the *base* element (which represents the actual side-drawer), i
 
 ```html preview full
 <style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
   vwc-side-drawer {
     --side-drawer-app-content-offset: 230px;
   }
@@ -184,6 +192,9 @@ Select `base` part to access the component's internal *base* element (which repr
 
 ```html preview full
 <style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
   vwc-side-drawer::part(base) {
     background-color: var(--vvd-color-neutral-50);
   }

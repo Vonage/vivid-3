@@ -22,6 +22,11 @@ Do not target non-interactive controls as a tooltip's anchor (such as non-focusa
 - Default: `undefined`
 
 ```html preview center
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
 <vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 
@@ -50,6 +55,11 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 - Default: `'left'`
 
 ```html preview center
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-button id="anchor" appearance='outlined' label='This is an anchor'></vwc-button>
 <vwc-tooltip anchor="anchor" text="right" placement="right"></vwc-tooltip>
 <vwc-tooltip anchor="anchor" text="left" placement="left"></vwc-tooltip>

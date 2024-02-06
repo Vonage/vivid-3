@@ -9,6 +9,11 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 ```
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -25,6 +30,11 @@ The `open` attribute controls the visibility of the menu.
 - Default: `false`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -109,6 +119,11 @@ Use the `placement` attribute to control the position of the menu relative to it
 - Default: `'bottom'`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <div style="position: relative; text-align: end;">
   <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
@@ -135,6 +150,11 @@ The default slot for the menu items.
 While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu `item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -187,6 +207,9 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
 ```html preview
 <style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
   vwc-menu {
     --menu-max-inline-size: 300px;
   }
@@ -205,6 +228,9 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 ```html preview
 <style>
+   html { /* for demo purposes */
+    block-size: 150px;
+  }
   vwc-menu {
     --menu-min-inline-size: 300px;
   }
@@ -223,6 +249,9 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 ```html preview
 <style>
+   html { /* for demo purposes */
+    block-size: 150px;
+  }
   vwc-menu {
     --menu-block-size: 100px;
   }

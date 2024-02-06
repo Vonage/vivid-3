@@ -7,7 +7,11 @@
 ```
 
 ```html preview
-
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -23,6 +27,11 @@
 Use the `text` attribute to set the menu item's text.
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -38,6 +47,11 @@ Use the `text-secondary` attribute (or `textSecondary` property) to set the menu
 Note: to improve readability, **avoid long text and multiple lines** where possible.
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu">
  <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
 </vwc-menu>
@@ -87,6 +101,11 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 - Default: `undefined`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
 </vwc-menu>
@@ -129,7 +148,7 @@ When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the
 ```html preview
 <style>
 	html { 
-		block-size: 400px; 
+		block-size: 200px; 
 	}
 </style>
 <vwc-menu open aria-label="Example menu">
@@ -149,6 +168,11 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 - Default: `false`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -162,6 +186,11 @@ The disabled state of the element
 - Default: `false`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -222,7 +251,7 @@ Assign menu to the `submenu` slot to create a submenu.
 ```html preview
 <style>
   html { /* for demo purposes */
-		block-size: 250px;
+		block-size: 200px;
 	}
 </style>
 <vwc-menu open aria-label="Example menu">
@@ -276,11 +305,14 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 ```html preview
 <style>
-vwc-menu {
- --text-primary-line-clamp: auto; 
- --text-secondary-line-clamp: auto;
- --menu-max-inline-size: 200px;
-}
+  html { /* for demo purposes */
+    block-size: 150px;
+  }
+  vwc-menu {
+  --text-primary-line-clamp: auto; 
+  --text-secondary-line-clamp: auto;
+  --menu-max-inline-size: 200px;
+  }
 </style>
 <vwc-menu open aria-label="Example menu">
  <vwc-menu-item text="primary text with long text and auto line clamp"
@@ -300,6 +332,11 @@ To create a menu item that is anchored to a URL do the following:
 If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-menu open aria-label="Example menu" >
 	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
   	<vwc-menu-item role="presentation" text="Go to Vonage" icon='vonage-solid'>

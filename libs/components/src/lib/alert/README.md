@@ -18,6 +18,11 @@ Use the `text` attribute to set the alert's main text.
 - Default: `undefined`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert text="An important information for you" open></vwc-alert>
 ```
 
@@ -29,6 +34,11 @@ Use the `headline` attribute to add a headline to your alert.
 - Default: `undefined`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert headline="This requires your attention" text="An important information for you" open></vwc-alert>
 ```
 
@@ -98,6 +108,11 @@ over the connotation's icon, if any.
 - Default: `''`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert text="An important information for you" open icon="megaphone-solid"></vwc-alert>
 ```
 
@@ -144,6 +159,11 @@ Use the `removable` attribute to add a close button to the alert.
 - Default: `false`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert text="An important information for you" removable open></vwc-alert>
 
 <vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
@@ -183,6 +203,11 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 If you want to add rich content to your alert, you can use the main slot.
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert open>
   <vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
 </vwc-alert>
@@ -193,6 +218,11 @@ If you want to add rich content to your alert, you can use the main slot.
 You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the alert.
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert text="An important information for you" open>
   <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
@@ -207,6 +237,11 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 - Default: `420px`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open>
 ```
 
@@ -218,6 +253,11 @@ This is helpful to prevent the alert from becoming too wide when displaying a lo
 - Default: `fit-content`
 
 ```html preview
+<style>
+  html { /* for demo purposes */
+    block-size: 100px;
+  }
+</style>
 <vwc-alert style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open>
 ```
 
