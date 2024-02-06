@@ -24,8 +24,16 @@
 		"markdown": "./libs/components/src/lib/alert/README.md"
 	},
 	{
+		"title": "Breadcrumb",
+		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
+		"children": [
+			"Breadcrumb Item"
+		]
+	},
+	{
 		"title": "Breadcrumb Item",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md"
+		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+		"parent": "Breadcrumb"
 	},
 	{
 		"title": "Button",
