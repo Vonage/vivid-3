@@ -195,9 +195,6 @@ describe('vwc-alert', () => {
 			expect(element.style.display).toEqual('none');
 		});
 		it('should be display contents when is open', async function () {
-			element.open = false;
-			await elementUpdated(element);
-			expect(element.style.display).toEqual('none');
 
 			element.open = true;
 			getControlElement(element).dispatchEvent(new Event('transitionend'));
