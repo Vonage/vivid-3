@@ -3,7 +3,6 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { CheckboxOptions, FoundationElementTemplate } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { Icon } from '../icon/icon';
 import type { Checkbox } from './checkbox';
 
@@ -36,7 +35,6 @@ const getClasses = ({
  * @public
  */
 export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>, CheckboxOptions> = (context) => {
-	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
 	return html`<template role="${x => x.ariaLabel ? 'presentation' : null}">
@@ -53,7 +51,6 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 			<div class="control">
 				${when(x => x.checked, html<Checkbox>`<${iconTag} name="check-solid" class="icon"></${iconTag}>`)}
 				${when(x => x.indeterminate, html<Checkbox>`<${iconTag} name="minus-solid" class="icon"></${iconTag}>`)}
-				${() => focusTemplate}
 			</div>
 			${html<Checkbox>`<label>${x => x.label}<slot ${slotted('slottedContent')}></slot></label>`}
 		</div>
