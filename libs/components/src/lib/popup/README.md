@@ -194,6 +194,75 @@ Use the `strategy` attribute to set the placement strategy.
 </script>
 ```
 
+## CSS Variables
+
+### Z-Index
+
+Use the `--popup-z-index` CSS variable to set the z-index of the popup.
+
+- Default: `10`
+
+```html preview
+<style>
+	#anchor {
+		text-align: center;
+	}
+	#popup {
+		--popup-z-index: 12;
+	}
+	#block {
+		position: relative;
+		z-index: 11;
+		background: black;
+		block-size: 50px;
+	}
+</style>
+<div id="anchor">
+  ⚓️
+</div>
+<vwc-popup id="popup" strategy="absolute" open>
+  This is a popup.
+</vwc-popup>
+<div id="block"></div>
+<script>
+	popup.anchor = anchor;
+</script>
+```
+
+### Display
+
+Use the `--popup-display` CSS variable to change the `display` of the popup.
+
+When display is not set to `contents`, the host element will be considered an empty element that is not removed the document flow, therefore 
+affecting things like flexbox layout.
+
+The default should really be `contents`, but is not due to backwards compatibility.
+
+- Default: `inline`
+
+```html preview
+<style>
+	.container {
+		display: flex;
+		gap: 100px;
+	}
+	#popup {
+		--popup-display: contents;
+	}
+</style>
+<div class="container">
+	<span>😀</span>
+	<span id="anchor">⚓️</span>
+	<vwc-popup id="popup" strategy="absolute" open>
+		This is a popup.
+	</vwc-popup>
+	<span>😀</span>
+</div>
+<script>
+	popup.anchor = anchor;
+</script>
+```
+
 ## Methods
 
 <div class="table-wrapper">
