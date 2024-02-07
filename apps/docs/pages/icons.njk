@@ -4,7 +4,7 @@ pagination:
     data: icons
     size: 1
     alias: icon
-permalink: "icons/{{ icon.title | slug }}/"
+permalink: "icons/{{ icon | pageSlug }}/"
 ---
 
 {% extends '../_layouts/base.njk' %}

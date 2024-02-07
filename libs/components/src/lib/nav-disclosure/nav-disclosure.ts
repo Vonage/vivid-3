@@ -9,6 +9,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @public
  * @slot - Default slot.
  * @slot meta - A slot to add additional content to the nav disclosure.
+ * @slot icon - Add an icon to the component.
  * @event toggle - Event emitted when the nav disclosure is toggled.
  */
 export class NavDisclosure extends FoundationElement {

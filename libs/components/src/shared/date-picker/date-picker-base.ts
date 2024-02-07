@@ -27,6 +27,8 @@ const ValidDateFilter: ValueConverter = {
 /**
  * Base class for date-picker
  *
+ * @event clear-click - Event emitted when the clear value changes
+ *
  * @public
  */
 export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
@@ -274,11 +276,8 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		}
 	};
 
-	/// Used to stop the popup from immediately opening when closing popup and returning focus to text field
-	#isClosingPopup = false;
-
 	#openPopupIfPossible() {
-		if (!this.readOnly && !this.#isClosingPopup) {
+		if (!this.readOnly) {
 			this._popupOpen = true;
 		}
 	}
@@ -291,9 +290,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		this._monthPickerYear = null;
 
 		if (restoreFocusToTextField) {
-			this.#isClosingPopup = true;
 			this._textFieldEl.focus();
-			this.#isClosingPopup = false;
 		}
 	}
 
