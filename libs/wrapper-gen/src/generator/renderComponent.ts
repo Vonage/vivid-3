@@ -71,6 +71,10 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
     }
   }
 
+	if (isVue3Stub) {
+		typeImports.push({ name: 'SlotsType', fromModule: vueModule });
+	}
+
   /**
    * All props should be forwarded.
    * Vue requires us to filter out undefined properties
@@ -141,6 +145,12 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
       handleNamedSlot('${slot.name}', this.$slots['${slot.name}'])`
     )
     .join(',');
+
+	const slotsSrc = isVue3Stub ? `slots: Object as SlotsType<${componentDef.slots.length ? `{
+		${componentDef.slots.map(slot => `
+		${renderJsDoc(slot.description)}
+		"${slot.name}": Record<string, never>`).join('\n')}
+	}` : 'Record<string, never>'}>,` : '';
 
   if (namedSlotsSource) imports.push({ name: 'handleNamedSlot', fromModule: '../../utils/slots' });
 
@@ -273,6 +283,7 @@ export default defineComponent({
   methods: {
   	${methodDefinitionsSrc}
 	},
+	${slotsSrc}
   setup(props, ctx) {
     const componentName = registerComponent('${componentDef.name}', ${componentDef.registerFunctionName});
 
