@@ -4,7 +4,7 @@
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
-	$shades: backdrop intermediate primary soft,
+	$shades: intermediate primary soft,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;

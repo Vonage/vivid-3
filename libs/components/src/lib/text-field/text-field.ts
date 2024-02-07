@@ -166,10 +166,10 @@ export class TextField extends FoundationTextfield {
 				this.handleChange();
 			});
 			input.addEventListener('blur', () => {
-				this.$emit('blur');
+				this.$emit('blur', undefined, { bubbles: false });
 			});
 			input.addEventListener('focus', () => {
-				this.$emit('focus');
+				this.$emit('focus', undefined, { bubbles: false });
 			});
 
 			this.appendChild(input);
