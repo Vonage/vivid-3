@@ -231,7 +231,7 @@ article.article > h1 {
   word-break: break-word;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   .article {
     padding-inline: 124px;
     max-inline-size: 1000px;
