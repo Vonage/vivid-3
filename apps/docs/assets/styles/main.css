@@ -281,7 +281,7 @@ article.article > h1 {
   overflow: hidden;
   border: none;
   width: 100%;
-  height: 30px;
+  block-size: 30px;
   border-radius: 6px 6px 0 0;
 }
 
