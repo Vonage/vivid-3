@@ -256,7 +256,7 @@ article.article > h1 {
   max-inline-size: 1000px;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   .footer {
     padding-inline: 124px;
   }
