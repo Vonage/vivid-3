@@ -725,23 +725,25 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('focus event', function () {
-		it('should emit a focus event when the input receives focus', async function () {
+		it('should emit a non-bubbling focus event when the input receives focus', async function () {
 			const internalInput = getInput();
 			const focusSpy = jest.fn();
 			element.addEventListener('focus', focusSpy);
 			internalInput.focus();
-			expect(focusSpy).toHaveBeenCalled();
+			expect(focusSpy).toHaveBeenCalledTimes(1);
+			expect(focusSpy).toHaveBeenCalledWith(expect.objectContaining({bubbles: false}));
 		});
 	});
 
 	describe('blur event', function () {
-		it('should emit a blur event when the input is blurred', async function () {
+		it('should emit a non-bubbling blur event when the input is blurred', async function () {
 			const internalInput = getInput();
 			const blurSpy = jest.fn();
 			element.addEventListener('blur', blurSpy);
 			internalInput.focus();
 			internalInput.blur();
-			expect(blurSpy).toHaveBeenCalled();
+			expect(blurSpy).toHaveBeenCalledTimes(1);
+			expect(blurSpy).toHaveBeenCalledWith(expect.objectContaining({bubbles: false}));
 		});
 	});
 

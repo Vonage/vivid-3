@@ -1,0 +1,106 @@
+# Publishes a branch as a pre-release version to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      change_type:
+        description: 'Determines which part of the version to increment (major, minor, patch)'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+      preview_version:
+        description: 'Number at the end of the version string (3.0.0-preview.X). Increment by 1 for each pre-release version.'
+        required: true
+        type: string
+        default: '0'
+
+name: pre-release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: set-vivid-version
+        working-directory: ./libs/components
+        run: |
+          npm version ${{ github.event.inputs.change_type }} --no-git-tag-version
+          VERSION=$(node -p "require('./package.json').version")-preview.${{ github.event.inputs.preview_version }}
+          npm version $VERSION --no-git-tag-version
+
+      - name: sync-vivid-vue-version
+        working-directory: ./libs/vue-wrappers
+        run: |
+          npm version $(node -p "require('../components/package.json').version") --no-git-tag-version
+
+      - name: build
+        run: |
+          npm ci --ignore-scripts
+          npx nx run components:build
+          npx nx run components:generateMeta
+          npx nx run vue-wrappers:build
+
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts
+          path: dist/
+
+  npm-publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          name: release-artifacts
+          path: dist/
+
+      - name: publish vivid npm package
+        run: npm publish --tag preview dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+      - name: publish vivid-vue npm package
+        run: npm publish --tag preview dist/libs/vue-wrappers --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+  github-publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          name: release-artifacts
+          path: dist/
+
+      - name: publish vivid to github packages
+        run: npm publish --tag preview ./dist/libs/components --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
+
+      - name: publish vivid-vue to github packages
+        run: npm publish --tag preview ./dist/libs/vue-wrappers --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
