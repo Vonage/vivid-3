@@ -89,9 +89,14 @@ const createiFrameContent = (
 	classList,
 	index
 ) => {
+	let numberWithPx = '';
+	for (const item of classList) {
+		const match = item.match(/\d+px/);
+		numberWithPx = match ? match[0] : '';
+	}
 	const document =
 		`<!DOCTYPE html>
-		 <html class="vvd-root" lang="en-US">
+		 <html class="vvd-root" lang="en-US" style="block-size: ${numberWithPx};">
 			<head>
 				${IFRAME_STYLE}
 			 	${FONTS}

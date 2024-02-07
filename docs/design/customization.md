@@ -154,13 +154,7 @@ Click on "Edit code" to be able to modify the variables.
 
 ### Menu Item
 
-```html variables-preview[menu-item]
-<style>
-  html { 
-    block-size: 360px; 
-  }
-</style>
-
+```html variables-preview[menu-item] 360px
 <vwc-menu open>
   <vwc-menu-item role="menuitem" text="Menu item 1" text-secondary="secondary text"></vwc-menu-item>
   <vwc-divider></vwc-divider>
@@ -257,11 +251,8 @@ Click on "Edit code" to be able to modify the variables.
 
 ### Select
 
-```html variables-preview[select] no-tabs
+```html variables-preview[select] no-tabs 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 150px;
   }

@@ -131,10 +131,11 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 #### horizontal
 ```html preview full
 <style>
-  .tabs {
-		block-size: 200px;  
-  }
+    .tabs {
+        block-size: 200px;  
+    }
 </style>
+
 <vwc-tabs class="tabs" gutters="small" scrollable-panel>
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
@@ -166,10 +167,11 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 #### Vertical
 ```html preview full
 <style>
-  .tabs {
-		block-size: 150px;  
-  }
+    .tabs {
+        block-size: 200px;  
+    }
 </style>
+
 <vwc-tabs class="tabs" gutters="small" scrollable-panel orientation="vertical">
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>

@@ -8,12 +8,7 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 </script>
 ```
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
-</style>
+```html preview 150px
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -29,12 +24,7 @@ The `open` attribute controls the visibility of the menu.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
-</style>
+```html preview 150px
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -50,13 +40,7 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 - Type: `string | HTMLElement`
 - Default: `undefined`
 
-```html preview center
-<style>
-  html { /* for demo purposes */
-		block-size: 200px;
-	}
-</style>
-
+```html preview center 200px
 <div style="position: relative">
   <vwc-button id="button1" label="ID anchor" appearance="outlined"></vwc-button>
   <vwc-menu id="menu1" anchor="button1" aria-label="ID anchor menu example">
@@ -88,12 +72,7 @@ Use the auto dismiss property to automatically close the menu when the user clic
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 200px;
-	}
-</style>
+```html preview 200px
 <div style="position: relative">
   <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
@@ -118,12 +97,7 @@ Use the `placement` attribute to control the position of the menu relative to it
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'bottom'`
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
-</style>
+```html preview 150px
 <div style="position: relative; text-align: end;">
   <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
 
@@ -149,12 +123,7 @@ The default slot for the menu items.
 
 While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu `item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
-</style>
+```html preview 150px
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -165,13 +134,7 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 
 Use the `header` slot in order to add additional content to the top of the menu.
 
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 200px;
-	}
-</style>
-
+```html preview 200px
 <vwc-menu open aria-label="Menu example">
   <vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
@@ -183,13 +146,7 @@ Use the `header` slot in order to add additional content to the top of the menu.
 
 Use the `action-items` slot to add action items to the bottom of the menu.
 
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 200px;
-	}
-</style>
-
+```html preview 200px
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -205,11 +162,8 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
 - Default: `max-content`
 
-```html preview
+```html preview 150px
 <style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
   vwc-menu {
     --menu-max-inline-size: 300px;
   }
@@ -226,11 +180,8 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 - Default: `auto`
 
-```html preview
+```html preview 150px
 <style>
-   html { /* for demo purposes */
-    block-size: 150px;
-  }
   vwc-menu {
     --menu-min-inline-size: 300px;
   }
@@ -247,11 +198,8 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 - Default: `408px`
 
-```html preview
+```html preview 150px
 <style>
-   html { /* for demo purposes */
-    block-size: 150px;
-  }
   vwc-menu {
     --menu-block-size: 100px;
   }
@@ -311,12 +259,7 @@ This helps ensure elements don't render on top of a menu undesirably.
 
 ### Dropdown menu with checkbox
 
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 350px;
-	}
-</style>
+```html preview 350px
 <div style="position: relative">
   <vwc-button id="button" label="Select" appearance="filled"></vwc-button>
 
@@ -340,12 +283,7 @@ This helps ensure elements don't render on top of a menu undesirably.
 
 ### Menu Anchor
 
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 250px;
-	}
-</style>
+```html preview 250px
 <div style="position: relative">
   <vwc-menu id="menu" anchor="button" placement="bottom-start" open aria-label="Menu example">
    <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">

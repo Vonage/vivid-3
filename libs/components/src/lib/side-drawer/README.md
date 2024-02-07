@@ -104,12 +104,7 @@ Use the `trailing` attribute to set the side of the drawer.
 
 The default slot sets assigned nodes to the side drawer itself.
 
-```html preview full
-<style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
-</style>
+```html preview full 150px
 <vwc-side-drawer open>
 
   <vwc-layout gutters="small">
@@ -155,11 +150,8 @@ Additionally, as the *base* element (which represents the actual side-drawer), i
 
 - Default: `280px`
 
-```html preview full
+```html preview full 150px
 <style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
   vwc-side-drawer {
     --side-drawer-app-content-offset: 230px;
   }
@@ -190,11 +182,8 @@ Additionally, as the *base* element (which represents the actual side-drawer), i
 
 Select `base` part to access the component's internal *base* element (which represents the actual side-drawer).
 
-```html preview full
+```html preview full 150px
 <style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
   vwc-side-drawer::part(base) {
     background-color: var(--vvd-color-neutral-50);
   }
@@ -213,11 +202,8 @@ Select `base` part to access the component's internal *base* element (which repr
 
 ### Collapsible Side Drawer
 
-```html preview full
+```html preview full 250px
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
-  }
   vwc-fab {
     position: fixed;
     inset: auto auto 8px 8px;
@@ -273,22 +259,19 @@ Select `base` part to access the component's internal *base* element (which repr
 ```
 
 ### Full content height
-```html preview full
+```html preview full 250px
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
+  .side-drawer {
+    block-size: 100vh;
   }
-.side-drawer {
-	block-size: 100vh;
-}
-.content {
-	display: flex;
-	align-items: center;
-  background-color: var(--vvd-color-information-50);
-  block-size: 100%;
-  padding: 16px;
-  box-sizing: border-box;
-}
+  .content {
+    display: flex;
+    align-items: center;
+    background-color: var(--vvd-color-information-50);
+    block-size: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
 </style>
 <vwc-side-drawer class="side-drawer" open>
 	<vwc-layout gutters="small">

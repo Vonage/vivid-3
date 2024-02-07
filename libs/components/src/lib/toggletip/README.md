@@ -20,12 +20,7 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 - Type: `string | HTMLElement`
 - Default: `undefined`
 
-```html preview center
-<style>
-  html { /* for demo purposes */
-    block-size: 100px;
-  }
-</style>
+```html preview center 100px
 <vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
 <vwc-toggletip anchor="button1">My anchor is an ID</vwc-toggletip>
 
@@ -44,12 +39,7 @@ You can toggle toggletip's display by using the `open` attribute.
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
-<style>
-  html { /* for demo purposes */
-    block-size: 100px;
-  }
-</style>
+```html preview center 100px
 <vwc-button id="button3" icon="help-solid" shape="pill"></vwc-button>
 <vwc-toggletip anchor="button3" open>I'm open by default</vwc-toggletip>
 ```
@@ -61,12 +51,7 @@ Use the `headline` attribute to set the toggletip's headline.
 - Type: `string`
 - Default: `undefined`
 
-```html preview center
-<style>
-  html { /* for demo purposes */
-    block-size: 100px;
-  }
-</style>
+```html preview center 100px
 <vwc-button id="button4" icon="help-solid" shape="pill"></vwc-button>
 <vwc-toggletip anchor="button4" headline="This is the headline">This is the content</vwc-toggletip>
 ```
@@ -78,12 +63,7 @@ Add the `alternate` attribute to change the toggletip's color-scheme to the oppo
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
-<style>
-  html { /* for demo purposes */
-    block-size: 100px;
-  }
-</style>
+```html preview center 100px
 <vwc-button id="button5" icon="help-solid" shape="pill"></vwc-button>
 <vwc-toggletip anchor="button5" alternate>An alternate toggletip</vwc-toggletip>
 ```
@@ -95,13 +75,7 @@ Use the `placement` attribute to control the position of the toggletip relative 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'` | `'left'` | `'left-start'` | `'left-end'`
 - Default: `'right'`
 
-```html preview center
-<style>
-	body {
-		height: 200px;
-	}
-</style>
-
+```html preview center 200px
 <vwc-button id="button6" icon="help-solid" shape="pill"></vwc-button>
 
 <vwc-toggletip anchor="button6" placement="top">top</vwc-toggletip>
@@ -116,12 +90,7 @@ Use the `placement` attribute to control the position of the toggletip relative 
 
 You can add action items elements using the `action-items` slot. They will be displayed right-aligned at the bottom of the toggletip.
 
-```html preview center
-<style>
-  html { /* for demo purposes */
-    block-size: 150px;
-  }
-</style>
+```html preview center 150px
 <vwc-button id="button7" icon="help-solid" shape="pill"></vwc-button>
 
 <vwc-toggletip anchor="button7">
