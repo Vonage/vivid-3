@@ -286,7 +286,8 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 				text: 'string | HTMLElement'
 			}
 		}
-	]
+	],
+	TrappedFocus: [],
 };
 
 /**

@@ -233,6 +233,11 @@
 		"markdown": "./libs/components/src/lib/toggletip/README.md"
 	},
 	{
+		"title": "Time Picker",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/time-picker/README.md"
+	},
+	{
 		"title": "Tree View",
 		"markdown": "./libs/components/src/lib/tree-view/README.md",
 		"children": [

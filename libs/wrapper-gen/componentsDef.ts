@@ -213,6 +213,13 @@ ComponentRegister.registerComponent('text-field', component => {
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
+ComponentRegister.registerComponent('time-picker', component => {
+	addVueModel(component, {
+		attributeName: 'current-value',
+		eventName: 'input',
+		valueMapping: '(event.target as HTMLInputElement).value',
+	});
+});
 ComponentRegister.registerComponent('toggletip');
 ComponentRegister.registerComponent('tooltip');
 ComponentRegister.registerComponent('tree-item');
