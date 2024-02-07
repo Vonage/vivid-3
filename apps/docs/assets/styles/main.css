@@ -171,7 +171,7 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   article > pre,
   article > .cbd-container {
     max-inline-size: 1000px;
