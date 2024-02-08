@@ -65,18 +65,8 @@ ComponentRegister.registerComponent('data-grid', component => {
     type: [{ text: 'any[]', vuePropType: 'Array' }],
   });
 });
-ComponentRegister.registerComponent('data-grid-row', component => {
-  component.slots.push({
-    name: 'default',
-    description: 'Default slot.',
-  });
-});
-ComponentRegister.registerComponent('data-grid-cell', component => {
-  component.slots.push({
-    name: 'default',
-    description: 'Default slot.',
-  });
-});
+ComponentRegister.registerComponent('data-grid-row');
+ComponentRegister.registerComponent('data-grid-cell');
 ComponentRegister.registerComponent('date-picker', component => {
   addVueModel(component, {
     attributeName: 'value',
@@ -115,17 +105,7 @@ ComponentRegister.registerComponent('fab');
 ComponentRegister.registerComponent('header');
 ComponentRegister.registerComponent('icon');
 ComponentRegister.registerComponent('layout');
-ComponentRegister.registerComponent('menu', component => {
-  for (const attribute of component.attributes) {
-    // Fix type of anchor attribute
-    if (attribute.name === 'anchor') {
-      attribute.type = [
-        { text: 'HTMLElement', vuePropType: 'Object' },
-        { text: 'string', vuePropType: 'String' },
-      ];
-    }
-  }
-});
+ComponentRegister.registerComponent('menu');
 ComponentRegister.registerComponent('menu-item', component => {
   addVueModel(component, {
     attributeName: 'checked',
@@ -145,13 +125,7 @@ ComponentRegister.registerComponent('number-field', component => {
   });
 });
 ComponentRegister.registerComponent('option');
-ComponentRegister.registerComponent('pagination', component => {
-  component.events.push({
-    name: 'pagination-change',
-    description: 'Fires when the page changes.',
-    type: [{ text: 'Event', vuePropType: 'Event' }],
-  });
-});
+ComponentRegister.registerComponent('pagination');
 ComponentRegister.registerComponent('progress');
 ComponentRegister.registerComponent('progress-ring');
 ComponentRegister.registerComponent('radio');
@@ -180,16 +154,6 @@ ComponentRegister.registerComponent('slider', component => {
 });
 ComponentRegister.registerComponent('split-button');
 ComponentRegister.registerComponent('switch', component => {
-  component.attributes.push({
-    name: 'current-checked',
-    description: 'The current checked state of the switch.',
-    type: [{ text: 'boolean', vuePropType: 'Boolean' }],
-  });
-  component.events.push({
-    name: 'change',
-    description: 'Emitted when the checked state of the switch changes.',
-    type: [{ text: 'Event', vuePropType: 'Event' }],
-  });
   addVueModel(component, {
     attributeName: 'current-checked',
     eventName: 'change',
