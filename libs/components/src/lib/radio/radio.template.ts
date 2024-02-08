@@ -3,7 +3,6 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Radio } from './radio';
 
 
@@ -21,8 +20,7 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) => clas
  * @param context - element definition context
  * @public
  */
-export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
+export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<Radio> = () => {
 
 	return html<Radio>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
 	<div class="${getClasses}"
@@ -35,7 +33,6 @@ export const RadioTemplate: (context: ElementDefinitionContext) => ViewTemplate<
 		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 	>
 		<div class="control">
-			${() => focusTemplate}
 		</div>
 		${when(x => x.label, html<Radio>`<label class="label">${x => x.label}</label>`)}
 	</div>
