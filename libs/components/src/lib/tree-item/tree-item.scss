@@ -67,9 +67,11 @@
 	}
 
 	:host(:focus-visible) & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-
 		@include focus.focus;
+
+		&:not(.selected) {
+			#{focus-variables.$focus-stroke-gap-color}: transparent;
+		}
 	}
 
 	.text {
