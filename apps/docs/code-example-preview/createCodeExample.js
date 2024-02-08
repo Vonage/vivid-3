@@ -92,7 +92,7 @@ const createiFrameContent = (
 	let numberWithPx = '';
 	for (const item of classList) {
 		const match = item.match(/\d+px/);
-		numberWithPx = match ? match[0] : '';
+		numberWithPx = match ? match[0] : 'auto';
 	}
 	const document =
 		`<!DOCTYPE html>
