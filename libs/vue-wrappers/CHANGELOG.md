@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.50.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.49.0...vivid-vue-v3.50.0) (2024-02-08)
+
+
+### Features
+
+* **time-picker:** add component (VIV-1321) ([#1539](https://github.com/Vonage/vivid-3/issues/1539)) ([eccef79](https://github.com/Vonage/vivid-3/commit/eccef79c1bb18ebeb099194e43f63826fee3be05))
+
 ## [3.49.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.48.0...vivid-vue-v3.49.0) (2024-02-07)
 
 
