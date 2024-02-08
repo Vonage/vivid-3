@@ -27,6 +27,7 @@
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
+	position: relative;
 	padding: var(#{variables.$spacing-var}, 16px);
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
 	background-color: var(#{appearance.get-appearance-token(fill)});
