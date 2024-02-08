@@ -78,6 +78,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
    */
   const renderProps = attributes =>
     attributes
+			.filter((({ name }) => !componentDef.vueModels.some(model => model.name === name && model.attributeName !== name)))
       .map(({ name }) => {
         const vueModel = componentDef.vueModels.find(model => model.attributeName === name);
         return vueModel

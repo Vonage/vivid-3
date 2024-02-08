@@ -75,10 +75,6 @@ ComponentRegister.registerComponent('date-picker', component => {
   });
 });
 ComponentRegister.registerComponent('date-range-picker', component => {
-  // Remove start and end attributes as we will replace them with v-model props
-  component.attributes = component.attributes.filter(
-    attribute => attribute.name !== 'start' && attribute.name !== 'end'
-  );
   addVueModel(
     component,
     {
