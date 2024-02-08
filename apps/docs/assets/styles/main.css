@@ -164,6 +164,7 @@ article ul {
   margin: 0;
 }
 
+.components-tabs,
 article > pre,
 article > .cbd-container {
   margin-block: 12px;
@@ -171,10 +172,22 @@ article > .cbd-container {
   max-inline-size: calc(100vw - 32px);
 }
 
+.figma-iframe {
+  border: none;  
+  border-radius: 6px;  
+  width: calc(100vw - 32px);
+  height: calc(100vh - 64px);
+}
+
 @media (min-width: 960px) {
+  .components-tabs,
   article > pre,
   article > .cbd-container {
     max-inline-size: 1200px;
+  }
+  .figma-iframe {
+    width: 1200px;
+    height: 1900px;
   }
 }
 
