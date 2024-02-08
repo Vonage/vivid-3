@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.49.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.48.0...vivid-vue-v3.49.0) (2024-02-07)
+
+
+### Features
+
+* **lib:** add cjs output to vivid (VIV-1518) ([#1557](https://github.com/Vonage/vivid-3/issues/1557)) ([c3fd27e](https://github.com/Vonage/vivid-3/commit/c3fd27ef1a24a7148a5256a47504c81c83766d78))
+
 ## [3.48.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.47.0...vivid-vue-v3.48.0) (2024-01-31)
 
 
