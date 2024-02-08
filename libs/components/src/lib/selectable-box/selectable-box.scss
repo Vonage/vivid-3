@@ -38,7 +38,6 @@
 
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
-		#{focus-variables.$focus-inset}: -1px;
 
 		@include focus.focus;
 	}
