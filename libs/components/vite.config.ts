@@ -91,17 +91,20 @@ export default defineConfig({
 		lib: {
 			entry: input,
 			name: 'components',
-			formats: ['es'],
+			formats: ['es', 'cjs'],
 		},
 		minify: false,
 		cssMinify: true,
 		target: 'esnext',
 		rollupOptions: {
 			input,
-			output: {
-				format: 'esm',
+			output: [{
+				format: 'es',
 				chunkFileNames: 'shared/[name].js'
-			}
+			}, {
+				format: 'cjs',
+				chunkFileNames: 'shared/[name].cjs'
+			}]
 		},
 	}
 });
