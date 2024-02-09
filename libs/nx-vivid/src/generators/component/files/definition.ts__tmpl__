@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './<%= fileName %>.scss';
+import styles from './<%= fileName %>.scss?inline';
 
 import { <%= className %> } from './<%= fileName %>';
 import { <%= className %>Template as template } from './<%= fileName %>.template';

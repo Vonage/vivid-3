@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
-import styles from './text-area.scss';
+import styles from './text-area.scss?inline';
 
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';

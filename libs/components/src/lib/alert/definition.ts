@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { elevationRegistries } from '../elevation/definition';
 import { iconRegistries } from '../icon/definition';
-import styles from './alert.scss';
+import styles from './alert.scss?inline';
 
 import { Alert } from './alert';
 import { AlertTemplate as template } from './alert.template';

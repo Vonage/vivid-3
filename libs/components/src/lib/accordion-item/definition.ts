@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
-import styles from './accordion-item.scss';
+import styles from './accordion-item.scss?inline';
 
 import { AccordionItem } from './accordion-item';
 import { AccordionItemTemplate as template } from './accordion-item.template';

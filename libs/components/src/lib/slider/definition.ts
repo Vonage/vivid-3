@@ -1,7 +1,7 @@
 import type { SliderOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { focusRegistries } from '../focus/definition';
-import styles from './slider.scss';
+import styles from './slider.scss?inline';
 
 import { Slider } from './slider';
 import { SliderTemplate as template } from './slider.template';
