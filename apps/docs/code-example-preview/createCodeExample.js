@@ -14,7 +14,7 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 const CBD_ACTIONS = 'cbd-actions';
 const CBD_VARIABLES = 'cbd-variables';
 
-const EXISTING_COMPONENTS = new Set(components.map(c => c.title));
+const EXISTING_COMPONENTS = new Set(components.map(c => c.title.toLowerCase().replaceAll(' ', '-')));
 
 const OUTPUT_PATH = 'dist/apps/docs/frames';
 
