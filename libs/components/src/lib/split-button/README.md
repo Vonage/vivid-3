@@ -142,13 +142,7 @@ Add the `disabled` attribute to disable the split button.
 
 ### Split Button with anchored Menu
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 200px;
-  }
-</style>
-
+```html preview 200px
 <vwc-split-button id="splitButton" appearance="filled" label="A default split button">
   <vwc-menu id="menu" placement="bottom-end" open>
     <vwc-menu-item text="Menu item 1"></vwc-menu-item>
@@ -171,10 +165,9 @@ Add the `disabled` attribute to disable the split button.
 
 ### Split Button with Tooltip
 
-```html preview
+```html preview 100px
 <style>
-  html { /* for demo purposes */
-    block-size: 100px;
+  html {
 		text-align: center;
   }
 </style>

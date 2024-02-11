@@ -128,12 +128,8 @@ Use `--header-bg-color` to set a custom background color for the header.
 
 The component's internal *header* element.
 
-```html preview full
+```html preview full 350px
 <style>
-  html { /* for demo purposes */
-    block-size: 350px;
-  }
-  
   vwc-header::part(base) {
     position: fixed;
     top: 0;
@@ -169,12 +165,8 @@ The component's internal *header* element.
 
 A *fixed* header as primary element containing a [side drawer](../side-drawer) component. containing application content.
 
-```html preview full
+```html preview full 300px
 <style>
-  html { /* for demo purposes */
-    block-size: 300px;
-  }
-
   vwc-header::part(base) {
     position: fixed;
     top: 0;
@@ -268,12 +260,8 @@ A [side drawer](../side-drawer) as primary element containing a header containin
 [Banners](../banner) are placed at the top of the screen below the header.
 In this example, the banner sticks to the top of the window.
 
-```html preview full
+```html preview full 200px
 <style>
-  html {
-    block-size: 200px;
-  }
-
   vwc-banner {
     position: sticky;
     top: 0;
