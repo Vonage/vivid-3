@@ -11,7 +11,7 @@ import { renderStorybookTemplate } from './renderStorybookTemplate';
 import { generateDocPageForComponent } from '../docs';
 import { renderIcons } from './renderIcons';
 import { loadedIcons } from './icons';
-import { exportedComponents } from './exportedComponent';
+import { exportedComponents } from './exportedComponents';
 
 type DefinitionOverride = (def: ComponentDef, metadata: {icons: string[]}) => void;
 type ComponentSpecs = [string, DefinitionOverride];
