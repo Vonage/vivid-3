@@ -1,7 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
-import { focusRegistries } from '../focus/definition';
 import { buttonRegistries } from '../button/definition';
 import { textFieldRegistries } from '../text-field/definition';
 import { dividerRegistries } from '../divider/definition';
@@ -27,7 +26,6 @@ export const datePickerRegistries = [
 	...buttonRegistries,
 	...popupRegistries,
 	...textFieldRegistries,
-	...focusRegistries,
 	...dividerRegistries,
 ];
 

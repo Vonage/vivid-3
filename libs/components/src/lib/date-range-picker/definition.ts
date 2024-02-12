@@ -4,7 +4,6 @@ import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { popupRegistries } from '../popup/definition';
 import { textFieldRegistries } from '../text-field/definition';
-import { focusRegistries } from '../focus/definition';
 import { dividerRegistries } from '../divider/definition';
 import styles from '../../shared/date-picker/date-picker-base.scss';
 import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
@@ -28,7 +27,6 @@ export const dateRangePickerRegistries = [
 	...buttonRegistries,
 	...popupRegistries,
 	...textFieldRegistries,
-	...focusRegistries,
 	...dividerRegistries,
 ];
 
