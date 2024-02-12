@@ -1,5 +1,5 @@
 import { registerFactory } from '../../shared/design-system';
-import styles from './radio-group.scss';
+import styles from './radio-group.scss?inline';
 
 import { RadioGroup } from './radio-group';
 import { RadioGroupTemplate as template } from './radio-group.template';

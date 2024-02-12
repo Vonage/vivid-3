@@ -2,7 +2,7 @@ import type { CheckboxOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
-import styles from './checkbox.scss';
+import styles from './checkbox.scss?inline';
 
 import { Checkbox } from './checkbox';
 import { CheckboxTemplate as template } from './checkbox.template';

@@ -7,7 +7,7 @@ import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
 import { progressRingRegistries } from '../progress-ring/definition';
 import { Button } from './button';
-import styles from './button.scss';
+import styles from './button.scss?inline';
 import { buttonTemplate as template } from './button.template';
 
 export type { ButtonAppearance, ButtonConnotation, ButtonShape, ButtonSize } from './button';

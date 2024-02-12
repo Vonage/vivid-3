@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import styles from './avatar.scss';
+import styles from './avatar.scss?inline';
 
 import { Avatar } from './avatar';
 import { AvatarTemplate as template } from './avatar.template';

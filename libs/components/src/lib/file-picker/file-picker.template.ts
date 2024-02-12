@@ -5,7 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory, getFeedbackTemplate } from '../../shared/patterns';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import type { FilePicker } from './file-picker';
 
@@ -28,7 +28,6 @@ export const FilePickerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<FilePicker> = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<FilePicker>`
 		${x => {x.setButtonTag(context.tagFor(Button));}}
@@ -37,7 +36,6 @@ export const FilePickerTemplate: (
 			<div ${ref('control')} class="${getClasses}" tabindex="0" role="button"
 					 @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 				<slot class="main"></slot>
-				${() => focusTemplate}
 			</div>
 			${when(x => !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
 			${when(x => x.errorValidationMessage, getFeedbackTemplate('error', context))}

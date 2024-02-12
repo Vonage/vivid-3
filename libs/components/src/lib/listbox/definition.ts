@@ -4,7 +4,7 @@ import { focusRegistries } from '../focus/definition';
 import { listboxOptionRegistries } from '../option/definition';
 import { Listbox } from './listbox';
 import { ListboxTemplate as template } from './listbox.template';
-import styles from './listbox.scss';
+import styles from './listbox.scss?inline';
 
 export type { LisboxAppearance } from './listbox';
 

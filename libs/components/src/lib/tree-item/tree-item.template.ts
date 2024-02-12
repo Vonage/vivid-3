@@ -3,7 +3,6 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 import { TreeItem } from './tree-item';
 
 const getClasses = ({
@@ -35,7 +34,6 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
  */
 export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<TreeItem>`
 	<template
@@ -51,7 +49,6 @@ export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 			${children({ property: 'childItems', filter: elements(context.tagFor(TreeItem)) })}
 			>
 			<div class="${getClasses}">
-				${() => focusTemplate}
 				${when(x => x.childItems && x.childItems.length > 0, expandCollapseButton(context))}
 				${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
 				${x => x.text as string}

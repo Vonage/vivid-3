@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
 import { buttonRegistries } from '../button/definition';
-import styles from './file-picker.scss';
+import styles from './file-picker.scss?inline';
 
 import { FilePicker } from './file-picker';
 import { FilePickerTemplate as template } from './file-picker.template';

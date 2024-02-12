@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
-import styles from './nav-disclosure.scss';
+import styles from './nav-disclosure.scss?inline';
 
 import { NavDisclosure } from './nav-disclosure';
 import { NavDisclosureTemplate as template } from './nav-disclosure.template';

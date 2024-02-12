@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { checkboxRegistries } from '../checkbox/definition';
 import { focusRegistries } from '../focus/definition';
 import { radioRegistries } from '../radio/definition';
-import styles from './selectable-box.scss';
+import styles from './selectable-box.scss?inline';
 
 import { SelectableBox } from './selectable-box';
 import { SelectableBoxTemplate as template } from './selectable-box.template';

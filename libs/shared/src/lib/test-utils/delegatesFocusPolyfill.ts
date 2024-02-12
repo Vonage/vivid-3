@@ -1,10 +1,8 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-
 // JSDOM currently does not support delegatesFocus, see https://github.com/jsdom/jsdom/issues/3418
 // This is a workaround to allow us to test focus behaviour.
 // Unfortunately it causes jest to throw "TypeError: Converting circular structure to JSON" when a test fails
 /* istanbul ignore next */
-export const setupDelegatesFocusPolyfill = (forElement: FoundationElement) => {
+export const setupDelegatesFocusPolyfill = (forElement: HTMLElement) => {
 	let activeElement: Element | null = null;
 	Object.defineProperty(window.ShadowRoot.prototype, 'activeElement', {
 		get: () => activeElement,

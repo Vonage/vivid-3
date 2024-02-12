@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
-import styles from './tab.scss';
+import styles from './tab.scss?inline';
 
 import { Tab } from './tab';
 import { TabTemplate as template } from './tab.template';

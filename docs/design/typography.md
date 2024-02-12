@@ -46,7 +46,7 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 
 ```html preview
 <style>
-.wrapper { /* for demo purposes */
+.wrapper {
 	display: flex;
 	flex-direction: column;
 	row-gap: 8px;
@@ -80,7 +80,7 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 
 ```html preview
 <style>
-.wrapper { /* for demo purposes */
+.wrapper {
 	display: flex;
 	flex-direction: column;
 	row-gap: 8px;

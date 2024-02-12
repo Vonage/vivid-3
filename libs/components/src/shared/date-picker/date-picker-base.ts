@@ -2,7 +2,7 @@ import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, DOM, observable, type ValueConverter, volatile } from '@microsoft/fast-element';
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
-import { FormElementHelperText, Localized } from '../patterns';
+import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
 import { addDays, compareDateStr, currentDateStr, type DateStr, isValidDateStr } from './calendar/dateStr';
 import { addMonths, compareMonths, getCurrentMonth, type Month, monthOfDate, monthToStr } from './calendar/month';
 import { buildCalendarGrid } from './calendar/calendarGrid';
@@ -127,17 +127,6 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 * @internal
 	 */
 	_calendarButtonEl!: Button;
-
-	#getFocusableEls() {
-		const focusableEls = this.shadowRoot!.querySelectorAll(`
-			.dialog .button:not(:disabled),
-			.dialog .vwc-button:not(:disabled)
-		`);
-		return {
-			firstFocusableEl: focusableEls[0] as HTMLElement,
-			lastFocusableEl: focusableEls[focusableEls.length - 1] as HTMLElement,
-		};
-	}
 
 	// --- Common state and getters ---
 
@@ -305,23 +294,14 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 			return false;
 		}
 
-		// Trap focus inside the dialog
-		if (event.key === 'Tab') {
-			const { firstFocusableEl, lastFocusableEl } = this.#getFocusableEls();
-
-			if (event.shiftKey) {
-				// Shift + tab
-				if (this.shadowRoot!.activeElement === firstFocusableEl) {
-					lastFocusableEl.focus();
-					return false;
-				}
-			} else {
-				// Tab
-				if (this.shadowRoot!.activeElement === lastFocusableEl) {
-					firstFocusableEl.focus();
-					return false;
-				}
-			}
+		if (this._trappedFocus(
+			event,
+			() => this.shadowRoot!.querySelectorAll(`
+				.dialog .button:not(:disabled),
+				.dialog .vwc-button:not(:disabled)
+			`) as NodeListOf<HTMLElement>
+		)) {
+			return false;
 		}
 
 		// Otherwise, don't prevent default
@@ -799,5 +779,6 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 export interface DatePickerBase
 	extends Localized,
-	FormElementHelperText {}
-applyMixins(DatePickerBase, Localized, FormElementHelperText);
+	FormElementHelperText,
+	TrappedFocus {}
+applyMixins(DatePickerBase, Localized, FormElementHelperText, TrappedFocus);

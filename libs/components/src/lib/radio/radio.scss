@@ -1,10 +1,11 @@
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/utils" as utils;
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: primary primary-text primary-increment intermediate backdrop firm,
+	$shades: primary primary-text primary-increment intermediate firm fierce,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
@@ -22,10 +23,8 @@
 $control-size: #{size.$vvd-size-ultra-condensed};
 $control-border: 2px;
 
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
+:host(:focus-visible) {
+	outline: none;
 }
 
 :host([disabled]) {
@@ -73,6 +72,22 @@ $control-border: 2px;
 
 		.base:not(.checked) & {
 			opacity: 0;
+		}
+	}
+
+	:host(:focus-visible) & {
+		#{focus-variables.$focus-inset}: -3px;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		&::before {
+			@include focus.focus;
+
+			position: absolute;
+			display: block;
+			block-size: $control-size;
+			border-radius: inherit;
+			content: "";
+			inline-size: $control-size;
 		}
 	}
 }
