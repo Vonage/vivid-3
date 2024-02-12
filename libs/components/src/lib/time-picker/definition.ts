@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { textFieldRegistries } from '../text-field/definition';
 import { popupRegistries } from '../popup/definition';
 import { buttonRegistries } from '../button/definition';
-import styles from './time-picker.scss';
+import styles from './time-picker.scss?inline';
 
 import { TimePicker } from './time-picker';
 import { TimePickerTemplate as template } from './time-picker.template';

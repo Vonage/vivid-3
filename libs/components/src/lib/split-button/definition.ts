@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
 import { SplitButton } from './split-button';
-import styles from './split-button.scss';
+import styles from './split-button.scss?inline';
 import { SplitButtonTemplate as template } from './split-button.template';
 
 export type { SplitButtonAppearance, SplitButtonConnotation, SplitButtonShape, SplitButtonSize } from './split-button';

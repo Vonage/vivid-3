@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './tag-group.scss';
+import styles from './tag-group.scss?inline';
 
 import { TagGroup } from './tag-group';
 import { TagGroupTemplate as template } from './tag-group.template';

@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { buttonRegistries } from '../button/definition';
 import { registerFactory } from '../../shared/design-system';
-import styles from './pagination.scss';
+import styles from './pagination.scss?inline';
 
 import { Pagination } from './pagination';
 import { PaginationTemplate as template } from './pagination.template';

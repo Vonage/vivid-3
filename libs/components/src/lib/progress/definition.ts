@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './progress.scss';
+import styles from './progress.scss?inline';
 
 import { Progress } from './progress';
 import { ProgressTemplate as template } from './progress.template';

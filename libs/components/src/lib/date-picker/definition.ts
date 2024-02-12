@@ -4,7 +4,7 @@ import { popupRegistries } from '../popup/definition';
 import { buttonRegistries } from '../button/definition';
 import { textFieldRegistries } from '../text-field/definition';
 import { dividerRegistries } from '../divider/definition';
-import styles from '../../shared/date-picker/date-picker-base.scss';
+import styles from '../../shared/date-picker/date-picker-base.scss?inline';
 import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
 import { DatePicker } from './date-picker';
 

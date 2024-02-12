@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './calendar.scss';
+import styles from './calendar.scss?inline';
 
 import { Calendar } from './calendar';
 import { CalendarTemplate as template } from './calendar.template';

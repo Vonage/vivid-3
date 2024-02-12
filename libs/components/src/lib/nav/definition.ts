@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './nav.scss';
+import styles from './nav.scss?inline';
 
 import { Nav } from './nav';
 import { NavTemplate as template } from './nav.template';

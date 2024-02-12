@@ -4,8 +4,8 @@ import { iconRegistries } from '../icon/definition';
 import { popupRegistries } from '../popup/definition';
 import { focusRegistries } from '../focus/definition';
 import { listboxOptionRegistries } from '../option/definition';
-import textFieldStyles from '../text-field/text-field.scss';
-import styles from './combobox.scss';
+import textFieldStyles from '../text-field/text-field.scss?inline';
+import styles from './combobox.scss?inline';
 
 import { Combobox } from './combobox';
 import { comboboxTemplate as template } from './combobox.template';

@@ -4,7 +4,7 @@ import { iconRegistries } from '../icon/definition';
 import { focusRegistries } from '../focus/definition';
 import { ListboxOption } from './option';
 import { ListboxOptionTemplate as template } from './option.template';
-import styles from './option.scss';
+import styles from './option.scss?inline';
 
 /**
  * The listbox-option element.

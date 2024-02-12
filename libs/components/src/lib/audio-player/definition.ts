@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { sliderRegistries } from '../slider/definition';
 import { focusRegistries } from '../focus/definition';
-import styles from './audio-player.scss';
+import styles from './audio-player.scss?inline';
 
 import { AudioPlayer } from './audio-player';
 import { AudioPlayerTemplate as template } from './audio-player.template';

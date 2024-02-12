@@ -128,8 +128,8 @@ and don't support IDL attribute binding.`,
     customElement: true,
   };
 
-  // Only checkbox and radio differ from the base class
-  if (className === 'FormAssociatedCheckbox' || className === 'FormAssociatedRadio') {
+  // Only checkbox, radio and switch differ from the base class
+  if (className === 'FormAssociatedCheckbox' || className === 'FormAssociatedRadio' || className === 'FormAssociatedSwitch') {
     declaration.attributes.push(
       {
         name: 'checked',
