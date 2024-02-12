@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import styles from './fab.scss';
+import styles from './fab.scss?inline';
 
 import { Fab } from './fab';
 import { FabTemplate as template } from './fab.template';

@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { Tag } from './tag';
-import styles from './tag.scss';
+import styles from './tag.scss?inline';
 import { tagTemplate as template } from './tag.template';
 
 export type { TagConnotation, TagAppearance, TagShape } from './tag';

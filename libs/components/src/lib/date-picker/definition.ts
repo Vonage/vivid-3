@@ -1,11 +1,10 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
-import { focusRegistries } from '../focus/definition';
 import { buttonRegistries } from '../button/definition';
 import { textFieldRegistries } from '../text-field/definition';
 import { dividerRegistries } from '../divider/definition';
-import styles from '../../shared/date-picker/date-picker-base.scss';
+import styles from '../../shared/date-picker/date-picker-base.scss?inline';
 import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
 import { DatePicker } from './date-picker';
 
@@ -27,7 +26,6 @@ export const datePickerRegistries = [
 	...buttonRegistries,
 	...popupRegistries,
 	...textFieldRegistries,
-	...focusRegistries,
 	...dividerRegistries,
 ];
 

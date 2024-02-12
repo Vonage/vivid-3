@@ -11,7 +11,8 @@
 	$default: listitem,
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../lib/focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
 :host {
@@ -197,18 +198,14 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 
-	.focus-indicator {
-		color: var(#{constants.$vvd-color-canvas-text});
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-	}
 
 	&:focus-visible {
-		outline: none;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		@include focus.focus;
+
+		color: var(#{constants.$vvd-color-canvas-text});
 	}
 
-	&:not(:focus-visible) .focus-indicator {
-		display: none;
-	}
 
 	&.current {
 		border: 1px solid var(#{constants.$vvd-color-neutral-200});

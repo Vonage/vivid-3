@@ -1,7 +1,8 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import styles from './nav-disclosure.scss';
+import { focusRegistries } from '../focus/definition';
+import styles from './nav-disclosure.scss?inline';
 
 import { NavDisclosure } from './nav-disclosure';
 import { NavDisclosureTemplate as template } from './nav-disclosure.template';
@@ -20,7 +21,7 @@ export const navDisclosureDefinition =
 /**
  * @internal
  */
-export const navDisclosureRegistries = [navDisclosureDefinition(), ...iconRegistries];
+export const navDisclosureRegistries = [navDisclosureDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the nav-disclosure elements with the design system.

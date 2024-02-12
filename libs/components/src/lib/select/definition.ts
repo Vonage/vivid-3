@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
 import { iconRegistries } from '../icon/definition';
 import { listboxOptionRegistries } from '../option/definition';
-import styles from './select.scss';
+import styles from './select.scss?inline';
 
 import { Select } from './select';
 import { SelectTemplate as template } from './select.template';

@@ -1,7 +1,8 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import styles from './accordion-item.scss';
+import { focusRegistries } from '../focus/definition';
+import styles from './accordion-item.scss?inline';
 
 import { AccordionItem } from './accordion-item';
 import { AccordionItemTemplate as template } from './accordion-item.template';
@@ -24,7 +25,7 @@ export const accordionItemDefinition =
 /**
  * @internal
  */
-export const accordionItemRegistries = [accordionItemDefinition(), ...iconRegistries];
+export const accordionItemRegistries = [accordionItemDefinition(), ...iconRegistries, ...focusRegistries];
 
 /**
  * Registers the accordion item elements with the design system.
