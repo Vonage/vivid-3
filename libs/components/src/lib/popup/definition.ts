@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { elevationRegistries } from '../elevation/definition';
 import { Popup } from './popup';
-import styles from './popup.scss';
+import styles from './popup.scss?inline';
 import { popupTemplate as template } from './popup.template';
 
 export type { Popup } from './popup';

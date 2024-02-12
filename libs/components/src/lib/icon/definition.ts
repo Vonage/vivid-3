@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './icon.scss';
+import styles from './icon.scss?inline';
 import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
 

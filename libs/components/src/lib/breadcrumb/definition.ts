@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { breadcrumbTemplate as template } from './breadcrumb.template';
-import styles from './breadcrumb.scss';
+import styles from './breadcrumb.scss?inline';
 import { Breadcrumb } from './breadcrumb';
 
 /**

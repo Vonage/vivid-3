@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './divider.scss';
+import styles from './divider.scss?inline';
 
 import { Divider } from './divider';
 import { DividerTemplate as template } from './divider.template';
