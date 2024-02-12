@@ -20,7 +20,7 @@ The popup is positioned in a fixed manner to its anchor.
 - Type: `HTMLElement`
 - Default: `undefined`
 
-```html preview center
+```html preview center 150px
 <span id="anchor">
   ⚓️
 </span>
@@ -39,7 +39,7 @@ Use the `open` attribute to indicate whether the popup is open.
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
 <vwc-popup id="popup" open>
   <vwc-layout gutters="small">
@@ -60,7 +60,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
 <vwc-popup id="popup" open dismissible>
   <vwc-layout gutters="small">
@@ -81,7 +81,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup id="popup" open arrow>
   <vwc-layout gutters="small" style="200px">
@@ -100,7 +100,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup id="popup" open alternate>
   <vwc-layout gutters="small" style="200px">
@@ -119,7 +119,7 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `''`
 
-```html preview center
+```html preview center 150px
 <style>
   .square {
     inline-size: 270px;
@@ -182,7 +182,7 @@ Use the `strategy` attribute to set the placement strategy.
 - Type: `'fixed'` | `'absolute'`
 - Default: `'fixed'`
 
-```html preview center
+```html preview center 150px
 <span id="anchor">
   ⚓️
 </span>

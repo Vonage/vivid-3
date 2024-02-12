@@ -68,11 +68,8 @@ When the nav has focus:
 
 ### Navigation inside a Side Drawer
 
-```html preview full
+```html preview full 250px
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
-  }
   vwc-fab {
     position: fixed;
     inset: auto auto 8px 8px;

@@ -118,12 +118,7 @@ Use the `size` attribute to set the accordion-item's size.
 - Type: `'condensed'` | `'normal'`
 - Default: `'normal'`
 
-```html preview full
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-</style>
+```html preview full 230px
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="normal accordion item" meta="meta-data" icon="chat-solid">
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.

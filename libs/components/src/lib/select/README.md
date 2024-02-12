@@ -16,12 +16,11 @@ Add a `label` attribute to add label to the Select.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
+  vwc-select { 
+    width: 150px;
   }
-  vwc-select {width: 150px;}
 </style>
 <vwc-select label="choose one option">
   <vwc-option value="1" text="Option 1"></vwc-option>
@@ -34,12 +33,7 @@ Add a `label` attribute to add label to the Select.
 
 You can add a `label` attribute to the [vwc-option](../../components/option) to set a custom display value for the selected option.
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-</style>
+```html preview 230px
 <vwc-select aria-label="Options Selector">
   <vwc-option label="Custom Label 1" value="1" text="Option 1"></vwc-option>
   <vwc-option label="Custom Label 2" value="2" text="Option 2"></vwc-option>
@@ -54,11 +48,8 @@ Check out our [use case example](/#use-case)
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {width: 150px;}
 </style>
 <vwc-select label="choose one option" icon="search-line">
@@ -74,10 +65,9 @@ Set the `mulitple` attribute to allow multiple selection. Note that in multiple 
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview 230px
 <style>
   html { /* for demo purposes */
-    block-size: 230px;
     --select-width: 100%;
   }
   vwc-select {width: 150px;}
@@ -124,11 +114,8 @@ Add the `helper-text` to add some helper text below the select.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 150px;
   }
@@ -148,11 +135,8 @@ If provided, `success-text` will take precedence over errors.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 150px;
   }
@@ -172,11 +156,8 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 150px;
   }
@@ -210,12 +191,7 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-</style>
+```html preview 230px
 <vwc-select aria-label="Options Selector" open>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
@@ -242,11 +218,8 @@ This is useful for cases in which the dropdown is obstructed by other elements (
 
 Add the `placeholder` attribute to add a placeholder to the Select.
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 250px;
   }
@@ -264,11 +237,8 @@ Add the `placeholder` attribute to add a placeholder to the Select.
 
 Read more about [vwc-option](../../components/option).
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 150px;
   }
@@ -284,11 +254,8 @@ Read more about [vwc-option](../../components/option).
 
 Set the `meta` slot to show meta information after the selected option label.
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 250px;
   }
@@ -319,11 +286,8 @@ Set the `meta` slot to show meta information after the selected option label.
 Set the `icon` slot to show an icon before the selected option text.
 If set, the `icon` attribute is ignored.
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     width: 150px;
   }
@@ -344,11 +308,8 @@ Use `--select-height` to set the height of the listbox containing the select opt
 - Default: `fit-content`
 
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   vwc-select {
     --select-height: 200px;
   }
@@ -370,12 +331,9 @@ By default, the select width is `fit-content` and the same goes for the listbox 
 You can specify width on the `vwc-select` if required (the listbox will not be affected by this setting).
 
 
-```html preview
+```html preview 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
-  vwc-select{
+  vwc-select {
     width: 140px
   }
 </style>
@@ -425,12 +383,11 @@ If label is not set, please make sure to add an `aria-label` attribute to the ho
 ## Use Cases
 
 ### Country Code
-```html preview
+```html preview 250px
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
+  vwc-select {
+    width: 120px;
   }
-  vwc-select {width: 120px;}
 </style>
 <vwc-select label="country code" icon="flag-united-states">
   <vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
@@ -447,11 +404,8 @@ select?.addEventListener('change', (e) => {
 
 
 ### Call Status
-```html preview
+```html preview 250px
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
-  }
   vwc-select {
 		width: 280px;
 	}
