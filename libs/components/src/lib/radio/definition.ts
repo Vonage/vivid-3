@@ -1,6 +1,5 @@
 import type { RadioOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { focusRegistries } from '../focus/definition';
 import styles from './radio.scss?inline';
 
 import { Radio } from './radio';
@@ -18,7 +17,7 @@ export const radioDefinition = Radio.compose<RadioOptions>({
 /**
  * @internal
  */
-export const radioRegistries = [radioDefinition(), ...focusRegistries];
+export const radioRegistries = [radioDefinition()];
 
 /**
  * Registers the radio elements with the design system.

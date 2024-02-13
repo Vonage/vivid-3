@@ -1,7 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusRegistries } from '../focus/definition';
 import styles from './switch.scss?inline';
 import { Switch } from './switch';
 import { SwitchTemplate as template } from './switch.template';
@@ -23,7 +22,7 @@ export const switchDefinition = Switch.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const switchRegistries = [switchDefinition(), ...iconRegistries, ...focusRegistries];
+export const switchRegistries = [switchDefinition(), ...iconRegistries];
 
 /**
  * Registers the switch elements with the design system.
