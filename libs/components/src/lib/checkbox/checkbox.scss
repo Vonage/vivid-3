@@ -87,7 +87,7 @@ $gutter: 2px;
 		}
 	}
 
-	.base.error & {
+	.base.error:not(.checked) & {
 		background-color: var(#{constants.$vvd-color-alert-50});
 		box-shadow: inset 0 0 0 2px var(#{constants.$vvd-color-alert-500});
 	}
