@@ -1,10 +1,9 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
+import { SkipBy } from '../enums';
 
-function getPlaybackRatesArray(playbackRates: string | undefined): number[] {
-	const defaultRates = [0.5, 1, 1.5, 2];
-	if (playbackRates === undefined) return defaultRates;
+function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
 	const ratesArray: number[] = [];
 	
@@ -12,7 +11,7 @@ function getPlaybackRatesArray(playbackRates: string | undefined): number[] {
 		const num = Number(numStr);
 		if (!isNaN(num)) ratesArray.push(num);
 	});
-	return ratesArray.length ? ratesArray : defaultRates;
+	return ratesArray;
 }
 
 /**
@@ -55,7 +54,16 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr({attribute: 'playback-rates'}) playbackRates?: string;
+	@attr({attribute: 'playback-rates'}) playbackRates: string = "0.5, 1, 1.5, 2";
+
+	/**
+	 * Allows the video to loop back to the beginning when finished
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: loop
+	 */
+	@attr({attribute: 'skip-by'}) skipBy: SkipBy = SkipBy.Ten;
 
 	_player: any;
 
@@ -74,14 +82,24 @@ export class VideoPlayer extends FoundationElement {
 			src: el.getAttribute('src'),
 			type: el.getAttribute('type'),
 		}));
+		const skipByValue = parseInt(this.skipBy || '0');
+		const skipButtons = {
+			forward: skipByValue,
+			backward: skipByValue,
+		};
 		this._player = videojs(videoEle, {
+			fluid: true,
 			sources,
 			poster: this.poster,
 			controls: true,
 			preload: 'auto',
-			loop: !!this.loop,
+			loop: this.loop ? true : false,
 			autoplay: this.autoplay ? 'muted' : false,
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
+			controlBar: {
+				skipButtons: skipByValue > 0 ? skipButtons : false,
+				remainingTimeDisplay: { displayNegative: false },
+			},
 		});
 	}
 

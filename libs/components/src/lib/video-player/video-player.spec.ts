@@ -6,6 +6,15 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-video-player';
 
+jest.mock('video.js', () => {
+	const actualVideoJS = jest.requireActual('video.js');
+
+	return {
+		__esModule: true,
+		default: actualVideoJS
+	};
+});
+
 describe('vwc-video-player', () => {
 	let element: VideoPlayer;
 
@@ -18,9 +27,179 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('basic', () => {
-		fit('should be initialized as a vwc-video-player', async () => {
+		it('should be initialized as a vwc-video-player', async () => {
 			expect(videoPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(VideoPlayer);
+			expect(element.poster).toBe(undefined);
+			expect(element.autoplay).toBe(undefined);
+			expect(element.loop).toBe(undefined);
+			const posterEle = element.shadowRoot?.querySelector('.vjs-poster');
+			expect(posterEle?.classList.contains('vjs-hidden')).toBe(true);
+			const bigPlayBtn = element.shadowRoot?.querySelector('.vjs-big-play-button');
+			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
+			const captionsBtn = element.shadowRoot?.querySelector('.vjs-subs-caps-button');
+			expect(captionsBtn?.classList.contains('vjs-hidden')).toBe(true);
+			const descriptionsBtn = element.shadowRoot?.querySelector('.vjs-descriptions-button');
+			expect(descriptionsBtn?.classList.contains('vjs-hidden')).toBe(true);
+			const chaptersBtn = element.shadowRoot?.querySelector('.vjs-chapters-button');
+			expect(chaptersBtn?.classList.contains('vjs-hidden')).toBe(true);
+			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll('.vjs-playback-rate .vjs-menu li');
+			expect(playbackRatesMenuItems?.length).toBe(4);
+			if (playbackRatesMenuItems?.length === 4) {
+				expect(playbackRatesMenuItems[0].textContent).toBe('2x');
+				expect(playbackRatesMenuItems[1].textContent).toBe('1.5x');
+				expect(playbackRatesMenuItems[2].textContent).toBe('1x, selected');
+				expect(playbackRatesMenuItems[3].textContent).toBe('0.5x');
+			}
+			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-10');
+			expect(SkipBackwardBtn?.classList.contains('vjs-hidden')).toBe(false);
+			const SkipForwardBtn = element.shadowRoot?.querySelector('.vjs-skip-forward-10');
+			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(false);
+			const videoEle = element.shadowRoot?.querySelector('video');
+			expect(videoEle?.hasAttribute('loop')).toBe(false);
+		});
+	});
+
+	describe('autoplay', () => {
+		it('should play automatically and be muted', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} autoplay>
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const muteBtn = element.shadowRoot?.querySelector('.vjs-mute-control');
+			setTimeout(() => {
+				expect(element.shadowRoot?.querySelector('.vjs-playing')).toBeTruthy();
+				expect(muteBtn?.getAttribute('title')).toBe('Unmute');
+			}, 1)
+		});
+	});
+
+	describe('loop', () => {
+		it('should loop add the loop attribute to the video element', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} loop>
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const videoEle = element.shadowRoot?.querySelector('video');
+			setTimeout(() => {
+				expect(videoEle?.hasAttribute('loop')).toBe(true);
+			}, 1)
+		});
+	});
+
+	describe('playback rates', () => {
+		it('should set custom playback rates', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} playback-rates="0.25, 0.5, 1">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll('.vjs-playback-rate .vjs-menu li');
+			expect(playbackRatesMenuItems?.length).toBe(3);
+			if (playbackRatesMenuItems?.length === 3) {
+				expect(playbackRatesMenuItems[0].textContent).toBe('1x, selected');
+				expect(playbackRatesMenuItems[1].textContent).toBe('0.5x');
+				expect(playbackRatesMenuItems[2].textContent).toBe('0.25x');
+			}
+		});
+
+		it('should disable playback rates when passed an empty string', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} playback-rates="">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const playbackRate = element.shadowRoot?.querySelector('.vjs-playback-rate');
+			expect(playbackRate?.classList.contains('vjs-hidden')).toBe(true);
+		});
+	});
+
+	describe('captions', () => {
+		it('displays the captions button and menu', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} playback-rates="">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<track kind="captions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
+					<track kind="captions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="fr" label="French">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			setTimeout(() => {
+				const captionsBtn = element.shadowRoot?.querySelector('.vjs-subs-caps-button');
+				expect(captionsBtn?.classList.contains('vjs-hidden')).toBe(false);
+				const captionsMenuItems = element.shadowRoot?.querySelectorAll('.vjs-subs-caps-button .vjs-menu li');
+				expect(captionsMenuItems?.length).toBe(4);
+				if (captionsMenuItems?.length === 4) {
+					expect(captionsMenuItems[2].textContent).toBe('English, selected');
+					expect(captionsMenuItems[3].textContent).toBe('French');
+				}
+			}, 1);
+		});
+	});
+
+	describe('audio descriptions', () => {
+		it('displays the audio description button and menu', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} playback-rates="">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<track kind="descriptions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en" default>
+    				<track kind="descriptions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="French" srclang="fr">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			setTimeout(() => {
+				const descriptionsBtn = element.shadowRoot?.querySelector('.vjs-descriptions-button');
+				expect(descriptionsBtn?.classList.contains('vjs-hidden')).toBe(false);
+				const descriptionsMenuItems = element.shadowRoot?.querySelectorAll('.vjs-descriptions-button .vjs-menu li');
+				expect(descriptionsMenuItems?.length).toBe(3);
+				if (descriptionsMenuItems?.length === 3) {
+					expect(descriptionsMenuItems[1].textContent).toBe('English, selected');
+					expect(descriptionsMenuItems[2].textContent).toBe('French');
+				}
+			}, 1);
+		});
+	});
+
+	describe('chapters', () => {
+		it('displays the chapters button and menu', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} playback-rates="">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<track kind="chapters" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			setTimeout(() => {
+				const chaptersBtn = element.shadowRoot?.querySelector('.vjs-chapters-button');
+				expect(chaptersBtn?.classList.contains('vjs-hidden')).toBe(false);
+				const chaptersMenuItems = element.shadowRoot?.querySelectorAll('.vjs-chapters-button .vjs-menu li');
+				expect(chaptersMenuItems?.length).toBe(6);
+			}, 1);
+		});
+	});
+
+	describe('skip-by buttons', () => {
+		it('should modify skip button amount', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} skip-by="30">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-30');
+			expect(SkipBackwardBtn?.classList.contains('vjs-hidden')).toBe(false);
+			const SkipForwardBtn = element.shadowRoot?.querySelector('.vjs-skip-forward-30');
+			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(false);
+		});
+
+		it('should disable skip by buttonss when passed 0', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} skip-by="0">
+					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-false');
+			expect(SkipBackwardBtn?.classList.contains('vjs-hidden')).toBe(true);
+			const SkipForwardBtn = element.shadowRoot?.querySelector('.vjs-skip-forward-false');
+			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(true);
 		});
 	});
 

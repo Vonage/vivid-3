@@ -74,3 +74,10 @@ export enum AriaLive {
 	Polite = 'polite',
 	Assertive = 'assertive',
 }
+
+export enum SkipBy {
+	Zero = '0',
+	Five = '5',
+	Ten = '10',
+	Thirty = '30',
+}

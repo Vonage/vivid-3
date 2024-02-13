@@ -16,10 +16,9 @@ Represents a video-player custom element.
 }
 </style>
 
-<vwc-video-player poster="https://live.staticflickr.com/45/150125790_2df6475599_b.jpg" playback-rates="0.5, 0.75, 1, 1.25, 1.5, 1.75, 2" loop="true">
+<vwc-video-player poster="https://live.staticflickr.com/45/150125790_2df6475599_b.jpg" loop="true" skip-by="0">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="captions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default
-           >
+    <track kind="captions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
     <track kind="chapters" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt">
     <track kind="descriptions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en">
     <track kind="descriptions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="French" srclang="fr">

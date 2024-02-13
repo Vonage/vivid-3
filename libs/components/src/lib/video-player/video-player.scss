@@ -1,6 +1,8 @@
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
 .video-js { 
+    position: relative;
+
     .vjs-time-control { 
         display: block; 
         width: auto; 
@@ -14,9 +16,5 @@
     
     .vjs-remaining-time { 
         display: none; 
-    }
-
-    .vjs-texttrack-settings {
-        display: none;
     }
 }
