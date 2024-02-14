@@ -1,7 +1,13 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
 import { SkipBy } from '../enums';
+import { iconFontStyles } from './IconFontStyles';
+import { Localized } from '../../shared/patterns';
+// import enUS from '../../locales/en-US';
+// import enGB from '../../locales/en-GB';
+// import jaJP from '../../locales/ja-JP';
+// import zhCN from '../../locales/zh-CN';
 
 function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
@@ -69,6 +75,13 @@ export class VideoPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
+
+		if (!document.head.querySelector('#vjs-icons')) {
+			const iconStyle = document.createElement('style');
+			iconStyle.id = 'vjs-icons';
+			document.head.appendChild(iconStyle);
+			iconStyle.sheet?.insertRule(iconFontStyles, 0);
+		}
 		
 		const videoEle = document.createElement('video');
 		const trackEles = this.querySelectorAll('track');
@@ -87,7 +100,12 @@ export class VideoPlayer extends FoundationElement {
 			forward: skipByValue,
 			backward: skipByValue,
 		};
+		
 		this._player = videojs(videoEle, {
+			languages: {
+				current: this.locale.videoPlayer,
+			},
+			language: 'current',
 			fluid: true,
 			sources,
 			poster: this.poster,
@@ -101,6 +119,7 @@ export class VideoPlayer extends FoundationElement {
 				remainingTimeDisplay: { displayNegative: false },
 			},
 		});
+		this.shadowRoot?.querySelector('[lang]')?.removeAttribute('lang');
 	}
 
 	override disconnectedCallback(): void {
@@ -110,3 +129,6 @@ export class VideoPlayer extends FoundationElement {
 		}
 	}
 }
+
+export interface VideoPlayer extends Localized { }
+applyMixins(VideoPlayer, Localized);

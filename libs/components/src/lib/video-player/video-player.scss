@@ -1,7 +1,23 @@
+@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
-.video-js { 
+:host {
+    display: block;
+}
+
+.vjs-theme-vivid { 
     position: relative;
+    font: var(--vvd-typography-base);
+    font-size: 10px;
+
+    .vjs-big-play-button {
+        width: 2.5em;
+        height: 2.5em;
+        margin-left: -1.25em;
+        margin-top: -1.25em;
+        line-height: 2.4;
+        border-radius: #{border-radius-variables.$border-radius-full};
+    }
 
     .vjs-time-control { 
         display: block; 
@@ -16,5 +32,92 @@
     
     .vjs-remaining-time { 
         display: none; 
+    }
+
+    .vjs-control-bar {
+        width: calc(100% - 8px);
+        height: 4em;
+        margin: 4px;
+        border-radius: 8px;
+    }
+
+    .vjs-button {
+        border-radius: #{border-radius-variables.$border-radius-normal};
+
+        > .vjs-icon-placeholder:before {
+            line-height: 2.2;
+        }
+    }
+
+    .vjs-menu-button {
+        border-radius: 
+            #{border-radius-variables.$border-radius-none} 
+            #{border-radius-variables.$border-radius-none} 
+            #{border-radius-variables.$border-radius-normal} 
+            #{border-radius-variables.$border-radius-normal};
+    }
+
+    .vjs-menu-button-popup .vjs-menu {
+        margin-bottom: 2.5em;
+    }
+
+    .vjs-playback-rate .vjs-playback-rate-value {
+        line-height: 2.5;
+        z-index: 1;
+    }
+
+    .vjs-time-control {
+        line-height: 4em;
+    }
+
+    .vjs-button:hover {
+        background: #000;
+    }
+
+    .vjs-volume-bar {
+        margin: 1.9em 0.45em;
+    }
+
+    .vjs-volume-tooltip, .vjs-time-tooltip {
+        top: -5em;
+    }
+
+    .vjs-text-track-display {
+        margin-inline-start: -50%;
+        width: 100%;
+        bottom: 5em;
+    }
+
+    .vjs-menu {
+        width: 12em;
+        left: -4em;
+
+        ul {
+            border-radius:
+                #{border-radius-variables.$border-radius-normal} 
+                #{border-radius-variables.$border-radius-normal}
+                #{border-radius-variables.$border-radius-none} 
+                #{border-radius-variables.$border-radius-none};
+        }
+
+        li {
+            padding: 4px 8px;
+            justify-content: start;
+            text-align: left;;
+        }
+
+        li:not(.vjs-selected, .vjs-menu-title):hover {
+            background: #000;
+        }
+    }
+
+    .vjs-playback-rate .vjs-menu {
+        width: 4em;
+        left: 0em;
+
+        li {
+            justify-content: center;
+            text-align: center;
+        }
     }
 }

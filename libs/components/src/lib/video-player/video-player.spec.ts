@@ -203,8 +203,8 @@ describe('vwc-video-player', () => {
 		});
 	});
 
-	xdescribe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('a11y', () => {
+		xit('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
