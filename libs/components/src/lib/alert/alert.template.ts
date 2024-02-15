@@ -25,7 +25,7 @@ const getControlClasses = ({ open, placement, strategy }: Alert) => classNames(
 function renderIcon(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html`${x => affixIconTemplate(x.conditionedIcon || x.icon, IconWrapper.Slot)}`;
+	return html`${x => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}`;
 }
 
 function renderDismissButton(buttonTag: string) {
