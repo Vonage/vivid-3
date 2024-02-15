@@ -192,6 +192,17 @@ You can add action items elements using the `action-items` slot. They will be di
 </vwc-alert>
 ```
 
+### Icon
+Set the `icon` slot to add an icon to the alert.
+If set, the `icon` attribute is ignored.
+
+```html preview 100px
+<vwc-alert text="An important information for you" open>
+  <vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
+</vwc-alert>
+```
+
+
 ## CSS Variables
 
 ### Minimum inline Size

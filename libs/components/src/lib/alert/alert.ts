@@ -29,6 +29,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @public
  * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
+ * @slot icon - Add an icon to the component.
  * @event open - Fired when the alert is opened
  * @event close - Fired when the alert is closed
  */
