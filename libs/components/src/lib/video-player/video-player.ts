@@ -4,10 +4,6 @@ import videojs from 'video.js';
 import { SkipBy } from '../enums';
 import { iconFontStyles } from './IconFontStyles';
 import { Localized } from '../../shared/patterns';
-// import enUS from '../../locales/en-US';
-// import enGB from '../../locales/en-GB';
-// import jaJP from '../../locales/ja-JP';
-// import zhCN from '../../locales/zh-CN';
 
 function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
@@ -20,10 +16,23 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
 	return ratesArray;
 }
 
+const installIconFontStyle = (document: Document) => {
+	if (!document.head.querySelector('#vjs-icons')) {
+		const iconStyle = document.createElement('style');
+		iconStyle.id = 'vjs-icons';
+		document.head.appendChild(iconStyle);
+		iconStyle.sheet?.insertRule(iconFontStyles, 0);
+	}
+};
+
 /**
  * Base class for video-player
  *
  * @public
+ * @slot - Default slot
+ * @event play - Fired when the video is played
+ * @event pause - Fired when the video is paused
+ * @event ended - Fired when the video is ended
  */
 export class VideoPlayer extends FoundationElement {
 	/**
@@ -73,15 +82,11 @@ export class VideoPlayer extends FoundationElement {
 
 	_player: any;
 
+	
+
 	override connectedCallback(): void {
 		super.connectedCallback();
-
-		if (!document.head.querySelector('#vjs-icons')) {
-			const iconStyle = document.createElement('style');
-			iconStyle.id = 'vjs-icons';
-			document.head.appendChild(iconStyle);
-			iconStyle.sheet?.insertRule(iconFontStyles, 0);
-		}
+		installIconFontStyle(document);
 		
 		const videoEle = document.createElement('video');
 		const trackEles = this.querySelectorAll('track');
@@ -95,7 +100,7 @@ export class VideoPlayer extends FoundationElement {
 			src: el.getAttribute('src'),
 			type: el.getAttribute('type'),
 		}));
-		const skipByValue = parseInt(this.skipBy || '0');
+		const skipByValue = parseInt(this.skipBy);
 		const skipButtons = {
 			forward: skipByValue,
 			backward: skipByValue,
@@ -119,7 +124,12 @@ export class VideoPlayer extends FoundationElement {
 				remainingTimeDisplay: { displayNegative: false },
 			},
 		});
+		// removes lang="current" from the component
 		this.shadowRoot?.querySelector('[lang]')?.removeAttribute('lang');
+
+		this._player.on('play', () => this.$emit('play'));
+		this._player.on('pause', () => this.$emit('pause'));
+		this._player.on('ended', () => this.$emit('ended'));
 	}
 
 	override disconnectedCallback(): void {

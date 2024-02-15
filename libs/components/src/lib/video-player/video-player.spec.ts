@@ -203,7 +203,55 @@ describe('vwc-video-player', () => {
 		});
 	});
 
+	describe('events', () => {
+		beforeEach(async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
+					<source src="./short-test.mp4" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+		});
+
+		it('should emit the play event when the play button is pressed', () => {
+			const spy = jest.fn();
+			element.addEventListener('play', spy);
+			setTimeout(() => {
+				const playBtn = element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+				playBtn?.click();
+
+				expect(spy).toHaveBeenCalledTimes(1);
+			}, 1);
+		});
+
+		it('should emit the pause event when the play button is pressed', () => {
+			const spy = jest.fn();
+			element.addEventListener('pause', spy);
+			setTimeout(() => {
+				const playBtn = element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+				playBtn?.click();
+				const pauseBtn = element.shadowRoot?.querySelector('.vjs-play-control') as HTMLButtonElement;
+				pauseBtn?.click();
+				
+				expect(spy).toHaveBeenCalledTimes(1);
+			}, 1);
+		});
+
+		it('should emit the ended event when the video ended', () => {
+			const spy = jest.fn();
+			element.addEventListener('ended', spy);
+			setTimeout(() => {
+				const playBtn = element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+				playBtn?.click();
+				
+				setTimeout(() => {
+					expect(spy).toHaveBeenCalledTimes(1);
+				}, 6000);
+			}, 1);
+		});
+	})
+
 	describe('a11y', () => {
+		// skipped because there are aria tags (menus) inside video.js that are not correct
 		xit('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
