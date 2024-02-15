@@ -1,7 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { checkboxRegistries } from '../checkbox/definition';
-import { focusRegistries } from '../focus/definition';
 import { radioRegistries } from '../radio/definition';
 import styles from './selectable-box.scss?inline';
 
@@ -24,7 +23,6 @@ export const selectableBoxDefinition =
 export const selectableBoxRegistries = [
 	selectableBoxDefinition(),
 	...checkboxRegistries,
-	...focusRegistries,
 	...radioRegistries,
 ];
 

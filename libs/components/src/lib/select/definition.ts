@@ -1,6 +1,5 @@
 import type { SelectOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { focusRegistries } from '../focus/definition';
 import { popupRegistries } from '../popup/definition';
 import { iconRegistries } from '../icon/definition';
 import { listboxOptionRegistries } from '../option/definition';
@@ -23,7 +22,7 @@ export const selectDefinition = Select.compose<SelectOptions>({
 /**
  * @internal
  */
-export const selectRegistries = [selectDefinition(), ...focusRegistries, ...popupRegistries, ...iconRegistries, ...listboxOptionRegistries];
+export const selectRegistries = [selectDefinition(), ...popupRegistries, ...iconRegistries, ...listboxOptionRegistries];
 
 /**
  * Registers the select elements with the design system.

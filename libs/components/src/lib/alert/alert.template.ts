@@ -7,7 +7,7 @@ import {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
-import { affixIconTemplateFactory } from '../../shared/patterns';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Alert } from './alert';
 
 const getClasses = ({ connotation }: Alert) => classNames(
@@ -25,7 +25,7 @@ const getControlClasses = ({ open, placement, strategy }: Alert) => classNames(
 function renderIcon(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html`${x => affixIconTemplate(x.conditionedIcon)}`;
+	return html`${x => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}`;
 }
 
 function renderDismissButton(buttonTag: string) {
@@ -60,7 +60,7 @@ export const AlertTemplate: (
 			aria-live="assertive"
 		>
 			<div part="vvd-theme-alternate" class="${getClasses}">
-				${when(x => x.icon || x.connotation, renderIcon(context))}
+				${renderIcon(context)}
 				<div class="alert-text">
 					${when(x => x.headline, html`<header class="headline">${(x) => x.headline}</header>`)}
 					${when(x => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}
