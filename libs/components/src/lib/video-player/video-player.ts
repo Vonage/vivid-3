@@ -128,6 +128,10 @@ export class VideoPlayer extends FoundationElement {
 		this._player = videojs(videoEle, this._settings);
 		// removes lang="current" from the component
 		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang');
+
+		this._player.on('play', () => this.$emit('play'));
+		this._player.on('pause', () => this.$emit('pause'));
+		this._player.on('ended', () => this.$emit('ended'));
 	}
 
 	override disconnectedCallback(): void {

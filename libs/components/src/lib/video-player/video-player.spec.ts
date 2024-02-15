@@ -211,7 +211,7 @@ describe('vwc-video-player', () => {
 		});
 	});
 
-	xdescribe('events', () => {
+	describe('events', () => {
 		beforeEach(async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}>
@@ -220,12 +220,11 @@ describe('vwc-video-player', () => {
 			)) as VideoPlayer;
 		});
 
-		it('should emit the play event when the play button is pressed', async () => {
+		xit('should emit the play event when the play button is pressed', async () => {
 			const spy = jest.fn();
 			element.addEventListener('play', spy);
 			await elementUpdated(element);
 			const playBtn = element.shadowRoot!.querySelector('.vjs-big-play-button') as HTMLButtonElement;
-			console.log(playBtn.outerHTML);
 			playBtn!.click();
 			await new Promise(resolve => setTimeout(resolve, 1000));
 			expect(spy).toHaveBeenCalledTimes(1);
