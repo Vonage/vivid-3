@@ -16,9 +16,6 @@ export const accordionItemDefinition =
 		baseName: 'accordion-item',
 		template: template as any,
 		styles,
-		shadowOptions: {
-			delegatesFocus: true,
-		},
 	});
 
 /**
