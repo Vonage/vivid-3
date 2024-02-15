@@ -22,9 +22,14 @@ A video source is provided to the component using the `source` element.
 		max-width: 640px; /* for demo purposes */
 	}
 </style>
-<vwc-video-player>
+<vwc-video-player id="video1">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
 </vwc-video-player>
+<script>
+  document.getElementById('video1').addEventListener('play', () => console.log('play'));
+  document.getElementById('video1').addEventListener('pause', () => console.log('pause'));
+  document.getElementById('video1').addEventListener('ended', () => console.log('ended'));
+</script>
 ```
 
 The most common and widely supported format is `mp4` (as in the exmaple below).
