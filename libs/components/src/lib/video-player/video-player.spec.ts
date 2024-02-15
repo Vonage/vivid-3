@@ -30,6 +30,9 @@ describe('vwc-video-player', () => {
 		it('should be initialized as a vwc-video-player', async () => {
 			expect(videoPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(VideoPlayer);
+		});
+
+		it('should be initialise in its default state', async () => {
 			expect(element.poster).toBe(undefined);
 			expect(element.autoplay).toBe(undefined);
 			expect(element.loop).toBe(undefined);
@@ -57,6 +60,10 @@ describe('vwc-video-player', () => {
 			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(false);
 			const videoEle = element.shadowRoot?.querySelector('video');
 			expect(videoEle?.hasAttribute('loop')).toBe(false);
+		});
+
+		it('removes the redundant lang attribute', () => {
+			expect(element.shadowRoot?.querySelector('[lang]')).toBe(null);
 		});
 	});
 
