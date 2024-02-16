@@ -85,7 +85,7 @@ describe('vwc-video-player', () => {
 			const videoEle = element.shadowRoot?.querySelector('video');
 			setTimeout(() => {
 				expect(videoEle?.hasAttribute('loop')).toBe(true);
-			}, 1)
+			}, 1);
 		});
 	});
 
@@ -206,6 +206,11 @@ describe('vwc-video-player', () => {
 	function getPlayButton() {
 		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
 	}
+
+	function setVideoPauseState(pauseState = true) {
+		jest.spyOn(element._player, 'paused').mockImplementationOnce(() => pauseState);
+	}
+
 	describe('events', () => {
 		beforeEach(async () => {
 			element = (await fixture(
@@ -216,49 +221,50 @@ describe('vwc-video-player', () => {
 			jest.spyOn(element._player, 'play').mockImplementation(function(this: any) {
 				this.trigger('play');
 			});
+			jest.spyOn(element._player, 'pause').mockImplementation(function(this: any) {
+				return this.handleTechPause_();
+			});
 		});
 
 		afterEach(() => {
 			element._player.play.mockRestore();
+			element._player.pause.mockRestore();
 		});
 
 		it('should emit the play event when the play button is pressed', async () => {
 			const spy = jest.fn();
 			element.addEventListener('play', spy);
 
-			await elementUpdated(element);
 			const playBtn = getPlayButton();
 			playBtn?.click();
 
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should emit the pause event when the play button is pressed', () => {
+		it('should emit the pause event when the pause button is pressed while playing', async () => {
+			const pauseBtn = element.shadowRoot?.querySelector('.vjs-play-control') as HTMLButtonElement;
 			const spy = jest.fn();
 			element.addEventListener('pause', spy);
-			setTimeout(() => {
-				const playBtn = element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
-				playBtn?.click();
-				const pauseBtn = element.shadowRoot?.querySelector('.vjs-play-control') as HTMLButtonElement;
-				pauseBtn?.click();
+			setVideoPauseState(false);
 
-				expect(spy).toHaveBeenCalledTimes(1);
-			}, 1);
+			pauseBtn?.click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should emit the ended event when the video ended', () => {
 			const spy = jest.fn();
 			element.addEventListener('ended', spy);
 			setTimeout(() => {
-				const playBtn = element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+				const playBtn = getPlayButton();
 				playBtn?.click();
-				
+
 				setTimeout(() => {
 					expect(spy).toHaveBeenCalledTimes(1);
 				}, 6000);
 			}, 1);
 		});
-	})
+	});
 
 	describe('a11y', () => {
 		// skipped because there are aria tags (menus) inside video.js that are not correct
