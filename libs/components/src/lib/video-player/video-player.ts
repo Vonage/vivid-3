@@ -21,7 +21,7 @@ const installIconFontStyle = (document: Document) => {
 		const iconStyle = document.createElement('style');
 		iconStyle.id = 'vjs-icons';
 		document.head.appendChild(iconStyle);
-		iconStyle.sheet?.insertRule(iconFontStyles, 0);
+		iconStyle.sheet!.insertRule(iconFontStyles, 0);
 	}
 };
 
@@ -81,7 +81,7 @@ export class VideoPlayer extends FoundationElement {
 	@attr({attribute: 'skip-by'}) skipBy: SkipBy = SkipBy.Ten;
 
 	_player: any;
-
+	_settings: any;
 	
 
 	override connectedCallback(): void {
@@ -93,8 +93,8 @@ export class VideoPlayer extends FoundationElement {
 		for(let x = 0; x < trackEles.length; x++) {
 			videoEle.appendChild(trackEles[x]);
 		}
-		const control = this.shadowRoot?.querySelector('.control')
-		control?.appendChild(videoEle);
+		const control = this.shadowRoot!.querySelector('.control')
+		control!.appendChild(videoEle);
 		const srcEles = this.querySelectorAll('source');
 		const sources = Array.from(srcEles).map((el) => ({
 			src: el.getAttribute('src'),
@@ -105,8 +105,8 @@ export class VideoPlayer extends FoundationElement {
 			forward: skipByValue,
 			backward: skipByValue,
 		};
-		
-		this._player = videojs(videoEle, {
+
+		this._settings = {
 			languages: {
 				current: this.locale.videoPlayer,
 			},
@@ -116,16 +116,18 @@ export class VideoPlayer extends FoundationElement {
 			poster: this.poster,
 			controls: true,
 			preload: 'auto',
-			loop: this.loop ? true : false,
+			loop: !!this.loop,
 			autoplay: this.autoplay ? 'muted' : false,
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
 				skipButtons: skipByValue > 0 ? skipButtons : false,
 				remainingTimeDisplay: { displayNegative: false },
 			},
-		});
+		}
+		
+		this._player = videojs(videoEle, this._settings);
 		// removes lang="current" from the component
-		this.shadowRoot?.querySelector('[lang]')?.removeAttribute('lang');
+		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang');
 
 		this._player.on('play', () => this.$emit('play'));
 		this._player.on('pause', () => this.$emit('pause'));
