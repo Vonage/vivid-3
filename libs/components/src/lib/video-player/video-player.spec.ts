@@ -203,6 +203,9 @@ describe('vwc-video-player', () => {
 		});
 	});
 
+	function getPlayButton() {
+		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+	}
 	describe('events', () => {
 		beforeEach(async () => {
 			element = (await fixture(
@@ -210,17 +213,24 @@ describe('vwc-video-player', () => {
 					<source src="./short-test.mp4" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
+			jest.spyOn(element._player, 'play').mockImplementation(function(this: any) {
+				this.trigger('play');
+			});
 		});
 
-		it('should emit the play event when the play button is pressed', () => {
+		afterEach(() => {
+			element._player.play.mockRestore();
+		});
+
+		it('should emit the play event when the play button is pressed', async () => {
 			const spy = jest.fn();
 			element.addEventListener('play', spy);
-			setTimeout(() => {
-				const playBtn = element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
-				playBtn?.click();
 
-				expect(spy).toHaveBeenCalledTimes(1);
-			}, 1);
+			await elementUpdated(element);
+			const playBtn = getPlayButton();
+			playBtn?.click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should emit the pause event when the play button is pressed', () => {
@@ -231,7 +241,7 @@ describe('vwc-video-player', () => {
 				playBtn?.click();
 				const pauseBtn = element.shadowRoot?.querySelector('.vjs-play-control') as HTMLButtonElement;
 				pauseBtn?.click();
-				
+
 				expect(spy).toHaveBeenCalledTimes(1);
 			}, 1);
 		});
