@@ -223,7 +223,7 @@ describe('vwc-video-player', () => {
 		beforeEach(async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}>
-					<source src="short-test.mp4" type="video/mp4">
+					<source src="./short-test.mp4" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			jest.spyOn(element._player, 'play').mockImplementation(function(this: any) {
@@ -249,7 +249,7 @@ describe('vwc-video-player', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should emit the pause event when the pause button is pressed while playing', async () => {
+		it('should emit the pause event when the pause button is pressed while pause state is false', async () => {
 			const pauseBtn = element.shadowRoot?.querySelector('.vjs-play-control') as HTMLButtonElement;
 			const spy = jest.fn();
 			element.addEventListener('pause', spy);
@@ -263,14 +263,8 @@ describe('vwc-video-player', () => {
 		it('should emit the ended event when the video ended', () => {
 			const spy = jest.fn();
 			element.addEventListener('ended', spy);
-			setTimeout(() => {
-				const playBtn = getPlayButton();
-				playBtn?.click();
-
-				setTimeout(() => {
-					expect(spy).toHaveBeenCalledTimes(1);
-				}, 6000);
-			}, 1);
+			element._player.trigger('ended');
+			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
 
