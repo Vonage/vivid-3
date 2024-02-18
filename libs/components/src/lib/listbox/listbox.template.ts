@@ -6,7 +6,6 @@ import {
 	type FoundationElementDefinition
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns';
 import type { Listbox } from './listbox';
 
 const getClasses = ({ appearance, shape, disabled, orientation }: Listbox) =>
@@ -21,8 +20,7 @@ const getClasses = ({ appearance, shape, disabled, orientation }: Listbox) =>
 export const ListboxTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Listbox> = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
+) => ViewTemplate<Listbox> = () => {
 
 	return html`
 <template
@@ -40,8 +38,6 @@ export const ListboxTemplate: (
 	<div
 		class="${getClasses}"
 	>
-		${() => focusTemplate}
-
 		<slot
 			${slotted({
 		filter: FASTListboxElement.slottedOptionFilter as any,
