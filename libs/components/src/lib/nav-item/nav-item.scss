@@ -42,9 +42,11 @@
 	@include appearance.appearance;
 	@include connotation.connotation (nav-item);
 
+	:host(:not([aria-current="page"])) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
 	&:focus-visible {
 		@include focus.focus;
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	&.icon-only {
