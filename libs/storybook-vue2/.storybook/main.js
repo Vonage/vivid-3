@@ -17,7 +17,7 @@ const config = {
 			resolve: {
 				alias: {
 					'@vonage/vivid': path.resolve(__dirname, '../../../dist/libs/components/index.js'),
-					'@vonage/vivid-vue': path.resolve(__dirname, '../../../dist/libs/vue-wrappers/index.es.js'),
+					'@vonage/vivid-vue': path.resolve(__dirname, '../../../dist/libs/vue-wrappers/index.js'),
 				},
 			},
 		});
