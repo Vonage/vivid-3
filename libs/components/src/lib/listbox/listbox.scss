@@ -1,5 +1,6 @@
 @use "partials/variables" as variables;
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: intermediate primary soft,
@@ -32,7 +33,6 @@
 	@include connotation.connotation(listbox);
 	@include appearance.appearance;
 
-	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	padding: 4px;
@@ -46,24 +46,25 @@
 	&:not(.orientation-horizontal) {
 		flex-direction: column;
 	}
-}
 
-.focus-indicator {
-	pointer-events: none;
+	/* Shape */
+	&:not(.shape-pill) {
+		#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-normal};
+	}
 
-	:host(:not(:focus-within)) & {
-		display: none;
+	&.shape-pill {
+		#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
+	}
+
+
+	:host(:focus-within) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		@include focus.focus;
 	}
 }
 
-/* Shape */
-.base:not(.shape-pill) {
-	#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-normal};
-}
 
-.base.shape-pill {
-	#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
-}
+
 
 ::slotted([role="option"]) {
 	border-radius: var(#{variables.$listbox-border-radius});
