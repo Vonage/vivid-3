@@ -132,6 +132,26 @@ ComponentRegister.registerComponent('radio-group', component => {
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
+ComponentRegister.registerComponent('range-slider', component => {
+	addVueModel(
+		component,
+		{
+			attributeName: 'current-start',
+			eventName: 'input:start',
+			valueMapping: '(event.target as any).start',
+		},
+		'start'
+	);
+	addVueModel(
+		component,
+		{
+			attributeName: 'current-end',
+			eventName: 'input:end',
+			valueMapping: '(event.target as any).end',
+		},
+		'end'
+	);
+});
 ComponentRegister.registerComponent('selectable-box');
 ComponentRegister.registerComponent('select', component => {
   addVueModel(component, {
