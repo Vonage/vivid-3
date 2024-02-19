@@ -206,10 +206,14 @@ describe('vwc-alert', () => {
 
 	describe('icon', function () {
 
-		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
+		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('slot[name="icon"] > vwc-icon');
 
 		it('should not have an icon if there is none and no connotation is set', async function () {
 			expect(getIcon()).toBeNull();
+		});
+
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
 		});
 
 		it('should have an icon when icon is set', async function () {

@@ -4,6 +4,7 @@
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 
 $dialog-space-size: 24px;
 
@@ -34,7 +35,7 @@ $dialog-space-size: 24px;
 	&.modal {
 		position: fixed;
 
-		// reason for box-shadow & hardcoded color - PR-1172
+		// reason for box-shadow & hardcoded color - PR-1098
 		box-shadow: 0 4px 20px rgb(0 0 0 / 35%);
 		&::backdrop {
 			@include scrim-mixins.scrim-variables;
@@ -42,15 +43,7 @@ $dialog-space-size: 24px;
 	}
 
 	&:focus-visible {
-		outline: none;
-	}
-
-	.focus-indicator {
-		pointer-events: none;
-	}
-
-	&:not(:focus-visible) .focus-indicator {
-		display: none;
+		@include focus.focus;
 	}
 }
 

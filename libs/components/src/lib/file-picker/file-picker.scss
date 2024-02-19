@@ -1,6 +1,8 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 
 $low-ink-color: --_low-ink-color;
 
@@ -16,13 +18,6 @@ $low-ink-color: --_low-ink-color;
 }
 
 .control {
-	@supports selector(:focus-visible) {
-		&:focus-visible {
-			outline: none;
-		}
-	}
-
-	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	flex-wrap: wrap;
@@ -44,6 +39,12 @@ $low-ink-color: --_low-ink-color;
 	}
 	&.size-expanded {
 		min-block-size: 120px;
+	}
+	&:focus-visible {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{focus-variables.$focus-inset}: 1px;
+
+		@include focus.focus;
 	}
 }
 
@@ -126,8 +127,4 @@ $low-ink-color: --_low-ink-color;
 	overflow-y: auto;
 }
 
-.focus-indicator {
-	.control:not(:focus-visible) & {
-		display: none;
-	}
-}
+

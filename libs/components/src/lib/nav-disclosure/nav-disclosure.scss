@@ -45,10 +45,13 @@
 	text-decoration: none;
 	vertical-align: middle;
 
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	&:focus-visible {
 		@include focus.focus;
+	}
+	:host(:where([aria-current="true"][open])) &,
+	:host(:not([aria-current="true"])) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	@supports(user-select: none) {

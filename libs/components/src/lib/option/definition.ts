@@ -1,7 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusRegistries } from '../focus/definition';
 import { ListboxOption } from './option';
 import { ListboxOptionTemplate as template } from './option.template';
 import styles from './option.scss?inline';
@@ -18,7 +17,7 @@ export const listboxOptionDefinition = ListboxOption.compose<FoundationElementDe
 /**
  * @internal
  */
-export const listboxOptionRegistries = [listboxOptionDefinition(), ...iconRegistries, ...focusRegistries];
+export const listboxOptionRegistries = [listboxOptionDefinition(), ...iconRegistries];
 
 /**
  * Registers the listbox-option elements with the design system.

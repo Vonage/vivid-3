@@ -1,7 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusRegistries } from '../focus/definition';
 import { SplitButton } from './split-button';
 import styles from './split-button.scss?inline';
 import { SplitButtonTemplate as template } from './split-button.template';
@@ -24,7 +23,7 @@ export const splitButtonDefinition = SplitButton.compose<FoundationElementDefini
 /**
  * @internal
  */
-export const splitButtonRegistries = [splitButtonDefinition(), ...iconRegistries, ...focusRegistries];
+export const splitButtonRegistries = [splitButtonDefinition(), ...iconRegistries];
 
 /**
  * Registers the button elements with the design system.
