@@ -15,7 +15,7 @@ Toggletips need to be anchored to an element. Place the anchor element inside th
 
 The anchor must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
 
-```html preview center
+```html preview center 100px
 <vwc-toggletip>
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
 	I'm a toggletip
@@ -31,7 +31,7 @@ You can toggle toggletip's display by using the `open` attribute.
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 100px
 <vwc-toggletip open>
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
 	I'm open by default
@@ -45,7 +45,7 @@ Use the `headline` attribute to set the toggletip's headline.
 - Type: `string`
 - Default: `undefined`
 
-```html preview center
+```html preview center 100px
 <vwc-toggletip headline="This is the headline">
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
 	This is the content
@@ -59,7 +59,7 @@ Add the `alternate` attribute to change the toggletip's color-scheme to the oppo
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 100px
 <vwc-toggletip alternate>
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
 	An alternate toggletip
@@ -73,11 +73,8 @@ Use the `placement` attribute to control the position of the toggletip relative 
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'` | `'left'` | `'left-start'` | `'left-end'`
 - Default: `'right'`
 
-```html preview center
+```html preview center 400px
 <style>
-	html {
-		height: 400px;
-	}
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(5, auto);
@@ -126,7 +123,7 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 - Type: `string | HTMLElement`
 - Default: `undefined`
 
-```html preview center
+```html preview center 100px
 <vwc-button id="button1" icon="help-solid" shape="pill"></vwc-button>
 <vwc-toggletip anchor="button1">My anchor is an ID</vwc-toggletip>
 
@@ -148,7 +145,7 @@ Use the `anchor` slot to place the anchor element.
 
 You can add action items elements using the `action-items` slot. They will be displayed right-aligned at the bottom of the toggletip.
 
-```html preview center
+```html preview center 150px
 <vwc-toggletip>
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
 	This is a toggletip with action items

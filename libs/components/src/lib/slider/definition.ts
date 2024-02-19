@@ -1,7 +1,6 @@
 import type { SliderOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { focusRegistries } from '../focus/definition';
-import styles from './slider.scss';
+import styles from './slider.scss?inline';
 
 import { Slider } from './slider';
 import { SliderTemplate as template } from './slider.template';
@@ -23,7 +22,7 @@ export const sliderDefinition = Slider.compose<SliderOptions>({
 /**
  * @internal
  */
-export const sliderRegistries = [sliderDefinition(), ...focusRegistries];
+export const sliderRegistries = [sliderDefinition()];
 
 /**
  * Registers the slider elements with the design system.

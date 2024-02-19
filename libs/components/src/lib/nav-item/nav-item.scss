@@ -42,11 +42,6 @@
 	@include appearance.appearance;
 	@include connotation.connotation (nav-item);
 
-	&:focus-visible {
-		@include focus.focus;
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-	}
-
 	&.icon-only {
 		display: flex;
 		block-size: $min-block-size;
@@ -58,6 +53,16 @@
 		padding-block: 10px;
 		padding-inline: $gutter;
 	}
+
+	&:focus-visible {
+		@include focus.focus;
+	}
+
+
+	:host(:not([aria-current="page"])) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+
 }
 
 slot[name="icon"] {

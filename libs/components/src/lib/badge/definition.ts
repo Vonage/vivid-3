@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { Badge } from './badge';
-import styles from './badge.scss';
+import styles from './badge.scss?inline';
 import { badgeTemplate as template } from './badge.template';
 
 export type { BadgeConnotation, BadgeAppearance, BadgeShape } from './badge';

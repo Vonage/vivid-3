@@ -1,10 +1,6 @@
 # Color
 
----
-
 Colors have assigned meanings and are used consistently throughout Vivid to set expectations of meaning for users. Color is used sparingly and intentionally to reinforce hierarchies and to create clear modes of communication.
-
----
 
 ## Connotation
 

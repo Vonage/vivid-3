@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import styles from './note.scss';
+import styles from './note.scss?inline';
 
 import { Note } from './note';
 import { NoteTemplate as template } from './note.template';

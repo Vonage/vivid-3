@@ -14,7 +14,7 @@ Tooltips need to be anchored to an element. Place the anchor element inside the 
 
 Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the tooltip will not be accessible to keyboard or screen reader users.
 
-```html preview center
+```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
 	<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
 </vwc-tooltip>
@@ -38,11 +38,8 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'left'`
 
-```html preview center
+```html preview center 400px
 <style>
-	html {
-		height: 400px;
-	}
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(5, auto);
@@ -91,7 +88,7 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 - Type: `string | HTMLElement`
 - Default: `undefined`
 
-```html preview center
+```html preview center 150px
 <vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
 <vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 
@@ -117,11 +114,8 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 
 - Default: `auto`
 
-```html preview center
+```html preview center 230px
 <style>
-  html { /* for demo purposes */
-    block-size: 230px;
-  }
   .tooltip {
     --tooltip-inline-size: 160px;
   }

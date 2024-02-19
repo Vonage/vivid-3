@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
-import styles from './tooltip.scss';
+import styles from './tooltip.scss?inline';
 
 import { Tooltip } from './tooltip';
 import { TooltipTemplate as template } from './tooltip.template';

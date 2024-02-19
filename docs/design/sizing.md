@@ -1,7 +1,6 @@
 ﻿
 # Sizing
 
----
 
 ## Density
 
