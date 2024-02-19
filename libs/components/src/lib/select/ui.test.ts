@@ -9,6 +9,37 @@ import {
 
 const components = ['select', 'option', 'badge'];
 
+async function testGhostSelect({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px;">
+			<vwc-select label="choose" success-text="Success" appearance="ghost">
+			<vwc-option value="1" text="Option 1"></vwc-option></vwc-select>
+	</div>
+<div style="margin: 5px;">
+			<vwc-select label="choose" error-text="Error" appearance="ghost">
+			<vwc-option value="1" text="Option 1"></vwc-option></vwc-select>
+	</div>`;
+
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/select-ghost.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
+
 test('should show the component', async ({ page }: { page: Page }) => {
 
 	const template = `
@@ -42,3 +73,4 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'./snapshots/select.png'
 	);
 });
+test('select ghost', testGhostSelect);
