@@ -13,4 +13,5 @@ export const exportedComponents = Object.keys(exportedNames)
 	.filter(exportName => !exportName.startsWith('registerFilePicker'))
 	.filter(exportName => exportName.startsWith('register'))
 	.map(exportName => exportName.replace('register', ''))
+	.concat(['DataGridRow', 'DataGridCell'])
 	.map(pascalToKebab);
