@@ -1,9 +1,4 @@
 const createCodeExamples = require('../code-example-preview/createCodeExample')
-const jsonData = [
-	...require('../_data/components.json'),
-	...require('../_data/designs.json'),
-	...require('../_data/introduction.json')
-];
 const customElements = require('../../../dist/libs/components/custom-elements.json');
 
 const CONNOTATIONS = [
@@ -52,8 +47,7 @@ module.exports = function (exampleCode, options) {
 		.find((c) => c.includes('variables-preview'))
 		.match(/\[(.*?)]/)[1];
 
-	const componentData = jsonData.find((c) => c.title === componentName);
-	const cssProperties = getCssPropertiesForComponent(componentData);
+	const cssProperties = getCssPropertiesForComponent(componentName);
 
 	const groupIntoTabs = !options.includes('no-tabs');
 
@@ -104,11 +98,11 @@ module.exports = function (exampleCode, options) {
 	}
 };
 
-const getCssPropertiesForComponent =(componentData) => {
+const getCssPropertiesForComponent = (componentName) => {
 	let cssProperties = [];
-	if (componentData) {
+	if (componentName) {
 		const declaration = customElements.modules.find(
-			module => module.path === `libs/components/src/lib/${componentData.title}/${componentData.title}.ts`
+			module => module.path === `libs/components/src/lib/${componentName}/${componentName}.ts`
 		)?.declarations?.find(declaration => declaration.kind === 'class');
 		if (declaration) {
 			cssProperties = declaration.cssProperties ?? [];
