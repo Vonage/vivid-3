@@ -31,50 +31,39 @@ const addVueModel = (
   });
 };
 
-ComponentRegister.registerComponent('accordion');
-ComponentRegister.registerComponent('accordion-item');
-ComponentRegister.registerComponent('action-group');
-ComponentRegister.registerComponent('alert');
-ComponentRegister.registerComponent('avatar');
-ComponentRegister.registerComponent('badge');
-ComponentRegister.registerComponent('banner');
-ComponentRegister.registerComponent('breadcrumb');
-ComponentRegister.registerComponent('breadcrumb-item');
-ComponentRegister.registerComponent('button');
-ComponentRegister.registerComponent('calendar');
-ComponentRegister.registerComponent('calendar-event');
-ComponentRegister.registerComponent('card');
-ComponentRegister.registerComponent('checkbox', component => {
+ComponentRegister.addComponentOverride('checkbox', component => {
   addVueModel(component, {
     attributeName: 'current-checked',
     eventName: 'change',
     valueMapping: '(event.target as HTMLInputElement).checked',
   });
 });
-ComponentRegister.registerComponent('combobox', component => {
+
+ComponentRegister.addComponentOverride('combobox', component => {
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'change',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('data-grid', component => {
+
+ComponentRegister.addComponentOverride('data-grid', component => {
   component.attributes.push({
     name: 'rowsData',
     description: 'Array of objects representing the rows of the grid.',
     type: [{ text: 'any[]', vuePropType: 'Array' }],
   });
 });
-ComponentRegister.registerComponent('data-grid-row');
-ComponentRegister.registerComponent('data-grid-cell');
-ComponentRegister.registerComponent('date-picker', component => {
+
+ComponentRegister.addComponentOverride('date-picker', component => {
   addVueModel(component, {
     attributeName: 'value',
     eventName: 'input',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('date-range-picker', component => {
+
+ComponentRegister.addComponentOverride('date-range-picker', component => {
   addVueModel(
     component,
     {
@@ -94,95 +83,75 @@ ComponentRegister.registerComponent('date-range-picker', component => {
     'end'
   );
 });
-ComponentRegister.registerComponent('dialog');
-ComponentRegister.registerComponent('divider');
-ComponentRegister.registerComponent('empty-state');
-ComponentRegister.registerComponent('fab');
-ComponentRegister.registerComponent('header');
-ComponentRegister.registerComponent('icon');
-ComponentRegister.registerComponent('layout');
-ComponentRegister.registerComponent('menu');
-ComponentRegister.registerComponent('menu-item', component => {
+
+ComponentRegister.addComponentOverride('menu-item', component => {
   addVueModel(component, {
     attributeName: 'checked',
     eventName: 'change',
     valueMapping: '(event.target as HTMLInputElement).checked',
   });
 });
-ComponentRegister.registerComponent('nav');
-ComponentRegister.registerComponent('nav-disclosure');
-ComponentRegister.registerComponent('nav-item');
-ComponentRegister.registerComponent('note');
-ComponentRegister.registerComponent('number-field', component => {
+
+ComponentRegister.addComponentOverride('number-field', component => {
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'input',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('option');
-ComponentRegister.registerComponent('pagination');
-ComponentRegister.registerComponent('progress');
-ComponentRegister.registerComponent('progress-ring');
-ComponentRegister.registerComponent('radio');
-ComponentRegister.registerComponent('radio-group', component => {
+
+ComponentRegister.addComponentOverride('radio-group', component => {
   addVueModel(component, {
     attributeName: 'value',
     eventName: 'change',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('selectable-box');
-ComponentRegister.registerComponent('select', component => {
+
+ComponentRegister.addComponentOverride('select', component => {
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'input',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('side-drawer');
-ComponentRegister.registerComponent('slider', component => {
+
+ComponentRegister.addComponentOverride('slider', component => {
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'change',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('split-button');
-ComponentRegister.registerComponent('switch', component => {
+
+ComponentRegister.addComponentOverride('switch', component => {
   addVueModel(component, {
     attributeName: 'current-checked',
     eventName: 'change',
     valueMapping: '(event.target as HTMLInputElement).checked',
   });
 });
-ComponentRegister.registerComponent('tab');
-ComponentRegister.registerComponent('tabs');
-ComponentRegister.registerComponent('tab-panel');
-ComponentRegister.registerComponent('text-area', component => {
+
+ComponentRegister.addComponentOverride('text-area', component => {
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'input',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('text-field', component => {
+
+ComponentRegister.addComponentOverride('text-field', component => {
   addVueModel(component, {
     attributeName: 'current-value',
     eventName: 'input',
     valueMapping: '(event.target as HTMLInputElement).value',
   });
 });
-ComponentRegister.registerComponent('time-picker', component => {
+
+ComponentRegister.addComponentOverride('time-picker', component => {
 	addVueModel(component, {
 		attributeName: 'current-value',
 		eventName: 'input',
 		valueMapping: '(event.target as HTMLInputElement).value',
 	});
 });
-ComponentRegister.registerComponent('toggletip');
-ComponentRegister.registerComponent('tooltip');
-ComponentRegister.registerComponent('tree-item');
-ComponentRegister.registerComponent('tree-view');
-ComponentRegister.registerComponent('tag');
-ComponentRegister.registerComponent('tag-group');
