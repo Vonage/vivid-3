@@ -175,8 +175,11 @@ The indicator is not displayed when using the `super-condensed` size.
 ### Href
 
 Use the `href` attribute to convert the button to a link.
-In addition, all of the native attributes of `<a>` are supported, included `target`.
-To read more about the native attributes of `<a>`, visit [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).
+In addition, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, included `target`.
+
+<vwc-note connotation="warning" icon="warning-solid">
+Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users. Use this feature with caution.
+</vwc-note>
 
 - Type: `string`
 - Default: `undefined`
