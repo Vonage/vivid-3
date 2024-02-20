@@ -35,9 +35,8 @@ export type SplitButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
- * Base class for split button
- *
  * @public
+ * @component split-button
  * @slot - Default slot.
  * @slot icon - Add an icon to the component.
  * @event action-click - Event emitted when the action button is clicked

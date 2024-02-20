@@ -13,10 +13,21 @@
 			"tagName": "@event",
 			"syntaxKind": "block",
 			"allowMultiple": true
+		},
+		{
+			"tagName": "@component",
+			"syntaxKind": "block"
+		},
+		{
+			"tagName": "@vueModel",
+			"syntaxKind": "block",
+			"allowMultiple": true
 		}
 	],
 	"supportForTags": {
 		"@slot": true,
-		"@event": true
+		"@event": true,
+		"@component": true,
+		"@vueModel": true
 	}
 }

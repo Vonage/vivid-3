@@ -4,9 +4,8 @@ import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
- * Base class for tooltip
- *
  * @public
+ * @component tooltip
  */
 @anchored
 export class Tooltip extends FoundationElement {

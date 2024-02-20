@@ -4,9 +4,8 @@ import { applyMixins } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
- * Base class for tree-item
- *
  * @public
+ * @component tree-item
  * @slot item - To specify a child tree item.
  * @slot icon - Add an icon to the component.
  */

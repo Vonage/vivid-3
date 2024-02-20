@@ -14,9 +14,8 @@ declare interface DataGridCellExtension {
 	columnDefinition: ColumnDefinitionExtended | null;
 }
 /**
- * Base class for data-grid
- *
  * @public
+ * @component data-grid-cell
  * @slot - Default slot.
  * @event sort - Event that fires when a sortable column header is clicked
  * @event cell-click - Event that fires when a cell is clicked

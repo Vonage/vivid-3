@@ -15,9 +15,8 @@ export type Gutters = Extract<TabsSize, TabsSize.Small >;
 
 
 /**
- * Base class for tabs
- *
  * @public
+ * @component tabs
  * @slot - Default slot.
  */
 export class Tabs extends FoundationTabs {

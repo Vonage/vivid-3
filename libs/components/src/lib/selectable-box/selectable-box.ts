@@ -18,9 +18,8 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
 
 
 /**
- * Base class for selectable-box
- *
  * @public
+ * @component selectable-box
  * @slot default - Slot for box's content.
  * @event change - Fired when the checked state changes
  */
@@ -90,7 +89,7 @@ export class SelectableBox extends FoundationElement {
 	 * @internal
 	 */
 	_handleKeydown(event: KeyboardEvent) {
-		if ((event.code === 'Space' || event.code === 'Enter') && (this.clickableBox || this.clickable)) 
+		if ((event.code === 'Space' || event.code === 'Enter') && (this.clickableBox || this.clickable))
 			return this._handleCheckedChange();
 		return true;
 	}

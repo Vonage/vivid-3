@@ -25,9 +25,8 @@ export type CalendarEventAppearance = Extract<Appearance,
 Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
 
 /**
- * Base class for calendar-event
- *
  * @public
+ * @component calendar-event
  */
 export class CalendarEvent extends FoundationElement {
 	/**
