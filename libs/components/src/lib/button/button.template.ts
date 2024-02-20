@@ -88,6 +88,7 @@ function renderButtonContent(context: ElementDefinitionContext) {
 function renderAnchorContent(context: ElementDefinitionContext) {
 	return html`<a
 		class="${getClasses}"
+		download="${x => x.download}"
 		href="${x => x.href}"
 		hreflang="${x => x.hreflang}"
 		ping="${x => x.ping}"
@@ -129,7 +130,7 @@ export const buttonTemplate: (
 
 	return html`
 		<template role="presentation">
-			${when(x => x.label && !x.href, html<Button>`${renderButtonContent(context)}`)}
+			${when(x => !x.href, html<Button>`${renderButtonContent(context)}`)}
 			${when(x => x.href && x.href.length > 0, html<Button>`${renderAnchorContent(context)}`)}
 		</template>`;
 };

@@ -127,6 +127,15 @@ export class Button extends FoundationButton {
 	@attr href?: string;
 
 	/**
+	 * Indicates the button's download.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: download
+	 */
+	@attr download?: string;
+
+	/**
 	 * Indicates the button's hreflang.
 	 *
 	 * @public

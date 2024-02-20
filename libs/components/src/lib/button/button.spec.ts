@@ -4,7 +4,7 @@ import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { Button } from './button';
-import  '.';
+import '.';
 import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-button';
@@ -185,83 +185,80 @@ describe('vwc-button', () => {
 	});
 
 	describe('link', () => {
-		it('should set the "href" attribute', async function () {
-			const attribute = 'href';
-			const anchorElement = getAnchorElement();
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+		function getAnchorElement() {
+			const anchorElement = element.shadowRoot?.querySelector('a');
+			return anchorElement;
+		}
+		
+		beforeEach(async () => {	
+			element.href = '/somewhere';
+			await elementUpdated(element);
 		});
 
-		it('should set the "hreflang" attribute', async function () {
+		it('should set the "href" attribute', async function () {
+			const attribute = 'href';
+			const text = 'link';
+			await setAttribute(element, attribute, text);
+
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
+		});
+
+		it('should set the "hreflang" attribute', async function () {			
 			const attribute = 'hreflang';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 
 		it('should set the "download" attribute', async function () {
 			const attribute = 'download';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 
 		it('should set the "ping" attribute', async function () {
 			const attribute = 'ping';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 
 		it('should set the "referrerpolicy" attribute', async function () {
 			const attribute = 'referrerpolicy';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 
 		it('should set the "rel" attribute', async function () {
 			const attribute = 'rel';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 
 		it('should set the "target" attribute', async function () {
 			const attribute = 'target';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 
 		it('should set the "type" attribute', async function () {
 			const attribute = 'type';
-			const anchorElement = getAnchorElement();
 			const text = 'stam';
 			await setAttribute(element, attribute, text);
 
-			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
 		});
 	});
-
-	function getAnchorElement() {
-		const anchorElement = element.shadowRoot?.querySelector('a');
-		return anchorElement;
-	}
 
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
@@ -313,7 +310,7 @@ describe('vwc-button', () => {
 			element.label = 'Link text';
 			element.href = '/somewhere';
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
