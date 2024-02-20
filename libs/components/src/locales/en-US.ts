@@ -1,5 +1,6 @@
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const enUS: Locale = {
 	datePicker: {
 		months: {
@@ -188,7 +189,7 @@ const enUS: Locale = {
 		'Playing in Picture-in-Picture': 'Playing in Picture-in-Picture',
 		'Skip backward {1} seconds': 'Skip backward {1} seconds',
 		'Skip forward {1} seconds': 'Skip forward {1} seconds'
-	  }
+	}
 };
 
 export default enUS;

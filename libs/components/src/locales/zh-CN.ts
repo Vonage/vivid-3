@@ -1,5 +1,6 @@
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const zhCN: Locale = {
 	datePicker: {
 		months: {
@@ -186,7 +187,7 @@ const zhCN: Locale = {
 		'Text Background': '文本背景',
 		'Caption Area Background': '字幕区域背景',
 		'Skip forward {1} seconds': '快进 {1} 秒',
-		'Skip backward {1} seconds':  '快退 {1} 秒'
+		'Skip backward {1} seconds': '快退 {1} 秒'
 	}
 };
 

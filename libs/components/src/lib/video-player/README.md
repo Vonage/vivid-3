@@ -19,7 +19,7 @@ A video source is provided to the component using the `source` element.
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player id="video1">
@@ -49,7 +49,7 @@ The poster image is displayed before the video has been interacted with. The `po
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player poster="https://live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -78,7 +78,7 @@ The following attributes are available on the element:
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -101,7 +101,7 @@ Subtitles can also be provided using the `track` element.
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player poster="https://live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -125,7 +125,7 @@ Descriptions can also be provided using the `track` element.
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -148,7 +148,7 @@ Chapters can also be provided using the `track` element.
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -166,7 +166,7 @@ The playback rates option can be removed by passing an empty string.
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -183,7 +183,7 @@ Setting them to `0` removes the buttons.
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player skip-by="30" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
@@ -193,14 +193,14 @@ Setting them to `0` removes the buttons.
 
 ### Auto play / loop
 
-Both `autoplay` and `loop` attributes are boolean. 
-When `autoplay` is set, the video will play automatically as soon as it loads, the sound will be muted.
+Both `autoplay` and `loop` attributes are boolean. When `autoplay` is set, the video will play automatically as soon as it loads, the sound will be muted.
+
 When `loop` is set, the video will restart automatically when it reaches the end.
 
 ```html preview
 <style>
 	html {
-		max-width: 640px; /* for demo purposes */
+		max-width: 800px; /* for demo purposes */
 	}
 </style>
 <vwc-video-player autoplay="true" loop="true">

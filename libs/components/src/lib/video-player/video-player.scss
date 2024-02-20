@@ -2,122 +2,124 @@
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
 :host {
-    display: block;
+	display: block;
 }
 
 .vjs-theme-vivid { 
-    position: relative;
-    font: var(--vvd-typography-base);
-    font-size: 10px;
+	position: relative;
+	border-radius: #{border-radius-variables.$border-radius-normal};
+	font: var(--vvd-typography-base);
+	
+	.vjs-big-play-button {
+		width: 2.5em;
+		height: 2.5em;
+		margin-top: -1.25em;
+		margin-left: -1.25em;
+		border-radius: #{border-radius-variables.$border-radius-full};
+		line-height: 2.4;
+	}
 
-    .vjs-big-play-button {
-        width: 2.5em;
-        height: 2.5em;
-        margin-left: -1.25em;
-        margin-top: -1.25em;
-        line-height: 2.4;
-        border-radius: #{border-radius-variables.$border-radius-full};
-    }
+	.vjs-poster, .vjs-tech {
+		overflow: hidden;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+	}
 
-    .vjs-time-control { 
-        display: block; 
-        width: auto; 
-        min-width: auto; 
-        padding: 0; 
-    }
+	.vjs-time-control { 
+		display: block; 
+		width: auto;
+		min-width: auto; 
+		padding: 0; 
+		line-height: 4em;
+	}
 
-    .vjs-time-divider {
-        padding: 0 0.5em;
-    }
-    
-    .vjs-remaining-time { 
-        display: none; 
-    }
+	.vjs-time-divider {
+		padding: 0 0.5em;
+	}
 
-    .vjs-control-bar {
-        width: calc(100% - 8px);
-        height: 4em;
-        margin: 4px;
-        border-radius: 8px;
-    }
+	.vjs-remaining-time { 
+		display: none; 
+	}
 
-    .vjs-button {
-        border-radius: #{border-radius-variables.$border-radius-normal};
+	.vjs-control-bar {
+		width: calc(100% - 8px);
+		height: 4em;
+		margin: 4px;
+		border-radius: 8px;
+	}
 
-        > .vjs-icon-placeholder:before {
-            line-height: 2.2;
-        }
-    }
+	.vjs-button {
+		border-radius: #{border-radius-variables.$border-radius-normal};
 
-    .vjs-menu-button {
-        border-radius: 
-            #{border-radius-variables.$border-radius-none} 
-            #{border-radius-variables.$border-radius-none} 
-            #{border-radius-variables.$border-radius-normal} 
-            #{border-radius-variables.$border-radius-normal};
-    }
+		> .vjs-icon-placeholder::before {
+			line-height: 2.2;
+		}
+	}
 
-    .vjs-menu-button-popup .vjs-menu {
-        margin-bottom: 2.5em;
-    }
+	.vjs-menu-button {
+		border-radius: 
+			#{border-radius-variables.$border-radius-none} 
+			#{border-radius-variables.$border-radius-none} 
+			#{border-radius-variables.$border-radius-normal} 
+			#{border-radius-variables.$border-radius-normal};
+	}
 
-    .vjs-playback-rate .vjs-playback-rate-value {
-        line-height: 2.5;
-        z-index: 1;
-    }
+	.vjs-menu {
+		left: -4em;
+		width: 12em;
 
-    .vjs-time-control {
-        line-height: 4em;
-    }
+		ul {
+			border-radius:
+				#{border-radius-variables.$border-radius-normal} 
+				#{border-radius-variables.$border-radius-normal}
+				#{border-radius-variables.$border-radius-none} 
+				#{border-radius-variables.$border-radius-none};
+		}
 
-    .vjs-button:hover {
-        background: #000;
-    }
+		li {
+			justify-content: start;
+			padding: 4px 8px;
+			text-align: left;;
+		}
 
-    .vjs-volume-bar {
-        margin: 1.9em 0.45em;
-    }
+		.vjs-playback-rate & {
+			left: 0;
+			width: 4em;
 
-    .vjs-volume-tooltip, .vjs-time-tooltip {
-        top: -5em;
-    }
+			li {
+				justify-content: center;
+				text-align: center;
+			}
+		}
 
-    .vjs-text-track-display {
-        margin-inline-start: -50%;
-        width: 100%;
-        bottom: 5em;
-    }
+		li:not(.vjs-selected, .vjs-menu-title):hover {
+			background: #000;
+		}
+	}
 
-    .vjs-menu {
-        width: 12em;
-        left: -4em;
+	.vjs-menu-button-popup .vjs-menu {
+		margin-bottom: 2.5em;
+	}
 
-        ul {
-            border-radius:
-                #{border-radius-variables.$border-radius-normal} 
-                #{border-radius-variables.$border-radius-normal}
-                #{border-radius-variables.$border-radius-none} 
-                #{border-radius-variables.$border-radius-none};
-        }
+	.vjs-playback-rate .vjs-playback-rate-value {
+		z-index: 1;
+		line-height: 2.5;
+	}
 
-        li {
-            padding: 4px 8px;
-            justify-content: start;
-            text-align: left;;
-        }
+	.vjs-button:hover {
+		background: #000;
+	}
 
-        li:not(.vjs-selected, .vjs-menu-title):hover {
-            background: #000;
-        }
-    }
+	.vjs-volume-bar {
+		margin: 1.9em 0.45em;
+	}
 
-    .vjs-playback-rate .vjs-menu {
-        width: 4em;
-        left: 0em;
+	.vjs-volume-tooltip, .vjs-time-tooltip {
+		top: -5em;
+	}
 
-        li {
-            justify-content: center;
-            text-align: center;
-        }
-    }
+	.vjs-text-track-display {
+		bottom: 5em;
+		width: 100%;
+		margin-inline-start: -50%;
+	}
 }

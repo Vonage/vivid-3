@@ -1,5 +1,6 @@
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const jaJP: Locale = {
 	datePicker: {
 		months: {

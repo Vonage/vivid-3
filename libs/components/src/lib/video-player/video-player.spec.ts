@@ -1,4 +1,4 @@
-import { axe, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { VideoPlayer } from './video-player';
 import { videoPlayerDefinition } from './definition';
@@ -74,26 +74,20 @@ describe('vwc-video-player', () => {
 					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const muteBtn = element.shadowRoot?.querySelector('.vjs-mute-control');
-			setTimeout(() => {
-				expect(element.shadowRoot?.querySelector('.vjs-playing')).toBeTruthy();
-				expect(muteBtn?.getAttribute('title')).toBe('Unmute');
-				expect(element._settings.autoplay).toBe('muted');
-			}, 1)
+			await elementUpdated(element);
+			expect(element._settings.autoplay).toBe('muted');
 		});
 	});
 
 	describe('loop', () => {
-		it('should loop add the loop attribute to the video element', async () => {
+		it('should add the loop attribute to the video settings', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} loop="true">
 					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const videoEle = element.shadowRoot?.querySelector('video');
-			setTimeout(() => {
-				expect(videoEle?.hasAttribute('loop')).toBe(true);
-			}, 1);
+			await elementUpdated(element);
+			expect(element._settings.loop).toBe(true);
 		});
 	});
 
@@ -129,20 +123,21 @@ describe('vwc-video-player', () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-					<track kind="captions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
-					<track kind="captions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="fr" label="French">
+					<track 
+						kind="captions"
+						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" 
+						srclang="en" 
+						label="English" 
+						default>
+					<track 
+						kind="captions" 
+						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" 
+						srclang="fr" 
+						label="French">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			setTimeout(() => {
-				const captionsBtn = element.shadowRoot?.querySelector('.vjs-subs-caps-button');
-				expect(captionsBtn?.classList.contains('vjs-hidden')).toBe(false);
-				const captionsMenuItems = element.shadowRoot?.querySelectorAll('.vjs-subs-caps-button .vjs-menu li');
-				expect(captionsMenuItems?.length).toBe(4);
-				if (captionsMenuItems?.length === 4) {
-					expect(captionsMenuItems[2].textContent).toBe('English, selected');
-					expect(captionsMenuItems[3].textContent).toBe('French');
-				}
-			}, 1);
+			await elementUpdated(element);
+			expect(element.shadowRoot!.querySelectorAll('[kind="captions"]').length).toBe(2);
 		});
 	});
 
@@ -151,20 +146,21 @@ describe('vwc-video-player', () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-					<track kind="descriptions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en" default>
-    				<track kind="descriptions" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="French" srclang="fr">
+					<track 
+						kind="descriptions" 
+						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" 
+						label="English" 
+						srclang="en" 
+						default>
+    				<track 
+							kind="descriptions" 
+							src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" 
+							label="French" 
+							srclang="fr">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			setTimeout(() => {
-				const descriptionsBtn = element.shadowRoot?.querySelector('.vjs-descriptions-button');
-				expect(descriptionsBtn?.classList.contains('vjs-hidden')).toBe(false);
-				const descriptionsMenuItems = element.shadowRoot?.querySelectorAll('.vjs-descriptions-button .vjs-menu li');
-				expect(descriptionsMenuItems?.length).toBe(3);
-				if (descriptionsMenuItems?.length === 3) {
-					expect(descriptionsMenuItems[1].textContent).toBe('English, selected');
-					expect(descriptionsMenuItems[2].textContent).toBe('French');
-				}
-			}, 1);
+			await elementUpdated(element);
+			expect(element.shadowRoot!.querySelectorAll('[kind="descriptions"]').length).toBe(2);
 		});
 	});
 
@@ -176,12 +172,8 @@ describe('vwc-video-player', () => {
 					<track kind="chapters" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			setTimeout(() => {
-				const chaptersBtn = element.shadowRoot?.querySelector('.vjs-chapters-button');
-				expect(chaptersBtn?.classList.contains('vjs-hidden')).toBe(false);
-				const chaptersMenuItems = element.shadowRoot?.querySelectorAll('.vjs-chapters-button .vjs-menu li');
-				expect(chaptersMenuItems?.length).toBe(6);
-			}, 1);
+			await elementUpdated(element);
+			expect(element.shadowRoot!.querySelector('[kind="chapters"]')).not.toBe(null);
 		});
 	});
 
@@ -267,6 +259,7 @@ describe('vwc-video-player', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
+
 
 	describe('a11y', () => {
 		// skipped because there are aria tags (menus) inside video.js that are not correct

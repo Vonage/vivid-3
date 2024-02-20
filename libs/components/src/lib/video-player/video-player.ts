@@ -2,8 +2,8 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
 import { SkipBy } from '../enums';
-import { iconFontStyles } from './IconFontStyles';
 import { Localized } from '../../shared/patterns';
+import { iconFontStyles } from './IconFontStyles';
 
 function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
@@ -69,7 +69,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: text
 	 */
-	@attr({attribute: 'playback-rates'}) playbackRates: string = "0.5, 1, 1.5, 2";
+	@attr({attribute: 'playback-rates', mode: 'fromView'}) playbackRates: string = '0.5, 1, 1.5, 2';
 
 	/**
 	 * Allows the video to loop back to the beginning when finished
@@ -78,7 +78,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: loop
 	 */
-	@attr({attribute: 'skip-by'}) skipBy: SkipBy = SkipBy.Ten;
+	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: SkipBy = SkipBy.Ten;
 
 	_player: any;
 	_settings: any;
@@ -93,7 +93,7 @@ export class VideoPlayer extends FoundationElement {
 		for(let x = 0; x < trackEles.length; x++) {
 			videoEle.appendChild(trackEles[x]);
 		}
-		const control = this.shadowRoot!.querySelector('.control')
+		const control = this.shadowRoot!.querySelector('.control');
 		control!.appendChild(videoEle);
 		const srcEles = this.querySelectorAll('source');
 		const sources = Array.from(srcEles).map((el) => ({
@@ -123,7 +123,7 @@ export class VideoPlayer extends FoundationElement {
 				skipButtons: skipByValue > 0 ? skipButtons : false,
 				remainingTimeDisplay: { displayNegative: false },
 			},
-		}
+		};
 		
 		this._player = videojs(videoEle, this._settings);
 		// removes lang="current" from the component
