@@ -1,7 +1,9 @@
+@use "../slider/partials/variables" as variables;
+
 @import "../slider/slider";
 
-.track-start {
+.control {
 	// Unlike slider, track-start should not be aligned to the start of the track
-	top: unset !important;
-	left: unset !important;
+	#{variables.$track-start-left}: auto;
+	#{variables.$track-start-top}: auto;
 }

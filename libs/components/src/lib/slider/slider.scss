@@ -40,6 +40,8 @@ $track-thickness: 2px;
 
 	#{variables.$thumb-size}: 12px;
 	#{variables.$thumb-interaction-indicator-size}: 36px;
+	#{variables.$track-start-left}: 0;
+	#{variables.$track-start-top}: 0;
 
 	cursor: pointer;
 	outline: none;
@@ -56,7 +58,7 @@ $track-thickness: 2px;
 
 		&-start {
 			position: absolute;
-			left: 0;
+			left: var(#{variables.$track-start-left});
 			background: var(#{variables.$track-start-background-color});
 			block-size: 100%;
 			border-radius: inherit;
@@ -104,7 +106,7 @@ $track-thickness: 2px;
 		}
 
 		.track-start {
-			top: 0;
+			top: var(#{variables.$track-start-top});
 			block-size: auto;
 			inline-size: 100%;
 		}
