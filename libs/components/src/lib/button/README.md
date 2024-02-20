@@ -172,6 +172,19 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
+### Href
+
+Use the `href` attribute to convert the button to a link.
+In addition, all of the native attributes of `<a>` are supported, included `target`.
+To read more about the native attributes of `<a>`, visit [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-button label="Button with a link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank"></vwc-button>
+```
+
 ## Slots
 
 ### Icon
