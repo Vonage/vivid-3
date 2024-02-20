@@ -8,10 +8,6 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 </script>
 ```
 
-## Anchoring
-
-The menu positions itself relative to an anchor element. Place it inside the `anchor` slot of the menu.
-
 ```html preview 200px
 <vwc-menu open aria-label="Menu example" placement="bottom-end">
 	<vwc-button slot="anchor" icon="more-vertical-line" aria-label="Open menu" appearance="outlined"></vwc-button>
@@ -86,7 +82,7 @@ Use the `placement` attribute to control the position of the menu relative to it
 
 ### Anchor
 
-You can use the `anchor` member as an alternative way to set the anchor.
+As an alternative to using the `anchor` slot, you can use the `anchor` member to set the anchor.
 
 Either set it to the `id` of the anchor element or pass the anchor element itself.
 
@@ -135,7 +131,15 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 
 ### Anchor
 
-Use the `anchor` slot to place the anchor element.
+The menu positions itself relative to an anchor element. Place it inside the `anchor` slot of the menu.
+
+```html preview 200px
+<vwc-menu open aria-label="Menu example" placement="bottom-end">
+	<vwc-button slot="anchor" icon="more-vertical-line" aria-label="Open menu" appearance="outlined"></vwc-button>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
 
 ### Header
 

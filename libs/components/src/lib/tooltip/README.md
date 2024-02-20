@@ -8,12 +8,6 @@ A tooltip displays additional, non-essential, informative message, description o
 </script>
 ```
 
-## Anchoring
-
-Tooltips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the tooltip.
-
-Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the tooltip will not be accessible to keyboard or screen reader users.
-
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
 	<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
@@ -81,7 +75,7 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 
 ### Anchor
 
-You can use the `anchor` member as an alternative way to set the anchor.
+As an alternative to using the `anchor` slot, you can use the `anchor` member to set the anchor.
 
 Either set it to the `id` of the anchor element or pass the anchor element itself.
 
@@ -104,7 +98,15 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 
 ### Anchor
 
-Use the `anchor` slot to place the anchor element.
+Tooltips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the tooltip.
+
+Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the tooltip will not be accessible to keyboard or screen reader users.
+
+```html preview center 150px
+<vwc-tooltip text="I'm a tooltip">
+	<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+</vwc-tooltip>
+```
 
 ## CSS Variables
 

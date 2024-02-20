@@ -9,12 +9,6 @@ This means they can display user actions such as links or buttons.
 </script>
 ```
 
-## Anchoring
-
-Toggletips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the toggletip.
-
-The anchor must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
-
 ```html preview center 100px
 <vwc-toggletip>
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
@@ -116,7 +110,7 @@ Use the `placement` attribute to control the position of the toggletip relative 
 
 ### Anchor
 
-You can use the `anchor` member as an alternative way to set the anchor.
+As an alternative to using the `anchor` slot, you can use the `anchor` member to set the anchor.
 
 Either set it to the `id` of the anchor element or pass the anchor element itself.
 
@@ -139,7 +133,16 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 
 ### Anchor
 
-Use the `anchor` slot to place the anchor element.
+Toggletips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the toggletip.
+
+The anchor must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
+
+```html preview center 100px
+<vwc-toggletip>
+	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
+	I'm a toggletip
+</vwc-toggletip>
+```
 
 ### Action Items
 

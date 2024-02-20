@@ -198,17 +198,17 @@ Use the `strategy` attribute to set the placement strategy.
 
 ### Z-Index
 
-Use the `--popup-z-index` CSS variable to set the z-index of the popup.
+Use the `--_popup-z-index` CSS variable to set the z-index of the popup.
 
 - Default: `10`
 
-```html preview
+```html preview 100px
 <style>
 	#anchor {
 		text-align: center;
 	}
 	#popup {
-		--popup-z-index: 12;
+		--_popup-z-index: 12;
 	}
 	#block {
 		position: relative;
@@ -231,7 +231,7 @@ Use the `--popup-z-index` CSS variable to set the z-index of the popup.
 
 ### Display
 
-Use the `--popup-display` CSS variable to change the `display` of the popup.
+Use the `--_popup-display` CSS variable to change the `display` of the popup.
 
 When display is not set to `contents`, the host element will be considered an empty element that is not removed the document flow, therefore 
 affecting things like flexbox layout.
@@ -240,23 +240,23 @@ The default should really be `contents`, but is not due to backwards compatibili
 
 - Default: `inline`
 
-```html preview
+```html preview 100px
 <style>
 	.container {
 		display: flex;
 		gap: 100px;
 	}
 	#popup {
-		--popup-display: contents;
+		--_popup-display: contents;
 	}
 </style>
 <div class="container">
-	<span>😀</span>
+	<span>◼️</span>
 	<span id="anchor">⚓️</span>
 	<vwc-popup id="popup" strategy="absolute" open>
 		This is a popup.
 	</vwc-popup>
-	<span>😀</span>
+	<span>◼️</span>
 </div>
 <script>
 	popup.anchor = anchor;
