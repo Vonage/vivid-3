@@ -1,4 +1,4 @@
-import { Switch as FoundationElement } from '@microsoft/fast-foundation';
+import { Switch as FoundationSwitch } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type {Connotation} from '../enums';
 
@@ -12,7 +12,7 @@ export type SwitchConnotation =
  *
  * @public
  */
-export class Switch extends FoundationElement {
+export class Switch extends FoundationSwitch {
 	/**
 	 * Indicates the switch's label.
 	 *

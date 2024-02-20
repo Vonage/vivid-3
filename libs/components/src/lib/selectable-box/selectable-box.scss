@@ -1,4 +1,5 @@
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
@@ -17,11 +18,6 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
-@supports selector(:focus-visible) {
-	.base:focus-visible {
-		outline: none;
-	}
-}
 
 :host {
 	display: flex;
@@ -40,6 +36,12 @@
 	padding-block-start: calc(var(#{variables.$spacing-var}, 16px) + 36px);
 	text-align: start;
 
+	&:focus-visible {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
+	}
+
 	&.tight {
 		overflow: hidden;
 		min-height: calc(var(#{variables.$spacing-var}, 16px) * 2 + 22px);
@@ -48,17 +50,6 @@
 
 	&.clickable {
 		cursor: pointer;
-	}
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-	#{focus-variables.$focus-inset}: -1px;
-
-	pointer-events: none;
-
-	.base:not(:focus-visible) > & {
-		display: none;
 	}
 }
 

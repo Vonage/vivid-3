@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './tree-view.scss';
+import styles from './tree-view.scss?inline';
 import { TreeView } from './tree-view';
 import { TreeViewTemplate as template } from './tree-view.template';
 

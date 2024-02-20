@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './appearance-ui.scss';
+import styles from './appearance-ui.scss?inline';
 
 import { AppearanceUi } from './appearance-ui';
 import { AppearanceUiTemplate as template } from './appearance-ui.template';

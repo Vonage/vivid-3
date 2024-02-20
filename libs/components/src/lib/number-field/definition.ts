@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { dividerRegistries } from '../divider/definition';
-import styles from './number-field.scss';
+import styles from './number-field.scss?inline';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
 

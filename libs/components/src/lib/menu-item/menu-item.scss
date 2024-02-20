@@ -85,6 +85,10 @@
 .action {
 	color: var(#{appearance.get-appearance-token(text)});
 
+	:host(:not([check-appearance],[aria-checked="true"])) & {
+		color: var(#{constants.$vvd-color-neutral-500});
+	}
+
 	.base.trailing & {
 		order: 2;
 	}

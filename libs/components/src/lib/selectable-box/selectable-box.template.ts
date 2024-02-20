@@ -5,7 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
@@ -26,12 +25,12 @@ function handleControlChange(x: SelectableBox) {
 
 function checkbox(context: ElementDefinitionContext) {
 	const checkboxTag = context.tagFor(Checkbox);
-	
+
 	return html<SelectableBox>`${when(x => x.controlType !== 'radio', html`
 		<${checkboxTag}
 			aria-label="${x => (!x.clickableBox && !x.clickable) && x.ariaLabel ? x.ariaLabel : null}"
 			@change="${x => handleControlChange(x)}"
-			class="control checkbox" 
+			class="control checkbox"
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${x => x.checked}"
 			inert="${x => x.clickableBox || x.clickable ? true : null}"
@@ -46,7 +45,7 @@ function radio(context: ElementDefinitionContext) {
 		<${radioTag}
 			aria-label="${x => (!x.clickableBox && !x.clickable) && x.ariaLabel ? x.ariaLabel : null}"
 			@change="${x => handleControlChange(x)}"
-			class="control radio" 
+			class="control radio"
 			connotation="${x => x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${x => x.checked}"
 			inert="${x => x.clickableBox || x.clickable ? true : null}"
@@ -66,7 +65,6 @@ export const SelectableBoxTemplate: (
 ) => ViewTemplate<SelectableBox> = (
 	context: ElementDefinitionContext
 ) => {
-	const focusTemplate = focusTemplateFactory(context);
 	return html<SelectableBox>`<template role="presentation">
 	<div
 		class="${getClasses}"
@@ -77,7 +75,6 @@ export const SelectableBoxTemplate: (
 		@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 		@click="${x => x.clickableBox || x.clickable ? x._handleCheckedChange() : null}"
 	>
-		${(x) => x.clickableBox || x.clickable ? focusTemplate : ''}
 		${checkbox(context)}
 		${radio(context)}
 		<slot></slot>

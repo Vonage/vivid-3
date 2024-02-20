@@ -1,11 +1,9 @@
 # Appearance
 
----
 
 Vivid appearance is setting the way the component looks (ghost, outline, filled, etc).  
 Appearance is also connected to connotation and setting colors to each state in the appearance.
 
----
 ## How does it work?
 Each component is using at least one appearance.  
 The appearance controls the colors that are set for text, fill and outline.  
