@@ -539,12 +539,12 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		} else if (!e.shiftKey) {
 			switch (e.key) {
 				case keyArrowRight:
-				case keyArrowUp:
+				case keyArrowDown:
 					e.preventDefault();
 					this.#applyStep(thumb, Direction.Increment);
 					break;
 				case keyArrowLeft:
-				case keyArrowDown:
+				case keyArrowUp:
 					e.preventDefault();
 					this.#applyStep(thumb, Direction.Decrement);
 					break;

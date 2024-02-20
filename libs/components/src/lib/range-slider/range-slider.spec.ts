@@ -265,7 +265,7 @@ describe('vwc-range-slider', () => {
 			element.step = 0.5;
 		});
 
-		it.each(['ArrowRight', 'ArrowUp'])('should increment by step when pressing %s key', async (key) => {
+		it.each(['ArrowRight', 'ArrowDown'])('should increment by step when pressing %s key', async (key) => {
 			element[thumb] = '5';
 			thumbs[thumb].focus();
 
@@ -274,7 +274,7 @@ describe('vwc-range-slider', () => {
 			expect(element[thumb]).toBe('5.5');
 		});
 
-		it.each(['ArrowLeft', 'ArrowDown'])('should decrement by step when pressing %s key', async (key) => {
+		it.each(['ArrowLeft', 'ArrowUp'])('should decrement by step when pressing %s key', async (key) => {
 			element[thumb] = '5';
 			thumbs[thumb].focus();
 
