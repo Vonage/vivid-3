@@ -52,9 +52,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	await page.waitForLoadState('networkidle');
-
 	await page.keyboard.press('Tab');
+
+	await page.waitForLoadState('networkidle');
 
 	const testWrapper = await page.$('#wrapper');
 
