@@ -8,10 +8,11 @@ Menu, commonly known as a "context menu", is an element that is displayed upon u
 </script>
 ```
 
-```html preview 150px
-<vwc-menu open aria-label="Menu example">
-  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+```html preview 200px
+<vwc-menu open aria-label="Menu example" placement="bottom-end">
+	<vwc-button slot="anchor" icon="more-vertical-line" aria-label="Open menu" appearance="outlined"></vwc-button>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -31,11 +32,59 @@ The `open` attribute controls the visibility of the menu.
 </vwc-menu>
 ```
 
+### Auto Dismiss
+
+Use the auto dismiss property to automatically close the menu when the user clicks outside of it.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 200px
+<div style="position: relative">
+  <vwc-menu id="menu" open auto-dismiss aria-label="Menu example">
+		<vwc-button slot="anchor" id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+ </vwc-menu>
+</div>
+
+<script>
+	const button = document.getElementById('button');
+	const menu = document.getElementById('menu');
+
+	button.addEventListener('click', () => menu.open = !menu.open);
+</script>
+```
+
+### Placement
+
+Use the `placement` attribute to control the position of the menu relative to its anchor.
+
+- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
+- Default: `'bottom'`
+
+```html preview 150px
+<div style="position: relative; text-align: end;">
+  <vwc-menu id="menu" placement="left-start" open aria-label="Menu example">
+		<vwc-button slot="anchor" id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
+    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  </vwc-menu>
+</div>
+
+<script>
+	const button = document.getElementById('button');
+	const menu = document.getElementById('menu');
+  	
+	button.addEventListener('click', () => menu.open = !menu.open);
+</script>
+```
+
 ### Anchor
 
-Use the `anchor` attribute to link the menu to the element responsible for showing and hiding it. It can be the ID or a reference to said element.
+It's best to use the [`anchor` slot](#anchor-1) to set the anchor, but you can also use the `anchor` member.
 
-The anchor must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
+Either set it to the `id` of the anchor element or pass the anchor element itself.
 
 - Type: `string | HTMLElement`
 - Default: `undefined`
@@ -65,56 +114,6 @@ The anchor must be clickable and in most cases, will be a button displaying an i
 </script>
 ```
 
-### Auto Dismiss
-
-Use the auto dismiss property to automatically close the menu when the user clicks outside of it.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 200px
-<div style="position: relative">
-  <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
-
-  <vwc-menu id="menu" anchor="button" open auto-dismiss aria-label="Menu example">
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
- </vwc-menu>
-</div>
-
-<script>
-	const button = document.getElementById('button');
-	const menu = document.getElementById('menu');
-
-	button.addEventListener('click', () => menu.open = !menu.open);
-</script>
-```
-
-### Placement
-
-Use the `placement` attribute to control the position of the menu relative to its anchor.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'bottom'`
-
-```html preview 150px
-<div style="position: relative; text-align: end;">
-  <vwc-button id="button" label="Toggle Menu" appearance="outlined"></vwc-button>
-
-  <vwc-menu id="menu" anchor="button" placement="left-start" open aria-label="Menu example">
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  </vwc-menu>
-</div>
-
-<script>
-	const button = document.getElementById('button');
-	const menu = document.getElementById('menu');
-  	
-	button.addEventListener('click', () => menu.open = !menu.open);
-</script>
-```
-
 ## Slots
 
 ### Default
@@ -127,6 +126,18 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 <vwc-menu open aria-label="Menu example">
   <vwc-menu-item text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Anchor
+
+The menu positions itself relative to an anchor element. Place it inside the `anchor` slot of the menu.
+
+```html preview 200px
+<vwc-menu open aria-label="Menu example" placement="bottom-end">
+	<vwc-button slot="anchor" icon="more-vertical-line" aria-label="Open menu" appearance="outlined"></vwc-button>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
@@ -260,18 +271,15 @@ This helps ensure elements don't render on top of a menu undesirably.
 ### Dropdown menu with checkbox
 
 ```html preview 350px
-<div style="position: relative">
-  <vwc-button id="button" label="Select" appearance="filled"></vwc-button>
-
-  <vwc-menu id="menu" anchor="button" placement="bottom-start" open aria-label="Menu example">
-    <vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
-    <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-    <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
-    <vwc-menu-item role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
-    <vwc-button slot="action-items" appearance="outlined" label="Close"></vwc-button>
-    <vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
-  </vwc-menu>
-</div>
+<vwc-menu id="menu" placement="bottom-start" open aria-label="Menu example">
+	<vwc-button slot="anchor" id="button" label="Select" appearance="filled"></vwc-button>
+	<vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
+	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
+	<vwc-button slot="action-items" appearance="outlined" label="Close"></vwc-button>
+	<vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
+</vwc-menu>
 
 <script>
 	const menu = document.getElementById('menu');
@@ -284,23 +292,21 @@ This helps ensure elements don't render on top of a menu undesirably.
 ### Menu Anchor
 
 ```html preview 250px
-<div style="position: relative">
-  <vwc-menu id="menu" anchor="button" placement="bottom-start" open aria-label="Menu example">
-   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
-  	<vwc-menu-item role="presentation" text="My Addresses" icon="address-book-line"></vwc-menu-item>
-	 </a>
-   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
-  	<vwc-menu-item role="presentation" text="My Profile" icon="profile-line"></vwc-menu-item>
-	 </a>
-   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
-  	<vwc-menu-item role="presentation" text="Team" icon="group-line"></vwc-menu-item>
-	 </a>
-   <a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
-  	<vwc-menu-item role="presentation" text="Logout" icon="quit-line"></vwc-menu-item>
-	 </a>
-  </vwc-menu>
-  <vwc-button id="button" icon="close-line"></vwc-button>
-</div>
+<vwc-menu id="menu" placement="bottom-start" open aria-label="Menu example">
+	<vwc-button slot="anchor" id="button" icon="close-line"></vwc-button>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+		<vwc-menu-item role="presentation" text="My Addresses" icon="address-book-line"></vwc-menu-item>
+	</a>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+		<vwc-menu-item role="presentation" text="My Profile" icon="profile-line"></vwc-menu-item>
+	</a>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+		<vwc-menu-item role="presentation" text="Team" icon="group-line"></vwc-menu-item>
+	</a>
+	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
+		<vwc-menu-item role="presentation" text="Logout" icon="quit-line"></vwc-menu-item>
+	</a>
+</vwc-menu>
 
 <script>
 	const menu = document.getElementById('menu');
