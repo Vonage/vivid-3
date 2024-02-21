@@ -4,6 +4,6 @@
 
 .control {
 	// Unlike slider, track-start should not be aligned to the start of the track
-	#{variables.$track-start-left}: auto;
-	#{variables.$track-start-top}: auto;
+	#{variables.$track-start-inset-inline-start}: auto;
+	#{variables.$track-start-inset-block-start}: auto;
 }

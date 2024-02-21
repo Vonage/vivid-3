@@ -40,8 +40,8 @@ $track-thickness: 2px;
 
 	#{variables.$thumb-size}: 12px;
 	#{variables.$thumb-interaction-indicator-size}: 36px;
-	#{variables.$track-start-left}: 0;
-	#{variables.$track-start-top}: 0;
+	#{variables.$track-start-inset-inline-start}: 0;
+	#{variables.$track-start-inset-block-start}: 0;
 
 	cursor: pointer;
 	outline: none;
@@ -58,10 +58,10 @@ $track-thickness: 2px;
 
 		&-start {
 			position: absolute;
-			left: var(#{variables.$track-start-left});
 			background: var(#{variables.$track-start-background-color});
 			block-size: 100%;
 			border-radius: inherit;
+			inset-inline-start: var(#{variables.$track-start-inset-inline-start});
 		}
 	}
 
@@ -106,9 +106,9 @@ $track-thickness: 2px;
 		}
 
 		.track-start {
-			top: var(#{variables.$track-start-top});
 			block-size: auto;
 			inline-size: 100%;
+			inset-block-start: var(#{variables.$track-start-inset-block-start});
 		}
 	}
 
