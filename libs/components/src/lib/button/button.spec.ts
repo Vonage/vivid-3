@@ -184,7 +184,7 @@ describe('vwc-button', () => {
 
 	});
 
-	describe('link', () => {
+	describe('href', () => {
 		function getAnchorElement() {
 			const anchorElement = element.shadowRoot?.querySelector('a');
 			return anchorElement;
