@@ -13,7 +13,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			div {
 				width: 250px;
 				height: 1800px;
-				position: relative
+				position: relative;
+				box-sizing: border-box;
 			}
 		</style>
 

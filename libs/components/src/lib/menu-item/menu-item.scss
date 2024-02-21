@@ -143,7 +143,7 @@
 
 .text-secondary {
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
-	.base.two-lines & {
+	.base.two-lines:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}
 }
