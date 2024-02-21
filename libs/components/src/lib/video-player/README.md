@@ -10,11 +10,9 @@ The video player component allows a user to play and control video content.
 
 ### Video source
 
-A video source is provided to the component using the `source` element.
+#### src attribute
 
-```html
-<source src="../elephantsdream/ed_hd.mp4" type="video/mp4">
-```
+A video source can be provided to the component using the `src` attribute.
 
 ```html preview
 <style>
@@ -22,14 +20,16 @@ A video source is provided to the component using the `source` element.
 		max-width: 800px; /* for demo purposes */
 	}
 </style>
-<vwc-video-player id="video1">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
 </vwc-video-player>
-<script>
-  document.getElementById('video1').addEventListener('play', () => console.log('play'));
-  document.getElementById('video1').addEventListener('pause', () => console.log('pause'));
-  document.getElementById('video1').addEventListener('ended', () => console.log('ended'));
-</script>
+```
+
+#### source element
+
+A video source can alternatively be provided to the component using the `source` element.
+
+```html
+<source src="../elephantsdream/ed_hd.mp4" type="video/mp4">
 ```
 
 The most common and widely supported format is `mp4` (as in the exmaple below).

@@ -36,13 +36,22 @@ const installIconFontStyle = (document: Document) => {
  */
 export class VideoPlayer extends FoundationElement {
 	/**
-	 * Reference to am image which is displayed before the video is played
+	 * Reference to an image which is displayed before the video is played
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: poster
 	 */
 	@attr poster?: string;
+
+	/**
+	 * URL of a video file
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: src
+	 */
+	@attr src?: string;
 
 	/**
 	 * Allows the video will play automatically (muted)
@@ -67,7 +76,7 @@ export class VideoPlayer extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: playback-rates
 	 */
 	@attr({attribute: 'playback-rates', mode: 'fromView'}) playbackRates: string = '0.5, 1, 1.5, 2';
 
@@ -76,7 +85,7 @@ export class VideoPlayer extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: loop
+	 * HTML Attribute: skip-by
 	 */
 	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: SkipBy = SkipBy.Ten;
 
@@ -96,10 +105,12 @@ export class VideoPlayer extends FoundationElement {
 		const control = this.shadowRoot!.querySelector('.control');
 		control!.appendChild(videoEle);
 		const srcEles = this.querySelectorAll('source');
-		const sources = Array.from(srcEles).map((el) => ({
-			src: el.getAttribute('src'),
-			type: el.getAttribute('type'),
-		}));
+		const sources = this.src 
+			? [{ src: this.src }]
+			: Array.from(srcEles).map((el) => ({
+				src: el.getAttribute('src'),
+				type: el.getAttribute('type'),
+			}));
 		const skipByValue = parseInt(this.skipBy);
 		const skipButtons = {
 			forward: skipByValue,

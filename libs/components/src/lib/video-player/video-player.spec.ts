@@ -33,6 +33,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should be initialise in its default state', async () => {
+			expect(element.src).toBe(undefined);
 			expect(element.poster).toBe(undefined);
 			expect(element.autoplay).toBe(undefined);
 			expect(element.loop).toBe(undefined);
@@ -64,6 +65,17 @@ describe('vwc-video-player', () => {
 
 		it('removes the redundant lang attribute', () => {
 			expect(element.shadowRoot?.querySelector('[lang]')).toBe(null);
+		});
+	});
+
+	describe('src', () => {
+		it('should add the src attribute in settings', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4"></${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			await elementUpdated(element);
+			expect(element._settings.sources.length).toBe(1);
+			expect(element._settings.sources[0].src).toBe('//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4');
 		});
 	});
 
