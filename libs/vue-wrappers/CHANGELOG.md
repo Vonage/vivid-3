@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.50.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.50.0...vivid-vue-v3.50.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* **file-picker:** add to vue-wrappers (VIV-1530) ([#1589](https://github.com/Vonage/vivid-3/issues/1589)) ([10f278b](https://github.com/Vonage/vivid-3/commit/10f278b40c7fa09481201fc3f19b2f786bbaa036))
+
 ## [3.50.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.49.0...vivid-vue-v3.50.0) (2024-02-08)
 
 
