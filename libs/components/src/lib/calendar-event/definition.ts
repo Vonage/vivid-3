@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './calendar-event.scss';
+import styles from './calendar-event.scss?inline';
 
 import { CalendarEvent } from './calendar-event';
 import { CalendarEventTemplate as template } from './calendar-event.template';

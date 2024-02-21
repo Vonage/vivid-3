@@ -59,10 +59,10 @@ describe('vwc-accordion-item', () => {
 		});
 
 		it('should render an icon when the icon property is set', async () => {
-			const secondChildWithoutIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(3)') as HTMLSpanElement;
+			const secondChildWithoutIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			const secondChildWithIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
+			const secondChildWithIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(1)') as HTMLSpanElement;
 
 			expect(secondChildWithoutIcon.classList).toContain('heading-content');
 			expect(secondChildWithoutIcon.classList).not.toContain('icon');
@@ -165,7 +165,7 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 
 			const button = element.shadowRoot?.querySelector('.heading-button');
-			
+
 			expect(button?.getAttribute('aria-expanded')).toEqual('true');
 		});
 	});

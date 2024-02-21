@@ -26,7 +26,9 @@ Use `generate-header` for data grid header visibility mode.
 
 ```html preview
 <style>
-vwc-data-grid {max-block-size: 300px;}
+	vwc-data-grid {
+		max-block-size: 300px;
+	}
 </style>
 <vwc-select onchange="changeHeader()">
 	<vwc-option value="none" text="none"></vwc-option>
@@ -62,12 +64,7 @@ vwc-data-grid {max-block-size: 300px;}
 
 Use the `selection-mode` attribute to specify the selection mode of the grid.
 
-```html preview
-<style>
-  html { 
-    block-size: 300px; 
-  }
-</style>
+```html preview 300px
 <vwc-select onchange="changeSelectionMode()">
 	<vwc-option value="none" text="none"></vwc-option>
 	<vwc-option value="single-cell" text="single-cell"></vwc-option>
@@ -534,7 +531,9 @@ When setting `generate-header` to `sticky` the `data-grid` gets `max-block-size:
 
 ```html preview
 <style>
-vwc-data-grid {max-block-size: 200px;}
+	vwc-data-grid {
+		max-block-size: 200px;
+	}
 </style>
 <vwc-data-grid></vwc-data-grid>
 <script>
@@ -675,7 +674,9 @@ Here's an example of sorting the data-grid when building it with `rowsData`:
 
 ```html preview
 <style>
-vwc-data-grid {max-block-size: 200px;}
+	vwc-data-grid {
+		max-block-size: 200px;
+	}
 </style>
 <vwc-data-grid></vwc-data-grid>
 <script>
@@ -776,7 +777,9 @@ You can add and remove rows dynamically by manipulating the `rowsData`.
 
 ```html preview
 <style>
-	vwc-data-grid {max-block-size: 200px;}
+	vwc-data-grid {
+		max-block-size: 200px;
+	}
 </style>
 <vwc-button label="Add item" appearance="outlined" onclick="push()"></vwc-button>
 <vwc-button label="Remove last item" appearance="outlined" onclick="pop()"></vwc-button>

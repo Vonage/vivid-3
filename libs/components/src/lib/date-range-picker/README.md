@@ -8,12 +8,7 @@ The date picker is localized to the current locale. See [Localization](/getting-
 <script type="module">import '@vonage/vivid/date-range-picker';</script>
 ```
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker label="Date range" start="2023-06-10" end="2023-06-15"></vwc-date-range-picker>
 <script>
 	document.querySelector('vwc-date-range-picker').addEventListener('input:start', (e) => {
@@ -37,12 +32,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker label="Date range"></vwc-date-range-picker>
 ```
 
@@ -53,12 +43,7 @@ Add the `helper-text` to add some helper text below the date range picker.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker
 	label="Date range"
 	helper-text="Select a date range for the event"
@@ -73,12 +58,7 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Type: `string`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker
 	label="Date range"
 	error-text="Please select a valid date range"
@@ -109,12 +89,7 @@ The `start` member will hold the start date of the date range. An empty string o
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker label="Date range" start="2023-06-15"></vwc-date-range-picker>
 ```
 
@@ -126,12 +101,7 @@ The `end` member will hold the end date of the date range. An empty string or `u
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker label="Date range" end="2023-06-15"></vwc-date-range-picker>
 ```
 
@@ -143,12 +113,7 @@ Set the `min` attribute to configure the earliest date to accept. The user will 
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker label="Date range" min="2023-06-10" start="2023-06-15" end="2023-06-20"></vwc-date-range-picker>
 ```
 
@@ -160,12 +125,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-range-picker label="Date range" max="2023-06-20" start="2023-06-10" end="2023-06-15">
 </vwc-date-range-picker>
 ```
@@ -182,6 +142,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 | input:end   | Emitted when the end value changes.                     |
 | focus       | Emitted when the component receives focus.              |
 | blur        | Emitted when the component loses focus.                 |
+| clear-click | Emitted when clear button is pressed.                   |
 
 </div>
 
@@ -189,11 +150,8 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 
 ### In a form
 
-```html preview locale-switcher
+```html preview locale-switcher 460px
 <style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
 	.buttons {
 		display: flex;
 		gap: 12px;

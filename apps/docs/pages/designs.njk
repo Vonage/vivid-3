@@ -4,7 +4,7 @@ pagination:
     data: designs
     size: 1
     alias: design
-permalink: "designs/{{ design.title | slug }}/"
+permalink: "designs/{{ design | pageSlug }}/"
 ---
 
 {% extends '../_layouts/base.njk' %}

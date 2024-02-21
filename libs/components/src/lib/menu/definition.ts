@@ -1,7 +1,7 @@
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
 import { menuItemRegistries } from '../menu-item/definition';
-import styles from './menu.scss';
+import styles from './menu.scss?inline';
 import { Menu } from './menu';
 import { MenuTemplate as template } from './menu.template';
 

@@ -3,7 +3,7 @@ import { registerFactory } from '../../shared/design-system';
 import { focusRegistries } from '../focus/definition';
 import { iconRegistries } from '../icon/definition';
 import { TextField } from './text-field';
-import styles from './text-field.scss';
+import styles from './text-field.scss?inline';
 import { TextfieldTemplate as template } from './text-field.template';
 
 export type { TextFieldAppearance, TextFieldShape } from './text-field';

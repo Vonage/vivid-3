@@ -1,8 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusRegistries } from '../focus/definition';
-import styles from './text-area.scss';
+import styles from './text-area.scss?inline';
 
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';
@@ -24,7 +23,7 @@ export const textAreaDefinition = TextArea.compose<FoundationElementDefinition>(
 /**
  * @internal
  */
-export const textAreaRegistries = [textAreaDefinition(), ...iconRegistries, ...focusRegistries];
+export const textAreaRegistries = [textAreaDefinition(), ...iconRegistries];
 
 /**
  * Registers the text-field elements with the design system.

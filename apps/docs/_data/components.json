@@ -1,275 +1,288 @@
 [
 	{
-		"title": "accordion",
+		"title": "Accordion",
 		"markdown": "./libs/components/src/lib/accordion/README.md",
 		"children": [
-			"accordion-item"
+			"Accordion Item"
 		]
 	},
 	{
-		"title": "accordion-item",
+		"title": "Accordion Item",
 		"markdown": "./libs/components/src/lib/accordion-item/README.md",
-		"parent": "accordion"
+		"parent": "Accordion"
 	},
 	{
-		"title": "badge",
+		"title": "Badge",
 		"markdown": "./libs/components/src/lib/badge/README.md"
 	},
 	{
-		"title": "banner",
+		"title": "Banner",
 		"markdown": "./libs/components/src/lib/banner/README.md"
 	},
 	{
-		"title": "alert",
+		"title": "Alert",
 		"markdown": "./libs/components/src/lib/alert/README.md"
 	},
 	{
-		"title": "breadcrumb-item",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md"
+		"title": "Breadcrumb",
+		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
+		"children": [
+			"Breadcrumb Item"
+		]
 	},
 	{
-		"title": "button",
+		"title": "Breadcrumb Item",
+		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
+		"parent": "Breadcrumb"
+	},
+	{
+		"title": "Button",
 		"markdown": "./libs/components/src/lib/button/README.md"
 	},
 	{
-		"title": "calendar",
+		"title": "Calendar",
 		"markdown": "./libs/components/src/lib/calendar/README.md",
 		"children": [
-			"calendar-event"
+			"Calendar Event"
 		]
 	},
 	{
-		"title": "calendar-event",
+		"title": "Calendar Event",
 		"markdown": "./libs/components/src/lib/calendar-event/README.md",
-		"parent": "calendar"
+		"parent": "Calendar"
 	},
 	{
-		"title": "date-picker",
+		"title": "Date Picker",
 		"markdown": "./libs/components/src/lib/date-picker/README.md",
 		"children": [
-			"date-range-picker"
+			"Date Range Picker"
 		]
 	},
 	{
-		"title": "date-range-picker",
+		"title": "Date Range Picker",
 		"markdown": "./libs/components/src/lib/date-range-picker/README.md",
-		"parent": "date-picker"
+		"parent": "Date Picker"
 	},
 	{
-		"title": "icon",
+		"title": "Icon",
 		"markdown": "./libs/components/src/lib/icon/README.md"
 	},
 	{
-		"title": "layout",
+		"title": "Layout",
 		"markdown": "./libs/components/src/lib/layout/README.md"
 	},
 	{
-		"title": "side-drawer",
+		"title": "Side Drawer",
 		"markdown": "./libs/components/src/lib/side-drawer/README.md"
 	},
 	{
-		"title": "nav",
+		"title": "Nav",
 		"markdown": "./libs/components/src/lib/nav/README.md",
 		"children": [
-			"nav-item",
-			"nav-disclosure"
+			"Nav Item",
+			"Nav Disclosure"
 		]
 	},
 	{
-		"title": "nav-item",
+		"title": "Nav Item",
 		"markdown": "./libs/components/src/lib/nav-item/README.md",
-		"parent": "nav"
+		"parent": "Nav"
 	},
 	{
-		"title": "nav-disclosure",
+		"title": "Nav Disclosure",
 		"markdown": "./libs/components/src/lib/nav-disclosure/README.md",
-		"parent": "nav"
+		"parent": "Nav"
 	},
 	{
-		"title": "tooltip",
+		"title": "Tooltip",
 		"markdown": "./libs/components/src/lib/tooltip/README.md"
 	},
 	{
-		"title": "progress",
+		"title": "Progress",
 		"markdown": "./libs/components/src/lib/progress/README.md"
 	},
 	{
-		"title": "progress-ring",
+		"title": "Progress Ring",
 		"markdown": "./libs/components/src/lib/progress-ring/README.md"
 	},
 	{
-		"title": "card",
+		"title": "Card",
 		"markdown": "./libs/components/src/lib/card/README.md"
 	},
 	{
-		"title": "text-field",
+		"title": "Text Field",
 		"markdown": "./libs/components/src/lib/text-field/README.md"
 	},
 	{
-		"title": "number-field",
+		"title": "Number Field",
 		"markdown": "./libs/components/src/lib/number-field/README.md"
 	},
 	{
-		"title": "fab",
+		"title": "Fab",
 		"markdown": "./libs/components/src/lib/fab/README.md"
 	},
 	{
-		"title": "action-group",
+		"title": "Action Group",
 		"markdown": "./libs/components/src/lib/action-group/README.md"
 	},
 	{
-		"title": "note",
+		"title": "Note",
 		"markdown": "./libs/components/src/lib/note/README.md"
 	},
 	{
-		"title": "checkbox",
+		"title": "Checkbox",
 		"markdown": "./libs/components/src/lib/checkbox/README.md"
 	},
 	{
-		"title": "dialog",
+		"title": "Dialog",
 		"markdown": "./libs/components/src/lib/dialog/README.md"
 	},
 	{
-		"title": "header",
+		"title": "Header",
 		"markdown": "./libs/components/src/lib/header/README.md"
 	},
 	{
-		"title": "divider",
+		"title": "Divider",
 		"markdown": "./libs/components/src/lib/divider/README.md"
 	},
 	{
-		"title": "menu",
+		"title": "Menu",
 		"markdown": "./libs/components/src/lib/menu/README.md",
 		"children": [
-			"menu-item"
+			"Menu Item"
 		]
 	},
 	{
-		"title": "menu-item",
+		"title": "Menu Item",
 		"markdown": "./libs/components/src/lib/menu-item/README.md",
-		"parent": "menu"
+		"parent": "Menu"
 	},
 	{
-		"title": "avatar",
+		"title": "Avatar",
 		"markdown": "./libs/components/src/lib/avatar/README.md"
 	},
 	{
-		"title": "text-area",
+		"title": "Text Area",
 		"markdown": "./libs/components/src/lib/text-area/README.md"
 	},
 	{
-		"title": "radio-group",
+		"title": "Radio Group",
 		"markdown": "./libs/components/src/lib/radio-group/README.md",
 		"children": [
-			"radio"
+			"Radio"
 		]
 	},
 	{
-		"title": "radio",
+		"title": "Radio",
 		"markdown": "./libs/components/src/lib/radio/README.md",
-		"parent": "radio-group"
+		"parent": "Radio Group"
 	},
 	{
-		"title": "option",
+		"title": "Option",
 		"markdown": "./libs/components/src/lib/option/README.md"
 	},
 	{
-		"title": "switch",
+		"title": "Switch",
 		"markdown": "./libs/components/src/lib/switch/README.md"
 	},
 	{
-		"title": "slider",
+		"title": "Slider",
 		"markdown": "./libs/components/src/lib/slider/README.md"
 	},
 	{
-		"title": "tabs",
+		"title": "Tabs",
 		"markdown": "./libs/components/src/lib/tabs/README.md",
 		"children": [
-			"tab"
+			"Tab"
 		]
 	},
 	{
-		"title": "tab",
+		"title": "Tab",
 		"markdown": "./libs/components/src/lib/tab/README.md",
-		"parent": "tabs"
+		"parent": "Tabs"
 	},
 	{
-		"title": "combobox",
+		"title": "Combobox",
 		"markdown": "./libs/components/src/lib/combobox/README.md"
 	},
 	{
-		"title": "elevation",
+		"title": "Elevation",
 		"status": "underlying",
 		"markdown": "./libs/components/src/lib/elevation/README.md"
 	},
 	{
-		"title": "popup",
+		"title": "Popup",
 		"status": "underlying",
 		"markdown": "./libs/components/src/lib/popup/README.md"
 	},
 	{
-		"title": "listbox",
+		"title": "Listbox",
 		"status": "underlying",
 		"markdown": "./libs/components/src/lib/listbox/README.md"
 	},
 	{
-		"title": "select",
+		"title": "Select",
 		"markdown": "./libs/components/src/lib/select/README.md"
 	},
 	{
-		"title": "data-grid",
+		"title": "Data Grid",
 		"markdown": "./libs/components/src/lib/data-grid/README.md"
 	},
 	{
-		"title": "toggletip",
+		"title": "Toggletip",
 		"markdown": "./libs/components/src/lib/toggletip/README.md"
 	},
 	{
-		"title": "tree-view",
+		"title": "Time Picker",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/time-picker/README.md"
+	},
+	{
+		"title": "Tree View",
 		"markdown": "./libs/components/src/lib/tree-view/README.md",
 		"children": [
-			"tree-item"
+			"Tree Item"
 		]
 	},
 	{
-		"title": "tree-item",
+		"title": "Tree Item",
 		"markdown": "./libs/components/src/lib/tree-item/README.md",
-		"parent": "tree-view"
+		"parent": "Tree View"
 	},
 	{
-		"title": "tag-group",
+		"title": "Tag Group",
 		"markdown": "./libs/components/src/lib/tag-group/README.md",
 		"children": [
-			"tag"
+			"Tag"
 		]
 	},
 	{
-		"title": "tag",
+		"title": "Tag",
 		"markdown": "./libs/components/src/lib/tag/README.md",
-		"parent": "tag-group"
+		"parent": "Tag Group"
 	},
 	{
-		"title": "pagination",
+		"title": "Pagination",
 		"markdown": "./libs/components/src/lib/pagination/README.md"
 	},
 	{
-		"title": "empty-state",
+		"title": "Empty State",
 		"markdown": "./libs/components/src/lib/empty-state/README.md"
 	},
 	{
-		"title": "file-picker",
+		"title": "File Picker",
 		"markdown": "./libs/components/src/lib/file-picker/README.md"
 	},
 	{
-		"title": "split-button",
+		"title": "Split Button",
 		"markdown": "./libs/components/src/lib/split-button/README.md"
 	},
 	{
-		"title": "selectable-box",
+		"title": "Selectable Box",
 		"markdown": "./libs/components/src/lib/selectable-box/README.md"
 	},
 	{
-		"title": "audio-player",
+		"title": "Audio Player",
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
 	},
 	{

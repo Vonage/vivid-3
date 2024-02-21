@@ -51,9 +51,17 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
     { name: 'registerComponent', fromModule: '../../utils/register' },
   ];
 
-  if (componentDef.attributes.length > 0) {
-    imports.push({ name: 'PropType', fromModule: vueModule });
-  }
+	// Filter out attributes that are overshadowed by v-model name
+	const attributes = componentDef.attributes.filter(
+		({ name }) =>
+			!componentDef.vueModels.some(
+				(model) => model.name === name && model.attributeName !== name
+			)
+	);
+
+	if (attributes.length > 0) {
+		imports.push({ name: 'PropType', fromModule: vueModule });
+	}
 
   const typeImports: Import[] = [
     { name: componentDef.className, fromModule: getImportPath(componentDef.vividModulePath) },
@@ -61,7 +69,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
 
   // Import referenced types
   const referencedTypes = [
-    ...componentDef.attributes.map(prop => prop.type),
+    ...attributes.map(prop => prop.type),
     ...componentDef.events.map(event => event.type),
     ...componentDef.methods.flatMap(method => method.args.map(arg => arg.type)),
   ].flat();
@@ -70,6 +78,10 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
       imports.push({ name: type.text, fromModule: type.importFromModule });
     }
   }
+
+	if (isVue3Stub) {
+		typeImports.push({ name: 'SlotsType', fromModule: vueModule });
+	}
 
   /**
    * All props should be forwarded.
@@ -85,7 +97,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
           : `...(this.${kebabToCamel(name)} !== undefined ? {'${name}': this.${kebabToCamel(name)} } : {})`;
       })
       .join(',');
-  const propsV3Src = renderProps(componentDef.attributes);
+  const propsV3Src = renderProps(attributes);
 
   /**
    * DOM attributes can only be strings, therefore complex data (e.g. HTMLElement) needs to be passed as props.
@@ -104,8 +116,8 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
         t.text === 'any' ||
         t.text === 'unknown'
     );
-  const propsV2Src = renderProps(componentDef.attributes.filter(prop => canBePassedAsAttribute(prop.type)));
-  const domPropsV2Src = renderProps(componentDef.attributes.filter(prop => !canBePassedAsAttribute(prop.type)));
+  const propsV2Src = renderProps(attributes.filter(prop => canBePassedAsAttribute(prop.type)));
+  const domPropsV2Src = renderProps(attributes.filter(prop => !canBePassedAsAttribute(prop.type)));
 
   /**
    * All events should be forwarded
@@ -134,8 +146,6 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
     })
     .join(',');
 
-  const hasDefaultSlot = componentDef.slots.findIndex(slot => slot.name === 'default') > -1;
-
   const namedSlotsSource = componentDef.slots
     .filter(slot => slot.name !== 'default')
     .map(
@@ -143,6 +153,12 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
       handleNamedSlot('${slot.name}', this.$slots['${slot.name}'])`
     )
     .join(',');
+
+	const slotsSrc = isVue3Stub ? `slots: Object as SlotsType<${componentDef.slots.length ? `{
+		${componentDef.slots.map(slot => `
+		${renderJsDoc(slot.description)}
+		"${slot.name}": Record<string, never>`).join('\n')}
+	}` : 'Record<string, never>'}>,` : '';
 
   if (namedSlotsSource) imports.push({ name: 'handleNamedSlot', fromModule: '../../utils/slots' });
 
@@ -156,7 +172,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
    * Note: All props are optional. Setting default to undefined, otherwise Vue 3 will default boolean props to false.
    * myProp: {type: [String, Number] as PropType<string | number>, default: undefined},
    */
-  const propDefinitionsSrc = componentDef.attributes
+  const propDefinitionsSrc = attributes
     .map(({ name, description, type }) => {
       const vueModel = componentDef.vueModels.find(model => model.attributeName === name);
       const propName = vueModel ? vueModel.name : kebabToCamel(name);
@@ -171,7 +187,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
   const eventDefs = componentDef.events;
   for (const vueModel of componentDef.vueModels) {
     const modelEvent = componentDef.events.find(e => e.name === vueModel.eventName);
-    const modelAttr = componentDef.attributes.find(a => a.name === vueModel.attributeName);
+    const modelAttr = attributes.find(a => a.name === vueModel.attributeName);
     if (!modelEvent) throw new Error('v-model event not found');
     if (!modelAttr) throw new Error('v-model attribute not found');
 
@@ -191,7 +207,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
 
   for (const vueModel of componentDef.vueModels) {
     // Ensure v-model attribute and event are present on the component
-    if (!componentDef.attributes.some(attr => attr.name === vueModel.attributeName)) {
+    if (!attributes.some(attr => attr.name === vueModel.attributeName)) {
       throw new Error(
         `v-model attribute ${vueModel.attributeName} not found in attributes for component ${componentDef.name}`
       );
@@ -222,7 +238,7 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
             ${domPropsV2Src ? `domProps: { ${domPropsV2Src} },` : ''}
             on: { ${eventsSrc} },
         }, [
-            ${hasDefaultSlot ? `this.$slots.default,` : ''}
+            this.$slots.default,
             ${namedSlotsSource}
         ]);
       }
@@ -232,7 +248,8 @@ export const renderComponent = (componentDef: ComponentDef, isVue3Stub = false) 
           class: 'vvd-component',
           ${[propsV3Src, eventsV3Src].filter(Boolean).join(',')}
       } as unknown as VNodeData, [
-          ${hasDefaultSlot ? `// @ts-ignore\nthis.$slots.default && this.$slots.default(),` : ''}
+          // @ts-ignore
+          this.$slots.default && this.$slots.default(),
           ${namedSlotsSource}
       ]);
     `;
@@ -274,6 +291,7 @@ export default defineComponent({
   methods: {
   	${methodDefinitionsSrc}
 	},
+	${slotsSrc}
   setup(props, ctx) {
     const componentName = registerComponent('${componentDef.name}', ${componentDef.registerFunctionName});
 

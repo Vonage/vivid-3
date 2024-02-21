@@ -39,6 +39,7 @@ export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed
  *
  * @public
  * @slot - Default slot.
+ * @slot icon - Add an icon to the component.
  * @event action-click - Event emitted when the action button is clicked
  * @event indicator-click - Event emitted when the indicator button is clicked
  */

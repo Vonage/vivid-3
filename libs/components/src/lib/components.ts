@@ -51,6 +51,7 @@ export * from './tag-group/definition';
 export * from './tag/definition';
 export * from './text-area/definition';
 export * from './text-field/definition';
+export * from './time-picker/definition';
 export * from './toggletip/definition';
 export * from './tooltip/definition';
 export * from './tree-item/definition';

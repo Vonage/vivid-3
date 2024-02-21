@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.50.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.49.0...vivid-vue-v3.50.0) (2024-02-08)
+
+
+### Features
+
+* **time-picker:** add component (VIV-1321) ([#1539](https://github.com/Vonage/vivid-3/issues/1539)) ([eccef79](https://github.com/Vonage/vivid-3/commit/eccef79c1bb18ebeb099194e43f63826fee3be05))
+
+## [3.49.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.48.0...vivid-vue-v3.49.0) (2024-02-07)
+
+
+### Features
+
+* **lib:** add cjs output to vivid (VIV-1518) ([#1557](https://github.com/Vonage/vivid-3/issues/1557)) ([c3fd27e](https://github.com/Vonage/vivid-3/commit/c3fd27ef1a24a7148a5256a47504c81c83766d78))
+
+## [3.48.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.47.0...vivid-vue-v3.48.0) (2024-01-31)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.47.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.46.0...vivid-vue-v3.47.0) (2024-01-24)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [3.46.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.45.0...vivid-vue-v3.46.0) (2024-01-15)
 
 

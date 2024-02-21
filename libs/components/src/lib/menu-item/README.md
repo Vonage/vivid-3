@@ -6,8 +6,7 @@
 </script>
 ```
 
-```html preview
-
+```html preview 100px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -22,7 +21,7 @@
 
 Use the `text` attribute to set the menu item's text.
 
-```html preview
+```html preview 100px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -37,7 +36,7 @@ Use the `text-secondary` attribute (or `textSecondary` property) to set the menu
 
 Note: to improve readability, **avoid long text and multiple lines** where possible.
 
-```html preview
+```html preview 150px
 <vwc-menu open aria-label="Example menu">
  <vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
 </vwc-menu>
@@ -50,13 +49,7 @@ set `role` to change the role of the menu item
 - Type: `'menuitem'` | `'menuitemcheckbox'` | `'menuitemradio'` | `'presentation'`
 - Default: `'menuitem'`
 
-```html preview
-<style>
-  html { 
-    block-size: 400px; 
-  }
-</style>
-
+```html preview 400px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
@@ -86,7 +79,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 100px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
 </vwc-menu>
@@ -101,12 +94,7 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
-<style>
-  html { 
-    block-size: 300px; 
-  }
-</style>
+```html preview 300px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-trailing></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-trailing></vwc-menu-item>
@@ -126,12 +114,7 @@ When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the
 - Type: `'normal'` | `'tick-only'`
 - Default: `'normal'`
 
-```html preview
-<style>
-	html { 
-		block-size: 400px; 
-	}
-</style>
+```html preview 200px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-appearance="tick-only"></vwc-menu-item>
@@ -148,7 +131,7 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview 100px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -161,7 +144,7 @@ The disabled state of the element
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview 100px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
 </vwc-menu>
@@ -179,12 +162,7 @@ The expanded state of the element
 Assign nodes to the `meta` slot to set a badge or an additional icon.  
 Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 
-```html preview
-<style>
-  html { /* for demo purposes */
-    block-size: 170px;
-  }
-</style>
+```html preview 170px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Available" role="menuitemradio">
    <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
@@ -197,17 +175,24 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
   </vwc-menu-item>
 </vwc-menu> 
 ```
+### trailing-meta
+Assign nodes to the `trailing-meta` slot to set a badge or an additional icon.
+
+```html preview 170px
+<vwc-menu open aria-label="Example menu">
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1">
+  </vwc-menu-item>
+  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2">
+    <vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+  </vwc-menu-item>
+</vwc-menu> 
+```
 
 ### Submenu
 
 Assign menu to the `submenu` slot to create a submenu.
 
-```html preview
-<style>
-  html { /* for demo purposes */
-		block-size: 250px;
-	}
-</style>
+```html preview 200px
 <vwc-menu open aria-label="Example menu">
     <vwc-menu-item text="Menu item 1">
       <vwc-menu slot="submenu">
@@ -257,13 +242,13 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 - `--text-secondary-line-clamp` for the secondary text.
 
 
-```html preview
+```html preview 150px
 <style>
-vwc-menu {
- --text-primary-line-clamp: auto; 
- --text-secondary-line-clamp: auto;
- --menu-max-inline-size: 200px;
-}
+  vwc-menu {
+  --text-primary-line-clamp: auto; 
+  --text-secondary-line-clamp: auto;
+  --menu-max-inline-size: 200px;
+  }
 </style>
 <vwc-menu open aria-label="Example menu">
  <vwc-menu-item text="primary text with long text and auto line clamp"
@@ -282,10 +267,12 @@ To create a menu item that is anchored to a URL do the following:
 
 If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
 
-```html preview
-<vwc-menu open aria-label="Example menu">
+```html preview 100px
+<vwc-menu open aria-label="Example menu" >
 	<a role="menuitem" href="https://www.vonage.com" target="_blank" rel="noopener noreferrer">
-  	<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
+  	<vwc-menu-item role="presentation" text="Go to Vonage" icon='vonage-solid'>
+  		<vwc-icon name='open-line' slot="trailing-meta" size="-5"></vwc-icon>
+  	</vwc-menu-item>
 	</a>
 </vwc-menu>
 ```

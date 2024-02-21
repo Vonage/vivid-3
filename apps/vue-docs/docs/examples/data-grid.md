@@ -104,11 +104,25 @@
 </template>
 </code-tab>
 
+## Manipulating Data
+<code-tab visible-overflow>
+<template #example>
+<ManipulatingDataExample />
+</template>
+<template #code>
+
+```vue
+<!--@include: ./components/data-grid/ManipulatingDataExample.vue -->
+```
+</template>
+</code-tab>
+
 <script setup lang="ts">
 import CodeTab from '../custom/CodeTab.vue';
 import { defineClientComponent } from 'vitepress';
 
 const BasicExample = defineClientComponent(() =>  import('./components/data-grid/BasicExample.vue'));
+const ManipulatingDataExample = defineClientComponent(() =>  import('./components/data-grid/ManipulatingDataExample.vue'));
 const RowsDataExample = defineClientComponent(() =>  import('./components/data-grid/RowsDataExample.vue'));
 const SelectionModeExample = defineClientComponent(() =>  import('./components/data-grid/SelectionModeExample.vue'));
 const NoTabbingExample = defineClientComponent(() =>  import('./components/data-grid/NoTabbingExample.vue'));
@@ -117,3 +131,4 @@ const CustomCellsExample = defineClientComponent(() =>  import('./components/dat
 const SortingExample = defineClientComponent(() =>  import('./components/data-grid/SortingExample.vue'));
 const CustomColumnsWidthsExample = defineClientComponent(() =>  import('./components/data-grid/CustomColumnsWidthsExample.vue'));
 </script>
+

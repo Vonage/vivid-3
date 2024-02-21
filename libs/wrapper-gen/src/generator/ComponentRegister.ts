@@ -11,6 +11,7 @@ import { renderStorybookTemplate } from './renderStorybookTemplate';
 import { generateDocPageForComponent } from '../docs';
 import { renderIcons } from './renderIcons';
 import { loadedIcons } from './icons';
+import { exportedComponents } from './exportedComponents';
 
 type DefinitionOverride = (def: ComponentDef, metadata: {icons: string[]}) => void;
 type ComponentSpecs = [string, DefinitionOverride];
@@ -67,7 +68,8 @@ function generateDocsFor(component: ComponentDef) {
 }
 
 export default class ComponentRegister {
-  static componentsSpecs: ComponentSpecs[] = [];
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+  static componentsSpecs: ComponentSpecs[] = exportedComponents.map((component) => [component, () => {}]);
 
   static globalDefinitionsOverride: DefinitionOverride[] = [];
 
@@ -75,10 +77,13 @@ export default class ComponentRegister {
     this.globalDefinitionsOverride.push(override);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  static registerComponent(name: string, override: DefinitionOverride = () => {}) {
-    this.componentsSpecs.push([name, override]);
-  }
+	static addComponentOverride(name: string, override: DefinitionOverride) {
+		const componentDef = this.componentsSpecs.find(([componentName]) => componentName === name);
+		if (!componentDef) {
+			throw new Error(`Component ${name} not found`);
+		}
+		componentDef[1] = override;
+	}
 
   private static async getComponentDefs(): Promise<ComponentDef[]> {
     const icons = await loadedIcons;

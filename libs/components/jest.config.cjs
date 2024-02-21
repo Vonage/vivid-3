@@ -31,6 +31,9 @@ module.exports = {
 		'/node_modules/(?!(@microsoft|exenv-es6|@vivid-nx|video.js)/)',
 	],
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+	moduleNameMapper: {
+		'\\.s?css\\?inline$': 'identity-obj-proxy',
+	},
 	coverageDirectory: '../../coverage/libs/components',
 	testMatch: [
 		'**/__tests__/**/*.[jt]s?(x)',

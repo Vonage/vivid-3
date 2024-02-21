@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { Elevation } from './elevation';
-import styles from './elevation.scss';
+import styles from './elevation.scss?inline';
 import { elevationTemplate as template } from './elevation.template';
 
 

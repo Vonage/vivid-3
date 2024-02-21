@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { Layout } from './layout';
-import styles from './layout.scss';
+import styles from './layout.scss?inline';
 import { layoutTemplate as template } from './layout.template';
 
 export type { AUTO_SIZING, ColumnBasis, ColumnSpacing, RowSpacing, Gutters } from './layout';

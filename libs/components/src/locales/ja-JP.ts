@@ -65,6 +65,18 @@ const jaJP: Locale = {
 		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
 			`終了日は${maxDate}以前である必要があります。`,
 	},
+	timePicker: {
+		defaultTo12HourClock: false,
+		chooseTimeLabel: '時間を選択',
+		changeTimeLabel: /* istanbul ignore next */ (time: string) => `時間を変更, ${time}`,
+		hoursLabel: '時間',
+		minutesLabel: '分',
+		secondsLabel: '秒',
+		meridiesLabel: '午前/午後',
+		clearLabel: 'クリア',
+		okLabel: 'OK',
+		invalidTimeError: '有効な時間を入力してください。',
+	},
 	filePicker: {
 		invalidFileTypeError: 'この種類のファイルは選択できません。',
 		maxFilesExceededError: 'これ以上ファイルを選択できません。',

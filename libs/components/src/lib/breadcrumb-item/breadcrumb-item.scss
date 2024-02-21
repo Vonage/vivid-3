@@ -1,6 +1,8 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 
 .base {
 	display: flex;
@@ -16,12 +18,14 @@
 }
 
 .control {
-	position: relative;
 	font: inherit;
-	@supports selector(:focus-visible) {
-		&:focus-visible {
-			outline: none;
-		}
+
+	&:focus-visible {
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{focus-variables.$focus-inset}: -4px;
+
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 	}
 
 	&:any-link {
@@ -31,16 +35,5 @@
 		&:hover {
 			text-decoration: underline;
 		}
-	}
-
-}
-
-.focus-indicator {
-	--focus-inset: -4px -8px;
-	--focus-stroke-gap-color: transparent;
-
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	.control:not(:focus-visible)>& {
-		display: none;
 	}
 }
