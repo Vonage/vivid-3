@@ -82,7 +82,7 @@ Use the `placement` attribute to control the position of the menu relative to it
 
 ### Anchor
 
-As an alternative to using the `anchor` slot, you can use the `anchor` member to set the anchor.
+It's best to use the [`anchor` slot](#anchor-1) to set the anchor, but you can also use the `anchor` member.
 
 Either set it to the `id` of the anchor element or pass the anchor element itself.
 
