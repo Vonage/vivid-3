@@ -1,23 +1,26 @@
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { type Anchored, anchored } from './anchored.ts';
+import { type Anchored, anchored, anchorSlotTemplateFactory } from './anchored.ts';
 
 describe('anchored', () => {
 	const _anchorElChanged = jest.fn();
 
-	@customElement('anchored-element')
+	@customElement({
+		name: 'anchored-element',
+		template: anchorSlotTemplateFactory()
+	})
 	@anchored
 	class AnchoredElement extends FASTElement {
 		_anchorElChanged = _anchorElChanged;
 	}
 	interface AnchoredElement extends Anchored {}
 
-	const anchor = document.createElement('div');
-	anchor.id = 'anchor';
-
+	let anchor: HTMLElement;
 	let element: AnchoredElement;
 
 	beforeEach(async function () {
+		anchor = document.createElement('div');
+		anchor.id = 'anchor';
 		_anchorElChanged.mockClear();
 		element = (await fixture(
 			'<anchored-element></anchored-element>'
@@ -29,27 +32,77 @@ describe('anchored', () => {
 		anchor.remove();
 	});
 
-	it('should allow referencing an anchor by id', () => {
-		document.body.appendChild(anchor);
+	describe('anchor slot', () => {
+		it('should allow setting an anchor by assigning it to the anchor slot', async () => {
+			anchor.slot = 'anchor';
 
-		element.anchor = anchor.id;
+			element.appendChild(anchor);
+			await elementUpdated(element);
 
-		expect(element._anchorEl).toBe(anchor);
+			expect(element._anchorEl).toBe(anchor);
+		});
+
+		it('should choose the first slotted element', async () => {
+			anchor.slot = 'anchor';
+			const dummy = document.createElement('div');
+			dummy.slot = 'anchor';
+
+			element.appendChild(anchor);
+			element.appendChild(dummy);
+			await elementUpdated(element);
+
+			expect(element._anchorEl).toBe(anchor);
+		});
+
+		it('should prefer the anchor slot over the anchor property', async () => {
+			element.anchor = document.createElement('div');
+			anchor.slot = 'anchor';
+
+			element.appendChild(anchor);
+			await elementUpdated(element);
+
+			expect(element._anchorEl).toBe(anchor);
+		});
+
+		it('should set the slotted-anchor attribute when occupied', async () => {
+			anchor.slot = 'anchor';
+
+			element.appendChild(anchor);
+			await elementUpdated(element);
+
+			expect(element.hasAttribute('slotted-anchor')).toBe(true);
+		});
 	});
 
-	it('should find the referenced anchor even if it is being added to the DOM later', async () => {
-		element.anchor = anchor.id;
+	describe('anchor property', () => {
+		it('should allow referencing an anchor by id', () => {
+			document.body.appendChild(anchor);
 
-		document.body.appendChild(anchor);
-		await elementUpdated(element);
+			element.anchor = anchor.id;
 
-		expect(element._anchorEl).toBe(anchor);
-	});
+			expect(element._anchorEl).toBe(anchor);
+		});
 
-	it('should allow providing an element as anchor directly', () => {
-		element.anchor = anchor;
+		it('should find the referenced anchor even if it is being added to the DOM later', async () => {
+			element.anchor = anchor.id;
 
-		expect(element._anchorEl).toBe(anchor);
+			document.body.appendChild(anchor);
+			await elementUpdated(element);
+
+			expect(element._anchorEl).toBe(anchor);
+		});
+
+		it('should allow providing an element as anchor directly', () => {
+			element.anchor = anchor;
+
+			expect(element._anchorEl).toBe(anchor);
+		});
+
+		it('should not set the slotted-anchor attribute', async () => {
+			element.anchor = anchor;
+
+			expect(element.hasAttribute('slotted-anchor')).toBe(false);
+		});
 	});
 
 	it('should trigger _anchorElChanged when anchor element changes', () => {

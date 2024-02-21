@@ -1,15 +1,16 @@
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, DOM, html, observable, slotted } from '@microsoft/fast-element';
 
 type AnchorType = string | HTMLElement;
 
 export interface Anchored {
 	anchor?: AnchorType;
+	_slottedAnchor?: HTMLElement | null;
 	_anchorEl?: HTMLElement | null;
 }
 
 /**
  * Mixin for elements that are anchored to another element.
- * The anchor can be specified either by ID or by direct reference.
+ * The anchor can be specified either through the anchor slot or by using the anchor prop with an ID or direct reference.
  * The resolved anchor element is available as `_anchorEl` while the element is connected.
  */
 export function anchored<
@@ -23,7 +24,23 @@ export function anchored<
 		 * HTML Attribute: anchor
 		 */
 		@attr anchor?: AnchorType;
+		/**
+		 * @internal
+		 */
 		anchorChanged() {
+			this.#updateAnchorEl();
+		}
+
+		/**
+		 * @internal
+		 */
+		@observable _slottedAnchor?: HTMLElement[];
+		/**
+		 * @internal
+		 */
+		_slottedAnchorChanged() {
+			const isOccupied = Boolean(this._slottedAnchor && this._slottedAnchor.length > 0);
+			DOM.setBooleanAttribute(this as unknown as HTMLElement, 'slotted-anchor', isOccupied);
 			this.#updateAnchorEl();
 		}
 
@@ -43,7 +60,9 @@ export function anchored<
 			this.#cleanupObserverIfNeeded();
 
 			let newAnchor: HTMLElement | undefined = undefined;
-			if (this.anchor instanceof HTMLElement) {
+			if (this._slottedAnchor && this._slottedAnchor.length > 0) {
+				newAnchor = this._slottedAnchor[0];
+			} else if (this.anchor instanceof HTMLElement) {
 				newAnchor = this.anchor;
 			} else if (typeof this.anchor === 'string') {
 				newAnchor = document.getElementById(this.anchor) ?? undefined;
@@ -85,3 +104,5 @@ export function anchored<
 
 	return Decorated;
 }
+
+export const anchorSlotTemplateFactory = () =>html<Anchored>`<slot name="anchor" ${slotted('_slottedAnchor')}></slot>`;
