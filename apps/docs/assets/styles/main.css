@@ -406,6 +406,14 @@ article.article > h1 {
   position: relative;
 }
 
+.side-nav vwc-nav-disclosure{
+	--vvd-nav-disclosure-accent-faint: color-mix(in srgb, var(--vvd-color-canvas-text), transparent 90%);
+}
+.side-nav vwc-nav-item {
+	--vvd-nav-item-accent-faint: color-mix(in srgb, var(--vvd-color-canvas-text), transparent 90%);
+}
+
+
 /* #startregion table */
 
 .table-wrapper {
