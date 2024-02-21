@@ -2,6 +2,10 @@
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 
+:host {
+	display: var(#{variables.$popup-display}, inline);
+}
+
 .control {
 	background: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
@@ -14,7 +18,7 @@
 }
 
 .popup-wrapper {
-	z-index: 10;
+	z-index: var(#{variables.$popup-z-index}, 10);
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: max-content;
 

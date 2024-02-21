@@ -73,6 +73,19 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should set open to false when clicking on slotted anchor', async () => {
+			const anchor = document.createElement('div');
+			anchor.slot = 'anchor';
+			element.appendChild(anchor);
+			element.open = true;
+			await elementUpdated(element);
+
+			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(false);
+		});
+
 		it('should set open to false when Escape is pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);

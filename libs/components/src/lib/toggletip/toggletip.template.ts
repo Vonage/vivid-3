@@ -3,6 +3,7 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
+import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import type { Toggletip } from './toggletip';
 
 const getClasses = (_: Toggletip) => classNames('control');
@@ -17,8 +18,10 @@ export const ToggletipTemplate:
 (context: ElementDefinitionContext, definition: FoundationElementDefinition)
 => ViewTemplate<Toggletip> = (context: ElementDefinitionContext) => {
 	const popup = context.tagFor(Popup);
+	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
 	return html`
+		${anchorSlotTemplate}
 		<${popup}
 			class="${getClasses}"
 			arrow

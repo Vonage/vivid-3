@@ -66,9 +66,15 @@ const renderiFrame = (
 			<div class="${CBD_ACTIONS}" slot="main">
 				<div>${localeSwitcher}</div>
 				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
-					<vwc-button id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
-					<vwc-button id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
-					<vwc-button id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+					<vwc-tooltip text="Edit on CodePen" placement="top">
+						<vwc-button slot="anchor" id="buttonCPen${index}" connotation="cta" aria-label="Edit on CodePen" icon="open-line" data-index="${index}" data-deps="${deps}"></vwc-button>
+					</vwc-tooltip>
+					<vwc-tooltip text="Edit code" placement="top">
+						<vwc-button slot="anchor" id="buttonEdit${index}" connotation="cta" aria-label="Edit source code" icon="code-line" aria-expanded="false" aria-controls="${CBD_CODE_BLOCK}-${index}" onclick="codeBlockButtonClick(this)"></vwc-button>
+					</vwc-tooltip>
+					<vwc-tooltip text="Copy code" placement="top">
+						<vwc-button slot="anchor" slot="anchor" id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
+					</vwc-tooltip>
 				</vwc-action-group>
 			</div>
 			<details class="${CBD_DETAILS}" slot="main">
@@ -78,9 +84,6 @@ const renderiFrame = (
 				</div>
 			</details>
 		</vwc-card>
-		<vwc-tooltip anchor="buttonCPen${index}" text="Edit on CodePen" placement="top" style="text-align: center"></vwc-tooltip>
-		<vwc-tooltip anchor="buttonEdit${index}" text="Edit code" placement="top" style="text-align: center"></vwc-tooltip>
-		<vwc-tooltip anchor="buttonCopy${index}" text="Copy code" placement="top" style="text-align: center"></vwc-tooltip>
 	</div>`;
 }
 
