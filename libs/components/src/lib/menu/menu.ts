@@ -8,6 +8,7 @@ import { type Anchored, anchored } from '../../shared/patterns/anchored';
  *
  * @public
  * @slot - Default slot.
+ * @slot anchor - Used to set the anchor element for the menu.
  * @slot header - Used to add additional content to the top of the menu.
  * @slot action-items - Used to add action items to the bottom of the menu.
  * @event open - Fired when the menu is opened

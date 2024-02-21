@@ -9,8 +9,8 @@
 		<div class="welcome__getting-started">
 			<div class="font-base-extended">Getting started with:</div>
 			<div class="welcome__buttons">
-				<vwc-button id="vue" label="Vue.js" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
-				<vwc-button id="webComponents" label="Web Components" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
+				<vwc-button label="Vue.js" href="/getting-started/vue" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
+				<vwc-button label="Web Components" href="/getting-started/web-components" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
 			</div>
 		</div>
 	</div>
@@ -194,7 +194,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button id="design" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/designs/guidelines/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 
 <vwc-card headline="Vivid 2 Migration" subtitle="Migration guidelines for a smooth and easy adoption.">
@@ -289,7 +289,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button id="migration" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/guides/vivid-2-migration/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 
 <vwc-card headline="Icons Gallery" subtitle="Vivid's Icons Gallery contains a wide range of high-quality icons.">
@@ -398,7 +398,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </clipPath>
 </defs>
 </svg>
-<vwc-button id="iconsGallery" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/icons/icons-gallery/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 </vwc-layout>
 
@@ -439,21 +439,3 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 ## Have questions?
 
 Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) Slack channel.
-
-<script>
-  vue.onclick = () => {
-    window.location.href = '/getting-started/vue';
-  }
-  webComponents.onclick = () => {
-    window.location.href = '/getting-started/web-components';
-  }
-  design.onclick = () => {
-    window.location.href = '/designs/guidelines/';
-  }
-  migration.onclick = () => {
-    window.location.href = '/guides/vivid-2-migration/';
-  }
-  iconsGallery.onclick = () => {
-    window.location.href = '/icons/icons-gallery/';
-  }
-</script>

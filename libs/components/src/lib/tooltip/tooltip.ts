@@ -7,6 +7,7 @@ import { type Anchored, anchored } from '../../shared/patterns/anchored';
  * Base class for tooltip
  *
  * @public
+ * @slot anchor - Used to set the anchor element for the tooltip.
  */
 @anchored
 export class Tooltip extends FoundationElement {
