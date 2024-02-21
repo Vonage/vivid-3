@@ -131,6 +131,6 @@ export const buttonTemplate: (
 	return html`
 		<template role="presentation">
 			${when(x => !x.href, html<Button>`${renderButtonContent(context)}`)}
-			${when(x => x.href && x.href.length > 0, html<Button>`${renderAnchorContent(context)}`)}
+			${when(x => x.href, html<Button>`${renderAnchorContent(context)}`)}
 		</template>`;
 };
