@@ -184,79 +184,18 @@ describe('vwc-button', () => {
 
 	});
 
-	describe('href', () => {
-		function getAnchorElement() {
-			const anchorElement = element.shadowRoot?.querySelector('a');
-			return anchorElement;
-		}
-		
-		beforeEach(async () => {	
+
+	describe.each(['href', 'hreflang', 'download', 'ping', 'referrerpolicy', 'rel', 'target', 'type'])('%s attribute', (attribute) => {
+		beforeEach(async () => {
 			element.href = '/somewhere';
 			await elementUpdated(element);
 		});
 
-		it('should set the "href" attribute', async function () {
-			const attribute = 'href';
+		it('should be fired when a user toggles the checkbox', async () => {
 			const text = 'link';
 			await setAttribute(element, attribute, text);
 
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "hreflang" attribute', async function () {			
-			const attribute = 'hreflang';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "download" attribute', async function () {
-			const attribute = 'download';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "ping" attribute', async function () {
-			const attribute = 'ping';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "referrerpolicy" attribute', async function () {
-			const attribute = 'referrerpolicy';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "rel" attribute', async function () {
-			const attribute = 'rel';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "target" attribute', async function () {
-			const attribute = 'target';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
-		});
-
-		it('should set the "type" attribute', async function () {
-			const attribute = 'type';
-			const text = 'stam';
-			await setAttribute(element, attribute, text);
-
-			expect(getAnchorElement()?.getAttribute(attribute)).toEqual(text);
+			expect(element.shadowRoot?.querySelector('a')?.getAttribute(attribute)).toEqual(text);
 		});
 	});
 
