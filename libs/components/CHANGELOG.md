@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.50.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.50.0...vivid-v3.50.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* **accordion-item:** text-select in the accordion content (VIV-1515) ([#1581](https://github.com/Vonage/vivid-3/issues/1581)) ([d9c2ef7](https://github.com/Vonage/vivid-3/commit/d9c2ef777a67d01d6b7f74c8773ec4d4c585c577))
+* **alert:** add icon slot (VIV-1515) ([#1580](https://github.com/Vonage/vivid-3/issues/1580)) ([263d1c0](https://github.com/Vonage/vivid-3/commit/263d1c0a2d17c7139b4452e10fe0c18798248005))
+* **components:** import styles correctly (VIV-000) ([#1575](https://github.com/Vonage/vivid-3/issues/1575)) ([6132a22](https://github.com/Vonage/vivid-3/commit/6132a227625274af66a5eba3c6c1449407a0ae86))
+* **file-picker:** add to vue-wrappers (VIV-1530) ([#1589](https://github.com/Vonage/vivid-3/issues/1589)) ([10f278b](https://github.com/Vonage/vivid-3/commit/10f278b40c7fa09481201fc3f19b2f786bbaa036))
+* **menu-item:** unchecked checkbox & radio color (VIV-1549) ([#1587](https://github.com/Vonage/vivid-3/issues/1587)) ([1fb9a01](https://github.com/Vonage/vivid-3/commit/1fb9a01ffae57cf22c4103f6068779c1d79f90fc))
+* **select, checkbox:** error & success style (VIV-1458) ([#1541](https://github.com/Vonage/vivid-3/issues/1541)) ([07ad525](https://github.com/Vonage/vivid-3/commit/07ad525521b92fcfaf6f7a1e817129294e57e0b3))
+* **selectable-box:** update new png (VIV-000) ([#1586](https://github.com/Vonage/vivid-3/issues/1586)) ([0ca10b0](https://github.com/Vonage/vivid-3/commit/0ca10b0f6b701f6bee9f962af27d43767c2ad640))
+
 ## [3.50.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.49.0...vivid-v3.50.0) (2024-02-08)
 
 
