@@ -191,7 +191,7 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 		});
 
-		it('should be fired when a user toggles the checkbox', async () => {
+		it('should be forwarded to the anchor element', async () => {
 			const text = 'link';
 			await setAttribute(element, attribute, text);
 
