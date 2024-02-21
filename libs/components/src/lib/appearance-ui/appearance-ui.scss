@@ -3,7 +3,7 @@
 
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information announcement,
-	$shades: faint soft dim pale light primary primary-text primary-increment firm fierce contrast intermediate,
+	$shades: faint soft dim pale light primary primary-text primary-increment firm firm-all fierce contrast intermediate,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
