@@ -89,7 +89,7 @@ If provided, `success-text` will take precedence over errors.
 - Default: `undefined`
 
 ```html preview
-<vwc-checkbox label='A default checkbox' success-text="Success text"></vwc-checkbox>
+<vwc-checkbox label='A default checkbox' success-text="Success text" checked></vwc-checkbox>
 ```
 
 

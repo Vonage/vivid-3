@@ -24,10 +24,13 @@ export default defineConfig({
 
 	build: {
 		lib: {
-			name: 'vivid-vue',
 			entry: 'src/index.ts',
-			fileName: format => `index.${format}.js`,
+			name: 'vivid-vue',
+			fileName: 'index',
+			formats: ['es', 'cjs'],
 		},
+		minify: false,
+		target: 'esnext',
 		rollupOptions: {
 			external: ['vue', '@vonage/vivid'],
 			output: {

@@ -3,7 +3,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { popupRegistries } from '../popup/definition';
 
-import styles from './toggletip.scss';
+import styles from './toggletip.scss?inline';
 import { Toggletip } from './toggletip';
 import { ToggletipTemplate as template } from './toggletip.template';
 

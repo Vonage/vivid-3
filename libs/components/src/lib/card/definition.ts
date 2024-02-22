@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { elevationRegistries } from '../elevation/definition';
-import styles from './card.scss';
+import styles from './card.scss?inline';
 
 import { Card } from './card';
 import { CardTemplate as template } from './card.template';

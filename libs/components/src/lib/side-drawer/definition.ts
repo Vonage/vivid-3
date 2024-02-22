@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { SideDrawer } from './side-drawer';
-import styles from './side-drawer.scss';
+import styles from './side-drawer.scss?inline';
 import { sideDrawerTemplate as template } from './side-drawer.template';
 
 /**

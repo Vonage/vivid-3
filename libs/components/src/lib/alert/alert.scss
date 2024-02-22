@@ -101,7 +101,7 @@ $alert-transition-delay: --transition-delay;
 		}
 	}
 
-	.icon {
+	slot[name="icon"] {
 		flex-shrink: 0;
 		color: var(#{appearance.get-appearance-token(fill)});
 		font-size: 24px;

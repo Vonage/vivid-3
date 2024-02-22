@@ -2,7 +2,6 @@ import {html, ViewTemplate, when} from '@microsoft/fast-element';
 import type {ElementDefinitionContext} from '@microsoft/fast-foundation';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {Icon} from '../icon/icon';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 import {DataGridCellRole, DataGridCellSortStates} from './data-grid.options';
 import type {DataGridCell} from './data-grid-cell';
 
@@ -35,7 +34,6 @@ function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 }
 
 export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDefinitionContext): ViewTemplate<T> {
-	const focusTemplate = focusTemplateFactory(context);
 	return html<T>`
         <template
             tabindex="-1"
@@ -45,7 +43,6 @@ export function DataGridCellTemplate<T extends DataGridCell>(context: ElementDef
         >
 					<div class="base">
 							<slot></slot>
-							${() => focusTemplate}
 							${_ => renderSortIcons(context)}
 					</div>
 

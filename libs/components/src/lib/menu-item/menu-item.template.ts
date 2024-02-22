@@ -5,7 +5,6 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
 import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 const getIndicatorIcon = (x: MenuItem) => {
 	if (x.checkedAppearance === CheckAppearance.TickOnly) {
@@ -60,7 +59,6 @@ function text() {
 export const MenuItemTemplate: (context: ElementDefinitionContext, definition: MenuItemOptions
 ) => ViewTemplate<MenuItem> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
 	return html<MenuItem>`
@@ -76,11 +74,11 @@ export const MenuItemTemplate: (context: ElementDefinitionContext, definition: M
 		@mouseout="${(x, c) => x.handleMouseOut(c.event as MouseEvent)}"
 	>
 		<div class="${getClasses}">
-			${() => focusTemplate}
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			${checkIndicator(context)}
 			${when(x => x.icon, html`<span class="decorative">${x => affixIconTemplate(x.icon)}</span>`)}
 			${text()}
+			<slot name="trailing-meta" ${slotted('trailingMetaSlottedContent')}></slot>
 			${when(x => x.hasSubmenu, html`<${iconTag} class="chevron" name="chevron-right-line"></${iconTag}>`)}
 		</div>
 		<slot name="submenu" ${slotted({ property: 'slottedSubmenu', filter: elements(context.tagFor(Menu)) })}></slot>

@@ -29,6 +29,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @public
  * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
+ * @slot icon - Add an icon to the component.
  * @event open - Fired when the alert is opened
  * @event close - Fired when the alert is closed
  */
@@ -121,7 +122,7 @@ export class Alert extends FoundationElement {
 		this.$emit(newValue ? 'open' : 'close');
 		this.#setupTimeout();
 		if (newValue) {
-			this.style.display = 'inline';
+			this.style.display = 'contents';
 			const alertText = this.shadowRoot!.querySelector('.alert-text') as HTMLElement;
 			if (this.removable && alertText) {
 				alertText.setAttribute('tabindex', '0');
@@ -168,6 +169,8 @@ export class Alert extends FoundationElement {
 	#onTransitionEnd = () => {
 		if (!this.open) {
 			this.style.display = 'none';
+		} else {
+			this.style.display = 'contents';
 		}
 	};
 }

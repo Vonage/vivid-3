@@ -20,7 +20,7 @@ The popup is positioned in a fixed manner to its anchor.
 - Type: `HTMLElement`
 - Default: `undefined`
 
-```html preview center
+```html preview center 150px
 <span id="anchor">
   ⚓️
 </span>
@@ -39,7 +39,7 @@ Use the `open` attribute to indicate whether the popup is open.
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-button id="anchor" appearance='outlined' label='Click me!'></vwc-button>
 <vwc-popup id="popup" open>
   <vwc-layout gutters="small">
@@ -60,7 +60,7 @@ Add the `dismissible` attribute to add a close button to the popup.
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-button id="anchor" appearance='outlined' label='Click on me!'></vwc-button>
 <vwc-popup id="popup" open dismissible>
   <vwc-layout gutters="small">
@@ -81,7 +81,7 @@ Add the `arrow` attribute to add a small triangle to indicate the trigger elemen
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup id="popup" open arrow>
   <vwc-layout gutters="small" style="200px">
@@ -100,7 +100,7 @@ Add the `alternate` attribute to set the color-scheme to dark or light (dependin
 - Type: `boolean`
 - Default: `false`
 
-```html preview center
+```html preview center 150px
 <vwc-icon id="anchor" name='info-line'></vwc-icon>
 <vwc-popup id="popup" open alternate>
   <vwc-layout gutters="small" style="200px">
@@ -119,7 +119,7 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `''`
 
-```html preview center
+```html preview center 150px
 <style>
   .square {
     inline-size: 270px;
@@ -182,13 +182,82 @@ Use the `strategy` attribute to set the placement strategy.
 - Type: `'fixed'` | `'absolute'`
 - Default: `'fixed'`
 
-```html preview center
+```html preview center 150px
 <span id="anchor">
   ⚓️
 </span>
 <vwc-popup id="popup" strategy="absolute" open>
   This is a popup.
 </vwc-popup>
+<script>
+	popup.anchor = anchor;
+</script>
+```
+
+## CSS Variables
+
+### Z-Index
+
+Use the `--_popup-z-index` CSS variable to set the z-index of the popup.
+
+- Default: `10`
+
+```html preview 100px
+<style>
+	#anchor {
+		text-align: center;
+	}
+	#popup {
+		--_popup-z-index: 12;
+	}
+	#block {
+		position: relative;
+		z-index: 11;
+		background: black;
+		block-size: 50px;
+	}
+</style>
+<div id="anchor">
+  ⚓️
+</div>
+<vwc-popup id="popup" strategy="absolute" open>
+  This is a popup.
+</vwc-popup>
+<div id="block"></div>
+<script>
+	popup.anchor = anchor;
+</script>
+```
+
+### Display
+
+Use the `--_popup-display` CSS variable to change the `display` of the popup.
+
+When display is not set to `contents`, the host element will be considered an empty element that is not removed the document flow, therefore 
+affecting things like flexbox layout.
+
+The default should really be `contents`, but is not due to backwards compatibility.
+
+- Default: `inline`
+
+```html preview 100px
+<style>
+	.container {
+		display: flex;
+		gap: 100px;
+	}
+	#popup {
+		--_popup-display: contents;
+	}
+</style>
+<div class="container">
+	<span>◼️</span>
+	<span id="anchor">⚓️</span>
+	<vwc-popup id="popup" strategy="absolute" open>
+		This is a popup.
+	</vwc-popup>
+	<span>◼️</span>
+</div>
 <script>
 	popup.anchor = anchor;
 </script>

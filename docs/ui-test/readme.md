@@ -45,12 +45,12 @@ This will spin up the dev server and watch for changes in the code to restart th
 A useful scenario would be to develop a single component:
 
 1. Start the tests using `npx nx run components:e2e:watch`
-2. Setup your component's to be the only test to run: `test => test.only`
+2. Set up your component's to be the only test to run: `test => test.only`
 3. Add `await page.pause();` inside the test case.
 
 ### Why Docker?
 
-In order to avoid flakiness, we've setup a docker image to run the tests. This requires docker installed on your machine. [Click here to learn how to install docker](https://docs.docker.com/get-docker/).
+In order to avoid flakiness, we've set up a docker image to run the tests. This requires docker installed on your machine. [Click here to learn how to install docker](https://docs.docker.com/get-docker/).
 
 After you have docker installed, run:
 

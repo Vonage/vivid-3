@@ -1,4 +1,4 @@
 import ComponentRegister from './generator/ComponentRegister';
-import '../componentsDef';
+import '../componentOverrides';
 
 ComponentRegister.generateDocs();

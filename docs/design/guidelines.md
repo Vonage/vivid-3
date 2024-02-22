@@ -1,16 +1,13 @@
 ﻿
 # Guidelines
 
----
-
 The core guidelines are driven by the [Vonage Brand Toolkit](https://drive.google.com/file/d/1zPE5qIJys_KyjpWNAfsW9tmHc3iXEOMl/view) and are the foundations on which we built our design system. Specifically, these elements are the subatomic elements of all our components.
 
----
 
 ## Design tokens
 
 Design tokens are a set of values that maintain a design system. 
-They represent anything defined by design: font size in pixel, a color as a RGB value, an opacity as a number, etc. 
+They represent anything defined by design: font size in pixel, a color, an opacity as a number, etc. 
 
 The Design Tokens are the design system's Single Source of Truth.
 
@@ -38,7 +35,7 @@ Vivid’s default theme is derived from the Vonage Brand Identity color palette.
 
 ### Additional brand colors
 
-Although we value an aesthetically pleasing use of color, we place a higher value on clear communication. Our use of color should be rational and should serve to support the purpose of the content. The additional brand colors should be used sparingly and purposefully throughout Vonage’s interfaces and applications, and mainly just for decoartive purposes.
+Although we value an aesthetically pleasing use of color, we place a higher value on clear communication. Our use of color should be rational and should serve to support the purpose of the content. The additional brand colors should be used sparingly and purposefully throughout Vonage’s interfaces and applications, and mainly just for decorative purposes.
 
 ![brand colors](https://user-images.githubusercontent.com/106529909/188305830-ab6f12ac-60c5-4844-890c-a7954165c701.png)
 

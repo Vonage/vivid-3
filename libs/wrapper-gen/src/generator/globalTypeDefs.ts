@@ -8,6 +8,7 @@ import {
   SelectPosition,
   SliderMode,
   TabsOrientation,
+  TextAreaResize,
   TextFieldType,
 } from '@microsoft/fast-foundation';
 import { MenuItemRole } from '@vonage/vivid';
@@ -26,6 +27,7 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
   SliderMode: typeFromEnumObj(SliderMode),
   TabsOrientation: typeFromEnumObj(TabsOrientation),
   TextFieldType: typeFromEnumObj(TextFieldType),
+	TextAreaResize: typeFromEnumObj(TextAreaResize),
   Orientation: typeFromEnumObj(Orientation),
   Direction: typeFromEnumObj(Direction),
 

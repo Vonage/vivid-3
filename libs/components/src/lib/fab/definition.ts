@@ -1,8 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
-import { focusRegistries } from '../focus/definition';
-import styles from './fab.scss';
+import styles from './fab.scss?inline';
 
 import { Fab } from './fab';
 import { FabTemplate as template } from './fab.template';
@@ -24,7 +23,7 @@ export const fabDefinition = Fab.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const fabRegistries = [fabDefinition(), ...iconRegistries, ...focusRegistries];
+export const fabRegistries = [fabDefinition(), ...iconRegistries];
 
 /**
  * Registers the FAB elements with the design system.

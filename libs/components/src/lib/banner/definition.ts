@@ -2,7 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { iconRegistries } from '../icon/definition';
-import styles from './banner.scss';
+import styles from './banner.scss?inline';
 
 import { Banner } from './banner';
 import { BannerTemplate as template } from './banner.template';

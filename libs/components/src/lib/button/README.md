@@ -172,6 +172,22 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
 ```
 
+### Href
+
+Use the `href` attribute to convert the button to a link.
+In addition, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
+
+<vwc-note connotation="warning" icon="warning-solid">
+Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users. Use this feature with caution.
+</vwc-note>
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-button label="Button with a link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank"></vwc-button>
+```
+
 ## Slots
 
 ### Icon
@@ -199,7 +215,7 @@ If set, the `icon` attribute is ignored.
 			}
 	}
 </style>
-<vwc-button>
+<vwc-button aria-label="Mute">
   <vwc-icon slot="icon">
   	<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   		<g>
@@ -213,6 +229,11 @@ If set, the `icon` attribute is ignored.
 ```
 
 ## Accessibility 
+
+Add an `aria-label` or `title` attribute if the button does not have a label or the label is not descriptive enough.
+
+Icons are purely decorative and are hidden from assistive technology. Ensure that the button's purpose is still clear without the icon.
+
 When deciding between `aria-label` or `title`, keep in mind that `aria-label` is better for accessibility.  
 The assistive technology will read the `aria-label` text rather than the `title` if both are set.
 

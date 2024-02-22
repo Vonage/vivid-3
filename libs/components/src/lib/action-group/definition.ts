@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './action-group.scss';
+import styles from './action-group.scss?inline';
 
 import { ActionGroup } from './action-group';
 import { ActionGroupTemplate as template } from './action-group.template';

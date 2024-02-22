@@ -8,7 +8,6 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Button } from '../../lib/button/button';
 import { Popup } from '../../lib/popup/popup';
 import { TextField } from '../../lib/text-field/text-field';
-import { focusTemplateFactory } from '../patterns';
 import { Divider } from '../../lib/divider/divider';
 import type { CalendarGridDate, Weekday } from './calendar/calendarGrid';
 import { areMonthsEqual, monthToStr } from './calendar/month';
@@ -18,7 +17,6 @@ import type { CalendarSegment, MonthPickerSegment, Segment } from './calendar/se
 
 function renderDialogHeader(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Segment, DatePickerBase>`<div class="header">
 		${when(
@@ -58,7 +56,6 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 				aria-live="polite"
 				@click="${(_, c) => c.parent._onTitleActionClick()}"
 			>
-				${() => focusTemplate}
 				${(x) => x.title}
 			</button>
 			`)}
@@ -106,7 +103,6 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 
 
 function renderCalendarGrid(context: ElementDefinitionContext) {
-	const focusTemplate = focusTemplateFactory(context);
 	const dividerTag = context.tagFor(Divider);
 
 	return html<CalendarSegment, DatePickerBase>`<div
@@ -173,7 +169,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			c.event as KeyboardEvent
 		)}"
 						>
-							${() => focusTemplate} ${(x) => x.label}
+							${(x) => x.label}
 						</button>
 		</span>`
 	)}
@@ -184,7 +180,6 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 }
 function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<MonthPickerSegment, DatePickerBase>`
 		<${dividerTag}
@@ -248,7 +243,7 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 			c.event as KeyboardEvent
 		)}"
 							>
-								${() => focusTemplate} ${(x) => x.label}
+								${(x) => x.label}
 							</button>
 				</span>
 						`
@@ -325,7 +320,8 @@ export const DatePickerBaseTemplate: (
 						class="vwc-button"
 						size="condensed"
 						label="${(x) => x.locale.datePicker.clearLabel}"
-						@click="${(x) => x._onClearClick()}"
+						@click="${(x) => x._onClearClick()},
+										${(x) => x.$emit('clear-click')}"
 					></${buttonTag}>
 					<${buttonTag}
 						tabindex="3"

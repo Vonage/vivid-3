@@ -1,7 +1,7 @@
 import { attr, html, observable, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { Icon } from '../../../lib/icon/icon';
-import messageStyles from './message.scss';
+import messageStyles from './message.scss?inline';
 
 export interface FormElement {
 	errorValidationMessage: string;

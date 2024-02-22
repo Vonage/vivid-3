@@ -3,6 +3,7 @@ const markdownLibrary = require("./libraries/markdown-it");
 const CleanCSS = require("clean-css");
 const fs = require("fs");
 const path = require('path');
+const slugify = require('slugify');
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
@@ -46,13 +47,17 @@ module.exports = function (eleventyConfig) {
     const isServing = process.argv.includes('--serve');
     return isServing
 		? pages
-		: pages.filter(page => page?.status !== 'underlying');
+		: pages.filter(page => page?.status !== 'underlying' && page?.status !== 'alpha');
   });
 
 	eleventyConfig.addFilter("githubEditLink", function (filePath) {
 		// Transform local path, e.g. "./libs/components/src/lib/alert/README.md"
 		const relativeFilePath = filePath.replace(/^\.\//, '');
 		return `https://github.com/Vonage/vivid-3/edit/main/${relativeFilePath}`;
+	});
+
+	eleventyConfig.addFilter("pageSlug", function (page) {
+		return page.slug || slugify(page.title, { lower: true });
 	});
 
 	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {

@@ -4,6 +4,77 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.50.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.50.0...vivid-v3.50.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* **accordion-item:** text-select in the accordion content (VIV-1515) ([#1581](https://github.com/Vonage/vivid-3/issues/1581)) ([d9c2ef7](https://github.com/Vonage/vivid-3/commit/d9c2ef777a67d01d6b7f74c8773ec4d4c585c577))
+* **alert:** add icon slot (VIV-1515) ([#1580](https://github.com/Vonage/vivid-3/issues/1580)) ([263d1c0](https://github.com/Vonage/vivid-3/commit/263d1c0a2d17c7139b4452e10fe0c18798248005))
+* **components:** import styles correctly (VIV-000) ([#1575](https://github.com/Vonage/vivid-3/issues/1575)) ([6132a22](https://github.com/Vonage/vivid-3/commit/6132a227625274af66a5eba3c6c1449407a0ae86))
+* **file-picker:** add to vue-wrappers (VIV-1530) ([#1589](https://github.com/Vonage/vivid-3/issues/1589)) ([10f278b](https://github.com/Vonage/vivid-3/commit/10f278b40c7fa09481201fc3f19b2f786bbaa036))
+* **menu-item:** unchecked checkbox & radio color (VIV-1549) ([#1587](https://github.com/Vonage/vivid-3/issues/1587)) ([1fb9a01](https://github.com/Vonage/vivid-3/commit/1fb9a01ffae57cf22c4103f6068779c1d79f90fc))
+* **select, checkbox:** error & success style (VIV-1458) ([#1541](https://github.com/Vonage/vivid-3/issues/1541)) ([07ad525](https://github.com/Vonage/vivid-3/commit/07ad525521b92fcfaf6f7a1e817129294e57e0b3))
+* **selectable-box:** update new png (VIV-000) ([#1586](https://github.com/Vonage/vivid-3/issues/1586)) ([0ca10b0](https://github.com/Vonage/vivid-3/commit/0ca10b0f6b701f6bee9f962af27d43767c2ad640))
+
+## [3.50.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.49.0...vivid-v3.50.0) (2024-02-08)
+
+
+### Features
+
+* **time-picker:** add component (VIV-1321) ([#1539](https://github.com/Vonage/vivid-3/issues/1539)) ([eccef79](https://github.com/Vonage/vivid-3/commit/eccef79c1bb18ebeb099194e43f63826fee3be05))
+
+## [3.49.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.48.0...vivid-v3.49.0) (2024-02-07)
+
+
+### Features
+
+* **lib:** add cjs output to vivid (VIV-1518) ([#1557](https://github.com/Vonage/vivid-3/issues/1557)) ([c3fd27e](https://github.com/Vonage/vivid-3/commit/c3fd27ef1a24a7148a5256a47504c81c83766d78))
+
+
+### Bug Fixes
+
+* **alert:** change display inline to contents (VIV-1534) ([#1558](https://github.com/Vonage/vivid-3/issues/1558)) ([834d237](https://github.com/Vonage/vivid-3/commit/834d2375eb0d34aa682174d8b487a726db2e6512))
+* **breadcrumb:** breadcrumb missing from docs (VIV-000) ([#1562](https://github.com/Vonage/vivid-3/issues/1562)) ([17182d8](https://github.com/Vonage/vivid-3/commit/17182d82aa0eec51764eda38fedc4f1f0fb82c56))
+* **button:** improve button accessibility (VIV-1505) ([#1559](https://github.com/Vonage/vivid-3/issues/1559)) ([78a21cf](https://github.com/Vonage/vivid-3/commit/78a21cf7f70e978f9f1ce4e76d7b230295a6788b))
+* **text-field:** fix focus and blur events bubbling (VIV-1538) ([#1564](https://github.com/Vonage/vivid-3/issues/1564)) ([85dc16b](https://github.com/Vonage/vivid-3/commit/85dc16b2e8c3828a752a7e2911be2e4006028a54))
+
+## [3.48.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.47.0...vivid-v3.48.0) (2024-01-31)
+
+
+### Features
+
+* **menu-item:** slot trailing-meta (VIV-1522) ([#1554](https://github.com/Vonage/vivid-3/issues/1554)) ([cdd6e37](https://github.com/Vonage/vivid-3/commit/cdd6e37ee056979ce73d55bfb0f4d4dec56f2e69))
+* **tabs:** add tab scroll panel as property (VIV-1528) ([#1555](https://github.com/Vonage/vivid-3/issues/1555)) ([73450ff](https://github.com/Vonage/vivid-3/commit/73450ffa84e1df4a40f6a2acbbe4438fe8c2ec45))
+
+## [3.47.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.46.0...vivid-v3.47.0) (2024-01-24)
+
+
+### Features
+
+* **components:** minify css (VIV-1376) ([#1545](https://github.com/Vonage/vivid-3/issues/1545)) ([13d12c4](https://github.com/Vonage/vivid-3/commit/13d12c4e0a60d6aae85d667d31d6f32fa93e1f5b))
+* **vue-wrappers:** support slot attribute syntax (VIV-1508) ([#1544](https://github.com/Vonage/vivid-3/issues/1544)) ([fc2d72f](https://github.com/Vonage/vivid-3/commit/fc2d72f4da72f22437b0ef999f1c20f34db013f2))
+
+
+### Bug Fixes
+
+* **date-picker, date-range-picker:** add event for click on clear (VIV-1478) ([#1543](https://github.com/Vonage/vivid-3/issues/1543)) ([2752907](https://github.com/Vonage/vivid-3/commit/275290782e0c429cbb74691f1d7d3342564294c9))
+* **slider:** change disable design and focus pattern  (VIV-1438) ([#1536](https://github.com/Vonage/vivid-3/issues/1536)) ([73b70fc](https://github.com/Vonage/vivid-3/commit/73b70fc96ebf5e50b4a881706fb3b92be3f42231))
+
+## [3.46.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.45.0...vivid-v3.46.0) (2024-01-15)
+
+
+### Features
+
+* **split-button, vue-wrappers:** add split-button to vivid-vue (VIV-1497) ([#1530](https://github.com/Vonage/vivid-3/issues/1530)) ([aec0bc8](https://github.com/Vonage/vivid-3/commit/aec0bc8f4f1adcf60896567a0037ee579dced762))
+
+
+### Bug Fixes
+
+* **data-grid:** hover on rows (VIV-1455) ([#1525](https://github.com/Vonage/vivid-3/issues/1525)) ([fdc7d54](https://github.com/Vonage/vivid-3/commit/fdc7d5496894268a98fd492725a82a214aa390fe))
+* **dialog:** fix dialog polyfill (VIV-1491) ([#1524](https://github.com/Vonage/vivid-3/issues/1524)) ([fe667fa](https://github.com/Vonage/vivid-3/commit/fe667fa9246103aa7d7d5241d0a487cee7a139ad))
+* **vue-wrappers:** fix text-area missing props (VIV-1503) ([#1533](https://github.com/Vonage/vivid-3/issues/1533)) ([62a7bfb](https://github.com/Vonage/vivid-3/commit/62a7bfbe988165292e82e793fea5e5cfdb851762))
+
 ## [3.45.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.44.0...vivid-v3.45.0) (2024-01-08)
 
 

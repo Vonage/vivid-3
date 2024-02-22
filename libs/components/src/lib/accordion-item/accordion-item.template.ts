@@ -1,6 +1,5 @@
 import { html, ref, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { AccordionItem } from './accordion-item.js';
 
@@ -9,7 +8,6 @@ import type { AccordionItem } from './accordion-item.js';
 
 const header = (context: ElementDefinitionContext, hTag: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	/* eslint-disable @typescript-eslint/indent */
 	return html<AccordionItem>`
@@ -22,7 +20,6 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 				@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 				${ref('expandbutton')}
 			>
-				${() => focusTemplate}
 
 				${x => !x.iconTrailing ? affixIconTemplate(x.icon, IconWrapper.Slot) : null}
 

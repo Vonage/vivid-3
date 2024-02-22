@@ -6,7 +6,6 @@ import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { Select } from './select';
 
 const getStateClasses = ({
@@ -21,8 +20,8 @@ const getStateClasses = ({
 	[`appearance-${appearance}`, Boolean(appearance)],
 	[`shape-${shape}`, Boolean(shape)],
 	['has-meta', Boolean(metaSlottedContent?.length)],
-	['error connotation-alert', Boolean(errorValidationMessage)],
-	['success connotation-success', !!successText],
+	['error', Boolean(errorValidationMessage)],
+	['success', !!successText],
 	['has-meta', Boolean(metaSlottedContent?.length)],
 );
 
@@ -44,7 +43,6 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 
 function selectValue(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 	return html<Select>`
 		<div class="control ${getStateClasses}" ${ref('_anchor')}
 			id="control" ?disabled="${x => x.disabled}">
@@ -54,7 +52,6 @@ function selectValue(context: ElementDefinitionContext) {
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 			</div>
 			${() => affixIconTemplate('chevron-down-line')}
-			${() => focusTemplate}
 		</div>`;
 }
 
@@ -66,7 +63,6 @@ function setFixedDropdownVarWidth(x: Select) {
  * @param context - element definition context
  */
 function renderControl(context: ElementDefinitionContext) {
-	const focusTemplate = focusTemplateFactory(context);
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
@@ -86,7 +82,6 @@ function renderControl(context: ElementDefinitionContext) {
 						?hidden="${x => (x.collapsible ? !x.open : false)}"
 						${ref('listbox')}>
 						${when(x => x.placeholder, renderPlaceholder(context))}
-						${when(x => x.multiple, focusTemplate)}
 						<slot
 							${slotted({ filter: Listbox.slottedOptionFilter as any, flatten: true, property: 'slottedOptions' })}>
 						</slot>

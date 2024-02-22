@@ -1,0 +1,14 @@
+---
+tags: guide
+pagination:
+    data: guides
+    size: 1
+    alias: doc
+permalink: "guides/{{ doc | pageSlug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile doc.markdown %}
+{% endblock %}
