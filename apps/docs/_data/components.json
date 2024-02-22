@@ -287,6 +287,7 @@
 	},
 	{
 		"title": "video-player",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/video-player/README.md"
 	}
 ]
