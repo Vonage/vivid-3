@@ -1,4 +1,5 @@
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
 :host {
@@ -8,15 +9,19 @@
 .vjs-theme-vivid { 
 	position: relative;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	font: var(--vvd-typography-base);
+	font: var(#{constants.$vvd-typography-base});
+	overflow: hidden;
 	
 	.vjs-big-play-button {
-		width: 2.5em;
-		height: 2.5em;
-		margin-top: -1.25em;
-		margin-left: -1.25em;
+		$big-play-btn-size: 60px;
+		$big-play-btn-offset: calc($big-play-btn-size / 2);
+
+		inline-size: $big-play-btn-size;
+		block-size: $big-play-btn-size;
+		margin-block-start: -$big-play-btn-offset;
+		margin-inline-start: -$big-play-btn-offset;
 		border-radius: #{border-radius-variables.$border-radius-full};
-		line-height: 2.4;
+		line-height: calc($big-play-btn-size - 5px);
 	}
 
 	.vjs-poster, .vjs-tech {
@@ -26,14 +31,14 @@
 
 	.vjs-time-control { 
 		display: block; 
-		width: auto;
-		min-width: auto; 
+		inline-size: auto;
+		min-inline-size: auto; 
 		padding: 0; 
-		line-height: 4em;
+		line-height: 4;
 	}
 
 	.vjs-time-divider {
-		padding: 0 0.5em;
+		padding: 0 4px;
 	}
 
 	.vjs-remaining-time { 
@@ -41,10 +46,10 @@
 	}
 
 	.vjs-control-bar {
-		width: calc(100% - 8px);
-		height: 4em;
+		inline-size: calc(100% - 8px);
+		block-size: 4em;
 		margin: 4px;
-		border-radius: 8px;
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
 	.vjs-button {
@@ -56,39 +61,21 @@
 	}
 
 	.vjs-menu-button {
-		border-radius: 
-			#{border-radius-variables.$border-radius-none} 
-			#{border-radius-variables.$border-radius-none} 
-			#{border-radius-variables.$border-radius-normal} 
-			#{border-radius-variables.$border-radius-normal};
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
 	.vjs-menu {
-		left: -4em;
-		width: 12em;
+		offset-inline-start: -56px;
+		inline-size: 168px;
 
 		ul {
-			border-radius:
-				#{border-radius-variables.$border-radius-normal} 
-				#{border-radius-variables.$border-radius-normal}
-				#{border-radius-variables.$border-radius-none} 
-				#{border-radius-variables.$border-radius-none};
+			border-radius: #{border-radius-variables.$border-radius-normal};
 		}
 
 		li {
 			justify-content: start;
 			padding: 4px 8px;
-			text-align: left;;
-		}
-
-		.vjs-playback-rate & {
-			left: 0;
-			width: 4em;
-
-			li {
-				justify-content: center;
-				text-align: center;
-			}
+			text-align: left;
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
@@ -96,8 +83,18 @@
 		}
 	}
 
+	.vjs-playback-rate .vjs-menu {
+		offset-inline-start: 0;
+		inline-size: 56px;
+
+		li {
+			justify-content: center;
+			text-align: center;
+		}
+	}
+
 	.vjs-menu-button-popup .vjs-menu {
-		margin-bottom: 2.5em;
+		margin-block-end: 35px;
 	}
 
 	.vjs-playback-rate .vjs-playback-rate-value {
@@ -110,16 +107,32 @@
 	}
 
 	.vjs-volume-bar {
-		margin: 1.9em 0.45em;
+		margin: 26px 6px;
 	}
 
 	.vjs-volume-tooltip, .vjs-time-tooltip {
-		top: -5em;
+		offset-block-start: -70px;
 	}
 
 	.vjs-text-track-display {
-		bottom: 5em;
-		width: 100%;
+		offset-block-end: 70px;
+		inline-size: 100%;
 		margin-inline-start: -50%;
+	}
+
+	.vjs-layout-small {
+		.vjs-skip-backward-5,
+		.vjs-skip-forward-5,
+		.vjs-skip-backward-10,
+		.vjs-skip-forward-10,
+		.vjs-skip-backward-30,
+		.vjs-skip-forward-30,
+		.vjs-playback-rate,
+		.vjs-picture-in-picture-control,
+		.vjs-chapters-button,
+		.vjs-subs-caps-button,
+		.vjs-descriptions-button {
+			display: none;
+		}
 	}
 }

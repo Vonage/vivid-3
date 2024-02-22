@@ -1,9 +1,11 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
-import { SkipBy } from '../enums';
+import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { iconFontStyles } from './IconFontStyles';
+
+export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
 function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
@@ -60,7 +62,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: autoplay
 	 */
-	@attr autoplay?: boolean;
+	@attr({ mode: 'boolean' }) autoplay = false;
 
 	/**
 	 * Allows the video to loop back to the beginning when finished
@@ -69,7 +71,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: loop
 	 */
-	@attr loop?: boolean;
+	@attr({ mode: 'boolean' }) loop = false;
 
 	/**
 	 * Sets the available playback rates. When an empty string, no choices will be available
@@ -78,7 +80,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: playback-rates
 	 */
-	@attr({attribute: 'playback-rates', mode: 'fromView'}) playbackRates: string = '0.5, 1, 1.5, 2';
+	@attr({attribute: 'playback-rates', mode: 'fromView'}) playbackRates: string = DEFAULT_PLAYBACK_RATES;
 
 	/**
 	 * Allows the video to loop back to the beginning when finished
@@ -87,11 +89,9 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: skip-by
 	 */
-	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: SkipBy = SkipBy.Ten;
+	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: MediaSkipBy = MediaSkipBy.Ten;
 
-	_player: any;
-	_settings: any;
-	
+	player: any;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -117,7 +117,8 @@ export class VideoPlayer extends FoundationElement {
 			backward: skipByValue,
 		};
 
-		this._settings = {
+		const settings = {
+			responsive: true,
 			languages: {
 				current: this.locale.videoPlayer,
 			},
@@ -127,7 +128,7 @@ export class VideoPlayer extends FoundationElement {
 			poster: this.poster,
 			controls: true,
 			preload: 'auto',
-			loop: !!this.loop,
+			loop: this.loop,
 			autoplay: this.autoplay ? 'muted' : false,
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
@@ -136,19 +137,19 @@ export class VideoPlayer extends FoundationElement {
 			},
 		};
 		
-		this._player = videojs(videoEle, this._settings);
+		this.player = videojs(videoEle, settings);
 		// removes lang="current" from the component
 		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang');
 
-		this._player.on('play', () => this.$emit('play'));
-		this._player.on('pause', () => this.$emit('pause'));
-		this._player.on('ended', () => this.$emit('ended'));
+		this.player.on('play', () => this.$emit('play'));
+		this.player.on('pause', () => this.$emit('pause'));
+		this.player.on('ended', () => this.$emit('ended'));
 	}
 
 	override disconnectedCallback(): void {
 		super.connectedCallback();
-		if (this._player) {
-			this._player.dispose();
+		if (this.player) {
+			this.player.dispose();
 		}
 	}
 }

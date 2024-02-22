@@ -203,9 +203,8 @@ When `loop` is set, the video will restart automatically when it reaches the end
 		max-width: 800px; /* for demo purposes */
 	}
 </style>
-<vwc-video-player autoplay="true" loop="true">
+<vwc-video-player autoplay loop>
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="captions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
 </vwc-video-player>
 ```
 

@@ -75,7 +75,7 @@ export enum AriaLive {
 	Assertive = 'assertive',
 }
 
-export enum SkipBy {
+export enum MediaSkipBy {
 	Zero = '0',
 	Five = '5',
 	Ten = '10',
