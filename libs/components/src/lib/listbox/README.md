@@ -1,6 +1,6 @@
 # Listbox
 
-Listbox displays a list of [vwc-option](../../components/option) and allows users to select from them.
+Listbox displays a list of [vwc-option](/components/option/) and allows users to select from them.
 There are two types of listboxes: single-select and multi-select.
 Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/listbox) to learn more about Listbox's Keyboard Interaction and Accessibility.
 
@@ -14,7 +14,7 @@ Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/listbox) to learn more abo
 
 ### Default
 
-Read more about [vwc-option](../../components/option).
+Read more about [vwc-option](/components/option/).
 
 ```html preview
 <vwc-listbox>

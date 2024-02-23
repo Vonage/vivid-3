@@ -163,7 +163,7 @@ The component's internal *header* element.
 
 ### Fixed Header with Side Drawer
 
-A *fixed* header as primary element containing a [side drawer](../side-drawer) component. containing application content.
+A *fixed* header as primary element containing a [side drawer](/components/side-drawer/) component. containing application content.
 
 ```html preview full 300px
 <style>
@@ -216,7 +216,7 @@ A *fixed* header as primary element containing a [side drawer](../side-drawer) c
 
 ### Side Drawer with Header
 
-A [side drawer](../side-drawer) as primary element containing a header containing application content.
+A [side drawer](/components/side-drawer/) as primary element containing a header containing application content.
 
 ```html preview full
 <style>
@@ -257,7 +257,7 @@ A [side drawer](../side-drawer) as primary element containing a header containin
 
 ### Header with Banner
 
-[Banners](../banner) are placed at the top of the screen below the header.
+[Banners](/components/banner/) are placed at the top of the screen below the header.
 In this example, the banner sticks to the top of the window.
 
 ```html preview full 200px

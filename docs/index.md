@@ -404,6 +404,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 
 ## Support Matrix
 
+
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
 
 ## Contributing

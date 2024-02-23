@@ -91,7 +91,7 @@ The plugin accepts the following options:
 
 To load optional styles, pass them to the `styles` option.
 
-See the [list of styles that come with Vivid](/guides/styles) for more information.
+See the [list of styles that come with Vivid](/guides/styles/) for more information.
 
 ```ts
 // main.ts
@@ -145,7 +145,7 @@ The Vivid tokens require a `vvd-root` class to be present. It is recommended to 
 
 Modify your `App.vue` file to import the Vivid styles.
 
-See the [list of styles that come with Vivid](/guides/styles) for more information.
+See the [list of styles that come with Vivid](/guides/styles/) for more information.
 
 <vwc-tabs>
 <vwc-tab label="CSS"></vwc-tab>
@@ -224,7 +224,7 @@ Add the following to your `<head>` to load them from Google Fonts:
 
 #### Setting Custom Component Prefix (optional)
 
-It is recommended to set a [custom component prefix](/guides/prefix) unique to your app. This will prevent conflicts if multiple instances or versions of Vivid are used in the same page.
+It is recommended to set a [custom component prefix](/guides/prefix/) unique to your app. This will prevent conflicts if multiple instances or versions of Vivid are used in the same page.
 
 To set a custom component prefix, use the `setCustomComponentPrefix` function in your `main.ts` file.
 
