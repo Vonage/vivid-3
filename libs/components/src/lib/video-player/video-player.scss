@@ -6,7 +6,8 @@
 	display: block;
 }
 
-.vjs-theme-vivid { 
+.vjs-theme-vivid {
+	container-type: inline-size;
 	position: relative;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	font: var(#{constants.$vvd-typography-base});
@@ -79,7 +80,7 @@
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
-			background: #000;
+			background: var(#{constants.$vvd-color-canvas-text});
 		}
 	}
 
@@ -103,7 +104,7 @@
 	}
 
 	.vjs-button:hover {
-		background: #000;
+		background: var(#{constants.$vvd-color-canvas-text});
 	}
 
 	.vjs-volume-bar {
@@ -120,18 +121,34 @@
 		margin-inline-start: -50%;
 	}
 
-	.vjs-layout-small {
+	@container (max-inline-size: 660px) {
 		.vjs-skip-backward-5,
 		.vjs-skip-forward-5,
 		.vjs-skip-backward-10,
 		.vjs-skip-forward-10,
 		.vjs-skip-backward-30,
-		.vjs-skip-forward-30,
+		.vjs-skip-forward-30 {
+			display: none;
+		}
+	}
+
+	@container (max-inline-size: 540px) {
+		.vjs-picture-in-picture-control {
+			display: none;
+		}
+	}
+
+	@container (max-inline-size: 480px) {
 		.vjs-playback-rate,
-		.vjs-picture-in-picture-control,
 		.vjs-chapters-button,
 		.vjs-subs-caps-button,
 		.vjs-descriptions-button {
+			display: none;
+		}
+	}
+
+	@container (max-inline-size: 345px) {
+		.vjs-time-control {
 			display: none;
 		}
 	}

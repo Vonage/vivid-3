@@ -6,25 +6,24 @@ The video player component allows a user to play and control video content.
 <script type="module">import '@vonage/vivid/video-player';</script>
 ```
 
-## Usage
+## Members
 
-### Video source
-
-#### src attribute
+### Src
 
 A video source can be provided to the component using the `src` attribute.
 
+- Type: `string`
+- Default: `undefined`
+
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
-<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" loop>
 </vwc-video-player>
 ```
 
-#### source element
+#### Source element
 
 A video source can alternatively be provided to the component using the `source` element.
 
@@ -39,18 +38,19 @@ Multiple formats can be provided for greater browser compatibility by defining m
 <vwc-video-player>
     <source src="../elephantsdream/ed_hd.mp4" type="video/mp4">
     <source src="../elephantsdream/ed_hd.webm" type="video/webm">
-</vwc-video-player>
+ </vwc-video-player>
 ```
 
-### Poster image
+### Poster
 
 The poster image is displayed before the video has been interacted with. The `poster` attribute accepts a url string (absolute or relative) to an image.
 
+- Type: `string`
+- Default: `undefined`
+
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player poster="https://live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -68,18 +68,17 @@ Captions can be provided using the `track` element.
 ```
 
 The following attributes are available on the element:
-
-- `src`: url string (relative or absolute) that points to the captions `.vtt` file
-- `kind`: denotes the type of track file, in this case `captions`, but it could be `subtitles`, `description` or `chapters` (see below)
-- `srclang`: indicates what language each subtitle files' contents are in
-- `label`: to be shown in the menu when selecting the captions
-- `default`: when set, the captions will be active when the video plays
+| Attribute | Description |
+| --- | --- |
+| `src` | url string (relative or absolute) that points to the captions `.vtt` file |
+| `kind` | denotes the type of track file, in this case `captions`, but it could be `subtitles`, `description` or `chapters` (see below) |
+| `srclang` | indicates what language each subtitle files' contents are in
+| `label` | to be shown in the menu when selecting the captions |
+| `default` |  when set, the captions will be active when the video plays |
 
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -100,9 +99,7 @@ Subtitles can also be provided using the `track` element.
 
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player poster="https://live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -124,9 +121,7 @@ Descriptions can also be provided using the `track` element.
 
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -147,9 +142,7 @@ Chapters can also be provided using the `track` element.
 
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -159,15 +152,15 @@ Chapters can also be provided using the `track` element.
 
 ### Playback rates
 
-By default, the video player has playback rates of `0.5`, `1`, `1.5`, `2` enabled.
 Playback rates can be modified by passing a comma separated string of numbers to the `playback-rates` attribute.
 The playback rates option can be removed by passing an empty string.
 
+- Type: `string`
+- Default: `'0.5, 1, 1.5, 2'` 
+
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -180,11 +173,12 @@ By default, the skip backward/forward buttons are enabled and they skip by `10` 
 They can be set to skip by `0`, `5`, `10` and `30` seconds using the `skip-by` attribute. 
 Setting them to `0` removes the buttons.
 
+- Type: `'0' | '5' | '10' | '30'`
+- Default: `'10'`
+
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player skip-by="30" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
@@ -197,11 +191,12 @@ Both `autoplay` and `loop` attributes are boolean. When `autoplay` is set, the v
 
 When `loop` is set, the video will restart automatically when it reaches the end.
 
+- Type: `boolean`
+- Default: `false`
+
 ```html preview
 <style>
-	html {
-		max-width: 800px; /* for demo purposes */
-	}
+	html { max-inline-size: 800px }
 </style>
 <vwc-video-player autoplay loop>
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">

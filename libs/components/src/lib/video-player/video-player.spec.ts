@@ -1,17 +1,13 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { VideoPlayer, DEFAULT_PLAYBACK_RATES } from './video-player';
-import { videoPlayerDefinition } from './definition';
 import { MediaSkipBy } from '../enums';
+import { DEFAULT_PLAYBACK_RATES, VideoPlayer } from './video-player';
+import { videoPlayerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-video-player';
 
-const VIDEO_SRC = 'short-test.mp4';
-
-function getBigPlayButton(element: Element): HTMLElement | null {
-	return element.shadowRoot!.querySelector('.vjs-big-play-button');
-}
+const VIDEO_SRC = 'video.mp4';
 
 jest.mock('video.js', () => {
 	const actualVideoJS = jest.requireActual('video.js');
@@ -33,6 +29,10 @@ describe('vwc-video-player', () => {
 		)) as VideoPlayer;
 	});
 
+	function getBigPlayButton() {
+		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+	}
+
 	describe('basic', () => {
 		it('should be initialized as a vwc-video-player', async () => {
 			expect(videoPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
@@ -49,7 +49,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should show the big play button by removing the vjs-hidden class', async () => {
-			const bigPlayBtn = getBigPlayButton(element);
+			const bigPlayBtn = getBigPlayButton();
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
@@ -64,32 +64,32 @@ describe('vwc-video-player', () => {
 				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			const bigPlayBtn = getBigPlayButton(element);
+			const bigPlayBtn = getBigPlayButton();
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 	});
 
-	xdescribe('autoplay', () => {
-		it('should play automatically and be muted', async () => {
+	describe('autoplay', () => {
+		it('should set the muted attribute on the video element', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} autoplay>
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			expect(element._settings.autoplay).toBe('muted');
+			expect(element.shadowRoot!.querySelector('.vjs-autoplay')).not.toBe(null);
 		});
 	});
 
-	xdescribe('loop', () => {
-		it('should add the loop attribute to the video settings', async () => {
+	describe('loop', () => {
+		it('should set the loop attribute on the video element', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG} loop="true">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+				`<${COMPONENT_TAG} loop>
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			expect(element._settings.loop).toBe(true);
+			expect(element.shadowRoot!.querySelector('.vjs-loop')).not.toBe(null);
 		});
 	});
 
@@ -97,22 +97,23 @@ describe('vwc-video-player', () => {
 		it('should set custom playback rates', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="0.25, 0.5, 1">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
+			await elementUpdated(element);
 			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll('.vjs-playback-rate .vjs-menu li');
 			expect(playbackRatesMenuItems?.length).toBe(3);
 			if (playbackRatesMenuItems?.length === 3) {
-				expect(playbackRatesMenuItems[0].textContent).toBe('1x, selected');
-				expect(playbackRatesMenuItems[1].textContent).toBe('0.5x');
-				expect(playbackRatesMenuItems[2].textContent).toBe('0.25x');
+				expect(playbackRatesMenuItems[0].querySelector('.vjs-menu-item-text')!.textContent).toBe('1x');
+				expect(playbackRatesMenuItems[1].querySelector('.vjs-menu-item-text')!.textContent).toBe('0.5x');
+				expect(playbackRatesMenuItems[2].querySelector('.vjs-menu-item-text')!.textContent).toBe('0.25x');
 			}
 		});
 
 		it('should disable playback rates when passed an empty string', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			const playbackRate = element.shadowRoot?.querySelector('.vjs-playback-rate');
@@ -124,7 +125,7 @@ describe('vwc-video-player', () => {
 		it('displays the captions button and menu', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track 
 						kind="captions"
 						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" 
@@ -147,7 +148,7 @@ describe('vwc-video-player', () => {
 		it('displays the audio description button and menu', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track 
 						kind="descriptions" 
 						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" 
@@ -170,7 +171,7 @@ describe('vwc-video-player', () => {
 		it('displays the chapters button and menu', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track kind="chapters" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -183,7 +184,7 @@ describe('vwc-video-player', () => {
 		it('should modify skip button amount', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="30">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-30');
@@ -192,10 +193,10 @@ describe('vwc-video-player', () => {
 			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		it('should disable skip by buttonss when passed 0', async () => {
+		it('should disable skip by buttons when passed 0', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="0">
-					<source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-false');
@@ -205,10 +206,6 @@ describe('vwc-video-player', () => {
 		});
 	});
 
-	function getPlayButton() {
-		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
-	}
-
 	function setVideoPauseState(pauseState = true) {
 		jest.spyOn(element.player, 'paused').mockImplementationOnce(() => pauseState);
 	}
@@ -217,7 +214,7 @@ describe('vwc-video-player', () => {
 		beforeEach(async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}>
-					<source src="./short-test.mp4" type="video/mp4">
+					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			jest.spyOn(element.player, 'play').mockImplementation(function(this: any) {
@@ -237,7 +234,7 @@ describe('vwc-video-player', () => {
 			const spy = jest.fn();
 			element.addEventListener('play', spy);
 
-			const playBtn = getPlayButton();
+			const playBtn = getBigPlayButton();
 			playBtn?.click();
 
 			expect(spy).toHaveBeenCalledTimes(1);

@@ -3,7 +3,6 @@ import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
-import { iconFontStyles } from './IconFontStyles';
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
@@ -17,15 +16,6 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
 	});
 	return ratesArray;
 }
-
-const installIconFontStyle = (document: Document) => {
-	if (!document.head.querySelector('#vjs-icons')) {
-		const iconStyle = document.createElement('style');
-		iconStyle.id = 'vjs-icons';
-		document.head.appendChild(iconStyle);
-		iconStyle.sheet!.insertRule(iconFontStyles, 0);
-	}
-};
 
 /**
  * Base class for video-player
@@ -95,15 +85,35 @@ export class VideoPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		installIconFontStyle(document);
-		
+
+		const settings = this.getSettings();
 		const videoEle = document.createElement('video');
 		const trackEles = this.querySelectorAll('track');
 		for(let x = 0; x < trackEles.length; x++) {
 			videoEle.appendChild(trackEles[x]);
 		}
+
 		const control = this.shadowRoot!.querySelector('.control');
 		control!.appendChild(videoEle);
+		
+		this.player = videojs(videoEle, settings);
+		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
+		if (settings.autoplay) this.player.el_.classList.add('vjs-autoplay');
+		if (settings.loop) this.player.el_.classList.add('vjs-loop');
+		
+		this.player.on('play', () => this.$emit('play'));
+		this.player.on('pause', () => this.$emit('pause'));
+		this.player.on('ended', () => this.$emit('ended'));
+	}
+
+	override disconnectedCallback(): void {
+		super.connectedCallback();
+		if (this.player) {
+			this.player.dispose();
+		}
+	}
+
+	getSettings() {
 		const srcEles = this.querySelectorAll('source');
 		const sources = this.src 
 			? [{ src: this.src }]
@@ -116,12 +126,11 @@ export class VideoPlayer extends FoundationElement {
 			forward: skipByValue,
 			backward: skipByValue,
 		};
-
-		const settings = {
-			responsive: true,
+		return {
 			languages: {
 				current: this.locale.videoPlayer,
 			},
+			experimentalSvgIcons: true,
 			language: 'current',
 			fluid: true,
 			sources,
@@ -136,21 +145,6 @@ export class VideoPlayer extends FoundationElement {
 				remainingTimeDisplay: { displayNegative: false },
 			},
 		};
-		
-		this.player = videojs(videoEle, settings);
-		// removes lang="current" from the component
-		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang');
-
-		this.player.on('play', () => this.$emit('play'));
-		this.player.on('pause', () => this.$emit('pause'));
-		this.player.on('ended', () => this.$emit('ended'));
-	}
-
-	override disconnectedCallback(): void {
-		super.connectedCallback();
-		if (this.player) {
-			this.player.dispose();
-		}
 	}
 }
 
