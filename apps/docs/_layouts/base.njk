@@ -76,11 +76,12 @@
 		{% block header %}{% endblock %}
 
     <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/scripts/turbolinks.js' | url}}"></script>
     <script src="{{ '/assets/scripts/cache-assets.js' | url}}"></script>
 
   </head>
 
-<body>
+<body hx-boost="true" hx-target="main" hx-select="main" hx-swap="innerHTML scroll:html:top">
 
 	<vwc-header id="header-main" slot="app-content">
 
@@ -106,7 +107,7 @@
 				{% include "navigation.njk" %}
 			</vwc-layout>
 
-				<main slot="app-content">
+				<main slot="app-content" hx-history-elt>
 					{% block banner %}{% endblock %}
 					<vwc-layout column-basis="block" class="main-layout">
 						<article class="article">
