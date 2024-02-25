@@ -31,6 +31,9 @@
         </vwc-nav-item>
         <vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
         <vwc-nav-disclosure label="Components" open {% if page.url.includes('/components/') %} aria-current="true" {% endif %}>
+            <vwc-nav-item href="{{ ('/roadmaps/roadmap') | url }}" text="Roadmap" {% if ('/roadmaps/roadmap/') == page.url %} aria-current="page" {% endif %}>
+                <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
+            </vwc-nav-item>
             {% for item in components | publicPageFilter | sort(false, false, 'title') %}
                 {% if item.children %}
                     <vwc-nav-disclosure label="{{ item.title }}" {% if ('/components/' + (item | pageSlug) + '/') == page.url %} open aria-current="true" {% endif %}

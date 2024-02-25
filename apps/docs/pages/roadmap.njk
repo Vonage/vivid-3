@@ -1,0 +1,14 @@
+---
+tags: roadmaps
+pagination:
+    data: roadmaps
+    size: 1
+    alias: roadmap
+permalink: "roadmaps/{{ roadmap | pageSlug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile roadmap.markdown %}
+{% endblock %}
