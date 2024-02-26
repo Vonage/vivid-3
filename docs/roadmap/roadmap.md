@@ -34,20 +34,6 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      Time Picker
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-      <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/display/VIVID/Time+picker" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=30678%3A9411&mode=design&t=bbzcWIr4L5vMSKJg-1" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-      <vwc-button label="In Progress" connotation="cta"></vwc-button>
-    </vwc-data-grid-cell>
-  </vwc-data-grid-row>
-  <vwc-data-grid-row>
-    <vwc-data-grid-cell>
       Range Slider
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
