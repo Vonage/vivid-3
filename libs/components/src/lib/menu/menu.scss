@@ -3,6 +3,7 @@
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
+@import "../../shared/patterns/anchored";
 
 .base {
 	display: flex;

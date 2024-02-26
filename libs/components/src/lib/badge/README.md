@@ -37,7 +37,7 @@ Use the `shape` attribute to change the badge's edges.
 ### Icon
 
 Use `icon` to set an icon to the badge.
-View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: An icon on its own doesn't make a discernible text. An `aria-label` should be provided to ensure that the user can understand the avatar.
 
@@ -144,4 +144,4 @@ If set, the `icon` attribute is ignored.
 
 Badges are informative elements and cannot be interacted with.
 
-If you're looking for an interactable component, consider using a [tag](../tag) instead.
+If you're looking for an interactable component, consider using a [tag](/components/tag/) instead.

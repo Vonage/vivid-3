@@ -135,7 +135,7 @@ Add the `disabled` attribute to disable the combobox.
 
 ### Default
 
-Place [vwc-option](../../components/option) elements inside the default slot to create the list of suggested options.
+Place [vwc-option](/components/option/) elements inside the default slot to create the list of suggested options.
 
 ```html preview 200px
 <vwc-combobox>

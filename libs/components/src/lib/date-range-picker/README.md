@@ -2,7 +2,7 @@
 
 The date range picker component is a text input with a calendar overlay. It allows the user to select a date range.
 
-The date picker is localized to the current locale. See [Localization](/getting-started/localization) for more details.
+The date picker is localized to the current locale. See [Localization](/guides/localization/) for more details.
 
 ```js
 <script type="module">import '@vonage/vivid/date-range-picker';</script>

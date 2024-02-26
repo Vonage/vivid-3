@@ -15,6 +15,7 @@
     primary: #{utils.get-color-token(#{$type}-500)},
 		primary-text: #{utils.get-color-token(canvas)},
 		firm: #{utils.get-color-token(#{$type}-600)},
+		firm-all: #{utils.get-color-token(#{$type}-600)},
 		fierce: #{utils.get-color-token(#{$type}-700)},
     contrast: #{utils.get-color-token(#{$type}-800)},
 

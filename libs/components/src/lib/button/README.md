@@ -40,7 +40,7 @@ Set the `appearance` attribute to change the button's appearance.
 ### Icon
 
 Use `icon` to set an icon to the button.
-View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the button's purpose.
 
@@ -170,6 +170,22 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button appearance="ghost" icon="check-line" label="ghost with icon" pending></vwc-button>
 <vwc-button appearance="filled" icon="check-line" label="filled with icon" pending></vwc-button>
 <vwc-button appearance="outlined" icon="check-line" label="outlined with icon" pending></vwc-button>
+```
+
+### Href
+
+Use the `href` attribute to convert the button to a link.
+In addition, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
+
+<vwc-note connotation="warning" icon="warning-solid">
+Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users. Use this feature with caution.
+</vwc-note>
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-button label="Button with a link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank"></vwc-button>
 ```
 
 ## Slots
