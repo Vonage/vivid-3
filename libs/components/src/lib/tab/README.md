@@ -27,7 +27,7 @@ Add a `label` attribute to add label to the tab.
 ### Icon
 
 Use `icon` to set an icon to the tab.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the tab's context.
 

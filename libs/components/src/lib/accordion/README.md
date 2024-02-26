@@ -4,7 +4,7 @@ An accordion set is a vertical list of headers that reveal or hide associated se
 header title, which gives the user a high level overview of the content, allowing the user to decide which sections to
 choose.
 
-The vwc-accordion accepts [vwc-accordion-item](./accordion-item) elements as children.
+The vwc-accordion accepts [vwc-accordion-item](/components/accordion-item/) elements as children.
 
 ```js
 <script type="module">

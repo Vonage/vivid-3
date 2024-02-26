@@ -2,7 +2,7 @@
 
 The time picker is used to select a time.
 
-Time will be stored in the format `HH:MM:SS` and displayed depending on the configured locale. See [Localization](/getting-started/localization) for more details.
+Time will be stored in the format `HH:MM:SS` and displayed depending on the configured locale. See [Localization](/guides/localization/) for more details.
 
 ```js
 <script type="module">import '@vonage/vivid/time-picker';</script>

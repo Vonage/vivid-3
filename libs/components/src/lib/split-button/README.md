@@ -37,7 +37,7 @@ Set the `appearance` attribute to change the split button's appearance.
 ### Icon
 
 Use `icon` to set an icon to the split button.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: Icon, by its own, doesn't make a discernible text. If there's no label on the button, an `aria-label` must be provided to ensure that the user can understand the split button's purpose.
 
@@ -51,7 +51,7 @@ Note: Icon, by its own, doesn't make a discernible text. If there's no label on 
 ### Split Indicator
 
 Use `split-indicator` to set an indicator icon to the split button.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 See the [Accessibility notes](#accessibility) if you would like to customize the split indicator's default aria-label.
 
