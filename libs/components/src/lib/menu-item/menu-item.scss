@@ -135,6 +135,7 @@
 
 
 .text-primary {
+	font: var(#{constants.$vvd-typography-base});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
@@ -142,6 +143,7 @@
 }
 
 .text-secondary {
+	font: var(#{constants.$vvd-typography-base-condensed});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
 	.base.two-lines:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-600});
