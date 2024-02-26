@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
@@ -18,8 +20,14 @@
 
 
 .control {
-	@include appearance.appearance;
 	@include connotation.connotation (nav-disclosure);
+	@include appearance.appearance(
+		appearance.state-selectors(
+			map.merge(appearance.$state-aspect-selectors, (
+				selected: ".selected, [aria-current]",
+			))
+		)
+	);
 
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;

@@ -122,6 +122,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		</vwc-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-button label="Expanded" aria-expanded="true"></vwc-button>
+	</div>
 	</div>
 	`;
 
