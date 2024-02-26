@@ -1,5 +1,10 @@
 <template>
   <div>
+    <VToggletip>
+      <template #anchor><VButton icon="help-solid" shape="pill" /></template>
+      My anchor is a slot
+    </VToggletip>
+
     <VButton id="button1" icon="help-solid" shape="pill" />
     <VToggletip anchor="button1">My anchor is an ID</VToggletip>
 
