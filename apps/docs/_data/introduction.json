@@ -6,5 +6,17 @@
 	{
 		"title": "Vue",
 		"markdown": "./docs/getting-started/vue.md"
+	},
+	{
+		"title": "Resources",
+		"markdown": "./docs/getting-started/release-policy.md",
+		"children": [
+			"Release Policy"
+		]
+	},
+	{
+		"title": "Release Policy",
+		"markdown": "./docs/getting-started/release-policy.md",
+		"parent": "Resources"
 	}
 ]
