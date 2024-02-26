@@ -10,5 +10,5 @@ permalink: "roadmaps/{{ roadmap | pageSlug }}/"
 {% extends '../_layouts/base.njk' %}
 
 {% block content %}
-	{% renderFile roadmap.markdown %}
+	{% renderFile roadmap.markdown, { components: components } %}
 {% endblock %}
