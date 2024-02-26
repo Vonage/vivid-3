@@ -242,7 +242,7 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 - `--text-secondary-line-clamp` for the secondary text.
 
 
-```html preview 150px
+```html preview 200px
 <style>
   vwc-menu {
   --text-primary-line-clamp: auto; 
