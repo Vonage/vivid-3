@@ -7,22 +7,22 @@
 }
 
 .vjs-theme-vivid {
-	container-type: inline-size;
 	position: relative;
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	font: var(#{constants.$vvd-typography-base});
 	overflow: hidden;
+	border-radius: #{border-radius-variables.$border-radius-normal};
+	container-type: inline-size;
+	font: var(#{constants.$vvd-typography-base});
 	
 	.vjs-big-play-button {
 		$big-play-btn-size: 60px;
 		$big-play-btn-offset: calc($big-play-btn-size / 2);
 
-		inline-size: $big-play-btn-size;
 		block-size: $big-play-btn-size;
+		border-radius: #{border-radius-variables.$border-radius-full};
+		inline-size: $big-play-btn-size;
+		line-height: calc($big-play-btn-size - 5px);
 		margin-block-start: -$big-play-btn-offset;
 		margin-inline-start: -$big-play-btn-offset;
-		border-radius: #{border-radius-variables.$border-radius-full};
-		line-height: calc($big-play-btn-size - 5px);
 	}
 
 	.vjs-poster, .vjs-tech {
@@ -31,11 +31,11 @@
 	}
 
 	.vjs-time-control { 
-		display: block; 
+		display: block;
+		padding: 0;
 		inline-size: auto;
-		min-inline-size: auto; 
-		padding: 0; 
 		line-height: 4;
+		min-inline-size: auto; 
 	}
 
 	.vjs-time-divider {
@@ -47,10 +47,10 @@
 	}
 
 	.vjs-control-bar {
-		inline-size: calc(100% - 8px);
-		block-size: 4em;
 		margin: 4px;
+		block-size: 4em;
 		border-radius: #{border-radius-variables.$border-radius-normal};
+		inline-size: calc(100% - 8px);
 	}
 
 	.vjs-button {
@@ -66,17 +66,12 @@
 	}
 
 	.vjs-menu {
-		offset-inline-start: -56px;
-		inline-size: 168px;
-
 		ul {
 			border-radius: #{border-radius-variables.$border-radius-normal};
 		}
 
 		li {
-			justify-content: start;
 			padding: 4px 8px;
-			text-align: left;
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
@@ -84,14 +79,26 @@
 		}
 	}
 
-	.vjs-playback-rate .vjs-menu {
-		offset-inline-start: 0;
-		inline-size: 56px;
-
-		li {
-			justify-content: center;
-			text-align: center;
+	/* stylelint-disable no-descending-specificity */
+	.vjs-subs-caps-button,
+	.vjs-chapters-button,
+	.vjs-descriptions-button {
+		.vjs-menu {
+			inline-size: 168px;
+			offset-inline-start: -56px;
+	
+			li {
+				justify-content: start;
+				text-align: left;
+			}
 		}
+	}
+	
+	/* styleint-enable no-descending-specificity */
+
+	.vjs-playback-rate .vjs-menu {
+		inline-size: 56px;
+		offset-inline-start: 0;
 	}
 
 	.vjs-menu-button-popup .vjs-menu {
@@ -116,9 +123,9 @@
 	}
 
 	.vjs-text-track-display {
-		offset-block-end: 70px;
 		inline-size: 100%;
 		margin-inline-start: -50%;
+		offset-block-end: 70px;
 	}
 
 	@container (max-inline-size: 660px) {
