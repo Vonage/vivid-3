@@ -1,6 +1,6 @@
 # Tree View
 
-Represents a hierarchical list. Any [vwc-tree-item](../../components/tree-item) in the hierarchy may have child vwc-tree-items, and vwc-tree-items that have children may be expanded or collapsed to show or hide the children.
+Represents a hierarchical list. Any [vwc-tree-item](/components/tree-item/) in the hierarchy may have child vwc-tree-items, and vwc-tree-items that have children may be expanded or collapsed to show or hide the children.
 Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/treeview) to learn more about TreeView's Keyboard Interaction and Accessibility.
 
 ```js
@@ -13,7 +13,7 @@ Click [here](https://www.w3.org/WAI/ARIA/apg/patterns/treeview) to learn more ab
 
 ### Default
 
-Read more about [vwc-tree-item](../../components/tree-item).
+Read more about [vwc-tree-item](/components/tree-item/).
 
 ```html preview
 <vwc-tree-view>
@@ -26,7 +26,7 @@ Read more about [vwc-tree-item](../../components/tree-item).
 
 ### Nested Tree
 
-Read more about [vwc-tree-item](../../components/tree-item).
+Read more about [vwc-tree-item](/components/tree-item/).
 
 ```html preview
 <vwc-tree-view>

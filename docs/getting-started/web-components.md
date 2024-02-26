@@ -45,7 +45,7 @@ The Vivid tokens require a `vvd-root` class to be present. It is recommended to 
 
 How to load CSS may vary from project to project, so we cannot provide a one-size-fits-all solution. Choose an appropriate method for your project.  
 
-See the [list of styles that come with Vivid](/guides/styles) for more information.
+See the [list of styles that come with Vivid](/guides/styles/) for more information.
 
 <vwc-tabs>
 <vwc-tab label="CSS"></vwc-tab>
@@ -112,7 +112,7 @@ Add the following to your `<head>` to load them from Google Fonts:
 You have two options to import the components:
 
 * Using [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only) to register them with the default `vwc` prefix.
-* Using a register function to register them with a [custom prefix](/guides/prefix).
+* Using a register function to register them with a [custom prefix](/guides/prefix/).
 
 <vwc-tabs>
 <vwc-tab label="Import"></vwc-tab>

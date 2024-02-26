@@ -15,7 +15,7 @@ For a consistent user experience, tags within a tag group should generally be th
 
 ### Default
 
-Read more about [vwc-tag](../../components/tag).
+Read more about [vwc-tag](/components/tag/).
 
 ```html preview
 <vwc-tag-group>
