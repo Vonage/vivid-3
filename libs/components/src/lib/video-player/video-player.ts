@@ -92,14 +92,14 @@ export class VideoPlayer extends FoundationElement {
 		for(let x = 0; x < trackEles.length; x++) {
 			videoEle.appendChild(trackEles[x]);
 		}
+		if (this.loop) videoEle.setAttribute('loop', '');
+		if (this.autoplay) videoEle.setAttribute('autoplay', 'muted');
 
 		const control = this.shadowRoot!.querySelector('.control');
 		control!.appendChild(videoEle);
 		
 		this.player = videojs(videoEle, settings);
 		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
-		if (settings.autoplay) this.player.el_.classList.add('vjs-autoplay');
-		if (settings.loop) this.player.el_.classList.add('vjs-loop');
 		
 		this.player.on('play', () => this.$emit('play'));
 		this.player.on('pause', () => this.$emit('pause'));
@@ -137,8 +137,6 @@ export class VideoPlayer extends FoundationElement {
 			poster: this.poster,
 			controls: true,
 			preload: 'auto',
-			loop: this.loop,
-			autoplay: this.autoplay ? 'muted' : false,
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
 				skipButtons: skipByValue > 0 ? skipButtons : false,

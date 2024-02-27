@@ -33,6 +33,10 @@ describe('vwc-video-player', () => {
 		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
 	}
 
+	function getVideoEle() {
+		return element.shadowRoot?.querySelector('video') as HTMLVideoElement;
+	}
+
 	describe('basic', () => {
 		it('should be initialized as a vwc-video-player', async () => {
 			expect(videoPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
@@ -76,8 +80,8 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			await elementUpdated(element);
-			expect(element.shadowRoot!.querySelector('.vjs-autoplay')).not.toBe(null);
+			const videoEle = getVideoEle();
+			expect(videoEle?.getAttribute('autoplay')).toBe('muted');
 		});
 	});
 
@@ -88,8 +92,8 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			await elementUpdated(element);
-			expect(element.shadowRoot!.querySelector('.vjs-loop')).not.toBe(null);
+			const videoEle = getVideoEle();
+			expect(videoEle?.loop).toBe(true);
 		});
 	});
 
