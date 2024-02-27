@@ -1,7 +1,7 @@
 # Navigation
 
 A navigation component makes it easy for users to navigate through your application.
-The vwc-nav accepts [vwc-nav-item](../../components/nav-item) and [vwc-nav-disclosure](../../components/nav-disclosure) elements as children.
+The vwc-nav accepts [vwc-nav-item](/components/nav-item/) and [vwc-nav-disclosure](/components/nav-disclosure/) elements as children.
 
 ```js
 <script type="module">
@@ -13,7 +13,7 @@ The vwc-nav accepts [vwc-nav-item](../../components/nav-item) and [vwc-nav-discl
 
 ### Default
 
-Read more about [vwc-nav-item](../../components/nav-item).
+Read more about [vwc-nav-item](/components/nav-item/).
 
 ```html preview
 <vwc-nav>
@@ -33,7 +33,7 @@ Read more about [vwc-nav-item](../../components/nav-item).
 
 ### Navigation Disclosure
 
-Read more about [vwc-nav-disclosure](../../components/nav-disclosure).
+Read more about [vwc-nav-disclosure](/components/nav-disclosure/).
 
 ```html preview
 <vwc-nav>

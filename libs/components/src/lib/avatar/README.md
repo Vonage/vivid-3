@@ -17,7 +17,7 @@ Avatars are used to represent a user or a system entity. They can be used to rep
 ### Icon
 
 Use `icon` to set an icon to the avatar.
-View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the avatar.
 

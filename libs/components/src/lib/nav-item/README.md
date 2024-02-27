@@ -26,7 +26,7 @@ Add a `text` attribute to add text to the nav item.
 ### Icon
 
 Use `icon` to set an icon to the nav item.
-View list of available icon at the [vivid icons gallery](../../icons/icons-gallery).
+View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the nav item's purpose.
 
