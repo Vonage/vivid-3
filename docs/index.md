@@ -20,7 +20,7 @@
 
 Vivid provides guidelines, components and tools to help product teams work more efficiently, deliver faster and safer, while providing end-users a single Vonage unique look & feel.
 
-Crafted as [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), the Vivid component library is interoperable with any modern JavaScript framework, or no framework at all.
+Crafted as [web components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components), the Vivid component library is interoperable with any modern JavaScript framework, or no framework at all.
 
 For Vue.js users, we offer a first-class integration through a [native Vue wrapper library](/getting-started/vue/).
 
@@ -404,6 +404,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 
 ## Support Matrix
 
+
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
 
 ## Contributing
@@ -412,7 +413,7 @@ Please read [CONTRIBUTING.md](https://github.com/Vonage/vivid-3/blob/main/.githu
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
+We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
 
 ## Authors
 
@@ -434,7 +435,7 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
 - [Floating UI](https://floating-ui.com) - for positioning floating elements
-- [Dropzone](https://dropzone.dev) - for handling dropped files
+- [Dropzone](https://www.dropzone.dev/) - for handling dropped files
 
 ## Have questions?
 
