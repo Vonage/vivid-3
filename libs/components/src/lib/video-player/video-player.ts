@@ -35,15 +35,6 @@ export class VideoPlayer extends FoundationElement {
 	 * HTML Attribute: poster
 	 */
 	@attr poster?: string;
-	
-	/**
-	 * @internal
-	 */
-	posterChanged() {
-		if (this.player) {
-			this.initialiseVideo();
-		}
-	}
 
 	/**
 	 * URL of a video file
@@ -148,7 +139,7 @@ export class VideoPlayer extends FoundationElement {
 			sources,
 			poster: this.poster,
 			controls: true,
-			autoplay: this.autoplay ? 'muted' : false,
+			muted: this.autoplay,
 			preload: 'auto',
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
@@ -171,7 +162,7 @@ export class VideoPlayer extends FoundationElement {
 			this.videoEle.appendChild(trackEles[x]);
 		}
 		if (this.loop) this.videoEle.setAttribute('loop', '');
-		// if (this.autoplay) this.videoEle.autoplay = 'muted';
+		if (this.autoplay) this.videoEle.setAttribute('autoplay', '');
 		const control = this.shadowRoot!.querySelector('.control');
 		control!.appendChild(this.videoEle);
 

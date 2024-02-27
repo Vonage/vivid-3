@@ -71,6 +71,19 @@ describe('vwc-video-player', () => {
 			const bigPlayBtn = getBigPlayButton();
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
+
+		it('should allow the src to be updated', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} autoplay>
+					<source src="${VIDEO_SRC}" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			await elementUpdated(element);
+			element.src = 'new-src.mp4';
+			await elementUpdated(element);
+			const bigPlayBtn = getBigPlayButton();
+			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
+		});
 	});
 
 	describe('autoplay', () => {
@@ -81,7 +94,7 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			const videoEle = getVideoEle();
-			expect(videoEle?.getAttribute('autoplay')).toBe('muted');
+			expect(videoEle?.autoplay).toBe(true);
 		});
 	});
 
