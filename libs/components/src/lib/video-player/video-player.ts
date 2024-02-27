@@ -35,6 +35,15 @@ export class VideoPlayer extends FoundationElement {
 	 * HTML Attribute: poster
 	 */
 	@attr poster?: string;
+	
+	/**
+	 * @internal
+	 */
+	posterChanged() {
+		if (this.player) {
+			this.initialiseVideo();
+		}
+	}
 
 	/**
 	 * URL of a video file
@@ -44,6 +53,15 @@ export class VideoPlayer extends FoundationElement {
 	 * HTML Attribute: src
 	 */
 	@attr src?: string;
+
+	/**
+	 * @internal
+	 */
+	srcChanged() {
+		if (this.player) {
+			this.initialiseVideo();
+		}
+	}
 
 	/**
 	 * Allows the video will play automatically (muted)
@@ -81,29 +99,20 @@ export class VideoPlayer extends FoundationElement {
 	 */
 	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: MediaSkipBy = MediaSkipBy.Ten;
 
+	/**
+	 * @internal
+	 */
 	player: any;
+
+	/**
+	 * @internal
+	 */
+	videoEle: any;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-
-		const settings = this.getSettings();
-		const videoEle = document.createElement('video');
-		const trackEles = this.querySelectorAll('track');
-		for(let x = 0; x < trackEles.length; x++) {
-			videoEle.appendChild(trackEles[x]);
-		}
-		if (this.loop) videoEle.setAttribute('loop', '');
-		if (this.autoplay) videoEle.setAttribute('autoplay', 'muted');
-
-		const control = this.shadowRoot!.querySelector('.control');
-		control!.appendChild(videoEle);
 		
-		this.player = videojs(videoEle, settings);
-		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
-		
-		this.player.on('play', () => this.$emit('play'));
-		this.player.on('pause', () => this.$emit('pause'));
-		this.player.on('ended', () => this.$emit('ended'));
+		this.initialiseVideo();
 	}
 
 	override disconnectedCallback(): void {
@@ -113,6 +122,9 @@ export class VideoPlayer extends FoundationElement {
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	getSettings() {
 		const srcEles = this.querySelectorAll('source');
 		const sources = this.src 
@@ -136,6 +148,7 @@ export class VideoPlayer extends FoundationElement {
 			sources,
 			poster: this.poster,
 			controls: true,
+			autoplay: this.autoplay ? 'muted' : false,
 			preload: 'auto',
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
@@ -143,6 +156,31 @@ export class VideoPlayer extends FoundationElement {
 				remainingTimeDisplay: { displayNegative: false },
 			},
 		};
+	}
+
+	/**
+	 * @internal
+	 */
+	initialiseVideo() {
+		const settings = this.getSettings();
+		if (this.player) this.player.dispose();
+
+		this.videoEle = document.createElement('video');
+		const trackEles = this.querySelectorAll('track');
+		for(let x = 0; x < trackEles.length; x++) {
+			this.videoEle.appendChild(trackEles[x]);
+		}
+		if (this.loop) this.videoEle.setAttribute('loop', '');
+		// if (this.autoplay) this.videoEle.autoplay = 'muted';
+		const control = this.shadowRoot!.querySelector('.control');
+		control!.appendChild(this.videoEle);
+
+		this.player = videojs(this.videoEle, settings);
+		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
+		
+		this.player.on('play', () => this.$emit('play'));
+		this.player.on('pause', () => this.$emit('pause'));
+		this.player.on('ended', () => this.$emit('ended'));
 	}
 }
 
