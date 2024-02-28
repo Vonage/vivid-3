@@ -34,8 +34,8 @@ export const NavDisclosureTemplate: (
 					${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
             ${x => x.label}
 						<slot name="meta"></slot>
-			${when(x => x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-up-solid'></${iconTag}>`)}
-			${when(x => !x.open, html<NavDisclosure>`<${iconTag} class="toggleIcon" name='chevron-down-solid'></${iconTag}>`)}
+					<${iconTag} class="toggleIcon" name=${x => x.open ? 'chevron-up-solid' : 'chevron-down-solid'}
+											aria-hidden="true"></${iconTag}>
         </summary>
         <div class="content" id="disclosure-content">
 			<slot></slot>
