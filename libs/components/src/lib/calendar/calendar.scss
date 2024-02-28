@@ -105,14 +105,7 @@ ol {
 		z-index: -1;
 		background-color: var(#{constants.$vvd-color-information-400});
 		content: "";
-
-		@supports (inset: 0) {
-			inset: 0;
-		}
-
-		@supports not (inset: 0) {
-			inset: 0;
-		}
+		inset: 0;
 	}
 	&:focus {
 		outline: none;
@@ -158,14 +151,7 @@ ol {
 			> em {
 				font: inherit;
 				inline-size: min-content;
-
-				@supports (inset: 0) {
-					inset-inline-start: 0;
-				}
-
-				@supports not (inset: 0) {
-					left: 0;
-				}
+				inset-inline-start: 0;
 			}
 			> small {
 				font: var(#{constants.$vvd-typography-base-condensed});
