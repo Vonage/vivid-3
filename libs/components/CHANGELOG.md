@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.51.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.50.1...vivid-v3.51.0) (2024-02-26)
+
+
+### Features
+
+* **button:** add link option (VIV-1544) ([#1590](https://github.com/Vonage/vivid-3/issues/1590)) ([14d3143](https://github.com/Vonage/vivid-3/commit/14d31431608d105df17a48049c7166a056cf952a))
+* **tooltip, toggletip, menu:** add anchor slot (VIV-1539) ([#1567](https://github.com/Vonage/vivid-3/issues/1567)) ([db96306](https://github.com/Vonage/vivid-3/commit/db96306076a87f8715161a5c86029500ffdb4b8e))
+
+
+### Bug Fixes
+
+* **alert:** add media query to set min-inline-size to auto (VIV-1564) ([#1529](https://github.com/Vonage/vivid-3/issues/1529)) ([7a19f93](https://github.com/Vonage/vivid-3/commit/7a19f932d6fee8f99d6dc60aae9c3de2343da9c6))
+* **docs:** fix broken links (VIV-1584) ([#1600](https://github.com/Vonage/vivid-3/issues/1600)) ([2740e05](https://github.com/Vonage/vivid-3/commit/2740e05f9dad3feef5dacc39f0af87ecf803d142))
+* **menu-item:** secondary text color in disable state (VIV-1579) ([#1598](https://github.com/Vonage/vivid-3/issues/1598)) ([f9a926d](https://github.com/Vonage/vivid-3/commit/f9a926dafa70c41a611c2830377c95f149122712))
+* **switch:** fix hover color (VIV-1583) ([#1602](https://github.com/Vonage/vivid-3/issues/1602)) ([44d06f4](https://github.com/Vonage/vivid-3/commit/44d06f4c1969ae2edd5f47f2ccfa3c8537c21c42))
+* **tag, avatar, badge:** align accent connotation to design (VIV-1567) ([#1596](https://github.com/Vonage/vivid-3/issues/1596)) ([fc01ca1](https://github.com/Vonage/vivid-3/commit/fc01ca15d83b71337eb356d9f65b7c08229b5a13))
+
 ## [3.50.1](https://github.com/Vonage/vivid-3/compare/vivid-v3.50.0...vivid-v3.50.1) (2024-02-21)
 
 
