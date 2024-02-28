@@ -1,13 +1,11 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert warning information,
 	$shades: primary primary-text intermediate soft contrast pale fierce firm-all,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled duotone subtle,
 	$states: idle,

@@ -46,6 +46,7 @@
 	$item-gap: 4px;
 	$num-items-visible: 6;
 	$num-items-to-reserve-space-for: ($num-items-visible - 1);
+
 	@function space-for-items($n) {
 		@return $item-block-size * $n + $item-gap * ($n - 1);
 	}
@@ -59,15 +60,14 @@
 	.picker {
 		position: relative;
 		display: flex;
+		overflow: hidden hidden;
 		flex-direction: column;
 		padding: 0;
-		margin: 0;
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		margin: 0;
 		gap: $item-gap;
 		inline-size: $item-inline-size;
 		list-style: none;
-		overflow-x: hidden;
-		overflow-y: hidden;
 
 		// Make scrollbar appearance less intrusive
 		scrollbar-width: thin;
@@ -88,6 +88,7 @@
 		&:focus-visible {
 			#{focus.$focus-stroke-gap-color}: transparent;
 			#{focus.$focus-inset}: -2px;
+
 			@include focus.focus;
 		}
 	}
@@ -101,9 +102,9 @@
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		block-size: $item-block-size;
-		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		color: var(#{appearance.get-appearance-token(text)});
 		cursor: pointer;
 		font: var(#{constants.$vvd-typography-base});
