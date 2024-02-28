@@ -110,7 +110,7 @@ function renderAnchorContent(context: ElementDefinitionContext) {
 		aria-live="${x => x.ariaLive}"
 		aria-relevant="${x => x.ariaRelevant}"
 		aria-roledescription="${x => x.ariaRoledescription}"
-		@click="${(x) => window.open(x.href, x.target)}"
+		@click="${(x) => window.open(x.href, x.target || '_self')}"
 		${ref('control')}>
 	${x => renderIconOrPending(context, x.icon, x.pending, x.size)}
 	${when(x => x.label, html`<span class="text" role="presentation">${(x) => x.label}</span>`)}
