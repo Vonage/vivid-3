@@ -6,6 +6,7 @@ import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { affixIconTemplateFactory, IconAriaHidden, IconWrapper } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
+import { features } from 'process';
 
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
@@ -111,7 +112,7 @@ function renderAnchorContent(context: ElementDefinitionContext) {
 		aria-live="${x => x.ariaLive}"
 		aria-relevant="${x => x.ariaRelevant}"
 		aria-roledescription="${x => x.ariaRoledescription}"
-		@click="${(x) => window.open(x.href)}"
+		@click="${(x) => window.open(x.href, x.target)}"
 		${ref('control')}>
 	${x => renderIconOrPending(context, x.icon, x.pending, x.size)}
 	${when(x => x.label, html`<span class="text" role="presentation">${(x) => x.label}</span>`)}
