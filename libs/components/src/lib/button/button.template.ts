@@ -6,8 +6,6 @@ import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { affixIconTemplateFactory, IconAriaHidden, IconWrapper } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
-import { features } from 'process';
-
 
 const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean) => {
 	let className = `appearance-${appearance}`;
