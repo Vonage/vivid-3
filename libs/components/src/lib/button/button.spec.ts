@@ -199,6 +199,23 @@ describe('vwc-button', () => {
 		});
 	});
 
+	describe('click', () => {
+		it('should open the href if set', async () => {
+			const spy = jest.spyOn(window, 'open');
+
+			const href = '/somewhere';
+			element.label = 'Link text';
+			element.href = href;
+			await elementUpdated(element);
+
+			getControlElement(element).click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
 			const appearance = 'filled';
