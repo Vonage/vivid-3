@@ -102,7 +102,11 @@ const jaJP: Locale = {
 		decrementButtonLabel: '減少',
 	},
 	splitButton: {
-		showMoreActionsLabel: 'Show more actions',
+		showMoreActionsLabel: 'その他の操作を表示',
+	},
+	rangeSlider: {
+		startThumbLabel: '最小',
+		endThumbLabel: '最大',
 	}
 };
 

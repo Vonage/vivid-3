@@ -103,6 +103,10 @@ const zhCN: Locale = {
 	},
 	splitButton: {
 		showMoreActionsLabel: '显示更多操作',
+	},
+	rangeSlider: {
+		startThumbLabel: '最小',
+		endThumbLabel: '最大',
 	}
 };
 
