@@ -1,0 +1,65 @@
+import { html, ref, when } from '@microsoft/fast-element';
+import { classNames, Orientation } from '@microsoft/fast-web-utilities';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+
+import { getMarkersTemplate } from '../slider/slider.template';
+import type { RangeSlider } from './range-slider';
+
+const getClasses = ({ disabled, connotation }: RangeSlider) =>
+	classNames(
+		'control',
+		['disabled', Boolean(disabled)],
+		[`connotation-${connotation}`, Boolean(connotation)],
+	);
+
+/**
+ * The template for the RangeSlider component.
+ *
+ * @param context - element definition context
+ * @public
+ */
+export const RangeSliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<RangeSlider> = () => {
+	return html<RangeSlider>`
+		<template @mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}">
+			<div class="${getClasses} ${x => x.orientation}">
+				<div class="positioning-region">
+					<div ${ref('_trackEl')} class="track">
+						<div class="track-start" style="${x => x._selectedRangeCss}"></div>
+						${when(
+		x => x.markers,
+		html<RangeSlider>`${(x) => getMarkersTemplate(x.orientation === Orientation.horizontal, Math.floor((x.max - x.min) / x.step))}`
+	)}
+					</div>
+					<div
+						${ref('_startThumbEl')}
+						class="thumb-container"
+						style="${x => x._startThumbCss}"
+						role="slider"
+						tabindex="${x => (x.disabled ? null : 0)}"
+						aria-label="${x => x.ariaStartLabel || x.locale.rangeSlider.startThumbLabel}"
+						aria-valuetext="${x => x.valueTextFormatter(x.start)}"
+						aria-valuenow="${x => x.start}"
+						aria-valuemin="${x => x.min}"
+						aria-valuemax="${x => x.end}"
+						aria-disabled="${x => x.disabled}"
+						aria-orientation="${x => x.orientation}"
+					></div>
+					<div
+						${ref('_endThumbEl')}
+						class="thumb-container"
+						style="${x => x._endThumbCss}"
+						role="slider"
+						tabindex="${x => (x.disabled ? null : 0)}"
+						aria-label="${x => x.ariaEndLabel || x.locale.rangeSlider.endThumbLabel}"
+						aria-valuetext="${x => x.valueTextFormatter(x.end)}"
+						aria-valuenow="${x => x.end}"
+						aria-valuemin="${x => x.start}"
+						aria-valuemax="${x => x.max}"
+						aria-disabled="${x => x.disabled}"
+						aria-orientation="${x => x.orientation}"
+					></div>
+				</div>
+			</div>
+		</template>`;
+};
