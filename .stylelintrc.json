@@ -12,12 +12,9 @@
 			],
 			"extends": [
 				"stylelint-config-standard-scss",
-				"stylelint-config-idiomatic-order",
-				"stylelint-config-prettier"
+				"stylelint-config-idiomatic-order"
 			],
 			"rules": {
-				"string-quotes": "double",
-				"indentation": "tab",
 				"plugin/no-unsupported-browser-features": [
 					true,
 					{
@@ -32,7 +29,6 @@
 				"selector-max-compound-selectors": null,
 				"no-duplicate-selectors": true,
 				"declaration-block-no-duplicate-properties": true,
-				"function-parentheses-space-inside": null,
 				"rule-empty-line-before": null,
 				"value-keyword-case": [
 					"lower",
