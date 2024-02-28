@@ -2,10 +2,6 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
-:host {
-	display: block;
-}
-
 .vjs-theme-vivid {
 	position: relative;
 	overflow: hidden;
