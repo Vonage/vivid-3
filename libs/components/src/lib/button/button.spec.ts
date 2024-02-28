@@ -103,6 +103,15 @@ describe('vwc-button', () => {
 		});
 	});
 
+	describe('active', () => {
+		it('should set active class when active is true', async () => {
+			element.active = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain('active');
+		});
+	});
+
 	describe('label', () => {
 		it('set label property to node', async () => {
 			const label = 'lorem';

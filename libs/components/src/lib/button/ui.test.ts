@@ -124,6 +124,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button label="Expanded" aria-expanded="true"></vwc-button>
+		<vwc-button label="Active" active></vwc-button>
 	</div>
 	</div>
 	`;
