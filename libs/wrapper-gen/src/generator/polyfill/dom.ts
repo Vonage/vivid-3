@@ -23,4 +23,14 @@ global.matchMedia =
       removeListener: () => {},
     } as unknown as MediaQueryList));
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+global.addEventListener = () => {};
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+global.removeEventListener = () => {};
+
+Object.defineProperty(global.document, 'readyState', {
+	value: 'complete',
+});
+
 (global as {window: typeof global}).window = global;
