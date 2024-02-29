@@ -19,7 +19,7 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player src="//vjs.zencdn.net/v/oceans.mp4">
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
 </vwc-video-player>
 ```
 
@@ -52,7 +52,7 @@ The poster image is displayed before the video has been interacted with. The `po
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="//vjs.zencdn.net/v/oceans.png" src="//vjs.zencdn.net/v/oceans.mp4">
+<vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
 </vwc-video-player>
 ```
 

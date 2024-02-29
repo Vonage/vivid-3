@@ -3,6 +3,10 @@
 @import url("../../../../../node_modules/video.js/dist/video-js.css");
 
 .vjs-theme-vivid {
+	$control-size: 44px;
+	$control-background-color: rgba(0 0 0 / 60%);
+	$control-background-color-hover: var(#{constants.$vvd-color-canvas-text});
+
 	position: relative;
 	overflow: hidden;
 	border-radius: #{border-radius-variables.$border-radius-normal};
@@ -13,12 +17,19 @@
 		$big-play-btn-size: 60px;
 		$big-play-btn-offset: calc($big-play-btn-size / 2);
 
+		background-color: $control-background-color;
 		block-size: $big-play-btn-size;
 		border-radius: #{border-radius-variables.$border-radius-full};
 		inline-size: $big-play-btn-size;
 		line-height: calc($big-play-btn-size - 5px);
 		margin-block-start: -$big-play-btn-offset;
 		margin-inline-start: -$big-play-btn-offset;
+	}
+
+	&:hover  {
+		.vjs-big-play-button {
+			background-color: $control-background-color-hover;
+		}
 	}
 
 	.vjs-poster, .vjs-tech {
@@ -30,8 +41,12 @@
 		display: block;
 		padding: 0;
 		inline-size: auto;
-		line-height: 4;
+		line-height: 3.2;
 		min-inline-size: auto; 
+	}
+
+	.vjs-duration {
+		margin-inline-end: 16px;
 	}
 
 	.vjs-time-divider {
@@ -44,16 +59,20 @@
 
 	.vjs-control-bar {
 		margin: 4px;
-		block-size: 4em;
+		background-color: $control-background-color;
+		block-size: $control-size;
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		inline-size: calc(100% - 8px);
 	}
 
 	.vjs-button {
 		border-radius: #{border-radius-variables.$border-radius-normal};
+		inline-size: $control-size;
 
-		> .vjs-icon-placeholder::before {
-			line-height: 2.2;
+		> .vjs-svg-icon {
+			block-size: 21px;
+			inline-size: 21px;
+			margin-block-start: 5px;
 		}
 	}
 
@@ -71,7 +90,7 @@
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
-			background: var(#{constants.$vvd-color-canvas-text});
+			background: $control-background-color-hover;
 		}
 	}
 
@@ -80,8 +99,8 @@
 	.vjs-chapters-button,
 	.vjs-descriptions-button {
 		.vjs-menu {
+			left: -62px;
 			inline-size: 168px;
-			offset-inline-start: -56px;
 	
 			li {
 				justify-content: start;
@@ -89,33 +108,51 @@
 			}
 		}
 	}
+
+	.vjs-skip-backward-5,
+	.vjs-skip-forward-5,
+	.vjs-skip-backward-10,
+	.vjs-skip-forward-10,
+	.vjs-skip-backward-30,
+	.vjs-skip-forward-30 {
+		.vjs-svg-icon {
+			margin-block-start: 2px;
+		}
+	}
 	
 	/* styleint-enable no-descending-specificity */
 
 	.vjs-playback-rate .vjs-menu {
+		left: -4px;
 		inline-size: 56px;
-		offset-inline-start: 0;
 	}
 
 	.vjs-menu-button-popup .vjs-menu {
-		margin-block-end: 35px;
+		margin-block-end: 23px;
+
+		.vjs-menu-content {
+			background-color: $control-background-color;
+		}
 	}
 
 	.vjs-playback-rate .vjs-playback-rate-value {
 		z-index: 1;
-		line-height: 2.5;
+		line-height: 2.1;
 	}
 
 	.vjs-button:hover {
-		background: var(#{constants.$vvd-color-canvas-text});
+		background: $control-background-color-hover;
 	}
 
-	.vjs-volume-bar {
-		margin: 26px 6px;
-	}
+	.vjs-volume-panel {
+		.vjs-volume-control {
+			background-color: $control-background-color;
+			border-radius: #{border-radius-variables.$border-radius-normal};
+		}
 
-	.vjs-volume-tooltip, .vjs-time-tooltip {
-		offset-block-start: -70px;
+		&.vjs-hover .vjs-mute-control~.vjs-volume-control.vjs-volume-vertical {
+			left: -42px;
+		}
 	}
 
 	.vjs-text-track-display {

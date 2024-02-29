@@ -145,6 +145,7 @@ export class VideoPlayer extends FoundationElement {
 			controlBar: {
 				skipButtons: skipByValue > 0 ? skipButtons : false,
 				remainingTimeDisplay: { displayNegative: false },
+				volumePanel: {inline: false},
 			},
 		};
 	}
