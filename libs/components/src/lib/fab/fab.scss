@@ -1,16 +1,13 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment contrast fierce firm,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled,
 	$states: idle hover disabled active,
@@ -26,15 +23,16 @@
 	box-sizing: border-box;
 	align-items: center;
 	border: 0 none;
+	border-radius: var(#{variables.$border-radius});
 	background: var(#{appearance.get-appearance-token(fill)}, var(elevation.$vvd-elevation-fill));
 	block-size: var(#{variables.$block-size});
-	border-radius: var(#{variables.$border-radius});
 	color: var(#{appearance.get-appearance-token(text)}, var(constants.$vvd-color-canvas-text));
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	font: var(#{constants.$vvd-typography-base-bold});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
+
 	@include connotation.connotation (fab);
 	@include appearance.appearance;
 

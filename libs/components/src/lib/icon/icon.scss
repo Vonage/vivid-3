@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "sass:list";
-
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent announcement cta success alert information,
@@ -35,6 +34,7 @@ $default-size: list.nth($size-keys, 1);
 
 .control {
 	@include connotation.connotation (icon);
+
 	@include utils.spread-list-selectors(".size", $size-keys, $default-size) using($value) {
 		#{variables.$block-size}: map.get($size, $value);
 	}
