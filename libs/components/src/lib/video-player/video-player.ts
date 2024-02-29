@@ -49,8 +49,8 @@ export class VideoPlayer extends FoundationElement {
 	 * @internal
 	 */
 	srcChanged() {
-		if (this.player) {
-			this.initialiseVideo();
+		if (this.#player) {
+			this.#initVideo();
 		}
 	}
 
@@ -93,37 +93,45 @@ export class VideoPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	player: any;
+	#player: any;
 
 	/**
 	 * @internal
 	 */
-	videoEle: any;
+	#videoEle: any;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
 		
-		this.initialiseVideo();
+		this.#initVideo();
 	}
 
 	override disconnectedCallback(): void {
 		super.connectedCallback();
-		if (this.player) {
-			this.player.dispose();
+		if (this.#player) {
+			this.#player.dispose();
 		}
 	}
 
 	/**
 	 * @internal
 	 */
-	getSettings() {
+	#getSources() {
 		const srcEles = this.querySelectorAll('source');
-		const sources = this.src 
+		if (srcEles.length === 0 && !this.src) return undefined;
+		return this.src 
 			? [{ src: this.src }]
 			: Array.from(srcEles).map((el) => ({
 				src: el.getAttribute('src'),
 				type: el.getAttribute('type'),
 			}));
+	}
+
+	/**
+	 * @internal
+	 */
+	#getSettings() {
+		const sources = this.#getSources();
 		const skipByValue = parseInt(this.skipBy);
 		const skipButtons = {
 			forward: skipByValue,
@@ -153,26 +161,30 @@ export class VideoPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	initialiseVideo() {
-		const settings = this.getSettings();
-		if (this.player) this.player.dispose();
+	#initVideo() {
+		const settings = this.#getSettings();
+		if (this.#player) this.#player.dispose();
 
-		this.videoEle = document.createElement('video');
+		this.#videoEle = document.createElement('video');
 		const trackEles = this.querySelectorAll('track');
 		for(let x = 0; x < trackEles.length; x++) {
-			this.videoEle.appendChild(trackEles[x]);
+			this.#videoEle.appendChild(trackEles[x]);
 		}
-		if (this.loop) this.videoEle.setAttribute('loop', '');
-		if (this.autoplay) this.videoEle.setAttribute('autoplay', '');
+		if (this.loop) this.#videoEle.setAttribute('loop', '');
+		if (this.autoplay) this.#videoEle.setAttribute('autoplay', '');
 		const control = this.shadowRoot!.querySelector('.control');
-		control!.appendChild(this.videoEle);
 
-		this.player = videojs(this.videoEle, settings);
-		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
-		
-		this.player.on('play', () => this.$emit('play'));
-		this.player.on('pause', () => this.$emit('pause'));
-		this.player.on('ended', () => this.$emit('ended'));
+		if (settings.sources) {
+			control!.appendChild(this.#videoEle);
+			this.#player = videojs(this.#videoEle, settings);
+			this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
+			
+			this.#player.on('play', () => this.$emit('play'));
+			this.#player.on('pause', () => this.$emit('pause'));
+			this.#player.on('ended', () => this.$emit('ended'));
+		} else {
+			this.shadowRoot!.getElementById('no-sources')?.classList.remove('vjs-hidden');
+		}
 	}
 }
 

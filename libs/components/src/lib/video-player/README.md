@@ -19,7 +19,7 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
+<vwc-video-player>
 </vwc-video-player>
 ```
 

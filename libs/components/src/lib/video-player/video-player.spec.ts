@@ -72,13 +72,26 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('src', () => {
+		describe('no src provided', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			await elementUpdated(element);
+			const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
+			const dialogContentEl = getDialogContentEle();
+			expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
+			expect(dialogContentEl!.textContent).toBe('No compatible source was found for this media.');
+		});
+
 		describe('invalid src', () => {
 			xit('should show the invalid src error message', async() => {
 				element = (await fixture(
 					`<${COMPONENT_TAG} src="invalid.xyz"></${COMPONENT_TAG}>`
 				)) as VideoPlayer;
 				await elementUpdated(element);
+				const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
 				const dialogContentEl = getDialogContentEle();
+				expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
 				expect(dialogContentEl!.textContent).toBe('No compatible source was found for this media.');
 			});
 		});
@@ -92,7 +105,7 @@ describe('vwc-video-player', () => {
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		fit('should allow the src to be updated', async () => {
+		it('should allow the src to be updated', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
