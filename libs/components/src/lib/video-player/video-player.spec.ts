@@ -57,7 +57,7 @@ describe('vwc-video-player', () => {
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		it('should remove the redundant lang attribute', () => {
+		it('should remove the lang attribute to avoid clash with vivid localization', () => {
 			expect(element.shadowRoot?.querySelector('[lang]')).toBe(null);
 		});
 	});

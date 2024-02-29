@@ -274,6 +274,11 @@
 		"markdown": "./libs/components/src/lib/file-picker/README.md"
 	},
 	{
+		"title": "Range Slider",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/range-slider/README.md"
+	},
+	{
 		"title": "Split Button",
 		"markdown": "./libs/components/src/lib/split-button/README.md"
 	},

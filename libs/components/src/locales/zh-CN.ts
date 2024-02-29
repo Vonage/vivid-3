@@ -107,6 +107,10 @@ const zhCN: Locale = {
 		showMoreActionsLabel: '显示更多操作',
 	},
 	videoPlayer: videoPlayerLocale,
+	rangeSlider: {
+		startThumbLabel: '最小',
+		endThumbLabel: '最大',
+	}
 };
 
 export default zhCN;

@@ -106,7 +106,11 @@ const enUS: Locale = {
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',
 	},
-	videoPlayer: videoPlayerLocale
+	videoPlayer: videoPlayerLocale,
+	rangeSlider: {
+		startThumbLabel: 'min',
+		endThumbLabel: 'max',
+	}
 };
 
 export default enUS;

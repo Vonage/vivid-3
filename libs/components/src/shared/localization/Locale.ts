@@ -8,6 +8,7 @@ import type { NumberFieldLocale } from '../../lib/number-field/locale';
 import type { SplitButtonLocale } from '../../lib/split-button/locale';
 import type { VideoPlayerLocale } from '../../lib/video-player/locale';
 import type { TimePickerLocale } from '../../lib/time-picker/locale';
+import type { RangeSliderLocale } from '../../lib/range-slider/locale';
 
 export interface Locale {
 	datePicker: DatePickerLocale;
@@ -20,4 +21,5 @@ export interface Locale {
 	numberField: NumberFieldLocale;
 	splitButton: SplitButtonLocale;
 	videoPlayer: VideoPlayerLocale;
+	rangeSlider: RangeSliderLocale;
 }

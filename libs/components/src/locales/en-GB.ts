@@ -107,6 +107,10 @@ const enGB: Locale = {
 		showMoreActionsLabel: 'Show more actions',
 	},
 	videoPlayer: videoPlayerLocale,
+	rangeSlider: {
+		startThumbLabel: 'min',
+		endThumbLabel: 'max',
+	}
 };
 
 export default enGB;
