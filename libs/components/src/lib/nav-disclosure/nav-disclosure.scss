@@ -24,7 +24,7 @@
 	@include appearance.appearance(
 		appearance.state-selectors(
 			map.merge(appearance.$state-aspect-selectors, (
-				selected: ".selected, [aria-current]",
+				selected: "[aria-current]",
 			))
 		)
 	);
