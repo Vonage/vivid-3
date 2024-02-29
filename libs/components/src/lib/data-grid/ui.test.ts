@@ -315,7 +315,7 @@ async function testCellLinkClick({ page }: { page: Page }) {
 	await link.isVisible();
 	await link.click();
 	await page.pause();
-	expect(await page.url()).toEqual('https:/google.com/');
+	expect(await page.url()).toEqual('https://www.google.com/');
 }
 
 test('should show the component', gridTestFunction);
