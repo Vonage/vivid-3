@@ -62,6 +62,15 @@ export class VideoPlayer extends FoundationElement {
 	@attr({ mode: 'boolean' }) autoplay = false;
 
 	/**
+	 * @internal
+	 */
+	autoplayChanged() {
+		if (this.player) {
+			this.#initVideo();
+		}
+	}
+
+	/**
 	 * Allows the video to loop back to the beginning when finished
 	 *
 	 * @public
@@ -87,6 +96,15 @@ export class VideoPlayer extends FoundationElement {
 	 * HTML Attribute: skip-by
 	 */
 	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: MediaSkipBy = MediaSkipBy.Ten;
+
+	/**
+	 * @internal
+	 */
+	skipByChanged() {
+		if (this.player) {
+			this.#initVideo();
+		}
+	}
 
 	/**
 	 * @internal

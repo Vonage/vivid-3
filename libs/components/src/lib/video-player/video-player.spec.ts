@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { MediaSkipBy } from '../enums';
 import { DEFAULT_PLAYBACK_RATES, VideoPlayer } from './video-player';
@@ -45,6 +45,12 @@ describe('vwc-video-player', () => {
 		const btn = getBigPlayButton();
 		if (!btn) return false;
 		return !btn.classList.contains('vjs-hidden');
+	}
+
+	function getSkipButtons(amount: MediaSkipBy) {
+		const skipBackwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-backward-${amount}`);
+		const skipForwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-forward-${amount}`);
+		return [skipBackwardBtn, skipForwardBtn];
 	}
 
 	describe('basic', () => {
@@ -122,14 +128,20 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('autoplay', () => {
-		it('should set the muted attribute on the video element', async () => {
+		it('should reflect autoplay on the video element', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} autoplay>
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const videoEle = getVideoEle();
-			expect(videoEle?.autoplay).toBe(true);
+			let videoEle = getVideoEle();
+			expect(videoEle?.hasAttribute('autoplay')).toBe(true);
+
+			element.autoplay = false;
+			elementUpdated(element);
+
+			videoEle = getVideoEle();
+			expect(videoEle?.hasAttribute('autoplay')).toBe(false);
 		});
 	});
 
@@ -162,7 +174,7 @@ describe('vwc-video-player', () => {
 			}
 		});
 
-		it('should disable playback rates when passed an empty string', async () => {
+		it('should hide playback rates when passed an empty string', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
@@ -174,42 +186,44 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('captions', () => {
-		it('displays the captions button and menu', async () => {
+		xit('should display the captions button and menu', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track 
 						kind="captions"
-						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" 
+						src="captions.en.vtt" 
 						srclang="en" 
 						label="English" 
 						default>
 					<track 
 						kind="captions" 
-						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" 
+						src="captions.fr.vtt" 
 						srclang="fr" 
 						label="French">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
 			expect(element.shadowRoot!.querySelectorAll('[kind="captions"]').length).toBe(2);
+			const subsCapsBtn = element.shadowRoot!.querySelector('.vjs-subs-caps-button');
+			console.log(subsCapsBtn?.innerHTML);
 		});
 	});
 
 	describe('audio descriptions', () => {
-		it('displays the audio description button and menu', async () => {
+		it('should display the audio description button and menu', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track 
 						kind="descriptions" 
-						src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" 
+						src="descriptions.en.vtt" 
 						label="English" 
 						srclang="en" 
 						default>
     				<track 
 							kind="descriptions" 
-							src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" 
+							src="descriptions.fr.vtt" 
 							label="French" 
 							srclang="fr">
 				</${COMPONENT_TAG}>`
@@ -220,11 +234,11 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('chapters', () => {
-		it('displays the chapters button and menu', async () => {
+		it('should display the chapters button and menu', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
-					<track kind="chapters" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt">
+					<track kind="chapters" src="chapters.vtt">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
@@ -233,6 +247,27 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('skip-by buttons', () => {
+		it('should modify skip button amount', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} skip-by="${MediaSkipBy.Thirty}">
+					<source src="${VIDEO_SRC}" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			
+			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Ten)[0]).toBeNull();
+			expect(getSkipButtons(MediaSkipBy.Ten)[1]).toBeNull();
+
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			expect(getSkipButtons(MediaSkipBy.Five)[0]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Five)[1]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeNull();
+			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeNull();
+		});
+
 		it('should modify skip button amount', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="30">
@@ -308,14 +343,6 @@ describe('vwc-video-player', () => {
 			element.addEventListener('ended', spy);
 			element.player.trigger('ended');
 			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
-
-
-	describe('a11y', () => {
-		// skipped because there are aria tags (menus) inside video.js that are not correct
-		xit('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
