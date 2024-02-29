@@ -1,6 +1,6 @@
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@import url("../../../../../node_modules/video.js/dist/video-js.css");
+@import "../../../../../node_modules/video.js/dist/video-js.css";
 
 .vjs-theme-vivid {
 	$control-size: 44px;
@@ -18,8 +18,8 @@
 		$big-play-btn-offset: calc($big-play-btn-size / 2);
 
 		background-color: $control-background-color;
-		block-size: $big-play-btn-size;
 		border-radius: #{border-radius-variables.$border-radius-full};
+		block-size: $big-play-btn-size;
 		inline-size: $big-play-btn-size;
 		line-height: calc($big-play-btn-size - 5px);
 		margin-block-start: -$big-play-btn-offset;
@@ -60,8 +60,8 @@
 	.vjs-control-bar {
 		margin: 4px;
 		background-color: $control-background-color;
-		block-size: $control-size;
 		border-radius: #{border-radius-variables.$border-radius-normal};
+		block-size: $control-size;
 		inline-size: calc(100% - 8px);
 	}
 
@@ -158,8 +158,8 @@
 
 	.vjs-volume-panel {
 		.vjs-volume-control {
-			background-color: $control-background-color;
 			border-radius: #{border-radius-variables.$border-radius-normal};
+			background-color: $control-background-color;
 		}
 
 		&.vjs-hover .vjs-mute-control~.vjs-volume-control.vjs-volume-vertical {
