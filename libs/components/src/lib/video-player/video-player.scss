@@ -5,7 +5,7 @@
 .vjs-theme-vivid {
 	$control-size: 44px;
 	$control-background-color: rgba(0 0 0 / 60%);
-	$control-background-color-hover: var(#{constants.$vvd-color-canvas-text});
+	$control-background-color-hover: #000;
 
 	position: relative;
 	overflow: hidden;
