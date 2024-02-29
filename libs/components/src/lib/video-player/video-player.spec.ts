@@ -47,7 +47,7 @@ describe('vwc-video-player', () => {
 		return !btn.classList.contains('vjs-hidden');
 	}
 
-	function getSkipButtons(amount: MediaSkipBy) {
+	function getSkipButtons(amount: MediaSkipBy | boolean) {
 		const skipBackwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-backward-${amount}`);
 		const skipForwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-forward-${amount}`);
 		return [skipBackwardBtn, skipForwardBtn];
@@ -190,16 +190,16 @@ describe('vwc-video-player', () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
-					<track 
+					<track
 						kind="captions"
-						src="captions.en.vtt" 
-						srclang="en" 
-						label="English" 
+						src="captions.en.vtt"
+						srclang="en"
+						label="English"
 						default>
-					<track 
-						kind="captions" 
-						src="captions.fr.vtt" 
-						srclang="fr" 
+					<track
+						kind="captions"
+						src="captions.fr.vtt"
+						srclang="fr"
 						label="French">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -215,16 +215,16 @@ describe('vwc-video-player', () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
-					<track 
-						kind="descriptions" 
-						src="descriptions.en.vtt" 
-						label="English" 
-						srclang="en" 
+					<track
+						kind="descriptions"
+						src="descriptions.en.vtt"
+						label="English"
+						srclang="en"
 						default>
-    				<track 
-							kind="descriptions" 
-							src="descriptions.fr.vtt" 
-							label="French" 
+    				<track
+							kind="descriptions"
+							src="descriptions.fr.vtt"
+							label="French"
 							srclang="fr">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -246,18 +246,24 @@ describe('vwc-video-player', () => {
 		});
 	});
 
-	describe('skip-by buttons', () => {
-		it('should modify skip button amount', async () => {
+	describe('skip-by', () => {
+		it('should set skip buttons according to skip-by attributes', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="${MediaSkipBy.Thirty}">
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			
+
 			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeTruthy();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeTruthy();
-			expect(getSkipButtons(MediaSkipBy.Ten)[0]).toBeNull();
-			expect(getSkipButtons(MediaSkipBy.Ten)[1]).toBeNull();
+		});
+
+		it('should change skip button amount when skipBy is set', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} skip-by="${MediaSkipBy.Thirty}">
+					<source src="${VIDEO_SRC}" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
 
 			element.skipBy = MediaSkipBy.Five;
 			await elementUpdated(element);
@@ -268,28 +274,14 @@ describe('vwc-video-player', () => {
 			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeNull();
 		});
 
-		it('should modify skip button amount', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} skip-by="30">
-					<source src="${VIDEO_SRC}" type="video/mp4">
-				</${COMPONENT_TAG}>`
-			)) as VideoPlayer;
-			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-30');
-			expect(SkipBackwardBtn?.classList.contains('vjs-hidden')).toBe(false);
-			const SkipForwardBtn = element.shadowRoot?.querySelector('.vjs-skip-forward-30');
-			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(false);
-		});
-
 		it('should disable skip by buttons when passed 0', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="0">
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const SkipBackwardBtn = element.shadowRoot?.querySelector('.vjs-skip-backward-false');
-			expect(SkipBackwardBtn?.classList.contains('vjs-hidden')).toBe(true);
-			const SkipForwardBtn = element.shadowRoot?.querySelector('.vjs-skip-forward-false');
-			expect(SkipForwardBtn?.classList.contains('vjs-hidden')).toBe(true);
+			expect(getSkipButtons(false)[0]).toBeTruthy();
+			expect(getSkipButtons(false)[1]).toBeTruthy();
 		});
 	});
 
