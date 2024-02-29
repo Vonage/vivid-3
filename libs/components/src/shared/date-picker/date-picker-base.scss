@@ -66,8 +66,8 @@
 	}
 
 	.title-action {
-		block-size: 24px;
 		border-radius: #{border-radius-variables.$border-radius-normal};
+		block-size: 24px;
 		font: var(#{constants.$vvd-typography-base-extended});
 		padding-inline: 6px;
 	}
@@ -106,9 +106,9 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		aspect-ratio: 1/1;
 		block-size: 28px;
-		border-radius: #{border-radius-variables.$border-radius-full};
 		font: var(#{constants.$vvd-typography-base});
 		margin-inline: 6px;
 
@@ -175,9 +175,9 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		aspect-ratio: 1/1;
 		block-size: 48px;
-		border-radius: #{border-radius-variables.$border-radius-full};
 		font: var(#{constants.$vvd-typography-base-extended});
 		text-transform: uppercase;
 
@@ -201,6 +201,7 @@
 
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 		@include focus.focus;
 
 		color: var(#{constants.$vvd-color-canvas-text});
