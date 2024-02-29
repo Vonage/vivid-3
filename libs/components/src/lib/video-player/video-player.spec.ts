@@ -205,7 +205,7 @@ describe('vwc-video-player', () => {
 			)) as VideoPlayer;
 			await elementUpdated(element);
 			expect(element.shadowRoot!.querySelectorAll('[kind="captions"]').length).toBe(2);
-			const subsCapsBtn = element.shadowRoot!.querySelector('.vjs-subs-caps-button');
+			// const subsCapsBtn = element.shadowRoot!.querySelector('.vjs-subs-caps-button');
 			// console.log(subsCapsBtn?.innerHTML);
 		});
 	});
