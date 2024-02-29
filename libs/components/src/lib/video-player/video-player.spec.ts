@@ -30,11 +30,21 @@ describe('vwc-video-player', () => {
 	});
 
 	function getBigPlayButton() {
-		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+		return element.shadowRoot!.querySelector('.vjs-big-play-button') as HTMLButtonElement;
 	}
 
 	function getVideoEle() {
-		return element.shadowRoot?.querySelector('video') as HTMLVideoElement;
+		return element.shadowRoot!.querySelector('video') as HTMLVideoElement;
+	}
+
+	function getDialogTextContent() {
+		return element.shadowRoot!.querySelector('.vjs-modal-dialog-content')!.textContent;
+	}
+
+	function isBigPlayButtonVisible() {
+		const btn = getBigPlayButton();
+		if (!btn) return false;
+		return !btn.classList.contains('vjs-hidden');
 	}
 
 	describe('basic', () => {
@@ -53,8 +63,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should show the big play button by removing the vjs-hidden class', async () => {
-			const bigPlayBtn = getBigPlayButton();
-			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
+			expect(isBigPlayButtonVisible()).toBe(true);
 		});
 
 		it('should remove the lang attribute to avoid clash with vivid localization', () => {
@@ -63,6 +72,16 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('src', () => {
+		describe('invalid src', () => {
+			xit('should show the invalid src error message', async() => {
+				element = (await fixture(
+					`<${COMPONENT_TAG} src="invalid.xyz"></${COMPONENT_TAG}>`
+				)) as VideoPlayer;
+				await elementUpdated(element);
+				expect(getDialogTextContent()).toBe('No compatible source was found for this media.');
+			});
+		});
+
 		it('should show the big play button by removing the vjs-hidden class', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
