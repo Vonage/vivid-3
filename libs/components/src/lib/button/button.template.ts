@@ -4,7 +4,7 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
-import { affixIconTemplateFactory, IconAriaHidden, IconWrapper } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 
@@ -44,7 +44,7 @@ function renderIconOrPending(
 
 	} else {
 		const affixIconTemplate = affixIconTemplateFactory(context);
-		return affixIconTemplate(icon, IconWrapper.Slot, IconAriaHidden.Hidden);
+		return affixIconTemplate(icon, IconWrapper.Slot);
 	}
 }
 
