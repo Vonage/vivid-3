@@ -43,7 +43,7 @@ describe('vwc-video-player', () => {
 			expect(element).toBeInstanceOf(VideoPlayer);
 		});
 
-		it('should be initialise in its default state', async () => {
+		it('should be initialize with default state', async () => {
 			expect(element.src).toBe(undefined);
 			expect(element.poster).toBe(undefined);
 			expect(element.autoplay).toBe(false);
