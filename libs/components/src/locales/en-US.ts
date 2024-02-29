@@ -103,6 +103,10 @@ const enUS: Locale = {
 	},
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',
+	},
+	rangeSlider: {
+		startThumbLabel: 'min',
+		endThumbLabel: 'max',
 	}
 };
 
