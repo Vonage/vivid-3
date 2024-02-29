@@ -40,6 +40,8 @@ $track-thickness: 2px;
 
 	#{variables.$thumb-size}: 12px;
 	#{variables.$thumb-interaction-indicator-size}: 36px;
+	#{variables.$track-start-inset-inline-start}: 0;
+	#{variables.$track-start-inset-block-start}: 0;
 
 	cursor: pointer;
 	outline: none;
@@ -56,14 +58,14 @@ $track-thickness: 2px;
 
 		&-start {
 			position: absolute;
-			left: 0;
 			background: var(#{variables.$track-start-background-color});
 			block-size: 100%;
 			border-radius: inherit;
+			inset-inline-start: var(#{variables.$track-start-inset-inline-start});
 		}
 	}
 
-	&[aria-orientation="horizontal"] {
+	&.horizontal {
 		block-size: var(#{variables.$thumb-interaction-indicator-size});
 		inline-size: calc(100% - var(#{variables.$thumb-size}));
 		margin-inline-start: calc(var(#{variables.$thumb-size}) / 2);
@@ -82,7 +84,7 @@ $track-thickness: 2px;
 		}
 	}
 
-	&[aria-orientation="vertical"] {
+	&.vertical {
 		margin-top: calc(var(#{variables.$thumb-interaction-indicator-size}) / 2);
 		block-size: calc(100% - var(#{variables.$thumb-interaction-indicator-size}));
 		inline-size: var(#{variables.$thumb-interaction-indicator-size});
@@ -104,9 +106,9 @@ $track-thickness: 2px;
 		}
 
 		.track-start {
-			top: 0;
 			block-size: auto;
 			inline-size: 100%;
+			inset-block-start: var(#{variables.$track-start-inset-block-start});
 		}
 	}
 
@@ -133,7 +135,7 @@ $track-thickness: 2px;
 	outline-color: transparent;
 	touch-action: none;
 
-	:focus-visible & {
+	:focus-visible &, &:focus-visible {
 		@include focus.focus;
 
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -142,11 +144,11 @@ $track-thickness: 2px;
 		border-radius: #{border-radius-variables.$border-radius-full};
 	}
 
-	.control[aria-orientation="horizontal"] & {
+	.control.horizontal & {
 		transform: translateX(calc(var(#{variables.$thumb-interaction-indicator-size}) / 2));
 	}
 
-	.control[aria-orientation="vertical"] & {
+	.control.vertical & {
 		transform: translateY(calc(var(#{variables.$thumb-interaction-indicator-size}) / 2));
 	}
 

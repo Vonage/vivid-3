@@ -164,7 +164,7 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 
 Use the `graphic` slot in order to replace the icon.
 
-```html preview
+```html preview 200px
 <vwc-dialog open>
   <img slot="graphic" src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5">
 </vwc-dialog>
