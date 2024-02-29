@@ -15,13 +15,6 @@
 				"stylelint-config-idiomatic-order"
 			],
 			"rules": {
-				"plugin/no-unsupported-browser-features": [
-					true,
-					{
-						"ignore": ["rem", "multicolumn", "css3-cursors", "css-touch-action"],
-						"severity": "warning"
-					}
-				],
 				"order/properties-alphabetical-order": null,
 				"selector-max-id": null,
 				"selector-class-pattern": null,
