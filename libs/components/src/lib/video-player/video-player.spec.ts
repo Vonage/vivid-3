@@ -72,15 +72,17 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('src', () => {
-		describe('no src provided', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as VideoPlayer;
-			await elementUpdated(element);
-			const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
-			const dialogContentEl = getDialogContentEle();
-			expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
-			expect(dialogContentEl!.textContent).toBe('No compatible source was found for this media.');
+		describe('no src provided', () => {
+			it('should show the internal invalid src error message', async() => {
+				element = (await fixture(
+					`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+				)) as VideoPlayer;
+				await elementUpdated(element);
+				const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
+				const dialogContentEl = getDialogContentEle();
+				expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
+				expect(dialogContentEl!.textContent?.trim()).toBe('No compatible source was found for this media.');
+			});
 		});
 
 		describe('invalid src', () => {

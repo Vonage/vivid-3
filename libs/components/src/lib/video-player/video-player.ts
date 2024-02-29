@@ -49,7 +49,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @internal
 	 */
 	srcChanged() {
-		if (this.#player) {
+		if (this.player) {
 			this.#initVideo();
 		}
 	}
@@ -93,7 +93,7 @@ export class VideoPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	#player: any;
+	player: any;
 
 	/**
 	 * @internal
@@ -108,8 +108,8 @@ export class VideoPlayer extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.connectedCallback();
-		if (this.#player) {
-			this.#player.dispose();
+		if (this.player) {
+			this.player.dispose();
 		}
 	}
 
@@ -163,7 +163,7 @@ export class VideoPlayer extends FoundationElement {
 	 */
 	#initVideo() {
 		const settings = this.#getSettings();
-		if (this.#player) this.#player.dispose();
+		if (this.player) this.player.dispose();
 
 		this.#videoEle = document.createElement('video');
 		const trackEles = this.querySelectorAll('track');
@@ -173,17 +173,19 @@ export class VideoPlayer extends FoundationElement {
 		if (this.loop) this.#videoEle.setAttribute('loop', '');
 		if (this.autoplay) this.#videoEle.setAttribute('autoplay', '');
 		const control = this.shadowRoot!.querySelector('.control');
+		const noSourcesError = this.shadowRoot!.getElementById('no-sources');
 
 		if (settings.sources) {
+			noSourcesError?.classList.add('vjs-hidden');
 			control!.appendChild(this.#videoEle);
-			this.#player = videojs(this.#videoEle, settings);
+			this.player = videojs(this.#videoEle, settings);
 			this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
 			
-			this.#player.on('play', () => this.$emit('play'));
-			this.#player.on('pause', () => this.$emit('pause'));
-			this.#player.on('ended', () => this.$emit('ended'));
+			this.player.on('play', () => this.$emit('play'));
+			this.player.on('pause', () => this.$emit('pause'));
+			this.player.on('ended', () => this.$emit('ended'));
 		} else {
-			this.shadowRoot!.getElementById('no-sources')?.classList.remove('vjs-hidden');
+			noSourcesError?.classList.remove('vjs-hidden');
 		}
 	}
 }

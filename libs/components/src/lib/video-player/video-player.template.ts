@@ -23,7 +23,7 @@ export const VideoPlayerTemplate: (
 ) => html<VideoPlayer>`
 	<div class="${getClasses} video-js vjs-16-9 vjs-working-hover vjs-theme-vivid">
 		<div id="no-sources" class="vjs-error-display vjs-modal-dialog vjs-hidden">
-			<div class="vjs-modal-dialog-content" role="document">
+			<div class="vjs-modal-dialog-content">
 				${(x) => x.locale.videoPlayer['No compatible source was found for this media.']}
 			</div>
 		</div>
