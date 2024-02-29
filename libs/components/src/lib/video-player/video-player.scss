@@ -102,6 +102,10 @@
 		}
 	}
 
+	.vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+	}
+
 	/* stylelint-disable no-descending-specificity */
 	.vjs-subs-caps-button,
 	.vjs-chapters-button,
