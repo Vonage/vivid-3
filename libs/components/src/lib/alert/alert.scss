@@ -80,7 +80,7 @@ $alert-transition-delay: --transition-delay;
 	align-items: center;
 	padding: 16px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(--vvd-color-neutral-50);
+	background-color: var(#{constants.$vvd-color-neutral-50});
 	color: var(#{constants.$vvd-color-canvas-text});
 	column-gap: 16px;
 
