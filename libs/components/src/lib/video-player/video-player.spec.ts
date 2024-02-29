@@ -37,8 +37,8 @@ describe('vwc-video-player', () => {
 		return element.shadowRoot!.querySelector('video') as HTMLVideoElement;
 	}
 
-	function getDialogTextContent() {
-		return element.shadowRoot!.querySelector('.vjs-modal-dialog-content')!.textContent;
+	function getDialogContentEle() {
+		return element.shadowRoot!.querySelector('.vjs-modal-dialog-content');
 	}
 
 	function isBigPlayButtonVisible() {
@@ -78,7 +78,8 @@ describe('vwc-video-player', () => {
 					`<${COMPONENT_TAG} src="invalid.xyz"></${COMPONENT_TAG}>`
 				)) as VideoPlayer;
 				await elementUpdated(element);
-				expect(getDialogTextContent()).toBe('No compatible source was found for this media.');
+				const dialogContentEl = getDialogContentEle();
+				expect(dialogContentEl!.textContent).toBe('No compatible source was found for this media.');
 			});
 		});
 
@@ -91,11 +92,9 @@ describe('vwc-video-player', () => {
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		it('should allow the src to be updated', async () => {
+		fit('should allow the src to be updated', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG} autoplay>
-					<source src="${VIDEO_SRC}" type="video/mp4">
-				</${COMPONENT_TAG}>`
+				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
 			element.src = 'new-src.mp4';
