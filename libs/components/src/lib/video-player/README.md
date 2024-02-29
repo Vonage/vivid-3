@@ -19,8 +19,14 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player>
+<script>
+    function addSrc() {
+        document.getElementById('video').src = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4'
+    }
+</script>
+<vwc-video-player id="video">
 </vwc-video-player>
+<button onclick="addSrc()">Add src</button>
 ```
 
 #### Source element

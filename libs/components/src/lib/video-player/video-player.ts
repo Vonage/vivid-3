@@ -49,9 +49,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @internal
 	 */
 	srcChanged() {
-		if (this.player) {
-			this.#initVideo();
-		}
+		this.#initVideo();
 	}
 
 	/**
@@ -175,9 +173,9 @@ export class VideoPlayer extends FoundationElement {
 		const control = this.shadowRoot!.querySelector('.control');
 		const noSourcesError = this.shadowRoot!.getElementById('no-sources');
 
-		if (settings.sources) {
+		if (settings.sources && control) {
 			noSourcesError?.classList.add('vjs-hidden');
-			control!.appendChild(this.#videoEle);
+			control.appendChild(this.#videoEle);
 			this.player = videojs(this.#videoEle, settings);
 			this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
 			

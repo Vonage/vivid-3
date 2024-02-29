@@ -30,7 +30,7 @@ describe('vwc-video-player', () => {
 	});
 
 	function getBigPlayButton() {
-		return element.shadowRoot!.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
 	}
 
 	function getVideoEle() {
@@ -109,12 +109,14 @@ describe('vwc-video-player', () => {
 
 		it('should allow the src to be updated', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
+				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
+			let bigPlayBtn = getBigPlayButton();
+			expect(bigPlayBtn).toBeFalsy();
 			element.src = 'new-src.mp4';
 			await elementUpdated(element);
-			const bigPlayBtn = getBigPlayButton();
+			bigPlayBtn = getBigPlayButton();
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 	});
