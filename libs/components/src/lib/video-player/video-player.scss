@@ -17,8 +17,8 @@
 		$big-play-btn-size: 60px;
 		$big-play-btn-offset: calc($big-play-btn-size / 2);
 
-		background-color: $control-background-color;
 		border-radius: #{border-radius-variables.$border-radius-full};
+		background-color: $control-background-color;
 		block-size: $big-play-btn-size;
 		inline-size: $big-play-btn-size;
 		line-height: calc($big-play-btn-size - 5px);
@@ -58,9 +58,9 @@
 	}
 
 	.vjs-control-bar {
+		border-radius: #{border-radius-variables.$border-radius-normal};
 		margin: 4px;
 		background-color: $control-background-color;
-		border-radius: #{border-radius-variables.$border-radius-normal};
 		block-size: $control-size;
 		inline-size: calc(100% - 8px);
 	}
