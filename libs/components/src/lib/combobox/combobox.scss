@@ -53,7 +53,7 @@
 }
 
 
-/*focus*/
+/* focus */
 @supports selector(:has(*)) {
 .fieldset:has(.control:focus-within)::after {
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
