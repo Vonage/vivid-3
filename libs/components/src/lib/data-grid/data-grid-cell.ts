@@ -77,7 +77,7 @@ export class DataGridCell extends FoundationDataGridCell {
 	/**
 	 * @internal
 	 */
-	_handleInteraction() {
+	_handleInteraction(): boolean {
 		const isHeaderCell = this.cellType === 'columnheader';
 		const isSortable = isHeaderCell && this.ariaSort !== null;
 
@@ -99,6 +99,7 @@ export class DataGridCell extends FoundationDataGridCell {
 				columnDataKey: this.#getColumnDataKey(),
 			});
 		}
+		return true;
 	}
 }
 
