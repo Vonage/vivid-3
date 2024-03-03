@@ -19,6 +19,6 @@ $padding: 16px;
 	gap: 10px;
 }
 
-::slotted([slot=action-items]) {
+::slotted([slot="action-items"]) {
 	margin-block-start: $padding;
 }
