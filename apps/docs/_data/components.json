@@ -289,5 +289,9 @@
 	{
 		"title": "Audio Player",
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
+	},
+	{
+		"title": "Dial Pad",
+		"markdown": "./libs/components/src/lib/dial-pad/README.md"
 	}
 ]

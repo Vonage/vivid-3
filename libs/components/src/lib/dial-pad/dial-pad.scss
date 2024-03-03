@@ -1,0 +1,27 @@
+.base {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    inline-size: 230px;
+    margin: 16px;
+}
+
+.digit-btn {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #b3b3b3;
+    border-radius: 6px;
+    --vvd-button-accent-primary: var(--vvd-color-neutral-600);
+}
+
+.call-btn {
+    grid-column: 1/-1;
+}
+
+.phone-field {
+    grid-column: 1 / -1;
+    --vvd-size-density: 2;
+    border-bottom: 1px solid black;
+    align-self: flex-start;
+}
