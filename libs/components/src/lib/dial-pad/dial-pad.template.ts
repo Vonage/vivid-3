@@ -8,6 +8,17 @@ import type { DialPad } from './dial-pad';
 
 const getClasses = (_: DialPad) => classNames('base');
 
+function renderTextField(context: ElementDefinitionContext) {
+	const textFieldTag = context.tagFor(TextField);
+	const buttonTag = context.tagFor(Button);
+
+	return html`<${textFieldTag} appearance="ghost" placeholder="Enter a phone Number"
+         helper-text="58 Meeting Room - Extension" class="phone-field">
+            <${buttonTag} slot='action-items' size='condensed' icon="close-small-solid" 
+            aria-label='clear field' shape='pill' appearance='ghost'></${buttonTag}>
+         </${textFieldTag}>`;
+}
+
 /**
  * The template for the DialPad component.
  *
@@ -17,11 +28,10 @@ const getClasses = (_: DialPad) => classNames('base');
 export const DialPadTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition
 ) => ViewTemplate<DialPad> = (context: ElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
-	const textFieldTag = context.tagFor(TextField);
 
 	return html`
     <div class="${getClasses}">
-        <${textFieldTag} appearance="ghost" placeholder="Enter a phone Number" class="phone-field" class="inner-field"></${textFieldTag}>
+        ${renderTextField(context)}
         
         <${buttonTag} icon='one-solid' stacked label=' ' size='condensed' class="digit-btn" aria-label="1"></${buttonTag}>
         <${buttonTag} icon='two-solid' stacked label='ABC' size='condensed' class="digit-btn" aria-label="2 ABC"></${buttonTag}>
