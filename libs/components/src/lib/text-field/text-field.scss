@@ -2,7 +2,6 @@
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
@@ -89,8 +88,8 @@ $low-ink-color: --_low-ink-color;
 	&::after {
 		position: absolute;
 		display: block;
-		block-size: 100%;
 		border-radius: inherit;
+		block-size: 100%;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 		content: "";
 		inline-size: 100%;
@@ -122,11 +121,10 @@ $low-ink-color: --_low-ink-color;
 	inline-size: 100%;
 }
 
-.control {
-	border-radius: inherit;
-}
 
 .control {
+	border-radius: inherit;
+
 	&:not(slot),
 	&::slotted(input) {
 		/* As input is in light dom, use !important and initial to prevent values getting overridden by global CSS resets etc. */
@@ -142,9 +140,9 @@ $low-ink-color: --_low-ink-color;
 		block-size: 100% !important;
 		color: inherit !important;
 		font: inherit;
+		outline: transparent;
 		padding-block: 0 !important;
 		padding-inline: var(#{variables.$text-field-gutter-start}) var(#{variables.$text-field-gutter-end}) !important;
-		outline: none;
 	}
 
 	&:not(slot):disabled,
@@ -194,14 +192,28 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
- //this is best - but using :has
-.fieldset:has(.wrapper .control:focus-within)::after {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+/*focus*/
+@supports selector(:has(*)) {
+	.fieldset:has(.wrapper .control:focus-within)::after {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	@include focus.focus;
+		@include focus.focus;
+	}
 }
 
+@supports not selector(:has(*)) {
+	.wrapper:focus-within::after {
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{focus-variables.$focus-inset}: -1px;
 
-
+		position: absolute;
+		z-index: 1;
+		display: block;
+		border-radius: inherit;
+		content: "";
+		inset: 0;
+	}
+}
 
 
