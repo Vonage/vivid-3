@@ -50,8 +50,8 @@ ol {
 .calendar-grid-presentation {
 	display: grid;
 	overflow: hidden;
-	background: var(#{constants.$vvd-color-surface-2dp});
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	background: var(#{constants.$vvd-color-surface-2dp});
 	counter-reset: listing;
 	filter: var(#{constants.$vvd-shadow-surface-2dp});
 	gap: variables.$gap;
@@ -105,15 +105,7 @@ ol {
 		z-index: -1;
 		background-color: var(#{constants.$vvd-color-information-400});
 		content: "";
-		@supports (inset: 0) {
-			inset: 0;
-		}
-		@supports not (inset: 0) {
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-		}
+		inset: 0;
 	}
 	&:focus {
 		outline: none;
@@ -129,6 +121,7 @@ ol {
 		position: relative;
 		grid-column: var(--column);
 		grid-row: 1 / #{variables.$total-rows + 1};
+
 		@for $i from 1 through variables.$total-columns {
 			&:nth-child(#{$i}) {
 				--column: #{$i};
@@ -158,12 +151,7 @@ ol {
 			> em {
 				font: inherit;
 				inline-size: min-content;
-				@supports (inset: 0) {
-					inset-inline-start: 0;
-				}
-				@supports not (inset: 0) {
-					left: 0;
-				}
+				inset-inline-start: 0;
 			}
 			> small {
 				font: var(#{constants.$vvd-typography-base-condensed});

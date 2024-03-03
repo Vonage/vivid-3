@@ -20,9 +20,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: #{border-radius-variables.$border-radius-full};
 	background-color: var(#{constants.$vvd-color-neutral-100});
 	block-size: 120px;
-	border-radius: #{border-radius-variables.$border-radius-full};
 	inline-size: 120px;
 }
 

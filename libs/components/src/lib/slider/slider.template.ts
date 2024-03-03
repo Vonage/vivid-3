@@ -12,7 +12,7 @@ const getClasses = ({ disabled, connotation }: Slider) =>
 		[`connotation-${connotation}`, Boolean(connotation)],
 	);
 
-const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
+export const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 	const placeholder = isHorizontal
 		? ['right', 'center', '', '100% repeat-x']
 		: ['bottom', 'top', '100%', 'repeat-y'];
