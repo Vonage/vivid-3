@@ -193,6 +193,7 @@ $low-ink-color: --_low-ink-color;
 }
 
 /* focus */
+
 @supports selector(:has(*)) {
 	.fieldset:has(.wrapper .control:focus-within)::after {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -205,7 +206,6 @@ $low-ink-color: --_low-ink-color;
 	.wrapper:focus-within::after {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
-		#{focus-variables.$focus-inset}: -1px;
 
 		position: absolute;
 		z-index: 1;
