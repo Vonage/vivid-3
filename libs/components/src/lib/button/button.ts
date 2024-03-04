@@ -109,6 +109,18 @@ export class Button extends FoundationButton {
 	}) pending = false;
 
 	/**
+	 * Displays the button in active state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: active
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'active',
+	}) active = false;
+
+	/**
 	 * Indicates the button's label.
 	 *
 	 * @public

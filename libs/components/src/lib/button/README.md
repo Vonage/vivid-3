@@ -188,6 +188,19 @@ Semantically, buttons are usually used for triggering actions, while links are u
 <vwc-button label="Button with a link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank"></vwc-button>
 ```
 
+### Active
+
+Set the `active` attribute to make the button appear pressed.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-button appearance='ghost' label='ghost' active></vwc-button>
+<vwc-button appearance='filled' label='filled' active></vwc-button>
+<vwc-button appearance='outlined' label='outlined' active></vwc-button>
+```
+
 ## Slots
 
 ### Icon
