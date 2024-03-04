@@ -12,9 +12,9 @@ function renderTextField(context: ElementDefinitionContext) {
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
 
-	return html`<${textFieldTag} appearance="ghost" placeholder="Enter a phone Number"
-         helper-text="58 Meeting Room - Extension" class="phone-field">
-            <${buttonTag} slot='action-items' size='condensed' icon="close-small-solid" 
+	return html`<${textFieldTag} appearance="ghost" placeholder="${x => x.placeholder}"
+         helper-text="${x => x.helperText}" class="phone-field">
+            <${buttonTag} slot='action-items' size='condensed' icon="close-solid" 
             aria-label='clear field' shape='pill' appearance='ghost'></${buttonTag}>
          </${textFieldTag}>`;
 }

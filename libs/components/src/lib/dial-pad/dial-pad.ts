@@ -8,11 +8,29 @@ import { attr } from '@microsoft/fast-element';
  */
 export class DialPad extends FoundationElement {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the helper-text's text.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: helper-text
 	 */
-	@attr text?: string;
+	@attr({ attribute: 'helper-text' }) helperText: string | null = null;
+
+	/**
+	 * Indicates the placeholder's text.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: placeholder
+	 */
+	@attr placeholder: string | null = null;
+
+	/**
+	 * Indicates the disabled state of the dial-pad.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: disabled
+	 */
+	@attr({ mode: 'boolean' }) disabled: boolean = false;
 }

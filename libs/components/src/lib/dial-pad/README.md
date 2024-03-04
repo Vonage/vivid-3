@@ -12,6 +12,52 @@ This is a composed component that allows users to enter / dial telephone numbers
 <vwc-dial-pad></vwc-dial-pad>
 ```
 
+## Members
+
+### Helper Text
+
+To give extra context to the number that is being displayed, use the `helper-text` attribute to set the text displayed under the input.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-dial-pad helper-text="58 Meeting Room - Extension"></vwc-dial-pad>
+```
+
+### Placeholder
+
+To give a hint to the user of what to enter in the input, use the `placeholder` attribute to set the text displayed in the input.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-dial-pad placeholder="Enter a number"></vwc-dial-pad>
+```
+
+### Pattern
+
+To restrict the input to only allow certain characters, use the `pattern` attribute to set the regex string of allowed characters in the input.
+
+- Type: `string`
+- Default: `^[0-9#*]*$`
+
+```html preview
+<vwc-dial-pad pattern="^[0-9#*]*$"></vwc-dial-pad>
+```
+
+### Disabled
+
+Use the `disabled` attribute to disable the keypad, input and Call/End call buttons.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dial-pad disabled></vwc-dial-pad>
+```
+
 ## CSS Variables
 
 ## Events
@@ -31,7 +77,7 @@ This is a composed component that allows users to enter / dial telephone numbers
 
 </div>
 
-## Properties
+<!-- ## Properties
 
 <div class="table-wrapper">
 
@@ -44,7 +90,7 @@ This is a composed component that allows users to enter / dial telephone numbers
 | `disabled`      | `boolean` | `false`                         | Disables the dialpad interactions. Keypad, input and Call/End call buttons.                         |
 | `auto-focus`    | `boolean` | `false`                         | Focuses on the input element when first loaded.                                                     |
 
-</div>
+</div> -->
 
 ## Accessibility
 
