@@ -8,7 +8,7 @@
       inline-size: calc(100vw-32px);
     }
     vwc-data-grid-cell {
-      min-inline-size: 80px;
+      min-inline-size: 110px;
     }
     vwc-data-grid-cell:first-child {
       position: sticky;
