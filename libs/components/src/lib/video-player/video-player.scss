@@ -173,6 +173,10 @@
 		offset-block-end: 70px;
 	}
 
+	.vjs-modal-dialog-content {
+		text-align: center;
+	}
+
 	@container (max-inline-size: 660px) {
 		.vjs-skip-backward-5,
 		.vjs-skip-forward-5,

@@ -41,6 +41,11 @@ describe('vwc-video-player', () => {
 		return element.shadowRoot!.querySelector('.vjs-modal-dialog-content');
 	}
 
+	function getTrackEles() {
+		const videoEle = getVideoEle();
+		return videoEle?.querySelectorAll('track');
+	}
+
 	function isBigPlayButtonVisible() {
 		const btn = getBigPlayButton();
 		if (!btn) return false;
@@ -88,19 +93,6 @@ describe('vwc-video-player', () => {
 				const dialogContentEl = getDialogContentEle();
 				expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
 				expect(dialogContentEl!.textContent?.trim()).toBe('No compatible source was found for this media.');
-			});
-		});
-
-		describe('invalid src', () => {
-			xit('should show the invalid src error message', async() => {
-				element = (await fixture(
-					`<${COMPONENT_TAG} src="invalid.xyz"></${COMPONENT_TAG}>`
-				)) as VideoPlayer;
-				await elementUpdated(element);
-				const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
-				const dialogContentEl = getDialogContentEle();
-				expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
-				expect(dialogContentEl!.textContent).toBe('No compatible source was found for this media.');
 			});
 		});
 
@@ -186,9 +178,9 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('captions', () => {
-		xit('should display the captions button and menu', async () => {
+		it('should add captions tracks as children of the video element', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG} playback-rates="">
+				`<${COMPONENT_TAG}>
 					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track
 						kind="captions"
@@ -204,16 +196,19 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			expect(element.shadowRoot!.querySelectorAll('[kind="captions"]').length).toBe(2);
-			// const subsCapsBtn = element.shadowRoot!.querySelector('.vjs-subs-caps-button');
-			// console.log(subsCapsBtn?.innerHTML);
+			const trackEles = getTrackEles();
+			expect(trackEles.length).toBe(2);
+			expect(trackEles[0].getAttribute('label')).toBe('English');
+			expect(trackEles[0].getAttribute('kind')).toBe('captions');
+			expect(trackEles[1].getAttribute('label')).toBe('French');
+			expect(trackEles[1].getAttribute('kind')).toBe('captions');
 		});
 	});
 
 	describe('audio descriptions', () => {
-		it('should display the audio description button and menu', async () => {
+		it('should add descriptions tracks as children of the video element', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG} playback-rates="">
+				`<${COMPONENT_TAG}>
 					<source src="${VIDEO_SRC}" type="video/mp4">
 					<track
 						kind="descriptions"
@@ -221,20 +216,25 @@ describe('vwc-video-player', () => {
 						label="English"
 						srclang="en"
 						default>
-    				<track
-							kind="descriptions"
-							src="descriptions.fr.vtt"
-							label="French"
-							srclang="fr">
+					<track
+						kind="descriptions"
+						src="descriptions.fr.vtt"
+						label="French"
+						srclang="fr">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			expect(element.shadowRoot!.querySelectorAll('[kind="descriptions"]').length).toBe(2);
+			const trackEles = getTrackEles();
+			expect(trackEles.length).toBe(2);
+			expect(trackEles[0].getAttribute('label')).toBe('English');
+			expect(trackEles[0].getAttribute('kind')).toBe('descriptions');
+			expect(trackEles[1].getAttribute('label')).toBe('French');
+			expect(trackEles[1].getAttribute('kind')).toBe('descriptions');
 		});
 	});
 
 	describe('chapters', () => {
-		it('should display the chapters button and menu', async () => {
+		it('should add chapter track as child of the video element', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
 					<source src="${VIDEO_SRC}" type="video/mp4">
@@ -242,7 +242,9 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			expect(element.shadowRoot!.querySelector('[kind="chapters"]')).not.toBe(null);
+			const trackEles = getTrackEles();
+			expect(trackEles.length).toBe(1);
+			expect(trackEles[0].getAttribute('kind')).toBe('chapters');
 		});
 	});
 

@@ -19,13 +19,7 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<script>
-    function addAutoplay() {
-        document.getElementById('video').src = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4'
-    }
-</script>
-<vwc-video-player id="video"></vwc-video-player>
-<button onclick="addSrc()">Add src</button>
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4"></vwc-video-player>
 ```
 
 #### Source element
@@ -207,10 +201,9 @@ When `loop` is set, the video will restart automatically when it reaches the end
         document.getElementById('video').autoplay = true;;
     }
 </script>
-<vwc-video-player id="video" loop>
+<vwc-video-player autoplay loop>
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
 </vwc-video-player>
-<button onclick="addAuto()">Add autoplay</button>
 ```
 
 ## Events

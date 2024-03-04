@@ -178,8 +178,9 @@ export class VideoPlayer extends FoundationElement {
 	 * @internal
 	 */
 	#initVideo() {
-		const settings = this.#getSettings();
 		if (this.player) this.player.dispose();
+		const settings = this.#getSettings();
+		const noSourcesError = this.shadowRoot!.getElementById('no-sources');
 
 		this.#videoEle = document.createElement('video');
 		const trackEles = this.querySelectorAll('track');
@@ -189,13 +190,13 @@ export class VideoPlayer extends FoundationElement {
 		if (this.loop) this.#videoEle.setAttribute('loop', '');
 		if (this.autoplay) this.#videoEle.setAttribute('autoplay', '');
 		const control = this.shadowRoot!.querySelector('.control');
-		const noSourcesError = this.shadowRoot!.getElementById('no-sources');
 
 		if (settings.sources && control) {
 			noSourcesError?.classList.add('vjs-hidden');
 			control.appendChild(this.#videoEle);
 			this.player = videojs(this.#videoEle, settings);
-			this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); // removes lang="current" from the component
+			// removes lang="current" to avoid clash with vivid localization
+			this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); 
 			
 			this.player.on('play', () => this.$emit('play'));
 			this.player.on('pause', () => this.$emit('pause'));
