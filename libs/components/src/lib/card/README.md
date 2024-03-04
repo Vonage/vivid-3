@@ -81,6 +81,16 @@ Add a `text` attribute to add text to the card.
 <vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline" text="The card can contain multiple lines of text."></vwc-card>
 ```
 
+### With-Hover
+
+```html preview
+<vwc-layout>
+<vwc-card with-hover appearance="elevated" headline="Vivid Card - Appearance Elevated" subtitle="this is the default appearance"></vwc-card>
+<vwc-card with-hover appearance="outlined" headline="Vivid Card - Appearance Outlined" subtitle="set a border to the card same as elevation='0' "></vwc-card>
+<vwc-card with-hover appearance="ghost" headline="Vivid Card - Appearance Ghost" subtitle="present the card template without background or shadow"></vwc-card>
+</vwc-layout>
+```
+
 ## Slots
 
 ### Graphic

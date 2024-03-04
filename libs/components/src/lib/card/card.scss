@@ -1,6 +1,18 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/card-variables" as card-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+	$connotations: accent,
+	$shades: primary primary-text primary-increment faint soft,
+	$default: accent,
+);
+@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
+@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+	$appearances: ghost,
+	$states: idle hover active,
+	$default: ghost,
+);
+@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 
 :host {
 	display: flex;
@@ -13,12 +25,19 @@
 }
 
 .wrapper {
+	@include appearance.appearance;
+	@include connotation.connotation (nav-item);
+
 	display: flex;
 	overflow: hidden;
 	flex-flow: column;
 	border-radius: inherit;
 	block-size: 100%;
-	color: var(#{constants.$vvd-color-canvas-text});
+	color: var(#{appearance.get-appearance-token(text)});
+
+	:host([with-hover]) & {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
 }
 
 .main-content {
