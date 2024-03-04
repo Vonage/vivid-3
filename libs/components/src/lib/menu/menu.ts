@@ -37,7 +37,7 @@ export class Menu extends FastMenu {
 	autoDismissChanged(oldValue?: boolean) {
 		if (oldValue === undefined) return;
 
-		this.#updateClickOutsideListener();
+		this.#updateClickOutsideListeners();
 	}
 
 	/**
@@ -81,12 +81,12 @@ export class Menu extends FastMenu {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.#updateClickOutsideListener();
+		this.#updateClickOutsideListeners();
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.#updateClickOutsideListener();
+		this.#updateClickOutsideListeners();
 	}
 
 	/**
@@ -115,20 +115,28 @@ export class Menu extends FastMenu {
 	}
 
 	#openIfClosed = () => {
-		// DOM.queueUpdate() is required to prevent the click event from
-		// being caught by the document click handler (added by openChanged)
 		if (!this.open) DOM.queueUpdate(() => this.open = true);
 	};
 
-	#updateClickOutsideListener = () => {
-		document.removeEventListener('click', this.#closeOnClickOutside);
+	#updateClickOutsideListeners = () => {
+		document.removeEventListener('click', this.#onClickOutsideCapture, true);
+		document.removeEventListener('click', this.#onClickOutside);
 		if (this.autoDismiss && this.isConnected) {
-			document.addEventListener('click', this.#closeOnClickOutside);
+			document.addEventListener('click', this.#onClickOutsideCapture, true);
+			document.addEventListener('click', this.#onClickOutside);
 		}
 	};
 
-	#closeOnClickOutside = (e: Event) => {
-		if (!this.contains(e.target as Node)) this.open = false;
+	#wasOpenBeforeClick = new WeakMap<Event, boolean>();
+
+	#onClickOutsideCapture = (e: Event) => {
+		this.#wasOpenBeforeClick.set(e, this.open);
+	};
+
+	#onClickOutside = (e: Event) => {
+		if (!this.contains(e.target as Node) && this.#wasOpenBeforeClick.get(e)) {
+			this.open = false;
+		}
 	};
 
 	/**
