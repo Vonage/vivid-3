@@ -1,6 +1,6 @@
 # Roadmap
 
-## In Progress Components
+## In Progress
 
 <style>
   @media screen and (max-width: 768px){
@@ -22,7 +22,7 @@
 <vwc-data-grid selection-mode="single-row">
   <vwc-data-grid-row role="row" class="header" row-type="header">
     <vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-      Component
+      Name
     </vwc-data-grid-cell>
     <vwc-data-grid-cell cell-type="columnheader" role="columnheader">
       Discovery
@@ -42,7 +42,7 @@
       <vwc-button label="In Progress" target="_blank" href="https://confluence.vonage.com/display/VIVID/Video+component+spike" connotation="cta"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In Progress" target="_blank" href="" connotation="cta"></vwc-button>
+      <vwc-button label="In Progress" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=23%3A13702&mode=design&t=PGI1aODhsHS1YDhV-1" connotation="cta"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="In progress" target="_blank" href="https://jira.vonage.com/browse/VIV-1486" connotation="cta"></vwc-button>
@@ -70,7 +70,7 @@
       <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/pages/viewpage.action?spaceKey=VIVID&title=Dial+pad" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-    <vwc-button label="In Progress" target="_blank" href="" connotation="cta"></vwc-button>
+    <vwc-button label="In Progress" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" connotation="cta"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="In Progress" target="_blank" href="https://jira.vonage.com/browse/VIV-1512" connotation="cta"></vwc-button>
@@ -80,7 +80,7 @@
 </vwc-elevation>
 
 
-## Completed Components
+## Completed
 
 {% assign sortedComponents = components | sort: 'title' %}
 
@@ -88,7 +88,7 @@
 <vwc-data-grid>
   <vwc-data-grid-row row-type="header">
     <vwc-data-grid-cell cell-type="columnheader">
-      Component
+      Name
     </vwc-data-grid-cell>
     <vwc-data-grid-cell cell-type="columnheader">
       Status
