@@ -1,0 +1,326 @@
+WEBVTT
+
+NOTE
+Title: Text Description Track for Elephants Dream
+License: CC BY-SA 4.0 http://creativecommons.org/licenses/by-sa/4.0/
+Author: JJ Hunt (http://www.jjhunt.com)
+Date: Feb-14-2017
+* This track uses inline WebVTT CSS styles, <v.> voice markup (see https://w3c.github.io/webvtt/#styling),
+* and css3-speech rate properties (see https://www.w3.org/TR/css3-speech/#voice-props-voice-rate)
+* These features are not widely supported yet, but should not cause
+* any problems for compliant WebVTT processing/display systems.
+
+
+STYLE
+::cue(.fast) { voice-rate: fast; }
+::cue(.x-fast) { voice-rate: x-fast; }
+
+1
+00:00:00.500 --> 00:00:05.000
+Titles appear under the rippling water
+that floods a grungy tile floor:
+
+2
+00:00:05.750 --> 00:00:08.250
+"the orange open movie project presents"
+
+3
+00:00:09.750 --> 00:00:11.250
+"elephants dream"
+
+4
+00:00:11.750 --> 00:00:14.000
+An old man’s face is reflected in the water.
+
+5
+00:00:26.750 --> 00:00:28.750
+He looks up.
+
+6
+00:00:30.000 --> 00:00:36.750
+The old man shoves young Emo to the floor of a bridge
+as a flurry of thick black cables zips by.
+
+7
+00:00:37.000 --> 00:00:43.000
+The cables plug themselves into banks of sockets
+that line the walls of a steel chasm.
+
+8
+00:00:43.250 --> 00:00:46.000
+The ever-changing web of cables moves on.
+
+9
+00:00:48.000 --> 00:00:51.000
+Dirty and gaunt, Emo considers.
+
+10
+00:01:09.000 --> 00:01:15.500
+Balding and stooped with sideburns and a beak-like nose,
+the old man, Proog, leads them off the bridge.
+
+11
+00:01:18.000 --> 00:01:20.750
+He pulls Emo through a slit in the wall.
+
+12
+00:01:21.250 --> 00:01:27.000
+They enter a dark, cavernous space
+filled with cables transmitting bolts of light.
+
+13
+00:01:29.000 --> 00:01:33.500
+A suspended path of rectangular panels
+crosses the immense room.
+
+14
+00:01:36.000 --> 00:01:38.500
+They run along the winding path.
+
+15
+00:01:41.000 --> 00:01:46.000
+On the overhead wires, small robotic birds
+take notice and begin to fly about.
+
+16
+00:01:48.000 --> 00:01:53.500
+One of the panels flips when Proog steps on it,
+forcing him to run on the underside of the path!
+
+17
+00:01:54.000 --> 00:01:58.000
+Emo continues along the top with Proog defying gravity beneath him.
+
+18
+00:02:01.000 --> 00:02:06.000
+More panels flip, but the pair keeps running
+whether right-side up or upside down.
+
+19
+00:02:12.000 --> 00:02:16.000
+The path abruptly ends and the two men slide to a stop.
+
+20
+00:02:23.000 --> 00:02:27.000
+Several birds lift off of their wires,
+and swoop down on them!
+
+21
+00:02:30.000 --> 00:02:32.000
+Everything turns black.
+
+22
+00:02:36.000 --> 00:02:39.500
+A red carpet lies on the floor of a small, dark room.
+
+23
+00:02:39.750 --> 00:02:44.000
+Above it, a single light shines down on an old-fashioned telephone.
+
+24
+00:02:44.250 --> 00:02:48.000
+When Emo reaches out to answer it, Proog slaps his hand.
+
+25
+00:02:57.000 --> 00:03:00.000
+The earpiece is full of carnivorous plants!
+
+26
+00:03:20.000 --> 00:03:24.000
+The projection of a rotary telephone ticks away like a wall clock.
+
+27
+00:03:36.500 --> 00:03:41.500
+In the corner, a typewriter robot taps at its keypad.
+
+28
+00:03:41.750 --> 00:03:45.000
+Proog picks up a sharp walking stick, and leads Emo out of the room.
+
+29
+00:03:46.000 --> 00:03:52.000
+Emerging from a drainpipe, a small duck-like robot swims through the air.
+
+30
+00:03:53.000 --> 00:03:59.000
+The two men proceed along a short plank
+that extends into a vast, dark space.
+
+31
+00:04:03.000 --> 00:04:05.000
+Tossing his walking stick...
+
+32
+00:04:07.000 --> 00:04:21.000
+...Proog steps off the plank!
+Robotic arms rise up to meet his feet!
+The two men cross the void using the robotic arms like intuitive stepping stones.
+Proog dances, kicking his legs and waving his arms.
+
+33
+00:04:23.000 --> 00:04:25.000
+Emo walks calmly behind him.
+
+34
+00:04:40.000 --> 00:04:42.000
+An arm whacks the duck-like robot.
+
+35
+00:04:53.000 --> 00:04:59.000
+Reaching the other side,
+they step into a small room
+with walls resembling mottled marble.
+
+36
+00:05:04.000 --> 00:05:19.000
+The doors slide shut, and Proog presses a red button.
+The room lurches - they’re inside an elevator capsule!
+A giant metal arm hurls the capsule up a massive shaft
+past jagged steel doors that shut behind them like mechanical sphincters.
+
+37
+00:05:21.000 --> 00:05:29.000
+Up above, a robotic bird pecks at a scrap of metal.
+The capsule whips by into the grip of another giant arm.
+
+38
+00:05:33.000 --> 00:05:40.000
+They’re launched further up the shaft.
+The capsule breaks apart leaving Proog and Emo on a fast-moving platform.
+
+39
+00:05:47.000 --> 00:05:49.000
+Proog watches the walls of the shaft whip by.
+
+40
+00:05:54.000 --> 00:05:59.000
+The platform rises into a concave land dotted with steel towers.
+
+41
+00:06:20.000 --> 00:06:22.000
+They descend down another shaft.
+
+42
+00:06:25.000 --> 00:06:39.000
+The platform lands on a narrow bridge.
+Wires tumble in glass drums beneath their feet,
+while movie projectors with legs lumber along beside them.
+Proog finds his walking stick, and a door is projected onto the wall.
+
+43
+00:06:55.000 --> 00:06:57.000
+He presses a button on his walking stick.
+
+44
+00:07:00.000 --> 00:07:01.000
+<v.x-fast>The space changes!</v>
+
+45
+00:07:05.000 --> 00:07:07.000
+They stand in a small, tiled room.
+
+46
+00:07:39.000 --> 00:07:40.000
+Gritting his teeth...
+
+47
+00:07:41.000 --> 00:07:43.000
+...Proog slaps him!
+
+48
+00:07:49.000 --> 00:07:52.000
+<v.fast>When Emo strides off the room extends to allow it.</v>
+
+49
+00:08:03.000 --> 00:08:05.000
+Giant metal worms appear!
+
+50
+00:08:07.000 --> 00:08:09.000
+They break down the walls!
+
+51
+00:08:22.000 --> 00:08:24.000
+Proog covers his face.
+
+52
+00:08:26.000 --> 00:08:29.000
+Giant hands rise up behind him!
+
+53
+00:08:31.000 --> 00:08:37.000
+He dives to the ground, avoiding their grip.
+Emo shrugs, and turns to leave.
+
+54
+00:08:39.000 --> 00:08:49.000
+Grabbing his walking stick, Proog leaps up, and clubs him over the head!
+When Emo collapses, the hands and worms wither and fall.
+
+55
+00:09:00.000 --> 00:09:04.000
+Kneeling beside Emo’s body, Proog hangs his head.
+
+56
+00:09:06.000 --> 00:09:11.000
+Emo’s hand lies motionless atop the tangle of lifeless metal worms.
+
+57
+00:09:26.000 --> 00:09:44.000
+Orange Open Movie Team:
+Director - Bassam Kurdali,
+Art Director - Andreas Goralczyk,
+Lead Artists - Matt Ebb, Bastian Salmela, Lee Salvemini,
+Technical Director - Toni Alatalo.
+
+58
+00:09:44.500 --> 00:09:51.000
+Audio Description:
+JJ Hunt,
+Music and Sound Design:
+Jan Morgenstern.
+
+59
+00:09:51.500 --> 00:09:57.000
+Emo:
+Cas Jansen,
+ Proog:
+Tygo Gernandt.
+
+60
+00:09:59.000 --> 00:10:10.000
+Screenplay:
+Pepijn Zwanenberg,
+Original Concept & Scenario:
+Andreas Goralczyk,
+Bassam Kurdali,
+Ton Roosendaal.
+
+61
+00:10:10.500 --> 00:10:23.000
+Elephants Dream has been realized with financial support from:
+The Netherlands Film Fund,
+Mondriaan Foundation,
+VSBfonds,
+Uni-Verse / EU Sixth Framework Programme
+
+62
+00:10:23.500 --> 00:10:33.000
+Produced By Ton Roosendaal.
+Copyright 2006,
+Netherlands Media Art Institute / Montevideo,
+Blender Foundation
+
+63
+00:10:33.500 --> 00:10:43.000
+This audio description track is published
+under a Creative Commons License.
+For details see <u>www.jjhunt.com</u>
+
+64
+00:10:44.000 --> 00:10:53.000
+This movie is published
+under a Creative Commons License.
+For details see <u>www.elephantsdream.org</u>
+
+NOTE This is the end of the WEBVTT file

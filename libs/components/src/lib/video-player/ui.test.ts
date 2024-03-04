@@ -21,19 +21,19 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<div class="layout">
 			<div class="spacer">
 				<vwc-video-player id="video-player" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-					<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
+					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 				</vwc-video-player>
 			</div>
 
 			<div class="spacer">
 				<vwc-video-player id="video-player-controls">
-					<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
+					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 				</vwc-video-player>
 			</div>
 
 			<div class="spacer">
 				<vwc-video-player id="video-player-controls-2">
-					<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
+					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 					<track kind="captions" 
 						src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English">
 					<track kind="descriptions" 
@@ -98,7 +98,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 test('should hide the track menu buttons when no track elements are provided', async ({ page }: { page: Page }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
+			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });
@@ -114,7 +114,7 @@ test('should hide the track menu buttons when no track elements are provided', a
 test('should show the button and populate the menu when adding caption tracks', async ({ page }: { page: Page }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
+			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 			<track kind="captions" 
 				src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English">
 		</vwc-video-player>`;
@@ -131,7 +131,7 @@ test('should show the button and populate the menu when adding caption tracks', 
 test('should show the button and populate the menu when adding audio description tracks', async ({ page }: { page: Page }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
+			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 			<track kind="descriptions" 
 				src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en">
 		</vwc-video-player>`;
@@ -148,8 +148,8 @@ test('should show the button and populate the menu when adding audio description
 test('should show the button when adding a chapter track', async ({ page }: { page: Page }) => {
 	const template = `
 		<vwc-video-player>
-			<source src="https://download.samplelib.com/webm/sample-5s.webm" type="video/webm">
-			<track kind="chapters" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt" srclang="en">
+			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
+			<track kind="chapters" src="/assets/ui-tests/chapters.en.vtt" srclang="en">
 		</vwc-video-player>`;
 
 	await loadComponents({ page, components });

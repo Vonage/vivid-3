@@ -191,8 +191,8 @@ export class VideoPlayer extends FoundationElement {
 		if (this.autoplay) this.#videoEle.setAttribute('autoplay', '');
 		const control = this.shadowRoot!.querySelector('.control');
 
-		if (settings.sources && control) {
-			noSourcesError?.classList.add('vjs-hidden');
+		if (settings.sources && control && noSourcesError) {
+			noSourcesError.classList.add('vjs-hidden');
 			control.appendChild(this.#videoEle);
 			this.player = videojs(this.#videoEle, settings);
 			// removes lang="current" to avoid clash with vivid localization
@@ -202,7 +202,7 @@ export class VideoPlayer extends FoundationElement {
 			this.player.on('pause', () => this.$emit('pause'));
 			this.player.on('ended', () => this.$emit('ended'));
 		} else {
-			noSourcesError?.classList.remove('vjs-hidden');
+			if (noSourcesError) noSourcesError.classList.remove('vjs-hidden');
 		}
 	}
 }

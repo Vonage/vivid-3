@@ -19,7 +19,7 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4"></vwc-video-player>
+<vwc-video-player src="/assets/images/ed_hd.mp4"></vwc-video-player>
 ```
 
 #### Source element
@@ -51,7 +51,7 @@ The poster image is displayed before the video has been interacted with. The `po
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
+<vwc-video-player poster="/assets/images/ed-poster.jpeg" src="/assets/images/ed_hd.mp4">
 </vwc-video-player>
 ```
 
@@ -78,9 +78,9 @@ The following attributes are available on the element:
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="captions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
+<vwc-video-player poster="/assets/images/ed-poster.jpeg">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
+    <track kind="captions" src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English" default>
 </vwc-video-player>
 ```
 
@@ -99,11 +99,11 @@ Subtitles can also be provided using the `track` element.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="subtitles" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
-    <track kind="subtitles" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="fr" label="French">
-    <track kind="subtitles" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="de" label="German">
+<vwc-video-player poster="/assets/images/ed-poster.jpeg">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
+    <track kind="subtitles" src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English" default>
+    <track kind="subtitles" src="/assets/ui-tests/captions.en.vtt" srclang="fr" label="French">
+    <track kind="subtitles" src="/assets/ui-tests/captions.en.vttt" srclang="de" label="German">
 </vwc-video-player>
 ```
 
@@ -121,9 +121,9 @@ Descriptions can also be provided using the `track` element.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="descriptions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en">
+<vwc-video-player poster="/assets/images/ed-poster.jpeg">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
+    <track kind="descriptions" src="/assets/ui-tests/descriptions.en.vtt" label="English" srclang="en">
     <track kind="captions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English">
 </vwc-video-player>
 ```
@@ -142,9 +142,9 @@ Chapters can also be provided using the `track` element.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="chapters" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt" srclang="en">
+<vwc-video-player poster="/assets/images/ed-poster.jpeg">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
+    <track kind="chapters" src="/assets/ui-tests/chapters.en.vtt" srclang="en">
 </vwc-video-player>
 ```
 
@@ -160,8 +160,8 @@ The playback rates option can be removed by passing an empty string.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+<vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="/assets/images/ed-poster.jpeg">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
 </vwc-video-player>
 ```
 
@@ -178,8 +178,8 @@ Setting them to `0` removes the buttons.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player skip-by="30" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+<vwc-video-player skip-by="30" poster="/assets/images/ed-poster.jpeg">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
 </vwc-video-player>
 ```
 
@@ -202,7 +202,7 @@ When `loop` is set, the video will restart automatically when it reaches the end
     }
 </script>
 <vwc-video-player autoplay loop>
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+    <source src="/assets/images/ed_hd.mp4" type="video/mp4">
 </vwc-video-player>
 ```
 
