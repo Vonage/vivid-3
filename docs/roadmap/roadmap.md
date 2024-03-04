@@ -4,6 +4,9 @@
 
 <style>
   @media screen and (max-width: 768px){
+    vwc-data-grid {
+      inline-size: calc(100vw-32px);
+    }
     vwc-data-grid-cell {
       min-inline-size: 80px;
     }
