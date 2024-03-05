@@ -96,17 +96,15 @@ Read more about [vwc-text-field validation](/components/text-field#validation).
 
 <div class="table-wrapper">
 
-| Name                | Description                                                                                            |
-| ------------------- | ------------------------------------------------------------------------------------------------------ |
-| `dial`              | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
-| `endCall`           | Emitted when the end call button is clicked                                                            |
+| Name           | Description                                                                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------ |
+| `dial`         | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
+| `endCall`      | Emitted when the end call button is clicked                                                            |
 | `keypad-click` | Emitted when a keypad button is clicked with the value of the button clicked                           |
-|                     |
-| `input`             | Emitted from the input element                                                                         |
-| `change`            | Emitted from the input element                                                                         |
-| `blur`              | Emitted from the input element                                                                         |
-| `focus`             | Emitted from the input element                                                                         |
-| `noCall`            | Disables call/end call functionality and hides the call/end call button                                |
+| `input`        | Emitted from the input element                                                                         |
+| `change`       | Emitted from the input element                                                                         |
+| `blur`         | Emitted from the input element                                                                         |
+| `focus`        | Emitted from the input element                                                                         |
 
 </div>
 
