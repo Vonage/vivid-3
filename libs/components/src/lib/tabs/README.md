@@ -1,7 +1,7 @@
 # Tabs
 
 Represents a tabs custom element.
-The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 ```js
 <script type="module">
@@ -202,7 +202,7 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 
 ### Slots
 
-Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that when activated, displays the `tab panel`.
+Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that when activated, displays the `tab panel`.
 
 
 ## Events

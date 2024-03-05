@@ -2,14 +2,12 @@
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/utils" as utils;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment intermediate firm fierce,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: fieldset,
 	$states: idle hover checked checkedAndHover disabled readonly,
@@ -52,8 +50,8 @@ $control-border: 2px;
 .control {
 	position: relative;
 	flex-shrink: 0;
-	block-size: $control-size;
 	border-radius: #{border-radius-variables.$border-radius-full};
+	block-size: $control-size;
 	box-shadow: inset 0 0 0 $control-border var(#{appearance.get-appearance-token(outline)});
 	inline-size: $control-size;
 
@@ -63,8 +61,8 @@ $control-border: 2px;
 
 	&::after {
 		position: absolute;
-		background-color: var(#{appearance.get-appearance-token(outline)});
 		border-radius: inherit;
+		background-color: var(#{appearance.get-appearance-token(outline)});
 		content: "";
 		inset: 5px;
 		opacity: 1;
@@ -84,8 +82,8 @@ $control-border: 2px;
 
 			position: absolute;
 			display: block;
-			block-size: $control-size;
 			border-radius: inherit;
+			block-size: $control-size;
 			content: "";
 			inline-size: $control-size;
 		}

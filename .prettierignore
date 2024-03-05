@@ -2,3 +2,17 @@
 
 /dist
 /coverage
+
+package-lock.json
+
+# Not yet formatted file types:
+**/*.js
+**/*.mjs
+**/*.cjs
+**/*.ts
+**/*.mts
+**/*.cts
+**/*.css
+**/*.scss
+**/*.vue
+**/*.md

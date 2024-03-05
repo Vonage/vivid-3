@@ -39,4 +39,3 @@ jobs:
         with:
           name: visual-regression-artifact
           path: test-results/
-

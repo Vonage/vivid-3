@@ -14,9 +14,7 @@
 		{
 			"type": "linked-versions",
 			"groupName": "vivid",
-			"components": [
-				"vivid", "vivid-vue"
-			]
+			"components": ["vivid", "vivid-vue"]
 		}
 	]
 }

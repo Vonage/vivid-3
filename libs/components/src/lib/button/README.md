@@ -40,7 +40,7 @@ Set the `appearance` attribute to change the button's appearance.
 ### Icon
 
 Use `icon` to set an icon to the button.
-View the list of available icons at the [vivid icons gallery](../../icons/icons-gallery).
+View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the button's purpose.
 
@@ -186,6 +186,19 @@ Semantically, buttons are usually used for triggering actions, while links are u
 
 ```html preview
 <vwc-button label="Button with a link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank"></vwc-button>
+```
+
+### Active
+
+Set the `active` attribute to make the button appear pressed.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-button appearance='ghost' label='ghost' active></vwc-button>
+<vwc-button appearance='filled' label='filled' active></vwc-button>
+<vwc-button appearance='outlined' label='outlined' active></vwc-button>
 ```
 
 ## Slots

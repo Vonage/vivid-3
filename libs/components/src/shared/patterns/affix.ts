@@ -69,7 +69,7 @@ ViewTemplate<AffixIcon> | null
 export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) => {
 
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string, slottedState = IconWrapper.Span, ariaHidden = IconAriaHidden.Visible) => {
+	return (icon?: string, slottedState = IconWrapper.Span, ariaHidden = IconAriaHidden.Hidden) => {
 		if (!icon && !slottedState) {
 			return html`<slot name="icon" aria-hidden="${() => ariaHidden}" ${slotted('iconSlottedContent')}></slot>`;
 		}

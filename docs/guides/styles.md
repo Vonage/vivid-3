@@ -71,7 +71,7 @@ The core theme styles will apply the appropriate `color`, `background-color` and
 
 The core typography styles will apply the Vivid typography presets to HTML elements such as `h1`, `h2`, `p` etc. and provide a set of utility classes (e.g. `font-base`) that can be used to apply the typography to any element.
 
-Learn how to use them in the [typography guidelines](/designs/typography#core-typography).
+Learn how to use them in the [typography guidelines](/designs/typography/#core-typography).
 
 Additionally, if the `vvd-root` class is applied to the `<html>` element, it will make the Vivid typography scale with the user-agent's font size settings.
 
@@ -117,4 +117,4 @@ This stylesheet is only needed if you are using both Vivid 2.x and Vivid 3.x com
 
 It is needed to solve the clashing of token names between Vivid 2.x and Vivid 3.x.
 
-Learn more in the [Vivid 2.x to Vivid 3.x Migration Guide](/guides/vivid-2-migration).
+Learn more in the [Vivid 2.x to Vivid 3.x Migration Guide](/guides/vivid-2-migration/).

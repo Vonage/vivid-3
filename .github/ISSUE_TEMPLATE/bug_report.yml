@@ -1,6 +1,5 @@
 name: Bug report 🐛
-description:
-  Something isn't working as expected? Here is the right place to report.
+description: Something isn't working as expected? Here is the right place to report.
 title: '[YOUR TITLE]: Brief description'
 assignees:
   - yonatankra, rachelbt, rinaok, yinonov, olaf-k
@@ -16,21 +15,21 @@ body:
     id: description
     attributes:
       label: Description
-      description: "What did you expect to happen? What happened instead?"
+      description: 'What did you expect to happen? What happened instead?'
     validations:
       required: true
   - type: textarea
     id: components
     attributes:
       label: Component(s) impacted
-      description: "Component(s) impacted? Please include screenshots, or code and relevant URLs."
+      description: 'Component(s) impacted? Please include screenshots, or code and relevant URLs.'
     validations:
       required: true
   - type: dropdown
     id: browser
     attributes:
       label: Browser
-      description: "What browser(s) are you working in?"
+      description: 'What browser(s) are you working in?'
       multiple: true
       options:
         - Chrome
@@ -41,7 +40,7 @@ body:
     id: version
     attributes:
       label: Vivid Web Components version
-      description: "What version of Vivid Web Components are you using?"
+      description: 'What version of Vivid Web Components are you using?'
       placeholder: e.g. v2.2.8
     validations:
       required: true
@@ -60,15 +59,14 @@ body:
     id: application
     attributes:
       label: Application/website
-      description: "What application/website do you work on?"
+      description: 'What application/website do you work on?'
     validations:
       required: true
   - type: input
     id: example-url
     attributes:
       label: CodeSandbox example
-      description:
-        'Use the
+      description: 'Use the
         [codesandbox examples](https://codesandbox.io/s/amazing-haslett-tnzsn)
         to help re-create the issue.'
     validations:
@@ -76,11 +74,11 @@ body:
   - type: textarea
     id: reproduce
     attributes:
-      label: "Steps to reproduce the issue (if applicable)"
+      label: 'Steps to reproduce the issue (if applicable)'
   - type: textarea
     id: release-date
     attributes:
-      label: "Release date (if applicable)"
+      label: 'Release date (if applicable)'
     validations:
       required: false
   - type: checkboxes
@@ -89,11 +87,9 @@ body:
       label: Code of Conduct
       description: Please confirm the following
       options:
-        - label:
-            I agree to follow this project's [Code of
+        - label: I agree to follow this project's [Code of
             Conduct](https://github.com/vonage/vivid-3/blob/main/.github/CODE_OF_CONDUCT.md)
           required: true
-        - label:
-            I checked the [current
+        - label: I checked the [current
             issues](https://github.com/vonage/vivid-3/issues) for
             duplicate issues
