@@ -51,7 +51,10 @@ The poster image is displayed before the video has been interacted with. The `po
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="/assets/images/ed-poster.jpeg" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4">
+<vwc-video-player
+    poster="/assets/images/ed-poster.jpeg"
+    src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4"
+>
 </vwc-video-player>
 ```
 
@@ -144,7 +147,7 @@ Chapters can also be provided using the `track` element.
 </style>
 <vwc-video-player poster="/assets/images/ed-poster.jpeg">
     <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="chapters" src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt" srclang="en">
+    <track kind="chapters" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt" srclang="en">
 </vwc-video-player>
 ```
 
