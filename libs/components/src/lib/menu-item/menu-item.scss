@@ -38,10 +38,10 @@
 	inline-size: 100%;
 
 	&:not(.two-lines) {
-		padding-inline: 12px;
-		padding-block: 10px;
 		gap: 12px;
 		min-block-size: #{size.$vvd-size-normal};
+		padding-block: 10px;
+		padding-inline: 12px;
 	}
 
 	&.two-lines {
