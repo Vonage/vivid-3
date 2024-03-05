@@ -1,5 +1,8 @@
 <template>
   <div class="example-container">
+    <VTooltip text="I'm a tooltip">
+      <template #anchor><VButton icon="help-line" shape="pill" /></template>
+    </VTooltip>
     <VButton id="buttonAnchor" icon="help-line" shape="pill" />
     <VTooltip anchor="buttonAnchor" text="I'm a tooltip" />
     <VButton ref="button" icon="help-line" shape="pill" />

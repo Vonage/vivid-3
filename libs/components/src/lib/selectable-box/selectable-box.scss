@@ -2,15 +2,13 @@
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
 @use "../../../../shared/src/lib/sass/utils" as utils;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: firm pale fierce faint soft,
+	$shades: firm-all pale fierce faint soft,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: duotone,
 	$states: idle hover selected selectedAndHover,
@@ -30,8 +28,8 @@
 	position: relative;
 	padding: var(#{variables.$spacing-var}, 16px);
 	border: 1px solid var(#{appearance.get-appearance-token(outline)});
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	inline-size: 100%;
 	padding-block-start: calc(var(#{variables.$spacing-var}, 16px) + 36px);
 	text-align: start;

@@ -1,6 +1,5 @@
 name: Feature Request 💡
-description:
-  Suggest a new idea for the project.
+description: Suggest a new idea for the project.
 title: '[YOUR TITLE]: Brief description'
 assignees:
   - yonatankra, rachelbt, rinaok, yinonov, olaf-k
@@ -13,21 +12,21 @@ body:
     id: problem
     attributes:
       label: The problem
-      description: "Provide a clear and concise description of what the problem this new feature is trying to solve. (For example, I find it frustrating when...)"
+      description: 'Provide a clear and concise description of what the problem this new feature is trying to solve. (For example, I find it frustrating when...)'
     validations:
       required: true
   - type: textarea
     id: solution
     attributes:
       label: The solution
-      description: "Provide a clear and concise description of what you would like to happen instead."
+      description: 'Provide a clear and concise description of what you would like to happen instead.'
     validations:
       required: true
   - type: input
     id: application
     attributes:
       label: Application/website
-      description: "What application/website do you work on?"
+      description: 'What application/website do you work on?'
     validations:
       required: true
   - type: dropdown
@@ -43,7 +42,7 @@ body:
   - type: textarea
     id: time-frame
     attributes:
-      label: "What time frame would this ideally be needed by (if applicable)"
+      label: 'What time frame would this ideally be needed by (if applicable)'
     validations:
       required: false
   - type: textarea

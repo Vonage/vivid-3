@@ -7,7 +7,6 @@ import type {
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Shape} from '../enums';
 import {getFeedbackTemplate} from '../../shared/patterns';
-import {focusTemplateFactory} from '../../shared/patterns/focus';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
 import type {NumberField} from './number-field';
@@ -88,7 +87,6 @@ export const NumberFieldTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<NumberField> = (context) => {
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<NumberField>`
 	<div class="base ${getStateClasses}">
@@ -132,7 +130,6 @@ export const NumberFieldTemplate: (
 							 aria-roledescription="${x => x.ariaRoledescription}"
 							 ${ref('control')}
 				/>
-				${() => focusTemplate}
 			</div>
 			${() => numberControlButtons(context)}
     </div>

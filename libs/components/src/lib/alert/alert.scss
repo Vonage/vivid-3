@@ -1,8 +1,6 @@
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent success information alert warning,
 	$shades: primary primary-text,
@@ -26,16 +24,14 @@ $alert-transition-delay: --transition-delay;
 
 	// placement
 	inset-block-end: 0;
-	inset-inline-end: 0;
-	inset-inline-start: 0;
+	inset-inline: 0 0;
 	margin-block: 16px;
 	margin-inline: auto;
 
 	&.placement-top,
 	&.placement-top-start,
 	&.placement-top-end {
-		inset-block-end: auto;
-		inset-block-start: 0;
+		inset-block: 0 auto;
 	}
 
 	&.placement-top-start,
@@ -70,6 +66,10 @@ $alert-transition-delay: --transition-delay;
 	max-inline-size: var(#{variables.$alert-max-inline-size}, fit-content);
 	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
 	transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+
+	@media (width <= 768px) {
+		min-inline-size: var(#{variables.$alert-min-inline-size}, auto);
+	}
 }
 
 .base {
@@ -79,8 +79,8 @@ $alert-transition-delay: --transition-delay;
 	display: flex;
 	align-items: center;
 	padding: 16px;
-	background-color: var(--vvd-color-neutral-50);
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	background-color: var(#{constants.$vvd-color-neutral-50});
 	color: var(#{constants.$vvd-color-canvas-text});
 	column-gap: 16px;
 

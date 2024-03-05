@@ -45,7 +45,7 @@ export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Si
  * @slot icon - Add an icon to the component.
  */
 export class Button extends FoundationButton {
-	@attr({converter: {fromView: (value) => value || null, toView: (value) => value || null}})
+	@attr({ converter: { fromView: (value) => value || null, toView: (value) => value || null } })
 	override title: string;
 	/**
 	 * The connotation the button should have.
@@ -108,6 +108,18 @@ export class Button extends FoundationButton {
 	}) pending = false;
 
 	/**
+	 * Displays the button in active state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: active
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'active',
+	}) active = false;
+
+	/**
 	 * Indicates the button's label.
 	 *
 	 * @public
@@ -116,11 +128,74 @@ export class Button extends FoundationButton {
 	 */
 	@attr label?: string;
 
+	/**
+	 * Indicates the button's href.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: href
+	 */
+	@attr href?: string;
+
+	/**
+	 * Indicates the button's download.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: download
+	 */
+	@attr download?: string;
+
+	/**
+	 * Indicates the button's hreflang.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: hreflang
+	 */
+	@attr hreflang?: string;
+
+	/**
+	 * Indicates the button's ping.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: ping
+	 */
+	@attr ping?: string;
+
+	/**
+	 * Indicates the button's referrerpolicy.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: referrerpolicy
+	 */
+	@attr referrerpolicy?: string;
+
+	/**
+	 * Indicates the button's rel.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: rel
+	 */
+	@attr rel?: string;
+
+	/**
+	 * Indicates the target's rel.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: target
+	 */
+	@attr target?: '_self' | '_blank' | '_parent' | '_top';
+
 	constructor() {
 		super();
 		this.title = '';
 	}
 }
 
-export interface Button extends AffixIconWithTrailing {}
+export interface Button extends AffixIconWithTrailing { }
 applyMixins(Button, AffixIconWithTrailing);

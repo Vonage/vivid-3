@@ -3,7 +3,7 @@
 The number-field component allows users to enter a number in a text field. It follows the [native number field](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) specification.
 
 The component is not appropriate for values that only happen to consist of numbers but aren't strictly speaking a number, e.g. phone numbers or ZIP codes. 
-Use the [`text-field`](./text-field) component instead.
+Use the [`text-field`](/components/text-field/) component instead.
 
 ```js
 <script type="module">

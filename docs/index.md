@@ -9,8 +9,8 @@
 		<div class="welcome__getting-started">
 			<div class="font-base-extended">Getting started with:</div>
 			<div class="welcome__buttons">
-				<vwc-button id="vue" label="Vue.js" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
-				<vwc-button id="webComponents" label="Web Components" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
+				<vwc-button label="Vue.js" href="/getting-started/vue" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
+				<vwc-button label="Web Components" href="/getting-started/web-components" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
 			</div>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 
 Vivid provides guidelines, components and tools to help product teams work more efficiently, deliver faster and safer, while providing end-users a single Vonage unique look & feel.
 
-Crafted as [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), the Vivid component library is interoperable with any modern JavaScript framework, or no framework at all.
+Crafted as [web components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components), the Vivid component library is interoperable with any modern JavaScript framework, or no framework at all.
 
 For Vue.js users, we offer a first-class integration through a [native Vue wrapper library](/getting-started/vue/).
 
@@ -194,7 +194,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button id="design" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/designs/guidelines/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 
 <vwc-card headline="Vivid 2 Migration" subtitle="Migration guidelines for a smooth and easy adoption.">
@@ -289,7 +289,7 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </linearGradient>
 </defs>
 </svg>
-<vwc-button id="migration" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/guides/vivid-2-migration/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 
 <vwc-card headline="Icons Gallery" subtitle="Vivid's Icons Gallery contains a wide range of high-quality icons.">
@@ -398,11 +398,12 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </clipPath>
 </defs>
 </svg>
-<vwc-button id="iconsGallery" slot="footer" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
+<vwc-button slot="footer" href="/icons/icons-gallery/" icon="arrow-bold-right-line" shape="pill" label="Continue" appearance="outlined"></vwc-button>
 </vwc-card>
 </vwc-layout>
 
 ## Support Matrix
+
 
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
 
@@ -412,7 +413,7 @@ Please read [CONTRIBUTING.md](https://github.com/Vonage/vivid-3/blob/main/.githu
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
+We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [npm page](https://www.npmjs.com/package/@vonage/vivid).
 
 ## Authors
 
@@ -434,26 +435,8 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - [Typescript](https://www.typescriptlang.org) - for ergonomic and type-safe code
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
 - [Floating UI](https://floating-ui.com) - for positioning floating elements
-- [Dropzone](https://dropzone.dev) - for handling dropped files
+- [Dropzone](https://www.dropzone.dev/) - for handling dropped files
 
 ## Have questions?
 
 Still looking for answers, ask us in [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) Slack channel.
-
-<script>
-  vue.onclick = () => {
-    window.location.href = '/getting-started/vue';
-  }
-  webComponents.onclick = () => {
-    window.location.href = '/getting-started/web-components';
-  }
-  design.onclick = () => {
-    window.location.href = '/designs/guidelines/';
-  }
-  migration.onclick = () => {
-    window.location.href = '/guides/vivid-2-migration/';
-  }
-  iconsGallery.onclick = () => {
-    window.location.href = '/icons/icons-gallery/';
-  }
-</script>

@@ -4,14 +4,12 @@
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 @use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert,
 	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
@@ -34,19 +32,18 @@
 	align-items: center;
 	justify-content: center;
 	border: 0 none;
+	border-radius: var(#{variables.$button-border-radius});
 	margin: 0;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$block-size});
-	border-radius: var(#{variables.$button-border-radius});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	gap: var(#{variables.$icon-gap});
+	text-decoration: none;
 	vertical-align: middle;
 
 	.text {
-		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
-		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: var(#{variables.$button-line-clamp}, 1);
@@ -83,9 +80,11 @@
 		contain: size;
 		padding-inline: 0;
 		place-content: center;
+
 		@supports (aspect-ratio: 1) {
 			aspect-ratio: 1;
 		}
+
 		@supports not (aspect-ratio: 1) {
 			inline-size: var(#{variables.$block-size});
 		}
@@ -148,21 +147,25 @@
 
 		&.size-super-condensed {
 			--stacked-size: #{size.$vvd-size-super-condensed};
+
 			@include mixins.get-size-properties(calc(var(--stacked-size) + 20 * 1px), #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
 		}
 
 		&.size-condensed {
 			--stacked-size: #{size.$vvd-size-condensed};
+
 			@include mixins.get-size-properties(calc(var(--stacked-size) + 24 * 1px), #{constants.$vvd-typography-base-condensed-bold}, 6px, 12px);
 		}
 
 		&.size-expanded {
 			--stacked-size: #{size.$vvd-size-expanded};
+
 			@include mixins.get-size-properties(calc(var(--stacked-size) + 32 * 1px), #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
 		}
 
 		&:not(.size-condensed, .size-expanded, .size-super-condensed) {
 			--stacked-size: #{size.$vvd-size-normal};
+
 			@include mixins.get-size-properties(calc(var(--stacked-size) + 28 * 1px), #{constants.$vvd-typography-base-bold}, 8px, 16px);
 		}
 	}
