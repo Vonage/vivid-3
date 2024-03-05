@@ -27,7 +27,6 @@ export class DialPad extends FoundationElement {
 	 */
 	@attr placeholder: string | null = null;
 
-
 	/**
 	 * Indicates the value's text.
 	 *
@@ -36,6 +35,15 @@ export class DialPad extends FoundationElement {
 	 * HTML Attribute: value
 	 */
 	@attr value: string | null = null;
+
+	/**
+	 * Indicates the dial pad's pattern.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: pattern
+	 */
+	@attr({ mode: 'fromView' }) pattern: string = '^[0-9#*]*$';
 
 	/**
 	 * Indicates the disabled state of the dial-pad.
@@ -73,9 +81,10 @@ export class DialPad extends FoundationElement {
 	 * @internal
 	 */
 	onDigit = (e: Event) => {
-		if (e.target === undefined || e.target === null || !(e.target instanceof Button)){
+		if (e.target === undefined || e.target === null || !(e.target instanceof Button)) {
 			return;
 		}
 		this._textFieldEl.value += e.target.value;
+		this._textFieldEl.reportValidity();
 	};
 }

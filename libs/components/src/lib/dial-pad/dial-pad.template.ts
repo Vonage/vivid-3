@@ -10,7 +10,8 @@ import type { DialPad } from './dial-pad';
 const getClasses = (_: DialPad) => classNames('base');
 
 function renderTextField(textFieldTag: string, buttonTag: string) {
-	return html<DialPad>`<${textFieldTag} ${ref('_textFieldEl')} class="phone-field" appearance="ghost" value="${x => x.value}" placeholder="${x => x.placeholder}" ?disabled="${x => x.disabled}" helper-text="${x => x.helperText}">
+	return html<DialPad>`<${textFieldTag} ${ref('_textFieldEl')} class="phone-field" appearance="ghost" value="${x => x.value}" 
+    placeholder="${x => x.placeholder}" ?disabled="${x => x.disabled}" helper-text="${x => x.helperText}" pattern="${x => x.pattern}">
             <${buttonTag} slot="action-items" size='condensed' icon="backspace-line" aria-label='clear field' appearance='ghost' ?disabled="${x => x.disabled}"></${buttonTag}>
         </${textFieldTag}>`;
 }

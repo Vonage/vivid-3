@@ -80,6 +80,18 @@ Use the `no-call` attribute (or `noCall` property) to disable call/end call func
 <vwc-dial-pad no-call></vwc-dial-pad>
 ```
 
+### Pattern
+
+Use the `pattern` attribute to set the regex string of allowed characters in the input.   
+Read more about [vwc-text-field validation](/components/text-field#validation).
+
+- Type: `string`
+- Default: `^[0-9#*]*$` (key pad buttons)
+
+```html preview
+<vwc-dial-pad pattern="^[0-9]*$" placeholder="Only digits are valid"></vwc-dial-pad>
+```
+
 ## Events
 
 <div class="table-wrapper">
