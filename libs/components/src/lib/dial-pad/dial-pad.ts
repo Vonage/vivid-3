@@ -87,4 +87,8 @@ export class DialPad extends FoundationElement {
 		this._textFieldEl.value += e.target.value;
 		this._textFieldEl.reportValidity();
 	};
+
+	clearField = () => {
+		this._textFieldEl.value = '';
+	};
 }

@@ -12,7 +12,8 @@ const getClasses = (_: DialPad) => classNames('base');
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref('_textFieldEl')} class="phone-field" appearance="ghost" value="${x => x.value}" 
     placeholder="${x => x.placeholder}" ?disabled="${x => x.disabled}" helper-text="${x => x.helperText}" pattern="${x => x.pattern}">
-            <${buttonTag} slot="action-items" size='condensed' icon="backspace-line" aria-label='clear field' appearance='ghost' ?disabled="${x => x.disabled}"></${buttonTag}>
+            <${buttonTag} slot="action-items" size='condensed' icon="backspace-line" aria-label='clear field' 
+            appearance='ghost' ?disabled="${x => x.disabled}" @click="${x => x.clearField()}"></${buttonTag}>
         </${textFieldTag}>`;
 }
 
@@ -33,9 +34,9 @@ function renderDigits(buttonTag: string) {
     `;
 }
 
-function renderCallButton(buttonTag: string) {
+function renderDialButton(buttonTag: string) {
 	return html<DialPad>`<${buttonTag} class='call-btn' size='expanded' appearance="filled" icon='call-line' 
-    label='Call' connotation="${x => x.active ? 'alert' : 'cta'}" ?disabled="${x => x.disabled}"></${buttonTag}>`;
+    label='Dial' connotation="${x => x.active ? 'alert' : 'cta'}" ?disabled="${x => x.disabled}"></${buttonTag}>`;
 }
 
 /**
@@ -55,7 +56,7 @@ export const DialPadTemplate: (context: ElementDefinitionContext, definition: Fo
         <div class="digits" @click="${(x, c) => x.onDigit(c.event)}">
             ${renderDigits(buttonTag)}
         </div>
-        ${when(x => !x.noCall, renderCallButton(buttonTag))}
+        ${when(x => !x.noCall, renderDialButton(buttonTag))}
     </div>`;
 };
 
