@@ -10,6 +10,11 @@ import { Button } from '../button/button';
  */
 export class DialPad extends FoundationElement {
 	/**
+	 * @internal
+	 */
+	_textFieldEl!: TextField;
+
+	/**
 	 * Indicates the helper-text's text.
 	 *
 	 * @public
@@ -34,7 +39,11 @@ export class DialPad extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr value: string | null = null;
+	@attr({ mode: 'fromView' }) value: string = '';
+	onValueChange(_oldValue: string, newValue: string) {
+		this._textFieldEl.value = newValue;
+		this._textFieldEl?.reportValidity();
+	}
 
 	/**
 	 * Indicates the dial pad's pattern.
@@ -72,23 +81,43 @@ export class DialPad extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean', attribute: 'no-call' }) noCall = false;
 
-	/**
-	 * @internal
-	 */
-	_textFieldEl!: TextField;
+	override connectedCallback() {
+		super.connectedCallback();
+		this._textFieldEl.addEventListener('input', this.handleInput);
+		this._textFieldEl.addEventListener('change', this.handleInput);
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this._textFieldEl.removeEventListener('input', this.handleInput);
+		this._textFieldEl.removeEventListener('change', this.handleInput);
+	}
 
 	/**
+	 *
 	 * @internal
 	 */
 	onDigit = (e: Event) => {
 		if (e.target === undefined || e.target === null || !(e.target instanceof Button)) {
 			return;
 		}
-		this._textFieldEl.value += e.target.value;
-		this._textFieldEl.reportValidity();
+		this.value += e.target.value;
+		this.$emit('keypad-click', e.target.value);
 	};
 
+	/**
+	 *
+	 * @internal
+	 */
 	clearField = () => {
-		this._textFieldEl.value = '';
+		this.value = '';
+	};
+
+	/**
+	 *
+	 * @internal
+	 */
+	handleInput = () => {
+		this.value = this._textFieldEl.value;
 	};
 }
