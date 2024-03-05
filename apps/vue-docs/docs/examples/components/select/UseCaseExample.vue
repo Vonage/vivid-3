@@ -1,19 +1,15 @@
 <template>
-  <div class="container">
-    <VSelect
-      v-model="value"
-      label="country code"
-      :icon="flag"
-    >
-      <VOption
-        v-for="option in options"
-        :key="option.value"
-        :value="option.value"
-        :text="option.text"
-        :icon="option.icon"
-      />
-    </VSelect>
-  </div>
+	<div class="container">
+		<VSelect v-model="value" label="country code" :icon="flag">
+			<VOption
+				v-for="option in options"
+				:key="option.value"
+				:value="option.value"
+				:text="option.text"
+				:icon="option.icon"
+			/>
+		</VSelect>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -27,11 +23,13 @@ const options = [
 ];
 
 const value = ref('+1');
-const flag = computed(() => options.find((option) => option.value === value.value)!.icon);
+const flag = computed(
+	() => options.find((option) => option.value === value.value)!.icon
+);
 </script>
 
 <style scoped>
 .container {
-  block-size: 230px;
+	block-size: 230px;
 }
 </style>

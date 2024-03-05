@@ -1,5 +1,5 @@
 <template>
-  <VTextField label="Username" value="Vlad" success-text="Valid username" />
+	<VTextField label="Username" value="Vlad" success-text="Valid username" />
 </template>
 
 <script setup lang="ts">

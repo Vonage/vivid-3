@@ -1,5 +1,5 @@
 <template>
-  <VAvatar initials="vivid avatar" />
+	<VAvatar initials="vivid avatar" />
 </template>
 
 <script setup lang="ts">

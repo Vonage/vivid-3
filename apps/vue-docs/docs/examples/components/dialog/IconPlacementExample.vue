@@ -1,7 +1,13 @@
 <template>
-  <div style="height: 230px">
-    <VDialog icon-placement="side" icon="info" headline="Dialog Headline" subtitle="subtitle content" open />
-  </div>
+	<div style="height: 230px">
+		<VDialog
+			icon-placement="side"
+			icon="info"
+			headline="Dialog Headline"
+			subtitle="subtitle content"
+			open
+		/>
+	</div>
 </template>
 
 <script setup lang="ts">

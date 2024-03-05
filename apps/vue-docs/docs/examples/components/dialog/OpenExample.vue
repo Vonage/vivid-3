@@ -1,8 +1,13 @@
 <template>
-  <div style="height: 230px">
-    <VButton label="Toggle Dialog Open" @click="open = !open" />
-    <VDialog headline="Headline" subtitle="subtitle" :open="open" @close="open = false" />
-  </div>
+	<div style="height: 230px">
+		<VButton label="Toggle Dialog Open" @click="open = !open" />
+		<VDialog
+			headline="Headline"
+			subtitle="subtitle"
+			:open="open"
+			@close="open = false"
+		/>
+	</div>
 </template>
 
 <script setup lang="ts">

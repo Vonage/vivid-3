@@ -1,7 +1,7 @@
 <template>
-  <div style="height: 230px">
-    <VDialog icon="info" open />
-  </div>
+	<div style="height: 230px">
+		<VDialog icon="info" open />
+	</div>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <VSwitch label="Vivid Switch" />
+	<VSwitch label="Vivid Switch" />
 </template>
 
 <script setup lang="ts">

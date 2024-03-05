@@ -1,5 +1,5 @@
 <template>
-  <VTextField icon="search-line" label="Search..." />
+	<VTextField icon="search-line" label="Search..." />
 </template>
 
 <script setup lang="ts">

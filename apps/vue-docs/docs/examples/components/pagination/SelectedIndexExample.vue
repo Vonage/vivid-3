@@ -1,5 +1,5 @@
 <template>
-  <VPagination total="20" selected-index="5" />
+	<VPagination total="20" selected-index="5" />
 </template>
 
 <script setup lang="ts">
