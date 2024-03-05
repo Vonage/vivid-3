@@ -1,5 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { TextField } from '../text-field/text-field';
+import { Button } from '../button/button';
 
 /**
  * Base class for dial-pad
@@ -33,4 +35,19 @@ export class DialPad extends FoundationElement {
 	 * HTML Attribute: disabled
 	 */
 	@attr({ mode: 'boolean' }) disabled = false;
+
+	/**
+	 * @internal
+	 */
+	_textFieldEl!: TextField;
+
+	/**
+	 * @internal
+	 */
+	onDigit = (e: Event) => {
+		if (e.target === undefined || e.target === null || !(e.target instanceof Button)){
+			return;
+		}
+		this._textFieldEl.value += e.target.value;
+	};
 }

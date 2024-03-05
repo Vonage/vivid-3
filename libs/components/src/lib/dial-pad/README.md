@@ -66,7 +66,6 @@ Use the `disabled` attribute to disable the keypad, input and Call/End call butt
 | ------------------- | ------------------------------------------------------------------------------------------------------ |
 | `dial`              | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
 | `endCall`           | Emitted when the end call button is clicked                                                            |
-| `keypadButtonClick` | Emitted when a keypad button is clicked with the value of the button clicked                           |
 | `input`             | Emitted from the input element                                                                         |
 | `change`            | Emitted from the input element                                                                         |
 | `blur`              | Emitted from the input element                                                                         |
