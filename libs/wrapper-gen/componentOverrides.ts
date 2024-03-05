@@ -108,6 +108,27 @@ ComponentRegister.addComponentOverride('radio-group', component => {
   });
 });
 
+ComponentRegister.addComponentOverride('range-slider', component => {
+	addVueModel(
+		component,
+		{
+			attributeName: 'current-start',
+			eventName: 'input:start',
+			valueMapping: '(event.target as any).start',
+		},
+		'start'
+	);
+	addVueModel(
+		component,
+		{
+			attributeName: 'current-end',
+			eventName: 'input:end',
+			valueMapping: '(event.target as any).end',
+		},
+		'end'
+	);
+});
+
 ComponentRegister.addComponentOverride('select', component => {
   addVueModel(component, {
     attributeName: 'current-value',

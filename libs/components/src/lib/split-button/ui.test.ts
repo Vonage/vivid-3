@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['split-button'];
@@ -88,6 +88,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-split-button appearance='outlined' aria-label='submit'>
 			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		</vwc-split-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-split-button label="Expanded" aria-expanded="true"></vwc-split-button>
 	</div>
 `;
 

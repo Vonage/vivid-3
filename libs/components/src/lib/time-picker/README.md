@@ -8,12 +8,7 @@ Time will be stored in the format `HH:MM:SS` and displayed depending on the conf
 <script type="module">import '@vonage/vivid/time-picker';</script>
 ```
 
-```html preview locale-switcher
-<style>
-	html {
-		height: 360px;
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker minutes-step="15" label="Choose a time"></vwc-time-picker>
 ```
 
@@ -28,12 +23,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker label="Start time"></vwc-time-picker>
 ```
 
@@ -44,12 +34,7 @@ Add the `helper-text` to add some helper text below the time picker.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker
 	label="Start time"
 	helper-text="Select a time for the event to start"
@@ -64,12 +49,7 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Type: `string`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker
 	label="Start time"
 	error-text="Please select a time for the event to start"
@@ -104,12 +84,7 @@ It will always contain a valid time in the format `HH:MM:SS` when a time is sele
 - Time format: `HH:MM:SS`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker label="Start time" value="12:30:00"></vwc-time-picker>
 ```
 
@@ -121,12 +96,7 @@ Set the `min` attribute to configure the earliest time to accept. The user will 
 - Time format: `HH:MM:SS`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker
 	label="Start time"
 	min="10:00:00"
@@ -162,12 +132,7 @@ Use the `clock` attribute to override this behavior.
 - Type: `'12h'` | `'24h'` | `undefined`
 - Default: locale dependent
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker
 	label="Start time"
 	clock="24h"
@@ -181,12 +146,7 @@ Use the `minutes-step` attribute to configure the step between minutes in the ti
 - Type: `number`
 - Default: `1`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker
 	label="Start time"
 	minutes-step="15"
@@ -202,12 +162,7 @@ If not set, the time picker will not display seconds.
 - Type: `number` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 360px
 <vwc-time-picker
 	label="Start time"
 	seconds-step="5"
@@ -231,11 +186,8 @@ If not set, the time picker will not display seconds.
 
 ### In a form
 
-```html preview locale-switcher
+```html preview locale-switcher 360px
 <style>
-	html {
-		block-size: 360px; /* for demo purposes */
-	}
 	.buttons {
 		display: flex;
 		gap: 12px;
