@@ -1,15 +1,9 @@
 {
-	"ignoreFiles": [
-		"**/*"
-	],
+	"ignoreFiles": ["**/*"],
 	"overrides": [
 		{
-			"files": [
-				"**/*.scss"
-			],
-			"plugins": [
-				"stylelint-no-unsupported-browser-features"
-			],
+			"files": ["**/*.scss"],
+			"plugins": ["stylelint-no-unsupported-browser-features"],
 			"extends": [
 				"stylelint-config-standard-scss",
 				"stylelint-config-idiomatic-order"
