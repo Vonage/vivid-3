@@ -22,7 +22,8 @@
 					{
 						"camelCaseSvgKeywords": true
 					}
-				]
+				],
+				"scss/operator-no-newline-after": null
 			}
 		}
 	]
