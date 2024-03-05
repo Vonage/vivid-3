@@ -32,5 +32,5 @@ export class DialPad extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: disabled
 	 */
-	@attr({ mode: 'boolean' }) disabled: boolean = false;
+	@attr({ mode: 'boolean' }) disabled = false;
 }

@@ -1,10 +1,16 @@
 .base {
     display: grid;
-    gap: 8px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
     margin: 16px;
     inline-size: 230px;
+    gap: 16px;
+}
+
+.digits {
+    display: grid;
+    inline-size: 230px;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 .phone-field {
@@ -12,16 +18,14 @@
 
     grid-column: 1 / -1;
     align-self: flex-start;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--vvd-color-neutral-300);
 }
 
 .digit-btn {
-    --vvd-button-accent-primary: var(--vvd-color-neutral-600);
-
     display: flex;
     flex-direction: column;
-    border: 1px solid #b3b3b3;
-    border-radius: 6px;
+    border: 1px solid var(--vvd-color-neutral-300);
+    border-radius: 16px;
 }
 
 .call-btn {

@@ -33,7 +33,7 @@ To give a hint to the user of what to enter in the input, use the `placeholder` 
 - Default: `undefined`
 
 ```html preview
-<vwc-dial-pad placeholder="Enter a number"></vwc-dial-pad>
+<vwc-dial-pad placeholder="Enter a phone number"></vwc-dial-pad>
 ```
 
 ### Pattern
@@ -57,8 +57,6 @@ Use the `disabled` attribute to disable the keypad, input and Call/End call butt
 ```html preview
 <vwc-dial-pad disabled></vwc-dial-pad>
 ```
-
-## CSS Variables
 
 ## Events
 
