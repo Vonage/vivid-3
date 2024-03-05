@@ -29,9 +29,6 @@
 }
 
 .base {
-	$gap: 12px;
-	$gutter: 16px;
-
 	@include appearance.appearance;
 	@include connotation.connotation (menu-item);
 
@@ -40,18 +37,19 @@
 	align-items: center;
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	gap: $gap;
 	inline-size: 100%;
-	padding-inline: $gutter;
 
 	&:not(.two-lines) {
+		padding-inline: 12px;
+		padding-block: 10px;
+		gap: 12px;
 		min-block-size: #{size.$vvd-size-normal};
-		padding-block: 8px;
 	}
 
 	&.two-lines {
+		padding: 12px;
+		gap: 16px;
 		min-block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
-		padding-block: 12px;
 	}
 
 
@@ -148,6 +146,6 @@
 	font: var(#{constants.$vvd-typography-base-condensed});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
 	.base.two-lines:not(.disabled) & {
-		color: var(#{constants.$vvd-color-neutral-600});
+		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }
