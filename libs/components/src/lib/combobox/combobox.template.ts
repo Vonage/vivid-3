@@ -5,7 +5,6 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
 import { Listbox } from '../listbox/listbox';
 import type { Combobox } from './combobox';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 
 /**
  *
@@ -33,7 +32,6 @@ const getStateClasses = ({
  */
 function renderInput(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<Combobox>`
 		<div class="${getStateClasses}" ${ref('_anchor')}>
@@ -58,7 +56,6 @@ function renderInput(context: ElementDefinitionContext) {
 					${ref('control')}
 				/>
 				${() => affixIconTemplate('chevron-down-line')}
-				${() => focusTemplate}
 			</div>
 		</div>`;
 }
