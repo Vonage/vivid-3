@@ -21,4 +21,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --only=dev
 
-      - run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
+      - name: Lint
+        run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all
+
+      - name: Check Formatting
+        run: npm run nx format:check -- --all

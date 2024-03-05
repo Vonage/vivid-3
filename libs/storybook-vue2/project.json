@@ -9,9 +9,7 @@
 			"executor": "nx:run-commands",
 			"options": {
 				"cwd": "libs/storybook-vue2",
-				"commands": [
-					"npx storybook dev -p 6002"
-				]
+				"commands": ["npx storybook dev -p 6002"]
 			}
 		}
 	},

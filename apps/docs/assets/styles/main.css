@@ -475,7 +475,9 @@ th {
 
 @media (max-width: 960px) {
 	.welcome {
-		margin-inline: -32px;
+		margin-inline: 0;
+		padding-inline: 16px;
+		flex-direction: column;
 	}
 }
 
@@ -507,6 +509,13 @@ th {
 .welcome__buttons {
   display: flex;
   gap: 8px;
+}
+
+@media (max-width: 420px) {
+	.welcome__buttons {
+		flex-direction: column-reverse;
+		inline-size: 100%;
+	}
 }
 
 .welcome-media {
