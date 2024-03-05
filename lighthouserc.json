@@ -1,7 +1,7 @@
 {
-  "ci": {
-    "collect": {
-      "staticDistDir": "./dist/apps/docs"
-    }
-  }
+	"ci": {
+		"collect": {
+			"staticDistDir": "./dist/apps/docs"
+		}
+	}
 }

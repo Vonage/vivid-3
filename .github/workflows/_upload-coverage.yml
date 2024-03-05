@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    name: "Upload coverage"
+    name: 'Upload coverage'
     runs-on: ${{ inputs.os }}
     steps:
       - uses: actions/checkout@v3
@@ -31,4 +31,3 @@ jobs:
           flags: unittests
           name: codecov-umbrella
           verbose: true
-
