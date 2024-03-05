@@ -5,12 +5,6 @@ import { html } from "@codemirror/lang-html"
 import { Compartment } from '@codemirror/state'
 import { oneDark } from '@codemirror/theme-one-dark'
 
-window.onload = () => {
-	addSamplesEditors();
-	addButtonsHandlers();
-	addLocaleSwitcher();
-};
-
 const samplesEditors = new Map();
 const theme = new Compartment();
 
@@ -159,3 +153,20 @@ function switchLocale(event) {
 	iframe.contentWindow.setLocale(iframe.contentWindow.locales[select.value]);
 	iframe.contentWindow.document.documentElement.lang = select.value;
 }
+
+function cleanupEditors() {
+	for (const { view } of samplesEditors.values()) {
+		view.destroy();
+	}
+	samplesEditors.clear();
+}
+
+function setupLiveSamples() {
+		cleanupEditors();
+		addSamplesEditors();
+		addButtonsHandlers();
+		addLocaleSwitcher();
+}
+
+window.addEventListener('load', setupLiveSamples);
+window.addEventListener('htmx:afterSwap', setupLiveSamples);

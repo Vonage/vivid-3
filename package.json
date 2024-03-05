@@ -103,6 +103,7 @@
 		"expr-eval": "^2.0.2",
 		"glob": "^7.2.0",
 		"highlight.js": "^11.5.1",
+		"htmx.org": "^1.9.10",
 		"http-server": "^14.1.0",
 		"jasmine-core": "4.1.1",
 		"jasmine-spec-reporter": "~5.0.0",
