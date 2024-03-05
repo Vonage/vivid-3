@@ -15,7 +15,7 @@ const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean)
 };
 
 const getClasses = ({
-	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size, iconSlottedContent
+	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size, iconSlottedContent, ariaExpanded, active
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
@@ -25,6 +25,7 @@ const getClasses = ({
 	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 	['icon-trailing', iconTrailing],
 	['stacked', Boolean(stacked)],
+	['active', ariaExpanded === 'true' || active]
 );
 
 function renderIconOrPending(

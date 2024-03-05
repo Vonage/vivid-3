@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
 @use "partials/mixins" as mixins;
@@ -33,7 +34,13 @@
 .control,
 .indicator {
 	@include connotation.connotation(split-button);
-	@include appearance.appearance;
+	@include appearance.appearance(
+		appearance.state-selectors(
+			map.merge(appearance.$state-aspect-selectors, (
+				active: ':active, [aria-expanded="true"]',
+			))
+		)
+	);
 
 	display: inline-flex;
 	box-sizing: border-box;
