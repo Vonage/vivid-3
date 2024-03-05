@@ -1,5 +1,5 @@
-@use "../text-field/partials/variables" as text-field-variables;
-@forward "../text-field/text-field.scss";
+@use '../text-field/partials/variables' as text-field-variables;
+@forward '../text-field/text-field.scss';
 
 .base {
 	#{text-field-variables.$text-field-gutter-end}: 70px;
@@ -17,7 +17,8 @@
 		right: 3px;
 		display: flex;
 
-		.readonly &, .disabled & {
+		.readonly &,
+		.disabled & {
 			pointer-events: none;
 		}
 		.divider {
@@ -35,4 +36,3 @@
 		pointer-events: none;
 	}
 }
-

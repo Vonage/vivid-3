@@ -1,20 +1,22 @@
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment fierce intermediate firm,
 	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: fieldset,
 	$states: idle hover checked checkedAndHover disabled readonly,
 	$default: fieldset
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 $low-ink-color: --_low-ink-color;
 $size: #{size.$vvd-size-ultra-condensed};
@@ -68,7 +70,6 @@ $gutter: 2px;
 	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: $size;
 
-
 	.base:focus-visible & {
 		#{focus-variables.$focus-inset}: -3px;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -80,7 +81,7 @@ $gutter: 2px;
 			display: block;
 			border-radius: 2px;
 			block-size: $size;
-			content: "";
+			content: '';
 			inline-size: $size;
 		}
 	}
@@ -100,7 +101,7 @@ $gutter: 2px;
 
 	&.minus {
 		@at-root .base.checked &,
-		.base:not(.indeterminate) & {
+			.base:not(.indeterminate) & {
 			display: none;
 		}
 	}
@@ -119,7 +120,6 @@ label {
 		display: none;
 	}
 }
-
 
 .icon {
 	font-size: calc(#{$size} * 0.6);
