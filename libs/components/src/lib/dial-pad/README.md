@@ -14,6 +14,17 @@ This is a composed component that allows users to enter / dial telephone numbers
 
 ## Members
 
+### Value
+
+To set the value of the input, use the `value` attribute to set the text displayed in the input.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-dial-pad value="1234567890"></vwc-dial-pad>
+```
+
 ### Helper Text
 
 To give extra context to the number that is being displayed, use the `helper-text` attribute to set the text displayed under the input.
@@ -36,17 +47,6 @@ To give a hint to the user of what to enter in the input, use the `placeholder` 
 <vwc-dial-pad placeholder="Enter a phone number"></vwc-dial-pad>
 ```
 
-### Pattern
-
-To restrict the input to only allow certain characters, use the `pattern` attribute to set the regex string of allowed characters in the input.
-
-- Type: `string`
-- Default: `^[0-9#*]*$`
-
-```html preview
-<vwc-dial-pad pattern="^[0-9#*]*$"></vwc-dial-pad>
-```
-
 ### Disabled
 
 Use the `disabled` attribute to disable the keypad, input and Call/End call buttons.
@@ -58,19 +58,41 @@ Use the `disabled` attribute to disable the keypad, input and Call/End call butt
 <vwc-dial-pad disabled></vwc-dial-pad>
 ```
 
+### Active
+
+Use the `active` attribute to enable the `end call button` and disable the `dial button`.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dial-pad active></vwc-dial-pad>
+```
+
+### No Call
+
+Use the `no-call` attribute (or `noCall` property) to disable call/end call functionality and hide the call/end call button.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dial-pad no-call></vwc-dial-pad>
+```
+
 ## Events
 
 <div class="table-wrapper">
 
-| Name                | Description                                                                                            |
-| ------------------- | ------------------------------------------------------------------------------------------------------ |
-| `dial`              | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
-| `endCall`           | Emitted when the end call button is clicked                                                            |
-| `input`             | Emitted from the input element                                                                         |
-| `change`            | Emitted from the input element                                                                         |
-| `blur`              | Emitted from the input element                                                                         |
-| `focus`             | Emitted from the input element                                                                         |
-| `noCall`            | Disables call/end call functionality and hides the call/end call button                                |
+| Name      | Description                                                                                            |
+| --------- | ------------------------------------------------------------------------------------------------------ |
+| `dial`    | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
+| `endCall` | Emitted when the end call button is clicked                                                            |
+| `input`   | Emitted from the input element                                                                         |
+| `change`  | Emitted from the input element                                                                         |
+| `blur`    | Emitted from the input element                                                                         |
+| `focus`   | Emitted from the input element                                                                         |
+| `noCall`  | Disables call/end call functionality and hides the call/end call button                                |
 
 </div>
 

@@ -27,6 +27,16 @@ export class DialPad extends FoundationElement {
 	 */
 	@attr placeholder: string | null = null;
 
+
+	/**
+	 * Indicates the value's text.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: value
+	 */
+	@attr value: string | null = null;
+
 	/**
 	 * Indicates the disabled state of the dial-pad.
 	 *
@@ -35,6 +45,24 @@ export class DialPad extends FoundationElement {
 	 * HTML Attribute: disabled
 	 */
 	@attr({ mode: 'boolean' }) disabled = false;
+
+	/**
+	 * Indicates the active state of the dial-pad.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: active
+	 */
+	@attr({ mode: 'boolean' }) active = false;
+
+	/**
+	 * Indicates the no-call state of the dial-pad.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: no-call
+	 */
+	@attr({ mode: 'boolean', attribute: 'no-call' }) noCall = false;
 
 	/**
 	 * @internal
