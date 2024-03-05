@@ -14,5 +14,4 @@ package-lock.json
 **/*.cts
 **/*.css
 **/*.scss
-**/*.vue
 **/*.md
