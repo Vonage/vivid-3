@@ -26,9 +26,9 @@ $dps: 0 2 4 8 12 16 24;
 
 			position: absolute;
 			z-index: -1;
+			border-radius: inherit;
 			background: var(elevation.$vvd-elevation-fill);
 			block-size: 100%;
-			border-radius: inherit;
 			content: "";
 			filter: var(elevation.$vvd-elevation-shadow);
 			inline-size: 100%;

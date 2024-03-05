@@ -9,9 +9,7 @@
 			"dependsOn": ["^build"],
 			"options": {
 				"cwd": "apps/vue-docs",
-				"commands": [
-					"npx vitepress dev docs --open"
-				]
+				"commands": ["npx vitepress dev docs --open"]
 			}
 		},
 		"build": {
@@ -20,9 +18,7 @@
 			"outputs": ["{workspaceRoot}/dist/apps/docs/vivid-vue"],
 			"options": {
 				"cwd": "apps/vue-docs",
-				"commands": [
-					"npx vitepress build docs"
-				]
+				"commands": ["npx vitepress build docs"]
 			}
 		},
 		"clean": {
