@@ -276,9 +276,52 @@ async function testSortColumns({ page }: { page: Page }) {
 	);
 }
 
+async function testCellLinkClick({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px;">
+			<vwc-data-grid>
+				<vwc-data-grid-row role="row" class="header" row-type="header">
+					<vwc-data-grid-cell aria-sort="ascending" cell-type="columnheader" role="columnheader">
+					data1
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell aria-sort="none" cell-type="columnheader">
+					data2
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell aria-sort="descending" cell-type="columnheader">
+					data3
+					</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+				<vwc-data-grid-row role="row">
+					<vwc-data-grid-cell role="gridcell" cell-type="default">
+						<a href="https://google.com">Link</a>
+					</vwc-data-grid-cell>
+        data11
+    </vwc-data-grid-cell>
+				</vwc-data-grid-row>
+			</vwc-data-grid>
+	</div>`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.waitForLoadState('networkidle');
+
+	const link = await page.locator('vwc-data-grid-cell a');
+	await link.isVisible();
+	await link.click();
+	await page.pause();
+	expect(await page.url()).toEqual('https://www.google.com/');
+}
+
 test('should show the component', gridTestFunction);
 test('single cell selection', testCellSelection);
 test('multi cell selection', testMultiCellSelection);
 test('single row selection', testRowSelection);
 test('multi row selection', testMultiRowSelection);
 test('sort columns', testSortColumns);
+test('cell link click', testCellLinkClick);

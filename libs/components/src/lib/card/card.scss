@@ -16,8 +16,8 @@
 	display: flex;
 	overflow: hidden;
 	flex-flow: column;
-	block-size: 100%;
 	border-radius: inherit;
+	block-size: 100%;
 	color: var(#{constants.$vvd-color-canvas-text});
 }
 
@@ -43,9 +43,7 @@
 
 	&-headline,
 	&-subtitle {
-		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
-		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
 	}
@@ -106,6 +104,5 @@
 	flex-shrink: 0;
 	align-self: flex-start;
 	margin-block-start: -8px;
-	margin-inline-end: -8px;
-	margin-inline-start: auto;
+	margin-inline: auto -8px;
 }

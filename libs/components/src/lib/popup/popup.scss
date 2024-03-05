@@ -7,8 +7,8 @@
 }
 
 .control {
-	background: var(#{utils.get-color-token(surface-4dp)});
 	border-radius: inherit;
+	background: var(#{utils.get-color-token(surface-4dp)});
 	contain: layout;
 
 

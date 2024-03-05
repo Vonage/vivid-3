@@ -1,4 +1,4 @@
 {
-  "extends": ["../../.stylelintrc.json"],
-  "ignoreFiles": ["!**/*"]
+	"extends": ["../../.stylelintrc.json"],
+	"ignoreFiles": ["!**/*"]
 }

@@ -4,7 +4,7 @@ import type { ElementDefinitionContext, FoundationElementDefinition } from '@mic
 import { classNames } from '@microsoft/fast-web-utilities';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
-import { affixIconTemplateFactory, IconAriaHidden, IconWrapper } from '../../shared/patterns/affix';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 
@@ -15,7 +15,7 @@ const getAppearanceClassName = (appearance: ButtonAppearance, disabled: boolean)
 };
 
 const getClasses = ({
-	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size, iconSlottedContent
+	connotation, appearance, shape, iconTrailing, icon, label, disabled, stacked, size, iconSlottedContent, ariaExpanded, active
 }: Button) => classNames(
 	'control',
 	[`connotation-${connotation}`, Boolean(connotation)],
@@ -25,6 +25,7 @@ const getClasses = ({
 	['icon-only', !label && !!(icon || iconSlottedContent?.length)],
 	['icon-trailing', iconTrailing],
 	['stacked', Boolean(stacked)],
+	['active', ariaExpanded === 'true' || active]
 );
 
 function renderIconOrPending(
@@ -44,7 +45,7 @@ function renderIconOrPending(
 
 	} else {
 		const affixIconTemplate = affixIconTemplateFactory(context);
-		return affixIconTemplate(icon, IconWrapper.Slot, IconAriaHidden.Hidden);
+		return affixIconTemplate(icon, IconWrapper.Slot);
 	}
 }
 

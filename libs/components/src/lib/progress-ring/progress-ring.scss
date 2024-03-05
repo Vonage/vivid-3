@@ -1,16 +1,13 @@
 @use "sass:map";
 @use "sass:list";
-
 @use "partials/variables" as variables;
 @use "../../../../shared/src/lib/sass/utils" as utils;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta alert success,
 	$shades: primary,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle disabled,
@@ -40,6 +37,7 @@ $default-size: list.nth($size-keys, 7);
 .base {
 	@include connotation.connotation (progress-ring);
 	@include appearance.appearance;
+
 	@include utils.spread-list-selectors(".size", $size-keys, $default-size) using($value) {
 		#{variables.$progress-ring-size}: map.get($size, $value);
 	}
@@ -82,6 +80,7 @@ $default-size: list.nth($size-keys, 7);
 .base.paused .indeterminate-indicator-1 {
 	animation-play-state: paused;
 }
+
 @keyframes spin-infinite {
 	0% {
 		stroke-dasharray: 0.01px 43.97px;

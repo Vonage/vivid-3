@@ -53,14 +53,14 @@ $track-thickness: 2px;
 
 	.track {
 		position: absolute;
-		background: var(#{variables.$track-background-color});
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		background: var(#{variables.$track-background-color});
 
 		&-start {
 			position: absolute;
+			border-radius: inherit;
 			background: var(#{variables.$track-start-background-color});
 			block-size: 100%;
-			border-radius: inherit;
 			inset-inline-start: var(#{variables.$track-start-inset-inline-start});
 		}
 	}
@@ -128,8 +128,8 @@ $track-thickness: 2px;
 
 .thumb-container {
 	position: absolute;
-	block-size: var(#{variables.$thumb-interaction-indicator-size});
 	border-radius: #{border-radius-variables.$border-radius-full};
+	block-size: var(#{variables.$thumb-interaction-indicator-size});
 	cursor: inherit;
 	inline-size: var(#{variables.$thumb-interaction-indicator-size});
 	outline-color: transparent;
@@ -161,9 +161,9 @@ $track-thickness: 2px;
 	&::before {
 		position: absolute;
 		display: block;
+		border-radius: inherit;
 		background-color: var(#{variables.$track-start-background-color});
 		block-size: var(#{variables.$thumb-interaction-indicator-size});
-		border-radius: inherit;
 		content: "";
 		inline-size: var(#{variables.$thumb-interaction-indicator-size});
 		opacity: var(#{variables.$thumb-interaction-indicator-alpha}, 0);
@@ -173,9 +173,9 @@ $track-thickness: 2px;
 	&::after {
 		position: absolute;
 		display: block;
+		border-radius: inherit;
 		background-color: var(#{variables.$track-start-background-color});
 		block-size: var(#{variables.$thumb-size});
-		border-radius: inherit;
 		content: "";
 		inline-size: var(#{variables.$thumb-size});
 		inset: calc((var(#{variables.$thumb-interaction-indicator-size}) - var(#{variables.$thumb-size})) / 2);

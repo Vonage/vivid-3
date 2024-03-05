@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "../tabs/partials/variables" as variables;
 @use "partials/mixins" as mixins;
-
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
@@ -9,7 +8,6 @@
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle,
@@ -74,18 +72,16 @@
 
 	&-wrapper {
 		.base:not(.orientation-vertical) & {
+			overflow: auto hidden;
 			align-self: end;
 			border-bottom: 1px solid var(--vvd-color-neutral-300);
 			inline-size: 100%;
-			overflow-x: auto;
-			overflow-y: hidden;
 		}
 
 		.base.orientation-vertical & {
+			overflow: hidden auto;
 			block-size: 100%;
 			box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
-			overflow-x: hidden;
-			overflow-y: auto;
 		}
 
 		&::-webkit-scrollbar {
@@ -120,8 +116,8 @@
 
 	.base.orientation-vertical & {
 		align-self: center;
-		block-size: 80%;
 		border-radius: #{border-radius-variables.$border-radius-condensed};
+		block-size: 80%;
 		grid-area: 1 / 1 / auto / auto;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 	}
