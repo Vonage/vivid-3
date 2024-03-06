@@ -5,9 +5,7 @@ The file picker component enables users to select files either by opening a file
 Error messages and labels will be localized to the current locale. See [Localization](/guides/localization/) for more details.
 
 ```js
-<script type="module">
-    import '@vonage/vivid/file-picker';
-</script>
+<script type="module">import '@vonage/vivid/file-picker';</script>
 ```
 
 ## Members
@@ -31,9 +29,10 @@ Add the `helper-text` to add some helper text below the file picker.
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="helper-text">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker helper-text="helper-text"
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```
-
 
 ### Error text
 
@@ -44,9 +43,10 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker error-text="Please provide a valid file.">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker error-text="Please provide a valid file."
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```
-
 
 ### Max File Size
 
@@ -58,7 +58,9 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 - Default: `256`
 
 ```html preview
-<vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1"
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```
 
 ### Max Files
@@ -71,24 +73,31 @@ If the user tries to upload more files than the maximum number of files, the fil
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="Single file only" max-files="1">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker helper-text="Single file only" max-files="1"
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```
 
 ### Accept
 
 Use the `accept` attribute to define a comma separated list of allowed file extensions or MIME types.
 Some examples of valid values are:
-* `"image/*"` - all image types
-* `"image/png"` or `".png"`- only png images
-* `"image/jpeg, image/png"` or `".jpg, .jpeg, .png"` - only jpg and png images
 
-- Type: `string`
-- Default: `undefined`
+- `"image/*"` - all image types
+- `"image/png"` or `".png"`- only png images
+- `"image/jpeg, image/png"` or `".jpg, .jpeg, .png"` - only jpg and png images
+
+* Type: `string`
+* Default: `undefined`
 
 If the user tries to upload a file that does not match the accepted files, the file picker displays an error message.
 
 ```html preview
-<vwc-file-picker helper-text=".jpg, .jpeg, .png types only" accept=".jpg, .jpeg, .png">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker
+	helper-text=".jpg, .jpeg, .png types only"
+	accept=".jpg, .jpeg, .png"
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```
 
 ### Size
@@ -99,7 +108,9 @@ Use the `size` attribute to set the file picker's to one of the predefined block
 - Default: `'normal'`
 
 ```html preview
-<vwc-file-picker size="expanded">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker size="expanded"
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```
 
 ## Slots
@@ -110,7 +121,8 @@ Use the default slot to set the content of the file picker.
 
 ```html preview
 <vwc-file-picker>
-	<vwc-icon name="file-csv-line" size="-5"></vwc-icon> Drag & Drop the .csv file here or click to upload
+	<vwc-icon name="file-csv-line" size="-5"></vwc-icon> Drag & Drop the .csv file
+	here or click to upload
 </vwc-file-picker>
 ```
 
@@ -118,9 +130,9 @@ Use the default slot to set the content of the file picker.
 
 <div class="table-wrapper">
 
-| Name     | Type     | Default     | Description                                                                              |
-|----------| -------- | ----------- |------------------------------------------------------------------------------------------|
-| `files`  | `File[]` | `[]`        | A read-only list of files that have been added to the file picker and passed validation. |
+| Name    | Type     | Default | Description                                                                              |
+| ------- | -------- | ------- | ---------------------------------------------------------------------------------------- |
+| `files` | `File[]` | `[]`    | A read-only list of files that have been added to the file picker and passed validation. |
 
 </div>
 
@@ -129,7 +141,7 @@ Use the default slot to set the content of the file picker.
 <div class="table-wrapper">
 
 | Name     | Description                              |
-|----------|------------------------------------------|
+| -------- | ---------------------------------------- |
 | `change` | Emitted when a file is added or removed. |
 
 </div>
@@ -151,7 +163,14 @@ Use the default slot to set the content of the file picker.
 
 <form method="post" enctype="multipart/form-data">
 	<vwc-layout column-basis="block">
-		<vwc-file-picker name="files" label="Pick files" helper-text="multiple files of any type" max-files="50" required>Drag & Drop or click to upload</vwc-file-picker>
+		<vwc-file-picker
+			name="files"
+			label="Pick files"
+			helper-text="multiple files of any type"
+			max-files="50"
+			required
+			>Drag & Drop or click to upload</vwc-file-picker
+		>
 		<div class="buttons">
 			<vwc-button label="Reset" appearance="outlined" type="reset"></vwc-button>
 			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
@@ -161,9 +180,12 @@ Use the default slot to set the content of the file picker.
 ```
 
 ## Accessibility
+
 If [label](#label) attribute is set, the aria-label will be updated automatically.
 If no label is set - it is highly recommended that `aria-label` will be added.
 
 ```html
-<vwc-file-picker aria-label="Upload Files">Drag & Drop or click to upload</vwc-file-picker>
+<vwc-file-picker aria-label="Upload Files"
+	>Drag & Drop or click to upload</vwc-file-picker
+>
 ```

@@ -82,7 +82,6 @@
 </vwc-data-grid>
 </vwc-elevation>
 
-
 ## Completed
 
 {% assign sortedComponents = components | sort: 'title' %}

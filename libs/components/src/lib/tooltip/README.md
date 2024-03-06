@@ -1,11 +1,9 @@
 # Tooltip
 
-A tooltip displays additional, non-essential, informative message, description or explanation to a focusable element upon hover or focus. It disappears when the element loses focus, is hovered off, or when the `Escape` key is pressed 
+A tooltip displays additional, non-essential, informative message, description or explanation to a focusable element upon hover or focus. It disappears when the element loses focus, is hovered off, or when the `Escape` key is pressed
 
 ```js
-<script type="module">
-  import '@vonage/vivid/tooltip';
-</script>
+<script type="module">import '@vonage/vivid/tooltip';</script>
 ```
 
 ```html preview center 150px
@@ -42,33 +40,57 @@ Use the `placement` attribute to set the placement of the tooltip around the anc
 </style>
 <div class="grid">
 	<div></div>
-	<vwc-tooltip text="top-start" placement="top-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
-	<vwc-tooltip text="top" placement="top"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
-	<vwc-tooltip text="top-end" placement="top-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
+	<vwc-tooltip text="top-start" placement="top-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
+	<vwc-tooltip text="top" placement="top"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
+	<vwc-tooltip text="top-end" placement="top-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
 	<div></div>
-	
-	<vwc-tooltip text="left-start" placement="left-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right-start" placement="right-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
 
-	<vwc-tooltip text="left" placement="left"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
+	<vwc-tooltip text="left-start" placement="left-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-tooltip text="right" placement="right"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
+	<vwc-tooltip text="right-start" placement="right-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
 
-	<vwc-tooltip text="left-end" placement="left-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
+	<vwc-tooltip text="left" placement="left"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-tooltip text="right-end" placement="right-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
-	
+	<vwc-tooltip text="right" placement="right"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
+
+	<vwc-tooltip text="left-end" placement="left-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
 	<div></div>
-	<vwc-tooltip text="bottom-start" placement="bottom-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
-	<vwc-tooltip text="bottom" placement="bottom"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
-	<vwc-tooltip text="bottom-end" placement="bottom-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button></vwc-tooltip>
+	<div></div>
+	<div></div>
+	<vwc-tooltip text="right-end" placement="right-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
+
+	<div></div>
+	<vwc-tooltip text="bottom-start" placement="bottom-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
+	<vwc-tooltip text="bottom" placement="bottom"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
+	<vwc-tooltip text="bottom-end" placement="bottom-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button
+	></vwc-tooltip>
 	<div></div>
 </div>
 ```
@@ -90,7 +112,8 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 <vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
 
 <script>
-	document.querySelector('#tooltip2').anchor = document.querySelector('#button2');
+	document.querySelector('#tooltip2').anchor =
+		document.querySelector('#button2');
 </script>
 ```
 
@@ -118,13 +141,17 @@ Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
 
 ```html preview center 230px
 <style>
-  .tooltip {
-    --tooltip-inline-size: 160px;
-  }
+	.tooltip {
+		--tooltip-inline-size: 160px;
+	}
 </style>
 
 <vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
-<vwc-tooltip anchor="button" text="I'm a tooltip with long text so my inline size is 160px" class="tooltip"></vwc-tooltip>
+<vwc-tooltip
+	anchor="button"
+	text="I'm a tooltip with long text so my inline size is 160px"
+	class="tooltip"
+></vwc-tooltip>
 ```
 
 ## Caveat

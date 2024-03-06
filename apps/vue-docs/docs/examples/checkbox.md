@@ -1,6 +1,7 @@
 # VCheckbox Examples
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/checkbox/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Checked
+
 <code-tab>
 <template #example>
 <CheckedExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/checkbox/CheckedExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Indeterminate
+
 <code-tab>
 <template #example>
 <IndeterminateExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/checkbox/IndeterminateExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/checkbox/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Readonly
+
 <code-tab>
 <template #example>
 <ReadonlyExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/checkbox/ReadonlyExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Value
+
 <code-tab>
 <template #example>
 <ValueExample />
@@ -75,6 +86,7 @@
 ```vue
 <!--@include: ./components/checkbox/ValueExample.vue -->
 ```
+
 </template>
 </code-tab>
 

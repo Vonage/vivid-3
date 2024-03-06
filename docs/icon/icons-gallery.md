@@ -1,6 +1,6 @@
 # Icons Gallery
 
-Choose the icon you wish to use and click to copy its name. 
+Choose the icon you wish to use and click to copy its name.
 As an example, you can use it as follows:
 
 ```html
@@ -12,4 +12,3 @@ As an example, you can use it as follows:
 <vivid-icons-gallery></vivid-icons-gallery>
 
 <script type="module" src="../../assets/scripts/icons-gallery.js"></script>
-

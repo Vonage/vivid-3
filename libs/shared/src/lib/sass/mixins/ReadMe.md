@@ -1,9 +1,12 @@
 # About Appearance
+
 `appearance` is all about the looks :)  
 `appearance` is used combined with `connotation`
 
 ## Appearances
+
 ### `components/src/lib/enums.ts`
+
 - filled
 - outlined
 - duotone
@@ -13,7 +16,9 @@
 - listitem
 
 ## States
+
 ### `appearance/_mixins.scss`
+
 - idle
 - hover
 - disabled
@@ -27,8 +32,11 @@
 - success
 
 ## Mapping Connotation
-### `connotation/_variables.scss`   
+
+### `connotation/_variables.scss`
+
 for using all the connotation in the appearance we are mapping the token with names:
+
 ```css
 faint: #{utils.get-color-token(#{$type}-50)},
 soft: #{utils.get-color-token(#{$type}-100)},
@@ -45,8 +53,11 @@ contrast: #{utils.get-color-token(#{$type}-800)},
 P.S. for some names in the map, `accent` and `warning` has expansions
 
 ## Mapping Appearance States
+
 ### `appearance/_variables.scss`
+
 for each state we have 3 colors that are set:
+
 - text
 - fill
 - outline
@@ -70,23 +81,27 @@ hover: (
 ```
 
 ## Using Appearance
+
 In the component file, we need to import the connotation with the shades that are being used in the appearance
 
 ```css
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-$connotations: accent cta success alert,
-$shades: primary primary-text primary-increment contrast fierce firm soft faint,
-$default: accent,
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent cta success alert,
+	$shades: primary primary-text primary-increment contrast fierce firm soft
+		faint,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 ```
+
 and the appearances we will be using - combined with the states we need:
+
 ```css
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
-$appearances: filled outlined ghost,
-$states: idle hover disabled active,
-$default: ghost,
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
+	$appearances: filled outlined ghost,
+	$states: idle hover disabled active,
+	$default: ghost
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 ```

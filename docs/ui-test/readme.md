@@ -66,7 +66,7 @@ All arguments are passed to playwright, so if you want to update a single compon
 
 ## Updating the docker image
 
-The docker image comes with the browsers and playwright ready for action.  If, for some reason, there's a need to update the playwright version, a new version should be published to the docker hub. To understand how to build multi-platform images (needed to run on Mac/intel and Mac/ARM), [you can read this page](https://docs.docker.com/build/building/multi-platform/). Here's a summary of commands:
+The docker image comes with the browsers and playwright ready for action. If, for some reason, there's a need to update the playwright version, a new version should be published to the docker hub. To understand how to build multi-platform images (needed to run on Mac/intel and Mac/ARM), [you can read this page](https://docs.docker.com/build/building/multi-platform/). Here's a summary of commands:
 
 1. Login to docker hub if you aren't already (`docker login`).
 2. If you don't already have a `docker-container`-based builder, you'll need to create one and activate it by [following the instructions from this page](https://docs.docker.com/build/building/multi-platform/#getting-started). (This is a one-time thing.)
@@ -84,4 +84,4 @@ The docker image comes with the browsers and playwright ready for action.  If, f
 
 ## Checking the tests
 
-All tests must pass. The results of failed tests can be found in the `test-results` folder directly under the project's root folder.  Inside you will find a folder per failed test, each with 3 files: `actual.png`, `expected.png` and `diff.png`.
+All tests must pass. The results of failed tests can be found in the `test-results` folder directly under the project's root folder. Inside you will find a folder per failed test, each with 3 files: `actual.png`, `expected.png` and `diff.png`.

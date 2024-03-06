@@ -3,9 +3,7 @@
 A split button is a button with two components: a label and an arrow; clicking on the label selects a default action, and clicking on the arrow opens up a list of other possible actions.
 
 ```js
-<script type='module'>
-  import '@vonage/vivid/split-button';
-</script>
+<script type="module">import '@vonage/vivid/split-button';</script>
 ```
 
 ## Members
@@ -18,7 +16,10 @@ A split button is a button with two components: a label and an arrow; clicking o
 Add a `label` attribute to add text to the split button.
 
 ```html preview
-<vwc-split-button appearance='filled' label='A default split button'></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="A default split button"
+></vwc-split-button>
 ```
 
 ### Appearance
@@ -29,9 +30,9 @@ Set the `appearance` attribute to change the split button's appearance.
 - Default: `'ghost'`
 
 ```html preview
-<vwc-split-button label='ghost' appearance='ghost'></vwc-split-button>
-<vwc-split-button label='filled' appearance='filled'></vwc-split-button>
-<vwc-split-button label='outlined' appearance='outlined'></vwc-split-button>
+<vwc-split-button label="ghost" appearance="ghost"></vwc-split-button>
+<vwc-split-button label="filled" appearance="filled"></vwc-split-button>
+<vwc-split-button label="outlined" appearance="outlined"></vwc-split-button>
 ```
 
 ### Icon
@@ -45,7 +46,11 @@ Note: Icon, by its own, doesn't make a discernible text. If there's no label on 
 - Default: `undefined`
 
 ```html preview
-<vwc-split-button appearance="filled" icon='compose-line' aria-label="Send Message"></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	icon="compose-line"
+	aria-label="Send Message"
+></vwc-split-button>
 ```
 
 ### Split Indicator
@@ -59,7 +64,11 @@ See the [Accessibility notes](#accessibility) if you would like to customize the
 - Default: `chevron-down-line`
 
 ```html preview
-<vwc-split-button appearance="filled" label='Split Indicator' split-indicator="more-vertical-solid"></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="Split Indicator"
+	split-indicator="more-vertical-solid"
+></vwc-split-button>
 ```
 
 ### Shape
@@ -70,8 +79,16 @@ Use the `shape` attribute to set the split button's edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-split-button appearance='filled' label='rounded' shape='rounded'></vwc-split-button>
-<vwc-split-button appearance='filled' label='pill' shape='pill'></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="rounded"
+	shape="rounded"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="pill"
+	shape="pill"
+></vwc-split-button>
 ```
 
 ### Size
@@ -82,10 +99,26 @@ Use the `size` attribute to set the split button's to one of the predefined bloc
 - Default: `'normal'`
 
 ```html preview
-<vwc-split-button appearance='filled' label='super-condensed' size='super-condensed'></vwc-split-button>
-<vwc-split-button appearance='filled' label='condensed' size='condensed'></vwc-split-button>
-<vwc-split-button appearance='filled' label='normal' size='normal'></vwc-split-button>
-<vwc-split-button appearance='filled' label='expanded' size='expanded'></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="super-condensed"
+	size="super-condensed"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="condensed"
+	size="condensed"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="normal"
+	size="normal"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="expanded"
+	size="expanded"
+></vwc-split-button>
 ```
 
 ### Connotation
@@ -97,10 +130,26 @@ It accepts a subset of predefined values.
 - Default: `'accent'`
 
 ```html preview
-<vwc-split-button appearance='filled' label='accent' connotation='accent'></vwc-split-button>
-<vwc-split-button appearance='filled' label='cta' connotation='cta'></vwc-split-button>
-<vwc-split-button appearance='filled' label='success' connotation='success'></vwc-split-button>
-<vwc-split-button appearance='filled' label='alert' connotation='alert'></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="accent"
+	connotation="accent"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="cta"
+	connotation="cta"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="success"
+	connotation="success"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="alert"
+	connotation="alert"
+></vwc-split-button>
 ```
 
 ### Disabled
@@ -111,19 +160,27 @@ Add the `disabled` attribute to disable the split button.
 - Default: `false`
 
 ```html preview
-<vwc-split-button appearance='ghost' label='ghost' disabled></vwc-split-button>
-<vwc-split-button appearance='filled' label='filled' disabled></vwc-split-button>
-<vwc-split-button appearance='outlined' label='outlined' disabled></vwc-split-button>
+<vwc-split-button appearance="ghost" label="ghost" disabled></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
+	label="filled"
+	disabled
+></vwc-split-button>
+<vwc-split-button
+	appearance="outlined"
+	label="outlined"
+	disabled
+></vwc-split-button>
 ```
 
 ## Properties
 
 <div class="table-wrapper">
 
-| Name     | Type        | Description                                                                              |
-|----------| -------- |------------------------------------------------------------------------------------------|
-| `action`  | `HTMLButtonElement` | A read-only HTML button element that represents the left button. |
-| `indicator`  | `HTMLButtonElement` | A read-only HTML button element that represents the right button. |
+| Name        | Type                | Description                                                       |
+| ----------- | ------------------- | ----------------------------------------------------------------- |
+| `action`    | `HTMLButtonElement` | A read-only HTML button element that represents the left button.  |
+| `indicator` | `HTMLButtonElement` | A read-only HTML button element that represents the right button. |
 
 </div>
 
@@ -132,7 +189,7 @@ Add the `disabled` attribute to disable the split button.
 <div class="table-wrapper">
 
 | Name              | Description                                 |
-|-------------------|---------------------------------------------|
+| ----------------- | ------------------------------------------- |
 | `action-click`    | Fired when the action button is clicked.    |
 | `indicator-click` | Fired when the indicator button is clicked. |
 
@@ -143,23 +200,27 @@ Add the `disabled` attribute to disable the split button.
 ### Split Button with anchored Menu
 
 ```html preview 200px
-<vwc-split-button id="splitButton" appearance="filled" label="A default split button">
-  <vwc-menu id="menu" placement="bottom-end" open>
-    <vwc-menu-item text="Menu item 1"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 2"></vwc-menu-item>
-  </vwc-menu>
+<vwc-split-button
+	id="splitButton"
+	appearance="filled"
+	label="A default split button"
+>
+	<vwc-menu id="menu" placement="bottom-end" open>
+		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+	</vwc-menu>
 </vwc-split-button>
 
 <script>
-  window.onload = function(){ 
-    menu.anchor = splitButton.indicator;
-    splitButton.addEventListener('action-click', () => {
-      alert("clicked on action"); 
-    });
-    splitButton.addEventListener('indicator-click', () => {
+	window.onload = function () {
+		menu.anchor = splitButton.indicator;
+		splitButton.addEventListener('action-click', () => {
+			alert('clicked on action');
+		});
+		splitButton.addEventListener('indicator-click', () => {
 			menu.open = !menu.open;
 		});
-  }
+	};
 </script>
 ```
 
@@ -167,19 +228,24 @@ Add the `disabled` attribute to disable the split button.
 
 ```html preview 100px
 <style>
-  html {
+	html {
 		text-align: center;
-  }
+	}
 </style>
 
-<vwc-split-button id="splitButton" appearance="filled" icon="compose-line" aria-label="Write a new message">
+<vwc-split-button
+	id="splitButton"
+	appearance="filled"
+	icon="compose-line"
+	aria-label="Write a new message"
+>
 	<vwc-tooltip id="tooltip" text="Write a new message"></vwc-tooltip>
 </vwc-split-button>
 
 <script>
-  window.onload = function(){
+	window.onload = function () {
 		tooltip.anchor = splitButton.action;
-  }
+	};
 </script>
 ```
 
@@ -189,10 +255,13 @@ Set the `icon` slot to show an icon.
 If set, the `icon` attribute is ignored.  
 Note: Icon, by its own, doesn't make a discernible text. If there's no label on the button, an `aria-label` must be provided to ensure that the user can understand the split button's purpose.
 
-
 ```html preview
-<vwc-split-button appearance='outlined' label='submit'>
-		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+<vwc-split-button appearance="outlined" label="submit">
+	<vwc-icon
+		slot="icon"
+		name="check-circle-solid"
+		connotation="success"
+	></vwc-icon>
 </vwc-split-button>
 ```
 

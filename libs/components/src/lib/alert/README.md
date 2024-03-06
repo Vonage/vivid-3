@@ -3,9 +3,7 @@
 Alerts are meant to display short-lived important information to the user, usually at the top or bottom of the screen.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/alert';
-</script>
+<script type="module">import '@vonage/vivid/alert';</script>
 ```
 
 ## Members
@@ -29,7 +27,11 @@ Use the `headline` attribute to add a headline to your alert.
 - Default: `undefined`
 
 ```html preview 100px
-<vwc-alert headline="This requires your attention" text="An important information for you" open></vwc-alert>
+<vwc-alert
+	headline="This requires your attention"
+	text="An important information for you"
+	open
+></vwc-alert>
 ```
 
 ### Open
@@ -42,13 +44,17 @@ Use the `open` attribute to toggle the alert open state.
 ```html preview
 <vwc-alert text="An important information for you"></vwc-alert>
 
-<vwc-button appearance='outlined' label="Show/Hide alert" onclick="toggleAlert()"></vwc-button>
+<vwc-button
+	appearance="outlined"
+	label="Show/Hide alert"
+	onclick="toggleAlert()"
+></vwc-button>
 
 <script>
-  alert = document.querySelector('vwc-alert');
-  function toggleAlert() {
-    alert.open = !alert.open;
-  }
+	alert = document.querySelector('vwc-alert');
+	function toggleAlert() {
+		alert.open = !alert.open;
+	}
 </script>
 ```
 
@@ -63,26 +69,30 @@ Note that each connotation comes with a default icon (that you can override with
 
 ```html preview 350px
 <style>
-  vwc-select {
-    width: 160px;
-  }
+	vwc-select {
+		width: 160px;
+	}
 </style>
-<vwc-alert text="An important information for you" connotation="accent" open></vwc-alert>
+<vwc-alert
+	text="An important information for you"
+	connotation="accent"
+	open
+></vwc-alert>
 
 <vwc-select label="Select a connotation">
-  <vwc-option value="accent" text="accent"></vwc-option>
-  <vwc-option value="success" text="success"></vwc-option>
-  <vwc-option value="warning" text="warning"></vwc-option>
-  <vwc-option value="alert" text="alert"></vwc-option>
-  <vwc-option value="information" text="information"></vwc-option>
+	<vwc-option value="accent" text="accent"></vwc-option>
+	<vwc-option value="success" text="success"></vwc-option>
+	<vwc-option value="warning" text="warning"></vwc-option>
+	<vwc-option value="alert" text="alert"></vwc-option>
+	<vwc-option value="information" text="information"></vwc-option>
 </vwc-select>
 
 <script>
-  select = document.querySelector('vwc-select');
-  alert = document.querySelector('vwc-alert');
-  select.addEventListener('change', (e) => {
-	  alert.connotation = select.value;
-  });
+	select = document.querySelector('vwc-select');
+	alert = document.querySelector('vwc-alert');
+	select.addEventListener('change', (e) => {
+		alert.connotation = select.value;
+	});
 </script>
 ```
 
@@ -95,7 +105,11 @@ over the connotation's icon, if any.
 - Default: `''`
 
 ```html preview 100px
-<vwc-alert text="An important information for you" open icon="megaphone-solid"></vwc-alert>
+<vwc-alert
+	text="An important information for you"
+	open
+	icon="megaphone-solid"
+></vwc-alert>
 ```
 
 ### Placement
@@ -107,19 +121,45 @@ Use the `placement` attribute to set the location of the alert.
 
 ```html preview center 250px
 <style>
-  .small-alert {
-    --alert-min-inline-size: 200px;
-  }
+	.small-alert {
+		--alert-min-inline-size: 200px;
+	}
 </style>
-<vwc-alert class="small-alert" placement="top-start" text="top-start" open></vwc-alert>
+<vwc-alert
+	class="small-alert"
+	placement="top-start"
+	text="top-start"
+	open
+></vwc-alert>
 <vwc-alert class="small-alert" placement="top" text="top" open></vwc-alert>
-<vwc-alert class="small-alert" placement="top-end" text="top-end" open></vwc-alert>
-<vwc-alert class="small-alert" placement="bottom-start" text="bottom-start" open></vwc-alert>
-<vwc-alert class="small-alert" placement="bottom" text="bottom" open></vwc-alert>
-<vwc-alert class="small-alert" placement="bottom-end" text="bottom-end" open></vwc-alert>
+<vwc-alert
+	class="small-alert"
+	placement="top-end"
+	text="top-end"
+	open
+></vwc-alert>
+<vwc-alert
+	class="small-alert"
+	placement="bottom-start"
+	text="bottom-start"
+	open
+></vwc-alert>
+<vwc-alert
+	class="small-alert"
+	placement="bottom"
+	text="bottom"
+	open
+></vwc-alert>
+<vwc-alert
+	class="small-alert"
+	placement="bottom-end"
+	text="bottom-end"
+	open
+></vwc-alert>
 ```
 
 ### Strategy
+
 Sets the alert as `position:static` and not `fixed`.  
 Placement will have no effect on the alert, and it will behave as an element in page flow.
 
@@ -127,7 +167,12 @@ Placement will have no effect on the alert, and it will behave as an element in 
 - Default: `fixed`
 
 ```html preview
-<vwc-alert strategy="static" text="Alert with position static" open icon="megaphone-solid"></vwc-alert>
+<vwc-alert
+	strategy="static"
+	text="Alert with position static"
+	open
+	icon="megaphone-solid"
+></vwc-alert>
 ```
 
 ### Removable
@@ -140,13 +185,17 @@ Use the `removable` attribute to add a close button to the alert.
 ```html preview 100px
 <vwc-alert text="An important information for you" removable open></vwc-alert>
 
-<vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
+<vwc-button
+	appearance="outlined"
+	label="Show alert"
+	onclick="openAlert()"
+></vwc-button>
 
 <script>
-  alert = document.querySelector('vwc-alert');
-  function openAlert() {
-    alert.open = true;
-  }
+	alert = document.querySelector('vwc-alert');
+	function openAlert() {
+		alert.open = true;
+	}
 </script>
 ```
 
@@ -160,13 +209,17 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 ```html preview
 <vwc-alert text="An important information for you" timeoutms="2000"></vwc-alert>
 
-<vwc-button appearance='outlined' label="Show an alert for 2 seconds" onclick="openAlert()"></vwc-button>
+<vwc-button
+	appearance="outlined"
+	label="Show an alert for 2 seconds"
+	onclick="openAlert()"
+></vwc-button>
 
 <script>
-  alert = document.querySelector('vwc-alert');
-  function openAlert() {
-    alert.open = true;
-  }
+	alert = document.querySelector('vwc-alert');
+	function openAlert() {
+		alert.open = true;
+	}
 </script>
 ```
 
@@ -178,7 +231,7 @@ If you want to add rich content to your alert, you can use the main slot.
 
 ```html preview 100px
 <vwc-alert open>
-  <vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
+	<vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
 </vwc-alert>
 ```
 
@@ -188,20 +241,25 @@ You can add action items elements using the `action-items` slot. They will be di
 
 ```html preview 100px
 <vwc-alert text="An important information for you" open>
-  <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
+	<vwc-button
+		slot="action-items"
+		appearance="outlined"
+		shape="pill"
+		label="Action"
+	></vwc-button>
 </vwc-alert>
 ```
 
 ### Icon
+
 Set the `icon` slot to add an icon to the alert.
 If set, the `icon` attribute is ignored.
 
 ```html preview 100px
 <vwc-alert text="An important information for you" open>
-  <vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
+	<vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
 </vwc-alert>
 ```
-
 
 ## CSS Variables
 
@@ -212,7 +270,11 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 - Default: `420px`
 
 ```html preview 100px
-<vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open>
+<vwc-alert
+	style="--alert-min-inline-size: auto;"
+	text="Very fitting!"
+	open
+></vwc-alert>
 ```
 
 ### Maximum inline Size
@@ -223,7 +285,11 @@ This is helpful to prevent the alert from becoming too wide when displaying a lo
 - Default: `fit-content`
 
 ```html preview 100px
-<vwc-alert style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open>
+<vwc-alert
+	style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;"
+	text="This text is very long and will wrap to the next line."
+	open
+></vwc-alert>
 ```
 
 ## Events

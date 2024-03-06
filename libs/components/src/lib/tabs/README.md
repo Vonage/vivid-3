@@ -4,25 +4,17 @@ Represents a tabs custom element.
 The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 ```js
-<script type="module">
-    import '@vonage/vivid/tabs';
-</script>
+<script type="module">import '@vonage/vivid/tabs';</script>
 ```
 
 ```html preview full
 <vwc-tabs>
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-        Tab one content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -38,18 +30,12 @@ Use the `gutters` attribute to add a margin to the component.
 
 ```html preview full
 <vwc-tabs gutters="small">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-        Tab one content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -62,41 +48,30 @@ Add a `orientation` attribute to control the orientation.
 
 ```html preview full
 <vwc-tabs gutters="small" orientation="vertical">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-        Tab one content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
 </vwc-tabs>
 ```
 
 ### Connotation
+
 - Type: `'accent' | 'cta'`
-- Default: `accent`  
+- Default: `accent`
 
 Setting a connotation will only affect the active tab
 
 ```html preview full
 <vwc-tabs gutters="small" connotation="cta">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-        Tab one content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -109,101 +84,89 @@ Add an `activeid` attribute of the active tab.
 
 ```html preview full
 <vwc-tabs gutters="small" activeid="two">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-        Tab one content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
 </vwc-tabs>
 ```
 
 ### Panel Scroll
+
 Add `scrollable-panel` to allow scroll.  
 Add `block-size` to `vwc-tabs` to make it scroll.
 
 #### horizontal
+
 ```html preview full
 <style>
-  .tabs {
-		block-size: 200px;  
-  }
+	.tabs {
+		block-size: 200px;
+	}
 </style>
 <vwc-tabs class="tabs" gutters="small" scrollable-panel>
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-      <div class="my-panel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-             <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
-      </div>
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
-</vwc-tabs>
-```
-#### Vertical
-```html preview full
-<style>
-  .tabs {
-		block-size: 150px;  
-  }
-</style>
-<vwc-tabs class="tabs" gutters="small" scrollable-panel orientation="vertical">
-    <vwc-tab label="Tab one" id="one"></vwc-tab>
-    <vwc-tab label="Tab two" id="two"></vwc-tab>
-    <vwc-tab label="Tab three" id="tree"></vwc-tab>
-    <vwc-tab-panel id="onePanel">
-      <div class="my-panel">
-        <ol>
-            <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-             <li>Stuffed artichokes</li>
-            <li>Bruschetta</li>
-            <li>Oven-baked polenta</li>
-            <li>Salami and Fig Crostini with Ricotta</li>
-            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
-        </ol>
-      </div>
-    </vwc-tab-panel>
-    <vwc-tab-panel id="twoPanel">
-        Tab two content
-    </vwc-tab-panel>
-    <vwc-tab-panel id="threePanel">
-        Tab three content
-    </vwc-tab-panel>
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel">
+		<div class="my-panel">
+			<ol>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+			</ol>
+		</div>
+	</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
 </vwc-tabs>
 ```
 
+#### Vertical
+
+```html preview full
+<style>
+	.tabs {
+		block-size: 150px;
+	}
+</style>
+<vwc-tabs class="tabs" gutters="small" scrollable-panel orientation="vertical">
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel">
+		<div class="my-panel">
+			<ol>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+				<li>Stuffed artichokes</li>
+				<li>Bruschetta</li>
+				<li>Oven-baked polenta</li>
+				<li>Salami and Fig Crostini with Ricotta</li>
+				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+			</ol>
+		</div>
+	</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
+	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+</vwc-tabs>
+```
 
 ### Slots
 
 Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that when activated, displays the `tab panel`.
-
 
 ## Events
 
@@ -214,4 +177,3 @@ Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that whe
 | `change` | Fires a custom `change` event when a tab is clicked or during keyboard navigation. |
 
 </div>
-

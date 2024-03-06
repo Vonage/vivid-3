@@ -6,9 +6,7 @@ The arrow points down when the controlled content is hidden, indicating that pre
 The arrow points up when the content is visible.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/nav-disclosure';
-</script>
+<script type="module">import '@vonage/vivid/nav-disclosure';</script>
 ```
 
 ## Members
@@ -22,10 +20,11 @@ Add a `label` attribute to add label to the nav disclosure.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item">
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
+	<vwc-nav-disclosure label="1st level item">
+		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+	</vwc-nav-disclosure>
+	<vwc-nav></vwc-nav
+></vwc-nav>
 ```
 
 ### Open
@@ -37,10 +36,11 @@ You can toggle the nav-disclosure by using the `open` attribute.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item" open>
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
+	<vwc-nav-disclosure label="1st level item" open>
+		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+	</vwc-nav-disclosure>
+	<vwc-nav></vwc-nav
+></vwc-nav>
 ```
 
 ### Icon
@@ -53,10 +53,11 @@ Use the `icon` attribute to add an icon.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item" icon="profile">
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
+	<vwc-nav-disclosure label="1st level item" icon="profile">
+		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+	</vwc-nav-disclosure>
+	<vwc-nav></vwc-nav
+></vwc-nav>
 ```
 
 ### Icon Only
@@ -65,10 +66,11 @@ If label is not applied.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure icon="profile">
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
+	<vwc-nav-disclosure icon="profile">
+		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+	</vwc-nav-disclosure>
+	<vwc-nav></vwc-nav
+></vwc-nav>
 ```
 
 ### Aria Current
@@ -76,14 +78,18 @@ If label is not applied.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-Within a set of pagination links, set a nav disclosure `aria-current` value to `"true"` to indicate the currently active disclosure.   
+Within a set of pagination links, set a nav disclosure `aria-current` value to `"true"` to indicate the currently active disclosure.  
 Only when the navigation disclosure is closed the `aria-current` will be set.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
-    <vwc-nav-item href="#" text="2nd level item" aria-current="page"></vwc-nav-item>
-  </vwc-nav-disclosure>
+	<vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
+		<vwc-nav-item
+			href="#"
+			text="2nd level item"
+			aria-current="page"
+		></vwc-nav-item>
+	</vwc-nav-disclosure>
 </vwc-nav>
 ```
 
@@ -94,7 +100,6 @@ Only when the navigation disclosure is closed the `aria-current` will be set.
 | Name     | Description                                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `toggle` | The `toggle` event is dispatched when the open/closed state of the nav-disclosure is toggled. This event does not bubble. |
-
 
 </div>
 
@@ -107,13 +112,17 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item">
-  	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
+	<vwc-nav-disclosure label="1st level item">
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
+		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+	</vwc-nav-disclosure>
+	<vwc-nav></vwc-nav
+></vwc-nav>
 ```
-
 
 ### Meta
 
@@ -121,9 +130,16 @@ Use the `meta` slot to add additional content to the nav-disclosure.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-disclosure label="1st level item" icon="profile">
-    <vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
-    <vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
-  </vwc-nav-disclosure>
-<vwc-nav>
+	<vwc-nav-disclosure label="1st level item" icon="profile">
+		<vwc-badge
+			slot="meta"
+			text="beta"
+			connotation="success"
+			appearance="subtle"
+			shape="pill"
+		></vwc-badge>
+		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
+	</vwc-nav-disclosure>
+	<vwc-nav></vwc-nav
+></vwc-nav>
 ```

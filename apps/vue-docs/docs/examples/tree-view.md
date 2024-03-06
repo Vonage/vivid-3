@@ -11,9 +11,9 @@
 ```vue
 <!--@include: ./components/tree-view/DefaultSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Nested Tree
 
@@ -26,6 +26,7 @@
 ```vue
 <!--@include: ./components/tree-view/NestedTreeExample.vue-->
 ```
+
 </template>
 </code-tab>
 

@@ -11,9 +11,9 @@
 ```vue
 <!--@include: ./components/header/ElevationShadowExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Alternate
 
@@ -26,9 +26,9 @@
 ```vue
 <!--@include: ./components/header/AlternateExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Default Slot
 
@@ -41,9 +41,9 @@
 ```vue
 <!--@include: ./components/header/DefaultSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Action Items
 
@@ -56,9 +56,9 @@
 ```vue
 <!--@include: ./components/header/ActionItemsExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## App Content
 
@@ -71,9 +71,9 @@
 ```vue
 <!--@include: ./components/header/AppContentExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Block Size
 
@@ -86,9 +86,9 @@
 ```vue
 <!--@include: ./components/header/BlockSizeExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## CSS Parts Base Example
 
@@ -101,9 +101,9 @@
 ```vue
 <!--@include: ./components/header/BaseExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Header With Banner
 
@@ -116,6 +116,7 @@
 ```vue
 <!--@include: ./components/header/HeaderWithBannerExample.vue-->
 ```
+
 </template>
 </code-tab>
 

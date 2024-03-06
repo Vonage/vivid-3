@@ -4,9 +4,7 @@ Toggletips provide supplementary or clarifying information. The main differences
 This means they can display user actions such as links or buttons.
 
 ```js
-<script type="module">
-	import '@vonage/vivid/toggletip';
-</script>
+<script type="module">import '@vonage/vivid/toggletip';</script>
 ```
 
 ```html preview center 100px
@@ -77,33 +75,69 @@ Use the `placement` attribute to control the position of the toggletip relative 
 </style>
 <div class="grid">
 	<div></div>
-	<vwc-toggletip placement="top-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> top-start</vwc-toggletip>
-	<vwc-toggletip placement="top"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> top</vwc-toggletip>
-	<vwc-toggletip placement="top-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> top-end</vwc-toggletip>
+	<vwc-toggletip placement="top-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		top-start</vwc-toggletip
+	>
+	<vwc-toggletip placement="top"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		top</vwc-toggletip
+	>
+	<vwc-toggletip placement="top-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		top-end</vwc-toggletip
+	>
 	<div></div>
 
-	<vwc-toggletip placement="left-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> left-start</vwc-toggletip>
+	<vwc-toggletip placement="left-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		left-start</vwc-toggletip
+	>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-toggletip placement="right-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> right-start</vwc-toggletip>
+	<vwc-toggletip placement="right-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		right-start</vwc-toggletip
+	>
 
-	<vwc-toggletip placement="left"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> left</vwc-toggletip>
+	<vwc-toggletip placement="left"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		left</vwc-toggletip
+	>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-toggletip placement="right"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> right</vwc-toggletip>
+	<vwc-toggletip placement="right"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		right</vwc-toggletip
+	>
 
-	<vwc-toggletip placement="left-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> left-end</vwc-toggletip>
+	<vwc-toggletip placement="left-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		left-end</vwc-toggletip
+	>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-toggletip placement="right-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> right-end</vwc-toggletip>
+	<vwc-toggletip placement="right-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		right-end</vwc-toggletip
+	>
 
 	<div></div>
-	<vwc-toggletip placement="bottom-start"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> bottom-start</vwc-toggletip>
-	<vwc-toggletip placement="bottom"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> bottom</vwc-toggletip>
-	<vwc-toggletip placement="bottom-end"><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button> bottom-end</vwc-toggletip>
+	<vwc-toggletip placement="bottom-start"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		bottom-start</vwc-toggletip
+	>
+	<vwc-toggletip placement="bottom"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		bottom</vwc-toggletip
+	>
+	<vwc-toggletip placement="bottom-end"
+		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		bottom-end</vwc-toggletip
+	>
 	<div></div>
 </div>
 ```
@@ -125,7 +159,8 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 <vwc-toggletip id="toggletip">My anchor is a reference</vwc-toggletip>
 
 <script>
-	document.querySelector('#toggletip').anchor = document.querySelector('#button2');
+	document.querySelector('#toggletip').anchor =
+		document.querySelector('#button2');
 </script>
 ```
 
@@ -152,7 +187,17 @@ You can add action items elements using the `action-items` slot. They will be di
 <vwc-toggletip>
 	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
 	This is a toggletip with action items
-	<vwc-button appearance='outlined' label='Action' shape='pill' slot="action-items"></vwc-button>
-	<vwc-button appearance='filled' label='Action' shape='pill' slot="action-items"></vwc-button>
+	<vwc-button
+		appearance="outlined"
+		label="Action"
+		shape="pill"
+		slot="action-items"
+	></vwc-button>
+	<vwc-button
+		appearance="filled"
+		label="Action"
+		shape="pill"
+		slot="action-items"
+	></vwc-button>
 </vwc-toggletip>
 ```

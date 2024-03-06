@@ -28,11 +28,15 @@ Vivid defines a set of typefaces presets that are used by the components.
 <div style="font: var(--vvd-typography-heading-3)">heading-3</div>
 <div style="font: var(--vvd-typography-heading-4)">heading-4</div>
 <div style="font: var(--vvd-typography-base-condensed)">base-condensed</div>
-<div style="font: var(--vvd-typography-base-condensed-bold)">base-condensed-bold</div>
+<div style="font: var(--vvd-typography-base-condensed-bold)">
+	base-condensed-bold
+</div>
 <div style="font: var(--vvd-typography-base)">base</div>
 <div style="font: var(--vvd-typography-base-bold)">base-bold</div>
 <div style="font: var(--vvd-typography-base-extended)">base-extended</div>
-<div style="font: var(--vvd-typography-base-extended-bold)">base-extended-bold</div>
+<div style="font: var(--vvd-typography-base-extended-bold)">
+	base-extended-bold
+</div>
 <div style="font: var(--vvd-typography-base-code)">base-code</div>
 ```
 
@@ -46,11 +50,11 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 
 ```html preview
 <style>
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	row-gap: 8px;
-}
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		row-gap: 8px;
+	}
 </style>
 <div class="wrapper">
 	<h1>heading-1</h1>
@@ -66,7 +70,7 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 	<kbd>kbd text</kbd>
 	<samp>samp text</samp>
 	<small>small text</small>
-	<small><b>small  + bold text</b></small>
+	<small><b>small + bold text</b></small>
 	<small><strong>small + strong text</strong></small>
 	<figcaption>figcaption text</figcaption>
 	<figcaption><b>figcaption + bold text</b></figcaption>
@@ -80,11 +84,11 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 
 ```html preview
 <style>
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	row-gap: 8px;
-}
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		row-gap: 8px;
+	}
 </style>
 <div class="wrapper">
 	<div class="headline tight">headline</div>
@@ -113,16 +117,15 @@ Note that when using the [core typography](/guides/styles/#core-typography) styl
 
 ```html preview
 <style>
- .vvd-root:root {
-  --vvd-size-font-scale-base: 1.3rem;
- }
+	.vvd-root:root {
+		--vvd-size-font-scale-base: 1.3rem;
+	}
 </style>
 
-<vwc-header>
-  This header's title is 30% larger
-</vwc-header>
+<vwc-header> This header's title is 30% larger </vwc-header>
 
-<pre>/*
+<pre>
+/*
  * This block of code too
  */
 </pre>
@@ -136,18 +139,22 @@ Set the font custom properties of your choice (or all) to override the default t
 
 ```html preview
 <style>
-  :root {
-  --vvd-typography-heading-4: 500 20px/1.4 Georgia;
-  --vvd-typography-base-code: 400 16px monospace;
-  --vvd-typography-base-bold: 500 16px Georgia;
-  }
+	:root {
+		--vvd-typography-heading-4: 500 20px/1.4 Georgia;
+		--vvd-typography-base-code: 400 16px monospace;
+		--vvd-typography-base-bold: 500 16px Georgia;
+	}
 </style>
 <vwc-header>
-  This header typeface is set by '--vvd-typography-heading-4' 
+	This header typeface is set by '--vvd-typography-heading-4'
 </vwc-header>
-<pre>/*
+<pre>
+/*
  * This block of code typeface is set by '--vvd-typography-base-code'
  */
 </pre>
-<vwc-button appearance="filled" label="This button typeface is set by '--vvd-typography-base-bold'"></vwc-button>
+<vwc-button
+	appearance="filled"
+	label="This button typeface is set by '--vvd-typography-base-bold'"
+></vwc-button>
 ```
