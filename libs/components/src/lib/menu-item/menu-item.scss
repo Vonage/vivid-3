@@ -130,8 +130,9 @@
 
 
 .text-primary {
-	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
 	color: var(#{constants.$vvd-color-canvas-text});
+	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
+
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
