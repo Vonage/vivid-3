@@ -149,10 +149,6 @@ export class VideoPlayer extends FoundationElement {
 	#getSettings() {
 		const sources = this.#getSources();
 		const skipByValue = parseInt(this.skipBy);
-		const skipButtons = {
-			forward: skipByValue,
-			backward: skipByValue,
-		};
 		return {
 			languages: {
 				current: this.locale.videoPlayer,
@@ -167,7 +163,10 @@ export class VideoPlayer extends FoundationElement {
 			preload: 'auto',
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
-				skipButtons: skipByValue > 0 ? skipButtons : false,
+				skipButtons: {
+					forward: skipByValue,
+					backward: skipByValue,
+				},
 				remainingTimeDisplay: { displayNegative: false },
 				volumePanel: {inline: false},
 			},

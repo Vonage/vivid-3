@@ -46,12 +46,6 @@ describe('vwc-video-player', () => {
 		return videoEle?.querySelectorAll('track');
 	}
 
-	function isBigPlayButtonVisible() {
-		const btn = getBigPlayButton();
-		if (!btn) return false;
-		return !btn.classList.contains('vjs-hidden');
-	}
-
 	function getSkipButtons(amount: MediaSkipBy | boolean) {
 		const skipBackwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-backward-${amount}`);
 		const skipForwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-forward-${amount}`);
@@ -243,7 +237,7 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('skip-by', () => {
-		it('should set skip buttons according to skip-by attributes', async () => {
+		it('should set skip buttons according to skip-by attributes and show the buttons', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="${MediaSkipBy.Thirty}">
 					<source src="${VIDEO_SRC}" type="video/mp4">
@@ -252,9 +246,11 @@ describe('vwc-video-player', () => {
 
 			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeTruthy();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Thirty)[0]?.classList.contains('vjs-hidden')).toBe(false);
+			expect(getSkipButtons(MediaSkipBy.Thirty)[1]?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		it('should change skip button amount when skipBy is set', async () => {
+		it('should change skip button amount when skipBy is set and show the buttons', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="${MediaSkipBy.Thirty}">
 					<source src="${VIDEO_SRC}" type="video/mp4">
@@ -268,16 +264,20 @@ describe('vwc-video-player', () => {
 			expect(getSkipButtons(MediaSkipBy.Five)[1]).toBeTruthy();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeNull();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeNull();
+			expect(getSkipButtons(MediaSkipBy.Five)[0]?.classList.contains('vjs-hidden')).toBe(false);
+			expect(getSkipButtons(MediaSkipBy.Five)[1]?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		it('should disable skip by buttons when passed 0', async () => {
+		it('should hide the skip buttons when passed 0', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} skip-by="0">
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			expect(getSkipButtons(false)[0]).toBeTruthy();
-			expect(getSkipButtons(false)[1]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Zero)[0]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Zero)[1]).toBeTruthy();
+			expect(getSkipButtons(MediaSkipBy.Zero)[0]?.classList.contains('vjs-hidden')).toBe(true);
+			expect(getSkipButtons(MediaSkipBy.Zero)[1]?.classList.contains('vjs-hidden')).toBe(true);
 		});
 	});
 
