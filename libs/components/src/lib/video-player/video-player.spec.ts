@@ -73,30 +73,24 @@ describe('vwc-video-player', () => {
 			expect(element.playbackRates).toBe(DEFAULT_PLAYBACK_RATES);
 		});
 
-		it('should show the big play button by removing the vjs-hidden class', async () => {
-			expect(isBigPlayButtonVisible()).toBe(true);
-		});
-
 		it('should remove the lang attribute to avoid clash with vivid localization', () => {
 			expect(element.shadowRoot?.querySelector('[lang]')).toBe(null);
 		});
 	});
 
 	describe('src', () => {
-		describe('no src provided', () => {
-			it('should show the internal invalid src error message', async() => {
-				element = (await fixture(
-					`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-				)) as VideoPlayer;
-				await elementUpdated(element);
-				const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
-				const dialogContentEl = getDialogContentEle();
-				expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
-				expect(dialogContentEl!.textContent?.trim()).toBe('No compatible source was found for this media.');
-			});
+		it('should show the invalid src error when no src provided', async() => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			await elementUpdated(element);
+			const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
+			const dialogContentEl = getDialogContentEle();
+			expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
+			expect(dialogContentEl!.textContent?.trim()).toBe('No compatible source was found for this media.');
 		});
-
-		it('should show the big play button by removing the vjs-hidden class', async () => {
+		
+		it('should remove the vjs-hidden class when src is set', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -105,7 +99,7 @@ describe('vwc-video-player', () => {
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 
-		it('should allow the src to be updated', async () => {
+		it('should initialize the video when a valid src is provided', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -138,7 +132,7 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('loop', () => {
-		it('should set the loop attribute on the video element', async () => {
+		it('should reflect loop attribute on the video element', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} loop>
 					<source src="${VIDEO_SRC}" type="video/mp4">

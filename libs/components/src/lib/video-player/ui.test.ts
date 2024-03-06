@@ -20,7 +20,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</style>
 		<div class="layout">
 			<div class="spacer">
-				<vwc-video-player id="video-player" poster="//live.staticflickr.com/45/150125790_2df6475599_b.jpg">
+				<vwc-video-player id="video-player" poster="/assets/ui-tests/ed-poster.jpeg">
 					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 				</vwc-video-player>
 			</div>
@@ -35,10 +35,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-video-player id="video-player-controls-2">
 					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
 					<track kind="captions" 
-						src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English">
+						src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English">
 					<track kind="descriptions" 
-						src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en">
-					<track kind="chapters" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt" srclang="en">
+						src="/assets/ui-tests/descriptions.en.vtt" label="English" srclang="en">
+					<track kind="chapters" src="/assets/ui-tests/chapters.en.vtt" srclang="en">
 				</vwc-video-player>
 			</div>
 
