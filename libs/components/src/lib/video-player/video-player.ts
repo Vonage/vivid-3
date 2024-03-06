@@ -187,6 +187,8 @@ export class VideoPlayer extends FoundationElement {
 		for(let x = 0; x < trackEles.length; x++) {
 			this.#videoEle.appendChild(trackEles[x]);
 		}
+		this.#videoEle.setAttribute('crossorigin', 'anonymous');
+		this.#videoEle.setAttribute('playsinline', '');
 		if (this.loop) this.#videoEle.setAttribute('loop', '');
 		if (this.autoplay) this.#videoEle.setAttribute('autoplay', '');
 		const control = this.shadowRoot!.querySelector('.control');
