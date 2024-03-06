@@ -1,4 +1,4 @@
-﻿# Guidelines
+# Guidelines
 
 The core guidelines are driven by the [Vonage Brand Toolkit](https://drive.google.com/file/d/1zPE5qIJys_KyjpWNAfsW9tmHc3iXEOMl/view) and are the foundations on which we built our design system. Specifically, these elements are the subatomic elements of all our components.
 
