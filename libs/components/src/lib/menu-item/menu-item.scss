@@ -1,6 +1,6 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent,
+	$connotations: accent cta,
 	$shades: primary primary-text primary-increment faint soft pale dim,
 	$default: accent,
 );
@@ -83,7 +83,7 @@
 .action {
 	color: var(#{appearance.get-appearance-token(text)});
 
-	:host(:not([check-appearance],[aria-checked="true"])) & {
+	:host(:not([check-appearance],[aria-checked="true"],[connotation="cta"])) & {
 		color: var(#{constants.$vvd-color-neutral-500});
 	}
 
@@ -125,13 +125,13 @@
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-box-orient: vertical;
-	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 }
 
 
 .text-primary {
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
+	color: var(#{constants.$vvd-color-canvas-text});
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
@@ -139,7 +139,10 @@
 
 .text-secondary {
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
-	.base.two-lines:not(.disabled) & {
+	.base.two-lines:not(.disabled, .selected) & {
 		color: var(#{constants.$vvd-color-neutral-600});
+	}
+	.base.two-lines:where(.selected):not(.disabled) & {
+		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }
