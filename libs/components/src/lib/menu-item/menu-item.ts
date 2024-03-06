@@ -6,7 +6,7 @@ import {
 } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
-import {Connotation} from "../enums";
+import {Connotation} from '../enums';
 
 export const MenuItemRole = {
 	...FastMenuItemRole,
