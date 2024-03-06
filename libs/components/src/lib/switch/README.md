@@ -56,8 +56,7 @@ Use the `readonly` attribute to show a readonly state of the switch.
 - Default: `false`
 
 ```html preview
-<vwc-switch readonly></vwc-switch>
-<vwc-switch readonly checked></vwc-switch>
+<vwc-switch readonly></vwc-switch> <vwc-switch readonly checked></vwc-switch>
 ```
 
 ### Disabled
@@ -68,8 +67,7 @@ Use the `disabled` attribute to show a disabled state of the switch.
 - Default: `false`
 
 ```html preview
-<vwc-switch disabled></vwc-switch>
-<vwc-switch disabled checked></vwc-switch>
+<vwc-switch disabled></vwc-switch> <vwc-switch disabled checked></vwc-switch>
 ```
 
 ### Value
