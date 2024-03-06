@@ -6,37 +6,47 @@
 @use 'variables' as variables;
 @use 'config' as config;
 
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-$hover: ':hover, .hover';
-$disabled: ':disabled, .disabled';
-$readonly: '.readonly';
-$checked: ':checked, .checked';
-$selected: '.selected, [aria-current]';
-$active: ':active, .active';
-$error: '.error';
-$success: '.success';
-
-$selectors: (
-  idle: '&',
-  hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-  disabled: '&:where(#{$disabled})',
-  readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
-  selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
-  selectedAndHover: '&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-  selectedAndDisabled: '&:where(#{$selected}):where(#{$disabled})',
-  checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
-	checkedAndHover: '&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
-  active: '&:where(#{$active}):where(:not(#{$disabled}))',
-  error: '&:where(#{$error}):where(:not(#{$disabled}))',
-	success: '&:where(#{$success}):where(:not(#{$disabled}))',
+$state-aspect-selectors: (
+	hover: '.hover, :hover',
+	disabled: '.disabled, :disabled',
+	readonly: '.readonly',
+	checked: '.checked, :checked',
+	selected: '.selected',
+	active: '.active, :active',
+	error: '.error',
+	success: '.success',
 );
 
-@mixin appearance {
+@function state-selectors($aspect-selectors) {
+	$hover: map.get($aspect-selectors, hover);
+	$disabled: map.get($aspect-selectors, disabled);
+	$readonly: map.get($aspect-selectors, readonly);
+	$checked: map.get($aspect-selectors, checked);
+	$selected: map.get($aspect-selectors, selected);
+	$active: map.get($aspect-selectors, active);
+	$error: map.get($aspect-selectors, error);
+	$success: map.get($aspect-selectors, success);
+
+	@return (
+		idle: '&',
+		hover: '&:where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
+		disabled: '&:where(#{$disabled})',
+		readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
+		selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
+		selectedAndHover: '&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
+		selectedAndDisabled: '&:where(#{$selected}):where(#{$disabled})',
+		checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
+		checkedAndHover: '&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
+		active: '&:where(#{$active}):where(:not(#{$disabled}))',
+		error: '&:where(#{$error}):where(:not(#{$disabled}))',
+		success: '&:where(#{$success}):where(:not(#{$disabled}))',
+	);
+}
+
+@mixin appearance($state-selectors: state-selectors($state-aspect-selectors)) {
 
   @each $state in config.$states {
-    #{map.get($selectors, $state)} {
+    #{map.get($state-selectors, $state)} {
 
       $state-mapping: map.get(variables.$states-mapping, $state);
 
