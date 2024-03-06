@@ -9,7 +9,11 @@ See the list of available icons in the [icons gallery](/icons/icons-gallery/).
 ```
 
 ```html preview
-<p>I <vwc-icon name="heart-line" connotation="alert"></vwc-icon> VIVID!</p>
+<p>
+	I
+	<vwc-icon name="heart-line" connotation="alert"></vwc-icon>
+	VIVID!
+</p>
 ```
 
 ## Members
@@ -35,18 +39,30 @@ Note that changing `--vvd-size-density` will affect the chosen size (the example
 - Default: `undefined` (the icon dimensions will default to `1em`×`1em`)
 
 ```html preview
-<vwc-icon name="close-line" size="-6"></vwc-icon>16px
-<vwc-icon name="close-line" size="-5"></vwc-icon>20px
-<vwc-icon name="close-line" size="-4"></vwc-icon>24px
-<vwc-icon name="close-line" size="-3"></vwc-icon>28px
-<vwc-icon name="close-line" size="-2"></vwc-icon>32px
-<vwc-icon name="close-line" size="-1"></vwc-icon>36px
-<vwc-icon name="close-line" size="0"></vwc-icon>40px
-<vwc-icon name="close-line" size="1"></vwc-icon>44px
-<vwc-icon name="close-line" size="2"></vwc-icon>48px
-<vwc-icon name="close-line" size="3"></vwc-icon>52px
-<vwc-icon name="close-line" size="4"></vwc-icon>56px
-<vwc-icon name="close-line" size="5"></vwc-icon>60px
+<vwc-icon name="close-line" size="-6"></vwc-icon>
+16px
+<vwc-icon name="close-line" size="-5"></vwc-icon>
+20px
+<vwc-icon name="close-line" size="-4"></vwc-icon>
+24px
+<vwc-icon name="close-line" size="-3"></vwc-icon>
+28px
+<vwc-icon name="close-line" size="-2"></vwc-icon>
+32px
+<vwc-icon name="close-line" size="-1"></vwc-icon>
+36px
+<vwc-icon name="close-line" size="0"></vwc-icon>
+40px
+<vwc-icon name="close-line" size="1"></vwc-icon>
+44px
+<vwc-icon name="close-line" size="2"></vwc-icon>
+48px
+<vwc-icon name="close-line" size="3"></vwc-icon>
+52px
+<vwc-icon name="close-line" size="4"></vwc-icon>
+56px
+<vwc-icon name="close-line" size="5"></vwc-icon>
+60px
 ```
 
 ### Custom Size
@@ -60,7 +76,8 @@ If the predefined sizes are not enough, you can use the `font-size` property to 
 	}
 </style>
 
-<vwc-icon name="close-line" class="small-icon"></vwc-icon>30px
+<vwc-icon name="close-line" class="small-icon"></vwc-icon>
+30px
 ```
 
 ### Connotation
@@ -78,16 +95,26 @@ It accepts a subset of predefined values.
 	}
 </style>
 <ul>
-	<li><vwc-icon name="heart-solid" connotation="accent"></vwc-icon> accent</li>
+	<li>
+		<vwc-icon name="heart-solid" connotation="accent"></vwc-icon>
+		accent
+	</li>
 	<li>
 		<vwc-icon name="heart-solid" connotation="announcement"></vwc-icon>
 		announcement
 	</li>
-	<li><vwc-icon name="heart-solid" connotation="cta"></vwc-icon> cta</li>
 	<li>
-		<vwc-icon name="heart-solid" connotation="success"></vwc-icon> success
+		<vwc-icon name="heart-solid" connotation="cta"></vwc-icon>
+		cta
 	</li>
-	<li><vwc-icon name="heart-solid" connotation="alert"></vwc-icon> alert</li>
+	<li>
+		<vwc-icon name="heart-solid" connotation="success"></vwc-icon>
+		success
+	</li>
+	<li>
+		<vwc-icon name="heart-solid" connotation="alert"></vwc-icon>
+		alert
+	</li>
 	<li>
 		<vwc-icon name="heart-solid" connotation="information"></vwc-icon>
 		information

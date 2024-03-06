@@ -321,7 +321,8 @@ The index of the column that will be focused the next time the grid is focused i
 
 ```html preview
 <div>Column Index (starts from 0)</div>
-<vwc-number-field id="col-number"></vwc-number-field><br />
+<vwc-number-field id="col-number"></vwc-number-field>
+<br />
 <vwc-button
 	appearance="filled"
 	connotation="cta"
@@ -400,7 +401,7 @@ The grid also adds the `aria-selected` attribute to the row when it is selected 
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader"> data2 </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">data2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row aria-selected="true">
 		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
@@ -438,18 +439,18 @@ For more information regarding `aria-sort` you can reference [the W3C spec](http
 ```html preview
 <vwc-data-grid>
 	<vwc-data-grid-row role="row">
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending"
-			>ascending</vwc-data-grid-cell
-		>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending"
-			>descending</vwc-data-grid-cell
-		>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none"
-			>none</vwc-data-grid-cell
-		>
-		<vwc-data-grid-cell cell-type="columnheader" aria-sort="other"
-			>other</vwc-data-grid-cell
-		>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending">
+			ascending
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending">
+			descending
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">
+			none
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="other">
+			other
+		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
@@ -465,9 +466,9 @@ The grid also adds the `aria-selected` attribute to the cell when it is selected
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
-		<vwc-data-grid-cell
-			>Cell 3 with long text, all cells has ellipsis</vwc-data-grid-cell
-		>
+		<vwc-data-grid-cell>
+			Cell 3 with long text, all cells has ellipsis
+		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
@@ -638,7 +639,7 @@ In order for the select popup to show correctly in the grid, use the `fixed-drop
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader"> data2 </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">data2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell>
@@ -808,11 +809,11 @@ If you cell contains multiple focusable elements or elements that require arrow 
 ```html preview
 <vwc-data-grid>
 	<vwc-data-grid-row row-type="header">
-		<vwc-data-grid-cell cell-type="columnheader"> Column 1 </vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader"> Column 2 </vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Column 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Column 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
-		<vwc-data-grid-cell> Cell 1.1 </vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 1.1</vwc-data-grid-cell>
 		<vwc-data-grid-cell id="single-action">
 			<vwc-button
 				appearance="outlined"
@@ -822,7 +823,7 @@ If you cell contains multiple focusable elements or elements that require arrow 
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
-		<vwc-data-grid-cell> Cell 2.1 </vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2.1</vwc-data-grid-cell>
 		<vwc-data-grid-cell id="multiple-actions">
 			<vwc-button
 				appearance="outlined"

@@ -23,8 +23,8 @@ Add a `label` attribute to add label to the nav disclosure.
 	<vwc-nav-disclosure label="1st level item">
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```
 
 ### Open
@@ -39,8 +39,8 @@ You can toggle the nav-disclosure by using the `open` attribute.
 	<vwc-nav-disclosure label="1st level item" open>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```
 
 ### Icon
@@ -56,8 +56,8 @@ Use the `icon` attribute to add an icon.
 	<vwc-nav-disclosure label="1st level item" icon="profile">
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```
 
 ### Icon Only
@@ -69,8 +69,8 @@ If label is not applied.
 	<vwc-nav-disclosure icon="profile">
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```
 
 ### Aria Current
@@ -120,8 +120,8 @@ If set, the `icon` attribute is ignored.
 		></vwc-icon>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```
 
 ### Meta
@@ -140,6 +140,6 @@ Use the `meta` slot to add additional content to the nav-disclosure.
 		></vwc-badge>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```

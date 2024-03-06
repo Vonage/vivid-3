@@ -23,7 +23,12 @@ The lowest value allowed for the range.
 <div>
 	<vwc-range-slider id="slider" min="-10"></vwc-range-slider>
 </div>
-<div>Current range: <span id="start"></span> to <span id="end"></span></div>
+<div>
+	Current range:
+	<span id="start"></span>
+	to
+	<span id="end"></span>
+</div>
 
 <script>
 	const slider = document.querySelector('#slider');
@@ -51,7 +56,12 @@ The highest value allowed for the range.
 <div>
 	<vwc-range-slider id="slider" max="20"></vwc-range-slider>
 </div>
-<div>Current range: <span id="start"></span> to <span id="end"></span></div>
+<div>
+	Current range:
+	<span id="start"></span>
+	to
+	<span id="end"></span>
+</div>
 
 <script>
 	const slider = document.querySelector('#slider');
@@ -79,7 +89,12 @@ Sets the granularity with which values can be incremented/decremented.
 <div>
 	<vwc-range-slider id="slider" step="0.5"></vwc-range-slider>
 </div>
-<div>Current range: <span id="start"></span> to <span id="end"></span></div>
+<div>
+	Current range:
+	<span id="start"></span>
+	to
+	<span id="end"></span>
+</div>
 
 <script>
 	const slider = document.querySelector('#slider');
@@ -194,7 +209,11 @@ You can set the `valueTextFormatter` member to customize how values will be form
 </div>
 <div>
 	Duration from
-	<strong><span id="start"></span> to <span id="end"></span></strong>
+	<strong>
+		<span id="start"></span>
+		to
+		<span id="end"></span>
+	</strong>
 </div>
 <script>
 	const slider = document.querySelector('#slider');

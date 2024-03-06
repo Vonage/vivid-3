@@ -44,7 +44,7 @@ Click on the `scrim` or press the `ESC` key (while drawer is focused) to close t
 
 ```html preview full
 <vwc-side-drawer modal open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
 	<vwc-layout gutters="small" slot="app-content">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -66,7 +66,7 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 
 ```html preview full
 <vwc-side-drawer alternate open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
 	<vwc-layout gutters="small" slot="app-content">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -88,7 +88,7 @@ Use the `trailing` attribute to set the side of the drawer.
 
 ```html preview full
 <vwc-side-drawer trailing open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
 	<vwc-layout gutters="small" slot="app-content">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -109,7 +109,7 @@ The default slot sets assigned nodes to the side drawer itself.
 
 ```html preview full 150px
 <vwc-side-drawer open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 </vwc-side-drawer>
 ```
 
@@ -194,7 +194,7 @@ Select `base` part to access the component's internal _base_ element (which repr
 </style>
 
 <vwc-side-drawer open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 </vwc-side-drawer>
 ```
 
@@ -296,7 +296,7 @@ Select `base` part to access the component's internal _base_ element (which repr
 	}
 </style>
 <vwc-side-drawer class="side-drawer" open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 	<div class="content" slot="app-content">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

@@ -346,8 +346,7 @@ The assistive technology will read the `aria-label` text rather than the `title`
 	shape="pill"
 	icon="microphone-solid"
 	aria-label="Mute"
->
-</vwc-button>
+></vwc-button>
 
 <script>
 	document.getElementById('button').addEventListener('click', () => {
@@ -372,6 +371,5 @@ The assistive technology will read the `aria-label` text rather than the `title`
 	icon="message-sent-line"
 	shape="pill"
 	appearance="filled"
->
-</vwc-button>
+></vwc-button>
 ```

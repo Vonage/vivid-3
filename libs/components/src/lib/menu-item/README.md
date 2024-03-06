@@ -227,7 +227,7 @@ Assign nodes to the `trailing-meta` slot to set a badge or an additional icon.
 
 ```html preview 170px
 <vwc-menu open aria-label="Example menu">
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"> </vwc-menu-item>
+	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2">
 		<vwc-badge
 			slot="trailing-meta"

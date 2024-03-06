@@ -150,8 +150,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 	max="2023-06-20"
 	start="2023-06-10"
 	end="2023-06-15"
->
-</vwc-date-range-picker>
+></vwc-date-range-picker>
 ```
 
 ## Events

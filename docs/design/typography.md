@@ -75,8 +75,14 @@ All headings and `p` elements also receive a `margin-block`. Use the `tight` cla
 	<figcaption>figcaption text</figcaption>
 	<figcaption><b>figcaption + bold text</b></figcaption>
 	<figcaption><strong>figcaption + strong text</strong></figcaption>
-	<p>text with <sub>sub text</sub></p>
-	<p>text with <sup>sup text</sup></p>
+	<p>
+		text with
+		<sub>sub text</sub>
+	</p>
+	<p>
+		text with
+		<sup>sup text</sup>
+	</p>
 </div>
 ```
 
@@ -122,7 +128,7 @@ Note that when using the [core typography](/guides/styles/#core-typography) styl
 	}
 </style>
 
-<vwc-header> This header's title is 30% larger </vwc-header>
+<vwc-header>This header's title is 30% larger</vwc-header>
 
 <pre>
 /*

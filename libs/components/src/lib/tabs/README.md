@@ -12,9 +12,9 @@ The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -33,9 +33,9 @@ Use the `gutters` attribute to add a margin to the component.
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -51,9 +51,9 @@ Add a `orientation` attribute to control the orientation.
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -69,9 +69,9 @@ Setting a connotation will only affect the active tab
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -87,9 +87,9 @@ Add an `activeid` attribute of the active tab.
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel"> Tab one content </vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -126,8 +126,8 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 			</ol>
 		</div>
 	</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -159,8 +159,8 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 			</ol>
 		</div>
 	</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel"> Tab two content </vwc-tab-panel>
-	<vwc-tab-panel id="threePanel"> Tab three content </vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 

@@ -241,18 +241,16 @@ Click on "Edit code" to be able to modify the variables.
 		text="1st level item"
 		onclick="onClick(event)"
 	></vwc-nav-item>
-	<vwc-nav>
-		<script>
-			function onClick(event) {
-				currentNavItem = document.querySelector(
-					'vwc-nav-item[aria-current="page"]'
-				);
-				currentNavItem?.removeAttribute('aria-current');
-				event.currentTarget.setAttribute('aria-current', 'page');
-			}
-		</script></vwc-nav
-	></vwc-nav
->
+</vwc-nav>
+<script>
+	function onClick(event) {
+		currentNavItem = document.querySelector(
+			'vwc-nav-item[aria-current="page"]'
+		);
+		currentNavItem?.removeAttribute('aria-current');
+		event.currentTarget.setAttribute('aria-current', 'page');
+	}
+</script>
 ```
 
 ### Nav Disclosure
@@ -262,8 +260,8 @@ Click on "Edit code" to be able to modify the variables.
 	<vwc-nav-disclosure label="1st level item">
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
-	<vwc-nav></vwc-nav
-></vwc-nav>
+	<vwc-nav></vwc-nav>
+</vwc-nav>
 ```
 
 ### Nav Item

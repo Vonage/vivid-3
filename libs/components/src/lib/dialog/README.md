@@ -153,7 +153,10 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 		label="Action"
 	></vwc-button>
 </vwc-dialog>
-<div>Returned Value: <span id="dialog-output"></span></div>
+<div>
+	Returned Value:
+	<span id="dialog-output"></span>
+</div>
 <vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
 <script>
 	(function handleReturnValue() {
@@ -265,8 +268,8 @@ To remove the body inline padding use `full-width-body`.
 						placeholder="Search for an agent"
 						icon="search-line"
 					></vwc-text-field>
-					<vwc-text-area label="Additional Note (Optional)"></vwc-text-area
-				></vwc-layout>
+					<vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
+				</vwc-layout>
 			</form>
 		</vwc-layout>
 	</div>

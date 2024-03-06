@@ -77,7 +77,8 @@ Use the `shape` attribute to change the avatar's edges.
 - Default: `'rounded'`
 
 ```html preview
-<vwc-avatar shape="rounded"></vwc-avatar> <vwc-avatar shape="pill"></vwc-avatar>
+<vwc-avatar shape="rounded"></vwc-avatar>
+<vwc-avatar shape="pill"></vwc-avatar>
 ```
 
 ### Size

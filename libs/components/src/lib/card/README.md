@@ -208,8 +208,7 @@ The number of lines is controlled by the css variable `--headline-line-clamp`.
 	}
 </style>
 
-<vwc-card headline="Vivid Card Component with long headline to trim">
-</vwc-card>
+<vwc-card headline="Vivid Card Component with long headline to trim"></vwc-card>
 ```
 
 ### Trim subtitle
@@ -228,8 +227,7 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 <vwc-card
 	headline="Vivid Card Component"
 	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
->
-</vwc-card>
+></vwc-card>
 ```
 
 ## Use case

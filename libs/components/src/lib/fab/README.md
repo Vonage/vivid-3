@@ -88,8 +88,8 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-fab icon="thumbs-up-line" size="normal" label="ask-vivid">
-	<vwc-icon slot="icon"
-		><svg
+	<vwc-icon slot="icon">
+		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			xmlns:cc="http://creativecommons.org/ns#"
 			xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -219,7 +219,8 @@ If set, the `icon` attribute is ignored.
 					<stop stop-color="#fff" offset="0" />
 					<stop stop-color="#fff" stop-opacity="0" offset="1" />
 				</linearGradient>
-			</defs></svg
-	></vwc-icon>
+			</defs>
+		</svg>
+	</vwc-icon>
 </vwc-fab>
 ```

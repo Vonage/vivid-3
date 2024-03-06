@@ -23,12 +23,12 @@ When `control-type` is set to `radio`, it is the consuming app's responsibility 
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px"
-		>Checkbox control</vwc-selectable-box
-	>
-	<vwc-selectable-box control-type="radio" style="max-inline-size: 450px"
-		>Radio control</vwc-selectable-box
-	>
+	<vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px">
+		Checkbox control
+	</vwc-selectable-box>
+	<vwc-selectable-box control-type="radio" style="max-inline-size: 450px">
+		Radio control
+	</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -42,12 +42,12 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box connotation="accent" style="max-inline-size: 450px"
-		>Accent box</vwc-selectable-box
-	>
-	<vwc-selectable-box connotation="cta" style="max-inline-size: 450px"
-		>CTA box</vwc-selectable-box
-	>
+	<vwc-selectable-box connotation="accent" style="max-inline-size: 450px">
+		Accent box
+	</vwc-selectable-box>
+	<vwc-selectable-box connotation="cta" style="max-inline-size: 450px">
+		CTA box
+	</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -61,15 +61,16 @@ Setting the `clickable-box` attribute makes the whole card clickable, just make 
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box clickable-box style="max-inline-size: 450px"
-		>Clickable accent box</vwc-selectable-box
-	>
+	<vwc-selectable-box clickable-box style="max-inline-size: 450px">
+		Clickable accent box
+	</vwc-selectable-box>
 	<vwc-selectable-box
 		clickable-box
 		connotation="cta"
 		style="max-inline-size: 450px"
-		>Clickable CTA box</vwc-selectable-box
 	>
+		Clickable CTA box
+	</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -90,14 +91,16 @@ Set the `checked` attribute to indicate the checked state of the box.
 		control-type="checkbox"
 		checked
 		style="max-inline-size: 450px"
-		>Checked checkbox box</vwc-selectable-box
 	>
+		Checked checkbox box
+	</vwc-selectable-box>
 	<vwc-selectable-box
 		control-type="radio"
 		checked
 		style="max-inline-size: 450px"
-		>Checked radio box</vwc-selectable-box
 	>
+		Checked radio box
+	</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -110,9 +113,9 @@ By default, the selectable box is styled in a spacious manner. Enabling the `tig
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-selectable-box tight style="max-inline-size: 450px"
-		>Tight box</vwc-selectable-box
-	>
+	<vwc-selectable-box tight style="max-inline-size: 450px">
+		Tight box
+	</vwc-selectable-box>
 </vwc-layout>
 ```
 
@@ -128,8 +131,9 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
 	<vwc-selectable-box
 		style="--selectable-box-spacing: 8px; max-inline-size: 450px"
-		>Custom spaced box</vwc-selectable-box
 	>
+		Custom spaced box
+	</vwc-selectable-box>
 </vwc-layout>
 ```
 

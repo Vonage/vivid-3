@@ -49,7 +49,7 @@ Use the `icon` attribute to set the icon of the empty state.
 Use the default slot to set the content of the empty state.
 
 ```html preview
-<vwc-empty-state> No results match your search criteria. </vwc-empty-state>
+<vwc-empty-state>No results match your search criteria.</vwc-empty-state>
 ```
 
 ### Graphic

@@ -19,8 +19,8 @@ The popup is positioned in a fixed manner to its anchor.
 - Default: `undefined`
 
 ```html preview center 150px
-<span id="anchor"> ⚓️ </span>
-<vwc-popup id="popup" open> This is a popup. </vwc-popup>
+<span id="anchor">⚓️</span>
+<vwc-popup id="popup" open>This is a popup.</vwc-popup>
 <script>
 	popup.anchor = anchor;
 </script>
@@ -131,20 +131,18 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 
 <div id="anchor" class="square"></div>
 
-<vwc-popup class="popup" open placement="right-end"> right-end </vwc-popup>
-<vwc-popup class="popup" open placement="right"> right </vwc-popup>
-<vwc-popup class="popup" open placement="right-start"> right-start </vwc-popup>
-<vwc-popup class="popup" open placement="left-end"> left-end </vwc-popup>
-<vwc-popup class="popup" open placement="left"> left </vwc-popup>
-<vwc-popup class="popup" open placement="left-start"> left-start </vwc-popup>
-<vwc-popup class="popup" open placement="top-end"> top-end </vwc-popup>
-<vwc-popup class="popup" open placement="top"> top </vwc-popup>
-<vwc-popup class="popup" open placement="top-start"> top-start </vwc-popup>
-<vwc-popup class="popup" open placement="bottom-end"> bottom-end </vwc-popup>
-<vwc-popup class="popup" open placement="bottom"> bottom </vwc-popup>
-<vwc-popup class="popup" open placement="bottom-start">
-	bottom-start
-</vwc-popup>
+<vwc-popup class="popup" open placement="right-end">right-end</vwc-popup>
+<vwc-popup class="popup" open placement="right">right</vwc-popup>
+<vwc-popup class="popup" open placement="right-start">right-start</vwc-popup>
+<vwc-popup class="popup" open placement="left-end">left-end</vwc-popup>
+<vwc-popup class="popup" open placement="left">left</vwc-popup>
+<vwc-popup class="popup" open placement="left-start">left-start</vwc-popup>
+<vwc-popup class="popup" open placement="top-end">top-end</vwc-popup>
+<vwc-popup class="popup" open placement="top">top</vwc-popup>
+<vwc-popup class="popup" open placement="top-start">top-start</vwc-popup>
+<vwc-popup class="popup" open placement="bottom-end">bottom-end</vwc-popup>
+<vwc-popup class="popup" open placement="bottom">bottom</vwc-popup>
+<vwc-popup class="popup" open placement="bottom-start">bottom-start</vwc-popup>
 <script>
 	document
 		.querySelectorAll('.popup')
@@ -160,8 +158,8 @@ Use the `strategy` attribute to set the placement strategy.
 - Default: `'fixed'`
 
 ```html preview center 150px
-<span id="anchor"> ⚓️ </span>
-<vwc-popup id="popup" strategy="absolute" open> This is a popup. </vwc-popup>
+<span id="anchor">⚓️</span>
+<vwc-popup id="popup" strategy="absolute" open>This is a popup.</vwc-popup>
 <script>
 	popup.anchor = anchor;
 </script>
@@ -191,7 +189,7 @@ Use the `--_popup-z-index` CSS variable to set the z-index of the popup.
 	}
 </style>
 <div id="anchor">⚓️</div>
-<vwc-popup id="popup" strategy="absolute" open> This is a popup. </vwc-popup>
+<vwc-popup id="popup" strategy="absolute" open>This is a popup.</vwc-popup>
 <div id="block"></div>
 <script>
 	popup.anchor = anchor;
@@ -222,7 +220,7 @@ The default should really be `contents`, but is not due to backwards compatibili
 <div class="container">
 	<span>◼️</span>
 	<span id="anchor">⚓️</span>
-	<vwc-popup id="popup" strategy="absolute" open> This is a popup. </vwc-popup>
+	<vwc-popup id="popup" strategy="absolute" open>This is a popup.</vwc-popup>
 	<span>◼️</span>
 </div>
 <script>

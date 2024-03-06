@@ -56,7 +56,8 @@ Toggle the `disabled` member to disable/enable the radio.
 - Default: `false`
 
 ```html preview
-<vwc-radio disabled></vwc-radio> <vwc-radio disabled checked></vwc-radio>
+<vwc-radio disabled></vwc-radio>
+<vwc-radio disabled checked></vwc-radio>
 ```
 
 ### Value

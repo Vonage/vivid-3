@@ -23,7 +23,10 @@ Use `min` to set the lowest value allowed for the slider.
 <div>
 	<vwc-slider id="slider" min="-5"></vwc-slider>
 </div>
-<div>Current value: <span id="slidervalue"></span></div>
+<div>
+	Current value:
+	<span id="slidervalue"></span>
+</div>
 
 <script>
 	slider.addEventListener(
@@ -44,7 +47,10 @@ Use `max` to set the greatest value allowed for the slider.
 <div>
 	<vwc-slider id="slider" max="100"></vwc-slider>
 </div>
-<div>Current value: <span id="slidervalue"></span></div>
+<div>
+	Current value:
+	<span id="slidervalue"></span>
+</div>
 
 <script>
 	slider.addEventListener(
@@ -65,7 +71,10 @@ Use `step` to set determine the granularity with which values can be incremented
 <div>
 	<vwc-slider id="slider" step="0.5"></vwc-slider>
 </div>
-<div>Current value: <span id="slidervalue"></span></div>
+<div>
+	Current value:
+	<span id="slidervalue"></span>
+</div>
 
 <script>
 	slider.addEventListener(

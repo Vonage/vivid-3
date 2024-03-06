@@ -31,18 +31,16 @@ Read more about [vwc-nav-item](/components/nav-item/).
 		text="1st level item"
 		onclick="onClick(event)"
 	></vwc-nav-item>
-	<vwc-nav>
-		<script>
-			function onClick(event) {
-				currentNavItem = document.querySelector(
-					'vwc-nav-item[aria-current="page"]'
-				);
-				currentNavItem?.removeAttribute('aria-current');
-				event.currentTarget.setAttribute('aria-current', 'page');
-			}
-		</script></vwc-nav
-	></vwc-nav
->
+</vwc-nav>
+<script>
+	function onClick(event) {
+		currentNavItem = document.querySelector(
+			'vwc-nav-item[aria-current="page"]'
+		);
+		currentNavItem?.removeAttribute('aria-current');
+		event.currentTarget.setAttribute('aria-current', 'page');
+	}
+</script>
 ```
 
 ### Navigation Disclosure
@@ -80,9 +78,9 @@ Read more about [vwc-nav-disclosure](/components/nav-disclosure/).
 				currentNavItem?.removeAttribute('aria-current');
 				event.currentTarget.setAttribute('aria-current', 'page');
 			}
-		</script></vwc-nav
-	></vwc-nav
->
+		</script>
+	</vwc-nav>
+</vwc-nav>
 ```
 
 ## Keyboard Interaction

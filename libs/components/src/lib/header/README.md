@@ -16,7 +16,7 @@ Set `elevation-shadow` to apply a shadow to the header.
 - Default: `false`
 
 ```html preview full
-<vwc-header elevation-shadow> Header content </vwc-header>
+<vwc-header elevation-shadow>Header content</vwc-header>
 ```
 
 ### Alternate
@@ -27,7 +27,7 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 - Default: `false`
 
 ```html preview full
-<vwc-header alternate> Header content </vwc-header>
+<vwc-header alternate>Header content</vwc-header>
 ```
 
 ## Slots
@@ -37,7 +37,7 @@ Use `alternate` to apply an alternate color-scheme, which is in contrast with th
 The default slot sets assigned nodes to the start of the header.
 
 ```html preview full
-<vwc-header> Header content </vwc-header>
+<vwc-header>Header content</vwc-header>
 ```
 
 ### Action Items
@@ -60,7 +60,7 @@ It is also possible to assign application content directly to the header's `app-
 <vwc-header>
 	Header content
 	<main slot="app-content">
-		<vwc-layout gutters="small"> Application content </vwc-layout>
+		<vwc-layout gutters="small">Application content</vwc-layout>
 	</main>
 </vwc-header>
 ```
@@ -108,7 +108,7 @@ Use `--header-bg-color` to set a custom background color for the header.
 	}
 </style>
 
-<vwc-header> Header content </vwc-header>
+<vwc-header>Header content</vwc-header>
 ```
 
 ## CSS Parts
@@ -192,7 +192,7 @@ A _fixed_ header as primary element containing a [side drawer](/components/side-
 
 	<!-- side drawer custom element assigned to header's 'app-content' slot -->
 	<vwc-side-drawer open slot="app-content">
-		<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+		<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
 		<!-- main element assigned to side-drawer's 'app-content' slot -->
 		<main slot="app-content">
@@ -240,11 +240,11 @@ A [side drawer](/components/side-drawer/) as primary element containing a header
 </style>
 
 <vwc-side-drawer open>
-	<vwc-layout gutters="small"> Side Drawer content </vwc-layout>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
 
 	<!-- header custom element assigned to side drawer's 'app-content' slot -->
 	<vwc-header slot="app-content">
-		<vwc-layout gutters="small"> Header content </vwc-layout>
+		<vwc-layout gutters="small">Header content</vwc-layout>
 
 		<!-- main element assigned to header's 'app-content' slot -->
 		<main slot="app-content">

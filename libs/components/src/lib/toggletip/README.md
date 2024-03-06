@@ -75,69 +75,69 @@ Use the `placement` attribute to control the position of the toggletip relative 
 </style>
 <div class="grid">
 	<div></div>
-	<vwc-toggletip placement="top-start"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		top-start</vwc-toggletip
-	>
-	<vwc-toggletip placement="top"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		top</vwc-toggletip
-	>
-	<vwc-toggletip placement="top-end"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		top-end</vwc-toggletip
-	>
+	<vwc-toggletip placement="top-start">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		top-start
+	</vwc-toggletip>
+	<vwc-toggletip placement="top">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		top
+	</vwc-toggletip>
+	<vwc-toggletip placement="top-end">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		top-end
+	</vwc-toggletip>
 	<div></div>
 
-	<vwc-toggletip placement="left-start"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		left-start</vwc-toggletip
-	>
+	<vwc-toggletip placement="left-start">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		left-start
+	</vwc-toggletip>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-toggletip placement="right-start"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		right-start</vwc-toggletip
-	>
+	<vwc-toggletip placement="right-start">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		right-start
+	</vwc-toggletip>
 
-	<vwc-toggletip placement="left"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		left</vwc-toggletip
-	>
+	<vwc-toggletip placement="left">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		left
+	</vwc-toggletip>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-toggletip placement="right"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		right</vwc-toggletip
-	>
+	<vwc-toggletip placement="right">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		right
+	</vwc-toggletip>
 
-	<vwc-toggletip placement="left-end"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		left-end</vwc-toggletip
-	>
+	<vwc-toggletip placement="left-end">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		left-end
+	</vwc-toggletip>
 	<div></div>
 	<div></div>
 	<div></div>
-	<vwc-toggletip placement="right-end"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		right-end</vwc-toggletip
-	>
+	<vwc-toggletip placement="right-end">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		right-end
+	</vwc-toggletip>
 
 	<div></div>
-	<vwc-toggletip placement="bottom-start"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		bottom-start</vwc-toggletip
-	>
-	<vwc-toggletip placement="bottom"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		bottom</vwc-toggletip
-	>
-	<vwc-toggletip placement="bottom-end"
-		><vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-		bottom-end</vwc-toggletip
-	>
+	<vwc-toggletip placement="bottom-start">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		bottom-start
+	</vwc-toggletip>
+	<vwc-toggletip placement="bottom">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		bottom
+	</vwc-toggletip>
+	<vwc-toggletip placement="bottom-end">
+		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+		bottom-end
+	</vwc-toggletip>
 	<div></div>
 </div>
 ```
