@@ -46,7 +46,7 @@ describe('vwc-video-player', () => {
 		return videoEle?.querySelectorAll('track');
 	}
 
-	function getSkipButtons(amount: MediaSkipBy | boolean) {
+	function getSkipButtons(amount: MediaSkipBy) {
 		const skipBackwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-backward-${amount}`);
 		const skipForwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-forward-${amount}`);
 		return [skipBackwardBtn, skipForwardBtn];
