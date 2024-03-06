@@ -2,9 +2,9 @@
 @use "partials/card-variables" as card-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
-	$connotations: accent,
+	$connotations: cta,
 	$shades: primary primary-text primary-increment faint soft,
-	$default: accent,
+	$default: cta,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
@@ -33,7 +33,7 @@
 	flex-flow: column;
 	border-radius: inherit;
 	block-size: 100%;
-	color: var(#{appearance.get-appearance-token(text)});
+	color: var(#{constants.$vvd-color-canvas-text});
 
 	:host([with-hover]) & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
