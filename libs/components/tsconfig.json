@@ -22,7 +22,7 @@
 		"allowSyntheticDefaultImports": true,
 		"removeComments": true,
 		"composite": true,
-    "resolveJsonModule": true
+		"resolveJsonModule": true
 	},
 	"files": [],
 	"include": [],
