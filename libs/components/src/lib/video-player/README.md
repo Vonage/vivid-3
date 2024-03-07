@@ -83,7 +83,7 @@ Captions can be provided using the `track` element.
 The following attributes are available on the element:
 | Attribute | Description |
 | --- | --- |
-| `src` | url string (relative or absolute) that points to the captions `.vtt` file |
+| `src` | url string (relative or absolute) that points to the captions file |
 | `kind` | denotes the type of track file, in this case `captions`, but it could be `subtitles`, `description` or `chapters` (see below) |
 | `srclang` | indicates what language each subtitle files' contents are in
 | `label` | to be shown in the menu when selecting the captions |
@@ -93,9 +93,9 @@ The following attributes are available on the element:
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player poster="/assets/images/ed-poster.jpeg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="captions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
+<vwc-video-player>
+    <source src="/assets/images/sample-5s.webm" type="video/webm">
+    <track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default>
 </vwc-video-player>
 ```
 
