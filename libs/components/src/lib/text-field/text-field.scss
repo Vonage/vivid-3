@@ -1,7 +1,8 @@
 @use 'partials/variables' as variables;
-@use '../focus/partials/variables' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
@@ -127,13 +128,11 @@ $low-ink-color: --_low-ink-color;
 	border-radius: inherit;
 	block-size: 100%;
 	inline-size: 100%;
-
-	&:focus-visible {
-		outline: none;
-	}
 }
 
 .control {
+	border-radius: inherit;
+
 	&:not(slot),
 	&::slotted(input) {
 		/* As input is in light dom, use !important and initial to prevent values getting overridden by global CSS resets etc. */
@@ -149,6 +148,7 @@ $low-ink-color: --_low-ink-color;
 		block-size: 100% !important;
 		color: inherit !important;
 		font: inherit;
+		outline: transparent;
 		padding-block: 0 !important;
 		padding-inline: var(#{variables.$text-field-gutter-start})
 			var(#{variables.$text-field-gutter-end}) !important;
@@ -169,11 +169,6 @@ $low-ink-color: --_low-ink-color;
 		-webkit-text-fill-color: var(
 			#{$low-ink-color}
 		) !important; /* 1. sets text fill to current `color` for safari */
-	}
-
-	&:not(slot):focus-visible,
-	&::slotted(input:focus-visible) {
-		outline: none;
 	}
 
 	.has-icon &:not(slot),
@@ -213,16 +208,26 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+/* focus */
 
-	pointer-events: none;
+@supports selector(:has(*)) {
+	.fieldset:has(.wrapper .control:focus-within)::after {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	// two properties are needed because number-field and combobox inherits the style.
-	// only text-field has wrapper.
+		@include focus.focus;
+	}
+}
 
-	.wrapper:not(:focus-visible, :focus-within) > &,
-	.fieldset:not(:focus-visible, :focus-within) > & {
-		display: none;
+@supports not selector(:has(*)) {
+	.wrapper:focus-within::after {
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		position: absolute;
+		z-index: 1;
+		display: block;
+		border-radius: inherit;
+		content: '';
+		inset: 0;
 	}
 }
