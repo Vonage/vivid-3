@@ -19,8 +19,20 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4"></vwc-video-player>
+<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"></vwc-video-player>
 ```
+
+#### Supported video formats
+
+Video player supports the most common video formats:
+
+1. **MP4 (MPEG-4 Part 14):** one of the most widely supported video formats and is typically used for web video playback.
+
+2. **WebM: WebM** open media file format designed for the web and widely supported by modern browsers. It uses VP8 or VP9 video codecs and Vorbis or Opus audio codecs.
+
+3. **Ogg:** a container format that can contain video streams compressed with Theora video codec and audio streams compressed with Vorbis audio codec.
+
+These formats are supported by default in most modern web browsers. Video player also provides support for streaming protocols like **HLS (HTTP Live Streaming)** (used in the example above) and **DASH (Dynamic Adaptive Streaming over HTTP)** through plugins or extensions.
 
 #### Source element
 
@@ -52,8 +64,8 @@ The poster image is displayed before the video has been interacted with. The `po
 	html { max-inline-size: 800px }
 </style>
 <vwc-video-player
-    poster="/assets/images/ed-poster.jpeg"
-    src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4"
+    poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
+    src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
 >
 </vwc-video-player>
 ```
@@ -163,8 +175,8 @@ The playback rates option can be removed by passing an empty string.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="/assets/images/ed-poster.jpeg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+<vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png">
+    <source src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8" type="application/x-mpegURL">
 </vwc-video-player>
 ```
 
@@ -181,8 +193,9 @@ Setting them to `0` removes the buttons.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player skip-by="30" poster="/assets/images/ed-poster.jpeg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+<vwc-video-player skip-by="30" poster="/assets/images/steel_hi.jpg">
+    <source src="
+    https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8" type="application/x-mpegURL">
 </vwc-video-player>
 ```
 
@@ -199,13 +212,8 @@ When `loop` is set, the video will restart automatically when it reaches the end
 <style>
 	html { max-inline-size: 800px }
 </style>
-<script>
-    function addAuto() {
-        document.getElementById('video').autoplay = true;;
-    }
-</script>
 <vwc-video-player autoplay loop>
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
+    <source src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
 </vwc-video-player>
 ```
 

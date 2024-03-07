@@ -177,6 +177,10 @@
 		text-align: center;
 	}
 
+	.vjs-audio-button .vjs-menu-item .vjs-icon-placeholder {
+		display: none;
+	}
+
 	@container (max-inline-size: 660px) {
 		.vjs-skip-backward-5,
 		.vjs-skip-forward-5,
@@ -189,7 +193,8 @@
 	}
 
 	@container (max-inline-size: 540px) {
-		.vjs-picture-in-picture-control {
+		.vjs-picture-in-picture-control,
+		.vjs-audio-button {
 			display: none;
 		}
 	}
