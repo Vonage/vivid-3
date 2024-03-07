@@ -13,18 +13,15 @@
  <vwc-menu-item connotation="cta" text="menu item" icon="image-line"></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox" connotation="cta" text="menu item" icon="image-line"></vwc-menu-item>
  <vwc-menu-item role="menuitemradio" connotation="cta" text="menu item" icon="image-line"></vwc-menu-item>
-   <vwc-divider></vwc-divider>
  <vwc-menu-item connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemcheckbox" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
    <vwc-menu-item role="menuitemradio" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemradio" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-      <vwc-divider></vwc-divider>
       <vwc-menu-item check-appearance="tick-only" checked role="menuitemcheckbox" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemcheckbox" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
    <vwc-menu-item check-appearance="tick-only" checked role="menuitemradio" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemradio" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-divider></vwc-divider>
     <vwc-menu-item text="Menu item 1" connotation="cta">
       <vwc-menu slot="submenu" ><vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
     </vwc-menu-item>
@@ -36,18 +33,15 @@
  <vwc-menu-item  text="menu item" icon="image-line"></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox"  text="menu item" icon="image-line"></vwc-menu-item>
  <vwc-menu-item role="menuitemradio"  text="menu item" icon="image-line"></vwc-menu-item>
-   <vwc-divider></vwc-divider>
  <vwc-menu-item  text="menu item" text-secondary="secondary text"></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemcheckbox" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
    <vwc-menu-item role="menuitemradio"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemradio" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-      <vwc-divider></vwc-divider>
       <vwc-menu-item check-appearance="tick-only" checked role="menuitemcheckbox"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemcheckbox" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
    <vwc-menu-item check-appearance="tick-only" checked role="menuitemradio"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
     <vwc-menu-item role="menuitemradio" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-        <vwc-divider></vwc-divider>
     <vwc-menu-item text="Menu item 1">
       <vwc-menu slot="submenu" ><vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
     </vwc-menu-item>
