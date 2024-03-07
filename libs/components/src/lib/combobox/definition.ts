@@ -2,7 +2,6 @@ import type { ComboboxOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import { popupRegistries } from '../popup/definition';
-import { focusRegistries } from '../focus/definition';
 import { listboxOptionRegistries } from '../option/definition';
 import textFieldStyles from '../text-field/text-field.scss?inline';
 import styles from './combobox.scss?inline';
@@ -26,7 +25,7 @@ export const combobox = Combobox.compose<ComboboxOptions>({
 	},
 })();
 
-export const comboboxRegistries = [combobox, ...iconRegistries, ...popupRegistries, ...focusRegistries, ...listboxOptionRegistries];
+export const comboboxRegistries = [combobox, ...iconRegistries, ...popupRegistries, ...listboxOptionRegistries];
 
 /**
  * Registers the combobox elements with the design system.
