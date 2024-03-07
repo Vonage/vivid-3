@@ -1,6 +1,5 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import { focusRegistries } from '../focus/definition';
 import { buttonRegistries } from '../button/definition';
 import { textFieldRegistries } from '../text-field/definition';
 import styles from './dial-pad.scss?inline';
@@ -17,7 +16,7 @@ export const dialPadDefinition = DialPad.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const dialPadRegistries = [dialPadDefinition(), ...buttonRegistries, ...textFieldRegistries, ...focusRegistries];
+export const dialPadRegistries = [dialPadDefinition(), ...buttonRegistries, ...textFieldRegistries];
 
 /**
  * Registers the dial-pad element with the design system.
