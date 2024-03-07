@@ -78,6 +78,21 @@ $outline-width: 2px;
 	resize: none;
 	transition: box-shadow 0.2s, background-color 0.2s, color 0.2s;
 
+	@supports selector(::-webkit-resizer) {
+		&::-webkit-resizer {
+			$resizer-size: 10px;
+
+			background-image: linear-gradient(315deg, transparent 0, transparent 2px,
+				var(#{constants.$vvd-color-canvas-text}) 2px, var(#{constants.$vvd-color-canvas-text}) 3px,
+				transparent 3px, transparent 5px, var(#{constants.$vvd-color-canvas-text}) 5px,
+				var(#{constants.$vvd-color-canvas-text}) 6px, transparent 6px, transparent 8px, transparent 100%);
+			background-repeat: no-repeat;
+			background-size: $resizer-size $resizer-size;
+			block-size: $resizer-size;
+			inline-size: $resizer-size;
+		}
+	}
+
 	&:disabled {
 		opacity: 1; /* 2. correct opacity on iOS */
 		pointer-events: none;
