@@ -18,7 +18,8 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) alternate = false;
+	})
+	alternate = false;
 
 	/**
 	 * sets the side drawer's type to modal
@@ -27,7 +28,8 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) modal = false;
+	})
+	modal = false;
 
 	/**
 	 * indicates whether the side drawer is open
@@ -36,7 +38,8 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) open = false;
+	})
+	open = false;
 
 	/**
 	 * sets the side of the side drawer
@@ -45,9 +48,14 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) trailing = false;
+	})
+	trailing = false;
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+	override attributeChangedCallback(
+		name: string,
+		oldValue: string,
+		newValue: string
+	): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'open': {

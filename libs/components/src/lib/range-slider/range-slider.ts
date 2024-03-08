@@ -1,4 +1,8 @@
-import { attr, nullableNumberConverter, observable } from '@microsoft/fast-element';
+import {
+	attr,
+	nullableNumberConverter,
+	observable,
+} from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
@@ -6,22 +10,27 @@ import {
 	keyEnd,
 	keyHome,
 	limit,
-	Orientation
+	Orientation,
 } from '@microsoft/fast-web-utilities';
-import { keyArrowLeft, keyArrowRight } from '@microsoft/fast-web-utilities/dist/key-codes';
+import {
+	keyArrowLeft,
+	keyArrowRight,
+} from '@microsoft/fast-web-utilities/dist/key-codes';
 import { Connotation } from '../enums';
-import { type FormElement, formElements, Localized } from '../../shared/patterns';
+import {
+	type FormElement,
+	formElements,
+	Localized,
+} from '../../shared/patterns';
 import { FormAssociatedRangeSlider } from './range-slider.form-associated';
 import { roundToStepValue } from './utils/roundToStepValue';
 import { inverseLerp, lerp } from './utils/lerp';
 
-export type RangeSliderConnotation =
-	Connotation.Accent |
-	Connotation.CTA;
+export type RangeSliderConnotation = Connotation.Accent | Connotation.CTA;
 
 const Direction = {
 	Increment: 1,
-	Decrement: -1
+	Decrement: -1,
 } as const;
 type Direction = typeof Direction[keyof typeof Direction];
 
@@ -65,8 +74,8 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	 * HTML Attribute: start
 	 */
 	@attr({ mode: 'fromView', attribute: 'start' }) initialStart:
-	| string
-	| undefined;
+		| string
+		| undefined;
 
 	/**
 	 * @internal
@@ -178,7 +187,10 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		this.end = next.toString();
 	}
 
-	#updateValues({start, end}: {start?: string, end?: string}, emitEvents: boolean = true) {
+	#updateValues(
+		{ start, end }: { start?: string; end?: string },
+		emitEvents: boolean = true
+	) {
 		if (start === this.start) {
 			start = undefined;
 		}
@@ -251,7 +263,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 			[thumb]: this.#roundToNearestStep(
 				thumb,
 				Number(this[thumb]) + direction * this.step
-			).toString()
+			).toString(),
 		});
 	}
 
@@ -335,7 +347,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	override formResetCallback() {
 		this.#updateValues({
 			start: this.initialStart ?? this.min.toString(),
-			end: this.initialEnd ?? this.max.toString()
+			end: this.initialEnd ?? this.max.toString(),
 		});
 		super.formResetCallback();
 	}
@@ -366,11 +378,10 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 	get #thumbConstraints() {
 		return {
-			start: {min: this.min, max: this.endAsNumber},
-			end: {min: this.startAsNumber, max: this.max},
+			start: { min: this.min, max: this.endAsNumber },
+			end: { min: this.startAsNumber, max: this.max },
 		};
 	}
-
 
 	#draggingThumb: false | 'start' | 'end' = false;
 
@@ -397,7 +408,9 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 			this.orientation === Orientation.horizontal
 				? ['right', 'width']
 				: ['bottom', 'height'];
-		const transition = `transition: ${this.#draggingThumb ? 'none' : 'all 0.2s ease'};`;
+		const transition = `transition: ${
+			this.#draggingThumb ? 'none' : 'all 0.2s ease'
+		};`;
 
 		this._startThumbCss = `${dirProp}: ${startOffsetPct}%; ${transition}`;
 		this._endThumbCss = `${dirProp}: ${endOffsetPct}%; ${transition}`;
@@ -416,22 +429,20 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		const [minPos, maxPos, valuePos] =
 			this.orientation === Orientation.horizontal
 				? [
-					this._trackEl!.clientLeft,
-					this._trackEl!.clientWidth,
-					e.pageX - document.documentElement.scrollLeft - this.getBoundingClientRect().left
-				]
+						this._trackEl!.clientLeft,
+						this._trackEl!.clientWidth,
+						e.pageX -
+							document.documentElement.scrollLeft -
+							this.getBoundingClientRect().left,
+				  ]
 				: [
-					trackClientRect.top,
-					trackClientRect.bottom,
-					e.pageY - document.documentElement.scrollTop
-				];
+						trackClientRect.top,
+						trackClientRect.bottom,
+						e.pageY - document.documentElement.scrollTop,
+				  ];
 
 		// Remap to value space
-		return lerp(
-			this.min,
-			this.max,
-			inverseLerp(minPos, maxPos, valuePos)
-		);
+		return lerp(this.min, this.max, inverseLerp(minPos, maxPos, valuePos));
 	}
 
 	#roundToNearestStep(thumb: 'start' | 'end', value: number) {
@@ -468,16 +479,30 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	#registerThumbListeners() {
 		for (const thumb of ['start', 'end'] as const) {
 			this.#thumbs[thumb]!.addEventListener('keydown', this.#onThumbKeydown);
-			this.#thumbs[thumb]!.addEventListener('mousedown', this.#onThumbMousedown, { passive: true });
-			this.#thumbs[thumb]!.addEventListener('touchstart', this.#onThumbMousedown, { passive: true });
+			this.#thumbs[thumb]!.addEventListener(
+				'mousedown',
+				this.#onThumbMousedown,
+				{ passive: true }
+			);
+			this.#thumbs[thumb]!.addEventListener(
+				'touchstart',
+				this.#onThumbMousedown,
+				{ passive: true }
+			);
 		}
 	}
 
 	#unregisterThumbListeners() {
 		for (const thumb of ['start', 'end'] as const) {
 			this.#thumbs[thumb]!.removeEventListener('keydown', this.#onThumbKeydown);
-			this.#thumbs[thumb]!.removeEventListener('mousedown', this.#onThumbMousedown);
-			this.#thumbs[thumb]!.removeEventListener('touchstart', this.#onThumbMousedown);
+			this.#thumbs[thumb]!.removeEventListener(
+				'mousedown',
+				this.#onThumbMousedown
+			);
+			this.#thumbs[thumb]!.removeEventListener(
+				'touchstart',
+				this.#onThumbMousedown
+			);
 		}
 	}
 
@@ -496,12 +521,14 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 		// Choose closer thumb
 		const thumb =
-				startDistance < endDistance ||
-				(startDistance === endDistance && value < Number(this.start))
-					? 'start'
-					: 'end';
+			startDistance < endDistance ||
+			(startDistance === endDistance && value < Number(this.start))
+				? 'start'
+				: 'end';
 
-		this.#updateValues({ [thumb]: `${this.#roundToNearestStep(thumb, value)}` });
+		this.#updateValues({
+			[thumb]: `${this.#roundToNearestStep(thumb, value)}`,
+		});
 		this.#draggingThumb = thumb;
 		this.#thumbs[thumb]!.focus();
 
@@ -514,15 +541,17 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		}
 
 		let target = event.target as HTMLElement;
-		if (target === this._endThumbEl && this.startAsNumber === this.max && this.endAsNumber === this.max) {
+		if (
+			target === this._endThumbEl &&
+			this.startAsNumber === this.max &&
+			this.endAsNumber === this.max
+		) {
 			// Prevent both thumbs getting stuck at the max value
 			target = this._startThumbEl!;
 		}
 
 		target.focus();
-		this.#draggingThumb = target === this._startThumbEl
-			? 'start'
-			: 'end';
+		this.#draggingThumb = target === this._startThumbEl ? 'start' : 'end';
 
 		this.#registerDragHandlers();
 	};
@@ -532,10 +561,10 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 		if (e.key === keyHome) {
 			e.preventDefault();
-			this.#updateValues({[thumb]: `${this.#thumbConstraints[thumb].min}`});
+			this.#updateValues({ [thumb]: `${this.#thumbConstraints[thumb].min}` });
 		} else if (e.key === keyEnd) {
 			e.preventDefault();
-			this.#updateValues({[thumb]: `${this.#thumbConstraints[thumb].max}`});
+			this.#updateValues({ [thumb]: `${this.#thumbConstraints[thumb].max}` });
 		} else if (!e.shiftKey) {
 			switch (e.key) {
 				case keyArrowRight:
@@ -580,7 +609,12 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 		const value = this.#calculateValueFromMouseEvent(sourceEvent);
 
-		this.#updateValues({[this.#draggingThumb]: `${this.#roundToNearestStep(this.#draggingThumb, value)}`});
+		this.#updateValues({
+			[this.#draggingThumb]: `${this.#roundToNearestStep(
+				this.#draggingThumb,
+				value
+			)}`,
+		});
 	};
 
 	#onDragEnd = () => {

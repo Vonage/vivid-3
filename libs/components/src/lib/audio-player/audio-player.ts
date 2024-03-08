@@ -10,7 +10,10 @@ import type { Slider } from '../slider/slider';
  *
  * @public
  */
-export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
+export type AudioPlayerConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
 /**
  * Base class for audio-player
@@ -19,9 +22,14 @@ export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent |
  */
 
 export class AudioPlayer extends FoundationElement {
-	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel: string | null = null;
-	@attr({ attribute: 'pause-button-aria-label' }) pauseButtonAriaLabel: string | null = null;
-	@attr({ attribute: 'slider-aria-label' }) sliderAriaLabel: string | null = null;
+	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
+		| string
+		| null = null;
+	@attr({ attribute: 'pause-button-aria-label' }) pauseButtonAriaLabel:
+		| string
+		| null = null;
+	@attr({ attribute: 'slider-aria-label' }) sliderAriaLabel: string | null =
+		null;
 	/**
 	 * The connotation the audio-player should have.
 	 *
@@ -139,7 +147,8 @@ export class AudioPlayer extends FoundationElement {
 		if (this._playerEl) this.duration = this._playerEl.duration;
 		if (this._timeStampEl) {
 			totalTime = this._timeStampEl.querySelector('.total-time');
-			if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
+			if (totalTime)
+				totalTime.textContent = this._formatTime(this._playerEl.duration);
 		}
 	}
 
@@ -150,7 +159,8 @@ export class AudioPlayer extends FoundationElement {
 		this.paused = true;
 		if (this._playerEl) {
 			this._playerEl.pause();
-			this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
+			this._playerEl.currentTime =
+				this._playerEl.duration * (Number(this._sliderEl.value) / 100);
 		}
 	};
 
@@ -160,9 +170,9 @@ export class AudioPlayer extends FoundationElement {
 	_formatTime(time: number) {
 		const min = Math.floor(time / 60);
 		const sec = Math.floor(time % 60);
-		return min + ':' + ((sec < 10) ? ('0' + sec) : sec);
+		return min + ':' + (sec < 10 ? '0' + sec : sec);
 	}
 }
 
-export interface AudioPlayer extends Localized { }
+export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);

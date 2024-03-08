@@ -6,6 +6,4 @@ import { Breadcrumb as FoundationElement } from '@microsoft/fast-foundation';
  * @public
  * @slot - Default slot.
  */
-export class Breadcrumb extends FoundationElement {
-
-}
+export class Breadcrumb extends FoundationElement {}

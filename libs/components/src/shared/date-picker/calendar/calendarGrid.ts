@@ -56,14 +56,18 @@ const buildDateGrid = (
 	const firstDayInWeek = getDay(firstDay);
 	const daysInMonth = lastDay.getDate();
 	const daysOutsideMonthInLastWeek = 7 - getDay(lastDay);
-	const totalDaysInCalendar = daysInMonth + firstDayInWeek + daysOutsideMonthInLastWeek;
+	const totalDaysInCalendar =
+		daysInMonth + firstDayInWeek + daysOutsideMonthInLastWeek;
 	let week: CalendarGridDate[] = [];
 
-	for (let i = 0;
-		i < totalDaysInCalendar;
-		i++) {
+	for (let i = 0; i < totalDaysInCalendar; i++) {
 		const dayIndexInMonth = i - firstDayInWeek;
-		week.push(gridDate(addDays(firstDay, dayIndexInMonth), isOutsideMonth(dayIndexInMonth, daysInMonth)));
+		week.push(
+			gridDate(
+				addDays(firstDay, dayIndexInMonth),
+				isOutsideMonth(dayIndexInMonth, daysInMonth)
+			)
+		);
 		if (week.length === 7) {
 			grid.push(week);
 			week = [];
@@ -87,4 +91,3 @@ export const buildCalendarGrid = (
 		grid: buildDateGrid(month, getShiftedDay),
 	};
 };
-

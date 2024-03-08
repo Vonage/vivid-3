@@ -3,7 +3,7 @@ import {
 	axe,
 	elementUpdated,
 	fixture,
-	getBaseElement
+	getBaseElement,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
@@ -20,21 +20,19 @@ describe('vwc-menu', () => {
 	let popup: Popup;
 	let anchor: Button;
 
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	global.ResizeObserver = jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	}));
 
 	beforeEach(async () => {
-		element = fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		) as Menu;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Menu;
 		popup = element.shadowRoot?.querySelector('vwc-popup') as Popup;
 
 		anchor = fixture(
-			'<vwc-button id="anchorButton"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
+			'<vwc-button id="anchorButton"></vwc-button>',
+			ADD_TEMPLATE_TO_FIXTURE
 		) as Button;
 	});
 
@@ -49,12 +47,15 @@ describe('vwc-menu', () => {
 	});
 
 	describe('open', () => {
-		it.each([true, false])('should forward open=%s to popup', async (isOpen) => {
-			element.open = isOpen;
-			await elementUpdated(element);
+		it.each([true, false])(
+			'should forward open=%s to popup',
+			async (isOpen) => {
+				element.open = isOpen;
+				await elementUpdated(element);
 
-			expect(popup.hasAttribute('open')).toBe(isOpen);
-		});
+				expect(popup.hasAttribute('open')).toBe(isOpen);
+			}
+		);
 	});
 
 	describe('auto-dismiss', () => {
@@ -68,29 +69,32 @@ describe('vwc-menu', () => {
 
 			await elementUpdated(element);
 
-			expect(element.open)
-				.toEqual(false);
+			expect(element.open).toEqual(false);
 		});
 
 		describe('removing listeners', () => {
 			let lastAddedListener: (() => void) | undefined;
-			let lastRemovedListener:(() => void) | undefined;
+			let lastRemovedListener: (() => void) | undefined;
 			beforeEach(() => {
 				lastAddedListener = undefined;
 				lastRemovedListener = undefined;
-				jest.spyOn(document, 'addEventListener').mockImplementation(function(_: string, cb: any) {
-					lastAddedListener = cb;
-				});
-				jest.spyOn(document, 'removeEventListener').mockImplementation(function(_: string, cb: any) {
-					lastRemovedListener = cb;
-				});
+				jest
+					.spyOn(document, 'addEventListener')
+					.mockImplementation(function (_: string, cb: any) {
+						lastAddedListener = cb;
+					});
+				jest
+					.spyOn(document, 'removeEventListener')
+					.mockImplementation(function (_: string, cb: any) {
+						lastRemovedListener = cb;
+					});
 			});
 			afterEach(() => {
 				jest.mocked(document.addEventListener).mockRestore();
 				jest.mocked(document.removeEventListener).mockRestore();
 			});
 
-			it('should remove the listener on attribute change', async function() {
+			it('should remove the listener on attribute change', async function () {
 				element.open = true;
 				element.autoDismiss = true;
 				await elementUpdated(element);
@@ -100,7 +104,7 @@ describe('vwc-menu', () => {
 				expect(lastAddedListener).toBe(lastRemovedListener);
 			});
 
-			it('should remove the listener when disconnected', async function() {
+			it('should remove the listener when disconnected', async function () {
 				element.open = true;
 				element.autoDismiss = true;
 				await elementUpdated(element);
@@ -132,8 +136,7 @@ describe('vwc-menu', () => {
 			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
-			expect(element.open)
-				.toEqual(true);
+			expect(element.open).toEqual(true);
 		});
 
 		it('should remain open when clicked inside', async () => {
@@ -156,18 +159,17 @@ describe('vwc-menu', () => {
 
 			await elementUpdated(element);
 
-			getBaseElement(element)
-				.dispatchEvent(new KeyboardEvent('keydown', {
-					'key': 'Escape',
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
 					bubbles: true,
-					composed: true
-				}));
-
+					composed: true,
+				})
+			);
 
 			await elementUpdated(element);
 
-			expect(element.open)
-				.toEqual(false);
+			expect(element.open).toEqual(false);
 		});
 	});
 
@@ -219,7 +221,6 @@ describe('vwc-menu', () => {
 		});
 
 		it('should handle menu key down events', async () => {
-
 			function keyMoveAndGetActiveId(arrowEvent: Event) {
 				document.activeElement?.dispatchEvent(arrowEvent);
 				return document.activeElement?.id;
@@ -243,7 +244,6 @@ describe('vwc-menu', () => {
 			expect(activeIdAfterKeyDown2).toEqual('id3');
 			expect(activeIdAfterKeyUp1).toEqual('id2');
 			expect(activeIdAfterKeyUp2).toEqual('id1');
-
 		});
 
 		it('should reset tabindex to the first element on focusout event', async () => {
@@ -252,7 +252,8 @@ describe('vwc-menu', () => {
 				document.activeElement?.dispatchEvent(arrowDownEvent);
 			}
 
-			const menuFocusedElement = () => element.querySelector('[tabindex="0"]') as HTMLElement;
+			const menuFocusedElement = () =>
+				element.querySelector('[tabindex="0"]') as HTMLElement;
 
 			element.innerHTML = `
 				<div role="menuitem" id="id1" text="Menu Item 1"></div>
@@ -293,11 +294,14 @@ describe('vwc-menu', () => {
 
 		it.each([
 			['false', false],
-			['true', true]
-		])('should set aria-expanded=%s on the anchor element when open is %s', async (expectedValue, isOpen) => {
-			element.open = isOpen;
-			expect(anchor.getAttribute('aria-expanded')).toBe(expectedValue);
-		});
+			['true', true],
+		])(
+			'should set aria-expanded=%s on the anchor element when open is %s',
+			async (expectedValue, isOpen) => {
+				element.open = isOpen;
+				expect(anchor.getAttribute('aria-expanded')).toBe(expectedValue);
+			}
+		);
 
 		it('should open when anchor is clicked', async () => {
 			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -353,8 +357,9 @@ describe('vwc-menu', () => {
 
 	describe('menu header', () => {
 		it('should have header slot ', async function () {
-			const headerSlotElement = element.shadowRoot?.
-				querySelector('.header slot[name="header"]');
+			const headerSlotElement = element.shadowRoot?.querySelector(
+				'.header slot[name="header"]'
+			);
 
 			expect(headerSlotElement).toBeDefined();
 		});
@@ -374,8 +379,9 @@ describe('vwc-menu', () => {
 
 	describe('menu actions', () => {
 		it('should have actions slot ', async function () {
-			const actionsSlotElement = element.shadowRoot?.
-				querySelector('.action-items slot[name="actions"]');
+			const actionsSlotElement = element.shadowRoot?.querySelector(
+				'.action-items slot[name="actions"]'
+			);
 
 			expect(actionsSlotElement).toBeDefined();
 		});
@@ -395,7 +401,8 @@ describe('vwc-menu', () => {
 
 	describe('menu items', () => {
 		it('should have default slot ', async function () {
-			const actionsSlotElement = element.shadowRoot?.querySelector('.body slot');
+			const actionsSlotElement =
+				element.shadowRoot?.querySelector('.body slot');
 
 			expect(actionsSlotElement).toBeDefined();
 		});
@@ -486,7 +493,9 @@ describe('vwc-menu', () => {
 
 	function focusOutOfBody() {
 		const focusOutEvent = new FocusEvent('focusout');
-		const bodyElement = element.shadowRoot?.querySelector('.body') as HTMLElement;
+		const bodyElement = element.shadowRoot?.querySelector(
+			'.body'
+		) as HTMLElement;
 		bodyElement.dispatchEvent(focusOutEvent);
 	}
 });

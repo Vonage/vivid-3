@@ -1,4 +1,10 @@
-import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	ADD_TEMPLATE_TO_FIXTURE,
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { type Popup } from '../popup/popup.ts';
@@ -15,21 +21,19 @@ describe('vwc-toggletip', () => {
 	let popup: Popup;
 	let anchor: Button;
 
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	global.ResizeObserver = jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	}));
 
 	beforeEach(async () => {
-		element = fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		) as Toggletip;
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Toggletip;
 		popup = getControlElement(element) as Popup;
 
 		anchor = fixture(
-			`<vwc-button id="anchorButton" aria-label="${ANCHOR_ARIA_LABEL}"></vwc-button>`, ADD_TEMPLATE_TO_FIXTURE
+			`<vwc-button id="anchorButton" aria-label="${ANCHOR_ARIA_LABEL}"></vwc-button>`,
+			ADD_TEMPLATE_TO_FIXTURE
 		) as Button;
 	});
 
@@ -46,18 +50,21 @@ describe('vwc-toggletip', () => {
 	});
 
 	describe('open', () => {
-		it.each([true, false])('should forward open=%s to popup', async (isOpen) => {
-			element.open = isOpen;
-			await elementUpdated(element);
+		it.each([true, false])(
+			'should forward open=%s to popup',
+			async (isOpen) => {
+				element.open = isOpen;
+				await elementUpdated(element);
 
-			expect(popup.hasAttribute('open')).toBe(isOpen);
-		});
+				expect(popup.hasAttribute('open')).toBe(isOpen);
+			}
+		);
 
 		it('should remain open when clicked inside', async () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			element.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			element.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -67,7 +74,7 @@ describe('vwc-toggletip', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
@@ -80,7 +87,7 @@ describe('vwc-toggletip', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
@@ -90,12 +97,13 @@ describe('vwc-toggletip', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}));
+			document.body.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
+			);
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
 		});
-
 	});
 
 	describe('anchor', () => {
@@ -114,11 +122,13 @@ describe('vwc-toggletip', () => {
 		});
 
 		it('should append to an existing aria-label on anchor', async () => {
-			expect(anchor.ariaLabel).toEqual(`${ANCHOR_ARIA_LABEL} ; Show more information`);
+			expect(anchor.ariaLabel).toEqual(
+				`${ANCHOR_ARIA_LABEL} ; Show more information`
+			);
 		});
 
 		it('should open when anchor is clicked', async () => {
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 			await elementUpdated(element);
 
 			expect(element.open).toBe(true);
@@ -135,7 +145,7 @@ describe('vwc-toggletip', () => {
 			});
 
 			it('should no longer open when anchor is clicked', async () => {
-				anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+				anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 				await elementUpdated(element);
 
 				expect(element.open).toBe(false);
@@ -148,7 +158,11 @@ describe('vwc-toggletip', () => {
 			element.headline = 'A title!';
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelector('header.headline')?.textContent?.trim()).toEqual(element.headline);
+			expect(
+				element.shadowRoot
+					?.querySelector('header.headline')
+					?.textContent?.trim()
+			).toEqual(element.headline);
 		});
 
 		it('should remove headline element when headline is undefined', async () => {

@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import {FoundationElement} from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
@@ -21,7 +21,7 @@ export class Tooltip extends FoundationElement {
 
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
-	@attr({ mode: 'boolean'	}) open = false;
+	@attr({ mode: 'boolean' }) open = false;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -70,7 +70,7 @@ export class Tooltip extends FoundationElement {
 		}
 	}
 
-	#closeOnEscape = (e:KeyboardEvent) => {
+	#closeOnEscape = (e: KeyboardEvent) => {
 		if (e.key === 'Escape') this.#hide();
 	};
 

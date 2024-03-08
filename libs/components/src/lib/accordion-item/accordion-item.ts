@@ -1,8 +1,10 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins, AccordionItem as FASTAccordionItem } from '@microsoft/fast-foundation';
+import {
+	applyMixins,
+	AccordionItem as FASTAccordionItem,
+} from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import type { Size } from '../enums.js';
-
 
 /**
  * Types of accordion size.
@@ -51,9 +53,5 @@ export class AccordionItem extends FASTAccordionItem {
 	@attr size?: AccordionItemSize;
 }
 
-
-
-
-
-export interface AccordionItem extends AffixIconWithTrailing { }
+export interface AccordionItem extends AffixIconWithTrailing {}
 applyMixins(AccordionItem, AffixIconWithTrailing);

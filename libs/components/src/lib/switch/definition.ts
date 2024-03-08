@@ -16,7 +16,7 @@ export const switchDefinition = Switch.compose<FoundationElementDefinition>({
 	styles,
 	shadowOptions: {
 		delegatesFocus: true,
-	}
+	},
 });
 
 /**

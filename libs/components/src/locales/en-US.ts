@@ -48,9 +48,11 @@ const enUS: Locale = {
 		dateFormat: 'MM/dd/yyyy',
 		dateFormatPlaceholder: 'MM/DD/YYYY',
 		chooseDateLabel: 'Choose date',
-		changeDateLabel: /* istanbul ignore next */ (date: string) => `Change date, ${date}`,
+		changeDateLabel: /* istanbul ignore next */ (date: string) =>
+			`Change date, ${date}`,
 		chooseDatesLabel: 'Choose dates',
-		changeDatesLabel: /* istanbul ignore next */ (range: string) => `Change dates, ${range}`,
+		changeDatesLabel: /* istanbul ignore next */ (range: string) =>
+			`Change dates, ${range}`,
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
@@ -67,14 +69,15 @@ const enUS: Locale = {
 	timePicker: {
 		defaultTo12HourClock: true,
 		chooseTimeLabel: 'Choose time',
-		changeTimeLabel: /* istanbul ignore next */ (time: string) => `Change time, ${time}`,
+		changeTimeLabel: /* istanbul ignore next */ (time: string) =>
+			`Change time, ${time}`,
 		hoursLabel: 'hours',
 		minutesLabel: 'minutes',
 		secondsLabel: 'seconds',
 		meridiesLabel: 'AM/PM',
 		clearLabel: 'Clear',
 		okLabel: 'OK',
-		invalidTimeError: 'Please enter a valid time.'
+		invalidTimeError: 'Please enter a valid time.',
 	},
 	filePicker: {
 		invalidFileTypeError: "You can't select files of this type.",
@@ -107,7 +110,7 @@ const enUS: Locale = {
 	rangeSlider: {
 		startThumbLabel: 'min',
 		endThumbLabel: 'max',
-	}
+	},
 };
 
 export default enUS;

@@ -66,7 +66,9 @@ describe('vwc-tree-view', () => {
 
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 
-			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			treeItem1.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown' })
+			);
 
 			treeItem2.focus();
 			await elementUpdated(treeItem2);
@@ -83,7 +85,9 @@ describe('vwc-tree-view', () => {
 
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 
-			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			treeItem1.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown' })
+			);
 
 			treeItem2.focus();
 			await elementUpdated(treeItem2);
@@ -118,8 +122,12 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(treeItem2);
 
 			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
-			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML)
+				.join('');
+			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
+				'<slot></slot>',
+				children
+			) as string;
 
 			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});

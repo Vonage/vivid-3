@@ -8,7 +8,7 @@ import {
 const components = ['menu', 'menu-item', 'divider', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =`
+	const template = `
 		<style>
 			div {
 				width: 250px;

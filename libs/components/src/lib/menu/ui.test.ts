@@ -8,7 +8,7 @@ import {
 const components = ['menu', 'menu-item', 'button', 'text-field'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =`
+	const template = `
 		<style>
 			.wrapper {
 				width: 300px;

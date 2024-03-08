@@ -1,6 +1,11 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import {ICONS_VERSION as ICON_SET_VERSION} from '@vonage/vwc-consts';
-import type {Icon} from './icon';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
+import { ICONS_VERSION as ICON_SET_VERSION } from '@vonage/vwc-consts';
+import type { Icon } from './icon';
 import '.';
 
 const COMPONENT_TAG = 'vwc-icon';
@@ -9,15 +14,13 @@ describe('icon', function () {
 	let element: Icon;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Icon;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Icon;
 	});
 
 	describe('resolver', function () {
 		function fakeFetch(requestTime = 4000) {
 			(global.fetch as any) = jest.fn(() => {
-				return new Promise(res => {
+				return new Promise((res) => {
 					setTimeout(() => res(response), requestTime);
 				});
 			});
@@ -29,16 +32,16 @@ describe('icon', function () {
 			headers: {
 				get: () => {
 					return 'image/svg+xml';
-				}
+				},
 			},
-			text: () => svg
+			text: () => svg,
 		};
 		const originalFetch = global.fetch;
 		const originalPromise = global.Promise;
 
 		beforeEach(function () {
 			global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
-			jest.useFakeTimers({legacyFakeTimers: true});
+			jest.useFakeTimers({ legacyFakeTimers: true });
 		});
 
 		afterEach(function () {
@@ -115,8 +118,9 @@ describe('icon', function () {
 			element.iconLoaded = false;
 			await elementUpdated(element);
 			const imgElement = getControlElement(element).querySelector('img');
-			expect(imgElement?.src)
-				.toEqual(`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/home.svg`);
+			expect(imgElement?.src).toEqual(
+				`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/home.svg`
+			);
 		});
 
 		it('should set iconLoaded to false when name changes', async function () {
@@ -124,7 +128,7 @@ describe('icon', function () {
 				const originalFetch = global.fetch;
 				let timeout: any;
 				(global.fetch as any) = jest.fn(() => {
-					return new Promise(res => {
+					return new Promise((res) => {
 						timeout = setTimeout(() => res(false), 1000);
 					});
 				});
@@ -161,9 +165,11 @@ describe('icon', function () {
 		});
 
 		it('should set size class only if exists', async function () {
-			const classListContainsSize = controlElement?.className.split(' ').reduce((contains: boolean, className: string) => {
-				return contains || className.indexOf('size-') > -1;
-			}, false);
+			const classListContainsSize = controlElement?.className
+				.split(' ')
+				.reduce((contains: boolean, className: string) => {
+					return contains || className.indexOf('size-') > -1;
+				}, false);
 			expect(classListContainsSize).toEqual(false);
 		});
 
@@ -181,7 +187,7 @@ describe('icon', function () {
 			element = (await fixture(
 				`<${COMPONENT_TAG} name="home"></${COMPONENT_TAG}>`
 			)) as Icon;
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

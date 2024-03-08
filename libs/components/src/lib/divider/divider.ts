@@ -5,5 +5,4 @@ import { Divider as FoundationDivider } from '@microsoft/fast-foundation';
  *
  * @public
  */
-export class Divider extends FoundationDivider {
-}
+export class Divider extends FoundationDivider {}

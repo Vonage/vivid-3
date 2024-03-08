@@ -8,9 +8,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import type { Header } from './header';
 
-const getPartAlternate = ({ alternate }: Header) => classNames(
-	['vvd-theme-alternate', Boolean(alternate)],
-);
+const getPartAlternate = ({ alternate }: Header) =>
+	classNames(['vvd-theme-alternate', Boolean(alternate)]);
 
 /**
  * The template for the header component.
@@ -25,7 +24,7 @@ export const headerTemplate: (
 	const elevationTag = context.tagFor(Elevation);
 
 	return html<Header>`
-    <${elevationTag} dp="4" ?no-shadow=${x => !x.elevationShadow}>
+    <${elevationTag} dp="4" ?no-shadow=${(x) => !x.elevationShadow}>
       <header class="base" part="base">
         <!-- a container is needed to distinguish the surface background color of the
         element from its shadow when applying elevation with alternate -->

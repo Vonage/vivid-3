@@ -30,7 +30,8 @@ export class NavDisclosure extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
-	@attr({attribute: 'aria-current'}) override ariaCurrent: string | null = null;
+	@attr({ attribute: 'aria-current' }) override ariaCurrent: string | null =
+		null;
 
 	/**
 	 * @internal
@@ -46,7 +47,7 @@ export class NavDisclosure extends FoundationElement {
 	 */
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.details.removeEventListener('toggle',  this.#onToggle);
+		this.details.removeEventListener('toggle', this.#onToggle);
 	}
 
 	#onToggle = () => {
@@ -55,5 +56,5 @@ export class NavDisclosure extends FoundationElement {
 	};
 }
 
-export interface NavDisclosure extends AffixIcon { }
+export interface NavDisclosure extends AffixIcon {}
 applyMixins(NavDisclosure, AffixIcon);

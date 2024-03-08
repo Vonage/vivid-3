@@ -7,22 +7,26 @@ import type { Appearance, Connotation } from '../enums';
  *
  * @public
  */
-export type CalendarEventConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Alert
-| Connotation.Warning
-| Connotation.Information
-| Connotation.Announcement>;
+export type CalendarEventConnotation = Extract<
+	Connotation,
+	| Connotation.Accent
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Alert
+	| Connotation.Warning
+	| Connotation.Information
+	| Connotation.Announcement
+>;
 
 /**
  * Types of calendar event appearance.
  *
  * @public
  */
-export type CalendarEventAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
+export type CalendarEventAppearance = Extract<
+	Appearance,
+	Appearance.Filled | Appearance.Duotone | Appearance.Subtle
+>;
 
 /**
  * Base class for calendar-event
@@ -68,22 +72,21 @@ export class CalendarEvent extends FoundationElement {
 	 * @public
 	 */
 	@attr({ converter: nullableNumberConverter, attribute: 'overlap-count' })
-		overlapCount?: number;
+	overlapCount?: number;
 
 	/**
 	 * time of day event starts
 	 *
 	 * @public
 	 */
-	@attr({ converter: nullableNumberConverter  })
-		start?: number; // TODO should be converted to allowed range
+	@attr({ converter: nullableNumberConverter })
+	start?: number; // TODO should be converted to allowed range
 
 	/**
 	 * event's time duration in hours
 	 *
 	 * @public
 	 */
-	@attr({ converter: nullableNumberConverter  })
-		duration?: number; // TODO should be converted to allowed range
-
+	@attr({ converter: nullableNumberConverter })
+	duration?: number; // TODO should be converted to allowed range
 }

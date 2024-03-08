@@ -1,5 +1,5 @@
-import {expect, test} from '@playwright/test';
-import type {Page} from '@playwright/test';
+import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -7,7 +7,7 @@ import {
 
 const components = ['progress'];
 
-test('should show the component', async ({page}: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<div style="margin: 5px;">
     <vwc-progress min="0" max="100" value="25" connotation="accent"></vwc-progress>
@@ -65,8 +65,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/progress.png'
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/progress.png'
+	);
 });

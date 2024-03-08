@@ -11,11 +11,12 @@ export type { ActionGroupShape, ActionGroupAppearance } from './action-group';
  *
  * @internal
  */
-export const actionGroupDefinition = ActionGroup.compose<FoundationElementDefinition>({
-	baseName: 'action-group',
-	template: template as any,
-	styles,
-});
+export const actionGroupDefinition =
+	ActionGroup.compose<FoundationElementDefinition>({
+		baseName: 'action-group',
+		template: template as any,
+		styles,
+	});
 
 /**
  * @internal

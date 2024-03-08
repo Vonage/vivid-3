@@ -1,4 +1,10 @@
-import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	getControlElement,
+} from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import type { Button } from '../button/button';
 import { Connotation } from '../enums';
@@ -12,15 +18,12 @@ describe('vwc-alert', () => {
 	let element: Alert;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Alert;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Alert;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-alert', async () => {
-			expect(element)
-				.toBeInstanceOf(Alert);
+			expect(element).toBeInstanceOf(Alert);
 			expect(element.open).toBeFalsy();
 			expect(element.icon).toBeUndefined();
 			expect(element.text).toBeUndefined();
@@ -34,7 +37,8 @@ describe('vwc-alert', () => {
 	});
 
 	describe('headline', function () {
-		const getHeadline = () => getBaseElement(element).querySelector('.headline')?.textContent?.trim();
+		const getHeadline = () =>
+			getBaseElement(element).querySelector('.headline')?.textContent?.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
 			expect(element.headline).toEqual(undefined);
@@ -53,15 +57,14 @@ describe('vwc-alert', () => {
 			await elementUpdated(element);
 			const fromDOMtoProp = element.headline;
 
-			expect(fromProptoDOM)
-				.toEqual(alertHeadline);
-			expect(fromDOMtoProp)
-				.toEqual(alertHeadline);
+			expect(fromProptoDOM).toEqual(alertHeadline);
+			expect(fromDOMtoProp).toEqual(alertHeadline);
 		});
 	});
 
 	describe('text', function () {
-		const getText = () => getBaseElement(element).querySelector('.main-text')?.textContent?.trim();
+		const getText = () =>
+			getBaseElement(element).querySelector('.main-text')?.textContent?.trim();
 
 		it('should init with undefined and set as empty string in DOM', function () {
 			expect(element.text).toEqual(undefined);
@@ -80,17 +83,17 @@ describe('vwc-alert', () => {
 			await elementUpdated(element);
 			const fromDOMtoProp = element.text;
 
-			expect(fromProptoDOM)
-				.toEqual(alertText);
-			expect(fromDOMtoProp)
-				.toEqual(alertText);
+			expect(fromProptoDOM).toEqual(alertText);
+			expect(fromDOMtoProp).toEqual(alertText);
 		});
 	});
 
 	describe('focus', () => {
 		it('should focus when opened', async () => {
 			const spy = jest.fn();
-			const alertText: HTMLElement = element.shadowRoot?.querySelector('.alert-text') as HTMLElement;
+			const alertText: HTMLElement = element.shadowRoot?.querySelector(
+				'.alert-text'
+			) as HTMLElement;
 			alertText.focus = spy;
 			element.removable = true;
 
@@ -105,19 +108,19 @@ describe('vwc-alert', () => {
 	});
 
 	describe('connotation', function () {
-		const possibleConnotations = [Connotation.Accent,
+		const possibleConnotations = [
+			Connotation.Accent,
 			Connotation.Information,
 			Connotation.Success,
 			Connotation.Warning,
-			Connotation.Alert
+			Connotation.Alert,
 		];
 
 		it('should leave connotation class empty if not set', async function () {
-			possibleConnotations.forEach(connotation => {
-				expect(getBaseElement(element)
-					?.classList
-					.contains(connotation))
-					.toEqual(false);
+			possibleConnotations.forEach((connotation) => {
+				expect(
+					getBaseElement(element)?.classList.contains(connotation)
+				).toEqual(false);
 			});
 		});
 
@@ -125,10 +128,11 @@ describe('vwc-alert', () => {
 			const connotation = possibleConnotations[2];
 			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
-			expect(getBaseElement(element)
-				?.classList
-				.contains(`connotation-${connotation}`))
-				.toEqual(true);
+			expect(
+				getBaseElement(element)?.classList.contains(
+					`connotation-${connotation}`
+				)
+			).toEqual(true);
 		});
 	});
 
@@ -166,7 +170,7 @@ describe('vwc-alert', () => {
 				[Connotation.Information, 'info-line'],
 				[Connotation.Success, 'check-circle-line'],
 				[Connotation.Warning, 'warning-line'],
-				[Connotation.Alert, 'error-line']
+				[Connotation.Alert, 'error-line'],
 			]);
 
 			connotationIconMap.forEach((icon, connotation) => {
@@ -195,7 +199,6 @@ describe('vwc-alert', () => {
 			expect(element.style.display).toEqual('none');
 		});
 		it('should be display contents when is open', async function () {
-
 			element.open = true;
 			getControlElement(element).dispatchEvent(new Event('transitionend'));
 			await elementUpdated(element);
@@ -205,15 +208,17 @@ describe('vwc-alert', () => {
 	});
 
 	describe('icon', function () {
-
-		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('slot[name="icon"] > vwc-icon');
+		const getIcon: () => Icon | null = () =>
+			getBaseElement(element).querySelector('slot[name="icon"] > vwc-icon');
 
 		it('should not have an icon if there is none and no connotation is set', async function () {
 			expect(getIcon()).toBeNull();
 		});
 
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
 		});
 
 		it('should have an icon when icon is set', async function () {
@@ -232,7 +237,7 @@ describe('vwc-alert', () => {
 				[Connotation.Information, 'info-line'],
 				[Connotation.Success, 'check-circle-line'],
 				[Connotation.Warning, 'warning-line'],
-				[Connotation.Alert, 'error-line']
+				[Connotation.Alert, 'error-line'],
 			]);
 
 			for (const [connotation, iconName] of connotationIconMap) {
@@ -252,39 +257,40 @@ describe('vwc-alert', () => {
 
 	describe('removable', function () {
 		it('should init to false', function () {
-			expect(element.removable)
-				.toEqual(false);
-			expect(element.hasAttribute('removable'))
-				.toEqual(false);
+			expect(element.removable).toEqual(false);
+			expect(element.hasAttribute('removable')).toEqual(false);
 		});
 
 		it('should set removable property on attribute change', async function () {
 			element.toggleAttribute('removable');
 			await elementUpdated(element);
-			expect(element.removable)
-				.toEqual(true);
+			expect(element.removable).toEqual(true);
 		});
 
 		describe('removable with button', function () {
-
 			it('should have dismiss button when removable is true', async function () {
 				element.toggleAttribute('removable');
 				await elementUpdated(element);
-				const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+				const dismissButton: Button = element.shadowRoot?.querySelector(
+					'.dismiss-button'
+				) as Button;
 
 				expect(dismissButton).not.toEqual(null);
 			});
 
 			it('should remove the remove button when removable is false', async function () {
-				expect(element.shadowRoot?.querySelector('.dismiss-button'))
-					.toEqual(null);
+				expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(
+					null
+				);
 			});
 
 			it('should close when removable is true', async function () {
 				element.open = true;
 				element.toggleAttribute('removable');
 				await elementUpdated(element);
-				const dismissButton: Button = element.shadowRoot?.querySelector('.dismiss-button') as Button;
+				const dismissButton: Button = element.shadowRoot?.querySelector(
+					'.dismiss-button'
+				) as Button;
 
 				expect(element.open).toEqual(true);
 
@@ -296,8 +302,7 @@ describe('vwc-alert', () => {
 		});
 
 		describe('removable with Escape', function () {
-
-			beforeEach(() => element.open = true);
+			beforeEach(() => (element.open = true));
 
 			it('should remove the alert when esc and removable is true', async function () {
 				const spy = jest.fn();
@@ -379,7 +384,9 @@ describe('vwc-alert', () => {
 		it('should add class .strategy-static to .control when set', async () => {
 			element.strategy = 'static';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.strategy-static')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('.strategy-static')
+			).toBeTruthy();
 		});
 	});
 });

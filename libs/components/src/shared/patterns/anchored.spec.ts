@@ -1,13 +1,17 @@
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { type Anchored, anchored, anchorSlotTemplateFactory } from './anchored.ts';
+import {
+	type Anchored,
+	anchored,
+	anchorSlotTemplateFactory,
+} from './anchored.ts';
 
 describe('anchored', () => {
 	const _anchorElChanged = jest.fn();
 
 	@customElement({
 		name: 'anchored-element',
-		template: anchorSlotTemplateFactory()
+		template: anchorSlotTemplateFactory(),
 	})
 	@anchored
 	class AnchoredElement extends FASTElement {
@@ -141,7 +145,8 @@ describe('anchored', () => {
 				capturedCallback = callback;
 				callback();
 			});
-			mutationObserverSpy = jest.spyOn(window, 'MutationObserver')
+			mutationObserverSpy = jest
+				.spyOn(window, 'MutationObserver')
 				.mockImplementation(mockMutationObserver as any);
 		});
 
@@ -158,8 +163,7 @@ describe('anchored', () => {
 			expect(disconnectionFunc).toHaveBeenCalled();
 		});
 
-
-		it('should remove observer when element is removed from the DOM',  function () {
+		it('should remove observer when element is removed from the DOM', function () {
 			element.anchor = 'nonExistentAnchor';
 			element.remove();
 			expect(disconnectionFunc).toHaveBeenCalled();

@@ -1,7 +1,7 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Icon} from '../icon/icon';
-import {Badge} from './badge';
+import { Icon } from '../icon/icon';
+import { Badge } from './badge';
 import { badgeDefinition } from './definition';
 import '.';
 
@@ -16,7 +16,7 @@ describe('vwc-badge', () => {
 	});
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Badge;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Badge;
 	});
 
 	describe('basic', () => {
@@ -34,7 +34,9 @@ describe('vwc-badge', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
 		});
 
 		it('adds an icon to the badge', async () => {
@@ -42,10 +44,8 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 
 		it('setting `iconTrailing` set the order of element', async () => {
@@ -54,12 +54,10 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const trailingIcon = element.shadowRoot?.querySelector(
-				`.icon-trailing ${ICON_SELECTOR}`,
+				`.icon-trailing ${ICON_SELECTOR}`
 			);
-			expect(trailingIcon)
-				.toBeInstanceOf(Icon);
-		},
-		);
+			expect(trailingIcon).toBeInstanceOf(Icon);
+		});
 	});
 
 	describe('text', () => {
@@ -69,8 +67,7 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector('.base');
-			expect(base?.textContent?.trim())
-				.toEqual(text);
+			expect(base?.textContent?.trim()).toEqual(text);
 		});
 	});
 
@@ -80,9 +77,10 @@ describe('vwc-badge', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(`.base.connotation-${connotation}`);
-			expect(base)
-				.toBeInstanceOf(Element);
+			const base = element.shadowRoot?.querySelector(
+				`.base.connotation-${connotation}`
+			);
+			expect(base).toBeInstanceOf(Element);
 		});
 	});
 
@@ -93,8 +91,7 @@ describe('vwc-badge', () => {
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector(`.base.shape-${shape}`);
-			expect(base)
-				.toBeInstanceOf(Element);
+			expect(base).toBeInstanceOf(Element);
 		});
 	});
 
@@ -104,15 +101,17 @@ describe('vwc-badge', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(`.base.appearance-${appearance}`);
-			expect(base)
-				.toBeInstanceOf(Element);
+			const base = element.shadowRoot?.querySelector(
+				`.base.appearance-${appearance}`
+			);
+			expect(base).toBeInstanceOf(Element);
 		});
 	});
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () => element.shadowRoot?.querySelector('.base.icon-only');
+			const getControlIconOnly = () =>
+				element.shadowRoot?.querySelector('.base.icon-only');
 			const baseIconOnlyBefore = getControlIconOnly();
 
 			element.icon = 'home';
@@ -128,12 +127,12 @@ describe('vwc-badge', () => {
 		it('should pass html a11y test', async () => {
 			element.text = 'Test badge';
 			await elementUpdated(element);
-	
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		describe('icon-only', () => {
-			it('should pass html a11y test', async () => {				
+			it('should pass html a11y test', async () => {
 				element.icon = 'home';
 				await elementUpdated(element);
 

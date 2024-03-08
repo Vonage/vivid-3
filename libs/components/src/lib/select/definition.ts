@@ -16,13 +16,18 @@ export type { SelectAppearance, SelectShape } from './select';
 export const selectDefinition = Select.compose<SelectOptions>({
 	baseName: 'select',
 	template: template as any,
-	styles
+	styles,
 });
 
 /**
  * @internal
  */
-export const selectRegistries = [selectDefinition(), ...popupRegistries, ...iconRegistries, ...listboxOptionRegistries];
+export const selectRegistries = [
+	selectDefinition(),
+	...popupRegistries,
+	...iconRegistries,
+	...listboxOptionRegistries,
+];
 
 /**
  * Registers the select elements with the design system.

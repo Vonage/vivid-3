@@ -1,5 +1,8 @@
-import { applyMixins, TextArea as FoundationTextArea } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import {
+	applyMixins,
+	TextArea as FoundationTextArea,
+} from '@microsoft/fast-foundation';
+import { attr } from '@microsoft/fast-element';
 import {
 	errorText,
 	type ErrorText,
@@ -7,9 +10,9 @@ import {
 	FormElementCharCount,
 	FormElementHelperText,
 	formElements,
-	FormElementSuccessText} from '../../shared/patterns';
+	FormElementSuccessText,
+} from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
-
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 
@@ -43,5 +46,15 @@ export class TextArea extends FoundationTextArea {
 	}
 }
 
-export interface TextArea extends FormElement, ErrorText, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
-applyMixins(TextArea, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+export interface TextArea
+	extends FormElement,
+		ErrorText,
+		FormElementCharCount,
+		FormElementHelperText,
+		FormElementSuccessText {}
+applyMixins(
+	TextArea,
+	FormElementCharCount,
+	FormElementHelperText,
+	FormElementSuccessText
+);

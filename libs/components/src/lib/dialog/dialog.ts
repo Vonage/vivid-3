@@ -1,9 +1,11 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import {attr, observable} from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
 
 // eslint-disable-next-line compat/compat
-export const isDialogSupported = Boolean(window.HTMLDialogElement && window.HTMLDialogElement.prototype.showModal);
+export const isDialogSupported = Boolean(
+	window.HTMLDialogElement && window.HTMLDialogElement.prototype.showModal
+);
 
 // Make sure we support Safari 14
 let dialogPolyfill: any;
@@ -42,15 +44,19 @@ export class Dialog extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: open
 	 */
-	@attr({mode: 'boolean'}) open = false;
+	@attr({ mode: 'boolean' }) open = false;
 	@attr icon?: string;
-	@attr({attribute: 'icon-placement'}) iconPlacement?: IconPlacement;
+	@attr({ attribute: 'icon-placement' }) iconPlacement?: IconPlacement;
 	@attr subtitle?: string;
 	@attr headline?: string;
-	@attr ({attribute: 'full-width-body', mode: 'boolean'}) fullWidthBody = false;
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	@attr({attribute: 'dismiss-button-aria-label'}) dismissButtonAriaLabel: string | null = null;
-	@attr ({attribute: 'no-light-dismiss', mode: 'boolean'}) noLightDismiss = false;
+	@attr({ attribute: 'full-width-body', mode: 'boolean' }) fullWidthBody =
+		false;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
+		| string
+		| null = null;
+	@attr({ attribute: 'no-light-dismiss', mode: 'boolean' }) noLightDismiss =
+		false;
 
 	#modal = false;
 
@@ -61,7 +67,6 @@ export class Dialog extends FoundationElement {
 	get returnValue(): string {
 		return this.#dialog?.returnValue;
 	}
-
 
 	/**
 	 * @internal
@@ -74,7 +79,9 @@ export class Dialog extends FoundationElement {
 
 	get #dialog() {
 		if (!this.#dialogElement) {
-			this.#dialogElement = this.shadowRoot!.querySelector('dialog') as HTMLDialogElement;
+			this.#dialogElement = this.shadowRoot!.querySelector(
+				'dialog'
+			) as HTMLDialogElement;
 			if (this.#dialogElement) {
 				this.#dialogElement.open = this.open;
 				if (dialogPolyfill) {
@@ -107,12 +114,11 @@ export class Dialog extends FoundationElement {
 		}
 		const rect = this.#dialog.getBoundingClientRect();
 
-		const clickedInDialog = (
+		const clickedInDialog =
 			rect.top <= event.clientY &&
 			event.clientY <= rect.top + rect.height &&
 			rect.left <= event.clientX &&
-			event.clientX <= rect.left + rect.width
-		);
+			event.clientX <= rect.left + rect.width;
 
 		this.open = clickedInDialog;
 	};
@@ -164,7 +170,6 @@ export class Dialog extends FoundationElement {
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
-
 	/**
 	 * @internal
 	 */
@@ -177,7 +182,6 @@ export class Dialog extends FoundationElement {
 	 * @internal
 	 */
 	@observable actionItemsSlottedContent?: HTMLElement[];
-
 }
 
 export interface Dialog extends Localized {}

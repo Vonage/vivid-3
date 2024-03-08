@@ -3,7 +3,7 @@ import { badgeDefinition } from '../../lib/badge/definition';
 import { designSystem, registerFactory } from '.';
 
 describe('design system', () => {
-	it('should export \'designSystem\'', async () => {
+	it("should export 'designSystem'", async () => {
 		expect(designSystem).toBeDefined();
 	});
 
@@ -18,11 +18,16 @@ describe('design system', () => {
 		await Promise.all(
 			elementsDefinitions.map(({ definition }) =>
 				customElements.whenDefined(`${customPrefix}-${definition.baseName}`)
-			));
+			)
+		);
 
 		elementsDefinitions.forEach(({ definition }) => {
-			expect(customElements.get(`${customPrefix}-${definition.baseName}`)).toBeDefined();
-			expect(customElements.get(`${defaultPrefix}-${definition.baseName}`)).toBeUndefined();
+			expect(
+				customElements.get(`${customPrefix}-${definition.baseName}`)
+			).toBeDefined();
+			expect(
+				customElements.get(`${defaultPrefix}-${definition.baseName}`)
+			).toBeUndefined();
 		});
 	});
 
@@ -36,10 +41,13 @@ describe('design system', () => {
 		await Promise.all(
 			elementsDefinitions.map(({ definition }) =>
 				customElements.whenDefined(`${defaultPrefix}-${definition.baseName}`)
-			));
+			)
+		);
 
 		elementsDefinitions.forEach(({ definition }) => {
-			expect(customElements.get(`${defaultPrefix}-${definition.baseName}`)).toBeDefined();
+			expect(
+				customElements.get(`${defaultPrefix}-${definition.baseName}`)
+			).toBeDefined();
 		});
 	});
 });

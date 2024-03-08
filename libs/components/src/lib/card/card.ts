@@ -1,20 +1,17 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr, observable} from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 
-import type {
-	Appearance,
-} from '../enums.js';
-
+import type { Appearance } from '../enums.js';
 
 /**
  * Types of avatar appearance.
  *
  * @public
  */
-export type CardAppearance = Extract<Appearance,
-Appearance.Elevated | Appearance.Ghost | Appearance.Outlined>;
-
-
+export type CardAppearance = Extract<
+	Appearance,
+	Appearance.Elevated | Appearance.Ghost | Appearance.Outlined
+>;
 
 /**
  * Base class for card
@@ -27,7 +24,6 @@ Appearance.Elevated | Appearance.Ghost | Appearance.Outlined>;
  * @slot main - Assign nodes to main slot to fully override a card's predefined flow and style with your own.
  */
 export class Card extends FoundationElement {
-
 	/**
 	 * The appearance the card should have.
 	 *
@@ -75,8 +71,6 @@ export class Card extends FoundationElement {
 	 */
 	@attr elevation?: 0 | 2 | 4 | 8 | 12 | 16 | 24;
 
-
-
 	/**
 	 *
 	 * Slot observer:
@@ -84,12 +78,7 @@ export class Card extends FoundationElement {
 	 * @internal
 	 */
 
-
 	@observable footerSlottedContent?: HTMLElement[];
 	@observable graphicSlottedContent?: HTMLElement[];
 	@observable hasMetaSlottedContent?: HTMLElement[];
-
 }
-
-
-

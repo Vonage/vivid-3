@@ -23,5 +23,4 @@ export class Elevation extends FoundationElement {
 	 * HTML Attribute: boolean
 	 */
 	@attr({ attribute: 'no-shadow', mode: 'boolean' }) noShadow?: boolean;
-
 }

@@ -1,5 +1,5 @@
 import { DataGridRow as FoundationDataGridRow } from '@microsoft/fast-foundation';
-import {attr} from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 
 /**
  * Base class for data-grid
@@ -15,6 +15,6 @@ export class DataGridRow extends FoundationDataGridRow {
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
-	@attr({attribute: 'aria-selected'})
+	@attr({ attribute: 'aria-selected' })
 	override ariaSelected: string | null = null;
 }

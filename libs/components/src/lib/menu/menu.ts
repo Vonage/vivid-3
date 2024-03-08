@@ -16,7 +16,7 @@ import { type Anchored, anchored } from '../../shared/patterns/anchored';
  */
 @anchored
 export class Menu extends FastMenu {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
 	 * placement of the menu
@@ -70,7 +70,9 @@ export class Menu extends FastMenu {
 				menuItems: Element[] | undefined;
 				isFocusableElement: (el: Element) => el is HTMLElement;
 			};
-			const isSafeToCallSuper = privates.menuItems!.some(privates.isFocusableElement);
+			const isSafeToCallSuper = privates.menuItems!.some(
+				privates.isFocusableElement
+			);
 			if (!isSafeToCallSuper) {
 				return;
 			}
@@ -117,7 +119,7 @@ export class Menu extends FastMenu {
 	#openIfClosed = () => {
 		// DOM.queueUpdate() is required to prevent the click event from
 		// being caught by the document click handler (added by openChanged)
-		if (!this.open) DOM.queueUpdate(() => this.open = true);
+		if (!this.open) DOM.queueUpdate(() => (this.open = true));
 	};
 
 	#updateClickOutsideListener = () => {

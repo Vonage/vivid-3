@@ -1,14 +1,14 @@
-import {html, slotted, when} from '@microsoft/fast-element';
-import type {ViewTemplate} from '@microsoft/fast-element';
+import { html, slotted, when } from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
+import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
-import type {Dialog} from './dialog';
+import type { Dialog } from './dialog';
 
 const getClasses = ({
 	iconPlacement,
@@ -22,10 +22,7 @@ const getClasses = ({
 		['hide-body', !bodySlottedContent?.length],
 		[
 			'hide-footer',
-			!(
-				footerSlottedContent?.length ||
-				actionItemsSlottedContent?.length
-			),
+			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
 		]
 	);
 /**
@@ -33,7 +30,7 @@ const getClasses = ({
  */
 function icon(iconTag: string) {
 	return html<Dialog>`
-		<${iconTag} class="icon" name="${x => x.icon}"></${iconTag}>
+		<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 	`;
 }
 
@@ -41,22 +38,14 @@ function icon(iconTag: string) {
  *
  */
 function headline() {
-	return html<Dialog>`
-	  <div class="headline">
-		  ${x => x.headline}
-	  </div>
-	`;
+	return html<Dialog>` <div class="headline">${(x) => x.headline}</div> `;
 }
 
 /**
  *
  */
 function subtitle() {
-	return html<Dialog>`
-	  <div class="subtitle">
-		  ${x => x.subtitle}
-	  </div>
-	`;
+	return html<Dialog>` <div class="subtitle">${(x) => x.subtitle}</div> `;
 }
 
 /**
@@ -65,11 +54,12 @@ function subtitle() {
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
 	<${buttonTag}
-		aria-label="${x => x.dismissButtonAriaLabel || x.locale.dialog.dismissButtonLabel}"
+		aria-label="${(x) =>
+			x.dismissButtonAriaLabel || x.locale.dialog.dismissButtonLabel}"
 		size="condensed"
 		class="dismiss-button"
 		icon="close-line"
-		@click="${x => x.open = false}"
+		@click="${(x) => (x.open = false)}"
 	></${buttonTag}>`;
 }
 
@@ -99,20 +89,20 @@ export const DialogTemplate: (
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
-				returnValue="${x => x.returnValue}"
-				aria-label="${x => x.ariaLabel}"
+				returnValue="${(x) => x.returnValue}"
+				aria-label="${(x) => x.ariaLabel}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">
-					<div class="header ${x => x.subtitle ? 'border' : ''}">
+					<div class="header ${(x) => (x.subtitle ? 'border' : '')}">
 							<slot name="graphic">
-								${when(x => x.icon, icon(iconTag))}
+								${when((x) => x.icon, icon(iconTag))}
 							</slot>
-							${when(x => x.headline, headline())}
-							${when(x => x.subtitle, subtitle())}
+							${when((x) => x.headline, headline())}
+							${when((x) => x.subtitle, subtitle())}
 							${renderDismissButton(buttonTag)}
 					</div>
-					<div class="body ${x => x.fullWidthBody? 'full-width' : ''}" >
+					<div class="body ${(x) => (x.fullWidthBody ? 'full-width' : '')}" >
 						<slot name="body" ${slotted('bodySlottedContent')}></slot>
 					</div>
 					<div class="footer">
