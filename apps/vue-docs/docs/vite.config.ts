@@ -7,14 +7,20 @@ export default defineConfig({
 
 	resolve: {
 		alias: {
-			'@vonage/vivid': path.resolve(__dirname, '../../../dist/libs/components/index.js'),
-			'@vonage/vivid-vue': path.resolve(__dirname, '../../../dist/libs/vue-wrappers/index.js'),
+			'@vonage/vivid': path.resolve(
+				__dirname,
+				'../../../dist/libs/components/index.js'
+			),
+			'@vonage/vivid-vue': path.resolve(
+				__dirname,
+				'../../../dist/libs/vue-wrappers/index.js'
+			),
 		},
 	},
 
 	server: {
 		fs: {
-			allow: ['../../..']
-		}
-	}
+			allow: ['../../..'],
+		},
+	},
 });

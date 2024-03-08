@@ -1,7 +1,7 @@
 // Importing from '@vonage/vivid' requires a DOM
-import "./polyfill/dom";
+import './polyfill/dom';
 
-import * as exportedNames from "@vonage/vivid";
+import * as exportedNames from '@vonage/vivid';
 import { pascalToKebab } from './utils/casing';
 
 /**
@@ -9,8 +9,8 @@ import { pascalToKebab } from './utils/casing';
  * Does not include internal components like popup.
  */
 export const exportedComponents = Object.keys(exportedNames)
-	.filter(exportName => !exportName.startsWith('registerFactory'))
-	.filter(exportName => exportName.startsWith('register'))
-	.map(exportName => exportName.replace('register', ''))
+	.filter((exportName) => !exportName.startsWith('registerFactory'))
+	.filter((exportName) => exportName.startsWith('register'))
+	.map((exportName) => exportName.replace('register', ''))
 	.concat(['DataGridRow', 'DataGridCell'])
 	.map(pascalToKebab);

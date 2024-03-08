@@ -18,15 +18,22 @@ const putInCache = async (request, response) => {
 };
 
 async function removeOldCache(event) {
-	await caches.keys().then(function (keys) {
-		return Promise.all(keys.filter(function (key) {
-			return key !== VERSION;
-		}).map(function (key) {
-			return caches.delete(key);
-		}));
-	}).then(function () {
-		return self.clients.claim();
-	});
+	await caches
+		.keys()
+		.then(function (keys) {
+			return Promise.all(
+				keys
+					.filter(function (key) {
+						return key !== VERSION;
+					})
+					.map(function (key) {
+						return caches.delete(key);
+					})
+			);
+		})
+		.then(function () {
+			return self.clients.claim();
+		});
 }
 
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
