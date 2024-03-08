@@ -14,7 +14,7 @@ const getClasses = (_: DialPad) => classNames(
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref('_textFieldEl')} class="phone-field" 
             appearance="ghost" value="${x => x.value}" placeholder="${x => x.placeholder}" 
-            ?disabled="${x => x.disabled}" helper-text="${x => x.helperText}" pattern="${x => x.pattern}"
+            ?disabled="${x => x.disabled}" helper-text="${(x) => x.helperText}" pattern="${x => x.pattern}"
             aria-label="${x => x.inputAriaLabel || x.locale.dialPad.inputLabel}">
          ${when(x => (x.value?.length && x.value?.length > 0), html`<${buttonTag} 
                 slot="action-items" size='condensed' icon="backspace-line" aria-label="${x => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}" 
@@ -47,7 +47,7 @@ function renderDialButton(buttonTag: string) {
         icon='call-line' 
         connotation="${x => x.active ? 'alert' : 'cta'}" 
         ?disabled="${x => x.disabled}"
-        label="${x => x.active ? (x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel) : 
+        label="${x => x.active ? (x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel) :
 		(x.callButtonLabel || x.locale.dialPad.callButtonLabel)}">
     </${buttonTag}>`;
 }

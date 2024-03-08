@@ -1,6 +1,8 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { Localized } from '../../shared/patterns';
+import {
+	Localized
+} from '../../shared/patterns';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 
@@ -8,7 +10,16 @@ import { Button } from '../button/button';
  * Base class for dial-pad
  *
  * @public
+ * @event change - Emitted when the text field value changes
+ * @event input - Emitted when the text field value changes
+ * @event blur - Emitted when the text field loses focus
+ * @event focus - Emitted when the text field receives focus
+ * @event keypad-click - Emitted when a digit button is clicked
+ * @event dial - Emitted when the call button is clicked
+ * @event end-call - Emitted when the end call button is clicked
+ * 
  */
+
 export class DialPad extends FoundationElement {
 	@attr({ attribute: 'input-aria-label' }) inputAriaLabel: string | null = null;
 	@attr({ attribute: 'delete-button-aria-label' }) deleteButtonAriaLabel: string | null = null;
@@ -140,5 +151,5 @@ export class DialPad extends FoundationElement {
 	};
 }
 
-export interface DialPad extends Localized{ }
+export interface DialPad extends Localized { }
 applyMixins(DialPad, Localized);
