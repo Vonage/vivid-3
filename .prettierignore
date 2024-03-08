@@ -12,6 +12,12 @@ package-lock.json
 **/*.ts
 **/*.mts
 **/*.cts
+!libs/components/src/**/*.js
+!libs/components/src/**/*.mjs
+!libs/components/src/**/*.cjs
+!libs/components/src/**/*.ts
+!libs/components/src/**/*.mts
+!libs/components/src/**/*.cts
 **/*.css
 **/*.scss
 **/*.vue
