@@ -153,6 +153,7 @@ export class VideoPlayer extends FoundationElement {
 			languages: {
 				current: this.locale.videoPlayer,
 			},
+			textTrackSettings: false,
 			experimentalSvgIcons: true,
 			language: 'current',
 			fluid: true,

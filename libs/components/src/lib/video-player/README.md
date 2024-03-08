@@ -19,20 +19,20 @@ A video source can be provided to the component using the `src` attribute.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"></vwc-video-player>
+<vwc-video-player src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"></vwc-video-player>
 ```
 
 #### Supported video formats
 
 Video player supports the most common video formats:
 
-1. **MP4 (MPEG-4 Part 14):** one of the most widely supported video formats and is typically used for web video playback.
-
-2. **WebM: WebM** open media file format designed for the web and widely supported by modern browsers. It uses VP8 or VP9 video codecs and Vorbis or Opus audio codecs.
-
-3. **Ogg:** a container format that can contain video streams compressed with Theora video codec and audio streams compressed with Vorbis audio codec.
-
-These formats are supported by default in most modern web browsers. Video player also provides support for streaming protocols like **HLS (HTTP Live Streaming)** (used in the example above) and **DASH (Dynamic Adaptive Streaming over HTTP)** through plugins or extensions.
+| Video format | Description |
+| --- | --- |
+| **HLS** | HTTP Live Streaming: (used in the example above) one of the most widely used video streaming protocols. |
+| **DASH**  | Dynamic Adaptive Streaming over HTTP |
+| **MP4** | one of the most widely supported video formats and is typically used for web video playback. |
+| **WebM** | open media file format designed for the web and widely supported by modern browsers. |
+| **Ogg:** | a container format that can contain video streams compressed with Theora video codec and audio streams compressed with Vorbis audio codec. |
 
 #### Source element
 
@@ -64,23 +64,26 @@ The poster image is displayed before the video has been interacted with. The `po
 	html { max-inline-size: 800px }
 </style>
 <vwc-video-player
-    poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
-    src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8"
+    poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png"
+    src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
 >
 </vwc-video-player>
 ```
 
-### Captions
+### Text tracks
 
-For accessibility, it is recommended to provide captions to accompany any spoken word video. This is to help deaf and hard-of-hearing audiences and users who want to play the video on mute.
+Text tracks are a feature of HTML5 for displaying time-triggered text to the end-user. They can come in the form of Captions, Subtitles, Audio descriptions and Chapters.
 
-Captions can be provided using the `track` element.
+Timed text requires a text file in [WebVTT format](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API). This format defines a list of "cues" that have a start time, an end time, and text to display.
+
+Text tracks can be provided using the `track` element.
 
 ```html
 <track src="../elephantsdream/captions.en.vtt" kind="captions" srclang="en" label="English" default>
 ```
 
-The following attributes are available on the element:
+#### Track element API
+
 | Attribute | Description |
 | --- | --- |
 | `src` | url string (relative or absolute) that points to the captions file |
@@ -89,77 +92,25 @@ The following attributes are available on the element:
 | `label` | to be shown in the menu when selecting the captions |
 | `default` |  when set, the captions will be active when the video plays |
 
+#### Types of text track
+
+| Track type | Description |
+| --- | --- |
+| **Captions** | For accessibility, it is recommended to provide captions to accompany any spoken word video. This is to help deaf and hard-of-hearing audiences and users who want to play the video on mute. |
+| **Subtitles** | Provide translation of content that cannot be understood by the viewer. For example speech or text that is not English in an English language film. |
+| **Audio description** | To cater for blind and partially sighted users, a description track can be provided for screen readers. They are a textual description of the video content. |
+| **Chapters** | Chapters are intended to be used when the user is navigating the media resource. |
+
 ```html preview
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player>
-    <source src="/assets/images/sample-5s.webm" type="video/webm">
+<vwc-video-player poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg">
+    <source src="//d2zihajmogu5jn.cloudfront.net/sintel/master.m3u8" type="application/x-mpegURL">
     <track kind="captions" src="/assets/images/captions.en.vtt" srclang="en" label="English" default>
-</vwc-video-player>
-```
-
-### Subtitles
-
-Subtitles provide translation of content that cannot be understood by the viewer. For example speech or text that is not English in an English language film.
-
-Subtitles can also be provided using the `track` element.
-
-```html
-<track src="../elephantsdream/subtitles.fr.vtt" kind="subtitles" srclang="fr" label="Française">
- <track src="../elephantsdream/subtitles.de.vtt" kind="subtitles" srclang="de" label="Deutsch">
-```
-
-```html preview
-<style>
-	html { max-inline-size: 800px }
-</style>
-<vwc-video-player poster="/assets/images/ed-poster.jpeg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="subtitles" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English" default>
-    <track kind="subtitles" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.ja.vtt" srclang="ja" label="Japanese">
-    <track kind="subtitles" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.ru.vtt" srclang="ru" label="Russian">
-</vwc-video-player>
-```
-
-### Audio description
-
-To cater for blind and partially sighted users, a description track can be provided for screen readers. They are a textual description of the video content.
-
-Descriptions can also be provided using the `track` element.
-
-```html
-<track src="../elephantsdream/description.en.vtt" kind="descriptions" srclang="en" label="English">
-```
-
-```html preview
-<style>
-	html { max-inline-size: 800px }
-</style>
-<vwc-video-player poster="/assets/images/ed-poster.jpeg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="descriptions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/descriptions.en.vtt" label="English" srclang="en">
-    <track kind="captions" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/captions.en.vtt" srclang="en" label="English">
-</vwc-video-player>
-```
-
-### Chapters
-
-Chapter titles are intended to be used when the user is navigating the media resource.
-
-Chapters can also be provided using the `track` element.
-
-```html
-<track src="../elephantsdream/chapters.en.vtt" kind="chapters" srclang="en">
-```
-
-```html preview
-<style>
-	html { max-inline-size: 800px }
-</style>
-<vwc-video-player poster="/assets/images/ed-poster.jpeg">
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4" type="video/mp4">
-    <track kind="chapters" src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/chapters.en.vtt" srclang="en">
+    <track kind="subtitles" src="/assets/images/captions.jp.vtt" srclang="jp" label="Japanese">
+    <track kind="descriptions" src="/assets/images/descriptions.en.vtt" label="English" srclang="en">
+    <track kind="chapters" src="/assets/images/chapters.en.vtt" srclang="en">
 </vwc-video-player>
 ```
 
@@ -175,8 +126,8 @@ The playback rates option can be removed by passing an empty string.
 <style>
 	html { max-inline-size: 800px }
 </style>
-<vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png">
-    <source src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8" type="application/x-mpegURL">
+<vwc-video-player playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5" poster="/assets/images/steel_hi.jpg">
+    <source src="https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8" type="application/x-mpegURL">
 </vwc-video-player>
 ```
 
@@ -194,8 +145,7 @@ Setting them to `0` removes the buttons.
 	html { max-inline-size: 800px }
 </style>
 <vwc-video-player skip-by="30" poster="/assets/images/steel_hi.jpg">
-    <source src="
-    https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8" type="application/x-mpegURL">
+    <source src="https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8" type="application/x-mpegURL">
 </vwc-video-player>
 ```
 
