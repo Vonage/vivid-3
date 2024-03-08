@@ -268,15 +268,13 @@ describe('vwc-checkbox', () => {
 		it('should check the checkbox when keypressed outside the anchor', async () => {
 			await elementUpdated(element);
 
-			element
-				.querySelector('a')
-				?.dispatchEvent(
-					new KeyboardEvent('keypress', {
-						bubbles: true,
-						composed: true,
-						key: 'Enter',
-					})
-				);
+			element.querySelector('a')?.dispatchEvent(
+				new KeyboardEvent('keypress', {
+					bubbles: true,
+					composed: true,
+					key: 'Enter',
+				})
+			);
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('checked')).toBeFalsy();
 
