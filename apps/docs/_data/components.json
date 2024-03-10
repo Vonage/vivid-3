@@ -271,6 +271,7 @@
 	},
 	{
 		"title": "Dial Pad",
+		"status": "alpha",
 		"markdown": "./libs/components/src/lib/dial-pad/README.md"
 	}
 ]
