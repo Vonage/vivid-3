@@ -1,24 +1,24 @@
 .base {
     display: grid;
     margin: 16px;
-    inline-size: 230px;
     gap: 16px;
+    inline-size: 230px;
 }
 
 .digits {
     display: grid;
-    inline-size: 230px;
     gap: 16px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    inline-size: 230px;
 }
 
 .phone-field {
     --vvd-size-density: 2;
 
-    grid-column: 1 / -1;
     align-self: flex-start;
     border-bottom: 1px solid var(--vvd-color-neutral-300);
+    grid-column: 1 / -1;
 }
 
 .digit-btn {
