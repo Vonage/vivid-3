@@ -69,9 +69,9 @@ export class DialPad extends FoundationElement {
 	 * HTML Attribute: value
 	 */
 	@attr({ mode: 'fromView' }) value: string = '';
-	onValueChange(_oldValue: string, newValue: string) {
+	valueChanged(_oldValue: string, newValue: string) {
 		this._textFieldEl.value = newValue;
-		this._textFieldEl?.reportValidity();
+		this._textFieldEl.reportValidity();
 	}
 
 	/**
