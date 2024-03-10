@@ -25,7 +25,7 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
             ?disabled="${x => x.disabled}" helper-text="${(x) => x.helperText}" pattern="${x => x.pattern}"
             aria-label="${x => x.inputAriaLabel || x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}">
-         ${when(x => (x.value?.length && x.value?.length > 0), html`<${buttonTag} 
+         ${when(x => (x.value && x.value.length && x.value.length > 0), html`<${buttonTag} 
                 slot="action-items" size='condensed' icon="backspace-line" aria-label="${x => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}" 
                 appearance='ghost' ?disabled="${x => x.disabled}" @click="${x => x.deleteLastCharacter()}">
             </${buttonTag}>`)}

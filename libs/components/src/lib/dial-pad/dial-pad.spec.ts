@@ -98,6 +98,22 @@ describe('vwc-dial-pad', () => {
 			});
 			expect(spy).toHaveBeenCalledTimes(12);
 		});
+
+		it('should set value in text field when clicked on keypad', async function () {
+			await elementUpdated(element);
+			getDigitButtons().forEach(button => {
+				button.click();
+			});
+			await elementUpdated(element);
+			expect(getTextField().value).toEqual('123456789*0#');
+		});
+
+		it('should not set value in text field when clicked on digits div', async function () {
+			const digits: HTMLDivElement | null = getBaseElement(element).querySelector('.digits');
+			digits?.click();
+			await elementUpdated(element);
+			expect(getTextField().value).toEqual('');
+		});
 	});
 
 	describe('dial', function () {
