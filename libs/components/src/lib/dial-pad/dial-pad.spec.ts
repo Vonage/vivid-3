@@ -24,6 +24,10 @@ describe('vwc-dial-pad', () => {
 		return digits?.querySelectorAll('vwc-button') as NodeListOf<Button>;
 	}
 
+	function getDeleteButton() {
+		return getTextField().querySelector('vwc-button') as Button;
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -65,6 +69,22 @@ describe('vwc-dial-pad', () => {
 			element.placeholder = placeholder;
 			await elementUpdated(element);
 			expect(getTextField().placeholder).toEqual(placeholder);
+		});
+	});
+
+	describe('delete', function () {
+		it('should show delete button when text field has value', async function () {
+			element.value = '123';
+			await elementUpdated(element);
+			expect(getDeleteButton()).not.toBeNull();
+		});
+
+		it('should remove last character from text field when clicked on delete button', async function () {
+			element.value = '123';
+			await elementUpdated(element);
+			getDeleteButton().click();
+			await elementUpdated(element);
+			expect(getTextField().value).toEqual('12');
 		});
 	});
 

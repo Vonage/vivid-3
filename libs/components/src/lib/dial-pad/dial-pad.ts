@@ -152,8 +152,8 @@ export class DialPad extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	clearField = () => {
-		this.value = '';
+	deleteLastCharacter = () => {
+		this.value = this.value.slice(0, -1);
 	};
 
 	/**

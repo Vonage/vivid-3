@@ -108,13 +108,3 @@ You can change the error text with the `error-text` attribute.
 | `focus`        | Emitted from the input element                                                                         |
 
 </div>
-
-
-
-## Accessibility
-
-- The input element should have aria-label, if no visible label is in the design
-- The dial / end call buttons should have an aria-label, if it is designed to just show an icon only
-- The feedback-text area should have aria-live set to polite, so that it is read out by screen readers when it changes
-- Keyboard only users will navigate the buttons and input using the TAB key
-
