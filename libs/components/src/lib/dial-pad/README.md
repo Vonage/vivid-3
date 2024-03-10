@@ -100,7 +100,7 @@ You can change the error text with the `error-text` attribute.
 | Name           | Description                                                                                            |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
 | `dial`         | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
-| `endCall`      | Emitted when the end call button is clicked                                                            |
+| `end-call`      | Emitted when the end call button is clicked                                                            |
 | `keypad-click` | Emitted when a keypad button is clicked with the value of the button clicked                           |
 | `input`        | Emitted from the input element                                                                         |
 | `change`       | Emitted from the input element                                                                         |

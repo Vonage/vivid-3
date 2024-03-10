@@ -80,7 +80,34 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe.each(['input', 'change'])('%s event', (eventName) => {
+	describe('dial', function () {
+		it('should fire dial event when clicked on call button', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			await elementUpdated(element);
+			getCallButton().click();
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should fire dial event when enter is pressed on text field', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			await elementUpdated(element);
+			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should fire end-call event when clicked on call button when active', async function () {
+			const spy = jest.fn();
+			element.addEventListener('end-call', spy);
+			element.active = true;
+			await elementUpdated(element);
+			getCallButton().click();
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe.each(['input', 'change', 'blur', 'focus'])('%s event', (eventName) => {
 		it('should be fired when a user enters a valid text into the text field', async () => {
 			const spy = jest.fn();
 			element.addEventListener(eventName, spy);
