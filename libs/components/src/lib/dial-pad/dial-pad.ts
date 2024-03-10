@@ -70,7 +70,8 @@ export class DialPad extends FoundationElement {
 	 */
 	@attr({ mode: 'fromView' }) value: string = '';
 	valueChanged(_oldValue: string, newValue: string) {
-		if(newValue){
+		if (newValue !== undefined && newValue !== null &&
+			this._textFieldEl && newValue !== this._textFieldEl.value) {
 			this._textFieldEl.value = newValue;
 			this._textFieldEl.reportValidity();
 		}
@@ -145,7 +146,7 @@ export class DialPad extends FoundationElement {
 	 * @internal
 	 */
 	onDial = () => {
-		this.active ? this.$emit('end-call') :  this.$emit('dial');
+		this.active ? this.$emit('end-call') : this.$emit('dial');
 	};
 
 	/**

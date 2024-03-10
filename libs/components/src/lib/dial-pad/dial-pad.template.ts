@@ -53,7 +53,7 @@ function renderDialButton(buttonTag: string) {
 	return html<DialPad>`<${buttonTag} class='call-btn' 
         size='expanded' 
         appearance="filled" 
-        icon='call-line' 
+        icon="${x => x.active ? 'disable-call-line' : 'call-line'}"
         connotation="${x => x.active ? 'alert' : 'cta'}" 
         ?disabled="${x => x.disabled}"
         @click="${x => x.onDial()}"
