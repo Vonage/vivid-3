@@ -1,14 +1,14 @@
+@use "sass:map";
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary primary-text primary-increment contrast fierce,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost-light,
 	$states: idle hover active selected selectedAndHover,
@@ -23,12 +23,11 @@
 	$gap: 12px;
 	$gutter: 16px;
 
-	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -39,14 +38,14 @@
 	text-decoration: none;
 	vertical-align: middle;
 
-	@include appearance.appearance;
 	@include connotation.connotation (nav-item);
-
-	@supports selector(:focus-visible) {
-		&:focus-visible {
-			outline: none;
-		}
-	}
+	@include appearance.appearance(
+		appearance.state-selectors(
+			map.merge(appearance.$state-aspect-selectors, (
+				selected: "[aria-current]",
+			))
+		)
+	);
 
 	&.icon-only {
 		display: flex;
@@ -59,14 +58,16 @@
 		padding-block: 10px;
 		padding-inline: $gutter;
 	}
-}
 
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	.control:not(:focus-visible) & {
-		display: none;
+	&:focus-visible {
+		@include focus.focus;
 	}
+
+
+	:host(:not([aria-current="page"])) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+
 }
 
 slot[name="icon"] {

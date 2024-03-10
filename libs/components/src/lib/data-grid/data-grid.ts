@@ -1,7 +1,8 @@
 import { DataGrid as FoundationDataGrid } from '@microsoft/fast-foundation';
-import {attr, DOM} from '@microsoft/fast-element';
-import type {DataGridCell} from './data-grid-cell';
-import type {DataGridRow} from './data-grid-row';
+import { attr, DOM, observable, Observable } from '@microsoft/fast-element';
+import type { DataGridCell } from './data-grid-cell';
+import type { DataGridRow } from './data-grid-row';
+import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
 
 interface SelectionMetaData {
 	target: EventTarget | null
@@ -30,6 +31,23 @@ export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
  * @event cell-click - Event that fires when a cell is clicked
  */
 export class DataGrid extends FoundationDataGrid {
+	/**
+	 *
+	 * Rows slot observer:
+	 *
+	 * @internal
+	 */
+	@observable slottedRowElements?: HTMLElement[];
+
+	/**
+	 *
+	 *
+	 * @internal
+	 */
+	slottedRowElementsChanged(_oldValue: HTMLElement[], _newValue: HTMLElement[]) {
+		this.#initSelections();
+	}
+
 	/**
 	 * Indicates the selection mode.
 	 *
@@ -105,6 +123,64 @@ export class DataGrid extends FoundationDataGrid {
 		super();
 		this.addEventListener('click', this.#handleClick);
 		this.addEventListener('keydown', this.#handleKeypress);
+
+		// Override toggleGeneratedHeader to generate the header row even if the grid is empty
+		const privates = this as unknown as {
+			generatedHeader: DataGridRow | null;
+			rowsPlaceholder: HTMLElement | null;
+			rowElementTag: string;
+			toggleGeneratedHeader: () => void;
+		};
+		privates.toggleGeneratedHeader = () => {
+			if (privates.generatedHeader !== null) {
+				this.removeChild(privates.generatedHeader);
+				privates.generatedHeader = null;
+			}
+
+			if (
+				this.generateHeader !== GenerateHeaderOptions.none &&
+				this.columnDefinitions !== null
+			) {
+				const generatedHeaderElement: HTMLElement = document.createElement(
+					this.rowElementTag
+				);
+				privates.generatedHeader = (generatedHeaderElement as unknown) as DataGridRow;
+				privates.generatedHeader.columnDefinitions = this.columnDefinitions;
+				privates.generatedHeader.gridTemplateColumns = this.gridTemplateColumns;
+				privates.generatedHeader.rowType =
+					this.generateHeader === GenerateHeaderOptions.sticky
+						? DataGridRowTypes.stickyHeader
+						: DataGridRowTypes.header;
+				/* istanbul ignore next */
+				if (this.firstChild !== null || privates.rowsPlaceholder !== null) {
+					this.insertBefore(
+						generatedHeaderElement,
+						this.firstChild !== null ? this.firstChild : privates.rowsPlaceholder
+					);
+				}
+				return;
+			}
+		};
+	}
+
+	#changeHandler = {
+		handleChange(dataGrid: DataGrid, propertyName: string) {
+			if (propertyName === 'columnDefinitions') {
+				if (dataGrid.$fastController.isConnected) {
+					(dataGrid as any).toggleGeneratedHeader();
+				}
+			}
+		}
+	};
+
+	override connectedCallback() {
+		super.connectedCallback();
+		Observable.getNotifier(this).subscribe(this.#changeHandler, 'columnDefinitions');
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		Observable.getNotifier(this).unsubscribe(this.#changeHandler, 'columnDefinitions');
 	}
 
 	#setSelectedState = (cell: DataGridCell | DataGridRow, selectedState: boolean) => {
@@ -153,4 +229,7 @@ export class DataGrid extends FoundationDataGrid {
 			};
 		});
 	}
+
+
 }
+

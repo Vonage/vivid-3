@@ -1,10 +1,10 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getControlElement, setAttribute } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { Button } from './button';
-import  '.';
+import '.';
 import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-button';
@@ -103,6 +103,15 @@ describe('vwc-button', () => {
 		});
 	});
 
+	describe('active', () => {
+		it('should set active class when active is true', async () => {
+			element.active = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain('active');
+		});
+	});
+
 	describe('label', () => {
 		it('set label property to node', async () => {
 			const label = 'lorem';
@@ -184,6 +193,21 @@ describe('vwc-button', () => {
 
 	});
 
+
+	describe.each(['href', 'hreflang', 'download', 'ping', 'referrerpolicy', 'rel', 'target', 'type'])('%s attribute', (attribute) => {
+		beforeEach(async () => {
+			element.href = '/somewhere';
+			await elementUpdated(element);
+		});
+
+		it('should be forwarded to the anchor element', async () => {
+			const text = 'link';
+			await setAttribute(element, attribute, text);
+
+			expect(element.shadowRoot?.querySelector('a')?.getAttribute(attribute)).toEqual(text);
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set disabled class when disabled is true', async () => {
 			const appearance = 'filled';
@@ -225,6 +249,14 @@ describe('vwc-button', () => {
 
 		it('should pass html a11y test', async () => {
 			element.label = 'Home';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should pass html a11y test when anchor', async () => {
+			element.label = 'Link text';
+			element.href = '/somewhere';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

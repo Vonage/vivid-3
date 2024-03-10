@@ -21,7 +21,7 @@ import { FormAssociatedFilePicker } from './file-picker.form-associated';
  *
  * @public
  */
-export type FileUploaderSize = Extract<Size, Size.Normal | Size.Expanded>;
+export type FilePickerSize = Extract<Size, Size.Normal | Size.Expanded>;
 
 const isFormAssociatedTryingToSetFormValueToFakePath = (value: File | string | FormData | null) => typeof value === 'string';
 
@@ -103,7 +103,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr size?: FileUploaderSize;
+	@attr size?: FilePickerSize;
 
 	override nameChanged(previous: string, next: string) {
 		super.nameChanged!(previous, next);

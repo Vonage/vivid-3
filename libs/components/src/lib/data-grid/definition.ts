@@ -1,10 +1,10 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import {iconRegistries} from '../icon/definition';
 import { registerFactory } from '../../shared/design-system';
-import dataGridStyles from './data-grid.scss';
-import dataGridRowStyles from './data-grid-row.scss';
+import dataGridStyles from './data-grid.scss?inline';
+import dataGridRowStyles from './data-grid-row.scss?inline';
 
-import dataGridCellStyles from './data-grid-cell.scss';
+import dataGridCellStyles from './data-grid-cell.scss?inline';
 import { DataGrid } from './data-grid';
 import { DataGridTemplate as template } from './data-grid.template';
 import { DataGridRow } from './data-grid-row';

@@ -109,6 +109,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-button>
 	</div>
 	<div style="margin: 5px;">
+		<vwc-button href="#" label='Button With a Link'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
 		<vwc-button appearance="filled" label="With Icon Slot">
 			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		</vwc-button>
@@ -118,6 +121,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance="filled" shape="pill">
 			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		</vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button label="Expanded" aria-expanded="true"></vwc-button>
+		<vwc-button label="Active" active></vwc-button>
 	</div>
 	</div>
 	`;

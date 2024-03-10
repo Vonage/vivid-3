@@ -1,2 +1,2 @@
-@forward 'mixins' show appearance;
+@forward 'mixins' show appearance, state-selectors, $state-aspect-selectors;
 @forward 'functions' show get-appearance-token;

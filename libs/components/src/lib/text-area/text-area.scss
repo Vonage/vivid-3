@@ -1,10 +1,10 @@
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent success alert,
-	$shades: primary backdrop intermediate firm faint soft,
+	$shades: primary primary-text primary-increment intermediate firm fierce faint soft,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
@@ -15,8 +15,6 @@
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-
-@use "../focus/partials/variables" as variables;
 
 $low-ink-color: --_low-ink-color;
 $outline-width: 2px;
@@ -66,9 +64,9 @@ $outline-width: 2px;
 .control {
 	padding: 8px 16px;
 	border: 0 none;
+	border-radius: #{border-radius-variables.$border-radius-normal};
 	appearance: none; /* for box-shadow visibility on IOS */
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	border-radius: #{border-radius-variables.$border-radius-normal};
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
@@ -76,6 +74,21 @@ $outline-width: 2px;
 	min-block-size: #{size.$vvd-size-normal};
 	resize: none;
 	transition: box-shadow .2s, background-color .2s, color .2s;
+
+	@supports selector(::-webkit-resizer) {
+		&::-webkit-resizer {
+			$resizer-size: 10px;
+
+			background-image: linear-gradient(315deg, transparent 0, transparent 2px,
+				var(#{constants.$vvd-color-canvas-text}) 2px, var(#{constants.$vvd-color-canvas-text}) 3px,
+				transparent 3px, transparent 5px, var(#{constants.$vvd-color-canvas-text}) 5px,
+				var(#{constants.$vvd-color-canvas-text}) 6px, transparent 6px, transparent 8px, transparent 100%);
+			background-repeat: no-repeat;
+			background-size: $resizer-size $resizer-size;
+			block-size: $resizer-size;
+			inline-size: $resizer-size;
+		}
+	}
 
 	&:disabled {
 		opacity: 1; /* 2. correct opacity on iOS */
@@ -90,9 +103,10 @@ $outline-width: 2px;
 		-webkit-text-fill-color: var(#{$low-ink-color}); /* 1. sets text fill to current `color` for safari */
 	}
 
-	&:focus {
-		outline: $outline-width solid var(#{variables.$focus-stroke-color}, currentColor);
-		outline-offset: -$outline-width;
+	&:focus-visible {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
 	}
 
 	:host([resize="both"]) & {

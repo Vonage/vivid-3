@@ -5,7 +5,8 @@
 		"declaration": true,
 		"types": ["node"],
 		"paths": {
-			"@vonage/vivid": ["dist/libs/components/index.js"]
+			"@vonage/vivid": ["dist/libs/components/index.js"],
+			"@vonage/vwc-consts": ["libs/consts/src/index.ts"]
 		}
 	},
 	"include": ["src/**/*.ts"],

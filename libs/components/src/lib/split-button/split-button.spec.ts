@@ -46,7 +46,13 @@ describe('vwc-split-button', () => {
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('home');
 		});
+
+		it('should have an icon slot', async () => {
+			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+		});
 	});
+
+
 
 	describe('split indicator', () => {
 		it('adds a split indicator to the button', async () => {
@@ -121,6 +127,18 @@ describe('vwc-split-button', () => {
 			expect(controlIconOnlyBefore).toBeNull();
 			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
 		});
+
+		it('should set icon-only class if slot name="icon" is slotted', async () => {
+			const iconOnlyClassExistsWithoutSlot = getControlElement(element).classList.contains('icon-only');
+			const slottedElement = document.createElement('span');
+			slottedElement.slot = 'icon';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			expect(iconOnlyClassExistsWithoutSlot).toEqual(false);
+			expect(getControlElement(element).classList.contains('icon-only')).toEqual(true);
+		});
+
 	});
 
 
@@ -137,6 +155,28 @@ describe('vwc-split-button', () => {
 	describe('default slot', () => {
 		it('should should have a default slot', () => {
 			expect(element.shadowRoot?.querySelector('slot:not([name])')).toBeTruthy();
+		});
+	});
+
+	describe('action-click', () => {
+		it('should fire a non-bubbling action-click event when action button is clicked', async () => {
+			const spy = jest.fn();
+			element.addEventListener('action-click', spy);
+			element.action.click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ bubbles: false }));
+		});
+	});
+
+	describe('indicator-click', () => {
+		it('should fire a non-bubbling indicator-click event when indicator button is clicked', async () => {
+			const spy = jest.fn();
+			element.addEventListener('indicator-click', spy);
+			element.indicator.click();
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ bubbles: false }));
 		});
 	});
 

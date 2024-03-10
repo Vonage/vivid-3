@@ -2,18 +2,13 @@
 
 The date picker component is used to select a date from a calendar.
 
-Dates will be stored in the format `YYYY-MM-DD` and displayed in the configured locale. See [Localization](/getting-started/localization) for more details.
+Dates will be stored in the format `YYYY-MM-DD` and displayed in the configured locale. See [Localization](/guides/localization/) for more details.
 
 ```js
 <script type="module">import '@vonage/vivid/date-picker';</script>
 ```
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker></vwc-date-picker>
 ```
 
@@ -28,12 +23,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker label="Start date"></vwc-date-picker>
 ```
 
@@ -44,12 +34,7 @@ Add the `helper-text` to add some helper text below the date picker.
 - Type: `string` | `undefined`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker
 	label="Start date"
 	helper-text="Select a date for the event to start"
@@ -64,12 +49,7 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Type: `string`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker
 	label="Start date"
 	error-text="Please select a date for the event to start"
@@ -104,12 +84,7 @@ It will always contain a valid date in the format `YYYY-MM-DD` when a date is se
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker label="Start date" value="2023-01-01"></vwc-date-picker>
 ```
 
@@ -121,12 +96,7 @@ Set the `min` attribute to configure the earliest date to accept. The user will 
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker
 	label="Start date"
 	min="2023-06-10"
@@ -142,12 +112,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
-```html preview locale-switcher
-<style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
-</style>
+```html preview locale-switcher 460px
 <vwc-date-picker
 	label="Start date"
 	max="2023-06-20"
@@ -159,12 +124,13 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 
 <div class="table-wrapper">
 
-| Name   | Description                                   |
-|--------|-----------------------------------------------|
-| input  | Emitted when the date is changed by the user. |
-| change | Emitted when the date is changed by the user. |
-| focus  | Emitted when the component receives focus.    |
-| blur   | Emitted when the component loses focus.       |
+| Name        | Description                                   |
+|-------------|-----------------------------------------------|
+| input       | Emitted when the date is changed by the user. |
+| change      | Emitted when the date is changed by the user. |
+| focus       | Emitted when the component receives focus.    |
+| blur        | Emitted when the component loses focus.       |
+| clear-click | Emitted when clear button is pressed.         |
 
 </div>
 
@@ -172,11 +138,8 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 
 ### In a form
 
-```html preview locale-switcher
+```html preview locale-switcher 460px
 <style>
-	html {
-		block-size: 460px; /* for demo purposes */
-	}
 	.buttons {
 		display: flex;
 		gap: 12px;

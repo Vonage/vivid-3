@@ -2,7 +2,6 @@ import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { Tag } from './tag';
@@ -42,7 +41,6 @@ export const tagTemplate: (
 ) => ViewTemplate<Tag> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html`
 	<span class="${getClasses}"
@@ -57,6 +55,5 @@ export const tagTemplate: (
 		${when(x => x.removable && !x.selectable, renderDismissButton(iconTag))}
 		${when(x => (x.selectable && x.selected),
 		html<Tag>`<${iconTag} class="selectable-icon" name="check-circle-solid"></${iconTag}>`)}
-		${() => focusTemplate}
 	</span>`;
 };

@@ -1,7 +1,7 @@
 import { attr, html, observable, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { Icon } from '../../../lib/icon/icon';
-import messageStyles from './message.scss';
+import messageStyles from './message.scss?inline';
 
 export interface FormElement {
 	errorValidationMessage: string;
@@ -51,6 +51,9 @@ export function formElements<
 	 * field. Our proxy is never interacted with, so the constraint never applies.
 	 * Therefore, we need to use the validity from the actual control in this case.
 	 *
+	 * Additionally, we need to avoid calling setValidity when elementInternals is not available, otherwise the proxy gets
+	 * stuck in an invalid state.
+	 *
 	 * This needs to be done in the original validate method from the FAST FormAssociated mixin.
 	 * We walk up the prototype chain until we find the original method and replace it.
 	 */
@@ -59,7 +62,7 @@ export function formElements<
 		const parentPrototype = Object.getPrototypeOf(currentPrototype);
 		if (currentPrototype.validate && !parentPrototype.validate) {
 			currentPrototype.validate = function (anchor?: HTMLElement) {
-				if (this.proxy instanceof HTMLElement) {
+				if (this.proxy instanceof HTMLElement && this.elementInternals) {
 					const isValid = this.proxy.validity.valid;
 					const controlIsInvalidDueToMinOrMaxLength =
 						(this.control && this.control.validity)

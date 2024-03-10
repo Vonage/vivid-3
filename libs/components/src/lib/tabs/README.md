@@ -1,7 +1,7 @@
 # Tabs
 
 Represents a tabs custom element.
-The vwc-tabs accepts [vwc-tab](../../components/tab) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 ```js
 <script type="module">
@@ -124,32 +124,18 @@ Add an `activeid` attribute of the active tab.
 </vwc-tabs>
 ```
 
-### Slots
+### Panel Scroll
+Add `scrollable-panel` to allow scroll.  
+Add `block-size` to `vwc-tabs` to make it scroll.
 
-Each `tab panel` has an associated [vwc-tab](../../components/tab) element, that when activated, displays the `tab panel`. 
-
-
-## Events
-
-<div class="table-wrapper">
-
-| Name     | Description                                                                        |
-| -------- | ---------------------------------------------------------------------------------- |
-| `change` | Fires a custom `change` event when a tab is clicked or during keyboard navigation. |
-
-</div>
-
-## Use Case
-Tab panel with scroll.  
-Add `block-size` to `vwc-tabs` (see code bellow).
-
+#### horizontal
 ```html preview full
 <style>
   .tabs {
 		block-size: 200px;  
   }
 </style>
-<vwc-tabs class="tabs" gutters="small">
+<vwc-tabs class="tabs" gutters="small" scrollable-panel>
     <vwc-tab label="Tab one" id="one"></vwc-tab>
     <vwc-tab label="Tab two" id="two"></vwc-tab>
     <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -177,4 +163,55 @@ Add `block-size` to `vwc-tabs` (see code bellow).
     </vwc-tab-panel>
 </vwc-tabs>
 ```
+#### Vertical
+```html preview full
+<style>
+  .tabs {
+		block-size: 150px;  
+  }
+</style>
+<vwc-tabs class="tabs" gutters="small" scrollable-panel orientation="vertical">
+    <vwc-tab label="Tab one" id="one"></vwc-tab>
+    <vwc-tab label="Tab two" id="two"></vwc-tab>
+    <vwc-tab label="Tab three" id="tree"></vwc-tab>
+    <vwc-tab-panel id="onePanel">
+      <div class="my-panel">
+        <ol>
+            <li>Stuffed artichokes</li>
+            <li>Bruschetta</li>
+            <li>Oven-baked polenta</li>
+            <li>Salami and Fig Crostini with Ricotta</li>
+            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
+             <li>Stuffed artichokes</li>
+            <li>Bruschetta</li>
+            <li>Oven-baked polenta</li>
+            <li>Salami and Fig Crostini with Ricotta</li>
+            <li>Rosemary-Potato Focaccia with Goat Cheese</li>
+        </ol>
+      </div>
+    </vwc-tab-panel>
+    <vwc-tab-panel id="twoPanel">
+        Tab two content
+    </vwc-tab-panel>
+    <vwc-tab-panel id="threePanel">
+        Tab three content
+    </vwc-tab-panel>
+</vwc-tabs>
+```
+
+
+### Slots
+
+Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that when activated, displays the `tab panel`.
+
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Description                                                                        |
+| -------- | ---------------------------------------------------------------------------------- |
+| `change` | Fires a custom `change` event when a tab is clicked or during keyboard navigation. |
+
+</div>
 

@@ -1,12 +1,10 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent,
 	$shades: primary primary-text primary-increment faint soft pale dim,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: listitem,
 	$states: idle hover disabled active selected selectedAndHover,
@@ -16,12 +14,12 @@
 @use "../../../../../dist/libs/tokens/scss/size.variables" as size;
 @use "partials/menu-item-variables" as menu-item-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 
 
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
+:host(:focus-visible) {
+	outline: none;
 }
 
 :host([disabled]) {
@@ -35,7 +33,6 @@
 	@include appearance.appearance;
 	@include connotation.connotation (menu-item);
 
-	position: relative;
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -46,7 +43,6 @@
 	padding-block: 2px;
 	padding-inline: $gutter;
 
-
 	&:not(.two-lines) {
 		min-block-size: #{size.$vvd-size-normal};
 	}
@@ -55,6 +51,7 @@
 		min-block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 	}
 
+
 	@supports(user-select: none) {
 		user-select: none;
 	}
@@ -62,12 +59,12 @@
 	&:not(.disabled) {
 		cursor: pointer;
 	}
-}
 
-.focus-indicator {
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	:host(:not(:focus-visible)) & {
-		display: none;
+	:host(:not([role="presentation"]):focus-visible) & {
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 }
 
@@ -86,14 +83,16 @@
 .action {
 	color: var(#{appearance.get-appearance-token(text)});
 
+	:host(:not([check-appearance],[aria-checked="true"])) & {
+		color: var(#{constants.$vvd-color-neutral-500});
+	}
+
 	.base.trailing & {
-		order: 1;
-		margin-inline-start: auto;
+		order: 2;
 	}
 
 	.base.has-meta & {
-		order: 1;
-		margin-inline-start: auto;
+		order: 2;
 	}
 }
 
@@ -107,25 +106,23 @@
 
 	.base.has-meta & {
 		order: 1;
-		margin-inline-start: auto;
 	}
 }
 
 .chevron {
-	margin-inline-start: auto;
+	order: 3;
 }
 
 .text {
 	display: flex;
 	overflow: hidden;
 	flex-direction: column;
+	margin-inline-end: auto;
 }
 
 .text-primary,
 .text-secondary {
-	/* stylelint-disable value-no-vendor-prefix */
 	display: -webkit-box;
-	/* stylelint-enable value-no-vendor-prefix */
 	overflow: hidden;
 	-webkit-box-orient: vertical;
 	color: var(#{appearance.get-appearance-token(text)});
@@ -142,7 +139,7 @@
 
 .text-secondary {
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
-	.base.two-lines & {
+	.base.two-lines:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}
 }

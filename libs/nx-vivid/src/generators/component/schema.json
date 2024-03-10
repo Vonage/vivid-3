@@ -1,24 +1,24 @@
 {
-  "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
-  "$id": "vivid-component",
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string",
-      "description": "Component name",
-      "x-prompt": "Component name",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      }
-    },
-    "addToExports": {
-      "type": "boolean",
-      "description": "Add to component.ts?",
-      "x-prompt": "Add to component.ts?",
-      "default": true
-    }
-  },
-  "required": ["name"]
+	"$schema": "http://json-schema.org/schema",
+	"cli": "nx",
+	"$id": "vivid-component",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Component name",
+			"x-prompt": "Component name",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			}
+		},
+		"addToExports": {
+			"type": "boolean",
+			"description": "Add to component.ts?",
+			"x-prompt": "Add to component.ts?",
+			"default": true
+		}
+	},
+	"required": ["name"]
 }

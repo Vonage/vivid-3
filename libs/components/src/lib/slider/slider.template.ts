@@ -3,7 +3,6 @@ import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import type { Slider } from './slider';
 
 const getClasses = ({ disabled, connotation }: Slider) =>
@@ -13,7 +12,7 @@ const getClasses = ({ disabled, connotation }: Slider) =>
 		[`connotation-${connotation}`, Boolean(connotation)],
 	);
 
-const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
+export const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
 	const placeholder = isHorizontal
 		? ['right', 'center', '', '100% repeat-x']
 		: ['bottom', 'top', '100%', 'repeat-y'];
@@ -31,8 +30,7 @@ const getMarkersTemplate = (isHorizontal: boolean, numMarkers: number) => {
  * @param context - element definition context
  * @public
  */
-export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
-	const focusTemplate = focusTemplateFactory(context);
+export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate<Slider> = () => {
 
 	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template role="${x => x.ariaLabel ? 'presentation' : null}">
@@ -56,7 +54,6 @@ export const SliderTemplate: (context: ElementDefinitionContext) => ViewTemplate
 			: void 0}
 			</div>
 			<div ${ref('thumb')} class="thumb-container" style="${x => x.position}">
-				${() => focusTemplate}
 			</div>
 		</div>
 	</div>`;

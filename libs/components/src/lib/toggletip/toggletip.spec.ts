@@ -1,16 +1,18 @@
-import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {fireEvent} from '@testing-library/dom';
 import type { Button } from '../button/button';
+import { type Popup } from '../popup/popup.ts';
 import { Toggletip } from './toggletip';
 import { toggletipDefinition } from './definition';
 import '../button';
 import '.';
 
 const COMPONENT_TAG = 'vwc-toggletip';
+const ANCHOR_ARIA_LABEL = 'anchor aria label';
 
 describe('vwc-toggletip', () => {
 	let element: Toggletip;
+	let popup: Popup;
 	let anchor: Button;
 
 	global.ResizeObserver = jest.fn()
@@ -24,9 +26,10 @@ describe('vwc-toggletip', () => {
 		element = fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		) as Toggletip;
+		popup = getControlElement(element) as Popup;
 
 		anchor = fixture(
-			'<vwc-button id="anchorButton"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
+			`<vwc-button id="anchorButton" aria-label="${ANCHOR_ARIA_LABEL}"></vwc-button>`, ADD_TEMPLATE_TO_FIXTURE
 		) as Button;
 	});
 
@@ -43,20 +46,14 @@ describe('vwc-toggletip', () => {
 	});
 
 	describe('open', () => {
-		it('should open when its anchor is clicked', async () => {
-			element.anchor = 'anchorButton';
+		it.each([true, false])('should forward open=%s to popup', async (isOpen) => {
+			element.open = isOpen;
 			await elementUpdated(element);
 
-			expect(element.open).toBe(false);
-
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-			await elementUpdated(element);
-
-			expect(element.open).toEqual(true);
+			expect(popup.hasAttribute('open')).toBe(isOpen);
 		});
 
 		it('should remain open when clicked inside', async () => {
-			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
 
@@ -67,7 +64,6 @@ describe('vwc-toggletip', () => {
 		});
 
 		it('should set open to false when clicked outside', async () => {
-			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
 
@@ -77,8 +73,20 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should set open to false when clicking on slotted anchor', async () => {
+			const anchor = document.createElement('div');
+			anchor.slot = 'anchor';
+			element.appendChild(anchor);
+			element.open = true;
+			await elementUpdated(element);
+
+			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+			await elementUpdated(element);
+
+			expect(element.open).toEqual(false);
+		});
+
 		it('should set open to false when Escape is pressed', async () => {
-			element.anchor = 'anchorButton';
 			element.open = true;
 			await elementUpdated(element);
 
@@ -91,133 +99,47 @@ describe('vwc-toggletip', () => {
 	});
 
 	describe('anchor', () => {
-
-		describe('observer cleanup', function () {
-			let disconnectionFunc: any;
-			let mutationObserverSpy: any;
-			beforeEach(function () {
-				const mockMutationObserver = jest.fn(function(this: any, callback) {
-					this.observe = jest.fn();
-					disconnectionFunc = this.disconnect = jest.fn();
-					callback();
-				});
-				mutationObserverSpy = jest.spyOn(window, 'MutationObserver')
-					.mockImplementation(mockMutationObserver as any);
-			});
-
-			afterEach(function () {
-				mutationObserverSpy.mockRestore();
-			});
-
-			it('should remove observer when element is removed from the DOM', async function () {
-				element.anchor = 'nonExistentAnchor';
-				element.remove();
-				expect(disconnectionFunc).toHaveBeenCalled();
-			});
-
-			it('should remove observer when anchor changes', async function () {
-				element.anchor = 'nonExistentAnchor';
-				const cachedDisconnectionFunc = disconnectionFunc;
-				element.anchor = 'anotherNonExistentAnchor';
-				expect(cachedDisconnectionFunc).toHaveBeenCalled();
-			});
+		beforeEach(async () => {
+			element.anchor = anchor.id;
+			await elementUpdated(element);
 		});
 
-		it('should accept an anchor before anchor element is added to the DOM', async () => {
-			const newAnchor = document.createElement('vwc-button');
-			newAnchor.id = 'anchorButton2';
-			element.anchor = 'anchorButton2';
-
-			element.parentElement?.appendChild(newAnchor);
-
-			await elementUpdated(element);
-
-			fireEvent(newAnchor, new MouseEvent('click', {bubbles: true}));
-			await elementUpdated(element);
-
-			expect(element.open).toEqual(true);
-			newAnchor.remove();
+		it('should pass anchor to the popup as an element', () => {
+			expect(popup.anchor).toBe(anchor);
 		});
 
-		it('should accept an HTMLElement as anchor', async () => {
-			element.anchor = anchor;
-			await elementUpdated(element);
+		it('should set aria-label on anchor', async () => {
+			element.anchor = document.createElement('div');
+			expect(element.anchor.ariaLabel).toEqual(' ; Show more information');
+		});
 
+		it('should append to an existing aria-label on anchor', async () => {
+			expect(anchor.ariaLabel).toEqual(`${ANCHOR_ARIA_LABEL} ; Show more information`);
+		});
+
+		it('should open when anchor is clicked', async () => {
 			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
 			await elementUpdated(element);
 
-			expect(element.open).toEqual(true);
+			expect(element.open).toBe(true);
 		});
 
-		it('should remove the previous anchor\'s listener when anchor is changed', async () => {
-			fixture(
-				'<vwc-button id="anchorButton2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
-			) as Button;
+		describe('when anchor is removed', () => {
+			beforeEach(async () => {
+				element.anchor = undefined;
+				await elementUpdated(element);
+			});
 
-			element.anchor = 'anchorButton';
-			await elementUpdated(element);
+			it('should revert the aria-label from anchor', async () => {
+				expect(anchor.ariaLabel).toEqual(ANCHOR_ARIA_LABEL);
+			});
 
-			element.anchor = 'anchorButton2';
-			await elementUpdated(element);
+			it('should no longer open when anchor is clicked', async () => {
+				anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+				await elementUpdated(element);
 
-			anchor.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-			await elementUpdated(element);
-			expect(element.open).toEqual(false);
-		});
-
-		it('should set the new anchor\'s listener when anchor is changed', async () => {
-			const anchor2 = fixture(
-				'<vwc-button id="anchorButton2"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE
-			) as Button;
-
-			element.anchor = 'anchorButton';
-			await elementUpdated(element);
-
-			element.anchor = 'anchorButton2';
-			await elementUpdated(element);
-
-			anchor2.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-			await elementUpdated(element);
-			expect(element.open).toEqual(true);
-		});
-
-		it('should remove the aria-label from old anchor when changed', async () => {
-			element.anchor = anchor;
-			await elementUpdated(element);
-
-			element.anchor = 'anchor2';
-			await elementUpdated(element);
-
-			expect(anchor.ariaLabel).toEqual('');
-		});
-
-		it('should set the aria-label on anchor', async () => {
-			element.anchor = anchor;
-			await elementUpdated(element);
-
-			expect(anchor.ariaLabel).toEqual(' ; Show more information');
-		});
-
-		it('should update the anchor aria-label', async () => {
-			const initialLabel = 'some existing label';
-			anchor.ariaLabel = initialLabel;
-
-			element.anchor = anchor;
-			await elementUpdated(element);
-
-			expect(anchor.ariaLabel).toEqual(initialLabel + ' ; Show more information');
-		});
-
-		it('should revert the aria-label on anchor when toggletip is removed', async () => {
-			const initialLabel = 'some existing label';
-			anchor.ariaLabel = initialLabel;
-			element.anchor = anchor;
-			await elementUpdated(element);
-
-			element.anchor = '';
-			await elementUpdated(element);
-
-			expect(anchor.ariaLabel).toEqual(initialLabel);
+				expect(element.open).toBe(false);
+			});
 		});
 	});
 
@@ -251,5 +173,3 @@ describe('vwc-toggletip', () => {
 		});
 	});
 });
-
-//TODO:: test for removal of observer when removed from DOM

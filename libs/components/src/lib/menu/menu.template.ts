@@ -9,6 +9,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { Popup } from '../popup/popup';
+import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import type { Menu } from './menu';
 
 const getClasses = ({
@@ -39,6 +40,7 @@ export const MenuTemplate: (
 	definition: FoundationElementDefinition
 ) => ElementViewTemplate = (context: ElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
+	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
 	function handlePopupEvents(x: Menu, e: Event, state: boolean) {
 		e.stopPropagation();
@@ -47,10 +49,11 @@ export const MenuTemplate: (
 
 	return html<Menu>`
 		<template role="presentation">
+			${anchorSlotTemplate}
 			<${popupTag}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
-				:anchor=${(x) => x.anchor}
+				:anchor=${(x) => x._anchorEl}
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
 				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"

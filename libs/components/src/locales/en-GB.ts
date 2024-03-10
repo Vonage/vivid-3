@@ -64,6 +64,18 @@ const enGB: Locale = {
 		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
 			`The end date must be ${maxDate} or earlier.`,
 	},
+	timePicker: {
+		defaultTo12HourClock: false,
+		chooseTimeLabel: 'Choose time',
+		changeTimeLabel: /* istanbul ignore next */ (time: string) => `Change time, ${time}`,
+		hoursLabel: 'hours',
+		minutesLabel: 'minutes',
+		secondsLabel: 'seconds',
+		meridiesLabel: 'AM/PM',
+		clearLabel: 'Clear',
+		okLabel: 'OK',
+		invalidTimeError: 'Please enter a valid time.'
+	},
 	filePicker: {
 		invalidFileTypeError: "You can't select files of this type.",
 		maxFilesExceededError: "You can't select any more files.",
@@ -91,6 +103,10 @@ const enGB: Locale = {
 	},
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',
+	},
+	rangeSlider: {
+		startThumbLabel: 'min',
+		endThumbLabel: 'max',
 	}
 };
 

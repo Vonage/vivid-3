@@ -64,6 +64,18 @@ const zhCN: Locale = {
 		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
 			`结束日期必须是${maxDate}或之前。`,
 	},
+	timePicker: {
+		defaultTo12HourClock: false,
+		chooseTimeLabel: '选择时间',
+		changeTimeLabel: /* istanbul ignore next */ (time: string) => `更改时间, ${time}`,
+		hoursLabel: '小时',
+		minutesLabel: '分钟',
+		secondsLabel: '秒',
+		meridiesLabel: '上午/下午',
+		clearLabel: '清除',
+		okLabel: '确定',
+		invalidTimeError: '请输入有效的时间。',
+	},
 	filePicker: {
 		invalidFileTypeError: '您不能选择此类型的文件。',
 		maxFilesExceededError: '您不能再选择任何文件。',
@@ -91,6 +103,10 @@ const zhCN: Locale = {
 	},
 	splitButton: {
 		showMoreActionsLabel: '显示更多操作',
+	},
+	rangeSlider: {
+		startThumbLabel: '最小',
+		endThumbLabel: '最大',
 	}
 };
 

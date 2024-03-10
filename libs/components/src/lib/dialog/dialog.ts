@@ -3,7 +3,7 @@ import {attr, observable} from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
 
 // eslint-disable-next-line compat/compat
-export const isDialogSupported = Boolean(HTMLDialogElement && HTMLDialogElement.prototype.showModal);
+export const isDialogSupported = Boolean(window.HTMLDialogElement && window.HTMLDialogElement.prototype.showModal);
 
 // Make sure we support Safari 14
 let dialogPolyfill: any;

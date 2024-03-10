@@ -51,23 +51,27 @@ export const IconWrapper = {
 	Span: true
 };
 
+export const IconAriaHidden = {
+	Hidden: 'true',
+	Visible: 'false'
+};
+
 type affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) =>
-(icon?: string, slottedState?: boolean, iconSlottedContent?: string) =>
+(icon?: string, slottedState?: boolean, ariaHidden?: string) =>
 ViewTemplate<AffixIcon> | null
 /**
  * The template for the prefixed element.
  * For use with {@link AffixIcon}
  *
  * @param context - element definition context
- * @param slottedState - set the icon in a span with class "icon", defaults to false
  * @public
  */
 export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (context: ElementDefinitionContext) => {
 
 	const iconTag = context.tagFor(Icon);
-	return (icon?: string, slottedState = IconWrapper.Span) => {
+	return (icon?: string, slottedState = IconWrapper.Span, ariaHidden = IconAriaHidden.Hidden) => {
 		if (!icon && !slottedState) {
-			return html`<slot name="icon" ${slotted('iconSlottedContent')}></slot>`;
+			return html`<slot name="icon" aria-hidden="${() => ariaHidden}" ${slotted('iconSlottedContent')}></slot>`;
 		}
 		if (!icon && slottedState) {
 			return null;
@@ -75,7 +79,7 @@ export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (con
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}"></${iconTag}>`;
 
-		return slottedState ? html`<span class="icon">${iconTemplate}</span>`
-			:  html`<slot name="icon">${iconTemplate}</slot>`;
+		return slottedState ? html`<span class="icon" aria-hidden="${() => ariaHidden}">${iconTemplate}</span>`
+			:  html`<slot name="icon" aria-hidden="${() => ariaHidden}">${iconTemplate}</slot>`;
 	};
 };

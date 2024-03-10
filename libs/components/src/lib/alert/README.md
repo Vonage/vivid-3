@@ -17,7 +17,7 @@ Use the `text` attribute to set the alert's main text.
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 100px
 <vwc-alert text="An important information for you" open></vwc-alert>
 ```
 
@@ -28,7 +28,7 @@ Use the `headline` attribute to add a headline to your alert.
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 100px
 <vwc-alert headline="This requires your attention" text="An important information for you" open></vwc-alert>
 ```
 
@@ -61,11 +61,8 @@ Use the `connotation` attribute to change the alert's icon and icon color.
 
 Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
 
-```html preview
+```html preview 350px
 <style>
-  html { /* for demo purposes */
-    block-size: 350px;
-  }
   vwc-select {
     width: 160px;
   }
@@ -97,7 +94,7 @@ over the connotation's icon, if any.
 - Type: `string`
 - Default: `''`
 
-```html preview
+```html preview 100px
 <vwc-alert text="An important information for you" open icon="megaphone-solid"></vwc-alert>
 ```
 
@@ -108,11 +105,8 @@ Use the `placement` attribute to set the location of the alert.
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
 - Default: `'bottom'`
 
-```html preview center
+```html preview center 250px
 <style>
-  html { /* for demo purposes */
-    block-size: 250px;
-  }
   .small-alert {
     --alert-min-inline-size: 200px;
   }
@@ -143,7 +137,7 @@ Use the `removable` attribute to add a close button to the alert.
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview 100px
 <vwc-alert text="An important information for you" removable open></vwc-alert>
 
 <vwc-button appearance='outlined' label="Show alert" onclick="openAlert()"></vwc-button>
@@ -182,7 +176,7 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 
 If you want to add rich content to your alert, you can use the main slot.
 
-```html preview
+```html preview 100px
 <vwc-alert open>
   <vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
 </vwc-alert>
@@ -192,11 +186,22 @@ If you want to add rich content to your alert, you can use the main slot.
 
 You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the alert.
 
-```html preview
+```html preview 100px
 <vwc-alert text="An important information for you" open>
   <vwc-button slot="action-items" appearance="outlined" shape='pill' label="Action"></vwc-button>
 </vwc-alert>
 ```
+
+### Icon
+Set the `icon` slot to add an icon to the alert.
+If set, the `icon` attribute is ignored.
+
+```html preview 100px
+<vwc-alert text="An important information for you" open>
+  <vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
+</vwc-alert>
+```
+
 
 ## CSS Variables
 
@@ -206,7 +211,7 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 
 - Default: `420px`
 
-```html preview
+```html preview 100px
 <vwc-alert style="--alert-min-inline-size: auto;" text="Very fitting!" open>
 ```
 
@@ -217,7 +222,7 @@ This is helpful to prevent the alert from becoming too wide when displaying a lo
 
 - Default: `fit-content`
 
-```html preview
+```html preview 100px
 <vwc-alert style="--alert-min-inline-size: auto; --alert-max-inline-size: 300px;" text="This text is very long and will wrap to the next line." open>
 ```
 

@@ -1,14 +1,12 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
 @use "partials/mixins" as mixins;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
-	$shades: primary primary-text firm fierce pale soft contrast,
+	$shades: primary primary-text firm firm-all fierce pale soft contrast,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled outlined duotone subtle,
 	$states: idle,
@@ -27,9 +25,9 @@
 	overflow: hidden;
 	align-items: center;
 	justify-content: center;
+	border-radius: var(#{variables.$avatar-border-radius});
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	block-size: var(#{variables.$avatar-size});
-	border-radius: var(#{variables.$avatar-border-radius});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
 	inline-size: var(#{variables.$avatar-size});

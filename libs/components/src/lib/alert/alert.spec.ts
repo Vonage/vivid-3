@@ -186,7 +186,7 @@ describe('vwc-alert', () => {
 		it('should be display none when not open', async function () {
 			element.open = true;
 			await elementUpdated(element);
-			expect(element.style.display).toEqual('inline');
+			expect(element.style.display).toEqual('contents');
 
 			element.open = false;
 			getControlElement(element).dispatchEvent(new Event('transitionend'));
@@ -194,14 +194,26 @@ describe('vwc-alert', () => {
 
 			expect(element.style.display).toEqual('none');
 		});
+		it('should be display contents when is open', async function () {
+
+			element.open = true;
+			getControlElement(element).dispatchEvent(new Event('transitionend'));
+			await elementUpdated(element);
+
+			expect(element.style.display).toEqual('contents');
+		});
 	});
 
 	describe('icon', function () {
 
-		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('.icon > vwc-icon');
+		const getIcon: () => Icon | null = () => getBaseElement(element).querySelector('slot[name="icon"] > vwc-icon');
 
 		it('should not have an icon if there is none and no connotation is set', async function () {
 			expect(getIcon()).toBeNull();
+		});
+
+		it('should have an icon slot', async () => {
+			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
 		});
 
 		it('should have an icon when icon is set', async function () {

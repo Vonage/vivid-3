@@ -1,8 +1,9 @@
 import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import {
+	InFlightRequests,
 	loadComponents,
-	loadTemplate,
+	loadTemplate
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['file-picker', 'button', 'layout', 'text-field'];
@@ -54,12 +55,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
+	const atLeastOneImageWasRequested = page.waitForRequest(request => request.resourceType() === 'image');
+	const requests = new InFlightRequests(page);
+
 	await addFile(page, 'valid.png', 100, 'image/png');
 	await addFile(page, 'tooBig.png', 100000, 'image/png');
 	await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
 
 	// Wait for icons to load
-	await page.waitForLoadState('networkidle');
+	await atLeastOneImageWasRequested;
+	await requests.noneInFlight(request => request.resourceType() === 'image');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/file-picker.png'

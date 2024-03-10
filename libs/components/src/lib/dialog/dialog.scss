@@ -4,6 +4,7 @@
 @use "../../../../shared/src/lib/sass/mixins/scrim" as scrim-mixins;
 @use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
 
 $dialog-space-size: 24px;
 
@@ -11,19 +12,19 @@ $dialog-space-size: 24px;
 	box-sizing: border-box;
 	padding: 0;
 	border: none;
-	background-color: transparent;
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	background-color: transparent;
 	color: var(#{constants.$vvd-color-canvas-text});
 	max-block-size: var(#{variables.$dialog-max-block-size}, calc(100vh - 64px));
 	max-inline-size: var(#{variables.$dialog-max-inline-size}, var(#{variables.$dialog-default-max-inline-size}));
 	min-inline-size: var(#{variables.$dialog-min-inline-size}, 280px);
 
 
-	@media not all and (min-width: 600px) {
+	@media not all and (width >= 600px) {
 		#{variables.$dialog-default-max-inline-size}: 90vw;
 	}
 
-	@media (min-width: 600px) {
+	@media (width >= 600px) {
 		#{variables.$dialog-default-max-inline-size}: 560px;
 	}
 
@@ -34,7 +35,7 @@ $dialog-space-size: 24px;
 	&.modal {
 		position: fixed;
 
-		// reason for box-shadow & hardcoded color - PR-1172
+		// reason for box-shadow & hardcoded color - PR-1098
 		box-shadow: 0 4px 20px rgb(0 0 0 / 35%);
 		&::backdrop {
 			@include scrim-mixins.scrim-variables;
@@ -42,15 +43,7 @@ $dialog-space-size: 24px;
 	}
 
 	&:focus-visible {
-		outline: none;
-	}
-
-	.focus-indicator {
-		pointer-events: none;
-	}
-
-	&:not(:focus-visible) .focus-indicator {
-		display: none;
+		@include focus.focus;
 	}
 }
 
@@ -155,8 +148,7 @@ $dialog-space-size: 24px;
 	grid-column: -2/-1;
 	grid-row: 1/-1;
 	margin-block-start: -8px;
-	margin-inline-end: -8px;
-	margin-inline-start: 4px;
+	margin-inline: 4px -8px;
 }
 
 .headline {

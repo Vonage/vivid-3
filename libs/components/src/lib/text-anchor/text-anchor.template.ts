@@ -6,7 +6,6 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
-import { focusTemplateFactory } from './../../shared/patterns/focus';
 import type { TextAnchor } from './text-anchor';
 
 const getClasses = ({text}: TextAnchor) => classNames(
@@ -27,7 +26,6 @@ export const textAnchorTemplate: (
 	context: ElementDefinitionContext,
 ) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html`<a
         class="${getClasses}"
@@ -56,7 +54,6 @@ export const textAnchorTemplate: (
         aria-roledescription="${x => x.ariaRoledescription}"
         ${ref('control')}
     >
-      ${() => focusTemplate}
       ${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
       ${x => x.text}
 			${x => x.getBodyTemplate?.() ?? ''}

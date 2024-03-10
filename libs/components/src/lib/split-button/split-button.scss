@@ -1,15 +1,15 @@
+@use "sass:map";
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
 @use "partials/variables" as variables;
 @use "partials/mixins" as mixins;
-@use "../focus/partials/variables" as focus-variables;
-
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta success alert,
 	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
 	$default: accent
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
@@ -34,9 +34,14 @@
 .control,
 .indicator {
 	@include connotation.connotation(split-button);
-	@include appearance.appearance;
+	@include appearance.appearance(
+		appearance.state-selectors(
+			map.merge(appearance.$state-aspect-selectors, (
+				active: ':active, [aria-expanded="true"]',
+			))
+		)
+	);
 
-	position: relative;
 	display: inline-flex;
 	box-sizing: border-box;
 	flex-shrink: 0;
@@ -62,10 +67,17 @@
 	border-inline-end: 0;
 	border-top-left-radius: var(#{variables.$border-radius});
 	gap: var(#{variables.$icon-gap});
-	isolation: isolate;
+
+	&:not(.appearance-filled) {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+
+	&.appearance-outlined {
+		#{focus-variables.$focus-inset}: -1px;
+	}
 
 	&:focus-visible {
-		outline: none;
+		@include focus.focus;
 	}
 
 	/* Disabled */
@@ -80,9 +92,11 @@
 	&.icon-only {
 		contain: size;
 		place-content: center;
+
 		@supports (aspect-ratio: 1) {
 			aspect-ratio: 1;
 		}
+
 		@supports not (aspect-ratio: 1) {
 			inline-size: var(#{variables.$block-size});
 		}
@@ -131,13 +145,23 @@
 }
 
 .indicator {
+	position: relative;
 	border-bottom-right-radius: var(#{variables.$border-radius});
 	border-inline-start: 0;
 	border-top-right-radius: var(#{variables.$border-radius});
 	inline-size: var(#{variables.$inline-size});
+	isolation: isolate;
+
+	&:not(.appearance-filled) {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
+
+	&.appearance-outlined {
+		#{focus-variables.$focus-inset}: 1px;
+	}
 
 	&:focus-visible {
-		outline: none;
+		@include focus.focus;
 	}
 
 	/* Disabled */
@@ -210,23 +234,6 @@
 
 	.control > & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
-	}
-}
-
-/* Focus */
-.focus-indicator {
-	:not(:focus-visible) > & {
-		display: none;
-	}
-
-	.control:not(.appearance-filled) &,
-	.indicator:not(.appearance-filled) & {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-	}
-
-	.control.appearance-outlined &,
-	.indicator.appearance-outlined &{
-		#{focus-variables.$focus-inset}: -1px;
 	}
 }
 

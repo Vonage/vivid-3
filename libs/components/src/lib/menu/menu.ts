@@ -1,36 +1,22 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
-
-type AnchorType = string | HTMLElement;
+import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
  * Base class for menu
  *
  * @public
  * @slot - Default slot.
+ * @slot anchor - Used to set the anchor element for the menu.
  * @slot header - Used to add additional content to the top of the menu.
  * @slot action-items - Used to add action items to the bottom of the menu.
  * @event open - Fired when the menu is opened
  * @event close - Fired when the menu is closed
  */
+@anchored
 export class Menu extends FastMenu {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-
-	#observer?: MutationObserver;
-	#anchorEl: HTMLElement | null = null;
-	#observeMissingAnchor = (anchorId: string) => {
-		this.#observer = new MutationObserver(() => {
-			const anchor = document.getElementById(anchorId as string);
-			if (anchor) {
-				this.#anchorEl = anchor;
-				this.#setupAnchor(this.#anchorEl);
-				this.#observer!.disconnect();
-				this.#observer = undefined;
-			}
-		});
-		this.#observer.observe(document.body, { childList: true, subtree: true });
-	};
 
 	/**
 	 * placement of the menu
@@ -41,25 +27,6 @@ export class Menu extends FastMenu {
 	@attr({ mode: 'fromView' }) placement?: Placement = 'bottom';
 
 	/**
-	 * id or direct reference to the menu's anchor element
-	 *
-	 * @public
-	 * HTML Attribute: anchor
-	 */
-	@attr({ mode: 'fromView' }) anchor: AnchorType = '';
-	anchorChanged(_: AnchorType, newValue: AnchorType): void {
-		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-		this.#observer?.disconnect();
-
-		this.#anchorEl = (newValue instanceof HTMLElement) ? newValue : document.getElementById(newValue);
-		if (this.#anchorEl) {
-			this.#setupAnchor(this.#anchorEl);
-		} else {
-			this.#observeMissingAnchor(newValue as string);
-		}
-	}
-
-	/**
 	 * indicates whether the menu will automatically close when
 	 * the user clicks outside the menu
 	 *
@@ -67,14 +34,10 @@ export class Menu extends FastMenu {
 	 * HTML Attribute: auto-dismiss
 	 */
 	@attr({ mode: 'boolean', attribute: 'auto-dismiss' }) autoDismiss = false;
-	autoDismissChanged(oldValue: boolean, newValue: boolean): void {
+	autoDismissChanged(oldValue?: boolean) {
 		if (oldValue === undefined) return;
 
-		if (newValue) {
-			document.addEventListener('click', this.#closeOnClickOutside);
-		} else {
-			document.removeEventListener('click', this.#closeOnClickOutside);
-		}
+		this.#updateClickOutsideListener();
 	}
 
 	/**
@@ -89,8 +52,8 @@ export class Menu extends FastMenu {
 			? this.$emit('open', undefined, { bubbles: false })
 			: this.$emit('close', undefined, { bubbles: false });
 
-		if (this.#anchorEl) {
-			this.#anchorEl.ariaExpanded = this.open.toString();
+		if (this._anchorEl) {
+			this.#updateAnchor(this._anchorEl);
 		}
 	}
 
@@ -116,28 +79,52 @@ export class Menu extends FastMenu {
 		};
 	}
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.#updateClickOutsideListener();
+	}
+
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		if (this.#anchorEl) this.#cleanupAnchor(this.#anchorEl);
-		this.#observer?.disconnect();
-		document.removeEventListener('click', this.#closeOnClickOutside);
+		this.#updateClickOutsideListener();
+	}
+
+	/**
+	 * @internal
+	 */
+	_anchorElChanged(oldValue?: HTMLElement, newValue?: HTMLElement): void {
+		if (oldValue) this.#cleanupAnchor(oldValue);
+		if (newValue) this.#setupAnchor(newValue);
 	}
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#openIfClosed, true);
 		a.setAttribute('aria-haspopup', 'menu');
+		this.#updateAnchor(a);
 		// TODO aria-controls="myid"
+	}
+
+	#updateAnchor(a: HTMLElement) {
+		a.setAttribute('aria-expanded', this.open.toString());
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
 		a.removeAttribute('aria-hasPopup');
+		a.removeAttribute('aria-expanded');
 	}
 
 	#openIfClosed = () => {
 		// DOM.queueUpdate() is required to prevent the click event from
 		// being caught by the document click handler (added by openChanged)
 		if (!this.open) DOM.queueUpdate(() => this.open = true);
+	};
+
+	#updateClickOutsideListener = () => {
+		document.removeEventListener('click', this.#closeOnClickOutside);
+		if (this.autoDismiss && this.isConnected) {
+			document.addEventListener('click', this.#closeOnClickOutside);
+		}
 	};
 
 	#closeOnClickOutside = (e: Event) => {
@@ -153,3 +140,5 @@ export class Menu extends FastMenu {
 	@observable headerSlottedContent?: HTMLElement[];
 	@observable actionItemsSlottedContent?: HTMLElement[];
 }
+
+export interface Menu extends Anchored {}

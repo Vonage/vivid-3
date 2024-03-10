@@ -17,6 +17,7 @@ declare interface DataGridCellExtension {
  * Base class for data-grid
  *
  * @public
+ * @slot - Default slot.
  * @event sort - Event that fires when a sortable column header is clicked
  * @event cell-click - Event that fires when a cell is clicked
  */
@@ -76,7 +77,7 @@ export class DataGridCell extends FoundationDataGridCell {
 	/**
 	 * @internal
 	 */
-	_handleInteraction() {
+	_handleInteraction(): boolean {
 		const isHeaderCell = this.cellType === 'columnheader';
 		const isSortable = isHeaderCell && this.ariaSort !== null;
 
@@ -98,6 +99,7 @@ export class DataGridCell extends FoundationDataGridCell {
 				columnDataKey: this.#getColumnDataKey(),
 			});
 		}
+		return true;
 	}
 }
 

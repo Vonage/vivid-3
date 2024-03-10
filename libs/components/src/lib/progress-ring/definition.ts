@@ -1,6 +1,6 @@
 import type {FoundationElementDefinition} from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './progress-ring.scss';
+import styles from './progress-ring.scss?inline';
 
 import {ProgressRing} from './progress-ring';
 import {ProgressRingTemplate as template} from './progress-ring.template';

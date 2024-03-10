@@ -1,3 +1,5 @@
+import 'element-internals-polyfill';
+
 import { fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { FormAssociated } from '@microsoft/fast-foundation';
@@ -22,6 +24,12 @@ describe('Form Elements', function () {
 	describe('formElements() validate method', () => {
 		@formElements
 		class Test extends HTMLElement {
+			elementInternals: ElementInternals;
+			constructor() {
+				super();
+				this.elementInternals = this.attachInternals();
+			}
+
 			proxy = document.createElement('input');
 			control = document.createElement('input');
 
@@ -102,6 +110,14 @@ describe('Form Elements', function () {
 				'proxy validation message',
 				undefined
 			);
+		});
+
+		it('should not call setValidity when element internals are not supported', () => {
+			delete (test as any).elementInternals;
+
+			test.validate();
+
+			expect(test.setValidity).not.toHaveBeenCalled();
 		});
 	});
 

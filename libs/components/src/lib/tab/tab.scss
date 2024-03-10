@@ -1,28 +1,20 @@
 @use "../tabs/partials/variables" as tabs-variables;
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../focus/partials/variables" as focus-variables;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
+@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
 @use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
 	$shades: primary primary-text firm faint fierce pale,
 	$default: accent,
 );
 @use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
 @use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
 	$appearances: ghost,
 	$states: idle hover disabled active,
 	$default: ghost
 );
 @use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-
-
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
-}
 
 :host(.vertical) {
 	justify-content: end;
@@ -33,8 +25,13 @@
 	cursor: not-allowed;
 }
 
+:host(:focus-visible) {
+	outline: none;
+}
+
 .base {
 	$min-block-size: 40px;
+
 	@include appearance.appearance;
 	@include connotation.connotation (tab);
 
@@ -68,18 +65,17 @@
 		pointer-events: none;
 	}
 
+	:host(:focus-visible) & {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
+	}
+
 	:host(.vertical) & {
 		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + var(#{tabs-variables.$tabs-tablist-gutter}));
 	}
 }
 
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	:host(:not(:focus-visible)) & {
-		display: none;
-	}
-}
 
 slot[name="icon"]{
 	font-size: 20px;
@@ -95,9 +91,9 @@ slot[name="icon"]{
 :host(:not(.vertical)) {
 	.base::after {
 		position: absolute;
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 		background: currentColor;
 		block-size: 2px;
-		border-radius: #{border-radius-variables.$border-radius-condensed};
 		content: "";
 		inline-size: 100%;
 		inset-block-end: 0;
