@@ -70,8 +70,10 @@ export class DialPad extends FoundationElement {
 	 */
 	@attr({ mode: 'fromView' }) value: string = '';
 	valueChanged(_oldValue: string, newValue: string) {
-		this._textFieldEl.value = newValue;
-		this._textFieldEl.reportValidity();
+		if(newValue){
+			this._textFieldEl.value = newValue;
+			this._textFieldEl.reportValidity();
+		}
 	}
 
 	/**
