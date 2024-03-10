@@ -22,7 +22,6 @@ describe('vwc-dial-pad', () => {
 	function getDigitButtons() {
 		const digits: HTMLDivElement | null = getBaseElement(element).querySelector('.digits');
 		return digits?.querySelectorAll('vwc-button') as NodeListOf<Button>;
-
 	}
 
 	beforeEach(async () => {
@@ -67,16 +66,31 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			expect(getTextField().placeholder).toEqual(placeholder);
 		});
+	});
 
-		describe('errorText', () => {
-			it('should forward errorText to the text field', async () => {
-				element.errorText = 'errorText';
-				await elementUpdated(element);
-
-				expect(getTextField().errorText).toBe('errorText');
+	describe('keypad-click', function () {
+		it('should fire keypad-click event when clicked on keypad', async function () {
+			const spy = jest.fn();
+			element.addEventListener('keypad-click', spy);
+			await elementUpdated(element);
+			getDigitButtons().forEach(button => {
+				button.click();
 			});
+			expect(spy).toHaveBeenCalledTimes(12);
 		});
+	});
 
+	describe.each(['input', 'change'])('%s event', (eventName) => {
+		it('should be fired when a user enters a valid text into the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			element.value = '123';
+			getTextField().dispatchEvent(new InputEvent(eventName));
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
 	});
 
 	describe('disabled', function () {

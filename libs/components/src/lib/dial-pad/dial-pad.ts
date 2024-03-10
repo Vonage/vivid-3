@@ -113,13 +113,13 @@ export class DialPad extends FoundationElement {
 	override connectedCallback() {
 		super.connectedCallback();
 		this._textFieldEl.addEventListener('input', this.handleInput);
-		this._textFieldEl.addEventListener('change', this.handleInput);
+		this._textFieldEl.addEventListener('change', this.handleChange);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this._textFieldEl.removeEventListener('input', this.handleInput);
-		this._textFieldEl.removeEventListener('change', this.handleInput);
+		this._textFieldEl.removeEventListener('change', this.handleChange);
 	}
 
 	/**
@@ -147,7 +147,21 @@ export class DialPad extends FoundationElement {
 	 * @internal
 	 */
 	handleInput = () => {
-		this.value = this._textFieldEl.value;
+		this.setValue(this._textFieldEl.value);
+		this.$emit('input', this._textFieldEl.value);
+	};
+
+	/**
+	 *
+	 * @internal
+	 */
+	handleChange = () => {
+		this.setValue(this._textFieldEl.value);
+		this.$emit('change', this._textFieldEl.value);
+	};
+
+	setValue = (value: string) => {
+		this.value = value;
 	};
 }
 
