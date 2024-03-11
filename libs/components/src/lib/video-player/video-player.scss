@@ -68,6 +68,7 @@
 	.vjs-button {
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		inline-size: $control-size;
+		padding: 4px;
 
 		> .vjs-svg-icon {
 			block-size: 21px;
