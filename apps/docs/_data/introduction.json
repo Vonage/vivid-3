@@ -11,12 +11,18 @@
 		"title": "Resources",
 		"markdown": "./docs/getting-started/release-policy.md",
 		"children": [
-			"Release Policy"
+			"Release Policy",
+			"Accessibility"
 		]
 	},
 	{
 		"title": "Release Policy",
 		"markdown": "./docs/getting-started/release-policy.md",
+		"parent": "Resources"
+	},
+	{
+		"title": "Accessibility",
+		"markdown": "./docs/getting-started/accessibility.md",
 		"parent": "Resources"
 	}
 ]
