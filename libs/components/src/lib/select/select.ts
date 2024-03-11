@@ -18,12 +18,12 @@ export type SelectAppearance = Extract<Appearance, Appearance.Fieldset | Appeara
 export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for select
- *
  * @public
+ * @component select
  * @slot - Default slot.
  * @slot icon - Slot to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
+ * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

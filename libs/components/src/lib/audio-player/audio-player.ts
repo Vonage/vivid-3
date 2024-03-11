@@ -13,9 +13,8 @@ import type { Slider } from '../slider/slider';
 export type AudioPlayerConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
 
 /**
- * Base class for audio-player
- *
  * @public
+ * @component audio-player
  */
 
 export class AudioPlayer extends FoundationElement {

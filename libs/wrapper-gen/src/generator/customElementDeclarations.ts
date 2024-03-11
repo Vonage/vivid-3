@@ -309,6 +309,17 @@ export const extractVividMixins = (componentName: string, modulePath: string): s
   return [];
 };
 
+/**
+ * Returns the class name of a vivid component. E.g. 'option' -> 'ListboxOption'
+ */
+export const getClassNameOfVividComponent = (name: string): string => {
+	const declaration = vividDeclarations.find(d => d.kind === 'class' && d.vividComponent?.name === name);
+	if (!declaration) {
+		throw new Error(`Could not find declaration for component ${name}`);
+	}
+	return declaration.name;
+}
+
 export const getVividComponentDeclaration = (name: string, className: string): Declaration => {
   const declaration = resolveComponentDeclaration(vividDeclarations, className);
 
@@ -322,4 +333,15 @@ export const getVividComponentDeclaration = (name: string, className: string): D
   }
 
   return declaration;
+};
+
+/**
+ * Lists all public components from Vivid. E.g. 'accordion-item'.
+ * Does not include internal components like 'popup'.
+ */
+export const getPublicComponents = (): string[] => {
+	return vividDeclarations
+		.filter(d => d.kind === 'class' && d.vividComponent && d.vividComponent.public)
+		.map(d => d.vividComponent.name)
+		.sort();
 };
