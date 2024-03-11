@@ -32,7 +32,7 @@ Video player supports the most common video formats:
 | **DASH**  | Dynamic Adaptive Streaming over HTTP |
 | **MP4** | one of the most widely supported video formats and is typically used for web video playback. |
 | **WebM** | open media file format designed for the web and widely supported by modern browsers. |
-| **Ogg:** | a container format that can contain video streams compressed with Theora video codec and audio streams compressed with Vorbis audio codec. |
+| **Ogg** | a container format that can contain video streams compressed with Theora video codec and audio streams compressed with Vorbis audio codec. |
 
 #### Source element
 
