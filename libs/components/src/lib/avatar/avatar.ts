@@ -49,6 +49,8 @@ export type AvatarSize = Extract<
 >;
 
 /**
+ * @public
+ * @component avatar
  * @slot graphic - Assign nodes to the graphic slot to set a graphic media of any kind (e.g. image, illustration etc).
  */
 export class Avatar extends FoundationElement {

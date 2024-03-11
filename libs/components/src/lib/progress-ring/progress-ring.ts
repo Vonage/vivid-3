@@ -9,9 +9,8 @@ export type ProgressRingConnotation =
 	| Connotation.CTA;
 
 /**
- * Base class for progress-ring
- *
  * @public
+ * @component progress-ring
  */
 export class ProgressRing extends BaseProgress {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;

@@ -18,9 +18,10 @@ import {
 export type PopupPlacement = 'top' | 'bottom';
 
 /**
- * Base class for combobox
- *
+ * @public
+ * @component combobox
  * @slot - Default slot.
+ * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
  */
 @formElements
 export class Combobox extends FoundationCombobox {

@@ -34,6 +34,11 @@ jobs:
           key: ${{ runner.os }}-dist-${{ hashFiles('libs/**/*.*') }}
 
       - run: scripts/visual-tests/run.tests.sh
+        env:
+          # Fix Firefox crash in GitHub Actions
+          # Details: https://github.com/microsoft/playwright/issues/6500#issuecomment-838515115
+          HOME: /root
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:

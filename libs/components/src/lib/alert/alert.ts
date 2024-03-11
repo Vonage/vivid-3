@@ -30,9 +30,8 @@ export type AlertPlacement =
 export type AlertStrategy = 'fixed' | 'static';
 
 /**
- * Base class for alert
- *
  * @public
+ * @component alert
  * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
  * @slot icon - Add an icon to the component.

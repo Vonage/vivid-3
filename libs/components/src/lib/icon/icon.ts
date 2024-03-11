@@ -53,6 +53,8 @@ export type IconConnotation = Extract<
 >;
 
 /**
+ * @public
+ * @component icon
  * @slot - Default slot.
  */
 export class Icon extends FoundationElement {

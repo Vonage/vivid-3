@@ -46,9 +46,9 @@ function makeStep(element: NumberField, direction: number) {
 	element.value = Number(stepUpValue.toFixed(12)).toString();
 }
 /**
- * Base class for number-field
- *
  * @public
+ * @component number-field
+ * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

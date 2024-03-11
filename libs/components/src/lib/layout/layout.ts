@@ -23,11 +23,11 @@ export type ColumnBasis =
 	| 'block';
 
 /**
- * Base class for layout
- *
  * [--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],
  * minmax([the `column-basis` mapped value], 1fr))] - Controls the `grid-template-columns` of the layout.
+ *
  * @public
+ * @component layout
  * @slot - Default slot.
  */
 export class Layout extends FoundationElement {

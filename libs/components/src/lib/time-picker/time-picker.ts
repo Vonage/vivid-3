@@ -50,10 +50,10 @@ const ValidTimeFilter: ValueConverter = {
 };
 
 /**
- * Base class for time-picker
- *
  * @public
+ * @component time-picker
  * @event change - Emitted when the time is changed by the user.
+ * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

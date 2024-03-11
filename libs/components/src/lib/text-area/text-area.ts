@@ -17,9 +17,9 @@ import { Reflector } from '../../shared/utils/Reflector';
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 
 /**
- * Base class for text-area
- *
  * @public
+ * @component text-area
+ * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

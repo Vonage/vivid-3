@@ -28,12 +28,10 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
 ) => typeof value === 'string';
 
 /**
- * File-picker component
- *
  * @public
+ * @component file-picker
  * @event change - Emitted when a file is added or removed.
  */
-
 @errorText
 @formElements
 export class FilePicker extends FormAssociatedFilePicker {

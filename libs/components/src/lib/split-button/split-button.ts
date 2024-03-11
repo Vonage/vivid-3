@@ -42,9 +42,8 @@ export type SplitButtonSize = Extract<
 >;
 
 /**
- * Base class for split button
- *
  * @public
+ * @component split-button
  * @slot - Default slot.
  * @slot icon - Add an icon to the component.
  * @event action-click - Event emitted when the action button is clicked

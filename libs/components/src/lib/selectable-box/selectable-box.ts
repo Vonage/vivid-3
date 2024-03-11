@@ -17,9 +17,8 @@ export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
 export type SelectableBoxControlType = 'checkbox' | 'radio';
 
 /**
- * Base class for selectable-box
- *
  * @public
+ * @component selectable-box
  * @slot default - Slot for box's content.
  * @event change - Fired when the checked state changes
  */

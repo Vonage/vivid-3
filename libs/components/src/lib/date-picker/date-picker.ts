@@ -19,6 +19,8 @@ import {
  * Single date picker component.
  *
  * @public
+ * @component date-picker
+ * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

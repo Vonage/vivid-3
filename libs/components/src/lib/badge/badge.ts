@@ -37,9 +37,8 @@ export type BadgeAppearance = Extract<
 export type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for badge
- *
  * @public
+ * @component badge
  * @slot icon - Add an icon to the component.
  */
 export class Badge extends FoundationElement {

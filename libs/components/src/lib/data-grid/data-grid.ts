@@ -24,9 +24,8 @@ export type ValueOf<T> = T[keyof T];
 export type DataGridSelectionMode = ValueOf<typeof DataGridSelectionMode>;
 
 /**
- * Base class for data-grid
- *
  * @public
+ * @component data-grid
  * @slot - Default slot.
  * @event cell-click - Event that fires when a cell is clicked
  */

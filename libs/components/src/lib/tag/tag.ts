@@ -32,9 +32,8 @@ export type TagAppearance = Extract<
 export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for tag.
- *
  * @public
+ * @component tag
  * @slot icon - Add an icon to the component.
  */
 export class Tag extends FoundationElement {

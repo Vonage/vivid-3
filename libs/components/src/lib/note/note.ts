@@ -10,9 +10,8 @@ export type NoteConnotation =
 	| Connotation.Warning
 	| Connotation.Alert;
 /**
- * Base class for note
- *
  * @public
+ * @component note
  * @slot - Any slotted content will appear below the headline.
  * @slot icon - Add an icon to the component.
  */

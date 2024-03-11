@@ -72,9 +72,10 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  * Base class for text-field
  *
  * @public
+ * @component text-field
  * @slot leading-action-items - Used to add action items to the start of the text-field.
  * @slot action-items - Used to add action items to the end of the text-field.
- *
+ * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

@@ -16,9 +16,8 @@ export type AudioPlayerConnotation = Extract<
 >;
 
 /**
- * Base class for audio-player
- *
  * @public
+ * @component audio-player
  */
 
 export class AudioPlayer extends FoundationElement {

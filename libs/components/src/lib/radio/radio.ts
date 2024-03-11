@@ -13,9 +13,8 @@ export type RadioConnotation = Extract<
 >;
 
 /**
- * Base class for radio
- *
  * @public
+ * @component radio
  */
 export class Radio extends FastRadio {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;

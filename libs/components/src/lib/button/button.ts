@@ -45,9 +45,8 @@ export type ButtonSize = Extract<
 >;
 
 /**
- * Base class for button
- *
  * @public
+ * @component button
  * @slot icon - Add an icon to the component.
  */
 export class Button extends FoundationButton {

@@ -8,9 +8,9 @@ export type SwitchConnotation =
 	| Connotation.Success
 	| Connotation.CTA;
 /**
- * Base class for switch
- *
  * @public
+ * @component switch
+ * @vueModel modelValue current-checked change `(event.target as HTMLInputElement).checked`
  */
 export class Switch extends FoundationSwitch {
 	/**

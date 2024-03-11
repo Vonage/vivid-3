@@ -6,9 +6,9 @@ import type { Connotation } from '../enums';
 export type SliderConnotation = Connotation.Accent | Connotation.CTA;
 
 /**
- * Base class for slider
- *
  * @public
+ * @component slider
+ * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
  */
 export class Slider extends FastSlider {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;

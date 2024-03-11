@@ -26,9 +26,8 @@ let dialogPolyfill: any;
 export type IconPlacement = 'top' | 'side';
 
 /**
- * Base class for dialog
- *
  * @public
+ * @component dialog
  * @slot graphic - Use the graphic slot in order to replace the icon.
  * @slot body - Use the body slot in order to add custom HTML to the dialog.
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.

@@ -150,6 +150,20 @@ describe('vwc-menu', () => {
 
 			expect(element.open).toEqual(true);
 		});
+
+		it('should not emit a close event when toggling open state programmatically on button click', async () => {
+			anchor.addEventListener('click', () => (element.open = !element.open));
+			const closeSpy = jest.fn();
+			element.addEventListener('close', closeSpy);
+			element.anchor = anchor.id;
+			element.autoDismiss = true;
+			await elementUpdated(element);
+
+			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			await elementUpdated(element);
+
+			expect(closeSpy).not.toHaveBeenCalled();
+		});
 	});
 
 	describe('esc key press', () => {

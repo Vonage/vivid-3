@@ -29,9 +29,8 @@ export type CalendarEventAppearance = Extract<
 >;
 
 /**
- * Base class for calendar-event
- *
  * @public
+ * @component calendar-event
  */
 export class CalendarEvent extends FoundationElement {
 	/**

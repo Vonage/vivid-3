@@ -37,9 +37,12 @@ type Direction = typeof Direction[keyof typeof Direction];
 /**
  * Base class for range-slider
  *
+ * @component range-slider
  * @public
  * @event input:start - Event emitted when the start value changes
  * @event input:end - Event emitted when the end value changes
+ * @vueModel start current-start input:start `(event.target as any).start`
+ * @vueModel end current-end input:end `(event.target as any).end`
  */
 @formElements
 export class RangeSlider extends FormAssociatedRangeSlider {
