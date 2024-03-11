@@ -24,16 +24,12 @@ const codeBlockButtonClick = (button) => {
   button.ariaExpanded = details.open;
 };
 
+const getCurrentTheme = () =>
+	document.querySelector('vwc-button#dark-mode-toggle').icon === 'dark-mode-solid' ? 'dark' : 'light';
+
 const onloadIframe = (iFrame) => {
-  const toggle = document.querySelector('vwc-button#dark-mode-toggle');
-  const menu = document.querySelector('vwc-menu#dark-mode-menu');
-
-  setCurrentIframeTheme(toggle, iFrame);
-  menu.addEventListener('click', () => {
-    setCurrentIframeTheme(toggle, iFrame);
-  });
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setCurrentIframeTheme(toggle, iFrame));
-
+	iFrame.setAttribute('data-vivid-iframe', '');
+  setCurrentIframeTheme(getCurrentTheme(), iFrame);
   autoResize(iFrame);
 };
 
@@ -51,16 +47,30 @@ const autoResize = (iFrame) => {
   }).observe(iFrame.contentWindow.document.documentElement);
 };
 
-const setCurrentIframeTheme = (toggle, iFrame) => {
+const setCurrentIframeTheme = (displayMode, iFrame) => {
   const iframeHead = iFrame.contentWindow.document.head;
 
-  const displayMode = toggle.icon === "dark-mode-solid" ? 'dark' : 'light';
-  const theme = `<link id="theme-link" rel="stylesheet" href="/assets/styles/tokens/theme-${displayMode}.css" media="all">`;
+  const theme = `<link id="theme-link" rel="stylesheet" href="/assets/styles/tokens/theme-${displayMode}.css" data-theme="${displayMode}" media="all">`;
 
   const themeLink = iframeHead.querySelector('#theme-link');
-  if (themeLink) {
-    themeLink.outerHTML = theme;
-  } else {
-    iframeHead.insertAdjacentHTML("beforeend", theme);
-  }
+	if (!themeLink) {
+		iframeHead.insertAdjacentHTML("beforeend", theme);
+	} else if (themeLink.dataset.theme !== displayMode) {
+		themeLink.outerHTML = theme;
+	}
 }
+
+const updateThemeOfAllIframes = () => {
+	const newTheme = getCurrentTheme();
+	for (const iframe of document.querySelectorAll('[data-vivid-iframe]')) {
+		setCurrentIframeTheme(newTheme, iframe);
+	}
+}
+
+const setupIframeThemeUpdates = () => {
+	document
+		.querySelector('vwc-menu#dark-mode-menu')
+		.addEventListener('change', updateThemeOfAllIframes);
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeOfAllIframes);
+}
+window.addEventListener('load', setupIframeThemeUpdates);
