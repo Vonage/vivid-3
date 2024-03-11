@@ -11,7 +11,7 @@ import { renderStorybookTemplate } from './renderStorybookTemplate';
 import { generateDocPageForComponent } from '../docs';
 import { renderIcons } from './renderIcons';
 import { loadedIcons } from './icons';
-import { exportedComponents } from './exportedComponents';
+import { getPublicComponents } from './customElementDeclarations';
 
 type DefinitionOverride = (def: ComponentDef, metadata: {icons: string[]}) => void;
 type ComponentSpecs = [string, DefinitionOverride];
@@ -69,7 +69,7 @@ function generateDocsFor(component: ComponentDef) {
 
 export default class ComponentRegister {
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-  static componentsSpecs: ComponentSpecs[] = exportedComponents.map((component) => [component, () => {}]);
+  static componentsSpecs: ComponentSpecs[] = getPublicComponents().map((component) => [component, () => {}]);
 
   static globalDefinitionsOverride: DefinitionOverride[] = [];
 

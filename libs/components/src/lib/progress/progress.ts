@@ -13,13 +13,12 @@ export type ProgressShape =
 	Shape.Rounded |
 	Shape.Sharp;
 /**
- * Base class for progress
- *
  * @public
+ * @component progress
  */
 export class Progress extends BaseProgress {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	
+
 	/**
 	* Indicates the progress' shape.
 	*

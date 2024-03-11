@@ -6,7 +6,6 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { focusTemplateFactory } from '../../shared/patterns/focus';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import type { TextField } from './text-field';
 
@@ -60,7 +59,6 @@ export const TextfieldTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<TextField> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const focusTemplate = focusTemplateFactory(context);
 
 	return html<TextField>`
 	<div class="base ${getStateClasses}">
@@ -74,7 +72,6 @@ export const TextfieldTemplate: (
 
 			<div class="wrapper">
 				<slot class="control" name="_control"></slot>
-				${() => focusTemplate}
 			</div>
 			<div class="action-items-wrapper">
 				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>

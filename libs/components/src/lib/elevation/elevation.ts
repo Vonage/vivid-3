@@ -2,9 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 
 /**
- * Base class for elevation
- *
- * @public
+ * @component elevation
  * @slot - Default slot.
  */
 export class Elevation extends FoundationElement {
