@@ -1,6 +1,6 @@
 # Roadmap
 
-## In Progress
+## Upcoming components
 
 <style>
   @media screen and (max-width: 768px){
@@ -34,7 +34,7 @@
       Design
     </vwc-data-grid-cell>
     <vwc-data-grid-cell cell-type="columnheader" role="columnheader">
-      Alpha release
+      Alpha
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -95,3 +95,11 @@
   </vwc-data-grid-row>
 </vwc-data-grid>
 </vwc-elevation>
+
+### Key
+
+| Phase | Description |
+| --- | --- |
+| Discovery | Validate the shared value of the feature and that we understand the problem well enough to commit further resources. |
+| Design | Ensure designs meet user needs while upholding our brand standards and visual language. |
+| Alpha| Component is available and documentation is published. Awaiting acceptence testing by at least 2 teams |
