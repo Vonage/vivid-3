@@ -86,9 +86,9 @@
 		}
 
 		li {
-			padding: 4px 8px;
 			justify-content: start;
 			text-align: left;
+			padding: 4px 8px;
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
@@ -108,7 +108,6 @@
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 	}
 
-	/* stylelint-disable no-descending-specificity */
 	.vjs-subs-caps-button,
 	.vjs-chapters-button,
 	.vjs-descriptions-button {
@@ -129,8 +128,6 @@
 		}
 	}
 	
-	/* styleint-enable no-descending-specificity */
-
 	.vjs-playback-rate .vjs-menu {
 		left: -8px;
 		inline-size: 56px;
