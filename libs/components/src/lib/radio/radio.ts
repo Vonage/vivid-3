@@ -12,13 +12,12 @@ export type RadioConnotation = Extract<Connotation,
 | Connotation.CTA>;
 
 /**
- * Base class for radio
- *
  * @public
+ * @component radio
  */
 export class Radio extends FastRadio {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	
+
 	/**
 	 * Indicates the radio's label.
 	 *

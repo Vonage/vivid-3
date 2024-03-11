@@ -21,9 +21,8 @@ export type TabConnotation = Extract<Connotation,
 export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
- * Base class for tab
- *
  * @public
+ * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
 export class Tab extends FoundationTab {

@@ -2,10 +2,10 @@ import { attr } from '@microsoft/fast-element';
 import { RadioGroup as FastRadioGroup } from '@microsoft/fast-foundation';
 
 /**
- * Base class for radio-group
- *
  * @public
+ * @component radio-group
  * @slot - Default slot.
+ * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
 export class RadioGroup extends FastRadioGroup {
 	/**

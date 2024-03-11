@@ -2,9 +2,8 @@ import { AccordionExpandMode, Accordion as FastAccordion } from '@microsoft/fast
 import type { AccordionItem } from '../accordion-item/accordion-item';
 
 /**
- * Base class for accordion
- *
  * @public
+ * @component accordion
  * @slot - Default slot.
  */
 export class Accordion extends FastAccordion {

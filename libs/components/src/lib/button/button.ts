@@ -40,9 +40,8 @@ export type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
 
 /**
- * Base class for button
- *
  * @public
+ * @component button
  * @slot icon - Add an icon to the component.
  */
 export class Button extends FoundationButton {

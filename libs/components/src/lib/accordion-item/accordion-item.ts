@@ -12,6 +12,8 @@ import type { Size } from '../enums.js';
 export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 /**
+ * @public
+ * @component accordion-item
  * @slot - Default slot.
  * @slot icon - Add an icon to the component.
  */

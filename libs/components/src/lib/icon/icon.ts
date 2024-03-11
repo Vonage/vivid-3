@@ -45,6 +45,8 @@ export type IconConnotation = Extract<Connotation,
 | Connotation.Information>;
 
 /**
+ * @public
+ * @component icon
  * @slot - Default slot.
  */
 export class Icon extends FoundationElement {

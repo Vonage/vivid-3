@@ -4,9 +4,8 @@ import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
- * Base class for menu
- *
  * @public
+ * @component menu
  * @slot - Default slot.
  * @slot anchor - Used to set the anchor element for the menu.
  * @slot header - Used to add additional content to the top of the menu.
