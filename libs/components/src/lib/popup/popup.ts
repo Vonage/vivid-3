@@ -4,10 +4,10 @@ import { arrow, autoUpdate, computePosition, flip, hide, inline, offset, size } 
 import type { Placement, Strategy } from '@floating-ui/dom';
 
 /**
- * Base class for popup
- *
  * @public
+ * @component popup
  * @slot - Default slot.
+ * @internal
  */
 export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {

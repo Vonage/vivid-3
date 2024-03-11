@@ -18,12 +18,12 @@ export enum CheckAppearance {
 }
 
 /**
- * Base class for menu-item
- *
  * @public
+ * @component menu-item
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
+ * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
 export class MenuItem extends FastMenuItem {
 	/**
