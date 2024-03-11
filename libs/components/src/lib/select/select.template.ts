@@ -88,9 +88,7 @@ function renderControl(context: ElementDefinitionContext) {
            			 </div>
 				</${popupTag}>
 			</div>
-			${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
-			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-			${when(x => x.successText, getFeedbackTemplate('success', context))}
+			${getFeedbackTemplate(context)}
 		`;
 
 }

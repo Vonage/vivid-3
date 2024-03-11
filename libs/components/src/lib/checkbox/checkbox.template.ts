@@ -54,8 +54,6 @@ export const CheckboxTemplate: FoundationElementTemplate<ViewTemplate<Checkbox>,
 			</div>
 			${html<Checkbox>`<label>${x => x.label}<slot ${slotted('slottedContent')}></slot></label>`}
 		</div>
-		${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
-		${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-		${when(x => x.successText, getFeedbackTemplate('success', context))}
+		${getFeedbackTemplate(context)}
 	</template>`;
 };

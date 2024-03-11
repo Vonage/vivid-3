@@ -169,10 +169,15 @@ type MessageTypeMap = {
 	};
 };
 
-/**
- * @param context - element definition context
- */
-export function getFeedbackTemplate(
+export function getFeedbackTemplate(context: ElementDefinitionContext) {
+	return html<Partial<FormElement & FormElementHelperText & FormElementSuccessText & ErrorText>>`
+			${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplateForType('helper', context))}
+			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplateForType('error', context))}
+			${when(x => x.successText, getFeedbackTemplateForType('success', context))}
+		`;
+}
+
+function getFeedbackTemplateForType(
 	messageType: FeedbackType,
 	context: ElementDefinitionContext
 ) {

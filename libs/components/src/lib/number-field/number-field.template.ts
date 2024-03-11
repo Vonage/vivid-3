@@ -6,7 +6,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import {classNames} from '@microsoft/fast-web-utilities';
 import {Shape} from '../enums';
-import {getFeedbackTemplate} from '../../shared/patterns';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import {Button} from '../button/button';
 import {Divider} from '../divider/divider';
 import type {NumberField} from './number-field';
@@ -133,9 +133,7 @@ export const NumberFieldTemplate: (
 			</div>
 			${() => numberControlButtons(context)}
     </div>
-	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
-	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-	  ${when(x => x.successText, getFeedbackTemplate('success', context))}
+		${getFeedbackTemplate(context)}
 	</div>
 `;
 };
