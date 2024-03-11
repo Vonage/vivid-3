@@ -3,7 +3,7 @@
 @import "../../../../../node_modules/video.js/dist/video-js.css";
 
 .vjs-theme-vivid {
-	$control-size: 44px;
+	$control-size: 40px;
 	$control-background-color: rgba(0 0 0 / 60%);
 	$control-background-color-hover: #000;
 
@@ -41,7 +41,7 @@
 		display: block;
 		padding: 0;
 		inline-size: auto;
-		line-height: 3.2;
+		line-height: 2.9;
 		min-inline-size: auto; 
 	}
 
@@ -87,6 +87,8 @@
 
 		li {
 			padding: 4px 8px;
+			justify-content: start;
+			text-align: left;
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
@@ -113,11 +115,6 @@
 		.vjs-menu {
 			left: -62px;
 			inline-size: 168px;
-	
-			li {
-				justify-content: start;
-				text-align: left;
-			}
 		}
 	}
 
@@ -135,12 +132,12 @@
 	/* styleint-enable no-descending-specificity */
 
 	.vjs-playback-rate .vjs-menu {
-		left: -4px;
+		left: -8px;
 		inline-size: 56px;
 	}
 
 	.vjs-menu-button-popup .vjs-menu {
-		margin-block-end: 23px;
+		margin-block-end: 19px;
 
 		.vjs-menu-content {
 			background-color: $control-background-color;
@@ -149,7 +146,7 @@
 
 	.vjs-playback-rate .vjs-playback-rate-value {
 		z-index: 1;
-		line-height: 2.1;
+		line-height: 1.9;
 	}
 
 	.vjs-button:hover {
@@ -163,7 +160,7 @@
 		}
 
 		&.vjs-hover .vjs-mute-control~.vjs-volume-control.vjs-volume-vertical {
-			left: -42px;
+			left: -40px;
 		}
 	}
 
