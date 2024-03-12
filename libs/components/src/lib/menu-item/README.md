@@ -1,55 +1,5 @@
 # Menu Item
 
-## FOR POC ONLY
-### Connotation
-
-
-
-```html preview 900px
-<div style="display: flex; justify-content: space-between;">
-<div style="position: relative;">
-<vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;" placement="left-start">
-<vwc-button slot="anchor" icon="more-vertical-line" aria-label="Open menu" appearance="outlined"></vwc-button>
- <vwc-menu-item connotation="cta" text="menu item" icon="image-line"></vwc-menu-item>
-  <vwc-menu-item role="menuitemcheckbox" connotation="cta" text="menu item" icon="image-line"></vwc-menu-item>
- <vwc-menu-item role="menuitemradio" connotation="cta" text="menu item" icon="image-line"></vwc-menu-item>
- <vwc-menu-item connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-  <vwc-menu-item role="menuitemcheckbox" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemcheckbox" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-   <vwc-menu-item role="menuitemradio" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemradio" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-      <vwc-menu-item check-appearance="tick-only" checked role="menuitemcheckbox" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemcheckbox" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-   <vwc-menu-item check-appearance="tick-only" checked role="menuitemradio" connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemradio" checked connotation="cta" text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 1" connotation="cta">
-      <vwc-menu slot="submenu" ><vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
-    </vwc-menu-item>
-</vwc-menu>
-</div>
-<div>
-<vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;" placement="right-start">
-<vwc-button slot="anchor" icon="more-vertical-line" aria-label="Open menu" appearance="outlined"></vwc-button>
- <vwc-menu-item  text="menu item" icon="image-line"></vwc-menu-item>
-  <vwc-menu-item role="menuitemcheckbox"  text="menu item" icon="image-line"></vwc-menu-item>
- <vwc-menu-item role="menuitemradio"  text="menu item" icon="image-line"></vwc-menu-item>
- <vwc-menu-item  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-  <vwc-menu-item role="menuitemcheckbox"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemcheckbox" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-   <vwc-menu-item role="menuitemradio"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemradio" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-      <vwc-menu-item check-appearance="tick-only" checked role="menuitemcheckbox"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemcheckbox" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-   <vwc-menu-item check-appearance="tick-only" checked role="menuitemradio"  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item role="menuitemradio" checked  text="menu item" text-secondary="secondary text"></vwc-menu-item>
-    <vwc-menu-item text="Menu item 1">
-      <vwc-menu slot="submenu" ><vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
-    </vwc-menu-item>
-</vwc-menu>
-</div>
-</div>
-```
-
 ```js
 <script type="module">
   import '@vonage/vivid/menu-item';
@@ -185,6 +135,19 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 ```html preview 100px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" checked text="Checked Menu item"></vwc-menu-item>
+</vwc-menu>
+```
+
+### Connotation
+Use the `connotation` attribute to set the menu-item checked color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview 200px
+<vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;">
+	<vwc-menu-item role="menuitemcheckbox" checked text="menu item" text-secondary="connotation accent"></vwc-menu-item>
+	<vwc-menu-item connotation="cta"  role="menuitemcheckbox" checked text="menu item" text-secondary="connotation cta"></vwc-menu-item>
 </vwc-menu>
 ```
 

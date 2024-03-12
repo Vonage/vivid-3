@@ -7,6 +7,7 @@ import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
 import { CheckAppearance, MenuItem } from './menu-item';
 import { menuItemDefinition, MenuItemRole } from './definition';
+import {Connotation} from "@vonage/vivid";
 
 const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';
@@ -37,6 +38,7 @@ describe('vwc-menu-item', () => {
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
 			expect(element.expanded).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -459,4 +461,21 @@ describe('vwc-menu-item', () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
+
+	describe('menu-item connotation', function () {
+		it('should set the connotation class on base', async function () {
+			const connotation = Connotation.CTA;
+			const connotationClassExistsBeforeTheChange = getBaseElement(element)?.classList.contains(`connotation-${connotation}`);
+
+			element.connotation = connotation;
+			await elementUpdated(element);
+			const connotationClassExistsAfterChange = getBaseElement(element)?.classList.contains(`connotation-${connotation}`);
+
+			expect(connotationClassExistsBeforeTheChange)
+				.toEqual(false);
+			expect(connotationClassExistsAfterChange)
+				.toEqual(true);
+		});
+	});
+
 });
