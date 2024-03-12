@@ -10,10 +10,7 @@
 	{
 		"title": "Resources",
 		"markdown": "./docs/getting-started/release-policy.md",
-		"children": [
-			"Release Policy",
-			"Accessibility"
-		]
+		"children": ["Release Policy", "Accessibility"]
 	},
 	{
 		"title": "Release Policy",
