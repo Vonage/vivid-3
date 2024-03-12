@@ -62,3 +62,8 @@ The team does not solely rely on automated testing processes, as a 2017 study fr
 
 ### Manual Testing
 
+As part of the discovery phase, the Vivid team will research the accessibility requirements for a new feature and define a set of accept criteria to be tested against in the proposal document.
+
+We use various resources for this research including the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/) and [Inclusive Components](https://inclusive-components.design/) websites.
+
+We also have a [General Accessibility Checklist](https://docs.google.com/spreadsheets/d/1UKyHg9DBqP8szAEbksoyfZab6G7lf98D0QWF9451aoU/edit#gid=1175911860) that we manually test our components against. This ensures that we test our components for responsiveness, keyboard only and screen reader compatibility.
