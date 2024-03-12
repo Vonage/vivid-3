@@ -1,2 +1,3 @@
-@forward 'variables' show $focus-inset, $focus-stroke-color, $focus-stroke-gap-color;
+@forward 'variables' show $focus-inset, $focus-stroke-color,
+	$focus-stroke-gap-color;
 @forward 'mixins' show focus;
