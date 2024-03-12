@@ -34,8 +34,14 @@ $low-ink-color: --_low-ink-color;
 	cursor: not-allowed;
 }
 
-.base:focus-visible {
-	outline: none;
+.base {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 4px;
+
+	&:focus-visible {
+		outline: none;
+	}
 }
 
 .label {
