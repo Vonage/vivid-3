@@ -4,7 +4,6 @@
 @use '../../../../../dist/libs/tokens/scss/@properties' as properties;
 @use 'partials/variables' as variables;
 
-
 @include properties.properties;
 
 #{variables.$theme-main-selector} {

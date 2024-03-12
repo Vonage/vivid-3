@@ -1,6 +1,7 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/card-variables" as card-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/card-variables' as card-variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host {
 	display: flex;
@@ -86,10 +87,8 @@
 	}
 }
 
-
-
 // graphic slot & icon style
-::slotted([slot="graphic"i]),
+::slotted([slot='graphic'i]),
 .icon {
 	flex-shrink: 0;
 	align-self: baseline;
@@ -100,7 +99,7 @@
 	font-size: 20px;
 }
 
-::slotted([slot="meta"i]) {
+::slotted([slot='meta'i]) {
 	flex-shrink: 0;
 	align-self: flex-start;
 	margin-block-start: -8px;
