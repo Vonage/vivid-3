@@ -169,6 +169,18 @@ If not set, the time picker will not display seconds.
 ></vwc-time-picker>
 ```
 
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the time-picker's helper text.
+
+```html preview locale-switcher 360px
+<vwc-time-picker label="Start time">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-time-picker>
+```
+
 ## Events
 
 <div class="table-wrapper">

@@ -120,6 +120,18 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 ></vwc-date-picker>
 ```
 
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the date picker's helper text.
+
+```html preview locale-switcher 460px
+<vwc-date-picker label="Start date">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-date-picker>
+```
+
 ## Events
 
 <div class="table-wrapper">

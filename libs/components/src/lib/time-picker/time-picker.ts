@@ -1,5 +1,4 @@
 import { attr, DOM, nullableNumberConverter, observable, type ValueConverter } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import {
 	type ErrorText,
 	errorText,
@@ -11,6 +10,7 @@ import {
 } from '../../shared/patterns';
 import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { FormAssociatedTimePicker } from './time-picker.form-associated';
 import { formatPresentationTime, parsePresentationTime } from './time/presentationTime';
 import { formatTimePart, isValidTimeStr, parseTimeStr, type TimeStr } from './time/time';
@@ -33,6 +33,7 @@ const ValidTimeFilter: ValueConverter = {
 /**
  * @public
  * @component time-picker
+ * @slot helper-text - Describes how to use the time-picker. Alternative to the `helper-text` attribute.
  * @event change - Emitted when the time is changed by the user.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
@@ -624,4 +625,4 @@ export interface TimePicker
 	FormElementHelperText,
 	Localized,
 	TrappedFocus {}
-applyMixins(TimePicker, Localized, FormElementHelperText, TrappedFocus);
+applyMixinsWithObservables(TimePicker, Localized, FormElementHelperText, TrappedFocus);

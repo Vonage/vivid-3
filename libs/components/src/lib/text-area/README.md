@@ -162,11 +162,6 @@ That means that:
 The `helper-text` slot allows you to use rich content as the text area's helper text.
 
 ```html preview
-<style>
-	vwc-text-area {
-		width: 300px;
-	}
-</style>
 <vwc-text-area label="Description">
 	<span slot="helper-text">Please ensure you provide the <a href="#">required details</a>.</span>
 </vwc-text-area>

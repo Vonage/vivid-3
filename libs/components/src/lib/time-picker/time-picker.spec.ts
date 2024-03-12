@@ -193,6 +193,20 @@ describe('vwc-time-picker', () => {
 		});
 	});
 
+	describe('helper-text slot', () => {
+		it('should forward helper-text slot to the text field', async () => {
+			const slotted = document.createElement('div');
+			slotted.slot = 'helper-text';
+			slotted.innerHTML = 'content';
+			element.appendChild(slotted);
+			await elementUpdated(element);
+
+			const textFieldSlot = textField.shadowRoot?.querySelector('slot[name=helper-text]') as HTMLSlotElement;
+			const timePickerSlot = textFieldSlot.assignedNodes()[0] as HTMLSlotElement;
+			expect(timePickerSlot.assignedNodes()).toEqual([slotted]);
+		});
+	});
+
 	describe('clock', () => {
 		afterEach(() => {
 			setLocale(enUS);

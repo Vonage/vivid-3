@@ -1,8 +1,8 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, DOM, observable, type ValueConverter, volatile } from '@microsoft/fast-element';
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
+import { applyMixinsWithObservables } from '../utils/applyMixinsWithObservables';
 import { addDays, compareDateStr, currentDateStr, type DateStr, isValidDateStr } from './calendar/dateStr';
 import { addMonths, compareMonths, getCurrentMonth, type Month, monthOfDate, monthToStr } from './calendar/month';
 import { buildCalendarGrid } from './calendar/calendarGrid';
@@ -781,4 +781,4 @@ export interface DatePickerBase
 	extends Localized,
 	FormElementHelperText,
 	TrappedFocus {}
-applyMixins(DatePickerBase, Localized, FormElementHelperText, TrappedFocus);
+applyMixinsWithObservables(DatePickerBase, Localized, FormElementHelperText, TrappedFocus);
