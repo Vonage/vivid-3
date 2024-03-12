@@ -29,7 +29,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the date picker.
+Add the `helper-text` to add some helper text below the date picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
