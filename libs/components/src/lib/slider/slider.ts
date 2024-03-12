@@ -9,16 +9,16 @@ export type SliderConnotation =
 
 
 /**
- * Base class for slider
- *
  * @public
+ * @component slider
+ * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
  */
 export class Slider extends FastSlider {
 	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
 	@attr({attribute: 'aria-valuetext'}) ariaValuetext: string | null = null;
 	/**
 	 * Display markers on/off
-	 * 
+	 *
 	 * @public
 	 * HTML Attribute: markers
 	 */
@@ -35,7 +35,7 @@ export class Slider extends FastSlider {
 
 	/**
 	 * TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
-	 * 
+	 *
 	 * @internal
 	 */
 	override valueChanged(previous: string, next: string): void {

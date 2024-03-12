@@ -2,21 +2,22 @@
 @use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment faint soft pale dim,
-	$default: accent,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: listitem,
 	$states: idle hover disabled active selected selectedAndHover,
-	$default: listitem,
+	$default: listitem
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "partials/menu-item-variables" as menu-item-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use 'partials/menu-item-variables' as menu-item-variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 
 :host(:focus-visible) {
 	outline: none;
@@ -31,7 +32,7 @@
 	$gutter: 16px;
 
 	@include appearance.appearance;
-	@include connotation.connotation (menu-item);
+	@include connotation.connotation(menu-item);
 
 	display: flex;
 	box-sizing: border-box;
@@ -48,11 +49,12 @@
 	}
 
 	&.two-lines {
-		min-block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
+		min-block-size: calc(
+			#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed}
+		);
 	}
 
-
-	@supports(user-select: none) {
+	@supports (user-select: none) {
 		user-select: none;
 	}
 
@@ -60,7 +62,7 @@
 		cursor: pointer;
 	}
 
-	:host(:not([role="presentation"]):focus-visible) & {
+	:host(:not([role='presentation']):focus-visible) & {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
@@ -83,7 +85,7 @@
 .action {
 	color: var(#{appearance.get-appearance-token(text)});
 
-	:host(:not([check-appearance],[aria-checked="true"])) & {
+	:host(:not([check-appearance], [aria-checked='true'])) & {
 		color: var(#{constants.$vvd-color-neutral-500});
 	}
 

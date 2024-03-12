@@ -1,7 +1,7 @@
 :host {
 	display: block;
 }
-:host([generate-header="sticky"]){
+:host([generate-header='sticky']) {
 	max-block-size: 400px;
 }
 
