@@ -87,7 +87,7 @@ Set the `appearance` attribute to change the Select appearance.
 
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
-```html preview
+```html preview 200px
 <vwc-select aria-label="Options Selector" appearance="ghost">
   <vwc-option value="1" text="Option 1" selected></vwc-option>
   <vwc-option value="2" text="Option 2 "></vwc-option>
@@ -100,7 +100,7 @@ Use the `shape` attribute to change the Select edges.
 - Type: `'rounded'` | `'pill'`
 - Default: `'rounded'`
 
-```html preview
+```html preview 200px
 <vwc-select aria-label="Options Selector" shape="pill">
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
@@ -109,7 +109,7 @@ Use the `shape` attribute to change the Select edges.
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the select.
+Add the `helper-text` to add some helper text below the select. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -207,7 +207,7 @@ This is useful for cases in which the dropdown is obstructed by other elements (
 - Type: `boolean`
 - Default: `false`
 
-```html preview
+```html preview 200px
 <vwc-select aria-label="Options Selector" fixed-dropdown>
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
@@ -297,6 +297,19 @@ If set, the `icon` attribute is ignored.
   <vwc-option value="1" text="Option 1"></vwc-option>
   <vwc-option value="2" text="Option 2"></vwc-option>
   <vwc-option value="3" text="Option 3"></vwc-option>
+</vwc-select>
+```
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the select's helper text.
+
+```html preview 230px
+<vwc-select label="Business Type">
+	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
+	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
+	<vwc-option value="edu" text="Educational Institution"></vwc-option>
+	<span slot="helper-text">Please select the <a href="#">type of your business</a>.</span>
 </vwc-select>
 ```
 

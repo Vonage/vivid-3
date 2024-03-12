@@ -1,4 +1,4 @@
-import {applyMixins, NumberField as FastNumberField} from '@microsoft/fast-foundation';
+import { NumberField as FastNumberField} from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import type {Appearance, Shape} from '../enums';
 import {
@@ -12,6 +12,7 @@ import {
 	Localized,
 } from '../../shared/patterns';
 import {AffixIcon} from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 export type NumberFieldAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
 export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
@@ -107,4 +108,4 @@ export interface NumberField extends AffixIcon,
 	FormElementHelperText,
 	FormElementSuccessText,
 	Localized {}
-applyMixins(NumberField, Localized, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+applyMixinsWithObservables(NumberField, Localized, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);

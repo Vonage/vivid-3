@@ -85,10 +85,9 @@ function renderControl(context: ElementDefinitionContext) {
 						<slot
 							${slotted({ filter: Listbox.slottedOptionFilter as any, flatten: true, property: 'slottedOptions' })}>
 						</slot>
-           			 </div>
+				 	</div>
 				</${popupTag}>
 			</div>
-			${getFeedbackTemplate(context)}
 		`;
 
 }
@@ -105,7 +104,8 @@ export const SelectTemplate: (
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 
 	return html<Select>`
-		<template class="base"
+		<div
+			class="base"
 			aria-label="${x => x.ariaLabel}"
 			aria-activedescendant="${x => x.ariaActiveDescendant}"
 			aria-controls="${x => x.ariaControls}"
@@ -113,7 +113,6 @@ export const SelectTemplate: (
 			aria-expanded="${x => x.ariaExpanded}"
 			aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
 			aria-multiselectable="${x => x.ariaMultiSelectable}"
-			?open="${x => x.open}"
 			role="combobox"
 			tabindex="${x => (!x.disabled ? '0' : null)}"
 			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
@@ -122,7 +121,9 @@ export const SelectTemplate: (
 			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
 			@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
 				${renderControl(context)}
-		</template>`;
+		</div>
+		${getFeedbackTemplate(context)}
+	`;
 };
 
 // TODO::change the css variable according to select width

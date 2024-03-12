@@ -21,12 +21,6 @@
 
 $low-ink-color: --_low-ink-color;
 
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
-}
-
 :host {
 	display: inline-flex;
 	flex-direction: column;
@@ -38,6 +32,10 @@ $low-ink-color: --_low-ink-color;
 :host([disabled]) {
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
 	cursor: not-allowed;
+}
+
+.base:focus-visible {
+	outline: none;
 }
 
 .label {
@@ -82,7 +80,7 @@ $low-ink-color: --_low-ink-color;
 		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
-	:host(:focus-visible) & {
+	.base:focus-visible & {
 		@include focus.focus;
 	}
 }

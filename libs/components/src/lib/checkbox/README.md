@@ -71,7 +71,7 @@ Use the `connotation` attribute to set the checkbox color.
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the checkbox.
+Add the `helper-text` to add some helper text below the checkbox. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -151,6 +151,21 @@ The default slot allows you to use rich content as the checkbox's label.
 ```html preview
 <vwc-checkbox error-text="You need to accept the Terms of service">
 	I agree to <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
+</vwc-checkbox>
+```
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the checkbox's helper text.
+
+```html preview
+<style>
+	vwc-checkbox {
+		width: 300px;
+	}
+</style>
+<vwc-checkbox label="Use Signed Webhooks">
+	<span slot="helper-text"><a href="#">Signed Webhooks</a> are a way to verify that the request is coming from Vonage.</span>
 </vwc-checkbox>
 ```
 

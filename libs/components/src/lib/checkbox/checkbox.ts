@@ -1,4 +1,4 @@
-import { applyMixins, Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
+import { Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import {
@@ -9,6 +9,7 @@ import {
 	formElements,
 	FormElementSuccessText
 } from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 
 export const keySpace: ' ' = ' ' as const;
@@ -106,4 +107,4 @@ export class Checkbox extends FoundationCheckbox {
 }
 
 export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
-applyMixins(Checkbox, FormElementHelperText, FormElementSuccessText);
+applyMixinsWithObservables(Checkbox, FormElementHelperText, FormElementSuccessText);

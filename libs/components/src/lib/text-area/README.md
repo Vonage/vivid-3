@@ -66,7 +66,7 @@ Set the `resize` attribute to control how the text area can be resized by the us
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the text area.
+Add the `helper-text` to add some helper text below the text area. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -153,6 +153,23 @@ That means that:
 <vwc-text-area rows="1" value="1 row text area"></vwc-text-area>
 <vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
 <vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the text area's helper text.
+
+```html preview
+<style>
+	vwc-text-area {
+		width: 300px;
+	}
+</style>
+<vwc-text-area label="Description">
+	<span slot="helper-text">Please ensure you provide the <a href="#">required details</a>.</span>
+</vwc-text-area>
 ```
 
 ## Accessibility

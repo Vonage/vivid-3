@@ -25,7 +25,7 @@ Use the `label` member to set the file picker's label.
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the file picker.
+Add the `helper-text` to add some helper text below the file picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -111,6 +111,17 @@ Use the default slot to set the content of the file picker.
 ```html preview
 <vwc-file-picker>
 	<vwc-icon name="file-csv-line" size="-5"></vwc-icon> Drag & Drop the .csv file here or click to upload
+</vwc-file-picker>
+```
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the file picker's helper text.
+
+```html preview
+<vwc-file-picker>
+	Drag & Drop the .csv file here or click to upload
+	<span slot="helper-text">Max file size is 0.1MB. <a href="#">Learn how export your data to .csv</a></span> 
 </vwc-file-picker>
 ```
 
