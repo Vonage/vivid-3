@@ -160,11 +160,11 @@ The `helper-text` slot allows you to use rich content as the checkbox's helper t
 
 ```html preview
 <style>
-	vwc-checkbox {
+	.checkbox {
 		width: 300px;
 	}
 </style>
-<vwc-checkbox label="Use Signed Webhooks">
+<vwc-checkbox class="checkbox" label="Use Signed Webhooks">
 	<span slot="helper-text"><a href="#">Signed Webhooks</a> are a way to verify that the request is coming from Vonage.</span>
 </vwc-checkbox>
 ```
