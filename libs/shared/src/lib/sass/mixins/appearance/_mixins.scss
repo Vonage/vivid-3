@@ -33,35 +33,37 @@ $state-aspect-selectors: (
 		disabled: '&:where(#{$disabled})',
 		readonly: '&:where(#{$readonly}):where(:not(#{$disabled}))',
 		selected: '&:where(#{$selected}):where(:not(#{$disabled}))',
-		selectedAndHover: '&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
+		selectedAndHover:
+			'&:where(#{$selected}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
 		selectedAndDisabled: '&:where(#{$selected}):where(#{$disabled})',
 		checked: '&:where(#{$checked}):where(:not(#{$disabled}))',
-		checkedAndHover: '&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
+		checkedAndHover:
+			'&:where(#{$checked}):where(#{$hover}):where(:not(#{$disabled}, #{$readonly}))',
 		active: '&:where(#{$active}):where(:not(#{$disabled}))',
 		error: '&:where(#{$error}):where(:not(#{$disabled}))',
-		success: '&:where(#{$success}):where(:not(#{$disabled}))',
+		success: '&:where(#{$success}):where(:not(#{$disabled}))'
 	);
 }
 
 @mixin appearance($state-selectors: state-selectors($state-aspect-selectors)) {
+	@each $state in config.$states {
+		#{map.get($state-selectors, $state)} {
+			$state-mapping: map.get(variables.$states-mapping, $state);
 
-  @each $state in config.$states {
-    #{map.get($state-selectors, $state)} {
+			@each $appearance in config.$appearances {
+				$selector: if(
+					$appearance == config.$default,
+					'&',
+					'&.appearance-#{$appearance}'
+				);
 
-      $state-mapping: map.get(variables.$states-mapping, $state);
-
-      @each $appearance in config.$appearances {
-        $selector: if($appearance == config.$default, '&', '&.appearance-#{$appearance}');
-
-
-        #{$selector} {
-          $appearance-mapping: map.get($state-mapping, $appearance);
-          @each $type, $key in $appearance-mapping {
-            #{functions.get-appearance-token($type)}: $key;
-          }
-        }
-      }
-    }
-  }
+				#{$selector} {
+					$appearance-mapping: map.get($state-mapping, $appearance);
+					@each $type, $key in $appearance-mapping {
+						#{functions.get-appearance-token($type)}: $key;
+					}
+				}
+			}
+		}
+	}
 }
-

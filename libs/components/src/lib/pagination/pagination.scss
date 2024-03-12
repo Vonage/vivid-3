@@ -1,6 +1,7 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 .control {
 	display: inline-flex;
@@ -20,15 +21,15 @@
 }
 
 .vwc-pagination-button {
-	&[size="super-condensed"] {
+	&[size='super-condensed'] {
 		--base-size: #{size.$vvd-size-super-condensed};
 	}
 
-	&[size="condensed"] {
+	&[size='condensed'] {
 		--base-size: #{size.$vvd-size-condensed};
 	}
 
-	&[size="normal"] {
+	&[size='normal'] {
 		--base-size: #{size.$vvd-size-normal};
 	}
 

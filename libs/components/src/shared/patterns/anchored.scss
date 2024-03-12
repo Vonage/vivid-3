@@ -1,4 +1,4 @@
-@use "../../lib/popup/partials/variables" as variables;
+@use '../../lib/popup/partials/variables' as variables;
 
 :host {
 	display: var(#{variables.$popup-display}, inline);

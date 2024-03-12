@@ -1,6 +1,6 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/variables" as variables;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 $block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 
@@ -21,14 +21,17 @@ $block-size: calc(#{size.$vvd-size-normal} + #{size.$vvd-size-super-condensed});
 	display: flex;
 	box-sizing: border-box;
 	justify-content: space-between;
-	background-color: var(#{variables.$header-bg-color}, var(#{constants.$vvd-color-canvas}));
+	background-color: var(
+		#{variables.$header-bg-color},
+		var(#{constants.$vvd-color-canvas})
+	);
 	block-size: inherit;
 	color: var(#{constants.$vvd-color-canvas-text});
 	column-gap: 12px;
 	padding-block: 8px;
 	padding-inline: 16px;
 
-	&[part~="vvd-theme-alternate"] {
+	&[part~='vvd-theme-alternate'] {
 		color-scheme: var(#{constants.$vvd-color-scheme});
 	}
 }
