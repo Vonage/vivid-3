@@ -1,0 +1,10 @@
+[
+	{
+		"title": "Overview",
+		"markdown": "./docs/accessibility/overview.md"
+	},
+  {
+		"title": "Testing for Accessibility",
+		"markdown": "./docs/accessibility/testing.md"
+	}
+]

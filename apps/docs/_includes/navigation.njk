@@ -20,9 +20,14 @@
                 {% endif %}
             {% endfor %}
         </vwc-nav-disclosure>
-         <vwc-nav-disclosure label="Guides" {% if page.url.includes('/guides/') %} open aria-current="true" {% endif %}>
+        <vwc-nav-disclosure label="Guides" {% if page.url.includes('/guides/') %} open aria-current="true" {% endif %}>
                 {% for item in guides %}
                         <vwc-nav-item href="{{ ('/guides/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/guides/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                {% endfor %}
+        </vwc-nav-disclosure>
+        <vwc-nav-disclosure label="Accessibility" {% if page.url.includes('/accessibility/') %} open aria-current="true" {% endif %}>
+                {% for item in accessibility %}
+                        <vwc-nav-item href="{{ ('/accessibility/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/accessibility/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
                 {% endfor %}
         </vwc-nav-disclosure>
         <vwc-nav-disclosure label="Design Tokens" {% if page.url.includes('/designs/') %} open aria-current="true" {% endif %}>
