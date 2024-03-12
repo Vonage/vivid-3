@@ -23,9 +23,8 @@ const defaultConnotation =
 	(connotation: Connotation | undefined = Connotation.Information) => connotationIconMap.get(connotation) as Connotation;
 
 /**
- * Base class for banner
- *
  * @public
+ * @component banner
  * @slot action-items - Add action items to banner using this slot.
  * @slot icon - Add an icon to the component.
  */
