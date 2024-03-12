@@ -1,5 +1,5 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment faint soft pale dim,
 	$default: accent
@@ -129,7 +129,6 @@
 	-webkit-box-orient: vertical;
 	font: var(#{constants.$vvd-typography-base});
 }
-
 
 .text-primary {
 	color: var(#{constants.$vvd-color-canvas-text});
