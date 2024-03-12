@@ -43,6 +43,7 @@ function makeStep(element: NumberField, direction: number) {
 /**
  * @public
  * @component number-field
+ * @slot helper-text - Describes how to use the number-field. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText

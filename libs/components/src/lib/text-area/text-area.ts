@@ -17,6 +17,7 @@ export type TextAreaWrap = 'hard' | 'soft' | 'off';
 /**
  * @public
  * @component text-area
+ * @slot helper-text - Describes how to use the text-area. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText

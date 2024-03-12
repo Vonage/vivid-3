@@ -24,6 +24,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @slot - Default slot.
  * @slot icon - Slot to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
+ * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
