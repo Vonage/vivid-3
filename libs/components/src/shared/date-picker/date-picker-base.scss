@@ -1,19 +1,21 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary faint soft dim pale,
-	$default: accent,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: listitem,
 	$states: idle hover active selected selectedAndHover selectedAndDisabled,
-	$default: listitem,
+	$default: listitem
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host {
 	display: inline-block;
@@ -66,8 +68,8 @@
 	}
 
 	.title-action {
-		block-size: 24px;
 		border-radius: #{border-radius-variables.$border-radius-normal};
+		block-size: 24px;
 		font: var(#{constants.$vvd-typography-base-extended});
 		padding-inline: 6px;
 	}
@@ -106,22 +108,24 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		aspect-ratio: 1/1;
 		block-size: 28px;
-		border-radius: #{border-radius-variables.$border-radius-full};
 		font: var(#{constants.$vvd-typography-base});
 		margin-inline: 6px;
 
 		$range-color: var(#{constants.$vvd-color-cta-200});
 		$range-light-color: var(#{constants.$vvd-color-cta-50});
 
-		&.start, &.end {
+		&.start,
+		&.end {
 			border: 2px solid $range-light-color;
 			background-color: $range-color;
 		}
 
 		// Use pseudo-elements to create left and right half of highlighted background
-		&::before, &::after {
+		&::before,
+		&::after {
 			position: absolute;
 			z-index: -1;
 			display: block;
@@ -142,15 +146,16 @@
 			}
 
 			&:not(.start)::before,
-			&:not(.end)::after{
-				content: "";
+			&:not(.end)::after {
+				content: '';
 			}
 		}
 
 		// Focus ring should appear on outside, otherwise there is not enough space
 		#{focus-variables.$focus-inset}: -2px;
 
-		&.outside-month, &:disabled {
+		&.outside-month,
+		&:disabled {
 			color: var(#{constants.$vvd-color-neutral-400});
 		}
 	}
@@ -175,9 +180,9 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-full};
 		aspect-ratio: 1/1;
 		block-size: 48px;
-		border-radius: #{border-radius-variables.$border-radius-full};
 		font: var(#{constants.$vvd-typography-base-extended});
 		text-transform: uppercase;
 
@@ -188,7 +193,7 @@
 }
 
 .button {
-	@include connotation.connotation (date-picker);
+	@include connotation.connotation(date-picker);
 	@include appearance.appearance;
 
 	position: relative;
@@ -198,14 +203,13 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 
-
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 		@include focus.focus;
 
 		color: var(#{constants.$vvd-color-canvas-text});
 	}
-
 
 	&.current {
 		border: 1px solid var(#{constants.$vvd-color-neutral-200});

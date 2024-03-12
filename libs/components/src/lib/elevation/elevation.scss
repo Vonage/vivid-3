@@ -1,6 +1,6 @@
-@use "sass:list";
-@use "../../../../shared/src/lib/sass/utils" as utils;
-@use "../../../../shared/src/lib/sass/mixins/elevation" as elevation;
+@use 'sass:list';
+@use '../../../../shared/src/lib/sass/utils' as utils;
+@use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
 
 $dps: 0 2 4 8 12 16 24;
 
@@ -13,7 +13,7 @@ $dps: 0 2 4 8 12 16 24;
 
 	display: contents;
 
-	@include utils.spread-list-selectors(".dp", $dps, $default) using ($type) {
+	@include utils.spread-list-selectors('.dp', $dps, $default) using ($type) {
 		@include elevation.elevation($type);
 	}
 
@@ -26,10 +26,10 @@ $dps: 0 2 4 8 12 16 24;
 
 			position: absolute;
 			z-index: -1;
+			border-radius: inherit;
 			background: var(elevation.$vvd-elevation-fill);
 			block-size: 100%;
-			border-radius: inherit;
-			content: "";
+			content: '';
 			filter: var(elevation.$vvd-elevation-shadow);
 			inline-size: 100%;
 			inset-block-start: 0;
@@ -37,7 +37,6 @@ $dps: 0 2 4 8 12 16 24;
 			transition: background-color 0.15s linear, filter 0.15s linear;
 		}
 	}
-
 
 	&.no-shadow {
 		::slotted(*) {

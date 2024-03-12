@@ -2,7 +2,7 @@
 
 The icon component is used to display icons.
 
-See the list of available icons in the [icons gallery](../../icons/icons-gallery).
+See the list of available icons in the [icons gallery](/icons/icons-gallery/).
 
 ```js
 <script name='module'>
@@ -19,7 +19,7 @@ See the list of available icons in the [icons gallery](../../icons/icons-gallery
 ### Name
 
 Use `name` to set the icon of choice.
-See the list of available icons in the [icons gallery](../../icons/icons-gallery).
+See the list of available icons in the [icons gallery](/icons/icons-gallery/).
 
 - Type: `string`
 - Default: `undefined`

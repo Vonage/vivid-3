@@ -2,7 +2,7 @@
 
 The date picker component is used to select a date from a calendar.
 
-Dates will be stored in the format `YYYY-MM-DD` and displayed in the configured locale. See [Localization](/getting-started/localization) for more details.
+Dates will be stored in the format `YYYY-MM-DD` and displayed in the configured locale. See [Localization](/guides/localization/) for more details.
 
 ```js
 <script type="module">import '@vonage/vivid/date-picker';</script>

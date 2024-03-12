@@ -1,6 +1,7 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/card-variables" as card-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/card-variables' as card-variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host {
 	display: flex;
@@ -16,8 +17,8 @@
 	display: flex;
 	overflow: hidden;
 	flex-flow: column;
-	block-size: 100%;
 	border-radius: inherit;
+	block-size: 100%;
 	color: var(#{constants.$vvd-color-canvas-text});
 }
 
@@ -43,9 +44,7 @@
 
 	&-headline,
 	&-subtitle {
-		/* stylelint-disable value-no-vendor-prefix */
 		display: -webkit-box;
-		/* stylelint-enable value-no-vendor-prefix */
 		overflow: hidden;
 		-webkit-box-orient: vertical;
 	}
@@ -88,10 +87,8 @@
 	}
 }
 
-
-
 // graphic slot & icon style
-::slotted([slot="graphic"i]),
+::slotted([slot='graphic'i]),
 .icon {
 	flex-shrink: 0;
 	align-self: baseline;
@@ -102,10 +99,9 @@
 	font-size: 20px;
 }
 
-::slotted([slot="meta"i]) {
+::slotted([slot='meta'i]) {
 	flex-shrink: 0;
 	align-self: flex-start;
 	margin-block-start: -8px;
-	margin-inline-end: -8px;
-	margin-inline-start: auto;
+	margin-inline: auto -8px;
 }

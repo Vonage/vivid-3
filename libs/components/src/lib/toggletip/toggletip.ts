@@ -4,10 +4,10 @@ import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
- * Base class for toggletip
- *
  * @public
+ * @component toggletip
  * @slot - The content to display in the toggletip.
+ * @slot anchor - Used to set the anchor element for the toggletip.
  * @slot action-items - The content to display in the toggletip action items.
  */
 @anchored
@@ -112,7 +112,9 @@ export class Toggletip extends FoundationElement {
 	}
 
 	#closeOnClickOutside = (e: Event) => {
-		if (!this.contains(e.target as Node)) this.open = false;
+		const clickedOutside = !this.contains(e.target as Node);
+		const clickedOnAnchor = this._anchorEl?.contains(e.target as Node);
+		if (clickedOutside || clickedOnAnchor) this.open = false;
 	};
 
 	#closeOnEscape = (e:KeyboardEvent) => {

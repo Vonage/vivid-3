@@ -2,9 +2,7 @@
 	{
 		"title": "Accordion",
 		"markdown": "./libs/components/src/lib/accordion/README.md",
-		"children": [
-			"Accordion Item"
-		]
+		"children": ["Accordion Item"]
 	},
 	{
 		"title": "Accordion Item",
@@ -26,9 +24,7 @@
 	{
 		"title": "Breadcrumb",
 		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": [
-			"Breadcrumb Item"
-		]
+		"children": ["Breadcrumb Item"]
 	},
 	{
 		"title": "Breadcrumb Item",
@@ -42,9 +38,7 @@
 	{
 		"title": "Calendar",
 		"markdown": "./libs/components/src/lib/calendar/README.md",
-		"children": [
-			"Calendar Event"
-		]
+		"children": ["Calendar Event"]
 	},
 	{
 		"title": "Calendar Event",
@@ -54,9 +48,7 @@
 	{
 		"title": "Date Picker",
 		"markdown": "./libs/components/src/lib/date-picker/README.md",
-		"children": [
-			"Date Range Picker"
-		]
+		"children": ["Date Range Picker"]
 	},
 	{
 		"title": "Date Range Picker",
@@ -78,10 +70,7 @@
 	{
 		"title": "Nav",
 		"markdown": "./libs/components/src/lib/nav/README.md",
-		"children": [
-			"Nav Item",
-			"Nav Disclosure"
-		]
+		"children": ["Nav Item", "Nav Disclosure"]
 	},
 	{
 		"title": "Nav Item",
@@ -148,9 +137,7 @@
 	{
 		"title": "Menu",
 		"markdown": "./libs/components/src/lib/menu/README.md",
-		"children": [
-			"Menu Item"
-		]
+		"children": ["Menu Item"]
 	},
 	{
 		"title": "Menu Item",
@@ -168,9 +155,7 @@
 	{
 		"title": "Radio Group",
 		"markdown": "./libs/components/src/lib/radio-group/README.md",
-		"children": [
-			"Radio"
-		]
+		"children": ["Radio"]
 	},
 	{
 		"title": "Radio",
@@ -192,9 +177,7 @@
 	{
 		"title": "Tabs",
 		"markdown": "./libs/components/src/lib/tabs/README.md",
-		"children": [
-			"Tab"
-		]
+		"children": ["Tab"]
 	},
 	{
 		"title": "Tab",
@@ -240,9 +223,7 @@
 	{
 		"title": "Tree View",
 		"markdown": "./libs/components/src/lib/tree-view/README.md",
-		"children": [
-			"Tree Item"
-		]
+		"children": ["Tree Item"]
 	},
 	{
 		"title": "Tree Item",
@@ -252,9 +233,7 @@
 	{
 		"title": "Tag Group",
 		"markdown": "./libs/components/src/lib/tag-group/README.md",
-		"children": [
-			"Tag"
-		]
+		"children": ["Tag"]
 	},
 	{
 		"title": "Tag",
@@ -272,6 +251,11 @@
 	{
 		"title": "File Picker",
 		"markdown": "./libs/components/src/lib/file-picker/README.md"
+	},
+	{
+		"title": "Range Slider",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/range-slider/README.md"
 	},
 	{
 		"title": "Split Button",

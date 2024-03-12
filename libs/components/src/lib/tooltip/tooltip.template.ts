@@ -5,6 +5,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
+import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import type { Tooltip } from './tooltip';
 
 const getClasses = ({
@@ -25,8 +26,10 @@ export const TooltipTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Tooltip> = (context: ElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
+	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
 	return html`
+${anchorSlotTemplate}
 <${popupTag} class="${getClasses}" arrow alternate
 	:placement=${(x) => x.placement}
 	:anchor="${x => x._anchorEl}"

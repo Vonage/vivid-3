@@ -53,7 +53,7 @@ const resolveSingleType = (typeStr: string): TypeRef => ({ text: typeStr, vuePro
 export const makeTypeResolver =
   (typeDefs: Record<string, TypeUnion>) =>
   (typeStr = 'unknown', isAttribute = false): TypeUnion => {
-    let unionMembers = typeStr.split('|').map(t => t.trim());
+    let unionMembers = typeStr.split('|').map(t => t.trim()).filter(t => t.length > 0);
 
     if (isAttribute) {
       // Remove null and optional, as all attributes are optional

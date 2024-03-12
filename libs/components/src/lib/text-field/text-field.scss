@@ -1,21 +1,24 @@
-@use "partials/variables" as variables;
-@use "../focus/partials/variables" as focus-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment intermediate firm fierce faint soft,
-	$default: accent,
+	$shades: primary primary-text primary-increment intermediate firm fierce faint
+		soft,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle hover disabled readonly error success,
-	$default: fieldset,
+	$default: fieldset
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 $low-ink-color: --_low-ink-color;
 
@@ -30,9 +33,15 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 	@include connotation.connotation(text-field);
-	#{variables.$text-field-gutter-start}: calc(#{size.$vvd-size-normal} / 2.5); // default of 16px
-	#{variables.$text-field-gutter-end}: calc(#{size.$vvd-size-normal} / 2.5); // default of 16px
-	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2); // default of 20px
+	#{variables.$text-field-gutter-start}: calc(
+		#{size.$vvd-size-normal} / 2.5
+	); // default of 16px
+	#{variables.$text-field-gutter-end}: calc(
+		#{size.$vvd-size-normal} / 2.5
+	); // default of 16px
+	#{variables.$text-field-icon-size}: calc(
+		#{size.$vvd-size-normal} / 2
+	); // default of 20px
 
 	display: inline-grid;
 	width: 100%;
@@ -83,18 +92,18 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
 	padding-block: 0;
-	transition: color .2s, background-color .2s;
+	transition: color 0.2s, background-color 0.2s;
 
 	&::after {
 		position: absolute;
 		display: block;
-		block-size: 100%;
 		border-radius: inherit;
+		block-size: 100%;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		content: "";
+		content: '';
 		inline-size: 100%;
 		pointer-events: none;
-		transition: box-shadow .2s;
+		transition: box-shadow 0.2s;
 	}
 
 	&:focus-visible {
@@ -116,16 +125,14 @@ $low-ink-color: --_low-ink-color;
 }
 
 .wrapper {
-	block-size: 100%;
 	border-radius: inherit;
+	block-size: 100%;
 	inline-size: 100%;
-
-	&:focus-visible {
-		outline: none;
-	}
 }
 
 .control {
+	border-radius: inherit;
+
 	&:not(slot),
 	&::slotted(input) {
 		/* As input is in light dom, use !important and initial to prevent values getting overridden by global CSS resets etc. */
@@ -134,39 +141,42 @@ $low-ink-color: --_low-ink-color;
 		width: 100% !important;
 		box-sizing: border-box !important;
 		border: 0 none !important;
+		border-radius: inherit !important;
 		margin: initial !important;
 		appearance: none !important; /* for box-shadow visibility on IOS */
 		background-color: transparent !important;
 		block-size: 100% !important;
-		border-radius: inherit !important;
 		color: inherit !important;
 		font: inherit;
+		outline: transparent;
 		padding-block: 0 !important;
-		padding-inline-end: var(#{variables.$text-field-gutter-end}) !important;
-		padding-inline-start: var(#{variables.$text-field-gutter-start}) !important;
+		padding-inline: var(#{variables.$text-field-gutter-start})
+			var(#{variables.$text-field-gutter-end}) !important;
 	}
 
 	&:not(slot):disabled,
 	&::slotted(input:disabled) {
 		cursor: not-allowed !important;
 		opacity: 1 !important; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}) !important; /* 1. sets text fill to current `color` for safari */
+		-webkit-text-fill-color: var(
+			#{appearance.get-appearance-token(text)}
+		) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
 	// &::slotted(input)::placeholder - not working in safari, see workaround in text-field.ts
 	&:not(slot)::placeholder {
 		opacity: 1 !important; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{$low-ink-color}) !important; /* 1. sets text fill to current `color` for safari */
-	}
-
-	&:not(slot):focus-visible,
-	&::slotted(input:focus-visible) {
-		outline: none;
+		-webkit-text-fill-color: var(
+			#{$low-ink-color}
+		) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
 	.has-icon &:not(slot),
 	.has-icon &::slotted(input) {
-		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter-start}) * 2) !important;
+		padding-inline-start: calc(
+			var(#{variables.$text-field-icon-size}) +
+				var(#{variables.$text-field-gutter-start}) * 2
+		) !important;
 	}
 }
 
@@ -198,16 +208,26 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.focus-indicator {
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+/* focus */
 
-	pointer-events: none;
+@supports selector(:has(*)) {
+	.fieldset:has(.wrapper .control:focus-within)::after {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-	// two properties are needed because number-field and combobox inherits the style.
-	// only text-field has wrapper.
+		@include focus.focus;
+	}
+}
 
-	.wrapper:not(:focus-visible, :focus-within) > &,
-	.fieldset:not(:focus-visible, :focus-within) > & {
-		display: none;
+@supports not selector(:has(*)) {
+	.wrapper:focus-within::after {
+		@include focus.focus;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		position: absolute;
+		z-index: 1;
+		display: block;
+		border-radius: inherit;
+		content: '';
+		inset: 0;
 	}
 }

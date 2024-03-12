@@ -1,20 +1,21 @@
-@use "partials/variables" as variables;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: intermediate primary soft,
 	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle disabled,
 	$default: fieldset
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host {
 	display: inline-block;
@@ -36,8 +37,8 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	padding: 4px;
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	border-radius: var(#{variables.$listbox-border-radius});
+	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	contain: paint;
 	gap: 4px;
@@ -56,23 +57,22 @@
 		#{variables.$listbox-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
-
 	:host(:focus-within) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 		@include focus.focus;
 	}
 }
 
-
-
-
-::slotted([role="option"]) {
+::slotted([role='option']) {
 	border-radius: var(#{variables.$listbox-border-radius});
 	contain: content;
 }
 
-.base.disabled ::slotted([role="option"]) {
-	#{variables.$option-appearance-color-text}: var(#{appearance.get-appearance-token(outline)});
+.base.disabled ::slotted([role='option']) {
+	#{variables.$option-appearance-color-text}: var(
+		#{appearance.get-appearance-token(outline)}
+	);
 
 	pointer-events: none;
 }

@@ -31,7 +31,7 @@ Add a `label` attribute to add label to the Select.
 
 #### Option Label
 
-You can add a `label` attribute to the [vwc-option](../../components/option) to set a custom display value for the selected option.
+You can add a `label` attribute to the [vwc-option](/components/option/) to set a custom display value for the selected option.
 
 ```html preview 230px
 <vwc-select aria-label="Options Selector">
@@ -43,7 +43,7 @@ You can add a `label` attribute to the [vwc-option](../../components/option) to 
 
 ### Icon
 Add an `icon` attribute to add an icon to the Select.  
-Check out our [use case example](/#use-case)
+Check out our [use cases example](#use-cases) for a practical example.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -202,7 +202,7 @@ _Select_ internally uses _popup_ to display an element and its descendants above
 ### Fixed-Dropdown
 
 Add the `fixed-dropdown` attribute to set its popup to open as fixed. 
-This is useful for cases in which the dropdown is obstructed by other elements (see [the grid select example](../../components/data-grid#select-in-a-grid)).
+This is useful for cases in which the dropdown is obstructed by other elements (see [the grid select example](/components/data-grid/#select-in-a-grid)).
 
 - Type: `boolean`
 - Default: `false`
@@ -235,7 +235,7 @@ Add the `placeholder` attribute to add a placeholder to the Select.
 
 ### Default
 
-Read more about [vwc-option](../../components/option).
+Read more about [vwc-option](/components/option/).
 
 ```html preview 230px
 <style>

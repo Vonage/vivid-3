@@ -76,11 +76,12 @@
 		{% block header %}{% endblock %}
 
     <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/scripts/turbolinks.js' | url}}"></script>
     <script src="{{ '/assets/scripts/cache-assets.js' | url}}"></script>
 
   </head>
 
-<body>
+<body hx-boost="true" hx-target="main" hx-select="main" hx-swap="innerHTML scroll:html:top">
 
 	<vwc-header id="header-main" slot="app-content">
 
@@ -92,21 +93,21 @@
 			</a>
 		</div>
 
-    <vwc-button id="dark-mode-toggle" icon="light-mode-line" aria-label="Toggle theme settings" slot="action-items" class="vvd-theme-alternate"></vwc-button>
-    <vwc-menu id="dark-mode-menu" aria-label="Theme settings" anchor="dark-mode-toggle" slot="action-items" placement="bottom-start" auto-dismiss open>
+    <vwc-menu slot="action-items" id="dark-mode-menu" aria-label="Theme settings" placement="bottom-start" auto-dismiss open>
+    	<vwc-button slot="anchor" id="dark-mode-toggle" icon="light-mode-line" aria-label="Toggle theme settings" class="vvd-theme-alternate"></vwc-button>
       <vwc-menu-item icon="light-mode-line" role="menuitemradio" id="option-light" text="Light" check-appearance="tick-only" check-trailing></vwc-menu-item>
       <vwc-menu-item icon="dark-mode-line" role="menuitemradio" id="option-dark" text="Dark" check-appearance="tick-only" check-trailing></vwc-menu-item>
       <vwc-menu-item icon="switch-line" role="menuitemradio" id="option-auto" text="Auto" check-appearance="tick-only" check-trailing></vwc-menu-item>
     </vwc-menu>
 
-		<vwc-nav-item class="vvd-theme-alternate" slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub" role="navigation"></vwc-nav-item>
+		<vwc-button class="vvd-theme-alternate" slot="action-items" icon="github-mono" href="https://github.com/vonage/vivid-3" aria-label="View on GitHub"></vwc-button>
 
 		<vwc-side-drawer id="sidedrawer" open slot="app-content">
 			<vwc-layout gutters="small" column-basis="block">
 				{% include "navigation.njk" %}
 			</vwc-layout>
 
-				<main slot="app-content">
+				<main slot="app-content" hx-history-elt>
 					{% block banner %}{% endblock %}
 					<vwc-layout column-basis="block" class="main-layout">
 						<article class="article">

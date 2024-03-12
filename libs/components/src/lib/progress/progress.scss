@@ -1,20 +1,19 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
 	$shades: primary soft,
-	$default: accent,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: subtle,
 	$states: idle,
 	$default: subtle
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 $block-size: 6px;
 $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed};
@@ -25,8 +24,8 @@ $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed}
 	margin: 0;
 	outline: none;
 
-	&:not(.connotation-pacific){
-		@include connotation.connotation (progress);
+	&:not(.connotation-pacific) {
+		@include connotation.connotation(progress);
 		@include appearance.appearance;
 	}
 
@@ -34,9 +33,12 @@ $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed}
 		$start: var(#{constants.$vvd-color-information-200});
 		$end: var(#{constants.$vvd-color-cta-600});
 
-		#{connotation.get-connotation-token(primary)}: linear-gradient(to right, $start, $end);
+		#{connotation.get-connotation-token(primary)}: linear-gradient(
+			to right,
+			$start,
+			$end
+		);
 	}
-
 }
 
 .progress {
@@ -55,26 +57,24 @@ $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed}
 		background-color: var(#{constants.$vvd-color-neutral-100});
 	}
 
-
 	/* Shape */
 	.base:not(.shape-sharp) & {
 		border-radius: $rounded-border-radius;
 	}
 }
 
-
 .indeterminate {
 	display: flex;
+	border-radius: inherit;
 	background-color: var(#{connotation.get-connotation-token(primary)});
 	block-size: 100%;
-	border-radius: inherit;
 	inline-size: 100%;
 }
 
 .determinate {
+	border-radius: inherit;
 	background-color: var(#{connotation.get-connotation-token(primary)});
 	block-size: 100%;
-	border-radius: inherit;
 	transition: all 0.2s ease-in-out;
 
 	.connotation-pacific & {
@@ -123,7 +123,6 @@ $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed}
 	}
 }
 
-
 @keyframes indeterminate-1 {
 	0% {
 		opacity: 1;
@@ -141,6 +140,7 @@ $rounded-border-radius: #{border-radius-variables.$border-radius-semi-condensed}
 		transform: translateX(300%);
 	}
 }
+
 @keyframes indeterminate-2 {
 	0% {
 		opacity: 0;

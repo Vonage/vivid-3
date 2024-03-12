@@ -1,30 +1,14 @@
 {
-	"ignoreFiles": [
-		"**/*"
-	],
+	"ignoreFiles": ["**/*"],
 	"overrides": [
 		{
-			"files": [
-				"**/*.scss"
-			],
-			"plugins": [
-				"stylelint-no-unsupported-browser-features"
-			],
+			"files": ["**/*.scss"],
+			"plugins": ["stylelint-no-unsupported-browser-features"],
 			"extends": [
 				"stylelint-config-standard-scss",
-				"stylelint-config-idiomatic-order",
-				"stylelint-config-prettier"
+				"stylelint-config-idiomatic-order"
 			],
 			"rules": {
-				"string-quotes": "double",
-				"indentation": "tab",
-				"plugin/no-unsupported-browser-features": [
-					true,
-					{
-						"ignore": ["rem", "multicolumn", "css3-cursors", "css-touch-action"],
-						"severity": "warning"
-					}
-				],
 				"order/properties-alphabetical-order": null,
 				"selector-max-id": null,
 				"selector-class-pattern": null,
@@ -32,14 +16,14 @@
 				"selector-max-compound-selectors": null,
 				"no-duplicate-selectors": true,
 				"declaration-block-no-duplicate-properties": true,
-				"function-parentheses-space-inside": null,
 				"rule-empty-line-before": null,
 				"value-keyword-case": [
 					"lower",
 					{
 						"camelCaseSvgKeywords": true
 					}
-				]
+				],
+				"scss/operator-no-newline-after": null
 			}
 		}
 	]

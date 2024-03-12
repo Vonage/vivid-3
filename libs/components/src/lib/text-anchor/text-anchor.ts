@@ -3,9 +3,7 @@ import { attr, ViewTemplate } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
- * Base class for text-anchor
- *
- * @public
+ * @component text-anchor
  * @slot icon - Add an icon to the component.
  */
 export class TextAnchor extends Anchor {

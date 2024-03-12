@@ -1,11 +1,14 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/variables" as variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@import '../../shared/patterns/anchored';
 
 .base {
 	display: flex;
+	overflow: hidden auto;
 	box-sizing: border-box;
 	flex-direction: column;
 	gap: 8px;
@@ -13,8 +16,6 @@
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
 	max-inline-size: var(#{variables.$menu-max-inline-size});
 	min-inline-size: var(#{variables.$menu-min-inline-size});
-	overflow-x: hidden;
-	overflow-y: auto;
 	padding-block: 8px;
 }
 
@@ -23,7 +24,7 @@
 	text-decoration: none;
 }
 
-::slotted(a[role="menuitem"]:focus-visible) {
+::slotted(a[role='menuitem']:focus-visible) {
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
