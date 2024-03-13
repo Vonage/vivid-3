@@ -26,7 +26,7 @@
 .digit-btn {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--vvd-color-neutral-300);
+    border: 1px solid var(#{constants.$vvd-color-neutral-300});;
      border-radius: #{border-radius-variables.$border-radius-normal};
 }
 
