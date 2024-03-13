@@ -13,7 +13,7 @@ export interface FormElement {
 
 export interface FormElementHelperText {
 	helperText?: string;
-	_helperTextSlottedContent: HTMLElement[];
+	_helperTextSlottedContent?: HTMLElement[];
 }
 
 export interface FormElementSuccessText {
@@ -34,7 +34,7 @@ export class FormElementHelperText {
 	/**
 	 * @internal
 	 */
-	@observable _helperTextSlottedContent: HTMLElement[] = [];
+	@observable _helperTextSlottedContent?: HTMLElement[];
 }
 
 export class FormElementSuccessText {

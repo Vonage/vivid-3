@@ -353,7 +353,7 @@ describe('vwc-select', () => {
 		it('should prevent focusin from firing before click event', async () => {
 			element.innerHTML = `
 				<option value="1" id="id1">1</option>
-				<option value="2" id="id2>2</option>
+				<option value="2" id="id2">2</option>
 				<option value="3">3</option>
 			`;
 			await elementUpdated(element);
@@ -540,6 +540,17 @@ describe('vwc-select', () => {
 
 			await elementUpdated(element);
 			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('2');
+		});
+	});
+
+	describe('feedback messages', () => {
+		it('should ignore events when triggered on feedback messages', async () => {
+			element.helperText = 'helper text';
+			await elementUpdated(element);
+
+			element.shadowRoot!.querySelector('.helper-message')!.dispatchEvent(new Event('click', { bubbles: true, composed: true }));
+
+			expect(element.open).toBe(false);
 		});
 	});
 
