@@ -19,7 +19,7 @@
     --vvd-size-density: 2;
 
     align-self: flex-start;
-    border-bottom: 1px solid var(--vvd-color-neutral-300);
+    border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
     grid-column: 1 / -1;
 }
 
