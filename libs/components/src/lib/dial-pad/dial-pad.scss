@@ -1,18 +1,22 @@
 @use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as border-radius-variables;
+
+$inline-size: 230px;
+$gap: 16px;
 
 .base {
     display: grid;
     margin: 16px;
-    gap: 16px;
-    inline-size: 230px;
+    gap: $gap;
+    inline-size: $inline-size;
 }
 
 .digits {
     display: grid;
-    gap: 16px;
+    gap: $gap;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    inline-size: 230px;
+    inline-size: $inline-size;
 }
 
 .phone-field {
