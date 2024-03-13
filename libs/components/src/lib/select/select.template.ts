@@ -1,4 +1,4 @@
-import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import { ExecutionContext, html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
@@ -93,6 +93,18 @@ function renderControl(context: ElementDefinitionContext) {
 }
 
 /**
+ * Ignore events that originate from feedback, e.g. a click on link
+ */
+function ifNotFromFeedback<E extends Event>(handler: (x: Select, event: E) => void) {
+	return (x: Select, c: ExecutionContext) => {
+		if (!c.event.composedPath().includes(x._feedbackWrapper!)) {
+			return handler(x, c.event as E);
+		}
+		return true;
+	};
+}
+
+/**
  * The template for the Select component.
  *
  * @param context - element definition context
@@ -104,7 +116,7 @@ export const SelectTemplate: (
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 
 	return html<Select>`
-		<div
+		<template
 			class="base"
 			aria-label="${x => x.ariaLabel}"
 			aria-activedescendant="${x => x.ariaActiveDescendant}"
@@ -115,14 +127,15 @@ export const SelectTemplate: (
 			aria-multiselectable="${x => x.ariaMultiSelectable}"
 			role="combobox"
 			tabindex="${x => (!x.disabled ? '0' : null)}"
-			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-			@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
-			@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-			@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
+			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"
+			@focusin="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusinHandler(e))}"
+			@focusout="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusoutHandler(e))}"
+			@keydown="${ifNotFromFeedback<KeyboardEvent>((x, e) => x.keydownHandler(e))}"
+			@mousedown="${ifNotFromFeedback<MouseEvent>((x, e) => x.mousedownHandler(e))}"
+			>
 				${renderControl(context)}
-		</div>
-		${getFeedbackTemplate(context)}
+			<div class="feedback-wrapper" ${ref('_feedbackWrapper')}>${getFeedbackTemplate(context)}</div>
+		</template>
 	`;
 };
 

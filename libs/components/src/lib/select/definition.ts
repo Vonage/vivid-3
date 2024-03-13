@@ -16,10 +16,7 @@ export type { SelectAppearance, SelectShape } from './select';
 export const selectDefinition = Select.compose<SelectOptions>({
 	baseName: 'select',
 	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	}
+	styles
 });
 
 /**

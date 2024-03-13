@@ -21,6 +21,10 @@
 
 $low-ink-color: --_low-ink-color;
 
+:host(:focus-visible) {
+	outline: none;
+}
+
 :host {
 	display: inline-flex;
 	flex-direction: column;
@@ -32,16 +36,6 @@ $low-ink-color: --_low-ink-color;
 :host([disabled]) {
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
 	cursor: not-allowed;
-}
-
-.base {
-	display: inline-flex;
-	flex-direction: column;
-	gap: 4px;
-
-	&:focus-visible {
-		outline: none;
-	}
 }
 
 .label {
@@ -86,7 +80,7 @@ $low-ink-color: --_low-ink-color;
 		#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
-	.base:focus-visible & {
+	:host(:focus-visible) & {
 		@include focus.focus;
 	}
 }
@@ -134,6 +128,10 @@ $low-ink-color: --_low-ink-color;
 	.control.has-meta & {
 		padding-inline-end: 8px;
 	}
+}
+
+.feedback-wrapper {
+	display: contents;
 }
 
 ::part(popup-base) {

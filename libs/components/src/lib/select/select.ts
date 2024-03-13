@@ -75,6 +75,11 @@ export class Select extends FoundationSelect {
 	@observable placeholderOption: ListboxOption | null = null;
 
 	/**
+	 * @internal
+	 */
+	@observable _feedbackWrapper: HTMLElement | null = null;
+
+	/**
 	*
 	* Slot observer:
 	*
