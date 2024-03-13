@@ -1,5 +1,6 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 $inline-size: 230px;
 $gap: 16px;
