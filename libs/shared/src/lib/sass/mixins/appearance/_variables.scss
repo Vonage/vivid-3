@@ -226,7 +226,7 @@ $states-mapping: (
 		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(dim)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
 	),
@@ -263,7 +263,7 @@ $states-mapping: (
 		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
 		),
 	),
@@ -337,7 +337,7 @@ $states-mapping: (
 		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(dim)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
 	),
@@ -374,7 +374,7 @@ $states-mapping: (
 		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
 		),
 	),
