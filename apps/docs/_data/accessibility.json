@@ -6,5 +6,9 @@
   {
 		"title": "Testing for Accessibility",
 		"markdown": "./docs/accessibility/testing.md"
+	},
+  {
+		"title": "Resources",
+		"markdown": "./docs/accessibility/resources.md"
 	}
 ]

@@ -26,11 +26,11 @@ Vivid components are **accessibility ready**. Many accessibility features come f
 
 Our components are tested for accessibility with automated and manual techniques. Users should expect to be able to access features built with our components using modern assistive technologies, including tools like screen readers, supports for low vision and colour blindness, alternative keyboards, switch devices, and tools for readability.
 
-Find out more about how we [test Vivid components for accessibility](/accessibility/testing-for-accessibility/)
+Find out more about how we [test for accessibility](/accessibility/testing-for-accessibility/)
 
 ## Meeting global accessibility guidelines
 
-Vivid is working towards meeting the Web Content **Accessibility Guidelines (WCAG)** 2.2 Level A and Level AA success criteria.
+Vonage is working towards meeting the Web Content **Accessibility Guidelines (WCAG)** 2.2 Level A and Level AA success criteria.
 
 In addition to meeting the previously mentioned accessibility guidelines, we also strive to provide a highly usable experience for everyone. Our goal is to make it easy for everyone to use our components, whether they have a disability or not.
 
