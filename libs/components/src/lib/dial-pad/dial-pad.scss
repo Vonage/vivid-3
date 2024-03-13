@@ -1,3 +1,5 @@
+@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
+
 .base {
     display: grid;
     margin: 16px;
