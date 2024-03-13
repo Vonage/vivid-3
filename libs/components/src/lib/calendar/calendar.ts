@@ -15,9 +15,8 @@ import { getEventContext } from './helpers/calendar.event-context';
 
 
 /**
- * Base class for calendar
- *
  * @public
+ * @component calendar
  * @slot - Default slot.
  * @slot day-0 - Assign elements to corresponding day column using this slot.
  * @slot day-1 - Assign elements to corresponding day column using this slot.

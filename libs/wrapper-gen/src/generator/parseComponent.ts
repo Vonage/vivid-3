@@ -2,13 +2,16 @@ import { ClassMember, ClassMethod } from 'custom-elements-manifest';
 import { ComponentDef } from './ComponentDef';
 import { kebabToPascal } from './utils/casing';
 import { extractLocalTypeDefs } from './extractLocalTypeDefs';
-import { getAttributeName, getVividComponentDeclaration } from './customElementDeclarations';
+import {
+	getAttributeName,
+	getClassNameOfVividComponent,
+	getVividComponentDeclaration
+} from './customElementDeclarations';
 import { makeTypeResolver } from './types';
 import { globalTypeDefs } from './globalTypeDefs';
 
 export const parseComponent = (name: string): ComponentDef => {
-  let className = kebabToPascal(name);
-  if (className === 'Option') className = 'ListboxOption'; // Handle inconsistent naming
+  const className = getClassNameOfVividComponent(name);
 
   const declaration = getVividComponentDeclaration(name, className);
 
@@ -79,7 +82,7 @@ export const parseComponent = (name: string): ComponentDef => {
     description: declaration.description,
     attributes,
     events,
-    vueModels: [],
+    vueModels: declaration.vividComponent.vueModels ?? [],
     methods,
     slots,
     localTypeDefs,

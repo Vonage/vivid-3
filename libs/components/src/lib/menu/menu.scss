@@ -1,9 +1,10 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/variables" as variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@import "../../shared/patterns/anchored";
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@import '../../shared/patterns/anchored';
 
 .base {
 	display: flex;
@@ -23,7 +24,7 @@
 	text-decoration: none;
 }
 
-::slotted(a[role="menuitem"]:focus-visible) {
+::slotted(a[role='menuitem']:focus-visible) {
 	@include focus.focus;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 

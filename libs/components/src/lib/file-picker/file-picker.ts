@@ -26,12 +26,10 @@ export type FilePickerSize = Extract<Size, Size.Normal | Size.Expanded>;
 const isFormAssociatedTryingToSetFormValueToFakePath = (value: File | string | FormData | null) => typeof value === 'string';
 
 /**
- * File-picker component
- *
  * @public
+ * @component file-picker
  * @event change - Emitted when a file is added or removed.
  */
-
 @errorText
 @formElements
 export class FilePicker extends FormAssociatedFilePicker {

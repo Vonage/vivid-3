@@ -3,6 +3,9 @@ import {attr, observable} from '@microsoft/fast-element';
 
 /**
  * An empty state element. Used when there is no data to display to the user.
+ *
+ * @public
+ * @component empty-state
  * @slot - The default slot controls the body text of the empty state
  * @slot graphic - The graphic slot allows overriding the icon with a custom illustration
  * @slot action-items - Slot to add action items to the empty state
