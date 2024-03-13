@@ -1,19 +1,20 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text primary-increment faint pale dim,
 	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: listitem,
 	$states: idle hover selected selectedAndHover,
-	$default: listitem,
+	$default: listitem
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 
 :host {
 	min-inline-size: 80px;
@@ -24,7 +25,7 @@
 }
 
 .base {
-	@include connotation.connotation (data-grid-cell);
+	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
 
 	display: flex;
@@ -42,21 +43,20 @@
 		@include focus.focus;
 	}
 
-	:host([cell-type="columnheader"]) & {
+	:host([cell-type='columnheader']) & {
 		border-color: var(#{constants.$vvd-color-canvas-text});
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
 
-	:host(:is([aria-selected]):not([cell-type="columnheader"])) & {
+	:host(:is([aria-selected]):not([cell-type='columnheader'])) & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
 }
 
-
 slot {
 	display: block;
 	overflow: hidden;
-	inline-size:100%;
+	inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }

@@ -18,9 +18,7 @@ export type LisboxAppearance = Extract<Appearance, Appearance.Fieldset | Appeara
 type ListboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for listbox
- *
- * @public
+ * @component listbox
  * @slot - Default slot.
  */
 export class Listbox extends FoundationListboxElement {

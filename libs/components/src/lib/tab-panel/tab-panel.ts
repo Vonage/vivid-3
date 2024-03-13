@@ -2,9 +2,8 @@ import { TabPanel as FoundationTabPanel } from '@microsoft/fast-foundation';
 
 
 /**
- * Base class for tab-panel
- *
  * @public
+ * @component tab-panel
  * @slot - Default slot.
  */
 export class TabPanel extends FoundationTabPanel {}

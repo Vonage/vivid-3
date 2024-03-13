@@ -1,24 +1,25 @@
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary intermediate faint,
-	$default: accent,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle,
-	$default: fieldset,
+	$default: fieldset
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host {
 	display: inline-block;
 }
 
 .base {
-	@include connotation.connotation (action-group);
+	@include connotation.connotation(action-group);
 	@include appearance.appearance;
 
 	position: relative;
@@ -34,8 +35,8 @@
 		z-index: 1;
 		border-radius: inherit;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		content: "";
-		inset:0;
+		content: '';
+		inset: 0;
 		pointer-events: none;
 	}
 
@@ -55,8 +56,7 @@
 }
 
 /* Separator */
-::slotted([role="separator"]) {
+::slotted([role='separator']) {
 	align-self: stretch;
 	margin-block: 4px;
 }
-

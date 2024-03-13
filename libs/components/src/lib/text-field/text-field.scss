@@ -1,21 +1,24 @@
-@use "partials/variables" as variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment intermediate firm fierce faint soft,
-	$default: accent,
+	$shades: primary primary-text primary-increment intermediate firm fierce faint
+		soft,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: fieldset ghost,
 	$states: idle hover disabled readonly error success,
-	$default: fieldset,
+	$default: fieldset
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 $low-ink-color: --_low-ink-color;
 
@@ -30,9 +33,15 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 	@include connotation.connotation(text-field);
-	#{variables.$text-field-gutter-start}: calc(#{size.$vvd-size-normal} / 2.5); // default of 16px
-	#{variables.$text-field-gutter-end}: calc(#{size.$vvd-size-normal} / 2.5); // default of 16px
-	#{variables.$text-field-icon-size}: calc(#{size.$vvd-size-normal} / 2); // default of 20px
+	#{variables.$text-field-gutter-start}: calc(
+		#{size.$vvd-size-normal} / 2.5
+	); // default of 16px
+	#{variables.$text-field-gutter-end}: calc(
+		#{size.$vvd-size-normal} / 2.5
+	); // default of 16px
+	#{variables.$text-field-icon-size}: calc(
+		#{size.$vvd-size-normal} / 2
+	); // default of 20px
 
 	display: inline-grid;
 	width: 100%;
@@ -83,7 +92,7 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / 4;
 	padding-block: 0;
-	transition: color .2s, background-color .2s;
+	transition: color 0.2s, background-color 0.2s;
 
 	&::after {
 		position: absolute;
@@ -91,10 +100,10 @@ $low-ink-color: --_low-ink-color;
 		border-radius: inherit;
 		block-size: 100%;
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-		content: "";
+		content: '';
 		inline-size: 100%;
 		pointer-events: none;
-		transition: box-shadow .2s;
+		transition: box-shadow 0.2s;
 	}
 
 	&:focus-visible {
@@ -121,7 +130,6 @@ $low-ink-color: --_low-ink-color;
 	inline-size: 100%;
 }
 
-
 .control {
 	border-radius: inherit;
 
@@ -142,25 +150,33 @@ $low-ink-color: --_low-ink-color;
 		font: inherit;
 		outline: transparent;
 		padding-block: 0 !important;
-		padding-inline: var(#{variables.$text-field-gutter-start}) var(#{variables.$text-field-gutter-end}) !important;
+		padding-inline: var(#{variables.$text-field-gutter-start})
+			var(#{variables.$text-field-gutter-end}) !important;
 	}
 
 	&:not(slot):disabled,
 	&::slotted(input:disabled) {
 		cursor: not-allowed !important;
 		opacity: 1 !important; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{appearance.get-appearance-token(text)}) !important; /* 1. sets text fill to current `color` for safari */
+		-webkit-text-fill-color: var(
+			#{appearance.get-appearance-token(text)}
+		) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
 	// &::slotted(input)::placeholder - not working in safari, see workaround in text-field.ts
 	&:not(slot)::placeholder {
 		opacity: 1 !important; /* 2. correct opacity on iOS */
-		-webkit-text-fill-color: var(#{$low-ink-color}) !important; /* 1. sets text fill to current `color` for safari */
+		-webkit-text-fill-color: var(
+			#{$low-ink-color}
+		) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
 	.has-icon &:not(slot),
 	.has-icon &::slotted(input) {
-		padding-inline-start: calc(var(#{variables.$text-field-icon-size}) + var(#{variables.$text-field-gutter-start}) * 2) !important;
+		padding-inline-start: calc(
+			var(#{variables.$text-field-icon-size}) +
+				var(#{variables.$text-field-gutter-start}) * 2
+		) !important;
 	}
 }
 
@@ -211,7 +227,7 @@ $low-ink-color: --_low-ink-color;
 		z-index: 1;
 		display: block;
 		border-radius: inherit;
-		content: "";
+		content: '';
 		inset: 0;
 	}
 }

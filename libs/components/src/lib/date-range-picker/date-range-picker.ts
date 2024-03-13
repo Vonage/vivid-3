@@ -28,11 +28,12 @@ function isDefined<T>(value: T | null | undefined): value is T {
 }
 
 /**
- * Base class for date-range-picker
- *
  * @public
+ * @component date-range-picker
  * @event input:start - Event emitted when the start value changes
  * @event input:end - Event emitted when the end value changes
+ * @vueModel start current-start input:start `(event.target as any).start`
+ * @vueModel end current-end input:end `(event.target as any).end`
  */
 @errorText
 @formElements

@@ -17,9 +17,8 @@ Appearance.Elevated | Appearance.Ghost | Appearance.Outlined>;
 
 
 /**
- * Base class for card
- *
  * @public
+ * @component card
  * @slot graphic - The graphic slot overrides the icon property.
  * @slot media - The media slot is mainly for images or video content above the card header.
  * @slot meta - The meta slot is for action content in the card header.

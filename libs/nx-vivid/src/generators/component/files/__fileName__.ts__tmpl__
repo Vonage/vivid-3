@@ -3,9 +3,8 @@ import { attr } from '@microsoft/fast-element';
 
 
 /**
- * Base class for <%= name %>
- *
  * @public
+ * @component <%= name %>
  */
 export class <%= className %> extends FoundationElement {
 	/**
