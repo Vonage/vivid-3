@@ -3,14 +3,17 @@ import 'element-internals-polyfill';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
-import { iconRegistries, registerFactory } from '@vonage/vivid';
+import { registerFactory } from '@vonage/vivid';
 import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables.ts';
 import {
 	ErrorText,
 	errorText,
 	FormElement,
-	FormElementCharCount, FormElementHelperText,
-	formElements, FormElementSuccessText, getFeedbackTemplate
+	FormElementCharCount,
+	FormElementHelperText,
+	formElements,
+	FormElementSuccessText,
+	getFeedbackTemplate,
 } from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
@@ -319,14 +322,14 @@ describe('getFeedbackTemplate', () => {
 	class Feedback extends FormAssociated(FoundationElement) {
 		proxy = document.createElement('input');
 	}
-	interface Feedback extends FormElementHelperText, FormElementSuccessText, FormElement, ErrorText {}
+	interface Feedback extends FormElementHelperText, FormElementSuccessText, FormElement, ErrorText, FormAssociated {}
 	applyMixinsWithObservables(Feedback, FormElementHelperText, FormElementSuccessText);
 
 	const feedbackDef = Feedback.compose({
 		baseName: 'feedback',
 		template: getFeedbackTemplate,
 	});
-	registerFactory([feedbackDef(), ...iconRegistries])('test');
+	registerFactory([feedbackDef()])('test');
 
 	let element: Feedback;
 	beforeEach(async () => {
@@ -366,6 +369,16 @@ describe('getFeedbackTemplate', () => {
 	});
 
 	describe('error text', () => {
+		it('should show validation error when the field is invalid', async () => {
+			element.dirtyValue = true;
+			element.dispatchEvent(new Event('blur'));
+			element.proxy.setCustomValidity('error text');
+			element.validate();
+			await elementUpdated(element);
+
+			expect(getMessage('error')).toBe('error text');
+		});
+
 		it('should show error text when property is set', async () => {
 			element.errorText = 'error text';
 			await elementUpdated(element);

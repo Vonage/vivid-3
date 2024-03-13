@@ -131,65 +131,20 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('helper text', function () {
-		it('should render the helper text when attribute is set on select', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
-			const helperText = 'Helper Text';
-			element.helperText = helperText;
-			await elementUpdated(element);
-			expect(helperTextElementWithoutText)
-				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-message')
-				?.textContent
-				?.trim())
-				.toEqual(helperText);
-		});
-	});
-
-	describe('success Text', () => {
+	describe('success text', () => {
 		it('should add success class to base when successText is set', async function () {
-			(element as any).successText = 'success';
+			element.successText = 'success';
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains('success')).toBeTruthy();
 		});
-
-		it('should show success text when successText is set', async function () {
-			(element as any).successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
-		});
-
-		it('should remove success text when undefined', async function () {
-			(element as any).successText = 'success';
-			await elementUpdated(element);
-			(element as any).successText = undefined;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.success-message')).toBeNull();
-		});
-
 	});
 
-	describe('error Text', () => {
+	describe('error text', () => {
 		it('should add error class to base when errorText is set', async function () {
-			(element as any).errorText = 'error';
+			element.errorText = 'error';
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains('error')).toBeTruthy();
 		});
-
-		it('should show error text when errorText is set', async function () {
-			(element as any).errorText = 'error';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()).toEqual('error');
-		});
-
-		it('should remove error text when undefined', async function () {
-			(element as any).errorText = 'error';
-			await elementUpdated(element);
-			(element as any).errorText = undefined;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-		});
-
 	});
 
 	describe('disabled', function () {
@@ -568,7 +523,7 @@ describe('vwc-select', () => {
 
 			await elementUpdated(element);
 			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('placeholder');
-		
+
 			element.selectedIndex = 2;
 			await elementUpdated(element);
 			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('3');
