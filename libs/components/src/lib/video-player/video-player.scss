@@ -1,6 +1,7 @@
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@import "../../../../../node_modules/video.js/dist/video-js.css";
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@import '../../../../../node_modules/video.js/dist/video-js.css';
 
 .vjs-theme-vivid {
 	$control-size: 40px;
@@ -12,7 +13,7 @@
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	container-type: inline-size;
 	font: var(#{constants.$vvd-typography-base});
-	
+
 	.vjs-big-play-button {
 		$big-play-btn-size: 60px;
 		$big-play-btn-offset: calc($big-play-btn-size / 2);
@@ -26,23 +27,24 @@
 		margin-inline-start: -$big-play-btn-offset;
 	}
 
-	&:hover  {
+	&:hover {
 		.vjs-big-play-button {
 			background-color: $control-background-color-hover;
 		}
 	}
 
-	.vjs-poster, .vjs-tech {
+	.vjs-poster,
+	.vjs-tech {
 		overflow: hidden;
 		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
-	.vjs-time-control { 
+	.vjs-time-control {
 		display: block;
 		padding: 0;
 		inline-size: auto;
 		line-height: 2.9;
-		min-inline-size: auto; 
+		min-inline-size: auto;
 	}
 
 	.vjs-duration {
@@ -53,8 +55,8 @@
 		padding: 0 4px;
 	}
 
-	.vjs-remaining-time { 
-		display: none; 
+	.vjs-remaining-time {
+		display: none;
 	}
 
 	.vjs-control-bar {
@@ -96,7 +98,7 @@
 		}
 	}
 
-	.vjs-progress-control { 
+	.vjs-progress-control {
 		.vjs-progress-holder,
 		.vjs-load-progress,
 		.vjs-play-progress {
@@ -127,7 +129,7 @@
 			margin-block-start: 2px;
 		}
 	}
-	
+
 	.vjs-playback-rate .vjs-menu {
 		left: -8px;
 		inline-size: 56px;
@@ -156,7 +158,7 @@
 			background-color: $control-background-color;
 		}
 
-		&.vjs-hover .vjs-mute-control~.vjs-volume-control.vjs-volume-vertical {
+		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical {
 			left: -40px;
 		}
 	}
@@ -171,7 +173,11 @@
 		text-align: center;
 	}
 
-	.vjs-audio-button+.vjs-menu .vjs-main-desc-menu-item .vjs-menu-item-text .vjs-icon-placeholder {
+	.vjs-audio-button
+		+ .vjs-menu
+		.vjs-main-desc-menu-item
+		.vjs-menu-item-text
+		.vjs-icon-placeholder {
 		display: none;
 	}
 
