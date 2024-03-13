@@ -1,14 +1,16 @@
 import 'element-internals-polyfill';
 
-import { fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
-import { FormAssociated } from '@microsoft/fast-foundation';
+import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
+import { iconRegistries, registerFactory } from '@vonage/vivid';
+import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables.ts';
 import {
 	ErrorText,
 	errorText,
 	FormElement,
-	FormElementCharCount,
-	formElements,
+	FormElementCharCount, FormElementHelperText,
+	formElements, FormElementSuccessText, getFeedbackTemplate
 } from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
@@ -307,6 +309,95 @@ describe('Form Elements', function () {
 			instance.validate();
 
 			expect(baseValidate).toHaveBeenCalled();
+		});
+	});
+});
+
+describe('getFeedbackTemplate', () => {
+	@errorText
+	@formElements
+	class Feedback extends FormAssociated(FoundationElement) {
+		proxy = document.createElement('input');
+	}
+	interface Feedback extends FormElementHelperText, FormElementSuccessText, FormElement, ErrorText {}
+	applyMixinsWithObservables(Feedback, FormElementHelperText, FormElementSuccessText);
+
+	const feedbackDef = Feedback.compose({
+		baseName: 'feedback',
+		template: getFeedbackTemplate,
+	});
+	registerFactory([feedbackDef(), ...iconRegistries])('test');
+
+	let element: Feedback;
+	beforeEach(async () => {
+		element = await fixture('<test-feedback></test-feedback>') as Feedback;
+	});
+
+	const getMessage = (type: string) => {
+		const messageEl = element.shadowRoot!.querySelector(`.${type}-message.message--visible`);
+		if (!messageEl) {
+			return null;
+		}
+		const slot = messageEl.querySelector('slot') as HTMLSlotElement | null;
+		if (slot && slot.assignedNodes().length > 0) {
+			return slot.assignedNodes()[0].textContent!.trim();
+		} else {
+			return messageEl.textContent!.trim();
+		}
+	};
+
+	describe('helper text', () => {
+		it('should show helper text when property is set', async () => {
+			element.helperText = 'helper text';
+			await elementUpdated(element);
+
+			expect(getMessage('helper')).toBe('helper text');
+		});
+
+		it('should allow setting helper text via slot', async () => {
+			const helperText = document.createElement('span');
+			helperText.slot = 'helper-text';
+			helperText.textContent = 'helper text';
+			element.appendChild(helperText);
+			await elementUpdated(element);
+
+			expect(getMessage('helper')).toBe('helper text');
+		});
+	});
+
+	describe('error text', () => {
+		it('should show error text when property is set', async () => {
+			element.errorText = 'error text';
+			await elementUpdated(element);
+
+			expect(getMessage('error')).toBe('error text');
+		});
+
+		it('should hide helper text when set', async () => {
+			element.helperText = 'helper text';
+			element.errorText = 'error text';
+			await elementUpdated(element);
+
+			expect(getMessage('helper')).toBe(null);
+		});
+	});
+
+	describe('success text', () => {
+		it('should show success text when set', async () => {
+			element.successText = 'success text';
+			await elementUpdated(element);
+
+			expect(getMessage('success')).toBe('success text');
+		});
+
+		it('should hide error and helper text when set', async () => {
+			element.helperText = 'helper text';
+			element.errorText = 'error text';
+			element.successText = 'success text';
+			await elementUpdated(element);
+
+			expect(getMessage('helper')).toBe(null);
+			expect(getMessage('error')).toBe(null);
 		});
 	});
 });
