@@ -14,9 +14,8 @@ const totalConverter: ValueConverter = {
 };
 
 /**
- * Base class for pagination
- *
  * @public
+ * @component pagination
  * @event pagination-change - Fires when the page changes.
  */
 export class Pagination extends FoundationElement {
