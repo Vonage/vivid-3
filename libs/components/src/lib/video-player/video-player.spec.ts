@@ -135,30 +135,51 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			const videoEle = getVideoEle();
-			expect(videoEle?.loop).toBe(true);
+			expect(videoEle.loop).toBe(true);
 		});
 	});
 
+	function menuItemsMatchReverseOrderOfRates(playbackRates: string[], playbackRatesMenuItems: NodeListOf<Element>) {
+		return playbackRates.reverse().reduce((acc, rate, index) => {
+			return acc &&
+				playbackRatesMenuItems[index].querySelector('.vjs-menu-item-text')!.textContent === `${rate}x`;
+		}, true);
+	}
+
 	describe('playback rates', () => {
-		it('should set custom playback rates', async () => {
+		it('should set custom playback rates menu according to given value', async () => {
+			const playbackRates = '0.25, 0.5, 1';
+			const playbackRatesArray = playbackRates.split(', ');
+
 			element = (await fixture(
-				`<${COMPONENT_TAG} playback-rates="0.25, 0.5, 1">
+				`<${COMPONENT_TAG} playback-rates="${playbackRates}">
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
+
 			await elementUpdated(element);
-			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll('.vjs-playback-rate .vjs-menu li');
-			expect(playbackRatesMenuItems?.length).toBe(3);
-			if (playbackRatesMenuItems?.length === 3) {
-				expect(playbackRatesMenuItems[0].querySelector('.vjs-menu-item-text')!.textContent).toBe('1x');
-				expect(playbackRatesMenuItems[1].querySelector('.vjs-menu-item-text')!.textContent).toBe('0.5x');
-				expect(playbackRatesMenuItems[2].querySelector('.vjs-menu-item-text')!.textContent).toBe('0.25x');
-			}
+
+			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll('.vjs-playback-rate .vjs-menu li') as NodeListOf<Element>;
+
+			expect(playbackRatesMenuItems.length).toBe(playbackRatesArray.length);
+
+			expect(menuItemsMatchReverseOrderOfRates(playbackRatesArray, playbackRatesMenuItems)).toBe(true);
+
 		});
 
 		it('should hide playback rates when passed an empty string', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} playback-rates="">
+					<source src="${VIDEO_SRC}" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+			const playbackRate = element.shadowRoot?.querySelector('.vjs-playback-rate');
+			expect(playbackRate?.classList.contains('vjs-hidden')).toBe(true);
+		});
+
+		it('should hide playback rates when no playback rate is given', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG}>
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
