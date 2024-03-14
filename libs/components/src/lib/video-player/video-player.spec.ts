@@ -41,7 +41,7 @@ describe('vwc-video-player', () => {
 		return element.shadowRoot!.querySelector('.vjs-modal-dialog-content');
 	}
 
-	function getTrackEles() {
+	function getTrackElements() {
 		const videoEle = getVideoEle();
 		return videoEle?.querySelectorAll('track');
 	}
@@ -50,6 +50,10 @@ describe('vwc-video-player', () => {
 		const skipBackwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-backward-${amount}`);
 		const skipForwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-forward-${amount}`);
 		return [skipBackwardBtn, skipForwardBtn];
+	}
+
+	function getPosterElement() {
+		return element.shadowRoot!.querySelector('picture') as HTMLPictureElement;
 	}
 
 	describe('basic', () => {
@@ -124,6 +128,20 @@ describe('vwc-video-player', () => {
 
 			expect(autoplayExistsWhenAttributeIsSet).toBe(true);
 			expect(getVideoEle().hasAttribute('autoplay')).toBe(false);
+		});
+	});
+
+	describe('poster', () => {
+		it('should reflect poster on the video element', async () => {
+			const poster = 'poster.jpg';
+			element = (await fixture(
+				`<${COMPONENT_TAG} poster="${poster}">
+					<source src="${VIDEO_SRC}" type="video/mp4">
+				</${COMPONENT_TAG}>`
+			)) as VideoPlayer;
+
+
+			expect(getPosterElement().querySelector('img')!.getAttribute('src')).toBe(poster);
 		});
 	});
 
@@ -206,13 +224,15 @@ describe('vwc-video-player', () => {
 						label="French">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
+
 			await elementUpdated(element);
-			const trackEles = getTrackEles();
-			expect(trackEles.length).toBe(2);
-			expect(trackEles[0].getAttribute('label')).toBe('English');
-			expect(trackEles[0].getAttribute('kind')).toBe('captions');
-			expect(trackEles[1].getAttribute('label')).toBe('French');
-			expect(trackEles[1].getAttribute('kind')).toBe('captions');
+			const trackElements = getTrackElements();
+
+			expect(trackElements.length).toBe(2);
+			expect(trackElements[0].getAttribute('label')).toBe('English');
+			expect(trackElements[0].getAttribute('kind')).toBe('captions');
+			expect(trackElements[1].getAttribute('label')).toBe('French');
+			expect(trackElements[1].getAttribute('kind')).toBe('captions');
 		});
 	});
 
@@ -235,7 +255,8 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			const trackEles = getTrackEles();
+			const trackEles = getTrackElements();
+
 			expect(trackEles.length).toBe(2);
 			expect(trackEles[0].getAttribute('label')).toBe('English');
 			expect(trackEles[0].getAttribute('kind')).toBe('descriptions');
@@ -253,7 +274,8 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			const trackEles = getTrackEles();
+			const trackEles = getTrackElements();
+
 			expect(trackEles.length).toBe(1);
 			expect(trackEles[0].getAttribute('kind')).toBe('chapters');
 		});
@@ -309,6 +331,9 @@ describe('vwc-video-player', () => {
 	}
 
 	describe('events', () => {
+		function endVideo(videoPlayer: VideoPlayer) {
+			videoPlayer.player.trigger('ended');
+		}
 		beforeEach(async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}>
@@ -352,7 +377,7 @@ describe('vwc-video-player', () => {
 		it('should emit the ended event when the video ended', () => {
 			const spy = jest.fn();
 			element.addEventListener('ended', spy);
-			element.player.trigger('ended');
+			endVideo(element);
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
