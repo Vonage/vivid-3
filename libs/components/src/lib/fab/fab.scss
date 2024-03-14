@@ -37,9 +37,9 @@
 		var(constants.$vvd-color-canvas-text)
 	);
 	column-gap: var(#{variables.$icon-gap});
-	padding-inline: var(#{variables.$inline-padding});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	font: var(#{constants.$vvd-typography-base-bold});
+	padding-inline: var(#{variables.$inline-padding});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
 
@@ -72,8 +72,9 @@
 	}
 
 	&.icon-only {
-		border-radius: #{border-radius-variables.$border-radius-full};
 		#{variables.$inline-padding}: 0;
+
+		border-radius: #{border-radius-variables.$border-radius-full};
 		place-content: center;
 
 		@supports (aspect-ratio: 1) {
