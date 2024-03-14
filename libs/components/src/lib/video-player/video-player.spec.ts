@@ -74,6 +74,12 @@ describe('vwc-video-player', () => {
 		it('should remove the lang attribute to avoid clash with vivid localization', () => {
 			expect(element.shadowRoot?.querySelector('[lang]')).toBe(null);
 		});
+
+		it('should initialize the video element with default attributes', () => {
+			const videoElement = getVideoEle();
+			expect(videoElement.getAttribute('crossorigin')).toEqual('anonymous');
+			expect(videoElement.hasAttribute('playsinline')).toBe(true);
+		});
 	});
 
 	describe('src', () => {
@@ -139,7 +145,6 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-
 
 			expect(getPosterElement().querySelector('img')!.getAttribute('src')).toBe(poster);
 		});
