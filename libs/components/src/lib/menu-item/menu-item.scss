@@ -40,7 +40,7 @@
 	&:not(.two-lines) {
 		gap: 12px;
 		min-block-size: #{size.$vvd-size-normal};
-		padding-block: 10px;
+		padding-block: 8px;
 		padding-inline: 12px;
 	}
 
@@ -142,6 +142,9 @@
 	font: var(#{constants.$vvd-typography-base-condensed});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
 	.base.two-lines:not(.disabled) & {
+		color: var(#{constants.$vvd-color-neutral-600});
+	}
+	.base.two-lines:not(.disabled).selected & {
 		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }
