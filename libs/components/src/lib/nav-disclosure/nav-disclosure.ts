@@ -3,10 +3,8 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
- * A Nav Item Custom HTML Element.
- * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
- *
  * @public
+ * @component nav-disclosure
  * @slot - Default slot.
  * @slot meta - A slot to add additional content to the nav disclosure.
  * @slot icon - Add an icon to the component.

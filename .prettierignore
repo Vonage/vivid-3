@@ -12,7 +12,5 @@ package-lock.json
 **/*.ts
 **/*.mts
 **/*.cts
-**/*.css
-**/*.scss
 **/*.vue
 **/*.md

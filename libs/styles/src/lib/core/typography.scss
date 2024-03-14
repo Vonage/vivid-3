@@ -1,15 +1,15 @@
-@use "sass:map";
+@use 'sass:map';
 
-@use "../../../../..//dist/libs/tokens/scss/tokens.constants" as constants;
+@use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
 
 $selectors: (
-	bold: "b, strong",
-	code: "pre, var, code, kbd, samp"
+	bold: 'b, strong',
+	code: 'pre, var, code, kbd, samp',
 );
 
 @mixin typography-base {
 	font: var(#{constants.$vvd-typography-base});
-	font-feature-settings: "kern"; /* turns on kerning */
+	font-feature-settings: 'kern'; /* turns on kerning */
 	text-rendering: optimizeLegibility; /* emphasise on legibility when rendering, turns on ligatures and kerning */
 	-webkit-font-smoothing: antialiased; /* apply font anti-aliasing for Webkit on OSX */
 	-moz-osx-font-smoothing: grayscale; /* apply font anti-aliasing for Firefox on OSX */
@@ -29,7 +29,6 @@ $selectors: (
 	&:not(:root) {
 		@include typography-base;
 	}
-
 
 	p,
 	.font-base {
@@ -65,11 +64,11 @@ $selectors: (
 		font: var(#{constants.$vvd-typography-base-code});
 	}
 
-	#{map.get($selectors, "bold")} {
+	#{map.get($selectors, 'bold')} {
 		font-weight: 600;
 	}
 
-	#{map.get($selectors, "code")} {
+	#{map.get($selectors, 'code')} {
 		font: var(#{constants.$vvd-typography-base-code});
 	}
 
@@ -117,18 +116,14 @@ $selectors: (
 	.heading3,
 	h4,
 	.heading4 {
-
-		#{map.get($selectors, "bold")} {
+		#{map.get($selectors, 'bold')} {
 			font-weight: 500;
 		}
 
 		&.tight {
 			margin-block: 0;
 		}
-
 	}
-
-
 
 	small,
 	figcaption {

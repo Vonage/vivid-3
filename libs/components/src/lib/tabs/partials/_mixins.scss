@@ -1,5 +1,5 @@
 @mixin measurement($types...) {
 	@each $type in $types {
-		@content($type);
+		@content ($type);
 	}
 }

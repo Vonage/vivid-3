@@ -1,0 +1,14 @@
+---
+tags: resources
+pagination:
+    data: resources
+    size: 1
+    alias: doc
+permalink: "resources/{{ doc | pageSlug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile doc.markdown %}
+{% endblock %}

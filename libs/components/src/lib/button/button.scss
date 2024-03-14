@@ -1,30 +1,32 @@
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/variables" as variables;
-@use "partials/mixins" as mixins;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+@use 'partials/mixins' as mixins;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert,
-	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
-	$default: accent,
+	$shades: primary primary-text primary-increment contrast fierce firm soft
+		faint,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
-	$default: ghost,
+	$default: ghost
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 :host {
 	display: inline-block;
 }
 
 .control {
-	@include connotation.connotation (button);
+	@include connotation.connotation(button);
 	@include appearance.appearance;
 
 	display: inline-flex;
@@ -60,11 +62,11 @@
 		#{focus-variables.$focus-stroke-gap-color}: unset;
 	}
 
-	&:focus-visible{
+	&:focus-visible {
 		@include focus.focus;
 	}
 
-	@supports(user-select: none) {
+	@supports (user-select: none) {
 		user-select: none;
 	}
 
@@ -90,26 +92,44 @@
 		}
 	}
 
-
 	/* Size */
 	&:not(.stacked) {
 		&.size-super-condensed {
-			@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
+			@include mixins.get-size-properties(
+				#{size.$vvd-size-super-condensed},
+				#{constants.$vvd-typography-base-condensed-bold},
+				4px,
+				8px
+			);
 		}
 
 		&.size-condensed {
-			@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
+			@include mixins.get-size-properties(
+				#{size.$vvd-size-condensed},
+				#{constants.$vvd-typography-base-condensed-bold},
+				8px,
+				12px
+			);
 		}
 
 		&.size-expanded {
-			@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
+			@include mixins.get-size-properties(
+				#{size.$vvd-size-expanded},
+				#{constants.$vvd-typography-base-extended-bold},
+				10px,
+				20px
+			);
 		}
 
 		&:not(.size-condensed, .size-expanded, .size-super-condensed) {
-			@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
+			@include mixins.get-size-properties(
+				#{size.$vvd-size-normal},
+				#{constants.$vvd-typography-base-bold},
+				8px,
+				16px
+			);
 		}
 	}
-
 
 	/* Shape */
 	/* stylelint-disable */
@@ -140,7 +160,6 @@
 		}
 	}
 
-
 	&.stacked {
 		flex-direction: column;
 		justify-content: center;
@@ -148,31 +167,51 @@
 		&.size-super-condensed {
 			--stacked-size: #{size.$vvd-size-super-condensed};
 
-			@include mixins.get-size-properties(calc(var(--stacked-size) + 20 * 1px), #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
+			@include mixins.get-size-properties(
+				calc(var(--stacked-size) + 20 * 1px),
+				#{constants.$vvd-typography-base-condensed-bold},
+				4px,
+				8px
+			);
 		}
 
 		&.size-condensed {
 			--stacked-size: #{size.$vvd-size-condensed};
 
-			@include mixins.get-size-properties(calc(var(--stacked-size) + 24 * 1px), #{constants.$vvd-typography-base-condensed-bold}, 6px, 12px);
+			@include mixins.get-size-properties(
+				calc(var(--stacked-size) + 24 * 1px),
+				#{constants.$vvd-typography-base-condensed-bold},
+				6px,
+				12px
+			);
 		}
 
 		&.size-expanded {
 			--stacked-size: #{size.$vvd-size-expanded};
 
-			@include mixins.get-size-properties(calc(var(--stacked-size) + 32 * 1px), #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
+			@include mixins.get-size-properties(
+				calc(var(--stacked-size) + 32 * 1px),
+				#{constants.$vvd-typography-base-extended-bold},
+				10px,
+				20px
+			);
 		}
 
 		&:not(.size-condensed, .size-expanded, .size-super-condensed) {
 			--stacked-size: #{size.$vvd-size-normal};
 
-			@include mixins.get-size-properties(calc(var(--stacked-size) + 28 * 1px), #{constants.$vvd-typography-base-bold}, 8px, 16px);
+			@include mixins.get-size-properties(
+				calc(var(--stacked-size) + 28 * 1px),
+				#{constants.$vvd-typography-base-bold},
+				8px,
+				16px
+			);
 		}
 	}
 }
 
 /* Icon */
-slot[name="icon"] {
+slot[name='icon'] {
 	line-height: 1;
 
 	.icon-trailing & {
@@ -196,4 +235,3 @@ slot[name="icon"] {
 		visibility: hidden;
 	}
 }
-
