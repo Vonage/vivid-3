@@ -114,7 +114,7 @@ export class VideoPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	#videoEle: any;
+	#videoElement: any;
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -124,9 +124,7 @@ export class VideoPlayer extends FoundationElement {
 
 	override disconnectedCallback(): void {
 		super.connectedCallback();
-		if (this.player) {
-			this.player.dispose();
-		}
+		this.#disposePlayer();
 	}
 
 	/**
@@ -153,15 +151,9 @@ export class VideoPlayer extends FoundationElement {
 			languages: {
 				current: this.locale.videoPlayer,
 			},
-			textTrackSettings: false,
-			experimentalSvgIcons: true,
-			language: 'current',
-			fluid: true,
 			sources,
 			poster: this.poster,
-			controls: true,
 			muted: this.autoplay,
-			preload: 'auto',
 			playbackRates: getPlaybackRatesArray(this.playbackRates),
 			controlBar: {
 				skipButtons: {
@@ -171,40 +163,72 @@ export class VideoPlayer extends FoundationElement {
 				remainingTimeDisplay: { displayNegative: false },
 				volumePanel: {inline: false},
 			},
+			textTrackSettings: false,
+			experimentalSvgIcons: true,
+			language: 'current',
+			fluid: true,
+			controls: true,
+			preload: 'auto'
 		};
 	}
 
+	get #noSourceErrorElement() {
+		return this.shadowRoot!.getElementById('no-sources');
+	}
+
+	#disposePlayer() {
+		this.player && this.player.dispose();
+	}
+
+	#setupVideoElement() {
+		this.#videoElement = document.createElement('video');
+		const trackElements = this.querySelectorAll('track');
+		for(let x = 0; x < trackElements.length; x++) {
+			this.#videoElement.appendChild(trackElements[x]);
+		}
+		this.#videoElement.setAttribute('crossorigin', 'anonymous');
+		this.#videoElement.toggleAttribute('playsinline', true);
+		if (this.loop) {
+			this.#videoElement.setAttribute('loop', '');
+		}
+		if (this.autoplay) {
+			this.#videoElement.setAttribute('autoplay', '');
+		}
+		this.#controlElement!.appendChild(this.#videoElement);
+	}
+
+	get #controlElement() {
+		return this.shadowRoot!.querySelector('.control');
+	}
+
+	#hideNoSourceError(show = true) {
+		this.#noSourceErrorElement?.classList.toggle('vjs-hidden', show);
+	}
+
+	#setupVideoPlayer(settings: any) {
+		this.player = videojs(this.#videoElement, settings);
+		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); 
+	}
+
+	#setupPlayerEvents() {
+		this.player.on('play', () => this.$emit('play'));
+		this.player.on('pause', () => this.$emit('pause'));
+		this.player.on('ended', () => this.$emit('ended'));
+	}
 	/**
 	 * @internal
 	 */
 	#initVideo() {
-		if (this.player) this.player.dispose();
+		this.#disposePlayer();
 		const settings = this.#getSettings();
-		const noSourcesError = this.shadowRoot!.getElementById('no-sources');
-
-		this.#videoEle = document.createElement('video');
-		const trackEles = this.querySelectorAll('track');
-		for(let x = 0; x < trackEles.length; x++) {
-			this.#videoEle.appendChild(trackEles[x]);
-		}
-		this.#videoEle.setAttribute('crossorigin', 'anonymous');
-		this.#videoEle.setAttribute('playsinline', '');
-		if (this.loop) this.#videoEle.setAttribute('loop', '');
-		if (this.autoplay) this.#videoEle.setAttribute('autoplay', '');
-		const control = this.shadowRoot!.querySelector('.control');
-
-		if (settings.sources && control && noSourcesError) {
-			noSourcesError.classList.add('vjs-hidden');
-			control.appendChild(this.#videoEle);
-			this.player = videojs(this.#videoEle, settings);
-			// removes lang="current" to avoid clash with vivid localization
-			this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); 
-			
-			this.player.on('play', () => this.$emit('play'));
-			this.player.on('pause', () => this.$emit('pause'));
-			this.player.on('ended', () => this.$emit('ended'));
+		
+		if (settings.sources && this.#controlElement && this.#noSourceErrorElement) {
+			this.#hideNoSourceError();
+			this.#setupVideoElement();
+			this.#setupVideoPlayer(settings);
+			this.#setupPlayerEvents();
 		} else {
-			if (noSourcesError) noSourcesError.classList.remove('vjs-hidden');
+			this.#hideNoSourceError(false);
 		}
 	}
 }
