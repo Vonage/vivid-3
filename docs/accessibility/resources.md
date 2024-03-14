@@ -21,7 +21,7 @@ To help you get a better picture of how we tackle accessibility at Vonage, we've
 
 ## Design systems and accessibility
 
-Ensuring that our design system is accessible is crucial to ensuring that all of JET’s products are accessible. Below are some resources related to design systems and accessibility:
+Ensuring that our design system is accessible is crucial to ensuring that all of Vonage’s products are accessible. Below are some resources related to design systems and accessibility:
 
 - [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
 - [Inclusive components](https://inclusive-components.design/)
