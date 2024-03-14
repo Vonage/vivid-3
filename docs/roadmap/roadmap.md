@@ -1,6 +1,6 @@
 # Roadmap
 
-## Upcoming components
+## Upcoming Components
 
 <style>
   @media screen and (max-width: 768px){

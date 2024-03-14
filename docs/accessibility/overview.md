@@ -1,38 +1,34 @@
-# Accessibility overview
+# Accessibility Overview
 
 In this section you’ll find useful information about accessibility and why it is important at Vonage.
 
 ![accessibility](/assets/images/accessibility.jpeg)
 
-## Why is accessibility important?
+## Why is Accessibility Important?
 
-A design system that incorporates accessibility helps to ensure that all users, **regardless of their abilities and disabilities**, can access and use digital products and services.
+- **Inclusivity**: An accessible design systems ensure that everyone, including individuals with disabilities, can access and use digital products and services. This promotes inclusivity and equity in user experiences.
+- **User Experience**: Accessibility improvements often enhance the overall user experience for all users, not just those with disabilities. Features such as clear navigation, readable text, and intuitive interactions benefit everyone.
+- **Legal Compliance**: Many regions have regulations and standards in place that require digital products and services to be accessible to people with disabilities. Designing with accessibility in mind helps Vonage comply with these regulations, reducing the risk of legal consequences.
+- **Market Reach**: Accessible design can increase the potential market reach for our products and services. By catering to a wider range of users, including those with disabilities, organizations can tap into previously underserved markets and gain a competitive advantage.
+- **Brand Reputation**: Demonstrating a commitment to accessibility can enhance a Vonage's reputation and brand image. It shows that the organization values inclusivity and cares about providing equal opportunities for all users.
 
-Incorporating accessibility into a design system can lead to a **better user experience**, **increased engagement**, and **increased customer loyalty**.
-
-Finally, it’s important to highlight that **designing with accessibility in mind can help organisations comply with accessibility standards and regulations**, avoiding legal and financial consequences.
-
-## How we build inclusive experiences
+## How to Build Accessible Experiences
 
 Using Vivid components is a great way to improve accessibility and consistency when building products for Vonage.
 
-The component library in this documentation site includes code that we can use across applications, and this code includes **accessible markup**. Since the code exists in a single component that gets reused, it's easier to update and fix any bugs.
+Vivid components include **accessible markup** that we can use across applications. Because the code resides within a single reusable component, making improvements and addressing bugs becomes more straightforward.
 
-The build-it-once, use-it-everywhere model means the **accessibility knowledge** of the designers and developers who build these components is available to all of Vonage.
+Vivid components are **accessibility ready**. Although we research accessibility requirements and build them into the components, additional design and implementation considerations may be necessary.
 
-Vivid components are **accessibility ready**. Many accessibility features come free in the components, but it's important to make sure they are integrated correctly, **in a fully accessible way**. Depending on how components are used, there may be more design and implementation considerations.
+## Assistive Technology Support
 
-## Assistive technology support
-
-Our components are tested for accessibility with automated and manual techniques. Users should expect to be able to access features built with our components using modern assistive technologies, including tools like screen readers, supports for low vision and colour blindness, alternative keyboards, switch devices, and tools for readability.
+Vivid components are tested for accessibility using automated and manual methods. Users should be able to access a component's features using a modern assistive technologies such as screen readers, alternative keyboards and tools to support the visually impared.
 
 Find out more about how we [test for accessibility](/accessibility/testing-for-accessibility/)
 
-## Meeting global accessibility guidelines
+## Global Accessibility Guidelines
 
 Vonage is working towards meeting the Web Content **Accessibility Guidelines (WCAG)** 2.2 Level A and Level AA success criteria.
-
-In addition to meeting the previously mentioned accessibility guidelines, we also strive to provide a highly usable experience for everyone. Our goal is to make it easy for everyone to use our components, whether they have a disability or not.
 
 To learn more about the guidelines we adhere to, check out these resources:
 

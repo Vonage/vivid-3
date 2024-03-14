@@ -1,4 +1,4 @@
-# Release policy
+# Release Policy
 
 Vivid uses SemVer (semantic versioning). The three types of versions are:
 
@@ -10,7 +10,7 @@ Version numbers are presented `Major.Minor.Patch`, for example, `3.2.1`.
 
 **Note**: The version number is separate from the repo name **vivid-3**. Ie. the **vivid-3** library can be at version `5.2.23`.
 
-## What is included?
+## What is Included?
 
 Each release can include updates to:
 
@@ -21,17 +21,17 @@ Each release can include updates to:
 
 ## Cadence
 
-### Minor / Patch releases
+### Minor / Patch Releases
 
 The Vivid team releases a minor/patch version at least once per sprint (2 week period). P1 bugs will be expedited and released upon completion.
 
-### Major releases
+### Major Releases
 
 The team plans for a major releases every quarter (only if a major release is required) after PI planning, to avoid introducing breaking changes in periods where there may be a need in some critical fixes.
 
 We feel releasing major versions at this cadence eases the upgrade burden for teams as there will be much smaller set of changes to implement.
 
-### Announcing a release
+### Announcing a Release
 
 Each new release is announced on [#ask-vivid](https://vonage.slack.com/archives/C013F0YKH99) channel along the release notes associated with it.
 
@@ -50,7 +50,7 @@ When a feature is deprecated the team will:
 - Communicate via #ask-vivid when the support period ends
 - Include details of removal in the release notes of the next major release
 
-## What constitutes a breaking change
+## What Constitutes a Breaking Change?
 
 A breaking change is a change that may require you to make changes to your application in order to avoid disruption to your integration.
 
@@ -77,7 +77,7 @@ Any changes to style that trigger a layout change in the Vivid user's product, s
 - Renaming or removing an icon
 - Altering an icon's pictogram significantly while retaining the icon name
 
-## Accidental release of breaking change
+## Accidental Release of Breaking Change
 
 If a backward-incompatible change is released unintentionally, the Vivid team will follow the process outlined on semver.org:
 
