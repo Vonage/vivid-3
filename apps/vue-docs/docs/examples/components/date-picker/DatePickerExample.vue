@@ -1,7 +1,7 @@
 <template>
-  <div style="block-size: 460px">
-    <VDatePicker />
-  </div>
+	<div style="block-size: 460px">
+		<VDatePicker />
+	</div>
 </template>
 
 <script setup lang="ts">

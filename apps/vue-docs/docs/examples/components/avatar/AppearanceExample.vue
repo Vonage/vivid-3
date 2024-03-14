@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <VAvatar appearance="filled" />
-    <VAvatar appearance="duotone" />
-    <VAvatar appearance="outlined" />
-  </div>
+	<div>
+		<VAvatar appearance="filled" />
+		<VAvatar appearance="duotone" />
+		<VAvatar appearance="outlined" />
+	</div>
 </template>
 
 <script setup lang="ts">

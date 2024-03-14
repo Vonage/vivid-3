@@ -1,16 +1,16 @@
 <template>
-  <div style="block-size: 460px">
-    <VDateRangePicker
-      :start="start"
-      :end="end"
-      label="Date range"
-      @update:start="start = $event"
-      @update:end="end = $event"
-    />
-    <!-- In Vue 3 you can use v-model shorthand instead of @update:start and @update:end
+	<div style="block-size: 460px">
+		<VDateRangePicker
+			:start="start"
+			:end="end"
+			label="Date range"
+			@update:start="start = $event"
+			@update:end="end = $event"
+		/>
+		<!-- In Vue 3 you can use v-model shorthand instead of @update:start and @update:end
       <VDateRangePicker v-model:start="start" v-model:end="end" label="Date range" />
     -->
-  </div>
+	</div>
 </template>
 
 <script setup lang="ts">

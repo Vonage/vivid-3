@@ -1,9 +1,9 @@
 <template>
-  <VNav>
-    <VNavDisclosure label="1st level item">
-      <VNavItem href="#" text="2nd level item" />
-    </VNavDisclosure>
-  </VNav>
+	<VNav>
+		<VNavDisclosure label="1st level item">
+			<VNavItem href="#" text="2nd level item" />
+		</VNavDisclosure>
+	</VNav>
 </template>
 
 <script setup lang="ts">

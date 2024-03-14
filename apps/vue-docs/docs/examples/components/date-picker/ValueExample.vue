@@ -1,7 +1,7 @@
 <template>
-  <div style="block-size: 460px">
-    <VDatePicker v-model="value" label="Start date" />
-  </div>
+	<div style="block-size: 460px">
+		<VDatePicker v-model="value" label="Start date" />
+	</div>
 </template>
 
 <script setup lang="ts">
