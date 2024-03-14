@@ -32,7 +32,7 @@
                 </vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>
-        <vwc-nav-item href="{{ ('/icons/icons-gallery') | url }}" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+        <vwc-nav-item href="{{ ('/icons/icons-gallery') | url }}/" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
         <vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
         <vwc-nav-item href="{{ ('/roadmaps/roadmap') | url }}" text="Roadmap" {% if ('/roadmaps/roadmap/') == page.url %} aria-current="page" {% endif %}>
             <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
