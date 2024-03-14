@@ -117,14 +117,13 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			let videoEle = getVideoEle();
-			expect(videoEle?.hasAttribute('autoplay')).toBe(true);
+			const autoplayExistsWhenAttributeIsSet = getVideoEle().hasAttribute('autoplay');
 
 			element.autoplay = false;
 			elementUpdated(element);
 
-			videoEle = getVideoEle();
-			expect(videoEle?.hasAttribute('autoplay')).toBe(false);
+			expect(autoplayExistsWhenAttributeIsSet).toBe(true);
+			expect(getVideoEle().hasAttribute('autoplay')).toBe(false);
 		});
 	});
 
