@@ -1,20 +1,22 @@
-@use "../tabs/partials/variables" as tabs-variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../tabs/partials/variables' as tabs-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
 	$shades: primary primary-text firm faint fierce pale,
-	$default: accent,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: ghost,
 	$states: idle hover disabled active,
 	$default: ghost
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 
 :host(.vertical) {
 	justify-content: end;
@@ -33,7 +35,7 @@
 	$min-block-size: 40px;
 
 	@include appearance.appearance;
-	@include connotation.connotation (tab);
+	@include connotation.connotation(tab);
 
 	position: relative;
 	display: flex;
@@ -72,12 +74,14 @@
 	}
 
 	:host(.vertical) & {
-		padding-inline-start: calc(var(#{tabs-variables.$tabs-active-indicator-stroke-width}) + var(#{tabs-variables.$tabs-tablist-gutter}));
+		padding-inline-start: calc(
+			var(#{tabs-variables.$tabs-active-indicator-stroke-width}) +
+				var(#{tabs-variables.$tabs-tablist-gutter})
+		);
 	}
 }
 
-
-slot[name="icon"]{
+slot[name='icon'] {
 	font-size: 20px;
 	line-height: 1;
 
@@ -94,7 +98,7 @@ slot[name="icon"]{
 		border-radius: #{border-radius-variables.$border-radius-condensed};
 		background: currentColor;
 		block-size: 2px;
-		content: "";
+		content: '';
 		inline-size: 100%;
 		inset-block-end: 0;
 		inset-inline-start: 0;
@@ -102,13 +106,13 @@ slot[name="icon"]{
 		transition-property: opacity;
 	}
 
-	&:host([aria-selected="true"]) {
+	&:host([aria-selected='true']) {
 		.base::after {
 			transition-delay: #{tabs-variables.$tabs-active-indicator-transition-delay};
 		}
 	}
 
-	&:host(:not([aria-selected="true"])) {
+	&:host(:not([aria-selected='true'])) {
 		.base::after {
 			opacity: 0;
 		}
