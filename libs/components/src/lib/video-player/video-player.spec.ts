@@ -80,10 +80,11 @@ describe('vwc-video-player', () => {
 			await elementUpdated(element);
 			const noSrcErrorEl = element.shadowRoot!.getElementById('no-sources');
 			const dialogContentEl = getDialogContentEle();
+
 			expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
 			expect(dialogContentEl!.textContent?.trim()).toBe('No compatible source was found for this media.');
 		});
-		
+
 		it('should remove the vjs-hidden class when src is set', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} src="${VIDEO_SRC}"></${COMPONENT_TAG}>`
@@ -98,11 +99,13 @@ describe('vwc-video-player', () => {
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			await elementUpdated(element);
-			let bigPlayBtn = getBigPlayButton();
-			expect(bigPlayBtn).toBeFalsy();
+			const bigPlayButtonExistsWithoutASource = getBigPlayButton();
+
 			element.src = 'new-src.mp4';
 			await elementUpdated(element);
-			bigPlayBtn = getBigPlayButton();
+			const bigPlayBtn = getBigPlayButton();
+
+			expect(bigPlayButtonExistsWithoutASource).toBeFalsy();
 			expect(bigPlayBtn?.classList.contains('vjs-hidden')).toBe(false);
 		});
 	});
