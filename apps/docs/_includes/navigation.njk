@@ -10,10 +10,16 @@
             {% endfor %}
         </vwc-nav-disclosure>
         <vwc-nav-disclosure label="Guides" {% if page.url.includes('/guides/') %} open aria-current="true" {% endif %}>
-						{% for item in guides %}
-								<vwc-nav-item href="{{ ('/guides/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/guides/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
-						{% endfor %}
-				</vwc-nav-disclosure>
+                {% for item in guides %}
+                        <vwc-nav-item href="{{ ('/guides/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/guides/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                {% endfor %}
+        </vwc-nav-disclosure>
+        <vwc-nav-disclosure label="Accessibility" {% if page.url.includes('/accessibility/') %} open aria-current="true" {% endif %}>
+                {% for item in accessibility %}
+                        <vwc-nav-item href="{{ ('/accessibility/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/accessibility/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                {% endfor %}
+                <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
+        </vwc-nav-disclosure>
         <vwc-nav-disclosure label="Design Tokens" {% if page.url.includes('/designs/') %} open aria-current="true" {% endif %}>
             {% for item in designs | publicPageFilter %}
                 <vwc-nav-item href="{{ ('/designs/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/designs/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}>
@@ -26,9 +32,7 @@
                 </vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>
-        <vwc-nav-item href="{{ ('/icons/icons-gallery') | url }}/" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}>
-            <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
-        </vwc-nav-item>
+        <vwc-nav-item href="{{ ('/icons/icons-gallery') | url }}/" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
         <vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
         <vwc-nav-item href="{{ ('/roadmaps/roadmap') | url }}" text="Roadmap" {% if ('/roadmaps/roadmap/') == page.url %} aria-current="page" {% endif %}>
             <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
@@ -61,6 +65,12 @@
                         {% endif %}
                     </vwc-nav-item>
                 {% endif %}
+            {% endfor %}
+        </vwc-nav-disclosure>
+         <vwc-nav-disclosure label="Resources" {% if page.url.includes('/resources/') %} open aria-current="true" {% endif %}>
+            <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
+            {% for item in resources %}
+                    <vwc-nav-item href="{{ ('/resources/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/resources/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>
     </vwc-nav>

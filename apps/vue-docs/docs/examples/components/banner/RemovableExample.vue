@@ -1,5 +1,8 @@
 <template>
-  <VBanner text="Here's some information that you may find important!" removable />
+	<VBanner
+		text="Here's some information that you may find important!"
+		removable
+	/>
 </template>
 
 <script setup lang="ts">

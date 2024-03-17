@@ -1,5 +1,5 @@
 <template>
-  <VAvatar icon="group-2-solid" />
+	<VAvatar icon="group-2-solid" />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <VCheckbox checked />
+	<VCheckbox checked />
 </template>
 
 <script setup lang="ts">

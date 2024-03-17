@@ -1,8 +1,17 @@
 <template>
-  <div class="example-container">
-    <VAlert text="An important information for you" timeoutms="2000" :open="open" @close="open = false" />
-    <VButton appearance="outlined" label="Show an alert for 2 seconds" @click="open = true" />
-  </div>
+	<div class="example-container">
+		<VAlert
+			text="An important information for you"
+			timeoutms="2000"
+			:open="open"
+			@close="open = false"
+		/>
+		<VButton
+			appearance="outlined"
+			label="Show an alert for 2 seconds"
+			@click="open = true"
+		/>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -14,7 +23,7 @@ const open = ref(false);
 
 <style lang="scss" scoped>
 .example-container {
-  height: 200px;
-  transform: translateX(0px);
+	height: 200px;
+	transform: translateX(0px);
 }
 </style>

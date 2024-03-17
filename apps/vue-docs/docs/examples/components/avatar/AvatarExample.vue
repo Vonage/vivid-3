@@ -1,5 +1,5 @@
 <template>
-  <VAvatar aria-label="avatar" />
+	<VAvatar aria-label="avatar" />
 </template>
 
 <script setup lang="ts">

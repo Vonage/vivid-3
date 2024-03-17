@@ -1,5 +1,5 @@
 <template>
-  <VNumberField maxlength="4" minlength="2" />
+	<VNumberField maxlength="4" minlength="2" />
 </template>
 
 <script setup lang="ts">

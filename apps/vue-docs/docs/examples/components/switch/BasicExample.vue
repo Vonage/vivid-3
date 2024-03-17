@@ -1,5 +1,5 @@
 <template>
-  <VSwitch />
+	<VSwitch />
 </template>
 
 <script setup lang="ts">

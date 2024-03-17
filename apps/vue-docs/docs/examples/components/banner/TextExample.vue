@@ -1,5 +1,5 @@
 <template>
-  <VBanner text="Here's some information that you may find important!" />
+	<VBanner text="Here's some information that you may find important!" />
 </template>
 
 <script setup lang="ts">

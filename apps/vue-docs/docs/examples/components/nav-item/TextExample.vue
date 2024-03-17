@@ -1,7 +1,7 @@
 <template>
-  <VNav>
-    <VNavItem href="#" text="Account" />
-  </VNav>
+	<VNav>
+		<VNavItem href="#" text="Account" />
+	</VNav>
 </template>
 
 <script setup lang="ts">

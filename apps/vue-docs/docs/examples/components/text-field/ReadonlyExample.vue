@@ -1,5 +1,11 @@
 <template>
-  <VTextField v-model="value" readonly icon="chat-line" label="fieldset" appearance="fieldset" />
+	<VTextField
+		v-model="value"
+		readonly
+		icon="chat-line"
+		label="fieldset"
+		appearance="fieldset"
+	/>
 </template>
 
 <script setup lang="ts">
