@@ -1,5 +1,5 @@
 <template>
-  <VSwitch v-model="value" />
+	<VSwitch v-model="value" />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <VDatePicker label="Start date" disabled />
+	<VDatePicker label="Start date" disabled />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <VEmptyState headline="No results found" />
+	<VEmptyState headline="No results found" />
 </template>
 
 <script setup lang="ts">

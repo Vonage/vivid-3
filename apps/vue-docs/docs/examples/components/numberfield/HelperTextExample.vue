@@ -1,5 +1,5 @@
 <template>
-  <VNumberField label="Helper text below" helper-text="Help text" />
+	<VNumberField label="Helper text below" helper-text="Help text" />
 </template>
 
 <script setup lang="ts">

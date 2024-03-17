@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VRadio disabled />
-    <VRadio disabled checked />
-  </div>
+	<div>
+		<VRadio disabled />
+		<VRadio disabled checked />
+	</div>
 </template>
 
 <script setup lang="ts">

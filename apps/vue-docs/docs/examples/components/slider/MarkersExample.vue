@@ -1,5 +1,5 @@
 <template>
-  <VSlider markers />
+	<VSlider markers />
 </template>
 
 <script setup lang="ts">
