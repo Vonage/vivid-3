@@ -20,6 +20,8 @@
 	border-radius-variables;
 
 .control {
+	#{variables.$inline-padding}: 12px;
+
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -37,6 +39,7 @@
 	column-gap: var(#{variables.$icon-gap});
 	filter: var(#{elevation.$vvd-elevation-shadow});
 	font: var(#{constants.$vvd-typography-base-bold});
+	padding-inline: var(#{variables.$inline-padding});
 	transition: background-color 0.15s linear, filter 0.15s linear;
 	vertical-align: middle;
 
@@ -60,6 +63,7 @@
 	&.size-expanded {
 		#{variables.$border-radius}: #{border-radius-variables.$border-radius-super-expanded};
 		#{variables.$block-size}: #{size.$vvd-size-super-expanded};
+		#{variables.$inline-padding}: 20px;
 	}
 
 	&:not(.size-expanded) {
@@ -68,8 +72,9 @@
 	}
 
 	&.icon-only {
+		#{variables.$inline-padding}: 0;
+
 		border-radius: #{border-radius-variables.$border-radius-full};
-		padding-inline: 0;
 		place-content: center;
 
 		@supports (aspect-ratio: 1) {
@@ -83,8 +88,6 @@
 
 	&:not(.icon-only) {
 		#{variables.$icon-gap}: 10px;
-
-		padding-inline: 20px;
 	}
 
 	&:disabled {
