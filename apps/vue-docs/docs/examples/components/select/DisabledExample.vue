@@ -1,7 +1,7 @@
 <template>
-  <VSelect disabled>
-    <VOption value="1" text="Option 1" />
-  </VSelect>
+	<VSelect disabled>
+		<VOption value="1" text="Option 1" />
+	</VSelect>
 </template>
 
 <script setup lang="ts">

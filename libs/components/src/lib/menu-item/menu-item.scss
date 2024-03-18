@@ -1,7 +1,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta,
-	$shades: primary primary-text primary-increment faint soft pale dim firm,
+	$connotations: accent,
+	$shades: primary primary-text primary-increment firm faint soft pale dim,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -127,13 +127,12 @@
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-box-orient: vertical;
+	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 }
 
 .text-primary {
-	color: var(#{constants.$vvd-color-canvas-text});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
-
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
@@ -141,10 +140,7 @@
 
 .text-secondary {
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
-	.base.two-lines:not(.disabled, .selected) & {
+	.base.two-lines:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-600});
-	}
-	.base.two-lines:where(.selected):not(.disabled) & {
-		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }

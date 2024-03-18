@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VAvatar shape="rounded" />
-    <VAvatar shape="pill" />
-  </div>
+	<div>
+		<VAvatar shape="rounded" />
+		<VAvatar shape="pill" />
+	</div>
 </template>
 
 <script setup lang="ts">

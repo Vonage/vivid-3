@@ -1,5 +1,5 @@
 <template>
-  <VDivider />
+	<VDivider />
 </template>
 
 <script setup lang="ts">

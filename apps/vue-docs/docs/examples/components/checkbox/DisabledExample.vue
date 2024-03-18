@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VCheckbox disabled />
-    <VCheckbox disabled checked />
-  </div>
+	<div>
+		<VCheckbox disabled />
+		<VCheckbox disabled checked />
+	</div>
 </template>
 
 <script setup lang="ts">

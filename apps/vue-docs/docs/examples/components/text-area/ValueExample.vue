@@ -1,5 +1,5 @@
 <template>
-  <VTextArea v-model="currentValue" />
+	<VTextArea v-model="currentValue" />
 </template>
 <script setup lang="ts">
 import { VTextArea } from '@vonage/vivid-vue';

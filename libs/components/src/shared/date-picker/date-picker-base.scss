@@ -1,7 +1,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary faint soft dim pale firm,
+	$shades: primary firm faint soft dim pale,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;

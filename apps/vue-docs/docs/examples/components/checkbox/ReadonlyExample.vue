@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VCheckbox readonly />
-    <VCheckbox readonly checked />
-  </div>
+	<div>
+		<VCheckbox readonly />
+		<VCheckbox readonly checked />
+	</div>
 </template>
 
 <script setup lang="ts">
