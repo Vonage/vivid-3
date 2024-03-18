@@ -144,4 +144,8 @@
 	.base.two-lines:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}
+
+	.base.two-lines:not(.disabled).selected & {
+		color: var(#{constants.$vvd-color-neutral-800});
+	}
 }
