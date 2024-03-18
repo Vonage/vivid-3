@@ -127,13 +127,12 @@
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-box-orient: vertical;
+	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
 }
 
 .text-primary {
-	color: var(#{appearance.get-appearance-token(text)});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
-
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
@@ -143,9 +142,5 @@
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
 	.base.two-lines:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-600});
-	}
-
-	.base.two-lines:not(.disabled).selected & {
-		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }

@@ -12,7 +12,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<style>
 			div {
 				width: 250px;
-				height: 1800px;
+				height: 2000px;
 				position: relative;
 				box-sizing: border-box;
 			}
@@ -89,10 +89,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					<vwc-icon name='open-line' slot="trailing-meta"></vwc-icon>
 					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
 			</vwc-menu-item>
+			<vwc-menu-item connotation='cta' role='menuitemradio' text="Radio 2.1" checked></vwc-menu-item>
+				<vwc-menu-item connotation='cta' role='menuitemradio' text="Radio 2.2"></vwc-menu-item>
+				<vwc-menu-item connotation='cta' icon='layout-1-solid' role='menuitemcheckbox' text="Checkbox 1" checked></vwc-menu-item>
 			</vwc-menu>
 		</div>`;
 
-	page.setViewportSize({ width: 200, height: 1550 });
+	page.setViewportSize({ width: 200, height: 2000 });
 
 	await loadComponents({
 		page,
