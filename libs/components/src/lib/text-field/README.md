@@ -1,5 +1,14 @@
 # Text Field
 
+## FOR QA ONLY:
+
+```html preview blocks
+<vwc-text-field custom-part placeholder="Enter Your Phone" aria-label='phone number'  helper-text="Help text"></vwc-text-field>
+<vwc-text-field custom-part placeholder="appearance" aria-label='phone number' helper-text="Help text" value="050-9639632"></vwc-text-field>
+<vwc-text-field custom-part success-text="Please take this seriously"placeholder="appearance" aria-label='phone number'  helper-text="Help text" value="050-9639632"></vwc-text-field>
+<vwc-text-field custom-part error-text="Please take this seriously"placeholder="appearance" aria-label='phone number' helper-text="Help text" value="050-9639632"></vwc-text-field>
+```
+
 TextField is meant to accept text input from the user.
 All native `input` attributes of the text-field are supported as well as some enhancements.
 While `text-field` follows [the W3C specifictation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), the following are the only supported types:

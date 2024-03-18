@@ -92,6 +92,14 @@ export class TextField extends FoundationTextfield {
 	/**
 	 * @internal
 	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'custom-part',
+	}) customPart = false;
+
+	/**
+	 * @internal
+	 */
 	private _labelEl: HTMLLabelElement | null = null;
 
 	/**
