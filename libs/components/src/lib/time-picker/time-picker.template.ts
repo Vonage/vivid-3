@@ -1,5 +1,5 @@
 import type { ViewTemplate } from '@microsoft/fast-element';
-import { html, ref, repeat, when } from '@microsoft/fast-element';
+import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -80,6 +80,11 @@ export const TimePickerTemplate: (
 										 @input="${(x, c) => x._onTextFieldInput(c.event)}"
 										 @change="${(x) => x._onTextFieldChange()}"
 		>
+			<slot
+				slot="${(x) => x._helperTextSlottedContent?.length ? 'helper-text' : undefined}"
+				name="helper-text"
+				${slotted('_helperTextSlottedContent')}
+			></slot>
 			<${buttonTag}
 				id="clock-button"
 				${ref('_clockButtonEl')}

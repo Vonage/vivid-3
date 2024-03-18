@@ -21,10 +21,8 @@
 
 $low-ink-color: --_low-ink-color;
 
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
+:host(:focus-visible) {
+	outline: none;
 }
 
 :host {
@@ -130,6 +128,10 @@ $low-ink-color: --_low-ink-color;
 	.control.has-meta & {
 		padding-inline-end: 8px;
 	}
+}
+
+.feedback-wrapper {
+	display: contents;
 }
 
 ::part(popup-base) {

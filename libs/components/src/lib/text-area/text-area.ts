@@ -1,4 +1,4 @@
-import { applyMixins, TextArea as FoundationTextArea } from '@microsoft/fast-foundation';
+import { TextArea as FoundationTextArea } from '@microsoft/fast-foundation';
 import {attr} from '@microsoft/fast-element';
 import {
 	errorText,
@@ -9,6 +9,7 @@ import {
 	formElements,
 	FormElementSuccessText} from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
@@ -16,6 +17,7 @@ export type TextAreaWrap = 'hard' | 'soft' | 'off';
 /**
  * @public
  * @component text-area
+ * @slot helper-text - Describes how to use the text-area. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
@@ -44,4 +46,4 @@ export class TextArea extends FoundationTextArea {
 }
 
 export interface TextArea extends FormElement, ErrorText, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
-applyMixins(TextArea, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+applyMixinsWithObservables(TextArea, FormElementCharCount, FormElementHelperText, FormElementSuccessText);

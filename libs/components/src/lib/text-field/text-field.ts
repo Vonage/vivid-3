@@ -1,5 +1,4 @@
 import {
-	applyMixins,
 	TextField as FoundationTextfield,
 } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
@@ -17,6 +16,7 @@ import {
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
 import { Reflector } from '../../shared/utils/Reflector';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 export type TextFieldAppearance = Extract<
 Appearance,
@@ -70,6 +70,7 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  * @component text-field
  * @slot leading-action-items - Used to add action items to the start of the text-field.
  * @slot action-items - Used to add action items to the end of the text-field.
+ * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
@@ -196,4 +197,4 @@ export class TextField extends FoundationTextfield {
 }
 
 export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
-applyMixins(TextField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+applyMixinsWithObservables(TextField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);

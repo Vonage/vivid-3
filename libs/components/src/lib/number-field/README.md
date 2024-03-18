@@ -75,7 +75,7 @@ Set the `max` attribute to set the maximum value for the number field.
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the number field.
+Add the `helper-text` to add some helper text below the number field. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -142,6 +142,19 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 
 ```html preview blocks
 <vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the number field's helper text.
+
+Example showing a link in the helper text:
+```html preview
+<vwc-number-field label="Timeout">
+	<span slot="helper-text">The timeout in seconds. <a href="#">Guide to setting timeouts</a></span>
+</vwc-number-field>
 ```
 
 ## Methods

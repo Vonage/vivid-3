@@ -30,6 +30,7 @@ function isDefined<T>(value: T | null | undefined): value is T {
 /**
  * @public
  * @component date-range-picker
+ * @slot helper-text - Describes how to use the date-range-picker. Alternative to the `helper-text` attribute.
  * @event input:start - Event emitted when the start value changes
  * @event input:end - Event emitted when the end value changes
  * @vueModel start current-start input:start `(event.target as any).start`

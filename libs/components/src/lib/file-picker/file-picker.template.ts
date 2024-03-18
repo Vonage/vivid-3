@@ -37,8 +37,7 @@ export const FilePickerTemplate: (
 					 @keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}">
 				<slot class="main"></slot>
 			</div>
-			${when(x => !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
-			${when(x => x.errorValidationMessage, getFeedbackTemplate('error', context))}
+			${getFeedbackTemplate(context)}
 			<div class="preview-list"></div>
 		</div>
 	`;

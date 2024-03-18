@@ -1,4 +1,4 @@
-import { applyMixins, Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
+import { Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import {
@@ -9,6 +9,7 @@ import {
 	formElements,
 	FormElementSuccessText
 } from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 
 export const keySpace: ' ' = ' ' as const;
@@ -24,6 +25,7 @@ export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Co
 /**
  * @public
  * @component checkbox
+ * @slot helper-text - Describes how to use the checkbox. Alternative to the `helper-text` attribute.
  * @event input - Event that emits when the component checked state changes
  * @vueModel modelValue current-checked change `(event.target as HTMLInputElement).checked`
  */
@@ -106,4 +108,4 @@ export class Checkbox extends FoundationCheckbox {
 }
 
 export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
-applyMixins(Checkbox, FormElementHelperText, FormElementSuccessText);
+applyMixinsWithObservables(Checkbox, FormElementHelperText, FormElementSuccessText);

@@ -1,4 +1,4 @@
-import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
+import { ExecutionContext, html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
@@ -85,14 +85,23 @@ function renderControl(context: ElementDefinitionContext) {
 						<slot
 							${slotted({ filter: Listbox.slottedOptionFilter as any, flatten: true, property: 'slottedOptions' })}>
 						</slot>
-           			 </div>
+				 	</div>
 				</${popupTag}>
 			</div>
-			${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
-			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-			${when(x => x.successText, getFeedbackTemplate('success', context))}
 		`;
 
+}
+
+/**
+ * Ignore events that originate from feedback, e.g. a click on link
+ */
+function ifNotFromFeedback<E extends Event>(handler: (x: Select, event: E) => void) {
+	return (x: Select, c: ExecutionContext) => {
+		if (!c.event.composedPath().includes(x._feedbackWrapper!)) {
+			return handler(x, c.event as E);
+		}
+		return true;
+	};
 }
 
 /**
@@ -107,7 +116,8 @@ export const SelectTemplate: (
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
 
 	return html<Select>`
-		<template class="base"
+		<template
+			class="base"
 			aria-label="${x => x.ariaLabel}"
 			aria-activedescendant="${x => x.ariaActiveDescendant}"
 			aria-controls="${x => x.ariaControls}"
@@ -115,16 +125,18 @@ export const SelectTemplate: (
 			aria-expanded="${x => x.ariaExpanded}"
 			aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
 			aria-multiselectable="${x => x.ariaMultiSelectable}"
-			?open="${x => x.open}"
 			role="combobox"
 			tabindex="${x => (!x.disabled ? '0' : null)}"
-			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-			@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
-			@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-			@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
+			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"
+			@focusin="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusinHandler(e))}"
+			@focusout="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusoutHandler(e))}"
+			@keydown="${ifNotFromFeedback<KeyboardEvent>((x, e) => x.keydownHandler(e))}"
+			@mousedown="${ifNotFromFeedback<MouseEvent>((x, e) => x.mousedownHandler(e))}"
+			>
 				${renderControl(context)}
-		</template>`;
+			<div class="feedback-wrapper" ${ref('_feedbackWrapper')}>${getFeedbackTemplate(context)}</div>
+		</template>
+	`;
 };
 
 // TODO::change the css variable according to select width
