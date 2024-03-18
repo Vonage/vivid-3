@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div>
-      <VSlider v-model="slidervalue" min="-5" :value="slidervalue" />
-    </div>
-    <div>
-      Current value: <span id="slidervalue">{{ slidervalue }}</span>
-    </div>
-  </div>
+	<div>
+		<div>
+			<VSlider v-model="slidervalue" min="-5" :value="slidervalue" />
+		</div>
+		<div>
+			Current value: <span id="slidervalue">{{ slidervalue }}</span>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">

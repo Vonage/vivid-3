@@ -1,5 +1,5 @@
 <template>
-  <VTextField label="Char count example" char-count maxlength="15" />
+	<VTextField label="Char count example" char-count maxlength="15" />
 </template>
 
 <script setup lang="ts">

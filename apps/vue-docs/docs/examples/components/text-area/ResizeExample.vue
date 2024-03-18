@@ -1,8 +1,8 @@
 <template>
-  <VTextArea v-model="defaultTextArea" />
-  <VTextArea v-model="verticalTextArea" resize="vertical" />
-  <VTextArea v-model="horizontalTextArea" resize="horizontal" />
-  <VTextArea v-model="bothDirectionTextArea" resize="both" />
+	<VTextArea v-model="defaultTextArea" />
+	<VTextArea v-model="verticalTextArea" resize="vertical" />
+	<VTextArea v-model="horizontalTextArea" resize="horizontal" />
+	<VTextArea v-model="bothDirectionTextArea" resize="both" />
 </template>
 <script setup lang="ts">
 import { VTextArea } from '@vonage/vivid-vue';

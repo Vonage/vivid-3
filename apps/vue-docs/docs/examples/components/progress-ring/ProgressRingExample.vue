@@ -1,5 +1,5 @@
 <template>
-  <VProgressRing />
+	<VProgressRing />
 </template>
 
 <script setup lang="ts">

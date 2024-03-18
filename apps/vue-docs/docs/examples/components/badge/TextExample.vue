@@ -1,5 +1,5 @@
 <template>
-  <VBadge text="A default badge" />
+	<VBadge text="A default badge" />
 </template>
 
 <script setup lang="ts">

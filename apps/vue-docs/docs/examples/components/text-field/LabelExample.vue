@@ -1,5 +1,5 @@
 <template>
-  <VTextField label="My Label" />
+	<VTextField label="My Label" />
 </template>
 
 <script setup lang="ts">

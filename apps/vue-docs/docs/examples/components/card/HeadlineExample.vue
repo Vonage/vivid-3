@@ -1,5 +1,5 @@
 <template>
-  <VCard headline="Vivid Card Component" />
+	<VCard headline="Vivid Card Component" />
 </template>
 
 <script setup lang="ts">
