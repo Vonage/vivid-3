@@ -6,7 +6,8 @@
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment contrast fierce fierce-primary faint firm soft,
+	$shades: primary primary-text primary-increment contrast fierce fierce-primary
+		faint firm soft,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
