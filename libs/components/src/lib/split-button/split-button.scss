@@ -1,24 +1,26 @@
-@use "sass:map";
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "partials/variables" as variables;
-@use "partials/mixins" as mixins;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use 'sass:map';
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use 'partials/variables' as variables;
+@use 'partials/mixins' as mixins;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert,
-	$shades: primary primary-text primary-increment contrast fierce firm soft faint,
+	$shades: primary primary-text primary-increment contrast fierce firm soft
+		faint,
 	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: filled outlined ghost,
 	$states: idle hover disabled active,
 	$default: ghost
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host {
 	display: inline-block;
@@ -30,15 +32,17 @@
 	inline-size: inherit;
 }
 
-
 .control,
 .indicator {
 	@include connotation.connotation(split-button);
 	@include appearance.appearance(
 		appearance.state-selectors(
-			map.merge(appearance.$state-aspect-selectors, (
-				active: ':active, [aria-expanded="true"]',
-			))
+			map.merge(
+				appearance.$state-aspect-selectors,
+				(
+					active: ':active, [aria-expanded="true"]',
+				)
+			)
 		)
 	);
 
@@ -55,14 +59,12 @@
 	color: var(#{appearance.get-appearance-token(text)});
 	vertical-align: middle;
 
-
 	@supports (user-select: none) {
 		user-select: none;
 	}
-
 }
 
-.control{
+.control {
 	border-bottom-left-radius: var(#{variables.$border-radius});
 	border-inline-end: 0;
 	border-top-left-radius: var(#{variables.$border-radius});
@@ -109,16 +111,36 @@
 
 	/* size */
 	&.size-super-condensed {
-		@include mixins.get-size-properties(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 4px, 8px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-super-condensed},
+			#{constants.$vvd-typography-base-condensed-bold},
+			4px,
+			8px
+		);
 	}
 	&.size-condensed {
-		@include mixins.get-size-properties(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed-bold}, 8px, 12px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-condensed},
+			#{constants.$vvd-typography-base-condensed-bold},
+			8px,
+			12px
+		);
 	}
 	&.size-expanded {
-		@include mixins.get-size-properties(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended-bold}, 10px, 20px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-expanded},
+			#{constants.$vvd-typography-base-extended-bold},
+			10px,
+			20px
+		);
 	}
 	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
-		@include mixins.get-size-properties(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-bold}, 8px, 16px);
+		@include mixins.get-size-properties(
+			#{size.$vvd-size-normal},
+			#{constants.$vvd-typography-base-bold},
+			8px,
+			16px
+		);
 	}
 
 	/* shape */
@@ -141,7 +163,6 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
-
 }
 
 .indicator {
@@ -177,7 +198,7 @@
 	&::before {
 		position: absolute;
 		background-color: var(#{appearance.get-appearance-token(text)});
-		content: "";
+		content: '';
 		inline-size: 1px;
 		inset-inline-start: 0;
 		opacity: 0.35;
@@ -189,7 +210,7 @@
 		}
 	}
 
-	&:is(.appearance-filled, .appearance-outlined){
+	&:is(.appearance-filled, .appearance-outlined) {
 		&::before {
 			block-size: 100%;
 		}
@@ -197,16 +218,32 @@
 
 	/* size */
 	&.size-super-condensed {
-		@include mixins.get-size-properties-indicator(#{size.$vvd-size-super-condensed}, #{constants.$vvd-typography-base-condensed}, #{size.$vvd-size-super-condensed});
+		@include mixins.get-size-properties-indicator(
+			#{size.$vvd-size-super-condensed},
+			#{constants.$vvd-typography-base-condensed},
+			#{size.$vvd-size-super-condensed}
+		);
 	}
 	&.size-condensed {
-		@include mixins.get-size-properties-indicator(#{size.$vvd-size-condensed}, #{constants.$vvd-typography-base-condensed}, #{size.$vvd-size-extra-condensed});
+		@include mixins.get-size-properties-indicator(
+			#{size.$vvd-size-condensed},
+			#{constants.$vvd-typography-base-condensed},
+			#{size.$vvd-size-extra-condensed}
+		);
 	}
 	&.size-expanded {
-		@include mixins.get-size-properties-indicator(#{size.$vvd-size-expanded}, #{constants.$vvd-typography-base-extended}, #{size.$vvd-size-normal});
+		@include mixins.get-size-properties-indicator(
+			#{size.$vvd-size-expanded},
+			#{constants.$vvd-typography-base-extended},
+			#{size.$vvd-size-normal}
+		);
 	}
 	&:not(.size-condensed, .size-expanded, .size-super-condensed) {
-		@include mixins.get-size-properties-indicator(#{size.$vvd-size-normal}, #{constants.$vvd-typography-base-extended}, #{size.$vvd-size-condensed});
+		@include mixins.get-size-properties-indicator(
+			#{size.$vvd-size-normal},
+			#{constants.$vvd-typography-base-extended},
+			#{size.$vvd-size-condensed}
+		);
 	}
 
 	/* Shape */
@@ -236,4 +273,3 @@
 		font-size: calc(var(#{variables.$block-size}) / 2);
 	}
 }
-

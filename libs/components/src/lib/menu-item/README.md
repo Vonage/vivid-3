@@ -49,7 +49,7 @@ set `role` to change the role of the menu item
 - Type: `'menuitem'` | `'menuitemcheckbox'` | `'menuitemradio'` | `'presentation'`
 - Default: `'menuitem'`
 
-```html preview 400px
+```html preview 450px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
   <vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
@@ -94,7 +94,7 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 - Type: `boolean`
 - Default: `false`
 
-```html preview 300px
+```html preview 350px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-trailing></vwc-menu-item>
   <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-trailing></vwc-menu-item>
@@ -114,7 +114,7 @@ When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the
 - Type: `'normal'` | `'tick-only'`
 - Default: `'normal'`
 
-```html preview 200px
+```html preview 250px
 <vwc-menu open aria-label="Example menu">
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-appearance="tick-only"></vwc-menu-item>
@@ -162,7 +162,7 @@ The expanded state of the element
 Assign nodes to the `meta` slot to set a badge or an additional icon.  
 Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 
-```html preview 170px
+```html preview 200px
 <vwc-menu open aria-label="Example menu">
   <vwc-menu-item text="Available" role="menuitemradio">
    <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
@@ -192,7 +192,7 @@ Assign nodes to the `trailing-meta` slot to set a badge or an additional icon.
 
 Assign menu to the `submenu` slot to create a submenu.
 
-```html preview 200px
+```html preview 250px
 <vwc-menu open aria-label="Example menu">
     <vwc-menu-item text="Menu item 1">
       <vwc-menu slot="submenu">
@@ -242,7 +242,7 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 - `--text-secondary-line-clamp` for the secondary text.
 
 
-```html preview 150px
+```html preview 200px
 <style>
   vwc-menu {
   --text-primary-line-clamp: auto; 

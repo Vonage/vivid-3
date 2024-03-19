@@ -1,4 +1,4 @@
-@use "../../../../../../dist/libs/tokens/scss/size.variables" as size;
+@use '../../../../../../dist/libs/tokens/scss/size.variables' as size;
 
 $auto-sizing: --_auto-sizing; // interior. not API
 $layout-grid-template-columns: --layout-grid-template-columns;
@@ -17,14 +17,16 @@ $bases: (
 	small: 160px,
 	medium: 320px,
 	large: 380px,
-	block: 1fr
+	block: 1fr,
 );
 
 /* #region SPACES */
 $spaces: (
 	small: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
-	small-inline: 0 calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
-	small-block: calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}) 0,
+	small-inline: 0
+		calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}),
+	small-block:
+		calc(#{size.$vvd-size-normal} - #{size.$vvd-size-super-condensed}) 0,
 	medium: #{size.$vvd-size-super-condensed},
 	medium-inline: 0 #{size.$vvd-size-super-condensed},
 	medium-block: #{size.$vvd-size-super-condensed} 0,

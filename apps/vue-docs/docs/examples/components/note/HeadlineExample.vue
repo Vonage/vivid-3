@@ -1,5 +1,5 @@
 <template>
-  <VNote headline="Headline Text" />
+	<VNote headline="Headline Text" />
 </template>
 
 <script setup lang="ts">

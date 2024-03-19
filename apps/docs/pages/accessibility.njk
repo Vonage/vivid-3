@@ -1,0 +1,14 @@
+---
+tags: accessibility
+pagination:
+    data: accessibility
+    size: 1
+    alias: doc
+permalink: "accessibility/{{ doc | pageSlug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile doc.markdown %}
+{% endblock %}

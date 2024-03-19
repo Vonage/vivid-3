@@ -22,10 +22,10 @@ export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Co
 
 
 /**
- * Base class for checkbox
- *
- * @event input - Event that emits when the component checked state changes
  * @public
+ * @component checkbox
+ * @event input - Event that emits when the component checked state changes
+ * @vueModel modelValue current-checked change `(event.target as HTMLInputElement).checked`
  */
 @errorText
 @formElements

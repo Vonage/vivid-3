@@ -2,7 +2,6 @@
 @use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../connotation' as connotation;
 
-
 $states-mapping: (
 	idle: (
 		filled: (
@@ -41,7 +40,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
 			outline: transparent,
 		),
@@ -49,7 +48,7 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(fierce)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: var(#{connotation.get-connotation-token(intermediate)}),
-		)
+		),
 	),
 	hover: (
 		filled: (
@@ -88,10 +87,10 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: transparent,
-		)
+		),
 	),
 	active: (
 		filled: (
@@ -130,7 +129,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
@@ -159,7 +158,7 @@ $states-mapping: (
 		duotone: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: transparent,
-			outline: var(#{constants.$vvd-color-neutral-100})
+			outline: var(#{constants.$vvd-color-neutral-100}),
 		),
 		fieldset: (
 			text: var(#{constants.$vvd-color-neutral-300}),
@@ -175,7 +174,7 @@ $states-mapping: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: transparent,
 			outline: transparent,
-		)
+		),
 	),
 	readonly: (
 		filled: (
@@ -217,7 +216,7 @@ $states-mapping: (
 			text: var(#{constants.$vvd-color-neutral-600}),
 			fill: transparent,
 			outline: transparent,
-		)
+		),
 	),
 	selected: (
 		filled: (
@@ -256,8 +255,8 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(dim)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
 	),
@@ -298,10 +297,10 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
-		)
+		),
 	),
 	selectedAndDisabled: (
 		filled: (
@@ -343,7 +342,7 @@ $states-mapping: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: var(#{constants.$vvd-color-neutral-200}),
 			outline: transparent,
-		)
+		),
 	),
 	checked: (
 		filled: (
@@ -382,10 +381,10 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(dim)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
-		)
+		),
 	),
 	checkedAndHover: (
 		filled: (
@@ -424,10 +423,10 @@ $states-mapping: (
 			outline: transparent,
 		),
 		listitem: (
-			text: var(#{connotation.get-connotation-token(primary)}),
-			fill: var(#{connotation.get-connotation-token(pale)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
-		)
+		),
 	),
 	error: (
 		fieldset: (
@@ -452,5 +451,5 @@ $states-mapping: (
 			fill: var(#{constants.$vvd-color-success-50}),
 			outline: transparent,
 		),
-	)
+	),
 );

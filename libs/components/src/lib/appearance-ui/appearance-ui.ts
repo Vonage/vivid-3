@@ -23,9 +23,7 @@ Appearance.Filled
 
 
 /**
- * Base class for appearance-ui
- *
- * @public
+ * @component appearance-ui
  */
 export class AppearanceUi extends FoundationElement {
 	/**

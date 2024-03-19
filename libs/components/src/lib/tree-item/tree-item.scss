@@ -1,21 +1,22 @@
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary primary-text primary-increment faint soft,
 	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: ghost,
 	$states: idle disabled hover active selected selectedAndHover,
 	$default: ghost
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host(:focus-visible) {
 	outline: none;
@@ -27,7 +28,7 @@
 
 .control {
 	@include appearance.appearance;
-	@include connotation.connotation (tree-item);
+	@include connotation.connotation(tree-item);
 
 	$min-block-size: #{size.$vvd-size-normal};
 	$gap: 12px;
@@ -103,8 +104,7 @@
 	padding-inline-start: 48px;
 }
 
-
-slot[name="icon"] {
+slot[name='icon'] {
 	font-size: 20px;
 	line-height: 1;
 

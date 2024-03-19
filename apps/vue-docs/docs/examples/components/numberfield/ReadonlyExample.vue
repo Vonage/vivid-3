@@ -1,5 +1,5 @@
 <template>
-  <VNumberField readonly value="8" label="fieldset" appearance="fieldset" />
+	<VNumberField readonly value="8" label="fieldset" appearance="fieldset" />
 </template>
 
 <script setup lang="ts">
