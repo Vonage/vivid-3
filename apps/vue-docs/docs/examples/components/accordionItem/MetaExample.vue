@@ -1,9 +1,9 @@
 <template>
-  <VAccordion>
-    <VAccordionItem heading="Accordion item with metadata" meta="meta-data">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </VAccordionItem>
-  </VAccordion>
+	<VAccordion>
+		<VAccordionItem heading="Accordion item with metadata" meta="meta-data">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</VAccordionItem>
+	</VAccordion>
 </template>
 
 <script setup lang="ts">

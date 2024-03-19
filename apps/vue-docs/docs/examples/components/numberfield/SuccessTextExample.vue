@@ -1,5 +1,5 @@
 <template>
-  <VNumberField label="Valid value" success-text="Great success" />
+	<VNumberField label="Valid value" success-text="Great success" />
 </template>
 
 <script setup lang="ts">

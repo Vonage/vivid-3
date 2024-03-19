@@ -1,5 +1,5 @@
 <template>
-  <VSlider orientation="vertical" style="height: 100px" />
+	<VSlider orientation="vertical" style="height: 100px" />
 </template>
 
 <script setup lang="ts">

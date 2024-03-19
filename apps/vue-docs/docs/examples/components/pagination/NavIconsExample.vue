@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VPagination total="20" />
-    <VPagination total="20" nav-icons />
-  </div>
+	<div>
+		<VPagination total="20" />
+		<VPagination total="20" nav-icons />
+	</div>
 </template>
 
 <script setup lang="ts">

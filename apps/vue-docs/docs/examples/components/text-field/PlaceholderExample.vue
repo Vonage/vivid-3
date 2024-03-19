@@ -1,5 +1,5 @@
 <template>
-  <VTextField placeholder="My Placeholder" />
+	<VTextField placeholder="My Placeholder" />
 </template>
 
 <script setup lang="ts">

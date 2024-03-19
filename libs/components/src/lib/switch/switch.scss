@@ -1,29 +1,30 @@
-@use "partials/variables" as variables;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus;
-@use "../../../../shared/src/lib/sass/mixins/focus" as focus-variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@use "../../../../shared/src/lib/sass/mixins/connotation/config" with (
+@use 'partials/variables' as variables;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
 	$shades: primary-text primary primary-increment firm intermediate fierce,
-	$default: accent,
+	$default: accent
 );
-@use "../../../../shared/src/lib/sass/mixins/connotation" as connotation;
-@use "../../../../shared/src/lib/sass/mixins/appearance/config" as appearance-config with (
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
 	$appearances: fieldset filled,
 	$states: idle hover disabled readonly,
-	$default: fieldset,
+	$default: fieldset
 );
-@use "../../../../shared/src/lib/sass/mixins/appearance" as appearance;
-@use "../../../../../dist/libs/tokens/scss/size.variables" as size;
-@use "../../../../shared/src/lib/sass/mixins/border-radius" as border-radius-variables;
-
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
 
 :host(.disabled) {
 	cursor: not-allowed;
 }
 
 .control {
-	@include connotation.connotation (switch);
+	@include connotation.connotation(switch);
 	@include appearance.appearance;
 
 	display: inline-flex;
@@ -33,11 +34,9 @@
 	#{focus-variables.$focus-inset}: -4px;
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-
 	&:focus-visible {
 		@include focus.focus;
 	}
-
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -53,7 +52,9 @@
 }
 
 .switch {
-	#{variables.$switch-inline-size}: calc(#{size.$vvd-size-ultra-condensed} * 1.8);
+	#{variables.$switch-inline-size}: calc(
+		#{size.$vvd-size-ultra-condensed} * 1.8
+	);
 
 	display: flex;
 	box-sizing: border-box;
@@ -67,13 +68,15 @@
 }
 
 .checked-indicator {
-	#{variables.$checked-indicator-size}: calc(#{size.$vvd-size-ultra-condensed} / 1.6667);
+	#{variables.$checked-indicator-size}: calc(
+		#{size.$vvd-size-ultra-condensed} / 1.6667
+	);
 	#{variables.$gutter}: calc(var(#{variables.$checked-indicator-size}) / 3);
 
 	border-radius: inherit;
 	block-size: var(#{variables.$checked-indicator-size});
 	inline-size: var(#{variables.$checked-indicator-size});
-	margin-inline-start: auto ;
+	margin-inline-start: auto;
 	transition: all 0.2s ease-in-out 0s;
 
 	.control:not(.appearance-filled) & {
@@ -89,7 +92,13 @@
 	}
 
 	.control:not(.checked) & {
-		transform: translateX(calc(-1 * var(#{variables.$switch-inline-size}) + var(#{variables.$checked-indicator-size}) + var(#{variables.$gutter})));
+		transform: translateX(
+			calc(
+				-1 * var(#{variables.$switch-inline-size}) + var(
+						#{variables.$checked-indicator-size}
+					) + var(#{variables.$gutter})
+			)
+		);
 	}
 
 	.control.checked & {
@@ -97,7 +106,7 @@
 	}
 
 	.control.appearance-filled.disabled & {
-		background-color:var(#{appearance.get-appearance-token(text)});
+		background-color: var(#{appearance.get-appearance-token(text)});
 	}
 
 	.control.appearance-filled.readonly & {

@@ -1,11 +1,11 @@
 <template>
-  <VRangeSlider
-    :start="start"
-    :end="end"
-    @update:start="start = $event"
-    @update:end="end = $event"
-  />
-  <!-- In Vue 3 you can use v-model shorthand instead of @update:start and @update:end
+	<VRangeSlider
+		:start="start"
+		:end="end"
+		@update:start="start = $event"
+		@update:end="end = $event"
+	/>
+	<!-- In Vue 3 you can use v-model shorthand instead of @update:start and @update:end
 		<VRangeSlider v-model:start="start" v-model:end="end" />
 	-->
 </template>

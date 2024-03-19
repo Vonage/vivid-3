@@ -3,7 +3,7 @@
 @use '../../utils' as utils;
 
 @function get-default-mapping($type) {
-  @return (
+	@return (
 		intermediate: #{utils.get-color-token(#{$type}-500)},
 		primary-increment: #{utils.get-color-token(#{$type}-600)},
 
@@ -12,36 +12,37 @@
 		dim: #{utils.get-color-token(#{$type}-200)},
 		pale: #{utils.get-color-token(#{$type}-300)},
 		light: #{utils.get-color-token(#{$type}-400)},
-    primary: #{utils.get-color-token(#{$type}-500)},
+		primary: #{utils.get-color-token(#{$type}-500)},
 		primary-text: #{utils.get-color-token(canvas)},
 		firm: #{utils.get-color-token(#{$type}-600)},
 		firm-all: #{utils.get-color-token(#{$type}-600)},
 		fierce: #{utils.get-color-token(#{$type}-700)},
-    contrast: #{utils.get-color-token(#{$type}-800)},
-
-  );
+		contrast: #{utils.get-color-token(#{$type}-800)}
+	);
 }
 
 $connotation-mapping: (
-  accent: map.merge(
-    get-default-mapping(neutral),
-    (
-      primary: utils.get-color-token(canvas-text),
-      primary-increment: utils.get-color-token(neutral-800),
-      firm: utils.get-color-token(canvas-text),
-    )
-  ),
-  warning: map.merge(
-    get-default-mapping(warning),
-    (
-      primary: utils.get-color-token(warning-300),
-			primary-text: #{utils.get-color-token(canvas-text)},
-			intermediate: #{utils.get-color-token(warning-300)},
-    )
-  ),
-  cta: get-default-mapping(cta),
-  success: get-default-mapping(success),
-  alert: get-default-mapping(alert),
-  information: get-default-mapping(information),
-  announcement: get-default-mapping(announcement),
+	accent:
+		map.merge(
+			get-default-mapping(neutral),
+			(
+				primary: utils.get-color-token(canvas-text),
+				primary-increment: utils.get-color-token(neutral-800),
+				firm: utils.get-color-token(canvas-text),
+			)
+		),
+	warning:
+		map.merge(
+			get-default-mapping(warning),
+			(
+				primary: utils.get-color-token(warning-300),
+				primary-text: #{utils.get-color-token(canvas-text)},
+				intermediate: #{utils.get-color-token(warning-300)},
+			)
+		),
+	cta: get-default-mapping(cta),
+	success: get-default-mapping(success),
+	alert: get-default-mapping(alert),
+	information: get-default-mapping(information),
+	announcement: get-default-mapping(announcement),
 );

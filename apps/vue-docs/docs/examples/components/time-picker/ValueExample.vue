@@ -1,7 +1,7 @@
 <template>
-  <div style="block-size: 360px">
-    <VTimePicker v-model="value" label="Start time" />
-  </div>
+	<div style="block-size: 360px">
+		<VTimePicker v-model="value" label="Start time" />
+	</div>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <VTextField label="Helper text below" helper-text="Help text" />
+	<VTextField label="Helper text below" helper-text="Help text" />
 </template>
 
 <script setup lang="ts">
