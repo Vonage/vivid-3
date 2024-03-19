@@ -17,6 +17,7 @@
 		firm: #{utils.get-color-token(#{$type}-600)},
 		firm-all: #{utils.get-color-token(#{$type}-600)},
 		fierce: #{utils.get-color-token(#{$type}-700)},
+		fierce-primary: #{utils.get-color-token(#{$type}-700)},
 		contrast: #{utils.get-color-token(#{$type}-800)}
 	);
 }
@@ -29,6 +30,7 @@ $connotation-mapping: (
 				primary: utils.get-color-token(canvas-text),
 				primary-increment: utils.get-color-token(neutral-800),
 				firm: utils.get-color-token(canvas-text),
+				fierce-primary: utils.get-color-token(canvas-text),
 			)
 		),
 	warning:
@@ -38,6 +40,7 @@ $connotation-mapping: (
 				primary: utils.get-color-token(warning-300),
 				primary-text: #{utils.get-color-token(canvas-text)},
 				intermediate: #{utils.get-color-token(warning-300)},
+				fierce-primary: utils.get-color-token(warning-300),
 			)
 		),
 	cta: get-default-mapping(cta),

@@ -14,6 +14,11 @@ $states-mapping: (
 			fill: transparent,
 			outline: transparent,
 		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: transparent,
+			outline: transparent,
+		),
 		outlined: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
@@ -56,6 +61,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: transparent,
 		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(fierce-primary)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 90%
+				),
+			outline: transparent,
+		),
 		outlined: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
@@ -93,6 +108,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(fierce-primary)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 80%
+				),
+			outline: transparent,
+		),
 		outlined: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
@@ -126,6 +151,11 @@ $states-mapping: (
 			outline: transparent,
 		),
 		ghost: (
+			text: var(#{constants.$vvd-color-neutral-300}),
+			fill: transparent,
+			outline: transparent,
+		),
+		ghost-light: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: transparent,
 			outline: transparent,
@@ -167,6 +197,11 @@ $states-mapping: (
 			fill: transparent,
 			outline: transparent,
 		),
+		ghost-light: (
+			text: var(#{constants.$vvd-color-neutral-600}),
+			fill: transparent,
+			outline: transparent,
+		),
 		outlined: (
 			text: var(#{constants.$vvd-color-neutral-600}),
 			fill: transparent,
@@ -202,6 +237,16 @@ $states-mapping: (
 		ghost: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
 			fill: var(#{connotation.get-connotation-token(primary)}),
+			outline: transparent,
+		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(firm)}),
+					transparent 10%
+				),
 			outline: transparent,
 		),
 		outlined: (
@@ -241,6 +286,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(primary-increment)}),
 			outline: transparent,
 		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(fierce-primary)}),
+					transparent 20%
+				),
+			outline: transparent,
+		),
 		outlined: (
 			text: notset,
 			fill: notset,
@@ -274,6 +329,11 @@ $states-mapping: (
 			outline: transparent,
 		),
 		ghost: (
+			text: var(#{constants.$vvd-color-neutral-300}),
+			fill: var(#{constants.$vvd-color-neutral-200}),
+			outline: transparent,
+		),
+		ghost-light: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: var(#{constants.$vvd-color-neutral-200}),
 			outline: transparent,
@@ -315,6 +375,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(primary)}),
 			outline: transparent,
 		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(firm)}),
+					transparent 10%
+				),
+			outline: transparent,
+		),
 		outlined: (
 			text: notset,
 			fill: notset,
@@ -350,6 +420,16 @@ $states-mapping: (
 		ghost: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
 			fill: var(#{connotation.get-connotation-token(primary-increment)}),
+			outline: transparent,
+		),
+		ghost-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(fierce-primary)}),
+					transparent 20%
+				),
 			outline: transparent,
 		),
 		outlined: (
