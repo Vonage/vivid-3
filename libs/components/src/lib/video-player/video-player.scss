@@ -1,6 +1,8 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @import '../../../../../node_modules/video.js/dist/video-js.css';
 
 .vjs-theme-vivid {
@@ -25,6 +27,10 @@
 		line-height: calc($big-play-btn-size - 5px);
 		margin-block-start: -$big-play-btn-offset;
 		margin-inline-start: -$big-play-btn-offset;
+
+		&:focus-visible {
+			@include focus.focus;
+		}
 	}
 
 	&:hover {
@@ -71,6 +77,10 @@
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		inline-size: $control-size;
 
+		&:focus-visible {
+			@include focus.focus;
+		}
+
 		> .vjs-svg-icon {
 			block-size: 21px;
 			inline-size: 21px;
@@ -91,6 +101,10 @@
 			justify-content: start;
 			padding: 4px 8px;
 			text-align: left;
+
+			&:focus-visible {
+				@include focus.focus;
+			}
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
@@ -158,7 +172,8 @@
 			background-color: $control-background-color;
 		}
 
-		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical {
+		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical,
+		&.vjs-slider-active .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical {
 			left: -40px;
 		}
 	}
