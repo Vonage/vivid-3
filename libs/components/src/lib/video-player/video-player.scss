@@ -173,7 +173,9 @@
 		}
 
 		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical,
-		&.vjs-slider-active .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical {
+		&.vjs-slider-active
+			.vjs-mute-control
+			~ .vjs-volume-control.vjs-volume-vertical {
 			left: -40px;
 		}
 	}
