@@ -1,5 +1,10 @@
 <template>
-  <VNumberField disabled value="disabled" label="fieldset" appearance="fieldset" />
+	<VNumberField
+		disabled
+		value="disabled"
+		label="fieldset"
+		appearance="fieldset"
+	/>
 </template>
 
 <script setup lang="ts">

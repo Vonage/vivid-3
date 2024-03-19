@@ -1,5 +1,5 @@
 <template>
-  <VCheckbox ref="checkbox" />
+	<VCheckbox ref="checkbox" />
 </template>
 
 <script setup lang="ts">
@@ -8,8 +8,8 @@ import { ref, watchEffect } from 'vue';
 
 const checkbox = ref<VCheckbox>(null);
 watchEffect(() => {
-  if (checkbox.value) {
-    checkbox.value.$el.indeterminate = true;
-  }
+	if (checkbox.value) {
+		checkbox.value.$el.indeterminate = true;
+	}
 });
 </script>

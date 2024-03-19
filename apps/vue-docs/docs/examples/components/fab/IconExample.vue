@@ -1,5 +1,5 @@
 <template>
-  <VFab icon="cart-line" aria-label="Shopping Cart" />
+	<VFab icon="cart-line" aria-label="Shopping Cart" />
 </template>
 
 <script setup lang="ts">

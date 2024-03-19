@@ -1,5 +1,5 @@
 <template>
-  <VNote icon="home" />
+	<VNote icon="home" />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <VNumberField placeholder="My Placeholder" />
+	<VNumberField placeholder="My Placeholder" />
 </template>
 
 <script setup lang="ts">
