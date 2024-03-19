@@ -89,9 +89,6 @@ export class TextField extends FoundationTextfield {
 	@observable actionItemsSlottedContent?: HTMLElement[];
 	@observable leadingActionItemsSlottedContent?: HTMLElement[];
 
-
-
-
 	/**
 	 * @internal
 	 */
