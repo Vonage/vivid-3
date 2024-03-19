@@ -63,7 +63,12 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(fierce)}),
-			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 90%),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 90%
+				),
 			outline: transparent,
 		),
 		outlined: (
@@ -105,7 +110,12 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(fierce)}),
-			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 70%),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 70%
+				),
 			outline: transparent,
 		),
 		outlined: (
@@ -231,7 +241,12 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 10%),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 10%
+				),
 			outline: transparent,
 		),
 		outlined: (
@@ -273,7 +288,12 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(primary)}), transparent 27%),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 27%
+				),
 			outline: transparent,
 		),
 		outlined: (
@@ -399,7 +419,12 @@ $states-mapping: (
 		),
 		ghost-light: (
 			text: var(#{connotation.get-connotation-token(primary-text)}),
-			fill: color-mix(in srgb, var(#{connotation.get-connotation-token(contrast)}), transparent 15%),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(contrast)}),
+					transparent 15%
+				),
 			outline: transparent,
 		),
 		outlined: (
