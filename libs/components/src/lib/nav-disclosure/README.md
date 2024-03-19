@@ -149,3 +149,37 @@ Use the `meta` slot to add additional content to the nav-disclosure.
 	</vwc-nav>
 </div>
 ```
+
+### - White labeling
+```html preview
+<style>
+.vvd-root {
+--vvd-color-cta-50: #F9F2F4;
+    --vvd-color-cta-100: #F4E1E7;
+    --vvd-color-cta-200: #EFBFCD;
+    --vvd-color-cta-300: #EC9CB4;
+    --vvd-color-cta-400: #E86693;
+    --vvd-color-cta-500: #E20E75;
+    --vvd-color-cta-600: #C02066;
+    --vvd-color-cta-700: #88294D;
+    --vvd-color-cta-800: #552233;
+    --vvd-color-cta-900: #29131A;
+    --vvd-color-cta-950: #150A0D;
+}
+.wrapper {width: 200px; padding: 8px; background-color: var(--vvd-color-cta-50)}
+</style>
+<div class="wrapper">
+	<vwc-nav>
+	<vwc-nav-item href="#" text="item"></vwc-nav-item>
+	<vwc-nav-item href="#" text="item"></vwc-nav-item>
+	<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		<vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
+			<vwc-nav-item href="#" text="2nd level item" aria-current="page"></vwc-nav-item>
+			<vwc-nav-item href="#" text="item"></vwc-nav-item>
+			<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		</vwc-nav-disclosure>
+	<vwc-nav-item href="#" text="item"></vwc-nav-item>
+	<vwc-nav-item href="#" text="item"></vwc-nav-item>
+	</vwc-nav>
+</div>
+```
