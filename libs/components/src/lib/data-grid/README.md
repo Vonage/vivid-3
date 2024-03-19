@@ -480,7 +480,9 @@ Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 </script>
 ```
 
-## CSS Variable
+## CSS Variables
+
+### --data-grid-row-background
 When Row is set to sticky there's a default canvas background-color.  
 Use `--data-grid-row-background` to change the sticky row background-color.
 
@@ -505,6 +507,91 @@ vwc-data-grid {--data-grid-row-background: var(--vvd-color-neutral-50);}
 	
 </script>
 ```
+
+### Block Size
+By default, cells have a fixed `block-size`. Use `--data-grid-cell-block-size` to change the cell's `block-size`.
+
+Set it to `100%` to make the cells' height dynamic based on content.
+
+<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
+
+We will change the default value of `--data-grid-cell-block-size` to `100%` in a future major version of Vivid to make dynamic row heights the default behavior.
+
+</vwc-note>
+
+```html preview
+<style>
+.dynamic-height {
+	--data-grid-cell-block-size: 100%;
+}
+</style>
+<vwc-data-grid>
+	<vwc-data-grid-row row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			Fixed height (default)
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			<vwc-button label="Action" appearance="outlined"></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row class="dynamic-height">
+		<vwc-data-grid-cell>
+			Variable height
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			<vwc-button label="Action" appearance="outlined"></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
+### White Space
+
+By default, the cell's `white-space` is `nowrap`, which prevents text from wrapping to multiple lines.
+
+Set the value to `normal` in combination with a `--data-grid-cell-block-size` of `100%` to allow text to wrap to multiple lines.
+
+<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
+
+We will change the default value of `--data-grid-cell-white-space` to `normal` in a future major version of Vivid to make dynamic row heights the default behavior.
+
+</vwc-note>
+
+```html preview
+<style>
+vwc-data-grid {
+	--data-grid-cell-white-space: normal;
+	--data-grid-cell-block-size: 100%;
+}
+</style>
+<vwc-data-grid>
+	<vwc-data-grid-row row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">
+			Column 2
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus.
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
 
 ## Dimensions
 ### Inline-size
@@ -565,7 +652,12 @@ When a cell is sorted but not according to ascending or descending algorithm, us
 In order for the select popup to show correctly in the grid, use the `fixed-dropdown` attribute on the select inside grid cells.
 
 ```html preview
-	<vwc-data-grid>
+<style>
+	vwc-data-grid {
+		--data-grid-cell-block-size: 100%;
+	}
+</style>
+<vwc-data-grid>
 	<vwc-data-grid-row role="row" class="header" row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
@@ -731,6 +823,11 @@ If your cell contains a focusable child element that you would like to delegate 
 If you cell contains multiple focusable elements or elements that require arrow keys to operate, combine this will `cellInternalFocusQueue` of the column definition. This will allow users to press Enter or F2 when the cell has focus to move focus into the cell and operate the elements as usual.
 
 ```html preview
+<style>
+	vwc-data-grid {
+		--data-grid-cell-block-size: 100%;
+	}
+</style>
 <vwc-data-grid>
   <vwc-data-grid-row row-type="header">
     <vwc-data-grid-cell cell-type="columnheader">
