@@ -22,7 +22,6 @@ const getStateClasses = ({
 	actionItemsSlottedContent,
 	leadingActionItemsSlottedContent,
 	icon,
-	customPart,
 }: TextField) =>
 	classNames(
 		['error', Boolean(errorValidationMessage)],
@@ -37,8 +36,7 @@ const getStateClasses = ({
 		['success', Boolean(successText)],
 		['action-items', !!actionItemsSlottedContent?.length],
 		['leading-action-items', !!leadingActionItemsSlottedContent?.length],
-		['no-leading', !(leadingActionItemsSlottedContent?.length || icon)],
-		['custom-part', Boolean(customPart)]
+		['no-leading', !(leadingActionItemsSlottedContent?.length || icon)]
 	);
 
 /**

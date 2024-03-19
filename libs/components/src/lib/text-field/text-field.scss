@@ -228,10 +228,6 @@ $low-ink-color: --_low-ink-color;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		@include focus.focus;
-
-		.base.custom-part & {
-			outline: transparent;
-		}
 	}
 }
 
@@ -250,15 +246,15 @@ $low-ink-color: --_low-ink-color;
 }
 
 /* Customize for Dial-pad */
-.base.custom-part {
+:host([internal-part]) {
 	.fieldset {
-		border-radius: 0;
-		block-size: #{size.$vvd-size-expanded};
-		box-shadow: inset 0 -1px 0 0 var(#{appearance.get-appearance-token(outline)});
-		font: var(#{constants.$vvd-typography-base-extended-bold});
+		font: var(#{constants.$vvd-typography-heading-4});
 
-		&::after {
-			content: none;
+		&:not(:focus-within) {
+			&::after {
+				block-size: 1px;
+				inset-block-end: 0;
+			}
 		}
 	}
 	.control {

@@ -78,10 +78,6 @@ export class TextField extends FoundationTextfield {
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
 	@attr autoComplete?: string;
-	@attr({
-		mode: 'boolean',
-		attribute: 'custom-part',
-	}) customPart = false;
 
 	/**
 	 *
