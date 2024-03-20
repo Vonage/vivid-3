@@ -8,30 +8,39 @@ const defaultToken = {
 	path: [],
 	original: undefined,
 	filePath: '',
-	isSource: false
+	isSource: false,
 };
 
 describe('basic', () => {
 	it('should evaluate math expression', () => {
-		expect(transformer({
-			...defaultToken,
-			value: "4 * 3.72",
-			type: 'sizing'
-		}, {})).toEqual('14.88');
+		expect(
+			transformer(
+				{
+					...defaultToken,
+					value: '4 * 3.72',
+					type: 'sizing',
+				},
+				{}
+			)
+		).toEqual('14.88');
 	});
 
 	it('should throw', () => {
-		expect(transformer({ ...defaultToken }, {})).toEqual("undefined");
+		expect(transformer({ ...defaultToken }, {})).toEqual('undefined');
 	});
 
 	it('should match if is token', () => {
-		expect(matcher({
-			...defaultToken,
-			type: 'other'
-		})).toBeFalsy();
-		expect(matcher({
-			...defaultToken,
-			type: 'sizing',
-		})).toBeTruthy();
+		expect(
+			matcher({
+				...defaultToken,
+				type: 'other',
+			})
+		).toBeFalsy();
+		expect(
+			matcher({
+				...defaultToken,
+				type: 'sizing',
+			})
+		).toBeTruthy();
 	});
 });

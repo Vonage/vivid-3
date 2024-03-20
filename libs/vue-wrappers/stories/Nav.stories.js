@@ -3,14 +3,14 @@ import { ref } from 'vue';
 import { argTypes } from './generated/VNav';
 
 export default {
-  title: 'Wrappers/Nav',
-  component: VNav,
-  argTypes,
+	title: 'Wrappers/Nav',
+	component: VNav,
+	argTypes,
 };
 
 const DefaultTemplate = () => ({
-  components: { VNav, VNavItem },
-  template: `<VNav>
+	components: { VNav, VNavItem },
+	template: `<VNav>
     <VNavItem
       href="#"
       text="1st level item"
@@ -30,16 +30,16 @@ const DefaultTemplate = () => ({
       @click.prevent="selectedItem = 3"
     />
   </VNav>`,
-  setup() {
-    const selectedItem = ref(1);
-    return { selectedItem };
-  },
+	setup() {
+		const selectedItem = ref(1);
+		return { selectedItem };
+	},
 });
 export const Default = DefaultTemplate.bind({});
 
 const NavigationDisclosureTemplate = () => ({
-  components: { VNav, VNavDisclosure, VNavItem },
-  template: `<VNav>
+	components: { VNav, VNavDisclosure, VNavItem },
+	template: `<VNav>
     <VNavDisclosure label="1st level item" open>
       <VNavItem
         href="#"
@@ -63,9 +63,9 @@ const NavigationDisclosureTemplate = () => ({
       </VNavDisclosure>
     </VNavDisclosure>
   </VNav>`,
-  setup() {
-    const selectedItem = ref(1);
-    return { selectedItem };
-  },
+	setup() {
+		const selectedItem = ref(1);
+		return { selectedItem };
+	},
 });
 export const NavigationDisclosure = NavigationDisclosureTemplate.bind({});

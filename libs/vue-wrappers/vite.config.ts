@@ -7,9 +7,7 @@ import * as path from 'path';
 export default defineConfig({
 	cacheDir: '../../node_modules/.vite/vue-wrappers',
 
-	plugins: [
-		nxViteTsPaths(),
-	],
+	plugins: [nxViteTsPaths()],
 
 	resolve: {
 		alias: {

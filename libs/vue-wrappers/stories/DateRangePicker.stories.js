@@ -3,21 +3,21 @@ import { ref } from 'vue';
 import { argTypes, Template } from './generated/VDateRangePicker';
 
 export default {
-  title: 'Wrappers/DateRangePicker',
-  component: VDateRangePicker,
-  argTypes,
+	title: 'Wrappers/DateRangePicker',
+	component: VDateRangePicker,
+	argTypes,
 };
 
 export const Basic = Template.bind({});
 
 const VModelTemplate = () => ({
-  components: { VDateRangePicker },
-  setup() {
-    const start = ref('');
-    const end = ref('');
-    return { start, end };
-  },
-  template: `<div>
+	components: { VDateRangePicker },
+	setup() {
+		const start = ref('');
+		const end = ref('');
+		return { start, end };
+	},
+	template: `<div>
     <div>v-model:start: {{ start }}</div>
     <div>
       <button @click="start = ''">Reset</button>
@@ -36,13 +36,13 @@ const VModelTemplate = () => ({
 export const VModel = VModelTemplate.bind({});
 
 const VModelVue3OnlyTemplate = () => ({
-  components: { VDateRangePicker },
-  setup() {
-    const start = ref('');
-    const end = ref('');
-    return { start, end };
-  },
-  template: `<div>
+	components: { VDateRangePicker },
+	setup() {
+		const start = ref('');
+		const end = ref('');
+		return { start, end };
+	},
+	template: `<div>
     <div>v-model:start: {{ start }}</div>
     <div>
       <button @click="start = ''">Reset</button>

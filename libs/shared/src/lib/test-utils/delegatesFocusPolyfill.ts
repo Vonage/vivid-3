@@ -14,7 +14,6 @@ export const setupDelegatesFocusPolyfill = (forElement: HTMLElement) => {
 
 		// Move up the tree until we find our shadow root
 		while (
-
 			currentFocusTarget.getRootNode() !== document &&
 			currentFocusTarget.getRootNode() !== currentFocusTarget
 		) {

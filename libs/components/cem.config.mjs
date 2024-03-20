@@ -104,7 +104,9 @@ export default {
 				switch (node.kind) {
 					case ts.SyntaxKind.ClassDeclaration: {
 						const className = node.name.getText();
-						const classDoc = moduleDoc.declarations.find(x => x.name === className);
+						const classDoc = moduleDoc.declarations.find(
+							(x) => x.name === className
+						);
 						if (!classDoc) {
 							return;
 						}
@@ -119,9 +121,13 @@ export default {
 								}
 
 								if (tag.tagName.getText() === 'vueModel') {
-									const [name, attributeName, eventName, ...valueMappingParts] = tag.comment.split(' ');
+									const [name, attributeName, eventName, ...valueMappingParts] =
+										tag.comment.split(' ');
 									const valueMappingStr = valueMappingParts.join(' ');
-									const valueMapping = valueMappingStr.substring(1, valueMappingStr.length - 1);
+									const valueMapping = valueMappingStr.substring(
+										1,
+										valueMappingStr.length - 1
+									);
 
 									if (vividComponent.vueModels === undefined) {
 										vividComponent.vueModels = [];

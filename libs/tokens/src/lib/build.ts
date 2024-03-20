@@ -9,13 +9,12 @@ import configTypography from './configurations/typography';
 import configSize from './configurations/size';
 import cssAtRuleProperty from './configurations/@property';
 
-
 SD.registerTransform(publicCssReferences);
 SD.registerTransform(resolveMath);
 
 SD.extend(configScssConstants).buildAllPlatforms();
 
-['light', 'dark'].forEach(theme => {
+['light', 'dark'].forEach((theme) => {
 	SD.extend(getConfigTheme(theme)).buildAllPlatforms();
 });
 

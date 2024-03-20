@@ -2,14 +2,14 @@ import { VButton, VEmptyState } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VEmptyState';
 
 export default {
-  title: 'Wrappers/EmptyState',
-  component: VEmptyState,
-  argTypes,
+	title: 'Wrappers/EmptyState',
+	component: VEmptyState,
+	argTypes,
 };
 
 const EmptyStateTemplate = () => ({
-  components: { VEmptyState, VButton },
-  template: `<VEmptyState icon="search-line" headline="No results found">
+	components: { VEmptyState, VButton },
+	template: `<VEmptyState icon="search-line" headline="No results found">
     No results match your search criteria.
     <VButton slot="action-items" shape="pill" label="Reset filters" appearance="outlined" />
   </VEmptyState>`,
@@ -17,26 +17,26 @@ const EmptyStateTemplate = () => ({
 export const EmptyState = EmptyStateTemplate.bind({});
 
 const HeadlineTemplate = () => ({
-  components: { VEmptyState },
-  template: `<VEmptyState headline="No results found" />`,
+	components: { VEmptyState },
+	template: `<VEmptyState headline="No results found" />`,
 });
 export const Headline = HeadlineTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VEmptyState },
-  template: `<VEmptyState icon="search-line" />`,
+	components: { VEmptyState },
+	template: `<VEmptyState icon="search-line" />`,
 });
 export const Icon = IconTemplate.bind({});
 
 const DefaultTemplate = () => ({
-  components: { VEmptyState },
-  template: `<VEmptyState>No results match your search criteria.</VEmptyState>`,
+	components: { VEmptyState },
+	template: `<VEmptyState>No results match your search criteria.</VEmptyState>`,
 });
 export const Default = DefaultTemplate.bind({});
 
 const GraphicTemplate = () => ({
-  components: { VEmptyState },
-  template: `<VEmptyState icon="search-line" headline="No results found">
+	components: { VEmptyState },
+	template: `<VEmptyState icon="search-line" headline="No results found">
     No results match your search criteria.
     <template #graphic>
       <svg slot="graphic" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,8 +73,8 @@ const GraphicTemplate = () => ({
 });
 
 const ActionItemsTemplate = () => ({
-  components: { VEmptyState, VButton },
-  template: `
+	components: { VEmptyState, VButton },
+	template: `
     <VEmptyState icon="phone-number-line" headline="No numbers">
         You do not have any numbers yet.
         <VButton slot="action-items" shape="pill" label="Buy numbers" appearance="filled" />
