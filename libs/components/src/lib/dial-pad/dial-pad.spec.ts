@@ -41,7 +41,7 @@ describe('vwc-dial-pad', () => {
 			expect(element.pattern).toEqual('^[0-9#*]*$');
 			expect(element.value).toEqual('');
 			expect(element.disabled).toBeFalsy();
-			expect(element.active).toBeFalsy();
+			expect(element.callActive).toBeFalsy();
 			expect(element.noCall).toBeFalsy();
 		});
 	});
@@ -136,7 +136,7 @@ describe('vwc-dial-pad', () => {
 		it('should fire end-call event when clicked on call button when active', async function () {
 			const spy = jest.fn();
 			element.addEventListener('end-call', spy);
-			element.active = true;
+			element.callActive = true;
 			await elementUpdated(element);
 			getCallButton().click();
 			expect(spy).toHaveBeenCalledTimes(1);
@@ -144,7 +144,7 @@ describe('vwc-dial-pad', () => {
 	});
 
 	describe.each(['input', 'change', 'blur', 'focus'])('%s event', (eventName) => {
-		it('should be fired when a user enters a valid text into the text field', async () => {
+		it('should be fired when user enters a valid text into the text field', async () => {
 			const spy = jest.fn();
 			element.addEventListener(eventName, spy);
 
@@ -153,6 +153,19 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 
 			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe.each(['input', 'change'])('%s event', (eventName) => {
+		it('should be fired when user clicks the keyboard buttons', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+			getDigitButtons().forEach(button => {
+				button.click();
+			});
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(12);
 		});
 	});
 
@@ -180,14 +193,14 @@ describe('vwc-dial-pad', () => {
 
 	describe('active', function () {
 		it('should change call button connotation to "alert" when active', async function () {
-			element.active = true;
+			element.callActive = true;
 			expect(getCallButton().connotation).toEqual('cta');
 			await elementUpdated(element);
 			expect(getCallButton().connotation).toEqual('alert');
 		});
 
 		it('should change call buttons label when active', async function () {
-			element.active = true;
+			element.callActive = true;
 			expect(getCallButton().label).toEqual('Call');
 			await elementUpdated(element);
 			expect(getCallButton().label).toEqual('End call');
@@ -201,7 +214,7 @@ describe('vwc-dial-pad', () => {
 			expect(getCallButton()).toBeNull();
 		});
 	});
-	
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();

@@ -3,9 +3,7 @@
 This is a composed component that allows users to enter / dial telephone numbers.
 
 ```js
-<script type="module">
-    import '@vonage/vivid/dial-pad';
-</script>
+<script type="module">import '@vonage/vivid/dial-pad';</script>
 ```
 
 ```html preview
@@ -58,15 +56,15 @@ Use the `disabled` attribute to disable the keypad, input and Call/End call butt
 <vwc-dial-pad disabled></vwc-dial-pad>
 ```
 
-### Active
+### Call Active
 
-Use the `active` attribute to enable the `end call button` and disable the `dial button`.
+Use the `call-active` attribute (or `callActive` property) to enable the `end call button` and disable the `dial button`.
 
 - Type: `boolean`
 - Default: `false`
 
 ```html preview
-<vwc-dial-pad active></vwc-dial-pad>
+<vwc-dial-pad call-active></vwc-dial-pad>
 ```
 
 ### No Call
@@ -82,29 +80,33 @@ Use the `no-call` attribute (or `noCall` property) to disable call/end call func
 
 ### Pattern
 
-Use the `pattern` attribute to set the regex string of allowed characters in the input.   
-Read more about [vwc-text-field validation](/components/text-field/#validation).   
+Use the `pattern` attribute to set the regex string of allowed characters in the input.  
+Read more about [vwc-text-field validation](/components/text-field/#validation).  
 You can change the error text with the `error-text` attribute.
 
 - Type: `string`
 - Default: `^[0-9#*]*$` (key pad buttons)
 
 ```html preview
-<vwc-dial-pad placeholder="Only digits are valid"  pattern="^[0-9]*$" error-text="The input is invalid"></vwc-dial-pad>
+<vwc-dial-pad
+	placeholder="Only digits are valid"
+	pattern="^[0-9]*$"
+	error-text="The input is invalid"
+></vwc-dial-pad>
 ```
 
 ## Events
 
 <div class="table-wrapper">
 
-| Name           | Description                                                                                            |
-| -------------- | ------------------------------------------------------------------------------------------------------ |
-| `dial`         | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input |
-| `end-call`      | Emitted when the end call button is clicked                                                            |
-| `keypad-click` | Emitted when a keypad button is clicked with the value of the button clicked                           |
-| `input`        | Emitted from the input element                                                                         |
-| `change`       | Emitted from the input element                                                                         |
-| `blur`         | Emitted from the input element                                                                         |
-| `focus`        | Emitted from the input element                                                                         |
+| Name           | Description                                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------- |
+| `dial`         | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input. |
+| `end-call`     | Emitted when the end call button is clicked.                                                            |
+| `keypad-click` | Emitted when a keypad button is clicked with the value of the button clicked.                           |
+| `input`        | Emitted from the input element.                                                                         |
+| `change`       | Emitted from the input element.                                                                         |
+| `blur`         | Emitted from the input element.                                                                         |
+| `focus`        | Emitted from the input element.                                                                         |
 
 </div>

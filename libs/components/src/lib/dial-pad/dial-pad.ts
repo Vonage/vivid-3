@@ -101,9 +101,9 @@ export class DialPad extends FoundationElement {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: active
+	 * HTML Attribute: call-active
 	 */
-	@attr({ mode: 'boolean' }) active = false;
+	@attr({ attribute: 'call-active', mode: 'boolean' }) callActive = false;
 
 	/**
 	 * Indicates the no-call state of the dial-pad.
@@ -113,22 +113,6 @@ export class DialPad extends FoundationElement {
 	 * HTML Attribute: no-call
 	 */
 	@attr({ mode: 'boolean', attribute: 'no-call' }) noCall = false;
-
-	override connectedCallback() {
-		super.connectedCallback();
-		this._textFieldEl.addEventListener('input', this.handleInput);
-		this._textFieldEl.addEventListener('change', this.handleChange);
-		this._textFieldEl.addEventListener('focus', this.handleFocus);
-		this._textFieldEl.addEventListener('blur', this.handleBlur);
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this._textFieldEl.removeEventListener('input', this.handleInput);
-		this._textFieldEl.removeEventListener('change', this.handleChange);
-		this._textFieldEl.removeEventListener('focus', this.handleFocus);
-		this._textFieldEl.removeEventListener('blur', this.handleBlur);
-	}
 
 	/**
 	 *
@@ -140,21 +124,23 @@ export class DialPad extends FoundationElement {
 		}
 		this.value += e.target.value;
 		this.$emit('keypad-click', e.target.value);
+		this.$emit('input');
+		this.$emit('change');
 	};
 
 	/**
 	 *
 	 * @internal
 	 */
-	onDial = () => {
-		this.active ? this.$emit('end-call') : this.$emit('dial');
+	_onDial = () => {
+		this.callActive ? this.$emit('end-call') : this.$emit('dial');
 	};
 
 	/**
 	 *
 	 * @internal
 	 */
-	deleteLastCharacter = () => {
+	_deleteLastCharacter = () => {
 		this.value = this.value.slice(0, -1);
 	};
 
@@ -162,25 +148,25 @@ export class DialPad extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	handleInput = () => {
-		this.setValue(this._textFieldEl.value);
-		this.$emit('input', this._textFieldEl.value);
+	_handleInput = () => {
+		this.value = this._textFieldEl.value;
+		this.$emit('input');
 	};
 
 	/**
 	 *
 	 * @internal
 	 */
-	handleChange = () => {
-		this.setValue(this._textFieldEl.value);
-		this.$emit('change', this._textFieldEl.value);
+	_handleChange = () => {
+		this.value = this._textFieldEl.value;
+		this.$emit('change');
 	};
 
 	/**
 	 *
 	 * @internal
 	 */
-	handleFocus = () => {
+	_handleFocus = () => {
 		this.$emit('focus');
 	};
 
@@ -188,12 +174,8 @@ export class DialPad extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	handleBlur = () => {
+	_handleBlur = () => {
 		this.$emit('blur');
-	};
-
-	setValue = (value: string) => {
-		this.value = value;
 	};
 }
 

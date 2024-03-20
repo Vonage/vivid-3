@@ -9,31 +9,33 @@ import { TextField } from '../text-field/text-field';
 import type { DialPad } from './dial-pad';
 
 const getClasses = (_: DialPad) => classNames(
-	'base',
+    'base',
 );
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
-	if (e.key === keyEnter) {
-		x.onDial();
-	}
-	return true;
+    if (e.key === keyEnter) {
+        x._onDial();
+    }
+    return true;
 }
 
 function renderTextField(textFieldTag: string, buttonTag: string) {
-	return html<DialPad>`<${textFieldTag} ${ref('_textFieldEl')} class="phone-field" 
+    return html<DialPad>`<${textFieldTag} ${ref('_textFieldEl')} class="phone-field" 
             appearance="ghost" value="${x => x.value}" placeholder="${x => x.placeholder}" 
             ?disabled="${x => x.disabled}" helper-text="${(x) => x.helperText}" pattern="${x => x.pattern}"
             aria-label="${x => x.inputAriaLabel || x.locale.dialPad.inputLabel}"
-            @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}">
+            @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
+            @input="${x => x._handleInput()}" @change="${x => x._handleChange()}" 
+            @blur="${x => x._handleBlur()}" @focus="${x => x._handleFocus()}">
          ${when(x => (x.value && x.value.length && x.value.length > 0), html`<${buttonTag} 
                 slot="action-items" size='condensed' icon="backspace-line" aria-label="${x => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}" 
-                appearance='ghost' ?disabled="${x => x.disabled}" @click="${x => x.deleteLastCharacter()}">
+                appearance='ghost' ?disabled="${x => x.disabled}" @click="${x => x._deleteLastCharacter()}">
             </${buttonTag}>`)}
         </${textFieldTag}>`;
 }
 
 function renderDigits(buttonTag: string) {
-	return html<DialPad>`
+    return html<DialPad>`
         <${buttonTag} value='1' icon='one-solid' stacked label="&nbsp;" size='condensed' class="digit-btn" aria-label="${x => x.digitOneAriaLabel || x.locale.dialPad.digitOneLabel}" ?disabled="${x => x.disabled}"></${buttonTag}>
         <${buttonTag} value='2' icon='two-solid' stacked label='ABC' size='condensed' class="digit-btn" aria-label="${x => x.digitTwoAriaLabel || x.locale.dialPad.digitTwoLabel}" ?disabled="${x => x.disabled}"></${buttonTag}>
         <${buttonTag} value='3' icon='three-solid' stacked label='DEF' size='condensed' class="digit-btn" aria-label="${x => x.digitThreeAriaLabel || x.locale.dialPad.digitThreeLabel}" ?disabled="${x => x.disabled}"></${buttonTag}>
@@ -50,15 +52,15 @@ function renderDigits(buttonTag: string) {
 }
 
 function renderDialButton(buttonTag: string) {
-	return html<DialPad>`<${buttonTag} class='call-btn' 
+    return html<DialPad>`<${buttonTag} class='call-btn' 
         size='expanded' 
         appearance="filled" 
-        icon="${x => x.active ? 'disable-call-line' : 'call-line'}"
-        connotation="${x => x.active ? 'alert' : 'cta'}" 
+        icon="${x => x.callActive ? 'disable-call-line' : 'call-line'}"
+        connotation="${x => x.callActive ? 'alert' : 'cta'}" 
         ?disabled="${x => x.disabled}"
-        @click="${x => x.onDial()}"
-        label="${x => x.active ? (x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel) :
-		(x.callButtonLabel || x.locale.dialPad.callButtonLabel)}">
+        @click="${x => x._onDial()}"
+        label="${x => x.callActive ? (x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel) :
+            (x.callButtonLabel || x.locale.dialPad.callButtonLabel)}">
     </${buttonTag}>`;
 }
 
@@ -70,13 +72,13 @@ function renderDialButton(buttonTag: string) {
  */
 export const DialPadTemplate: (context: ElementDefinitionContext, definition: FoundationElementDefinition
 ) => ViewTemplate<DialPad> = (context: ElementDefinitionContext) => {
-	const buttonTag = context.tagFor(Button);
-	const textFieldTag = context.tagFor(TextField);
+    const buttonTag = context.tagFor(Button);
+    const textFieldTag = context.tagFor(TextField);
 
-	return html<DialPad>`
+    return html<DialPad>`
     <div class="${getClasses}">
         ${renderTextField(textFieldTag, buttonTag)}
-        <div class="digits" @click="${(x, c) => x.onDigit(c.event)}">
+        <div class="digits" @click="${(x, c) => x._onDigit(c.event)}">
             ${renderDigits(buttonTag)}
         </div>
         ${when(x => !x.noCall, renderDialButton(buttonTag))}
