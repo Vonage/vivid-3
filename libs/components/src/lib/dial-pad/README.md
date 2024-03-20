@@ -89,7 +89,7 @@ You can change the error text with the `error-text` attribute.
 
 ```html preview
 <vwc-dial-pad
-	placeholder="Only digits are valid"
+	placeholder="Only digits"
 	pattern="^[0-9]*$"
 	error-text="The input is invalid"
 ></vwc-dial-pad>

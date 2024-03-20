@@ -32,9 +32,10 @@ $gap: 16px;
 	display: flex;
 	flex-direction: column;
 	border: 1px solid var(#{constants.$vvd-color-neutral-300});
-	border-radius: #{border-radius-variables.$border-radius-normal};
+	border-radius: #{border-radius-variables.$border-radius-extra-expanded};
 }
 
 .call-btn {
+	margin-top: 12px;
 	grid-column: 1/-1;
 }
