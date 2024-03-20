@@ -3,26 +3,27 @@
 Represents a text-area custom element.
 All native attributes of the `textarea` are supported as well as some enhancements.
 
-
 ```js
-<script type="module">
-  import '@vonage/vivid/text-area';
-</script>
+<script type="module">import '@vonage/vivid/text-area';</script>
 ```
 
 ```html preview
-<vwc-text-area label="Label" rows="2" value="This is the text we want to see!"></vwc-text-area>
+<vwc-text-area
+	label="Label"
+	rows="2"
+	value="This is the text we want to see!"
+></vwc-text-area>
 ```
 
 ## Members
 
 ### Label
+
 Add a `label` attribute to add label to the text area.  
 The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
 
 - Type: `string` | `undefined`
 - Default: `undefined`
-
 
 ```html preview
 <vwc-text-area label="My Label"></vwc-text-area>
@@ -59,9 +60,18 @@ Set the `resize` attribute to control how the text area can be resized by the us
 
 ```html preview
 <vwc-text-area value="You can't resize me by default"></vwc-text-area>
-<vwc-text-area value="You can resize me vertically" resize="vertical"></vwc-text-area>
-<vwc-text-area value="You can resize me horizontally" resize="horizontal"></vwc-text-area>
-<vwc-text-area value="You can resize me in both directions" resize="both"></vwc-text-area>
+<vwc-text-area
+	value="You can resize me vertically"
+	resize="vertical"
+></vwc-text-area>
+<vwc-text-area
+	value="You can resize me horizontally"
+	resize="horizontal"
+></vwc-text-area>
+<vwc-text-area
+	value="You can resize me in both directions"
+	resize="both"
+></vwc-text-area>
 ```
 
 ### Helper text
@@ -72,7 +82,10 @@ Add the `helper-text` to add some helper text below the text area.
 - Default: `undefined`
 
 ```html preview
-<vwc-text-area label="Helper text below" helper-text="Help text"></vwc-text-area>
+<vwc-text-area
+	label="Helper text below"
+	helper-text="Help text"
+></vwc-text-area>
 ```
 
 ### Success text
@@ -84,7 +97,10 @@ If provided, `success-text` will take precedence over errors.
 - Default: `undefined`
 
 ```html preview
-<vwc-text-area label="Success text below" success-text="Success text"></vwc-text-area>
+<vwc-text-area
+	label="Success text below"
+	success-text="Success text"
+></vwc-text-area>
 ```
 
 ### Error text
@@ -96,7 +112,11 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Default: `undefined`
 
 ```html preview
-<vwc-text-area value="some text" label='Enter some text' error-text="Please take this seriously"></vwc-text-area>
+<vwc-text-area
+	value="some text"
+	label="Enter some text"
+	error-text="Please take this seriously"
+></vwc-text-area>
 ```
 
 ### Character Count
@@ -107,7 +127,11 @@ Use the `char-count` attribute along with the `maxlength` attribute to show a ch
 - Default: `false`
 
 ```html preview
-<vwc-text-area label="Char count example" char-count maxlength="15"></vwc-text-area>
+<vwc-text-area
+	label="Char count example"
+	char-count
+	maxlength="15"
+></vwc-text-area>
 ```
 
 ### Disabled
@@ -118,7 +142,7 @@ Add the `disabled` attribute to disable the text area.
 - Default: `false`
 
 ```html preview
-<vwc-text-area disabled value="disabled" label='fieldset'></vwc-text-area>
+<vwc-text-area disabled value="disabled" label="fieldset"></vwc-text-area>
 ```
 
 ### Readonly
@@ -129,7 +153,7 @@ Add the `readonly` attribute to restrict user from changing the text area's valu
 - Default: `false`
 
 ```html preview
-<vwc-text-area readonly value="readonly text" label='fieldset'></vwc-text-area>
+<vwc-text-area readonly value="readonly text" label="fieldset"></vwc-text-area>
 ```
 
 ### Rows
@@ -156,8 +180,13 @@ That means that:
 ```
 
 ## Accessibility
+
 If no label is set - it is highly recommended that `aria-label` will be added.
 
 ```html
-<vwc-text-area aria-label="your comment" rows="2" placeholder="your comment"></vwc-text-area>
+<vwc-text-area
+	aria-label="your comment"
+	rows="2"
+	placeholder="your comment"
+></vwc-text-area>
 ```

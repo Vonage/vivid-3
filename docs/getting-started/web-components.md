@@ -38,12 +38,14 @@ pnpm install @vonage/vivid
 The Vivid tokens require a `vvd-root` class to be present. It is recommended to add it on the `<html>` element, but it can also be added on a wrapping element to scope it to a certain part of the application.
 
 ```html
-<html class="vvd-root">...</html>
+<html class="vvd-root">
+	...
+</html>
 ```
 
 ## Importing the Styles & Fonts
 
-How to load CSS may vary from project to project, so we cannot provide a one-size-fits-all solution. Choose an appropriate method for your project.  
+How to load CSS may vary from project to project, so we cannot provide a one-size-fits-all solution. Choose an appropriate method for your project.
 
 See the [list of styles that come with Vivid](/guides/styles/) for more information.
 
@@ -96,10 +98,14 @@ Add the following to your `<head>` to load them from Google Fonts:
 
 ```html
 <head>
-  <!-- ... -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <!-- ... -->
+	<!-- ... -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+		rel="stylesheet"
+	/>
+	<!-- ... -->
 </head>
 ```
 
@@ -111,8 +117,8 @@ Add the following to your `<head>` to load them from Google Fonts:
 
 You have two options to import the components:
 
-* Using [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only) to register them with the default `vwc` prefix.
-* Using a register function to register them with a [custom prefix](/guides/prefix/).
+- Using [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only) to register them with the default `vwc` prefix.
+- Using a register function to register them with a [custom prefix](/guides/prefix/).
 
 <vwc-tabs>
 <vwc-tab label="Import"></vwc-tab>
@@ -167,17 +173,31 @@ The following snippet fully renders a Vivid Button component:
 
 ```html
 <!-- import Montserrat & Roboto-Mono fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+	rel="stylesheet"
+/>
 
 <!-- import light theme style tokens -->
-<link rel="stylesheet" href="https://unpkg.com/@vonage/vivid@3.x/styles/tokens/theme-light.css">
+<link
+	rel="stylesheet"
+	href="https://unpkg.com/@vonage/vivid@3.x/styles/tokens/theme-light.css"
+/>
 
 <!-- import Vivid button component -->
-<script type="module" src="https://unpkg.com/@vonage/vivid@3.x/button/index.js"></script>
+<script
+	type="module"
+	src="https://unpkg.com/@vonage/vivid@3.x/button/index.js"
+></script>
 
 <!-- Part of the app (or a whole app) that contains vivid components -->
 <div class="vvd-root">
-  <vwc-button label="Click me" appearance="filled" connotation="cta"></vwc-button>
+	<vwc-button
+		label="Click me"
+		appearance="filled"
+		connotation="cta"
+	></vwc-button>
 </div>
 ```

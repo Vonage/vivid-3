@@ -1,9 +1,7 @@
 # Calendar Event
 
 ```js
-<script type="module">
-  import '@vonage/vivid/calendar-event';
-</script>
+<script type="module">import '@vonage/vivid/calendar-event';</script>
 ```
 
 ## Members
@@ -17,7 +15,10 @@ Set the heading of the event.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event heading="Summer pool party" slot="day-0"></vwc-calendar-event>
+	<vwc-calendar-event
+		heading="Summer pool party"
+		slot="day-0"
+	></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -30,7 +31,10 @@ Sets the description of the event.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event description="A party in which guests swim in a swimming pool" slot="day-0"></vwc-calendar-event>
+	<vwc-calendar-event
+		description="A party in which guests swim in a swimming pool"
+		slot="day-0"
+	></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -64,8 +68,16 @@ Set the `appearance` attribute to change the calendar event's appearance.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event appearance="filled" heading="filled" slot="day-0"></vwc-calendar-event>
-  <vwc-calendar-event appearance="subtle" heading="subtle" slot="day-1"></vwc-calendar-event>
+	<vwc-calendar-event
+		appearance="filled"
+		heading="filled"
+		slot="day-0"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		appearance="subtle"
+		heading="subtle"
+		slot="day-1"
+	></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -81,13 +93,48 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event connotation="accent" appearance="filled" heading="accent" slot="day-0"></vwc-calendar-event>
-  <vwc-calendar-event connotation="cta" appearance="filled" heading="cta" slot="day-1"></vwc-calendar-event>
-  <vwc-calendar-event connotation="success" appearance="filled" heading="success" slot="day-2"></vwc-calendar-event>
-  <vwc-calendar-event connotation="alert" appearance="filled" heading="alert" slot="day-3"></vwc-calendar-event>
-  <vwc-calendar-event connotation="warning" appearance="filled" heading="warning" slot="day-4"></vwc-calendar-event>
-  <vwc-calendar-event connotation="information" appearance="filled" heading="information" slot="day-5"></vwc-calendar-event>
-  <vwc-calendar-event connotation="announcement" appearance="filled" heading="announcement" slot="day-6"></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="accent"
+		appearance="filled"
+		heading="accent"
+		slot="day-0"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="cta"
+		appearance="filled"
+		heading="cta"
+		slot="day-1"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="success"
+		appearance="filled"
+		heading="success"
+		slot="day-2"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="alert"
+		appearance="filled"
+		heading="alert"
+		slot="day-3"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="warning"
+		appearance="filled"
+		heading="warning"
+		slot="day-4"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="information"
+		appearance="filled"
+		heading="information"
+		slot="day-5"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="announcement"
+		appearance="filled"
+		heading="announcement"
+		slot="day-6"
+	></vwc-calendar-event>
 </vwc-calendar>
 ```
 
@@ -95,12 +142,47 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-calendar>
-  <vwc-calendar-event connotation="accent" appearance="subtle" heading="accent" slot="day-0"></vwc-calendar-event>
-  <vwc-calendar-event connotation="cta" appearance="subtle" heading="cta" slot="day-1"></vwc-calendar-event>
-  <vwc-calendar-event connotation="success" appearance="subtle" heading="success" slot="day-2"></vwc-calendar-event>
-  <vwc-calendar-event connotation="alert" appearance="subtle" heading="alert" slot="day-3"></vwc-calendar-event>
-  <vwc-calendar-event connotation="warning" appearance="subtle" heading="warning" slot="day-4"></vwc-calendar-event>
-  <vwc-calendar-event connotation="information" appearance="subtle" heading="information" slot="day-5"></vwc-calendar-event>
-  <vwc-calendar-event connotation="announcement" appearance="subtle" heading="announcement" slot="day-6"></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="accent"
+		appearance="subtle"
+		heading="accent"
+		slot="day-0"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="cta"
+		appearance="subtle"
+		heading="cta"
+		slot="day-1"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="success"
+		appearance="subtle"
+		heading="success"
+		slot="day-2"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="alert"
+		appearance="subtle"
+		heading="alert"
+		slot="day-3"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="warning"
+		appearance="subtle"
+		heading="warning"
+		slot="day-4"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="information"
+		appearance="subtle"
+		heading="information"
+		slot="day-5"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		connotation="announcement"
+		appearance="subtle"
+		heading="announcement"
+		slot="day-6"
+	></vwc-calendar-event>
 </vwc-calendar>
 ```

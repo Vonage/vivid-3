@@ -9,9 +9,9 @@
 ```vue
 <!--@include: ./components/accordion/ExpandedExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Expand multi mode
 
@@ -24,9 +24,9 @@
 ```vue
 <!--@include: ./components/accordion/MultiModeExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 <script setup lang="ts">
 import CodeTab from '../custom/CodeTab.vue';

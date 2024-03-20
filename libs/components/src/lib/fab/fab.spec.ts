@@ -1,6 +1,11 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Icon} from '../icon/icon';
+import { Icon } from '../icon/icon';
 import { Fab, FabConnotation } from './fab';
 import '.';
 import { fabDefinition } from './definition';
@@ -40,7 +45,9 @@ describe('vwc-fab', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should have an icon when icon is set without slotted icon', async () => {
@@ -48,46 +55,55 @@ describe('vwc-fab', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 
-
-
 		it('should set icon-trailing property', async () => {
-			expect(getControlElement(element).classList.contains('icon-trailing')).toBeFalsy();
+			expect(
+				getControlElement(element).classList.contains('icon-trailing')
+			).toBeFalsy();
 			const icon = 'home-line';
 			element.icon = icon;
 			element.iconTrailing = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('icon-trailing')).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains('icon-trailing')
+			).toBeTruthy();
 		});
 	});
 
-	describe('icon-only class', ()=> {
+	describe('icon-only class', () => {
 		it('should set icon-only property when icon is set', async () => {
-			expect(getControlElement(element).classList.contains('icon-only')).toBeFalsy();
+			expect(
+				getControlElement(element).classList.contains('icon-only')
+			).toBeFalsy();
 			const icon = 'home-line';
 			element.icon = icon;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('icon-only')).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains('icon-only')
+			).toBeTruthy();
 		});
 
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
-			const iconOnlyClassExistsWithoutSlot = getControlElement(element).classList.contains('icon-only');
+			const iconOnlyClassExistsWithoutSlot =
+				getControlElement(element).classList.contains('icon-only');
 			const slottedElement = document.createElement('span');
 			slottedElement.slot = 'icon';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
 			expect(iconOnlyClassExistsWithoutSlot).toEqual(false);
-			expect(getControlElement(element).classList.contains('icon-only')).toEqual(true);
+			expect(
+				getControlElement(element).classList.contains('icon-only')
+			).toEqual(true);
 		});
 
 		it('should leave the slotted elements unreflected', async () => {
@@ -98,16 +114,23 @@ describe('vwc-fab', () => {
 			expect(element.iconSlottedContent?.length).toEqual(1);
 			expect(element.hasAttribute('iconSlottedContent')).toEqual(false);
 		});
-
 	});
 
 	describe('connotation', () => {
 		it('should set connotation property', async () => {
 			const connotation = 'cta' as FabConnotation;
-			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeFalsy();
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeFalsy();
 			element.connotation = connotation;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeTruthy();
 		});
 	});
 
@@ -117,7 +140,9 @@ describe('vwc-fab', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
+			const control = element.shadowRoot?.querySelector(
+				`.control.size-${size}`
+			);
 			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});

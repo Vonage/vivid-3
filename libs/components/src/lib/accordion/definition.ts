@@ -12,16 +12,20 @@ export type { AccordionExpandMode } from '@microsoft/fast-foundation';
  *
  * @internal
  */
-export const accordionDefinition = Accordion.compose<FoundationElementDefinition>({
-	baseName: 'accordion',
-	template: template as any,
-	styles,
-});
+export const accordionDefinition =
+	Accordion.compose<FoundationElementDefinition>({
+		baseName: 'accordion',
+		template: template as any,
+		styles,
+	});
 
 /**
  * @internal
  */
-export const accordionRegistries = [accordionDefinition(), ...accordionItemRegistries];
+export const accordionRegistries = [
+	accordionDefinition(),
+	...accordionItemRegistries,
+];
 
 /**
  * Registers the accordion elements with the design system.

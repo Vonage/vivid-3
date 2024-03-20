@@ -3,10 +3,7 @@ import { Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
 
-export type SliderConnotation =
-	Connotation.Accent |
-	Connotation.CTA;
-
+export type SliderConnotation = Connotation.Accent | Connotation.CTA;
 
 /**
  * @public
@@ -14,8 +11,8 @@ export type SliderConnotation =
  * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
  */
 export class Slider extends FastSlider {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	@attr({attribute: 'aria-valuetext'}) ariaValuetext: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-valuetext' }) ariaValuetext: string | null = null;
 	/**
 	 * Display markers on/off
 	 *
@@ -24,7 +21,8 @@ export class Slider extends FastSlider {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) markers = false;
+	})
+	markers = false;
 
 	/**
 	 * slider connotation

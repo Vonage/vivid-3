@@ -7,7 +7,7 @@ const config: PlaywrightTestConfig = {
 		{
 			name: 'Desktop Chromium',
 			use: {
-				browserName: 'chromium'
+				browserName: 'chromium',
 			},
 		},
 		{
@@ -15,16 +15,16 @@ const config: PlaywrightTestConfig = {
 			use: {
 				browserName: 'webkit',
 				viewport: { width: 1200, height: 750 },
-			}
+			},
 		},
 		{
 			name: 'Desktop Firefox',
 			use: {
 				browserName: 'firefox',
 				viewport: { width: 800, height: 600 },
-			}
+			},
 		},
-	]
+	],
 };
 
 export default config;

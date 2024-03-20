@@ -30,10 +30,13 @@ describe('Reflector', () => {
 			expect(target.getAttribute('aria-label')).toBe('changed');
 		});
 
-		it.each([null, undefined])('should remove the attribute if value is %s', (value) => {
-			source.value = value;
-			expect(target.hasAttribute('aria-label')).toBe(false);
-		});
+		it.each([null, undefined])(
+			'should remove the attribute if value is %s',
+			(value) => {
+				source.value = value;
+				expect(target.hasAttribute('aria-label')).toBe(false);
+			}
+		);
 	});
 
 	describe('booleanAttribute', () => {
@@ -76,7 +79,7 @@ describe('Reflector', () => {
 				get() {
 					return 'changed';
 				},
-				set
+				set,
 			});
 
 			source.value = 'changed';

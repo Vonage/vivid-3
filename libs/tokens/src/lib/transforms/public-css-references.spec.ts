@@ -8,31 +8,40 @@ const defaultToken = {
 	path: [],
 	original: undefined,
 	filePath: '',
-	isSource: false
+	isSource: false,
 };
 
 describe('basic', () => {
 	it('should match if token is public', () => {
-		expect(matcher({
-			...defaultToken,
-			public: true
-		})).toBeTruthy();
+		expect(
+			matcher({
+				...defaultToken,
+				public: true,
+			})
+		).toBeTruthy();
 	});
 
 	it('should not match if token is not public', () => {
-		expect(matcher({
-			...defaultToken,
-			type: 'other'
-		})).toBeFalsy();
+		expect(
+			matcher({
+				...defaultToken,
+				type: 'other',
+			})
+		).toBeFalsy();
 	});
 
 	it('should transform to css calc', () => {
-		expect(transformer({
-			...defaultToken,
-			name: "vvd-size-font-scale-base",
-			value: "16",
-			type: "sizing",
-			public: true
-		}, {})).toEqual('var(--vvd-size-font-scale-base, 16)');
+		expect(
+			transformer(
+				{
+					...defaultToken,
+					name: 'vvd-size-font-scale-base',
+					value: '16',
+					type: 'sizing',
+					public: true,
+				},
+				{}
+			)
+		).toEqual('var(--vvd-size-font-scale-base, 16)');
 	});
 });

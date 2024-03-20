@@ -16,8 +16,9 @@ export class Header extends FoundationElement {
 	 */
 	@attr({
 		attribute: 'elevation-shadow',
-		mode: 'boolean'
-	}) elevationShadow = false;
+		mode: 'boolean',
+	})
+	elevationShadow = false;
 
 	/**
 	 * applies scheme alternate to header region
@@ -26,5 +27,6 @@ export class Header extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) alternate = false;
+	})
+	alternate = false;
 }

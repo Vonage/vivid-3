@@ -1,4 +1,10 @@
-import { axe, elementUpdated, fixture, getControlElement, setAttribute } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+	setAttribute,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
@@ -19,7 +25,9 @@ describe('vwc-button', () => {
 	});
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Button;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as Button;
 	});
 
 	describe('basic', () => {
@@ -40,7 +48,9 @@ describe('vwc-button', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
 		});
 
 		it('adds an icon to the button', async () => {
@@ -58,7 +68,7 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			const trailingIcon = element.shadowRoot?.querySelector(
-				`.icon-trailing ${ICON_SELECTOR}`,
+				`.icon-trailing ${ICON_SELECTOR}`
 			);
 			expect(trailingIcon).toBeInstanceOf(HTMLElement);
 		});
@@ -69,7 +79,9 @@ describe('vwc-button', () => {
 			element.pending = true;
 			await elementUpdated(element);
 
-			const progress = element.shadowRoot?.querySelector(PROGRESS_SELECTOR) as ProgressRing;
+			const progress = element.shadowRoot?.querySelector(
+				PROGRESS_SELECTOR
+			) as ProgressRing;
 			expect(progress).toBeInstanceOf(ProgressRing);
 			expect(progress.size).toEqual('-5');
 		});
@@ -79,7 +91,9 @@ describe('vwc-button', () => {
 			element.pending = true;
 			await elementUpdated(element);
 
-			const progress = element.shadowRoot?.querySelector(PROGRESS_SELECTOR) as ProgressRing;
+			const progress = element.shadowRoot?.querySelector(
+				PROGRESS_SELECTOR
+			) as ProgressRing;
 			expect(progress).toBeNull();
 		});
 
@@ -129,7 +143,9 @@ describe('vwc-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.connotation-${connotation}`);
+			const control = element.shadowRoot?.querySelector(
+				`.control.connotation-${connotation}`
+			);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -140,7 +156,9 @@ describe('vwc-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.shape-${shape}`);
+			const control = element.shadowRoot?.querySelector(
+				`.control.shape-${shape}`
+			);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -151,7 +169,9 @@ describe('vwc-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}`);
+			const control = element.shadowRoot?.querySelector(
+				`.control.appearance-${appearance}`
+			);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -162,14 +182,17 @@ describe('vwc-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.size-${size}`);
+			const control = element.shadowRoot?.querySelector(
+				`.control.size-${size}`
+			);
 			expect(control?.classList.contains(`size-${size}`)).toBeTruthy();
 		});
 	});
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
+			const getControlIconOnly = () =>
+				element.shadowRoot?.querySelector('.control.icon-only');
 			const controlIconOnlyBefore = getControlIconOnly();
 
 			element.icon = 'home';
@@ -181,20 +204,30 @@ describe('vwc-button', () => {
 		});
 
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
-			const iconOnlyClassExistsWithoutSlot = getControlElement(element).classList.contains('icon-only');
+			const iconOnlyClassExistsWithoutSlot =
+				getControlElement(element).classList.contains('icon-only');
 			const slottedElement = document.createElement('span');
 			slottedElement.slot = 'icon';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
 			expect(iconOnlyClassExistsWithoutSlot).toEqual(false);
-			expect(getControlElement(element).classList.contains('icon-only')).toEqual(true);
+			expect(
+				getControlElement(element).classList.contains('icon-only')
+			).toEqual(true);
 		});
-
 	});
 
-
-	describe.each(['href', 'hreflang', 'download', 'ping', 'referrerpolicy', 'rel', 'target', 'type'])('%s attribute', (attribute) => {
+	describe.each([
+		'href',
+		'hreflang',
+		'download',
+		'ping',
+		'referrerpolicy',
+		'rel',
+		'target',
+		'type',
+	])('%s attribute', (attribute) => {
 		beforeEach(async () => {
 			element.href = '/somewhere';
 			await elementUpdated(element);
@@ -204,7 +237,9 @@ describe('vwc-button', () => {
 			const text = 'link';
 			await setAttribute(element, attribute, text);
 
-			expect(element.shadowRoot?.querySelector('a')?.getAttribute(attribute)).toEqual(text);
+			expect(
+				element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+			).toEqual(text);
 		});
 	});
 
@@ -215,7 +250,9 @@ describe('vwc-button', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector(`.control.appearance-${appearance}.disabled`);
+			const control = element.shadowRoot?.querySelector(
+				`.control.appearance-${appearance}.disabled`
+			);
 			expect(control).toBeInstanceOf(Element);
 		});
 	});
@@ -224,18 +261,16 @@ describe('vwc-button', () => {
 			const titleText = 'close';
 			element.title = titleText;
 			await elementUpdated(element);
-			expect(element.getAttribute('title'))
-				.toEqual(titleText);
-			expect(getControlElement(element).getAttribute('title'))
-				.toEqual(titleText);
+			expect(element.getAttribute('title')).toEqual(titleText);
+			expect(getControlElement(element).getAttribute('title')).toEqual(
+				titleText
+			);
 		});
 		it('should remove title on the button if not set or empty', async () => {
 			element.title = '';
 			await elementUpdated(element);
-			expect(element.hasAttribute('title'))
-				.toEqual(false);
-			expect(getControlElement(element).hasAttribute('title'))
-				.toEqual(false);
+			expect(element.hasAttribute('title')).toEqual(false);
+			expect(getControlElement(element).hasAttribute('title')).toEqual(false);
 		});
 	});
 	describe('a11y', function () {
@@ -243,8 +278,7 @@ describe('vwc-button', () => {
 			const ariaLabel = 'close';
 			element.ariaLabel = ariaLabel;
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-label'))
-				.toEqual(ariaLabel);
+			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
 		});
 
 		it('should pass html a11y test', async () => {

@@ -10,11 +10,13 @@ export type { ProgressConnotation, ProgressShape } from './progress';
 /**
  * The progress element.
  */
-export const progressDefinition = Progress.compose<FoundationElementDefinition>({
-	baseName: 'progress',
-	template: template as any,
-	styles,
-});
+export const progressDefinition = Progress.compose<FoundationElementDefinition>(
+	{
+		baseName: 'progress',
+		template: template as any,
+		styles,
+	}
+);
 
 /**
  * @internal

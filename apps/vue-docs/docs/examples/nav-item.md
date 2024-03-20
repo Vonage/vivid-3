@@ -1,6 +1,7 @@
 # NavItem Examples
 
 ## Text
+
 <code-tab>
 <template #example>
 <TextExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/nav-item/TextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/nav-item/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon with Text
+
 <code-tab>
 <template #example>
 <IconWithTextExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/nav-item/IconWithTextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Aria Current
+
 <code-tab>
 <template #example>
 <AriaCurrentExample />
@@ -49,6 +56,7 @@
 ```vue
 <!--@include: ./components/nav-item/AriaCurrentExample.vue -->
 ```
+
 </template>
 </code-tab>
 

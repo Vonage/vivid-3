@@ -2,12 +2,25 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import type { LayoutSize } from '../enums.js';
 
-
-export enum AUTO_SIZING { Fit = 'fit', Fill = 'fill' }
-export type Gutters = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
-export type ColumnSpacing = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
-export type RowSpacing = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>;
-export type ColumnBasis = Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large> | 'block';
+export enum AUTO_SIZING {
+	Fit = 'fit',
+	Fill = 'fill',
+}
+export type Gutters = Extract<
+	LayoutSize,
+	LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
+>;
+export type ColumnSpacing = Extract<
+	LayoutSize,
+	LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
+>;
+export type RowSpacing = Extract<
+	LayoutSize,
+	LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
+>;
+export type ColumnBasis =
+	| Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>
+	| 'block';
 
 /**
  * [--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],
@@ -45,7 +58,6 @@ export class Layout extends FoundationElement {
 	 * @public
 	 */
 	@attr({ attribute: 'row-spacing' }) rowSpacing?: RowSpacing;
-
 
 	/**
 	 * sets the initial preferred auto-sizing from predefined available options

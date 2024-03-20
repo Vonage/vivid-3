@@ -2,14 +2,14 @@ import { VCalendar, VCalendarEvent } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VCalendarEvent';
 
 export default {
-  title: 'Wrappers/CalendarEvent',
-  component: VCalendarEvent,
-  argTypes,
+	title: 'Wrappers/CalendarEvent',
+	component: VCalendarEvent,
+	argTypes,
 };
 
 const BasicTemplate = () => ({
-  components: { VCalendar, VCalendarEvent },
-  template: `<v-calendar datetime="2021-01-01">
+	components: { VCalendar, VCalendarEvent },
+	template: `<v-calendar datetime="2021-01-01">
     <v-calendar-event
       slot="day-0"
       start="0"
@@ -77,8 +77,8 @@ const BasicTemplate = () => ({
 export const Basic = BasicTemplate.bind({});
 
 const HeadingTemplate = () => ({
-  components: { VCalendar, VCalendarEvent },
-  template: `<v-calendar>
+	components: { VCalendar, VCalendarEvent },
+	template: `<v-calendar>
   <v-calendar-event heading="Summer pool party" slot="day-0"/>
 </v-calendar>`,
 });
@@ -86,8 +86,8 @@ const HeadingTemplate = () => ({
 export const Heading = HeadingTemplate.bind({});
 
 const DescriptionTemplate = () => ({
-  components: { VCalendar, VCalendarEvent },
-  template: `<v-calendar>
+	components: { VCalendar, VCalendarEvent },
+	template: `<v-calendar>
   <v-calendar-event description="A party in which guests swim in a swimming pool" slot="day-0"/>
 </v-calendar>`,
 });
@@ -95,8 +95,8 @@ const DescriptionTemplate = () => ({
 export const Description = DescriptionTemplate.bind({});
 
 const AppearanceTemplate = () => ({
-  components: { VCalendar, VCalendarEvent },
-  template: `<v-calendar>
+	components: { VCalendar, VCalendarEvent },
+	template: `<v-calendar>
   <v-calendar-event appearance="filled" heading="filled" slot="day-0"/>
   <v-calendar-event appearance="subtle" heading="subtle" slot="day-1" />
 </v-calendar>`,
@@ -105,8 +105,8 @@ const AppearanceTemplate = () => ({
 export const Appearance = AppearanceTemplate.bind({});
 
 const ConnotationTemplate = () => ({
-  components: { VCalendar, VCalendarEvent },
-  template: `<v-calendar>
+	components: { VCalendar, VCalendarEvent },
+	template: `<v-calendar>
   <v-calendar-event connotation="accent" appearance="filled" heading="accent" slot="day-0"/>
   <v-calendar-event connotation="cta" appearance="filled" heading="cta" slot="day-1"/>
   <v-calendar-event connotation="success" appearance="filled" heading="success" slot="day-2"/>
@@ -120,8 +120,8 @@ const ConnotationTemplate = () => ({
 export const Connotation = ConnotationTemplate.bind({});
 
 const SubtleCalendarEventTemplate = () => ({
-  components: { VCalendar, VCalendarEvent },
-  template: `<v-calendar>
+	components: { VCalendar, VCalendarEvent },
+	template: `<v-calendar>
   <v-calendar-event connotation="accent" appearance="subtle" heading="accent" slot="day-0"/>
   <v-calendar-event connotation="cta" appearance="subtle" heading="cta" slot="day-1"/>
   <v-calendar-event connotation="success" appearance="subtle" heading="success" slot="day-2"/>
@@ -132,4 +132,5 @@ const SubtleCalendarEventTemplate = () => ({
 </v-calendar>`,
 });
 
-export const SubtleCalendarEventTemplateWithConnotation = SubtleCalendarEventTemplate.bind({});
+export const SubtleCalendarEventTemplateWithConnotation =
+	SubtleCalendarEventTemplate.bind({});

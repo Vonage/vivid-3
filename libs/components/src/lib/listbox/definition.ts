@@ -13,7 +13,7 @@ export type { LisboxAppearance } from './listbox';
 export const listboxDefinition = Listbox.compose<FoundationElementDefinition>({
 	baseName: 'listbox',
 	template: template as any,
-	styles
+	styles,
 });
 
 // by convention, option isn't required to be imported
@@ -23,7 +23,10 @@ export const listboxDefinition = Listbox.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const listboxRegistries = [listboxDefinition(), ...listboxOptionRegistries];
+export const listboxRegistries = [
+	listboxDefinition(),
+	...listboxOptionRegistries,
+];
 
 /**
  * Registers the listbox elements with the design system.

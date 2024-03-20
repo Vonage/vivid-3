@@ -11,6 +11,7 @@
 ```vue
 <!--@include: ./components/button/DefaultLabelExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -25,6 +26,7 @@
 ```vue
 <!--@include: ./components/button/AppearanceExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -39,6 +41,7 @@
 ```vue
 <!--@include: ./components/button/IconExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -53,6 +56,7 @@
 ```vue
 <!--@include: ./components/button/IconWithLabelExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -67,9 +71,9 @@
 ```vue
 <!--@include: ./components/button/ShapeExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Size
 
@@ -82,9 +86,9 @@
 ```vue
 <!--@include: ./components/button/SizeExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Stacked
 
@@ -97,9 +101,9 @@
 ```vue
 <!--@include: ./components/button/StackedExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Ghost button with connotation
 
@@ -112,9 +116,9 @@
 ```vue
 <!--@include: ./components/button/GhostButtonConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Filled button with connotation
 
@@ -127,6 +131,7 @@
 ```vue
 <!--@include: ./components/button/FilledButtonConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -141,6 +146,7 @@
 ```vue
 <!--@include: ./components/button/OutlinedButtonExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -155,9 +161,9 @@
 ```vue
 <!--@include: ./components/button/DisabledExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Pending
 
@@ -170,9 +176,9 @@
 ```vue
 <!--@include: ./components/button/PendingExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Toggle Button
 
@@ -185,9 +191,9 @@
 ```vue
 <!--@include: ./components/button/ToggleButtonExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Full-width Button
 
@@ -200,6 +206,7 @@
 ```vue
 <!--@include: ./components/button/FullWidthButtonExample.vue-->
 ```
+
 </template>
 </code-tab>
 

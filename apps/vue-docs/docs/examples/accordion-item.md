@@ -11,9 +11,9 @@
 ```vue
 <!--@include: ./components/accordionItem/HeadingExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Heading Level
 
@@ -26,10 +26,9 @@
 ```vue
 <!--@include: ./components/accordionItem/HeadingLevelExample.vue-->
 ```
+
 </template>
 </code-tab>
-
-
 
 ## Expanded
 
@@ -42,9 +41,9 @@
 ```vue
 <!--@include: ./components/accordionItem/ExpandedExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## No-Indicator
 
@@ -57,9 +56,9 @@
 ```vue
 <!--@include: ./components/accordionItem/NoIndicatorExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Meta
 
@@ -72,9 +71,9 @@
 ```vue
 <!--@include: ./components/accordionItem/MetaExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Icon
 
@@ -86,12 +85,10 @@
 
 ```vue
 <!--@include: ./components/accordionItem/IconExample.vue-->
-
 ```
+
 </template>
 </code-tab>
-
-
 
 ## Size
 
@@ -104,6 +101,7 @@
 ```vue
 <!--@include: ./components/accordionItem/SizeExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -118,6 +116,7 @@
 ```vue
 <!--@include: ./components/accordionItem/IconTrailingExample.vue-->
 ```
+
 </template>
 </code-tab>
 

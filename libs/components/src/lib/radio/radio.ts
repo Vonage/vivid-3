@@ -1,22 +1,23 @@
 import { attr } from '@microsoft/fast-element';
 import { Radio as FastRadio } from '@microsoft/fast-foundation';
-import type {Connotation} from '../enums.js';
+import type { Connotation } from '../enums.js';
 
 /**
  * Types of Checkbox connotation.
  *
  * @public
  */
-export type RadioConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+export type RadioConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
 /**
  * @public
  * @component radio
  */
 export class Radio extends FastRadio {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
 	 * Indicates the radio's label.
@@ -35,5 +36,4 @@ export class Radio extends FastRadio {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: RadioConnotation;
-
 }

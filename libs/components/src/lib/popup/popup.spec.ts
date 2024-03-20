@@ -3,7 +3,7 @@ import {
 	axe,
 	elementUpdated,
 	fixture,
-	getControlElement
+	getControlElement,
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
@@ -24,14 +24,16 @@ describe('vwc-popup', () => {
 	}
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Popup;
-		anchor = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
-		global.ResizeObserver = jest.fn()
-			.mockImplementation(() => ({
-				observe: jest.fn(),
-				unobserve: jest.fn(),
-				disconnect: jest.fn()
-			}));
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Popup;
+		anchor = (await fixture(
+			'<vwc-button id="anchor"></vwc-button>',
+			ADD_TEMPLATE_TO_FIXTURE
+		)) as Button;
+		global.ResizeObserver = jest.fn().mockImplementation(() => ({
+			observe: jest.fn(),
+			unobserve: jest.fn(),
+			disconnect: jest.fn(),
+		}));
 	});
 
 	afterEach(function () {
@@ -65,33 +67,32 @@ describe('vwc-popup', () => {
 	});
 
 	describe('updatePosition', function () {
-
 		const computePositionResult = {
-			'x': -15,
-			'y': 0,
-			'placement': 'left',
-			'strategy': 'fixed',
-			'middlewareData': {
-				'flip': {},
-				'hide': {
-					'referenceHiddenOffsets': {
-						'top': 0,
-						'right': 0,
-						'bottom': 0,
-						'left': 0
+			x: -15,
+			y: 0,
+			placement: 'left',
+			strategy: 'fixed',
+			middlewareData: {
+				flip: {},
+				hide: {
+					referenceHiddenOffsets: {
+						top: 0,
+						right: 0,
+						bottom: 0,
+						left: 0,
 					},
-					'referenceHidden': true
+					referenceHidden: true,
 				},
-				'inline': {},
-				'arrow': {
-					'y': 0,
-					'centerOffset': 0
+				inline: {},
+				arrow: {
+					y: 0,
+					centerOffset: 0,
 				},
-				'offset': {
-					'x': -12,
-					'y': 0
-				}
-			}
+				offset: {
+					x: -12,
+					y: 0,
+				},
+			},
 		};
 
 		beforeEach(function () {
@@ -104,7 +105,9 @@ describe('vwc-popup', () => {
 
 		function resetPosition(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
-			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(Promise.resolve(computePositionResult));
+			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(
+				Promise.resolve(computePositionResult)
+			);
 		}
 
 		it('should be hidden when not in viewport', async function () {
@@ -112,8 +115,7 @@ describe('vwc-popup', () => {
 			await resetPosition(true);
 			await element.updatePosition();
 
-			expect(element.popupEl.style.visibility)
-				.toEqual('hidden');
+			expect(element.popupEl.style.visibility).toEqual('hidden');
 		});
 
 		it('should be visible when in viewport', async function () {
@@ -121,54 +123,40 @@ describe('vwc-popup', () => {
 			await resetPosition(false);
 
 			await element.updatePosition();
-			expect(element.popupEl.style.visibility)
-				.toEqual('visible');
+			expect(element.popupEl.style.visibility).toEqual('visible');
 		});
 
 		it('should set the arrow in a position according to middleware', async function () {
 			element.arrow = true;
 			await setupPopupToOpenWithAnchor();
-			(computePositionResult.middlewareData.arrow as any) = { x: 5, y: 10};
+			(computePositionResult.middlewareData.arrow as any) = { x: 5, y: 10 };
 			await resetPosition(false);
 			await element.updatePosition();
-			expect(element.arrowEl.style.left)
-				.toEqual('5px');
-			expect(element.arrowEl.style.top)
-				.toEqual('10px');
+			expect(element.arrowEl.style.left).toEqual('5px');
+			expect(element.arrowEl.style.top).toEqual('10px');
 		});
 
 		it('should not compute position if popup is not open', async function () {
 			await element.updatePosition();
-			expect(floatingUI.computePosition)
-				.not
-				.toHaveBeenCalled();
+			expect(floatingUI.computePosition).not.toHaveBeenCalled();
 		});
 
 		it('should not compute position if there is no anchor', async function () {
 			element.open = true;
 			await element.updatePosition();
-			expect(floatingUI.computePosition)
-				.not
-				.toHaveBeenCalled();
+			expect(floatingUI.computePosition).not.toHaveBeenCalled();
 		});
 	});
 
 	describe('basic', () => {
 		it('initializes as a vwc-popup', async () => {
-			expect(element)
-				.toBeInstanceOf(Popup);
-			expect(element.open)
-				.toBeFalsy();
-			expect(element.arrow)
-				.toBeFalsy();
-			expect(element.dismissible)
-				.toBeFalsy();
-			expect(element.anchor)
-				.toBeUndefined();
-			expect(element.placement)
-				.toBeUndefined();
-			expect(element.strategy)
-				.toEqual('fixed');
+			expect(element).toBeInstanceOf(Popup);
+			expect(element.open).toBeFalsy();
+			expect(element.arrow).toBeFalsy();
+			expect(element.dismissible).toBeFalsy();
+			expect(element.anchor).toBeUndefined();
+			expect(element.placement).toBeUndefined();
+			expect(element.strategy).toEqual('fixed');
 		});
 	});
 
@@ -176,8 +164,7 @@ describe('vwc-popup', () => {
 		it('should set "open" to true', async () => {
 			element.show();
 
-			expect(element.open)
-				.toEqual(true);
+			expect(element.open).toEqual(true);
 		});
 
 		it('should fire vwc-popup:open event', async function () {
@@ -196,8 +183,7 @@ describe('vwc-popup', () => {
 
 			element.hide();
 
-			expect(element.open)
-				.toEqual(false);
+			expect(element.open).toEqual(false);
 		});
 
 		it('should fire "vwc-popup:close" event', async function () {
@@ -213,33 +199,27 @@ describe('vwc-popup', () => {
 
 	describe('arrow', () => {
 		it('should remove the arrow class on the container if arrow is false', async () => {
-			expect(element.shadowRoot?.querySelector('.arrow'))
-				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.arrow')).toBeNull();
 		});
 
 		it('should set the arrow class on the container if arrow is true', async () => {
 			element.arrow = true;
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelector('.arrow'))
-				.not
-				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.arrow')).not.toBeNull();
 		});
 	});
 
 	describe('dismissible', () => {
 		it('should remove the dismiss class on the container if dismissible is false', async () => {
-			expect(element.shadowRoot?.querySelector('.dismissible'))
-				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.dismissible')).toBeNull();
 		});
 
 		it('should set the dismiss class on the container if dismissible is true', async () => {
 			element.dismissible = true;
 
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.dismissible'))
-				.not
-				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.dismissible')).not.toBeNull();
 		});
 
 		it('should hide when dismiss button is clicked', async () => {
@@ -254,20 +234,20 @@ describe('vwc-popup', () => {
 			(dismissButton as HTMLElement).click();
 			await elementUpdated(element);
 
-			expect(openStateBeforeEsc)
-				.toEqual(true);
-			expect(element.open)
-				.toEqual(false);
+			expect(openStateBeforeEsc).toEqual(true);
+			expect(element.open).toEqual(false);
 		});
 	});
 
 	describe('alternate', () => {
 		it('should set to alternate', async () => {
-			const partValueWithoutAlternate = getControlElement(element).getAttribute('part');
+			const partValueWithoutAlternate =
+				getControlElement(element).getAttribute('part');
 
 			element.alternate = true;
 			await elementUpdated(element);
-			const partValueWithAlternate = getControlElement(element).getAttribute('part');
+			const partValueWithAlternate =
+				getControlElement(element).getAttribute('part');
 
 			expect(partValueWithoutAlternate).toEqual('');
 			expect(partValueWithAlternate).toEqual('vvd-theme-alternate');
@@ -283,16 +263,16 @@ describe('vwc-popup', () => {
 		});
 
 		it('should set aria-hidden', async () => {
-			expect(getControlElement(element)
-				.getAttribute('aria-hidden'))
-				.toEqual('true');
+			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual(
+				'true'
+			);
 
 			element.open = true;
 			await elementUpdated(element);
 
-			expect(getControlElement(element)
-				.getAttribute('aria-hidden'))
-				.toEqual('false');
+			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual(
+				'false'
+			);
 		});
 	});
 });

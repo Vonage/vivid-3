@@ -1,6 +1,7 @@
 # VBreadcrumb Examples
 
 ## Common Usage
+
 <code-tab>
 <template #example>
 <CommonUsageExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/breadcrumb/CommonUsageExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Multiple hidden crumbs
+
 <code-tab>
 <template #example>
 <MultipleHiddenCrumbsExample />
@@ -23,6 +26,7 @@
 ```vue
 <!--@include: ./components/breadcrumb/MultipleHiddenCrumbsExample.vue -->
 ```
+
 </template>
 </code-tab>
 

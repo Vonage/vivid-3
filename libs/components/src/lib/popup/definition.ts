@@ -22,7 +22,11 @@ export const popupDefinition = Popup.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const popupRegistries = [popupDefinition(), ...elevationRegistries, ...buttonRegistries];
+export const popupRegistries = [
+	popupDefinition(),
+	...elevationRegistries,
+	...buttonRegistries,
+];
 
 /**
  * Registers the popup elements with the design system.

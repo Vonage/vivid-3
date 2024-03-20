@@ -8,9 +8,9 @@ const config: PlaywrightTestConfig = {
 			name: 'Desktop Chromium',
 			use: {
 				browserName: 'chromium',
-				headless: false
+				headless: false,
 			},
 		},
-	]
+	],
 };
 export default config;

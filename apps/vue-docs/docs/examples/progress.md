@@ -1,6 +1,7 @@
 # VProgress Examples
 
 ## Min/Max
+
 <code-tab>
 <template #example>
 <MinMaxExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/progress/MinMaxExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Value
+
 <code-tab>
 <template #example>
 <ValueExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/progress/ValueExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Paused
+
 <code-tab>
 <template #example>
 <PausedExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/progress/PausedExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Paused (Indeterminate)
+
 <code-tab>
 <template #example>
 <PausedIndeterminateExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/progress/PausedIndeterminateExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Reverse
+
 <code-tab>
 <template #example>
 <ReverseExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/progress/ReverseExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Connotation
+
 <code-tab>
 <template #example>
 <ConnotationExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/progress/ConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Shape
+
 <code-tab>
 <template #example>
 <ShapeExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/progress/ShapeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Determinate State
+
 <code-tab>
 <template #example>
 <DeterminateStateExample />
@@ -101,10 +116,12 @@
 ```vue
 <!--@include: ./components/progress/DeterminateStateExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Indeterminate
+
 <code-tab>
 <template #example>
 <IndeterminateExample />
@@ -114,6 +131,7 @@
 ```vue
 <!--@include: ./components/progress/IndeterminateExample.vue -->
 ```
+
 </template>
 </code-tab>
 

@@ -9,6 +9,7 @@
 ```vue
 <!--@include: ./components/divider/SimpleExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -23,11 +24,11 @@
 ```vue
 <!--@include: ./components/divider/OrientationExample.vue-->
 ```
+
 </template>
 </code-tab>
 
-
-# UseCase 
+# UseCase
 
 ## Vertical Divider
 
@@ -40,6 +41,7 @@
 ```vue
 <!--@include: ./components/divider/VerticalUseCaseExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -54,6 +56,7 @@
 ```vue
 <!--@include: ./components/divider/HorizontalUseCaseExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -68,6 +71,7 @@
 ```vue
 <!--@include: ./components/divider/DecorativeElementExample.vue-->
 ```
+
 </template>
 </code-tab>
 

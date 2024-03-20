@@ -5,24 +5,24 @@ import type { DataGridRow } from './data-grid-row';
 
 function createCellItemTemplate(context: ElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);
-	return html `
+	return html`
     <${cellTag}
-        cell-type="${x => (x.isRowHeader ? 'rowheader' : undefined)}"
+        cell-type="${(x) => (x.isRowHeader ? 'rowheader' : undefined)}"
         grid-column="${(_, c) => c.index + 1}"
         :rowData="${(_, c) => c.parent.rowData}"
-        :columnDefinition="${x => x}"
-				selected="${(_, c) => c.parent.ariaSelected === 'true' ? true : null}"
+        :columnDefinition="${(x) => x}"
+				selected="${(_, c) => (c.parent.ariaSelected === 'true' ? true : null)}"
     ></${cellTag}>
 `;
 }
 
 function createHeaderCellItemTemplate(context: ElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);
-	return html `
+	return html`
     <${cellTag}
         cell-type="columnheader"
         grid-column="${(_, c) => c.index + 1}"
-        :columnDefinition="${x => x}"
+        :columnDefinition="${(x) => x}"
     ></${cellTag}>
 `;
 }
@@ -36,24 +36,25 @@ function createHeaderCellItemTemplate(context: ElementDefinitionContext) {
 export const DataGridRowTemplate = (context: ElementDefinitionContext) => {
 	const cellItemTemplate = createCellItemTemplate(context);
 	const headerCellItemTemplate = createHeaderCellItemTemplate(context);
-	return html<DataGridRow> `
-        <template
-            role="row"
-            class="${x => (x.rowType !== 'default' ? x.rowType : '')}"
-            :defaultCellItemTemplate="${cellItemTemplate}"
-            :defaultHeaderCellItemTemplate="${headerCellItemTemplate}"
-            ${children({
-		property: 'cellElements',
-		filter: elements('[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'),
-	})}
-        >
-					<div class="base ${x => (x.ariaSelected === 'true' ? 'selected' : '')}"
-							 style="grid-template-columns: ${x => x.gridTemplateColumns};"
-					>
-            <slot ${slotted('slottedCellElements')}></slot>
-					</div>
-        </template>
-    `;
+	return html<DataGridRow>`
+		<template
+			role="row"
+			class="${(x) => (x.rowType !== 'default' ? x.rowType : '')}"
+			:defaultCellItemTemplate="${cellItemTemplate}"
+			:defaultHeaderCellItemTemplate="${headerCellItemTemplate}"
+			${children({
+				property: 'cellElements',
+				filter: elements(
+					'[role="cell"],[role="gridcell"],[role="columnheader"],[role="rowheader"]'
+				),
+			})}
+		>
+			<div
+				class="base ${(x) => (x.ariaSelected === 'true' ? 'selected' : '')}"
+				style="grid-template-columns: ${(x) => x.gridTemplateColumns};"
+			>
+				<slot ${slotted('slottedCellElements')}></slot>
+			</div>
+		</template>
+	`;
 };
-
-

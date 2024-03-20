@@ -3,18 +3,36 @@ import { ref } from 'vue';
 import { argTypes } from './generated/VTabs';
 
 export default {
-  title: 'Wrappers/Tabs',
-  component: VTabs,
-  argTypes,
+	title: 'Wrappers/Tabs',
+	component: VTabs,
+	argTypes,
 };
 
-export const Tabs = args => ({
-  components: { VTabs, VTab, VTabPanel },
-  setup() {
-    const { onClick, onFocus, onBlur, onKeydown, onKeyup, onInput, onChange, ...props } = args;
-    return { onClick, onFocus, onBlur, onKeydown, onKeyup, onInput, onChange, props };
-  },
-  template: `<VTabs v-bind="props" @click="onClick" @focus="onFocus" @blur="onBlur" @keydown="onKeydown" @keyup="onKeyup" @input="onInput" @change="onChange">
+export const Tabs = (args) => ({
+	components: { VTabs, VTab, VTabPanel },
+	setup() {
+		const {
+			onClick,
+			onFocus,
+			onBlur,
+			onKeydown,
+			onKeyup,
+			onInput,
+			onChange,
+			...props
+		} = args;
+		return {
+			onClick,
+			onFocus,
+			onBlur,
+			onKeydown,
+			onKeyup,
+			onInput,
+			onChange,
+			props,
+		};
+	},
+	template: `<VTabs v-bind="props" @click="onClick" @focus="onFocus" @blur="onBlur" @keydown="onKeydown" @keyup="onKeyup" @input="onInput" @change="onChange">
     <VTab label="Appetizers" id="apps"></VTab>
     <VTab label="Entrees" id="entrees"></VTab>
     <VTab label="Desserts" id="desserts"></VTab>
@@ -47,8 +65,8 @@ export const Tabs = args => ({
 });
 
 const OrientationTemplate = () => ({
-  components: { VTabs, VTab, VTabPanel },
-  template: `<VTabs activeid="entrees" orientation="vertical">
+	components: { VTabs, VTab, VTabPanel },
+	template: `<VTabs activeid="entrees" orientation="vertical">
     <VTab label="Appetizers" id="apps"></VTab>
     <VTab label="Entrees" id="entrees"></VTab>
     <VTab label="Desserts" id="desserts"></VTab>
@@ -82,12 +100,12 @@ const OrientationTemplate = () => ({
 export const Orientation = OrientationTemplate.bind({});
 
 const ActiveidTemplate = () => ({
-  components: { VTabs, VTab, VTabPanel },
-  setup() {
-    const activeTab = ref('entrees');
-    return { activeTab };
-  },
-  template: `<div>
+	components: { VTabs, VTab, VTabPanel },
+	setup() {
+		const activeTab = ref('entrees');
+		return { activeTab };
+	},
+	template: `<div>
     <p>Active tab: {{ activeTab }}</p>  
     <button @click="activeTab = 'apps'">Set to 'apps'</button>
     <VTabs :activeid="activeTab" @change="activeTab = $event.target.activeid">

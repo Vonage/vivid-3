@@ -8,7 +8,7 @@ import {
 const components = ['calendar'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =`
+	const template = `
     <vwc-calendar datetime="2022-01-01"></vwc-calendar>
     <vwc-calendar datetime="2022-01-01" hour12 locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
 	`;
@@ -27,8 +27,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/calendar.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/calendar.png'
+	);
 });

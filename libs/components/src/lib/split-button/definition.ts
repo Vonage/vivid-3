@@ -5,25 +5,34 @@ import { SplitButton } from './split-button';
 import styles from './split-button.scss?inline';
 import { SplitButtonTemplate as template } from './split-button.template';
 
-export type { SplitButtonAppearance, SplitButtonConnotation, SplitButtonShape, SplitButtonSize } from './split-button';
+export type {
+	SplitButtonAppearance,
+	SplitButtonConnotation,
+	SplitButtonShape,
+	SplitButtonSize,
+} from './split-button';
 
 /**
  *
  * @internal
  */
-export const splitButtonDefinition = SplitButton.compose<FoundationElementDefinition>({
-	baseName: 'split-button',
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-});
+export const splitButtonDefinition =
+	SplitButton.compose<FoundationElementDefinition>({
+		baseName: 'split-button',
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	});
 
 /**
  * @internal
  */
-export const splitButtonRegistries = [splitButtonDefinition(), ...iconRegistries];
+export const splitButtonRegistries = [
+	splitButtonDefinition(),
+	...iconRegistries,
+];
 
 /**
  * Registers the button elements with the design system.

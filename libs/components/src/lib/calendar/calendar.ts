@@ -13,7 +13,6 @@ import {
 } from './helpers/calendar.keyboard-interactions';
 import { getEventContext } from './helpers/calendar.event-context';
 
-
 /**
  * @public
  * @component calendar
@@ -27,14 +26,13 @@ import { getEventContext } from './helpers/calendar.event-context';
  * @slot day-6 - Assign elements to corresponding day column using this slot.
  */
 export class Calendar extends FoundationElement {
-
 	/**
 	 * The date within a week of choice.
 	 * Accepts any parameter acceptable by the `Date()` constructor.
 	 *
 	 * @public
 	 */
-	@attr	datetime?: Date | string;
+	@attr datetime?: Date | string;
 
 	/**
 	 * The day to show as the first within a work week.
@@ -45,7 +43,7 @@ export class Calendar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr({ attribute: 'start-day' })	startDay?: 'sunday' | 'monday';
+	@attr({ attribute: 'start-day' }) startDay?: 'sunday' | 'monday';
 
 	/**
 	 * A locale string or array of locale strings that contain one or more language or locale tags.
@@ -57,7 +55,7 @@ export class Calendar extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr	locales?: string | string[] | undefined;
+	@attr locales?: string | string[] | undefined;
 
 	/**
 	 * The convention of displayed time in which the day runs from midnight to midnight and is divided into 24 or 12 hours.
@@ -114,38 +112,50 @@ export class Calendar extends FoundationElement {
 
 	private getCalendarEventContainingCell(calendarEvent: CalendarEvent) {
 		const slotName = calendarEvent.getAttribute('slot') as string;
-		const gridCell = (this.shadowRoot as ShadowRoot).querySelector(`slot[name="${slotName}"i]`) as HTMLDivElement;
+		const gridCell = (this.shadowRoot as ShadowRoot).querySelector(
+			`slot[name="${slotName}"i]`
+		) as HTMLDivElement;
 		return gridCell.parentElement as HTMLDivElement;
 	}
 
 	private arrowKeysInteractions(key: PredefindKeys) {
-		const { activeElement } = (this.shadowRoot as ShadowRoot);
+		const { activeElement } = this.shadowRoot as ShadowRoot;
 		let focusNext: Element | null | void;
 
 		if (isCellOrHeader(activeElement)) {
 			focusNext = getNextFocusableGridElement.call(this, key, activeElement);
 		} else if (this.#activeCalendarEvent) {
-			focusNext = this.getCalendarEventContainingCell(this.#activeCalendarEvent);
-		}	else if (activeElement?.matches('em[role="button"i]')) {
-			focusNext = getHeaderDescendantGridCell.call(this, key, activeElement as HTMLElement);
+			focusNext = this.getCalendarEventContainingCell(
+				this.#activeCalendarEvent
+			);
+		} else if (activeElement?.matches('em[role="button"i]')) {
+			focusNext = getHeaderDescendantGridCell.call(
+				this,
+				key,
+				activeElement as HTMLElement
+			);
 		} else {
-			focusNext = (this.shadowRoot as ShadowRoot).querySelector('[role="columnheader"i]');
+			focusNext = (this.shadowRoot as ShadowRoot).querySelector(
+				'[role="columnheader"i]'
+			);
 		}
 
 		this.activateElement(focusNext as HTMLElement);
 	}
 
 	private activateElement(el: HTMLElement | null | undefined) {
-		const onBlur = ({ target }: FocusEvent) => (target as HTMLElement).setAttribute('tabindex', '-1');
+		const onBlur = ({ target }: FocusEvent) =>
+			(target as HTMLElement).setAttribute('tabindex', '-1');
 
 		el?.addEventListener('blur', onBlur, { once: true });
 		el?.setAttribute('tabindex', '0');
 		el?.focus();
 	}
 
-
 	onKeydown({ key }: KeyboardEvent) {
-		const isArrow = [ARROW_UP, ARROW_RIGHT, ARROW_DOWN, ARROW_LEFT].some(predefinedKey => predefinedKey == key);
+		const isArrow = [ARROW_UP, ARROW_RIGHT, ARROW_DOWN, ARROW_LEFT].some(
+			(predefinedKey) => predefinedKey == key
+		);
 
 		if (isArrow) {
 			this.arrowKeysInteractions(key as PredefindKeys);

@@ -1,9 +1,7 @@
 # Accordion Item
 
 ```js
-<script type="module">
-  import '@vonage/vivid/accordion-item';
-</script>
+<script type="module">import '@vonage/vivid/accordion-item';</script>
 ```
 
 ## Members
@@ -105,7 +103,11 @@ Add the `icon-trailing` attribute (or `iconTrailing` property) to add an icon to
 
 ```html preview full
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="Accordion item with icon-trailing" icon="chat-solid" icon-trailing>
+	<vwc-accordion-item
+		heading="Accordion item with icon-trailing"
+		icon="chat-solid"
+		icon-trailing
+	>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
@@ -120,13 +122,22 @@ Use the `size` attribute to set the accordion-item's size.
 
 ```html preview full 230px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="normal accordion item" meta="meta-data" icon="chat-solid">
+	<vwc-accordion-item
+		heading="normal accordion item"
+		meta="meta-data"
+		icon="chat-solid"
+	>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
-<hr>
+<hr />
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item heading="condensed accordion item" size="condensed" meta="meta-data" icon="chat-solid">
+	<vwc-accordion-item
+		heading="condensed accordion item"
+		size="condensed"
+		meta="meta-data"
+		icon="chat-solid"
+	>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
@@ -142,7 +153,11 @@ If set, the `icon` attribute is ignored.
 ```html preview full
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item with icon">
-		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
 		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 	</vwc-accordion-item>
 </vwc-accordion>
