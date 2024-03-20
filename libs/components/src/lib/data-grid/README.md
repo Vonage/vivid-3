@@ -482,7 +482,7 @@ Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 
 ## CSS Variables
 
-### --data-grid-row-background
+### Row Background
 When Row is set to sticky there's a default canvas background-color.  
 Use `--data-grid-row-background` to change the sticky row background-color.
 
