@@ -134,7 +134,7 @@ export class DialPad extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	onDigit = (e: Event) => {
+	_onDigit = (e: Event) => {
 		if (e.target === undefined || e.target === null || !(e.target instanceof Button)) {
 			return;
 		}
