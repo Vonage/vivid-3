@@ -3,4 +3,6 @@
 /dist
 /coverage
 
+# Ignore auto-generated files:
 package-lock.json
+**/CHANGELOG.md
