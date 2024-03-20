@@ -1,5 +1,5 @@
 <template>
-  <VRadio checked />
+	<VRadio checked />
 </template>
 
 <script setup lang="ts">

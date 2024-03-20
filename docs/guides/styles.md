@@ -9,16 +9,19 @@ There are several additional stylesheets that can be loaded to incorporate the V
 Which stylesheets you should load will depend on your project's needs.
 
 **Required stylesheets:**
-* [Design Tokens](#design-tokens)
+
+- [Design Tokens](#design-tokens)
 
 **Optional core styles:**
-* [Core Theme](#core-theme)
-* [Core Typography](#core-typography)
-* [Core All](#core-all)
+
+- [Core Theme](#core-theme)
+- [Core Typography](#core-typography)
+- [Core All](#core-all)
 
 **Optional utilities:**
-* [Spezia Font Kit](#spezia-font-kit)
-* [Vivid 2.x Compatibility](#vivid-2x-compatibility)
+
+- [Spezia Font Kit](#spezia-font-kit)
+- [Vivid 2.x Compatibility](#vivid-2x-compatibility)
 
 ## Loading Styles
 
@@ -33,6 +36,7 @@ How to load styles will depend on your project's setup. You can find more guidan
 <vwc-tab-panel>
 
 **Stylesheet:**
+
 ```js
 '@vonage/vivid/styles/tokens/theme-light.css';
 ```
@@ -42,6 +46,7 @@ How to load styles will depend on your project's setup. You can find more guidan
 <vwc-tab-panel>
 
 **Stylesheet:**
+
 ```js
 '@vonage/vivid/styles/tokens/theme-dark.css';
 ```
@@ -56,6 +61,7 @@ The tokens will be scoped to the `vvd-root` class selector.
 ### Core Theme
 
 **Stylesheet:**
+
 ```js
 '@vonage/vivid/styles/core/theme.css';
 ```
@@ -65,6 +71,7 @@ The core theme styles will apply the appropriate `color`, `background-color` and
 ### Core Typography
 
 **Stylesheet:**
+
 ```js
 '@vonage/vivid/styles/core/typography.css';
 ```
@@ -80,6 +87,7 @@ The styles are scoped to the `vvd-root` class selector.
 ### Core All
 
 **Stylesheet:**
+
 ```js
 '@vonage/vivid/styles/core/all.css';
 ```
@@ -89,6 +97,7 @@ This stylesheet contains both the [core theme](#core-theme) and [core typography
 ### Spezia Font Kit
 
 **Stylesheet:**
+
 ```js
 '@vonage/styles/fonts/spezia-variable.css';
 ```
@@ -101,14 +110,27 @@ To avoid FOIT (Flash Of Invisible Text), you can also preload the fonts in your 
 
 ```html
 <head>
-  <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >
-  <link rel="preload" href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2" type="font/woff2" as="font" crossorigin="anonymous" >
+	<link
+		rel="preload"
+		href="https://fonts.resources.vonage.com/fonts/v2/SpeziaCompleteVariableUprightWeb.woff2"
+		type="font/woff2"
+		as="font"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="preload"
+		href="https://fonts.resources.vonage.com/fonts/v2/SpeziaMonoCompleteVariableWeb.woff2"
+		type="font/woff2"
+		as="font"
+		crossorigin="anonymous"
+	/>
 </head>
 ```
 
 ### Vivid 2.x Compatibility
 
 **Stylesheet:**
+
 ```js
 '@vonage/vivid/styles/tokens/vivid-2-compat.css';
 ```

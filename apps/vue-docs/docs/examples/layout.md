@@ -1,6 +1,7 @@
 # VLayout Examples
 
 ## Layout
+
 <code-tab>
 <template #example>
 <LayoutExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/layout/LayoutExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Column Spacing
+
 <code-tab>
 <template #example>
 <ColumnSpacingExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/layout/ColumnSpacingExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Column Basis
+
 <code-tab>
 <template #example>
 <ColumnBasisExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/layout/ColumnBasisExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Auto Sizing
+
 <code-tab>
 <template #example>
 <AutoSizingExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/layout/AutoSizingExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Gutters
+
 <code-tab>
 <template #example>
 <GuttersExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/layout/GuttersExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Gutters (inline)
+
 <code-tab>
 <template #example>
 <GuttersInlineExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/layout/GuttersInlineExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Gutters (block)
+
 <code-tab>
 <template #example>
 <GuttersBlockExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/layout/GuttersBlockExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Grid-template-columns
+
 <code-tab>
 <template #example>
 <GridTemplateColumnsExample />
@@ -101,6 +116,7 @@
 ```vue
 <!--@include: ./components/layout/GridTemplateColumnsExample.vue -->
 ```
+
 </template>
 </code-tab>
 

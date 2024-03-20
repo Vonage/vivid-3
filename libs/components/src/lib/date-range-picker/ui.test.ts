@@ -94,7 +94,6 @@ test('selecting a date range', async ({ page }: { page: Page }) => {
 		'current-end',
 		'2023-08-20'
 	);
-
 });
 
 test.describe('constraints validation', async () => {
@@ -108,75 +107,105 @@ test.describe('constraints validation', async () => {
 		});
 	});
 
-	test('should have a validation error when the date range violates required constraint', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the date range violates required constraint', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker required></vwc-date-range-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.getByRole('button', { name: 'Submit' }).click();
 
-		await expect(page.locator('vwc-date-range-picker .error-message')).toBeVisible();
+		await expect(
+			page.locator('vwc-date-range-picker .error-message')
+		).toBeVisible();
 	});
 
-	test('should have a validation error when the date range violates min constraint', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the date range violates min constraint', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker min="2012-12-12" start="2011-11-11" end="2011-11-11"></vwc-date-range-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.getByRole('button', { name: 'Submit' }).click();
 
-		await expect(page.locator('vwc-date-range-picker .error-message')).toBeVisible();
+		await expect(
+			page.locator('vwc-date-range-picker .error-message')
+		).toBeVisible();
 	});
 
-	test('should have a validation error when the date range violates max constraint', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the date range violates max constraint', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker max="2012-12-12" start="2013-11-11" end="2013-11-11"></vwc-date-range-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.getByRole('button', { name: 'Submit' }).click();
 
-		await expect(page.locator('vwc-date-range-picker .error-message')).toBeVisible();
+		await expect(
+			page.locator('vwc-date-range-picker .error-message')
+		).toBeVisible();
 	});
 
-	test('should have a validation error when the user entered an invalid date range manually', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the user entered an invalid date range manually', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker></vwc-date-range-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.locator('vwc-text-field input').fill('invalid date range');
 		await page.getByRole('button', { name: 'Submit' }).click();
 
-		await expect(page.locator('vwc-date-range-picker .error-message')).toBeVisible();
+		await expect(
+			page.locator('vwc-date-range-picker .error-message')
+		).toBeVisible();
 	});
 
-	test('should hide a validation error after resetting the form', async ({ page }: { page: Page }) => {
+	test('should hide a validation error after resetting the form', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-date-range-picker required></vwc-date-range-picker>
 				<button type="reset">Reset</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.locator('vwc-text-field input').fill('09/01/2023 – 09/02/2023');
 		await page.getByRole('button', { name: 'Reset' }).click();
 
-		await expect(page.locator('vwc-date-range-picker .error-message')).not.toBeVisible();
+		await expect(
+			page.locator('vwc-date-range-picker .error-message')
+		).not.toBeVisible();
 	});
 });

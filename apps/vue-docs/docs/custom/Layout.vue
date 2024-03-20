@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <Layout />
-  </div>
+	<div>
+		<Layout />
+	</div>
 </template>
 
 <script setup lang="ts">

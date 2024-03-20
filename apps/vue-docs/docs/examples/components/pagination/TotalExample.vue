@@ -1,5 +1,5 @@
 <template>
-  <VPagination total="20" />
+	<VPagination total="20" />
 </template>
 
 <script setup lang="ts">

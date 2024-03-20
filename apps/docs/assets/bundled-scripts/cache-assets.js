@@ -1,9 +1,5 @@
-(async function() {
-	const registration = await navigator.serviceWorker.register(
-		'/sw.js',
-		{
-			scope: '/',
-		}
-	);
+(async function () {
+	const registration = await navigator.serviceWorker.register('/sw.js', {
+		scope: '/',
+	});
 })();
-

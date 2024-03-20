@@ -9,7 +9,12 @@ import { Button } from './button';
 import styles from './button.scss?inline';
 import { buttonTemplate as template } from './button.template';
 
-export type { ButtonAppearance, ButtonConnotation, ButtonShape, ButtonSize } from './button';
+export type {
+	ButtonAppearance,
+	ButtonConnotation,
+	ButtonShape,
+	ButtonSize,
+} from './button';
 
 /**
  *
@@ -25,11 +30,14 @@ export const buttonDefinition = Button.compose<FoundationElementDefinition>({
 	},
 });
 
-
 /**
  * @internal
  */
-export const buttonRegistries = [buttonDefinition(), ...iconRegistries, ...progressRingRegistries];
+export const buttonRegistries = [
+	buttonDefinition(),
+	...iconRegistries,
+	...progressRingRegistries,
+];
 
 /**
  * Registers the button elements with the design system.

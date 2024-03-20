@@ -23,19 +23,24 @@ The lowest value allowed for the range.
 <div>
 	<vwc-range-slider id="slider" min="-10"></vwc-range-slider>
 </div>
-<div>Current range: <span id="start"></span> to <span id="end"></span></div>
+<div>
+	Current range:
+	<span id="start"></span>
+	to
+	<span id="end"></span>
+</div>
 
 <script>
 	const slider = document.querySelector('#slider');
 	const start = document.querySelector('#start');
 	const end = document.querySelector('#end');
-  
-  const updateDescription = () => {
-			start.innerText = slider.start;
-			end.innerText = slider.end;
-	}
-  customElements.whenDefined('vwc-range-slider').then(updateDescription);
-	
+
+	const updateDescription = () => {
+		start.innerText = slider.start;
+		end.innerText = slider.end;
+	};
+	customElements.whenDefined('vwc-range-slider').then(updateDescription);
+
 	slider.addEventListener('change', updateDescription);
 </script>
 ```
@@ -51,7 +56,12 @@ The highest value allowed for the range.
 <div>
 	<vwc-range-slider id="slider" max="20"></vwc-range-slider>
 </div>
-<div>Current range: <span id="start"></span> to <span id="end"></span></div>
+<div>
+	Current range:
+	<span id="start"></span>
+	to
+	<span id="end"></span>
+</div>
 
 <script>
 	const slider = document.querySelector('#slider');
@@ -61,7 +71,7 @@ The highest value allowed for the range.
 	const updateDescription = () => {
 		start.innerText = slider.start;
 		end.innerText = slider.end;
-	}
+	};
 	customElements.whenDefined('vwc-range-slider').then(updateDescription);
 
 	slider.addEventListener('change', updateDescription);
@@ -77,9 +87,14 @@ Sets the granularity with which values can be incremented/decremented.
 
 ```html preview blocks
 <div>
-  <vwc-range-slider id="slider" step="0.5"></vwc-range-slider>
+	<vwc-range-slider id="slider" step="0.5"></vwc-range-slider>
 </div>
-<div>Current range: <span id="start"></span> to <span id="end"></span></div>
+<div>
+	Current range:
+	<span id="start"></span>
+	to
+	<span id="end"></span>
+</div>
 
 <script>
 	const slider = document.querySelector('#slider');
@@ -89,7 +104,7 @@ Sets the granularity with which values can be incremented/decremented.
 	const updateDescription = () => {
 		start.innerText = slider.start;
 		end.innerText = slider.end;
-	}
+	};
 	customElements.whenDefined('vwc-range-slider').then(updateDescription);
 
 	slider.addEventListener('change', updateDescription);
@@ -165,7 +180,7 @@ The upper value of the range.
 <div class="table-wrapper">
 
 | Name        | Description                                 |
-|-------------|---------------------------------------------|
+| ----------- | ------------------------------------------- |
 | input       | When either the start or end value changes. |
 | change      | When either the start or end value changes. |
 | input:start | When the start value changes                |
@@ -175,7 +190,7 @@ The upper value of the range.
 
 ## Accessibility
 
-Both thumbs have a `role` of `slider`, which needs an accessible label. By default, they use a localized version of "min" and "max". 
+Both thumbs have a `role` of `slider`, which needs an accessible label. By default, they use a localized version of "min" and "max".
 You can change the labels by setting the `aria-start-label` and `aria-end-label` attributes.
 
 You can set the `valueTextFormatter` member to customize how values will be formatted for the thumbs' `aria-valuetext` attribute.
@@ -184,29 +199,44 @@ You can set the `valueTextFormatter` member to customize how values will be form
 
 ```html preview
 <div>
-	<vwc-range-slider id="slider" min="0" max="7200" end="7200" step="15"></vwc-range-slider>
+	<vwc-range-slider
+		id="slider"
+		min="0"
+		max="7200"
+		end="7200"
+		step="15"
+	></vwc-range-slider>
 </div>
-<div>Duration from <strong><span id="start"></span> to <span id="end"></span></strong></div>
+<div>
+	Duration from
+	<strong>
+		<span id="start"></span>
+		to
+		<span id="end"></span>
+	</strong>
+</div>
 <script>
 	const slider = document.querySelector('#slider');
 	const start = document.querySelector('#start');
 	const end = document.querySelector('#end');
-	
-  const formatValue = (value) => {
-    const totalSeconds = Number.parseFloat(value);
-    const hours = Math.floor(totalSeconds / 3600);
+
+	const formatValue = (value) => {
+		const totalSeconds = Number.parseFloat(value);
+		const hours = Math.floor(totalSeconds / 3600);
 		const minutes = Math.floor((totalSeconds % 3600) / 60);
 		const seconds = Math.floor(totalSeconds % 60);
-		return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+		return `${hours.toString().padStart(2, '0')}:${minutes
+			.toString()
+			.padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 	};
-  
-  const updateDescription = () => {
+
+	const updateDescription = () => {
 		start.innerText = formatValue(slider.start);
 		end.innerText = formatValue(slider.end);
 	};
 	customElements.whenDefined('vwc-range-slider').then(updateDescription);
-  
-  slider.valueTextFormatter = formatValue;
+
+	slider.valueTextFormatter = formatValue;
 	slider.addEventListener('change', updateDescription);
 </script>
 ```

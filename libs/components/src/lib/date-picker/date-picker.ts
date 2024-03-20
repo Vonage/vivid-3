@@ -1,8 +1,19 @@
 import { volatile } from '@microsoft/fast-element';
-import { type ErrorText, errorText, type FormElement, formElements } from '../../shared/patterns';
+import {
+	type ErrorText,
+	errorText,
+	type FormElement,
+	formElements,
+} from '../../shared/patterns';
 import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
-import { type DateStr, isValidDateStr } from '../../shared/date-picker/calendar/dateStr';
-import { formatPresentationDate, parsePresentationDate } from '../../shared/date-picker/calendar/presentationDate';
+import {
+	type DateStr,
+	isValidDateStr,
+} from '../../shared/date-picker/calendar/dateStr';
+import {
+	formatPresentationDate,
+	parsePresentationDate,
+} from '../../shared/date-picker/calendar/presentationDate';
 
 /**
  * Single date picker component.
@@ -52,7 +63,9 @@ export class DatePicker extends DatePickerBase {
 	@volatile
 	get _calendarButtonLabel() {
 		if (this.value) {
-			return this.locale.datePicker.changeDateLabel(formatPresentationDate(this.value, this.locale.datePicker));
+			return this.locale.datePicker.changeDateLabel(
+				formatPresentationDate(this.value, this.locale.datePicker)
+			);
 		} else {
 			return this.locale.datePicker.chooseDateLabel;
 		}
@@ -158,7 +171,4 @@ export class DatePicker extends DatePickerBase {
 	}
 }
 
-export interface DatePicker
-	extends
-	ErrorText,
-	FormElement {}
+export interface DatePicker extends ErrorText, FormElement {}

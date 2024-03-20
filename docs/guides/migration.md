@@ -11,8 +11,8 @@ If you are migrating to Vivid 3.x, you can install it alongside Vivid 2.x for an
 
 ### General Naming Changes
 
-|                                           | Before (Vivid 2.x)         | After (Vivid 3.x)                                                |
-|-------------------------------------------|----------------------------|----------------------------------------------------------------|
+|                                           | Before (Vivid 2.x)         | After (Vivid 3.x)                                              |
+| ----------------------------------------- | -------------------------- | -------------------------------------------------------------- |
 |                                           | `heading`                  | `headline`                                                     |
 | icon                                      | `type`                     | `name`                                                         |
 | icon                                      | `trailingIcon`             | `icon-leading` (default), `icon-trailing`                      |
@@ -22,11 +22,10 @@ If you are migrating to Vivid 3.x, you can install it alongside Vivid 2.x for an
 | looks<br/>(`ghost`, `filled`, `outlined`) | `layout`                   | `appearance`                                                   |
 | in some components                        | `dismissible`              | `removable`                                                    |
 
-
 ### Components Naming Changes
 
-| Before (Vivid 2.x)                        | After (Vivid 3.x)    | Comments                            |
-|-------------------------------------------|--------------------|-------------------------------------|
+| Before (Vivid 2.x)                        | After (Vivid 3.x)  | Comments                            |
+| ----------------------------------------- | ------------------ | ----------------------------------- |
 | `chip`, `chip-set`<br/>`tag`, `tag-group` | `tag`, `tag-group` |                                     |
 | `circular-progress`                       | `progress-ring`    |                                     |
 | `dropdown`                                | `menu`             | use `header` + `action-items` slots |
@@ -34,16 +33,15 @@ If you are migrating to Vivid 3.x, you can install it alongside Vivid 2.x for an
 | `linear-progress`                         | `progress`         |                                     |
 | `snackbar`                                | `alert`            |                                     |
 | `theme-switch`                            | `switch`           |                                     |
-| `top-app-bar`,  `top-app-bar fixed`       | `header`           |                                     |
-
+| `top-app-bar`, `top-app-bar fixed`        | `header`           |                                     |
 
 ### List & List Item Components Changes
 
 In Vivid 3.x we created separate components for different uses for the former `list-item`.  
 This is for better accessibility and HTML standards.
 
-| Usage                                      | Before (Vivid 2.x)                                            | After (Vivid 3.x)                                                                                           |
-|--------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| Usage                                      | Before (Vivid 2.x)                                            | After (Vivid 3.x)                                                                                         |
+| ------------------------------------------ | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | navigation                                 | `vwc-list`<br/>`vwc-list-item`<br/>`vwc-list-expansion-panel` | `nav`<br/> `nav-item`<br/> `nav-disclosure`                                                               |
 | menu                                       | `vwc-list`<br/>`vwc-list-item`                                | `menu-item`<br/> `menu-item` with `role="menuitemcheckbox"` <br/> `menu-item` with `role="menuitemradio"` |
 | List items                                 | `vwc-check-list-item`                                         | `menu-item` with `role="menuitemcheckbox"`                                                                |
@@ -95,6 +93,7 @@ import { VWCButton } from '@vonage/vwc-button';
 You can now install Vivid 3.x as usual by following the Getting Started guides.
 
 Make sure you follow the instructions for:
+
 - Using a [custom prefix](/guides/prefix/) (e.g. `vwc-3`)
 - Loading the Vivid 2.x compatibility styles (`@vonage/vivid/styles/tokens/vivid-2-compat.css`)
 
@@ -105,9 +104,9 @@ This is needed to ensure that Vivid 2.x tokens are not overridden by Vivid 3.x t
 
 ```html
 <html class="vvd-root">
-  <body class="vvd-scheme-main">
-    ...
-  </body>
+	<body class="vvd-scheme-main">
+		...
+	</body>
 </html>
 ```
 
@@ -119,8 +118,8 @@ If you are using Vivid Vue, this is done automatically for you.
 
 ```html
 <vwc-3-button
-  class="vvd-component"
-  label="Scoped Vivid 3.x Button"
+	class="vvd-component"
+	label="Scoped Vivid 3.x Button"
 ></vwc-3-button>
 ```
 

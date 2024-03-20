@@ -7,10 +7,8 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Divider } from './divider';
 
-const getClasses = ({orientation}: Divider) => classNames(
-	'base',
-	[`${orientation}`, Boolean(orientation)],
-);
+const getClasses = ({ orientation }: Divider) =>
+	classNames('base', [`${orientation}`, Boolean(orientation)]);
 
 /**
  * The template for the Divider component.
@@ -20,9 +18,8 @@ const getClasses = ({orientation}: Divider) => classNames(
 export const DividerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Divider> = () => html` 
-  <span
-  class="${getClasses}"
-  	orientation="${(x) => x.orientation}"
-  	role="${(x) => x.role}"
-  ></span>`;
+) => ViewTemplate<Divider> = () => html` <span
+	class="${getClasses}"
+	orientation="${(x) => x.orientation}"
+	role="${(x) => x.role}"
+></span>`;

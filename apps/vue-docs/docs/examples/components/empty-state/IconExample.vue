@@ -1,5 +1,5 @@
 <template>
-  <VEmptyState icon="search-line" />
+	<VEmptyState icon="search-line" />
 </template>
 
 <script setup lang="ts">

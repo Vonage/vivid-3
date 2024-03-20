@@ -47,30 +47,30 @@ export default defineConfig({
 		viteStaticCopy({
 			targets: [
 				{
-					'src': './api-extractor.json',
-					'dest': '.'
+					src: './api-extractor.json',
+					dest: '.',
 				},
 				{
-					'src': './.npmignore',
-					'dest': '.'
+					src: './.npmignore',
+					dest: '.',
 				},
 				{
-					'src': './README.md',
-					'dest': '.'
+					src: './README.md',
+					dest: '.',
 				},
 				{
-					'src': '../../dist/libs/styles/tokens/**/*.css',
-					'dest': './styles/tokens'
+					src: '../../dist/libs/styles/tokens/**/*.css',
+					dest: './styles/tokens',
 				},
 				{
-					'src': '../../dist/libs/styles/fonts/**/*.{css,woff,woff2}',
-					'dest': './styles/fonts'
+					src: '../../dist/libs/styles/fonts/**/*.{css,woff,woff2}',
+					dest: './styles/fonts',
 				},
 				{
-					'src': '../../dist/libs/styles/core/**/*.css',
-					'dest': './styles/core'
-				}
-			]
+					src: '../../dist/libs/styles/core/**/*.css',
+					dest: './styles/core',
+				},
+			],
 		}),
 		dts({
 			entryRoot: 'src',
@@ -82,9 +82,7 @@ export default defineConfig({
 	],
 
 	worker: {
-		plugins: [
-			nxViteTsPaths(),
-		],
+		plugins: [nxViteTsPaths()],
 	},
 
 	build: {
@@ -98,13 +96,16 @@ export default defineConfig({
 		target: 'esnext',
 		rollupOptions: {
 			input,
-			output: [{
-				format: 'es',
-				chunkFileNames: 'shared/[name].js'
-			}, {
-				format: 'cjs',
-				chunkFileNames: 'shared/[name].cjs'
-			}]
+			output: [
+				{
+					format: 'es',
+					chunkFileNames: 'shared/[name].js',
+				},
+				{
+					format: 'cjs',
+					chunkFileNames: 'shared/[name].cjs',
+				},
+			],
 		},
-	}
+	},
 });

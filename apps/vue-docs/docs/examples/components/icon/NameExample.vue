@@ -1,5 +1,5 @@
 <template>
-  <VIcon name="profile-line" />
+	<VIcon name="profile-line" />
 </template>
 
 <script setup lang="ts">

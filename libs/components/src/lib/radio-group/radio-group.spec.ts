@@ -1,4 +1,10 @@
-import { axe, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	listenToFormSubmission,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
@@ -36,7 +42,7 @@ describe('vwc-radio-group', () => {
 		});
 
 		it('should set the radio buttons with proper default values', async () => {
-			expect(radios.every(r => r.checked)).toBeFalsy();
+			expect(radios.every((r) => r.checked)).toBeFalsy();
 			expect(radios[0].getAttribute('tabindex')).toBe('0');
 			expect(radios[1].getAttribute('tabindex')).toBe('-1');
 			expect(radios[2].getAttribute('tabindex')).toBe('-1');
@@ -54,8 +60,12 @@ describe('vwc-radio-group', () => {
 
 	describe('orientation', () => {
 		it('should update the positioning region when changing orientation', async () => {
-			const positioningRegion = element.shadowRoot?.querySelector('.positioning-region');
-			const positioningRegionDefaultClassList = Array.from(positioningRegion?.classList as DOMTokenList);
+			const positioningRegion = element.shadowRoot?.querySelector(
+				'.positioning-region'
+			);
+			const positioningRegionDefaultClassList = Array.from(
+				positioningRegion?.classList as DOMTokenList
+			);
 			element.setAttribute('orientation', 'vertical');
 			await elementUpdated(element);
 
@@ -68,7 +78,9 @@ describe('vwc-radio-group', () => {
 		it('should disable all radio buttons it contains when set to disabled', async () => {
 			element.setAttribute('disabled', '');
 			await elementUpdated(element);
-			expect(radios.every(r => r.getAttribute('disabled') === '')).toBeTruthy();
+			expect(
+				radios.every((r) => r.getAttribute('disabled') === '')
+			).toBeTruthy();
 		});
 	});
 
@@ -77,7 +89,9 @@ describe('vwc-radio-group', () => {
 			element.setAttribute('value', '1');
 			await elementUpdated(element);
 
-			expect(radios[1].checked && !radios[0].checked && !radios[2].checked).toBeTruthy();
+			expect(
+				radios[1].checked && !radios[0].checked && !radios[2].checked
+			).toBeTruthy();
 			expect(radios[0].getAttribute('tabindex')).toBe('-1');
 			expect(radios[1].getAttribute('tabindex')).toBe('0');
 			expect(radios[2].getAttribute('tabindex')).toBe('-1');
@@ -119,7 +133,9 @@ describe('vwc-radio-group', () => {
 			const radioGroupValueBefore = element.value;
 
 			radios[0].focus();
-			radios[0].dispatchEvent(new KeyboardEvent('keydown', { key: key, bubbles: true }));
+			radios[0].dispatchEvent(
+				new KeyboardEvent('keydown', { key: key, bubbles: true })
+			);
 			await elementUpdated(element);
 
 			expect(radioCheckedBefore).toBeFalsy();
@@ -138,7 +154,9 @@ describe('vwc-radio-group', () => {
 
 		it('should loop over radio buttons', async () => {
 			getBaseElement(radios[2]).click();
-			radios[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+			radios[2].dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true })
+			);
 			await elementUpdated(element);
 
 			expect(radios[0].checked).toBeTruthy();

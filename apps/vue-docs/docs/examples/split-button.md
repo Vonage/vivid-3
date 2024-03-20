@@ -1,6 +1,7 @@
 # VSplitButton Examples
 
 ## With Menu
+
 <code-tab>
 <template #example>
 <WithMenu />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/split-button/WithMenu.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## With Tooltip
+
 <code-tab>
 <template #example>
 <WithTooltip />
@@ -23,6 +26,7 @@
 ```vue
 <!--@include: ./components/split-button/WithTooltip.vue -->
 ```
+
 </template>
 </code-tab>
 

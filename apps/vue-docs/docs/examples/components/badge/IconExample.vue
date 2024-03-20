@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VBadge appearance="filled" icon="message-sent-line" />
-    <VBadge appearance="filled" icon="message-sent-line" shape="pill" />
-  </div>
+	<div>
+		<VBadge appearance="filled" icon="message-sent-line" />
+		<VBadge appearance="filled" icon="message-sent-line" shape="pill" />
+	</div>
 </template>
 
 <script setup lang="ts">

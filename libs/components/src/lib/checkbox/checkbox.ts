@@ -1,4 +1,7 @@
-import { applyMixins, Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
+import {
+	applyMixins,
+	Checkbox as FoundationCheckbox,
+} from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import {
@@ -7,9 +10,8 @@ import {
 	type FormElement,
 	FormElementHelperText,
 	formElements,
-	FormElementSuccessText
+	FormElementSuccessText,
 } from '../../shared/patterns';
-
 
 export const keySpace: ' ' = ' ' as const;
 
@@ -18,8 +20,10 @@ export const keySpace: ' ' = ' ' as const;
  *
  * @public
  */
-export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
-
+export type CheckboxConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
 /**
  * @public
@@ -30,8 +34,8 @@ export type CheckboxConnotation = Extract<Connotation, | Connotation.Accent | Co
 @errorText
 @formElements
 export class Checkbox extends FoundationCheckbox {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
-	@attr({attribute: 'tabindex'}) tabindex: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+	@attr({ attribute: 'tabindex' }) tabindex: string | null = null;
 
 	/**
 	 * The connotation the checklist should have.
@@ -105,5 +109,9 @@ export class Checkbox extends FoundationCheckbox {
 	@observable slottedContent?: HTMLElement[];
 }
 
-export interface Checkbox extends FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
+export interface Checkbox
+	extends FormElement,
+		FormElementHelperText,
+		ErrorText,
+		FormElementSuccessText {}
 applyMixins(Checkbox, FormElementHelperText, FormElementSuccessText);

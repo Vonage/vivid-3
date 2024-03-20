@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <VPagination size="super-condensed" total="20" />
-    <VPagination size="condensed" total="20" />
-    <VPagination size="normal" total="20" />
-  </div>
+	<div>
+		<VPagination size="super-condensed" total="20" />
+		<VPagination size="condensed" total="20" />
+		<VPagination size="normal" total="20" />
+	</div>
 </template>
 
 <script setup lang="ts">

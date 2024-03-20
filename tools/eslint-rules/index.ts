@@ -1,6 +1,6 @@
 import {
-  RULE_NAME as noAttributeDefaultValueName,
-  rule as noAttributeDefaultValue,
+	RULE_NAME as noAttributeDefaultValueName,
+	rule as noAttributeDefaultValue,
 } from './rules/no-attribute-default-value';
 /**
  * Import your custom workspace rules at the top of this file.
@@ -18,16 +18,16 @@ import {
  */
 
 module.exports = {
-  /**
-   * Apply the imported custom rules here.
-   *
-   * For example (using the example import above):
-   *
-   * rules: {
-   *  [myCustomRuleName]: myCustomRule
-   * }
-   */
-  rules: {
-    [noAttributeDefaultValueName]: noAttributeDefaultValue
-  },
+	/**
+	 * Apply the imported custom rules here.
+	 *
+	 * For example (using the example import above):
+	 *
+	 * rules: {
+	 *  [myCustomRuleName]: myCustomRule
+	 * }
+	 */
+	rules: {
+		[noAttributeDefaultValueName]: noAttributeDefaultValue,
+	},
 };

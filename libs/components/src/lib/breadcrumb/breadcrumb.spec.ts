@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import type {BreadcrumbItem} from '../breadcrumb-item/breadcrumb-item';
+import type { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
@@ -32,7 +32,9 @@ describe('vwc-breadcrumb', () => {
 	});
 
 	it('should set separator true for all except the last item', function () {
-		const itemElements = element.querySelectorAll('vwc-breadcrumb-item') as unknown as BreadcrumbItem[];
+		const itemElements = element.querySelectorAll(
+			'vwc-breadcrumb-item'
+		) as unknown as BreadcrumbItem[];
 
 		expect(itemElements[0].separator).toEqual(true);
 		expect(itemElements[1].separator).toEqual(true);
@@ -46,31 +48,34 @@ describe('vwc-breadcrumb', () => {
 			 *
 			 */
 			function removeAElementFromBreadcrumbItem() {
-				newItem.shadowRoot?.querySelector('a')
-					?.remove();
+				newItem.shadowRoot?.querySelector('a')?.remove();
 			}
 			let newItem: BreadcrumbItem;
-	
+
 			beforeEach(async function () {
-				newItem = document.createElement('vwc-breadcrumb-item') as BreadcrumbItem;
+				newItem = document.createElement(
+					'vwc-breadcrumb-item'
+				) as BreadcrumbItem;
 				newItem.href = '#';
 				newItem.text = 'breadcrumb';
 				element.appendChild(newItem);
 				await elementUpdated(element);
 			});
-	
+
 			it('should set aria-current to last node internal a element if last node is href', async function () {
-				const ariaCurrent = newItem.shadowRoot?.querySelector('a')?.getAttribute('aria-current');
+				const ariaCurrent = newItem.shadowRoot
+					?.querySelector('a')
+					?.getAttribute('aria-current');
 				expect(ariaCurrent).toEqual('page');
 			});
-	
+
 			it('should set aria-current to last node if last node is href and doesnt have internal a element', async function () {
 				removeAElementFromBreadcrumbItem();
 				element.slottedBreadcrumbItemsChanged();
-	
+
 				expect(newItem.ariaCurrent).toEqual('page');
 			});
-	
+
 			it('should not set aria-current to last node if last node is not href', async function () {
 				removeAElementFromBreadcrumbItem();
 				newItem.removeAttribute('href');
@@ -82,20 +87,22 @@ describe('vwc-breadcrumb', () => {
 		it('should have a base element with an aria-label of "breadcrumbs"', () => {
 			const control = getBaseElement(element);
 			expect(control.getAttribute('aria-label')).toBe('breadcrumbs');
-
 		});
 
 		it('should wrap breadcrumb items in a list (role)', () => {
 			const control = getBaseElement(element);
 			expect(control.querySelector('[role="list"]')).toBeTruthy();
-
 		});
 
 		it('should pass html a11y test', async () => {
 			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
-			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
-		
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML)
+				.join('');
+			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
+				'<slot></slot>',
+				children
+			) as string;
+
 			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});
 	});

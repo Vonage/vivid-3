@@ -1,27 +1,30 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
-import type {
-	Appearance, Connotation, Shape, Size,
-} from '../enums.js';
-
+import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 
 /**
  * Types of avatar connotation.
  *
  * @public
  */
-export type AvatarConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+export type AvatarConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
 /**
  * Types of avatar appearance.
  *
  * @public
  */
-export type AvatarAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Duotone | Appearance.Subtle>;
+export type AvatarAppearance = Extract<
+	Appearance,
+	| Appearance.Filled
+	| Appearance.Outlined
+	| Appearance.Duotone
+	| Appearance.Subtle
+>;
 
 /**
  * Types of avatar shape.
@@ -40,7 +43,10 @@ export type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-export type AvatarSize = Extract<Size, Size.Condensed | Size.Normal | Size.Expanded>;
+export type AvatarSize = Extract<
+	Size,
+	Size.Condensed | Size.Normal | Size.Expanded
+>;
 
 /**
  * @public
@@ -75,7 +81,6 @@ export class Avatar extends FoundationElement {
 	 */
 	@attr appearance?: AvatarAppearance;
 
-
 	/**
 	 * The size the avatar should have.
 	 *
@@ -84,7 +89,6 @@ export class Avatar extends FoundationElement {
 	 * HTML Attribute: size
 	 */
 	@attr size?: AvatarSize;
-
 
 	/**
 	 * avatar header icon

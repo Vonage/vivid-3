@@ -48,9 +48,11 @@ const jaJP: Locale = {
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '日付を選択',
-		changeDateLabel: /* istanbul ignore next */ (date: string) => `日付を変更, ${date}`,
+		changeDateLabel: /* istanbul ignore next */ (date: string) =>
+			`日付を変更, ${date}`,
 		chooseDatesLabel: '日付を選択',
-		changeDatesLabel: /* istanbul ignore next */ (range: string) => `日付を変更, ${range}`,
+		changeDatesLabel: /* istanbul ignore next */ (range: string) =>
+			`日付を変更, ${range}`,
 		prevYearLabel: '前年',
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
@@ -67,7 +69,8 @@ const jaJP: Locale = {
 	timePicker: {
 		defaultTo12HourClock: false,
 		chooseTimeLabel: '時間を選択',
-		changeTimeLabel: /* istanbul ignore next */ (time: string) => `時間を変更, ${time}`,
+		changeTimeLabel: /* istanbul ignore next */ (time: string) =>
+			`時間を変更, ${time}`,
 		hoursLabel: '時間',
 		minutesLabel: '分',
 		secondsLabel: '秒',
@@ -126,7 +129,6 @@ const jaJP: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
-
 };
 
 export default jaJP;

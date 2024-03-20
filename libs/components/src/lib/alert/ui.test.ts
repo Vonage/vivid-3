@@ -10,17 +10,20 @@ import {
 const components = ['alert', 'button', 'switch'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-
 	const CSS = `
 		<style>
 			#wrapper > div { height: 250px; transform: translateY(0px); }
 		</style>`;
 
-	const template = CSS + extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div>${block}</div>`,'');
+	const template =
+		CSS +
+		extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		).reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div>${block}</div>`,
+			''
+		);
 
 	page.setViewportSize({ width: 1300, height: 2750 });
 
@@ -64,9 +67,8 @@ async function testResponsiveAlert({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/alert-mobile.png',
+		'./snapshots/alert-mobile.png'
 	);
 }
 test('alert in mobile screens', testResponsiveAlert);

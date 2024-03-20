@@ -1,5 +1,5 @@
 <template>
-  <VSlider />
+	<VSlider />
 </template>
 
 <script setup lang="ts">

@@ -8,14 +8,14 @@ const defaultToken = {
 	path: [],
 	original: undefined,
 	filePath: '',
-	isSource: false
+	isSource: false,
 };
 
 const token = {
 	...defaultToken,
 	type: 'boxShadow',
 	attributes: {
-		category: 'shadow'
+		category: 'shadow',
 	},
 	value: [
 		{
@@ -24,7 +24,7 @@ const token = {
 			blur: '1',
 			spread: '0',
 			color: '#0000000d',
-			type: 'dropShadow'
+			type: 'dropShadow',
 		},
 		{
 			x: '0',
@@ -32,7 +32,7 @@ const token = {
 			blur: '2',
 			spread: '0',
 			color: '#0000000d',
-			type: 'innerShadow'
+			type: 'innerShadow',
 		},
 		{
 			x: '0',
@@ -40,12 +40,13 @@ const token = {
 			blur: '4',
 			spread: '0',
 			color: '#0000001a',
-			type: 'innerShadow'
-		}
-	]
+			type: 'innerShadow',
+		},
+	],
 };
 
-const expectedParsedEffects = 'drop-shadow(0px 2px 1px #0000000d) drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 1px 4px #0000001a)';
+const expectedParsedEffects =
+	'drop-shadow(0px 2px 1px #0000000d) drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 1px 4px #0000001a)';
 
 describe('basic', () => {
 	it('should transform array of drop shadows to single token value', () => {
@@ -53,12 +54,13 @@ describe('basic', () => {
 	});
 
 	it('should ignore already parsed value', () => {
-		expect(transformer({ ...defaultToken, value: expectedParsedEffects }, {}))
-			.toEqual(expectedParsedEffects);
+		expect(
+			transformer({ ...defaultToken, value: expectedParsedEffects }, {})
+		).toEqual(expectedParsedEffects);
 	});
 
 	it('should match if category and type comply to a shadow type', () => {
-		expect(matcher({ ...defaultToken, attributes: {}})).toEqual(false);
+		expect(matcher({ ...defaultToken, attributes: {} })).toEqual(false);
 		expect(matcher(token)).toEqual(true);
 	});
 });

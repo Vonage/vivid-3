@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <VCalendar />
-  </div>
+	<div>
+		<VCalendar />
+	</div>
 </template>
 
 <script setup lang="ts">

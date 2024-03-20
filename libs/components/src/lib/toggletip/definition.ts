@@ -10,11 +10,12 @@ import { ToggletipTemplate as template } from './toggletip.template';
 /**
  * The toggletip element.
  */
-export const toggletipDefinition = Toggletip.compose<FoundationElementDefinition>({
-	baseName: 'toggletip',
-	template: template as any,
-	styles,
-});
+export const toggletipDefinition =
+	Toggletip.compose<FoundationElementDefinition>({
+		baseName: 'toggletip',
+		template: template as any,
+		styles,
+	});
 
 /**
  * @internal

@@ -1,26 +1,27 @@
-import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
-import {attr, observable} from '@microsoft/fast-element';
-import {Connotation} from '../enums';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { attr, observable } from '@microsoft/fast-element';
+import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
-import {AffixIcon} from '../../shared/patterns/affix';
+import { AffixIcon } from '../../shared/patterns/affix';
 
 export type BannerConnotation =
-	Connotation.Information |
-	Connotation.Announcement |
-	Connotation.Success |
-	Connotation.Warning |
-	Connotation.Alert;
+	| Connotation.Information
+	| Connotation.Announcement
+	| Connotation.Success
+	| Connotation.Warning
+	| Connotation.Alert;
 
 const connotationIconMap = new Map([
 	[Connotation.Information, 'info-solid'],
 	[Connotation.Announcement, 'megaphone-solid'],
 	[Connotation.Success, 'check-circle-solid'],
 	[Connotation.Warning, 'warning-solid'],
-	[Connotation.Alert, 'error-solid']
+	[Connotation.Alert, 'error-solid'],
 ]);
 
-const defaultConnotation =
-	(connotation: Connotation | undefined = Connotation.Information) => connotationIconMap.get(connotation) as Connotation;
+const defaultConnotation = (
+	connotation: Connotation | undefined = Connotation.Information
+) => connotationIconMap.get(connotation) as Connotation;
 
 /**
  * @public
@@ -29,12 +30,14 @@ const defaultConnotation =
  * @slot icon - Add an icon to the component.
  */
 export class Banner extends FoundationElement {
-	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel: string | null = null;
+	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
+		| string
+		| null = null;
 	@attr override role: string | null = null;
-	@attr({attribute: 'action-href'}) actionHref: string | undefined;
-	@attr({attribute: 'action-text'}) actionText: string | undefined;
-	@attr({mode: 'boolean'}) removable = false;
-	@attr({attribute: 'aria-live'}) override ariaLive: any;
+	@attr({ attribute: 'action-href' }) actionHref: string | undefined;
+	@attr({ attribute: 'action-text' }) actionText: string | undefined;
+	@attr({ mode: 'boolean' }) removable = false;
+	@attr({ attribute: 'aria-live' }) override ariaLive: any;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 
@@ -85,5 +88,5 @@ export class Banner extends FoundationElement {
 
 applyMixins(Banner, AffixIcon);
 
-export interface Banner extends Localized, AffixIcon{ }
+export interface Banner extends Localized, AffixIcon {}
 applyMixins(Banner, Localized);

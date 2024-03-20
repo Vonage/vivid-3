@@ -1,5 +1,5 @@
 <template>
-  <VBreadcrumbItem text="Breadcrumb" />
+	<VBreadcrumbItem text="Breadcrumb" />
 </template>
 
 <script setup lang="ts">

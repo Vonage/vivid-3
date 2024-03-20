@@ -3,7 +3,7 @@ import type { Page } from '@playwright/test';
 import type { ProgressRing } from '../progress-ring/progress-ring';
 import {
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 import type { Button } from './button';
 
@@ -143,9 +143,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.evaluate(() => {
-		const pendingButtons = (document.querySelectorAll('vwc-button[pending]') as NodeListOf<Button>);
-		pendingButtons.forEach(button => {
-			const indicator = button.shadowRoot?.querySelector('vwc-progress-ring') as ProgressRing;
+		const pendingButtons = document.querySelectorAll(
+			'vwc-button[pending]'
+		) as NodeListOf<Button>;
+		pendingButtons.forEach((button) => {
+			const indicator = button.shadowRoot?.querySelector(
+				'vwc-progress-ring'
+			) as ProgressRing;
 			if (indicator) indicator.value = 66;
 		});
 	});
@@ -154,8 +158,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/button.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/button.png'
+	);
 });

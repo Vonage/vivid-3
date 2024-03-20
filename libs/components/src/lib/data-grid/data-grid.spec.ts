@@ -2,13 +2,12 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html, ViewTemplate } from '@microsoft/fast-element';
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { designSystem } from '../../shared/design-system';
-import {DataGrid, DataGridSelectionMode} from './data-grid';
+import { DataGrid, DataGridSelectionMode } from './data-grid';
 import { DataGridTemplate } from './data-grid.template';
-
 
 const dataGrid = DataGrid.compose<FoundationElementDefinition>({
 	baseName: 'data-grid',
-	template: DataGridTemplate as any
+	template: DataGridTemplate as any,
 });
 
 designSystem.withPrefix('vwc').register(dataGrid());
@@ -67,7 +66,8 @@ describe('vwc-data-grid', () => {
 	describe('rowsData', () => {
 		it('should generate column definitions when set', async () => {
 			const expectedColumnDef = [
-				{'columnDataKey': 'id', 'gridColumn': '0'}, {'columnDataKey': 'name', 'gridColumn': '1'}
+				{ columnDataKey: 'id', gridColumn: '0' },
+				{ columnDataKey: 'name', gridColumn: '1' },
 			];
 			element.rowsData = [{ id: '1', name: 'Person 1' }];
 			expect(element.columnDefinitions).toEqual(expectedColumnDef);
@@ -84,8 +84,10 @@ describe('vwc-data-grid', () => {
 			};
 
 			const expectedColumnDef = [
-				{'columnDataKey': 'id', 'gridColumn': '0'}, {'columnDataKey': 'name', 'gridColumn': '1'},
-				{'columnDataKey': 'age', 'gridColumn': '2'}, {'columnDataKey': 'address.city', 'gridColumn': '3'}
+				{ columnDataKey: 'id', gridColumn: '0' },
+				{ columnDataKey: 'name', gridColumn: '1' },
+				{ columnDataKey: 'age', gridColumn: '2' },
+				{ columnDataKey: 'address.city', gridColumn: '3' },
 			];
 
 			expect(DataGrid.generateColumns(rowData)).toEqual(expectedColumnDef);
@@ -98,13 +100,15 @@ describe('vwc-data-grid', () => {
 				age: 20,
 				'address.city': 'City 1',
 			};
-			Object.defineProperty(rowData, 'nonEnumerable',{
-				value : '80,000$',
-				enumerable: false
+			Object.defineProperty(rowData, 'nonEnumerable', {
+				value: '80,000$',
+				enumerable: false,
 			});
 			const expectedColumnDef = [
-				{'columnDataKey': 'id', 'gridColumn': '0'}, {'columnDataKey': 'name', 'gridColumn': '1'},
-				{'columnDataKey': 'age', 'gridColumn': '2'}, {'columnDataKey': 'address.city', 'gridColumn': '3'}
+				{ columnDataKey: 'id', gridColumn: '0' },
+				{ columnDataKey: 'name', gridColumn: '1' },
+				{ columnDataKey: 'age', gridColumn: '2' },
+				{ columnDataKey: 'address.city', gridColumn: '3' },
 			];
 
 			expect(DataGrid.generateColumns(rowData)).toEqual(expectedColumnDef);
@@ -124,11 +128,15 @@ describe('vwc-data-grid', () => {
 			generatedHeader = element.querySelector(rowElementTag) as any;
 		});
 		it('should generate the header row with columnDefinition', async () => {
-			expect(generatedHeader.columnDefinitions).toEqual(element.columnDefinitions);
+			expect(generatedHeader.columnDefinitions).toEqual(
+				element.columnDefinitions
+			);
 		});
 
 		it('should generate the header row with gridTemplateColumns', async () => {
-			expect(generatedHeader.gridTemplateColumns).toEqual(element.gridTemplateColumns);
+			expect(generatedHeader.gridTemplateColumns).toEqual(
+				element.gridTemplateColumns
+			);
 		});
 
 		it('should generate the header row with sticky', async () => {
@@ -181,7 +189,8 @@ describe('vwc-data-grid', () => {
 
 			element.rowElementTag = rowElementTag;
 			element.columnDefinitions = [
-				{'columnDataKey': 'id', 'title': 'Column 1'}, {'columnDataKey': 'name', 'title': 'Column 2'}
+				{ columnDataKey: 'id', title: 'Column 1' },
+				{ columnDataKey: 'name', title: 'Column 2' },
 			];
 
 			const generatedHeader = element.querySelector(rowElementTag) as any;
@@ -194,7 +203,8 @@ describe('vwc-data-grid', () => {
 			element.rowElementTag = rowElementTag;
 			element.rowItemTemplate = html`<${rowElementTag} role="row"></${rowElementTag}>`;
 			const columnDefinitions = [
-				{'columnDataKey': 'id', 'gridColumn': '3'}, {'columnDataKey': 'name', 'gridColumn': '5'}
+				{ columnDataKey: 'id', gridColumn: '3' },
+				{ columnDataKey: 'name', gridColumn: '5' },
 			];
 			element.columnDefinitions = columnDefinitions;
 			element.rowsData = [
@@ -210,8 +220,12 @@ describe('vwc-data-grid', () => {
 			rows.forEach((row: any, index: number) => {
 				expect(row.columnDefinitions).toEqual(columnDefinitions);
 				expect(row.rowIndex).toEqual(index);
-				expect(row.gridTemplateColumns)
-					.toEqual(element.rowsData.reduce((acc: string, _, index) => acc + (index > 0 ? ' 1fr' : '1fr'), ''));
+				expect(row.gridTemplateColumns).toEqual(
+					element.rowsData.reduce(
+						(acc: string, _, index) => acc + (index > 0 ? ' 1fr' : '1fr'),
+						''
+					)
+				);
 			});
 		});
 	});
@@ -227,7 +241,9 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			expect(element.querySelectorAll(rowTag).length).toEqual(element.rowsData.length);
+			expect(element.querySelectorAll(rowTag).length).toEqual(
+				element.rowsData.length
+			);
 		});
 	});
 
@@ -244,7 +260,9 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			const expectedFocsedCell = Array.from(element.querySelectorAll(element.rowElementTag))
+			const expectedFocsedCell = Array.from(
+				element.querySelectorAll(element.rowElementTag)
+			)
 				.at(-1)
 				?.querySelector('button');
 			element.focusRowIndex = 2;
@@ -262,7 +280,9 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			const expectedFocsedCell = Array.from(element.querySelectorAll(element.rowElementTag))
+			const expectedFocsedCell = Array.from(
+				element.querySelectorAll(element.rowElementTag)
+			)
 				.at(-1)
 				?.querySelector('.second');
 			element.focusRowIndex = 2;
@@ -273,7 +293,6 @@ describe('vwc-data-grid', () => {
 	});
 
 	describe('rowElementTag', () => {
-
 		it('should use rowElementTag for the header row element', async () => {
 			const rowElementTag = 'just-for-test';
 			element.rowElementTag = rowElementTag;
@@ -290,26 +309,35 @@ describe('vwc-data-grid', () => {
 		it('should reflect selectionMode', async () => {
 			element.selectionMode = DataGridSelectionMode.singleRow;
 			await elementUpdated(element);
-			expect(element.getAttribute('selection-mode')).toEqual(DataGridSelectionMode.singleRow);
+			expect(element.getAttribute('selection-mode')).toEqual(
+				DataGridSelectionMode.singleRow
+			);
 		});
 
 		it('should init without aria-multiselectable', async function () {
 			expect(element.hasAttribute('aria-multiselectable')).toEqual(false);
 		});
 
-		it.each([DataGridSelectionMode.multiCell, DataGridSelectionMode.multiRow])
-		('should set aria-multiselectable="true" when multiple mode is selected', async (selectionMode) => {
-			element.selectionMode = selectionMode;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-multiselectable')).toEqual('true');
-		});
+		it.each([DataGridSelectionMode.multiCell, DataGridSelectionMode.multiRow])(
+			'should set aria-multiselectable="true" when multiple mode is selected',
+			async (selectionMode) => {
+				element.selectionMode = selectionMode;
+				await elementUpdated(element);
+				expect(element.getAttribute('aria-multiselectable')).toEqual('true');
+			}
+		);
 
-		it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.singleRow])
-		('should set aria-multiselectable="false" when single mode is selected', async (selectionMode) => {
-			element.selectionMode = selectionMode;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-multiselectable')).toEqual('false');
-		});
+		it.each([
+			DataGridSelectionMode.singleCell,
+			DataGridSelectionMode.singleRow,
+		])(
+			'should set aria-multiselectable="false" when single mode is selected',
+			async (selectionMode) => {
+				element.selectionMode = selectionMode;
+				await elementUpdated(element);
+				expect(element.getAttribute('aria-multiselectable')).toEqual('false');
+			}
+		);
 
 		it('should remove aria-multiselectable when selectionMode is "none"', async function () {
 			element.setAttribute('aria-multiselectable', 'true');
@@ -327,7 +355,9 @@ describe('vwc-data-grid', () => {
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			const expected = Array.from(element.querySelectorAll(element.rowElementTag));
+			const expected = Array.from(
+				element.querySelectorAll(element.rowElementTag)
+			);
 			expected.splice(0, 1);
 			expect(element.rowElements).toEqual(expected);
 		});

@@ -1,5 +1,5 @@
 <template>
-  <VRadio value="my-value" />
+	<VRadio value="my-value" />
 </template>
 
 <script setup lang="ts">

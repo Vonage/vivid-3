@@ -1,5 +1,5 @@
 <template>
-  <VFab icon="store-line" disabled />
+	<VFab icon="store-line" disabled />
 </template>
 
 <script setup lang="ts">

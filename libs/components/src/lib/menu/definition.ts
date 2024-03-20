@@ -16,7 +16,6 @@ export const menuDefinition = Menu.compose({
 	styles,
 });
 
-
 // by convention, menu-item isn't required to be imported
 // in menu as it is not used directly in template, rather by user's authoring.
 // but, due to the race condition and way menu needs children to
@@ -24,7 +23,11 @@ export const menuDefinition = Menu.compose({
 /**
  * @internal
  */
-export const menuRegistries = [menuDefinition(), ...popupRegistries, ...menuItemRegistries];
+export const menuRegistries = [
+	menuDefinition(),
+	...popupRegistries,
+	...menuItemRegistries,
+];
 
 /**
  * Registers the calendar-event elements with the design system.

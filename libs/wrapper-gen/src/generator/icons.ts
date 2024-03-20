@@ -12,7 +12,7 @@ const manifestUrl = `${ICONS_BASE_URL}/v${ICONS_VERSION}/manifest.json`;
 const fetchIcons = async (): Promise<string[]> => {
 	const response = await fetch(manifestUrl);
 	const manifest = (await response.json()) as IconManifest;
-	return manifest.map(icon => icon.id).sort();
+	return manifest.map((icon) => icon.id).sort();
 };
 
 export const loadedIcons = fetchIcons();

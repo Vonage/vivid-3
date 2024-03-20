@@ -4,9 +4,7 @@ import { ActionGroup } from './action-group';
 import { actionGroupDefinition } from './definition';
 import '.';
 
-
 const COMPONENT_TAG = 'vwc-action-group';
-
 
 describe('vwc-action-group', () => {
 	let element: ActionGroup;
@@ -35,8 +33,9 @@ describe('vwc-action-group', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element)?.classList.contains(`appearance-${appearance}`))
-				.toBeTruthy();
+			expect(
+				getBaseElement(element)?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -46,8 +45,9 @@ describe('vwc-action-group', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element)?.classList.contains(`shape-${shape}`))
-				.toBeTruthy();
+			expect(
+				getBaseElement(element)?.classList.contains(`shape-${shape}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -61,14 +61,14 @@ describe('vwc-action-group', () => {
 				const role = getBaseElement(element)?.getAttribute('role');
 				expect(role).toEqual('group');
 			});
-	
+
 			it('should change role to role radiogroup', async function () {
 				element.role = 'radiogroup';
 				await elementUpdated(element);
 				const role = getBaseElement(element)?.getAttribute('role');
 				expect(role).toEqual('radiogroup');
 			});
-	
+
 			it('should change role when role attribute is set', async function () {
 				element.setAttribute('role', 'radiogroup');
 				await elementUpdated(element);
@@ -76,13 +76,15 @@ describe('vwc-action-group', () => {
 				expect(role).toEqual('radiogroup');
 			});
 		});
-	
+
 		describe('aria-label', function () {
 			it('should set "aria-label" on base if set on host', async function () {
 				const labelId = 'label';
 				element.setAttribute('aria-label', labelId);
 				await elementUpdated(element);
-				expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+				expect(getBaseElement(element).getAttribute('aria-label')).toEqual(
+					labelId
+				);
 				expect(await axe(element)).toHaveNoViolations();
 			});
 		});

@@ -21,7 +21,9 @@ describe('vwc-accordion-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
-			expect(accordionItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(accordionItemDefinition()).toBeInstanceOf(
+				FoundationElementRegistry
+			);
 			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.expanded).toBeFalsy();
 			expect(element.icon).toBeUndefined();
@@ -37,7 +39,9 @@ describe('vwc-accordion-item', () => {
 	describe('click', () => {
 		let itemHeaderButton: HTMLButtonElement;
 		beforeEach(function () {
-			itemHeaderButton = element.shadowRoot?.querySelector('.heading-button') as HTMLButtonElement;
+			itemHeaderButton = element.shadowRoot?.querySelector(
+				'.heading-button'
+			) as HTMLButtonElement;
 		});
 
 		it('should expand a closed item on click', async () => {
@@ -55,23 +59,34 @@ describe('vwc-accordion-item', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
 		});
 
 		it('should render an icon when the icon property is set', async () => {
-			const secondChildWithoutIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(2)') as HTMLSpanElement;
+			const secondChildWithoutIcon = element.shadowRoot?.querySelector(
+				'.heading-button :nth-child(2)'
+			) as HTMLSpanElement;
 			element.icon = 'chat-solid';
 			await elementUpdated(element);
-			const secondChildWithIcon = element.shadowRoot?.querySelector('.heading-button :nth-child(1)') as HTMLSpanElement;
+			const secondChildWithIcon = element.shadowRoot?.querySelector(
+				'.heading-button :nth-child(1)'
+			) as HTMLSpanElement;
 
 			expect(secondChildWithoutIcon.classList).toContain('heading-content');
 			expect(secondChildWithoutIcon.classList).not.toContain('icon');
 			expect(secondChildWithIcon.classList).not.toContain('heading-content');
-			expect(secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')).toBe('chat-solid');
+			expect(
+				secondChildWithIcon.querySelector('vwc-icon')?.getAttribute('name')
+			).toBe('chat-solid');
 		});
 
 		it('should render a trailing icon when the iconTrailing property is set', async () => {
-			const headerLastIcon = () => element.shadowRoot?.querySelector('vwc-icon:last-of-type') as HTMLElement;
+			const headerLastIcon = () =>
+				element.shadowRoot?.querySelector(
+					'vwc-icon:last-of-type'
+				) as HTMLElement;
 
 			const lastIconWithDefaultIcon = headerLastIcon();
 			element.icon = 'chat-solid';
@@ -79,14 +94,17 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 			const lastIconWithIconSet = headerLastIcon();
 
-			expect(lastIconWithDefaultIcon.getAttribute('name')).toBe('chevron-down-solid');
+			expect(lastIconWithDefaultIcon.getAttribute('name')).toBe(
+				'chevron-down-solid'
+			);
 			expect(lastIconWithIconSet.getAttribute('name')).toBe('chat-solid');
 		});
 	});
 
 	describe('no-indicator', () => {
 		it('should remove indicator', async () => {
-			const indicatorExistsOnInit = !!element.shadowRoot?.querySelector('.icon');
+			const indicatorExistsOnInit =
+				!!element.shadowRoot?.querySelector('.icon');
 			element.noIndicator = true;
 			await elementUpdated(element);
 
@@ -97,7 +115,8 @@ describe('vwc-accordion-item', () => {
 
 	describe('heading level', () => {
 		it('should update heading level', async () => {
-			const headerTag = () => element.shadowRoot?.querySelector(':first-child')?.tagName as string;
+			const headerTag = () =>
+				element.shadowRoot?.querySelector(':first-child')?.tagName as string;
 			const headerTagOnInit = headerTag();
 
 			element.headinglevel = 4;
@@ -125,7 +144,8 @@ describe('vwc-accordion-item', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			const accordionButton = element.shadowRoot?.querySelector('.heading-button');
+			const accordionButton =
+				element.shadowRoot?.querySelector('.heading-button');
 			const accordionRegion = element.shadowRoot?.querySelector('.region');
 
 			expect(accordionButton?.classList.contains(`size-${size}`)).toBeTruthy();
@@ -149,9 +169,13 @@ describe('vwc-accordion-item', () => {
 			await elementUpdated(element);
 
 			const accordionButton = element.shadowRoot?.getElementById(TEST_ID);
-			const accordionRegion = element.shadowRoot?.getElementById(`${TEST_ID}-panel`);
+			const accordionRegion = element.shadowRoot?.getElementById(
+				`${TEST_ID}-panel`
+			);
 
-			expect(accordionButton?.getAttribute('aria-controls')).toBe(`${TEST_ID}-panel`);
+			expect(accordionButton?.getAttribute('aria-controls')).toBe(
+				`${TEST_ID}-panel`
+			);
 			expect(accordionRegion?.getAttribute('aria-labelledby')).toBe(TEST_ID);
 		});
 
