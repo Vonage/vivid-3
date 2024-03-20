@@ -10,6 +10,7 @@ import { Button } from '../button/button';
  * Base class for dial-pad
  *
  * @public
+ * @component dial-pad
  * @event change - Emitted when the text field value changes
  * @event input - Emitted when the text field value changes
  * @event blur - Emitted when the text field loses focus
