@@ -16,7 +16,11 @@ export const dialPadDefinition = DialPad.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const dialPadRegistries = [dialPadDefinition(), ...buttonRegistries, ...textFieldRegistries];
+export const dialPadRegistries = [
+	dialPadDefinition(),
+	...buttonRegistries,
+	...textFieldRegistries,
+];
 
 /**
  * Registers the dial-pad element with the design system.

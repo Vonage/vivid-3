@@ -20,7 +20,8 @@ describe('vwc-dial-pad', () => {
 	}
 
 	function getDigitButtons() {
-		const digits: HTMLDivElement | null = getBaseElement(element).querySelector('.digits');
+		const digits: HTMLDivElement | null =
+			getBaseElement(element).querySelector('.digits');
 		return digits?.querySelectorAll('vwc-button') as NodeListOf<Button>;
 	}
 
@@ -93,7 +94,7 @@ describe('vwc-dial-pad', () => {
 			const spy = jest.fn();
 			element.addEventListener('keypad-click', spy);
 			await elementUpdated(element);
-			getDigitButtons().forEach(button => {
+			getDigitButtons().forEach((button) => {
 				button.click();
 			});
 			expect(spy).toHaveBeenCalledTimes(12);
@@ -101,7 +102,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should set value in text field when clicked on keypad', async function () {
 			await elementUpdated(element);
-			getDigitButtons().forEach(button => {
+			getDigitButtons().forEach((button) => {
 				button.click();
 			});
 			await elementUpdated(element);
@@ -109,7 +110,8 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should not set value in text field when clicked on digits div', async function () {
-			const digits: HTMLDivElement | null = getBaseElement(element).querySelector('.digits');
+			const digits: HTMLDivElement | null =
+				getBaseElement(element).querySelector('.digits');
 			digits?.click();
 			await elementUpdated(element);
 			expect(getTextField().value).toEqual('');
@@ -129,7 +131,9 @@ describe('vwc-dial-pad', () => {
 			const spy = jest.fn();
 			element.addEventListener('dial', spy);
 			await elementUpdated(element);
-			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
@@ -143,24 +147,27 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe.each(['input', 'change', 'blur', 'focus'])('%s event', (eventName) => {
-		it('should be fired when user enters a valid text into the text field', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
+	describe.each(['input', 'change', 'blur', 'focus'])(
+		'%s event',
+		(eventName) => {
+			it('should be fired when user enters a valid text into the text field', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
 
-			element.value = '123';
-			getTextField().dispatchEvent(new InputEvent(eventName));
-			await elementUpdated(element);
+				element.value = '123';
+				getTextField().dispatchEvent(new InputEvent(eventName));
+				await elementUpdated(element);
 
-			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
+		}
+	);
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when user clicks the keyboard buttons', async () => {
 			const spy = jest.fn();
 			element.addEventListener(eventName, spy);
-			getDigitButtons().forEach(button => {
+			getDigitButtons().forEach((button) => {
 				button.click();
 			});
 
@@ -185,7 +192,7 @@ describe('vwc-dial-pad', () => {
 		it('should set digit buttons disabled when has disabled attribute', async function () {
 			element.disabled = true;
 			await elementUpdated(element);
-			getDigitButtons().forEach(button => {
+			getDigitButtons().forEach((button) => {
 				expect(button.disabled).toEqual(true);
 			});
 		});
@@ -220,5 +227,4 @@ describe('vwc-dial-pad', () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
-
 });
