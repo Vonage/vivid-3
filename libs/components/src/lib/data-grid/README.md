@@ -547,7 +547,7 @@ We will change the default value of `--data-grid-cell-block-size` to `100%` in a
 			Variable height
 		</vwc-data-grid-cell>
 		<vwc-data-grid-cell>
-			<vwc-button label="Action" appearance="outlined"></vwc-button>
+			<vwc-button label="Action" appearance="outlined" size="expanded"></vwc-button>
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
