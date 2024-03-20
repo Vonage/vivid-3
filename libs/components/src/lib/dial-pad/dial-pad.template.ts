@@ -23,7 +23,7 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
-	)} class="phone-field" 
+	)} class="phone-field" internal-part
             appearance="ghost" value="${(x) => x.value}" placeholder="${(x) =>
 		x.placeholder}" 
             ?disabled="${(x) => x.disabled}" helper-text="${(x) =>
