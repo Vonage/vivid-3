@@ -83,7 +83,7 @@ Use the `no-call` attribute (or `noCall` property) to disable call/end call func
 ### Pattern
 
 Use the `pattern` attribute to set the regex string of allowed characters in the input.   
-Read more about [vwc-text-field validation](/components/text-field#validation).   
+Read more about [vwc-text-field validation](/components/text-field/#validation).   
 You can change the error text with the `error-text` attribute.
 
 - Type: `string`
