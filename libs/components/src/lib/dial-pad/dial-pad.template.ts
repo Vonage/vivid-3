@@ -24,8 +24,7 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
 	)} class="phone-field" internal-part
-            appearance="ghost" value="${(x) => x.value}" placeholder="${(x) =>
-		x.placeholder}" 
+        value="${(x) => x.value}" placeholder="${(x) => x.placeholder}" 
             ?disabled="${(x) => x.disabled}" helper-text="${(x) =>
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) =>
