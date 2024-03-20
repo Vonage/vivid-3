@@ -21,6 +21,7 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
  * Base class for video-player
  *
  * @public
+ * @component video-player
  * @slot - Default slot
  * @event play - Fired when the video is played
  * @event pause - Fired when the video is paused

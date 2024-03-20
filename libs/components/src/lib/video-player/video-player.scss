@@ -5,6 +5,10 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @import '../../../../../node_modules/video.js/dist/video-js.css';
 
+:host {
+	display: block;
+}
+
 .vjs-theme-vivid {
 	$control-size: 40px;
 	$control-background-color: rgba(0 0 0 / 60%);

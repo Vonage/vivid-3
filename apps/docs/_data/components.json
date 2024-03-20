@@ -270,7 +270,7 @@
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
 	},
 	{
-		"title": "video-player",
+		"title": "Video Player",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/video-player/README.md"
 	}
