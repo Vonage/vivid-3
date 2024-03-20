@@ -2,10 +2,9 @@
 
 ## [3.52.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.51.0...vivid-vue-v3.52.0) (2024-03-20)
 
-
 ### Features
 
-* **range-slider:** add component (VIV-1488) ([#1584](https://github.com/Vonage/vivid-3/issues/1584)) ([0074811](https://github.com/Vonage/vivid-3/commit/00748113cc8e562e791e56c7ac6961f2a5e6138f))
+- **range-slider:** add component (VIV-1488) ([#1584](https://github.com/Vonage/vivid-3/issues/1584)) ([0074811](https://github.com/Vonage/vivid-3/commit/00748113cc8e562e791e56c7ac6961f2a5e6138f))
 
 ## [3.51.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.50.1...vivid-vue-v3.51.0) (2024-02-26)
 
