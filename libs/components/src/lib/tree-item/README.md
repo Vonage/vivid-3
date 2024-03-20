@@ -4,9 +4,7 @@ Represents a tree-item custom element.
 Read more about [vwc-tree-view](/components/tree-view/).
 
 ```js
-<script type="module">
-    import '@vonage/vivid/tree-item';
-</script>
+<script type="module">import '@vonage/vivid/tree-item';</script>
 ```
 
 ## Members
@@ -18,7 +16,7 @@ Read more about [vwc-tree-view](/components/tree-view/).
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item"></vwc-tree-item>
+	<vwc-tree-item text="Tree Item"></vwc-tree-item>
 </vwc-tree-view>
 ```
 
@@ -34,7 +32,7 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
+	<vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
 </vwc-tree-view>
 ```
 
@@ -47,7 +45,7 @@ Add the `selected` attribute to select the tree item.
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item" selected></vwc-tree-item>
+	<vwc-tree-item text="Tree Item" selected></vwc-tree-item>
 </vwc-tree-view>
 ```
 
@@ -60,7 +58,7 @@ Add the `disabled` attribute to disable the tree item.
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item" disabled></vwc-tree-item>
+	<vwc-tree-item text="Tree Item" disabled></vwc-tree-item>
 </vwc-tree-view>
 ```
 
@@ -73,9 +71,9 @@ Use the `expanded` attribute to set the tree-item's open state.
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item" expanded>
-        <vwc-tree-item slot="item" text="Tree Item 1 - 1"></vwc-tree-item>
-    </vwc-tree-item>
+	<vwc-tree-item text="Tree Item" expanded>
+		<vwc-tree-item slot="item" text="Tree Item 1 - 1"></vwc-tree-item>
+	</vwc-tree-item>
 </vwc-tree-view>
 ```
 
@@ -85,10 +83,10 @@ Use the `expanded` attribute to set the tree-item's open state.
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item 1">
-        <vwc-tree-item slot="item" text="Tree Item 1 - 1"></vwc-tree-item>
-    </vwc-tree-item>
-    <vwc-tree-item text="Tree Item 2"></vwc-tree-item>
+	<vwc-tree-item text="Tree Item 1">
+		<vwc-tree-item slot="item" text="Tree Item 1 - 1"></vwc-tree-item>
+	</vwc-tree-item>
+	<vwc-tree-item text="Tree Item 2"></vwc-tree-item>
 </vwc-tree-view>
 ```
 
@@ -99,9 +97,13 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-tree-view>
-    <vwc-tree-item text="Tree Item">
-        <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
-    </vwc-tree-item>
+	<vwc-tree-item text="Tree Item">
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
+	</vwc-tree-item>
 </vwc-tree-view>
 ```
 

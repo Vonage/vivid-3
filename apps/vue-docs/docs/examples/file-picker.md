@@ -15,8 +15,6 @@
 </template>
 </code-tab>
 
-
-
 <script setup lang="ts">
 import CodeTab from "../custom/CodeTab.vue";
 import { defineClientComponent } from 'vitepress';

@@ -3,9 +3,7 @@
 The option component is generally used inside select or combobox.
 
 ```js
-<script type='module'>
-  import '@vonage/vivid/option';
-</script>
+<script type="module">import '@vonage/vivid/option';</script>
 ```
 
 ## Members
@@ -19,14 +17,17 @@ Use the `text` attribute to set the option's text.
 
 ```html preview
 <style>
-div[role="listbox"] {width: 150px;}
+	div[role='listbox'] {
+		width: 150px;
+	}
 </style>
 <div role="listbox">
- <vwc-option text="Option"></vwc-option>
+	<vwc-option text="Option"></vwc-option>
 </div>
 ```
 
 ### Label
+
 Add the `label` attribute to add a label to the option to replace the text shown in `vwc-select` when selected.
 `label` will return the `label` attribute's value. If not set, it will revert to the `text`.
 Note that you cannot set `label` programmatically like this: `option.label = 'new label'`. You can only set it via the attribute.
@@ -41,10 +42,12 @@ Check out the [vivid icons gallery](/icons/icons-gallery/) to see what icons are
 
 ```html preview
 <style>
-div[role="listbox"] {width: 150px;}
+	div[role='listbox'] {
+		width: 150px;
+	}
 </style>
 <div role="listbox">
- <vwc-option text="Option" icon="chat-line"></vwc-option>
+	<vwc-option text="Option" icon="chat-line"></vwc-option>
 </div>
 ```
 
@@ -57,10 +60,12 @@ Add the `selected` attribute to select the option.
 
 ```html preview
 <style>
-div[role="listbox"] {width: 150px;}
+	div[role='listbox'] {
+		width: 150px;
+	}
 </style>
 <div role="listbox">
- <vwc-option text="Option" selected></vwc-option>
+	<vwc-option text="Option" selected></vwc-option>
 </div>
 ```
 
@@ -73,10 +78,12 @@ Add the `disabled` attribute to disable the option.
 
 ```html preview
 <style>
-div[role="listbox"] {width: 150px;}
+	div[role='listbox'] {
+		width: 150px;
+	}
 </style>
 <div role="listbox">
- <vwc-option text="Option" disabled></vwc-option>
+	<vwc-option text="Option" disabled></vwc-option>
 </div>
 ```
 
@@ -89,10 +96,12 @@ Use the `value` attribute to set the option's value.
 
 ```html preview
 <style>
-div[role="listbox"] {width: 150px;}
+	div[role='listbox'] {
+		width: 150px;
+	}
 </style>
 <div role="listbox">
- <vwc-option text="Option" value="my-value"></vwc-option>
+	<vwc-option text="Option" value="my-value"></vwc-option>
 </div>
 ```
 
@@ -105,11 +114,17 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <style>
-div[role="listbox"] {width: 150px;}
+	div[role='listbox'] {
+		width: 150px;
+	}
 </style>
 <div role="listbox">
 	<vwc-option text="Option" value="my-value">
-		<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
 	</vwc-option>
 </div>
 ```

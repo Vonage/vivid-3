@@ -1,6 +1,7 @@
 # Range Slider Examples
 
 ## Range Slider
+
 <code-tab>
 <template #example>
 <RangeSliderExample />
@@ -10,6 +11,7 @@
 ```vue
 <!--@include: ./components/range-slider/RangeSliderExample.vue -->
 ```
+
 </template>
 </code-tab>
 

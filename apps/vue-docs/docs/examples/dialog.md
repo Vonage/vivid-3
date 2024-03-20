@@ -1,6 +1,7 @@
 # VDialog Examples
 
 ## Dialog
+
 <code-tab>
 <template #example>
 <DialogExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/dialog/DialogExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Headline
+
 <code-tab>
 <template #example>
 <HeadlineExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/dialog/HeadlineExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Subtitle
+
 <code-tab>
 <template #example>
 <SubtitleExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/dialog/SubtitleExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/dialog/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon-placement
+
 <code-tab>
 <template #example>
 <IconPlacementExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/dialog/IconPlacementExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Open
+
 <code-tab>
 <template #example>
 <OpenExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/dialog/OpenExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Return Value
+
 <code-tab>
 <template #example>
 <ReturnValueExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/dialog/ReturnValueExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Graphic
+
 <code-tab>
 <template #example>
 <GraphicExample />
@@ -101,10 +116,12 @@
 ```vue
 <!--@include: ./components/dialog/GraphicExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Body
+
 <code-tab>
 <template #example>
 <BodyExample />
@@ -114,10 +131,12 @@
 ```vue
 <!--@include: ./components/dialog/BodyExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Full-width-body
+
 <code-tab>
 <template #example>
 <FullWidthBodyExample />
@@ -127,10 +146,12 @@
 ```vue
 <!--@include: ./components/dialog/FullWidthBodyExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Footer
+
 <code-tab>
 <template #example>
 <FooterExample />
@@ -140,10 +161,12 @@
 ```vue
 <!--@include: ./components/dialog/FooterExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Main
+
 <code-tab>
 <template #example>
 <MainExample />
@@ -153,10 +176,12 @@
 ```vue
 <!--@include: ./components/dialog/MainExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Inline min & Max size
+
 <code-tab>
 <template #example>
 <InlineMinMaxSizeExample />
@@ -166,10 +191,12 @@
 ```vue
 <!--@include: ./components/dialog/InlineMinMaxSizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Block-Size
+
 <code-tab>
 <template #example>
 <BlockSizeExample />
@@ -179,10 +206,12 @@
 ```vue
 <!--@include: ./components/dialog/BlockSizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Close
+
 <code-tab>
 <template #example>
 <CloseEventExample />
@@ -192,10 +221,12 @@
 ```vue
 <!--@include: ./components/dialog/CloseEventExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## show()
+
 <code-tab>
 <template #example>
 <ShowExample />
@@ -205,10 +236,12 @@
 ```vue
 <!--@include: ./components/dialog/ShowExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## showModal()
+
 <code-tab>
 <template #example>
 <ShowModalExample />
@@ -218,10 +251,12 @@
 ```vue
 <!--@include: ./components/dialog/ShowModalExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## close()
+
 <code-tab>
 <template #example>
 <CloseExample />
@@ -231,10 +266,12 @@
 ```vue
 <!--@include: ./components/dialog/CloseExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Dialog Form
+
 <code-tab>
 <template #example>
 <DialogFormExample />
@@ -244,6 +281,7 @@
 ```vue
 <!--@include: ./components/dialog/DialogFormExample.vue -->
 ```
+
 </template>
 </code-tab>
 

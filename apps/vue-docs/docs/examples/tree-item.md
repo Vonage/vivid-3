@@ -1,6 +1,7 @@
 # VTreeItem Examples
 
 ## Text
+
 <code-tab>
 <template #example>
 <TextExample/>
@@ -10,11 +11,12 @@
 ```vue
 <!--@include: ./components/tree-item/TextExample.vue-->
 ```
+
 </template>
 </code-tab>
 
-
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample/>
@@ -24,11 +26,12 @@
 ```vue
 <!--@include: ./components/tree-item/IconExample.vue-->
 ```
+
 </template>
 </code-tab>
 
-
 ## Selected
+
 <code-tab>
 <template #example>
 <SelectedExample/>
@@ -38,10 +41,12 @@
 ```vue
 <!--@include: ./components/tree-item/SelectedExample.vue-->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample/>
@@ -51,11 +56,12 @@
 ```vue
 <!--@include: ./components/tree-item/DisabledExample.vue-->
 ```
+
 </template>
 </code-tab>
 
-
 ## Expanded
+
 <code-tab>
 <template #example>
 <ExpandedExample/>
@@ -65,11 +71,12 @@
 ```vue
 <!--@include: ./components/tree-item/ExpandedExample.vue-->
 ```
+
 </template>
 </code-tab>
 
-
 ## Item Slot
+
 <code-tab>
 <template #example>
 <ItemSlotExample/>
@@ -79,10 +86,9 @@
 ```vue
 <!--@include: ./components/tree-item/ItemSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
-
 
 <script setup lang="ts">
 import CodeTab from '../custom/CodeTab.vue';

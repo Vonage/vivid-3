@@ -3,9 +3,7 @@
 This element's attributes include the [anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) attributes.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/nav-item';
-</script>
+<script type="module">import '@vonage/vivid/nav-item';</script>
 ```
 
 ## Members
@@ -19,7 +17,7 @@ Add a `text` attribute to add text to the nav item.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-item href="#" text="Account"></vwc-nav-item>
+	<vwc-nav-item href="#" text="Account"></vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -45,11 +43,11 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 - Type: `boolean`
 - Default: `false`
 
-Within a set of pagination links, set a nav item `aria-current` value to *page* to indicate the currently active link.
+Within a set of pagination links, set a nav item `aria-current` value to _page_ to indicate the currently active link.
 
 ```html preview
 <vwc-nav>
-  <vwc-nav-item href="#" text="Account" aria-current="page"></vwc-nav-item>
+	<vwc-nav-item href="#" text="Account" aria-current="page"></vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -62,7 +60,13 @@ Use the `meta` slot to add additional content to the nav item.
 ```html preview
 <vwc-nav>
 	<vwc-nav-item href="#" text="Account">
-		<vwc-badge slot="meta" text="beta" connotation="success" appearance="subtle" shape="pill"></vwc-badge>
+		<vwc-badge
+			slot="meta"
+			text="beta"
+			connotation="success"
+			appearance="subtle"
+			shape="pill"
+		></vwc-badge>
 	</vwc-nav-item>
 </vwc-nav>
 ```
@@ -75,10 +79,18 @@ If set, the `icon` attribute is ignored.
 ```html preview
 <vwc-nav>
 	<vwc-nav-item href="#" text="Account">
-	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
 	</vwc-nav-item>
 	<vwc-nav-item href="#">
-	  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
 	</vwc-nav-item>
 </vwc-nav>
 ```

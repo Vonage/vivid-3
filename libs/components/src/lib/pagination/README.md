@@ -3,9 +3,7 @@
 The pagination component is used to navigate through a series of pages.
 
 ```js
-<script type="module">
-	import '@vonage/vivid/pagination';
-</script>
+<script type="module">import '@vonage/vivid/pagination';</script>
 ```
 
 ```html preview
@@ -51,6 +49,7 @@ Set the `shape` attribute to change the pagination's buttons shapes.
 ```
 
 ### Selected Index
+
 Set the `selected-index` attribute to change the pagination's currently selected index. Note that the value is zero-indexed. It is set to -1 if total pages is 0.
 
 - Type: `number`
@@ -86,13 +85,11 @@ Set the `nav-icons` attribute to change the pagination's navigation buttons type
 
 <div class="table-wrapper">
 
-| Name                | Description         |
-| ------------------- |---------------------------------- |
-| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. Returns detail{selectedIndex, total, oldIndex} |  
-
+| Name                | Description                                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. Returns detail{selectedIndex, total, oldIndex} |
 
 </div>
-
 
 ## Use Cases
 
@@ -100,12 +97,12 @@ Set the `nav-icons` attribute to change the pagination's navigation buttons type
 
 ```html preview
 <style>
-vwc-pagination#outlined {
-    border: 1px solid var(--vvd-color-neutral-400);
-    padding: 6px;
-    border-radius: 24px;
-    display: inline-block;
-}
+	vwc-pagination#outlined {
+		border: 1px solid var(--vvd-color-neutral-400);
+		padding: 6px;
+		border-radius: 24px;
+		display: inline-block;
+	}
 </style>
 
 <vwc-pagination id="outlined" total="10" shape="pill"></vwc-pagination>

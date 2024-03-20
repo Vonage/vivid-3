@@ -15,10 +15,12 @@ Never made an open source contribution before? Wondering how contributions work 
 - Run `npm install`
 
 - Building and developing the documentation:
+
   - Development: `npx nx run docs:serve` or `npm start`
   - Build: `npx run build docs`
 
 - Building and developing the components:
+
   - Unit Tests
     - `npx nx run components:test` to start the tests or `npm test`
     - `npx nx run components:test --watch` to start the tests in watch mode

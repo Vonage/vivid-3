@@ -1,6 +1,7 @@
 # Pagination Examples
 
 ## pagination
+
 <code-tab>
 <template #example>
 <PaginationExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/pagination/PaginationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Total
+
 <code-tab>
 <template #example>
 <TotalExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/pagination/TotalExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Size
+
 <code-tab>
 <template #example>
 <SizeExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/pagination/SizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Selected Index
+
 <code-tab>
 <template #example>
 <SelectedIndexExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/pagination/SelectedIndexExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Nav Icons
+
 <code-tab>
 <template #example>
 <NavIconsExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/pagination/NavIconsExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## pagination-change
+
 <code-tab>
 <template #example>
 <PaginationChangeExample />
@@ -75,6 +86,7 @@
 ```vue
 <!--@include: ./components/pagination/PaginationChangeExample.vue -->
 ```
+
 </template>
 </code-tab>
 

@@ -125,7 +125,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 <div class="table-wrapper">
 
 | Name        | Description                                   |
-|-------------|-----------------------------------------------|
+| ----------- | --------------------------------------------- |
 | input       | Emitted when the date is changed by the user. |
 | change      | Emitted when the date is changed by the user. |
 | focus       | Emitted when the component receives focus.    |
@@ -148,7 +148,11 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+			<vwc-date-picker
+				name="date"
+				label="Start date"
+				required
+			></vwc-date-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

@@ -3,7 +3,6 @@
 /dist
 /coverage
 
+# Ignore auto-generated files:
 package-lock.json
-
-# Not yet formatted file types:
-**/*.md
+**/CHANGELOG.md

@@ -11,9 +11,9 @@
 ```vue
 <!--@include: ./components/tag/LabelExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Shape
 
@@ -26,9 +26,9 @@
 ```vue
 <!--@include: ./components/tag/ShapeExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Icon
 
@@ -41,9 +41,9 @@
 ```vue
 <!--@include: ./components/tag/IconExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Appearance
 
@@ -56,9 +56,9 @@
 ```vue
 <!--@include: ./components/tag/AppearanceExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Connotation
 
@@ -71,9 +71,9 @@
 ```vue
 <!--@include: ./components/tag/ConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Subtle tag with connotation
 
@@ -86,9 +86,9 @@
 ```vue
 <!--@include: ./components/tag/SubtleTagWithConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Duotone tag with connotation
 
@@ -101,9 +101,9 @@
 ```vue
 <!--@include: ./components/tag/DuotoneTagWithConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Disabled
 
@@ -116,9 +116,9 @@
 ```vue
 <!--@include: ./components/tag/DisabledExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Selectable
 
@@ -131,9 +131,9 @@
 ```vue
 <!--@include: ./components/tag/SelectableExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Removable
 
@@ -146,9 +146,9 @@
 ```vue
 <!--@include: ./components/tag/RemovableExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 <script setup lang="ts">
 import CodeTab from '../custom/CodeTab.vue';
