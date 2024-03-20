@@ -4,7 +4,7 @@ import {
 	elementUpdated,
 	fixture,
 	listenToFormSubmission,
-	setupDelegatesFocusPolyfill
+	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { setLocale } from '@vonage/vivid';
@@ -43,11 +43,14 @@ describe('vwc-time-picker', () => {
 			`[aria-label="${label}"],[label="${label}"]`
 		) as Button;
 
-	const getPickerItem = (type: 'hours' | 'minutes' | 'seconds' | 'meridies', value: string) =>
-		element.shadowRoot!.querySelector(`#${type}-${value}`) as HTMLElement;
+	const getPickerItem = (
+		type: 'hours' | 'minutes' | 'seconds' | 'meridies',
+		value: string
+	) => element.shadowRoot!.querySelector(`#${type}-${value}`) as HTMLElement;
 
-	const getAllPickerItems = (type: 'hours' | 'minutes' | 'seconds' | 'meridies') =>
-		Array.from(element.shadowRoot!.querySelectorAll(`[id^="${type}-"]`));
+	const getAllPickerItems = (
+		type: 'hours' | 'minutes' | 'seconds' | 'meridies'
+	) => Array.from(element.shadowRoot!.querySelectorAll(`[id^="${type}-"]`));
 
 	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
 		element.shadowRoot!.activeElement!.dispatchEvent(
@@ -78,7 +81,7 @@ describe('vwc-time-picker', () => {
 				get() {
 					const index = Array.from(this.parentElement!.children).indexOf(this);
 					return index * 30;
-				}
+				},
 			},
 			offsetHeight: {
 				get() {
@@ -87,7 +90,7 @@ describe('vwc-time-picker', () => {
 					} else {
 						return 30;
 					}
-				}
+				},
 			},
 		});
 	});
@@ -201,12 +204,15 @@ describe('vwc-time-picker', () => {
 		it.each([
 			[enUS, 'hh:mm aa'],
 			[enGB, 'hh:mm'],
-		])('should default to the default clock of the locale', async (locale, placeholder) => {
-			setLocale(locale);
-			await elementUpdated(element);
+		])(
+			'should default to the default clock of the locale',
+			async (locale, placeholder) => {
+				setLocale(locale);
+				await elementUpdated(element);
 
-			expect(textField.placeholder).toBe(placeholder);
-		});
+				expect(textField.placeholder).toBe(placeholder);
+			}
+		);
 
 		describe('12h', () => {
 			beforeEach(async () => {
@@ -228,20 +234,38 @@ describe('vwc-time-picker', () => {
 			it('should show the meridies picker in the popup', async () => {
 				await openPopup();
 
-				expect(element.shadowRoot?.querySelector('#meridies')).toBeInstanceOf(HTMLElement);
+				expect(element.shadowRoot?.querySelector('#meridies')).toBeInstanceOf(
+					HTMLElement
+				);
 			});
 
-			it.each(['AM', 'PM'])('should show the %s hours options from 12-11', async (meridiem) => {
-				await openPopup();
+			it.each(['AM', 'PM'])(
+				'should show the %s hours options from 12-11',
+				async (meridiem) => {
+					await openPopup();
 
-				getPickerItem('meridies', meridiem).click();
-				await elementUpdated(element);
-				await openPopup();
+					getPickerItem('meridies', meridiem).click();
+					await elementUpdated(element);
+					await openPopup();
 
-				expect(getAllPickerItems('hours').map((item) => item.innerHTML.trim())).toEqual([
-					'12', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11',
-				]);
-			});
+					expect(
+						getAllPickerItems('hours').map((item) => item.innerHTML.trim())
+					).toEqual([
+						'12',
+						'01',
+						'02',
+						'03',
+						'04',
+						'05',
+						'06',
+						'07',
+						'08',
+						'09',
+						'10',
+						'11',
+					]);
+				}
+			);
 		});
 
 		describe('24h', () => {
@@ -270,10 +294,33 @@ describe('vwc-time-picker', () => {
 			it('should show the hours options from 0-23', async () => {
 				await openPopup();
 
-				expect(getAllPickerItems('hours').map((item) => item.innerHTML.trim())).toEqual([
-					'00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
-					'11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-					'21', '22', '23',
+				expect(
+					getAllPickerItems('hours').map((item) => item.innerHTML.trim())
+				).toEqual([
+					'00',
+					'01',
+					'02',
+					'03',
+					'04',
+					'05',
+					'06',
+					'07',
+					'08',
+					'09',
+					'10',
+					'11',
+					'12',
+					'13',
+					'14',
+					'15',
+					'16',
+					'17',
+					'18',
+					'19',
+					'20',
+					'21',
+					'22',
+					'23',
 				]);
 			});
 		});
@@ -435,12 +482,9 @@ describe('vwc-time-picker', () => {
 
 			await openPopup();
 
-			expect(getAllPickerItems('minutes').map((item) => item.innerHTML.trim())).toEqual([
-				'00',
-				'15',
-				'30',
-				'45',
-			]);
+			expect(
+				getAllPickerItems('minutes').map((item) => item.innerHTML.trim())
+			).toEqual(['00', '15', '30', '45']);
 		});
 
 		it('should ignore minutesStep of less than 1', async () => {
@@ -462,7 +506,9 @@ describe('vwc-time-picker', () => {
 
 			await openPopup();
 
-			expect(element.shadowRoot?.querySelector('#seconds')).toBeInstanceOf(HTMLElement);
+			expect(element.shadowRoot?.querySelector('#seconds')).toBeInstanceOf(
+				HTMLElement
+			);
 		});
 
 		it('should hide seconds that are not a multiple of secondsStep', async () => {
@@ -472,12 +518,9 @@ describe('vwc-time-picker', () => {
 
 			await openPopup();
 
-			expect(getAllPickerItems('seconds').map((item) => item.innerHTML.trim())).toEqual([
-				'00',
-				'15',
-				'30',
-				'45',
-			]);
+			expect(
+				getAllPickerItems('seconds').map((item) => item.innerHTML.trim())
+			).toEqual(['00', '15', '30', '45']);
 		});
 
 		it('should ignore secondsStep of less than 1', async () => {
@@ -525,7 +568,7 @@ describe('vwc-time-picker', () => {
 
 	describe.each([
 		['focus', 'focusin'],
-		['blur', 'focusout']
+		['blur', 'focusout'],
 	])('%s event', (eventName, sourceEventName) => {
 		it(`should emit a '${eventName}' event on '${sourceEventName}'`, async () => {
 			const spy = jest.fn();
@@ -543,7 +586,8 @@ describe('vwc-time-picker', () => {
 			{ clock: '12h', secondsStep: 1, placeholder: 'hh:mm:ss aa' },
 			{ clock: '24h', secondsStep: null, placeholder: 'hh:mm' },
 			{ clock: '24h', secondsStep: 1, placeholder: 'hh:mm:ss' },
-		] as const)('should have a placeholder of "$placeholder" when clock is $clock and secondsStep is $secondsStep',
+		] as const)(
+			'should have a placeholder of "$placeholder" when clock is $clock and secondsStep is $secondsStep',
 			async ({ clock, secondsStep, placeholder }) => {
 				element.clock = clock;
 				element.secondsStep = secondsStep;
@@ -551,7 +595,8 @@ describe('vwc-time-picker', () => {
 				await elementUpdated(element);
 
 				expect(textField.placeholder).toBe(placeholder);
-			});
+			}
+		);
 
 		it('should show an invalid date error when an invalid time is entered', async () => {
 			typeIntoTextField('invalid time');
@@ -592,7 +637,9 @@ describe('vwc-time-picker', () => {
 			element.value = '13:45:00';
 			await elementUpdated(element);
 
-			expect(clockButton.getAttribute('aria-label')).toBe('Change time, 01:45 PM');
+			expect(clockButton.getAttribute('aria-label')).toBe(
+				'Change time, 01:45 PM'
+			);
 		});
 
 		it('should open the popup when pressed', async () => {
@@ -621,7 +668,9 @@ describe('vwc-time-picker', () => {
 			element.value = '12:34:56';
 			await elementUpdated(element);
 
-			expect(() => { clockButton.click(); }).not.toThrow();
+			expect(() => {
+				clockButton.click();
+			}).not.toThrow();
 		});
 
 		it('should close the popup when pressed and it is already open', async () => {
@@ -724,14 +773,17 @@ describe('vwc-time-picker', () => {
 		it.each([
 			['00:00:00', 'AM'],
 			['12:00:00', 'PM'],
-		])('should set the time to %s when clicking on %s', async (expectedValue, meridiem) => {
-			element.clock = '12h';
-			await elementUpdated(element);
-			getPickerItem('meridies', meridiem).click();
-			await elementUpdated(element);
+		])(
+			'should set the time to %s when clicking on %s',
+			async (expectedValue, meridiem) => {
+				element.clock = '12h';
+				await elementUpdated(element);
+				getPickerItem('meridies', meridiem).click();
+				await elementUpdated(element);
 
-			expect(element.value).toBe(expectedValue);
-		});
+				expect(element.value).toBe(expectedValue);
+			}
+		);
 
 		it('should set a time when clicking on a meridiem', async () => {
 			element.clock = '12h';
@@ -765,12 +817,15 @@ describe('vwc-time-picker', () => {
 		});
 
 		describe('picker', () => {
-			it.each(['ArrowDown', 'ArrowUp'])('should select the first item when pressing %s while nothing is selected', async (key) => {
-				pressKey(key);
-				await elementUpdated(element);
+			it.each(['ArrowDown', 'ArrowUp'])(
+				'should select the first item when pressing %s while nothing is selected',
+				async (key) => {
+					pressKey(key);
+					await elementUpdated(element);
 
-				expect(element.value).toBe('00:00:00');
-			});
+					expect(element.value).toBe('00:00:00');
+				}
+			);
 
 			it('should select the next item when pressing ArrowDown', async () => {
 				element.value = '01:00:00';
@@ -877,7 +932,9 @@ describe('vwc-time-picker', () => {
 		beforeEach(async () => {
 			await openPopup();
 			const focusable: NodeListOf<HTMLElement> =
-				element.shadowRoot!.querySelectorAll('.dialog [tabindex="0"], .dialog vwc-button');
+				element.shadowRoot!.querySelectorAll(
+					'.dialog [tabindex="0"], .dialog vwc-button'
+				);
 			firstFocusable = focusable[0];
 			lastFocusable = focusable[focusable.length - 1];
 		});

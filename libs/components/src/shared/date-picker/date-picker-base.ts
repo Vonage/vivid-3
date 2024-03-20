@@ -1,15 +1,38 @@
 import { applyMixins } from '@microsoft/fast-foundation';
-import { attr, DOM, observable, type ValueConverter, volatile } from '@microsoft/fast-element';
+import {
+	attr,
+	DOM,
+	observable,
+	type ValueConverter,
+	volatile,
+} from '@microsoft/fast-element';
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
-import { addDays, compareDateStr, currentDateStr, type DateStr, isValidDateStr } from './calendar/dateStr';
-import { addMonths, compareMonths, getCurrentMonth, type Month, monthOfDate, monthToStr } from './calendar/month';
+import {
+	addDays,
+	compareDateStr,
+	currentDateStr,
+	type DateStr,
+	isValidDateStr,
+} from './calendar/dateStr';
+import {
+	addMonths,
+	compareMonths,
+	getCurrentMonth,
+	type Month,
+	monthOfDate,
+	monthToStr,
+} from './calendar/month';
 import { buildCalendarGrid } from './calendar/calendarGrid';
 import { buildMonthPickerGrid, MonthsPerRow } from './calendar/monthPickerGrid';
 import { yearOfDate } from './calendar/year';
 import { FormAssociatedDatePickerBase } from './date-picker-base.form-associated';
-import type { CalendarSegment, MonthPickerSegment, Segment } from './calendar/segment';
+import type {
+	CalendarSegment,
+	MonthPickerSegment,
+	Segment,
+} from './calendar/segment';
 
 /// Converter ensures that the value is always a valid date string or empty string
 const ValidDateFilter: ValueConverter = {
@@ -43,7 +66,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 * HTML Attribute: min
 	 */
 	@attr({ converter: ValidDateFilter })
-		min: string;
+	min: string;
 
 	/**
 	 * @internal
@@ -63,7 +86,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 * HTML Attribute: max
 	 */
 	@attr({ converter: ValidDateFilter })
-		max: string;
+	max: string;
 
 	/**
 	 * @internal
@@ -102,7 +125,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 * HTML Attribute: readonly
 	 */
 	@attr({ attribute: 'readonly', mode: 'boolean' })
-		readOnly: boolean = false;
+	readOnly: boolean = false;
 
 	/**
 	 * @internal
@@ -139,11 +162,14 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	protected _adjustSelectedMonthToEnsureVisibilityOf(date: DateStr) {
 		const month = monthOfDate(date);
 		const firstDisplayedMonth = this._selectedMonth;
-		const lastDisplayedMonth = addMonths(this._selectedMonth, this._numCalendars - 1);
-		if(compareMonths(month, firstDisplayedMonth) < 0) {
+		const lastDisplayedMonth = addMonths(
+			this._selectedMonth,
+			this._numCalendars - 1
+		);
+		if (compareMonths(month, firstDisplayedMonth) < 0) {
 			this._selectedMonth = month;
 			return true;
-		} else if(compareMonths(month, lastDisplayedMonth) > 0) {
+		} else if (compareMonths(month, lastDisplayedMonth) > 0) {
 			this._selectedMonth = addMonths(month, 1 - this._numCalendars);
 			return true;
 		}
@@ -260,7 +286,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 		const path = event.composedPath();
 		const elementsToIgnoreClicksOn = [this._dialogEl, this._calendarButtonEl];
-		if (!elementsToIgnoreClicksOn.some(element => path.includes(element))) {
+		if (!elementsToIgnoreClicksOn.some((element) => path.includes(element))) {
 			this._closePopup(false);
 		}
 	};
@@ -294,13 +320,16 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 			return false;
 		}
 
-		if (this._trappedFocus(
-			event,
-			() => this.shadowRoot!.querySelectorAll(`
+		if (
+			this._trappedFocus(
+				event,
+				() =>
+					this.shadowRoot!.querySelectorAll(`
 				.dialog .button:not(:disabled),
 				.dialog .vwc-button:not(:disabled)
 			`) as NodeListOf<HTMLElement>
-		)) {
+			)
+		) {
 			return false;
 		}
 
@@ -364,7 +393,9 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 			DOM.processUpdates();
 
-			const tabbableDate = this.shadowRoot!.querySelector(`[data-date="${this._tabbableDate}"]`) as HTMLButtonElement;
+			const tabbableDate = this.shadowRoot!.querySelector(
+				`[data-date="${this._tabbableDate}"]`
+			) as HTMLButtonElement;
 			tabbableDate.focus();
 		}
 	}
@@ -489,7 +520,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 				months: buildMonthPickerGrid(
 					this._monthPickerYear!,
 					this.locale.datePicker
-				)
+				),
 			});
 		} else {
 			for (let i = 0; i < this._numCalendars; i++) {
@@ -500,13 +531,15 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 				segments.push({
 					id: i,
 					type: 'calendar',
-					title: `${this.locale.datePicker.months.name[month.month]} ${month.year}`,
+					title: `${this.locale.datePicker.months.name[month.month]} ${
+						month.year
+					}`,
 					titleClickable: isSingle,
 					prevYearButton: isFirst && isSingle,
 					prevMonthButton: isFirst,
 					nextMonthButton: isLast,
 					nextYearButton: isLast && isSingle,
-					calendar: buildCalendarGrid(month, this.locale.datePicker)
+					calendar: buildCalendarGrid(month, this.locale.datePicker),
 				});
 			}
 		}
@@ -626,11 +659,10 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	@volatile
 	get _tabbableDate(): DateStr | null {
 		const datesInSegments = this._segments
-			.filter((segment): segment is CalendarSegment => segment.type === 'calendar')
-			.flatMap(segment =>
-				segment.calendar.grid.flat()
-					.map(d => d.date)
-			);
+			.filter(
+				(segment): segment is CalendarSegment => segment.type === 'calendar'
+			)
+			.flatMap((segment) => segment.calendar.grid.flat().map((d) => d.date));
 
 		const candidates = [
 			this._lastFocussedDate,
@@ -640,7 +672,10 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		];
 
 		const firstVisibleMonth = this._selectedMonth;
-		const lastVisibleMonth = addMonths(this._selectedMonth, this._numCalendars - 1);
+		const lastVisibleMonth = addMonths(
+			this._selectedMonth,
+			this._numCalendars - 1
+		);
 
 		// Find valid candidate
 		return (
@@ -755,7 +790,9 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		return (
 			candidates.find(
 				(month) =>
-					month && month.year === this._monthPickerYear && this._isMonthInValidRange(month)
+					month &&
+					month.year === this._monthPickerYear &&
+					this._isMonthInValidRange(month)
 			) ?? null
 		);
 	}
@@ -779,6 +816,6 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 export interface DatePickerBase
 	extends Localized,
-	FormElementHelperText,
-	TrappedFocus {}
+		FormElementHelperText,
+		TrappedFocus {}
 applyMixins(DatePickerBase, Localized, FormElementHelperText, TrappedFocus);

@@ -5,7 +5,10 @@ import styles from './calendar-event.scss?inline';
 import { CalendarEvent } from './calendar-event';
 import { CalendarEventTemplate as template } from './calendar-event.template';
 
-export type { CalendarEventAppearance, CalendarEventConnotation } from './calendar-event';
+export type {
+	CalendarEventAppearance,
+	CalendarEventConnotation,
+} from './calendar-event';
 
 /**
  * The calendar-event element is a custom element that is used to display a single event in a calendar.
@@ -18,8 +21,8 @@ export const calendarEventDefinition =
 		template: template as any,
 		styles,
 		shadowOptions: {
-			delegatesFocus: true
-		}
+			delegatesFocus: true,
+		},
 	});
 
 /**

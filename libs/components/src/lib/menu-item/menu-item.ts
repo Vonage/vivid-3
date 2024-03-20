@@ -6,6 +6,7 @@ import {
 } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
+import { Connotation } from '../enums';
 
 export const MenuItemRole = {
 	...FastMenuItemRole,
@@ -14,8 +15,17 @@ export const MenuItemRole = {
 
 export enum CheckAppearance {
 	Normal = 'normal',
-	TickOnly =  'tick-only',
+	TickOnly = 'tick-only',
 }
+/**
+ * Types of fab connotation.
+ *
+ * @public
+ */
+export type MenuItemConnotation = Extract<
+	Connotation,
+	Connotation.CTA | Connotation.Accent
+>;
 
 /**
  * @public
@@ -42,6 +52,14 @@ export class MenuItem extends FastMenuItem {
 	 * HTML Attribute: text
 	 */
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
+	/**
+	 * The connotation the fab should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: MenuItemConnotation;
 	/**
 	 * Controls the placement of the menu item's checkmark or radio icon.
 	 * @public
@@ -94,7 +112,8 @@ export class MenuItem extends FastMenuItem {
 			this.submenu = submenu as Menu;
 			(this.submenu as Menu).anchor = this as MenuItem;
 			(this.submenu as Menu).placement = 'right-start';
-			(this.submenu as Menu).collapseExpandedItem = () => this.#collapseExpandedItem();
+			(this.submenu as Menu).collapseExpandedItem = () =>
+				this.#collapseExpandedItem();
 		}
 
 		this.hasSubmenu = this.submenu === undefined ? false : true;
@@ -111,6 +130,6 @@ export class MenuItem extends FastMenuItem {
 	}
 }
 
-export interface MenuItem extends AffixIcon { }
+export interface MenuItem extends AffixIcon {}
 
 applyMixins(MenuItem, AffixIcon);

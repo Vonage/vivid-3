@@ -12,13 +12,18 @@ function getDay(el: HTMLElement): number | void {
 	if (cellOrHeader) {
 		const { parentElement } = cellOrHeader;
 		if (parentElement) {
-			return parentElement.children && Array.from(parentElement.children).indexOf(cellOrHeader);
+			return (
+				parentElement.children &&
+				Array.from(parentElement.children).indexOf(cellOrHeader)
+			);
 		}
 	}
 }
 
 function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
-	const rowHeaderOrCell = el.closest('[role="rowheader"], [role="gridcell"i]') as HTMLElement;
+	const rowHeaderOrCell = el.closest(
+		'[role="rowheader"], [role="gridcell"i]'
+	) as HTMLElement;
 
 	if (rowHeaderOrCell) {
 		const DOMRect = rowHeaderOrCell.getBoundingClientRect();
@@ -30,16 +35,28 @@ function getHour(e: MouseEvent, el: HTMLElement, hours: number): number | void {
 	}
 }
 
-export const getEventContext = function(this: Calendar, e: KeyboardEvent | MouseEvent): CalendarEventContext | null {
-
+export const getEventContext = function (
+	this: Calendar,
+	e: KeyboardEvent | MouseEvent
+): CalendarEventContext | null {
 	if (!(e instanceof KeyboardEvent || e instanceof MouseEvent)) {
-		throw new Error('Invalid event. Event must be instance of KeyboardEvent or MouseEvent');
+		throw new Error(
+			'Invalid event. Event must be instance of KeyboardEvent or MouseEvent'
+		);
 	}
 
 	const [el] = e.composedPath();
 
-	if (!(el && el instanceof HTMLElement && (this.shadowRoot as ShadowRoot).contains(el))) {
-		throw new Error('Invalid event. Event must contain a target object which is a direct descendant of calendar');
+	if (
+		!(
+			el &&
+			el instanceof HTMLElement &&
+			(this.shadowRoot as ShadowRoot).contains(el)
+		)
+	) {
+		throw new Error(
+			'Invalid event. Event must contain a target object which is a direct descendant of calendar'
+		);
 	}
 
 	const day = getDay(el);

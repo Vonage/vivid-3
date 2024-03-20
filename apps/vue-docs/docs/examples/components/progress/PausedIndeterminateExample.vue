@@ -1,5 +1,5 @@
 <template>
-  <VProgress :min="0" :max="50" value="indeterminate" paused />
+	<VProgress :min="0" :max="50" value="indeterminate" paused />
 </template>
 
 <script setup lang="ts">

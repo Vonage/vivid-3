@@ -1,4 +1,9 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
@@ -11,10 +16,10 @@ describe('vwc-layout', () => {
 	let element: Layout;
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}>
+		element = (await fixture(`<${COMPONENT_TAG}>
 									<div style="border: 1px solid">test</div>
 									<div style="border: 1px solid">test</div>
-								</${COMPONENT_TAG}>`) as Layout;
+								</${COMPONENT_TAG}>`)) as Layout;
 	});
 
 	describe('basic', () => {
@@ -33,22 +38,29 @@ describe('vwc-layout', () => {
 		it('should set correct internal gutters class', async () => {
 			const gutters = LayoutSize.Large;
 
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.toString()).toEqual(
+				'control'
+			);
 			element.gutters = gutters;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control gutters-${gutters}`);
+			expect(getControlElement(element).classList.toString()).toEqual(
+				`control gutters-${gutters}`
+			);
 		});
 	});
-
 
 	describe('column-basis', () => {
 		it('should set correct internal column-basis style', async () => {
 			const columnBasis = LayoutSize.Large;
 
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.toString()).toEqual(
+				'control'
+			);
 			element.columnBasis = columnBasis;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control column-basis-${columnBasis}`);
+			expect(getControlElement(element).classList.toString()).toEqual(
+				`control column-basis-${columnBasis}`
+			);
 		});
 	});
 
@@ -56,44 +68,57 @@ describe('vwc-layout', () => {
 		it('should set correct internal column-spacing style', async () => {
 			const columnSpacing = LayoutSize.Large;
 
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.toString()).toEqual(
+				'control'
+			);
 			element.columnSpacing = columnSpacing;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toContain(`control column-spacing-${columnSpacing}`);
+			expect(getControlElement(element).classList.toString()).toContain(
+				`control column-spacing-${columnSpacing}`
+			);
 		});
 	});
-
 
 	describe('row-spacing', () => {
 		it('should set correct internal row-spacing style', async () => {
 			const rowSpacing = LayoutSize.Large;
 
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.toString()).toEqual(
+				'control'
+			);
 			element.rowSpacing = rowSpacing;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control row-spacing-${rowSpacing}`);
+			expect(getControlElement(element).classList.toString()).toEqual(
+				`control row-spacing-${rowSpacing}`
+			);
 		});
 
 		it('should set column-spacing value to row-spacing class if rowSpacing is not set', async () => {
 			const columnSpacing = LayoutSize.Small;
 
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.toString()).toEqual(
+				'control'
+			);
 			element.columnSpacing = columnSpacing;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString())
-				.toEqual(`control column-spacing-${columnSpacing} row-spacing-${columnSpacing}`);
+			expect(getControlElement(element).classList.toString()).toEqual(
+				`control column-spacing-${columnSpacing} row-spacing-${columnSpacing}`
+			);
 		});
 	});
-
 
 	describe('auto-sizing', () => {
 		it('should set correct internal auto-sizing style', async () => {
 			const autoSizing = AUTO_SIZING.Fill;
 
-			expect(getControlElement(element).classList.toString()).toEqual('control');
+			expect(getControlElement(element).classList.toString()).toEqual(
+				'control'
+			);
 			element.autoSizing = autoSizing;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.toString()).toEqual(`control auto-sizing-${autoSizing}`);
+			expect(getControlElement(element).classList.toString()).toEqual(
+				`control auto-sizing-${autoSizing}`
+			);
 		});
 	});
 

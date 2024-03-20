@@ -10,8 +10,13 @@ import {
 const components = ['nav-disclosure', 'nav-item', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+	const template = extractHTMLBlocksFromReadme(
+		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+	).reduce(
+		(htmlString: string, block: string) =>
+			`${htmlString} <div style="margin: 5px;">${block}</div>`,
+		''
+	);
 
 	page.setViewportSize({ width: 300, height: 720 });
 

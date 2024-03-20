@@ -2,25 +2,25 @@ import { VBadge } from '@vonage/vivid-vue';
 import { argTypes, Template } from './generated/VBadge';
 
 export default {
-  title: 'Wrappers/Badge',
-  component: VBadge,
-  argTypes,
+	title: 'Wrappers/Badge',
+	component: VBadge,
+	argTypes,
 };
 
 export const Basic = Template.bind({});
 Basic.args = {
-  text: 'Badge',
+	text: 'Badge',
 };
 
 const TextTemplate = () => ({
-  components: { VBadge },
-  template: `<VBadge text="A default badge" />`,
+	components: { VBadge },
+	template: `<VBadge text="A default badge" />`,
 });
 export const Text = TextTemplate.bind({});
 
 const ShapeTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge text="rounded" shape="rounded" />
     <VBadge text="pill" shape="pill" />
   </div>`,
@@ -28,8 +28,8 @@ const ShapeTemplate = () => ({
 export const Shape = ShapeTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge appearance="filled" icon="message-sent-line" />
     <VBadge appearance="filled" icon="message-sent-line" shape="pill" />
   </div>`,
@@ -37,8 +37,8 @@ const IconTemplate = () => ({
 export const Icon = IconTemplate.bind({});
 
 const IconWithTextTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge appearance="filled" text="icon" icon="check-line" />
     <VBadge appearance="filled" text="icon-trailing" icon="check-line" icon-trailing />
   </div>`,
@@ -46,8 +46,8 @@ const IconWithTextTemplate = () => ({
 export const IconWithText = IconWithTextTemplate.bind({});
 
 const AppearanceTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge text="filled" appearance="filled" />
     <VBadge text="subtle" appearance="subtle" />
     <VBadge text="duotone" appearance="duotone" />
@@ -56,8 +56,8 @@ const AppearanceTemplate = () => ({
 export const Appearance = AppearanceTemplate.bind({});
 
 const FilledBadgeWithConnotationTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge text="accent" connotation="accent" appearance="filled" />
     <VBadge text="cta" connotation="cta" appearance="filled" />
     <VBadge text="information" connotation="information" appearance="filled" />
@@ -66,11 +66,12 @@ const FilledBadgeWithConnotationTemplate = () => ({
     <VBadge text="alert" connotation="alert" />
   </div>`,
 });
-export const FilledBadgeWithConnotation = FilledBadgeWithConnotationTemplate.bind({});
+export const FilledBadgeWithConnotation =
+	FilledBadgeWithConnotationTemplate.bind({});
 
 const SubtleBadgeWithConnotationTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge text="accent" appearance="subtle" connotation="accent" />
     <VBadge text="cta" appearance="subtle" connotation="cta" />
     <VBadge text="information" appearance="subtle" connotation="information" />
@@ -79,11 +80,12 @@ const SubtleBadgeWithConnotationTemplate = () => ({
     <VBadge text="alert" appearance="subtle" connotation="alert" />
   </div>`,
 });
-export const SubtleBadgeWithConnotation = SubtleBadgeWithConnotationTemplate.bind({});
+export const SubtleBadgeWithConnotation =
+	SubtleBadgeWithConnotationTemplate.bind({});
 
 const DuotoneBadgeWithConnotationTemplate = () => ({
-  components: { VBadge },
-  template: `<div>
+	components: { VBadge },
+	template: `<div>
     <VBadge text="accent" appearance="duotone" connotation="accent" />
     <VBadge text="cta" appearance="duotone" connotation="cta" />
     <VBadge text="information" appearance="duotone" connotation="information" />
@@ -92,4 +94,5 @@ const DuotoneBadgeWithConnotationTemplate = () => ({
     <VBadge text="alert" appearance="duotone" connotation="alert" />
   </div>`,
 });
-export const DuotoneBadgeWithConnotation = DuotoneBadgeWithConnotationTemplate.bind({});
+export const DuotoneBadgeWithConnotation =
+	DuotoneBadgeWithConnotationTemplate.bind({});

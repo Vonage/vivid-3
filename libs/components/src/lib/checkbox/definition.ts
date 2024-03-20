@@ -6,7 +6,6 @@ import styles from './checkbox.scss?inline';
 import { Checkbox } from './checkbox';
 import { CheckboxTemplate as template } from './checkbox.template';
 
-
 /**
  * The checkbox element.
  *

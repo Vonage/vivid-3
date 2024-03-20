@@ -171,6 +171,17 @@ $low-ink-color: --_low-ink-color;
 		) !important; /* 1. sets text fill to current `color` for safari */
 	}
 
+	&::slotted(input:-webkit-autofill),
+	&:not(slot):-webkit-autofill {
+		/* stylelint-disable */
+		-webkit-box-shadow: 0 0 0 1000px
+			var(#{appearance.get-appearance-token(fill)}) inset;
+		-webkit-text-fill-color: var(
+			#{appearance.get-appearance-token(text)}
+		) !important;
+		/* stylelint-enable */
+	}
+
 	.has-icon &:not(slot),
 	.has-icon &::slotted(input) {
 		padding-inline-start: calc(

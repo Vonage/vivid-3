@@ -39,8 +39,14 @@ export function anchored<
 		 * @internal
 		 */
 		_slottedAnchorChanged() {
-			const isOccupied = Boolean(this._slottedAnchor && this._slottedAnchor.length > 0);
-			DOM.setBooleanAttribute(this as unknown as HTMLElement, 'slotted-anchor', isOccupied);
+			const isOccupied = Boolean(
+				this._slottedAnchor && this._slottedAnchor.length > 0
+			);
+			DOM.setBooleanAttribute(
+				this as unknown as HTMLElement,
+				'slotted-anchor',
+				isOccupied
+			);
 			this.#updateAnchorEl();
 		}
 
@@ -105,4 +111,5 @@ export function anchored<
 	return Decorated;
 }
 
-export const anchorSlotTemplateFactory = () =>html<Anchored>`<slot name="anchor" ${slotted('_slottedAnchor')}></slot>`;
+export const anchorSlotTemplateFactory = () =>
+	html<Anchored>`<slot name="anchor" ${slotted('_slottedAnchor')}></slot>`;

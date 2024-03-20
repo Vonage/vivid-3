@@ -11,14 +11,16 @@ export type { TextAreaWrap } from './text-area';
 /**
  * The text-area element.
  */
-export const textAreaDefinition = TextArea.compose<FoundationElementDefinition>({
-	baseName: 'text-area',
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-});
+export const textAreaDefinition = TextArea.compose<FoundationElementDefinition>(
+	{
+		baseName: 'text-area',
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	}
+);
 
 /**
  * @internal

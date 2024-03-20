@@ -1,11 +1,14 @@
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
-import {loadComponents, loadTemplate} from '../../visual-tests/visual-tests-utils.js';
+import {
+	loadComponents,
+	loadTemplate,
+} from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['badge', 'icon'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =`
+	const template = `
 	<vwc-badge text='A default badge'></vwc-badge>
 	<vwc-badge text='rounded' shape='rounded'></vwc-badge>
 	<vwc-badge text='pill' shape='pill'></vwc-badge>
@@ -54,8 +57,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/badge.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/badge.png'
+	);
 });

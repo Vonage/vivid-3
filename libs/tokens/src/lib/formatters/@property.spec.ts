@@ -5,22 +5,22 @@ const { formatter } = cssAtRuleProperty;
 describe('basic', () => {
 	it('should generate integer property from token', () => {
 		const token = {
-			"dictionary": {
-				"allProperties": [
+			dictionary: {
+				allProperties: [
 					{
-						"name": "vvd-size-density",
-						"value": "0",
-						"type": "sizing",
-						"public": true,
-						"@property": {
-							"syntax": "integer",
-							"inherits": true
-						}
-					}
-				]
+						name: 'vvd-size-density',
+						value: '0',
+						type: 'sizing',
+						public: true,
+						'@property': {
+							syntax: 'integer',
+							inherits: true,
+						},
+					},
+				],
 			},
-			"file": {},
-			"options": {}
+			file: {},
+			options: {},
 		};
 
 		const expectedProperty = `@property --vvd-size-density {
@@ -34,21 +34,21 @@ describe('basic', () => {
 
 	it('should generate length property from token', () => {
 		const token = {
-			"dictionary": {
-				"allProperties": [
+			dictionary: {
+				allProperties: [
 					{
-						"value": "16",
-						"type": "sizing",
-						"name": "vvd-size-font-scale-base",
-						"@property": {
-							"syntax": "length",
-							"inherits": true
+						value: '16',
+						type: 'sizing',
+						name: 'vvd-size-font-scale-base',
+						'@property': {
+							syntax: 'length',
+							inherits: true,
 						},
-					}
-				]
+					},
+				],
 			},
-			"file": {},
-			"options": {}
+			file: {},
+			options: {},
 		};
 
 		const expectedProperty = `@property --vvd-size-font-scale-base {

@@ -3,14 +3,14 @@ import { ref } from 'vue';
 import { argTypes } from './generated/VSelect';
 
 export default {
-  title: 'Wrappers/Select',
-  component: VSelect,
-  argTypes,
+	title: 'Wrappers/Select',
+	component: VSelect,
+	argTypes,
 };
 
 const DefaultTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `
+	components: { VSelect, VOption },
+	template: `
   <div>
     <VSelect label="choose one option" style="width:150px;" >
       <VOption value="1" text="Option 1"></VOption>
@@ -27,13 +27,13 @@ const DefaultTemplate = () => ({
 export const Default = DefaultTemplate.bind({});
 
 const VModelTemplate = () => ({
-  components: { VSelect, VOption },
-  setup() {
-    const value = ref('');
-    console.log(value);
-    return { value };
-  },
-  template: `<div>
+	components: { VSelect, VOption },
+	setup() {
+		const value = ref('');
+		console.log(value);
+		return { value };
+	},
+	template: `<div>
     <div>
       <VSelect v-model="value" style="width:150px;" >
         <VOption text="Option 1" value="1"/>
@@ -50,8 +50,8 @@ const VModelTemplate = () => ({
 export const VModel = VModelTemplate.bind({});
 
 const LabelTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<div>
+	components: { VSelect, VOption },
+	template: `<div>
     <VSelect label="choose one option" style="width:150px;" >
       <VOption value="1" text="Option 1"></VOption>
       <VOption value="2" text="Option 2"></VOption>
@@ -62,8 +62,8 @@ const LabelTemplate = () => ({
 export const Label = LabelTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<div>
+	components: { VSelect, VOption },
+	template: `<div>
     <VSelect label="choose one option" icon="search-line" style="width:150px;" >
       <VOption value="1" text="Option 1"></VOption>
       <VOption value="2" text="Option 2"></VOption>
@@ -74,8 +74,8 @@ const IconTemplate = () => ({
 export const Icon = IconTemplate.bind({});
 
 const MultipleTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `
+	components: { VSelect, VOption },
+	template: `
   <div style="display:flex;gap:10px;">
     <div>
       <VSelect multiple label="choose how many options you want" style="width: 150px;" @change="populateValues($event)">
@@ -89,19 +89,19 @@ const MultipleTemplate = () => ({
       <button @click="values = []">Reset</button>
     </div>
   </div>`,
-  setup() {
-    const values = ref([]);
-    function populateValues($event) {
-      values.value = $event.target._selectedOptions.map(s => s.__text);
-    }
-    return { values, populateValues };
-  },
+	setup() {
+		const values = ref([]);
+		function populateValues($event) {
+			values.value = $event.target._selectedOptions.map((s) => s.__text);
+		}
+		return { values, populateValues };
+	},
 });
 export const Multiple = MultipleTemplate.bind({});
 
 const AppearanceTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<VSelect appearance="ghost" >
+	components: { VSelect, VOption },
+	template: `<VSelect appearance="ghost" >
     <VOption value="1" text="Option 1" selected />
     <VOption value="2" text="Option 2" />
   </VSelect>`,
@@ -109,8 +109,8 @@ const AppearanceTemplate = () => ({
 export const Appearance = AppearanceTemplate.bind({});
 
 const ShapeTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<VSelect shape="pill" >
+	components: { VSelect, VOption },
+	template: `<VSelect shape="pill" >
     <VOption value="1" text="Option 1" />
     <VOption value="2" text="Option 2" />
   </VSelect>`,
@@ -118,16 +118,16 @@ const ShapeTemplate = () => ({
 export const Shape = ShapeTemplate.bind({});
 
 const DisabledTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<VSelect disabled >
+	components: { VSelect, VOption },
+	template: `<VSelect disabled >
     <VOption value="1" text="Option 1" />
   </VSelect>`,
 });
 export const Disabled = DisabledTemplate.bind({});
 
 const OpenTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<VSelect open >
+	components: { VSelect, VOption },
+	template: `<VSelect open >
     <VOption value="1" text="Option 1" />
     <VOption value="2" text="Option 2" />
     <VOption value="3" text="Option 3" />
@@ -136,8 +136,8 @@ const OpenTemplate = () => ({
 export const Open = OpenTemplate.bind({});
 
 const OptionLabelTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<VSelect open >
+	components: { VSelect, VOption },
+	template: `<VSelect open >
     <VOption label="Custom Label 1" value="1" text="Option 1" />
     <VOption label="Custom Label 2" value="2" text="Option 2" />
     <VOption label="Custom Label 3" value="3" text="Option 3" />
@@ -146,8 +146,8 @@ const OptionLabelTemplate = () => ({
 export const OptionLabel = OptionLabelTemplate.bind({});
 
 const HeightTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<div>
+	components: { VSelect, VOption },
+	template: `<div>
     <VSelect style="--select-height: 200px;" >
       <VOption value="1" text="Option 1"></VOption>
       <VOption value="2" text="Option 2"></VOption>
@@ -162,8 +162,8 @@ const HeightTemplate = () => ({
 export const Height = HeightTemplate.bind({});
 
 const WidthTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<div>
+	components: { VSelect, VOption },
+	template: `<div>
     <VSelect label="choose one option" style="width: 140px;" >
       <VOption value="1" text="Option 1: dogs"></VOption>
       <VOption value="2" text="Option 2: cats"></VOption>
@@ -174,17 +174,17 @@ const WidthTemplate = () => ({
 export const Width = WidthTemplate.bind({});
 
 const UseCaseTemplate = () => ({
-  components: { VSelect, VOption },
-  template: `<div>
+	components: { VSelect, VOption },
+	template: `<div>
     <VSelect label="country code" :icon="value" style="width: 120px;" @change="value=$event.target._selectedOptions[0]._icon">
       <VOption value="1" text="+1" icon="flag-united-states"></VOption>
       <VOption value="+49" text="+49" icon="flag-germany"></VOption>
       <VOption value="+355" text="+355" icon="flag-albania"></VOption>
     </VSelect>
   </div>`,
-  setup() {
-    const value = ref('flag-united-states');
-    return { value };
-  },
+	setup() {
+		const value = ref('flag-united-states');
+		return { value };
+	},
 });
 export const UseCase = UseCaseTemplate.bind({});

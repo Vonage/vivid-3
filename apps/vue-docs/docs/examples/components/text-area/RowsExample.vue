@@ -1,7 +1,7 @@
 <template>
-  <VTextArea v-model="rowOne" rows="1" />
-  <VTextArea v-model="rowTwo" rows="2" />
-  <VTextArea v-model="rowThree" rows="3" />
+	<VTextArea v-model="rowOne" rows="1" />
+	<VTextArea v-model="rowTwo" rows="2" />
+	<VTextArea v-model="rowThree" rows="3" />
 </template>
 <script setup lang="ts">
 import { VTextArea } from '@vonage/vivid-vue';

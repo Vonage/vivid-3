@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <VBadge text="rounded" shape="rounded" />
-    <VBadge text="pill" shape="pill" />
-  </div>
+	<div>
+		<VBadge text="rounded" shape="rounded" />
+		<VBadge text="pill" shape="pill" />
+	</div>
 </template>
 
 <script setup lang="ts">

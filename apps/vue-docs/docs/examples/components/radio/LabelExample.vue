@@ -1,5 +1,5 @@
 <template>
-  <VRadio label="A default radio" />
+	<VRadio label="A default radio" />
 </template>
 
 <script setup lang="ts">

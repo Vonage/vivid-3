@@ -6,7 +6,6 @@ import styles from './tooltip.scss?inline';
 import { Tooltip } from './tooltip';
 import { TooltipTemplate as template } from './tooltip.template';
 
-
 /**
  * The tooltip element.
  */

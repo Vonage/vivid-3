@@ -15,7 +15,4 @@ import type { Nav } from './nav';
 export const NavTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<Nav> = (
-) => html<Nav>`
-		<nav><slot></slot></nav>
-    `;
+) => ViewTemplate<Nav> = () => html<Nav>` <nav><slot></slot></nav> `;

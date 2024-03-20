@@ -1,6 +1,6 @@
 # Roadmap
 
-## Upcoming components
+## Upcoming Components
 
 <style>
   @media screen and (max-width: 768px){
@@ -62,7 +62,7 @@
     <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" href="/components/range-slider" connotation="success"></vwc-button>
+      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/range-slider" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -76,7 +76,7 @@
     <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" href="/components/time-picker" connotation="success"></vwc-button>
+      <vwc-button  label="Awaiting AT" icon="more-horizontal-line" href="/components/time-picker" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -98,8 +98,9 @@
 
 ### Key
 
-| Phase     | Description                                                                                                          |
-| --------- | -------------------------------------------------------------------------------------------------------------------- |
+| Term | Description |
+| --- | --- |
 | Discovery | Validate the shared value of the feature and that we understand the problem well enough to commit further resources. |
-| Design    | Ensure designs meet user needs while upholding our brand standards and visual language.                              |
-| Alpha     | Component is available and documentation is published. Awaiting acceptence testing by at least 2 teams               |
+| Design | Ensure designs meet user needs while upholding our brand standards and visual language. |
+| Alpha | Component is available and documentation is published. |
+| AT | Acceptance testing: before we fully release a new component it must be integrated and validated by at least 2 teams |

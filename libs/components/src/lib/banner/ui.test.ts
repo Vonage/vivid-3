@@ -36,12 +36,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/banner.png',
 		{
-			maxDiffPixelRatio: 0.02
+			maxDiffPixelRatio: 0.02,
 		}
 	);
 });
 
-test('should remove the component when clicking on remove button', async ({ page }: { page: Page }) => {
+test('should remove the component when clicking on remove button', async ({
+	page,
+}: {
+	page: Page;
+}) => {
 	const template = `
 			<vwc-banner removable icon="home" text="ET Phone!"></vwc-banner>
 	`;
@@ -62,8 +66,7 @@ test('should remove the component when clicking on remove button', async ({ page
 
 	await removeButton.click();
 
-	await element.waitFor({state: 'detached'});
+	await element.waitFor({ state: 'detached' });
 
 	expect(await element.count()).toEqual(0);
-
 });

@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Connotation} from '../enums';
+import { Connotation } from '../enums';
 import { Avatar } from './avatar';
 import '.';
 import { avatarDefinition } from './definition';
@@ -36,8 +36,9 @@ describe('vwc-avatar', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			expect(baseElement?.classList.contains(`appearance-${appearance}`))
-				.toBeTruthy();
+			expect(
+				baseElement?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -48,24 +49,24 @@ describe('vwc-avatar', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(baseElement?.classList.contains(`shape-${shape}`))
-				.toBeTruthy();
+			expect(baseElement?.classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
 	describe('avatar connotation', function () {
 		it('should set the connotation class on base', async function () {
 			const connotation = Connotation.CTA;
-			const connotationClassExistsBeforeTheChange = baseElement?.classList.contains(`connotation-${connotation}`);
+			const connotationClassExistsBeforeTheChange =
+				baseElement?.classList.contains(`connotation-${connotation}`);
 
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = baseElement?.classList.contains(`connotation-${connotation}`);
+			const connotationClassExistsAfterChange = baseElement?.classList.contains(
+				`connotation-${connotation}`
+			);
 
-			expect(connotationClassExistsBeforeTheChange)
-				.toEqual(false);
-			expect(connotationClassExistsAfterChange)
-				.toEqual(true);
+			expect(connotationClassExistsBeforeTheChange).toEqual(false);
+			expect(connotationClassExistsAfterChange).toEqual(true);
 		});
 	});
 
@@ -94,7 +95,6 @@ describe('vwc-avatar', () => {
 			expect(iconElement?.getAttribute('name')).toEqual(icon);
 			expect(element.icon).toEqual(icon);
 		});
-
 	});
 
 	describe('avatar initials', () => {
@@ -129,7 +129,7 @@ describe('vwc-avatar', () => {
 			it('should pass html a11y', async () => {
 				element.initials = 'ab';
 				await elementUpdated(element);
-				
+
 				expect(await axe(element)).toHaveNoViolations();
 			});
 		});

@@ -1,9 +1,8 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import {Connotation} from '../enums';
-import {Icon} from '../icon/icon';
+import { Connotation } from '../enums';
+import { Icon } from '../icon/icon';
 import { Tab } from './tab';
 import '.';
-
 
 const COMPONENT_TAG = 'vwc-tab';
 const ICON_SELECTOR = 'vwc-icon';
@@ -40,7 +39,9 @@ describe('vwc-tab', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should have an icon when icon is set without slotted icon', async () => {
@@ -48,24 +49,21 @@ describe('vwc-tab', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 	});
 
-	describe('iconTrailing', function() {
+	describe('iconTrailing', function () {
 		it('should add "icon-trailing" class to base', async () => {
 			element.icon = 'home';
 			element.iconTrailing = true;
 			await elementUpdated(element);
 
 			const trailingIcon = element.shadowRoot?.querySelector(
-				`.icon-trailing ${ICON_SELECTOR}`,
+				`.icon-trailing ${ICON_SELECTOR}`
 			);
-			expect(trailingIcon)
-				.toBeInstanceOf(Icon);
+			expect(trailingIcon).toBeInstanceOf(Icon);
 		});
 	});
 
@@ -83,21 +81,33 @@ describe('vwc-tab', () => {
 			element.connotation = Connotation.CTA;
 			element.ariaSelected = 'true';
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains(
+					`connotation-${Connotation.CTA}`
+				)
+			).toBeTruthy();
 		});
 
 		it('should remove connotation class on base if false', async () => {
 			element.connotation = Connotation.CTA;
 			element.ariaSelected = 'false';
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeFalsy();
+			expect(
+				getBaseElement(element).classList.contains(
+					`connotation-${Connotation.CTA}`
+				)
+			).toBeFalsy();
 		});
 
 		it('should remove connotation class on base if null', async () => {
 			element.connotation = Connotation.CTA;
 			element.ariaSelected = null;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains(`connotation-${Connotation.CTA}`)).toBeFalsy();
+			expect(
+				getBaseElement(element).classList.contains(
+					`connotation-${Connotation.CTA}`
+				)
+			).toBeFalsy();
 		});
 	});
 
@@ -108,13 +118,17 @@ describe('vwc-tab', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
+			).toBeTruthy();
 		});
 	});
 
 	describe('a11y', () => {
 		it('should pass html a11y tests', async () => {
-			element = (await fixture(`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`)) as Tab;
+			element = (await fixture(
+				`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
+			)) as Tab;
 			element.label = 'Label';
 			element.ariaSelected = 'true';
 			await elementUpdated(element);
