@@ -103,7 +103,7 @@ You can change the error text with the `error-text` attribute.
 | -------------- | ------------------------------------------------------------------------------------------------------- |
 | `dial`         | Emitted (with the value of the input) when the dial pad is submitted and there is a value in the input. |
 | `end-call`     | Emitted when the end call button is clicked.                                                            |
-| `keypad-click` | Emitted when a keypad button is clicked with the value of the button clicked.                           |
+| `keypad-click` | Emitted when a keypad button is clicked. The `detail` object holds the clicked button.                  |
 | `input`        | Emitted from the input element.                                                                         |
 | `change`       | Emitted from the input element.                                                                         |
 | `blur`         | Emitted from the input element.                                                                         |

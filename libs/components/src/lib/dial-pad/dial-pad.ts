@@ -158,7 +158,7 @@ export class DialPad extends FoundationElement {
 			return;
 		}
 		this.value += e.target.value;
-		this.$emit('keypad-click', e.target.value);
+		this.$emit('keypad-click', e.target);
 		this.$emit('input');
 		this.$emit('change');
 	};

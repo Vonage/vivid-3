@@ -100,6 +100,18 @@ describe('vwc-dial-pad', () => {
 			expect(spy).toHaveBeenCalledTimes(12);
 		});
 
+		it('should fire keypad-click event with the button which was clicked', async function () {
+			const spy = jest.fn();
+			element.addEventListener('keypad-click', spy);
+			await elementUpdated(element);
+			getDigitButtons().forEach((button) => {
+				button.click();
+				expect(spy).toHaveBeenCalledWith(
+					expect.objectContaining({ detail: button })
+				);
+			});
+		});
+
 		it('should set value in text field when clicked on keypad', async function () {
 			await elementUpdated(element);
 			getDigitButtons().forEach((button) => {
