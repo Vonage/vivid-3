@@ -4,9 +4,8 @@ import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
- * Base class for toggletip
- *
  * @public
+ * @component toggletip
  * @slot - The content to display in the toggletip.
  * @slot anchor - Used to set the anchor element for the toggletip.
  * @slot action-items - The content to display in the toggletip action items.
@@ -30,7 +29,7 @@ export class Toggletip extends FoundationElement {
 	 * @public
 	 * HTML Attribute: alternate
 	 */
-	@attr({ mode: 'boolean'	}) alternate = false;
+	@attr({ mode: 'boolean' }) alternate = false;
 
 	/**
 	 * placement of the toggletip
@@ -46,7 +45,7 @@ export class Toggletip extends FoundationElement {
 	 * @public
 	 * HTML Attribute: open
 	 */
-	@attr({ mode: 'boolean'	}) open = false;
+	@attr({ mode: 'boolean' }) open = false;
 	openChanged(oldValue: boolean, newValue: boolean): void {
 		if (oldValue === undefined) return;
 
@@ -94,13 +93,14 @@ export class Toggletip extends FoundationElement {
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
-		if (a.ariaLabel) a.ariaLabel = a.ariaLabel.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '');
+		if (a.ariaLabel)
+			a.ariaLabel = a.ariaLabel.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '');
 	}
 
 	#openIfClosed = () => {
 		// DOM.queueUpdate() is required to prevent the click event from
 		// being caught by the document click handler (added by openChanged)
-		if (!this.open) DOM.queueUpdate(() => this.open = true);
+		if (!this.open) DOM.queueUpdate(() => (this.open = true));
 	};
 
 	#updateListeners() {
@@ -118,7 +118,7 @@ export class Toggletip extends FoundationElement {
 		if (clickedOutside || clickedOnAnchor) this.open = false;
 	};
 
-	#closeOnEscape = (e:KeyboardEvent) => {
+	#closeOnEscape = (e: KeyboardEvent) => {
 		if (e.key === 'Escape') this.open = false;
 	};
 }

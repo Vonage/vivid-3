@@ -1,6 +1,9 @@
 import { attr } from '@microsoft/fast-element';
 import { ListboxElement as FoundationListboxElement } from '@microsoft/fast-foundation';
-import { keyArrowLeft, keyArrowRight } from '@microsoft/fast-web-utilities/dist/key-codes';
+import {
+	keyArrowLeft,
+	keyArrowRight,
+} from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Appearance, Shape } from '../enums';
 
 /**
@@ -8,7 +11,10 @@ import type { Appearance, Shape } from '../enums';
  *
  * @public
  */
-export type LisboxAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
+export type LisboxAppearance = Extract<
+	Appearance,
+	Appearance.Fieldset | Appearance.Ghost
+>;
 
 /**
  * Types of listbox shape.
@@ -18,9 +24,7 @@ export type LisboxAppearance = Extract<Appearance, Appearance.Fieldset | Appeara
 type ListboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for listbox
- *
- * @public
+ * @component listbox
  * @slot - Default slot.
  */
 export class Listbox extends FoundationListboxElement {
@@ -95,7 +99,11 @@ export class Listbox extends FoundationListboxElement {
 		this.#disableSlottedChildren();
 	}
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+	override attributeChangedCallback(
+		name: string,
+		oldValue: string,
+		newValue: string
+	): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		if (name === 'disabled') {
 			this.#disableSlottedChildren();
@@ -103,7 +111,7 @@ export class Listbox extends FoundationListboxElement {
 	}
 
 	#disableSlottedChildren(): void {
-		this.options.forEach(optionElement => {
+		this.options.forEach((optionElement) => {
 			if (!optionElement.disabled) {
 				optionElement.disabled = this.disabled;
 			}

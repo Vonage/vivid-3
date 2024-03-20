@@ -2,23 +2,27 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
 
-import type {
-	Appearance, Connotation, Shape,
-} from '../enums.js';
+import type { Appearance, Connotation, Shape } from '../enums.js';
 
 /**
  * Types of tag connotation.
  *
  * @public
  */
-export type TagConnotation = Extract<Connotation, Connotation.Accent | Connotation.CTA>;
+export type TagConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
 /**
  * Types of tag appearance.
  *
  * @public
  */
-export type TagAppearance = Extract<Appearance, Appearance.Subtle | Appearance.Duotone>;
+export type TagAppearance = Extract<
+	Appearance,
+	Appearance.Subtle | Appearance.Duotone
+>;
 
 /**
  * Types of tag shape.
@@ -28,9 +32,8 @@ export type TagAppearance = Extract<Appearance, Appearance.Subtle | Appearance.D
 export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for tag.
- *
  * @public
+ * @component tag
  * @slot icon - Add an icon to the component.
  */
 export class Tag extends FoundationElement {
@@ -95,11 +98,11 @@ export class Tag extends FoundationElement {
 	@attr({ mode: 'boolean' }) selectable = false;
 
 	/**
-	* indicates whether the tag is selected
-	*
-	* @public
-	* HTML Attribute: selected
-	*/
+	 * indicates whether the tag is selected
+	 *
+	 * @public
+	 * HTML Attribute: selected
+	 */
 	@attr({ mode: 'boolean' }) selected = false;
 
 	override remove(): void {
@@ -134,5 +137,5 @@ export class Tag extends FoundationElement {
 	}
 }
 
-export interface Tag extends AffixIcon { }
+export interface Tag extends AffixIcon {}
 applyMixins(Tag, AffixIcon);

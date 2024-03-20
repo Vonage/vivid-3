@@ -6,7 +6,12 @@ import styles from './avatar.scss?inline';
 import { Avatar } from './avatar';
 import { AvatarTemplate as template } from './avatar.template';
 
-export type { AvatarConnotation, AvatarShape, AvatarAppearance, AvatarSize } from './avatar';
+export type {
+	AvatarConnotation,
+	AvatarShape,
+	AvatarAppearance,
+	AvatarSize,
+} from './avatar';
 
 /**
  *

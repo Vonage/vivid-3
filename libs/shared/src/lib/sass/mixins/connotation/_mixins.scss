@@ -6,20 +6,33 @@
 @use 'functions' as functions;
 @use '../../utils' as utils;
 
-
 @mixin connotation-shades($component, $type, $mapping) {
 	$shades: utils.pick-map(config.$shades, $mapping);
 	@each $name, $value in $shades {
 		/* @cssprop [--vvd-#{$component}-#{$type}-#{$name}=var(#{$value})] */
-		#{functions.get-connotation-token($name)}: var(--vvd-#{$component}-#{$type}-#{$name}, var(#{$value}));
+		#{functions.get-connotation-token($name)}: var(
+			--vvd-#{$component}-#{$type}-#{$name},
+			var(#{$value})
+		);
 	}
 }
 
-@mixin connotation ($component) {
+@mixin connotation($component) {
+	$connotation-mapping: utils.pick-map(
+		config.$connotations,
+		variables.$connotation-mapping
+	);
 
-	$connotation-mapping: utils.pick-map(config.$connotations, variables.$connotation-mapping);
-
-  @include utils.spread-list-selectors('.connotation', config.$connotations, config.$default) using ($type) {
-		@include connotation-shades($component, $type, map.get($connotation-mapping, $type));
+	@include utils.spread-list-selectors(
+			'.connotation',
+			config.$connotations,
+			config.$default
+		)
+		using ($type) {
+		@include connotation-shades(
+			$component,
+			$type,
+			map.get($connotation-mapping, $type)
+		);
 	}
 }

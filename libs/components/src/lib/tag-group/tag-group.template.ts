@@ -5,18 +5,23 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tag } from '../tag/tag';
 import type { TagGroup } from './tag-group';
 
-const getClasses = (_: Tag) => classNames(
-	'base',
-);
+const getClasses = (_: Tag) => classNames('base');
 
 /**
  *
  * @param context - element definition context
  * @public
  */
-export const TagGroupTemplate: (context: ElementDefinitionContext) => ViewTemplate<TagGroup> = () => {
+export const TagGroupTemplate: (
+	context: ElementDefinitionContext
+) => ViewTemplate<TagGroup> = () => {
 	return html<TagGroup>`
-		<div class="${getClasses}" role="listbox" aria-orientation="horizontal" aria-label="${x => x.ariaLabel}">
+		<div
+			class="${getClasses}"
+			role="listbox"
+			aria-orientation="horizontal"
+			aria-label="${(x) => x.ariaLabel}"
+		>
 			<slot></slot>
 		</div>
 	`;

@@ -1,14 +1,14 @@
-@use "sass:map";
-@use "partials/variables" as variables;
-@use "partials/mixins" as mixins;
-@use "partials/functions" as functions;
+@use 'sass:map';
+@use 'partials/variables' as variables;
+@use 'partials/mixins' as mixins;
+@use 'partials/functions' as functions;
 
 .control {
 	display: grid;
 	grid-auto-rows: var(#{variables.$layout-grid-template-rows}, min-content);
 
 	@include mixins.measurement(map.keys(variables.$bases)...) using ($basis) {
-		#{functions.get-selector-with-default(".column-basis", $basis, 'medium', map.keys(variables.$bases))} {
+		#{functions.get-selector-with-default('.column-basis', $basis, 'medium', map.keys(variables.$bases))} {
 			grid-template-columns: var(
 				#{variables.$layout-grid-template-columns},
 				repeat(
@@ -20,14 +20,20 @@
 	}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-		#{functions.get-selector-with-default(".column-spacing", $space, 'medium', map.keys(variables.$spaces))} {
-			column-gap: var(#{variables.$layout-column-gap}, map.get(variables.$spaces, $space));
+		#{functions.get-selector-with-default('.column-spacing', $space, 'medium', map.keys(variables.$spaces))} {
+			column-gap: var(
+				#{variables.$layout-column-gap},
+				map.get(variables.$spaces, $space)
+			);
 		}
 	}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
-		#{functions.get-selector-with-default(".row-spacing", $space, 'medium', map.keys(variables.$spaces))} {
-			row-gap: var(#{variables.$layout-row-gap}, map.get(variables.$spaces, $space));
+		#{functions.get-selector-with-default('.row-spacing', $space, 'medium', map.keys(variables.$spaces))} {
+			row-gap: var(
+				#{variables.$layout-row-gap},
+				map.get(variables.$spaces, $space)
+			);
 		}
 	}
 
@@ -38,7 +44,7 @@
 	}
 
 	@include mixins.measurement(map.keys(variables.$auto-sizes)...) using ($size) {
-		#{functions.get-selector-with-default(".auto-sizing", $size, fit, map.keys(variables.$auto-sizes))} {
+		#{functions.get-selector-with-default('.auto-sizing', $size, fit, map.keys(variables.$auto-sizes))} {
 			#{variables.$auto-sizing}: map.get(variables.$auto-sizes, $size);
 		}
 	}

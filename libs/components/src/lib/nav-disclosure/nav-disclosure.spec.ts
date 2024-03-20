@@ -1,4 +1,10 @@
-import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
@@ -19,7 +25,9 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-disclosure', async () => {
-			expect(navDisclosureDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(navDisclosureDefinition()).toBeInstanceOf(
+				FoundationElementRegistry
+			);
 			expect(element).toBeInstanceOf(NavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -30,11 +38,15 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('aria-expanded', () => {
 		it('should update aria-expanded when toggle open', async () => {
-			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('false');
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual(
+				'false'
+			);
 
 			element.open = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual('true');
+			expect(getControlElement(element).getAttribute('aria-expanded')).toEqual(
+				'true'
+			);
 		});
 	});
 
@@ -59,13 +71,12 @@ describe('vwc-nav-disclosure', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).textContent?.trim())
-				.toEqual(label);
+			expect(getBaseElement(element).textContent?.trim()).toEqual(label);
 		});
 	});
 
 	describe('toggle event', () => {
-		it('should emit a toggle event that does not bubble when open/closed state is toggled', async function() {
+		it('should emit a toggle event that does not bubble when open/closed state is toggled', async function () {
 			const spy = jest.fn();
 			element.addEventListener('toggle', spy);
 
@@ -78,7 +89,9 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should have an icon when icon is set without slotted icon', async () => {
@@ -86,16 +99,16 @@ describe('vwc-nav-disclosure', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 	});
 
 	describe('meta slot', () => {
 		it('should have meta slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="meta"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="meta"]')
+			).toBeTruthy();
 		});
 	});
 
@@ -114,14 +127,18 @@ describe('vwc-nav-disclosure', () => {
 				element.open = true;
 				element.ariaCurrent = ariaCurrent;
 				await elementUpdated(element);
-				expect(getControlElement(element).getAttribute('aria-current')).toBeNull();
+				expect(
+					getControlElement(element).getAttribute('aria-current')
+				).toBeNull();
 			});
-	
+
 			it('should set aria-current on the nav-disclosure if closed', async function () {
 				const ariaCurrent = 'true';
 				element.setAttribute('aria-current', ariaCurrent);
 				await elementUpdated(element);
-				expect(getControlElement(element).getAttribute('aria-current')).not.toBeNull();
+				expect(
+					getControlElement(element).getAttribute('aria-current')
+				).not.toBeNull();
 			});
 		});
 	});

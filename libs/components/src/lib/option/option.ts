@@ -1,12 +1,13 @@
-import { applyMixins, ListboxOption as FoundationListboxOption } from '@microsoft/fast-foundation';
+import {
+	applyMixins,
+	ListboxOption as FoundationListboxOption,
+} from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
-
 /**
- * Base class for option
- *
  * @public
+ * @component option
  * @slot icon - Slot to add an icon to the option.
  */
 export class ListboxOption extends FoundationListboxOption {
@@ -18,7 +19,8 @@ export class ListboxOption extends FoundationListboxOption {
 	 */
 	@attr({
 		attribute: 'text',
-	}) _text?: string;
+	})
+	_text?: string;
 
 	// #region overrides base class accessor
 	override set text(value) {
@@ -31,7 +33,8 @@ export class ListboxOption extends FoundationListboxOption {
 
 	@attr({
 		attribute: 'label',
-	}) _label?: string;
+	})
+	_label?: string;
 	override get label(): string {
 		return this._label ?? this.text;
 	}
@@ -41,5 +44,5 @@ export class ListboxOption extends FoundationListboxOption {
 	// #endregion overrides
 }
 
-export interface ListboxOption extends AffixIconWithTrailing { }
+export interface ListboxOption extends AffixIconWithTrailing {}
 applyMixins(ListboxOption, AffixIconWithTrailing);

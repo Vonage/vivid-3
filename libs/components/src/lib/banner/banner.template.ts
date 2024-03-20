@@ -5,14 +5,15 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import { Button } from '../button/button';
 import type { Banner } from './banner';
 
-const getClasses = (_: Banner) => classNames(
-	'control',
-	[`connotation-${_.connotation}`, !!_.connotation]
-);
+const getClasses = (_: Banner) =>
+	classNames('control', [`connotation-${_.connotation}`, !!_.connotation]);
 
 /**
  *
@@ -20,12 +21,13 @@ const getClasses = (_: Banner) => classNames(
 function renderDismissButton(buttonTag: string) {
 	return html<Banner>`
 	  <${buttonTag}
-	  		aria-label="${x => x.dismissButtonAriaLabel || x.locale.banner.dismissButtonLabel}"
+	  		aria-label="${(x) =>
+					x.dismissButtonAriaLabel || x.locale.banner.dismissButtonLabel}"
 			part="vvd-theme-alternate"
 			size="condensed"
 			class="dismiss-button"
 			icon="close-line"
-			@click="${x => x.remove()}">
+			@click="${(x) => x.remove()}">
 	  </${buttonTag}>`;
 }
 
@@ -43,21 +45,26 @@ export const BannerTemplate: (
 	const buttonTag = context.tagFor(Button);
 
 	return html<Banner>`
-	  <div class="${getClasses}">
-		  <header class="header">
-					<div class="content">
-            ${x => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
-						<div class="banner-message"
-						 role="${x => x.role ? x.role : 'status'}"
-						 aria-live="${x => x.ariaLive ? x.ariaLive : 'polite'}">
-									${x => x.text}
-            </div>
-						<slot class="action-items" ${slotted('actionItemsSlottedContent')} name="action-items"></slot>
+		<div class="${getClasses}">
+			<header class="header">
+				<div class="content">
+					${(x) => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
+					<div
+						class="banner-message"
+						role="${(x) => (x.role ? x.role : 'status')}"
+						aria-live="${(x) => (x.ariaLive ? x.ariaLive : 'polite')}"
+					>
+						${(x) => x.text}
 					</div>
+					<slot
+						class="action-items"
+						${slotted('actionItemsSlottedContent')}
+						name="action-items"
+					></slot>
+				</div>
 
-			  ${when(x => x.removable, renderDismissButton(buttonTag))}
-		  </header>
-	  </div>
+				${when((x) => x.removable, renderDismissButton(buttonTag))}
+			</header>
+		</div>
 	`;
 };
-

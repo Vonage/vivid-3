@@ -3,10 +3,8 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
- * A Nav Item Custom HTML Element.
- * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
- *
  * @public
+ * @component nav-disclosure
  * @slot - Default slot.
  * @slot meta - A slot to add additional content to the nav disclosure.
  * @slot icon - Add an icon to the component.
@@ -30,7 +28,8 @@ export class NavDisclosure extends FoundationElement {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
-	@attr({attribute: 'aria-current'}) override ariaCurrent: string | null = null;
+	@attr({ attribute: 'aria-current' }) override ariaCurrent: string | null =
+		null;
 
 	/**
 	 * @internal
@@ -46,7 +45,7 @@ export class NavDisclosure extends FoundationElement {
 	 */
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.details.removeEventListener('toggle',  this.#onToggle);
+		this.details.removeEventListener('toggle', this.#onToggle);
 	}
 
 	#onToggle = () => {
@@ -55,5 +54,5 @@ export class NavDisclosure extends FoundationElement {
 	};
 }
 
-export interface NavDisclosure extends AffixIcon { }
+export interface NavDisclosure extends AffixIcon {}
 applyMixins(NavDisclosure, AffixIcon);

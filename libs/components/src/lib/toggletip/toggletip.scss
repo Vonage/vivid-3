@@ -1,6 +1,6 @@
-@use "partials/variables" as variables;
-@use "../../../../../dist/libs/tokens/scss/tokens.constants" as constants;
-@import "../../shared/patterns/anchored";
+@use 'partials/variables' as variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@import '../../shared/patterns/anchored';
 
 $padding: 16px;
 
@@ -19,6 +19,6 @@ $padding: 16px;
 	gap: 10px;
 }
 
-::slotted([slot="action-items"]) {
+::slotted([slot='action-items']) {
 	margin-block-start: $padding;
 }

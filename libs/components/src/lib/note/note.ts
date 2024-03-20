@@ -4,15 +4,14 @@ import type { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns';
 
 export type NoteConnotation =
-	Connotation.Accent |
-	Connotation.Information |
-	Connotation.Success |
-	Connotation.Warning |
-	Connotation.Alert;
+	| Connotation.Accent
+	| Connotation.Information
+	| Connotation.Success
+	| Connotation.Warning
+	| Connotation.Alert;
 /**
- * Base class for note
- *
  * @public
+ * @component note
  * @slot - Any slotted content will appear below the headline.
  * @slot icon - Add an icon to the component.
  */
@@ -28,5 +27,5 @@ export class Note extends FoundationElement {
 	@attr connotation?: NoteConnotation;
 }
 
-export interface Note extends AffixIcon { }
+export interface Note extends AffixIcon {}
 applyMixins(Note, AffixIcon);

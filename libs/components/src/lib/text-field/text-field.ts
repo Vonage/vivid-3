@@ -19,8 +19,8 @@ import { generateRandomId } from '../../shared/utils/randomId';
 import { Reflector } from '../../shared/utils/Reflector';
 
 export type TextFieldAppearance = Extract<
-Appearance,
-Appearance.Fieldset | Appearance.Ghost
+	Appearance,
+	Appearance.Fieldset | Appearance.Ghost
 >;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
@@ -29,27 +29,29 @@ export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 // As a workaround we add a stylesheet to root of text-field to apply the styles
 // Once fixed in Safari we can remove the workaround (VIV-1413)
 const safariWorkaroundClassName = '_vvd-3-text-field-safari-workaround';
-const getSafariWorkaroundStyleSheet = memoizeWith(() => '', () => {
-	const styleSheet = new CSSStyleSheet();
+const getSafariWorkaroundStyleSheet = memoizeWith(
+	() => '',
+	() => {
+		const styleSheet = new CSSStyleSheet();
 
-	// Prevent error in environments that do not support `replaceSync` like JSDOM
-	const supportsReplaceSync = 'replaceSync' in styleSheet;
-	// istanbul ignore else
-	if (supportsReplaceSync) {
-		styleSheet.replaceSync(`
+		// Prevent error in environments that do not support `replaceSync` like JSDOM
+		const supportsReplaceSync = 'replaceSync' in styleSheet;
+		// istanbul ignore else
+		if (supportsReplaceSync) {
+			styleSheet.replaceSync(`
 .${safariWorkaroundClassName}::placeholder {
 	opacity: 1 !important;
 	-webkit-text-fill-color: var(--_low-ink-color) !important;
 }`);
-	}
+		}
 
-	return styleSheet;
-});
+		return styleSheet;
+	}
+);
 
 const installSafariWorkaroundStyle = (forElement: TextField) => {
 	const root = forElement.getRootNode() as ShadowRoot | Document;
 	const workaroundStyleSheet = getSafariWorkaroundStyleSheet();
-
 
 	// Prevent error in environments that do not support `adoptedStyleSheets` like JSDOM
 	const supportsAdoptedStyleSheets = 'adoptedStyleSheets' in root;
@@ -59,7 +61,10 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
 	}
 
 	if (!root.adoptedStyleSheets.includes(workaroundStyleSheet)) {
-		root.adoptedStyleSheets = [...root.adoptedStyleSheets, workaroundStyleSheet];
+		root.adoptedStyleSheets = [
+			...root.adoptedStyleSheets,
+			workaroundStyleSheet,
+		];
 	}
 };
 
@@ -67,9 +72,10 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  * Base class for text-field
  *
  * @public
+ * @component text-field
  * @slot leading-action-items - Used to add action items to the start of the text-field.
  * @slot action-items - Used to add action items to the end of the text-field.
- *
+ * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements
@@ -131,19 +137,19 @@ export class TextField extends FoundationTextfield {
 			this.control = input;
 
 			this.#reflectToInput = new Reflector(this, input);
-			this.#reflectToInput.booleanAttribute('autofocus', 'autofocus',);
-			this.#reflectToInput.booleanAttribute('disabled', 'disabled',);
-			this.#reflectToInput.booleanAttribute('readOnly', 'readonly',);
-			this.#reflectToInput.booleanAttribute('required', 'required',);
-			this.#reflectToInput.booleanAttribute('spellcheck', 'spellcheck',);
-			this.#reflectToInput.attribute('list', 'list',);
-			this.#reflectToInput.attribute('maxlength', 'maxlength',);
-			this.#reflectToInput.attribute('minlength', 'minlength',);
-			this.#reflectToInput.attribute('pattern', 'pattern',);
-			this.#reflectToInput.attribute('placeholder', 'placeholder',);
-			this.#reflectToInput.attribute('size', 'size',);
-			this.#reflectToInput.attribute('autoComplete', 'autocomplete',);
-			this.#reflectToInput.attribute('type', 'type',);
+			this.#reflectToInput.booleanAttribute('autofocus', 'autofocus');
+			this.#reflectToInput.booleanAttribute('disabled', 'disabled');
+			this.#reflectToInput.booleanAttribute('readOnly', 'readonly');
+			this.#reflectToInput.booleanAttribute('required', 'required');
+			this.#reflectToInput.booleanAttribute('spellcheck', 'spellcheck');
+			this.#reflectToInput.attribute('list', 'list');
+			this.#reflectToInput.attribute('maxlength', 'maxlength');
+			this.#reflectToInput.attribute('minlength', 'minlength');
+			this.#reflectToInput.attribute('pattern', 'pattern');
+			this.#reflectToInput.attribute('placeholder', 'placeholder');
+			this.#reflectToInput.attribute('size', 'size');
+			this.#reflectToInput.attribute('autoComplete', 'autocomplete');
+			this.#reflectToInput.attribute('type', 'type');
 			this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
 			this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
 			this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
@@ -156,7 +162,10 @@ export class TextField extends FoundationTextfield {
 			this.#reflectToInput.attribute('ariaLabel', 'aria-label');
 			this.#reflectToInput.attribute('ariaLive', 'aria-live');
 			this.#reflectToInput.attribute('ariaRelevant', 'aria-relevant');
-			this.#reflectToInput.attribute('ariaRoledescription', 'aria-roledescription');
+			this.#reflectToInput.attribute(
+				'ariaRoledescription',
+				'aria-roledescription'
+			);
 			this.#reflectToInput.property('value', 'value', true);
 
 			input.addEventListener('input', () => {
@@ -194,5 +203,17 @@ export class TextField extends FoundationTextfield {
 	}
 }
 
-export interface TextField extends AffixIcon, ErrorText, FormElement, FormElementCharCount, FormElementHelperText, FormElementSuccessText{}
-applyMixins(TextField, AffixIcon, FormElementCharCount, FormElementHelperText, FormElementSuccessText);
+export interface TextField
+	extends AffixIcon,
+		ErrorText,
+		FormElement,
+		FormElementCharCount,
+		FormElementHelperText,
+		FormElementSuccessText {}
+applyMixins(
+	TextField,
+	AffixIcon,
+	FormElementCharCount,
+	FormElementHelperText,
+	FormElementSuccessText
+);

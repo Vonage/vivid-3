@@ -5,28 +5,33 @@ import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 export type AlertConnotation =
-	Connotation.Accent |
-	Connotation.Information |
-	Connotation.Success |
-	Connotation.Warning |
-	Connotation.Alert;
+	| Connotation.Accent
+	| Connotation.Information
+	| Connotation.Success
+	| Connotation.Warning
+	| Connotation.Alert;
 
 const connotationIconMap = new Map([
 	[Connotation.Accent, 'megaphone-line'],
 	[Connotation.Information, 'info-line'],
 	[Connotation.Success, 'check-circle-line'],
 	[Connotation.Warning, 'warning-line'],
-	[Connotation.Alert, 'error-line']
+	[Connotation.Alert, 'error-line'],
 ]);
 
-export type AlertPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
+export type AlertPlacement =
+	| 'top'
+	| 'top-start'
+	| 'top-end'
+	| 'bottom'
+	| 'bottom-start'
+	| 'bottom-end';
 
 export type AlertStrategy = 'fixed' | 'static';
 
 /**
- * Base class for alert
- *
  * @public
+ * @component alert
  * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
  * @slot icon - Add an icon to the component.
@@ -34,7 +39,9 @@ export type AlertStrategy = 'fixed' | 'static';
  * @event close - Fired when the alert is closed
  */
 export class Alert extends FoundationElement {
-	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel: string | null = null;
+	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
+		| string
+		| null = null;
 
 	// timeout to close the alert
 	#timeoutID?: NodeJS.Timeout;
@@ -54,7 +61,6 @@ export class Alert extends FoundationElement {
 	 * HTML Attribute: placement
 	 */
 	@attr({ mode: 'fromView' }) placement?: AlertPlacement = 'bottom';
-
 
 	/**
 	 * the text of the alert heading
@@ -87,8 +93,9 @@ export class Alert extends FoundationElement {
 	 */
 	@attr({
 		mode: 'fromView',
-		converter: nullableNumberConverter
-	}) timeoutms: number = 0;
+		converter: nullableNumberConverter,
+	})
+	timeoutms: number = 0;
 
 	/**
 	 * alert connotation
@@ -123,14 +130,15 @@ export class Alert extends FoundationElement {
 		this.#setupTimeout();
 		if (newValue) {
 			this.style.display = 'contents';
-			const alertText = this.shadowRoot!.querySelector('.alert-text') as HTMLElement;
+			const alertText = this.shadowRoot!.querySelector(
+				'.alert-text'
+			) as HTMLElement;
 			if (this.removable && alertText) {
 				alertText.setAttribute('tabindex', '0');
 				alertText.focus();
 				alertText.removeAttribute('tabindex');
 			}
-		}
-		else{
+		} else {
 			this.style.display = 'none';
 		}
 	}
@@ -138,8 +146,11 @@ export class Alert extends FoundationElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		this.addEventListener('keydown', this.#closeOnEscape);
-		this.controlEl = this.shadowRoot!.querySelector('.control') as HTMLDivElement;
-		if (this.controlEl) this.controlEl.addEventListener('transitionend', this.#onTransitionEnd);
+		this.controlEl = this.shadowRoot!.querySelector(
+			'.control'
+		) as HTMLDivElement;
+		if (this.controlEl)
+			this.controlEl.addEventListener('transitionend', this.#onTransitionEnd);
 		this.#setupTimeout();
 	}
 
@@ -147,18 +158,24 @@ export class Alert extends FoundationElement {
 		super.disconnectedCallback();
 		if (this.#timeoutID) clearTimeout(this.#timeoutID);
 		this.removeEventListener('keydown', this.#closeOnEscape);
-		if (this.controlEl) this.controlEl.removeEventListener('transitionend', this.#onTransitionEnd);
+		if (this.controlEl)
+			this.controlEl.removeEventListener(
+				'transitionend',
+				this.#onTransitionEnd
+			);
 	}
 
 	get conditionedIcon() {
-		return this.icon || connotationIconMap.get(this.connotation as AlertConnotation);
+		return (
+			this.icon || connotationIconMap.get(this.connotation as AlertConnotation)
+		);
 	}
 
 	#setupTimeout() {
 		if (this.#timeoutID) clearTimeout(this.#timeoutID);
 
 		if (this.open && this.timeoutms > 0) {
-			this.#timeoutID = setTimeout(() => this.open = false, this.timeoutms);
+			this.#timeoutID = setTimeout(() => (this.open = false), this.timeoutms);
 		}
 	}
 
@@ -176,5 +193,5 @@ export class Alert extends FoundationElement {
 }
 
 applyMixins(Alert, AffixIcon);
-export interface Alert extends Localized, AffixIcon { }
+export interface Alert extends Localized, AffixIcon {}
 applyMixins(Alert, Localized);

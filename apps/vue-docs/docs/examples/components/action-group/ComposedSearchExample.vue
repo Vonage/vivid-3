@@ -1,9 +1,21 @@
 <template>
-  <VActionGroup shape="pill">
-    <VButton label="Action" appearance="ghost" icon="chevron-down-solid" icon-trailing shape="pill" />
-    <VDivider orientation="vertical" />
-    <VTextField icon="search-line" placeholder="Search..." appearance="ghost" shape="pill" style="min-width: 160px" />
-  </VActionGroup>
+	<VActionGroup shape="pill">
+		<VButton
+			label="Action"
+			appearance="ghost"
+			icon="chevron-down-solid"
+			icon-trailing
+			shape="pill"
+		/>
+		<VDivider orientation="vertical" />
+		<VTextField
+			icon="search-line"
+			placeholder="Search..."
+			appearance="ghost"
+			shape="pill"
+			style="min-width: 160px"
+		/>
+	</VActionGroup>
 </template>
 
 <script setup lang="ts">

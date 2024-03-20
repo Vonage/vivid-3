@@ -1,30 +1,25 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type {
-	Appearance
-} from '../enums.js';
-
+import type { Appearance } from '../enums.js';
 
 /**
  * Types of appearances.
  *
  * @public
  */
-export type AppearanceUIAppearance = Extract<Appearance,
-Appearance.Filled
-| Appearance.Ghost
-| Appearance.Outlined
-| Appearance.Duotone
-| Appearance.Fieldset
-| Appearance.Subtle
-| Appearance.Listitem
+export type AppearanceUIAppearance = Extract<
+	Appearance,
+	| Appearance.Filled
+	| Appearance.Ghost
+	| Appearance.Outlined
+	| Appearance.Duotone
+	| Appearance.Fieldset
+	| Appearance.Subtle
+	| Appearance.Listitem
 >;
 
-
 /**
- * Base class for appearance-ui
- *
- * @public
+ * @component appearance-ui
  */
 export class AppearanceUi extends FoundationElement {
 	/**
@@ -46,7 +41,8 @@ export class AppearanceUi extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 		attribute: 'hovered',
-	}) hovered = false;
+	})
+	hovered = false;
 
 	/**
 	 * Displays the active state via class
@@ -58,8 +54,8 @@ export class AppearanceUi extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 		attribute: 'active',
-	}) active = false;
-
+	})
+	active = false;
 
 	/**
 	 * Displays the selected state via class
@@ -71,7 +67,8 @@ export class AppearanceUi extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 		attribute: 'selected',
-	}) selected = false;
+	})
+	selected = false;
 
 	/**
 	 * Displays the disabled state
@@ -83,7 +80,8 @@ export class AppearanceUi extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 		attribute: 'disabled',
-	}) disabled = false;
+	})
+	disabled = false;
 
 	/**
 	 * Displays the disabled state
@@ -95,7 +93,8 @@ export class AppearanceUi extends FoundationElement {
 	@attr({
 		mode: 'boolean',
 		attribute: 'readonly',
-	}) readonly = false;
+	})
+	readonly = false;
 
 	/**
 	 * Indicates the text's text.

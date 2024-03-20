@@ -39,7 +39,7 @@ export class FormElementCharCount {
 		attribute: 'char-count',
 		mode: 'boolean',
 	})
-		charCount = false;
+	charCount = false;
 }
 
 export function formElements<
@@ -51,6 +51,9 @@ export function formElements<
 	 * field. Our proxy is never interacted with, so the constraint never applies.
 	 * Therefore, we need to use the validity from the actual control in this case.
 	 *
+	 * Additionally, we need to avoid calling setValidity when elementInternals is not available, otherwise the proxy gets
+	 * stuck in an invalid state.
+	 *
 	 * This needs to be done in the original validate method from the FAST FormAssociated mixin.
 	 * We walk up the prototype chain until we find the original method and replace it.
 	 */
@@ -59,12 +62,13 @@ export function formElements<
 		const parentPrototype = Object.getPrototypeOf(currentPrototype);
 		if (currentPrototype.validate && !parentPrototype.validate) {
 			currentPrototype.validate = function (anchor?: HTMLElement) {
-				if (this.proxy instanceof HTMLElement) {
+				if (this.proxy instanceof HTMLElement && this.elementInternals) {
 					const isValid = this.proxy.validity.valid;
 					const controlIsInvalidDueToMinOrMaxLength =
-						(this.control && this.control.validity)
-						&& !this.control.validity.valid
-						&& (this.control.validity.tooShort || this.control.validity.tooLong);
+						this.control &&
+						this.control.validity &&
+						!this.control.validity.valid &&
+						(this.control.validity.tooShort || this.control.validity.tooLong);
 
 					if (isValid && controlIsInvalidDueToMinOrMaxLength) {
 						this.setValidity(
@@ -198,13 +202,13 @@ export function getFeedbackTemplate(
 		</style>
 		<div class="message ${MessageTypeMap[messageType].className}-message">
 			${when(
-		() => iconType,
-		html<FormElement>`
+				() => iconType,
+				html<FormElement>`
 					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`
-	)}
+			)}
 			${feedbackMessage({
-		messageProperty: MessageTypeMap[messageType].messageProperty,
-	})}
+				messageProperty: MessageTypeMap[messageType].messageProperty,
+			})}
 		</div>`;
 }
 

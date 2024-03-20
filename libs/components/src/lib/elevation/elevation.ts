@@ -2,9 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 
 /**
- * Base class for elevation
- *
- * @public
+ * @component elevation
  * @slot - Default slot.
  */
 export class Elevation extends FoundationElement {
@@ -23,5 +21,4 @@ export class Elevation extends FoundationElement {
 	 * HTML Attribute: boolean
 	 */
 	@attr({ attribute: 'no-shadow', mode: 'boolean' }) noShadow?: boolean;
-
 }

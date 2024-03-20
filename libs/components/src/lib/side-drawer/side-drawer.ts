@@ -2,9 +2,8 @@ import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 
 /**
- * Base class for side-drawer
- *
  * @public
+ * @component side-drawer
  * @slot - Sets assigned nodes to the side drawer itself.
  * @slot app-content - Sets assigned nodes to the main application content, the side drawer is opened next to.
  * @event close - Fired when the side drawer is closed.
@@ -18,7 +17,8 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) alternate = false;
+	})
+	alternate = false;
 
 	/**
 	 * sets the side drawer's type to modal
@@ -27,7 +27,8 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) modal = false;
+	})
+	modal = false;
 
 	/**
 	 * indicates whether the side drawer is open
@@ -36,7 +37,8 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) open = false;
+	})
+	open = false;
 
 	/**
 	 * sets the side of the side drawer
@@ -45,9 +47,14 @@ export class SideDrawer extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) trailing = false;
+	})
+	trailing = false;
 
-	override attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+	override attributeChangedCallback(
+		name: string,
+		oldValue: string,
+		newValue: string
+	): void {
 		super.attributeChangedCallback(name, oldValue, newValue);
 		switch (name) {
 			case 'open': {

@@ -1,5 +1,5 @@
 <template>
-  <VTextField v-model="value" label="With default value" />
+	<VTextField v-model="value" label="With default value" />
 </template>
 
 <script setup lang="ts">

@@ -4,13 +4,18 @@ import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['listbox', 'option'];
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+	const template = extractHTMLBlocksFromReadme(
+		path.join(new URL('.', import.meta.url).pathname, 'README.md')
+	).reduce(
+		(htmlString: string, block: string) =>
+			`${htmlString} <div style="margin: 5px;">${block}</div>`,
+		''
+	);
 
 	page.setViewportSize({ width: 440, height: 720 });
 
@@ -27,10 +32,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/listbox.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/listbox.png'
+	);
 });
 
 test('should show the component focus', async ({ page }: { page: Page }) => {
@@ -62,9 +66,7 @@ test('should show the component focus', async ({ page }: { page: Page }) => {
 
 	await element.click();
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/listbox-focus.png',
-		);
-
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/listbox-focus.png'
+	);
 });

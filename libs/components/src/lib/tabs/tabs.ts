@@ -1,5 +1,8 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { Tabs as FoundationTabs, TabsOrientation } from '@microsoft/fast-foundation';
+import {
+	Tabs as FoundationTabs,
+	TabsOrientation,
+} from '@microsoft/fast-foundation';
 import type { Connotation, TabsSize } from '../enums.js';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
@@ -9,19 +12,19 @@ export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
  *
  * @public
  */
-export type TabsConnotation = Extract<Connotation, | Connotation.Accent | Connotation.CTA>;
+export type TabsConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
-export type Gutters = Extract<TabsSize, TabsSize.Small >;
-
+export type Gutters = Extract<TabsSize, TabsSize.Small>;
 
 /**
- * Base class for tabs
- *
  * @public
+ * @component tabs
  * @slot - Default slot.
  */
 export class Tabs extends FoundationTabs {
-
 	@observable tablist?: HTMLElement;
 
 	/**
@@ -44,7 +47,8 @@ export class Tabs extends FoundationTabs {
 	 *
 	 * @public
 	 */
-	@attr ({mode: 'boolean',attribute: 'scrollable-panel', }) scrollablePanel = false;
+	@attr({ mode: 'boolean', attribute: 'scrollable-panel' }) scrollablePanel =
+		false;
 
 	connotationChanged() {
 		this.#updateTabsConnotation();
@@ -80,14 +84,18 @@ export class Tabs extends FoundationTabs {
 
 	patchIndicatorStyleTransition() {
 		if (!this.activetab || !this.activeIndicatorRef) return;
-		if (this.orientation === TabsOrientation.vertical || !this.showActiveIndicator) return;
+		if (
+			this.orientation === TabsOrientation.vertical ||
+			!this.showActiveIndicator
+		)
+			return;
 		const width = this.activetab.getBoundingClientRect().width;
 		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
 	}
 
 	#updateTabsConnotation() {
 		if (this.tabs) {
-			this.tabs.forEach(tab => {
+			this.tabs.forEach((tab) => {
 				if (tab.getAttribute('aria-selected') === 'true') {
 					tab.setAttribute('connotation', this.connotation as string);
 				} else {
@@ -111,14 +119,20 @@ export class Tabs extends FoundationTabs {
 				top = this.#tabListWrapper.scrollHeight;
 			}
 			if (index > 0 && index < this.tabs.length - 1) {
-				top = tab.offsetTop - this.#tabListWrapper.offsetHeight / 2 + (tab.offsetHeight / 2);
+				top =
+					tab.offsetTop -
+					this.#tabListWrapper.offsetHeight / 2 +
+					tab.offsetHeight / 2;
 			}
 		} else {
 			if (index === this.tabs.length - 1) {
 				left = this.#tabListWrapper.scrollWidth;
 			}
 			if (index > 0 && index < this.tabs.length - 1) {
-				left = tab.offsetLeft - this.#tabListWrapper.offsetWidth / 2 + (tab.offsetWidth / 2);
+				left =
+					tab.offsetLeft -
+					this.#tabListWrapper.offsetWidth / 2 +
+					tab.offsetWidth / 2;
 			}
 		}
 

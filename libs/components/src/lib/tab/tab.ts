@@ -2,16 +2,17 @@ import { attr } from '@microsoft/fast-element';
 import { applyMixins, Tab as FoundationTab } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
-import type { Connotation, Shape} from '../enums.js';
+import type { Connotation, Shape } from '../enums.js';
 
 /**
  * Types of tab connotation.
  *
  * @public
  */
-export type TabConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA>;
+export type TabConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA
+>;
 
 /**
  * Types of avatar shape.
@@ -21,9 +22,8 @@ export type TabConnotation = Extract<Connotation,
 export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
- * Base class for tab
- *
  * @public
+ * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
 export class Tab extends FoundationTab {
@@ -55,8 +55,9 @@ export class Tab extends FoundationTab {
 
 	@attr({ mode: 'fromView' }) override tabIndex: any = '-1';
 
-	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null = null;
+	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null =
+		null;
 }
 
-export interface Tab extends AffixIconWithTrailing { }
+export interface Tab extends AffixIconWithTrailing {}
 applyMixins(Tab, AffixIconWithTrailing);

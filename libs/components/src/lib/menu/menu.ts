@@ -4,9 +4,8 @@ import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
- * Base class for menu
- *
  * @public
+ * @component menu
  * @slot - Default slot.
  * @slot anchor - Used to set the anchor element for the menu.
  * @slot header - Used to add additional content to the top of the menu.
@@ -16,7 +15,7 @@ import { type Anchored, anchored } from '../../shared/patterns/anchored';
  */
 @anchored
 export class Menu extends FastMenu {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
 	 * placement of the menu
@@ -37,7 +36,7 @@ export class Menu extends FastMenu {
 	autoDismissChanged(oldValue?: boolean) {
 		if (oldValue === undefined) return;
 
-		this.#updateClickOutsideListener();
+		this.#updateClickOutsideListeners();
 	}
 
 	/**
@@ -70,7 +69,9 @@ export class Menu extends FastMenu {
 				menuItems: Element[] | undefined;
 				isFocusableElement: (el: Element) => el is HTMLElement;
 			};
-			const isSafeToCallSuper = privates.menuItems!.some(privates.isFocusableElement);
+			const isSafeToCallSuper = privates.menuItems!.some(
+				privates.isFocusableElement
+			);
 			if (!isSafeToCallSuper) {
 				return;
 			}
@@ -81,12 +82,12 @@ export class Menu extends FastMenu {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.#updateClickOutsideListener();
+		this.#updateClickOutsideListeners();
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
-		this.#updateClickOutsideListener();
+		this.#updateClickOutsideListeners();
 	}
 
 	/**
@@ -115,20 +116,28 @@ export class Menu extends FastMenu {
 	}
 
 	#openIfClosed = () => {
-		// DOM.queueUpdate() is required to prevent the click event from
-		// being caught by the document click handler (added by openChanged)
-		if (!this.open) DOM.queueUpdate(() => this.open = true);
+		if (!this.open) DOM.queueUpdate(() => (this.open = true));
 	};
 
-	#updateClickOutsideListener = () => {
-		document.removeEventListener('click', this.#closeOnClickOutside);
+	#updateClickOutsideListeners = () => {
+		document.removeEventListener('click', this.#onClickOutsideCapture, true);
+		document.removeEventListener('click', this.#onClickOutside);
 		if (this.autoDismiss && this.isConnected) {
-			document.addEventListener('click', this.#closeOnClickOutside);
+			document.addEventListener('click', this.#onClickOutsideCapture, true);
+			document.addEventListener('click', this.#onClickOutside);
 		}
 	};
 
-	#closeOnClickOutside = (e: Event) => {
-		if (!this.contains(e.target as Node)) this.open = false;
+	#wasOpenBeforeClick = new WeakMap<Event, boolean>();
+
+	#onClickOutsideCapture = (e: Event) => {
+		this.#wasOpenBeforeClick.set(e, this.open);
+	};
+
+	#onClickOutside = (e: Event) => {
+		if (!this.contains(e.target as Node) && this.#wasOpenBeforeClick.get(e)) {
+			this.open = false;
+		}
 	};
 
 	/**

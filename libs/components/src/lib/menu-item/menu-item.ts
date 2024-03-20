@@ -14,16 +14,16 @@ export const MenuItemRole = {
 
 export enum CheckAppearance {
 	Normal = 'normal',
-	TickOnly =  'tick-only',
+	TickOnly = 'tick-only',
 }
 
 /**
- * Base class for menu-item
- *
  * @public
+ * @component menu-item
  * @slot meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
+ * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
 export class MenuItem extends FastMenuItem {
 	/**
@@ -94,7 +94,8 @@ export class MenuItem extends FastMenuItem {
 			this.submenu = submenu as Menu;
 			(this.submenu as Menu).anchor = this as MenuItem;
 			(this.submenu as Menu).placement = 'right-start';
-			(this.submenu as Menu).collapseExpandedItem = () => this.#collapseExpandedItem();
+			(this.submenu as Menu).collapseExpandedItem = () =>
+				this.#collapseExpandedItem();
 		}
 
 		this.hasSubmenu = this.submenu === undefined ? false : true;
@@ -111,6 +112,6 @@ export class MenuItem extends FastMenuItem {
 	}
 }
 
-export interface MenuItem extends AffixIcon { }
+export interface MenuItem extends AffixIcon {}
 
 applyMixins(MenuItem, AffixIcon);

@@ -1,9 +1,7 @@
 import { Divider as FoundationDivider } from '@microsoft/fast-foundation';
 
 /**
- * Base class for divider
- *
  * @public
+ * @component divider
  */
-export class Divider extends FoundationDivider {
-}
+export class Divider extends FoundationDivider {}

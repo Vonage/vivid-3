@@ -36,7 +36,9 @@ describe('vwc-audio-player', () => {
 		it('should be initialized as a vwc-audio-player', async () => {
 			expect(audioPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AudioPlayer);
-			expect(element.src).toEqual('https://download.samplelib.com/mp3/sample-6s.mp3');
+			expect(element.src).toEqual(
+				'https://download.samplelib.com/mp3/sample-6s.mp3'
+			);
 			expect(element.connotation).toBeUndefined();
 			expect(element.notime).toEqual(false);
 			expect(element.disabled).toEqual(false);
@@ -49,15 +51,21 @@ describe('vwc-audio-player', () => {
 			element.notime = false;
 			await elementUpdated(element);
 
-			const controls = getBaseElement(element).querySelector('.controls') as HTMLDivElement;
-			const currentTimeClassExistsBeforeTheChange = controls.querySelector('.current-time');
-			const totalTimeClassExistsBeforeTheChange = controls.querySelector('.total-time');
+			const controls = getBaseElement(element).querySelector(
+				'.controls'
+			) as HTMLDivElement;
+			const currentTimeClassExistsBeforeTheChange =
+				controls.querySelector('.current-time');
+			const totalTimeClassExistsBeforeTheChange =
+				controls.querySelector('.total-time');
 
 			element.notime = true;
 			await elementUpdated(element);
 
-			const currentTimeClassExistsAfterTheChange = controls.querySelector('.current-time');
-			const totalTimeClassExistsAfterTheChange = controls.querySelector('.total-time');
+			const currentTimeClassExistsAfterTheChange =
+				controls.querySelector('.current-time');
+			const totalTimeClassExistsAfterTheChange =
+				controls.querySelector('.total-time');
 
 			expect(currentTimeClassExistsBeforeTheChange).toBeTruthy();
 			expect(totalTimeClassExistsBeforeTheChange).toBeTruthy();
@@ -73,7 +81,9 @@ describe('vwc-audio-player', () => {
 			element.src = src;
 			await elementUpdated(element);
 
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			expect(audio.src).toEqual(src);
 		});
 	});
@@ -81,13 +91,21 @@ describe('vwc-audio-player', () => {
 	describe('connotation', function () {
 		it('should set the connotation class on base', async function () {
 			const connotation = Connotation.CTA;
-			const sliderConnotationBefore = (getBaseElement(element).querySelector('.slider') as Slider).connotation;
-			const buttonConnotationBefore = (getBaseElement(element).querySelector('.pause') as Button).connotation;
+			const sliderConnotationBefore = (
+				getBaseElement(element).querySelector('.slider') as Slider
+			).connotation;
+			const buttonConnotationBefore = (
+				getBaseElement(element).querySelector('.pause') as Button
+			).connotation;
 
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const sliderConnotationAfter = (getBaseElement(element).querySelector('.slider') as Slider).connotation;
-			const buttonConnotationAfter = (getBaseElement(element).querySelector('.pause') as Button).connotation;
+			const sliderConnotationAfter = (
+				getBaseElement(element).querySelector('.slider') as Slider
+			).connotation;
+			const buttonConnotationAfter = (
+				getBaseElement(element).querySelector('.pause') as Button
+			).connotation;
 
 			expect(sliderConnotationBefore).toBeUndefined();
 			expect(buttonConnotationBefore).toBeUndefined();
@@ -100,17 +118,23 @@ describe('vwc-audio-player', () => {
 		it('should set disabled class on the base element', async function () {
 			element.disabled = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('disabled')).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains('disabled')
+			).toBeTruthy();
 		});
 	});
 
 	describe('paused', function () {
 		it('should pause audio on click', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			const pauseButton = getBaseElement(element).querySelector('.pause') as HTMLButtonElement;
+			const pauseButton = getBaseElement(element).querySelector(
+				'.pause'
+			) as HTMLButtonElement;
 			expect(element.paused).toEqual(true);
 			pauseButton.click();
 
@@ -119,11 +143,15 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should change button icon', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			const pauseButton = getBaseElement(element).querySelector('.pause') as Button;
+			const pauseButton = getBaseElement(element).querySelector(
+				'.pause'
+			) as Button;
 			expect(pauseButton.icon).toEqual('play-solid');
 
 			pauseButton.click();
@@ -136,7 +164,9 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should pause when rewind is called', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
@@ -152,7 +182,9 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should pause when finished', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			element.paused = false;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
@@ -170,7 +202,9 @@ describe('vwc-audio-player', () => {
 
 	describe('updateProgress', function () {
 		it('should call updateProgress when timeupdate', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			element._updateProgress = jest.fn();
 
 			const event = new Event('timeupdate');
@@ -182,7 +216,9 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should update current time when updateProgress is called', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
@@ -193,13 +229,17 @@ describe('vwc-audio-player', () => {
 			element._updateProgress();
 
 			await elementUpdated(element);
-			expect(getBaseElement(element).querySelector('.current-time')?.textContent).toEqual('3:20');
+			expect(
+				getBaseElement(element).querySelector('.current-time')?.textContent
+			).toEqual('3:20');
 		});
 	});
 
 	describe('updateTotalTime', function () {
 		it('should call updateTotalTime when loadedmetadata', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			element._updateTotalTime = jest.fn();
 
 			const event = new Event('loadedmetadata');
@@ -211,13 +251,17 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should update total-time when updateTotalTime is called', async function () {
-			const audio = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 
 			element._updateTotalTime();
-			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('1:00');
+			expect(
+				getBaseElement(element).querySelector('.total-time')?.textContent
+			).toEqual('1:00');
 			audioConstructor.mockRestore();
 		});
 	});

@@ -1,14 +1,15 @@
-import { AccordionExpandMode, Accordion as FastAccordion } from '@microsoft/fast-foundation';
+import {
+	AccordionExpandMode,
+	Accordion as FastAccordion,
+} from '@microsoft/fast-foundation';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 
 /**
- * Base class for accordion
- *
  * @public
+ * @component accordion
  * @slot - Default slot.
  */
 export class Accordion extends FastAccordion {
-
 	/**
 	 * Controls the expand mode of the Accordion, either allowing
 	 * single or multiple item expansion.

@@ -8,16 +8,20 @@ import styles from './option.scss?inline';
 /**
  * The listbox-option element.
  */
-export const listboxOptionDefinition = ListboxOption.compose<FoundationElementDefinition>({
-	baseName: 'option',
-	template: template as any,
-	styles
-});
+export const listboxOptionDefinition =
+	ListboxOption.compose<FoundationElementDefinition>({
+		baseName: 'option',
+		template: template as any,
+		styles,
+	});
 
 /**
  * @internal
  */
-export const listboxOptionRegistries = [listboxOptionDefinition(), ...iconRegistries];
+export const listboxOptionRegistries = [
+	listboxOptionDefinition(),
+	...iconRegistries,
+];
 
 /**
  * Registers the listbox-option elements with the design system.

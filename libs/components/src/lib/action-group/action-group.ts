@@ -1,21 +1,18 @@
 //import { rovingIndex } from 'roving-ux';      // npm es6/common modules
 import { FoundationElement } from '@microsoft/fast-foundation';
 
-
-
-import {attr} from '@microsoft/fast-element';
-import type {
-	Appearance, Shape,
-} from '../enums.js';
-
+import { attr } from '@microsoft/fast-element';
+import type { Appearance, Shape } from '../enums.js';
 
 /**
  * Types of button appearance.
  *
  * @public
  */
-export type ActionGroupAppearance = Extract<Appearance,
-Appearance.Fieldset | Appearance.Ghost>;
+export type ActionGroupAppearance = Extract<
+	Appearance,
+	Appearance.Fieldset | Appearance.Ghost
+>;
 
 /**
  * Types of button shape.
@@ -25,9 +22,8 @@ Appearance.Fieldset | Appearance.Ghost>;
 export type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
- * Base class for action-group
- *
  * @public
+ * @component action-group
  * @slot - Default slot.
  */
 export class ActionGroup extends FoundationElement {
@@ -58,10 +54,9 @@ export class ActionGroup extends FoundationElement {
 	 */
 	@attr({
 		mode: 'boolean',
-	}) tight = false;
+	})
+	tight = false;
 
 	@attr() override role: string | null = null;
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 }
-
-

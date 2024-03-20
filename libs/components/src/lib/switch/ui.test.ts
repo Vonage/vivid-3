@@ -1,5 +1,5 @@
-import {expect, test} from '@playwright/test';
-import type {Page} from '@playwright/test';
+import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -7,8 +7,7 @@ import {
 
 const components = ['switch', 'layout'];
 
-test('should show the component', async ({page}: { page: Page }) => {
-
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
   	<vwc-layout gutters="small"><div><vwc-switch id="focused"></vwc-switch></div></vwc-layout>
@@ -63,8 +62,7 @@ test('should show the component', async ({page}: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/switch.png'
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/switch.png'
+	);
 });

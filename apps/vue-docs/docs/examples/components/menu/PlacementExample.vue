@@ -1,11 +1,16 @@
 <template>
-  <div style="height: 150px">
-    <VButton ref="button" label="Toggle Menu" appearance="outlined" @click="open = !open" />
-    <VMenu :anchor="$refs.button?.$el" :open="open" placement="right-start">
-      <VMenuItem text="Menu item 1" />
-      <VMenuItem text="Menu item 2" />
-    </VMenu>
-  </div>
+	<div style="height: 150px">
+		<VButton
+			ref="button"
+			label="Toggle Menu"
+			appearance="outlined"
+			@click="open = !open"
+		/>
+		<VMenu :anchor="$refs.button?.$el" :open="open" placement="right-start">
+			<VMenuItem text="Menu item 1" />
+			<VMenuItem text="Menu item 2" />
+		</VMenu>
+	</div>
 </template>
 
 <script setup lang="ts">
