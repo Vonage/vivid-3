@@ -28,6 +28,7 @@ const getIndicatorIcon = (x: MenuItem) => {
 };
 
 const getClasses = ({
+	connotation,
 	disabled,
 	checked,
 	role,
@@ -39,6 +40,7 @@ const getClasses = ({
 }: MenuItem) =>
 	classNames(
 		'base',
+		[`connotation-${connotation}`, Boolean(connotation)],
 		['disabled', Boolean(disabled)],
 		['selected', role !== MenuItemRole.menuitem && Boolean(checked)],
 		[

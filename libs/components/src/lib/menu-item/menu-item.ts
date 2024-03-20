@@ -6,6 +6,7 @@ import {
 } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
+import { Connotation } from '../enums';
 
 export const MenuItemRole = {
 	...FastMenuItemRole,
@@ -16,6 +17,15 @@ export enum CheckAppearance {
 	Normal = 'normal',
 	TickOnly = 'tick-only',
 }
+/**
+ * Types of fab connotation.
+ *
+ * @public
+ */
+export type MenuItemConnotation = Extract<
+	Connotation,
+	Connotation.CTA | Connotation.Accent
+>;
 
 /**
  * @public
@@ -42,6 +52,14 @@ export class MenuItem extends FastMenuItem {
 	 * HTML Attribute: text
 	 */
 	@attr({ attribute: 'text-secondary' }) textSecondary?: string;
+	/**
+	 * The connotation the fab should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: MenuItemConnotation;
 	/**
 	 * Controls the placement of the menu item's checkmark or radio icon.
 	 * @public
