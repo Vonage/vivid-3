@@ -3,6 +3,7 @@ import '.';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import { Connotation } from '@vonage/vivid';
 import { Icon } from '../icon/icon';
 import { Menu } from '../menu/menu';
 import { CheckAppearance, MenuItem } from './menu-item';
@@ -37,6 +38,7 @@ describe('vwc-menu-item', () => {
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
 			expect(element.expanded).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -486,6 +488,24 @@ describe('vwc-menu-item', () => {
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
+
+	describe('menu-item connotation', function () {
+		it('should set the connotation class on base', async function () {
+			const connotation = Connotation.CTA;
+			const connotationClassExistsBeforeTheChange = getBaseElement(
+				element
+			)?.classList.contains(`connotation-${connotation}`);
+
+			element.connotation = connotation;
+			await elementUpdated(element);
+			const connotationClassExistsAfterChange = getBaseElement(
+				element
+			)?.classList.contains(`connotation-${connotation}`);
+
+			expect(connotationClassExistsBeforeTheChange).toEqual(false);
+			expect(connotationClassExistsAfterChange).toEqual(true);
 		});
 	});
 });

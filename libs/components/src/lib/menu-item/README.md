@@ -137,6 +137,19 @@ The checked value of the element (if role is set to `'menuitemcheckbox'`).
 </vwc-menu>
 ```
 
+### Connotation
+Use the `connotation` attribute to set the menu-item checked color.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview 200px
+<vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;">
+	<vwc-menu-item role="menuitemcheckbox" checked text="menu item" text-secondary="connotation accent"></vwc-menu-item>
+	<vwc-menu-item connotation="cta"  role="menuitemcheckbox" checked text="menu item" text-secondary="connotation cta"></vwc-menu-item>
+</vwc-menu>
+```
+
 ### Disabled
 
 The disabled state of the element
