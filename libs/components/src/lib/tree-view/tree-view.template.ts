@@ -11,8 +11,7 @@ const getClasses = (_: TreeView) => classNames('control');
  * @public
  */
 export const TreeViewTemplate = () => {
-	return html<TreeView>`
-	<template
+	return html<TreeView>` <template
 		role="tree"
 		${ref('treeView')}
 		@keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
@@ -20,7 +19,7 @@ export const TreeViewTemplate = () => {
 		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
 		@click="${(x, c) => x.handleClick(c.event as MouseEvent)}"
 		@selected-change="${(x, c) => x.handleSelectedChange(c.event)}"
-		>
+	>
 		<div class="${getClasses}">
 			<slot ${slotted('slottedTreeItems')}></slot>
 		</div>

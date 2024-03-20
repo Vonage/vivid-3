@@ -18,7 +18,11 @@ export const audioPlayerDefinition =
 /**
  * @internal
  */
-export const audioPlayerRegistries = [audioPlayerDefinition(), ...buttonRegistries, ...sliderRegistries];
+export const audioPlayerRegistries = [
+	audioPlayerDefinition(),
+	...buttonRegistries,
+	...sliderRegistries,
+];
 
 /**
  * Registers the audio-player element with the design system.

@@ -1,4 +1,9 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { SideDrawer } from './side-drawer';
 import '.';
@@ -10,8 +15,8 @@ describe('vwc-side-drawer', () => {
 	let element: SideDrawer;
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}>
-								</${COMPONENT_TAG}>`) as SideDrawer;
+		element = (await fixture(`<${COMPONENT_TAG}>
+								</${COMPONENT_TAG}>`)) as SideDrawer;
 		await elementUpdated(element);
 	});
 
@@ -50,8 +55,7 @@ describe('vwc-side-drawer', () => {
 			element.addEventListener('open', spy);
 			element.open = true;
 			await elementUpdated(element);
-			expect(spy)
-				.toHaveBeenCalled();
+			expect(spy).toHaveBeenCalled();
 		});
 
 		it("should not bubble 'open' event", async () => {
@@ -87,8 +91,7 @@ describe('vwc-side-drawer', () => {
 			element.open = false;
 			await elementUpdated(element);
 
-			expect(spy)
-				.toHaveBeenCalled();
+			expect(spy).toHaveBeenCalled();
 		});
 
 		it("should not bubble 'close' event", async () => {
@@ -97,7 +100,7 @@ describe('vwc-side-drawer', () => {
 			const spy = jest.fn();
 			element.parentElement?.addEventListener('close', spy);
 			element.open = false;
-			
+
 			await elementUpdated(element);
 			expect(spy).not.toBeCalled();
 		});
@@ -115,7 +118,9 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			const appContent = element.shadowRoot?.querySelector(
+				'.side-drawer-app-content'
+			);
 			expect(appContent?.hasAttribute('inert')).toBe(false);
 		});
 	});
@@ -136,7 +141,9 @@ describe('vwc-side-drawer', () => {
 			element.modal = true;
 			await elementUpdated(element);
 
-			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			const appContent = element.shadowRoot?.querySelector(
+				'.side-drawer-app-content'
+			);
 			expect(appContent?.hasAttribute('inert')).toBe(false);
 		});
 
@@ -145,7 +152,9 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const appContent = element.shadowRoot?.querySelector('.side-drawer-app-content');
+			const appContent = element.shadowRoot?.querySelector(
+				'.side-drawer-app-content'
+			);
 			expect(appContent?.hasAttribute('inert')).toBe(true);
 		});
 	});
@@ -155,7 +164,9 @@ describe('vwc-side-drawer', () => {
 			element.alternate = true;
 			await elementUpdated(element);
 
-			const controlWithPartAlternate = element.shadowRoot?.querySelector('[part~=vvd-theme-alternate]');
+			const controlWithPartAlternate = element.shadowRoot?.querySelector(
+				'[part~=vvd-theme-alternate]'
+			);
 			expect(controlWithPartAlternate).toBeInstanceOf(HTMLElement);
 		});
 	});
@@ -187,7 +198,7 @@ describe('vwc-side-drawer', () => {
 
 	describe('keydown', () => {
 		let control: HTMLElement;
-		
+
 		beforeEach(async () => {
 			element.modal = true;
 			element.open = true;
@@ -196,13 +207,13 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it('should close after keydown on Escape', async () => {
-			control.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Escape' }));
+			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
 
 		it('should leave open after keydown that is not Escape', async () => {
-			control.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect(element.open).toEqual(true);
 		});
 	});

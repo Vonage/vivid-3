@@ -6,19 +6,17 @@ import styles from './nav-item.scss?inline';
 import { NavItem } from './nav-item';
 import { NavItemTemplate as template } from './nav-item.template';
 
-
 /**
  * The nav-item element is a custom element that is used to display a single item in a nav.
  */
-export const navItemDefinition =
-	NavItem.compose<FoundationElementDefinition>({
-		baseName: 'nav-item',
-		template: template as any,
-		styles,
-		shadowOptions: {
-			delegatesFocus: true,
-		},
-	});
+export const navItemDefinition = NavItem.compose<FoundationElementDefinition>({
+	baseName: 'nav-item',
+	template: template as any,
+	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
+});
 
 /**
  * @internal

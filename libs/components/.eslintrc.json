@@ -10,27 +10,14 @@
 	"extends": [
 		"../../.eslintrc.json",
 		"@microsoft/eslint-config-fast-dna",
-		"plugin:compat/recommended"
+		"plugin:compat/recommended",
+		"prettier"
 	],
 	"rules": {
 		// lint
 		"@nrwl/nx/workspace/no-attribute-default-value": "error",
 		"@typescript-eslint/no-non-null-assertion": "off",
-		"indent": "off",
-		"@typescript-eslint/indent": ["error", "tab"],
-		"no-tabs": "off",
-		"no-mixed-spaces-and-tabs": "error",
-		"linebreak-style": ["warn", "unix"],
-		"semi": ["error", "always"],
-		"quotes": [
-			"error",
-			"single",
-			{
-				"avoidEscape": true
-			}
-		],
 		"no-var": "error",
-		"no-floating-decimal": "error",
 		"prefer-const": "error",
 		// functional
 		"compat/compat": "error",

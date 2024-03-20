@@ -6,7 +6,6 @@ import styles from './nav-disclosure.scss?inline';
 import { NavDisclosure } from './nav-disclosure';
 import { NavDisclosureTemplate as template } from './nav-disclosure.template';
 
-
 /**
  * The nav-disclosure element.
  */
@@ -20,7 +19,10 @@ export const navDisclosureDefinition =
 /**
  * @internal
  */
-export const navDisclosureRegistries = [navDisclosureDefinition(), ...iconRegistries];
+export const navDisclosureRegistries = [
+	navDisclosureDefinition(),
+	...iconRegistries,
+];
 
 /**
  * Registers the nav-disclosure elements with the design system.

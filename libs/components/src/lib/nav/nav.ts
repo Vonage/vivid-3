@@ -5,4 +5,4 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * @component nav
  * @slot - Default slot.
  */
-export class Nav extends FoundationElement { }
+export class Nav extends FoundationElement {}

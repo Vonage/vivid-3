@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['range-slider'];
@@ -64,7 +64,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 });
 
 test('selecting a range', async ({ page }: { page: Page }) => {
-	const template = '<vwc-range-slider style="width: 1000px;"></vwc-range-slider>';
+	const template =
+		'<vwc-range-slider style="width: 1000px;"></vwc-range-slider>';
 
 	await page.setViewportSize({ width: 1000, height: 600 });
 

@@ -1,16 +1,26 @@
-import { children, elements, html, ref, slotted, when } from '@microsoft/fast-element';
+import {
+	children,
+	elements,
+	html,
+	ref,
+	slotted,
+	when,
+} from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { TreeItem } from './tree-item';
 
-const getClasses = ({
-	disabled, selected }: TreeItem) => classNames(
-	'control',
-	['disabled', disabled],
-	['selected', Boolean(selected)],
-);
+const getClasses = ({ disabled, selected }: TreeItem) =>
+	classNames(
+		'control',
+		['disabled', disabled],
+		['selected', Boolean(selected)]
+	);
 
 export const expandCollapseButton = (context: ElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
@@ -18,11 +28,11 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 	return html<TreeItem>`
 	<div aria-hidden="true"
 		class="expandCollapseButton"
-		@click="${(x, c) =>
-		x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
+		@click="${(x, c) => x.handleExpandCollapseButtonClick(c.event as MouseEvent)}"
 			${ref('expandCollapseButton')}
 	>
-		<${iconTag} class="expandCollapseIcon" name="${x => x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
+		<${iconTag} class="expandCollapseIcon" name="${(x) =>
+		x.expanded ? 'chevron-down-line' : 'chevron-right-line'}"></${iconTag}>
 	</div>`;
 };
 
@@ -35,29 +45,34 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 export const TreeItemTemplate = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html<TreeItem>`
-	<template
-			role="treeitem"
-			slot="${x => (x.isNestedItem() ? 'item' : void 0)}"
-			tabindex="-1"
-			aria-expanded="${x =>
-		x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
-			aria-selected="${x => x.selected}"
-			aria-disabled="${x => x.disabled}"
-			@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
-			@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
-			${children({ property: 'childItems', filter: elements(context.tagFor(TreeItem)) })}
-			>
-			<div class="${getClasses}">
-				${when(x => x.childItems && x.childItems.length > 0, expandCollapseButton(context))}
-				${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
-				${x => x.text as string}
-			</div>
-			${when(x => x.childItems && x.childItems.length > 0 && x.expanded,
-		html<TreeItem>`
-				<div role="group" class="items">
-					<slot name="item" ${slotted('items')}></slot>
-				</div>`
-	)}
-		</template>`;
+	return html<TreeItem>` <template
+		role="treeitem"
+		slot="${(x) => (x.isNestedItem() ? 'item' : void 0)}"
+		tabindex="-1"
+		aria-expanded="${(x) =>
+			x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
+		aria-selected="${(x) => x.selected}"
+		aria-disabled="${(x) => x.disabled}"
+		@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
+		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
+		${children({
+			property: 'childItems',
+			filter: elements(context.tagFor(TreeItem)),
+		})}
+	>
+		<div class="${getClasses}">
+			${when(
+				(x) => x.childItems && x.childItems.length > 0,
+				expandCollapseButton(context)
+			)}
+			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+			${(x) => x.text as string}
+		</div>
+		${when(
+			(x) => x.childItems && x.childItems.length > 0 && x.expanded,
+			html<TreeItem>` <div role="group" class="items">
+				<slot name="item" ${slotted('items')}></slot>
+			</div>`
+		)}
+	</template>`;
 };

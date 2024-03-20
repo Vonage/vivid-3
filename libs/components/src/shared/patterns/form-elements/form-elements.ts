@@ -39,7 +39,7 @@ export class FormElementCharCount {
 		attribute: 'char-count',
 		mode: 'boolean',
 	})
-		charCount = false;
+	charCount = false;
 }
 
 export function formElements<
@@ -65,9 +65,10 @@ export function formElements<
 				if (this.proxy instanceof HTMLElement && this.elementInternals) {
 					const isValid = this.proxy.validity.valid;
 					const controlIsInvalidDueToMinOrMaxLength =
-						(this.control && this.control.validity)
-						&& !this.control.validity.valid
-						&& (this.control.validity.tooShort || this.control.validity.tooLong);
+						this.control &&
+						this.control.validity &&
+						!this.control.validity.valid &&
+						(this.control.validity.tooShort || this.control.validity.tooLong);
 
 					if (isValid && controlIsInvalidDueToMinOrMaxLength) {
 						this.setValidity(
@@ -201,13 +202,13 @@ export function getFeedbackTemplate(
 		</style>
 		<div class="message ${MessageTypeMap[messageType].className}-message">
 			${when(
-		() => iconType,
-		html<FormElement>`
+				() => iconType,
+				html<FormElement>`
 					  <${iconTag} class="message-icon" name="${iconType}"></${iconTag}>`
-	)}
+			)}
 			${feedbackMessage({
-		messageProperty: MessageTypeMap[messageType].messageProperty,
-	})}
+				messageProperty: MessageTypeMap[messageType].messageProperty,
+			})}
 		</div>`;
 }
 

@@ -1,4 +1,10 @@
-import { ADD_TEMPLATE_TO_FIXTURE, axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	ADD_TEMPLATE_TO_FIXTURE,
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { fireEvent } from '@testing-library/dom';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
@@ -14,50 +20,51 @@ describe('vwc-tooltip', () => {
 	let popup: Popup;
 	let anchor: Button;
 
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	global.ResizeObserver = jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	}));
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as Tooltip;
 		popup = getControlElement(element) as Popup;
-		anchor = await fixture('<vwc-button id="anchor"></vwc-button>', ADD_TEMPLATE_TO_FIXTURE) as Button;
+		anchor = (await fixture(
+			'<vwc-button id="anchor"></vwc-button>',
+			ADD_TEMPLATE_TO_FIXTURE
+		)) as Button;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tooltip', async () => {
 			expect(tooltipDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Tooltip);
-			expect(element.open)
-				.toBeFalsy();
-			expect(element.anchor)
-				.toBeUndefined();
-			expect(element.placement)
-				.toBeUndefined();
-			expect(element.text)
-				.toEqual(undefined);
+			expect(element.open).toBeFalsy();
+			expect(element.anchor).toBeUndefined();
+			expect(element.placement).toBeUndefined();
+			expect(element.text).toEqual(undefined);
 		});
 	});
 
 	describe('open', () => {
-		it.each([true, false])('should forward open=%s to popup', async (isOpen) => {
-			element.open = isOpen;
-			await elementUpdated(element);
+		it.each([true, false])(
+			'should forward open=%s to popup',
+			async (isOpen) => {
+				element.open = isOpen;
+				await elementUpdated(element);
 
-			expect(popup.hasAttribute('open')).toBe(isOpen);
-		});
+				expect(popup.hasAttribute('open')).toBe(isOpen);
+			}
+		);
 	});
 
 	describe('escape', () => {
 		it('should disappear when Escape is pressed', () => {
 			element.open = true;
 
-			fireEvent(document, new KeyboardEvent('keydown', {key: 'Escape'}));
+			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
 
 			expect(element.open).toEqual(false);
 		});
@@ -74,11 +81,11 @@ describe('vwc-tooltip', () => {
 		});
 
 		describe.each([
-			{eventName: 'mouseover', openState: false, expectation: true},
-			{eventName: 'mouseout', openState: true, expectation: false},
-			{eventName: 'focusin', openState: false, expectation: true},
-			{eventName: 'focusout', openState: true, expectation: false},
-		])( 'on $eventName of anchor', ({eventName, openState, expectation}) => {
+			{ eventName: 'mouseover', openState: false, expectation: true },
+			{ eventName: 'mouseout', openState: true, expectation: false },
+			{ eventName: 'focusin', openState: false, expectation: true },
+			{ eventName: 'focusout', openState: true, expectation: false },
+		])('on $eventName of anchor', ({ eventName, openState, expectation }) => {
 			beforeEach(() => {
 				element.open = openState;
 			});

@@ -18,7 +18,6 @@ async function toggleSelectable(element: Tag, selectable = true) {
 	await elementUpdated(element);
 }
 
-
 describe('vwc-tag', () => {
 	let element: Tag;
 
@@ -40,7 +39,9 @@ describe('vwc-tag', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should have an icon when icon is set without slotted icon', async () => {
@@ -48,13 +49,10 @@ describe('vwc-tag', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 	});
-
 
 	describe('label', () => {
 		it('set label property to node', async () => {
@@ -63,8 +61,7 @@ describe('vwc-tag', () => {
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector('.base');
-			expect(base?.textContent?.trim())
-				.toEqual(label);
+			expect(base?.textContent?.trim()).toEqual(label);
 		});
 	});
 
@@ -74,9 +71,10 @@ describe('vwc-tag', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const baseElementContainsConnotationClass = getBaseElement(element).classList.contains(`connotation-${connotation}`);
-			expect(baseElementContainsConnotationClass)
-				.toBeTruthy();
+			const baseElementContainsConnotationClass = getBaseElement(
+				element
+			).classList.contains(`connotation-${connotation}`);
+			expect(baseElementContainsConnotationClass).toBeTruthy();
 		});
 	});
 
@@ -86,9 +84,10 @@ describe('vwc-tag', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			const baseElementContainsShapeClass = getBaseElement(element).classList.contains(`shape-${shape}`);
-			expect(baseElementContainsShapeClass)
-				.toBeTruthy();
+			const baseElementContainsShapeClass = getBaseElement(
+				element
+			).classList.contains(`shape-${shape}`);
+			expect(baseElementContainsShapeClass).toBeTruthy();
 		});
 	});
 
@@ -98,30 +97,28 @@ describe('vwc-tag', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			const baseElementContainsAppearanceClass = getBaseElement(element).classList.contains(`appearance-${appearance}`);
-			expect(baseElementContainsAppearanceClass)
-				.toBeTruthy();
+			const baseElementContainsAppearanceClass = getBaseElement(
+				element
+			).classList.contains(`appearance-${appearance}`);
+			expect(baseElementContainsAppearanceClass).toBeTruthy();
 		});
 	});
 
 	describe('disabled', () => {
 		it('should set disabled class when disabled is true', async () => {
-
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
-			const baseElementContainsDisabledClass = getBaseElement(element).classList.contains('disabled');
-			expect(baseElementContainsDisabledClass)
-				.toBeTruthy();
+			const baseElementContainsDisabledClass =
+				getBaseElement(element).classList.contains('disabled');
+			expect(baseElementContainsDisabledClass).toBeTruthy();
 		});
 	});
 
 	describe('selectable', () => {
 		it('should init to false', async () => {
-			expect(element.selectable)
-				.toEqual(false);
-			expect(element.hasAttribute('selectable'))
-				.toEqual(false);
+			expect(element.selectable).toEqual(false);
+			expect(element.hasAttribute('selectable')).toEqual(false);
 		});
 
 		it('should toggle attribute on host', async () => {
@@ -131,30 +128,29 @@ describe('vwc-tag', () => {
 			await toggleSelectable(element, false);
 			const removeAttributeExistsWhenFalse = element.hasAttribute('selectable');
 
-			expect(removeAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(removeAttributeExistsWhenFalse)
-				.toEqual(false);
+			expect(removeAttributeExistsWhenTrue).toEqual(true);
+			expect(removeAttributeExistsWhenFalse).toEqual(false);
 		});
 
 		it('should set selectable property on attribute change', async () => {
 			element.toggleAttribute('selectable');
 			await elementUpdated(element);
-			expect(element.selectable)
-				.toEqual(true);
+			expect(element.selectable).toEqual(true);
 		});
 
 		it('should remove the selectable icon when selectable is false', async () => {
-			expect(element.shadowRoot?.querySelector('.selectable-icon'))
-				.toEqual(null);
+			expect(element.shadowRoot?.querySelector('.selectable-icon')).toEqual(
+				null
+			);
 		});
 
 		it('should remove the selectable icon on click', async () => {
 			await toggleSelectable(element, true);
 			element.click();
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.selectable-icon'))
-				.toEqual(null);
+			expect(element.shadowRoot?.querySelector('.selectable-icon')).toEqual(
+				null
+			);
 		});
 
 		it('should update selected to true when selectable', async () => {
@@ -173,7 +169,9 @@ describe('vwc-tag', () => {
 
 		it('should update selected to true when Enter is pressed', async () => {
 			await toggleSelectable(element, true);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
 			await elementUpdated(element);
 			expect(element.selected).toBeTruthy();
 		});
@@ -196,10 +194,8 @@ describe('vwc-tag', () => {
 
 	describe('removable', () => {
 		it('should init to false', async () => {
-			expect(element.removable)
-				.toEqual(false);
-			expect(element.hasAttribute('removable'))
-				.toEqual(false);
+			expect(element.removable).toEqual(false);
+			expect(element.hasAttribute('removable')).toEqual(false);
 		});
 
 		it('should toggle attribute on host', async () => {
@@ -209,42 +205,39 @@ describe('vwc-tag', () => {
 			await toggleRemovable(element, false);
 			const removeAttributeExistsWhenFalse = element.hasAttribute('removable');
 
-			expect(removeAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(removeAttributeExistsWhenFalse)
-				.toEqual(false);
+			expect(removeAttributeExistsWhenTrue).toEqual(true);
+			expect(removeAttributeExistsWhenFalse).toEqual(false);
 		});
 
 		it('should set removable property on attribute change', async () => {
 			element.toggleAttribute('removable');
 			await elementUpdated(element);
-			expect(element.removable)
-				.toEqual(true);
+			expect(element.removable).toEqual(true);
 		});
 
 		it('should add a remove button when true', async () => {
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toEqual(null);
+			expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(
+				null
+			);
 			await toggleRemovable(element, true);
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.dismiss-button')).toBeTruthy();
 		});
 
 		it('should remove tag on remove button click', async () => {
 			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			const dismissButton = element.shadowRoot?.querySelector(
+				'.dismiss-button'
+			) as HTMLElement;
 			dismissButton.click();
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 
 		it('should remove tag on remove', async () => {
 			await toggleRemovable(element, true);
 			element.remove();
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 	});
 
@@ -253,49 +246,53 @@ describe('vwc-tag', () => {
 			await toggleRemovable(element, true);
 			element.remove();
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 
 		it('should remove tag on Delete press and removable is true', async () => {
 			await toggleRemovable(element, true);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Delete' })
+			);
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 
 		it('should remove tag on Backspace press and removable is true', async () => {
 			await toggleRemovable(element, true);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Backspace' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Backspace' })
+			);
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 
 		it('should still show tag after Delete press when removable is false', async () => {
 			await toggleRemovable(element, false);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Delete' })
+			);
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(true);
+			expect(document.body.contains(element)).toEqual(true);
 		});
 
 		it('should c on keydown when disabled', async () => {
 			element.disabled = false;
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Delete' })
+			);
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(true);
+			expect(document.body.contains(element)).toEqual(true);
 		});
 
 		it('should still show tag when selectable is true', async () => {
 			await toggleSelectable(element, true);
 			await toggleRemovable(element, true);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Delete' })
+			);
 			await elementUpdated(element);
-			expect(document.body.contains(element))
-				.toEqual(true);
+			expect(document.body.contains(element)).toEqual(true);
 		});
 
 		it('should fire removed event', async () => {
@@ -303,16 +300,14 @@ describe('vwc-tag', () => {
 			await toggleRemovable(element, true);
 			element.addEventListener('removed', spy);
 			element.remove();
-			expect(spy)
-				.toHaveBeenCalled();
+			expect(spy).toHaveBeenCalled();
 		});
 
 		it('should still show tag', async () => {
 			const spy = jest.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
-			expect(spy).not
-				.toHaveBeenCalled();
+			expect(spy).not.toHaveBeenCalled();
 		});
 
 		it('should disable removed events after disconnected callback', async () => {
@@ -323,8 +318,7 @@ describe('vwc-tag', () => {
 			element.remove();
 			await elementUpdated(element);
 
-			expect(spy.mock.calls.length)
-				.toEqual(0);
+			expect(spy.mock.calls.length).toEqual(0);
 		});
 	});
 
@@ -339,7 +333,7 @@ describe('vwc-tag', () => {
 						${element.shadowRoot?.innerHTML}
 					</div>
 				`;
-				
+
 				expect(await axe(exposedHTMLString)).toHaveNoViolations();
 			});
 		});

@@ -49,7 +49,9 @@ describe('vwc-listbox', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains(`appearance-${appearance}`)).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -59,7 +61,9 @@ describe('vwc-listbox', () => {
 			(element as any).orientation = orientation;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains(`orientation-${orientation}`)
+			).toBeTruthy();
 		});
 
 		it('should not remove keydown event listener when orientation is horizontal', async function () {
@@ -87,7 +91,9 @@ describe('vwc-listbox', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeFalsy();
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
+			).toBeFalsy();
 		});
 
 		it('should set correct internal shape style if orientation is horizontal', async function () {
@@ -96,7 +102,9 @@ describe('vwc-listbox', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -126,7 +134,9 @@ describe('vwc-listbox', () => {
 			firstOption?.click();
 			await elementUpdated(element);
 
-			expect(element.getAttribute('aria-activedescendant')).toEqual(firstOption.id);
+			expect(element.getAttribute('aria-activedescendant')).toEqual(
+				firstOption.id
+			);
 		});
 
 		it('should set the `aria-activedescendant` attribute with option when listbox is multiple and focused', async function () {
@@ -143,7 +153,7 @@ describe('vwc-listbox', () => {
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
-			element.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			await elementUpdated(element);
 
 			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
@@ -175,7 +185,9 @@ describe('vwc-listbox', () => {
 		it('should change selection when changed', async () => {
 			element.selectedIndex = 1;
 			await elementUpdated(element);
-			expect(element.selectedOptions).toEqual([element.querySelector('option:nth-child(2)')]);
+			expect(element.selectedOptions).toEqual([
+				element.querySelector('option:nth-child(2)'),
+			]);
 		});
 	});
 
@@ -191,7 +203,9 @@ describe('vwc-listbox', () => {
 
 		it('should recieve array of options', async () => {
 			await elementUpdated(element);
-			expect(element.options[1]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.options[1]).toEqual(
+				element.querySelector('option:nth-child(2)')
+			);
 		});
 	});
 
@@ -207,7 +221,9 @@ describe('vwc-listbox', () => {
 
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
-			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.selectedOptions[0]).toEqual(
+				element.querySelector('option:nth-child(2)')
+			);
 		});
 	});
 
@@ -218,10 +234,14 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 
 			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-activedescendant')).not.toEqual('option1');
+			expect(element.getAttribute('aria-activedescendant')).not.toEqual(
+				'option1'
+			);
 		});
 
 		it('should focus on the next element when ArrowRight is pressed', async () => {
@@ -229,12 +249,16 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 
 			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-activedescendant')).toEqual('option1');
 
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
@@ -245,8 +269,12 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 
 			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-activedescendant')).toEqual('option2');
@@ -264,4 +292,3 @@ describe('vwc-listbox', () => {
 		});
 	});
 });
-

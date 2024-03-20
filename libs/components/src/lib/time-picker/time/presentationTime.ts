@@ -6,10 +6,16 @@ import { formatTimePart, hoursAs12hClock, parseTimeStr } from './time';
  */
 type PresentationTime = string;
 
-export const formatPresentationTime = (timeStr: TimeStr, includeSeconds: boolean, use12HourClock: boolean): PresentationTime => {
+export const formatPresentationTime = (
+	timeStr: TimeStr,
+	includeSeconds: boolean,
+	use12HourClock: boolean
+): PresentationTime => {
 	const time = parseTimeStr(timeStr);
 
-	const hoursStr = formatTimePart(use12HourClock ? hoursAs12hClock(time.hours) : time.hours);
+	const hoursStr = formatTimePart(
+		use12HourClock ? hoursAs12hClock(time.hours) : time.hours
+	);
 
 	let result = `${hoursStr}:${time.minuteStr}`;
 	if (includeSeconds) {
@@ -24,18 +30,21 @@ export const formatPresentationTime = (timeStr: TimeStr, includeSeconds: boolean
 
 const isDigit = (char: string): boolean => char >= '0' && char <= '9';
 
-export const parsePresentationTime = (input: string, use12HourClock: boolean): TimeStr => {
+export const parsePresentationTime = (
+	input: string,
+	use12HourClock: boolean
+): TimeStr => {
 	const cleanedInput = input.toLowerCase();
 
 	const numerals: number[] = [];
 	let meridiem: 'AM' | 'PM' | undefined;
 	for (let i = 0; i < cleanedInput.length; i++) {
 		const char = cleanedInput[i];
-		if ((char === 'a') && cleanedInput[i + 1] === 'm') {
+		if (char === 'a' && cleanedInput[i + 1] === 'm') {
 			i++;
 			meridiem = 'AM';
 		}
-		if ((char === 'p') && cleanedInput[i + 1] === 'm') {
+		if (char === 'p' && cleanedInput[i + 1] === 'm') {
 			i++;
 			meridiem = 'PM';
 		}

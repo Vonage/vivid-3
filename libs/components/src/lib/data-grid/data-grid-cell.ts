@@ -27,7 +27,8 @@ export class DataGridCell extends FoundationDataGridCell {
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
-	@attr({ attribute: 'aria-selected', mode: 'fromView' }) override ariaSelected: string | null = null;
+	@attr({ attribute: 'aria-selected', mode: 'fromView' })
+	override ariaSelected: string | null = null;
 
 	/**
 	 * Indicates the sort status.
@@ -38,7 +39,10 @@ export class DataGridCell extends FoundationDataGridCell {
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
 
 	ariaSelectedChanged(_: string | null, selectedState: string | null) {
-		this.shadowRoot!.querySelector('.base')?.classList.toggle('selected', selectedState === 'true');
+		this.shadowRoot!.querySelector('.base')?.classList.toggle(
+			'selected',
+			selectedState === 'true'
+		);
 	}
 
 	override connectedCallback() {
