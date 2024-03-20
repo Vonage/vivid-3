@@ -19,7 +19,9 @@ describe('vwc-option', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-option', async () => {
-			expect(listboxOptionDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(listboxOptionDefinition()).toBeInstanceOf(
+				FoundationElementRegistry
+			);
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.text).toEqual('');
 			expect(element.value).toEqual('');
@@ -33,7 +35,9 @@ describe('vwc-option', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should have an icon when icon is set without slotted icon', async () => {
@@ -41,10 +45,8 @@ describe('vwc-option', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 	});
 
@@ -79,7 +81,6 @@ describe('vwc-option', () => {
 	});
 
 	describe('label', function () {
-
 		it('should reflect the label to an attribute', async function () {
 			const label = 'label';
 			element.label = label;
@@ -87,14 +88,14 @@ describe('vwc-option', () => {
 			expect(element.getAttribute('label')).toEqual(label);
 		});
 
-		it('should return the options\'s text when label attribute and value are not provided', async function () {
+		it("should return the options's text when label attribute and value are not provided", async function () {
 			const text = 'text';
 			element.text = text;
 
 			expect(element.label).toEqual(text);
 		});
 
-		it('should return the options\'s text when label attribute is not provided and value is', async function () {
+		it("should return the options's text when label attribute is not provided and value is", async function () {
 			const value = 'value';
 			const text = 'text';
 			element.value = value;
@@ -103,7 +104,7 @@ describe('vwc-option', () => {
 			expect(element.label).toEqual(text);
 		});
 
-		it('should return the options\'s label instead of the text', async function () {
+		it("should return the options's label instead of the text", async function () {
 			const label = 'label';
 			element.text = 'text';
 			element.value = 'value';

@@ -23,7 +23,12 @@ export const alertDefinition = Alert.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const alertRegistries = [alertDefinition(), ...iconRegistries, ...buttonRegistries, ...elevationRegistries];
+export const alertRegistries = [
+	alertDefinition(),
+	...iconRegistries,
+	...buttonRegistries,
+	...elevationRegistries,
+];
 
 /**
  * Registers the alert elements with the design system.
@@ -31,4 +36,3 @@ export const alertRegistries = [alertDefinition(), ...iconRegistries, ...buttonR
  * @param prefix - the prefix to use for the component name
  */
 export const registerAlert = registerFactory(alertRegistries);
-

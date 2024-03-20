@@ -9,10 +9,9 @@ type ReflectedAsProperty<T> = {
 type ReflectedAsAttribute = {
 	type: 'attribute' | 'boolean-attribute';
 	destination: string;
-}
+};
 
 type ReflectedProperty<T> = ReflectedAsProperty<T> | ReflectedAsAttribute;
-
 
 /**
  * Reflects observable properties of the source object to the target, either as attributes or as properties.
@@ -30,22 +29,26 @@ export class Reflector<S, T extends HTMLElement> {
 	attribute(propertyName: keyof S, attributeName: string) {
 		this.#addReflectedProperty(propertyName, {
 			type: 'attribute',
-			destination: attributeName
+			destination: attributeName,
 		});
 	}
 
 	booleanAttribute(propertyName: keyof S, attributeName: string) {
 		this.#addReflectedProperty(propertyName, {
 			type: 'boolean-attribute',
-			destination: attributeName
+			destination: attributeName,
 		});
 	}
 
-	property(propertyName: keyof S, targetProperty: keyof T, skipIfEqual = false) {
+	property(
+		propertyName: keyof S,
+		targetProperty: keyof T,
+		skipIfEqual = false
+	) {
 		this.#addReflectedProperty(propertyName, {
 			type: 'property',
 			destination: targetProperty,
-			skipIfEqual
+			skipIfEqual,
 		});
 	}
 
@@ -71,18 +74,25 @@ export class Reflector<S, T extends HTMLElement> {
 
 			switch (reflectedProperty.type) {
 				case 'boolean-attribute':
-					DOM.setBooleanAttribute(this.#target, reflectedProperty.destination, Boolean(value));
+					DOM.setBooleanAttribute(
+						this.#target,
+						reflectedProperty.destination,
+						Boolean(value)
+					);
 					break;
 				case 'attribute':
 					DOM.setAttribute(this.#target, reflectedProperty.destination, value);
 					break;
 				case 'property':
-					if (reflectedProperty.skipIfEqual && (this.#target as any)[reflectedProperty.destination] === value) {
+					if (
+						reflectedProperty.skipIfEqual &&
+						(this.#target as any)[reflectedProperty.destination] === value
+					) {
 						return;
 					}
 					(this.#target as any)[reflectedProperty.destination] = value as any;
 					break;
 			}
-		}
+		},
 	};
 }

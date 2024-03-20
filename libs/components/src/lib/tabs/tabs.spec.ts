@@ -7,12 +7,17 @@ import '.';
 const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
-
 	beforeEach(function () {
 		window.HTMLElement.prototype.getBoundingClientRect = function () {
 			return {
-				x: 146, y: 50, width: 440, height: 240,
-				top: 50, right: 586, bottom: 290, left: 146
+				x: 146,
+				y: 50,
+				width: 440,
+				height: 240,
+				top: 50,
+				right: 586,
+				bottom: 290,
+				left: 146,
 			} as DOMRect;
 		};
 		window.HTMLElement.prototype.scrollIntoView = jest.fn();
@@ -20,7 +25,9 @@ describe('vwc-tabs', () => {
 	});
 
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
-		return (await fixture(`<${COMPONENT_TAG} ${activeid ? `activeid="${activeid}"` : ''}>
+		return (await fixture(`<${COMPONENT_TAG} ${
+			activeid ? `activeid="${activeid}"` : ''
+		}>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
 		<vwc-tab label="Entrees" id="entrees"></vwc-tab>
 		<vwc-tab label="Desserts" id="desserts"></vwc-tab>
@@ -70,10 +77,14 @@ describe('vwc-tabs', () => {
 	describe('orientation', () => {
 		it('should set orientation property', async () => {
 			const orientation = 'vertical';
-			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeFalsy();
+			expect(
+				getBaseElement(element).classList.contains(`orientation-${orientation}`)
+			).toBeFalsy();
 			element.orientation = orientation as any;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains(`orientation-${orientation}`)).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains(`orientation-${orientation}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -101,7 +112,9 @@ describe('vwc-tabs', () => {
 			const scrollWidth = 1320;
 			const scrollHeight = 660;
 			beforeEach(function () {
-				const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+				const tablistWrapper = element.shadowRoot?.querySelector(
+					'.tablist-wrapper'
+				) as HTMLElement;
 				jest
 					.spyOn(tablistWrapper, 'scrollWidth', 'get')
 					.mockImplementation(() => scrollWidth);
@@ -114,27 +127,43 @@ describe('vwc-tabs', () => {
 			it('should scrollTo with 0 if index is 0', async function () {
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
+				expect(scrollToSpy).toHaveBeenCalledWith({
+					top: 0,
+					left: 0,
+					behavior: 'smooth',
+				});
 			});
 
 			it('should scrollTo height 0 if index is 0 and orientation vertical', async function () {
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
+				expect(scrollToSpy).toHaveBeenCalledWith({
+					top: 0,
+					left: 0,
+					behavior: 'smooth',
+				});
 			});
 
 			it('should scroll to tablist wrapper width when index is last', async function () {
 				element.activeid = element.tabs[2].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: scrollWidth, behavior: 'smooth' });
+				expect(scrollToSpy).toHaveBeenCalledWith({
+					top: 0,
+					left: scrollWidth,
+					behavior: 'smooth',
+				});
 			});
 
 			it('should scroll to tablist wrapper height when index is last and orientation vertical', async function () {
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[2].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({ top: scrollHeight, left: 0, behavior: 'smooth' });
+				expect(scrollToSpy).toHaveBeenCalledWith({
+					top: scrollHeight,
+					left: 0,
+					behavior: 'smooth',
+				});
 			});
 
 			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
@@ -142,7 +171,9 @@ describe('vwc-tabs', () => {
 				const offsetWidth = 200;
 				const scrollWidth = 1000;
 				function setTabListWrapper(scrollWidth: number) {
-					const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+					const tablistWrapper = element.shadowRoot?.querySelector(
+						'.tablist-wrapper'
+					) as HTMLElement;
 					jest
 						.spyOn(tablistWrapper, 'offsetWidth', 'get')
 						.mockImplementation(() => scrollWidth);
@@ -163,8 +194,11 @@ describe('vwc-tabs', () => {
 
 				element.activeid = midTab.id;
 				await elementUpdated(element);
-				expect(scrollToSpy)
-					.toHaveBeenCalledWith({ top: 0, left: offsetLeft - scrollWidth / 2 + offsetWidth / 2, behavior: 'smooth' });
+				expect(scrollToSpy).toHaveBeenCalledWith({
+					top: 0,
+					left: offsetLeft - scrollWidth / 2 + offsetWidth / 2,
+					behavior: 'smooth',
+				});
 			});
 
 			it('should scroll to sum of tabs plus half active tab when index is between 0 and last', async function () {
@@ -172,7 +206,9 @@ describe('vwc-tabs', () => {
 				const offsetHeight = 200;
 				const scrollHeight = 1000;
 				function setTabListWrapper(scrollHeight: number) {
-					const tablistWrapper = element.shadowRoot?.querySelector('.tablist-wrapper') as HTMLElement;
+					const tablistWrapper = element.shadowRoot?.querySelector(
+						'.tablist-wrapper'
+					) as HTMLElement;
 					jest
 						.spyOn(tablistWrapper, 'offsetHeight', 'get')
 						.mockImplementation(() => scrollHeight);
@@ -193,8 +229,11 @@ describe('vwc-tabs', () => {
 				element.orientation = 'vertical';
 				element.activeid = midTab.id;
 				await elementUpdated(element);
-				expect(scrollToSpy)
-					.toHaveBeenCalledWith({ top: offsetTop - scrollHeight / 2 + offsetHeight / 2, left: 0, behavior: 'smooth' });
+				expect(scrollToSpy).toHaveBeenCalledWith({
+					top: offsetTop - scrollHeight / 2 + offsetHeight / 2,
+					left: 0,
+					behavior: 'smooth',
+				});
 			});
 		});
 	});
@@ -202,21 +241,31 @@ describe('vwc-tabs', () => {
 	describe('gutters', () => {
 		it('should set gutters property', async () => {
 			const gutters = TabsSize.Small;
-			expect(getBaseElement(element).classList.toString()).not.toContain(`gutters-${gutters}`);
+			expect(getBaseElement(element).classList.toString()).not.toContain(
+				`gutters-${gutters}`
+			);
 			element.gutters = gutters;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.toString()).toContain(`gutters-${gutters}`);
+			expect(getBaseElement(element).classList.toString()).toContain(
+				`gutters-${gutters}`
+			);
 		});
 	});
 
 	describe('connotation', () => {
-		function checkConnotationOnActiveTab(connotation: Connotation = Connotation.CTA) {
-			expect(element.activetab.getAttribute('connotation')).toEqual(connotation);
+		function checkConnotationOnActiveTab(
+			connotation: Connotation = Connotation.CTA
+		) {
+			expect(element.activetab.getAttribute('connotation')).toEqual(
+				connotation
+			);
 		}
 
 		function checkConnotationDoesntExistOnNonActiveTabs() {
-			const nonActiveTabs = Array.from(element.querySelectorAll('vwc-tab:not([aria-selected="true"])'));
-			nonActiveTabs.forEach(tab => {
+			const nonActiveTabs = Array.from(
+				element.querySelectorAll('vwc-tab:not([aria-selected="true"])')
+			);
+			nonActiveTabs.forEach((tab) => {
 				expect(tab.hasAttribute('connotation')).toBeFalsy();
 			});
 		}
@@ -268,7 +317,6 @@ describe('vwc-tabs', () => {
 			element.scrollablePanel = true;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('scroll')).toBeTruthy();
-
 		});
 	});
 

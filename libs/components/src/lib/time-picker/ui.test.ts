@@ -65,9 +65,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	// Prevent opening the time pickers from closing each other
 	await page.evaluate(() => {
-		document.querySelectorAll('vwc-time-picker').forEach((timePicker) =>
-			timePicker.addEventListener('click', (e) => e.stopPropagation())
-		);
+		document
+			.querySelectorAll('vwc-time-picker')
+			.forEach((timePicker) =>
+				timePicker.addEventListener('click', (e) => e.stopPropagation())
+			);
 	});
 
 	await page.locator('#time-picker #clock-button').click();
@@ -120,13 +122,17 @@ test.describe('constraints validation', async () => {
 		});
 	});
 
-	test('should have a validation error when the time violates required constraint', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the time violates required constraint', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time" required></vwc-time-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.getByRole('button', { name: 'Submit' }).click();
@@ -134,13 +140,17 @@ test.describe('constraints validation', async () => {
 		await expect(page.locator('vwc-time-picker .error-message')).toBeVisible();
 	});
 
-	test('should have a validation error when the time violates min constraint', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the time violates min constraint', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time" min="08:00:00" value="06:00:00"></vwc-time-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.getByRole('button', { name: 'Submit' }).click();
@@ -148,13 +158,17 @@ test.describe('constraints validation', async () => {
 		await expect(page.locator('vwc-time-picker .error-message')).toBeVisible();
 	});
 
-	test('should have a validation error when the time violates max constraint', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the time violates max constraint', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time" max="18:00:00" value="19:00:00"></vwc-time-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.getByRole('button', { name: 'Submit' }).click();
@@ -162,13 +176,17 @@ test.describe('constraints validation', async () => {
 		await expect(page.locator('vwc-time-picker .error-message')).toBeVisible();
 	});
 
-	test('should have a validation error when the user entered an invalid time manually', async ({ page }: { page: Page }) => {
+	test('should have a validation error when the user entered an invalid time manually', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
 		await loadTemplate({
 			page,
 			template: `<form>
 				<vwc-time-picker name="time"></vwc-time-picker>
 				<button type="submit">Submit</button>
-			</form>`
+			</form>`,
 		});
 
 		await page.locator('vwc-text-field input').fill('invalid time');

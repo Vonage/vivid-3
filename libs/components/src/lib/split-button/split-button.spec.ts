@@ -17,7 +17,9 @@ describe('vwc-split-button', () => {
 	let element: SplitButton;
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as SplitButton;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as SplitButton;
 		await elementUpdated(element);
 	});
 
@@ -48,11 +50,11 @@ describe('vwc-split-button', () => {
 		});
 
 		it('should have an icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 	});
-
-
 
 	describe('split indicator', () => {
 		it('adds a split indicator to the button', async () => {
@@ -81,7 +83,11 @@ describe('vwc-split-button', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			expect(getControlElement(element).classList.contains(`connotation-${connotation}`)).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeTruthy();
 		});
 	});
 
@@ -91,7 +97,9 @@ describe('vwc-split-button', () => {
 			(element as any).shape = shape;
 			await elementUpdated(element);
 
-			expect(getControlElement(element).classList.contains(`shape-${shape}`)).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains(`shape-${shape}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -101,7 +109,11 @@ describe('vwc-split-button', () => {
 			(element as any).appearance = appearance;
 			await elementUpdated(element);
 
-			expect(getControlElement(element).classList.contains(`appearance-${appearance}`)).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains(
+					`appearance-${appearance}`
+				)
+			).toBeTruthy();
 		});
 	});
 
@@ -111,13 +123,16 @@ describe('vwc-split-button', () => {
 			(element as any).size = size;
 			await elementUpdated(element);
 
-			expect(getControlElement(element).classList.contains(`size-${size}`)).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains(`size-${size}`)
+			).toBeTruthy();
 		});
 	});
 
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style on control', async () => {
-			const getControlIconOnly = () => element.shadowRoot?.querySelector('.control.icon-only');
+			const getControlIconOnly = () =>
+				element.shadowRoot?.querySelector('.control.icon-only');
 			const controlIconOnlyBefore = getControlIconOnly();
 
 			element.icon = 'home';
@@ -129,18 +144,19 @@ describe('vwc-split-button', () => {
 		});
 
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
-			const iconOnlyClassExistsWithoutSlot = getControlElement(element).classList.contains('icon-only');
+			const iconOnlyClassExistsWithoutSlot =
+				getControlElement(element).classList.contains('icon-only');
 			const slottedElement = document.createElement('span');
 			slottedElement.slot = 'icon';
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
 			expect(iconOnlyClassExistsWithoutSlot).toEqual(false);
-			expect(getControlElement(element).classList.contains('icon-only')).toEqual(true);
+			expect(
+				getControlElement(element).classList.contains('icon-only')
+			).toEqual(true);
 		});
-
 	});
-
 
 	describe('disabled', function () {
 		it('should disable control and indicator buttons when disabled is true', async () => {
@@ -154,7 +170,9 @@ describe('vwc-split-button', () => {
 
 	describe('default slot', () => {
 		it('should should have a default slot', () => {
-			expect(element.shadowRoot?.querySelector('slot:not([name])')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot:not([name])')
+			).toBeTruthy();
 		});
 	});
 
@@ -165,7 +183,9 @@ describe('vwc-split-button', () => {
 			element.action.click();
 
 			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ bubbles: false }));
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ bubbles: false })
+			);
 		});
 	});
 
@@ -176,7 +196,9 @@ describe('vwc-split-button', () => {
 			element.indicator.click();
 
 			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy).toHaveBeenCalledWith(expect.objectContaining({ bubbles: false }));
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ bubbles: false })
+			);
 		});
 	});
 
@@ -193,20 +215,26 @@ describe('vwc-split-button', () => {
 				const labelId = 'label';
 				element.setAttribute('aria-label', labelId);
 				await elementUpdated(element);
-				expect(getControlElement(element).getAttribute('aria-label')).toEqual(labelId);
+				expect(getControlElement(element).getAttribute('aria-label')).toEqual(
+					labelId
+				);
 			});
 		});
 
 		describe('indicator', function () {
 			it('should have a localised "aria-label"', async function () {
-				expect(element.indicator.getAttribute('aria-label')).toBe('Show more actions');
+				expect(element.indicator.getAttribute('aria-label')).toBe(
+					'Show more actions'
+				);
 			});
 
 			it('should allow overriding the "aria-label" with indicatorAriaLabel', async function () {
 				element.indicatorAriaLabel = 'Custom aria label';
 				await elementUpdated(element);
 
-				expect(element.indicator.getAttribute('aria-label')).toBe('Custom aria label');
+				expect(element.indicator.getAttribute('aria-label')).toBe(
+					'Custom aria label'
+				);
 			});
 		});
 
@@ -215,7 +243,9 @@ describe('vwc-split-button', () => {
 				element.setAttribute('aria-expanded', 'true');
 				await elementUpdated(element);
 
-				const indicator = element.shadowRoot?.querySelector('.indicator') as HTMLElement;
+				const indicator = element.shadowRoot?.querySelector(
+					'.indicator'
+				) as HTMLElement;
 				expect(indicator.getAttribute('aria-expanded')).toEqual('true');
 			});
 		});

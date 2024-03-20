@@ -42,7 +42,8 @@ interface ParsedTimeStr {
 
 const parseTimePart = (partStr: string): number => Number.parseInt(partStr, 10);
 
-export const formatTimePart = (part: number): string => part.toString().padStart(2, '0');
+export const formatTimePart = (part: number): string =>
+	part.toString().padStart(2, '0');
 
 export const parseTimeStr = (timeStr: TimeStr): ParsedTimeStr => {
 	const [hoursStr, minutesStr, secondsStr] = timeStr.split(':');

@@ -1,4 +1,9 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 
@@ -49,7 +54,9 @@ describe('vwc-tree-item', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(Boolean(treeItem1.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(treeItem1.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should add an icon to the tree item', async () => {
@@ -57,7 +64,9 @@ describe('vwc-tree-item', () => {
 			treeItem2.icon = iconName;
 			await elementUpdated(treeItem2);
 
-			const icon = getControlElement(treeItem2).querySelector(ICON_SELECTOR) as Icon;
+			const icon = getControlElement(treeItem2).querySelector(
+				ICON_SELECTOR
+			) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual(iconName);
 		});
@@ -69,8 +78,7 @@ describe('vwc-tree-item', () => {
 			treeItem1.text = text;
 			await elementUpdated(treeItem1);
 
-			expect(getControlElement(treeItem1)?.textContent?.trim())
-				.toEqual(text);
+			expect(getControlElement(treeItem1)?.textContent?.trim()).toEqual(text);
 		});
 	});
 
@@ -94,13 +102,17 @@ describe('vwc-tree-item', () => {
 
 	it('should expand/collapse using right/left arrows', async () => {
 		expect(treeItem1.expanded).toBeFalsy();
-		
-		treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+
+		treeItem1.dispatchEvent(
+			new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true })
+		);
 		await elementUpdated(treeItem1);
 
 		expect(treeItem1.expanded).toBeTruthy();
 
-		treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+		treeItem1.dispatchEvent(
+			new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true })
+		);
 		await elementUpdated(treeItem1);
 
 		expect(treeItem1.expanded).toBeFalsy();
@@ -108,7 +120,9 @@ describe('vwc-tree-item', () => {
 
 	describe('tree-item click', () => {
 		it('should expand when click', async () => {
-			const expandButton = getControlElement(treeItem1).querySelector(ICON_SELECTOR) as Icon;
+			const expandButton = getControlElement(treeItem1).querySelector(
+				ICON_SELECTOR
+			) as Icon;
 			expandButton.click();
 
 			await elementUpdated(treeItem1);
@@ -122,7 +136,9 @@ describe('vwc-tree-item', () => {
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 			expect(treeItem2.contains(document.activeElement)).toBeFalsy();
 
-			treeItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			treeItem1.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown' })
+			);
 			treeItem2.focus();
 			await elementUpdated(treeItem2);
 
@@ -141,9 +157,13 @@ describe('vwc-tree-item', () => {
 			await elementUpdated(treeItem2);
 
 			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML).join('');
-			const exposedHtmlString =  element.shadowRoot?.innerHTML.replace('<slot></slot>', children) as string;
-			
+				.map(({ shadowRoot }) => shadowRoot?.innerHTML)
+				.join('');
+			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
+				'<slot></slot>',
+				children
+			) as string;
+
 			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});
 	});

@@ -8,7 +8,9 @@
  */
 export function getValidDateString(date: Date): string {
 	const twoDigit = (num: number) => `0${num}`.slice(-2);
-	return `${date.getFullYear()}-${twoDigit(date.getMonth() + 1)}-${twoDigit(date.getDate())}`;
+	return `${date.getFullYear()}-${twoDigit(date.getMonth() + 1)}-${twoDigit(
+		date.getDate()
+	)}`;
 }
 
 const weekdaysMap = new Map([
@@ -16,7 +18,10 @@ const weekdaysMap = new Map([
 	['monday', 1],
 ]);
 
-export function getFirstDateOfTheWeek(date: Date = new Date(), startDay: 'sunday' | 'monday'): Date {
+export function getFirstDateOfTheWeek(
+	date: Date = new Date(),
+	startDay: 'sunday' | 'monday'
+): Date {
 	date = new Date(date);
 
 	let num = weekdaysMap.get(startDay);

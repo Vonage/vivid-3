@@ -2,7 +2,7 @@ import {
 	axe,
 	elementUpdated,
 	fixture,
-	setupDelegatesFocusPolyfill
+	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextField } from '../text-field/text-field';
@@ -69,9 +69,13 @@ describe('vwc-date-range-picker', () => {
 	}
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as DateRangePicker;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as DateRangePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
-		calendarButton = element.shadowRoot!.querySelector('#calendar-button') as Button;
+		calendarButton = element.shadowRoot!.querySelector(
+			'#calendar-button'
+		) as Button;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
 		titleAction = element.shadowRoot!.querySelector(
 			'.title-action'
@@ -81,7 +85,9 @@ describe('vwc-date-range-picker', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-range-date-picker', async () => {
-			expect(dateRangePickerDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(dateRangePickerDefinition()).toBeInstanceOf(
+				FoundationElementRegistry
+			);
 			expect(element).toBeInstanceOf(DateRangePicker);
 		});
 	});
@@ -373,7 +379,9 @@ describe('vwc-date-range-picker', () => {
 			element.end = '2021-01-02';
 			await elementUpdated(element);
 
-			expect(calendarButton.getAttribute('aria-label')).toBe('Change dates, 01/01/2021 – 01/02/2021');
+			expect(calendarButton.getAttribute('aria-label')).toBe(
+				'Change dates, 01/01/2021 – 01/02/2021'
+			);
 		});
 	});
 
@@ -396,9 +404,15 @@ describe('vwc-date-range-picker', () => {
 
 			expect(getDateButton('2023-08-10').classList).toContain('start');
 			expect(getDateButton('2023-08-20').classList).toContain('end');
-			expect(getAllDateButtons()
-				.filter((button) => button.dataset.date! >= '2023-08-10' && button.dataset.date! <= '2023-08-20')
-				.every((button) => button.classList.contains('range'))).toBe(true);
+			expect(
+				getAllDateButtons()
+					.filter(
+						(button) =>
+							button.dataset.date! >= '2023-08-10' &&
+							button.dataset.date! <= '2023-08-20'
+					)
+					.every((button) => button.classList.contains('range'))
+			).toBe(true);
 		});
 
 		it('should preview the date range when hovering over a date', async () => {
@@ -406,14 +420,22 @@ describe('vwc-date-range-picker', () => {
 			await elementUpdated(element);
 
 			const hoverDateButton = getDateButton('2023-08-20');
-			hoverDateButton.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+			hoverDateButton.dispatchEvent(
+				new MouseEvent('mouseenter', { bubbles: true })
+			);
 			await elementUpdated(element);
 
 			expect(getDateButton('2023-08-10').classList).toContain('start');
 			expect(getDateButton('2023-08-20').classList).toContain('end');
-			expect(getAllDateButtons()
-				.filter((button) => button.dataset.date! >= '2023-08-10' && button.dataset.date! <= '2023-08-20')
-				.every((button) => button.classList.contains('range'))).toBe(true);
+			expect(
+				getAllDateButtons()
+					.filter(
+						(button) =>
+							button.dataset.date! >= '2023-08-10' &&
+							button.dataset.date! <= '2023-08-20'
+					)
+					.every((button) => button.classList.contains('range'))
+			).toBe(true);
 		});
 
 		it('should stop previewing the date range when mouse leaves a date', async () => {
@@ -421,13 +443,16 @@ describe('vwc-date-range-picker', () => {
 			await elementUpdated(element);
 
 			const hoverDateButton = getDateButton('2023-08-20');
-			hoverDateButton.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-			hoverDateButton.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+			hoverDateButton.dispatchEvent(
+				new MouseEvent('mouseenter', { bubbles: true })
+			);
+			hoverDateButton.dispatchEvent(
+				new MouseEvent('mouseleave', { bubbles: true })
+			);
 			await elementUpdated(element);
 
 			expect(getDateButton('2023-08-20').classList).not.toContain('end');
 		});
-
 
 		it('should allow selecting a start and end date by clicking on them and closes the popup', async () => {
 			getDateButton('2023-08-01').click();
@@ -510,7 +535,9 @@ describe('vwc-date-range-picker', () => {
 			element.start = '2023-08-01';
 			element.end = '2023-08-01';
 
-			expect(element.validationMessage).toBe('The start date must be 08/10/2023 or later.');
+			expect(element.validationMessage).toBe(
+				'The start date must be 08/10/2023 or later.'
+			);
 		});
 
 		it('should show a validation error when the end date is after the max date', async () => {
@@ -518,13 +545,15 @@ describe('vwc-date-range-picker', () => {
 			element.start = '2023-08-10';
 			element.end = '2023-08-11';
 
-			expect(element.validationMessage).toBe('The end date must be 08/10/2023 or earlier.');
+			expect(element.validationMessage).toBe(
+				'The end date must be 08/10/2023 or earlier.'
+			);
 		});
 	});
 
 	describe('form reset', () => {
 		it('should reset the date range to initial values when the form is reset', async () => {
-			const ORIGINAL_START_DATE= '2023-08-01';
+			const ORIGINAL_START_DATE = '2023-08-01';
 			const ORIGINAL_END_DATE = '2023-08-10';
 			const form = fixture(`
 				<form>
@@ -547,31 +576,38 @@ describe('vwc-date-range-picker', () => {
 	describe('form value', () => {
 		// Cannot properly end-to-end test form value because jsdom does not support ElementInternals
 		// Instead we mock the setFormValue method and test that it is called with the correct value
-		const getFormValue = () => jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
+		const getFormValue = () =>
+			jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
 
 		beforeEach(() => {
 			element.setFormValue = jest.fn();
 		});
 
-		it('should set the form value when name, start and end date are set',  () => {
+		it('should set the form value when name, start and end date are set', () => {
 			element.name = 'name';
 			element.start = '2023-08-01';
 			element.end = '2023-08-02';
 
-			expect(getFormValue().getAll('name')).toEqual(['2023-08-01', '2023-08-02']);
+			expect(getFormValue().getAll('name')).toEqual([
+				'2023-08-01',
+				'2023-08-02',
+			]);
 		});
 
 		it.each([
 			['name', '', ''],
 			['', '2023-08-01', ''],
 			['', '', '2023-08-02'],
-		])('should set form value to null when not all values are set (name=%s, start=%s, end=%s)',  (name, start, end) => {
-			element.name = name;
-			element.start = start;
-			element.end = end;
+		])(
+			'should set form value to null when not all values are set (name=%s, start=%s, end=%s)',
+			(name, start, end) => {
+				element.name = name;
+				element.start = start;
+				element.end = end;
 
-			expect(getFormValue()).toBeNull();
-		});
+				expect(getFormValue()).toBeNull();
+			}
+		);
 	});
 
 	describe('a11y', () => {

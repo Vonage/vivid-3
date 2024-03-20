@@ -10,7 +10,7 @@ export const DataGridCellSortStates = {
 	none: 'none',
 	ascending: 'ascending',
 	descending: 'descending',
-	other: 'other'
+	other: 'other',
 } as const;
 
 export type DataGridCellSortStates = ValuesOf<typeof DataGridCellSortStates>;
@@ -102,4 +102,3 @@ export const DataGridCellRole = {
  * @public
  */
 export type DataGridCellRole = ValuesOf<typeof DataGridCellRole>;
-

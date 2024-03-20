@@ -74,7 +74,9 @@ describe('vwc-menu-item', () => {
 			element.role = MenuItemRole.menuitemcheckbox;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('trailing')).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains('trailing')
+			).toBeTruthy();
 		});
 
 		it('should display icon if role=checkbox and icon is set', async function () {
@@ -84,7 +86,9 @@ describe('vwc-menu-item', () => {
 			element.checked = true;
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(`[name="${iconName}"]`) as Icon;
+			const icon = element.shadowRoot?.querySelector(
+				`[name="${iconName}"]`
+			) as Icon;
 			expect(icon).toBeInstanceOf(Icon);
 		});
 
@@ -93,14 +97,17 @@ describe('vwc-menu-item', () => {
 			['checkbox-unchecked-2-line', false, MenuItemRole.menuitemcheckbox],
 			['radio-checked-2-line', true, MenuItemRole.menuitemradio],
 			['radio-unchecked-2-line', false, MenuItemRole.menuitemradio],
-		])('should set a %s icon when checked=%s and role is %s', async (expectedIcon, checked, role) => {
-			element.role = role;
-			element.checked = checked;
-			await elementUpdated(element);
+		])(
+			'should set a %s icon when checked=%s and role is %s',
+			async (expectedIcon, checked, role) => {
+				element.role = role;
+				element.checked = checked;
+				await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon.name).toEqual(expectedIcon);
-		});
+				const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+				expect(icon.name).toEqual(expectedIcon);
+			}
+		);
 
 		it('should enable default of click event if role is presentation', async function () {
 			const spy = jest.fn();
@@ -121,7 +128,6 @@ describe('vwc-menu-item', () => {
 			const event = spy.mock.calls[0][0];
 			expect(event?.defaultPrevented).toEqual(true);
 		});
-
 	});
 
 	describe('check-trailing', () => {
@@ -130,7 +136,9 @@ describe('vwc-menu-item', () => {
 			element.role = MenuItemRole.menuitemcheckbox;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('trailing')).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains('trailing')
+			).toBeTruthy();
 		});
 	});
 
@@ -140,7 +148,8 @@ describe('vwc-menu-item', () => {
 			['', false, MenuItemRole.menuitemcheckbox],
 			['check-line', true, MenuItemRole.menuitemradio],
 			['', false, MenuItemRole.menuitemradio],
-		])('should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only',
+		])(
+			'should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only',
 			async function (expectedIcon, checked, role) {
 				element.checkedAppearance = CheckAppearance.TickOnly;
 				element.checked = checked;
@@ -149,7 +158,8 @@ describe('vwc-menu-item', () => {
 
 				const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
 				expect(icon.name).toBe(expectedIcon);
-			});
+			}
+		);
 	});
 
 	describe('text', () => {
@@ -164,9 +174,9 @@ describe('vwc-menu-item', () => {
 			element.text = text;
 			await elementUpdated(element);
 
-			const primaryTextSpan = element.shadowRoot?.querySelector('.text-primary');
-			expect(primaryTextSpan?.textContent?.trim())
-				.toEqual(text);
+			const primaryTextSpan =
+				element.shadowRoot?.querySelector('.text-primary');
+			expect(primaryTextSpan?.textContent?.trim()).toEqual(text);
 		});
 	});
 
@@ -182,9 +192,9 @@ describe('vwc-menu-item', () => {
 			element.textSecondary = secondaryText;
 			await elementUpdated(element);
 
-			const secondaryTextSpan = element.shadowRoot?.querySelector('.text-secondary');
-			expect(secondaryTextSpan?.textContent?.trim())
-				.toEqual(secondaryText);
+			const secondaryTextSpan =
+				element.shadowRoot?.querySelector('.text-secondary');
+			expect(secondaryTextSpan?.textContent?.trim()).toEqual(secondaryText);
 		});
 
 		it('should add two-lines text class to base when both texts exist', async () => {
@@ -206,7 +216,9 @@ describe('vwc-menu-item', () => {
 		it('should set disabled class on the base element', async function () {
 			element.disabled = true;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('disabled')).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains('disabled')
+			).toBeTruthy();
 		});
 	});
 
@@ -342,22 +354,27 @@ describe('vwc-menu-item', () => {
 
 	describe('slot', () => {
 		it('should render meta slot', async function () {
-			const metaSlotElement = element.shadowRoot?.querySelector('.base slot[name="meta"]');
+			const metaSlotElement = element.shadowRoot?.querySelector(
+				'.base slot[name="meta"]'
+			);
 			await elementUpdated(element);
 
 			expect(metaSlotElement).toBeTruthy();
 		});
 
 		it('should render trailing-meta slot', async function () {
-			const trailingMetaSlotElement = element.shadowRoot?.querySelector('.base slot[name="trailing-meta"]');
+			const trailingMetaSlotElement = element.shadowRoot?.querySelector(
+				'.base slot[name="trailing-meta"]'
+			);
 			await elementUpdated(element);
 
 			expect(trailingMetaSlotElement).toBeTruthy();
 		});
 
-
 		it('should render submenu slot', async function () {
-			const submenuSlotElement = element.shadowRoot?.querySelector('slot[name="submenu"]');
+			const submenuSlotElement = element.shadowRoot?.querySelector(
+				'slot[name="submenu"]'
+			);
 			await elementUpdated(element);
 
 			expect(submenuSlotElement).toBeTruthy();
@@ -369,8 +386,9 @@ describe('vwc-menu-item', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('has-meta')).toBeTruthy();
-
+			expect(
+				getBaseElement(element).classList.contains('has-meta')
+			).toBeTruthy();
 		});
 	});
 
@@ -395,33 +413,42 @@ describe('vwc-menu-item', () => {
 			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
 			menuitem.focus();
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			menuitem.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(true);
 
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+			menuitem.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
 		});
 
-		it.each(['Enter', ' '])('should expand first menuitem when "%s" is pressed', async (key) => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+		it.each(['Enter', ' '])(
+			'should expand first menuitem when "%s" is pressed',
+			async (key) => {
+				const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
-			menuitem.focus();
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key }));
+				menuitem.focus();
+				menuitem.dispatchEvent(new KeyboardEvent('keydown', { key }));
 
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(true);
-		});
+				await elementUpdated(menuElement);
+				expect(menuitem.expanded).toEqual(true);
+			}
+		);
 
 		it('should keep closed on keydown if not expanded', async () => {
 			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
 
 			menuitem.expanded = false;
 			menuitem.focus();
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+			menuitem.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
@@ -437,7 +464,9 @@ describe('vwc-menu-item', () => {
 
 			menuitem.expanded = false;
 			menuitem.focus();
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			menuitem.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown' })
+			);
 
 			await elementUpdated(menuElement);
 			expect(menuitem.expanded).toEqual(false);
@@ -451,10 +480,10 @@ describe('vwc-menu-item', () => {
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
-			const container = (await fixture(
+			const container = await fixture(
 				`<div role="menu"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			));
-			element = (container.querySelector(COMPONENT_TAG) as MenuItem);
+			);
+			element = container.querySelector(COMPONENT_TAG) as MenuItem;
 			element.text = 'Menu item';
 			element.role = MenuItemRole.menuitem;
 			await elementUpdated(element);

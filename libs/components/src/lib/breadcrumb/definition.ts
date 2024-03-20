@@ -8,11 +8,12 @@ import { Breadcrumb } from './breadcrumb';
  *
  * @internal
  */
-export const breadcrumbDefinition = Breadcrumb.compose<FoundationElementDefinition>({
-	baseName: 'breadcrumb',
-	template,
-	styles,
-});
+export const breadcrumbDefinition =
+	Breadcrumb.compose<FoundationElementDefinition>({
+		baseName: 'breadcrumb',
+		template,
+		styles,
+	});
 
 /**
  * @internal

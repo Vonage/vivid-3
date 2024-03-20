@@ -14,7 +14,8 @@ async function toggleRemovable(element: Banner, removable = true) {
 }
 
 function getBannerMessageAttribute(element: Banner, attribute: string) {
-	return element.shadowRoot?.querySelector('.banner-message')
+	return element.shadowRoot
+		?.querySelector('.banner-message')
 		?.getAttribute(attribute);
 }
 
@@ -39,8 +40,7 @@ describe('vwc-banner', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-banner', async () => {
-			expect(element)
-				.toBeInstanceOf(Banner);
+			expect(element).toBeInstanceOf(Banner);
 		});
 	});
 
@@ -56,7 +56,8 @@ describe('vwc-banner', () => {
 		}
 
 		function getText() {
-			const text = element.shadowRoot?.querySelector('.banner-message')?.textContent;
+			const text =
+				element.shadowRoot?.querySelector('.banner-message')?.textContent;
 			return text?.trim();
 		}
 
@@ -64,10 +65,8 @@ describe('vwc-banner', () => {
 			const initTextPropEmpty = element.text;
 			const initTextAttrEmpty = getText();
 
-			expect(initTextPropEmpty)
-				.toEqual(undefined);
-			expect(initTextAttrEmpty)
-				.toEqual('');
+			expect(initTextPropEmpty).toEqual(undefined);
+			expect(initTextAttrEmpty).toEqual('');
 		});
 
 		it('should reflect the message', async function () {
@@ -80,39 +79,31 @@ describe('vwc-banner', () => {
 			await setTextAttribute(messageText);
 			const propertyTextWithAttribute = element.text;
 
-			expect(DOMTextWithProperty)
-				.toEqual(messageText);
-			expect(propertyTextWithAttribute)
-				.toEqual(messageText);
+			expect(DOMTextWithProperty).toEqual(messageText);
+			expect(propertyTextWithAttribute).toEqual(messageText);
 		});
 	});
 
 	describe('remove', function () {
-
 		it('should fire removing event', async function () {
 			const spy = jest.fn();
 			element.addEventListener('removing', spy);
 			element.remove();
-			expect(spy)
-				.toHaveBeenCalled();
+			expect(spy).toHaveBeenCalled();
 		});
 
 		it('should fire removed after animation end', async function () {
-
 			const spy = jest.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
 
 			dispatchAnimationEndEvent();
 
-			expect(spy)
-				.toHaveBeenCalled();
-			expect(spy.mock.calls.length)
-				.toEqual(1);
+			expect(spy).toHaveBeenCalled();
+			expect(spy.mock.calls.length).toEqual(1);
 		});
 
 		it('should disable removed and removing events after disconnected callback', async function () {
-
 			const spy = jest.fn();
 			element.addEventListener('removed', spy);
 			element.addEventListener('removing', spy);
@@ -121,32 +112,32 @@ describe('vwc-banner', () => {
 			element.remove();
 			dispatchAnimationEndEvent();
 
-			expect(spy.mock.calls.length)
-				.toEqual(0);
+			expect(spy.mock.calls.length).toEqual(0);
 		});
 
 		it('should remove the banner after dispatch', function () {
 			element.remove();
 			dispatchAnimationEndEvent();
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 	});
 
 	describe('connotation', function () {
-		const possibleConnotations = [Connotation.Information,
+		const possibleConnotations = [
+			Connotation.Information,
 			Connotation.Announcement,
 			Connotation.Success,
 			Connotation.Warning,
-			Connotation.Alert
+			Connotation.Alert,
 		];
 
 		it('should leave connotation class empty if not set', async function () {
-			possibleConnotations.forEach(connotation => {
-				expect(element.shadowRoot?.querySelector('.control')
-					?.classList
-					.contains(connotation))
-					.toEqual(false);
+			possibleConnotations.forEach((connotation) => {
+				expect(
+					element.shadowRoot
+						?.querySelector('.control')
+						?.classList.contains(connotation)
+				).toEqual(false);
 			});
 		});
 
@@ -154,31 +145,31 @@ describe('vwc-banner', () => {
 			const connotation = possibleConnotations[2];
 			(element.connotation as Connotation) = connotation;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.control')
-				?.classList
-				.contains(`connotation-${connotation}`))
-				.toEqual(true);
+			expect(
+				element.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains(`connotation-${connotation}`)
+			).toEqual(true);
 		});
 	});
 
 	describe('icon', function () {
-		const getIcon = () => element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
+		const getIcon = () =>
+			element.shadowRoot?.querySelector('slot[name="icon"] > vwc-icon') as Icon;
 
 		it('should have an icon slot', async () => {
 			expect(getIcon()).toBeTruthy();
 		});
 
 		it('should set the icon according to connotation information by default', function () {
-			expect(getIcon().name)
-				.toEqual('info-solid');
+			expect(getIcon().name).toEqual('info-solid');
 		});
 
 		it('should set the icon according to "icon" attribute', async function () {
 			element.setAttribute('icon', 'home');
 			await elementUpdated(element);
 
-			expect(getIcon().name)
-				.toEqual('home');
+			expect(getIcon().name).toEqual('home');
 		});
 
 		it('should set the icon according to set connotation', async function () {
@@ -187,7 +178,7 @@ describe('vwc-banner', () => {
 				[Connotation.Announcement, 'megaphone-solid'],
 				[Connotation.Success, 'check-circle-solid'],
 				[Connotation.Warning, 'warning-solid'],
-				[Connotation.Alert, 'error-solid']
+				[Connotation.Alert, 'error-solid'],
 			]);
 
 			for (const [connotation, iconName] of connotationIconMap) {
@@ -202,10 +193,8 @@ describe('vwc-banner', () => {
 
 	describe('removable', function () {
 		it('should init to false', function () {
-			expect(element.removable)
-				.toEqual(false);
-			expect(element.hasAttribute('removable'))
-				.toEqual(false);
+			expect(element.removable).toEqual(false);
+			expect(element.hasAttribute('removable')).toEqual(false);
 		});
 
 		it('should toggle attribute on host', async function () {
@@ -215,44 +204,50 @@ describe('vwc-banner', () => {
 			await toggleRemovable(element, false);
 			const removeAttributeExistsWhenFalse = element.hasAttribute('removable');
 
-			expect(removeAttributeExistsWhenTrue)
-				.toEqual(true);
-			expect(removeAttributeExistsWhenFalse)
-				.toEqual(false);
+			expect(removeAttributeExistsWhenTrue).toEqual(true);
+			expect(removeAttributeExistsWhenFalse).toEqual(false);
 		});
 
 		it('should set removable property on attribute change', async function () {
 			element.toggleAttribute('removable');
 			await elementUpdated(element);
-			expect(element.removable)
-				.toEqual(true);
+			expect(element.removable).toEqual(true);
 		});
 
 		it('should remove the remove button when removable is false', async function () {
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toEqual(null);
+			expect(element.shadowRoot?.querySelector('.dismiss-button')).toEqual(
+				null
+			);
 		});
 
 		it('should add a remove button when true', async function () {
 			await toggleRemovable(element, true);
-			expect(element.shadowRoot?.querySelector('.dismiss-button'))
-				.toBeInstanceOf(Button);
+			expect(
+				element.shadowRoot?.querySelector('.dismiss-button')
+			).toBeInstanceOf(Button);
 		});
 
 		it('should remove banner on remove button click', async function () {
 			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			const dismissButton = element.shadowRoot?.querySelector(
+				'.dismiss-button'
+			) as HTMLElement;
 			dismissButton.click();
 			dispatchAnimationEndEvent();
-			expect(document.body.contains(element))
-				.toEqual(false);
+			expect(document.body.contains(element)).toEqual(false);
 		});
 
 		it('should add class "removing" to banner on remove button click', async function () {
 			await toggleRemovable(element, true);
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button') as HTMLElement;
+			const dismissButton = element.shadowRoot?.querySelector(
+				'.dismiss-button'
+			) as HTMLElement;
 			dismissButton.click();
-			expect(element.shadowRoot?.querySelector('.control')?.classList.contains('removing')).toEqual(true);
+			expect(
+				element.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains('removing')
+			).toEqual(true);
 		});
 	});
 
@@ -271,7 +266,6 @@ describe('vwc-banner', () => {
 			const spy = jest.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
-
 		});
 
 		it('should remove keydown listener after disconnection', async function () {
@@ -303,16 +297,14 @@ describe('vwc-banner', () => {
 		describe('role', function () {
 			it('should be set to "status" on init', function () {
 				const role = getBannerMessageAttribute(element, 'role');
-				expect(role)
-					.toEqual('status');
+				expect(role).toEqual('status');
 			});
 
 			it('should change role to role text', async function () {
 				element.role = 'alert';
 				await elementUpdated(element);
 				const role = getBannerMessageAttribute(element, 'role');
-				expect(role)
-					.toEqual('alert');
+				expect(role).toEqual('alert');
 				expect(await axe(element)).toHaveNoViolations();
 			});
 
@@ -320,8 +312,7 @@ describe('vwc-banner', () => {
 				element.setAttribute('role', 'alert');
 				await elementUpdated(element);
 				const role = getBannerMessageAttribute(element, 'role');
-				expect(role)
-					.toEqual('alert');
+				expect(role).toEqual('alert');
 				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
@@ -329,24 +320,21 @@ describe('vwc-banner', () => {
 		describe('aria live', function () {
 			it('should be set to "live" on init', function () {
 				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-				expect(ariaLive)
-					.toEqual('polite');
+				expect(ariaLive).toEqual('polite');
 			});
 
 			it('should change aria-live to ariaLive text', async function () {
 				element.ariaLive = 'assertive';
 				await elementUpdated(element);
 				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-				expect(ariaLive)
-					.toEqual('assertive');
+				expect(ariaLive).toEqual('assertive');
 			});
 
 			it('should change reflect aria-live inside the message', async function () {
 				element.setAttribute('aria-live', 'assertive');
 				await elementUpdated(element);
 				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-				expect(ariaLive)
-					.toEqual('assertive');
+				expect(ariaLive).toEqual('assertive');
 			});
 		});
 	});

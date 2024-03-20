@@ -1,24 +1,24 @@
-import {html, when} from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import type { Note } from './note';
 
-
-const getClasses = ({ connotation }: Note) => classNames(
-	'base',
-	`connotation-${connotation}`
-);
+const getClasses = ({ connotation }: Note) =>
+	classNames('base', `connotation-${connotation}`);
 
 /**
  *
  */
 function getHeaderTemplate() {
-	return html<Note>`<div class="headline">${x => x.headline}</div>`;
+	return html<Note>`<div class="headline">${(x) => x.headline}</div>`;
 }
 
 /**
@@ -34,12 +34,12 @@ export const NoteTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-    <div class="${getClasses}">
-			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
+		<div class="${getClasses}">
+			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<div class="text">
-	        ${when(x => x.headline, getHeaderTemplate())}
-			    <slot class="message"></slot>
+				${when((x) => x.headline, getHeaderTemplate())}
+				<slot class="message"></slot>
 			</div>
-    </div>
-`;
+		</div>
+	`;
 };

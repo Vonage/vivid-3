@@ -1,6 +1,12 @@
-import { axe, elementUpdated, fixture, getBaseElement, setAttribute } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	setAttribute,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import type {Icon} from '../icon/icon';
+import type { Icon } from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 import { breadcrumbItemDefinition } from './definition';
@@ -8,7 +14,6 @@ import { breadcrumbItemDefinition } from './definition';
 const COMPONENT_TAG = 'vwc-breadcrumb-item';
 
 describe('vwc-breadcrumb-item', () => {
-
 	let element: BreadcrumbItem;
 
 	beforeEach(async () => {
@@ -18,13 +23,15 @@ describe('vwc-breadcrumb-item', () => {
 	});
 
 	it('should be initialized as a vwc-breadcrumb-item', async () => {
-		expect(breadcrumbItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
+		expect(breadcrumbItemDefinition()).toBeInstanceOf(
+			FoundationElementRegistry
+		);
 		expect(element).toBeInstanceOf(BreadcrumbItem);
 	});
 
 	it('should display only icon when no prop is set', function () {
 		const controlElement = getBaseElement(element);
-		const iconElementExists = Boolean(controlElement.querySelector(('vwc-icon')));
+		const iconElementExists = Boolean(controlElement.querySelector('vwc-icon'));
 		expect(iconElementExists).toEqual(true);
 	});
 
@@ -38,16 +45,18 @@ describe('vwc-breadcrumb-item', () => {
 
 	it('should set icon when "separator" is true', async function () {
 		const controlElement = getBaseElement(element);
-		const iconElementExistsWhenSeparatorTrue = Boolean(controlElement.querySelector(('vwc-icon')));
+		const iconElementExistsWhenSeparatorTrue = Boolean(
+			controlElement.querySelector('vwc-icon')
+		);
 
 		element.separator = false;
 		await elementUpdated(element);
-		const iconElementExistsWithSeparatorFalse = Boolean(controlElement.querySelector(('vwc-icon')));
+		const iconElementExistsWithSeparatorFalse = Boolean(
+			controlElement.querySelector('vwc-icon')
+		);
 
-		expect(iconElementExistsWithSeparatorFalse)
-			.toEqual(false);
-		expect(iconElementExistsWhenSeparatorTrue)
-			.toEqual(true);
+		expect(iconElementExistsWithSeparatorFalse).toEqual(false);
+		expect(iconElementExistsWhenSeparatorTrue).toEqual(true);
 	});
 
 	it('should set as an anchor and icon when set with "href"', async function () {
@@ -58,8 +67,8 @@ describe('vwc-breadcrumb-item', () => {
 		await elementUpdated(element);
 
 		const controlElement = getBaseElement(element);
-		const iconElement = controlElement.querySelector(('vwc-icon')) as Icon;
-		const anchorElement = controlElement.querySelector(('a'));
+		const iconElement = controlElement.querySelector('vwc-icon') as Icon;
+		const anchorElement = controlElement.querySelector('a');
 
 		expect(anchorElement?.textContent?.trim()).toEqual(breadcrumbText);
 		expect((anchorElement as any)?.href).toEqual(element.href);
@@ -67,7 +76,6 @@ describe('vwc-breadcrumb-item', () => {
 	});
 
 	describe('bindings', () => {
-
 		beforeEach(async function () {
 			element.href = '#';
 			element.text = 'stam';
@@ -83,16 +91,25 @@ describe('vwc-breadcrumb-item', () => {
 		}
 
 		it('should set aria labels', async function () {
-
 			const ARIA_PROPS = [
-				'atomic', 'busy', 'current',
-				'details', 'disabled', 'expanded',
-				'haspopup', 'hidden', 'invalid', 'keyshortcuts',
-				'label', 'live', 'relevant', 'roledescription'
+				'atomic',
+				'busy',
+				'current',
+				'details',
+				'disabled',
+				'expanded',
+				'haspopup',
+				'hidden',
+				'invalid',
+				'keyshortcuts',
+				'label',
+				'live',
+				'relevant',
+				'roledescription',
 			];
 
 			function setAriaLabelsOnElementObject() {
-				ARIA_PROPS.forEach(ariaProp => {
+				ARIA_PROPS.forEach((ariaProp) => {
 					const ariaPropOnObject = `aria${capitalizeFirstLetter(ariaProp)}`;
 					(element as any)[ariaPropOnObject] = ariaProp;
 				});
@@ -103,10 +120,12 @@ describe('vwc-breadcrumb-item', () => {
 			setAriaLabelsOnElementObject();
 			await elementUpdated(element);
 
-			ARIA_PROPS.forEach(ariaProp => {
+			ARIA_PROPS.forEach((ariaProp) => {
 				const ariaPropOnElement = `aria-${ariaProp}`;
 
-				expect(anchorElement?.getAttribute(ariaPropOnElement)).toEqual(ariaProp);
+				expect(anchorElement?.getAttribute(ariaPropOnElement)).toEqual(
+					ariaProp
+				);
 			});
 		});
 
