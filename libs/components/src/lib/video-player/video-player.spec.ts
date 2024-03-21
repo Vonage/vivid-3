@@ -370,13 +370,13 @@ describe('vwc-video-player', () => {
 
 	function setVideoPauseState(pauseState = true) {
 		jest
-			.spyOn(element.player, 'paused')
+			.spyOn(element._player, 'paused')
 			.mockImplementationOnce(() => pauseState);
 	}
 
 	describe('events', () => {
 		function endVideo(videoPlayer: VideoPlayer) {
-			videoPlayer.player.trigger('ended');
+			videoPlayer._player.trigger('ended');
 		}
 		beforeEach(async () => {
 			element = (await fixture(
@@ -385,20 +385,20 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 			jest
-				.spyOn(element.player, 'play')
+				.spyOn(element._player, 'play')
 				.mockImplementation(function (this: any) {
 					this.trigger('play');
 				});
 			jest
-				.spyOn(element.player, 'pause')
+				.spyOn(element._player, 'pause')
 				.mockImplementation(function (this: any) {
 					return this.handleTechPause_();
 				});
 		});
 
 		afterEach(() => {
-			element.player.play.mockRestore();
-			element.player.pause.mockRestore();
+			element._player.play.mockRestore();
+			element._player.pause.mockRestore();
 		});
 
 		it('should emit the play event when the play button is pressed', async () => {
