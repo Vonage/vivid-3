@@ -1,5 +1,7 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/ja.json';
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const jaJP: Locale = {
 	datePicker: {
 		months: {
@@ -107,6 +109,7 @@ const jaJP: Locale = {
 	splitButton: {
 		showMoreActionsLabel: 'その他の操作を表示',
 	},
+	videoPlayer: videoPlayerLocale,
 	rangeSlider: {
 		startThumbLabel: '最小',
 		endThumbLabel: '最大',

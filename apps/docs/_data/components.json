@@ -268,5 +268,10 @@
 	{
 		"title": "Audio Player",
 		"markdown": "./libs/components/src/lib/audio-player/README.md"
+	},
+	{
+		"title": "Video Player",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/video-player/README.md"
 	}
 ]
