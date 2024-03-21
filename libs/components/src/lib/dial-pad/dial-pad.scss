@@ -17,7 +17,7 @@ $gap: 16px;
 	gap: $gap;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(4, 1fr);
-	inline-size: $inline-size;
+	inline-size: 100%;
 }
 
 .phone-field {
