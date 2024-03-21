@@ -10,6 +10,7 @@ import { keyEnter } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import type { DialPad } from './dial-pad';
+import { Icon } from '../icon/icon';
 
 const getClasses = (_: DialPad) => classNames('base');
 
@@ -48,73 +49,73 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
         </${textFieldTag}>`;
 }
 
-function renderDigits(buttonTag: string) {
+function renderDigits(buttonTag: string, iconTag: string) {
 	return html<DialPad>`
-        <${buttonTag} value='1' icon='one-solid' stacked label="&nbsp;" size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} value='1' stacked label="&nbsp;" size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitOneAriaLabel || x.locale.dialPad.digitOneLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='2' icon='two-solid' stacked label='ABC' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='one-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='2' stacked label='ABC' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitTwoAriaLabel || x.locale.dialPad.digitTwoLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='3' icon='three-solid' stacked label='DEF' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='two-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='3' stacked label='DEF' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitThreeAriaLabel || x.locale.dialPad.digitThreeLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='4' icon='four-solid' stacked label='GHI' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='three-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='4' stacked label='GHI' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitFourAriaLabel || x.locale.dialPad.digitFourLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='5' icon='five-solid' stacked label='JKL' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='four-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='5' stacked label='JKL' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitFiveAriaLabel || x.locale.dialPad.digitFiveLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='6' icon='six-solid' stacked label='MNO' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='five-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='6' stacked label='MNO' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitSixAriaLabel || x.locale.dialPad.digitSixLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='7' icon='seven-solid' stacked label='PQRS' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='six-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='7' stacked label='PQRS' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitSevenAriaLabel || x.locale.dialPad.digitSevenLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='8' icon='eight-solid' stacked label='TUV' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='seven-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='8' stacked label='TUV' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitEightAriaLabel || x.locale.dialPad.digitEightLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='9' icon='nine-solid' stacked label='WXYZ' size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='eight-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='9' stacked label='WXYZ' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitNineAriaLabel || x.locale.dialPad.digitNineLabel}" ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='*' icon='asterisk-2-solid' stacked size='condensed' class="digit-btn" aria-label="${(
+	) => x.disabled}"><${iconTag} slot='icon' name='nine-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='*' stacked size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitAsteriskAriaLabel ||
 		x.locale.dialPad.digitAsteriskLabel}" ?disabled="${(x) =>
-		x.disabled}"></${buttonTag}>
-        <${buttonTag} value='0' icon='zero-solid' stacked label='+' size='condensed' class="digit-btn" aria-label=${(
+		x.disabled}"><${iconTag} slot='icon' name='asterisk-2-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='0' stacked label='+' size='condensed' class="digit-btn" aria-label=${(
 		x
 	) => x.digitZeroAriaLabel || x.locale.dialPad.digitZeroLabel} ?disabled="${(
 		x
-	) => x.disabled}"></${buttonTag}>
-        <${buttonTag} value='#' icon='hashtag-solid' stacked size='condensed' class="digit-btn" aria-label=${(
+	) => x.disabled}"><${iconTag} slot='icon' name='zero-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+        <${buttonTag} value='#' stacked size='condensed' class="digit-btn" aria-label=${(
 		x
 	) =>
 		x.digitHashtagAriaLabel ||
 		x.locale.dialPad.digitHashtagLabel} ?disabled="${(x) =>
-		x.disabled}"></${buttonTag}>
+		x.disabled}"><${iconTag} slot='icon' name='hashtag-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
     `;
 }
 
@@ -144,12 +145,13 @@ export const DialPadTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<DialPad> = (context: ElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
+	const iconTag = context.tagFor(Icon);
 	const textFieldTag = context.tagFor(TextField);
 
 	return html<DialPad>` <div class="${getClasses}">
 		${renderTextField(textFieldTag, buttonTag)}
 		<div class="digits" @click="${(x, c) => x._onDigit(c.event)}">
-			${renderDigits(buttonTag)}
+			${renderDigits(buttonTag, iconTag)}
 		</div>
 		${when((x) => !x.noCall, renderDialButton(buttonTag))}
 	</div>`;
