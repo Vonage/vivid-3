@@ -32,6 +32,7 @@
 		"regenerator-runtime": "^0.13.11",
 		"tslib": "^2.5.0",
 		"uuid": "^9.0.1",
+		"video.js": "^8.10.0",
 		"vite-plugin-static-copy": "^0.17.0",
 		"vitest-fetch-mock": "^0.2.2"
 	},

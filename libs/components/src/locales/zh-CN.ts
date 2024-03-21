@@ -1,5 +1,7 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/zh-CN.json';
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const zhCN: Locale = {
 	datePicker: {
 		months: {
@@ -107,6 +109,7 @@ const zhCN: Locale = {
 	splitButton: {
 		showMoreActionsLabel: '显示更多操作',
 	},
+	videoPlayer: videoPlayerLocale,
 	rangeSlider: {
 		startThumbLabel: '最小',
 		endThumbLabel: '最大',

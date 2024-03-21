@@ -434,6 +434,7 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
 - [Floating UI](https://floating-ui.com) - for positioning floating elements
 - [Dropzone](https://www.dropzone.dev/) - for handling dropped files
+- [Video.js](https://videojs.com/) - for playing videos
 
 ## Have questions?
 

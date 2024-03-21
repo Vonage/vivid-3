@@ -1,5 +1,7 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/en.json';
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const enUS: Locale = {
 	datePicker: {
 		months: {
@@ -107,6 +109,7 @@ const enUS: Locale = {
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',
 	},
+	videoPlayer: videoPlayerLocale,
 	rangeSlider: {
 		startThumbLabel: 'min',
 		endThumbLabel: 'max',

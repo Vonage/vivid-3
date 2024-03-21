@@ -273,5 +273,10 @@
 		"title": "Dial Pad",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/dial-pad/README.md"
+  },
+  {
+		"title": "Video Player",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/video-player/README.md"
 	}
 ]
