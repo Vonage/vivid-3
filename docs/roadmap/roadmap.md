@@ -98,9 +98,9 @@
 
 ### Key
 
-| Term | Description |
-| --- | --- |
+| Term      | Description                                                                                                          |
+| --------- | -------------------------------------------------------------------------------------------------------------------- |
 | Discovery | Validate the shared value of the feature and that we understand the problem well enough to commit further resources. |
-| Design | Ensure designs meet user needs while upholding our brand standards and visual language. |
-| Alpha | Component is available and documentation is published. |
-| AT | Acceptance testing: before we fully release a new component it must be integrated and validated by at least 2 teams |
+| Design    | Ensure designs meet user needs while upholding our brand standards and visual language.                              |
+| Alpha     | Component is available and documentation is published.                                                               |
+| AT        | Acceptance testing: before we fully release a new component it must be integrated and validated by at least 2 teams  |

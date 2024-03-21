@@ -1,4 +1,4 @@
-const createCodeExamples = require('../code-example-preview/createCodeExample')
+const createCodeExamples = require('../code-example-preview/createCodeExample');
 const customElements = require('../../../dist/libs/components/custom-elements.json');
 
 const CONNOTATIONS = [
@@ -13,33 +13,34 @@ const CONNOTATIONS = [
 
 const getConnotation = (variableName, componentName) => {
 	return variableName.replace(`--vvd-${componentName}-`, '').split('-')[0];
-}
+};
 
 const getShade = (variableName, componentName, connotationName) => {
 	return variableName.replace(`--vvd-${componentName}-${connotationName}-`, '');
-}
+};
 
 // Order of shades from light to dark
-const shadeOrder = Array.from([
-	'primary-text',
-	'backdrop',
-	'faint',
-	'soft',
-	'dim',
-	'pale',
-	'light',
-	'intermediate',
-	'primary',
-	'firm',
-	'primary-increment',
-	'fierce',
-	'contrast'
-].entries()).reduce((acc, [index, shade]) => {
+const shadeOrder = Array.from(
+	[
+		'primary-text',
+		'backdrop',
+		'faint',
+		'soft',
+		'dim',
+		'pale',
+		'light',
+		'intermediate',
+		'primary',
+		'firm',
+		'primary-increment',
+		'fierce',
+		'contrast',
+	].entries()
+).reduce((acc, [index, shade]) => {
 	acc[shade] = index;
 	return acc;
 }, {});
 const getShadeOrder = (shade) => shadeOrder[shade] ?? 999;
-
 
 module.exports = function (exampleCode, options) {
 	// Component name is given like this: variables-preview[component-name]
@@ -101,24 +102,30 @@ module.exports = function (exampleCode, options) {
 const getCssPropertiesForComponent = (componentName) => {
 	let cssProperties = [];
 	if (componentName) {
-		const declaration = customElements.modules.find(
-			module => module.path === `libs/components/src/lib/${componentName}/${componentName}.ts`
-		)?.declarations?.find(declaration => declaration.kind === 'class');
+		const declaration = customElements.modules
+			.find(
+				(module) =>
+					module.path ===
+					`libs/components/src/lib/${componentName}/${componentName}.ts`
+			)
+			?.declarations?.find((declaration) => declaration.kind === 'class');
 		if (declaration) {
 			cssProperties = declaration.cssProperties ?? [];
 		}
 	}
 	return cssProperties;
-}
+};
 
 const renderVariablesStylesheet = (cssProperties) => {
 	return `<style>
     .vvd-root {
-${cssProperties.map(prop => `        ${prop.name}: ${initialValueForVariable(prop)};`).join('\n')}
+${cssProperties
+	.map((prop) => `        ${prop.name}: ${initialValueForVariable(prop)};`)
+	.join('\n')}
     }
 </style>
-`
-}
+`;
+};
 
 const initialValueForVariable = (cssProperty) => {
 	// Instead of using the default value, which would result in rendering the component regularly,
@@ -137,11 +144,11 @@ const initialValueForVariable = (cssProperty) => {
 		firm: 'var(--vvd-color-announcement-600)',
 		fierce: 'var(--vvd-color-announcement-700)',
 		contrast: 'var(--vvd-color-announcement-800)',
-	}
+	};
 	for (const [name, value] of Object.entries(announcementTheme)) {
 		if (cssProperty.name.endsWith(name)) {
 			return value;
 		}
 	}
 	return cssProperty.default ?? 'transparent';
-}
+};

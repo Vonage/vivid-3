@@ -3,9 +3,7 @@
 The `vwc-audio-player` component is used to play audio files. It is based on the [HTML5 audio element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio).
 
 ```js
-<script type="module">
-    import '@vonage/vivid/audio-player';
-</script>
+<script type="module">import '@vonage/vivid/audio-player';</script>
 ```
 
 ## Members
@@ -18,9 +16,10 @@ Use the `src` attribute to add source to the audio-player.
 - Default: ``
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3"></vwc-audio-player>
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+></vwc-audio-player>
 ```
-
 
 ### No Time
 
@@ -30,7 +29,10 @@ Use the `notime` attribute to remove the time stamp from the audio-player.
 - Default: `false`
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" notime></vwc-audio-player>
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	notime
+></vwc-audio-player>
 ```
 
 ### Connotation
@@ -41,7 +43,10 @@ Use the `connotation` attribute to set the audio-player's color.
 - Default: `'accent'`
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" connotation="cta"></vwc-audio-player>
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	connotation="cta"
+></vwc-audio-player>
 ```
 
 ### Disabled
@@ -52,9 +57,11 @@ Use the `disabled` attribute to disable the audio-player.
 - Default: `false`
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" disabled></vwc-audio-player>
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	disabled
+></vwc-audio-player>
 ```
-
 
 ## CSS Variables
 
@@ -65,5 +72,8 @@ Use the `--audio-player-min-inline-size` variable to set the audio player's mini
 - Default: `200px`
 
 ```html preview
-<vwc-audio-player src="https://download.samplelib.com/mp3/sample-6s.mp3" style="--audio-player-min-inline-size: 100px;"></vwc-audio-player>
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	style="--audio-player-min-inline-size: 100px;"
+></vwc-audio-player>
 ```

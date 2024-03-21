@@ -11,9 +11,9 @@
 ```vue
 <!--@include: ./components/calendar/BasicExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Datetime
 
@@ -26,12 +26,12 @@
 ```vue
 <!--@include: ./components/calendar/DateTimeExample.vue-->
 ```
+
 </template>
 </code-tab>
 
-
-
 ## Start Day
+
 <code-tab>
 <template #example>
 <StartDayExample/>
@@ -45,8 +45,8 @@
 </template>
 </code-tab>
 
-
 ## Locale
+
 <code-tab>
 <template #example>
 <LocaleExample/>
@@ -59,7 +59,6 @@
 
 </template>
 </code-tab>
-
 
 ## Hour 12 Example
 
@@ -75,7 +74,6 @@
 
 </template>
 </code-tab>
-
 
 <script setup lang="ts">
 import { VCalendar } from "@vonage/vivid-vue";

@@ -225,20 +225,22 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 
 #### Usage
 
-The color tokens are referenced using the `--vvd-color-{name}-{n}`.  
+The color tokens are referenced using the `--vvd-color-{name}-{n}`.
 
 ```css
 vwc-side-drawer::part(base) {
-  background-color: var(--vvd-color-neutral-100);
+	background-color: var(--vvd-color-neutral-100);
 }
 ```
 
 ---
 
 ## Alternate
-A single component can be set with alternate colors.  
+
+A single component can be set with alternate colors.
 
 ### Class
+
 Add the class `vvd-theme-alternate` to the component.
 
 <p><vwc-note icon="info-solid" connotation="information" headline="Part">
@@ -247,15 +249,19 @@ If the component has part, add `part='vvd-theme-alternate'`
 
 ```html preview
 <style>
-.wrapper {
-background-color: var(--vvd-color-neutral-950);
-    width: 200px;
-    height: 60px;
-    display: grid;
-    place-content: center;
-}
+	.wrapper {
+		background-color: var(--vvd-color-neutral-950);
+		width: 200px;
+		height: 60px;
+		display: grid;
+		place-content: center;
+	}
 </style>
-<div class='wrapper'>
-<vwc-button label='filled' appearance='filled' class='vvd-theme-alternate'></vwc-button>
+<div class="wrapper">
+	<vwc-button
+		label="filled"
+		appearance="filled"
+		class="vvd-theme-alternate"
+	></vwc-button>
 </div>
 ```

@@ -1,6 +1,7 @@
 # VSideDrawer Examples
 
 ## Basic
+
 <code-tab no-padding no-overflow>
 <template #example>
 <BasicExample/>
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/side-drawer/BasicExample.vue-->
 ```
+
 </template>
 </code-tab>
 
 ## Collapsible
+
 <code-tab no-padding no-overflow>
 <template #example>
 <CollapsibleExample/>
@@ -23,6 +26,7 @@
 ```vue
 <!--@include: ./components/side-drawer/CollapsibleExample.vue-->
 ```
+
 </template>
 </code-tab>
 

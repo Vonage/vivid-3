@@ -5,7 +5,6 @@ import styles from './header.scss?inline';
 import { Header } from './header';
 import { headerTemplate as template } from './header.template';
 
-
 /**
  * The header element.
  */

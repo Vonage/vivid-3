@@ -5,8 +5,11 @@ const { fileHeader } = formatHelpers;
 export default {
 	name: 'scss/constants',
 	formatter({ dictionary, file }) {
-		return fileHeader({file}) + dictionary.allProperties.map(({ name }) =>
-			`$${name}: --${name};`
-		).join('\n');
-	}
+		return (
+			fileHeader({ file }) +
+			dictionary.allProperties
+				.map(({ name }) => `$${name}: --${name};`)
+				.join('\n')
+		);
+	},
 };

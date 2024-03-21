@@ -8,7 +8,8 @@ Also, in a micro-frontend architecture, this can be a major bottleneck as each m
 To work around this limitation, Vivid provides a way to register custom elements with a custom prefix. E.g. `vwc-badge` can be registered as `dashboard-badge` instead.
 
 This allows multiple versions of the library to be used simultaneously:
-* If you use both Vivid 2 and Vivid 3 in a page, Vivid 2 can live under its `vwc` prefix and Vivid 3 under a `vwc-3` prefix.
-* If you use Vivid 3 in a micro-frontend architecture, each micro-frontend can use its own prefix.
+
+- If you use both Vivid 2 and Vivid 3 in a page, Vivid 2 can live under its `vwc` prefix and Vivid 3 under a `vwc-3` prefix.
+- If you use Vivid 3 in a micro-frontend architecture, each micro-frontend can use its own prefix.
 
 See the Getting Started guides to learn how to set a custom prefix for your project.

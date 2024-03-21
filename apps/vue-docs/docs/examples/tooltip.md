@@ -1,6 +1,7 @@
 # Tooltip Example
 
 ## Anchor
+
 <code-tab visible-overflow>
 <template #example>
 <AnchorExample/>
@@ -10,11 +11,12 @@
 ```vue
 <!--@include: ./components/tooltip/AnchorExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Placement
+
 <code-tab visible-overflow>
 <template #example>
 <PlacementExample/>
@@ -24,11 +26,12 @@
 ```vue
 <!--@include: ./components/tooltip/PlacementExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Inline Size
+
 <code-tab visible-overflow>
 <template #example>
 <InlineExample/>
@@ -38,6 +41,7 @@
 ```vue
 <!--@include: ./components/tooltip/InlineExample.vue -->
 ```
+
 </template>
 </code-tab>
 

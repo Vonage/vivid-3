@@ -3,9 +3,7 @@
 The divider component is used as a separator between content.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/divider';
-</script>
+<script type="module">import '@vonage/vivid/divider';</script>
 ```
 
 ```html preview
@@ -37,9 +35,9 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 
 ```html preview
 <vwc-action-group appearance="fieldset">
-  <vwc-button icon="transfer-line"></vwc-button>
-  <vwc-divider orientation="vertical"></vwc-divider>
-  <vwc-button icon="compose-line"></vwc-button>
+	<vwc-button icon="transfer-line"></vwc-button>
+	<vwc-divider orientation="vertical"></vwc-divider>
+	<vwc-button icon="compose-line"></vwc-button>
 </vwc-action-group>
 ```
 
@@ -47,29 +45,28 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 
 ```html preview
 <style>
-  vwc-card {
-    width: 400px;
-  }
+	vwc-card {
+		width: 400px;
+	}
 
-  .demo-footer {
-    display: flex;
-    column-gap: 8px;
-    justify-content: flex-end;
-  }
+	.demo-footer {
+		display: flex;
+		column-gap: 8px;
+		justify-content: flex-end;
+	}
 </style>
 
 <vwc-card>
-  <vwc-layout column-basis="block" gutters="small" slot="main">
-    Choose the button you like best in this card :)
+	<vwc-layout column-basis="block" gutters="small" slot="main">
+		Choose the button you like best in this card :)
 
-    <vwc-divider></vwc-divider>
+		<vwc-divider></vwc-divider>
 
-    <div class="demo-footer">
-      <vwc-button label='Cancel' appearance='outlined'></vwc-button>
-      <vwc-button label='Submit' appearance='filled'></vwc-button>
-    </div>
-
-  </vwc-layout>
+		<div class="demo-footer">
+			<vwc-button label="Cancel" appearance="outlined"></vwc-button>
+			<vwc-button label="Submit" appearance="filled"></vwc-button>
+		</div>
+	</vwc-layout>
 </vwc-card>
 ```
 
@@ -77,19 +74,19 @@ When using `<vwc-divider>` as a decorative element the role should be set as `'p
 
 ```html preview
 <style>
-  vwc-layout {
-    --layout-grid-template-columns: 1fr auto 1fr;
-  }
+	vwc-layout {
+		--layout-grid-template-columns: 1fr auto 1fr;
+	}
 
-  vwc-divider {
-    display: flex;
-    align-items: center;
-  }
+	vwc-divider {
+		display: flex;
+		align-items: center;
+	}
 </style>
 
 <vwc-layout>
-  <vwc-divider role="presentation"></vwc-divider>
-  More Info
-  <vwc-divider role="presentation"></vwc-divider>
+	<vwc-divider role="presentation"></vwc-divider>
+	More Info
+	<vwc-divider role="presentation"></vwc-divider>
 </vwc-layout>
 ```

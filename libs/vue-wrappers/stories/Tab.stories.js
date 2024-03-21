@@ -2,14 +2,14 @@ import { VTab, VTabPanel, VTabs } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VTab';
 
 export default {
-  title: 'Wrappers/Tab',
-  component: VTab,
-  argTypes,
+	title: 'Wrappers/Tab',
+	component: VTab,
+	argTypes,
 };
 
 const LabelTemplate = () => ({
-  components: { VTabs, VTab, VTabPanel },
-  template: `<VTabs>
+	components: { VTabs, VTab, VTabPanel },
+	template: `<VTabs>
     <VTab label="Tab" id="tab" />
     <VTabPanel id="tab" />
   </VTabs>`,
@@ -17,8 +17,8 @@ const LabelTemplate = () => ({
 export const Label = LabelTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VTabs, VTab, VTabPanel },
-  template: `<VTabs>
+	components: { VTabs, VTab, VTabPanel },
+	template: `<VTabs>
     <VTab icon="chat-line" aria-label="tab" id="tab" />
     <VTabPanel id="tab" />
   </VTabs>`,
@@ -26,8 +26,8 @@ const IconTemplate = () => ({
 export const Icon = IconTemplate.bind({});
 
 const IconWithLabelTemplate = () => ({
-  components: { VTabs, VTab, VTabPanel },
-  template: `<VTabs>
+	components: { VTabs, VTab, VTabPanel },
+	template: `<VTabs>
     <VTab icon="chat-line" label="Tab" id="tab" />
     <VTabPanel id="tab" />
   </VTabs>`,
@@ -35,8 +35,8 @@ const IconWithLabelTemplate = () => ({
 export const IconWithLabel = IconWithLabelTemplate.bind({});
 
 const DisabledTemplate = () => ({
-  components: { VTabs, VTab, VTabPanel },
-  template: `<VTabs>
+	components: { VTabs, VTab, VTabPanel },
+	template: `<VTabs>
     <VTab disabled label="Disabled Tab" id="tab" />
     <VTabPanel id="tab" />
   </VTabs>`,

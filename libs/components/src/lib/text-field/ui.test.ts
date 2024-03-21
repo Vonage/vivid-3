@@ -7,7 +7,7 @@ import {
 
 const components = ['text-field', 'button', 'select', 'divider'];
 
-test('should show the component', async ({page}: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="display: flex; flex-direction: column; row-gap: 5px; inline-size: 260px; margin: 6px;">
 		<vwc-text-field label="My Label"></vwc-text-field>
@@ -67,14 +67,22 @@ test('should show the component', async ({page}: { page: Page }) => {
 	await page.keyboard.press('Tab');
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/text-field.png'
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/text-field.png'
+	);
 });
 
-const testInvalidation = async ({page, browserName}: { page: Page, browserName: string }) => {
-	const selector = browserName === 'chromium' ? 'input[name="submit-button"]' : '#submit-button';
+const testInvalidation = async ({
+	page,
+	browserName,
+}: {
+	page: Page;
+	browserName: string;
+}) => {
+	const selector =
+		browserName === 'chromium'
+			? 'input[name="submit-button"]'
+			: '#submit-button';
 
 	const template = `
 		<form onsubmit="return false" style="min-height: 150px;">
@@ -107,10 +115,9 @@ const testInvalidation = async ({page, browserName}: { page: Page, browserName: 
 	await page.waitForLoadState('networkidle');
 	await page.waitForTimeout(500);
 
-	expect(await testWrapper?.screenshot({animations: 'disabled'}))
-		.toMatchSnapshot(
-			'./snapshots/text-field-invalidation.png'
-		);
+	expect(
+		await testWrapper?.screenshot({ animations: 'disabled' })
+	).toMatchSnapshot('./snapshots/text-field-invalidation.png');
 };
 
 test('should invalidate component', testInvalidation);
@@ -167,4 +174,3 @@ test.describe('max/min length validation', () => {
 		).toBe(false);
 	});
 });
-

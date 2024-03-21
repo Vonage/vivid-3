@@ -1,6 +1,7 @@
 # VBadge Examples
 
 ## Text
+
 <code-tab>
 <template #example>
 <TextExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/badge/TextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Shape
+
 <code-tab>
 <template #example>
 <ShapeExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/badge/ShapeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/badge/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon with Text
+
 <code-tab>
 <template #example>
 <IconWithTextExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/badge/IconWithTextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Appearance
+
 <code-tab>
 <template #example>
 <AppearanceExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/badge/AppearanceExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Filled badge with connotation
+
 <code-tab>
 <template #example>
 <FilledBadgeWithConnotationExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/badge/FilledBadgeWithConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Subtle badge with connotation
+
 <code-tab>
 <template #example>
 <SubtleBadgeWithConnotationExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/badge/SubtleBadgeWithConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Duotone badge with connotation
+
 <code-tab>
 <template #example>
 <DuotoneBadgeWithConnotationExample />
@@ -101,6 +116,7 @@
 ```vue
 <!--@include: ./components/badge/DuotoneBadgeWithConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 

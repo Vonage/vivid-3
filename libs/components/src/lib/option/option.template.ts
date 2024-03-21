@@ -5,18 +5,20 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import type { ListboxOption } from './option';
 
-const getClasses = ({
-	icon, disabled, selected, checked
-}: ListboxOption) => classNames(
-	'base',
-	['disabled', disabled],
-	['selected', Boolean(selected)],
-	['active', Boolean(checked)],
-	['icon', Boolean(icon)],
-);
+const getClasses = ({ icon, disabled, selected, checked }: ListboxOption) =>
+	classNames(
+		'base',
+		['disabled', disabled],
+		['selected', Boolean(selected)],
+		['active', Boolean(checked)],
+		['icon', Boolean(icon)]
+	);
 
 export const ListboxOptionTemplate: (
 	context: ElementDefinitionContext,
@@ -25,17 +27,18 @@ export const ListboxOptionTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`
-	<template
-		aria-checked="${x => x.ariaChecked}"
-		aria-disabled="${x => x.ariaDisabled}"
-		aria-posinset="${x => x.ariaPosInSet}"
-		aria-selected="${x => x.ariaSelected}"
-		aria-setsize="${x => x.ariaSetSize}"
-		role="option">
-		<div class="${getClasses}">
-			${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
-			${when(x => x.text, html`<div class="text">${x => x.text}</div>`)}
-		</div>
-	</template>
+		<template
+			aria-checked="${(x) => x.ariaChecked}"
+			aria-disabled="${(x) => x.ariaDisabled}"
+			aria-posinset="${(x) => x.ariaPosInSet}"
+			aria-selected="${(x) => x.ariaSelected}"
+			aria-setsize="${(x) => x.ariaSetSize}"
+			role="option"
+		>
+			<div class="${getClasses}">
+				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+				${when((x) => x.text, html`<div class="text">${(x) => x.text}</div>`)}
+			</div>
+		</template>
 	`;
 };

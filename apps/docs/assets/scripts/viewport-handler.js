@@ -15,7 +15,6 @@ function viewportHandler() {
 		sideDrawer.modal = innerWidth < mobileWidth;
 		sideDrawer.open = innerWidth >= mobileWidth;
 	});
-
 }
 
 (function () {

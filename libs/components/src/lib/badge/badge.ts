@@ -2,30 +2,32 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
-import type {
-	Appearance, Connotation, Shape,
-} from '../enums.js';
+import type { Appearance, Connotation, Shape } from '../enums.js';
 
 /**
  * Types of badge connotation.
  *
  * @public
  */
-export type BadgeConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Alert
-| Connotation.Warning
-| Connotation.Information>;
+export type BadgeConnotation = Extract<
+	Connotation,
+	| Connotation.Accent
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Alert
+	| Connotation.Warning
+	| Connotation.Information
+>;
 
 /**
  * Types of badge appearance.
  *
  * @public
  */
-export type BadgeAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Duotone | Appearance.Subtle>;
+export type BadgeAppearance = Extract<
+	Appearance,
+	Appearance.Filled | Appearance.Duotone | Appearance.Subtle
+>;
 
 /**
  * Types of badge shape.

@@ -2,14 +2,14 @@ import { VBanner, VButton, VHeader, VLayout } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VHeader';
 
 export default {
-  title: 'Wrappers/Header',
-  component: VHeader,
-  argTypes,
+	title: 'Wrappers/Header',
+	component: VHeader,
+	argTypes,
 };
 
 const Template = () => ({
-  components: { VHeader },
-  template: `<VHeader elevation-shadow>
+	components: { VHeader },
+	template: `<VHeader elevation-shadow>
   Header content
 </VHeader>`,
 });
@@ -17,8 +17,8 @@ const Template = () => ({
 export const ElevationShadow = Template.bind({});
 
 const AlternateTemplate = () => ({
-  components: { VHeader },
-  template: `<VHeader alternate>
+	components: { VHeader },
+	template: `<VHeader alternate>
   Header content
 </VHeader>`,
 });
@@ -26,8 +26,8 @@ const AlternateTemplate = () => ({
 export const Alternate = AlternateTemplate.bind({});
 
 const DefaultSlotTemplate = () => ({
-  components: { VHeader },
-  template: `<VHeader>
+	components: { VHeader },
+	template: `<VHeader>
    Header content
 </VHeader>`,
 });
@@ -35,8 +35,8 @@ const DefaultSlotTemplate = () => ({
 export const DefaultSlot = DefaultSlotTemplate.bind({});
 
 const ActionItemsTemplate = () => ({
-  components: { VHeader, VButton },
-  template: `<VHeader>
+	components: { VHeader, VButton },
+	template: `<VHeader>
   <VButton slot="action-items" icon="twitter-mono"/>
   <VButton slot="action-items" icon="facebook-mono"/>
   <VButton slot="action-items" icon="heart-solid"/>
@@ -46,8 +46,8 @@ const ActionItemsTemplate = () => ({
 export const ActionItems = ActionItemsTemplate.bind({});
 
 const AppContentTemplate = () => ({
-  components: { VHeader, VLayout },
-  template: `<VHeader>
+	components: { VHeader, VLayout },
+	template: `<VHeader>
   Header content
   <main slot="app-content">
     <VLayout gutters="small">
@@ -60,8 +60,8 @@ const AppContentTemplate = () => ({
 export const AppContent = AppContentTemplate.bind({});
 
 const BlockSizeTemplate = () => ({
-  components: { VHeader, VLayout },
-  template: `
+	components: { VHeader, VLayout },
+	template: `
 <VHeader>
   Header content
 
@@ -78,26 +78,26 @@ const BlockSizeTemplate = () => ({
 export const BlockSize = BlockSizeTemplate.bind({});
 
 const BasePartTemplate = () => ({
-  components: { VHeader, VLayout },
-  template: `<VHeader class="v3Header">
+	components: { VHeader, VLayout },
+	template: `<VHeader class="v3Header">
   Header content
 </VHeader>`,
-  mounted() {
-    const css = document.createElement('style');
-    css.type = 'text/css';
-    css.appendChild(
-      document.createTextNode(`.v3Header::part(base) { background-color: var(--vvd-color-neutral-100); }
+	mounted() {
+		const css = document.createElement('style');
+		css.type = 'text/css';
+		css.appendChild(
+			document.createTextNode(`.v3Header::part(base) { background-color: var(--vvd-color-neutral-100); }
     `)
-    );
-    this.$el.appendChild(css);
-  },
+		);
+		this.$el.appendChild(css);
+	},
 });
 
 export const BasePart = BasePartTemplate.bind({});
 
 const HeaderWithBannerTemplate = () => ({
-  components: { VHeader, VLayout, VBanner },
-  template: `<VHeader>
+	components: { VHeader, VLayout, VBanner },
+	template: `<VHeader>
   Header with Banner
 
   <VBanner slot="app-content" text="Here's some information that you may find important!"></VBanner>
@@ -117,7 +117,7 @@ const HeaderWithBannerTemplate = () => ({
   </VLayout>
 
 </VHeader>`,
-  style: `html {
+	style: `html {
     block-size: 200px;
   }
 

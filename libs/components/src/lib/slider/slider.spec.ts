@@ -1,4 +1,9 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
@@ -8,7 +13,10 @@ import { sliderDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-slider';
 
-async function setBoolAttributeOn(el: Slider, attr: string): Promise<DOMTokenList> {
+async function setBoolAttributeOn(
+	el: Slider,
+	attr: string
+): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);
 	await elementUpdated(el);
 	return getControlElement(el).classList;
@@ -55,7 +63,10 @@ describe('vwc-slider', () => {
 	});
 
 	describe('markers', () => {
-		const getMarkersDiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark') as HTMLDivElement;
+		const getMarkersDiv = () =>
+			getControlElement(element).querySelector(
+				'.positioning-region > .track > .mark'
+			) as HTMLDivElement;
 
 		it('should display the markers element when markers is true', async () => {
 			const markersDivReferenceBefore = getMarkersDiv();
@@ -78,7 +89,8 @@ describe('vwc-slider', () => {
 
 	describe('orientation', () => {
 		it('should set the vertical class on the control when changing orientation to vertical', async () => {
-			const controlClasses = () => Array.from(getControlElement(element).classList);
+			const controlClasses = () =>
+				Array.from(getControlElement(element).classList);
 			const classesInitialValue = controlClasses();
 
 			element.setAttribute('orientation', 'vertical');
@@ -149,27 +161,30 @@ describe('vwc-slider', () => {
 	});
 
 	describe('connotation', function () {
-		const possibleConnotations = [Connotation.Accent,
-			Connotation.CTA
-		] as const;
+		const possibleConnotations = [Connotation.Accent, Connotation.CTA] as const;
 
 		it('should not set any connotation classes when no connotation is set', async function () {
-			possibleConnotations.forEach(connotation => {
-				expect(getControlElement(element)
-					?.classList
-					.contains(`connotation-${connotation}`))
-					.toEqual(false);
+			possibleConnotations.forEach((connotation) => {
+				expect(
+					getControlElement(element)?.classList.contains(
+						`connotation-${connotation}`
+					)
+				).toEqual(false);
 			});
 		});
 
-		it.each(possibleConnotations)('should set the connotation class for "%s"', async function (connotation) {
-			element.connotation = connotation;
-			await elementUpdated(element);
-			expect(getControlElement(element)
-				?.classList
-				.contains(`connotation-${connotation}`))
-				.toEqual(true);
-		});
+		it.each(possibleConnotations)(
+			'should set the connotation class for "%s"',
+			async function (connotation) {
+				element.connotation = connotation;
+				await elementUpdated(element);
+				expect(
+					getControlElement(element)?.classList.contains(
+						`connotation-${connotation}`
+					)
+				).toEqual(true);
+			}
+		);
 	});
 
 	describe('a11y', () => {

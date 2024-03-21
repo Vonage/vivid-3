@@ -11,6 +11,7 @@ Represents a switch custom element.
 ```
 
 ## Members
+
 ### Label
 
 Use `label` in order to set the label of the switch.
@@ -30,10 +31,10 @@ Use `connotation` in order to set the connotation of the switch.
 - Default: `primary`
 
 ```html preview
-<vwc-switch connotation="primary" checked ></vwc-switch>
-<vwc-switch connotation="cta" checked ></vwc-switch>
-<vwc-switch connotation="success" checked ></vwc-switch>
-<vwc-switch connotation="alert" checked ></vwc-switch>
+<vwc-switch connotation="primary" checked></vwc-switch>
+<vwc-switch connotation="cta" checked></vwc-switch>
+<vwc-switch connotation="success" checked></vwc-switch>
+<vwc-switch connotation="alert" checked></vwc-switch>
 ```
 
 ### Checked
@@ -55,8 +56,7 @@ Use the `readonly` attribute to show a readonly state of the switch.
 - Default: `false`
 
 ```html preview
-<vwc-switch readonly></vwc-switch>
-<vwc-switch readonly checked></vwc-switch>
+<vwc-switch readonly></vwc-switch> <vwc-switch readonly checked></vwc-switch>
 ```
 
 ### Disabled
@@ -67,8 +67,7 @@ Use the `disabled` attribute to show a disabled state of the switch.
 - Default: `false`
 
 ```html preview
-<vwc-switch disabled></vwc-switch>
-<vwc-switch disabled checked></vwc-switch>
+<vwc-switch disabled></vwc-switch> <vwc-switch disabled checked></vwc-switch>
 ```
 
 ### Value
@@ -92,5 +91,3 @@ Use `name` in order to set the name of the switch. Mainly used inside a form tha
 ```html
 <vwc-switch name="my-name"></vwc-switch>
 ```
-
-

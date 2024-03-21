@@ -24,19 +24,24 @@ describe('vwc-note', () => {
 	describe('headline', () => {
 		it('should render the headline when headline is set', async function () {
 			const headlineText = 'headline';
-			const headlineElementWhenNull = element.shadowRoot?.querySelector('.headline');
+			const headlineElementWhenNull =
+				element.shadowRoot?.querySelector('.headline');
 			element.headline = headlineText;
 			await elementUpdated(element);
 			expect(headlineElementWhenNull).toBeNull();
-			expect(element.shadowRoot?.querySelector('.headline')?.textContent?.trim()).toEqual(headlineText);
+			expect(
+				element.shadowRoot?.querySelector('.headline')?.textContent?.trim()
+			).toEqual(headlineText);
 		});
 	});
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
 		});
-		
+
 		it('should render an icon when icon is set', async function () {
 			const icon = 'user-line';
 			element.setAttribute('icon', icon);
@@ -51,11 +56,15 @@ describe('vwc-note', () => {
 		it('should set connotation class on the base element', async function () {
 			const connotation = Connotation.Information;
 			const baseElement = element.shadowRoot?.querySelector('.base');
-			const connotationClassExistsWhenNull = baseElement?.classList?.contains(`connotation-${connotation}`);
+			const connotationClassExistsWhenNull = baseElement?.classList?.contains(
+				`connotation-${connotation}`
+			);
 			element.connotation = connotation;
 			await elementUpdated(element);
 			expect(connotationClassExistsWhenNull).toEqual(false);
-			expect(baseElement?.classList?.contains(`connotation-${connotation}`)).toEqual(true);
+			expect(
+				baseElement?.classList?.contains(`connotation-${connotation}`)
+			).toEqual(true);
 		});
 	});
 

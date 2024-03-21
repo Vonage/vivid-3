@@ -2,11 +2,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import markdownIt from 'markdown-it';
 import { JSDOM } from 'jsdom';
-import type {Page, Request} from '@playwright/test';
+import type { Page, Request } from '@playwright/test';
 
-const layout = (function() {
-	const layoutFactorial = (...attrs) =>
-		(code) => `
+const layout = (function () {
+	const layoutFactorial =
+		(...attrs) =>
+		(code) =>
+			`
     <script type="module" src="/assets/modules/components/layout/index.js"></script>
     <vwc-layout ${attrs.join(' ')}>${code}</vwc-layout>
 `;
@@ -14,7 +16,7 @@ const layout = (function() {
 	const inline = layoutFactorial('gutters="small"');
 	const blocks = layoutFactorial('gutters="small"', 'column-basis="block"');
 	const columns = layoutFactorial('gutters="small"', 'column-basis="medium"');
-	const center = code => `<div class="center">${code}</div>`;
+	const center = (code) => `<div class="center">${code}</div>`;
 
 	const layoutFun = (code, classList) => {
 		if (classList.contains('full')) {
@@ -27,19 +29,19 @@ const layout = (function() {
 			return center(code);
 		} else if (classList.contains('inline')) {
 			return inline(`<div>${code}</div>`);
-		} else { // default
+		} else {
+			// default
 			return inline(`<div>${code}</div>`);
 		}
 	};
 	return layoutFun;
-
 })();
 
 const md = markdownIt({
 	html: true,
 	highlight: function (str, _, attrs) {
 		return `<pre class="${attrs}">${str}</pre>`;
-	}
+	},
 });
 
 export function replaceAll(str: string, find: string, replace: string) {
@@ -52,7 +54,8 @@ function getPreElements(html): NodeListOf<HTMLPreElement> {
 }
 
 export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
-	const readmeFileContents = fs.readFileSync(path.resolve(pathToReadme))
+	const readmeFileContents = fs
+		.readFileSync(path.resolve(pathToReadme))
 		.toString();
 	const html = md.render(readmeFileContents);
 	const preElements = getPreElements(html);
@@ -64,7 +67,7 @@ export function extractHTMLBlocksFromReadme(pathToReadme: string): string[] {
 const defaultStyles = [
 	'http://127.0.0.1:8080/dist/libs/components/styles/tokens/theme-light.css',
 	'http://127.0.0.1:8080/dist/libs/components/styles/core/all.css',
-	'http://127.0.0.1:8080/assets/fonts/speziaLocalFonts.css'
+	'http://127.0.0.1:8080/assets/fonts/speziaLocalFonts.css',
 ];
 
 export async function loadComponents({
@@ -72,9 +75,9 @@ export async function loadComponents({
 	components,
 	styleUrls = defaultStyles,
 }: {
-	page: Page,
-	components: string[],
-	styleUrls?: string[]
+	page: Page;
+	components: string[];
+	styleUrls?: string[];
 }) {
 	await page.goto('http://127.0.0.1:8080/scripts/visual-tests/index.html');
 
@@ -87,19 +90,24 @@ export async function loadComponents({
 		}
 	})();
 
-	const styleTags$ = styleUrls.map(url => page.addStyleTag({url}));
+	const styleTags$ = styleUrls.map((url) => page.addStyleTag({ url }));
 	await Promise.all(styleTags$);
 }
 
 export async function loadTemplate({
 	page,
 	template,
-}: { page: Page, template: string }) {
+}: {
+	page: Page;
+	template: string;
+}) {
 	const style = '';
 
-	await page.$('html').then(html => html?.evaluate((html) => {
-		html.classList.add('vvd-root');
-	}, template));
+	await page.$('html').then((html) =>
+		html?.evaluate((html) => {
+			html.classList.add('vvd-root');
+		}, template)
+	);
 
 	await page.$('body').then((body) =>
 		body?.evaluate(
@@ -136,8 +144,12 @@ export class InFlightRequests {
 
 	constructor(private page: Page) {
 		this.page.on('request', (request) => this.inFlightRequests.add(request));
-		this.page.on('requestfinished', (request) => this.inFlightRequests.delete(request));
-		this.page.on('requestfailed', (request) => this.inFlightRequests.delete(request));
+		this.page.on('requestfinished', (request) =>
+			this.inFlightRequests.delete(request)
+		);
+		this.page.on('requestfailed', (request) =>
+			this.inFlightRequests.delete(request)
+		);
 	}
 
 	noneInFlight(predicate: (request: Request) => boolean = () => true) {

@@ -8,8 +8,8 @@ import type { TabPanel } from './tab-panel.js';
  */
 export function TabPanelTemplate<T extends TabPanel>() {
 	return html<T>`
-        <template slot="tabpanel" role="tabpanel">
-            <slot></slot>
-        </template>
-    `;
+		<template slot="tabpanel" role="tabpanel">
+			<slot></slot>
+		</template>
+	`;
 }

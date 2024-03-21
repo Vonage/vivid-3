@@ -2,14 +2,14 @@ import { VAccordion, VAccordionItem } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VAccordion';
 
 export default {
-  title: 'Wrappers/Accordion',
-  component: VAccordion,
-  argTypes,
+	title: 'Wrappers/Accordion',
+	component: VAccordion,
+	argTypes,
 };
 
 const Template = () => ({
-  components: { VAccordion, VAccordionItem },
-  template: `<v-accordion>
+	components: { VAccordion, VAccordionItem },
+	template: `<v-accordion>
   <v-accordion-item heading="Accordion item 1" expanded>
     This is the first item's accordion body.
   </v-accordion-item>
@@ -27,5 +27,5 @@ const Template = () => ({
 
 export const ExpandMode = Template.bind({});
 ExpandMode.args = {
-  expandMode: 'multi',
+	expandMode: 'multi',
 };

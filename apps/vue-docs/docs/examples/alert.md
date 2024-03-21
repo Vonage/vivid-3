@@ -1,6 +1,7 @@
 # Alert Examples
 
 ## Text
+
 <code-tab>
 <template #example>
 <TextExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/alert/TextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Headline
+
 <code-tab>
 <template #example>
 <HeadlineExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/alert/HeadlineExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Open
+
 <code-tab>
 <template #example>
 <OpenExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/alert/OpenExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Connotation
+
 <code-tab>
 <template #example>
 <ConnotationExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/alert/ConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/alert/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Placement
+
 <code-tab>
 <template #example>
 <PlacementExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/alert/PlacementExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Removable
+
 <code-tab>
 <template #example>
 <RemovableExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/alert/RemovableExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Timeoutms
+
 <code-tab>
 <template #example>
 <TimeoutmsExample />
@@ -101,10 +116,12 @@
 ```vue
 <!--@include: ./components/alert/TimeoutmsExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Main
+
 <code-tab>
 <template #example>
 <MainExample />
@@ -114,10 +131,12 @@
 ```vue
 <!--@include: ./components/alert/MainExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## ActionItems
+
 <code-tab>
 <template #example>
 <ActionItemsExample />
@@ -127,10 +146,12 @@
 ```vue
 <!--@include: ./components/alert/ActionItemsExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Minimum inline Size
+
 <code-tab>
 <template #example>
 <MinimumInlineSizeExample />
@@ -140,10 +161,12 @@
 ```vue
 <!--@include: ./components/alert/MinimumInlineSizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Maximum inline Size
+
 <code-tab>
 <template #example>
 <MaximumInlineSizeExample />
@@ -153,6 +176,7 @@
 ```vue
 <!--@include: ./components/alert/MaximumInlineSizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
