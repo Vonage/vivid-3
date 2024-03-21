@@ -29,8 +29,8 @@ $gap: 16px;
 
 .base {
 	display: grid;
-	grid-template-rows: 80px 1fr auto;
 	box-sizing: border-box;
+	grid-template-rows: 80px 1fr auto;
 }
 
 .digits {
@@ -51,11 +51,12 @@ $gap: 16px;
 	@include connotation.connotation(dial-pad);
 
 	--vvd-button-accent-primary: var(#{appearance.get-appearance-token(text)});
+
 	display: flex;
-	flex-direction: column;
-	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	border-radius: #{border-radius-variables.$border-radius-expanded};
 	overflow: hidden;
+	flex-direction: column;
+	border-radius: #{border-radius-variables.$border-radius-expanded};
+	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	inline-size: 100%;
 
 	&-num {

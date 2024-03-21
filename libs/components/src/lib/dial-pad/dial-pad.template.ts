@@ -9,8 +9,8 @@ import type {
 import { keyEnter } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
-import type { DialPad } from './dial-pad';
 import { Icon } from '../icon/icon';
+import type { DialPad } from './dial-pad';
 
 const getClasses = (_: DialPad) => classNames('base');
 
@@ -55,50 +55,59 @@ function renderDigits(buttonTag: string, iconTag: string) {
 		x
 	) => x.digitOneAriaLabel || x.locale.dialPad.digitOneLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='one-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='one-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='2' stacked label='ABC' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitTwoAriaLabel || x.locale.dialPad.digitTwoLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='two-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='two-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='3' stacked label='DEF' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitThreeAriaLabel || x.locale.dialPad.digitThreeLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='three-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='three-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='4' stacked label='GHI' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitFourAriaLabel || x.locale.dialPad.digitFourLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='four-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='four-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='5' stacked label='JKL' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitFiveAriaLabel || x.locale.dialPad.digitFiveLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='five-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='five-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='6' stacked label='MNO' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitSixAriaLabel || x.locale.dialPad.digitSixLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='six-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='six-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='7' stacked label='PQRS' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitSevenAriaLabel || x.locale.dialPad.digitSevenLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='seven-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='seven-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='8' stacked label='TUV' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitEightAriaLabel || x.locale.dialPad.digitEightLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='eight-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='eight-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='9' stacked label='WXYZ' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitNineAriaLabel || x.locale.dialPad.digitNineLabel}" ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='nine-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='nine-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='*' stacked size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
@@ -109,7 +118,8 @@ function renderDigits(buttonTag: string, iconTag: string) {
 		x
 	) => x.digitZeroAriaLabel || x.locale.dialPad.digitZeroLabel} ?disabled="${(
 		x
-	) => x.disabled}"><${iconTag} slot='icon' name='zero-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
+	) =>
+		x.disabled}"><${iconTag} slot='icon' name='zero-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
         <${buttonTag} value='#' stacked size='condensed' class="digit-btn" aria-label=${(
 		x
 	) =>
