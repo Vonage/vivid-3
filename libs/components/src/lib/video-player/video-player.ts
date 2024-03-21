@@ -66,7 +66,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @internal
 	 */
 	autoplayChanged() {
-		if (this.player) {
+		if (this._player) {
 			this.#initVideo();
 		}
 	}
@@ -102,7 +102,7 @@ export class VideoPlayer extends FoundationElement {
 	 * @internal
 	 */
 	skipByChanged() {
-		if (this.player) {
+		if (this._player) {
 			this.#initVideo();
 		}
 	}
@@ -110,7 +110,7 @@ export class VideoPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	player: any;
+	_player: any;
 
 	/**
 	 * @internal
@@ -178,7 +178,7 @@ export class VideoPlayer extends FoundationElement {
 	}
 
 	#disposePlayer() {
-		this.player && this.player.dispose();
+		this._player && this._player.dispose();
 	}
 
 	#setupVideoElement() {
@@ -207,14 +207,14 @@ export class VideoPlayer extends FoundationElement {
 	}
 
 	#setupVideoPlayer(settings: any) {
-		this.player = videojs(this.#videoElement, settings);
+		this._player = videojs(this.#videoElement, settings);
 		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); 
 	}
 
 	#setupPlayerEvents() {
-		this.player.on('play', () => this.$emit('play'));
-		this.player.on('pause', () => this.$emit('pause'));
-		this.player.on('ended', () => this.$emit('ended'));
+		this._player.on('play', () => this.$emit('play'));
+		this._player.on('pause', () => this.$emit('pause'));
+		this._player.on('ended', () => this.$emit('ended'));
 	}
 	/**
 	 * @internal
