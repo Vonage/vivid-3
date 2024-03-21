@@ -82,8 +82,8 @@ const enGB: Locale = {
 		invalidTimeError: 'Please enter a valid time.',
 	},
 	filePicker: {
-		invalidFileTypeError: 'You can\'t select files of this type.',
-		maxFilesExceededError: 'You can\'t select any more files.',
+		invalidFileTypeError: "You can't select files of this type.",
+		maxFilesExceededError: "You can't select any more files.",
 		fileTooBigError:
 			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Remove file',

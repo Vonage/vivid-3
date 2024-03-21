@@ -9,7 +9,7 @@ export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
 	const ratesArray: number[] = [];
-	
+
 	playbackRates.split(',').forEach((numStr: string) => {
 		const num = Number(numStr);
 		if (!isNaN(num)) ratesArray.push(num);
@@ -87,7 +87,8 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: playback-rates
 	 */
-	@attr({attribute: 'playback-rates', mode: 'fromView'}) playbackRates: string = DEFAULT_PLAYBACK_RATES;
+	@attr({ attribute: 'playback-rates', mode: 'fromView' })
+	playbackRates: string = DEFAULT_PLAYBACK_RATES;
 
 	/**
 	 * Allows the video to loop back to the beginning when finished
@@ -96,7 +97,8 @@ export class VideoPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: skip-by
 	 */
-	@attr({attribute: 'skip-by', mode: 'fromView'}) skipBy: MediaSkipBy = MediaSkipBy.Ten;
+	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy: MediaSkipBy =
+		MediaSkipBy.Ten;
 
 	/**
 	 * @internal
@@ -119,7 +121,7 @@ export class VideoPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		
+
 		this.#initVideo();
 	}
 
@@ -134,12 +136,12 @@ export class VideoPlayer extends FoundationElement {
 	#getSources() {
 		const srcEles = this.querySelectorAll('source');
 		if (srcEles.length === 0 && !this.src) return undefined;
-		return this.src 
+		return this.src
 			? [{ src: this.src }]
 			: Array.from(srcEles).map((el) => ({
-				src: el.getAttribute('src'),
-				type: el.getAttribute('type'),
-			}));
+					src: el.getAttribute('src'),
+					type: el.getAttribute('type'),
+			  }));
 	}
 
 	/**
@@ -162,14 +164,14 @@ export class VideoPlayer extends FoundationElement {
 					backward: skipByValue,
 				},
 				remainingTimeDisplay: { displayNegative: false },
-				volumePanel: {inline: false},
+				volumePanel: { inline: false },
 			},
 			textTrackSettings: false,
 			experimentalSvgIcons: true,
 			language: 'current',
 			fluid: true,
 			controls: true,
-			preload: 'auto'
+			preload: 'auto',
 		};
 	}
 
@@ -184,7 +186,7 @@ export class VideoPlayer extends FoundationElement {
 	#setupVideoElement() {
 		this.#videoElement = document.createElement('video');
 		const trackElements = this.querySelectorAll('track');
-		for(let x = 0; x < trackElements.length; x++) {
+		for (let x = 0; x < trackElements.length; x++) {
 			this.#videoElement.appendChild(trackElements[x]);
 		}
 		this.#videoElement.setAttribute('crossorigin', 'anonymous');
@@ -208,7 +210,7 @@ export class VideoPlayer extends FoundationElement {
 
 	#setupVideoPlayer(settings: any) {
 		this._player = videojs(this.#videoElement, settings);
-		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang'); 
+		this.shadowRoot!.querySelector('[lang]')!.removeAttribute('lang');
 	}
 
 	#setupPlayerEvents() {
@@ -222,8 +224,12 @@ export class VideoPlayer extends FoundationElement {
 	#initVideo() {
 		this.#disposePlayer();
 		const settings = this.#getSettings();
-		
-		if (settings.sources && this.#controlElement && this.#noSourceErrorElement) {
+
+		if (
+			settings.sources &&
+			this.#controlElement &&
+			this.#noSourceErrorElement
+		) {
 			this.#hideNoSourceError();
 			this.#setupVideoElement();
 			this.#setupVideoPlayer(settings);
@@ -234,5 +240,5 @@ export class VideoPlayer extends FoundationElement {
 	}
 }
 
-export interface VideoPlayer extends Localized { }
+export interface VideoPlayer extends Localized {}
 applyMixins(VideoPlayer, Localized);

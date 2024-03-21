@@ -14,7 +14,7 @@ jest.mock('video.js', () => {
 
 	return {
 		__esModule: true,
-		default: actualVideoJS
+		default: actualVideoJS,
 	};
 });
 
@@ -30,7 +30,9 @@ describe('vwc-video-player', () => {
 	});
 
 	function getBigPlayButton() {
-		return element.shadowRoot?.querySelector('.vjs-big-play-button') as HTMLButtonElement;
+		return element.shadowRoot?.querySelector(
+			'.vjs-big-play-button'
+		) as HTMLButtonElement;
 	}
 
 	function getVideoEle() {
@@ -47,8 +49,12 @@ describe('vwc-video-player', () => {
 	}
 
 	function getSkipButtons(amount: MediaSkipBy) {
-		const skipBackwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-backward-${amount}`);
-		const skipForwardBtn = element.shadowRoot?.querySelector(`.vjs-skip-forward-${amount}`);
+		const skipBackwardBtn = element.shadowRoot?.querySelector(
+			`.vjs-skip-backward-${amount}`
+		);
+		const skipForwardBtn = element.shadowRoot?.querySelector(
+			`.vjs-skip-forward-${amount}`
+		);
 		return [skipBackwardBtn, skipForwardBtn];
 	}
 
@@ -83,7 +89,7 @@ describe('vwc-video-player', () => {
 	});
 
 	describe('src', () => {
-		it('should show the invalid src error when no src provided', async() => {
+		it('should show the invalid src error when no src provided', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 			)) as VideoPlayer;
@@ -92,7 +98,9 @@ describe('vwc-video-player', () => {
 			const dialogContentEl = getDialogContentEle();
 
 			expect(noSrcErrorEl?.classList.contains('vjs-hidden')).toBe(false);
-			expect(dialogContentEl!.textContent?.trim()).toBe('No compatible source was found for this media.');
+			expect(dialogContentEl!.textContent?.trim()).toBe(
+				'No compatible source was found for this media.'
+			);
 		});
 
 		it('should remove the vjs-hidden class when src is set', async () => {
@@ -127,7 +135,8 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const autoplayExistsWhenAttributeIsSet = getVideoEle().hasAttribute('autoplay');
+			const autoplayExistsWhenAttributeIsSet =
+				getVideoEle().hasAttribute('autoplay');
 
 			element.autoplay = false;
 			elementUpdated(element);
@@ -146,7 +155,9 @@ describe('vwc-video-player', () => {
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
 
-			expect(getPosterElement().querySelector('img')!.getAttribute('src')).toBe(poster);
+			expect(getPosterElement().querySelector('img')!.getAttribute('src')).toBe(
+				poster
+			);
 		});
 	});
 
@@ -162,10 +173,16 @@ describe('vwc-video-player', () => {
 		});
 	});
 
-	function menuItemsMatchReverseOrderOfRates(playbackRates: string[], playbackRatesMenuItems: NodeListOf<Element>) {
+	function menuItemsMatchReverseOrderOfRates(
+		playbackRates: string[],
+		playbackRatesMenuItems: NodeListOf<Element>
+	) {
 		return playbackRates.reverse().reduce((acc, rate, index) => {
-			return acc &&
-				playbackRatesMenuItems[index].querySelector('.vjs-menu-item-text')!.textContent === `${rate}x`;
+			return (
+				acc &&
+				playbackRatesMenuItems[index].querySelector('.vjs-menu-item-text')!
+					.textContent === `${rate}x`
+			);
 		}, true);
 	}
 
@@ -182,12 +199,18 @@ describe('vwc-video-player', () => {
 
 			await elementUpdated(element);
 
-			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll('.vjs-playback-rate .vjs-menu li') as NodeListOf<Element>;
+			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll(
+				'.vjs-playback-rate .vjs-menu li'
+			) as NodeListOf<Element>;
 
 			expect(playbackRatesMenuItems.length).toBe(playbackRatesArray.length);
 
-			expect(menuItemsMatchReverseOrderOfRates(playbackRatesArray, playbackRatesMenuItems)).toBe(true);
-
+			expect(
+				menuItemsMatchReverseOrderOfRates(
+					playbackRatesArray,
+					playbackRatesMenuItems
+				)
+			).toBe(true);
 		});
 
 		it('should hide playback rates when passed an empty string', async () => {
@@ -196,7 +219,8 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const playbackRate = element.shadowRoot?.querySelector('.vjs-playback-rate');
+			const playbackRate =
+				element.shadowRoot?.querySelector('.vjs-playback-rate');
 			expect(playbackRate?.classList.contains('vjs-hidden')).toBe(true);
 		});
 
@@ -206,7 +230,8 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			const playbackRate = element.shadowRoot?.querySelector('.vjs-playback-rate');
+			const playbackRate =
+				element.shadowRoot?.querySelector('.vjs-playback-rate');
 			expect(playbackRate?.classList.contains('vjs-hidden')).toBe(true);
 		});
 	});
@@ -296,8 +321,12 @@ describe('vwc-video-player', () => {
 
 			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeTruthy();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeTruthy();
-			expect(getSkipButtons(MediaSkipBy.Thirty)[0]?.classList.contains('vjs-hidden')).toBe(false);
-			expect(getSkipButtons(MediaSkipBy.Thirty)[1]?.classList.contains('vjs-hidden')).toBe(false);
+			expect(
+				getSkipButtons(MediaSkipBy.Thirty)[0]?.classList.contains('vjs-hidden')
+			).toBe(false);
+			expect(
+				getSkipButtons(MediaSkipBy.Thirty)[1]?.classList.contains('vjs-hidden')
+			).toBe(false);
 		});
 
 		it('should change skip button amount when skipBy is set and show the buttons', async () => {
@@ -314,8 +343,12 @@ describe('vwc-video-player', () => {
 			expect(getSkipButtons(MediaSkipBy.Five)[1]).toBeTruthy();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[0]).toBeNull();
 			expect(getSkipButtons(MediaSkipBy.Thirty)[1]).toBeNull();
-			expect(getSkipButtons(MediaSkipBy.Five)[0]?.classList.contains('vjs-hidden')).toBe(false);
-			expect(getSkipButtons(MediaSkipBy.Five)[1]?.classList.contains('vjs-hidden')).toBe(false);
+			expect(
+				getSkipButtons(MediaSkipBy.Five)[0]?.classList.contains('vjs-hidden')
+			).toBe(false);
+			expect(
+				getSkipButtons(MediaSkipBy.Five)[1]?.classList.contains('vjs-hidden')
+			).toBe(false);
 		});
 
 		it('should hide the skip buttons when passed 0', async () => {
@@ -326,13 +359,19 @@ describe('vwc-video-player', () => {
 			)) as VideoPlayer;
 			expect(getSkipButtons(MediaSkipBy.Zero)[0]).toBeTruthy();
 			expect(getSkipButtons(MediaSkipBy.Zero)[1]).toBeTruthy();
-			expect(getSkipButtons(MediaSkipBy.Zero)[0]?.classList.contains('vjs-hidden')).toBe(true);
-			expect(getSkipButtons(MediaSkipBy.Zero)[1]?.classList.contains('vjs-hidden')).toBe(true);
+			expect(
+				getSkipButtons(MediaSkipBy.Zero)[0]?.classList.contains('vjs-hidden')
+			).toBe(true);
+			expect(
+				getSkipButtons(MediaSkipBy.Zero)[1]?.classList.contains('vjs-hidden')
+			).toBe(true);
 		});
 	});
 
 	function setVideoPauseState(pauseState = true) {
-		jest.spyOn(element.player, 'paused').mockImplementationOnce(() => pauseState);
+		jest
+			.spyOn(element.player, 'paused')
+			.mockImplementationOnce(() => pauseState);
 	}
 
 	describe('events', () => {
@@ -345,12 +384,16 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			jest.spyOn(element.player, 'play').mockImplementation(function(this: any) {
-				this.trigger('play');
-			});
-			jest.spyOn(element.player, 'pause').mockImplementation(function(this: any) {
-				return this.handleTechPause_();
-			});
+			jest
+				.spyOn(element.player, 'play')
+				.mockImplementation(function (this: any) {
+					this.trigger('play');
+				});
+			jest
+				.spyOn(element.player, 'pause')
+				.mockImplementation(function (this: any) {
+					return this.handleTechPause_();
+				});
 		});
 
 		afterEach(() => {
@@ -369,7 +412,9 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should emit the pause event when the pause button is pressed while pause state is false', async () => {
-			const pauseBtn = element.shadowRoot?.querySelector('.vjs-play-control') as HTMLButtonElement;
+			const pauseBtn = element.shadowRoot?.querySelector(
+				'.vjs-play-control'
+			) as HTMLButtonElement;
 			const spy = jest.fn();
 			element.addEventListener('pause', spy);
 			setVideoPauseState(false);

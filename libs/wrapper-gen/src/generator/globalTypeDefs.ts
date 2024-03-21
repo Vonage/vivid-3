@@ -31,8 +31,8 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 	TabsOrientation: typeFromEnumObj(TabsOrientation),
 	TextFieldType: typeFromEnumObj(TextFieldType),
 	TextAreaResize: typeFromEnumObj(TextAreaResize),
-  Orientation: typeFromEnumObj(Orientation),
-  Direction: typeFromEnumObj(Direction),
+	Orientation: typeFromEnumObj(Orientation),
+	Direction: typeFromEnumObj(Direction),
 	MediaSkipBy: typeFromEnumObj(MediaSkipBy),
 
 	// Types defined by Floating UI:
