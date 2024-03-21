@@ -5,9 +5,12 @@
 $inline-size: 230px;
 $gap: 16px;
 
-.base {
+:host{
 	display: grid;
 	margin: 16px;
+}
+
+.base {
 	gap: $gap;
 	inline-size: $inline-size;
 }
