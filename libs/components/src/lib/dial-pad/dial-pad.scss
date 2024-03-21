@@ -2,18 +2,17 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 
-$inline-size: 230px;
 $gap: 16px;
 
-:host{
+:host {
 	display: grid;
 	margin: 16px;
+	inline-size: 100%;
 }
 
 .base {
-	gap: $gap;
- 	grid-template-rows: 80px 1fr auto;
-	inline-size: $inline-size;
+	grid-template-rows: 80px 1fr auto;
+	box-sizing: border-box;
 }
 
 .digits {
@@ -25,18 +24,18 @@ $gap: 16px;
 }
 
 .phone-field {
-
 	align-self: flex-start;
 	grid-column: 1 / -1;
 }
 
 .digit-btn {
+	--vvd-button-accent-primary: var(#{constants.$vvd-color-neutral-600});
 	display: flex;
 	flex-direction: column;
-	box-shadow: inset 0 0 0 1px  var(#{constants.$vvd-color-neutral-300});
+	box-shadow: inset 0 0 0 1px var(#{constants.$vvd-color-neutral-300});
 	border-radius: #{border-radius-variables.$border-radius-expanded};
- overflow: hidden;
- inline-size: 100%;
+	overflow: hidden;
+	inline-size: 100%;
 }
 
 .call-btn {
