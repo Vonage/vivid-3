@@ -2,20 +2,20 @@ import { VProgressRing } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VProgressRing';
 
 export default {
-  title: 'Wrappers/ProgressRing',
-  component: VProgressRing,
-  argTypes,
+	title: 'Wrappers/ProgressRing',
+	component: VProgressRing,
+	argTypes,
 };
 
 const ProgressRingTemplate = () => ({
-  components: { VProgressRing },
-  template: `<VProgressRing />`,
+	components: { VProgressRing },
+	template: `<VProgressRing />`,
 });
 export const ProgressRing = ProgressRingTemplate.bind({});
 
 const MinMaxTemplate = () => ({
-  components: { VProgressRing },
-  template: `<div>
+	components: { VProgressRing },
+	template: `<div>
       <VProgressRing min="0" max="50" value="12.5" />
       <VProgressRing min="0" max="50" value="50" />
       <VProgressRing min="0" max="100" value="50" />
@@ -24,8 +24,8 @@ const MinMaxTemplate = () => ({
 export const MinMax = MinMaxTemplate.bind({});
 
 const ValueTemplate = () => ({
-  components: { VProgressRing },
-  template: `<div>
+	components: { VProgressRing },
+	template: `<div>
       <VProgressRing value="12.5" />
       <VProgressRing value="45" />
       <VProgressRing value="73" />
@@ -35,8 +35,8 @@ const ValueTemplate = () => ({
 export const Value = ValueTemplate.bind({});
 
 const ConnotationTemplate = () => ({
-  components: { VProgressRing },
-  template: `<div>
+	components: { VProgressRing },
+	template: `<div>
       <VProgressRing connotation="accent" />
       <VProgressRing connotation="cta" />
       <VProgressRing connotation="success" />
@@ -46,14 +46,14 @@ const ConnotationTemplate = () => ({
 export const Connotation = ConnotationTemplate.bind({});
 
 const PausedTemplate = () => ({
-  components: { VProgressRing },
-  template: `<VProgressRing min="0" max="50" value="25" paused />`,
+	components: { VProgressRing },
+	template: `<VProgressRing min="0" max="50" value="25" paused />`,
 });
 export const Paused = PausedTemplate.bind({});
 
 const SizeTemplate = () => ({
-  components: { VProgressRing },
-  template: `<div>
+	components: { VProgressRing },
+	template: `<div>
       <VProgressRing min="0" max="50" value="50" size="-5" />
       <VProgressRing min="0" max="50" value="50" size="-4" />
       <VProgressRing min="0" max="50" value="50" size="-3" />
@@ -70,14 +70,14 @@ const SizeTemplate = () => ({
 export const Size = SizeTemplate.bind({});
 
 const DeterminateStateTemplate = () => ({
-  components: { VProgressRing },
-  template: `<VProgressRing min="0" max="50" value="12.5" />`,
+	components: { VProgressRing },
+	template: `<VProgressRing min="0" max="50" value="12.5" />`,
 });
 export const DeterminateState = DeterminateStateTemplate.bind({});
 
 const IndeterminateTemplate = () => ({
-  components: { VProgressRing },
-  template: `<div>
+	components: { VProgressRing },
+	template: `<div>
       <VProgressRing min="0" max="50" />
       <VProgressRing min="0" max="50" value="indeterminate" />
     </div>`,

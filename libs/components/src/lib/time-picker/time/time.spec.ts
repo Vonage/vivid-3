@@ -1,4 +1,9 @@
-import { formatTimePart, hoursAs12hClock, isValidTimeStr, parseTimeStr } from './time.ts';
+import {
+	formatTimePart,
+	hoursAs12hClock,
+	isValidTimeStr,
+	parseTimeStr,
+} from './time.ts';
 
 describe('isValidTimeStr', () => {
 	it('should return true for a valid time string', () => {

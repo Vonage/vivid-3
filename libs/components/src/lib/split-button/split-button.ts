@@ -1,8 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import type {
-	Appearance, Connotation, Shape, Size
-} from '../enums.js';
+import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 
@@ -11,14 +9,20 @@ import { Localized } from '../../shared/patterns';
  *
  * @public
  */
-export type SplitButtonConnotation = Extract<Connotation, Connotation.Accent | Connotation.CTA | Connotation.Success | Connotation.Alert>;
+export type SplitButtonConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA | Connotation.Success | Connotation.Alert
+>;
 
 /**
  * Types of split button appearance.
  *
  * @public
  */
-export type SplitButtonAppearance = Extract<Appearance, Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+export type SplitButtonAppearance = Extract<
+	Appearance,
+	Appearance.Filled | Appearance.Outlined | Appearance.Ghost
+>;
 
 /**
  * Types of split button shape.
@@ -32,7 +36,10 @@ export type SplitButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-export type SplitButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
+export type SplitButtonSize = Extract<
+	Size,
+	Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded
+>;
 
 /**
  * @public
@@ -126,7 +133,8 @@ export class SplitButton extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: split-indicator
 	 */
-	@attr({ attribute: 'split-indicator', mode: 'fromView' }) splitIndicator: string = 'chevron-down-line';
+	@attr({ attribute: 'split-indicator', mode: 'fromView' })
+	splitIndicator: string = 'chevron-down-line';
 
 	/**
 	 * Indicates if the button is disabled.
@@ -138,7 +146,8 @@ export class SplitButton extends FoundationElement {
 	@attr({ attribute: 'disabled', mode: 'boolean' }) disabled = false;
 
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-	@attr({ attribute: 'aria-expanded' }) override ariaExpanded: string | null = null;
+	@attr({ attribute: 'aria-expanded' }) override ariaExpanded: string | null =
+		null;
 
 	/**
 	 * Defines a string value that labels the indicator element.
@@ -148,8 +157,10 @@ export class SplitButton extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: indicator-aria-label
 	 */
-	@attr({ attribute: 'indicator-aria-label' }) indicatorAriaLabel: string | null = null;
+	@attr({ attribute: 'indicator-aria-label' }) indicatorAriaLabel:
+		| string
+		| null = null;
 }
 
-export interface SplitButton extends AffixIcon, Localized { }
+export interface SplitButton extends AffixIcon, Localized {}
 applyMixins(SplitButton, AffixIcon, Localized);

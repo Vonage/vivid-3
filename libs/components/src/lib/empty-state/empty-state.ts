@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr, observable} from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 
 /**
  * An empty state element. Used when there is no data to display to the user.

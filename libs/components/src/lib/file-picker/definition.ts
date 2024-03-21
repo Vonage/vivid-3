@@ -20,7 +20,11 @@ export const filePickerDefinition =
 /**
  * @internal
  */
-export const filePickerRegistries = [filePickerDefinition(), ...iconRegistries, ...buttonRegistries];
+export const filePickerRegistries = [
+	filePickerDefinition(),
+	...iconRegistries,
+	...buttonRegistries,
+];
 
 /**
  * Registers the file-picker element with the design system.

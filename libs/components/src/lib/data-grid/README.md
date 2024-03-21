@@ -9,16 +9,18 @@ The data grid allows users to interact with data in a tabular format.
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
 ## Members
+
 ### Generate-header
+
 Use `generate-header` for data grid header visibility mode.
 
 - Type: `'none'` | `'default'` | `'sticky'`
@@ -38,22 +40,20 @@ Use `generate-header` for data grid header visibility mode.
 
 <vwc-data-grid></vwc-data-grid>
 <script>
-		function changeHeader() {
-			headerType = event.target.value;
-			grid.generateHeader = headerType;
-		}
-		
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
+	function changeHeader() {
+		headerType = event.target.value;
+		grid.generateHeader = headerType;
+	}
 
-        {data1: 'data111', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-        {data1: 'data31', data2: 'data32'},
-        {data1: 'data41', data2: 'data42'},
-        {data1: 'data51', data2: 'data52'},
-        {data1: 'data61', data2: 'data62'},
-    ];
-	
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{ data1: 'data111', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+		{ data1: 'data31', data2: 'data32' },
+		{ data1: 'data41', data2: 'data42' },
+		{ data1: 'data51', data2: 'data52' },
+		{ data1: 'data61', data2: 'data62' },
+	];
 </script>
 ```
 
@@ -76,14 +76,14 @@ Use the `selection-mode` attribute to specify the selection mode of the grid.
 <vwc-data-grid></vwc-data-grid>
 <script>
 	function changeSelectionMode() {
-    selectionMode = event.target.value;
+		selectionMode = event.target.value;
 		grid.selectionMode = selectionMode;
 	}
-    
+
 	grid = document.querySelector('vwc-data-grid');
 	grid.rowsData = [
-			{data1: 'tabs', data2: 'will'},
-			{data1: 'not', data2: 'work'},
+		{ data1: 'tabs', data2: 'will' },
+		{ data1: 'not', data2: 'work' },
 	];
 </script>
 ```
@@ -96,36 +96,48 @@ Use the `selection-mode` attribute to specify the selection mode of the grid.
 When true the component will not add itself to the tab queue.
 
 ```html preview
-<vwc-button appearance="filled" label="Tabbing" onclick="changeTabbing(false)"></vwc-button>
+<vwc-button
+	appearance="filled"
+	label="Tabbing"
+	onclick="changeTabbing(false)"
+></vwc-button>
 <vwc-button label="No Tabbing" onclick="changeTabbing(true)"></vwc-button>
 
 <div id="active-element-content-display">
-	<p>Hit Tab key to browse the tab queue. When in `noTabbing` mode, grid will never be focused.</p>
+	<p>
+		Hit Tab key to browse the tab queue. When in `noTabbing` mode, grid will
+		never be focused.
+	</p>
 	<div id="active-element-content">Grid not focused</div>
 	<div id="focused-cell-content"></div>
 </div>
 <vwc-data-grid></vwc-data-grid>
 <script>
 	function changeTabbing(tabbing) {
-    event.target.appearance = 'filled';
-		Array.from(event.target.parentElement.querySelectorAll('vwc-button')).filter(x => x !== event.target)[0].appearance = null;
+		event.target.appearance = 'filled';
+		Array.from(
+			event.target.parentElement.querySelectorAll('vwc-button')
+		).filter((x) => x !== event.target)[0].appearance = null;
 		grid.noTabbing = tabbing;
 	}
-    
+
 	grid = document.querySelector('vwc-data-grid');
 	grid.rowsData = [
-			{data1: 'tabs', data2: 'will'},
-			{data1: 'not', data2: 'work'},
+		{ data1: 'tabs', data2: 'will' },
+		{ data1: 'not', data2: 'work' },
 	];
 	grid.addEventListener('focusin', () => {
-		document.getElementById('active-element-content').innerText = 'Grid Focused';
+		document.getElementById('active-element-content').innerText =
+			'Grid Focused';
 	});
 	grid.addEventListener('focusout', () => {
-		document.getElementById('active-element-content').innerText = 'Grid Not Focused';
+		document.getElementById('active-element-content').innerText =
+			'Grid Not Focused';
 		document.getElementById('focused-cell-content').innerText = '';
 	});
-	grid.addEventListener('cell-focused', e => {
-		document.getElementById('focused-cell-content').innerText = 'Focused Cell Content: ' + e.detail.innerText;
+	grid.addEventListener('cell-focused', (e) => {
+		document.getElementById('focused-cell-content').innerText =
+			'Focused Cell Content: ' + e.detail.innerText;
 	});
 </script>
 ```
@@ -140,11 +152,11 @@ The data being displayed in the grid.
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
@@ -153,23 +165,28 @@ The data being displayed in the grid.
 - Type: [ColumnDefinition](#columndefinition)`[]`
 - Default: `null`
 
-The column definitions of the grid. 
+The column definitions of the grid.
 
-Note that the sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. 
+Note that the sortable feature doesn't actually sort the data, it only changes the visual representation of the column header.
 See the [use cases](#sortable-columns) for more information.
 
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.columnDefinitions = [
-        {columnDataKey: 'data1', title: 'Custom Title 1', sortable: true, sortDirection: 'ascending'},
-        {columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
-    ];
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.columnDefinitions = [
+		{
+			columnDataKey: 'data1',
+			title: 'Custom Title 1',
+			sortable: true,
+			sortDirection: 'ascending',
+		},
+		{ columnDataKey: 'data2', title: 'Custom Title 2', sortable: true },
+	];
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
@@ -182,7 +199,7 @@ The `grid-template-columns` attribute and `gridTemplateColumns` property define 
 
 Values match the CSS grid-template-columns property.
 
-```html preview	
+```html preview
 <style>
 	vwc-data-grid-cell {
 		text-align: center;
@@ -193,8 +210,8 @@ Values match the CSS grid-template-columns property.
 <script>
 	grid = document.querySelector('vwc-data-grid');
 	grid.rowsData = [
-		{data1: '#1', data2: 'data12'},
-		{data1: '#2', data2: 'data22'},
+		{ data1: '#1', data2: 'data12' },
+		{ data1: '#2', data2: 'data22' },
 	];
 	grid.gridTemplateColumns = '50px 200px';
 </script>
@@ -210,13 +227,13 @@ The template used to render rows. Note you need to use `html` from `fast-element
 ```html
 <vwc-data-grid></vwc-data-grid>
 <script>
-		import { html } from '@microsoft/fast-element';
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	import { html } from '@microsoft/fast-element';
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
@@ -230,13 +247,13 @@ The template used to render cells in generated rows. Note you need to use `html`
 ```html
 <vwc-data-grid></vwc-data-grid>
 <script>
-		import { html } from '@microsoft/fast-element';
-		grid = document.querySelector('vwc-data-grid');
-		grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	import { html } from '@microsoft/fast-element';
+	grid = document.querySelector('vwc-data-grid');
+	grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
@@ -250,13 +267,15 @@ The template used to render cells in generated header rows. Note you need to use
 ```html
 <vwc-data-grid></vwc-data-grid>
 <script>
-		import { html } from '@microsoft/fast-element';
-		grid = document.querySelector('vwc-data-grid');
-		grid.headerCellItemTemplate = html`<div>All header cells will look like me!</div>`;
-		grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	import { html } from '@microsoft/fast-element';
+	grid = document.querySelector('vwc-data-grid');
+	grid.headerCellItemTemplate = html`<div>
+		All header cells will look like me!
+	</div>`;
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
@@ -270,21 +289,26 @@ The index of the row that will be focused the next time the grid is focused. If 
 ```html preview
 <div>Row Index (starts from 0)</div>
 <vwc-number-field id="row-number"></vwc-number-field>
-<vwc-button appearance="filled" connotation="cta" label="Change Focused Row" onclick="changeActiveRow()"></vwc-button>
+<vwc-button
+	appearance="filled"
+	connotation="cta"
+	label="Change Focused Row"
+	onclick="changeActiveRow()"
+></vwc-button>
 <vwc-data-grid></vwc-data-grid>
 <script>
-		function changeActiveRow() {
-            newActiveRow = document.getElementById('row-number').value;
-            grid.focusRowIndex = Number(newActiveRow);
-		}
+	function changeActiveRow() {
+		newActiveRow = document.getElementById('row-number').value;
+		grid.focusRowIndex = Number(newActiveRow);
+	}
 
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
-			{data1: 'data11', data2: 'data12', data3: 'data13'},
-			{data1: 'data21', data2: 'data22', data3: 'data23'},
-			{data1: 'data31', data2: 'data32', data3: 'data33'},
-			{data1: 'data41', data2: 'data42', data3: 'data43'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12', data3: 'data13' },
+		{ data1: 'data21', data2: 'data22', data3: 'data23' },
+		{ data1: 'data31', data2: 'data32', data3: 'data33' },
+		{ data1: 'data41', data2: 'data42', data3: 'data43' },
+	];
 </script>
 ```
 
@@ -297,22 +321,28 @@ The index of the column that will be focused the next time the grid is focused i
 
 ```html preview
 <div>Column Index (starts from 0)</div>
-<vwc-number-field id="col-number"></vwc-number-field><br/>
-<vwc-button appearance="filled" connotation="cta" label="Change Focused Column" onclick="changeActiveColumn()"></vwc-button>
+<vwc-number-field id="col-number"></vwc-number-field>
+<br />
+<vwc-button
+	appearance="filled"
+	connotation="cta"
+	label="Change Focused Column"
+	onclick="changeActiveColumn()"
+></vwc-button>
 <vwc-data-grid></vwc-data-grid>
 <script>
-		function changeActiveColumn() {
-        newActiveColumn = document.getElementById('col-number').value;
-        grid.focusColumnIndex = Number(newActiveColumn);
-    }
+	function changeActiveColumn() {
+		newActiveColumn = document.getElementById('col-number').value;
+		grid.focusColumnIndex = Number(newActiveColumn);
+	}
 
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12', data3: 'data13'},
-        {data1: 'data21', data2: 'data22', data3: 'data23'},
-        {data1: 'data31', data2: 'data32', data3: 'data33'},
-        {data1: 'data41', data2: 'data42', data3: 'data43'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12', data3: 'data13' },
+		{ data1: 'data21', data2: 'data22', data3: 'data23' },
+		{ data1: 'data31', data2: 'data32', data3: 'data33' },
+		{ data1: 'data41', data2: 'data42', data3: 'data43' },
+	];
 </script>
 ```
 
@@ -326,22 +356,23 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowElementTag = 'div';
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowElementTag = 'div';
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
 ## Interfaces
 
 ### ColumnDefinition
+
 <div class="table-wrapper">
 
 | Name                            | Type                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|---------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columndDataKey`                | `string`                                                             | The property from which the data of the column is taken from                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `title`                         | `string`                                                             | The title of the column                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `headerCellTemplate`            | `ViewTemplate`                                                       | A custom template for a header cell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -360,7 +391,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 #### aria-selected
 
-User the `aria-selected` attribute to indicate the selected state of a row. 
+User the `aria-selected` attribute to indicate the selected state of a row.
 For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
 The grid also adds the `aria-selected` attribute to the row when it is selected and adds `aria-selected="false"` for none-selected rows.
 
@@ -370,9 +401,7 @@ The grid also adds the `aria-selected` attribute to the row when it is selected 
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader">
-			data2
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">data2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row aria-selected="true">
 		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
@@ -387,40 +416,48 @@ The grid also adds the `aria-selected` attribute to the row when it is selected 
 
 ### Cell
 
-
 #### aria-sort
 
 - Type: `'ascending'` | `'descending'` | `'none'` | `'other'` | `null`
 - Default: `null`
 
-Use the `aria-sort` attribute on a `columnheader` cell to indicate the sortable state of a header cell. 
-This will add the right chevron(s) according to the state. 
+Use the `aria-sort` attribute on a `columnheader` cell to indicate the sortable state of a header cell.
+This will add the right chevron(s) according to the state.
 
 In a nutshell:
-* `ascending` - Items are sorted in ascending order by this column. Will show one chevron pointing up.
 
-* `descending` - Items are sorted in descending order by this column. Will show one chevron pointing down.
+- `ascending` - Items are sorted in ascending order by this column. Will show one chevron pointing up.
 
-* `none` - There is no defined sort applied to the column. Will show indeterminate state with the two chevrons.
+- `descending` - Items are sorted in descending order by this column. Will show one chevron pointing down.
 
-* `other` - A sorting algorithm other than ascending or descending has been applied. Will show no hint. 
+- `none` - There is no defined sort applied to the column. Will show indeterminate state with the two chevrons.
+
+- `other` - A sorting algorithm other than ascending or descending has been applied. Will show no hint.
 
 For more information regarding `aria-sort` you can reference [the W3C spec](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort).
 
 ```html preview
 <vwc-data-grid>
-  <vwc-data-grid-row role="row">
-    <vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending">ascending</vwc-data-grid-cell>
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending">descending</vwc-data-grid-cell>
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">none</vwc-data-grid-cell>
-	<vwc-data-grid-cell cell-type="columnheader" aria-sort="other">other</vwc-data-grid-cell>
- </vwc-data-grid-row>
+	<vwc-data-grid-row role="row">
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending">
+			ascending
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending">
+			descending
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">
+			none
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="other">
+			other
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
 
 #### aria-selected
 
-Use the `aria-selected` attribute to indicate the selected state of a cell. 
+Use the `aria-selected` attribute to indicate the selected state of a cell.
 For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
 The grid also adds the `aria-selected` attribute to the cell when it is selected and adds `aria-selected="false"` for none-selected cells.
 
@@ -429,7 +466,9 @@ The grid also adds the `aria-selected` attribute to the cell when it is selected
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell aria-selected="true">Cell 1</vwc-data-grid-cell>
 		<vwc-data-grid-cell aria-selected="false">Cell 2</vwc-data-grid-cell>
-		<vwc-data-grid-cell>Cell 3 with long text, all cells has ellipsis</vwc-data-grid-cell>
+		<vwc-data-grid-cell>
+			Cell 3 with long text, all cells has ellipsis
+		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
@@ -444,11 +483,11 @@ The default slot, where all the content is rendered.
 
 <div class="table-wrapper">
 
-| Name            | Description                      |
-|-----------------|----------------------------------|
-| `row-focused`   | Fires when a row is focused.     |
-| `cell-focused`  | Fires when a cell is focused.    |
-| `cell-click`    | Fires when a cell is clicked on. |
+| Name           | Description                      |
+| -------------- | -------------------------------- |
+| `row-focused`  | Fires when a row is focused.     |
+| `cell-focused` | Fires when a cell is focused.    |
+| `cell-click`   | Fires when a cell is clicked on. |
 
 </div>
 
@@ -461,71 +500,101 @@ Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 ```html preview
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.columnDefinitions = [
-				{columnDataKey: 'data1', title: 'Column 1'},
-				{columnDataKey: 'data2', title: 'Column 2'},
-		];
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-    ];
-    
-    grid.addEventListener('cell-click', (e) => {
-				console.log('clicked on cell', e.detail.cell.gridColumn, 'row', e.detail.row.rowIndex);
-        if (!e.detail.isHeaderCell) {
-          console.log('key', e.detail.columnDataKey, 'of row data', e.detail.row.rowData);
-        }
-		});
+	grid = document.querySelector('vwc-data-grid');
+	grid.columnDefinitions = [
+		{ columnDataKey: 'data1', title: 'Column 1' },
+		{ columnDataKey: 'data2', title: 'Column 2' },
+	];
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
+
+	grid.addEventListener('cell-click', (e) => {
+		console.log(
+			'clicked on cell',
+			e.detail.cell.gridColumn,
+			'row',
+			e.detail.row.rowIndex
+		);
+		if (!e.detail.isHeaderCell) {
+			console.log(
+				'key',
+				e.detail.columnDataKey,
+				'of row data',
+				e.detail.row.rowData
+			);
+		}
+	});
 </script>
 ```
 
 ## CSS Variable
+
 When Row is set to sticky there's a default canvas background-color.  
 Use `--data-grid-row-background` to change the sticky row background-color.
 
 ```html preview
 <style>
-vwc-data-grid {--data-grid-row-background: var(--vvd-color-neutral-50);}
+	vwc-data-grid {
+		--data-grid-row-background: var(--vvd-color-neutral-50);
+	}
 </style>
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    
-    grid.generateHeader = 'sticky';
-    grid.rowsData = [
+	grid = document.querySelector('vwc-data-grid');
 
-        {data1: 'data111', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-        {data1: 'data31', data2: 'data32'},
-        {data1: 'data41', data2: 'data42'},
-        {data1: 'data51', data2: 'data52'},
-        {data1: 'data61', data2: 'data62'},
-    ];
-	
+	grid.generateHeader = 'sticky';
+	grid.rowsData = [
+		{ data1: 'data111', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+		{ data1: 'data31', data2: 'data32' },
+		{ data1: 'data41', data2: 'data42' },
+		{ data1: 'data51', data2: 'data52' },
+		{ data1: 'data61', data2: 'data62' },
+	];
 </script>
 ```
 
 ## Dimensions
+
 ### Inline-size
+
 Data-grid inline-size is 100% by default.
 If needed inline-size can be set on the `data-grid`.
 
 ```html preview
 <style>
-vwc-data-grid {inline-size: 350px;}
+	vwc-data-grid {
+		inline-size: 350px;
+	}
 </style>
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.rowsData = [
-        {data1: 'data11', data2: 'data12', data3: 'data13', data4: 'data14', data5: 'data15', data6: 'data16'},
-        {data1: 'data21', data2: 'data22', data3: 'data23', data4: 'data24', data5: 'data25', data6: 'data26'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowsData = [
+		{
+			data1: 'data11',
+			data2: 'data12',
+			data3: 'data13',
+			data4: 'data14',
+			data5: 'data15',
+			data6: 'data16',
+		},
+		{
+			data1: 'data21',
+			data2: 'data22',
+			data3: 'data23',
+			data4: 'data24',
+			data5: 'data25',
+			data6: 'data26',
+		},
+	];
 </script>
 ```
 
 ### Max-Block-size
+
 Data-grid has no block-size definition by default.  
 When setting `generate-header` to `sticky` the `data-grid` gets `max-block-size: 400px`, if needed, set a custom max-block-size.
 
@@ -537,16 +606,16 @@ When setting `generate-header` to `sticky` the `data-grid` gets `max-block-size:
 </style>
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.generateHeader = "sticky"
-    grid.rowsData = [
-        {data1: 'data111', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-        {data1: 'data31', data2: 'data32'},
-        {data1: 'data41', data2: 'data42'},
-        {data1: 'data51', data2: 'data52'},
-        {data1: 'data61', data2: 'data62'},
-    ];
+	grid = document.querySelector('vwc-data-grid');
+	grid.generateHeader = 'sticky';
+	grid.rowsData = [
+		{ data1: 'data111', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+		{ data1: 'data31', data2: 'data32' },
+		{ data1: 'data41', data2: 'data42' },
+		{ data1: 'data51', data2: 'data52' },
+		{ data1: 'data61', data2: 'data62' },
+	];
 </script>
 ```
 
@@ -556,7 +625,7 @@ Keyboard events and focus handling are compliant with WACG standards.
 
 Usage of `aria-selected` hints on a selectable element and its selection status.
 
-When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`. 
+When a cell is sorted but not according to ascending or descending algorithm, use `aria-sort="other"`.
 
 ## Use Cases
 
@@ -565,14 +634,12 @@ When a cell is sorted but not according to ascending or descending algorithm, us
 In order for the select popup to show correctly in the grid, use the `fixed-dropdown` attribute on the select inside grid cells.
 
 ```html preview
-	<vwc-data-grid>
+<vwc-data-grid>
 	<vwc-data-grid-row role="row" class="header" row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
 			data1
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader">
-			data2
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">data2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell>
@@ -602,13 +669,12 @@ In order for a grid column to show as sortable, use the `aria-sort` attribute on
 Here's an example of sorting when building the grid manually:
 
 ```html preview
-
 <vwc-data-grid>
-	<vwc-data-grid-row row-type='header'>
-		<vwc-data-grid-cell cell-type='columnheader'>
+	<vwc-data-grid-row row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
 			Not Sortable
 		</vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type='columnheader' aria-sort='none'>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none">
 			Sortable
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
@@ -623,12 +689,13 @@ Here's an example of sorting when building the grid manually:
 		{ data1: '311', data2: '112' },
 		{ data1: '411', data2: '612' },
 		{ data1: '511', data2: '512' },
-		{ data1: '611', data2: '412' }
+		{ data1: '611', data2: '412' },
 	];
 
-	gridRowForEntry = new Map(data.map((entry) => {
-		const gridRow = document.createElement('vwc-data-grid-row');
-		gridRow.innerHTML = `
+	gridRowForEntry = new Map(
+		data.map((entry) => {
+			const gridRow = document.createElement('vwc-data-grid-row');
+			gridRow.innerHTML = `
 			<vwc-data-grid-cell>
 				${entry.data1}
 			</vwc-data-grid-cell>
@@ -636,8 +703,9 @@ Here's an example of sorting when building the grid manually:
 				${entry.data2}
 			</vwc-data-grid-cell>
 		`;
-		return [entry, gridRow];
-	}));
+			return [entry, gridRow];
+		})
+	);
 
 	compare = (sortDirection) => (a, b) => {
 		const nameA = a.data2;
@@ -652,7 +720,7 @@ Here's an example of sorting when building the grid manually:
 		return 0;
 	};
 
-	function renderData(sortDirection = "none") {
+	function renderData(sortDirection = 'none') {
 		const sortedData = Array.from(data).sort(compare(sortDirection));
 		for (const entry of sortedData) {
 			grid.appendChild(gridRowForEntry.get(entry));
@@ -663,8 +731,12 @@ Here's an example of sorting when building the grid manually:
 
 	grid.addEventListener('sort', (e) => {
 		console.log(e.detail);
-		e.target.ariaSort = e.detail.sortDirection === "ascending" ? "descending" :
-			e.detail.sortDirection === "descending" ? "none" : "ascending";
+		e.target.ariaSort =
+			e.detail.sortDirection === 'ascending'
+				? 'descending'
+				: e.detail.sortDirection === 'descending'
+				? 'none'
+				: 'ascending';
 		renderData(e.target.ariaSort);
 	});
 </script>
@@ -680,47 +752,51 @@ Here's an example of sorting the data-grid when building it with `rowsData`:
 </style>
 <vwc-data-grid></vwc-data-grid>
 <script>
-    grid = document.querySelector('vwc-data-grid');
-    grid.generateHeader = "sticky"
-		const data = [
-        {data1: 'data111', data2: 'data12'},
-        {data1: 'data21', data2: 'data22'},
-        {data1: 'data31', data2: 'data32'},
-        {data1: 'data41', data2: 'data42'},
-        {data1: 'data51', data2: 'data52'},
-        {data1: 'data61', data2: 'data62'},
-    ];
-    grid.rowsData = Array.from(data);
-    grid.columnDefinitions = [
-				{columnDataKey: 'data1', title: 'Custom Title 1', sortable: true},
-				{columnDataKey: 'data2', title: 'Custom Title 2', sortable: true},
-		];
-    grid.addEventListener('sort', (e) => {
-        console.log(e.detail);
-       const sortedColumnHeaderDef = e.target.columnDefinition;
-       
-       grid.columnDefinitions.forEach(column => {
-					 if (column.columnDataKey !== sortedColumnHeaderDef.columnDataKey) {
-							 column.sortDirection = 'none';
-							 return;
-					 }
-					 column.sortDirection = e.detail.sortDirection === "ascending" ? "descending" :
-						 e.detail.sortDirection === "descending" ? "none" : "ascending";
-			 });
-       
-       grid.rowsData = Array.from(data).sort((a, b) => {
-					 const nameA = a[sortedColumnHeaderDef.columnDataKey];
-					 const nameB = b[sortedColumnHeaderDef.columnDataKey];
-					 
-					 if (sortedColumnHeaderDef.sortDirection === 'none') return 0;
-					 if (sortedColumnHeaderDef.sortDirection === 'ascending') {
-							 return nameA > nameB ? -1 : 1;
-					 } else {
-							 return nameA < nameB ? -1 : 1;
-					 }
-					 return 0;
-			 });
+	grid = document.querySelector('vwc-data-grid');
+	grid.generateHeader = 'sticky';
+	const data = [
+		{ data1: 'data111', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+		{ data1: 'data31', data2: 'data32' },
+		{ data1: 'data41', data2: 'data42' },
+		{ data1: 'data51', data2: 'data52' },
+		{ data1: 'data61', data2: 'data62' },
+	];
+	grid.rowsData = Array.from(data);
+	grid.columnDefinitions = [
+		{ columnDataKey: 'data1', title: 'Custom Title 1', sortable: true },
+		{ columnDataKey: 'data2', title: 'Custom Title 2', sortable: true },
+	];
+	grid.addEventListener('sort', (e) => {
+		console.log(e.detail);
+		const sortedColumnHeaderDef = e.target.columnDefinition;
+
+		grid.columnDefinitions.forEach((column) => {
+			if (column.columnDataKey !== sortedColumnHeaderDef.columnDataKey) {
+				column.sortDirection = 'none';
+				return;
+			}
+			column.sortDirection =
+				e.detail.sortDirection === 'ascending'
+					? 'descending'
+					: e.detail.sortDirection === 'descending'
+					? 'none'
+					: 'ascending';
 		});
+
+		grid.rowsData = Array.from(data).sort((a, b) => {
+			const nameA = a[sortedColumnHeaderDef.columnDataKey];
+			const nameB = b[sortedColumnHeaderDef.columnDataKey];
+
+			if (sortedColumnHeaderDef.sortDirection === 'none') return 0;
+			if (sortedColumnHeaderDef.sortDirection === 'ascending') {
+				return nameA > nameB ? -1 : 1;
+			} else {
+				return nameA < nameB ? -1 : 1;
+			}
+			return 0;
+		});
+	});
 </script>
 ```
 
@@ -732,41 +808,45 @@ If you cell contains multiple focusable elements or elements that require arrow 
 
 ```html preview
 <vwc-data-grid>
-  <vwc-data-grid-row row-type="header">
-    <vwc-data-grid-cell cell-type="columnheader">
-      Column 1
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell cell-type="columnheader">
-      Column 2
-    </vwc-data-grid-cell>
-  </vwc-data-grid-row>
-  <vwc-data-grid-row>
-    <vwc-data-grid-cell>
-      Cell 1.1
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell id="single-action">
-      <vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
-    </vwc-data-grid-cell>
-  </vwc-data-grid-row>
-  <vwc-data-grid-row>
-    <vwc-data-grid-cell>
-      Cell 2.1
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell id="multiple-actions">
-      <vwc-button appearance="outlined" label="Action 1" connotation="alert"></vwc-button>
-      <vwc-button appearance="outlined" label="Action 2" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-  </vwc-data-grid-row>
+	<vwc-data-grid-row row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">Column 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Column 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>Cell 1.1</vwc-data-grid-cell>
+		<vwc-data-grid-cell id="single-action">
+			<vwc-button
+				appearance="outlined"
+				label="Action 1"
+				connotation="alert"
+			></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>Cell 2.1</vwc-data-grid-cell>
+		<vwc-data-grid-cell id="multiple-actions">
+			<vwc-button
+				appearance="outlined"
+				label="Action 1"
+				connotation="alert"
+			></vwc-button>
+			<vwc-button
+				appearance="outlined"
+				label="Action 2"
+				connotation="success"
+			></vwc-button>
+		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
 </vwc-data-grid>
 
 <script>
-  document.querySelector("#single-action").columnDefinition = {
-    cellFocusTargetCallback: (cell) => cell.querySelector("vwc-button")
-  };
-  document.querySelector("#multiple-actions").columnDefinition = {
-    cellInternalFocusQueue: true,
-    cellFocusTargetCallback: (cell) => cell.querySelector("vwc-button")
-  };
+	document.querySelector('#single-action').columnDefinition = {
+		cellFocusTargetCallback: (cell) => cell.querySelector('vwc-button'),
+	};
+	document.querySelector('#multiple-actions').columnDefinition = {
+		cellInternalFocusQueue: true,
+		cellFocusTargetCallback: (cell) => cell.querySelector('vwc-button'),
+	};
 </script>
 ```
 
@@ -774,34 +854,45 @@ If you cell contains multiple focusable elements or elements that require arrow 
 
 You can add and remove rows dynamically by manipulating the `rowsData`.
 
-
 ```html preview
 <style>
 	vwc-data-grid {
 		max-block-size: 200px;
 	}
 </style>
-<vwc-button label="Add item" appearance="outlined" onclick="push()"></vwc-button>
-<vwc-button label="Remove last item" appearance="outlined" onclick="pop()"></vwc-button>
-<vwc-button label="Remove first item" appearance="outlined" onclick="shift()"></vwc-button>
+<vwc-button
+	label="Add item"
+	appearance="outlined"
+	onclick="push()"
+></vwc-button>
+<vwc-button
+	label="Remove last item"
+	appearance="outlined"
+	onclick="pop()"
+></vwc-button>
+<vwc-button
+	label="Remove first item"
+	appearance="outlined"
+	onclick="shift()"
+></vwc-button>
 <vwc-data-grid selection-mode="single-row"></vwc-data-grid>
 
 <script>
-	let count = 1
+	let count = 1;
 	grid = document.querySelector('vwc-data-grid');
 	grid.rowsData = [];
 	grid.generateHeader = 'sticky';
 
-	for (let i = 0; i < 3; i++){
+	for (let i = 0; i < 3; i++) {
 		push();
 	}
-  
+
 	function push() {
 		grid.rowsData.push({
 			data1: `data${count}1`,
-			data2: `data${count}2`
+			data2: `data${count}2`,
 		});
-		count++
+		count++;
 	}
 
 	function pop() {

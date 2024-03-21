@@ -1,4 +1,6 @@
-export function listenToFormSubmission(formElement: HTMLFormElement): Promise<FormData> {
+export function listenToFormSubmission(
+	formElement: HTMLFormElement
+): Promise<FormData> {
 	return new Promise((res) => {
 		formElement.addEventListener('submit', () => {
 			const formData = new FormData(formElement);
@@ -7,16 +9,24 @@ export function listenToFormSubmission(formElement: HTMLFormElement): Promise<Fo
 	});
 }
 export interface CreateFormHTMLConfig {
-	componentTagName: string,
-	fieldName?: string,
-	formId: string,
-	otherFormId?: string,
-	fieldValue?: string | number,
-	checked?: string | boolean,
-	formWrapper?: HTMLElement
+	componentTagName: string;
+	fieldName?: string;
+	formId: string;
+	otherFormId?: string;
+	fieldValue?: string | number;
+	checked?: string | boolean;
+	formWrapper?: HTMLElement;
 }
 
-export function createFormHTML<T>({fieldName, fieldValue, formId, otherFormId, checked, componentTagName, formWrapper}: CreateFormHTMLConfig) {
+export function createFormHTML<T>({
+	fieldName,
+	fieldValue,
+	formId,
+	otherFormId,
+	checked,
+	componentTagName,
+	formWrapper,
+}: CreateFormHTMLConfig) {
 	formWrapper = formWrapper || document.createElement('div');
 	const otherForm = otherFormId
 		? `<form onsubmit="return false" id="${otherFormId}"><button></button></form>`
@@ -39,7 +49,9 @@ export function createFormHTML<T>({fieldName, fieldValue, formId, otherFormId, c
 		form: formWrapper.children[0] as HTMLFormElement,
 		otherForm: formWrapper.children[1] as HTMLFormElement,
 		element: formWrapper.querySelector(componentTagName) as unknown as T,
-		button: (formWrapper.children[0] as HTMLFormElement).querySelector('button'),
+		button: (formWrapper.children[0] as HTMLFormElement).querySelector(
+			'button'
+		),
 		otherFormButton: formWrapper.children[1]?.querySelector('button'),
 	};
 }

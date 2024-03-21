@@ -1,6 +1,11 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Connotation} from '../enums';
+import { Connotation } from '../enums';
 import { Switch } from './switch';
 import '.';
 import { switchDefinition } from './definition';
@@ -41,7 +46,7 @@ describe('vwc-switch', () => {
 	});
 
 	describe('checked', () => {
-		it('should toggle the check after a click', async function() {
+		it('should toggle the check after a click', async function () {
 			const control = getControlElement(element);
 			control.click();
 			await elementUpdated(element);
@@ -49,7 +54,6 @@ describe('vwc-switch', () => {
 		});
 
 		it('should set the checked from attribute', async () => {
-
 			element.toggleAttribute('checked', true);
 			await elementUpdated(element);
 			const checkedValueWithCheckedAttribute = element.checked;
@@ -61,23 +65,23 @@ describe('vwc-switch', () => {
 			expect(checkedValueWithoutCheckedAttribute).toEqual(false);
 		});
 
-		it('should change when spacebar hit', async function() {
+		it('should change when spacebar hit', async function () {
 			element.checked = false;
 			const control = getControlElement(element);
-			control.dispatchEvent(new KeyboardEvent('keypress',{'key': ' '}));
+			control.dispatchEvent(new KeyboardEvent('keypress', { key: ' ' }));
 			await elementUpdated(element);
 			expect(element.checked).toEqual(true);
 		});
 
-		it('should change when Enter hit', async function() {
+		it('should change when Enter hit', async function () {
 			element.checked = true;
 			const control = getControlElement(element);
-			control.dispatchEvent(new KeyboardEvent('keypress',{'key': 'Enter'}));
+			control.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
 			await elementUpdated(element);
 			expect(element.checked).toEqual(false);
 		});
 
-		it('should set aria-checked on the control', async function() {
+		it('should set aria-checked on the control', async function () {
 			const control = getControlElement(element);
 			const ariaCheckedWhenNotChecked = control.getAttribute('aria-checked');
 
@@ -91,21 +95,17 @@ describe('vwc-switch', () => {
 
 	describe('disabled', () => {
 		it('should set disabled class when attribute is set', async function () {
-			const disabledClassWhenEnabled = getControlElement(element)
-				.classList
-				.contains('disabled');
+			const disabledClassWhenEnabled =
+				getControlElement(element).classList.contains('disabled');
 			element.disabled = true;
 			await elementUpdated(element);
-			const disabledClassWhenDisabled = getControlElement(element)
-				.classList
-				.contains('disabled');
-			expect(disabledClassWhenEnabled)
-				.toEqual(false);
-			expect(disabledClassWhenDisabled)
-				.toEqual(true);
+			const disabledClassWhenDisabled =
+				getControlElement(element).classList.contains('disabled');
+			expect(disabledClassWhenEnabled).toEqual(false);
+			expect(disabledClassWhenDisabled).toEqual(true);
 		});
 
-		it('should set aria-disabled on the control', async function() {
+		it('should set aria-disabled on the control', async function () {
 			const control = getControlElement(element);
 			const ariaDisabledWhenNotDisabled = control.getAttribute('aria-disabled');
 
@@ -116,7 +116,7 @@ describe('vwc-switch', () => {
 			expect(control.getAttribute('aria-disabled')).toEqual('true');
 		});
 
-		it('should remove tabindex when disabled', async function() {
+		it('should remove tabindex when disabled', async function () {
 			const control = getControlElement(element);
 			const tabindexWhenEnabled = control.getAttribute('tabindex');
 			element.disabled = true;
@@ -129,21 +129,17 @@ describe('vwc-switch', () => {
 
 	describe('readOnly', function () {
 		it('should add class readonly to control', async function () {
-			const readonlyClassWhenFalse = getControlElement(element)
-				.classList
-				.contains('readonly');
+			const readonlyClassWhenFalse =
+				getControlElement(element).classList.contains('readonly');
 			element.readOnly = true;
 			await elementUpdated(element);
-			const readonlyClassWhenTrue = getControlElement(element)
-				.classList
-				.contains('readonly');
-			expect(readonlyClassWhenFalse)
-				.toEqual(false);
-			expect(readonlyClassWhenTrue)
-				.toEqual(true);
+			const readonlyClassWhenTrue =
+				getControlElement(element).classList.contains('readonly');
+			expect(readonlyClassWhenFalse).toEqual(false);
+			expect(readonlyClassWhenTrue).toEqual(true);
 		});
 
-		it('should set aria-readonly on the control', async function() {
+		it('should set aria-readonly on the control', async function () {
 			element.readOnly = false;
 			await elementUpdated(element);
 			const control = getControlElement(element);
@@ -159,18 +155,14 @@ describe('vwc-switch', () => {
 
 	describe('checked', function () {
 		it('should add class checked to control', async function () {
-			const checkedClassWhenFalse = getControlElement(element)
-				.classList
-				.contains('checked');
+			const checkedClassWhenFalse =
+				getControlElement(element).classList.contains('checked');
 			element.checked = true;
 			await elementUpdated(element);
-			const checkedClassWhenTrue = getControlElement(element)
-				.classList
-				.contains('checked');
-			expect(checkedClassWhenFalse)
-				.toEqual(false);
-			expect(checkedClassWhenTrue)
-				.toEqual(true);
+			const checkedClassWhenTrue =
+				getControlElement(element).classList.contains('checked');
+			expect(checkedClassWhenFalse).toEqual(false);
+			expect(checkedClassWhenTrue).toEqual(true);
 		});
 
 		it('should set aria-checked on the control', async function () {
@@ -193,7 +185,9 @@ describe('vwc-switch', () => {
 			element.setAttribute('label', labelText);
 			await elementUpdated(element);
 			expect(element.label).toEqual(labelText);
-			expect(element.shadowRoot?.querySelector('.label')?.textContent?.trim()).toEqual(labelText);
+			expect(
+				element.shadowRoot?.querySelector('.label')?.textContent?.trim()
+			).toEqual(labelText);
 		});
 
 		it('should hide the label if no label is supplied', function () {
@@ -203,19 +197,19 @@ describe('vwc-switch', () => {
 
 	describe('connotation', function () {
 		it('should reflect its value to host', async function () {
-
 			element.setAttribute('connotation', 'alert');
 			await elementUpdated(element);
 			const connotationPropertyAfterAttributeChange = element.connotation;
 
 			element.connotation = Connotation.CTA;
 			await elementUpdated(element);
-			const connotationAttributeAfterPropertyChange = element.getAttribute('connotation');
+			const connotationAttributeAfterPropertyChange =
+				element.getAttribute('connotation');
 
-			expect(connotationPropertyAfterAttributeChange)
-				.toEqual(Connotation.Alert);
-			expect(connotationAttributeAfterPropertyChange)
-				.toEqual(Connotation.CTA);
+			expect(connotationPropertyAfterAttributeChange).toEqual(
+				Connotation.Alert
+			);
+			expect(connotationAttributeAfterPropertyChange).toEqual(Connotation.CTA);
 		});
 
 		it('should not set connotation on the control div if unchecked', async function () {
@@ -224,7 +218,9 @@ describe('vwc-switch', () => {
 			const connotation = Connotation.CTA;
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = control?.classList.contains(`connotation-${connotation}`);
+			const connotationClassExistsAfterChange = control?.classList.contains(
+				`connotation-${connotation}`
+			);
 
 			expect(connotationClassExistsAfterChange).toEqual(false);
 		});
@@ -233,16 +229,18 @@ describe('vwc-switch', () => {
 			const control = getControlElement(element);
 
 			const connotation = Connotation.CTA;
-			const connotationClassExistsBeforeChange = control?.classList.contains(`connotation-${connotation}`);
+			const connotationClassExistsBeforeChange = control?.classList.contains(
+				`connotation-${connotation}`
+			);
 			element.checked = true;
 			element.connotation = connotation;
 			await elementUpdated(element);
-			const connotationClassExistsAfterChange = control?.classList.contains(`connotation-${connotation}`);
+			const connotationClassExistsAfterChange = control?.classList.contains(
+				`connotation-${connotation}`
+			);
 
-			expect(connotationClassExistsBeforeChange)
-				.toEqual(false);
-			expect(connotationClassExistsAfterChange)
-				.toEqual(true);
+			expect(connotationClassExistsBeforeChange).toEqual(false);
+			expect(connotationClassExistsAfterChange).toEqual(true);
 		});
 	});
 
@@ -250,23 +248,27 @@ describe('vwc-switch', () => {
 		it('should apply filled appearance style when checked', async function () {
 			const control = getControlElement(element);
 
-			const appearanceFilledClassExistsBeforeChecked = control?.classList.contains('appearance-filled');
+			const appearanceFilledClassExistsBeforeChecked =
+				control?.classList.contains('appearance-filled');
 
 			element.checked = true;
 			await elementUpdated(element);
 
-			const appearanceFilledClassExistsAfterChecked = control?.classList.contains('appearance-filled');
+			const appearanceFilledClassExistsAfterChecked =
+				control?.classList.contains('appearance-filled');
 
 			element.disabled = true;
 			await elementUpdated(element);
 
-			const appearanceFilledClassExistsAfterDisabled = control?.classList.contains('appearance-filled');
+			const appearanceFilledClassExistsAfterDisabled =
+				control?.classList.contains('appearance-filled');
 
 			element.disabled = false;
 			element.readOnly = true;
 			await elementUpdated(element);
 
-			const appearanceFilledClassExistsAfterReadonly = control?.classList.contains('appearance-filled');
+			const appearanceFilledClassExistsAfterReadonly =
+				control?.classList.contains('appearance-filled');
 
 			expect(appearanceFilledClassExistsBeforeChecked).toEqual(false);
 			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);

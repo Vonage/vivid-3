@@ -1,6 +1,7 @@
 # VCombobox Examples
 
 ## Default Slot
+
 <code-tab visible-overflow>
 <template #example>
 <DefaultSlotExample />
@@ -10,11 +11,12 @@
 ```vue
 <!--@include: ./components/combobox/DefaultSlotExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Label
+
 <code-tab visible-overflow>
 <template #example>
 <LabelExample />
@@ -24,11 +26,12 @@
 ```vue
 <!--@include: ./components/combobox/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Value
+
 <code-tab visible-overflow>
 <template #example>
 <ValueExample />
@@ -38,10 +41,12 @@
 ```vue
 <!--@include: ./components/combobox/ValueExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Placeholder
+
 <code-tab visible-overflow>
 <template #example>
 <PlaceholderExample />
@@ -51,11 +56,12 @@
 ```vue
 <!--@include: ./components/combobox/PlaceholderExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Autocomplete
+
 <code-tab visible-overflow>
 <template #example>
 <AutocompleteExample />
@@ -65,11 +71,12 @@
 ```vue
 <!--@include: ./components/combobox/AutocompleteExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Open
+
 <code-tab visible-overflow>
 <template #example>
 <OpenExample/>
@@ -79,11 +86,12 @@
 ```vue
 <!--@include: ./components/combobox/OpenExample.vue -->
 ```
+
 </template>
 </code-tab>
 
-
 ## Placement
+
 <code-tab visible-overflow>
 <template #example>
 <PlacementExample/>
@@ -93,10 +101,12 @@
 ```vue
 <!--@include: ./components/combobox/PlacementExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab visible-overflow>
 <template #example>
 <DisabledExample />
@@ -106,6 +116,7 @@
 ```vue
 <!--@include: ./components/combobox/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 

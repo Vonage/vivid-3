@@ -21,19 +21,23 @@ describe('vwc-range-slider', () => {
 	};
 
 	beforeEach(async () => {
-		jest.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
+		jest
+			.spyOn(HTMLElement.prototype, 'clientWidth', 'get')
+			.mockReturnValue(1000);
 		jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
 			bottom: 1000,
 			top: 0,
-			left: 0
+			left: 0,
 		} as DOMRect);
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as RangeSlider;
-		const [start, end] = element.shadowRoot?.querySelectorAll('.thumb-container') as unknown as HTMLElement[];
+		const [start, end] = element.shadowRoot?.querySelectorAll(
+			'.thumb-container'
+		) as unknown as HTMLElement[];
 		thumbs = {
 			start,
-			end
+			end,
 		};
 	});
 
@@ -54,7 +58,10 @@ describe('vwc-range-slider', () => {
 	});
 
 	describe('markers', () => {
-		const getMarkersDiv = () => getControlElement(element).querySelector('.positioning-region > .track > .mark') as HTMLDivElement;
+		const getMarkersDiv = () =>
+			getControlElement(element).querySelector(
+				'.positioning-region > .track > .mark'
+			) as HTMLDivElement;
 
 		it('should not display markers by default', async () => {
 			expect(getMarkersDiv()).toBeNull();
@@ -101,37 +108,43 @@ describe('vwc-range-slider', () => {
 	});
 
 	describe('orientation', () => {
-		describe.each(['horizontal', 'vertical'] as Orientation[])('%s orientation', (orientation) => {
-			beforeEach(async () => {
-				element.orientation = orientation;
-				await elementUpdated(element);
-			});
+		describe.each(['horizontal', 'vertical'] as Orientation[])(
+			'%s orientation',
+			(orientation) => {
+				beforeEach(async () => {
+					element.orientation = orientation;
+					await elementUpdated(element);
+				});
 
-			it(`should set class ${orientation} on control`, async () => {
-				expect(getControlElement(element).classList).toContain(orientation);
-			});
+				it(`should set class ${orientation} on control`, async () => {
+					expect(getControlElement(element).classList).toContain(orientation);
+				});
 
-			it('should set aria-orientation on both thumbs', async () => {
-				expect(thumbs.start.getAttribute('aria-orientation')).toBe(orientation);
-				expect(thumbs.end.getAttribute('aria-orientation')).toBe(orientation);
-			});
-		});
+				it('should set aria-orientation on both thumbs', async () => {
+					expect(thumbs.start.getAttribute('aria-orientation')).toBe(
+						orientation
+					);
+					expect(thumbs.end.getAttribute('aria-orientation')).toBe(orientation);
+				});
+			}
+		);
 	});
 
-	describe('connotation',  () => {
-		const possibleConnotations = [
-			Connotation.Accent,
-			Connotation.CTA
-		] as const;
+	describe('connotation', () => {
+		const possibleConnotations = [Connotation.Accent, Connotation.CTA] as const;
 
-		it.each(possibleConnotations)('should set the connotation class for "%s"', async function (connotation) {
-			element.connotation = connotation;
-			await elementUpdated(element);
-			expect(getControlElement(element)
-				?.classList
-				.contains(`connotation-${connotation}`))
-				.toEqual(true);
-		});
+		it.each(possibleConnotations)(
+			'should set the connotation class for "%s"',
+			async function (connotation) {
+				element.connotation = connotation;
+				await elementUpdated(element);
+				expect(
+					getControlElement(element)?.classList.contains(
+						`connotation-${connotation}`
+					)
+				).toEqual(true);
+			}
+		);
 	});
 
 	describe('start', () => {
@@ -157,7 +170,9 @@ describe('vwc-range-slider', () => {
 		});
 
 		it('should not set the start value if the field is dirty', async () => {
-			thumbs.start.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			thumbs.start.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			element.initialStart = '5';
 
@@ -214,7 +229,9 @@ describe('vwc-range-slider', () => {
 		});
 
 		it('should not set the end value if the field is dirty', async () => {
-			thumbs.end.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+			thumbs.end.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
 
 			element.initialEnd = '5';
 
@@ -248,7 +265,6 @@ describe('vwc-range-slider', () => {
 		});
 	});
 
-
 	describe.each([
 		{
 			thumb: 'start',
@@ -259,36 +275,44 @@ describe('vwc-range-slider', () => {
 			thumb: 'end',
 			lowerBound: 'startAsNumber',
 			upperBound: 'max',
-		}
-	] as const)('$thumb thumb', ({thumb, lowerBound, upperBound}) => {
+		},
+	] as const)('$thumb thumb', ({ thumb, lowerBound, upperBound }) => {
 		beforeEach(() => {
 			element.step = 0.5;
 		});
 
-		it.each(['ArrowRight', 'ArrowDown'])('should increment by step when pressing %s key', async (key) => {
-			element[thumb] = '5';
-			thumbs[thumb].focus();
+		it.each(['ArrowRight', 'ArrowDown'])(
+			'should increment by step when pressing %s key',
+			async (key) => {
+				element[thumb] = '5';
+				thumbs[thumb].focus();
 
-			thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key }));
+				thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key }));
 
-			expect(element[thumb]).toBe('5.5');
-		});
+				expect(element[thumb]).toBe('5.5');
+			}
+		);
 
-		it.each(['ArrowLeft', 'ArrowUp'])('should decrement by step when pressing %s key', async (key) => {
-			element[thumb] = '5';
-			thumbs[thumb].focus();
+		it.each(['ArrowLeft', 'ArrowUp'])(
+			'should decrement by step when pressing %s key',
+			async (key) => {
+				element[thumb] = '5';
+				thumbs[thumb].focus();
 
-			thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key }));
+				thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key }));
 
-			expect(element[thumb]).toBe('4.5');
-		});
+				expect(element[thumb]).toBe('4.5');
+			}
+		);
 
 		it(`should not decrement below ${lowerBound}`, async () => {
 			element[thumb] = '5';
 			element[lowerBound] = 5;
 			thumbs[thumb].focus();
 
-			thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
+			thumbs[thumb].dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
 
 			expect(element[thumb]).toBe('5');
 		});
@@ -298,7 +322,9 @@ describe('vwc-range-slider', () => {
 			element[upperBound] = 5;
 			thumbs[thumb].focus();
 
-			thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			thumbs[thumb].dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 
 			expect(element[thumb]).toBe('5');
 		});
@@ -308,7 +334,9 @@ describe('vwc-range-slider', () => {
 			element[lowerBound] = 2;
 			thumbs[thumb].focus();
 
-			thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
+			thumbs[thumb].dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home' })
+			);
 
 			expect(element[thumb]).toBe('2');
 		});
@@ -326,9 +354,9 @@ describe('vwc-range-slider', () => {
 
 	describe('clicking on track', () => {
 		describe.each([
-			{ orientation: 'horizontal', coordinate: 'pageX', },
-			{ orientation: 'vertical', coordinate: 'pageY', }
-		])('with $orientation orientation', ({orientation, coordinate}) => {
+			{ orientation: 'horizontal', coordinate: 'pageX' },
+			{ orientation: 'vertical', coordinate: 'pageY' },
+		])('with $orientation orientation', ({ orientation, coordinate }) => {
 			beforeEach(async () => {
 				element.orientation = orientation as Orientation;
 				await elementUpdated(element);
@@ -388,9 +416,9 @@ describe('vwc-range-slider', () => {
 
 	describe('dragging', () => {
 		describe.each([
-			{ orientation: 'horizontal', coordinate: 'pageX', },
-			{ orientation: 'vertical', coordinate: 'pageY', }
-		])('with $orientation orientation', ({orientation, coordinate}) => {
+			{ orientation: 'horizontal', coordinate: 'pageX' },
+			{ orientation: 'vertical', coordinate: 'pageY' },
+		])('with $orientation orientation', ({ orientation, coordinate }) => {
 			const mouseDown = (thumb: HTMLElement, value: number) => {
 				const mouseEvent = new MouseEvent('mousedown');
 				Object.defineProperty(mouseEvent, coordinate, { value });
@@ -421,7 +449,12 @@ describe('vwc-range-slider', () => {
 				window.dispatchEvent(new TouchEvent('touchend'));
 			};
 
-			const dragThumb = (thumb: HTMLElement, from: number, to: number, touch = false) => {
+			const dragThumb = (
+				thumb: HTMLElement,
+				from: number,
+				to: number,
+				touch = false
+			) => {
 				mouseDown(thumb, from);
 				if (touch) {
 					touchMove(to);
@@ -487,23 +520,26 @@ describe('vwc-range-slider', () => {
 				expect(element.start).toBe('7');
 			});
 
-			it.each(['input', 'change', 'input:start'])('should emit %s event only when the value changes', async (eventName) => {
-				const eventSpy = jest.fn();
-				element.addEventListener(eventName, eventSpy);
+			it.each(['input', 'change', 'input:start'])(
+				'should emit %s event only when the value changes',
+				async (eventName) => {
+					const eventSpy = jest.fn();
+					element.addEventListener(eventName, eventSpy);
 
-				mouseDown(thumbs.start, 0);
-				mouseMove(50);
-				mouseMove(100);
-				mouseUp();
+					mouseDown(thumbs.start, 0);
+					mouseMove(50);
+					mouseMove(100);
+					mouseUp();
 
-				expect(eventSpy).toHaveBeenCalledTimes(1);
-			});
+					expect(eventSpy).toHaveBeenCalledTimes(1);
+				}
+			);
 		});
 	});
 
 	describe('form reset', () => {
 		it('should reset the range to initial values when the form is reset', async () => {
-			const ORIGINAL_START= '3';
+			const ORIGINAL_START = '3';
 			const ORIGINAL_END = '7';
 			const form = fixture(`
 				<form>
@@ -544,13 +580,14 @@ describe('vwc-range-slider', () => {
 	describe('form value', () => {
 		// Cannot properly end-to-end test form value because jsdom does not support ElementInternals
 		// Instead we mock the setFormValue method and test that it is called with the correct value
-		const getFormValue = () => jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
+		const getFormValue = () =>
+			jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
 
 		beforeEach(() => {
 			element.setFormValue = jest.fn();
 		});
 
-		it('should set the form value with name, start and end',  () => {
+		it('should set the form value with name, start and end', () => {
 			element.name = 'name';
 			element.start = '3';
 			element.end = '7';
@@ -563,9 +600,15 @@ describe('vwc-range-slider', () => {
 		element.step = 0.1;
 		thumbs.start.focus();
 
-		thumbs.start.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-		thumbs.start.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-		thumbs.start.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+		thumbs.start.dispatchEvent(
+			new KeyboardEvent('keydown', { key: 'ArrowRight' })
+		);
+		thumbs.start.dispatchEvent(
+			new KeyboardEvent('keydown', { key: 'ArrowRight' })
+		);
+		thumbs.start.dispatchEvent(
+			new KeyboardEvent('keydown', { key: 'ArrowRight' })
+		);
 
 		expect(element.start).toBe('0.3');
 	});
@@ -605,5 +648,3 @@ describe('vwc-range-slider', () => {
 		});
 	});
 });
-
-

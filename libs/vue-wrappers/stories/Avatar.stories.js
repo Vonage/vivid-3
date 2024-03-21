@@ -2,32 +2,32 @@ import { VAvatar } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VAvatar';
 
 export default {
-  title: 'Wrappers/Avatar',
-  component: VAvatar,
-  argTypes,
+	title: 'Wrappers/Avatar',
+	component: VAvatar,
+	argTypes,
 };
 
 const AvatarTemplate = () => ({
-  components: { VAvatar },
-  template: `<VAvatar aria-label="avatar" />`,
+	components: { VAvatar },
+	template: `<VAvatar aria-label="avatar" />`,
 });
 export const Avatar = AvatarTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VAvatar },
-  template: `<VAvatar icon="group-2-solid" />`,
+	components: { VAvatar },
+	template: `<VAvatar icon="group-2-solid" />`,
 });
 export const Icon = IconTemplate.bind({});
 
 const InitialsTemplate = () => ({
-  components: { VAvatar },
-  template: `<VAvatar initials="vivid avatar" />`,
+	components: { VAvatar },
+	template: `<VAvatar initials="vivid avatar" />`,
 });
 export const Initials = InitialsTemplate.bind({});
 
 const AppearanceTemplate = () => ({
-  components: { VAvatar },
-  template: `<div>
+	components: { VAvatar },
+	template: `<div>
       <VAvatar appearance="filled" />
       <VAvatar appearance="duotone" />
       <VAvatar appearance="outlined" />
@@ -36,8 +36,8 @@ const AppearanceTemplate = () => ({
 export const Appearance = AppearanceTemplate.bind({});
 
 const ConnotationTemplate = () => ({
-  components: { VAvatar },
-  template: `<div>
+	components: { VAvatar },
+	template: `<div>
       <VAvatar connotation="accent" />
       <VAvatar connotation="cta" />
       <VAvatar connotation="accent" appearance="duotone" />
@@ -49,8 +49,8 @@ const ConnotationTemplate = () => ({
 export const Connotation = ConnotationTemplate.bind({});
 
 const ShapeTemplate = () => ({
-  components: { VAvatar },
-  template: `<div>
+	components: { VAvatar },
+	template: `<div>
       <VAvatar shape="rounded" />
       <VAvatar shape="pill" />
     </div>`,
@@ -58,8 +58,8 @@ const ShapeTemplate = () => ({
 export const Shape = ShapeTemplate.bind({});
 
 const SizeTemplate = () => ({
-  components: { VAvatar },
-  template: `<div>
+	components: { VAvatar },
+	template: `<div>
       <VAvatar size="condensed" shape="pill" />
       <VAvatar size="normal" shape="pill" />
       <VAvatar size="expanded" shape="pill" />
@@ -71,8 +71,8 @@ const SizeTemplate = () => ({
 export const Size = SizeTemplate.bind({});
 
 const GraphicTemplate = () => ({
-  components: { VAvatar },
-  template: `
+	components: { VAvatar },
+	template: `
     <div>
       <VAvatar shape="pill" connotation="cta">
         <template #graphic>

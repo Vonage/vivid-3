@@ -9,16 +9,16 @@ type BaseSegment = {
 	prevMonthButton?: boolean;
 	nextMonthButton?: boolean;
 	nextYearButton?: boolean;
-}
+};
 
 export type CalendarSegment = BaseSegment & {
 	type: 'calendar';
 	calendar: CalendarGrid;
-}
+};
 
 export type MonthPickerSegment = BaseSegment & {
 	type: 'month-picker';
 	months: MonthPickerGrid;
-}
+};
 
 export type Segment = CalendarSegment | MonthPickerSegment;

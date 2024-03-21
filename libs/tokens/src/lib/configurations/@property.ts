@@ -1,4 +1,3 @@
-
 const SD = require('style-dictionary');
 
 import { prefix, buildPath } from '../common';
@@ -8,21 +7,23 @@ SD.registerFormat(cssAtRuleProperty);
 
 export default {
 	source: [
-		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json'
+		'../../../../node_modules/@vonage/vivid-figma-tokens/data/globals/**/*.tokens.json',
 	],
 	platforms: {
 		scss: {
-			transforms: ["name/cti/kebab"],
+			transforms: ['name/cti/kebab'],
 			prefix,
 			buildPath,
-			files: [{
-				destination: '@properties.scss',
-				format: "scss/@property",
-				filter: token => token['@property'],
-				options: {
-					selector: '@mixin properties'
-				}
-			}]
-		}
-	}
+			files: [
+				{
+					destination: '@properties.scss',
+					format: 'scss/@property',
+					filter: (token) => token['@property'],
+					options: {
+						selector: '@mixin properties',
+					},
+				},
+			],
+		},
+	},
 };

@@ -12,15 +12,20 @@ export default {
 	formatter({ dictionary, file, options }) {
 		const { selector = ':root' } = options;
 
-		return fileHeader({ file }) +
+		return (
+			fileHeader({ file }) +
 			`${selector} {\n` +
-			dictionary.allProperties.map(({ name, value, '@property': { inherits, syntax } }) =>
-				`  @property --${name} {\n` +
-				`    syntax: "<${syntax}>";\n` +
-				`    inherits: ${inherits};\n` +
-				`    initial-value: ${value}${suffixMap[syntax]};\n` +
-				`  }\n`
-			).join('\n') +
-			`}\n`;
-	}
+			dictionary.allProperties
+				.map(
+					({ name, value, '@property': { inherits, syntax } }) =>
+						`  @property --${name} {\n` +
+						`    syntax: "<${syntax}>";\n` +
+						`    inherits: ${inherits};\n` +
+						`    initial-value: ${value}${suffixMap[syntax]};\n` +
+						`  }\n`
+				)
+				.join('\n') +
+			`}\n`
+		);
+	},
 };

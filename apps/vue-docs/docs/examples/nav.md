@@ -1,6 +1,7 @@
 # VNav Examples
 
 ## Default
+
 <code-tab>
 <template #example>
 <DefaultExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/nav/DefaultExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Navigation Disclosure
+
 <code-tab>
 <template #example>
 <NavigationDisclosureExample />
@@ -23,6 +26,7 @@
 ```vue
 <!--@include: ./components/nav/NavigationDisclosureExample.vue -->
 ```
+
 </template>
 </code-tab>
 

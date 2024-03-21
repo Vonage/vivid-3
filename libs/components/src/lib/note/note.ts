@@ -4,11 +4,11 @@ import type { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns';
 
 export type NoteConnotation =
-	Connotation.Accent |
-	Connotation.Information |
-	Connotation.Success |
-	Connotation.Warning |
-	Connotation.Alert;
+	| Connotation.Accent
+	| Connotation.Information
+	| Connotation.Success
+	| Connotation.Warning
+	| Connotation.Alert;
 /**
  * @public
  * @component note
@@ -27,5 +27,5 @@ export class Note extends FoundationElement {
 	@attr connotation?: NoteConnotation;
 }
 
-export interface Note extends AffixIcon { }
+export interface Note extends AffixIcon {}
 applyMixins(Note, AffixIcon);

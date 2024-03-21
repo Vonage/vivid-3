@@ -1,6 +1,5 @@
 # VTagGroup Example
 
-
 ## Default slot
 
 <code-tab>
@@ -12,6 +11,7 @@
 ```vue
 <!--@include: ./components/tag/DefaultSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -26,9 +26,9 @@
 ```vue
 <!--@include: ./components/tag/SelectableUseCaseExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Removable
 
@@ -41,6 +41,7 @@
 ```vue
 <!--@include: ./components/tag/RemovableExample.vue-->
 ```
+
 </template>
 </code-tab>
 

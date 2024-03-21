@@ -10,14 +10,15 @@ export type { TextFieldAppearance, TextFieldShape } from './text-field';
 /**
  * The text-field element.
  */
-export const textFieldDefinition = TextField.compose<FoundationElementDefinition>({
-	baseName: 'text-field',
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-});
+export const textFieldDefinition =
+	TextField.compose<FoundationElementDefinition>({
+		baseName: 'text-field',
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	});
 
 /**
  * @internal

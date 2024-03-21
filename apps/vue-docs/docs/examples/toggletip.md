@@ -1,6 +1,7 @@
 # Toggletip Examples
 
 ## Anchor
+
 <code-tab visible-overflow>
 <template #example>
 <AnchorExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/toggletip/AnchorExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Open
+
 <code-tab visible-overflow>
 <template #example>
 <OpenExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/toggletip/OpenExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Headline
+
 <code-tab visible-overflow>
 <template #example>
 <HeadlineExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/toggletip/HeadlineExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Alternate
+
 <code-tab visible-overflow>
 <template #example>
 <AlternateExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/toggletip/AlternateExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Placement
+
 <code-tab visible-overflow>
 <template #example>
 <PlacementExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/toggletip/PlacementExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Action Items
+
 <code-tab visible-overflow>
 <template #example>
 <ActionItemsExample />
@@ -75,6 +86,7 @@
 ```vue
 <!--@include: ./components/toggletip/ActionItemsExample.vue -->
 ```
+
 </template>
 </code-tab>
 

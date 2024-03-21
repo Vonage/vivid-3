@@ -12,11 +12,15 @@ describe('TrappedFocus', () => {
 				<button id="second"></button>
 				<button id="third"></button>
 			</template>
-		`
+		`,
 	})
 	class TestElement extends FASTElement {
 		onKeyDown(event: KeyboardEvent) {
-			if (this._trappedFocus(event, () => this.shadowRoot!.querySelectorAll('button'))) {
+			if (
+				this._trappedFocus(event, () =>
+					this.shadowRoot!.querySelectorAll('button')
+				)
+			) {
 				return false;
 			}
 			return true;
@@ -31,12 +35,16 @@ describe('TrappedFocus', () => {
 	let lastButton: HTMLButtonElement;
 
 	beforeEach(async () => {
-		element = (await fixture(
-			'<test-element></test-element>'
-		)) as TestElement;
-		firstButton = element.shadowRoot!.querySelector('#first') as HTMLButtonElement;
-		secondButton = element.shadowRoot!.querySelector('#second') as HTMLButtonElement;
-		lastButton = element.shadowRoot!.querySelector('#third') as HTMLButtonElement;
+		element = (await fixture('<test-element></test-element>')) as TestElement;
+		firstButton = element.shadowRoot!.querySelector(
+			'#first'
+		) as HTMLButtonElement;
+		secondButton = element.shadowRoot!.querySelector(
+			'#second'
+		) as HTMLButtonElement;
+		lastButton = element.shadowRoot!.querySelector(
+			'#third'
+		) as HTMLButtonElement;
 		setupDelegatesFocusPolyfill(element);
 	});
 

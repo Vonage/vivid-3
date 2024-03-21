@@ -1,6 +1,5 @@
 import { TabPanel as FoundationTabPanel } from '@microsoft/fast-foundation';
 
-
 /**
  * @public
  * @component tab-panel

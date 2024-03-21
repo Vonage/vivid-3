@@ -1,9 +1,10 @@
-import { applyMixins, Button as FoundationButton } from '@microsoft/fast-foundation';
+import {
+	applyMixins,
+	Button as FoundationButton,
+} from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 
-import type {
-	Appearance, Connotation, Shape, Size
-} from '../enums.js';
+import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
@@ -11,19 +12,20 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  *
  * @public
  */
-export type ButtonConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA
-| Connotation.Success
-| Connotation.Alert>;
+export type ButtonConnotation = Extract<
+	Connotation,
+	Connotation.Accent | Connotation.CTA | Connotation.Success | Connotation.Alert
+>;
 
 /**
  * Types of button appearance.
  *
  * @public
  */
-export type ButtonAppearance = Extract<Appearance,
-Appearance.Filled | Appearance.Outlined | Appearance.Ghost>;
+export type ButtonAppearance = Extract<
+	Appearance,
+	Appearance.Filled | Appearance.Outlined | Appearance.Ghost
+>;
 
 /**
  * Types of button shape.
@@ -37,7 +39,10 @@ export type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded>;
+export type ButtonSize = Extract<
+	Size,
+	Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded
+>;
 
 /**
  * @public
@@ -45,7 +50,12 @@ export type ButtonSize = Extract<Size, Size.SuperCondensed | Size.Condensed | Si
  * @slot icon - Add an icon to the component.
  */
 export class Button extends FoundationButton {
-	@attr({ converter: { fromView: (value) => value || null, toView: (value) => value || null } })
+	@attr({
+		converter: {
+			fromView: (value) => value || null,
+			toView: (value) => value || null,
+		},
+	})
 	override title: string;
 	/**
 	 * The connotation the button should have.
@@ -93,7 +103,8 @@ export class Button extends FoundationButton {
 	@attr({
 		mode: 'boolean',
 		attribute: 'stacked',
-	}) stacked = false;
+	})
+	stacked = false;
 
 	/**
 	 * Displays the button in pending state.
@@ -105,7 +116,8 @@ export class Button extends FoundationButton {
 	@attr({
 		mode: 'boolean',
 		attribute: 'pending',
-	}) pending = false;
+	})
+	pending = false;
 
 	/**
 	 * Displays the button in active state.
@@ -117,7 +129,8 @@ export class Button extends FoundationButton {
 	@attr({
 		mode: 'boolean',
 		attribute: 'active',
-	}) active = false;
+	})
+	active = false;
 
 	/**
 	 * Indicates the button's label.
@@ -197,5 +210,5 @@ export class Button extends FoundationButton {
 	}
 }
 
-export interface Button extends AffixIconWithTrailing { }
+export interface Button extends AffixIconWithTrailing {}
 applyMixins(Button, AffixIconWithTrailing);

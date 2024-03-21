@@ -1,5 +1,5 @@
-import type { Named, Transform } from "style-dictionary";
-import { isPublic } from "../filters";
+import type { Named, Transform } from 'style-dictionary';
+import { isPublic } from '../filters';
 
 export default {
 	type: 'value',
@@ -7,7 +7,6 @@ export default {
 	transitive: true,
 	matcher: isPublic,
 	transformer: function (token) {
-		return `var(--${token.name}, ${token.value})`
-	}
+		return `var(--${token.name}, ${token.value})`;
+	},
 } as Named<Transform>;
-

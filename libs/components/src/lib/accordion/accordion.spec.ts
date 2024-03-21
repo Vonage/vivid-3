@@ -17,7 +17,9 @@ const COMPONENT_HTML = `
 
 describe('vwc-accordion', () => {
 	function triggerAccordionUpdate() {
-		const newItem = document.createElement('vwc-accordion-item') as AccordionItem;
+		const newItem = document.createElement(
+			'vwc-accordion-item'
+		) as AccordionItem;
 		element.appendChild(newItem);
 	}
 	function toggleAccordionItem(accordionItem: AccordionItem) {
@@ -57,7 +59,7 @@ describe('vwc-accordion', () => {
 
 			toggleAccordionItem(accordionItem2);
 			await elementUpdated(element);
-			
+
 			expect(accordionItem1.expanded).toBeFalsy();
 			expect(accordionItem2.expanded).toBeTruthy();
 		});
@@ -115,10 +117,13 @@ describe('vwc-accordion', () => {
 	});
 
 	describe('accordion-item keydown', () => {
-
 		function addTwoMoreItems() {
-			const anotherAccordionItem1 = document.createElement('vwc-accordion-item') as AccordionItem;
-			const anotherAccordionItem2 = document.createElement('vwc-accordion-item') as AccordionItem;
+			const anotherAccordionItem1 = document.createElement(
+				'vwc-accordion-item'
+			) as AccordionItem;
+			const anotherAccordionItem2 = document.createElement(
+				'vwc-accordion-item'
+			) as AccordionItem;
 			element.insertBefore(anotherAccordionItem1, accordionItem2);
 			element.insertBefore(anotherAccordionItem2, accordionItem2);
 			return anotherAccordionItem2;
@@ -126,46 +131,57 @@ describe('vwc-accordion', () => {
 
 		it('should focus on next item when downkey is pressed', async () => {
 			toggleAccordionItem(accordionItem1);
-			accordionItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			accordionItem1.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown' })
+			);
 			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should set focus on the first element when downkey is pressed on last element', async () => {
 			toggleAccordionItem(accordionItem2);
-			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			accordionItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown' })
+			);
 			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should focus on former item when upkey is pressed', async () => {
 			toggleAccordionItem(accordionItem2);
-			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+			accordionItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowUp' })
+			);
 			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should set focus on the last element when upkey is pressed on first element', async () => {
 			toggleAccordionItem(accordionItem1);
-			accordionItem1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+			accordionItem1.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowUp' })
+			);
 			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should focus on the first element when home is pressed', async () => {
 			const anotherAccordionItem2 = addTwoMoreItems();
 			toggleAccordionItem(anotherAccordionItem2);
-			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
+			accordionItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home' })
+			);
 			expect(accordionItem1.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should focus on the last element when end is pressed', async () => {
 			const anotherAccordionItem2 = addTwoMoreItems();
 			toggleAccordionItem(anotherAccordionItem2);
-			accordionItem2.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
+			accordionItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'End' })
+			);
 			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
 		});
 	});
 
 	describe('accordion-item focus', () => {
 		it('should set focused element as the active item', async function () {
-
 			element.expandmode = 'single';
 			toggleAccordionItem(accordionItem2);
 			const item2ExpandedBeforeFocus = accordionItem2.expanded;
@@ -193,8 +209,7 @@ describe('vwc-accordion', () => {
 				<${COMPONENT_TAG} id="tested">
 					<vwc-accordion-item heading="accordion item 1" expanded id="item1"><p>content</p></vwc-accordion-item>
 					<vwc-accordion-item heading="accordion item 2" id="item2"><p>content</p></vwc-accordion-item>
-				</${COMPONENT_TAG}>`
-			)) as Accordion;
+				</${COMPONENT_TAG}>`)) as Accordion;
 			await elementUpdated(element);
 			accordionItem1 = element.querySelector('#item1') as AccordionItem;
 

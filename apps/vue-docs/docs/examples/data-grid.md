@@ -1,6 +1,7 @@
 # VDataGrid Examples
 
 ## DataGrid
+
 <code-tab visible-overflow>
 <template #example>
 <BasicExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/data-grid/BasicExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## RowsData
+
 <code-tab visible-overflow>
 <template #example>
 <RowsDataExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/data-grid/RowsDataExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Selection Mode
+
 <code-tab visible-overflow>
 <template #example>
 <SelectionModeExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/data-grid/SelectionModeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## NoTabbing
+
 <code-tab visible-overflow>
 <template #example>
 <NoTabbingExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/data-grid/NoTabbingExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Generate Header
+
 <code-tab visible-overflow>
 <template #example>
 <GenerateHeaderExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/data-grid/BasicExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Custom Cells
+
 <code-tab visible-overflow>
 <template #example>
 <CustomCellsExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/data-grid/CustomCellsExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Sorting
+
 <code-tab visible-overflow>
 <template #example>
 <SortingExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/data-grid/SortingExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Custom Columns Widths
+
 <code-tab visible-overflow>
 <template #example>
 <CustomColumnsWidthsExample />
@@ -101,10 +116,12 @@
 ```vue
 <!--@include: ./components/data-grid/CustomColumnsWidthsExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Manipulating Data
+
 <code-tab visible-overflow>
 <template #example>
 <ManipulatingDataExample />
@@ -114,6 +131,7 @@
 ```vue
 <!--@include: ./components/data-grid/ManipulatingDataExample.vue -->
 ```
+
 </template>
 </code-tab>
 
@@ -131,4 +149,3 @@ const CustomCellsExample = defineClientComponent(() =>  import('./components/dat
 const SortingExample = defineClientComponent(() =>  import('./components/data-grid/SortingExample.vue'));
 const CustomColumnsWidthsExample = defineClientComponent(() =>  import('./components/data-grid/CustomColumnsWidthsExample.vue'));
 </script>
-

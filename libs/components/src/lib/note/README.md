@@ -3,13 +3,15 @@
 The note component is used to display a short message to the user.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/note';
-</script>
+<script type="module">import '@vonage/vivid/note';</script>
 ```
 
 ```html preview
-<vwc-note connotation="success" icon="check-circle" headline="Changes saved successfully">
+<vwc-note
+	connotation="success"
+	icon="check-circle"
+	headline="Changes saved successfully"
+>
 	Your changes have been saved successfully. You can now continue working.
 </vwc-note>
 ```
@@ -28,6 +30,7 @@ Add the `headline` attribute in order to set a headline text.
 ```
 
 ### Icon
+
 Add a `icon='icon-name'` attribute to set a decorative icon.
 
 - Type: `string`
@@ -46,11 +49,31 @@ It accepts a subset of predefined values.
 - Default: `'accent'`
 
 ```html preview blocks
-<vwc-note connotation="alert" icon="error-solid" headline="alert note"></vwc-note>
-<vwc-note connotation="success" icon="check-circle-solid" headline="success note"></vwc-note>
-<vwc-note connotation="warning" icon="warning-solid" headline="warning note"></vwc-note>
-<vwc-note connotation="information" icon="info-solid" headline="information note"></vwc-note>
-<vwc-note connotation="accent" icon="megaphone-solid" headline="accent note"></vwc-note>
+<vwc-note
+	connotation="alert"
+	icon="error-solid"
+	headline="alert note"
+></vwc-note>
+<vwc-note
+	connotation="success"
+	icon="check-circle-solid"
+	headline="success note"
+></vwc-note>
+<vwc-note
+	connotation="warning"
+	icon="warning-solid"
+	headline="warning note"
+></vwc-note>
+<vwc-note
+	connotation="information"
+	icon="info-solid"
+	headline="information note"
+></vwc-note>
+<vwc-note
+	connotation="accent"
+	icon="megaphone-solid"
+	headline="accent note"
+></vwc-note>
 ```
 
 ## Slots
@@ -61,7 +84,7 @@ Any slotted content will appear below the headline.
 
 ```html preview
 <vwc-note icon="home" headline="Note Headline" connotation="information">
-  <p>This is the text that explains about something important!</p>
+	<p>This is the text that explains about something important!</p>
 </vwc-note>
 ```
 
@@ -72,6 +95,10 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-note headline="Note With Icon Slot">
-  <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+	<vwc-icon
+		slot="icon"
+		name="check-circle-solid"
+		connotation="success"
+	></vwc-icon>
 </vwc-note>
 ```

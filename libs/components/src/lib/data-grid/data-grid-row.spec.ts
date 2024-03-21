@@ -7,7 +7,7 @@ import { DataGridRowTemplate } from './data-grid-row.template';
 
 const dataGridRow = DataGridRow.compose<FoundationElementDefinition>({
 	baseName: 'data-grid-row',
-	template: DataGridRowTemplate as any
+	template: DataGridRowTemplate as any,
 });
 
 designSystem.withPrefix('vwc').register(dataGridRow());
@@ -18,7 +18,9 @@ describe('vwc-data-grid-row', () => {
 	let element: DataGridRow;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as DataGridRow;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as DataGridRow;
 	});
 
 	// TODO::adds grid column style
@@ -49,7 +51,9 @@ describe('vwc-data-grid-row', () => {
 		it('should reflect grid-template-columns', async () => {
 			element.gridTemplateColumns = '1fr 1fr 1fr';
 			await elementUpdated(element);
-			expect(element.getAttribute('grid-template-columns')).toEqual('1fr 1fr 1fr');
+			expect(element.getAttribute('grid-template-columns')).toEqual(
+				'1fr 1fr 1fr'
+			);
 		});
 	});
 
@@ -57,37 +61,37 @@ describe('vwc-data-grid-row', () => {
 		it('should set grid-column on cells', async () => {
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
-				{ columnDataKey: 'age' }
+				{ columnDataKey: 'age' },
 			];
 			await elementUpdated(element);
-			const allHaveExpectedGridColumn = Array.from(element.querySelectorAll('undefined'))
-				.reduce((acc, child, index) => {
-					return acc && child.getAttribute('grid-column') === `${index + 1}`;
-				}, true);
+			const allHaveExpectedGridColumn = Array.from(
+				element.querySelectorAll('undefined')
+			).reduce((acc, child, index) => {
+				return acc && child.getAttribute('grid-column') === `${index + 1}`;
+			}, true);
 			expect(allHaveExpectedGridColumn).toBeTruthy();
 		});
 	});
 
 	describe('columnDefinitions', () => {
-
 		it('should render undefined cells if cells template undefined', async () => {
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
-				{ columnDataKey: 'age' }
+				{ columnDataKey: 'age' },
 			];
 			await elementUpdated(element);
 			expect(element.querySelectorAll('undefined').length).toEqual(2);
 		});
-
 	});
 
 	describe('gridTemplateColumns', () => {
 		it('should set "grid-template-columns" on base element according to gridTemplateColumns', async function () {
-
 			element.gridTemplateColumns = '1fr 1fr 1fr';
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).style['gridTemplateColumns']).toEqual('1fr 1fr 1fr');
+			expect(getBaseElement(element).style['gridTemplateColumns']).toEqual(
+				'1fr 1fr 1fr'
+			);
 		});
 	});
 
@@ -96,7 +100,7 @@ describe('vwc-data-grid-row', () => {
 			const dataGridCellTagName = 'something-custom';
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
-				{ columnDataKey: 'age' }
+				{ columnDataKey: 'age' },
 			];
 			element.cellItemTemplate = html`<${dataGridCellTagName}></${dataGridCellTagName}>`;
 			await elementUpdated(element);
@@ -107,7 +111,7 @@ describe('vwc-data-grid-row', () => {
 			const dataGridCellTagName = 'something-custom';
 			element.columnDefinitions = [
 				{ columnDataKey: 'name', isRowHeader: true },
-				{ columnDataKey: 'age' }
+				{ columnDataKey: 'age' },
 			];
 			element.rowType = 'header';
 			element.headerCellItemTemplate = html`<${dataGridCellTagName}></${dataGridCellTagName}>`;
@@ -118,7 +122,7 @@ describe('vwc-data-grid-row', () => {
 
 	describe('row-focused event', () => {
 		it('should fire the focused event when one of the cells is focused', async () => {
-			const spy  = jest.fn();
+			const spy = jest.fn();
 			element.addEventListener('row-focused', spy);
 			element.dispatchEvent(new FocusEvent('cell-focused'));
 			expect(spy).toHaveBeenCalled();
@@ -130,22 +134,27 @@ describe('vwc-data-grid-row', () => {
 			const dataGridCellTagName = 'button';
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
-				{ columnDataKey: 'age' }
+				{ columnDataKey: 'age' },
 			];
 			element.cellItemTemplate = html`<${dataGridCellTagName} role="cell"></${dataGridCellTagName}>`;
 			await elementUpdated(element);
 			const cells = Array.from(element.querySelectorAll(dataGridCellTagName));
 			const focusedElementBeforeArrowKey = document.activeElement;
-			const rowCellFocused = cells.includes(focusedElementBeforeArrowKey as any);
+			const rowCellFocused = cells.includes(
+				focusedElementBeforeArrowKey as any
+			);
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
 			const firstCellFocused = cells[0] === document.activeElement;
 
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
 			const secondCellFocused = cells[1] === document.activeElement;
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
-			const firstCellFocusedAfterArrowLeft = cells[0] === document.activeElement;
+			const firstCellFocusedAfterArrowLeft =
+				cells[0] === document.activeElement;
 
 			expect(rowCellFocused).toBeFalsy();
 			expect(firstCellFocused).toBeTruthy();
@@ -183,7 +192,9 @@ describe('vwc-data-grid-row', () => {
 		it('should set selected class on base element', async function () {
 			element.ariaSelected = 'true';
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('selected')).toBeTruthy();
+			expect(
+				getBaseElement(element).classList.contains('selected')
+			).toBeTruthy();
 		});
 
 		it('should remove selected class on base element when false', async function () {
@@ -191,7 +202,9 @@ describe('vwc-data-grid-row', () => {
 			await elementUpdated(element);
 			element.ariaSelected = 'false';
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('selected')).toBeFalsy();
+			expect(
+				getBaseElement(element).classList.contains('selected')
+			).toBeFalsy();
 		});
 	});
 

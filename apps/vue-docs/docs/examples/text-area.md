@@ -9,6 +9,7 @@
 ```vue
 <!--@include: ./components/text-area/DefaultExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -23,9 +24,9 @@
 ```vue
 <!--@include: ./components/text-area/LabelExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Placeholder
 
@@ -38,9 +39,9 @@
 ```vue
 <!--@include: ./components/text-area/PlaceholderExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Value
 
@@ -53,9 +54,9 @@
 ```vue
 <!--@include: ./components/text-area/ValueExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Resize
 
@@ -68,9 +69,9 @@
 ```vue
 <!--@include: ./components/text-area/ResizeExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## HelperText
 
@@ -83,9 +84,9 @@
 ```vue
 <!--@include: ./components/text-area/HelperText.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Success Text
 
@@ -98,9 +99,9 @@
 ```vue
 <!--@include: ./components/text-area/SuccessText.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Disabled
 
@@ -113,9 +114,9 @@
 ```vue
 <!--@include: ./components/text-area/DisabledExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Readonly
 
@@ -128,9 +129,9 @@
 ```vue
 <!--@include: ./components/text-area/Readonly.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## RowsExample
 
@@ -143,6 +144,7 @@
 ```vue
 <!--@include: ./components/text-area/RowsExample.vue-->
 ```
+
 </template>
 </code-tab>
 

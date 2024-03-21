@@ -1,4 +1,3 @@
-
 <div class="welcome">
 	<div><img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration"></div>
 	<div class="welcome__hero">
@@ -403,7 +402,6 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 </vwc-layout>
 
 ## Support Matrix
-
 
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
 

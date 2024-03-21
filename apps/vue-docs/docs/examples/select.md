@@ -1,6 +1,7 @@
 # VSelect Examples
 
 ## Default
+
 <code-tab>
 <template #example>
 <DefaultExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/select/DefaultExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/select/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/select/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Multiple
+
 <code-tab>
 <template #example>
 <MultipleExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/select/MultipleExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Appearance
+
 <code-tab>
 <template #example>
 <AppearanceExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/select/AppearanceExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Shape
+
 <code-tab>
 <template #example>
 <ShapeExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/select/ShapeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/select/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Open
+
 <code-tab>
 <template #example>
 <OpenExample />
@@ -101,10 +116,12 @@
 ```vue
 <!--@include: ./components/select/OpenExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Option Label
+
 <code-tab>
 <template #example>
 <OptionLabelExample />
@@ -114,10 +131,12 @@
 ```vue
 <!--@include: ./components/select/OptionLabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Height (CSS Variable)
+
 <code-tab>
 <template #example>
 <HeightCSSVariableExample />
@@ -127,10 +146,12 @@
 ```vue
 <!--@include: ./components/select/HeightCSSVariableExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Width
+
 <code-tab>
 <template #example>
 <WidthExample />
@@ -140,10 +161,12 @@
 ```vue
 <!--@include: ./components/select/WidthExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Use Case
+
 <code-tab>
 <template #example>
 <UseCaseExample />
@@ -153,6 +176,7 @@
 ```vue
 <!--@include: ./components/select/UseCaseExample.vue -->
 ```
+
 </template>
 </code-tab>
 

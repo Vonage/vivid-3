@@ -18,7 +18,7 @@ export enum Shape {
 	Rounded = 'rounded',
 	Pill = 'pill',
 	Circled = 'circled',
-	Sharp = 'sharp'
+	Sharp = 'sharp',
 }
 
 /* eslint-disable no-shadow */
@@ -29,8 +29,8 @@ export enum Appearance {
 	Fieldset = 'fieldset',
 	Subtle = 'subtle',
 	Ghost = 'ghost',
-	Listitem ='listitem',
-	Elevated = 'elevated'
+	Listitem = 'listitem',
+	Elevated = 'elevated',
 }
 
 export enum Size {
