@@ -1,6 +1,7 @@
 # VActionGroup Examples
 
 ## Action Group
+
 <code-tab>
 <template #example>
 <ActionGroupExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/action-group/ActionGroupExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Appearance
+
 <code-tab>
 <template #example>
 <AppearanceExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/action-group/AppearanceExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Shape
+
 <code-tab>
 <template #example>
 <ShapeExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/action-group/ShapeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Tight
+
 <code-tab>
 <template #example>
 <TightExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/action-group/TightExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Separator
+
 <code-tab>
 <template #example>
 <SeparatorExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/action-group/SeparatorExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## semi-split button
+
 <code-tab>
 <template #example>
 <SemisplitButtonExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/action-group/SemisplitButtonExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Composed Search
+
 <code-tab>
 <template #example>
 <ComposedSearchExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/action-group/ComposedSearchExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Radio Group
+
 <code-tab>
 <template #example>
 <RadioGroupExample />
@@ -101,6 +116,7 @@
 ```vue
 <!--@include: ./components/action-group/RadioGroupExample.vue -->
 ```
+
 </template>
 </code-tab>
 

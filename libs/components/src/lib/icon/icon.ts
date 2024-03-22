@@ -1,7 +1,10 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {attr, observable, volatile} from '@microsoft/fast-element';
+import { attr, observable, volatile } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
-import { ICONS_BASE_URL as BASE_URL, ICONS_VERSION as ICON_SET_VERSION } from '@vonage/vwc-consts';
+import {
+	ICONS_BASE_URL as BASE_URL,
+	ICONS_VERSION as ICON_SET_VERSION,
+} from '@vonage/vwc-consts';
 import type { Connotation } from '../enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
@@ -11,7 +14,8 @@ const PLACEHOLDER_DELAY = 500;
 // (will also stop one an icon is loaded)
 const PLACEHOLDER_TIMEOUT = 2000;
 
-const baseUrlTemplate = (resource: string, version: string) => [BASE_URL, `v${version}`, resource].join('/');
+const baseUrlTemplate = (resource: string, version: string) =>
+	[BASE_URL, `v${version}`, resource].join('/');
 
 const assertIsValidResponse = ({ ok, headers }: Response) => {
 	if (!ok || headers.get('content-type') !== 'image/svg+xml') {
@@ -24,25 +28,29 @@ const extractSvg = (response: Response) => {
 	return response.text();
 };
 
-const loadSvg = (iconId: string) => fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION))
-	.then(extractSvg);
+const loadSvg = (iconId: string) =>
+	fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION)).then(
+		extractSvg
+	);
 
-const resolveIcon = memoizeWith(identity as () => string, (iconId = '') => (iconId.trim()
-	? loadSvg(iconId)
-	: Promise.resolve(''))) as (iconId?: string) => Promise<string>;
+const resolveIcon = memoizeWith(identity as () => string, (iconId = '') =>
+	iconId.trim() ? loadSvg(iconId) : Promise.resolve('')
+) as (iconId?: string) => Promise<string>;
 
 /**
  * Types of icon connotation.
  *
  * @public
  */
-export type IconConnotation = Extract<Connotation,
-| Connotation.Accent
-| Connotation.CTA
-| Connotation.Announcement
-| Connotation.Success
-| Connotation.Alert
-| Connotation.Information>;
+export type IconConnotation = Extract<
+	Connotation,
+	| Connotation.Accent
+	| Connotation.CTA
+	| Connotation.Announcement
+	| Connotation.Success
+	| Connotation.Alert
+	| Connotation.Information
+>;
 
 /**
  * @public
@@ -77,7 +85,9 @@ export class Icon extends FoundationElement {
 
 	@volatile
 	get iconUrl() {
-		return !this.name ? this._svg : baseUrlTemplate(`${this.name}.svg`, ICON_SET_VERSION);
+		return !this.name
+			? this._svg
+			: baseUrlTemplate(`${this.name}.svg`, ICON_SET_VERSION);
 	}
 	async nameChanged() {
 		this._svg = undefined;
@@ -98,6 +108,10 @@ export class Icon extends FoundationElement {
 			})
 			.catch(() => {
 				this._svg = undefined;
-			}).finally(() => { clearTimeout(timeout); this.iconLoaded = true;});
+			})
+			.finally(() => {
+				clearTimeout(timeout);
+				this.iconLoaded = true;
+			});
 	}
 }

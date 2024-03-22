@@ -7,5 +7,5 @@ export const CustomComponentPrefix = ref('vvd3');
  * Default is vvd3
  */
 export function setCustomComponentPrefix(prefix: string) {
-  CustomComponentPrefix.value = prefix;
+	CustomComponentPrefix.value = prefix;
 }

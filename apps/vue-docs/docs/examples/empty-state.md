@@ -1,6 +1,7 @@
 # Empty State Examples
 
 ## Empty State
+
 <code-tab>
 <template #example>
 <EmptyStateExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/empty-state/EmptyStateExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Headline
+
 <code-tab>
 <template #example>
 <HeadlineExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/empty-state/HeadlineExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/empty-state/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Default
+
 <code-tab>
 <template #example>
 <DefaultExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/empty-state/DefaultExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Graphic
+
 <code-tab>
 <template #example>
 <GraphicExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/empty-state/GraphicExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Action Items
+
 <code-tab>
 <template #example>
 <ActionItemsExample />
@@ -75,6 +86,7 @@
 ```vue
 <!--@include: ./components/empty-state/ActionItemsExample.vue -->
 ```
+
 </template>
 </code-tab>
 

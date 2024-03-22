@@ -11,9 +11,9 @@
 ```vue
 <!--@include: ./components/card/HeadlineExample.vue -->
 ```
+
 </template>
 </code-tab>
-
 
 ## Subtitle
 
@@ -26,9 +26,9 @@
 ```vue
 <!--@include: ./components/card/SubtitleExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Elevation
 
@@ -41,9 +41,9 @@
 ```vue
 <!--@include: ./components/card/ElevationExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Icon
 
@@ -56,9 +56,9 @@
 ```vue
 <!--@include: ./components/card/IconExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Text
 
@@ -71,6 +71,7 @@
 ```vue
 <!--@include: ./components/card/TextExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -87,9 +88,9 @@
 ```vue
 <!--@include: ./components/card/GraphicSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Media
 
@@ -102,9 +103,9 @@
 ```vue
 <!--@include: ./components/card/MediaSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Meta
 
@@ -117,9 +118,9 @@
 ```vue
 <!--@include: ./components/card/MetaSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Footer
 
@@ -132,9 +133,9 @@
 ```vue
 <!--@include: ./components/card/FooterSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Main
 
@@ -147,9 +148,9 @@
 ```vue
 <!--@include: ./components/card/MainSlotExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Trim headline
 
@@ -162,6 +163,7 @@
 ```vue
 <!--@include: ./components/card/TrimHeadlineExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -176,6 +178,7 @@
 ```vue
 <!--@include: ./components/card/TrimSubtitleExample.vue-->
 ```
+
 </template>
 </code-tab>
 

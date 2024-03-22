@@ -7,11 +7,12 @@ import { sideDrawerTemplate as template } from './side-drawer.template';
 /**
  * Represents a side-drawer custom element.
  */
-export const sideDrawerDefinition = SideDrawer.compose<FoundationElementDefinition>({
-	baseName: 'side-drawer',
-	template: template as any,
-	styles,
-});
+export const sideDrawerDefinition =
+	SideDrawer.compose<FoundationElementDefinition>({
+		baseName: 'side-drawer',
+		template: template as any,
+		styles,
+	});
 
 /**
  * @internal

@@ -26,7 +26,12 @@ export const dialogDefinition = Dialog.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const dialogRegistries = [dialogDefinition(), ...iconRegistries, ...buttonRegistries, ...elevationRegistries];
+export const dialogRegistries = [
+	dialogDefinition(),
+	...iconRegistries,
+	...buttonRegistries,
+	...elevationRegistries,
+];
 
 /**
  * Registers the dialog elements with the design system.

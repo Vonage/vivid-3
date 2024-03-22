@@ -3,7 +3,10 @@ export class TrappedFocus {
 	 * @returns Whether focus was trapped.
 	 * @internal
 	 */
-	protected _trappedFocus(event: KeyboardEvent, getFocusableEls: () => NodeListOf<HTMLElement>) {
+	protected _trappedFocus(
+		event: KeyboardEvent,
+		getFocusableEls: () => NodeListOf<HTMLElement>
+	) {
 		if (event.key === 'Tab') {
 			const focusableEls = getFocusableEls();
 			const firstFocusableEl = focusableEls[0];

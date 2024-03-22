@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { DataGrid } from './data-grid';
-import {DataGridSelectionMode} from './data-grid';
+import { DataGridSelectionMode } from './data-grid';
 import './index';
 
 const COMPONENT_TAG = 'vwc-data-grid';
@@ -75,7 +75,9 @@ describe('data grid integration tests', () => {
 			it('should set row-type sticky-header on header row when generateHeader is sticky', async function () {
 				element.generateHeader = 'sticky';
 				await elementUpdated(element);
-				expect(element.rowElements[0].getAttribute('row-type')).toBe('sticky-header');
+				expect(element.rowElements[0].getAttribute('row-type')).toBe(
+					'sticky-header'
+				);
 			});
 
 			it('should set row-type header on header row when generateHeader is default', async function () {
@@ -85,8 +87,6 @@ describe('data grid integration tests', () => {
 			});
 		});
 	});
-
-
 
 	describe('events', function () {
 		it('should fire cell-focused event', async function () {
@@ -137,7 +137,10 @@ describe('data grid integration tests', () => {
 				(element.rowElements[0].children[1] as HTMLElement).click();
 
 				expect(spy).toHaveBeenCalledTimes(1);
-				expect(spy.mock.calls[0][0].detail).toEqual({columnDataKey: 'data2', sortDirection: 'none'});
+				expect(spy.mock.calls[0][0].detail).toEqual({
+					columnDataKey: 'data2',
+					sortDirection: 'none',
+				});
 			});
 
 			it('should stop sort event propagation', async function () {
@@ -153,11 +156,9 @@ describe('data grid integration tests', () => {
 				expect(parentSpy).toHaveBeenCalledTimes(0);
 			});
 		});
-
 	});
 
 	describe('selectionMode', function () {
-
 		it('should remove aria-selected when "none" is set initially', async function () {
 			element = (await fixture(
 				`<${COMPONENT_TAG} selection-mode="none">
@@ -172,7 +173,8 @@ describe('data grid integration tests', () => {
 										</${COMPONENT_TAG}>`
 			)) as DataGrid;
 			await elementUpdated(element);
-			const ariaSelectedExists = element.querySelectorAll('[aria-selected]').length > 0;
+			const ariaSelectedExists =
+				element.querySelectorAll('[aria-selected]').length > 0;
 			expect(ariaSelectedExists).toEqual(false);
 		});
 
@@ -186,17 +188,26 @@ describe('data grid integration tests', () => {
 				];
 				await elementUpdated(element);
 				await elementUpdated(element);
-				cell = getRowCell(1,0);
+				cell = getRowCell(1, 0);
 			});
 
-			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
-			('should add aria-selected="false" to all cells if selectionMode is %s', async function (selectionMode: DataGridSelectionMode) {
-				element.selectionMode = selectionMode;
-				await elementUpdated(element);
-				const allNoneHeaderCells = Array.from(element.querySelectorAll('[role="gridcell"]'));
-				const allNoneHeaderCellsSelectable = allNoneHeaderCells.every(cell => cell.getAttribute('aria-selected') === 'false');
-				expect(allNoneHeaderCellsSelectable).toEqual(true);
-			});
+			it.each([
+				DataGridSelectionMode.singleCell,
+				DataGridSelectionMode.multiCell,
+			])(
+				'should add aria-selected="false" to all cells if selectionMode is %s',
+				async function (selectionMode: DataGridSelectionMode) {
+					element.selectionMode = selectionMode;
+					await elementUpdated(element);
+					const allNoneHeaderCells = Array.from(
+						element.querySelectorAll('[role="gridcell"]')
+					);
+					const allNoneHeaderCellsSelectable = allNoneHeaderCells.every(
+						(cell) => cell.getAttribute('aria-selected') === 'false'
+					);
+					expect(allNoneHeaderCellsSelectable).toEqual(true);
+				}
+			);
 
 			it('should remove aria-selected from all cells if set to "none"', async function () {
 				element.selectionMode = DataGridSelectionMode.singleCell;
@@ -205,8 +216,12 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.none;
 				await elementUpdated(element);
 
-				const allNonHeaderCells = Array.from(element.querySelectorAll('[role="gridcell"]'));
-				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(cell => !cell.hasAttribute('aria-selected'));
+				const allNonHeaderCells = Array.from(
+					element.querySelectorAll('[role="gridcell"]')
+				);
+				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
+					(cell) => !cell.hasAttribute('aria-selected')
+				);
 				expect(allNonHeaderCellsNotSelectable).toEqual(true);
 			});
 
@@ -217,26 +232,37 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.singleCell;
 				await elementUpdated(element);
 
-				const allNonHeaderRows = Array.from(element.querySelectorAll('[role="row"]'));
-				const allNonHeaderRowsNotSelectable = allNonHeaderRows.every(row => !row.hasAttribute('aria-selected'));
+				const allNonHeaderRows = Array.from(
+					element.querySelectorAll('[role="row"]')
+				);
+				const allNonHeaderRowsNotSelectable = allNonHeaderRows.every(
+					(row) => !row.hasAttribute('aria-selected')
+				);
 				expect(allNonHeaderRowsNotSelectable).toEqual(true);
 			});
 
-			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
-			('should add selected attribute to clicked cell if selection mode is %s', async function (selectionMode) {
-				element.selectionMode = selectionMode;
-				cell.click();
-				await elementUpdated(element);
-				expect(isElementSelected(cell)).toEqual(true);
-			});
+			it.each([
+				DataGridSelectionMode.singleCell,
+				DataGridSelectionMode.multiCell,
+			])(
+				'should add selected attribute to clicked cell if selection mode is %s',
+				async function (selectionMode) {
+					element.selectionMode = selectionMode;
+					cell.click();
+					await elementUpdated(element);
+					expect(isElementSelected(cell)).toEqual(true);
+				}
+			);
 
-			it.each(['none', 'single-row', 'multi-row'])
-			( 'should prevent selected attribute to cell if selectionMode is %s', async function (selectionMode) {
-				(element.selectionMode as any)= selectionMode;
-				cell.click();
-				await elementUpdated(element);
-				expect(isElementSelected(cell)).toEqual(false);
-			});
+			it.each(['none', 'single-row', 'multi-row'])(
+				'should prevent selected attribute to cell if selectionMode is %s',
+				async function (selectionMode) {
+					(element.selectionMode as any) = selectionMode;
+					cell.click();
+					await elementUpdated(element);
+					expect(isElementSelected(cell)).toEqual(false);
+				}
+			);
 
 			it('should remove selected attribute from selected clicked cell in single mode', async function () {
 				element.selectionMode = DataGridSelectionMode.singleCell;
@@ -249,36 +275,48 @@ describe('data grid integration tests', () => {
 				expect(isElementSelected(cell)).toEqual(false);
 			});
 
-			it.each([DataGridSelectionMode.singleCell, DataGridSelectionMode.multiCell])
-			('should remove selected attribute if clicked other cell and selectionMode is %s', async function (selectionMode: string) {
-				element.selectionMode = selectionMode as DataGridSelectionMode;
+			it.each([
+				DataGridSelectionMode.singleCell,
+				DataGridSelectionMode.multiCell,
+			])(
+				'should remove selected attribute if clicked other cell and selectionMode is %s',
+				async function (selectionMode: string) {
+					element.selectionMode = selectionMode as DataGridSelectionMode;
 
-				cell.click();
-				await elementUpdated(element);
+					cell.click();
+					await elementUpdated(element);
 
-				const otherCell = element.rowElements[2].children[1] as HTMLElement;
-				otherCell.click();
-				await elementUpdated(element);
+					const otherCell = element.rowElements[2].children[1] as HTMLElement;
+					otherCell.click();
+					await elementUpdated(element);
 
-				expect(isElementSelected(cell)).toEqual(false);
-				expect(isElementSelected(otherCell)).toEqual(true);
-			});
+					expect(isElementSelected(cell)).toEqual(false);
+					expect(isElementSelected(otherCell)).toEqual(true);
+				}
+			);
 
-			it.each(['ctrlKey', 'shiftKey', 'metaKey'])
-			('should leave selected attribute if clicked other cell with %s and selectionMode is multiCell',
+			it.each(['ctrlKey', 'shiftKey', 'metaKey'])(
+				'should leave selected attribute if clicked other cell with %s and selectionMode is multiCell',
 				async function (activeKey: string) {
 					element.selectionMode = DataGridSelectionMode.multiCell;
 
 					cell.click();
 					await elementUpdated(element);
 
-					const otherCell = getRowCell(2,1);
-					otherCell.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
+					const otherCell = getRowCell(2, 1);
+					otherCell.dispatchEvent(
+						new MouseEvent('click', {
+							[activeKey]: true,
+							bubbles: true,
+							composed: true,
+						})
+					);
 					await elementUpdated(element);
 
 					expect(isElementSelected(cell)).toEqual(true);
 					expect(isElementSelected(otherCell)).toEqual(true);
-				});
+				}
+			);
 
 			it('should reset selection when selectionMode changes', async function () {
 				element.selectionMode = DataGridSelectionMode.multiCell;
@@ -286,8 +324,14 @@ describe('data grid integration tests', () => {
 				cell.click();
 				await elementUpdated(element);
 
-				const otherCell = getRowCell(2,1);
-				otherCell.dispatchEvent(new MouseEvent('click', { ctrlKey: true, bubbles: true, composed: true }));
+				const otherCell = getRowCell(2, 1);
+				otherCell.dispatchEvent(
+					new MouseEvent('click', {
+						ctrlKey: true,
+						bubbles: true,
+						composed: true,
+					})
+				);
 				await elementUpdated(element);
 
 				element.selectionMode = DataGridSelectionMode.singleCell;
@@ -303,9 +347,11 @@ describe('data grid integration tests', () => {
 				cell.click();
 				await elementUpdated(element);
 
-				const otherCell = getRowCell(2,1);
+				const otherCell = getRowCell(2, 1);
 
-				otherCell.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+				otherCell.dispatchEvent(
+					new MouseEvent('click', { bubbles: true, composed: true })
+				);
 				await elementUpdated(element);
 
 				expect(isElementSelected(cell)).toEqual(false);
@@ -325,8 +371,22 @@ describe('data grid integration tests', () => {
 				const cell1 = getRowCell(1, 1);
 				const cell2 = getRowCell(2, 1);
 
-				cell1.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: 'Enter', bubbles: true, composed: true }));
-				cell2.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: ' ', bubbles: true, composed: true }));
+				cell1.dispatchEvent(
+					new KeyboardEvent('keydown', {
+						ctrlKey: true,
+						key: 'Enter',
+						bubbles: true,
+						composed: true,
+					})
+				);
+				cell2.dispatchEvent(
+					new KeyboardEvent('keydown', {
+						ctrlKey: true,
+						key: ' ',
+						bubbles: true,
+						composed: true,
+					})
+				);
 				await elementUpdated(element);
 
 				expect(isElementSelected(cell1)).toEqual(true);
@@ -365,8 +425,12 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.none;
 				await elementUpdated(element);
 
-				const allNoneHeaderRows = Array.from(element.querySelectorAll('[role="row"]'));
-				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(row => !row.hasAttribute('aria-selected'));
+				const allNoneHeaderRows = Array.from(
+					element.querySelectorAll('[role="row"]')
+				);
+				const allNonHeaderRowsNotSelectable = allNoneHeaderRows.every(
+					(row) => !row.hasAttribute('aria-selected')
+				);
 				expect(allNonHeaderRowsNotSelectable).toEqual(true);
 			});
 
@@ -377,22 +441,32 @@ describe('data grid integration tests', () => {
 				element.selectionMode = DataGridSelectionMode.multiRow;
 				await elementUpdated(element);
 
-				const allNonHeaderCells = Array.from(element.querySelectorAll('[role="gridcell"]'));
-				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(cell => !cell.hasAttribute('aria-selected'));
+				const allNonHeaderCells = Array.from(
+					element.querySelectorAll('[role="gridcell"]')
+				);
+				const allNonHeaderCellsNotSelectable = allNonHeaderCells.every(
+					(cell) => !cell.hasAttribute('aria-selected')
+				);
 				expect(allNonHeaderCellsNotSelectable).toEqual(true);
 			});
 
-			it.each([DataGridSelectionMode.singleRow, DataGridSelectionMode.multiRow])
-			('should set aria-selected="false" on all non header rows if selectionMode is %s',
+			it.each([
+				DataGridSelectionMode.singleRow,
+				DataGridSelectionMode.multiRow,
+			])(
+				'should set aria-selected="false" on all non header rows if selectionMode is %s',
 				async function (selectionMode: DataGridSelectionMode) {
 					element.selectionMode = selectionMode;
 					await elementUpdated(element);
 					const allNonHeaderRows = element.querySelectorAll('[role="row"]');
-					const allNonHeaderRowsHaveSelectedFalse = Array.from(allNonHeaderRows).every((row) => {
+					const allNonHeaderRowsHaveSelectedFalse = Array.from(
+						allNonHeaderRows
+					).every((row) => {
 						return row.getAttribute('aria-selected') === 'false';
 					});
 					expect(allNonHeaderRowsHaveSelectedFalse).toEqual(true);
-				});
+				}
+			);
 
 			it('should set aria-selected="true" on clicked row', async function () {
 				element.selectionMode = DataGridSelectionMode.singleRow;
@@ -419,8 +493,8 @@ describe('data grid integration tests', () => {
 				expect(row2.getAttribute('aria-selected')).toEqual('true');
 			});
 
-			it.each(['ctrlKey', 'shiftKey', 'metaKey'])
-			('should set aria-selected="true" to all clicked rows in "multi-row" state and %s key pressed',
+			it.each(['ctrlKey', 'shiftKey', 'metaKey'])(
+				'should set aria-selected="true" to all clicked rows in "multi-row" state and %s key pressed',
 				function (activeKey) {
 					element.selectionMode = DataGridSelectionMode.multiRow;
 					const row1 = getRow(1);
@@ -429,11 +503,18 @@ describe('data grid integration tests', () => {
 					const cellInRow2 = getRowCell(2, 0);
 
 					cellInRow1.click();
-					cellInRow2.dispatchEvent(new MouseEvent('click', { [activeKey]: true, bubbles: true, composed: true }));
+					cellInRow2.dispatchEvent(
+						new MouseEvent('click', {
+							[activeKey]: true,
+							bubbles: true,
+							composed: true,
+						})
+					);
 
 					expect(row1.getAttribute('aria-selected')).toEqual('true');
 					expect(row2.getAttribute('aria-selected')).toEqual('true');
-				});
+				}
+			);
 
 			it('should leave aria-selected value to rows on init', async function () {
 				element = (await fixture(
@@ -450,7 +531,6 @@ describe('data grid integration tests', () => {
 			});
 		});
 	});
-
 });
 
 function isElementSelected(element: HTMLElement): boolean {

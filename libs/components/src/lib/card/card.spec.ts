@@ -1,12 +1,10 @@
-import {axe, elementUpdated, fixture} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Appearance} from '../enums';
+import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
 import '.';
 import { cardDefinition } from './definition';
-
-
 
 const COMPONENT_TAG = 'vwc-card';
 const ICON_SELECTOR = 'vwc-icon';
@@ -27,7 +25,7 @@ describe('vwc-card', () => {
 		});
 	});
 
-	describe( 'header', () => {
+	describe('header', () => {
 		it('should set headline property to header-title', async () => {
 			const headline = 'card headline';
 			element.headline = headline;
@@ -42,7 +40,8 @@ describe('vwc-card', () => {
 			element.subtitle = subtitle;
 			await elementUpdated(element);
 
-			const headerSubtitle = element.shadowRoot?.querySelector('.header-subtitle');
+			const headerSubtitle =
+				element.shadowRoot?.querySelector('.header-subtitle');
 			expect(headerSubtitle?.textContent?.trim()).toEqual(subtitle);
 		});
 
@@ -50,19 +49,19 @@ describe('vwc-card', () => {
 			element.headline = 'card title';
 			await elementUpdated(element);
 
-			const headerContent = element.shadowRoot?.querySelector('.header-content');
+			const headerContent =
+				element.shadowRoot?.querySelector('.header-content');
 			expect(headerContent).toBeTruthy();
 		});
-
 
 		it('should render headerContent if subtitle is set', async function () {
 			element.subtitle = 'card subtitle';
 			await elementUpdated(element);
 
-			const subtitleContent = element.shadowRoot?.querySelector('.header-content');
+			const subtitleContent =
+				element.shadowRoot?.querySelector('.header-content');
 			expect(subtitleContent).toBeTruthy();
 		});
-
 
 		it('should add an icon to the card header', async () => {
 			element.icon = 'chat-line';
@@ -73,20 +72,22 @@ describe('vwc-card', () => {
 			expect(icon.name).toEqual('chat-line');
 		});
 
-		it( 'should add class .hide-header to .base', async () => {
+		it('should add class .hide-header to .base', async () => {
 			element.icon = undefined;
 			element.headline = undefined;
 			element.subtitle = undefined;
 			await elementUpdated(element);
-			const baseElementHasNoHeader = element.shadowRoot?.
-				querySelector('.base')?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element.shadowRoot
+				?.querySelector('.base')
+				?.classList.contains('hide-header');
 
 			expect(baseElementHasNoHeader).toEqual(true);
 		});
 
-		it('should have slot name graphic with icon default', async() => {
-			const graphicSlotElement = element.shadowRoot?.
-				querySelector('.header slot[name="graphic"]');
+		it('should have slot name graphic with icon default', async () => {
+			const graphicSlotElement = element.shadowRoot?.querySelector(
+				'.header slot[name="graphic"]'
+			);
 
 			element.icon = 'home';
 			await elementUpdated(element);
@@ -95,10 +96,10 @@ describe('vwc-card', () => {
 			expect(icon.parentElement).toEqual(graphicSlotElement);
 		});
 
-
 		it('should have meta slot ', async function () {
-			const metaSlotElement = element.shadowRoot?.
-				querySelector('.header-wrapper slot[name="meta"]');
+			const metaSlotElement = element.shadowRoot?.querySelector(
+				'.header-wrapper slot[name="meta"]'
+			);
 
 			expect(metaSlotElement).toBeTruthy();
 		});
@@ -110,12 +111,12 @@ describe('vwc-card', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasNoHeader = element.shadowRoot?.
-				querySelector('.base')?.classList.contains('hide-header');
+			const baseElementHasNoHeader = element.shadowRoot
+				?.querySelector('.base')
+				?.classList.contains('hide-header');
 
 			expect(baseElementHasNoHeader).toEqual(false);
 		});
-
 	});
 
 	describe('card text', () => {
@@ -125,14 +126,14 @@ describe('vwc-card', () => {
 			await elementUpdated(element);
 			const textNode = element.shadowRoot?.querySelector('.text');
 			expect(textNode?.textContent?.trim()).toEqual(text);
-
 		});
 	});
 
-	describe( 'card footer', () => {
+	describe('card footer', () => {
 		it('should have footer slot ', async function () {
-			const footerSlotElement = element.shadowRoot?.
-				querySelector('.footer slot[name="footer"]');
+			const footerSlotElement = element.shadowRoot?.querySelector(
+				'.footer slot[name="footer"]'
+			);
 
 			expect(footerSlotElement).toBeTruthy();
 		});
@@ -144,8 +145,9 @@ describe('vwc-card', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			const baseElementHasNoHeader = element.shadowRoot?.
-				querySelector('.base')?.classList.contains('hide-footer');
+			const baseElementHasNoHeader = element.shadowRoot
+				?.querySelector('.base')
+				?.classList.contains('hide-footer');
 
 			expect(baseElementHasNoHeader).toEqual(false);
 		});
@@ -153,12 +155,10 @@ describe('vwc-card', () => {
 
 	describe('card appearance', function () {
 		it('should have elevation element wrapper when as default appearance or elevated', async function () {
-
 			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
 
 			expect(elevationTag).toBeTruthy();
 			expect(elevationTag?.getAttribute('dp')).toEqual('4');
-
 		});
 
 		it('should have no elevation element wrapper when appearance is ghost', async function () {
@@ -168,7 +168,6 @@ describe('vwc-card', () => {
 			const elevationTag = element.shadowRoot?.querySelector('vwc-elevation');
 
 			expect(elevationTag).toBeFalsy();
-
 		});
 
 		it('should have elevation element wrapper with dp="0" when appearance is outlined', async function () {
@@ -179,21 +178,16 @@ describe('vwc-card', () => {
 
 			expect(elevationTag).toBeTruthy();
 			expect(elevationTag?.getAttribute('dp')).toEqual('0');
-
 		});
-
 	});
 
 	describe('card elevation', () => {
-
 		it('should have default elevation', async function () {
 			const defaultElevation = '4';
 
-			const baseElevation = element.shadowRoot?.
-				querySelector('vwc-elevation');
+			const baseElevation = element.shadowRoot?.querySelector('vwc-elevation');
 
 			expect(baseElevation?.getAttribute('dp')).toEqual(defaultElevation);
-
 		});
 
 		it('should change the elevation dp when there is elevation property', async () => {

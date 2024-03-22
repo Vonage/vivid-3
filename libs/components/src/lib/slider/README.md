@@ -3,9 +3,7 @@
 Represents a slider custom element.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/slider';
-</script>
+<script type="module">import '@vonage/vivid/slider';</script>
 ```
 
 ```html preview
@@ -23,12 +21,18 @@ Use `min` to set the lowest value allowed for the slider.
 
 ```html preview blocks
 <div>
-  <vwc-slider id="slider" min="-5"></vwc-slider>
+	<vwc-slider id="slider" min="-5"></vwc-slider>
 </div>
-<div>Current value: <span id="slidervalue"></span></div>
+<div>
+	Current value:
+	<span id="slidervalue"></span>
+</div>
 
 <script>
-  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
+	slider.addEventListener(
+		'change',
+		(e) => (slidervalue.innerText = slider.value)
+	);
 </script>
 ```
 
@@ -41,12 +45,18 @@ Use `max` to set the greatest value allowed for the slider.
 
 ```html preview blocks
 <div>
-  <vwc-slider id="slider" max="100"></vwc-slider>
+	<vwc-slider id="slider" max="100"></vwc-slider>
 </div>
-<div>Current value: <span id="slidervalue"></span></div>
+<div>
+	Current value:
+	<span id="slidervalue"></span>
+</div>
 
 <script>
-  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
+	slider.addEventListener(
+		'change',
+		(e) => (slidervalue.innerText = slider.value)
+	);
 </script>
 ```
 
@@ -59,12 +69,18 @@ Use `step` to set determine the granularity with which values can be incremented
 
 ```html preview blocks
 <div>
-  <vwc-slider id="slider" step="0.5"></vwc-slider>
+	<vwc-slider id="slider" step="0.5"></vwc-slider>
 </div>
-<div>Current value: <span id="slidervalue"></span></div>
+<div>
+	Current value:
+	<span id="slidervalue"></span>
+</div>
 
 <script>
-  slider.addEventListener('change', (e) => slidervalue.innerText = slider.value);
+	slider.addEventListener(
+		'change',
+		(e) => (slidervalue.innerText = slider.value)
+	);
 </script>
 ```
 
@@ -92,7 +108,7 @@ Toggles markers display.
 
 ### Connotation
 
-- Type: `'accent'` | `'cta'` 
+- Type: `'accent'` | `'cta'`
 - Default: `'accent'`
 
 ```html preview blocks

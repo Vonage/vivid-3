@@ -19,6 +19,4 @@ export const NavItemTemplate: (
 ) => ViewTemplate<NavItem> = (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => html<NavItem>`
-      ${textAnchorTemplate(context, definition)}
-    `;
+) => html<NavItem>` ${textAnchorTemplate(context, definition)} `;

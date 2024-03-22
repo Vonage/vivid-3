@@ -1,29 +1,32 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory} from '../../shared/design-system';
+import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import styles from './breadcrumb-item.scss?inline';
 
-import {BreadcrumbItem} from './breadcrumb-item';
-import {BreadcrumbItemTemplate as template} from './breadcrumb-item.template';
-
+import { BreadcrumbItem } from './breadcrumb-item';
+import { BreadcrumbItemTemplate as template } from './breadcrumb-item.template';
 
 /**
  *
  * @internal
  */
-export const breadcrumbItemDefinition = BreadcrumbItem.compose<FoundationElementDefinition>({
-	baseName: 'breadcrumb-item',
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-});
+export const breadcrumbItemDefinition =
+	BreadcrumbItem.compose<FoundationElementDefinition>({
+		baseName: 'breadcrumb-item',
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	});
 
 /**
  * @internal
  */
-export const breadcrumbItemRegistries = [breadcrumbItemDefinition(), ...iconRegistries];
+export const breadcrumbItemRegistries = [
+	breadcrumbItemDefinition(),
+	...iconRegistries,
+];
 
 /**
  * Registers the breadcrumb-item elements with the design system.

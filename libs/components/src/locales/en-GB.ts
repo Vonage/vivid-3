@@ -1,5 +1,7 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/en-GB.json';
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const enGB: Locale = {
 	datePicker: {
 		months: {
@@ -48,9 +50,11 @@ const enGB: Locale = {
 		dateFormat: 'dd/MM/yyyy',
 		dateFormatPlaceholder: 'DD/MM/YYYY',
 		chooseDateLabel: 'Choose date',
-		changeDateLabel: /* istanbul ignore next */ (date: string) => `Change date, ${date}`,
+		changeDateLabel: /* istanbul ignore next */ (date: string) =>
+			`Change date, ${date}`,
 		chooseDatesLabel: 'Choose dates',
-		changeDatesLabel: /* istanbul ignore next */ (range: string) => `Change dates, ${range}`,
+		changeDatesLabel: /* istanbul ignore next */ (range: string) =>
+			`Change dates, ${range}`,
 		prevYearLabel: 'Previous year',
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
@@ -67,14 +71,15 @@ const enGB: Locale = {
 	timePicker: {
 		defaultTo12HourClock: false,
 		chooseTimeLabel: 'Choose time',
-		changeTimeLabel: /* istanbul ignore next */ (time: string) => `Change time, ${time}`,
+		changeTimeLabel: /* istanbul ignore next */ (time: string) =>
+			`Change time, ${time}`,
 		hoursLabel: 'hours',
 		minutesLabel: 'minutes',
 		secondsLabel: 'seconds',
 		meridiesLabel: 'AM/PM',
 		clearLabel: 'Clear',
 		okLabel: 'OK',
-		invalidTimeError: 'Please enter a valid time.'
+		invalidTimeError: 'Please enter a valid time.',
 	},
 	filePicker: {
 		invalidFileTypeError: "You can't select files of this type.",
@@ -104,10 +109,11 @@ const enGB: Locale = {
 	splitButton: {
 		showMoreActionsLabel: 'Show more actions',
 	},
+	videoPlayer: videoPlayerLocale,
 	rangeSlider: {
 		startThumbLabel: 'min',
 		endThumbLabel: 'max',
-	}
+	},
 };
 
 export default enGB;

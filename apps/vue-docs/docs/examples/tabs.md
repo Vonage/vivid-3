@@ -1,6 +1,7 @@
 # VTabs Examples
 
 ## Tabs
+
 <code-tab>
 <template #example>
 <TabsExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/tabs/TabsExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Orientation
+
 <code-tab>
 <template #example>
 <OrientationExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/tabs/OrientationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Activeid
+
 <code-tab>
 <template #example>
 <ActiveidExample />
@@ -36,6 +41,7 @@
 ```vue
 <!--@include: ./components/tabs/ActiveidExample.vue -->
 ```
+
 </template>
 </code-tab>
 

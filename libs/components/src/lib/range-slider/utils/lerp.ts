@@ -3,7 +3,8 @@ import { limit } from '@microsoft/fast-web-utilities';
 /**
  * Linearly interpolates between two values.
  */
-export const lerp = (a: number, b: number, value: number) => a + (b - a) * value;
+export const lerp = (a: number, b: number, value: number) =>
+	a + (b - a) * value;
 
 /**
  * Returns the fraction of a value between a and b.

@@ -25,7 +25,12 @@ export const combobox = Combobox.compose<ComboboxOptions>({
 	},
 })();
 
-export const comboboxRegistries = [combobox, ...iconRegistries, ...popupRegistries, ...listboxOptionRegistries];
+export const comboboxRegistries = [
+	combobox,
+	...iconRegistries,
+	...popupRegistries,
+	...listboxOptionRegistries,
+];
 
 /**
  * Registers the combobox elements with the design system.

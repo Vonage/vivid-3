@@ -1,10 +1,22 @@
-import { html, ref, slotted, ViewTemplate, when } from '@microsoft/fast-element';
-import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
+import {
+	html,
+	ref,
+	slotted,
+	ViewTemplate,
+	when,
+} from '@microsoft/fast-element';
+import type {
+	ElementDefinitionContext,
+	FoundationElementDefinition,
+} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
-import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns/affix';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import type { Select } from './select';
 
@@ -15,21 +27,21 @@ const getStateClasses = ({
 	metaSlottedContent,
 	errorValidationMessage,
 	successText,
-}: Select) => classNames(
-	['disabled', disabled],
-	[`appearance-${appearance}`, Boolean(appearance)],
-	[`shape-${shape}`, Boolean(shape)],
-	['has-meta', Boolean(metaSlottedContent?.length)],
-	['error', Boolean(errorValidationMessage)],
-	['success', !!successText],
-	['has-meta', Boolean(metaSlottedContent?.length)],
-);
+}: Select) =>
+	classNames(
+		['disabled', disabled],
+		[`appearance-${appearance}`, Boolean(appearance)],
+		[`shape-${shape}`, Boolean(shape)],
+		['has-meta', Boolean(metaSlottedContent?.length)],
+		['error', Boolean(errorValidationMessage)],
+		['success', !!successText],
+		['has-meta', Boolean(metaSlottedContent?.length)]
+	);
 
 function renderLabel() {
-	return html<Select>`
-	  <label for="control" class="label" id="label">
-		  ${x => x.label}
-	  </label>`;
+	return html<Select>` <label for="control" class="label" id="label">
+		${(x) => x.label}
+	</label>`;
 }
 
 function renderPlaceholder(context: ElementDefinitionContext) {
@@ -37,26 +49,31 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 
 	return html<Select>`
 		<${optionTag} ${ref('placeholderOption')}
-			text="${x => x.placeholder}" hidden disabled>
+			text="${(x) => x.placeholder}" hidden disabled>
 		</${optionTag}>`;
 }
 
 function selectValue(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	return html<Select>`
-		<div class="control ${getStateClasses}" ${ref('_anchor')}
-			id="control" ?disabled="${x => x.disabled}">
-			<div class="selected-value">
-				${x => affixIconTemplate(x.icon, IconWrapper.Slot)}
-				<span class="text">${x => x.displayValue}</span>
-				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-			</div>
-			${() => affixIconTemplate('chevron-down-line')}
-		</div>`;
+	return html<Select>` <div
+		class="control ${getStateClasses}"
+		${ref('_anchor')}
+		id="control"
+		?disabled="${(x) => x.disabled}"
+	>
+		<div class="selected-value">
+			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+			<span class="text">${(x) => x.displayValue}</span>
+			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
+		</div>
+		${() => affixIconTemplate('chevron-down-line')}
+	</div>`;
 }
 
 function setFixedDropdownVarWidth(x: Select) {
-	return (x.open && x.fixedDropdown) ? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px` : null;
+	return x.open && x.fixedDropdown
+		? `--_select-fixed-width: ${Math.round(x.getBoundingClientRect().width)}px`
+		: null;
 }
 
 /**
@@ -66,33 +83,39 @@ function renderControl(context: ElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
-			${when(x => x.label, renderLabel())}
+			${when((x) => x.label, renderLabel())}
 			<div class="control-wrapper">
-				${when(x => !x.multiple, selectValue(context))}
+				${when((x) => !x.multiple, selectValue(context))}
 				<${popupTag} class="popup"
 					style="${setFixedDropdownVarWidth}"
-					?open="${x => (x.collapsible ? x.open : true)}"
-					:anchor="${x => x._anchor}"
+					?open="${(x) => (x.collapsible ? x.open : true)}"
+					:anchor="${(x) => x._anchor}"
 					placement="bottom-start"
-					strategy="${x => x.fixedDropdown ? null : 'absolute'}">
+					strategy="${(x) => (x.fixedDropdown ? null : 'absolute')}">
 					<div class="listbox"
-						id="${x => x.listboxId}"
+						id="${(x) => x.listboxId}"
 						role="listbox"
-						?disabled="${x => x.disabled}"
-						?hidden="${x => (x.collapsible ? !x.open : false)}"
+						?disabled="${(x) => x.disabled}"
+						?hidden="${(x) => (x.collapsible ? !x.open : false)}"
 						${ref('listbox')}>
-						${when(x => x.placeholder, renderPlaceholder(context))}
+						${when((x) => x.placeholder, renderPlaceholder(context))}
 						<slot
-							${slotted({ filter: Listbox.slottedOptionFilter as any, flatten: true, property: 'slottedOptions' })}>
+							${slotted({
+								filter: Listbox.slottedOptionFilter as any,
+								flatten: true,
+								property: 'slottedOptions',
+							})}>
 						</slot>
            			 </div>
 				</${popupTag}>
 			</div>
-			${when(x => x.helperText?.length, getFeedbackTemplate('helper', context))}
-			${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-			${when(x => x.successText, getFeedbackTemplate('success', context))}
+			${when((x) => x.helperText?.length, getFeedbackTemplate('helper', context))}
+			${when(
+				(x) => !x.successText && x.errorValidationMessage,
+				getFeedbackTemplate('error', context)
+			)}
+			${when((x) => x.successText, getFeedbackTemplate('success', context))}
 		`;
-
 }
 
 /**
@@ -105,26 +128,26 @@ export const SelectTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
-
-	return html<Select>`
-		<template class="base"
-			aria-label="${x => x.ariaLabel}"
-			aria-activedescendant="${x => x.ariaActiveDescendant}"
-			aria-controls="${x => x.ariaControls}"
-			aria-disabled="${x => x.ariaDisabled}"
-			aria-expanded="${x => x.ariaExpanded}"
-			aria-haspopup="${x => (x.collapsible ? 'listbox' : null)}"
-			aria-multiselectable="${x => x.ariaMultiSelectable}"
-			?open="${x => x.open}"
-			role="combobox"
-			tabindex="${x => (!x.disabled ? '0' : null)}"
-			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-			@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
-			@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-			@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}">
-				${renderControl(context)}
-		</template>`;
+	return html<Select>` <template
+		class="base"
+		aria-label="${(x) => x.ariaLabel}"
+		aria-activedescendant="${(x) => x.ariaActiveDescendant}"
+		aria-controls="${(x) => x.ariaControls}"
+		aria-disabled="${(x) => x.ariaDisabled}"
+		aria-expanded="${(x) => x.ariaExpanded}"
+		aria-haspopup="${(x) => (x.collapsible ? 'listbox' : null)}"
+		aria-multiselectable="${(x) => x.ariaMultiSelectable}"
+		?open="${(x) => x.open}"
+		role="combobox"
+		tabindex="${(x) => (!x.disabled ? '0' : null)}"
+		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+		@focusin="${(x, c) => x.focusinHandler(c.event as FocusEvent)}"
+		@focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
+		@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+		@mousedown="${(x, c) => x.mousedownHandler(c.event as MouseEvent)}"
+	>
+		${renderControl(context)}
+	</template>`;
 };
 
 // TODO::change the css variable according to select width

@@ -2,14 +2,14 @@ import { VTag, VTagGroup } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VTagGroup';
 
 export default {
-  title: 'Wrappers/TagGroup',
-  component: VTagGroup,
-  argTypes,
+	title: 'Wrappers/TagGroup',
+	component: VTagGroup,
+	argTypes,
 };
 
 const Template = () => ({
-  components: { VTag, VTagGroup },
-  template: `<VTagGroup>
+	components: { VTag, VTagGroup },
+	template: `<VTagGroup>
   <VTag label="first tag"/>
   <VTag label="second tag"/>
   <VTag label="third tag"/>
@@ -19,8 +19,8 @@ const Template = () => ({
 export const Default = Template.bind({});
 
 const SelectableTemplate = () => ({
-  components: { VTag, VTagGroup },
-  template: `<VTagGroup>
+	components: { VTag, VTagGroup },
+	template: `<VTagGroup>
   <VTag label="first tag" selectable selected/>
   <VTag label="second tag" selectable/>
   <VTag label="third tag" selectable selected/>
@@ -30,8 +30,8 @@ const SelectableTemplate = () => ({
 export const Selectable = SelectableTemplate.bind({});
 
 const RemovableTemplate = () => ({
-  components: { VTag, VTagGroup },
-  template: `<VTagGroup>
+	components: { VTag, VTagGroup },
+	template: `<VTagGroup>
   <VTag label="first tag" removable/>
   <VTag label="second tag" removable/>
   <VTag label="third tag" removable/>

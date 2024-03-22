@@ -21,7 +21,11 @@ export const numberFieldDefinition =
 		},
 	});
 
-export const numberFieldRegistries = [numberFieldDefinition(), ...buttonRegistries, ...dividerRegistries];
+export const numberFieldRegistries = [
+	numberFieldDefinition(),
+	...buttonRegistries,
+	...dividerRegistries,
+];
 
 /**
  * Registers the number-field elements with the design system.

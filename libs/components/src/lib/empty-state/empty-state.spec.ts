@@ -32,7 +32,9 @@ describe('vwc-empty-state', () => {
 			const headlineText = 'headline';
 			element.setAttribute('headline', headlineText);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('header')?.textContent?.trim()).toEqual(headlineText);
+			expect(
+				element.shadowRoot?.querySelector('header')?.textContent?.trim()
+			).toEqual(headlineText);
 		});
 	});
 
@@ -51,7 +53,9 @@ describe('vwc-empty-state', () => {
 
 	describe('default slot', () => {
 		it('should should have a default slot', () => {
-			expect(element.shadowRoot?.querySelector('slot:not([name])')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot:not([name])')
+			).toBeTruthy();
 		});
 	});
 
@@ -78,7 +82,9 @@ describe('vwc-empty-state', () => {
 		});
 
 		it('should have no-actions class if slot is not occupied', () => {
-			expect(getBaseElement(element).classList.contains('no-action')).toBe(false);
+			expect(getBaseElement(element).classList.contains('no-action')).toBe(
+				false
+			);
 		});
 
 		it('should not have no-actions class if slot is occupied', async () => {
@@ -86,7 +92,9 @@ describe('vwc-empty-state', () => {
 			slotted.slot = 'action-items';
 			element.appendChild(slotted);
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('no-action')).toBe(false);
+			expect(getBaseElement(element).classList.contains('no-action')).toBe(
+				false
+			);
 		});
 	});
 

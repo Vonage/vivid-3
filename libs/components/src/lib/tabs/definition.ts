@@ -7,20 +7,23 @@ import styles from './tabs.scss?inline';
 import { Tabs } from './tabs';
 import { TabsTemplate as template } from './tabs.template';
 
-
 /**
  * The tabs element.
  */
 export const tabsDefinition = Tabs.compose<FoundationElementDefinition>({
 	baseName: 'tabs',
 	template: template as any,
-	styles
+	styles,
 });
 
 /**
  * @internal
  */
-export const tabsRegistries = [tabsDefinition(), ...tabRegistries, ...tabPanelRegistries];
+export const tabsRegistries = [
+	tabsDefinition(),
+	...tabRegistries,
+	...tabPanelRegistries,
+];
 
 /**
  * Registers the tabs elements with the design system.

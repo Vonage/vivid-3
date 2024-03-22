@@ -3,52 +3,52 @@ import { ref } from 'vue';
 import { argTypes, Template } from './generated/VTextField';
 
 export default {
-  title: 'Wrappers/TextField',
-  component: VTextField,
-  argTypes,
+	title: 'Wrappers/TextField',
+	component: VTextField,
+	argTypes,
 };
 
 export const Basic = Template.bind({});
 
 const LabelTemplate = () => ({
-  components: { VTextField },
-  template: `<VTextField label="My Label" />`,
+	components: { VTextField },
+	template: `<VTextField label="My Label" />`,
 });
 export const Label = LabelTemplate.bind({});
 
 const PlaceholderTemplate = () => ({
-  components: { VTextField },
-  template: `<VTextField placeholder="My Placeholder" />`,
+	components: { VTextField },
+	template: `<VTextField placeholder="My Placeholder" />`,
 });
 export const Placeholder = PlaceholderTemplate.bind({});
 
 const HelperTextTemplate = () => ({
-  components: { VTextField },
-  template: `<VTextField label="Helper text below" helper-text="Help text" />`,
+	components: { VTextField },
+	template: `<VTextField label="Helper text below" helper-text="Help text" />`,
 });
 export const HelperText = HelperTextTemplate.bind({});
 
 const SuccessTextTemplate = () => ({
-  components: { VTextField },
-  template: `<VTextField label="Username" value="Vlad" success-text="Valid username" />`,
+	components: { VTextField },
+	template: `<VTextField label="Username" value="Vlad" success-text="Valid username" />`,
 });
 export const SuccessText = SuccessTextTemplate.bind({});
 
 const CharacterCountTemplate = () => ({
-  components: { VTextField },
-  template: `<VTextField label="Char count example" char-count maxlength="15" />`,
+	components: { VTextField },
+	template: `<VTextField label="Char count example" char-count maxlength="15" />`,
 });
 export const CharacterCount = CharacterCountTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VTextField },
-  template: `<VTextField icon="search-line" label="Search..." />`,
+	components: { VTextField },
+	template: `<VTextField icon="search-line" label="Search..." />`,
 });
 export const Icon = IconTemplate.bind({});
 
 const ShapeTemplate = () => ({
-  components: { VTextField },
-  template: `<div>
+	components: { VTextField },
+	template: `<div>
     <VTextField label="Pill" shape="pill" />
     <VTextField label="Rounded" shape="rounded" />
   </div>`,
@@ -56,8 +56,8 @@ const ShapeTemplate = () => ({
 export const Shape = ShapeTemplate.bind({});
 
 const AppearanceTemplate = () => ({
-  components: { VTextField },
-  template: `<div>
+	components: { VTextField },
+	template: `<div>
     <VTextField placeholder="appearance" label="fieldset" appearance="fieldset" />
     <VTextField placeholder="appearance" label="ghost" appearance="ghost" />
   </div>`,
@@ -65,28 +65,28 @@ const AppearanceTemplate = () => ({
 export const Appearance = AppearanceTemplate.bind({});
 
 const DisabledTemplate = () => ({
-  components: { VTextField },
-  setup() {
-    const value = ref('disabled');
-    return { value };
-  },
-  template: `<VTextField disabled icon="chat-line" v-model="value" label="fieldset" appearance="fieldset" />`,
+	components: { VTextField },
+	setup() {
+		const value = ref('disabled');
+		return { value };
+	},
+	template: `<VTextField disabled icon="chat-line" v-model="value" label="fieldset" appearance="fieldset" />`,
 });
 export const Disabled = DisabledTemplate.bind({});
 
 const ReadonlyTemplate = () => ({
-  components: { VTextField },
-  setup() {
-    const value = ref('readonly text');
-    return { value };
-  },
-  template: `<VTextField readonly icon="chat-line" v-model="value" label="fieldset" appearance="fieldset" />`,
+	components: { VTextField },
+	setup() {
+		const value = ref('readonly text');
+		return { value };
+	},
+	template: `<VTextField readonly icon="chat-line" v-model="value" label="fieldset" appearance="fieldset" />`,
 });
 export const Readonly = ReadonlyTemplate.bind({});
 
 const InFormTemplate = () => ({
-  components: { VButton, VLayout, VTextField },
-  template: `<form method="post" action="">
+	components: { VButton, VLayout, VTextField },
+	template: `<form method="post" action="">
     <VLayout columnSpacing="small" columnBasis="block">
       <VTextField required label="Add email" placeholder="e.g. john@doe.dev" type="email" name="email" autocomplete="email" icon="search" maxlength="30" charCount style="justify-self: flex-start;" />
       <VButton label="Submit" appearance="filled" type="submit" />
@@ -96,12 +96,12 @@ const InFormTemplate = () => ({
 export const InForm = InFormTemplate.bind({});
 
 const VModelTemplate = () => ({
-  components: { VTextField },
-  setup() {
-    const value = ref('');
-    return { value };
-  },
-  template: `<div>
+	components: { VTextField },
+	setup() {
+		const value = ref('');
+		return { value };
+	},
+	template: `<div>
     <div>
       <VTextField v-model="value" />
     </div> 

@@ -3,20 +3,20 @@ import { ref } from 'vue';
 import { argTypes, Template } from './generated/VDatePicker';
 
 export default {
-  title: 'Wrappers/DatePicker',
-  component: VDatePicker,
-  argTypes,
+	title: 'Wrappers/DatePicker',
+	component: VDatePicker,
+	argTypes,
 };
 
 export const Basic = Template.bind({});
 
 const VModelTemplate = () => ({
-  components: { VDatePicker },
-  setup() {
-    const value = ref('');
-    return { value };
-  },
-  template: `<div>
+	components: { VDatePicker },
+	setup() {
+		const value = ref('');
+		return { value };
+	},
+	template: `<div>
     <div>
       <VDatePicker v-model="value" />
     </div> 

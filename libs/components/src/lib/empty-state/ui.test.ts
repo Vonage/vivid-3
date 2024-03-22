@@ -10,7 +10,8 @@ import {
 const components = ['empty-state', 'button'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<style>
+	const template =
+		`<style>
 			#wrapper {
 				width: 500px;
 				display: grid;

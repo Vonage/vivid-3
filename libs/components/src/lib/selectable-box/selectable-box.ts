@@ -16,7 +16,6 @@ export type SelectableBoxConnotation = Connotation.Accent | Connotation.CTA;
  */
 export type SelectableBoxControlType = 'checkbox' | 'radio';
 
-
 /**
  * @public
  * @component selectable-box
@@ -24,31 +23,31 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
  * @event change - Fired when the checked state changes
  */
 export class SelectableBox extends FoundationElement {
-	@attr({attribute: 'aria-label'}) override ariaLabel: string | null = null;
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
-	* Controls the checked state of the box
-	*
-	* @public
-	* HTML Attribute: checked
-	*/
-	@attr({ mode: 'boolean'}) checked = false;
+	 * Controls the checked state of the box
+	 *
+	 * @public
+	 * HTML Attribute: checked
+	 */
+	@attr({ mode: 'boolean' }) checked = false;
 
 	/**
-	* DEPRECATED: Replaced by the clickable-box prop
-	*
-	* @public
-	* HTML Attribute: clickable
-	*/
-	@attr({ mode: 'boolean'}) clickable = false;
+	 * DEPRECATED: Replaced by the clickable-box prop
+	 *
+	 * @public
+	 * HTML Attribute: clickable
+	 */
+	@attr({ mode: 'boolean' }) clickable = false;
 
 	/**
-	* Makes the entire selectable box clickable
-	*
-	* @public
-	* HTML Attribute: clickable-box
-	*/
-	@attr({ attribute: 'clickable-box', mode: 'boolean'}) clickableBox = false;
+	 * Makes the entire selectable box clickable
+	 *
+	 * @public
+	 * HTML Attribute: clickable-box
+	 */
+	@attr({ attribute: 'clickable-box', mode: 'boolean' }) clickableBox = false;
 
 	/**
 	 * The connotation the selectable box should have.
@@ -69,11 +68,11 @@ export class SelectableBox extends FoundationElement {
 	@attr({ attribute: 'control-type' }) controlType?: SelectableBoxControlType;
 
 	/**
-	* Removes the padding around the box's slot content
-	*
-	* @public
-	* HTML Attribute: tight
-	*/
+	 * Removes the padding around the box's slot content
+	 *
+	 * @public
+	 * HTML Attribute: tight
+	 */
 	@attr({ mode: 'boolean' }) tight = false;
 
 	/**
@@ -89,7 +88,10 @@ export class SelectableBox extends FoundationElement {
 	 * @internal
 	 */
 	_handleKeydown(event: KeyboardEvent) {
-		if ((event.code === 'Space' || event.code === 'Enter') && (this.clickableBox || this.clickable))
+		if (
+			(event.code === 'Space' || event.code === 'Enter') &&
+			(this.clickableBox || this.clickable)
+		)
 			return this._handleCheckedChange();
 		return true;
 	}

@@ -14,7 +14,7 @@ export type { TabConnotation, TabShape } from './tab';
 export const tabDefinition = Tab.compose<FoundationElementDefinition>({
 	baseName: 'tab',
 	template: template as any,
-	styles
+	styles,
 });
 
 /**

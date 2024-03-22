@@ -4,19 +4,24 @@ import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['layout', 'card', 'divider'];
 
 function runLayoutUiTest() {
-	return async ({page}: { page: Page }) => {
-		const template = extractHTMLBlocksFromReadme(path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-			.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+	return async ({ page }: { page: Page }) => {
+		const template = extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		).reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			''
+		);
 
 		page.setViewportSize({
 			width: 1100,
-			height: 720
+			height: 720,
 		});
 
 		await loadComponents({
@@ -32,13 +37,12 @@ function runLayoutUiTest() {
 
 		await page.waitForLoadState('networkidle');
 
-		expect(await testWrapper?.screenshot())
-			.toMatchSnapshot(
-				'./snapshots/layout.png',
-				{
-					maxDiffPixelRatio: 0.02
-				}
-			);
+		expect(await testWrapper?.screenshot()).toMatchSnapshot(
+			'./snapshots/layout.png',
+			{
+				maxDiffPixelRatio: 0.02,
+			}
+		);
 	};
 }
 

@@ -1,6 +1,7 @@
 # VBreadcrumbItem Examples
 
 ## Link
+
 <code-tab>
 <template #example>
 <LinkExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/breadcrumb-item/LinkExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Text
+
 <code-tab>
 <template #example>
 <TextExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/breadcrumb-item/TextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Combined
+
 <code-tab>
 <template #example>
 <CombinedExample />
@@ -36,6 +41,7 @@
 ```vue
 <!--@include: ./components/breadcrumb-item/CombinedExample.vue -->
 ```
+
 </template>
 </code-tab>
 

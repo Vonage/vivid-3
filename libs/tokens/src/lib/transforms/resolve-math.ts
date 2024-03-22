@@ -1,6 +1,6 @@
-import type { Named, Transform } from "style-dictionary";
+import type { Named, Transform } from 'style-dictionary';
 import { Parser } from 'expr-eval';
-import { isFontSize, isSizing } from "../filters";
+import { isFontSize, isSizing } from '../filters';
 
 /**
  * Helper: Transforms math like Figma Tokens
@@ -20,9 +20,9 @@ function checkAndEvaluateMath(value) {
  * Transform to resolve math across all tokens
  */
 export default {
-  name: "resolveMath",
-  type: "value",
-  transitive: true,
-  matcher: token => isSizing(token) || isFontSize(token),
-  transformer: (token) => `${checkAndEvaluateMath(token.value)}`
+	name: 'resolveMath',
+	type: 'value',
+	transitive: true,
+	matcher: (token) => isSizing(token) || isFontSize(token),
+	transformer: (token) => `${checkAndEvaluateMath(token.value)}`,
 } as Named<Transform>;

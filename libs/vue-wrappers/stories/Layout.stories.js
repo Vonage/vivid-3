@@ -2,13 +2,13 @@ import { VCard, VDivider, VLayout } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VLayout';
 
 export default {
-  title: 'Wrappers/Layout',
-  component: VLayout,
-  argTypes,
+	title: 'Wrappers/Layout',
+	component: VLayout,
+	argTypes,
 };
 const LayoutTemplate = () => ({
-  components: { VLayout, VCard },
-  template: `<VLayout>
+	components: { VLayout, VCard },
+	template: `<VLayout>
     <VCard headline="Lorem ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
       <template #media>
         <img
@@ -68,8 +68,8 @@ const LayoutTemplate = () => ({
 export const Layout = LayoutTemplate.bind({});
 
 const ColumnSpacingTemplate = () => ({
-  components: { VLayout, VCard },
-  template: `<div>
+	components: { VLayout, VCard },
+	template: `<div>
     <VLayout gutters="small" column-spacing="small">
       <VCard :elevation="2" text="small" />
       <VCard :elevation="2" text="small" />
@@ -90,8 +90,8 @@ const ColumnSpacingTemplate = () => ({
 export const ColumnSpacing = ColumnSpacingTemplate.bind({});
 
 const ColumnBasisTemplate = () => ({
-  components: { VLayout, VCard },
-  template: `<div>
+	components: { VLayout, VCard },
+	template: `<div>
     <VLayout gutters="small" column-basis="small">
       <VCard :elevation="2" text="small" />
       <VCard :elevation="2" text="small" />
@@ -121,8 +121,8 @@ const ColumnBasisTemplate = () => ({
 export const ColumnBasis = ColumnBasisTemplate.bind({});
 
 const AutoSizingTemplate = () => ({
-  components: { VLayout, VCard },
-  template: `<div>
+	components: { VLayout, VCard },
+	template: `<div>
     <VLayout auto-sizing="fit">
       <VCard :elevation="2" text="fit" />
       <VCard :elevation="2" text="fit" />
@@ -136,8 +136,8 @@ const AutoSizingTemplate = () => ({
 export const AutoSizing = AutoSizingTemplate.bind({});
 
 const GuttersTemplate = () => ({
-  components: { VLayout, VCard, VDivider },
-  template: `<div>
+	components: { VLayout, VCard, VDivider },
+	template: `<div>
     <VLayout>
       <VCard :elevation="2" text="none" />
     </VLayout>
@@ -158,8 +158,8 @@ const GuttersTemplate = () => ({
 export const Gutters = GuttersTemplate.bind({});
 
 const GuttersInlineTemplate = () => ({
-  components: { VLayout, VCard, VDivider },
-  template: `<div>
+	components: { VLayout, VCard, VDivider },
+	template: `<div>
     <VLayout gutters="small-inline">
       <VCard :elevation="2" text="small-inline" />
     </VLayout>
@@ -176,8 +176,8 @@ const GuttersInlineTemplate = () => ({
 export const GuttersInline = GuttersInlineTemplate.bind({});
 
 const GuttersBlockTemplate = () => ({
-  components: { VLayout, VCard, VDivider },
-  template: `<div>
+	components: { VLayout, VCard, VDivider },
+	template: `<div>
     <VLayout gutters="small-block">
       <VCard :elevation="2" text="small-block" />
     </VLayout>
@@ -194,8 +194,8 @@ const GuttersBlockTemplate = () => ({
 export const GuttersBlock = GuttersBlockTemplate.bind({});
 
 const GridTemplateColumnsTemplate = () => ({
-  components: { VLayout, VCard },
-  template: `<div>
+	components: { VLayout, VCard },
+	template: `<div>
     <VLayout style="--layout-grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
       <VCard :elevation="2" />
       <VCard :elevation="2" />
