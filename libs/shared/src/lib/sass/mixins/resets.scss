@@ -1,0 +1,7 @@
+/**
+ * Floating elements like tooltip, modal etc. are removed from the normal flow of the document.
+ * Therefore we don't want them to inherit certain properties like white-space.
+ */
+@mixin floating-element-reset {
+	white-space: initial;
+}
