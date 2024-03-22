@@ -25,7 +25,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -36,9 +37,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data22'},
 		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCells = await page.locator('vwc-data-grid-cell');
@@ -97,7 +101,7 @@ test('should support dynamic row height', async ({ page }: { page: Page }) => {
 	);
 });
 
-test('single cell selection', async function({ page }: { page: Page }) {
+test('single cell selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid id="clicked-cell" selection-mode="single-cell"></vwc-data-grid>
 	</div>`;
@@ -115,7 +119,8 @@ test('single cell selection', async function({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -126,9 +131,12 @@ test('single cell selection', async function({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCell = await page.locator('#clicked-cell vwc-data-grid-cell');
@@ -142,7 +150,7 @@ test('single cell selection', async function({ page }: { page: Page }) {
 	);
 });
 
-test('multi cell selection', async function({ page }: { page: Page }) {
+test('multi cell selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid id="clicked-cells" selection-mode="multi-cell"></vwc-data-grid>
 	</div>`;
@@ -160,7 +168,8 @@ test('multi cell selection', async function({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -171,15 +180,20 @@ test('multi cell selection', async function({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
-	const clickableCells = await page.locator('#clicked-cells vwc-data-grid-cell');
+	const clickableCells = await page.locator(
+		'#clicked-cells vwc-data-grid-cell'
+	);
 	await clickableCells.nth(3).click();
 	await clickableCells.nth(5).click({
-		modifiers: ['Meta']
+		modifiers: ['Meta'],
 	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
@@ -188,7 +202,7 @@ test('multi cell selection', async function({ page }: { page: Page }) {
 	);
 });
 
-test('single row selection', async function({ page }: { page: Page }) {
+test('single row selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;" class="vivid-root">
 			<vwc-data-grid id="clicked-row" selection-mode="single-row"
 			style="--data-grid-row-background: var(--vvd-color-cta-50);"></vwc-data-grid>
@@ -207,7 +221,8 @@ test('single row selection', async function({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -219,9 +234,12 @@ test('single row selection', async function({ page }: { page: Page }) {
 		{data1: 'data31', data2: 'data32'},
 	];
 		grid.generateHeader = 'sticky';
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
@@ -235,7 +253,7 @@ test('single row selection', async function({ page }: { page: Page }) {
 	);
 });
 
-test('multi row selection', async function({ page }: { page: Page }) {
+test('multi row selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid id="clicked-row" selection-mode="multi-row"></vwc-data-grid>
 	</div>`;
@@ -253,7 +271,8 @@ test('multi row selection', async function({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -264,15 +283,18 @@ test('multi row selection', async function({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
 	await clickableCell.nth(1).click();
 	await clickableCell.nth(2).click({
-		modifiers: ['Meta']
+		modifiers: ['Meta'],
 	});
 	await clickableCell.nth(1).hover();
 	await clickableCell.nth(2).focus();
@@ -283,7 +305,7 @@ test('multi row selection', async function({ page }: { page: Page }) {
 	);
 });
 
-test('sort columns', async function({ page }: { page: Page }) {
+test('sort columns', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid>
 				<vwc-data-grid-row role="row" class="header" row-type="header">
@@ -313,7 +335,9 @@ test('sort columns', async function({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
@@ -322,7 +346,7 @@ test('sort columns', async function({ page }: { page: Page }) {
 	);
 });
 
-test('cell link click', async function({ page }: { page: Page }) {
+test('cell link click', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid>
 				<vwc-data-grid-row role="row" class="header" row-type="header">
