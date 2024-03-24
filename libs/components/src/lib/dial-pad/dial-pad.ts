@@ -16,6 +16,7 @@ import { Button } from '../button/button';
  * @event keypad-click - Emitted when a digit button is clicked
  * @event dial - Emitted when the call button is clicked
  * @event end-call - Emitted when the end call button is clicked
+ * @vueModel modelValue value input `(event.target as any).value`
  *
  */
 
