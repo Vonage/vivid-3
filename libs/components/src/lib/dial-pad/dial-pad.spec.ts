@@ -51,6 +51,7 @@ describe('vwc-dial-pad', () => {
 		it('should set text field in dial pad', async function () {
 			expect(getTextField()).not.toBeNull();
 		});
+
 		it('should set value in text field when has value attribute', async function () {
 			const value = '123';
 			element.value = value;
@@ -70,6 +71,38 @@ describe('vwc-dial-pad', () => {
 			element.placeholder = placeholder;
 			await elementUpdated(element);
 			expect(getTextField().placeholder).toEqual(placeholder);
+		});
+
+		it('should activate number buttons when input event is fired a number', async function () {
+			expect(getDigitButtons()[3].active).toBeFalsy();
+			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
+			elementUpdated(element);
+			expect(getDigitButtons()[3].active).toBeTruthy();
+		});
+
+		it('should activate * button when input event is fired with *', async function () {
+			expect(getDigitButtons()[9].active).toBeFalsy();
+			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '*' }));
+			elementUpdated(element);
+			expect(getDigitButtons()[9].active).toBeTruthy();
+		});
+
+		it('should activate # button when input event is fired with #', async function () {
+			expect(getDigitButtons()[11].active).toBeFalsy();
+			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '#' }));
+			elementUpdated(element);
+			expect(getDigitButtons()[11].active).toBeTruthy();
+		});
+
+		it('should not activate any button when input event is fired with an undefined key', async function () {
+			for (let i = 0; i < 12; i++) {
+				expect(getDigitButtons()[i].active).toBeFalsy();
+			}
+			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+			elementUpdated(element);
+			for (let i = 0; i < 12; i++) {
+				expect(getDigitButtons()[i].active).toBeFalsy();
+			}
 		});
 	});
 
@@ -147,13 +180,6 @@ describe('vwc-dial-pad', () => {
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(1);
-		});
-
-		it('should activate buttons when input event is fired ', async function () {
-			expect(getDigitButtons()[3].active).toBeFalsy();
-			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
-			elementUpdated(element);
-			expect(getDigitButtons()[3].active).toBeTruthy();
 		});
 
 		it('should fire end-call event when clicked on call button when active', async function () {
