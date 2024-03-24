@@ -1,10 +1,10 @@
-#VDialPad Example
+# Dial Pad Examples
 
 ## Basic
 
 <code-tab>
 <template #example>
-<ValueExample/>
+<BasicExample/>
 </template>
 <template #code>
 

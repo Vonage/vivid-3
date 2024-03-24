@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<VDialPad />
-	</div>
+	<VDialPad />
 </template>
 
 <script setup lang="ts">
