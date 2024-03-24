@@ -151,9 +151,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should activate buttons when input event is fired ', async function () {
 			expect(getDigitButtons()[3].active).toBeFalsy();
-			getTextField().dispatchEvent(
-				new KeyboardEvent('keydown', { key: '4' })
-			);
+			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
 			elementUpdated(element);
 			expect(getDigitButtons()[3].active).toBeTruthy();
 		});
