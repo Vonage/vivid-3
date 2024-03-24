@@ -21,10 +21,6 @@ $gap: 16px;
 	display: inline-block;
 	margin: 16px;
 	inline-size: 230px;
-
-	@media (max-width: 600px) {
-		inline-size: 100%;
-	}
 }
 
 .base {

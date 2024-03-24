@@ -17,6 +17,17 @@ const getClasses = (_: DialPad) => classNames('base');
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	if (e.key === keyEnter) {
 		x._onDial();
+	} else {
+		const key = e.key === '*' ? 'Asterisk' : e.key === '#' ? 'Hashtag' : e.key;
+		const digit: Button | undefined | null = x.shadowRoot?.querySelector(
+			`#btn${key}`
+		);
+		if (digit) {
+			digit.active = true;
+			setTimeout(() => {
+				digit.active = false;
+			}, 200);
+		}
 	}
 	return true;
 }
@@ -51,76 +62,76 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 
 function renderDigits(buttonTag: string, iconTag: string) {
 	return html<DialPad>`
-        <${buttonTag} value='1' stacked label="&nbsp;" size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn1' value='1' stacked label="&nbsp;" size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitOneAriaLabel || x.locale.dialPad.digitOneLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='one-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='2' stacked label='ABC' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn2' value='2' stacked label='ABC' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitTwoAriaLabel || x.locale.dialPad.digitTwoLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='two-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='3' stacked label='DEF' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn3' value='3' stacked label='DEF' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitThreeAriaLabel || x.locale.dialPad.digitThreeLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='three-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='4' stacked label='GHI' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn4' value='4' stacked label='GHI' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitFourAriaLabel || x.locale.dialPad.digitFourLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='four-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='5' stacked label='JKL' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn5' value='5' stacked label='JKL' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitFiveAriaLabel || x.locale.dialPad.digitFiveLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='five-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='6' stacked label='MNO' size='condensed' class="digit-btn" aria-label="${(
+		<${buttonTag} id='btn6' value='6' stacked label='MNO' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitSixAriaLabel || x.locale.dialPad.digitSixLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='six-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='7' stacked label='PQRS' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn7' value='7' stacked label='PQRS' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitSevenAriaLabel || x.locale.dialPad.digitSevenLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='seven-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='8' stacked label='TUV' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn8' value='8' stacked label='TUV' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitEightAriaLabel || x.locale.dialPad.digitEightLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='eight-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='9' stacked label='WXYZ' size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btn9' value='9' stacked label='WXYZ' size='condensed' class="digit-btn" aria-label="${(
 		x
 	) => x.digitNineAriaLabel || x.locale.dialPad.digitNineLabel}" ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='nine-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='*' stacked size='condensed' class="digit-btn" aria-label="${(
+        <${buttonTag} id='btnAsterisk' value='*' stacked size='condensed' class="digit-btn" aria-label="${(
 		x
 	) =>
 		x.digitAsteriskAriaLabel ||
 		x.locale.dialPad.digitAsteriskLabel}" ?disabled="${(x) =>
 		x.disabled}"><${iconTag} slot='icon' name='asterisk-2-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='0' stacked label='+' size='condensed' class="digit-btn" aria-label=${(
+        <${buttonTag} id='btn0' value='0' stacked label='+' size='condensed' class="digit-btn" aria-label=${(
 		x
 	) => x.digitZeroAriaLabel || x.locale.dialPad.digitZeroLabel} ?disabled="${(
 		x
 	) =>
 		x.disabled}"><${iconTag} slot='icon' name='zero-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} value='#' stacked size='condensed' class="digit-btn" aria-label=${(
+        <${buttonTag} id='btnHashtag' value='#' stacked size='condensed' class="digit-btn" aria-label=${(
 		x
 	) =>
 		x.digitHashtagAriaLabel ||
