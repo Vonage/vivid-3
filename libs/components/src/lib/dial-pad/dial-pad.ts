@@ -20,52 +20,6 @@ import { Button } from '../button/button';
  */
 
 export class DialPad extends FoundationElement {
-	@attr({ attribute: 'input-aria-label' }) inputAriaLabel: string | null = null;
-	@attr({ attribute: 'delete-button-aria-label' }) deleteButtonAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'call-button-label' }) callButtonLabel: string | null =
-		null;
-	@attr({ attribute: 'end-call-button-label' }) endCallButtonLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-one-aria-label' }) digitOneAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-two-aria-label' }) digitTwoAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-three-aria-label' }) digitThreeAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-four-aria-label' }) digitFourAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-five-aria-label' }) digitFiveAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-six-aria-label' }) digitSixAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-seven-aria-label' }) digitSevenAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-eight-aria-label' }) digitEightAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-nine-aria-label' }) digitNineAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-asterisk-aria-label' }) digitAsteriskAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-zero-aria-label' }) digitZeroAriaLabel:
-		| string
-		| null = null;
-	@attr({ attribute: 'digit-hashtag-aria-label' }) digitHashtagAriaLabel:
-		| string
-		| null = null;
-
 	/**
 	 * @internal
 	 */
