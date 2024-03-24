@@ -19,9 +19,7 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 		x._onDial();
 	} else {
 		const key = e.key === '*' ? 'Asterisk' : e.key === '#' ? 'Hashtag' : e.key;
-		const digit: Button | undefined | null = x.shadowRoot?.querySelector(
-			`#btn${key}`
-		);
+		const digit: Button | null = x.shadowRoot!.querySelector(`#btn${key}`);
 		if (digit) {
 			digit.active = true;
 			setTimeout(() => {
