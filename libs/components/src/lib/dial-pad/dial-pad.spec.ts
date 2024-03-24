@@ -149,6 +149,15 @@ describe('vwc-dial-pad', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
+		it('should activate buttons when input event is fired ', async function () {
+			expect(getDigitButtons()[3].active).toBeFalsy();
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: '4' })
+			);
+			elementUpdated(element);
+			expect(getDigitButtons()[3].active).toBeTruthy();
+		});
+
 		it('should fire end-call event when clicked on call button when active', async function () {
 			const spy = jest.fn();
 			element.addEventListener('end-call', spy);
