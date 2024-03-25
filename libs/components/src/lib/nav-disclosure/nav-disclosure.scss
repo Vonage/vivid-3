@@ -61,7 +61,12 @@
 	:host(:where([aria-current='true'][open])) &,
 	:host(:not([aria-current='true'])) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		color: var(--vvd-color-canvas-text);
 	}
+
+	//:host(:not([aria-current="true"])) & {
+	//	color: var(--vvd-color-canvas-text);
+	//}
 
 	@supports (user-select: none) {
 		user-select: none;

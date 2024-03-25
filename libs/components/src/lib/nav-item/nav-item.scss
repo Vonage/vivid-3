@@ -32,6 +32,7 @@
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
+
 	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
 	hyphens: auto;
@@ -39,6 +40,10 @@
 	min-block-size: $min-block-size;
 	text-decoration: none;
 	vertical-align: middle;
+
+	:host(:not([aria-current="page"])) & {
+		color: var(--vvd-color-canvas-text);
+	}
 
 	@include connotation.connotation(nav-item);
 	@include appearance.appearance(
