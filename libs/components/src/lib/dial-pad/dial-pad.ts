@@ -105,17 +105,9 @@ export class DialPad extends FoundationElement {
 	 * @internal
 	 */
 	_onDigit = (e: Event) => {
-		if (
-			e.target === undefined ||
-			e.target === null ||
-			!(e.target instanceof Button)
-		) {
-			return;
-		}
+		this.value += (e.currentTarget as Button).value;
 
-		this.value += e.target.value;
-
-		this.$emit('keypad-click', e.target);
+		this.$emit('keypad-click', e.currentTarget);
 		this.$emit('input');
 		this.$emit('change');
 	};
