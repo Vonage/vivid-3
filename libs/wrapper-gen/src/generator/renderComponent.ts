@@ -67,12 +67,39 @@ export const renderComponent = (
 	];
 
 	// Filter out attributes that are overshadowed by v-model name
+	// E.g. start model mapping to current-start attribute will overshadow start attribute (initial value)
 	const attributes = componentDef.attributes.filter(
 		({ name }) =>
 			!componentDef.vueModels.some(
 				(model) => model.name === name && model.attributeName !== name
 			)
 	);
+
+	const declaredEvents = [...componentDef.events];
+
+	// Find v-models and their corresponding attribute and event
+	const vueModels = componentDef.vueModels.map((model) => {
+		const attribute = componentDef.attributes.find(
+			(attr) => attr.name === model.attributeName
+		);
+		const event = componentDef.events.find((e) => e.name === model.eventName);
+		if (!attribute) throw new Error('v-model attribute not found');
+		if (!event) throw new Error('v-model event not found');
+
+		return {
+			...model,
+			attribute,
+			event,
+		};
+	});
+
+	for (const vueModel of vueModels) {
+		declaredEvents.push({
+			name: `update:${vueModel.name}`,
+			description: vueModel.event.description,
+			type: vueModel.attribute.type,
+		});
+	}
 
 	if (attributes.length > 0) {
 		imports.push({ name: 'PropType', fromModule: vueModule });
@@ -114,11 +141,14 @@ export const renderComponent = (
 				const vueModel = componentDef.vueModels.find(
 					(model) => model.attributeName === name
 				);
-				return vueModel
-					? `...(this.${vueModel.name} !== undefined ? {'${name}': this.${vueModel.name} } : {})`
-					: `...(this.${kebabToCamel(
-							name
-					  )} !== undefined ? {'${name}': this.${kebabToCamel(name)} } : {})`;
+
+				let valueToUse = `this.${kebabToCamel(name)}`;
+				if (vueModel && vueModel.name !== kebabToCamel(name)) {
+					// If there is a v-model, we will prefer the v-model value
+					valueToUse = `this.${vueModel.name} ?? ${valueToUse}`;
+				}
+
+				return `...(${valueToUse} !== undefined ? {'${name}': ${valueToUse} } : {})`;
 			})
 			.join(',');
 	const propsV3Src = renderProps(attributes);
@@ -152,9 +182,7 @@ export const renderComponent = (
 	 */
 	const eventsSrc = componentDef.events
 		.map(({ name }) => {
-			const vueModel = componentDef.vueModels.find(
-				(model) => model.eventName === name
-			);
+			const vueModel = vueModels.find((model) => model.eventName === name);
 			return vueModel
 				? `'${name}': (event: Event) => {
           this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
@@ -166,9 +194,7 @@ export const renderComponent = (
 
 	const eventsV3Src = componentDef.events
 		.map(({ name }) => {
-			const vueModel = componentDef.vueModels.find(
-				(model) => model.eventName === name
-			);
+			const vueModel = vueModels.find((model) => model.eventName === name);
 			return vueModel
 				? `'on${kebabToPascal(name)}': (event: Event) => {
           this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
@@ -218,11 +244,25 @@ export const renderComponent = (
 	 * myProp: {type: [String, Number] as PropType<string | number>, default: undefined},
 	 */
 	const propDefinitionsSrc = attributes
-		.map(({ name, description, type }) => {
+		.flatMap((attr) => {
 			const vueModel = componentDef.vueModels.find(
-				(model) => model.attributeName === name
+				(model) => model.attributeName === attr.name
 			);
-			const propName = vueModel ? vueModel.name : kebabToCamel(name);
+
+			return [
+				attr,
+				...(vueModel && vueModel.name !== kebabToCamel(attr.name)
+					? [
+							{
+								...attr,
+								name: vueModel.name,
+							},
+					  ]
+					: []),
+			];
+		})
+		.map(({ name, description, type }) => {
+			const propName = kebabToCamel(name);
 			return `${renderJsDoc(description)}
         ${propName}: {type: ${renderAttributeType(type)} as PropType<${type
 				.map((t) => t.text)
@@ -231,22 +271,7 @@ export const renderComponent = (
 		.join(',\n');
 
 	// Declare events
-	const eventDefs = componentDef.events;
-	for (const vueModel of componentDef.vueModels) {
-		const modelEvent = componentDef.events.find(
-			(e) => e.name === vueModel.eventName
-		);
-		const modelAttr = attributes.find((a) => a.name === vueModel.attributeName);
-		if (!modelEvent) throw new Error('v-model event not found');
-		if (!modelAttr) throw new Error('v-model attribute not found');
-
-		eventDefs.push({
-			name: `update:${vueModel.name}`,
-			description: modelEvent.description,
-			type: modelAttr.type,
-		});
-	}
-	const eventDefinitionsSrc = eventDefs
+	const eventDefinitionsSrc = declaredEvents
 		.map(
 			({ name, description, type }) => `
         ${renderJsDoc(description, type)}
@@ -255,9 +280,7 @@ export const renderComponent = (
 		.join(',\n');
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
-	const vue2VModelSrc = componentDef.vueModels.some(
-		(model) => model.name === 'modelValue'
-	)
+	const vue2VModelSrc = vueModels.some((model) => model.name === 'modelValue')
 		? `
   model: isVue2 ? {
     prop: 'modelValue',

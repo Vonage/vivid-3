@@ -31,6 +31,8 @@ export default defineComponent({
 
         importedType: {type: Object as PropType<Imported>, default: undefined},
 
+        value: {type: String as PropType<string>, default: undefined},
+
         modelValue: {type: String as PropType<string>, default: undefined},
 
         start: {type: String as PropType<string>, default: undefined}
@@ -83,7 +85,7 @@ export default defineComponent({
     if (isVue2) {
         return h(this.componentName, {
             ref: 'element',
-            attrs: { ...(this.exampleAttribute !== undefined ? {'example-attribute': this.exampleAttribute } : {}),...(this.typeUnion !== undefined ? {'type-union': this.typeUnion } : {}),...(this.modelValue !== undefined ? {'value': this.modelValue } : {}),...(this.start !== undefined ? {'start': this.start } : {}) },
+            attrs: { ...(this.exampleAttribute !== undefined ? {'example-attribute': this.exampleAttribute } : {}),...(this.typeUnion !== undefined ? {'type-union': this.typeUnion } : {}),...(this.modelValue ?? this.value !== undefined ? {'value': this.modelValue ?? this.value } : {}),...(this.start !== undefined ? {'start': this.start } : {}) },
             class: 'vvd-component',
             domProps: { ...(this.importedType !== undefined ? {'imported-type': this.importedType } : {}) },
             on: { 'example-event': (event: Event) => this.$emit('example-event', event),'input': (event: Event) => {
@@ -104,7 +106,7 @@ export default defineComponent({
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          ...(this.exampleAttribute !== undefined ? {'example-attribute': this.exampleAttribute } : {}),...(this.typeUnion !== undefined ? {'type-union': this.typeUnion } : {}),...(this.importedType !== undefined ? {'imported-type': this.importedType } : {}),...(this.modelValue !== undefined ? {'value': this.modelValue } : {}),...(this.start !== undefined ? {'start': this.start } : {}),'onExampleEvent': (event: Event) => this.$emit('example-event', event),'onInput': (event: Event) => {
+          ...(this.exampleAttribute !== undefined ? {'example-attribute': this.exampleAttribute } : {}),...(this.typeUnion !== undefined ? {'type-union': this.typeUnion } : {}),...(this.importedType !== undefined ? {'imported-type': this.importedType } : {}),...(this.modelValue ?? this.value !== undefined ? {'value': this.modelValue ?? this.value } : {}),...(this.start !== undefined ? {'start': this.start } : {}),'onExampleEvent': (event: Event) => this.$emit('example-event', event),'onInput': (event: Event) => {
           this.$emit('update:modelValue', (event.target as any).value);
           this.$emit('input', event);
         },'onInput:start': (event: Event) => {
@@ -156,6 +158,8 @@ export default defineComponent({
 
         importedType: {type: Object as PropType<Imported>, default: undefined},
 
+        value: {type: String as PropType<string>, default: undefined},
+
         modelValue: {type: String as PropType<string>, default: undefined},
 
         start: {type: String as PropType<string>, default: undefined}
@@ -177,16 +181,6 @@ export default defineComponent({
  * @type {Event}
  */
         'input:start',
-
-        /**
- * @type {string}
- */
-        'update:modelValue',
-
-        /**
- * @type {string}
- */
-        'update:start',
 
         /**
  * @type {string}
