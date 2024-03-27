@@ -11,17 +11,16 @@ import { getImportPath } from './vividPackage';
 
 type Import = {
 	name: string;
-	as?: string;
 	fromModule: string;
 };
 
 const renderImports = (imports: Import[], typeImport = false) => {
 	const importsFromModule = new Map<string, string[]>();
-	for (const { name, as, fromModule } of imports) {
+	for (const { name, fromModule } of imports) {
 		if (!importsFromModule.has(fromModule)) {
 			importsFromModule.set(fromModule, []);
 		}
-		importsFromModule.get(fromModule)?.push(as ? `${name} as ${as}` : name);
+		importsFromModule.get(fromModule)!.push(name);
 	}
 	return Array.from(importsFromModule.entries())
 		.map(
@@ -109,7 +108,7 @@ export const renderComponent = (
 	 * Vue requires us to filter out undefined properties
 	 * before passing them into the h function
 	 */
-	const renderProps = (attributes) =>
+	const renderProps = (attributes: ComponentDef['attributes']) =>
 		attributes
 			.map(({ name }) => {
 				const vueModel = componentDef.vueModels.find(
@@ -254,22 +253,6 @@ export const renderComponent = (
         '${name}'`
 		)
 		.join(',\n');
-
-	for (const vueModel of componentDef.vueModels) {
-		// Ensure v-model attribute and event are present on the component
-		if (!attributes.some((attr) => attr.name === vueModel.attributeName)) {
-			throw new Error(
-				`v-model attribute ${vueModel.attributeName} not found in attributes for component ${componentDef.name}`
-			);
-		}
-		if (
-			!componentDef.events.some((event) => event.name === vueModel.eventName)
-		) {
-			throw new Error(
-				`v-model event ${vueModel.eventName} not found in events for component ${componentDef.name}`
-			);
-		}
-	}
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
 	const vue2VModelSrc = componentDef.vueModels.some(
