@@ -5,16 +5,17 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
-	$default: accent
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment contrast fierce fierce-primary
+		faint firm soft,
+	$default: cta
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: ghost,
+	$appearances: ghost-light,
 	$states: idle hover active selected selectedAndHover,
-	$default: ghost
+	$default: ghost-light
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
@@ -31,6 +32,7 @@
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	color: var(#{appearance.get-appearance-token(text)});
+
 	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
 	hyphens: auto;
@@ -38,6 +40,10 @@
 	min-block-size: $min-block-size;
 	text-decoration: none;
 	vertical-align: middle;
+
+	:host(:not([aria-current="page"])) & {
+		color: var(--vvd-color-canvas-text);
+	}
 
 	@include connotation.connotation(nav-item);
 	@include appearance.appearance(

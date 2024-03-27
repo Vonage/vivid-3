@@ -3,16 +3,17 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
-	$default: accent
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment contrast fierce fierce-primary
+		faint firm soft,
+	$default: cta
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: ghost,
+	$appearances: ghost-light,
 	$states: idle hover active selected selectedAndHover,
-	$default: ghost
+	$default: ghost-light
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
@@ -60,7 +61,12 @@
 	:host(:where([aria-current='true'][open])) &,
 	:host(:not([aria-current='true'])) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+		color: var(--vvd-color-canvas-text);
 	}
+
+	//:host(:not([aria-current="true"])) & {
+	//	color: var(--vvd-color-canvas-text);
+	//}
 
 	@supports (user-select: none) {
 		user-select: none;
