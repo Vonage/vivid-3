@@ -114,6 +114,24 @@ const enUS: Locale = {
 		startThumbLabel: 'min',
 		endThumbLabel: 'max',
 	},
+	dialPad: {
+		inputLabel: 'Phone number',
+		deleteButtonLabel: 'Delete',
+		callButtonLabel: 'Call',
+		endCallButtonLabel: 'End call',
+		digitOneLabel: '1',
+		digitTwoLabel: '2 ABC',
+		digitThreeLabel: '3 DEF',
+		digitFourLabel: '4 GHI',
+		digitFiveLabel: '5 JKL',
+		digitSixLabel: '6 MNO',
+		digitSevenLabel: '7 PQRS',
+		digitEightLabel: '8 TUV',
+		digitNineLabel: '9 WXYZ',
+		digitAsteriskLabel: '*',
+		digitZeroLabel: '0',
+		digitHashtagLabel: '#',
+	},
 };
 
 export default enUS;
