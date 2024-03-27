@@ -7,6 +7,7 @@ import { defineConfig } from 'vite';
 
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import dts from 'vite-plugin-dts';
+import { codecovVitePlugin } from '@codecov/vite-plugin';
 
 function getFoldersInAFolder(workingFolder = './src/lib/') {
 	const folders = [];
@@ -79,6 +80,12 @@ export default defineConfig({
 		}),
 
 		nxViteTsPaths(),
+
+		codecovVitePlugin({
+			enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+			bundleName: 'vivid',
+			uploadToken: process.env.CODECOV_TOKEN,
+		}),
 	],
 
 	worker: {

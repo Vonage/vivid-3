@@ -38,6 +38,7 @@
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^2.0.1",
+		"@codecov/vite-plugin": "^0.0.1-beta.5",
 		"@custom-elements-manifest/analyzer": "^0.5.7",
 		"@microsoft/api-extractor": "^7.36.3",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
