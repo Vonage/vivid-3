@@ -14,6 +14,7 @@ code {
 	background-color: var(--vvd-color-neutral-50);
 	border-radius: 4px;
 	padding: 0px 6px;
+	tab-size: 4;
 }
 
 strong {
