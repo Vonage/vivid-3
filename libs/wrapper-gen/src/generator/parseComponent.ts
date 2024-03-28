@@ -1,7 +1,6 @@
 import { ClassMember, ClassMethod } from 'custom-elements-manifest';
 import { ComponentDef } from './ComponentDef';
 import { kebabToPascal } from './utils/casing';
-import { extractLocalTypeDefs } from './extractLocalTypeDefs';
 import {
 	getAttributeName,
 	getClassNameOfVividComponent,
@@ -15,7 +14,7 @@ export const parseComponent = (name: string): ComponentDef => {
 
 	const declaration = getVividComponentDeclaration(name, className);
 
-	const localTypeDefs = extractLocalTypeDefs(name, declaration._modulePath);
+	const localTypeDefs = declaration._localTypeDefs;
 	const resolveLocalType = makeTypeResolver({
 		...globalTypeDefs,
 		...localTypeDefs,

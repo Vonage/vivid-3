@@ -4,6 +4,11 @@ import { registerFactory } from '../../shared/design-system';
 import { TextAnchor } from './text-anchor';
 import { textAnchorTemplate as template } from './text-anchor.template';
 
+export type {
+	TextAnchorConnotation,
+	TextAnchorAppearance,
+} from './text-anchor';
+
 /**
  * The text-anchor element.
  */

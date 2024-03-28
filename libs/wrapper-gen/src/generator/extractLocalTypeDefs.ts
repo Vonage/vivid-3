@@ -12,12 +12,11 @@ import {
 	Shape,
 	Size,
 } from '@vonage/vivid';
-import { kebabToPascal } from './utils/casing';
 import { TypeUnion } from './types';
 import { getTypescriptDefinitionPath } from './vividPackage';
 
 export const extractLocalTypeDefs = (
-	componentName: string,
+	className: string,
 	modulePath: string
 ): Record<string, TypeUnion> => {
 	const src = fs.readFileSync(getTypescriptDefinitionPath(modulePath), 'utf8');
@@ -40,7 +39,7 @@ export const extractLocalTypeDefs = (
 		AriaLive,
 	};
 	for (const [enumName, enumObj] of Object.entries(enums)) {
-		let typeName = `${kebabToPascal(componentName)}${enumName}`;
+		let typeName = `${className}${enumName}`;
 
 		// Handle irregular naming
 		if (typeName === 'FabSize') typeName = 'FABSize';
