@@ -28,7 +28,7 @@
 	@include appearance.appearance;
 
 	display: inline-flex;
-	border-radius: #{border-radius-variables.$border-radius-expanded};
+	border-radius: #{border-radius-variables.$border-radius-semi-expanded};
 	gap: 8px;
 
 	#{focus-variables.$focus-inset}: -4px;
