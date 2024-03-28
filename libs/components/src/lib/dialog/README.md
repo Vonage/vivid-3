@@ -58,7 +58,7 @@ Use the `headline` attribute to set the dialog's headline.
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <vwc-dialog headline="Headline" open></vwc-dialog>
 ```
 
