@@ -116,6 +116,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</vwc-popup>
 			<div class="element">I have z-index: 11</div>
 		</div>
+		<hr>
+		<div class="wrapper" style="white-space: nowrap; height: 100px;">
+			<div id="anchor-wrapping" class="square small"></div>
+			<vwc-popup open placement="right">
+				<div class="contentWrapper">
+					Long text that should wrap
+				</div>
+			</vwc-popup>
+		</div>
 	</div>
 	`;
 
@@ -140,6 +149,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		document
 			.querySelectorAll('#anchor-index ~ vwc-popup')
 			.forEach((popup: Popup) => (popup.anchor = indexAnchor));
+		const wrappingAnchor = document.querySelector(
+			'#anchor-wrapping'
+		) as HTMLElement;
+		document
+			.querySelectorAll('#anchor-wrapping ~ vwc-popup')
+			.forEach((popup: Popup) => (popup.anchor = wrappingAnchor));
 	});
 
 	const testWrapper = await page.$('#wrapper');

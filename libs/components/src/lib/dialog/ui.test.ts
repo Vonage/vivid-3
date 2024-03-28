@@ -95,6 +95,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 			</vwc-dialog>
 		</div>
+		<div class="wrapper" style="white-space: nowrap">
+			<vwc-dialog
+				headline="Dialog with very long headline that should wrap to the next line"
+				open
+				>
+			</vwc-dialog>
+		</div>
 	</div>
 	`;
 

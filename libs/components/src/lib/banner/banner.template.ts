@@ -23,7 +23,7 @@ function renderDismissButton(buttonTag: string) {
 	  <${buttonTag}
 	  		aria-label="${(x) =>
 					x.dismissButtonAriaLabel || x.locale.banner.dismissButtonLabel}"
-			part="vvd-theme-alternate"
+			part="${(x) => (x.connotation === 'warning' ? '' : 'vvd-theme-alternate')}"
 			size="condensed"
 			class="dismiss-button"
 			icon="close-line"
