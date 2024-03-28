@@ -187,11 +187,11 @@ article > .cbd-container {
 article.article > h1 {
 	display: flex;
 	flex-direction: column;
-	justify-content: start;
+	justify-content: center;
 	color: var(--vvd-color-neutral-800);
 	padding-block: 40px;
 	border-bottom: 1px solid var(--vvd-color-neutral-200);
-	text-align: left;
+	text-align: center;
 	font-weight: 600;
 	max-inline-size: 1000px;
 	background-image: linear-gradient(
@@ -233,7 +233,7 @@ article.article > h1 {
 }
 
 .heading-wrapper > h2 {
-	text-align: left;
+	text-align: center;
 	background-image: linear-gradient(
 		to left,
 		rgba(255, 0, 0, 0),
