@@ -7,8 +7,9 @@ export type TypeRef = {
 export type TypeUnion = TypeRef[];
 
 export const isStringLiteral = (typeStr: string) =>
-	typeStr.match(/^['"].*['"]$/);
-export const isNumberLiteral = (typeStr: string) => typeStr.match(/^-?[0-9]+$/);
+	Boolean(typeStr.match(/^['"].*['"]$/));
+export const isNumberLiteral = (typeStr: string) =>
+	Boolean(typeStr.match(/^-?[0-9]+$/));
 export const isBooleanLiteral = (typeStr: string) =>
 	typeStr.match(/^true|false$/);
 
