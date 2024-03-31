@@ -1,5 +1,5 @@
-import { html, ref, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -7,7 +7,9 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
+import { MediaSkipBy } from '@vonage/vivid';
 import { AudioPlayer } from './audio-player';
+
 
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
 	classNames(['disabled', Boolean(disabled) || !Boolean(duration)]);
@@ -17,24 +19,42 @@ function renderButton(context: ElementDefinitionContext) {
 
 	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${(x) =>
 		x._togglePlay()}"
-	icon="${(x) => (x.paused ? 'play-solid' : 'pause-solid')}" 
+	icon="${(x) => (x.paused ? 'play-solid' : 'pause-solid')}"
 	aria-label="${(x) =>
 		x.paused
 			? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel
-			: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}" 
-	size='condensed' 
+			: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
+	size='condensed'
 	connotation="${(x) => x.connotation}"
-	?disabled="${(x) => x.disabled || !x.duration}" 
+	?disabled="${(x) => x.disabled || !x.duration}"
   ></${buttonTag}>`;
+}
+
+function renderSkipButtons(context: ElementDefinitionContext) {
+	const buttonTag = context.tagFor(Button);
+
+	return html<AudioPlayer>`
+		<${buttonTag} class="" @click="${(x) => x._toggleSkipForward()}"
+		icon="${(x) =>
+			x.skipBy === MediaSkipBy.Ten ? '10-sec-forward-line' : 'pause-solid'}"
+		aria-label="${(x) =>
+			x.paused
+				? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel
+				: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
+		size='condensed'
+		connotation="${(x) => x.connotation}"
+		?disabled="${(x) => x.disabled || !x.duration}"
+		></${buttonTag}>
+	`;
 }
 
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
 	return html<AudioPlayer>`<${sliderTag}
-	${ref('_sliderEl')} class="slider" 
+	${ref('_sliderEl')} class="slider"
 	aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-	value="0" max="100" 
+	value="0" max="100"
 	connotation="${(x) => x.connotation}"
 	?disabled="${(x) => x.disabled || !x.duration}">
 	</${sliderTag}>`;
@@ -54,8 +74,9 @@ export const AudioPlayerTemplate: (
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
 	return html<AudioPlayer>` <div class="base ${getClasses}">
 		<div class="controls">
-			${renderButton(context)} ${when((x) => !x.notime, renderTimestamp())}
-			${renderSlider(context)}
+			${renderButton(context)}
+			${when((x) => x.skipBy, renderSkipButtons(context))}
+			${when((x) => !x.notime, renderTimestamp())} ${renderSlider(context)}
 		</div>
 		<audio
 			${ref('_playerEl')}

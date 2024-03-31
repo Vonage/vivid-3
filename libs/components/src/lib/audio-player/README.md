@@ -17,7 +17,7 @@ Use the `src` attribute to add source to the audio-player.
 
 ```html preview
 <vwc-audio-player
-	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	src="http://www.tylergrund.com/mp3/orangemarshall_7.19.15.mp3"
 ></vwc-audio-player>
 ```
 
@@ -31,6 +31,7 @@ Use the `notime` attribute to remove the time stamp from the audio-player.
 ```html preview
 <vwc-audio-player
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	
 	notime
 ></vwc-audio-player>
 ```

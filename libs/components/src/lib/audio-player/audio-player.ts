@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
-import type { Connotation } from '../enums';
-import { Localized } from '../../shared/patterns';
-import type { Slider } from '../slider/slider';
+import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
+import {attr, observable} from '@microsoft/fast-element';
+import type {Connotation} from '../enums';
+import {MediaSkipBy} from '../enums';
+import {Localized} from '../../shared/patterns';
+import type {Slider} from '../slider/slider';
 
 /**
  * Types of audio player connotation.
@@ -60,6 +61,24 @@ export class AudioPlayer extends FoundationElement {
 	@attr({ mode: 'boolean' }) notime = false;
 
 	/**
+	 * Sets the available playback rates. When an empty string, no choices will be available
+	 *
+	 * @public
+	 * HTML Attribute: playback-rates
+	 */
+	// @attr({ attribute: 'playback-rates', mode: 'fromView' })
+	// playbackRates: string = DEFAULT_PLAYBACK_RATES;
+
+	/**
+	 * Allows the audio to skip back or forward
+	 *
+	 * @public
+	 * HTML Attribute: skip-by
+	 */
+	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy: MediaSkipBy =
+		MediaSkipBy.Ten;
+
+	/**
 	 *
 	 * @internal
 	 */
@@ -113,6 +132,27 @@ export class AudioPlayer extends FoundationElement {
 			this._playerEl!.pause();
 		}
 		this.paused = !this.paused;
+	}
+
+	/**
+	 * @internal
+	 */
+	_toggleSkipForward() {
+		if (this._playerEl) {
+			const currentTime = this._playerEl.currentTime;
+			const newTime = currentTime + 10; // Add 10 seconds
+
+			console.log("Current Time:", currentTime);
+			console.log("New Time:", newTime);
+
+			if (newTime <= this._playerEl.duration) {
+				this._playerEl.currentTime = newTime;
+			} else {
+				this._playerEl.currentTime = this._playerEl.duration;
+				this._playerEl.pause(); // Pause if reached the end
+			}
+			this._updateProgress(); // Update progress after skipping
+		}
 	}
 
 	/**
