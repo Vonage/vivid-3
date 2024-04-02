@@ -1,0 +1,68 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: accent,
+	$shades: contrast soft pale fierce firm-all faint dim,
+	$default: accent
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
+	$appearances: duotone,
+	$states: idle hover disabled,
+	$default: duotone
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+
+$gap: 16px;
+
+:host {
+	display: inline-block;
+	margin: 16px;
+	inline-size: 230px;
+}
+
+.base {
+	display: grid;
+	box-sizing: border-box;
+	grid-template-rows: 80px 1fr auto;
+}
+
+.digits {
+	display: grid;
+	gap: $gap;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	inline-size: 100%;
+}
+
+.phone-field {
+	align-self: flex-start;
+	grid-column: 1 / -1;
+}
+
+.digit-btn {
+	@include appearance.appearance;
+	@include connotation.connotation(dial-pad);
+
+	--vvd-button-accent-primary: var(#{appearance.get-appearance-token(text)});
+
+	display: flex;
+	overflow: hidden;
+	flex-direction: column;
+	border-radius: #{border-radius-variables.$border-radius-expanded};
+	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+	inline-size: 100%;
+
+	&-num {
+		.digit-btn:not(.disabled) & {
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
+	}
+}
+
+.call-btn {
+	margin-top: 32px;
+	grid-column: 1/-1;
+}

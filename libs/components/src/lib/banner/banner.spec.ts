@@ -220,6 +220,24 @@ describe('vwc-banner', () => {
 			);
 		});
 
+		it('should not be alternate when connotation is warning', async function () {
+			element.removable = true;
+			await elementUpdated(element);
+
+			expect(
+				element.shadowRoot
+					?.querySelector('.dismiss-button')
+					?.getAttribute('part')
+			).toEqual('vvd-theme-alternate');
+			element.connotation = Connotation.Warning;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot
+					?.querySelector('.dismiss-button')
+					?.getAttribute('part')
+			).toEqual('');
+		});
+
 		it('should add a remove button when true', async function () {
 			await toggleRemovable(element, true);
 			expect(
