@@ -59,6 +59,10 @@ img {
 	block-size: auto;
 }
 
+vwc-note > p {
+	margin-block: 0 !important;
+}
+
 /* #endregion document */
 
 /* #region side drawer */

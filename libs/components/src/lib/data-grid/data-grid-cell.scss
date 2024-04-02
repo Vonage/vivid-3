@@ -15,8 +15,10 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use './partials/variables' as variables;
 
 :host {
+	block-size: 100%; // Only needed for older WebKit browsers
 	min-inline-size: 80px;
 }
 
@@ -31,11 +33,15 @@
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
-	padding: 8px 12px;
+	padding: 14px 12px;
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
-	block-size: #{size.$vvd-size-expanded};
+	block-size: var(
+		#{variables.$data-grid-cell-block-size},
+		#{size.$vvd-size-expanded}
+	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
+	min-block-size: #{size.$vvd-size-expanded};
 
 	:host(:focus-visible) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -58,7 +64,7 @@ slot {
 	overflow: hidden;
 	inline-size: 100%;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	white-space: var(#{variables.$data-grid-cell-white-space}, nowrap);
 }
 
 .header-icon {
