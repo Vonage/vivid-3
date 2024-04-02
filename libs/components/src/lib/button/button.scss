@@ -147,12 +147,17 @@
 	/* stylelint-enable */
 
 	&.shape-pill {
-		&:not(.icon-only, .stacked) {
+		&:not(.icon-only, .stacked.size-super-condensed, .stacked.size-condensed, .stacked.normal) {
 			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		}
 
-		&.stacked {
-			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
+		&.stacked.size-condensed,
+		&.stacked.size-super-condensed {
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-semi-expanded};
+		}
+
+		&.stacked.size-normal {
+			#{variables.$button-border-radius}: #{border-radius-variables.$border-radius-expanded};
 		}
 
 		&.icon-only {
@@ -171,7 +176,7 @@
 				calc(var(--stacked-size) + 20 * 1px),
 				#{constants.$vvd-typography-base-condensed-bold},
 				4px,
-				8px
+				16px
 			);
 		}
 

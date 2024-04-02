@@ -51,7 +51,7 @@ $gap: 16px;
 	display: flex;
 	overflow: hidden;
 	flex-direction: column;
-	border-radius: #{border-radius-variables.$border-radius-expanded};
+	border-radius: #{border-radius-variables.$border-radius-semi-expanded};
 	box-shadow: 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	inline-size: 100%;
 
