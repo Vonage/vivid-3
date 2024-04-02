@@ -34,7 +34,7 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="" @click="${(x) => x._toggleSkipForward()}"
+		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipForward()}"
 		icon="${(x) =>
 			x.skipBy === MediaSkipBy.Ten ? '10-sec-forward-line' : 'pause-solid'}"
 		aria-label="${(x) =>
@@ -50,9 +50,10 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
-
+	//TODO: add plat-paus on enter on Slider
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider"
+	@click = ${(x) => x._rewind()}
 	aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
 	value="0" max="100"
 	connotation="${(x) => x.connotation}"

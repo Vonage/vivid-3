@@ -105,22 +105,6 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_timeStampEl!: HTMLDivElement;
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this.addEventListener('keydown', this._rewind);
-		this.addEventListener('mousedown', this._rewind);
-		this.addEventListener('keyup', this._rewind);
-		document.addEventListener('mouseup', this._rewind);
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this.removeEventListener('keydown', this._rewind);
-		this.removeEventListener('mousedown', this._rewind);
-		this.removeEventListener('keyup', this._rewind);
-		document.removeEventListener('mouseup', this._rewind);
-	}
-
 	/**
 	 * @internal
 	 */
