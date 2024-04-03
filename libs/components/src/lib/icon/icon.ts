@@ -1,16 +1,12 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import {
-	attr,
-	nullableNumberConverter,
-	observable,
-	volatile,
-} from '@microsoft/fast-element';
+import { attr, observable, volatile } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
 } from '@vonage/vwc-consts';
 import type { Connotation } from '../enums';
+import { numberConverter } from '../../shared/utils/numberConverter';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 // Start displaying placeholder if waiting more than this period of time
@@ -72,7 +68,7 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr({ converter: nullableNumberConverter }) size?:
+	@attr({ converter: numberConverter }) size?:
 		| -6
 		| -5
 		| -4
