@@ -50,9 +50,6 @@ describe('icon', function () {
 			global.Promise = originalPromise;
 		});
 
-		/**
-		 *
-		 */
 		function setIconNameAndTriggerFirstTimer() {
 			element.name = 'none';
 			jest.advanceTimersToNextTimer();
@@ -148,38 +145,20 @@ describe('icon', function () {
 			restoreFetch();
 		});
 	});
-	/*it('should set an image with src when first changing the name', async function () {
-		element.name = 'home';
-		await elementUpdated(element);
-		const controlElement = getControlElement(element);
-		const imgElement = controlElement.querySelector('img');
-		expect(imgElement).toBeTruthy();
-		expect(imgElement?.src)
-			.toEqual(`https://icon.resources.vonage.com/${ICON_SET_VERSION}/home.svg`);
-	});*/
 
 	describe('size', function () {
-		let controlElement: Element | null | undefined;
-		beforeEach(function () {
-			controlElement = element.shadowRoot?.querySelector('.control');
+		it('should not have size class if not set', async function () {
+			expect(getControlElement(element).className).not.toContain('size-');
 		});
 
-		it('should set size class only if exists', async function () {
-			const classListContainsSize = controlElement?.className
-				.split(' ')
-				.reduce((contains: boolean, className: string) => {
-					return contains || className.indexOf('size-') > -1;
-				}, false);
-			expect(classListContainsSize).toEqual(false);
-		});
-
-		it('should set size class according to attribute plus base size', async function () {
-			const sizeValue = 2;
-			element.size = sizeValue;
-			await elementUpdated(element);
-			const expectedClass = `size-${sizeValue}`;
-			expect(controlElement?.classList.contains(expectedClass)).toEqual(true);
-		});
+		it.each([0, 2] as const)(
+			'should set size class accordingly when size is %s',
+			async function (size) {
+				element.size = size;
+				await elementUpdated(element);
+				expect(getControlElement(element).classList).toContain(`size-${size}`);
+			}
+		);
 	});
 
 	describe('a11y', () => {

@@ -1,5 +1,10 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable, volatile } from '@microsoft/fast-element';
+import {
+	attr,
+	nullableNumberConverter,
+	observable,
+	volatile,
+} from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
 import {
 	ICONS_BASE_URL as BASE_URL,
@@ -67,7 +72,19 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
+	@attr({ converter: nullableNumberConverter }) size?:
+		| -6
+		| -5
+		| -4
+		| -3
+		| -2
+		| -1
+		| 0
+		| 1
+		| 2
+		| 3
+		| 4
+		| 5;
 
 	/**
 	 * @internal
