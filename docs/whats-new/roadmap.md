@@ -90,7 +90,7 @@
       <vwc-button label="Done" icon="check" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=23%3A13702&mode=design&t=PGI1aODhsHS1YDhV-1" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button  label="Awaiting AT" icon="more-horizontal-line" href="/components/video-player" connotation="success"></vwc-button>
+      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/video-player/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
 </vwc-data-grid>
