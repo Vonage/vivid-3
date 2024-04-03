@@ -6,7 +6,7 @@ We are introducing a regular meeting (every 2 weeks) where you, the consumers of
 
 We have an [agenda document](https://docs.google.com/document/d/1E0yvyGUzBoQFH5l_W6ElBoZaxqZ3HWmDLDqOl0lc8a0/edit?usp=sharing) where we encourage you to add topics / questions that you'd like to raise in the meeting. By doing this, everybody gets a view of what will be discussed and it also gives the Vivid team a little time to prepare prior to the meeting.
 
-Topics will be discuss at high level and timeboxed to 5 - 10 mins. The aim of this meeting is not to always resolve every query, but to kick off further, more detailed discussions with interested parties.
+Topics will be discussed at a high level and timeboxed to 5 - 10 mins. The aim of this meeting is not to always resolve every query, but to kick off further, more detailed discussions with interested parties.
 
 Attendance is not mandatory. You don't have to ask question to attend, it's fine to just listen in and observe. Also, feel free to dip in and out of the meeting, we don't want to take up any more of your time than necessary.
 
