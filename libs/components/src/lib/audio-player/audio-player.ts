@@ -128,17 +128,18 @@ export class AudioPlayer extends FoundationElement {
 	_toggleSkipForward() {
 		if (this._playerEl) {
 			const currentTime = this._playerEl.currentTime;
-			const newTime = currentTime + 10; // Add 10 seconds
-			//const skipValue: number = this._playerEl.value(this.skipBy);
-			//const newTime = currentTime + skipValue;
+			const skipValue = parseInt(this.skipBy);
+			const newTime = currentTime + skipValue;
 
-			if (newTime <= this._playerEl.duration) {
-				this._playerEl.currentTime = newTime;
-			} else {
-				this._playerEl.currentTime = this._playerEl.duration;
-				this._playerEl.pause(); // Pause if reached the end
+			if (!isNaN(skipValue) && skipValue > 0) {
+				if (newTime <= this._playerEl.duration) {
+					this._playerEl.currentTime = newTime;
+				} else {
+					this._playerEl.currentTime = this._playerEl.duration;
+					this._playerEl.pause(); // Pause if reached the end
+				}
+				this._updateProgress(); // Update progress after skipping
 			}
-			this._updateProgress(); // Update progress after skipping
 		}
 	}
 
