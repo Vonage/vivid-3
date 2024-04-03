@@ -81,7 +81,7 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      <a href="/components/video-player">Video Player</a>
+      <a href="/components/video-player/">Video Player</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" icon="check" target="_blank" icon="check" href="https://confluence.vonage.com/display/VIVID/Video+player" connotation="success"></vwc-button>
