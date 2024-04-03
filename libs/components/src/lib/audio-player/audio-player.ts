@@ -158,7 +158,7 @@ export class AudioPlayer extends FoundationElement {
 			const skipValue = parseInt(this.skipBy);
 			const newTime = currentTime - skipValue;
 
-			if (!isNaN(skipValue) && skipValue > 0) {
+			if (!isNaN(skipValue) && skipValue < 0) {
 				if (newTime >= this._playerEl.duration) {
 					this._playerEl.currentTime = newTime;
 				} else {
@@ -170,23 +170,6 @@ export class AudioPlayer extends FoundationElement {
 		}
 	}
 
-	/**
-	 * @internal
-	 */
-	// _toggleSkipBack() {
-	// 	if (this._playerEl) {
-	// 		const currentTime = this._playerEl.currentTime;
-	// 		const newTime = currentTime - 10; // Add 10 seconds
-	//
-	// 		if (newTime <= this._playerEl.duration) {
-	// 			this._playerEl.currentTime = newTime;
-	// 		} else {
-	// 			this._playerEl.currentTime = this._playerEl.duration;
-	// 			this._playerEl.pause(); // Pause if reached the end
-	// 		}
-	// 		this._updateProgress(); // Update progress after skipping
-	// 	}
-	// }
 
 	/**
 	 * @internal
