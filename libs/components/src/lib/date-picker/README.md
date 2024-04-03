@@ -137,7 +137,7 @@ The `helper-text` slot allows you to use rich content as the date picker's helpe
 <div class="table-wrapper">
 
 | Name        | Description                                   |
-|-------------|-----------------------------------------------|
+| ----------- | --------------------------------------------- |
 | input       | Emitted when the date is changed by the user. |
 | change      | Emitted when the date is changed by the user. |
 | focus       | Emitted when the component receives focus.    |
@@ -160,7 +160,11 @@ The `helper-text` slot allows you to use rich content as the date picker's helpe
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+			<vwc-date-picker
+				name="date"
+				label="Start date"
+				required
+			></vwc-date-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

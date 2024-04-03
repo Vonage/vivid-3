@@ -5,19 +5,20 @@ import styles from './calendar.scss?inline';
 import { Calendar } from './calendar';
 import { CalendarTemplate as template } from './calendar.template';
 
-
 /**
  *
  * @internal
  */
-export const calendarDefinition = Calendar.compose<FoundationElementDefinition>({
-	baseName: 'calendar',
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true
+export const calendarDefinition = Calendar.compose<FoundationElementDefinition>(
+	{
+		baseName: 'calendar',
+		template: template as any,
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	}
-});
+);
 
 /**
  * @internal
@@ -30,4 +31,3 @@ export const calendarRegistries = [calendarDefinition()];
  * @param prefix - the prefix to use for the component name
  */
 export const registerCalendar = registerFactory(calendarRegistries);
-

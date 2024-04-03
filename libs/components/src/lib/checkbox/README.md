@@ -5,9 +5,7 @@ Checkboxes allow users to select multiple items from a list or a set of options.
 All [native attributes of `<input type="checkbox">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) are supported as well as some enhancements.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/checkbox';
-</script>
+<script type="module">import '@vonage/vivid/checkbox';</script>
 ```
 
 ## Members
@@ -20,7 +18,7 @@ Use the `label` member to set the checkbox's label.
 - Default: `undefined`
 
 ```html preview
-<vwc-checkbox label='A default checkbox'></vwc-checkbox>
+<vwc-checkbox label="A default checkbox"></vwc-checkbox>
 ```
 
 ### Checked
@@ -52,16 +50,18 @@ Use the `indeterminate` member to indicate that the checkbox's is neither on nor
 ```html preview
 <vwc-checkbox id="checkbox"></vwc-checkbox>
 <script>
-  document.getElementById('checkbox').indeterminate = true;
+	document.getElementById('checkbox').indeterminate = true;
 </script>
 ```
 
 ### Connotation
+
 Use the `connotation` attribute to set the checkbox color.
 
 - Type: `'accent'` | `'cta'`
 - Default: `'accent'`
-- 
+-
+
 ```html preview
 <vwc-checkbox connotation="accent"></vwc-checkbox>
 <vwc-checkbox connotation="accent" checked></vwc-checkbox>
@@ -77,7 +77,10 @@ Add the `helper-text` to add some helper text below the checkbox. If you need to
 - Default: `undefined`
 
 ```html preview
-<vwc-checkbox label='A default checkbox' helper-text="Helper text"></vwc-checkbox>
+<vwc-checkbox
+	label="A default checkbox"
+	helper-text="Helper text"
+></vwc-checkbox>
 ```
 
 ### Success text
@@ -89,9 +92,12 @@ If provided, `success-text` will take precedence over errors.
 - Default: `undefined`
 
 ```html preview
-<vwc-checkbox label='A default checkbox' success-text="Success text" checked></vwc-checkbox>
+<vwc-checkbox
+	label="A default checkbox"
+	success-text="Success text"
+	checked
+></vwc-checkbox>
 ```
-
 
 ### Error text
 
@@ -101,9 +107,11 @@ Note that any current error state will be overridden by `error-text` (and, if ap
 - Type: `string`
 - Default: `undefined`
 
-
 ```html preview
-<vwc-checkbox label='A default checkbox' error-text="Please pick one"></vwc-checkbox>
+<vwc-checkbox
+	label="A default checkbox"
+	error-text="Please pick one"
+></vwc-checkbox>
 ```
 
 ### Disabled
@@ -150,7 +158,10 @@ The default slot allows you to use rich content as the checkbox's label.
 
 ```html preview
 <vwc-checkbox error-text="You need to accept the Terms of service">
-	I agree to <a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
+	I agree to
+	<a href="https://www.vonage.com/legal/" target="_blank">
+		Vonage Terms of Service
+	</a>
 </vwc-checkbox>
 ```
 
@@ -165,7 +176,10 @@ The `helper-text` slot allows you to use rich content as the checkbox's helper t
 	}
 </style>
 <vwc-checkbox class="checkbox" label="Use Signed Webhooks">
-	<span slot="helper-text"><a href="#">Signed Webhooks</a> are a way to verify that the request is coming from Vonage.</span>
+	<span slot="helper-text"
+		><a href="#">Signed Webhooks</a> are a way to verify that the request is
+		coming from Vonage.</span
+	>
 </vwc-checkbox>
 ```
 
@@ -174,7 +188,7 @@ The `helper-text` slot allows you to use rich content as the checkbox's helper t
 <div class="table-wrapper">
 
 | Name     | Description                             |
-|----------|-----------------------------------------|
+| -------- | --------------------------------------- |
 | `input`  | Emitted when the checked state changes. |
 | `change` | Emitted when the checked state changes. |
 

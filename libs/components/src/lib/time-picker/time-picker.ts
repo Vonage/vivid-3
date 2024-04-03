@@ -1,4 +1,10 @@
-import { attr, DOM, nullableNumberConverter, observable, type ValueConverter } from '@microsoft/fast-element';
+import {
+	attr,
+	DOM,
+	nullableNumberConverter,
+	observable,
+	type ValueConverter,
+} from '@microsoft/fast-element';
 import {
 	type ErrorText,
 	errorText,
@@ -6,16 +12,29 @@ import {
 	FormElementHelperText,
 	formElements,
 	Localized,
-	TrappedFocus
+	TrappedFocus,
 } from '../../shared/patterns';
 import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { FormAssociatedTimePicker } from './time-picker.form-associated';
-import { formatPresentationTime, parsePresentationTime } from './time/presentationTime';
-import { formatTimePart, isValidTimeStr, parseTimeStr, type TimeStr } from './time/time';
+import {
+	formatPresentationTime,
+	parsePresentationTime,
+} from './time/presentationTime';
+import {
+	formatTimePart,
+	isValidTimeStr,
+	parseTimeStr,
+	type TimeStr,
+} from './time/time';
 import type { PickerOption } from './time/picker';
-import { getHoursOptions, getMeridiesOptions, getMinutesOptions, getSecondsOptions } from './time/picker';
+import {
+	getHoursOptions,
+	getMeridiesOptions,
+	getMinutesOptions,
+	getSecondsOptions,
+} from './time/picker';
 
 /// Converter ensures that the value is always a valid time string or empty string
 const ValidTimeFilter: ValueConverter = {
@@ -49,7 +68,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * HTML Attribute: readonly
 	 */
 	@attr({ attribute: 'readonly', mode: 'boolean' })
-		readOnly: boolean = false;
+	readOnly: boolean = false;
 
 	/**
 	 * @internal
@@ -67,7 +86,8 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * @remarks
 	 * HTML Attribute: minutes-step
 	 */
-	@attr({ attribute: 'minutes-step', converter: nullableNumberConverter }) minutesStep: number | null = null;
+	@attr({ attribute: 'minutes-step', converter: nullableNumberConverter })
+	minutesStep: number | null = null;
 
 	/**
 	 * Distance between presented seconds options. If null, seconds are not presented.
@@ -75,7 +95,8 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * @remarks
 	 * HTML Attribute: seconds-step
 	 */
-	@attr({ attribute: 'seconds-step', converter: nullableNumberConverter }) secondsStep: number | null = null;
+	@attr({ attribute: 'seconds-step', converter: nullableNumberConverter })
+	secondsStep: number | null = null;
 
 	/**
 	 * Forces the time-picker to use a 12h or 24h clock.
@@ -93,7 +114,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * HTML Attribute: min
 	 */
 	@attr({ converter: ValidTimeFilter })
-		min: string;
+	min: string;
 
 	/**
 	 * @internal
@@ -113,7 +134,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * HTML Attribute: max
 	 */
 	@attr({ converter: ValidTimeFilter })
-		max: string;
+	max: string;
 
 	/**
 	 * @internal
@@ -152,7 +173,9 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * @internal
 	 */
 	get _use12hClock() {
-		return this.clock ? this.clock === '12h' : this.locale.timePicker.defaultTo12HourClock;
+		return this.clock
+			? this.clock === '12h'
+			: this.locale.timePicker.defaultTo12HourClock;
 	}
 
 	#getFocusableEls = () =>
@@ -236,7 +259,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 
 		const path = event.composedPath();
 		const elementsToIgnoreClicksOn = [this._dialogEl, this._clockButtonEl];
-		if (!elementsToIgnoreClicksOn.some(element => path.includes(element))) {
+		if (!elementsToIgnoreClicksOn.some((element) => path.includes(element))) {
 			this._closePopup(false);
 		}
 	};
@@ -339,7 +362,13 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	get _clockButtonLabel() {
 		if (this.value) {
-			return this.locale.timePicker.changeTimeLabel(formatPresentationTime(this.value, this._displaySeconds, this._use12hClock));
+			return this.locale.timePicker.changeTimeLabel(
+				formatPresentationTime(
+					this.value,
+					this._displaySeconds,
+					this._use12hClock
+				)
+			);
 		}
 		return this.locale.timePicker.chooseTimeLabel;
 	}
@@ -378,7 +407,13 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * @internal
 	 */
 	get _hours(): PickerOption[] {
-		return getHoursOptions(this.min, this.max, this._use12hClock ? this._selectedMeridiem ?? this._meridies[0].value : undefined);
+		return getHoursOptions(
+			this.min,
+			this.max,
+			this._use12hClock
+				? this._selectedMeridiem ?? this._meridies[0].value
+				: undefined
+		);
 	}
 
 	/**
@@ -393,7 +428,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	set _selectedHour(value: string) {
 		if (this.value) {
-			const {minuteStr, secondStr} = parseTimeStr(this.value);
+			const { minuteStr, secondStr } = parseTimeStr(this.value);
 			this.value = `${value}:${minuteStr}:${secondStr}`;
 		} else {
 			this.value = `${value}:00:00`;
@@ -419,7 +454,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	set _selectedMinute(value: string) {
 		if (this.value) {
-			const {hourStr, secondStr} = parseTimeStr(this.value);
+			const { hourStr, secondStr } = parseTimeStr(this.value);
 			this.value = `${hourStr}:${value}:${secondStr}`;
 		} else {
 			this.value = `00:${value}:00`;
@@ -445,7 +480,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	set _selectedSecond(value: string) {
 		if (this.value) {
-			const {hourStr, minuteStr} = parseTimeStr(this.value);
+			const { hourStr, minuteStr } = parseTimeStr(this.value);
 			this.value = `${hourStr}:${minuteStr}:${value}`;
 		} else {
 			this.value = `00:00:${value}`;
@@ -471,7 +506,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	set _selectedMeridiem(value: string) {
 		if (this.value) {
-			const {hours, minuteStr, secondStr} = parseTimeStr(this.value);
+			const { hours, minuteStr, secondStr } = parseTimeStr(this.value);
 			let adjustedHours = hours;
 			if (value === 'AM' && hours >= 12) {
 				adjustedHours -= 12;
@@ -500,7 +535,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	) {
 		const offset = {
 			ArrowUp: -1,
-			ArrowDown: 1
+			ArrowDown: 1,
 		}[event.key];
 
 		if (offset) {
@@ -508,7 +543,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 			const index = options.findIndex((h) => h.value === selectedValue);
 			const newRawIndex = index === -1 ? 0 : index + offset;
 			const newIndex = (newRawIndex + options.length) % options.length;
-			const newValue= options[newIndex].value;
+			const newValue = options[newIndex].value;
 			setSelectedValue(newValue);
 			this.#scrollToItem(picker, newValue, 'nearest');
 			this.#updateValueDueToUserInteraction(this.value);
@@ -517,8 +552,14 @@ export class TimePicker extends FormAssociatedTimePicker {
 		return true;
 	}
 
-	#scrollToItem(picker: string, selectedValue: string, position: 'nearest' | 'start') {
-		const element = this.shadowRoot!.querySelector(`#${picker}-${selectedValue}`) as HTMLElement | null;
+	#scrollToItem(
+		picker: string,
+		selectedValue: string,
+		position: 'nearest' | 'start'
+	) {
+		const element = this.shadowRoot!.querySelector(
+			`#${picker}-${selectedValue}`
+		) as HTMLElement | null;
 		if (!element) {
 			return;
 		}
@@ -533,8 +574,12 @@ export class TimePicker extends FormAssociatedTimePicker {
 				if (element.offsetTop < parent.scrollTop) {
 					parent.scrollTop = element.offsetTop;
 				}
-				if (element.offsetTop + element.offsetHeight > parent.scrollTop + parent.offsetHeight) {
-					parent.scrollTop = element.offsetTop + element.offsetHeight - parent.offsetHeight;
+				if (
+					element.offsetTop + element.offsetHeight >
+					parent.scrollTop + parent.offsetHeight
+				) {
+					parent.scrollTop =
+						element.offsetTop + element.offsetHeight - parent.offsetHeight;
 				}
 				break;
 		}
@@ -543,12 +588,18 @@ export class TimePicker extends FormAssociatedTimePicker {
 	/**
 	 * @internal
 	 */
-	_onPickerItemClick(picker: string, setSelectedValue: (value: string) => void, value: string) {
+	_onPickerItemClick(
+		picker: string,
+		setSelectedValue: (value: string) => void,
+		value: string
+	) {
 		setSelectedValue(value);
 		this.#scrollToItem(picker, value, 'start');
 		this.#updateValueDueToUserInteraction(this.value);
 
-		const nextPickerEl = this.shadowRoot!.querySelector(`#${picker} + .picker`) as HTMLElement | null;
+		const nextPickerEl = this.shadowRoot!.querySelector(
+			`#${picker} + .picker`
+		) as HTMLElement | null;
 		if (nextPickerEl) {
 			nextPickerEl.focus();
 		} else {
@@ -619,10 +670,14 @@ export class TimePicker extends FormAssociatedTimePicker {
 }
 
 export interface TimePicker
-	extends
-	ErrorText,
-	FormElement,
-	FormElementHelperText,
+	extends ErrorText,
+		FormElement,
+		FormElementHelperText,
+		Localized,
+		TrappedFocus {}
+applyMixinsWithObservables(
+	TimePicker,
 	Localized,
-	TrappedFocus {}
-applyMixinsWithObservables(TimePicker, Localized, FormElementHelperText, TrappedFocus);
+	FormElementHelperText,
+	TrappedFocus
+);

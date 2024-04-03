@@ -3,9 +3,7 @@
 Represents a tab custom element.
 
 ```js
-<script type="module">
-    import '@vonage/vivid/tab';
-</script>
+<script type="module">import '@vonage/vivid/tab';</script>
 ```
 
 ## Members
@@ -19,8 +17,8 @@ Add a `label` attribute to add label to the tab.
 
 ```html preview
 <vwc-tabs>
- <vwc-tab label="Tab" id="tab"></vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+	<vwc-tab label="Tab" id="tab"></vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -36,8 +34,8 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 
 ```html preview
 <vwc-tabs>
- <vwc-tab icon="chat-line" aria-label="tab" id="tab"></vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+	<vwc-tab icon="chat-line" aria-label="tab" id="tab"></vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -48,16 +46,17 @@ Use `icon-trailing` to place the icon after the label.
 
 ```html preview
 <vwc-tabs>
- <vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+	<vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 <vwc-tabs>
- <vwc-tab icon-trailing icon="chat-line" label="Tab" id="tab"></vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+	<vwc-tab icon-trailing icon="chat-line" label="Tab" id="tab"></vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
 
-### Shape 
+### Shape
+
 Use the `shape` attribute in order to set `rounded` and `sharp` to the background in hover state.
 
 - Type: `'rounded'` | `'sharp'`
@@ -65,8 +64,8 @@ Use the `shape` attribute in order to set `rounded` and `sharp` to the backgroun
 
 ```html preview
 <vwc-tabs>
- <vwc-tab shape="sharp" label="Tab" id="tab"></vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+	<vwc-tab shape="sharp" label="Tab" id="tab"></vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -79,10 +78,14 @@ The disabled state of the element.
 
 ```html preview
 <vwc-tabs>
- <vwc-tab disabled label="Disabled Tab" id="tab"></vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel">
-   	<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
- </vwc-tab-panel>
+	<vwc-tab disabled label="Disabled Tab" id="tab"></vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel">
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
+	</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -95,9 +98,13 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-tabs>
- <vwc-tab label="Tab with custom icon" id="tab">
-    <vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
- </vwc-tab>
- <vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
+	<vwc-tab label="Tab with custom icon" id="tab">
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
+	</vwc-tab>
+	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```

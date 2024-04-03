@@ -46,7 +46,7 @@ export class FormElementCharCount {
 		attribute: 'char-count',
 		mode: 'boolean',
 	})
-		charCount = false;
+	charCount = false;
 }
 
 export function formElements<
@@ -72,9 +72,10 @@ export function formElements<
 				if (this.proxy instanceof HTMLElement && this.elementInternals) {
 					const isValid = this.proxy.validity.valid;
 					const controlIsInvalidDueToMinOrMaxLength =
-						(this.control && this.control.validity)
-						&& !this.control.validity.valid
-						&& (this.control.validity.tooShort || this.control.validity.tooLong);
+						this.control &&
+						this.control.validity &&
+						!this.control.validity.valid &&
+						(this.control.validity.tooShort || this.control.validity.tooLong);
 
 					if (isValid && controlIsInvalidDueToMinOrMaxLength) {
 						this.setValidity(
@@ -163,20 +164,19 @@ export function formElements<
 	return Decorated;
 }
 
-type SomeFormElement = Partial<FormElement & FormElementHelperText & FormElementSuccessText & ErrorText>;
+type SomeFormElement = Partial<
+	FormElement & FormElementHelperText & FormElementSuccessText & ErrorText
+>;
 
 type FeedbackConfig = {
 	iconType?: string;
 	className: string;
-	messageProperty:
-	| 'errorValidationMessage'
-	| 'helperText'
-	| 'successText';
+	messageProperty: 'errorValidationMessage' | 'helperText' | 'successText';
 	slot?: {
 		name: string;
 		slottedContentProperty: '_helperTextSlottedContent';
 	};
-}
+};
 const feedback: Record<string, FeedbackConfig> = {
 	helper: {
 		messageProperty: 'helperText',
@@ -210,23 +210,23 @@ export function getFeedbackTemplate(context: ElementDefinitionContext) {
 			${messageStyles}
 		</style>
 		${getFeedbackTypeTemplate(
-		context,
-		feedback.helper,
-		(x) =>
-			isFeedbackAvailable(feedback.helper, x) &&
+			context,
+			feedback.helper,
+			(x) =>
+				isFeedbackAvailable(feedback.helper, x) &&
 				!isFeedbackAvailable(feedback.error, x) &&
 				!isFeedbackAvailable(feedback.success, x)
-	)}
+		)}
 		${getFeedbackTypeTemplate(
-		context,
-		feedback.error,
-		(x) =>
-			isFeedbackAvailable(feedback.error, x) &&
+			context,
+			feedback.error,
+			(x) =>
+				isFeedbackAvailable(feedback.error, x) &&
 				!isFeedbackAvailable(feedback.success, x)
-	)}
+		)}
 		${getFeedbackTypeTemplate(context, feedback.success, (x) =>
-		isFeedbackAvailable(feedback.success, x)
-	)}
+			isFeedbackAvailable(feedback.success, x)
+		)}
 	`;
 }
 
@@ -237,19 +237,27 @@ function getFeedbackTypeTemplate(
 ) {
 	const iconTag = context.tagFor(Icon);
 
-	const messageTemplate = html<SomeFormElement>`${(x) => x[config.messageProperty]}`;
+	const messageTemplate = html<SomeFormElement>`${(x) =>
+		x[config.messageProperty]}`;
 	const innerTemplate = config.slot
-		? html<SomeFormElement>`<slot name="${config.slot.name}" ${slotted(config.slot.slottedContentProperty)}>${messageTemplate}</slot>`
+		? html<SomeFormElement>`<slot
+				name="${config.slot.name}"
+				${slotted(config.slot.slottedContentProperty)}
+				>${messageTemplate}</slot
+		  >`
 		: messageTemplate;
 
 	return html<SomeFormElement>`<div
 		class="${(x) =>
-		classNames('message', `${config.className}-message`, ['message--visible', shouldShow(x),])}"
+			classNames('message', `${config.className}-message`, [
+				'message--visible',
+				shouldShow(x),
+			])}"
 	>
 		${when(
-		(x) => shouldShow(x) && config.iconType,
-		html`<${iconTag} class="message-icon" name="${config.iconType!}"></${iconTag}>`
-	)}
+			(x) => shouldShow(x) && config.iconType,
+			html`<${iconTag} class="message-icon" name="${config.iconType!}"></${iconTag}>`
+		)}
 		<span class="message-text">${innerTemplate}</span>
 	</div>`;
 }

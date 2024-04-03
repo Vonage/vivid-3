@@ -3,14 +3,6 @@
 /dist
 /coverage
 
+# Ignore auto-generated files:
 package-lock.json
-
-# Not yet formatted file types:
-**/*.js
-**/*.mjs
-**/*.cjs
-**/*.ts
-**/*.mts
-**/*.cts
-**/*.vue
-**/*.md
+**/CHANGELOG.md

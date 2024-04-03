@@ -7,15 +7,17 @@ import {
 	type FormElement,
 	FormElementHelperText,
 	formElements,
-	FormElementSuccessText
+	FormElementSuccessText,
 } from '../../shared/patterns';
 import type { Appearance, Shape } from '../enums';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from '../listbox/listbox';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
-
-export type SelectAppearance = Extract<Appearance, Appearance.Fieldset | Appearance.Ghost>;
+export type SelectAppearance = Extract<
+	Appearance,
+	Appearance.Fieldset | Appearance.Ghost
+>;
 export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
@@ -36,27 +38,27 @@ export class Select extends FoundationSelect {
 	@observable _anchor!: HTMLElement;
 
 	/**
-	* The appearance attribute.
-	*
-	* @public
-	* HTML Attribute: appearance
-	*/
+	 * The appearance attribute.
+	 *
+	 * @public
+	 * HTML Attribute: appearance
+	 */
 	@attr appearance?: SelectAppearance;
 
 	/**
-	* The shape attribute.
-	*
-	* @public
-	* HTML Attribute: shape
-	*/
+	 * The shape attribute.
+	 *
+	 * @public
+	 * HTML Attribute: shape
+	 */
 	@attr shape?: SelectShape;
 
 	/**
-	* The fixed-dropdown attribute.
-	*
-	* @public
-	* HTML Attribute: fixed-dropdown
-	*/
+	 * The fixed-dropdown attribute.
+	 *
+	 * @public
+	 * HTML Attribute: fixed-dropdown
+	 */
 	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
 
 	/**
@@ -80,11 +82,11 @@ export class Select extends FoundationSelect {
 	@observable _feedbackWrapper: HTMLElement | null = null;
 
 	/**
-	*
-	* Slot observer:
-	*
-	* @internal
-	*/
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
 	@observable metaSlottedContent?: Node[];
 
 	override connectedCallback() {
@@ -94,14 +96,24 @@ export class Select extends FoundationSelect {
 	override get displayValue(): string {
 		Observable.track(this, 'displayValue');
 
-		return this.firstSelectedOption?.getAttribute('label') ?? this.firstSelectedOption?.text ?? this.placeholder ?? '';
+		return (
+			this.firstSelectedOption?.getAttribute('label') ??
+			this.firstSelectedOption?.text ??
+			this.placeholder ??
+			''
+		);
 	}
 
 	override setDefaultSelectedOption(): void {
-		const options = Array.from(this.children).filter(Listbox.slottedOptionFilter as any);
+		const options = Array.from(this.children).filter(
+			Listbox.slottedOptionFilter as any
+		);
 
 		const selectedIndex = options.findIndex(
-			el => el.hasAttribute('selected') || (el as ListboxOption).selected || (el as ListboxOption).value === this.value
+			(el) =>
+				el.hasAttribute('selected') ||
+				(el as ListboxOption).selected ||
+				(el as ListboxOption).value === this.value
 		);
 
 		if (selectedIndex === -1 && !this.placeholderOption) {
@@ -116,5 +128,15 @@ export class Select extends FoundationSelect {
 	}
 }
 
-export interface Select extends AffixIconWithTrailing, FormElement, FormElementHelperText, ErrorText, FormElementSuccessText { }
-applyMixinsWithObservables(Select, AffixIconWithTrailing, FormElementHelperText, FormElementSuccessText);
+export interface Select
+	extends AffixIconWithTrailing,
+		FormElement,
+		FormElementHelperText,
+		ErrorText,
+		FormElementSuccessText {}
+applyMixinsWithObservables(
+	Select,
+	AffixIconWithTrailing,
+	FormElementHelperText,
+	FormElementSuccessText
+);

@@ -3,7 +3,8 @@ const path = require('path');
 const _ = require('lodash');
 const components = require('../_data/components.json');
 
-const FONTS = '<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
+const FONTS =
+	'<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
 const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
 const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
 
@@ -14,7 +15,9 @@ const CBD_CODE_BLOCK = 'cbd-code-block';
 const CBD_ACTIONS = 'cbd-actions';
 const CBD_VARIABLES = 'cbd-variables';
 
-const EXISTING_COMPONENTS = new Set(components.map(c => c.title.toLowerCase().replaceAll(' ', '-')));
+const EXISTING_COMPONENTS = new Set(
+	components.map((c) => c.title.toLowerCase().replaceAll(' ', '-'))
+);
 
 const OUTPUT_PATH = 'dist/apps/docs/frames';
 
@@ -22,30 +25,18 @@ let exampleIndex = 0;
 
 module.exports = function createCodeExample(code, options, cssProperties) {
 	const index = exampleIndex++;
-	const src = createiFrameContent(
-		code,
-		options,
-		index
-	);
-	return renderiFrame(
-		index,
-		src,
-		code,
-		options,
-		cssProperties
-	);
+	const src = createiFrameContent(code, options, index);
+	return renderiFrame(index, src, code, options, cssProperties);
 };
 
-const renderiFrame = (
-	index,
-	src,
-	content,
-	classList,
-	variableToShow
-) => {
+const renderiFrame = (index, src, content, classList, variableToShow) => {
 	const vwcUsages = content.match(/vwc-[\w\-]+/g) ?? [];
-	const uniqueComponentNames = [...new Set(vwcUsages.map((name) => name.replace('vwc-', '')))];
-	const validComponentNames = uniqueComponentNames.filter((name) => EXISTING_COMPONENTS.has(name))
+	const uniqueComponentNames = [
+		...new Set(vwcUsages.map((name) => name.replace('vwc-', ''))),
+	];
+	const validComponentNames = uniqueComponentNames.filter((name) =>
+		EXISTING_COMPONENTS.has(name)
+	);
 
 	const deps = validComponentNames.join(',');
 
@@ -80,25 +71,23 @@ const renderiFrame = (
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
-					<pre>${_.escape("<!-- Feel free to edit the code below. The live preview will update as you make changes. -->\n" + content)}</pre>
+					<pre>${_.escape(
+						'<!-- Feel free to edit the code below. The live preview will update as you make changes. -->\n' +
+							content
+					)}</pre>
 				</div>
 			</details>
 		</vwc-card>
 	</div>`;
-}
+};
 
-const createiFrameContent = (
-	code,
-	classList,
-	index
-) => {
+const createiFrameContent = (code, classList, index) => {
 	let numberWithPx = '';
 	for (const item of classList) {
 		const match = item.match(/\d+px/);
 		numberWithPx = match ? match[0] : 'auto';
 	}
-	const document =
-		`<!DOCTYPE html>
+	const document = `<!DOCTYPE html>
 		 <html class="vvd-root" lang="en-US" style="block-size: ${numberWithPx};">
 			<head>
 				${IFRAME_STYLE}
@@ -118,7 +107,7 @@ const createiFrameContent = (
 	const filePath = `${OUTPUT_PATH}/${CBD_CODE_BLOCK}-${index}.html`;
 	fs.writeFileSync(filePath, document);
 	return filePath.substring(OUTPUT_PATH.indexOf('docs' + path.sep) + 4);
-}
+};
 
 const layout = (code, optionsList) => {
 	const useLayout = (content, isTarget, column) => `
@@ -131,11 +120,12 @@ const layout = (code, optionsList) => {
 		</vwc-layout>`;
 
 	if (optionsList.includes('full')) return code;
-	if (optionsList.includes('center')) return `<div id="_target" class="center">${code}</div>`;
+	if (optionsList.includes('center'))
+		return `<div id="_target" class="center">${code}</div>`;
 	if (optionsList.includes('blocks')) return useLayout(code, true, 'block');
 	if (optionsList.includes('columns')) return useLayout(code, true, 'medium');
 	return useLayout(`<div id="_target">${code}</div>`, false);
-}
+};
 
 const renderVariablesTable = (cssProperties) => {
 	return `<table class="${CBD_VARIABLES}">
@@ -146,7 +136,9 @@ const renderVariablesTable = (cssProperties) => {
 			</tr>
 		</thead>
 		<tbody>
-			${cssProperties.map(prop => `
+			${cssProperties
+				.map(
+					(prop) => `
 				<tr>
 					<td><code>${prop.name}</code></td>
 					<td>
@@ -156,7 +148,9 @@ const renderVariablesTable = (cssProperties) => {
 						</div>
 					</td>
 				</tr>
-			`).join('\n')}
+			`
+				)
+				.join('\n')}
 		</tbody>
-	</table>`
-}
+	</table>`;
+};

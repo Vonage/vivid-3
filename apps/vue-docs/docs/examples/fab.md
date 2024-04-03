@@ -1,6 +1,7 @@
 # VFab Examples
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/fab/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/fab/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon with Label
+
 <code-tab>
 <template #example>
 <IconWithLabelExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/fab/IconWithLabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Connotation
+
 <code-tab>
 <template #example>
 <ConnotationExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/fab/ConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Size
+
 <code-tab>
 <template #example>
 <SizeExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/fab/SizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample />
@@ -75,6 +86,7 @@
 ```vue
 <!--@include: ./components/fab/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 

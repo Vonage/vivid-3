@@ -1,4 +1,9 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Elevation } from './elevation';
 import '.';
@@ -10,7 +15,9 @@ describe('vwc-elevation', () => {
 	let element: Elevation;
 
 	beforeEach(async () => {
-		element = await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Elevation;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as Elevation;
 	});
 
 	describe('basic', () => {
@@ -41,11 +48,15 @@ describe('vwc-elevation', () => {
 			await elementUpdated(element);
 			const classPrefix = 'dp-';
 
-			const startingDPClassExists = getControlElement(element).classList.contains(`${classPrefix}${startingDP}`);
+			const startingDPClassExists = getControlElement(
+				element
+			).classList.contains(`${classPrefix}${startingDP}`);
 
 			element.setAttribute('dp', nextDP);
 			await elementUpdated(element);
-			const nextDPClassExists = getControlElement(element).classList.contains(`${classPrefix}${nextDP}`);
+			const nextDPClassExists = getControlElement(element).classList.contains(
+				`${classPrefix}${nextDP}`
+			);
 			expect(startingDPClassExists).toEqual(true);
 			expect(nextDPClassExists).toEqual(true);
 		});
@@ -62,4 +73,3 @@ describe('vwc-elevation', () => {
 		});
 	});
 });
-

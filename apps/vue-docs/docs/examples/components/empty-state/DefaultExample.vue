@@ -1,5 +1,5 @@
 <template>
-  <VEmptyState>No results match your search criteria.</VEmptyState>
+	<VEmptyState>No results match your search criteria.</VEmptyState>
 </template>
 
 <script setup lang="ts">

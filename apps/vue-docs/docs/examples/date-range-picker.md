@@ -1,6 +1,7 @@
 # Date Range Picker Examples
 
 ## Date range picker
+
 <code-tab>
 <template #example>
 <DateRangePickerExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/DateRangePickerExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Helper text
+
 <code-tab>
 <template #example>
 <HelperTextExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/HelperTextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Error text
+
 <code-tab>
 <template #example>
 <ErrorTextExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/ErrorTextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Readonly
+
 <code-tab>
 <template #example>
 <ReadonlyExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/ReadonlyExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Min
+
 <code-tab>
 <template #example>
 <MinExample />
@@ -88,10 +101,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/MinExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Max
+
 <code-tab>
 <template #example>
 <MaxExample />
@@ -101,10 +116,12 @@
 ```vue
 <!--@include: ./components/date-range-picker/MaxExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## In a form
+
 <code-tab>
 <template #example>
 <InAFormExample />
@@ -114,6 +131,7 @@
 ```vue
 <!--@include: ./components/date-range-picker/InAFormExample.vue -->
 ```
+
 </template>
 </code-tab>
 

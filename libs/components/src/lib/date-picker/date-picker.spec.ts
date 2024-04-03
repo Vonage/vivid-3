@@ -1,4 +1,10 @@
-import { axe, createFormHTML, elementUpdated, fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
+import {
+	axe,
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	setupDelegatesFocusPolyfill,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
@@ -61,7 +67,9 @@ describe('vwc-date-picker', () => {
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DatePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
-		calendarButton = element.shadowRoot!.querySelector('#calendar-button') as Button;
+		calendarButton = element.shadowRoot!.querySelector(
+			'#calendar-button'
+		) as Button;
 		titleAction = element.shadowRoot!.querySelector(
 			'.title-action'
 		) as HTMLButtonElement;
@@ -221,7 +229,9 @@ describe('vwc-date-picker', () => {
 			element.value = '2021-01-01';
 			await elementUpdated(element);
 
-			expect(calendarButton.getAttribute('aria-label')).toBe('Change date, 01/01/2021');
+			expect(calendarButton.getAttribute('aria-label')).toBe(
+				'Change date, 01/01/2021'
+			);
 		});
 	});
 

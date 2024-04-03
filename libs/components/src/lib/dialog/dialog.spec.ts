@@ -7,7 +7,6 @@ import { dialogDefinition } from './definition';
 const COMPONENT_TAG = 'vwc-dialog';
 
 describe('vwc-dialog', () => {
-
 	/**
 	 *
 	 */
@@ -53,10 +52,10 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(true);
 		});
 
-		it('should be opened when initiated with open attribute', async function() {
-			const openElement = await fixture(
+		it('should be opened when initiated with open attribute', async function () {
+			const openElement = (await fixture(
 				`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`
-			) as Dialog;
+			)) as Dialog;
 
 			expect(getBaseElement(openElement).hasAttribute('open')).toEqual(true);
 		});
@@ -93,7 +92,7 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).hasAttribute('open')).toEqual(false);
 		});
 
-		it('should fire the "close" event only when closing', async function() {
+		it('should fire the "close" event only when closing', async function () {
 			await closeDialog();
 			const spy = jest.fn();
 			element.addEventListener('close', spy);
@@ -109,7 +108,7 @@ describe('vwc-dialog', () => {
 	});
 
 	describe('show', function () {
-		it('should add the open attribute', async function() {
+		it('should add the open attribute', async function () {
 			await showDialog();
 			expect(element.open).toEqual(true);
 			expect(element.hasAttribute('open')).toEqual(true);
@@ -122,7 +121,7 @@ describe('vwc-dialog', () => {
 	});
 
 	describe('showModal', function () {
-		it('should add the open attribute', async function() {
+		it('should add the open attribute', async function () {
 			await showModalDialog();
 			expect(element.open).toEqual(true);
 			expect(element.hasAttribute('open')).toEqual(true);
@@ -140,24 +139,23 @@ describe('vwc-dialog', () => {
 	});
 
 	describe('scrimClick', function () {
-
 		function createMouseEventOutsideTheDialog(type: string) {
 			return new MouseEvent(type, {
-				'bubbles': true,
-				'cancelable': true,
-				'composed': true,
-				'screenX': 25,
-				'screenY': 25
+				bubbles: true,
+				cancelable: true,
+				composed: true,
+				screenX: 25,
+				screenY: 25,
 			});
 		}
 
 		function createMouseEventInsideTheDialog(type: string) {
 			return new MouseEvent(type, {
-				'bubbles': true,
-				'cancelable': true,
-				'composed': true,
+				bubbles: true,
+				cancelable: true,
+				composed: true,
 				clientY: 75,
-				clientX: 75
+				clientX: 75,
 			});
 		}
 
@@ -171,14 +169,15 @@ describe('vwc-dialog', () => {
 			width: 100,
 			x: 50,
 			y: 50,
-			toJSON(): any {
-			}
+			toJSON(): any {},
 		};
 		beforeEach(async function () {
 			element.headline = 'headline';
 			await showModalDialog();
 			dialogElement = getBaseElement(element) as HTMLDialogElement;
-			jest.spyOn(dialogElement, 'getBoundingClientRect').mockImplementation(() => dialogClientRect);
+			jest
+				.spyOn(dialogElement, 'getBoundingClientRect')
+				.mockImplementation(() => dialogClientRect);
 		});
 
 		it('should leave the dialog open when mouseup or click', async function () {
@@ -241,11 +240,11 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(false);
 		});
 
-		it('should leave the dialog open when submit a non dialog form', async function() {
+		it('should leave the dialog open when submit a non dialog form', async function () {
 			const formElement = document.createElement('form');
 			formElement.setAttribute('slot', 'main');
 			element.appendChild(formElement);
-			formElement.onsubmit = _ => false;
+			formElement.onsubmit = (_) => false;
 
 			formElement.requestSubmit();
 			await elementUpdated(element);
@@ -268,11 +267,11 @@ describe('vwc-dialog', () => {
 
 		it('should remove click listener on disconnected callback', async function () {
 			const event = new MouseEvent('mousedown', {
-				'bubbles': true,
-				'cancelable': true,
-				'composed': true,
-				'screenX': 25,
-				'screenY': 25
+				bubbles: true,
+				cancelable: true,
+				composed: true,
+				screenX: 25,
+				screenY: 25,
 			});
 			element.disconnectedCallback();
 			dialogElement?.dispatchEvent(event);
@@ -281,12 +280,12 @@ describe('vwc-dialog', () => {
 		});
 	});
 
-	it("should fire 'close' event with returnValue", async function() {
+	it("should fire 'close' event with returnValue", async function () {
 		let detail;
 		const returnValue = 'returnValue';
 		element.returnValue = returnValue;
 		await showDialog();
-		const spy = jest.fn().mockImplementation((e) => detail = e.detail);
+		const spy = jest.fn().mockImplementation((e) => (detail = e.detail));
 		element.addEventListener('close', spy);
 
 		await closeDialog();
@@ -302,8 +301,9 @@ describe('vwc-dialog', () => {
 		expect(fn).not.toBeCalled();
 	});
 
-	it('should render the icon when icon is set', async function() {
-		const iconElementWhenUndefined = getBaseElement(element).querySelector('.icon');
+	it('should render the icon when icon is set', async function () {
+		const iconElementWhenUndefined =
+			getBaseElement(element).querySelector('.icon');
 		element.icon = 'home';
 		await elementUpdated(element);
 		const iconElement = getBaseElement(element).querySelector('.icon');
@@ -312,15 +312,17 @@ describe('vwc-dialog', () => {
 		expect(iconElement?.getAttribute('name')).toEqual('home');
 	});
 
-	it( 'should add class of icon placement  to .base', async () => {
+	it('should add class of icon placement  to .base', async () => {
 		element.iconPlacement = 'side';
 		await elementUpdated(element);
-		expect(getBaseElement(element)?.classList.contains('icon-placement-side'))
-			.toEqual(true);
+		expect(
+			getBaseElement(element)?.classList.contains('icon-placement-side')
+		).toEqual(true);
 	});
 
-	it('should render the subtitle if is set', async function() {
-		const contentElementWhenUndefined = getBaseElement(element).querySelector('.subtitle');
+	it('should render the subtitle if is set', async function () {
+		const contentElementWhenUndefined =
+			getBaseElement(element).querySelector('.subtitle');
 		const content = 'This is the dialog subtitle!';
 		element.subtitle = content;
 		await elementUpdated(element);
@@ -330,8 +332,9 @@ describe('vwc-dialog', () => {
 		expect(contentElement?.textContent?.trim()).toEqual(content);
 	});
 
-	it('should render the header area when content is set', async function() {
-		const headlineElementWhenUndefined = getBaseElement(element).querySelector('.headline');
+	it('should render the header area when content is set', async function () {
+		const headlineElementWhenUndefined =
+			getBaseElement(element).querySelector('.headline');
 		const content = 'This is the header!';
 
 		element.headline = content;
@@ -343,12 +346,14 @@ describe('vwc-dialog', () => {
 		expect(headlineElement?.textContent?.trim()).toEqual(content);
 	});
 
-	it('should close the dialog when dismiss button is clicked', async function() {
+	it('should close the dialog when dismiss button is clicked', async function () {
 		const spy = jest.fn();
 		element.addEventListener('close', spy);
 		await showDialog();
 
-		const dismissButton = getBaseElement(element).querySelector('.dismiss-button') as HTMLElement;
+		const dismissButton = getBaseElement(element).querySelector(
+			'.dismiss-button'
+		) as HTMLElement;
 		dismissButton.click();
 
 		expect(element.open).toEqual(false);
@@ -365,10 +370,11 @@ describe('vwc-dialog', () => {
 		expect(cancelEvent.preventDefault).toHaveBeenCalled();
 	});
 
-	describe( 'dialog body', () => {
+	describe('dialog body', () => {
 		it('should have body slot ', async function () {
-			const bodySlotElement = element.shadowRoot?.
-				querySelector('.body slot[name="body"]');
+			const bodySlotElement = element.shadowRoot?.querySelector(
+				'.body slot[name="body"]'
+			);
 
 			expect(bodySlotElement).toBeDefined();
 		});
@@ -388,14 +394,11 @@ describe('vwc-dialog', () => {
 		it('should add class of full-width to body div wrapper', async () => {
 			const bodyDiv = element.shadowRoot?.querySelector('.body');
 			element.fullWidthBody = true;
-			await  elementUpdated(element);
+			await elementUpdated(element);
 			expect(element.hasAttribute('full-width-body')).toEqual(true);
 			expect(bodyDiv?.classList).toContain('full-width');
-
 		});
-
 	});
-
 
 	describe('dialog footer', () => {
 		it.each(['footer', 'action-items'])(
@@ -429,12 +432,13 @@ describe('vwc-dialog', () => {
 		 *
 		 */
 		async function triggerEscapeKey() {
-			getBaseElement(element)
-				.dispatchEvent(new KeyboardEvent('keydown', {
-					'key': 'Escape',
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
 					bubbles: true,
-					composed: true
-				}));
+					composed: true,
+				})
+			);
 			await elementUpdated(element);
 		}
 
@@ -454,7 +458,7 @@ describe('vwc-dialog', () => {
 			expect(getBaseElement(element).getAttribute('role')).toEqual('dialog');
 		});
 
-		it('should set "aria-modal" when used as modal', async function() {
+		it('should set "aria-modal" when used as modal', async function () {
 			await showModalDialog();
 			expect(getBaseElement(element).hasAttribute('aria-modal')).toEqual(true);
 		});
@@ -463,7 +467,9 @@ describe('vwc-dialog', () => {
 			const labelId = 'label';
 			element.setAttribute('aria-label', labelId);
 			await elementUpdated(element);
-			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(labelId);
+			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(
+				labelId
+			);
 		});
 
 		describe('dismiss-button-aria-label', () => {
@@ -471,13 +477,15 @@ describe('vwc-dialog', () => {
 				const labelId = 'label';
 				element.setAttribute('dismiss-button-aria-label', labelId);
 				await elementUpdated(element);
-				const dismissButton = element.shadowRoot?.querySelector('.dismiss-button');
+				const dismissButton =
+					element.shadowRoot?.querySelector('.dismiss-button');
 				expect(dismissButton?.getAttribute('aria-label')).toBe(labelId);
 			});
 		});
 
 		it('should set localised "aria-label" on the dismiss button', async () => {
-			const dismissButton = element.shadowRoot?.querySelector('.dismiss-button');
+			const dismissButton =
+				element.shadowRoot?.querySelector('.dismiss-button');
 			expect(dismissButton?.getAttribute('aria-label')).toBe('Close');
 		});
 
@@ -486,9 +494,7 @@ describe('vwc-dialog', () => {
 			element.setAttribute('aria-label', 'Test dialog');
 			await elementUpdated(element);
 
-
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
-

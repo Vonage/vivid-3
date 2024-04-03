@@ -2,13 +2,13 @@ import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['header', 'button', 'layout'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =`
+	const template = `
     <vwc-layout column-basis="block">
       <vwc-header>
         Header default

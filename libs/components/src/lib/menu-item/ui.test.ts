@@ -8,91 +8,92 @@ import {
 const components = ['menu', 'menu-item', 'divider', 'badge'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =`
+	const template = `
 		<style>
-			div {
+			#wrapper {
 				width: 250px;
-				height: 1800px;
+				height: 2000px;
 				position: relative;
 				box-sizing: border-box;
 			}
 		</style>
 
-		<div>
-			<vwc-menu open style="--menu-block-size: auto; --menu-max-inline-size: 230px;">
-				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-				<vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
-				<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text"></vwc-menu-item>
-				<vwc-menu-item text-secondary="secondary text"></vwc-menu-item>
-				<vwc-menu-item icon="home"></vwc-menu-item>
-				<vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
-				<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text" disabled></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked></vwc-menu-item>
-				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
-				<vwc-menu-item id="focused" role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
-				<vwc-menu-item role="menuitemradio" text="Radio 1.2" checked></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
-				<vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
-				<vwc-menu-item icon="layout-1-solid" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-				<vwc-menu-item icon="apps-solid" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
-				<vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1."></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked check-trailing></vwc-menu-item>
-				<vwc-menu-item role="menuitemradio" text="Radio 1" checked check-trailing></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
-				<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" checked check-appearance="tick-only"></vwc-menu-item>
-				<vwc-menu-item role="menuitemradio" text="Radio 1" check-appearance="tick-only"></vwc-menu-item>
-				<vwc-menu-item role="menuitemradio" text="Radio 2" checked check-appearance="tick-only"></vwc-menu-item>
-				<vwc-divider></vwc-divider>
-				<vwc-menu-item icon="home" text="primary text with long text and default line clamp"
-				text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
-				<vwc-menu-item style="--text-primary-line-clamp:2; --text-secondary-line-clamp: 2;"
-				icon="home" text="primary text with long text and default line clamp"
-				text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
-				<vwc-menu-item style="--text-primary-line-clamp: auto; --text-secondary-line-clamp: auto;"
-				icon="home" text="primary text with long text and default line clamp"
-				text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
-				<vwc-menu-item icon="file-pdf-line" text="Export to PDF">
-				<vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
-				</vwc-menu-item>
-				<vwc-menu-item text="Available" role="menuitemradio">
-				  <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
-				</vwc-menu-item>
-				<vwc-menu-item text="Busy" role="menuitemcheckbox" checked>
-					<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
-				</vwc-menu-item>
-				<vwc-menu-item text="Available" icon="image-line">
-			 <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
-					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+		<vwc-menu open style="--menu-block-size: auto; --menu-max-inline-size: 230px;">
+			<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+			<vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
+			<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text"></vwc-menu-item>
+			<vwc-menu-item text-secondary="secondary text"></vwc-menu-item>
+			<vwc-menu-item icon="home"></vwc-menu-item>
+			<vwc-menu-item text="menu item" text-secondary="secondary text"></vwc-menu-item>
+			<vwc-menu-item icon="home" text="primary text" text-secondary="secondary text" disabled></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked></vwc-menu-item>
+			<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+			<vwc-menu-item id="focused" role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+			<vwc-menu-item role="menuitemradio" text="Radio 1.2" checked></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
+			<vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
+			<vwc-menu-item icon="layout-1-solid" role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
+			<vwc-menu-item icon="apps-solid" role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item icon="layout-1-solid" role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
+			<vwc-menu-item icon="apps-solid" role="menuitemradio" text="Radio 1."></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" checked check-trailing></vwc-menu-item>
+			<vwc-menu-item role="menuitemradio" text="Radio 1" checked check-trailing></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-appearance="tick-only"></vwc-menu-item>
+			<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" checked check-appearance="tick-only"></vwc-menu-item>
+			<vwc-menu-item role="menuitemradio" text="Radio 1" check-appearance="tick-only"></vwc-menu-item>
+			<vwc-menu-item role="menuitemradio" text="Radio 2" checked check-appearance="tick-only"></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item icon="home" text="primary text with long text and default line clamp"
+			text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
+			<vwc-menu-item style="--text-primary-line-clamp:2; --text-secondary-line-clamp: 2;"
+			icon="home" text="primary text with long text and default line clamp"
+			text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
+			<vwc-menu-item style="--text-primary-line-clamp: auto; --text-secondary-line-clamp: auto;"
+			icon="home" text="primary text with long text and default line clamp"
+			text-secondary="secondary text with long text and default line clamp" role="menuitemradio" ></vwc-menu-item>
+			<vwc-menu-item icon="file-pdf-line" text="Export to PDF">
+			<vwc-badge slot="meta" appearance='subtle' connotation='cta' shape='pill' icon='check-solid'></vwc-badge>
+			</vwc-menu-item>
+			<vwc-menu-item text="Available" role="menuitemradio">
+				<vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
+			</vwc-menu-item>
+			<vwc-menu-item text="Busy" role="menuitemcheckbox" checked>
+				<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
+			</vwc-menu-item>
+			<vwc-menu-item text="Available" icon="image-line">
+			 	<vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
+				<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
 			</vwc-menu-item>
 			<vwc-menu-item text="Away" role="menuitemradio" icon="image-line">
 				<vwc-badge slot="meta" appearance='filled' connotation='warning' shape='pill' icon='clock-line'></vwc-badge>
-					 <vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+				<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
 			</vwc-menu-item>
 			<vwc-menu-item text="Busy" role="menuitemcheckbox" icon="image-line">
 				<vwc-badge slot="meta" appearance='filled' connotation='alert' shape='pill' icon='minus-solid'></vwc-badge>
-					 <vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+				<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
 			</vwc-menu-item>
 			<vwc-menu-item text="Available" icon="image-line">
-			 <vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
-					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
-					<vwc-menu slot="submenu"><vwc-menu-item text="Menu item 1.1"></vwc-menu-item></vwc-menu>
+				<vwc-badge slot="meta" appearance='filled' connotation='success' shape='pill' icon='check-solid'></vwc-badge>
+				<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+				<vwc-menu slot="submenu"><vwc-menu-item text="Menu item 1.1"></vwc-menu-item></vwc-menu>
 			</vwc-menu-item>
 			<vwc-menu-item text="Go to AI Studio" icon="ai-3-line">
-					<vwc-icon name='open-line' slot="trailing-meta"></vwc-icon>
-					<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
+				<vwc-icon name='open-line' slot="trailing-meta"></vwc-icon>
+				<vwc-badge slot="trailing-meta" appearance='subtle' connotation='cta' text='new'></vwc-badge>
 			</vwc-menu-item>
-			</vwc-menu>
-		</div>`;
+			<vwc-menu-item connotation='cta' role='menuitemradio' text="Radio 2.1" checked></vwc-menu-item>
+			<vwc-menu-item connotation='cta' role='menuitemradio' text="Radio 2.2"></vwc-menu-item>
+			<vwc-menu-item connotation='cta' icon='layout-1-solid' role='menuitemcheckbox' text="Checkbox 1" checked></vwc-menu-item>
+		</vwc-menu>`;
 
-	page.setViewportSize({ width: 200, height: 1550 });
+	page.setViewportSize({ width: 200, height: 2000 });
 
 	await loadComponents({
 		page,

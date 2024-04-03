@@ -21,7 +21,12 @@ export const timePickerDefinition =
 /**
  * @internal
  */
-export const timePickerRegistries = [timePickerDefinition(), ...textFieldRegistries, ...popupRegistries, ...buttonRegistries];
+export const timePickerRegistries = [
+	timePickerDefinition(),
+	...textFieldRegistries,
+	...popupRegistries,
+	...buttonRegistries,
+];
 
 /**
  * Registers the time-picker element with the design system.

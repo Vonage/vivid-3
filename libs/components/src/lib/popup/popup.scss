@@ -2,6 +2,7 @@
 @use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/resets' as resets;
 
 :host {
 	display: var(#{variables.$popup-display}, inline);
@@ -18,6 +19,8 @@
 }
 
 .popup-wrapper {
+	@include resets.floating-element-reset;
+
 	z-index: var(#{variables.$popup-z-index}, 10);
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: max-content;

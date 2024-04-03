@@ -1,11 +1,11 @@
 import type { DatePickerLocale } from '../locale';
 import type { DateRange } from './dateRange';
-import { formatPresentationDate, parsePresentationDate } from './presentationDate';
+import {
+	formatPresentationDate,
+	parsePresentationDate,
+} from './presentationDate';
 
-export const formatRange = (
-	from: string,
-	to: string
-): string => {
+export const formatRange = (from: string, to: string): string => {
 	return `${from} – ${to}`;
 };
 
@@ -13,7 +13,10 @@ export const formatPresentationDateRange = (
 	dateRange: DateRange,
 	locale: DatePickerLocale
 ): string => {
-	return formatRange(formatPresentationDate(dateRange.start, locale), formatPresentationDate(dateRange.end, locale));
+	return formatRange(
+		formatPresentationDate(dateRange.start, locale),
+		formatPresentationDate(dateRange.end, locale)
+	);
 };
 
 /**
@@ -29,6 +32,8 @@ export const parsePresentationDateRange = (
 		throw new Error(`Invalid date range: ${presentationDateRange}`);
 	}
 
-	const [start, end] = fragments.map((fragment) => parsePresentationDate(fragment, locale));
+	const [start, end] = fragments.map((fragment) =>
+		parsePresentationDate(fragment, locale)
+	);
 	return { start, end };
 };

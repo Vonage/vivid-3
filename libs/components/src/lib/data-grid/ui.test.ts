@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -7,8 +7,7 @@ import {
 
 const components = ['data-grid'];
 
-export const gridTestFunction = async ({ page }: { page: Page }) => {
-
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `<div style="margin: 5px; max-width: 700px;">
 			<vwc-data-grid></vwc-data-grid>
 	</div>`;
@@ -26,7 +25,8 @@ export const gridTestFunction = async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -37,9 +37,12 @@ export const gridTestFunction = async ({ page }: { page: Page }) => {
 		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data22'},
 		{data1: 'data11 with very long text that is having a text-overflow data11 with very long text', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCells = await page.locator('vwc-data-grid-cell');
@@ -49,9 +52,56 @@ export const gridTestFunction = async ({ page }: { page: Page }) => {
 		'./snapshots/data-grid.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-};
+});
 
-async function testCellSelection({ page }: { page: Page }) {
+test('should support dynamic row height', async ({ page }: { page: Page }) => {
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template: `
+			<style>
+				vwc-data-grid {
+					--data-grid-cell-white-space: normal;
+					--data-grid-cell-block-size: 100%;
+				}
+			</style>
+			<vwc-data-grid>
+				<vwc-data-grid-row row-type='header'>
+					<vwc-data-grid-cell cell-type='columnheader'>
+						Column 1
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell cell-type='columnheader'>
+						Column 2
+					</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+				<vwc-data-grid-row>
+					<vwc-data-grid-cell>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius
+						sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus.
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+			</vwc-data-grid>
+		`,
+	});
+
+	await page.setViewportSize({ width: 400, height: 400 });
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/data-grid-multiline-text.png'
+	);
+});
+
+test('single cell selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid id="clicked-cell" selection-mode="single-cell"></vwc-data-grid>
 	</div>`;
@@ -69,7 +119,8 @@ async function testCellSelection({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -80,9 +131,12 @@ async function testCellSelection({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCell = await page.locator('#clicked-cell vwc-data-grid-cell');
@@ -94,9 +148,9 @@ async function testCellSelection({ page }: { page: Page }) {
 		'./snapshots/data-grid-single-cell-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-}
+});
 
-async function testMultiCellSelection({ page }: { page: Page }) {
+test('multi cell selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid id="clicked-cells" selection-mode="multi-cell"></vwc-data-grid>
 	</div>`;
@@ -114,7 +168,8 @@ async function testMultiCellSelection({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -125,24 +180,29 @@ async function testMultiCellSelection({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
-	const clickableCells = await page.locator('#clicked-cells vwc-data-grid-cell');
+	const clickableCells = await page.locator(
+		'#clicked-cells vwc-data-grid-cell'
+	);
 	await clickableCells.nth(3).click();
 	await clickableCells.nth(5).click({
-		modifiers: ['Meta']
+		modifiers: ['Meta'],
 	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/data-grid-multi-cell-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-}
+});
 
-async function testRowSelection({ page }: { page: Page }) {
+test('single row selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;" class="vivid-root">
 			<vwc-data-grid id="clicked-row" selection-mode="single-row"
 			style="--data-grid-row-background: var(--vvd-color-cta-50);"></vwc-data-grid>
@@ -161,7 +221,8 @@ async function testRowSelection({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -173,9 +234,12 @@ async function testRowSelection({ page }: { page: Page }) {
 		{data1: 'data31', data2: 'data32'},
 	];
 		grid.generateHeader = 'sticky';
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
@@ -187,9 +251,9 @@ async function testRowSelection({ page }: { page: Page }) {
 		'./snapshots/data-grid-single-row-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-}
+});
 
-async function testMultiRowSelection({ page }: { page: Page }) {
+test('multi row selection', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid id="clicked-row" selection-mode="multi-row"></vwc-data-grid>
 	</div>`;
@@ -207,7 +271,8 @@ async function testMultiRowSelection({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.addScriptTag({content: `
+	await page.addScriptTag({
+		content: `
 	const grid = document.querySelector('vwc-data-grid');
 	grid.columnDefinitions = [
 		{columnDataKey: 'data1', title: 'Data 1'},
@@ -218,15 +283,18 @@ async function testMultiRowSelection({ page }: { page: Page }) {
 		{data1: 'data21', data2: 'data22'},
 		{data1: 'data31', data2: 'data32'},
 	];
-	`});
+	`,
+	});
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	const clickableCell = await page.locator('#clicked-row vwc-data-grid-row');
 	await clickableCell.nth(1).click();
 	await clickableCell.nth(2).click({
-		modifiers: ['Meta']
+		modifiers: ['Meta'],
 	});
 	await clickableCell.nth(1).hover();
 	await clickableCell.nth(2).focus();
@@ -235,9 +303,9 @@ async function testMultiRowSelection({ page }: { page: Page }) {
 		'./snapshots/data-grid-multi-row-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-}
+});
 
-async function testSortColumns({ page }: { page: Page }) {
+test('sort columns', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid>
 				<vwc-data-grid-row role="row" class="header" row-type="header">
@@ -267,16 +335,18 @@ async function testSortColumns({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-	const text = await page.locator('vwc-data-grid-cell:has-text("data22")').nth(2);
+	const text = await page
+		.locator('vwc-data-grid-cell:has-text("data22")')
+		.nth(2);
 	await text.isVisible();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/data-grid-sortable-headers.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-}
+});
 
-async function testCellLinkClick({ page }: { page: Page }) {
+test('cell link click', async function ({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px;">
 			<vwc-data-grid>
 				<vwc-data-grid-row role="row" class="header" row-type="header">
@@ -316,12 +386,4 @@ async function testCellLinkClick({ page }: { page: Page }) {
 	await link.click();
 	await page.pause();
 	expect(await page.url()).toEqual('https://www.google.com/');
-}
-
-test('should show the component', gridTestFunction);
-test('single cell selection', testCellSelection);
-test('multi cell selection', testMultiCellSelection);
-test('single row selection', testRowSelection);
-test('multi row selection', testMultiRowSelection);
-test('sort columns', testSortColumns);
-test('cell link click', testCellLinkClick);
+});

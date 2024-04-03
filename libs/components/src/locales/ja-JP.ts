@@ -1,5 +1,7 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/ja.json';
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const jaJP: Locale = {
 	datePicker: {
 		months: {
@@ -48,9 +50,11 @@ const jaJP: Locale = {
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '日付を選択',
-		changeDateLabel: /* istanbul ignore next */ (date: string) => `日付を変更, ${date}`,
+		changeDateLabel: /* istanbul ignore next */ (date: string) =>
+			`日付を変更, ${date}`,
 		chooseDatesLabel: '日付を選択',
-		changeDatesLabel: /* istanbul ignore next */ (range: string) => `日付を変更, ${range}`,
+		changeDatesLabel: /* istanbul ignore next */ (range: string) =>
+			`日付を変更, ${range}`,
 		prevYearLabel: '前年',
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
@@ -67,7 +71,8 @@ const jaJP: Locale = {
 	timePicker: {
 		defaultTo12HourClock: false,
 		chooseTimeLabel: '時間を選択',
-		changeTimeLabel: /* istanbul ignore next */ (time: string) => `時間を変更, ${time}`,
+		changeTimeLabel: /* istanbul ignore next */ (time: string) =>
+			`時間を変更, ${time}`,
 		hoursLabel: '時間',
 		minutesLabel: '分',
 		secondsLabel: '秒',
@@ -104,10 +109,29 @@ const jaJP: Locale = {
 	splitButton: {
 		showMoreActionsLabel: 'その他の操作を表示',
 	},
+	videoPlayer: videoPlayerLocale,
 	rangeSlider: {
 		startThumbLabel: '最小',
 		endThumbLabel: '最大',
-	}
+	},
+	dialPad: {
+		inputLabel: '電話番号',
+		deleteButtonLabel: '消去',
+		callButtonLabel: '電話',
+		endCallButtonLabel: '通話終了',
+		digitOneLabel: '1',
+		digitTwoLabel: '2 ABC',
+		digitThreeLabel: '3 DEF',
+		digitFourLabel: '4 GHI',
+		digitFiveLabel: '5 JKL',
+		digitSixLabel: '6 MNO',
+		digitSevenLabel: '7 PQRS',
+		digitEightLabel: '8 TUV',
+		digitNineLabel: '9 WXYZ',
+		digitAsteriskLabel: '*',
+		digitZeroLabel: '0',
+		digitHashtagLabel: '#',
+	},
 };
 
 export default jaJP;

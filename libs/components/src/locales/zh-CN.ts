@@ -1,5 +1,7 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/zh-CN.json';
 import type { Locale } from '../shared/localization/Locale';
 
+/* eslint-disable max-len */
 const zhCN: Locale = {
 	datePicker: {
 		months: {
@@ -48,9 +50,11 @@ const zhCN: Locale = {
 		dateFormat: 'yyyy年MM月dd日',
 		dateFormatPlaceholder: 'YYYY年MM月DD日',
 		chooseDateLabel: '选择日期',
-		changeDateLabel: /* istanbul ignore next */ (date: string) => `更改日期, ${date}`,
+		changeDateLabel: /* istanbul ignore next */ (date: string) =>
+			`更改日期, ${date}`,
 		chooseDatesLabel: '选择日期',
-		changeDatesLabel: /* istanbul ignore next */ (range: string) => `更改日期, ${range}`,
+		changeDatesLabel: /* istanbul ignore next */ (range: string) =>
+			`更改日期, ${range}`,
 		prevYearLabel: '上一年',
 		prevMonthLabel: '上个月',
 		nextMonthLabel: '下个月',
@@ -67,7 +71,8 @@ const zhCN: Locale = {
 	timePicker: {
 		defaultTo12HourClock: false,
 		chooseTimeLabel: '选择时间',
-		changeTimeLabel: /* istanbul ignore next */ (time: string) => `更改时间, ${time}`,
+		changeTimeLabel: /* istanbul ignore next */ (time: string) =>
+			`更改时间, ${time}`,
 		hoursLabel: '小时',
 		minutesLabel: '分钟',
 		secondsLabel: '秒',
@@ -104,10 +109,29 @@ const zhCN: Locale = {
 	splitButton: {
 		showMoreActionsLabel: '显示更多操作',
 	},
+	videoPlayer: videoPlayerLocale,
 	rangeSlider: {
 		startThumbLabel: '最小',
 		endThumbLabel: '最大',
-	}
+	},
+	dialPad: {
+		inputLabel: '电话号码',
+		deleteButtonLabel: '删除',
+		callButtonLabel: '称呼',
+		endCallButtonLabel: '结束通话',
+		digitOneLabel: '1',
+		digitTwoLabel: '2 ABC',
+		digitThreeLabel: '3 DEF',
+		digitFourLabel: '4 GHI',
+		digitFiveLabel: '5 JKL',
+		digitSixLabel: '6 MNO',
+		digitSevenLabel: '7 PQRS',
+		digitEightLabel: '8 TUV',
+		digitNineLabel: '9 WXYZ',
+		digitAsteriskLabel: '*',
+		digitZeroLabel: '0',
+		digitHashtagLabel: '#',
+	},
 };
 
 export default zhCN;

@@ -28,7 +28,9 @@ describe('vwc-header', () => {
 
 	describe('elevation shadow', () => {
 		it('should default elevation to no-shadow', async () => {
-			const elevation = element.shadowRoot?.querySelector(ELEVATION_SELECTOR) as Elevation;
+			const elevation = element.shadowRoot?.querySelector(
+				ELEVATION_SELECTOR
+			) as Elevation;
 
 			expect(elevation.noShadow).toEqual(true);
 		});
@@ -37,7 +39,9 @@ describe('vwc-header', () => {
 			element.elevationShadow = true;
 			await elementUpdated(element);
 
-			const elevation = element.shadowRoot?.querySelector(ELEVATION_SELECTOR) as Elevation;
+			const elevation = element.shadowRoot?.querySelector(
+				ELEVATION_SELECTOR
+			) as Elevation;
 
 			expect(elevation.noShadow).toBeFalsy();
 		});
@@ -48,7 +52,9 @@ describe('vwc-header', () => {
 			element.alternate = true;
 			await elementUpdated(element);
 
-			const container = element.shadowRoot?.querySelector('.container') as HTMLElement;
+			const container = element.shadowRoot?.querySelector(
+				'.container'
+			) as HTMLElement;
 
 			expect(container.getAttribute('part')).toEqual('vvd-theme-alternate');
 		});

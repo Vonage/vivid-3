@@ -1,6 +1,7 @@
 # VTab Examples
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/tab/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/tab/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon with Label
+
 <code-tab>
 <template #example>
 <IconWithLabelExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/tab/IconWithLabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample />
@@ -49,6 +56,7 @@
 ```vue
 <!--@include: ./components/tab/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 

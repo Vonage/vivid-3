@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <VBadge appearance="filled" text="icon" icon="check-line" />
-    <VBadge appearance="filled" text="icon-trailing" icon="check-line" icon-trailing />
-  </div>
+	<div>
+		<VBadge appearance="filled" text="icon" icon="check-line" />
+		<VBadge
+			appearance="filled"
+			text="icon-trailing"
+			icon="check-line"
+			icon-trailing
+		/>
+	</div>
 </template>
 
 <script setup lang="ts">

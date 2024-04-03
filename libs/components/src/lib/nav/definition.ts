@@ -8,13 +8,11 @@ import { NavTemplate as template } from './nav.template';
 /**
  * The nav element.
  */
-export const navDefinition =
-	Nav.compose<FoundationElementDefinition>({
-		baseName: 'nav',
-		template: template as any,
-		styles
-	});
-
+export const navDefinition = Nav.compose<FoundationElementDefinition>({
+	baseName: 'nav',
+	template: template as any,
+	styles,
+});
 
 /**
  * @internal

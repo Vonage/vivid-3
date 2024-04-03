@@ -3,9 +3,7 @@
 A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/card';
-</script>
+<script type="module">import '@vonage/vivid/card';</script>
 ```
 
 ## Members
@@ -29,10 +27,14 @@ Add a `subtitle` attribute to add card subtitle.
 - Default: `undefined`
 
 ```html preview
-<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+></vwc-card>
 ```
 
 ### Appearance
+
 Set the `appearance` attribute to change the card's appearance.
 
 - Type: `elevated` | `outlined` | `ghost`
@@ -40,9 +42,21 @@ Set the `appearance` attribute to change the card's appearance.
 
 ```html preview
 <vwc-layout>
-<vwc-card appearance="elevated" headline="Vivid Card - Appearance Elevated" subtitle="this is the default appearance"></vwc-card>
-<vwc-card appearance="outlined" headline="Vivid Card - Appearance Outlined" subtitle="set a border to the card same as elevation='0' "></vwc-card>
-<vwc-card appearance="ghost" headline="Vivid Card - Appearance Ghost" subtitle="present the card template without background or shadow"></vwc-card>
+	<vwc-card
+		appearance="elevated"
+		headline="Vivid Card - Appearance Elevated"
+		subtitle="this is the default appearance"
+	></vwc-card>
+	<vwc-card
+		appearance="outlined"
+		headline="Vivid Card - Appearance Outlined"
+		subtitle="set a border to the card same as elevation='0' "
+	></vwc-card>
+	<vwc-card
+		appearance="ghost"
+		headline="Vivid Card - Appearance Ghost"
+		subtitle="present the card template without background or shadow"
+	></vwc-card>
 </vwc-layout>
 ```
 
@@ -55,9 +69,12 @@ The elevation is applied only with the default appearance (`appearance='elevated
 - Default: `4`
 
 ```html preview
-<vwc-card elevation="12" headline="Vivid Card Component" subtitle="Extra text below the card headline"></vwc-card>
+<vwc-card
+	elevation="12"
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+></vwc-card>
 ```
-
 
 ### Icon
 
@@ -67,7 +84,11 @@ Add the `icon` attribute to add icon on the right of the card headline.
 - Default: `undefined`
 
 ```html preview
-<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline" icon="chat-line"></vwc-card>
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+	icon="chat-line"
+></vwc-card>
 ```
 
 ### Text
@@ -78,7 +99,11 @@ Add a `text` attribute to add text to the card.
 - Default: `undefined`
 
 ```html preview
-<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline" text="The card can contain multiple lines of text."></vwc-card>
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+	text="The card can contain multiple lines of text."
+></vwc-card>
 ```
 
 ## Slots
@@ -88,8 +113,15 @@ Add a `text` attribute to add text to the card.
 The graphic slot overrides the icon property.
 
 ```html preview
-<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline">
-  <vwc-icon slot="graphic" name="android-mono" style="font-size: 44px; color: #A4C439" ></vwc-icon>
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+>
+	<vwc-icon
+		slot="graphic"
+		name="android-mono"
+		style="font-size: 44px; color: #A4C439"
+	></vwc-icon>
 </vwc-card>
 ```
 
@@ -98,8 +130,17 @@ The graphic slot overrides the icon property.
 The media slot can be used to display images or video content above the card header.
 
 ```html preview
-<vwc-card headline="Card with Media" subtitle="Extra text below the card headline" style="max-inline-size: 300px">
-  <img slot="media" src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540" alt="Sitting on Floor"style="width: 100%; height: 150px; object-fit: cover;"/>
+<vwc-card
+	headline="Card with Media"
+	subtitle="Extra text below the card headline"
+	style="max-inline-size: 300px"
+>
+	<img
+		slot="media"
+		src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
+		alt="Sitting on Floor"
+		style="width: 100%; height: 150px; object-fit: cover;"
+	/>
 </vwc-card>
 ```
 
@@ -108,8 +149,15 @@ The media slot can be used to display images or video content above the card hea
 The meta slot is for action content in the card header.
 
 ```html preview
-<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline">
-  <vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+>
+	<vwc-button
+		slot="meta"
+		icon="more-vertical-solid"
+		appearance="ghost"
+	></vwc-button>
 </vwc-card>
 ```
 
@@ -118,8 +166,17 @@ The meta slot is for action content in the card header.
 The footer slot is for content in the card footer.
 
 ```html preview
-<vwc-card headline="Vivid Card Component" subtitle="Extra text below the card headline">
-  <vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
+<vwc-card
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+>
+	<vwc-button
+		slot="footer"
+		icon="arrow-bold-right-line"
+		shape="pill"
+		label="Action"
+		appearance="outlined"
+	></vwc-button>
 </vwc-card>
 ```
 
@@ -130,9 +187,9 @@ Assign nodes to `main` slot to fully override a card's predefined template with 
 
 ```html preview
 <vwc-card>
-  <vwc-layout gutters="small" slot="main">
-    Assign custom template using "main" slot.
-  </vwc-layout>
+	<vwc-layout gutters="small" slot="main">
+		Assign custom template using "main" slot.
+	</vwc-layout>
 </vwc-card>
 ```
 
@@ -145,16 +202,13 @@ The number of lines is controlled by the css variable `--headline-line-clamp`.
 
 ```html preview
 <style>
-  vwc-card {
-    --headline-line-clamp: 1;
-    max-inline-size: 42ch;
-  }
+	vwc-card {
+		--headline-line-clamp: 1;
+		max-inline-size: 42ch;
+	}
 </style>
 
-<vwc-card
-  headline="Vivid Card Component with long headline to trim"
->
-</vwc-card>
+<vwc-card headline="Vivid Card Component with long headline to trim"></vwc-card>
 ```
 
 ### Trim subtitle
@@ -164,36 +218,90 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ```html preview
 <style>
-  vwc-card {
-    --subtitle-line-clamp: 2;
-    max-inline-size: 42ch;
-  }
+	vwc-card {
+		--subtitle-line-clamp: 2;
+		max-inline-size: 42ch;
+	}
 </style>
 
 <vwc-card
-  headline="Vivid Card Component"
-  subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
->
-</vwc-card>
+	headline="Vivid Card Component"
+	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
+></vwc-card>
 ```
 
 ## Use case
+
 ```html preview
 <vwc-layout>
-	<vwc-card headline="Cards in layout" subtitle="Subtitle" icon="chat-line" text="Here is the card's text.">
-		<div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
-		<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
-		<vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
+	<vwc-card
+		headline="Cards in layout"
+		subtitle="Subtitle"
+		icon="chat-line"
+		text="Here is the card's text."
+	>
+		<div
+			slot="media"
+			style="height: 150px; width: 100%; background-color: rebeccapurple;"
+		></div>
+		<vwc-button
+			slot="meta"
+			icon="more-vertical-solid"
+			appearance="ghost"
+		></vwc-button>
+		<vwc-button
+			slot="footer"
+			icon="arrow-bold-right-line"
+			shape="pill"
+			label="Action"
+			appearance="outlined"
+		></vwc-button>
 	</vwc-card>
-	<vwc-card headline="Cards in layout" subtitle="Subtitle" icon="chat-line" text="Here is the card's text.">
-		<div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
-		<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
-		<vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
+	<vwc-card
+		headline="Cards in layout"
+		subtitle="Subtitle"
+		icon="chat-line"
+		text="Here is the card's text."
+	>
+		<div
+			slot="media"
+			style="height: 150px; width: 100%; background-color: rebeccapurple;"
+		></div>
+		<vwc-button
+			slot="meta"
+			icon="more-vertical-solid"
+			appearance="ghost"
+		></vwc-button>
+		<vwc-button
+			slot="footer"
+			icon="arrow-bold-right-line"
+			shape="pill"
+			label="Action"
+			appearance="outlined"
+		></vwc-button>
 	</vwc-card>
-	<vwc-card headline="Cards in layout" subtitle="Subtitle" icon="chat-line" text="Here is the card's text.">
-		<div slot="media" style="height: 150px; width: 100%; background-color: rebeccapurple;"></div>
-		<vwc-button slot="meta" icon="more-vertical-solid" appearance="ghost"></vwc-button>
-		<vwc-button slot="footer" icon="arrow-bold-right-line" shape="pill" label="Action" appearance="outlined"></vwc-button>
+	<vwc-card
+		headline="Cards in layout"
+		subtitle="Subtitle"
+		icon="chat-line"
+		text="Here is the card's text."
+	>
+		<div
+			slot="media"
+			style="height: 150px; width: 100%; background-color: rebeccapurple;"
+		></div>
+		<vwc-button
+			slot="meta"
+			icon="more-vertical-solid"
+			appearance="ghost"
+		></vwc-button>
+		<vwc-button
+			slot="footer"
+			icon="arrow-bold-right-line"
+			shape="pill"
+			label="Action"
+			appearance="outlined"
+		></vwc-button>
 	</vwc-card>
 </vwc-layout>
 ```

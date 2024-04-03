@@ -4,14 +4,15 @@ import { registerFactory } from '../../shared/design-system';
 import { TabPanel } from './tab-panel';
 import { TabPanelTemplate as template } from './tab-panel.template';
 
-
 /**
  * The tab panel element.
  */
-export const tabPanelDefinition = TabPanel.compose<FoundationElementDefinition>({
-	baseName: 'tab-panel',
-	template: template as any,
-});
+export const tabPanelDefinition = TabPanel.compose<FoundationElementDefinition>(
+	{
+		baseName: 'tab-panel',
+		template: template as any,
+	}
+);
 
 /**
  * @internal

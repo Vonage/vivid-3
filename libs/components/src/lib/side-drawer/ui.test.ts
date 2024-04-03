@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	loadComponents,
-	loadTemplate
+	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
 const components = ['side-drawer', 'layout'];
@@ -42,10 +42,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/side-drawer.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/side-drawer.png'
+	);
 });
 
 test('should show the component modal', async ({ page }: { page: Page }) => {
@@ -85,8 +84,7 @@ test('should show the component modal', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot())
-		.toMatchSnapshot(
-			'./snapshots/side-drawer-modal.png',
-		);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/side-drawer-modal.png'
+	);
 });

@@ -59,6 +59,7 @@ This project is [Apache 2.0][license-url] licensed.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [codecov-shield]: https://img.shields.io/codecov/c/gh/Vonage/vivid-3?style=for-the-badge&token=74ALFP2OR2
 [codecov-url]: https://codecov.io/gh/Vonage/vivid-3
 [contributors-shield]: https://img.shields.io/github/contributors/vonage/vivid-3.svg?style=for-the-badge

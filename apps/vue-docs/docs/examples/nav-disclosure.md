@@ -1,6 +1,7 @@
 # VNavDisclosure Examples
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/nav-disclosure/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Open
+
 <code-tab>
 <template #example>
 <OpenExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/nav-disclosure/OpenExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/nav-disclosure/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon Only
+
 <code-tab>
 <template #example>
 <IconOnlyExample />
@@ -49,6 +56,7 @@
 ```vue
 <!--@include: ./components/nav-disclosure/IconOnlyExample.vue -->
 ```
+
 </template>
 </code-tab>
 

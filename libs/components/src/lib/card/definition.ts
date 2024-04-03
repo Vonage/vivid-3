@@ -23,7 +23,11 @@ export const cardDefinition = Card.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const cardRegistries = [cardDefinition(), ...iconRegistries, ...elevationRegistries];
+export const cardRegistries = [
+	cardDefinition(),
+	...iconRegistries,
+	...elevationRegistries,
+];
 
 /**
  * Registers the card elements with the design system.

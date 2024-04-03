@@ -322,8 +322,17 @@ describe('getFeedbackTemplate', () => {
 	class Feedback extends FormAssociated(FoundationElement) {
 		proxy = document.createElement('input');
 	}
-	interface Feedback extends FormElementHelperText, FormElementSuccessText, FormElement, ErrorText, FormAssociated {}
-	applyMixinsWithObservables(Feedback, FormElementHelperText, FormElementSuccessText);
+	interface Feedback
+		extends FormElementHelperText,
+			FormElementSuccessText,
+			FormElement,
+			ErrorText,
+			FormAssociated {}
+	applyMixinsWithObservables(
+		Feedback,
+		FormElementHelperText,
+		FormElementSuccessText
+	);
 
 	const feedbackDef = Feedback.compose({
 		baseName: 'feedback',
@@ -333,11 +342,13 @@ describe('getFeedbackTemplate', () => {
 
 	let element: Feedback;
 	beforeEach(async () => {
-		element = await fixture('<test-feedback></test-feedback>') as Feedback;
+		element = (await fixture('<test-feedback></test-feedback>')) as Feedback;
 	});
 
 	const getMessage = (type: string) => {
-		const messageEl = element.shadowRoot!.querySelector(`.${type}-message.message--visible`);
+		const messageEl = element.shadowRoot!.querySelector(
+			`.${type}-message.message--visible`
+		);
 		if (!messageEl) {
 			return null;
 		}

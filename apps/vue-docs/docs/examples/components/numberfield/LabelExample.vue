@@ -1,5 +1,5 @@
 <template>
-  <VNumberField label="My Label" />
+	<VNumberField label="My Label" />
 </template>
 
 <script setup lang="ts">

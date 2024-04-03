@@ -29,27 +29,35 @@ const renderPicker = (
 			tabindex="0"
 			aria-label="${getLabel}"
 			aria-activedescendant="${(x) =>
-		getSelected(x) ? `${id}-${getSelected(x)}` : undefined}"
-			@keydown="${(x, c) => x._onPickerKeyDown(id, getOptions(x), getSelected(x), setSelected(x), c.event as KeyboardEvent)}"
+				getSelected(x) ? `${id}-${getSelected(x)}` : undefined}"
+			@keydown="${(x, c) =>
+				x._onPickerKeyDown(
+					id,
+					getOptions(x),
+					getSelected(x),
+					setSelected(x),
+					c.event as KeyboardEvent
+				)}"
 		>
 			${repeat(
-		getOptions,
-		html<PickerOption>`
+				getOptions,
+				html<PickerOption>`
 					<li
 						id="${(x) => `${id}-${x.value}`}"
 						class="${(x, c) =>
-		classNames('item', [
-			'selected',
-			getSelected(c.parent) === x.value,
-		])}"
+							classNames('item', [
+								'selected',
+								getSelected(c.parent) === x.value,
+							])}"
 						role="option"
 						aria-selected="${(x, c) => getSelected(c.parent) === x.value}"
-						@click="${(x, c) => c.parent._onPickerItemClick(id, setSelected(c.parent), x.value)}"
+						@click="${(x, c) =>
+							c.parent._onPickerItemClick(id, setSelected(c.parent), x.value)}"
 					>
 						${(x) => x.label}
 					</li>
 				`
-	)}
+			)}
 		</ul>
 	`;
 };
@@ -81,7 +89,8 @@ export const TimePickerTemplate: (
 										 @change="${(x) => x._onTextFieldChange()}"
 		>
 			<slot
-				slot="${(x) => x._helperTextSlottedContent?.length ? 'helper-text' : undefined}"
+				slot="${(x) =>
+					x._helperTextSlottedContent?.length ? 'helper-text' : undefined}"
 				name="helper-text"
 				${slotted('_helperTextSlottedContent')}
 			></slot>
@@ -103,38 +112,44 @@ export const TimePickerTemplate: (
 					placement="bottom-start"
 					class="popup">
 			<div class="dialog" role="dialog" ${ref(
-		'_dialogEl'
-	)} aria-modal="true" aria-label="${(x) =>
-	x.locale.timePicker.chooseTimeLabel}">
+				'_dialogEl'
+			)} aria-modal="true" aria-label="${(x) =>
+		x.locale.timePicker.chooseTimeLabel}">
 				<div class="time-pickers">
 					${renderPicker(
-		'hours',
-		(x) => x.locale.timePicker.hoursLabel,
-		(x) => x._selectedHour,
-		(x) => (v) => x._selectedHour = v,
-		(x) => x._hours
-	)}
+						'hours',
+						(x) => x.locale.timePicker.hoursLabel,
+						(x) => x._selectedHour,
+						(x) => (v) => (x._selectedHour = v),
+						(x) => x._hours
+					)}
 					${renderPicker(
-		'minutes',
-		(x) => x.locale.timePicker.minutesLabel,
-		(x) => x._selectedMinute,
-		(x) => (v) => x._selectedMinute = v,
-		(x) => x._minutes
-	)}
-					${when((x) => x._displaySeconds, renderPicker(
-		'seconds',
-		(x) => x.locale.timePicker.secondsLabel,
-		(x) => x._selectedSecond,
-		(x) => (v) => x._selectedSecond = v,
-		(x) => x._seconds
-	))}
-					${when((x) => x._use12hClock, renderPicker(
-		'meridies',
-		(x) => x.locale.timePicker.meridiesLabel,
-		(x) => x._selectedMeridiem,
-		(x) => (v) => x._selectedMeridiem = v,
-		(x) => x._meridies
-	))}
+						'minutes',
+						(x) => x.locale.timePicker.minutesLabel,
+						(x) => x._selectedMinute,
+						(x) => (v) => (x._selectedMinute = v),
+						(x) => x._minutes
+					)}
+					${when(
+						(x) => x._displaySeconds,
+						renderPicker(
+							'seconds',
+							(x) => x.locale.timePicker.secondsLabel,
+							(x) => x._selectedSecond,
+							(x) => (v) => (x._selectedSecond = v),
+							(x) => x._seconds
+						)
+					)}
+					${when(
+						(x) => x._use12hClock,
+						renderPicker(
+							'meridies',
+							(x) => x.locale.timePicker.meridiesLabel,
+							(x) => x._selectedMeridiem,
+							(x) => (v) => (x._selectedMeridiem = v),
+							(x) => x._meridies
+						)
+					)}
 				</div>
 				<div class="footer">
 					<${buttonTag}
