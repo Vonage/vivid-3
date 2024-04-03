@@ -10,7 +10,6 @@ import { Slider } from '../slider/slider';
 import { MediaSkipBy } from '@vonage/vivid';
 import { AudioPlayer } from './audio-player';
 
-
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
 	classNames(['disabled', Boolean(disabled) || !Boolean(duration)]);
 
@@ -36,11 +35,13 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 	return html<AudioPlayer>`
 		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipBackward()}"
 		icon="${(x) =>
-			x.skipBy == MediaSkipBy.Five ? 'error-solid' :
-			x.skipBy == MediaSkipBy.Ten ? '10-sec-backward-solid' :
-			x.skipBy == MediaSkipBy.Thirty ? 'info-line' :
-			''
-	}"
+			x.skipBy == MediaSkipBy.Five
+				? 'error-solid'
+				: x.skipBy == MediaSkipBy.Ten
+				? '10-sec-backward-solid'
+				: x.skipBy == MediaSkipBy.Thirty
+				? 'info-line'
+				: ''}"
 		size='condensed'
 		aria-label="${(x) =>
 			x.skipBackwardButtonAriaLabel || x.locale.audioPlayer.skipBackwardButton}"
@@ -48,16 +49,18 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
 
-		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipForward()}"
+		<${buttonTag} class="skip-1" @click="${(x) => x._toggleSkipForward()}"
 		icon="${(x) =>
-		x.skipBy == MediaSkipBy.Five ? 'error-solid' :
-			x.skipBy == MediaSkipBy.Ten ? '10-sec-forward-line' :
-				x.skipBy == MediaSkipBy.Thirty ? 'info-line' :
-					''
-	}"
+			x.skipBy == MediaSkipBy.Five
+				? 'error-solid'
+				: x.skipBy == MediaSkipBy.Ten
+				? '10-sec-forward-line'
+				: x.skipBy == MediaSkipBy.Thirty
+				? 'info-line'
+				: ''}"
 		size='condensed'
 		aria-label="${(x) =>
-		x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"
+			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
@@ -76,7 +79,6 @@ function renderSlider(context: ElementDefinitionContext) {
 	?disabled="${(x) => x.disabled || !x.duration}">
 	</${sliderTag}>`;
 }
-
 
 function renderTimestamp() {
 	return html` <div class="time-stamp" ${ref('_timeStampEl')}>

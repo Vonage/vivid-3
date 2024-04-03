@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { Connotation } from '../enums';
+import { Connotation, MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
@@ -263,6 +263,47 @@ describe('vwc-audio-player', () => {
 				getBaseElement(element).querySelector('.total-time')?.textContent
 			).toEqual('1:00');
 			audioConstructor.mockRestore();
+		});
+	});
+
+	describe('skip buttons', function () {
+		it('should set buttons when MediaSkipBy not set to Zero', async function () {
+			// need to add also if no value is set inside then it is zero
+			element.skipBy = MediaSkipBy.Zero;
+			await elementUpdated(element);
+
+			const controls = getBaseElement(element).querySelector(
+				'.controls'
+			) as HTMLDivElement;
+			const skipButtonsBeforeChange = controls.querySelector('.skip');
+
+			element.skipBy = MediaSkipBy.Ten;
+			await elementUpdated(element);
+
+			const skipButtonsAfterChange = controls.querySelector('.skip');
+
+			expect(skipButtonsBeforeChange).toBeFalsy();
+			expect(skipButtonsAfterChange).toBeTruthy();
+		});
+
+		it('should set skip button according to the skip-by attribute', async () => {
+			element.skipBy = MediaSkipBy.Five;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
+			audio.currentTime = 10;
+			await elementUpdated(element);
+
+			const skipButton = getBaseElement(element).querySelector(
+				'.skip-1'
+			) as HTMLButtonElement;
+			skipButton.click();
+
+			await elementUpdated(element);
+			expect(audio.currentTime).toEqual(15);
 		});
 	});
 

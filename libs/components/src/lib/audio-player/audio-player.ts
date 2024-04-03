@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
-import {applyMixins, FoundationElement} from '@microsoft/fast-foundation';
-import {attr, observable} from '@microsoft/fast-element';
-import type {Connotation} from '../enums';
-import {MediaSkipBy} from '../enums';
-import {Localized} from '../../shared/patterns';
-import type {Slider} from '../slider/slider';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { attr, observable } from '@microsoft/fast-element';
+import type { Connotation } from '../enums';
+import { MediaSkipBy } from '../enums';
+import { Localized } from '../../shared/patterns';
+import type { Slider } from '../slider/slider';
 
 /**
  * Types of audio player connotation.
@@ -84,8 +84,9 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: skip-by
 	 */
-	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy: MediaSkipBy | string =
-		MediaSkipBy.Zero || '';
+	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy:
+		| MediaSkipBy
+		| string = MediaSkipBy.Zero || '';
 
 	/**
 	 *

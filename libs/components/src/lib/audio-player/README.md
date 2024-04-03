@@ -31,11 +31,12 @@ Use the `notime` attribute to remove the time stamp from the audio-player.
 ```html preview
 <vwc-audio-player
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
-	
 	notime
 ></vwc-audio-player>
 ```
+
 ### Skip by button
+
 By default, the skip backward/forward buttons are not showing.
 They can be set to skip by `0`, `5`, `10` and `30` seconds using the `skip-by` attribute.
 Setting them to `0` removes the buttons.
