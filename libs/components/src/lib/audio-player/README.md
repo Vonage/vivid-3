@@ -17,7 +17,7 @@ Use the `src` attribute to add source to the audio-player.
 
 ```html preview
 <vwc-audio-player
-	src="http://www.tylergrund.com/mp3/orangemarshall_7.19.15.mp3"
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
 ></vwc-audio-player>
 ```
 
@@ -33,6 +33,20 @@ Use the `notime` attribute to remove the time stamp from the audio-player.
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
 	
 	notime
+></vwc-audio-player>
+```
+### Skip by button
+By default, the skip backward/forward buttons are not showing.
+They can be set to skip by `0`, `5`, `10` and `30` seconds using the `skip-by` attribute.
+Setting them to `0` removes the buttons.
+
+- Type: `'5' | '10' | '30'`
+- Default: `'0' = not showing`
+
+```html preview
+<vwc-audio-player
+	src="https://file-examples.com/storage/fe0e2ce82f660c1579f31b4/2017/11/file_example_MP3_1MG.mp3"
+	skip-by="10"
 ></vwc-audio-player>
 ```
 

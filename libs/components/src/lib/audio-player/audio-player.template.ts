@@ -33,15 +33,18 @@ function renderButton(context: ElementDefinitionContext) {
 function renderSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
+	//TODO: locals
 	return html<AudioPlayer>`
 		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipForward()}"
 		icon="${(x) =>
-			x.skipBy === MediaSkipBy.Ten ? '10-sec-forward-line' : 'pause-solid'}"
-		aria-label="${(x) =>
-			x.paused
-				? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel
-				: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
+			x.skipBy == MediaSkipBy.Five ? 'error-solid' :
+			x.skipBy == MediaSkipBy.Ten ? '10-sec-forward-line' :
+			x.skipBy == MediaSkipBy.Thirty ? 'info-line' :
+			''
+	}"
 		size='condensed'
+		aria-label="${(x) =>
+			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
@@ -50,7 +53,7 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
-	//TODO: add plat-paus on enter on Slider
+	//TODO: add plat-pause on enter on Slider
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider"
 	@click = ${(x) => x._rewind()}
@@ -60,6 +63,7 @@ function renderSlider(context: ElementDefinitionContext) {
 	?disabled="${(x) => x.disabled || !x.duration}">
 	</${sliderTag}>`;
 }
+
 
 function renderTimestamp() {
 	return html` <div class="time-stamp" ${ref('_timeStampEl')}>
@@ -76,7 +80,7 @@ export const AudioPlayerTemplate: (
 	return html<AudioPlayer>` <div class="base ${getClasses}">
 		<div class="controls">
 			${renderButton(context)}
-			${when((x) => x.skipBy, renderSkipButtons(context))}
+			${when((x) => x.skipBy != MediaSkipBy.Zero, renderSkipButtons(context))}
 			${when((x) => !x.notime, renderTimestamp())} ${renderSlider(context)}
 		</div>
 		<audio

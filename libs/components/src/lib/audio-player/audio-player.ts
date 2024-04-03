@@ -30,6 +30,10 @@ export class AudioPlayer extends FoundationElement {
 		| null = null;
 	@attr({ attribute: 'slider-aria-label' }) sliderAriaLabel: string | null =
 		null;
+
+	@attr({ attribute: 'skip-forward-button-aria-label' }) skipForwardButtonAriaLabel:
+		| string
+		| null = null;
 	/**
 	 * The connotation the audio-player should have.
 	 *
@@ -75,8 +79,8 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: skip-by
 	 */
-	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy: MediaSkipBy =
-		MediaSkipBy.Ten;
+	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy: MediaSkipBy | string =
+		MediaSkipBy.Zero || '';
 
 	/**
 	 *
@@ -125,9 +129,8 @@ export class AudioPlayer extends FoundationElement {
 		if (this._playerEl) {
 			const currentTime = this._playerEl.currentTime;
 			const newTime = currentTime + 10; // Add 10 seconds
-
-			console.log("Current Time:", currentTime);
-			console.log("New Time:", newTime);
+			//const skipValue: number = this._playerEl.value(this.skipBy);
+			//const newTime = currentTime + skipValue;
 
 			if (newTime <= this._playerEl.duration) {
 				this._playerEl.currentTime = newTime;
@@ -138,6 +141,24 @@ export class AudioPlayer extends FoundationElement {
 			this._updateProgress(); // Update progress after skipping
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	// _toggleSkipBack() {
+	// 	if (this._playerEl) {
+	// 		const currentTime = this._playerEl.currentTime;
+	// 		const newTime = currentTime - 10; // Add 10 seconds
+	//
+	// 		if (newTime <= this._playerEl.duration) {
+	// 			this._playerEl.currentTime = newTime;
+	// 		} else {
+	// 			this._playerEl.currentTime = this._playerEl.duration;
+	// 			this._playerEl.pause(); // Pause if reached the end
+	// 		}
+	// 		this._updateProgress(); // Update progress after skipping
+	// 	}
+	// }
 
 	/**
 	 * @internal
