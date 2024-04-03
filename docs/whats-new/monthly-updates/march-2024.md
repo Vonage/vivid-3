@@ -16,8 +16,6 @@ The first meeting is scheduled for **Tuesday 16th April at 2pm GMT**. Meetings w
 
 The [Video Player](/components/video-player/) and [Range Slider](/components/range-slider/) components are now in Alpha. If you need to use one of these components, please let the Vivid team know so that we can arrange acceptance testing before moving them out of alpha to fully released status.
 
-<vwc-video-player src="/assets/images/range-slider-and-video-player.mp4"></vwc-video-player>
-
 ## Meta Item CTA Connotation
 
 We have added a [**CTA** connotation to the Menu Item](/components/menu-item/#connotation) component.
