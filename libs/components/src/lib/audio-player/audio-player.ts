@@ -31,7 +31,7 @@ export class AudioPlayer extends FoundationElement {
 	@attr({ attribute: 'slider-aria-label' }) sliderAriaLabel: string | null =
 		null;
 
-	@attr({ attribute: 'skip-forward-button-aria-label' }) skipForwardButtonAriaLabel:
+	@attr({ attribute: 'skip-forward-aria-label' }) skipForwardButtonAriaLabel:
 		| string
 		| null = null;
 	/**

@@ -92,6 +92,7 @@ const zhCN: Locale = {
 		playButtonLabel: '草創',
 		pauseButtonLabel: '停',
 		sliderLabel: '音訊進度條',
+		skipForwardButton: '向前跳',
 	},
 	alert: {
 		dismissButtonLabel: '关',

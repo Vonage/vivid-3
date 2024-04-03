@@ -92,6 +92,7 @@ const enUS: Locale = {
 		playButtonLabel: 'Play',
 		pauseButtonLabel: 'Pause',
 		sliderLabel: 'Audio progress bar',
+		skipForwardButton: 'Skip Forward',
 	},
 	alert: {
 		dismissButtonLabel: 'Close',

@@ -44,7 +44,7 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 	}"
 		size='condensed'
 		aria-label="${(x) =>
-			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
+			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
