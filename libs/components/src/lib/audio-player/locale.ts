@@ -3,4 +3,5 @@ export interface AudioPlayerLocale {
 	pauseButtonLabel: string;
 	sliderLabel: string;
 	skipForwardButton: string;
+	skipBackwardButton: string;
 }

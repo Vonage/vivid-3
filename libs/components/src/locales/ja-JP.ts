@@ -93,6 +93,7 @@ const jaJP: Locale = {
 		pauseButtonLabel: '休止',
 		sliderLabel: 'オーディオプログレスバー',
 		skipForwardButton: '前にスキップ',
+		skipBackwardButton: '後方にスキップ',
 	},
 	alert: {
 		dismissButtonLabel: '閉じる',

@@ -34,6 +34,11 @@ export class AudioPlayer extends FoundationElement {
 	@attr({ attribute: 'skip-forward-aria-label' }) skipForwardButtonAriaLabel:
 		| string
 		| null = null;
+
+	@attr({ attribute: 'skip-backward-aria-label' }) skipBackwardButtonAriaLabel:
+		| string
+		| null = null;
+
 	/**
 	 * The connotation the audio-player should have.
 	 *
@@ -133,6 +138,27 @@ export class AudioPlayer extends FoundationElement {
 
 			if (!isNaN(skipValue) && skipValue > 0) {
 				if (newTime <= this._playerEl.duration) {
+					this._playerEl.currentTime = newTime;
+				} else {
+					this._playerEl.currentTime = this._playerEl.duration;
+					this._playerEl.pause(); // Pause if reached the end
+				}
+				this._updateProgress(); // Update progress after skipping
+			}
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	_toggleSkipBackward() {
+		if (this._playerEl) {
+			const currentTime = this._playerEl.currentTime;
+			const skipValue = parseInt(this.skipBy);
+			const newTime = currentTime - skipValue;
+
+			if (!isNaN(skipValue) && skipValue > 0) {
+				if (newTime >= this._playerEl.duration) {
 					this._playerEl.currentTime = newTime;
 				} else {
 					this._playerEl.currentTime = this._playerEl.duration;

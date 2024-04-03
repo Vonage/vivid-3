@@ -23,7 +23,7 @@ function renderButton(context: ElementDefinitionContext) {
 	aria-label="${(x) =>
 		x.paused
 			? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel
-			: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
+			: x.pauseButtonAriaLabel || x.locale.audioPlayer.pauseButtonLabel}"
 	size='condensed'
 	connotation="${(x) => x.connotation}"
 	?disabled="${(x) => x.disabled || !x.duration}"
@@ -33,18 +33,31 @@ function renderButton(context: ElementDefinitionContext) {
 function renderSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
-	//TODO: locals
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipForward()}"
+		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipBackward()}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five ? 'error-solid' :
-			x.skipBy == MediaSkipBy.Ten ? '10-sec-forward-line' :
+			x.skipBy == MediaSkipBy.Ten ? '10-sec-backward-solid' :
 			x.skipBy == MediaSkipBy.Thirty ? 'info-line' :
 			''
 	}"
 		size='condensed'
 		aria-label="${(x) =>
-			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"
+			x.skipBackwardButtonAriaLabel || x.locale.audioPlayer.skipBackwardButton}"
+		connotation="${(x) => x.connotation}"
+		?disabled="${(x) => x.disabled || !x.duration}"
+		></${buttonTag}>
+
+		<${buttonTag} class="skip" @click="${(x) => x._toggleSkipForward()}"
+		icon="${(x) =>
+		x.skipBy == MediaSkipBy.Five ? 'error-solid' :
+			x.skipBy == MediaSkipBy.Ten ? '10-sec-forward-line' :
+				x.skipBy == MediaSkipBy.Thirty ? 'info-line' :
+					''
+	}"
+		size='condensed'
+		aria-label="${(x) =>
+		x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
@@ -53,7 +66,7 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
-	//TODO: add plat-pause on enter on Slider
+	//TODO: add play-pause on enter on Slider
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider"
 	@click = ${(x) => x._rewind()}
