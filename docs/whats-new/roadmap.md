@@ -1,6 +1,6 @@
 # Roadmap
 
-## Upcoming Components
+## Upcoming Features
 
 <style>
   @media screen and (max-width: 768px){
@@ -81,7 +81,7 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      Video Player
+      <a href="/components/video-player/">Video Player</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" icon="check" target="_blank" icon="check" href="https://confluence.vonage.com/display/VIVID/Video+player" connotation="success"></vwc-button>
@@ -90,7 +90,7 @@
       <vwc-button label="Done" icon="check" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=23%3A13702&mode=design&t=PGI1aODhsHS1YDhV-1" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Exp: 03/2024" icon="more-horizontal-line" target="_blank" href="https://jira.vonage.com/browse/VIV-1486" connotation="cta"></vwc-button>
+      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/video-player/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
 </vwc-data-grid>

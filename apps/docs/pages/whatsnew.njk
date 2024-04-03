@@ -1,0 +1,14 @@
+---
+tags: whats-new
+pagination:
+    data: whatisnew
+    size: 1
+    alias: doc
+permalink: "whats-new/{{ doc | pageSlug }}/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile doc.markdown %}
+{% endblock %}

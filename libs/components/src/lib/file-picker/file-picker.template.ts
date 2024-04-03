@@ -42,14 +42,7 @@ export const FilePickerTemplate: (
 			>
 				<slot class="main"></slot>
 			</div>
-			${when(
-				(x) => !x.errorValidationMessage && x.helperText?.length,
-				getFeedbackTemplate('helper', context)
-			)}
-			${when(
-				(x) => x.errorValidationMessage,
-				getFeedbackTemplate('error', context)
-			)}
+			${getFeedbackTemplate(context)}
 			<div class="preview-list"></div>
 		</div>
 	`;
