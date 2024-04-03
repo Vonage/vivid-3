@@ -6,10 +6,13 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/resets' as resets;
 
 $dialog-space-size: 24px;
 
 .base {
+	@include resets.floating-element-reset;
+
 	box-sizing: border-box;
 	padding: 0;
 	border: none;

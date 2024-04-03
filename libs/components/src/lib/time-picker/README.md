@@ -29,7 +29,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the time picker.
+Add the `helper-text` to add some helper text below the time picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -152,6 +152,18 @@ If not set, the time picker will not display seconds.
 
 ```html preview locale-switcher 360px
 <vwc-time-picker label="Start time" seconds-step="5"></vwc-time-picker>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the time-picker's helper text.
+
+```html preview locale-switcher 360px
+<vwc-time-picker label="Start time">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-time-picker>
 ```
 
 ## Events

@@ -54,7 +54,7 @@ Set the `value` attribute to set the default value for the text field. Setting t
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the text field.
+Add the `helper-text` to add some helper text below the text field. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -245,6 +245,23 @@ You can add action items elements using the `leading-action-items` slot.
 		</vwc-select>
 		<vwc-divider orientation="vertical"></vwc-divider>
 	</div>
+</vwc-text-field>
+```
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the text-field's helper text.
+
+```html preview
+<style>
+	vwc-text-field {
+		width: 400px;
+	}
+</style>
+<vwc-text-field label="EIN">
+	<span slot="helper-text"
+		>The <a href="#">Employer Identification Number</a> of your business.</span
+	>
 </vwc-text-field>
 ```
 

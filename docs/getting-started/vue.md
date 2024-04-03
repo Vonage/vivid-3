@@ -364,6 +364,20 @@ Although possible, avoid targeting the custom elements directly by their name (e
 </style>
 ```
 
+### Client-Side Navigation
+
+Components like `VNavItem`, `VBreadcrumbItem` or `VButton` become links when using the `href` prop.
+
+They will render a regular `<a>` tag and therefore navigate to the specified URL with a full page reload.
+
+If you are using Vue Router and want to perform client-side navigation, wrap the component with `RouterLink`:
+
+```html
+<RouterLink v-slot="{ href, navigate }" to="/page" custom>
+	<VButton :href="href" label="Page" @click="navigate" />
+</RouterLink>
+```
+
 ## Auto-Complete
 
 Vivid Vue supports auto-complete for components, props, slots, events and more in popular IDEs.
