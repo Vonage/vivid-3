@@ -8,7 +8,7 @@ We have an [agenda document](https://docs.google.com/document/d/1E0yvyGUzBoQFH5l
 
 Topics will be discuss at high level and timeboxed to 5 - 10 mins. The aim of this meeting is not to always resolve every query, but to kick off further, more detailed discussions with interested parties.
 
-Attendence is not mandatory. You don't have to ask question to attend, it's fine to just listen in and observe. Also, feel free to dip in and out of the meeting, we don't want to take up anymore of your time than neccessary.
+Attendance is not mandatory. You don't have to ask question to attend, it's fine to just listen in and observe. Also, feel free to dip in and out of the meeting, we don't want to take up any more of your time than necessary.
 
 The first meeting is scheduled for **Tuesday 16th April at 2pm GMT**. Meetings will be recorded and shared in this monthly update section of the Vivid docs.
 
