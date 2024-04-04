@@ -90,9 +90,6 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: skip-by
 	 */
-	// @attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy:
-	// 	| MediaSkipBy
-	// 	| string = MediaSkipBy.Zero || '';
 	@attr ({ attribute: 'skip-by' }) skipBy?: AudioPlayerSkipBy;
 
 
