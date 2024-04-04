@@ -1,4 +1,3 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import {
 	attr,
 	DOM,
@@ -9,6 +8,7 @@ import {
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
+import { applyMixinsWithObservables } from '../utils/applyMixinsWithObservables';
 import {
 	addDays,
 	compareDateStr,
@@ -818,4 +818,9 @@ export interface DatePickerBase
 	extends Localized,
 		FormElementHelperText,
 		TrappedFocus {}
-applyMixins(DatePickerBase, Localized, FormElementHelperText, TrappedFocus);
+applyMixinsWithObservables(
+	DatePickerBase,
+	Localized,
+	FormElementHelperText,
+	TrappedFocus
+);

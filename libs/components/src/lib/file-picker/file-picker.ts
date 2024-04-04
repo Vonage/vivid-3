@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
@@ -14,6 +13,7 @@ import {
 	Localized,
 } from '../../shared/patterns';
 import type { Button } from '../button/button';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -30,6 +30,7 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
 /**
  * @public
  * @component file-picker
+ * @slot helper-text - Describes how to use the file-picker. Alternative to the `helper-text` attribute.
  * @event change - Emitted when a file is added or removed.
  */
 @errorText
@@ -278,4 +279,4 @@ export interface FilePicker
 		ErrorText,
 		FormElement,
 		FormElementHelperText {}
-applyMixins(FilePicker, FormElementHelperText, Localized);
+applyMixinsWithObservables(FilePicker, FormElementHelperText, Localized);

@@ -1,7 +1,4 @@
-import {
-	applyMixins,
-	NumberField as FastNumberField,
-} from '@microsoft/fast-foundation';
+import { NumberField as FastNumberField } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Appearance, Shape } from '../enums';
 import {
@@ -15,6 +12,7 @@ import {
 	Localized,
 } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 export type NumberFieldAppearance = Extract<
 	Appearance,
@@ -48,6 +46,7 @@ function makeStep(element: NumberField, direction: number) {
 /**
  * @public
  * @component number-field
+ * @slot helper-text - Describes how to use the number-field. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
@@ -125,7 +124,7 @@ export interface NumberField
 		FormElementHelperText,
 		FormElementSuccessText,
 		Localized {}
-applyMixins(
+applyMixinsWithObservables(
 	NumberField,
 	Localized,
 	AffixIcon,

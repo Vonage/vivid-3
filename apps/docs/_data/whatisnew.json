@@ -1,0 +1,16 @@
+[
+	{
+		"title": "Monthly Updates",
+		"markdown": "./docs/whats-new/monthly-updates/march-2024.md",
+		"children": ["March 2024"]
+	},
+	{
+		"title": "March 2024",
+		"markdown": "./docs/whats-new/monthly-updates/march-2024.md",
+		"parent": ["Monthly Updates"]
+	},
+	{
+		"title": "Roadmap",
+		"markdown": "./docs/whats-new/roadmap.md"
+	}
+]

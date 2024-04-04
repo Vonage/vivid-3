@@ -34,5 +34,18 @@ const handleLocationChange = () => {
 	}
 };
 
+const onBeforeProcessNode = (e) => {
+	const element = e.detail.elt;
+
+	// Disable Turbo for links to the Vivid Vue documentation
+	if (
+		element.tagName === 'A' &&
+		element.getAttribute('href')?.startsWith('/vivid-vue')
+	) {
+		element.setAttribute('hx-boost', 'false');
+	}
+};
+
 window.addEventListener('popstate', handleLocationChange);
 window.addEventListener('htmx:pushedIntoHistory', handleLocationChange);
+window.addEventListener('htmx:beforeProcessNode', onBeforeProcessNode);

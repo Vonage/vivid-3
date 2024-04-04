@@ -12,6 +12,8 @@
 
 Use the `href` attribute to set the breadcrumb-item's link.
 
+{% clientSideNavigationHint %}
+
 - Type: `string`
 - Default: `undefined`
 
