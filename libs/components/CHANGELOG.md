@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.53.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.52.0...vivid-v3.53.0) (2024-04-04)
+
+
+### Features
+
+* **data-grid:** support dynamic row height (VIV-1602) ([#1641](https://github.com/Vonage/vivid-3/issues/1641)) ([012cd9f](https://github.com/Vonage/vivid-3/commit/012cd9fbbe987991744d3790435cd9a39fca2ab2))
+* **dial pad:** new composed component (VIV-1512) ([#1629](https://github.com/Vonage/vivid-3/issues/1629)) ([67af9e0](https://github.com/Vonage/vivid-3/commit/67af9e03ac346d617a2e7cb9fefd3deff9a5cad9))
+* **helper-text:** allow setting helper-text via slot (VIV-1616) ([#1636](https://github.com/Vonage/vivid-3/issues/1636)) ([53f3a34](https://github.com/Vonage/vivid-3/commit/53f3a349fb1ea8093482fb3b79e1836ed16f6481))
+* **text-field:** custom for dialpad (VIV-1618) ([#1640](https://github.com/Vonage/vivid-3/issues/1640)) ([72bd8a2](https://github.com/Vonage/vivid-3/commit/72bd8a2b38a0a4745bdc03f94845734ea9f27391))
+* **video-player:** add component (VIV-1486) ([#1594](https://github.com/Vonage/vivid-3/issues/1594)) ([9bb162f](https://github.com/Vonage/vivid-3/commit/9bb162f4e419131b0cdd524a8365498d09046506))
+
+
+### Bug Fixes
+
+* **banner:** warning connotation when removable (VIV-1431) ([#1647](https://github.com/Vonage/vivid-3/issues/1647)) ([8fe6bab](https://github.com/Vonage/vivid-3/commit/8fe6bab0326f092a63fa7fdb74423900fba5596c))
+* **button:** fix stacked in pill shape border-radius (VIV-1667) ([#1650](https://github.com/Vonage/vivid-3/issues/1650)) ([17c6325](https://github.com/Vonage/vivid-3/commit/17c6325f5a5f2092d7084ca015c2480114229f90))
+* **components:** reset white-space for floating elements (VIV-1588) ([#1644](https://github.com/Vonage/vivid-3/issues/1644)) ([0f44c2b](https://github.com/Vonage/vivid-3/commit/0f44c2b039b0e32d79922a95738e99ed33c084fa))
+
 ## [3.52.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.51.0...vivid-v3.52.0) (2024-03-20)
 
 
