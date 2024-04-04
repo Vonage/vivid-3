@@ -62,6 +62,15 @@ module.exports = function (eleventyConfig) {
 		return page.slug || slugify(page.title, { lower: true });
 	});
 
+	eleventyConfig.addShortcode('clientSideNavigationHint', function () {
+		return markdownLibrary.render(
+			fs.readFileSync(
+				`${INPUT_DIR}/_shortcodes/client-side-navigation-hint.md`,
+				'utf-8'
+			)
+		);
+	});
+
 	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
 		const swFilePath = path.resolve('dist/apps/docs/sw.js');
 		const fileContents = fs.readFileSync(swFilePath).toString();

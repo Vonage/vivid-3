@@ -34,3 +34,5 @@ To learn more about the guidelines we adhere to, check out these resources:
 
 - [Introduction to web accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
 - [WCAG 2 guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/)
+
+Read more about [Testing for Accessibility](/accessibility/testing/)

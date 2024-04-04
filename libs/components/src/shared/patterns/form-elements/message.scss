@@ -3,11 +3,15 @@
 $low-ink-color: --_low-ink-color;
 
 .message {
-	display: flex;
+	display: none;
 	contain: inline-size;
 	font: var(#{constants.$vvd-typography-base-condensed});
 	gap: 4px;
 	grid-column: 1 / -1;
+
+	&--visible {
+		display: flex;
+	}
 
 	&-text {
 		color: var(#{constants.$vvd-color-canvas-text});
