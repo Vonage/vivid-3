@@ -29,17 +29,9 @@ export class Menu extends FastMenu {
 	 * Controls how the menu opens and closes itself.
 	 *
 	 * @public
-	 * HTML Attribute: placement
+	 * HTML Attribute: trigger
 	 */
 	@attr trigger?: 'auto' | 'legacy' | 'off';
-	/**
-	 * @internal
-	 */
-	triggerChanged(oldValue: string | undefined): void {
-		if (oldValue === undefined) return;
-
-		this.#updateClickOutsideListeners();
-	}
 	get #triggerBehaviour(): 'auto' | 'legacy' | 'off' {
 		return this.trigger ?? 'legacy';
 	}
