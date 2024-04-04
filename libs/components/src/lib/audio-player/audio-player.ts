@@ -19,7 +19,7 @@ export type AudioPlayerConnotation = Extract<
 export type AudioPlayerSkipBy = Extract<
 	MediaSkipBy,
 	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
-	>;
+>;
 
 /**
  * @public
@@ -90,8 +90,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: skip-by
 	 */
-	@attr ({ attribute: 'skip-by' }) skipBy?: AudioPlayerSkipBy;
-
+	@attr({ attribute: 'skip-by' }) skipBy?: AudioPlayerSkipBy;
 
 	/**
 	 *
@@ -174,7 +173,6 @@ export class AudioPlayer extends FoundationElement {
 			}
 		}
 	}
-
 
 	/**
 	 * @internal
