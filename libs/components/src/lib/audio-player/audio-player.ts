@@ -158,8 +158,8 @@ export class AudioPlayer extends FoundationElement {
 			const skipValue = parseInt(this.skipBy);
 			const newTime = currentTime - skipValue;
 
-			if (!isNaN(skipValue) && skipValue < 0) {
-				if (newTime >= this._playerEl.duration) {
+			if (!isNaN(skipValue) && skipValue > 0) {
+				if (newTime <= this._playerEl.duration) {
 					this._playerEl.currentTime = newTime;
 				} else {
 					this._playerEl.currentTime = this._playerEl.duration;
