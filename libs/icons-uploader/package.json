@@ -1,0 +1,25 @@
+{
+	"name": "@vonage/icons-uploader",
+	"version": "1.0.0",
+	"description": "Vivid icons uploader.",
+	"main": "main.js",
+	"type": "module",
+	"scripts": {
+		"start": "npm run build && node main.js",
+		"build": "tsc -p tsconfig.json"
+	},
+	"author": "",
+	"license": "",
+	"devDependencies": {
+		"@types/node": "^20.12.3",
+		"aws-sdk": "^2.1592.0",
+		"parcel-plugin-externals": "^0.5.2",
+		"typescript": "^5.3.2"
+	},
+	"externals": [
+		"aws-sdk"
+	],
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.540.0"
+	}
+}
