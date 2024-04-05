@@ -26,6 +26,17 @@ export class Menu extends FastMenu {
 	@attr({ mode: 'fromView' }) placement?: Placement = 'bottom';
 
 	/**
+	 * Controls how the menu opens and closes itself.
+	 *
+	 * @public
+	 * HTML Attribute: trigger
+	 */
+	@attr trigger?: 'auto' | 'legacy' | 'off';
+	get #triggerBehaviour(): 'auto' | 'legacy' | 'off' {
+		return this.trigger ?? 'legacy';
+	}
+
+	/**
 	 * indicates whether the menu will automatically close when
 	 * the user clicks outside the menu
 	 *
@@ -99,10 +110,9 @@ export class Menu extends FastMenu {
 	}
 
 	#setupAnchor(a: HTMLElement) {
-		a.addEventListener('click', this.#openIfClosed, true);
+		a.addEventListener('click', this.#onAnchorClick, true);
 		a.setAttribute('aria-haspopup', 'menu');
 		this.#updateAnchor(a);
-		// TODO aria-controls="myid"
 	}
 
 	#updateAnchor(a: HTMLElement) {
@@ -110,13 +120,23 @@ export class Menu extends FastMenu {
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
-		a.removeEventListener('click', this.#openIfClosed, true);
+		a.removeEventListener('click', this.#onAnchorClick, true);
 		a.removeAttribute('aria-hasPopup');
 		a.removeAttribute('aria-expanded');
 	}
 
-	#openIfClosed = () => {
-		if (!this.open) DOM.queueUpdate(() => (this.open = true));
+	#onAnchorClick = () => {
+		if (this.#triggerBehaviour === 'off') {
+			return;
+		}
+
+		// Legacy behaviour: only open the menu but don't close it
+		if (this.#triggerBehaviour === 'legacy' && this.open) {
+			return;
+		}
+
+		const newValue = !this.open;
+		DOM.queueUpdate(() => (this.open = newValue));
 	};
 
 	#updateClickOutsideListeners = () => {
@@ -139,6 +159,21 @@ export class Menu extends FastMenu {
 			this.open = false;
 		}
 	};
+
+	/**
+	 * @internal
+	 */
+	_onChange(e: Event) {
+		const clickedOnNonCheckboxMenuItem =
+			e.target instanceof HTMLElement &&
+			(e.target.role === 'menuitem' || e.target.role === 'menuitemradio');
+
+		if (this.#triggerBehaviour === 'auto' && clickedOnNonCheckboxMenuItem) {
+			this.open = false;
+		}
+
+		return true;
+	}
 
 	/**
 	 *
