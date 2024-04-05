@@ -11,8 +11,13 @@ import {
 } from '../../shared/patterns/affix';
 import type { TextAnchor } from './text-anchor';
 
-const getClasses = ({ text }: TextAnchor) =>
-	classNames('control', ['icon-only', !text]);
+const getClasses = ({ text, connotation, appearance }: TextAnchor) =>
+	classNames(
+		'control',
+		['icon-only', !text],
+		[`connotation-${connotation}`, Boolean(connotation)],
+		[`appearance-${appearance}`, Boolean(appearance)]
+	);
 
 /**
  * The template for the (Anchor:class) component.
