@@ -32,9 +32,8 @@ export const getControlElement = (element: Element) => {
 	return element.shadowRoot?.querySelector('.control') as HTMLElement;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function setAttribute(
-	element: any,
+	element: any, // eslint-disable-line @typescript-eslint/no-explicit-any
 	attribute: string,
 	value: string
 ) {

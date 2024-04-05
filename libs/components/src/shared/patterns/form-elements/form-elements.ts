@@ -249,10 +249,16 @@ function getFeedbackTypeTemplate(
 
 	return html<SomeFormElement>`<div
 		class="${(x) =>
-			classNames('message', `${config.className}-message`, [
-				'message--visible',
-				shouldShow(x),
-			])}"
+			classNames(
+				'message',
+				`${config.className}-message`,
+				['message--visible', shouldShow(x)],
+				['sr-only', !shouldShow(x)]
+			)}"
+		role="${config.messageProperty === 'errorValidationMessage'
+			? 'status'
+			: 'none'}"
+		aria-atomic="false"
 	>
 		${when(
 			(x) => shouldShow(x) && config.iconType,
