@@ -1,6 +1,12 @@
-import { axe, elementUpdated, fixture, setProperty } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+	setProperty,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { TextAnchor } from './text-anchor';
+import { TextAnchor, TextAnchorConnotation } from './text-anchor';
 import '.';
 import { textAnchorDefinition } from './definition';
 
@@ -166,6 +172,38 @@ describe('vwc-text-anchor', () => {
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
+
+	describe('text-anchor appearance', function () {
+		it('should set the appearance class on the control', async function () {
+			const appearance = 'ghost';
+
+			(element as any).appearance = appearance;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control`);
+			expect(
+				control?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
+		});
+	});
+
+	describe('text-anchor connotation', function () {
+		it('should set the connotation class on control', async function () {
+			const connotation = 'cta' as TextAnchorConnotation;
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeFalsy();
+			element.connotation = connotation;
+			await elementUpdated(element);
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeTruthy();
 		});
 	});
 });

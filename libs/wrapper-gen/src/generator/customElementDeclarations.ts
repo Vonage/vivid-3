@@ -4,7 +4,11 @@ import {
 	ClassDeclaration,
 	CustomElementDeclaration,
 } from 'custom-elements-manifest';
-import { getTypescriptDefinitionPath } from './vividPackage';
+import {
+	getTypescriptDefinitionPath,
+	isVividComponentPath,
+} from './vividPackage';
+import { extractLocalTypeDefs } from './extractLocalTypeDefs';
 
 type Declaration = CustomElementDeclaration &
 	ClassDeclaration & { _modulePath?: string };
@@ -212,6 +216,18 @@ const resolveComponentDeclaration = (
 	// Clone declaration to avoid modifying the original
 	declaration = JSON.parse(JSON.stringify(declaration));
 
+	// Extract local type defs and store them in the declaration
+	declaration._localTypeDefs = {};
+	if (
+		declaration._modulePath &&
+		isVividComponentPath(declaration._modulePath)
+	) {
+		declaration._localTypeDefs = extractLocalTypeDefs(
+			className,
+			declaration._modulePath
+		);
+	}
+
 	// Inherit from superclass
 	if (declaration.superclass) {
 		let superclassDeclaration: Declaration;
@@ -258,6 +274,10 @@ const resolveComponentDeclaration = (
 				superclassDeclaration.events,
 				declaration.events
 			);
+			declaration._localTypeDefs = {
+				...superclassDeclaration._localTypeDefs,
+				...declaration._localTypeDefs,
+			};
 		}
 	}
 
