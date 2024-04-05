@@ -2,14 +2,14 @@
 
 $low-ink-color: --_low-ink-color;
 
-.sr-only:not(:focus):not(:active) {
+.sr-only {
+	position: absolute;
+	overflow: hidden;
+	height: 1px;
+	width: 1px;
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
-	height: 1px;
-	overflow: hidden;
-	position: absolute;
 	white-space: nowrap;
-	width: 1px;
 }
 
 .message {
