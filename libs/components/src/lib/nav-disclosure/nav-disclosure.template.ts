@@ -4,13 +4,13 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { NavDisclosure } from './nav-disclosure';
-import { classNames } from '@microsoft/fast-web-utilities';
 
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
 	return ariaCurrent && !open;
