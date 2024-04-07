@@ -95,7 +95,10 @@ export const AudioPlayerTemplate: (
 	return html<AudioPlayer>` <div class="base ${getClasses}">
 		<div class="controls">
 			${renderButton(context)}
-			${when((x) => x.skipBy != MediaSkipBy.Zero, renderSkipButtons(context))}
+			${when(
+				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
+				renderSkipButtons(context)
+			)}
 			${when((x) => !x.notime, renderTimestamp())} ${renderSlider(context)}
 		</div>
 		<audio
