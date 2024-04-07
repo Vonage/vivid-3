@@ -13,9 +13,9 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: ghost-light,
+	$appearances: ghost ghost-light,
 	$states: idle hover active selected selectedAndHover,
-	$default: ghost-light
+	$default: ghost
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;

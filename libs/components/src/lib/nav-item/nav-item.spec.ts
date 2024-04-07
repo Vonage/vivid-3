@@ -23,6 +23,7 @@ describe('vwc-nav-item', () => {
 			expect(element).toBeInstanceOf(NavItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 		});
 	});
 
@@ -62,6 +63,19 @@ describe('vwc-nav-item', () => {
 
 			const control = element.shadowRoot?.querySelector('.control');
 			expect(control?.textContent?.trim()).toEqual(text);
+		});
+	});
+
+	describe('nav-item appearance', function () {
+		it('should set the appearance class on the control', async function () {
+			const appearance = 'ghost-light';
+
+			(element as any).appearance = appearance;
+			await elementUpdated(element);
+
+			expect(
+				element?.shadowRoot?.querySelector('.control')?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
 		});
 	});
 

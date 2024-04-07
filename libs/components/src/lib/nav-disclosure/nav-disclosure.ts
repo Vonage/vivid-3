@@ -1,6 +1,19 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { Appearance } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
+
+
+/**
+ * Types of button appearance.
+ *
+ * @public
+ */
+export type NavDisclosureAppearance = Extract<
+	Appearance,
+	Appearance.Ghost | Appearance.GhostLight
+	>;
+
 
 /**
  * @public
@@ -20,6 +33,15 @@ export class NavDisclosure extends FoundationElement {
 	 * HTML Attribute: label
 	 */
 	@attr label?: string;
+
+	/**
+	 * The appearance nav-disclosure should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: appearance
+	 */
+	@attr appearance?: NavDisclosureAppearance;
 
 	/**
 	 * Indicates whether the nav-disclosure is open

@@ -10,10 +10,19 @@ import {
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { NavDisclosure } from './nav-disclosure';
+import {classNames} from "@microsoft/fast-web-utilities";
 
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
 	return ariaCurrent && !open;
 }
+
+const getClasses = ({ appearance }: NavDisclosure) =>
+	classNames(
+		'control',
+		[`appearance-${appearance}`, Boolean(appearance)],
+	);
+
+
 
 /**
  * The template for the Nav component.
@@ -29,7 +38,7 @@ export const NavDisclosureTemplate: (
 	const iconTag = context.tagFor(Icon);
 
 	return html`<details class="base" ${ref('details')} ?open=${(x) => x.open}>
-        <summary class="control"
+        <summary class="${getClasses}"
             role="button"
             aria-controls="disclosure-content"
 			aria-expanded="${(x) => x.open}"
