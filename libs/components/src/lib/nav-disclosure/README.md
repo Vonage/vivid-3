@@ -148,20 +148,32 @@ Use the `meta` slot to add additional content to the nav-disclosure.
 
 ```html preview
 <style>
-.wrapper {width: 200px; padding: 8px; background-color: var(--vvd-color-cta-50)}
+	.wrapper {
+		width: 200px;
+		padding: 8px;
+		background-color: var(--vvd-color-cta-50);
+	}
 </style>
 <div class="wrapper">
 	<vwc-nav>
-	<vwc-nav-item href="#" text="item"></vwc-nav-item>
-	<vwc-nav-item href="#" text="item"></vwc-nav-item>
-	<vwc-nav-item href="#" text="item"></vwc-nav-item>
-		<vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
-			<vwc-nav-item href="#" text="2nd level item" aria-current="page"></vwc-nav-item>
+		<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		<vwc-nav-disclosure
+			label="1st level item"
+			icon="profile"
+			aria-current="true"
+		>
+			<vwc-nav-item
+				href="#"
+				text="2nd level item"
+				aria-current="page"
+			></vwc-nav-item>
 			<vwc-nav-item href="#" text="item"></vwc-nav-item>
 			<vwc-nav-item href="#" text="item"></vwc-nav-item>
 		</vwc-nav-disclosure>
-	<vwc-nav-item href="#" text="item"></vwc-nav-item>
-	<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		<vwc-nav-item href="#" text="item"></vwc-nav-item>
+		<vwc-nav-item href="#" text="item"></vwc-nav-item>
 	</vwc-nav>
 </div>
 ```

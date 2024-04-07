@@ -30,7 +30,7 @@ export enum Appearance {
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 	GhostLight = 'ghost-light',
-	Listitem ='listitem',
+	Listitem = 'listitem',
 	Elevated = 'elevated',
 }
 
