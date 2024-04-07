@@ -68,18 +68,25 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_sliderEl!: Slider;
 
-	/**
-	 * @internal
-	 */
-	_playerEl!: any;
+	#nativeAudioPlayer!: HTMLAudioElement;
 
 	/**
 	 * @internal
 	 */
 	_timeStampEl!: HTMLDivElement;
 
+	srcChanged(_: string, newSrc: string) {
+		if (!this.#nativeAudioPlayer) {
+			return;
+		}
+		this.#nativeAudioPlayer.src = newSrc;
+	}
+
 	override connectedCallback(): void {
 		super.connectedCallback();
+		this.#nativeAudioPlayer = new Audio();
+		this.#nativeAudioPlayer.addEventListener('timeupdate', this.#updateProgress);
+		this.#nativeAudioPlayer.addEventListener('loadedmetadata', this.#updateTotalTime);
 		this.addEventListener('keydown', this._rewind);
 		this.addEventListener('mousedown', this._rewind);
 		this.addEventListener('keyup', this._rewind);
@@ -99,10 +106,10 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_togglePlay() {
 		if (this.paused) {
-			this._updateProgress();
-			this._playerEl!.play();
+			this.#updateProgress();
+			this.#nativeAudioPlayer!.play();
 		} else {
-			this._playerEl!.pause();
+			this.#nativeAudioPlayer!.pause();
 		}
 		this.paused = !this.paused;
 	}
@@ -110,10 +117,10 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_updateProgress() {
+	#updateProgress = () => {
 		let currentTime: HTMLElement | null;
-		const current: number = this._playerEl.currentTime;
-		const percent = (current / this._playerEl.duration) * 100;
+		const current: number = this.#nativeAudioPlayer.currentTime;
+		const percent = (current / this.#nativeAudioPlayer.duration) * 100;
 
 		if (this._sliderEl) {
 			this._sliderEl.value = percent.toString();
@@ -133,12 +140,12 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_updateTotalTime() {
+	#updateTotalTime = () => {
 		let totalTime: HTMLElement | null;
-		if (this._playerEl) this.duration = this._playerEl.duration;
+		if (this.#nativeAudioPlayer) this.duration = this.#nativeAudioPlayer.duration;
 		if (this._timeStampEl) {
 			totalTime = this._timeStampEl.querySelector('.total-time');
-			if (totalTime) totalTime.textContent = this._formatTime(this._playerEl.duration);
+			if (totalTime) totalTime.textContent = this._formatTime(this.#nativeAudioPlayer.duration);
 		}
 	}
 
@@ -147,9 +154,9 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_rewind = () => {
 		this.paused = true;
-		if (this._playerEl) {
-			this._playerEl.pause();
-			this._playerEl.currentTime = this._playerEl.duration * (Number(this._sliderEl.value) / 100);
+		if (this.#nativeAudioPlayer) {
+			this.#nativeAudioPlayer.pause();
+			this.#nativeAudioPlayer.currentTime = this.#nativeAudioPlayer.duration * (Number(this._sliderEl.value) / 100);
 		}
 	};
 
