@@ -138,7 +138,7 @@ export class AudioPlayer extends FoundationElement {
 	_toggleSkipForward() {
 		if (this._playerEl) {
 			const currentTime = this._playerEl.currentTime;
-			const skipValue = parseInt(this.skipBy);
+			const skipValue = parseInt(this.skipBy ? this.skipBy : MediaSkipBy.Zero);
 			const newTime = currentTime + skipValue;
 
 			if (!isNaN(skipValue) && skipValue > 0) {
@@ -159,7 +159,7 @@ export class AudioPlayer extends FoundationElement {
 	_toggleSkipBackward() {
 		if (this._playerEl) {
 			const currentTime = this._playerEl.currentTime;
-			const skipValue = parseInt(this.skipBy);
+			const skipValue = parseInt(this.skipBy ? this.skipBy : MediaSkipBy.Zero);
 			const newTime = currentTime - skipValue;
 
 			if (!isNaN(skipValue) && skipValue > 0) {
