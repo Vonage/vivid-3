@@ -44,7 +44,9 @@ const getStateClasses = ({
  */
 function renderCharCount() {
 	return html<TextField>`
-		<span class="char-count">${x => x.value ? x.value.length : 0 } / ${ x => x.maxlength }</span>
+		<span class="char-count"
+			>${(x) => (x.value ? x.value.length : 0)} / ${(x) => x.maxlength}</span
+		>
 	`;
 }
 
@@ -60,26 +62,28 @@ export const TextfieldTemplate: (
 ) => ViewTemplate<TextField> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html<TextField>`
-	<div class="base ${getStateClasses}">
-    ${when(x => x.charCount && x.maxlength, renderCharCount())}
-    <slot class="label" name="_label"></slot>
-    <div class="fieldset">
+	return html<TextField>` <div class="base ${getStateClasses}">
+		${when((x) => x.charCount && x.maxlength, renderCharCount())}
+		<slot class="label" name="_label"></slot>
+		<div class="fieldset">
 			<div class="leading-items-wrapper">
-				<slot name="leading-action-items"  ${slotted('leadingActionItemsSlottedContent')}></slot>
-				${x => affixIconTemplate(x.icon)}
+				<slot
+					name="leading-action-items"
+					${slotted('leadingActionItemsSlottedContent')}
+				></slot>
+				${(x) => affixIconTemplate(x.icon)}
 			</div>
 
 			<div class="wrapper">
 				<slot class="control" name="_control"></slot>
 			</div>
 			<div class="action-items-wrapper">
-				<slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot>
+				<slot
+					name="action-items"
+					${slotted('actionItemsSlottedContent')}
+				></slot>
 			</div>
-
-    </div>
-	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
-	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-	  ${when(x => x.successText, getFeedbackTemplate('success', context))}
+		</div>
+		${getFeedbackTemplate(context)}
 	</div>`;
 };

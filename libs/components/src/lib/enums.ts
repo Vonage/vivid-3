@@ -18,7 +18,7 @@ export enum Shape {
 	Rounded = 'rounded',
 	Pill = 'pill',
 	Circled = 'circled',
-	Sharp = 'sharp'
+	Sharp = 'sharp',
 }
 
 /* eslint-disable no-shadow */
@@ -31,7 +31,7 @@ export enum Appearance {
 	Ghost = 'ghost',
 	GhostLight = 'ghost-light',
 	Listitem ='listitem',
-	Elevated = 'elevated'
+	Elevated = 'elevated',
 }
 
 export enum Size {
@@ -74,4 +74,11 @@ export enum Role {
 export enum AriaLive {
 	Polite = 'polite',
 	Assertive = 'assertive',
+}
+
+export enum MediaSkipBy {
+	Zero = '0',
+	Five = '5',
+	Ten = '10',
+	Thirty = '30',
 }

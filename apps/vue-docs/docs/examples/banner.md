@@ -1,6 +1,7 @@
 # VBanner Examples
 
 ## Text
+
 <code-tab>
 <template #example>
 <TextExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/banner/TextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Icon
+
 <code-tab>
 <template #example>
 <IconExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/banner/IconExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Connotation
+
 <code-tab>
 <template #example>
 <ConnotationExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/banner/ConnotationExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Removable
+
 <code-tab>
 <template #example>
 <RemovableExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/banner/RemovableExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Action Items
+
 <code-tab>
 <template #example>
 <ActionItemsExample />
@@ -62,6 +71,7 @@
 ```vue
 <!--@include: ./components/banner/ActionItemsExample.vue -->
 ```
+
 </template>
 </code-tab>
 

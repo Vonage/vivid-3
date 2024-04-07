@@ -22,7 +22,11 @@ export const bannerDefinition = Banner.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const bannerRegistries = [bannerDefinition(), ...iconRegistries, ...buttonRegistries];
+export const bannerRegistries = [
+	bannerDefinition(),
+	...iconRegistries,
+	...buttonRegistries,
+];
 
 /**
  * Registers the banner elements with the design system.
@@ -30,4 +34,3 @@ export const bannerRegistries = [bannerDefinition(), ...iconRegistries, ...butto
  * @param prefix - the prefix to use for the component name
  */
 export const registerBanner = registerFactory(bannerRegistries);
-

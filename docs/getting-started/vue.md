@@ -66,24 +66,24 @@ import { vivid3 } from '@vonage/vivid-vue';
 import App from './App.vue';
 
 createApp(App)
-  .use(vivid3, {
-    font: 'spezia',
-    customComponentPrefix: 'my-app',
-  })
-  .mount('#app');
+	.use(vivid3, {
+		font: 'spezia',
+		customComponentPrefix: 'my-app',
+	})
+	.mount('#app');
 ```
 
 The plugin accepts the following options:
 
 <div class="table-wrapper">
 
-| Option                      | Type                          | Default   | Description                                                                                                                                                                                                                                   |
-|-----------------------------|-------------------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| tokens                      | `'light \| 'dark' \| 'none'`  | `'light'` | The theme of tokens to use.                                                                                                                                                                                                                   |
-| font                        | `'oss' \| 'spezia' \| 'none'` | `'oss'`   | Use `'spezia'` to load the Vonage-specific Spezia font.                                                                                                                                                                                       |
-| customComponentPrefix       | `string`                      | `'vvd3'`  | The prefix to use for custom components. It is recommended to set a prefix unique to your app to prevent conflicts if multiple instances or versions of Vivid are used in the same page. [Learn more about custom prefixes.](/guides/prefix/) |
-| styles                      | `Style[]`                     | `[]`      | An array of optional styles to use.                                                                                                                                                                                                           |
-| addRootClassTo              | `'root' \| 'app' \| 'none'`   | `'root'`  | Where to apply the `vvd-root` class to.<br/> - `root`: The `<html>` element<br/> - `app`: The `App` component                                                                                                                                 |
+| Option                | Type                          | Default   | Description                                                                                                                                                                                                                                   |
+| --------------------- | ----------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tokens                | `'light \| 'dark' \| 'none'`  | `'light'` | The theme of tokens to use.                                                                                                                                                                                                                   |
+| font                  | `'oss' \| 'spezia' \| 'none'` | `'oss'`   | Use `'spezia'` to load the Vonage-specific Spezia font.                                                                                                                                                                                       |
+| customComponentPrefix | `string`                      | `'vvd3'`  | The prefix to use for custom components. It is recommended to set a prefix unique to your app to prevent conflicts if multiple instances or versions of Vivid are used in the same page. [Learn more about custom prefixes.](/guides/prefix/) |
+| styles                | `Style[]`                     | `[]`      | An array of optional styles to use.                                                                                                                                                                                                           |
+| addRootClassTo        | `'root' \| 'app' \| 'none'`   | `'root'`  | Where to apply the `vvd-root` class to.<br/> - `root`: The `<html>` element<br/> - `app`: The `App` component                                                                                                                                 |
 
 </div>
 
@@ -100,10 +100,14 @@ import { optionalStyles, vivid3 } from '@vonage/vivid-vue';
 import App from './App.vue';
 
 createApp(App)
-  .use(vivid3, {
-    styles: [optionalStyles.theme, optionalStyles.typography, optionalStyles.vivid2Compat],
-  })
-  .mount('#app');
+	.use(vivid3, {
+		styles: [
+			optionalStyles.theme,
+			optionalStyles.typography,
+			optionalStyles.vivid2Compat,
+		],
+	})
+	.mount('#app');
 ```
 
 </vwc-tab-panel>
@@ -120,9 +124,10 @@ The Vivid tokens require a `vvd-root` class to be present. It is recommended to 
 
 ```html
 <!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="vvd-root">
-<!-- ... -->
+	<!-- ... -->
+</html>
 ```
 
 </vwc-tab-panel>
@@ -132,9 +137,9 @@ The Vivid tokens require a `vvd-root` class to be present. It is recommended to 
 ```html
 <!-- App.vue -->
 <template>
-  <div class="vvd-root">
-    <RouterView />
-  </div>
+	<div class="vvd-root">
+		<RouterView />
+	</div>
 </template>
 ```
 
@@ -154,20 +159,20 @@ See the [list of styles that come with Vivid](/guides/styles/) for more informat
 ```html
 <!-- App.vue -->
 <template>
-  <RouterView />
+	<RouterView />
 </template>
 
 <style>
-/* Import Tokens For Light or Dark Theme */
-@import '@vonage/vivid/styles/tokens/theme-light.css';
-/* (Vonage only) Load Spezia Variable fonts */
-@import '@vonage/vivid/styles/fonts/spezia-variable.css';
-/* (Optional) Import Theme Styles */
-@import '@vonage/vivid/styles/core/theme.css';
-/* (Optional) Import Typography Styles */
-@import '@vonage/vivid/styles/core/typography.css';
-/* (Optional) Import Vivid 2 Compatibility Styles */
-@import '@vonage/vivid/styles/tokens/vivid-2-compat.css';
+	/* Import Tokens For Light or Dark Theme */
+	@import '@vonage/vivid/styles/tokens/theme-light.css';
+	/* (Vonage only) Load Spezia Variable fonts */
+	@import '@vonage/vivid/styles/fonts/spezia-variable.css';
+	/* (Optional) Import Theme Styles */
+	@import '@vonage/vivid/styles/core/theme.css';
+	/* (Optional) Import Typography Styles */
+	@import '@vonage/vivid/styles/core/typography.css';
+	/* (Optional) Import Vivid 2 Compatibility Styles */
+	@import '@vonage/vivid/styles/tokens/vivid-2-compat.css';
 </style>
 ```
 
@@ -178,22 +183,21 @@ See the [list of styles that come with Vivid](/guides/styles/) for more informat
 ```html
 <!-- App.vue -->
 <template>
-  <RouterView />
+	<RouterView />
 </template>
 
 <style lang="scss">
-/* Import Tokens For Light or Dark Theme */
-@forward '@vonage/vivid/styles/tokens/theme-light.css';
-/* (Vonage only) Load Spezia Variable fonts */
-@forward '@vonage/vivid/styles/fonts/spezia-variable.css';
-/* (Optional) Import Theme Styles */
-@forward '@vonage/vivid/styles/core/theme.css';
-/* (Optional) Import Typography Styles */
-@forward '@vonage/vivid/styles/core/typography.css';
-/* (Optional) Import Vivid 2 Compatibility Styles */
-@forward '@vonage/vivid/styles/tokens/vivid-2-compat.css';
+	/* Import Tokens For Light or Dark Theme */
+	@forward '@vonage/vivid/styles/tokens/theme-light.css';
+	/* (Vonage only) Load Spezia Variable fonts */
+	@forward '@vonage/vivid/styles/fonts/spezia-variable.css';
+	/* (Optional) Import Theme Styles */
+	@forward '@vonage/vivid/styles/core/theme.css';
+	/* (Optional) Import Typography Styles */
+	@forward '@vonage/vivid/styles/core/typography.css';
+	/* (Optional) Import Vivid 2 Compatibility Styles */
+	@forward '@vonage/vivid/styles/tokens/vivid-2-compat.css';
 </style>
-
 ```
 
 </vwc-tab-panel>
@@ -211,10 +215,14 @@ Add the following to your `<head>` to load them from Google Fonts:
 
 ```html
 <head>
-  <!-- ... -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <!-- ... -->
+	<!-- ... -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+		rel="stylesheet"
+	/>
+	<!-- ... -->
 </head>
 ```
 
@@ -238,9 +246,9 @@ import App from './App.vue';
 setCustomComponentPrefix('my-app');
 
 new Vue({
-  el: '#app',
-  components: { App },
-  template: '<App/>',
+	el: '#app',
+	components: { App },
+	template: '<App/>',
 });
 ```
 
@@ -253,11 +261,11 @@ You are now ready to use the components in your application.
 
 ```html
 <script setup lang="ts">
-import { VButton } from '@vonage/vivid-vue';
+	import { VButton } from '@vonage/vivid-vue';
 </script>
 
 <template>
-  <VButton label="Click me" />
+	<VButton label="Click me" />
 </template>
 ```
 
@@ -268,20 +276,17 @@ The `v-model` syntax allows us to implement a two-way binding in between a varia
 This is an example of a two-way binding implementation for a web component:
 
 ```html
-<vwc-text-field 
-  label="Search"
-  :value="searchText"
-  @input="searchText = $event.target.value"
+<vwc-text-field
+	label="Search"
+	:value="searchText"
+	@input="searchText = $event.target.value"
 />
 ```
 
 This works fine, but with Vivid Vue we can use the `v-model` syntax to shorten this to:
 
 ```html
-<VTextField
-  label="Search"
-  v-model="searchText"
-/>
+<VTextField label="Search" v-model="searchText" />
 ```
 
 ### Default Slots
@@ -291,16 +296,16 @@ The `default` slot maps to the same syntax in both Vivid Vue & web components.
 **Web component**
 
 ```html
-<vwc-icon size="3"> 
-  <img src="/custom-logo.svg" />
+<vwc-icon size="3">
+	<img src="/custom-logo.svg" />
 </vwc-icon>
 ```
 
 **Vivid Vue**
 
 ```html
-<VIcon size="3"> 
-  <img src="/custom-logo.svg">
+<VIcon size="3">
+	<img src="/custom-logo.svg" />
 </VIcon>
 ```
 
@@ -312,8 +317,18 @@ While the default slots work the same, the web component's named slots are mappe
 
 ```html
 <vwc-banner text="A banner with an action button">
-  <vwc-button slot="action-items" appearance="filled" connotation="accent" label="Filled" />
-  <vwc-button slot="action-items" appearance="outlined" connotation="accent" label="Outlined" />
+	<vwc-button
+		slot="action-items"
+		appearance="filled"
+		connotation="accent"
+		label="Filled"
+	/>
+	<vwc-button
+		slot="action-items"
+		appearance="outlined"
+		connotation="accent"
+		label="Outlined"
+	/>
 </vwc-banner>
 ```
 
@@ -321,10 +336,10 @@ While the default slots work the same, the web component's named slots are mappe
 
 ```html
 <VBanner text="A banner with an action button">
-  <template #action-items>
-    <VButton appearance="filled" connotation="accent" label="Filled" />
-    <VButton appearance="outlined" connotation="accent" label="Outlined" />
-  </template>
+	<template #action-items>
+		<VButton appearance="filled" connotation="accent" label="Filled" />
+		<VButton appearance="outlined" connotation="accent" label="Outlined" />
+	</template>
 </VBanner>
 ```
 
@@ -336,27 +351,40 @@ Although possible, avoid targeting the custom elements directly by their name (e
 
 ```html
 <template>
-  <VHeader class="header">Header Content</VHeader>
+	<VHeader class="header">Header Content</VHeader>
 </template>
 <style scoped lang="css">
-.header {
-  margin-block-end: 12px;
-  --header-bg-color: var(--vvd-color-neutral-200)
-}
-.header::part(base) {
-  position: fixed;
-}
+	.header {
+		margin-block-end: 12px;
+		--header-bg-color: var(--vvd-color-neutral-200);
+	}
+	.header::part(base) {
+		position: fixed;
+	}
 </style>
+```
+
+### Client-Side Navigation
+
+Components like `VNavItem`, `VBreadcrumbItem` or `VButton` become links when using the `href` prop.
+
+They will render a regular `<a>` tag and therefore navigate to the specified URL with a full page reload.
+
+If you are using Vue Router and want to perform client-side navigation, wrap the component with `RouterLink`:
+
+```html
+<RouterLink v-slot="{ href, navigate }" to="/page" custom>
+	<VButton :href="href" label="Page" @click="navigate" />
+</RouterLink>
 ```
 
 ## Auto-Complete
 
 Vivid Vue supports auto-complete for components, props, slots, events and more in popular IDEs.
 
-* **IntelliJ IDEs (WebStorm, PhpStorm, etc.):** Supported out of the box.
-* **VSCode:** Install the [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension.
+- **IntelliJ IDEs (WebStorm, PhpStorm, etc.):** Supported out of the box.
+- **VSCode:** Install the [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension.
 
 ## Examples
 
 You can find examples for each component in the [Vivid Vue Examples Library](/vivid-vue/components/).
-

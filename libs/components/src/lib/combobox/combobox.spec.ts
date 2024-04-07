@@ -1,4 +1,10 @@
-import { axe, elementUpdated, fixture, getBaseElement, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { Combobox } from './combobox';
 import '.';
 
@@ -7,12 +13,11 @@ const COMPONENT_TAG = 'vwc-combobox';
 describe('vwc-combobox', () => {
 	let element: Combobox;
 
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	global.ResizeObserver = jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	}));
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -39,16 +44,13 @@ describe('vwc-combobox', () => {
 			element.label = labelText;
 			await elementUpdated(element);
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement)
-				.toBeTruthy();
-			expect(labelElement?.textContent?.trim())
-				.toEqual(labelText);
+			expect(labelElement).toBeTruthy();
+			expect(labelElement?.textContent?.trim()).toEqual(labelText);
 		});
 
 		it('should show label only if label is set', async function () {
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement)
-				.toBeNull();
+			expect(labelElement).toBeNull();
 		});
 	});
 
@@ -74,14 +76,16 @@ describe('vwc-combobox', () => {
 		const placeholderText = 'Text';
 		it('should set placeholder attribute on the input', async function () {
 			element.placeholder = placeholderText;
-			const input: HTMLInputElement = getControlElement(element) as HTMLInputElement;
+			const input: HTMLInputElement = getControlElement(
+				element
+			) as HTMLInputElement;
 			input.focus();
 			input.dispatchEvent(new InputEvent('input'));
 			input.dispatchEvent(new KeyboardEvent('keyup'));
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('input')
-				?.getAttribute('placeholder'))
-				.toEqual(placeholderText);
+			expect(
+				element.shadowRoot?.querySelector('input')?.getAttribute('placeholder')
+			).toEqual(placeholderText);
 		});
 
 		it('should set class placeholder to root', async function () {
@@ -89,10 +93,9 @@ describe('vwc-combobox', () => {
 			element.dispatchEvent(new KeyboardEvent('keydown'));
 			element.dispatchEvent(new FocusEvent('focusout'));
 			await elementUpdated(element);
-			expect(getBaseElement(element)
-				.classList
-				.contains('placeholder'))
-				.toEqual(true);
+			expect(getBaseElement(element).classList.contains('placeholder')).toEqual(
+				true
+			);
 		});
 	});
 
@@ -114,7 +117,9 @@ describe('vwc-combobox', () => {
 		it('should change selection when changed', async () => {
 			element.selectedIndex = 2;
 			await elementUpdated(element);
-			expect(element.selectedOptions).toEqual([element.querySelector('option:nth-child(3)')]);
+			expect(element.selectedOptions).toEqual([
+				element.querySelector('option:nth-child(3)'),
+			]);
 		});
 	});
 
@@ -130,7 +135,9 @@ describe('vwc-combobox', () => {
 
 		it('should recieve array of options', async () => {
 			await elementUpdated(element);
-			expect(element.options[1]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.options[1]).toEqual(
+				element.querySelector('option:nth-child(2)')
+			);
 		});
 	});
 
@@ -146,7 +153,9 @@ describe('vwc-combobox', () => {
 
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
-			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.selectedOptions[0]).toEqual(
+				element.querySelector('option:nth-child(2)')
+			);
 		});
 	});
 
@@ -171,7 +180,7 @@ describe('vwc-combobox', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Combobox label';
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

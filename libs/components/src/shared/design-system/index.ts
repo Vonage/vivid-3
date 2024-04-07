@@ -9,4 +9,7 @@ const defaultPrefix = 'vwc';
  */
 export const designSystem = DesignSystem.getOrCreate();
 
-export const registerFactory = (registries: any[]) => (prefix = defaultPrefix) => designSystem.withPrefix(prefix).register(...registries);
+export const registerFactory =
+	(registries: any[]) =>
+	(prefix = defaultPrefix) =>
+		designSystem.withPrefix(prefix).register(...registries);

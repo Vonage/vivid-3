@@ -28,7 +28,9 @@ describe('vwc-nav-item', () => {
 
 	describe('icon', () => {
 		it('should have an icon slot', async () => {
-			expect(element.shadowRoot?.querySelector('slot[name="icon"]')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('slot[name="icon"]')
+			).toBeTruthy();
 		});
 
 		it('should add an icon to the nav item', async () => {
@@ -36,10 +38,8 @@ describe('vwc-nav-item', () => {
 			await elementUpdated(element);
 
 			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
-			expect(icon)
-				.toBeInstanceOf(Icon);
-			expect(icon?.name)
-				.toEqual('home');
+			expect(icon).toBeInstanceOf(Icon);
+			expect(icon?.name).toEqual('home');
 		});
 	});
 
@@ -48,7 +48,9 @@ describe('vwc-nav-item', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelector('.control.icon-only')).toBeInstanceOf(Element);
+			expect(
+				element.shadowRoot?.querySelector('.control.icon-only')
+			).toBeInstanceOf(Element);
 		});
 	});
 
@@ -59,8 +61,7 @@ describe('vwc-nav-item', () => {
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector('.control');
-			expect(control?.textContent?.trim())
-				.toEqual(text);
+			expect(control?.textContent?.trim()).toEqual(text);
 		});
 	});
 
@@ -84,8 +85,7 @@ describe('vwc-nav-item', () => {
 				const ariaCurrent = 'page';
 				element.ariaCurrent = ariaCurrent;
 				await elementUpdated(element);
-				expect(element.getAttribute('aria-current'))
-					.toEqual(ariaCurrent);
+				expect(element.getAttribute('aria-current')).toEqual(ariaCurrent);
 			});
 		});
 	});

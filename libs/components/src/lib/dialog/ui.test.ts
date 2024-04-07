@@ -4,11 +4,15 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
-import type {Dialog} from './dialog';
+import type { Dialog } from './dialog';
 
 const components = ['dialog'];
 
-test('should set preventDefault to false on keydown event', async ({ page }: { page: Page }) => {
+test('should set preventDefault to false on keydown event', async ({
+	page,
+}: {
+	page: Page;
+}) => {
 	const template = `
 		<vwc-dialog id="dialog" open>
 			<div slot="main"><input id="input"/></div>
@@ -32,7 +36,6 @@ test('should set preventDefault to false on keydown event', async ({ page }: { p
 	await page.keyboard.type(typedValue);
 
 	expect(await input.inputValue()).toBe(typedValue);
-
 });
 
 test('should show the component', async ({ page }: { page: Page }) => {
@@ -92,6 +95,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-button slot="action-items" appearance="filled" label="Action"></vwc-button>
 			</vwc-dialog>
 		</div>
+		<div class="wrapper" style="white-space: nowrap">
+			<vwc-dialog
+				headline="Dialog with very long headline that should wrap to the next line"
+				open
+				>
+			</vwc-dialog>
+		</div>
 	</div>
 	`;
 
@@ -115,7 +125,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 
-test('should show the the dialog as a modal when calling .showModal()', async ({ page }: { page: Page }) => {
+test('should show the the dialog as a modal when calling .showModal()', async ({
+	page,
+}: {
+	page: Page;
+}) => {
 	const template = `
 		<div style="height: 800px">
 			<vwc-dialog
@@ -142,7 +156,7 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 	await page.waitForLoadState('networkidle');
 
 	await page.evaluate(() => {
-		const modal = (document.getElementById('modal') as Dialog);
+		const modal = document.getElementById('modal') as Dialog;
 		modal.showModal();
 		return modal;
 	});

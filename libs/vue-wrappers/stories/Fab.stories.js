@@ -2,32 +2,32 @@ import { VFab } from '@vonage/vivid-vue';
 import { argTypes, Template } from './generated/VFab';
 
 export default {
-  title: 'Wrappers/Fab',
-  component: VFab,
-  excludeStories: /.*Data$/,
-  argTypes,
+	title: 'Wrappers/Fab',
+	component: VFab,
+	excludeStories: /.*Data$/,
+	argTypes,
 };
 
 export const Basic = Template.bind({});
 Basic.args = {
-  label: 'Fab',
+	label: 'Fab',
 };
 
 const LabelTemplate = () => ({
-  components: { VFab },
-  template: `<VFab icon="cart-line" label="Add to cart" />`,
+	components: { VFab },
+	template: `<VFab icon="cart-line" label="Add to cart" />`,
 });
 export const Label = LabelTemplate.bind({});
 
 const IconTemplate = () => ({
-  components: { VFab },
-  template: `<VFab icon="cart-line" aria-label="Shopping Cart" />`,
+	components: { VFab },
+	template: `<VFab icon="cart-line" aria-label="Shopping Cart" />`,
 });
 export const Icon = IconTemplate.bind({});
 
 const IconWithLabelTemplate = () => ({
-  components: { VFab },
-  template: `<div>
+	components: { VFab },
+	template: `<div>
     <VFab icon="check-line" label="icon" />
     <VFab icon="check-line" label="icon-trailing" icon-trailing />
   </div>`,
@@ -35,8 +35,8 @@ const IconWithLabelTemplate = () => ({
 export const IconWithLabel = IconWithLabelTemplate.bind({});
 
 const ConnotationTemplate = () => ({
-  components: { VFab },
-  template: `<div>
+	components: { VFab },
+	template: `<div>
     <VFab icon="plus-line" connotation="accent" />
     <VFab icon="plus-line" connotation="cta" />
   </div>`,
@@ -44,8 +44,8 @@ const ConnotationTemplate = () => ({
 export const Connotation = ConnotationTemplate.bind({});
 
 const SizeTemplate = () => ({
-  components: { VFab },
-  template: `<div>
+	components: { VFab },
+	template: `<div>
     <VFab icon="thumbs-up-line" label="normal" size="normal" />
     <VFab icon="thumbs-up-line" label="expanded" size="expanded" />
   </div>`,
@@ -53,7 +53,7 @@ const SizeTemplate = () => ({
 export const Size = SizeTemplate.bind({});
 
 const DisabledTemplate = () => ({
-  components: { VFab },
-  template: `<VFab icon="store-line" disabled />`,
+	components: { VFab },
+	template: `<VFab icon="store-line" disabled />`,
 });
 export const Disabled = DisabledTemplate.bind({});

@@ -1,15 +1,15 @@
-import type {ViewTemplate} from '@microsoft/fast-element';
-import {html, ref, when} from '@microsoft/fast-element';
+import type { ViewTemplate } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
-import {classNames} from '@microsoft/fast-web-utilities';
-import {Shape} from '../enums';
-import {getFeedbackTemplate} from '../../shared/patterns';
-import {Button} from '../button/button';
-import {Divider} from '../divider/divider';
-import type {NumberField} from './number-field';
+import { classNames } from '@microsoft/fast-web-utilities';
+import { Shape } from '../enums';
+import { getFeedbackTemplate } from '../../shared/patterns';
+import { Button } from '../button/button';
+import { Divider } from '../divider/divider';
+import type { NumberField } from './number-field';
 
 const getStateClasses = ({
 	errorValidationMessage,
@@ -20,24 +20,24 @@ const getStateClasses = ({
 	appearance,
 	shape,
 	label,
-	successText
-}: NumberField) => classNames(
-	['error', Boolean(errorValidationMessage)],
-	['disabled', disabled],
-	['has-value', Boolean(value)],
-	['readonly', readOnly],
-	['placeholder', Boolean(placeholder)],
-	[`appearance-${appearance}`, Boolean(appearance)],
-	[`shape-${shape}`, Boolean(shape)],
-	['no-label', !label],
-	['success', !!successText]
-);
+	successText,
+}: NumberField) =>
+	classNames(
+		['error', Boolean(errorValidationMessage)],
+		['disabled', disabled],
+		['has-value', Boolean(value)],
+		['readonly', readOnly],
+		['placeholder', Boolean(placeholder)],
+		[`appearance-${appearance}`, Boolean(appearance)],
+		[`shape-${shape}`, Boolean(shape)],
+		['no-label', !label],
+		['success', !!successText]
+	);
 
 function renderLabel() {
-	return html<NumberField>`
-	  <label for="control" class="label">
-		  ${x => x.label}
-	  </label>`;
+	return html<NumberField>` <label for="control" class="label">
+		${(x) => x.label}
+	</label>`;
 }
 
 function setControlButtonShape(numberField: NumberField) {
@@ -45,7 +45,7 @@ function setControlButtonShape(numberField: NumberField) {
 }
 
 function getTabIndex(numberField: NumberField) {
-	return (numberField.disabled || numberField.readOnly) ? '-1' : null;
+	return numberField.disabled || numberField.readOnly ? '-1' : null;
 }
 
 /**
@@ -57,22 +57,26 @@ function numberControlButtons(context: ElementDefinitionContext) {
 
 	return html<NumberField>`
 			<div class="control-buttons"
-			     ?inert="${x => x.disabled || x.readOnly}">
+			     ?inert="${(x) => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
-								aria-label=${x => x.decrementButtonAriaLabel || x.locale.numberField.decrementButtonLabel}
-					            shape="${ setControlButtonShape }"
+								aria-label=${(x) =>
+									x.decrementButtonAriaLabel ||
+									x.locale.numberField.decrementButtonLabel}
+					            shape="${setControlButtonShape}"
 								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
-					            @click="${x => x.stepDown()}"></${buttonTag}>
+					            @click="${(x) => x.stepDown()}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
-								aria-label=${x => x.incrementButtonAriaLabel || x.locale.numberField.incrementButtonLabel}
-					            shape="${ setControlButtonShape }"
+								aria-label=${(x) =>
+									x.incrementButtonAriaLabel ||
+									x.locale.numberField.incrementButtonLabel}
+					            shape="${setControlButtonShape}"
 								type="button"
 					            size="condensed"
 					  					tabindex="${getTabIndex}"
-					            @click="${x => x.stepUp()}"></${buttonTag}>
+					            @click="${(x) => x.stepUp()}"></${buttonTag}>
 		    </div>
 	`;
 }
@@ -87,55 +91,53 @@ export const NumberFieldTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<NumberField> = (context) => {
-
 	return html<NumberField>`
-	<div class="base ${getStateClasses}">
-    ${when(x => x.label, renderLabel())}
-    <div class="fieldset">
-			<div class="wrapper">
-				<input class="control"
-							 id="control"
-							 @input="${x => x.handleTextInput()}"
-							 @change="${x => x.handleChange()}"
-							 ?autofocus="${x => x.autofocus}"
-							 ?disabled="${x => x.disabled}"
-							 list="${x => x.list}"
-							 step="${x => x.step ? x.step : null}"
-							 max="${x => x.max}"
-							 min="${x => x.min}"
-							 maxlength="${x => x.maxlength}"
-							 minlength="${x => x.minlength}"
-							 placeholder="${x => x.placeholder}"
-							 ?readonly="${x => x.readOnly}"
-							 ?required="${x => x.required}"
-							 size="${x => x.size}"
-							 autocomplete="${x => x.autoComplete}"
-							 name="${x => x.name}"
-							 ?spellcheck="${x => x.spellcheck}"
-							 :value="${x => x.value}"
-							 type="text"
-							 aria-atomic="${x => x.ariaAtomic}"
-							 aria-busy="${x => x.ariaBusy}"
-							 aria-current="${x => x.ariaCurrent}"
-							 aria-details="${x => x.ariaDetails}"
-							 aria-disabled="${x => x.ariaDisabled}"
-							 aria-errormessage="${x => x.ariaErrormessage}"
-							 aria-haspopup="${x => x.ariaHaspopup}"
-							 aria-hidden="${x => x.ariaHidden}"
-							 aria-invalid="${x => x.ariaInvalid}"
-							 aria-keyshortcuts="${x => x.ariaKeyshortcuts}"
-							 aria-label="${x => x.ariaLabel}"
-							 aria-live="${x => x.ariaLive}"
-							 aria-relevant="${x => x.ariaRelevant}"
-							 aria-roledescription="${x => x.ariaRoledescription}"
-							 ${ref('control')}
-				/>
+		<div class="base ${getStateClasses}">
+			${when((x) => x.label, renderLabel())}
+			<div class="fieldset">
+				<div class="wrapper">
+					<input
+						class="control"
+						id="control"
+						@input="${(x) => x.handleTextInput()}"
+						@change="${(x) => x.handleChange()}"
+						?autofocus="${(x) => x.autofocus}"
+						?disabled="${(x) => x.disabled}"
+						list="${(x) => x.list}"
+						step="${(x) => (x.step ? x.step : null)}"
+						max="${(x) => x.max}"
+						min="${(x) => x.min}"
+						maxlength="${(x) => x.maxlength}"
+						minlength="${(x) => x.minlength}"
+						placeholder="${(x) => x.placeholder}"
+						?readonly="${(x) => x.readOnly}"
+						?required="${(x) => x.required}"
+						size="${(x) => x.size}"
+						autocomplete="${(x) => x.autoComplete}"
+						name="${(x) => x.name}"
+						?spellcheck="${(x) => x.spellcheck}"
+						:value="${(x) => x.value}"
+						type="text"
+						aria-atomic="${(x) => x.ariaAtomic}"
+						aria-busy="${(x) => x.ariaBusy}"
+						aria-current="${(x) => x.ariaCurrent}"
+						aria-details="${(x) => x.ariaDetails}"
+						aria-disabled="${(x) => x.ariaDisabled}"
+						aria-errormessage="${(x) => x.ariaErrormessage}"
+						aria-haspopup="${(x) => x.ariaHaspopup}"
+						aria-hidden="${(x) => x.ariaHidden}"
+						aria-invalid="${(x) => x.ariaInvalid}"
+						aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
+						aria-label="${(x) => x.ariaLabel}"
+						aria-live="${(x) => x.ariaLive}"
+						aria-relevant="${(x) => x.ariaRelevant}"
+						aria-roledescription="${(x) => x.ariaRoledescription}"
+						${ref('control')}
+					/>
+				</div>
+				${() => numberControlButtons(context)}
 			</div>
-			${() => numberControlButtons(context)}
-    </div>
-	  ${when(x => !x.successText && !x.errorValidationMessage && x.helperText?.length, getFeedbackTemplate('helper', context))}
-	  ${when(x => !x.successText && x.errorValidationMessage, getFeedbackTemplate('error', context))}
-	  ${when(x => x.successText, getFeedbackTemplate('success', context))}
-	</div>
-`;
+			${getFeedbackTemplate(context)}
+		</div>
+	`;
 };

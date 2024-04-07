@@ -11,8 +11,9 @@ describe('vwc-calendar-event', () => {
 
 	const getCssPropertyValue = (prop: string) => {
 		const el = element.shadowRoot?.querySelector('.base') as HTMLElement;
-		return getComputedStyle(el)
-			.getPropertyValue(`--vvd-calendar-event--${prop}`);
+		return getComputedStyle(el).getPropertyValue(
+			`--vvd-calendar-event--${prop}`
+		);
 	};
 
 	beforeEach(async () => {
@@ -23,7 +24,9 @@ describe('vwc-calendar-event', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-calendar-event', async () => {
-			expect(calendarEventDefinition()).toBeInstanceOf(FoundationElementRegistry);
+			expect(calendarEventDefinition()).toBeInstanceOf(
+				FoundationElementRegistry
+			);
 			expect(element).toBeInstanceOf(CalendarEvent);
 			expect(element.heading).toBeUndefined();
 			expect(element.description).toBeUndefined();
@@ -35,7 +38,6 @@ describe('vwc-calendar-event', () => {
 	});
 
 	describe('API members', () => {
-
 		it('should set heading to node', async () => {
 			const heading = 'heading';
 			element.heading = heading;
@@ -75,7 +77,9 @@ describe('vwc-calendar-event', () => {
 			element.overlapCount = overlapCount;
 			await elementUpdated(element);
 
-			expect(getCssPropertyValue('overlap-count')).toEqual(String(overlapCount));
+			expect(getCssPropertyValue('overlap-count')).toEqual(
+				String(overlapCount)
+			);
 		});
 
 		it('should set correct internal connotation style', async () => {
@@ -83,7 +87,9 @@ describe('vwc-calendar-event', () => {
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
 
-			const base = element.shadowRoot?.querySelector(`.base.connotation-${connotation}`);
+			const base = element.shadowRoot?.querySelector(
+				`.base.connotation-${connotation}`
+			);
 			expect(base).toBeInstanceOf(Element);
 		});
 	});

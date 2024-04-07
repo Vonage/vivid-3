@@ -1,16 +1,24 @@
-import { axe, elementUpdated, fixture, setAttribute } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+	setAttribute,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {TextAnchor} from './text-anchor';
+import { TextAnchor, TextAnchorConnotation } from './text-anchor';
 import '.';
 import { textAnchorDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-text-anchor';
 
-describe( 'vwc-text-anchor', () => {
+describe('vwc-text-anchor', () => {
 	let element: TextAnchor;
 
 	beforeEach(async () => {
-		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as TextAnchor;
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as TextAnchor;
 	});
 
 	describe('basic', () => {
@@ -28,8 +36,7 @@ describe( 'vwc-text-anchor', () => {
 			await elementUpdated(element);
 
 			const { control } = element;
-			expect(control?.textContent?.trim())
-				.toEqual(text);
+			expect(control?.textContent?.trim()).toEqual(text);
 		});
 	});
 
@@ -41,7 +48,6 @@ describe( 'vwc-text-anchor', () => {
 		return anchorElement;
 	}
 
-
 	describe('bindings', () => {
 		function capitalizeFirstLetter(str: string) {
 			return str.charAt(0).toUpperCase() + str.slice(1);
@@ -49,17 +55,27 @@ describe( 'vwc-text-anchor', () => {
 
 		it('should set aria labels', async function () {
 			function setAriaLabelsOnElementObject() {
-				ARIA_PROPS.forEach(ariaProp => {
+				ARIA_PROPS.forEach((ariaProp) => {
 					const ariaPropOnObject = `aria${capitalizeFirstLetter(ariaProp)}`;
 					(element as any)[ariaPropOnObject] = ariaProp;
 				});
 			}
 
 			const ARIA_PROPS = [
-				'atomic', 'busy', 'current',
-				'details', 'disabled', 'expanded',
-				'haspopup', 'hidden', 'invalid', 'keyshortcuts',
-				'label', 'live', 'relevant', 'roledescription'
+				'atomic',
+				'busy',
+				'current',
+				'details',
+				'disabled',
+				'expanded',
+				'haspopup',
+				'hidden',
+				'invalid',
+				'keyshortcuts',
+				'label',
+				'live',
+				'relevant',
+				'roledescription',
 			];
 
 			const anchorElement = getAnchorElement();
@@ -67,10 +83,12 @@ describe( 'vwc-text-anchor', () => {
 			setAriaLabelsOnElementObject();
 			await elementUpdated(element);
 
-			ARIA_PROPS.forEach(ariaProp => {
+			ARIA_PROPS.forEach((ariaProp) => {
 				const ariaPropOnElement = `aria-${ariaProp}`;
 
-				expect(anchorElement?.getAttribute(ariaPropOnElement)).toEqual(ariaProp);
+				expect(anchorElement?.getAttribute(ariaPropOnElement)).toEqual(
+					ariaProp
+				);
 			});
 		});
 
@@ -152,8 +170,40 @@ describe( 'vwc-text-anchor', () => {
 			element.text = 'Link text';
 			element.href = '/somewhere';
 			await elementUpdated(element);
-			
+
 			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
+
+	describe('text-anchor appearance', function () {
+		it('should set the appearance class on the control', async function () {
+			const appearance = 'ghost';
+
+			(element as any).appearance = appearance;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(`.control`);
+			expect(
+				control?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
+		});
+	});
+
+	describe('text-anchor connotation', function () {
+		it('should set the connotation class on control', async function () {
+			const connotation = 'cta' as TextAnchorConnotation;
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeFalsy();
+			element.connotation = connotation;
+			await elementUpdated(element);
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeTruthy();
 		});
 	});
 });

@@ -3,9 +3,7 @@
 A combobox is an input widget that has an associated popup. The popup enables users to choose suggested values for the input from a collection.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/combobox';
-</script>
+<script type="module">import '@vonage/vivid/combobox';</script>
 ```
 
 ## Members
@@ -19,8 +17,8 @@ Use the `label` member to set the combobox's label.
 
 ```html preview 200px
 <vwc-combobox label="Search for something">
- <vwc-option text="First Option"></vwc-option>
- <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -33,8 +31,8 @@ Set the `value` attribute to set the default value for the input field. Setting 
 
 ```html preview 200px
 <vwc-combobox value="First Option">
- <vwc-option text="First Option"></vwc-option>
- <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -47,8 +45,8 @@ Add a `placeholder` attribute to add placeholder text to the input.
 
 ```html preview 200px
 <vwc-combobox placeholder="placeholder">
- <vwc-option text="First Option"></vwc-option>
- <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -61,8 +59,8 @@ See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) f
 
 ```html preview 200px
 <vwc-combobox autocomplete="both">
- <vwc-option text="First Option"></vwc-option>
- <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -75,8 +73,8 @@ Use the `open` member to set the combobox's open state.
 
 ```html preview 200px
 <vwc-combobox open>
-  <vwc-option text="First Option"></vwc-option>
-  <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -89,19 +87,20 @@ Use the `placement` member to set the combobox's placement in accordance to its 
 
 ```html preview
 <style>
-  .combobox-wrapper { /* for demo purposes */
-    block-size: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: start;
-  }
+	.combobox-wrapper {
+		/* for demo purposes */
+		block-size: 140px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: start;
+	}
 </style>
 <div class="combobox-wrapper">
-  <vwc-combobox placement="top">
-    <vwc-option text="First Option"></vwc-option>
-    <vwc-option text="Second Option"></vwc-option>
-  </vwc-combobox>
+	<vwc-combobox placement="top">
+		<vwc-option text="First Option"></vwc-option>
+		<vwc-option text="Second Option"></vwc-option>
+	</vwc-combobox>
 </div>
 ```
 
@@ -114,8 +113,8 @@ Add the `disabled` attribute to disable the combobox.
 
 ```html preview
 <vwc-combobox disabled>
- <vwc-option text="First Option"></vwc-option>
- <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
 
@@ -139,7 +138,7 @@ Place [vwc-option](/components/option/) elements inside the default slot to crea
 
 ```html preview 200px
 <vwc-combobox>
- <vwc-option text="First Option"></vwc-option>
- <vwc-option text="Second Option"></vwc-option>
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```

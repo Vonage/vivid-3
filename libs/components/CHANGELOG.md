@@ -4,6 +4,48 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.53.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.52.0...vivid-v3.53.0) (2024-04-04)
+
+
+### Features
+
+* **data-grid:** support dynamic row height (VIV-1602) ([#1641](https://github.com/Vonage/vivid-3/issues/1641)) ([012cd9f](https://github.com/Vonage/vivid-3/commit/012cd9fbbe987991744d3790435cd9a39fca2ab2))
+* **dial pad:** new composed component (VIV-1512) ([#1629](https://github.com/Vonage/vivid-3/issues/1629)) ([67af9e0](https://github.com/Vonage/vivid-3/commit/67af9e03ac346d617a2e7cb9fefd3deff9a5cad9))
+* **helper-text:** allow setting helper-text via slot (VIV-1616) ([#1636](https://github.com/Vonage/vivid-3/issues/1636)) ([53f3a34](https://github.com/Vonage/vivid-3/commit/53f3a349fb1ea8093482fb3b79e1836ed16f6481))
+* **text-field:** custom for dialpad (VIV-1618) ([#1640](https://github.com/Vonage/vivid-3/issues/1640)) ([72bd8a2](https://github.com/Vonage/vivid-3/commit/72bd8a2b38a0a4745bdc03f94845734ea9f27391))
+* **video-player:** add component (VIV-1486) ([#1594](https://github.com/Vonage/vivid-3/issues/1594)) ([9bb162f](https://github.com/Vonage/vivid-3/commit/9bb162f4e419131b0cdd524a8365498d09046506))
+
+
+### Bug Fixes
+
+* **banner:** warning connotation when removable (VIV-1431) ([#1647](https://github.com/Vonage/vivid-3/issues/1647)) ([8fe6bab](https://github.com/Vonage/vivid-3/commit/8fe6bab0326f092a63fa7fdb74423900fba5596c))
+* **button:** fix stacked in pill shape border-radius (VIV-1667) ([#1650](https://github.com/Vonage/vivid-3/issues/1650)) ([17c6325](https://github.com/Vonage/vivid-3/commit/17c6325f5a5f2092d7084ca015c2480114229f90))
+* **components:** reset white-space for floating elements (VIV-1588) ([#1644](https://github.com/Vonage/vivid-3/issues/1644)) ([0f44c2b](https://github.com/Vonage/vivid-3/commit/0f44c2b039b0e32d79922a95738e99ed33c084fa))
+
+## [3.52.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.51.0...vivid-v3.52.0) (2024-03-20)
+
+
+### Features
+
+* **button, split-button:** show active state when expanded (VIV-1562) ([#1607](https://github.com/Vonage/vivid-3/issues/1607)) ([b3e9982](https://github.com/Vonage/vivid-3/commit/b3e99826306c46a81babbe43aa28b25efcc47ec9))
+* **menu-item:** cta connotation (VIV-1626) ([#1627](https://github.com/Vonage/vivid-3/issues/1627)) ([2cd52f2](https://github.com/Vonage/vivid-3/commit/2cd52f2f1aedd9b8a6b23ef374837963855ac45f))
+* **range-slider:** add component (VIV-1488) ([#1584](https://github.com/Vonage/vivid-3/issues/1584)) ([0074811](https://github.com/Vonage/vivid-3/commit/00748113cc8e562e791e56c7ac6961f2a5e6138f))
+
+
+### Bug Fixes
+
+* **appearance:** changes in listitem appearance colors (VIV-1648) ([#1637](https://github.com/Vonage/vivid-3/issues/1637)) ([0369950](https://github.com/Vonage/vivid-3/commit/03699503daa75a856173f24178a4d553bc6adc79))
+* **components:** fix validation in Safari versions before 16.4 (VIV-1568) ([#1608](https://github.com/Vonage/vivid-3/issues/1608)) ([65e342d](https://github.com/Vonage/vivid-3/commit/65e342d1fa9761e893324c0b02cbd0205504672d))
+* **data-grid:** links inside data-grid (VIV-1587) ([#1614](https://github.com/Vonage/vivid-3/issues/1614)) ([83a685b](https://github.com/Vonage/vivid-3/commit/83a685ba94548a3f3be13586b3c2b4268fd9f95e))
+* **docs:** fix example height (VIV-000) ([#1605](https://github.com/Vonage/vivid-3/issues/1605)) ([5537b64](https://github.com/Vonage/vivid-3/commit/5537b649c0d5e3fcb2e686497e15ca8d9018d5e8))
+* **docs:** fix example height (VIV-000) ([#1609](https://github.com/Vonage/vivid-3/issues/1609)) ([455a49a](https://github.com/Vonage/vivid-3/commit/455a49af7d5e1d9aaa42f503e47a21b9de9e0dd4))
+* **fab:** inline-padding in normal size (VIV-1623) ([#1638](https://github.com/Vonage/vivid-3/issues/1638)) ([a5214e2](https://github.com/Vonage/vivid-3/commit/a5214e2ffb6ae770023984ee9b7bff401780cd98))
+* **icons:** add aria-hidden to all icons by default (VIV-1551) ([#1613](https://github.com/Vonage/vivid-3/issues/1613)) ([aa3ec2f](https://github.com/Vonage/vivid-3/commit/aa3ec2f249aca4d71cc332a5322be77c49491629))
+* **menu-item:** fix font-size (VIV-1589) ([#1604](https://github.com/Vonage/vivid-3/issues/1604)) ([26a28e3](https://github.com/Vonage/vivid-3/commit/26a28e3427a2a6c192b72e4cd8e807dbef2b7f99))
+* **menu:** fix auto-dismiss emitting close when opening (VIV-1603) ([#1622](https://github.com/Vonage/vivid-3/issues/1622)) ([c837c88](https://github.com/Vonage/vivid-3/commit/c837c88f8470fb7911c529087ad7123cdb880fc7))
+* **text-area:** style resize knob (VIV-1620) ([#1626](https://github.com/Vonage/vivid-3/issues/1626)) ([9c9a9fc](https://github.com/Vonage/vivid-3/commit/9c9a9fc80d5bce9681aa9041a0fea9691c074f5a))
+* **text-field:** remove browser autofill style (VIV-1641) ([#1634](https://github.com/Vonage/vivid-3/issues/1634)) ([a1cf144](https://github.com/Vonage/vivid-3/commit/a1cf144af90e01d4730ff7fbec643f8eef805ce1))
+
 ## [3.51.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.50.1...vivid-v3.51.0) (2024-02-26)
 
 

@@ -1,9 +1,7 @@
 # Calendar
 
 ```js
-<script type="module">
-  import '@vonage/vivid/calendar';
-</script>
+<script type="module">import '@vonage/vivid/calendar';</script>
 ```
 
 ```html preview
@@ -42,7 +40,11 @@ Use `locales` to set a locale string or array of locale strings that contain one
 - Default: `undefined` (will use the current locale)
 
 ```html preview
-<vwc-calendar locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
+<vwc-calendar
+	locales="he-IL"
+	start-day="sunday"
+	style="direction: rtl"
+></vwc-calendar>
 ```
 
 ### Hour 12
@@ -68,8 +70,8 @@ Assign elements to a day column using `'day-0'` | `'day-1'` | `'day-2'` | `'day-
 
 <div class="table-wrapper">
 
-| Name              | Returns                                  | Description                                                                             |
-| ----------------- | ---------------------------------------- | --------------------------------------------------------------------------------------- |
-| `getEventContext` | `{ day: number, hour: number }` \ `null` | Accepts event reference and returns an object containing _day_ & _hour_  if applicable. |
+| Name              | Returns                                  | Description                                                                            |
+| ----------------- | ---------------------------------------- | -------------------------------------------------------------------------------------- |
+| `getEventContext` | `{ day: number, hour: number }` \ `null` | Accepts event reference and returns an object containing _day_ & _hour_ if applicable. |
 
 </div>

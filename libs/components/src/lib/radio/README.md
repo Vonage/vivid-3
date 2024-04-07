@@ -7,9 +7,7 @@ As such, they do not make sense on their own and should always be used inside `r
 Their `value` member contains the value that will be associated to the component name during form submission (i.e., the `radio-group`'s name).
 
 ```js
-<script type="module">
-  import '@vonage/vivid/radio';
-</script>
+<script type="module">import '@vonage/vivid/radio';</script>
 ```
 
 ## Members
@@ -37,11 +35,11 @@ Use the `checked` to set the radio's `on`/`off` state.
 ```
 
 ### Connotation
+
 Use the `connotation` attribute to set the radio color.
 
 - Type: `'accent'` | `'cta'`
 - Default: `'accent'`
-
 
 ```html preview
 <vwc-radio connotation="accent"></vwc-radio>
@@ -58,8 +56,7 @@ Toggle the `disabled` member to disable/enable the radio.
 - Default: `false`
 
 ```html preview
-<vwc-radio disabled></vwc-radio>
-<vwc-radio disabled checked></vwc-radio>
+<vwc-radio disabled></vwc-radio> <vwc-radio disabled checked></vwc-radio>
 ```
 
 ### Value

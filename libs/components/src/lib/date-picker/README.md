@@ -29,7 +29,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the date picker.
+Add the `helper-text` to add some helper text below the date picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -120,12 +120,24 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 ></vwc-date-picker>
 ```
 
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the date picker's helper text.
+
+```html preview locale-switcher 460px
+<vwc-date-picker label="Start date">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-date-picker>
+```
+
 ## Events
 
 <div class="table-wrapper">
 
 | Name        | Description                                   |
-|-------------|-----------------------------------------------|
+| ----------- | --------------------------------------------- |
 | input       | Emitted when the date is changed by the user. |
 | change      | Emitted when the date is changed by the user. |
 | focus       | Emitted when the component receives focus.    |
@@ -148,7 +160,11 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-date-picker name="date" label="Start date" required></vwc-date-picker>
+			<vwc-date-picker
+				name="date"
+				label="Start date"
+				required
+			></vwc-date-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

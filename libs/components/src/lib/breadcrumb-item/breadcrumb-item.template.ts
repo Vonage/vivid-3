@@ -9,8 +9,7 @@ import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
 import { Icon } from '../icon/icon';
 import type { BreadcrumbItem } from './breadcrumb-item';
 
-const getClasses = (_: BreadcrumbItem) =>
-	classNames('base');
+const getClasses = (_: BreadcrumbItem) => classNames('base');
 
 /**
  * The template for the BreadcrumbItem component.
@@ -21,19 +20,21 @@ const getClasses = (_: BreadcrumbItem) =>
 export const BreadcrumbItemTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
-) => ViewTemplate<BreadcrumbItem> =
-	(context: ElementDefinitionContext, definition: FoundationElementDefinition) => {
-		const iconTag = context.tagFor(Icon);
+) => ViewTemplate<BreadcrumbItem> = (
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
+) => {
+	const iconTag = context.tagFor(Icon);
 
-		return html`
-	<div role="listitem" class="${getClasses}">
-		${when(x => x.text && !x.href,
-		html<BreadcrumbItem>`${x => x.text}`)}
-
-		${when(x => x.text && x.href && x.href.length > 0,
-		html<BreadcrumbItem>`${textAnchorTemplate(context, definition)}`)}
-
-		${when(x => x.separator,
-		html<BreadcrumbItem>`<${iconTag} class="separator" name="chevron-right-solid"></${iconTag}>`)}
+	return html` <div role="listitem" class="${getClasses}">
+		${when((x) => x.text && !x.href, html<BreadcrumbItem>`${(x) => x.text}`)}
+		${when(
+			(x) => x.text && x.href && x.href.length > 0,
+			html<BreadcrumbItem>`${textAnchorTemplate(context, definition)}`
+		)}
+		${when(
+			(x) => x.separator,
+			html<BreadcrumbItem>`<${iconTag} class="separator" name="chevron-right-solid"></${iconTag}>`
+		)}
 	</div>`;
-	};
+};

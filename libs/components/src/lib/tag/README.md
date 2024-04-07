@@ -1,9 +1,7 @@
 # Tag
 
 ```js
-<script type='module'>
-  import '@vonage/vivid/tag';
-</script>
+<script type="module">import '@vonage/vivid/tag';</script>
 ```
 
 ## Members
@@ -17,10 +15,9 @@ Add a `label` attribute to add label to the tag.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label='tag'></vwc-tag>
+	<vwc-tag label="tag"></vwc-tag>
 </vwc-tag-group>
 ```
-
 
 ### Shape
 
@@ -31,8 +28,8 @@ Use the `shape` attribute to change the tag's edges.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label='rounded' shape='rounded'></vwc-tag>
-  <vwc-tag label='pill' shape='pill'></vwc-tag>
+	<vwc-tag label="rounded" shape="rounded"></vwc-tag>
+	<vwc-tag label="pill" shape="pill"></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -46,7 +43,7 @@ View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label='icon' icon='pin-line'></vwc-tag>
+	<vwc-tag label="icon" icon="pin-line"></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -59,8 +56,8 @@ Set the `appearance` attribute to change the tag's appearance.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label='subtle' appearance='subtle'></vwc-tag>
-  <vwc-tag label='duotone' appearance='duotone'></vwc-tag>
+	<vwc-tag label="subtle" appearance="subtle"></vwc-tag>
+	<vwc-tag label="duotone" appearance="duotone"></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -76,8 +73,8 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label='accent' appearance='subtle' connotation='accent'></vwc-tag>
-  <vwc-tag label='cta' appearance='subtle' connotation='cta'></vwc-tag>
+	<vwc-tag label="accent" appearance="subtle" connotation="accent"></vwc-tag>
+	<vwc-tag label="cta" appearance="subtle" connotation="cta"></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -85,8 +82,8 @@ It accepts a subset of predefined values.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label='accent' appearance='duotone' connotation='accent'></vwc-tag>
-  <vwc-tag label='cta' appearance='duotone' connotation='cta'></vwc-tag>
+	<vwc-tag label="accent" appearance="duotone" connotation="accent"></vwc-tag>
+	<vwc-tag label="cta" appearance="duotone" connotation="cta"></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -99,7 +96,7 @@ Add the `disabled` attribute to disable the tag.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label="disabled" disabled></vwc-tag>
+	<vwc-tag label="disabled" disabled></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -113,14 +110,14 @@ Toggle the `selected` attribute to select and deselect the tag.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label="selectable" selectable selected></vwc-tag>
+	<vwc-tag label="selectable" selectable selected></vwc-tag>
 </vwc-tag-group>
 ```
 
 ### Removable
 
 The `removable` attribute sets a remove button. On click it will remove the tag from the DOM.
-You can also remove the tag by pressing the `Delete` `Backspace` or  key.
+You can also remove the tag by pressing the `Delete` `Backspace` or key.
 
 Notice that it works only if the tag is `removable` and not `selectable`.
 
@@ -129,7 +126,7 @@ Notice that it works only if the tag is `removable` and not `selectable`.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label="removable" removable></vwc-tag>
+	<vwc-tag label="removable" removable></vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -142,9 +139,9 @@ If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-tag-group>
-  <vwc-tag label="with icon">
-  	<vwc-icon slot="icon" name="heart-solid" connotation="alert"></vwc-icon>
-  </vwc-tag>
+	<vwc-tag label="with icon">
+		<vwc-icon slot="icon" name="heart-solid" connotation="alert"></vwc-icon>
+	</vwc-tag>
 </vwc-tag-group>
 ```
 
@@ -163,8 +160,8 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name     | Returns | Description                                                                                                                                                                                                                |
-| -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `remove` | `void`  | Removes the tag from the DOM.  Fires the `removed` event and removes the tag from the DOM completely.  If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak. |
+| Name     | Returns | Description                                                                                                                                                                                                              |
+| -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `remove` | `void`  | Removes the tag from the DOM. Fires the `removed` event and removes the tag from the DOM completely. If you have a variable that refers to the tag element make sure to clear it otherwise it might cause a memory leak. |
 
 </div>

@@ -1,6 +1,7 @@
 # Date Picker Examples
 
 ## Date picker
+
 <code-tab>
 <template #example>
 <DatePickerExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/date-picker/DatePickerExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Label
+
 <code-tab>
 <template #example>
 <LabelExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/date-picker/LabelExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Helper text
+
 <code-tab>
 <template #example>
 <HelperTextExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/date-picker/HelperTextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Error text
+
 <code-tab>
 <template #example>
 <ErrorTextExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/date-picker/ErrorTextExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Disabled
+
 <code-tab>
 <template #example>
 <DisabledExample />
@@ -62,10 +71,12 @@
 ```vue
 <!--@include: ./components/date-picker/DisabledExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Readonly
+
 <code-tab>
 <template #example>
 <ReadonlyExample />
@@ -75,10 +86,12 @@
 ```vue
 <!--@include: ./components/date-picker/ReadonlyExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Value
+
 <code-tab>
 <template #example>
 <ValueExample />
@@ -88,6 +101,7 @@
 ```vue
 <!--@include: ./components/date-picker/ValueExample.vue -->
 ```
+
 </template>
 </code-tab>
 

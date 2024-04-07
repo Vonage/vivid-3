@@ -5,7 +5,6 @@ import styles from './divider.scss?inline';
 import { Divider } from './divider';
 import { DividerTemplate as template } from './divider.template';
 
-
 /**
  * The Divider element.
  *

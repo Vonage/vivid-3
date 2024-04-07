@@ -29,7 +29,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the time picker.
+Add the `helper-text` to add some helper text below the time picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -97,10 +97,7 @@ Set the `min` attribute to configure the earliest time to accept. The user will 
 - Default: `undefined`
 
 ```html preview locale-switcher 360px
-<vwc-time-picker
-	label="Start time"
-	min="10:00:00"
-></vwc-time-picker>
+<vwc-time-picker label="Start time" min="10:00:00"></vwc-time-picker>
 ```
 
 ### Max
@@ -117,10 +114,7 @@ Set the `max` attribute to configure the latest time to accept. The user will be
 		block-size: 360px; /* for demo purposes */
 	}
 </style>
-<vwc-time-picker
-	label="Start time"
-	max="10:00:00"
-></vwc-time-picker>
+<vwc-time-picker label="Start time" max="10:00:00"></vwc-time-picker>
 ```
 
 ### Clock
@@ -133,10 +127,7 @@ Use the `clock` attribute to override this behavior.
 - Default: locale dependent
 
 ```html preview locale-switcher 360px
-<vwc-time-picker
-	label="Start time"
-	clock="24h"
-></vwc-time-picker>
+<vwc-time-picker label="Start time" clock="24h"></vwc-time-picker>
 ```
 
 ### Minutes step
@@ -147,10 +138,7 @@ Use the `minutes-step` attribute to configure the step between minutes in the ti
 - Default: `1`
 
 ```html preview locale-switcher 360px
-<vwc-time-picker
-	label="Start time"
-	minutes-step="15"
-></vwc-time-picker>
+<vwc-time-picker label="Start time" minutes-step="15"></vwc-time-picker>
 ```
 
 ### Seconds step
@@ -163,10 +151,19 @@ If not set, the time picker will not display seconds.
 - Default: `undefined`
 
 ```html preview locale-switcher 360px
-<vwc-time-picker
-	label="Start time"
-	seconds-step="5"
-></vwc-time-picker>
+<vwc-time-picker label="Start time" seconds-step="5"></vwc-time-picker>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the time-picker's helper text.
+
+```html preview locale-switcher 360px
+<vwc-time-picker label="Start time">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-time-picker>
 ```
 
 ## Events
@@ -174,7 +171,7 @@ If not set, the time picker will not display seconds.
 <div class="table-wrapper">
 
 | Name   | Description                                   |
-|--------|-----------------------------------------------|
+| ------ | --------------------------------------------- |
 | input  | Emitted when the time is changed by the user. |
 | change | Emitted when the time is changed by the user. |
 | focus  | Emitted when the component receives focus.    |
@@ -196,7 +193,11 @@ If not set, the time picker will not display seconds.
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-time-picker name="time" label="Start time" required></vwc-time-picker>
+			<vwc-time-picker
+				name="time"
+				label="Start time"
+				required
+			></vwc-time-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

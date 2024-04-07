@@ -2,29 +2,29 @@ import { VIcon } from '@vonage/vivid-vue';
 import { argTypes } from './generated/VIcon';
 
 export default {
-  title: 'Wrappers/Icon',
-  component: VIcon,
-  argTypes,
-  args: {
-    heading: 'Icon',
-  },
+	title: 'Wrappers/Icon',
+	component: VIcon,
+	argTypes,
+	args: {
+		heading: 'Icon',
+	},
 };
 
 const IconTemplate = () => ({
-  components: { VIcon },
-  template: `<p>I <VIcon name="heart-line" connotation="alert" /> VIVID!</p>`,
+	components: { VIcon },
+	template: `<p>I <VIcon name="heart-line" connotation="alert" /> VIVID!</p>`,
 });
 export const Icon = IconTemplate.bind({});
 
 const NameTemplate = () => ({
-  components: { VIcon },
-  template: `<VIcon name="profile-line" />`,
+	components: { VIcon },
+	template: `<VIcon name="profile-line" />`,
 });
 export const Name = NameTemplate.bind({});
 
 const SizeTemplate = () => ({
-  components: { VIcon },
-  template: `<div>
+	components: { VIcon },
+	template: `<div>
     <VIcon name="close-line" size="-6" />16px
     <VIcon name="close-line" size="-5" />20px
     <VIcon name="close-line" size="-4" />24px
@@ -42,8 +42,8 @@ const SizeTemplate = () => ({
 export const Size = SizeTemplate.bind({});
 
 const ConnotationTemplate = () => ({
-  components: { VIcon },
-  template: `<div>
+	components: { VIcon },
+	template: `<div>
     <VIcon name="heart-solid" connotation="accent" />
     <VIcon name="heart-solid" connotation="announcement" />
     <VIcon name="heart-solid" connotation="cta" />
@@ -55,8 +55,8 @@ const ConnotationTemplate = () => ({
 export const Connotation = ConnotationTemplate.bind({});
 
 const DefaultTemplate = () => ({
-  components: { VIcon },
-  template: `
+	components: { VIcon },
+	template: `
   <VIcon size="3"> 
     <svg viewBox="0 0 24 24">
     <path fill="currentColor"

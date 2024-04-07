@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
@@ -11,9 +10,10 @@ import {
 	type FormElement,
 	FormElementHelperText,
 	formElements,
-	Localized
+	Localized,
 } from '../../shared/patterns';
 import type { Button } from '../button/button';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -23,11 +23,14 @@ import { FormAssociatedFilePicker } from './file-picker.form-associated';
  */
 export type FilePickerSize = Extract<Size, Size.Normal | Size.Expanded>;
 
-const isFormAssociatedTryingToSetFormValueToFakePath = (value: File | string | FormData | null) => typeof value === 'string';
+const isFormAssociatedTryingToSetFormValueToFakePath = (
+	value: File | string | FormData | null
+) => typeof value === 'string';
 
 /**
  * @public
  * @component file-picker
+ * @slot helper-text - Describes how to use the file-picker. Alternative to the `helper-text` attribute.
  * @event change - Emitted when a file is added or removed.
  */
 @errorText
@@ -69,7 +72,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 * HTML Attribute: max-file-size
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' })
-		maxFileSize: number = 256;
+	maxFileSize: number = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
 		if (!this.#dropzone) {
 			return;
@@ -245,10 +248,14 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#setValueToAFakePathLikeNativeInput() {
-		this.value = this.files.length > 0 ? `C:\\fakepath\\${this.files[0].name}` : '';
+		this.value =
+			this.files.length > 0 ? `C:\\fakepath\\${this.files[0].name}` : '';
 	}
 
-	override setFormValue = (value: File | string | FormData | null, state?: File | string | FormData | null) => {
+	override setFormValue = (
+		value: File | string | FormData | null,
+		state?: File | string | FormData | null
+	) => {
 		if (isFormAssociatedTryingToSetFormValueToFakePath(value)) {
 			return;
 		}
@@ -266,5 +273,10 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 }
 
-export interface FilePicker extends FormElementHelperText, Localized, ErrorText, FormElement, FormElementHelperText {}
-applyMixins(FilePicker, FormElementHelperText, Localized);
+export interface FilePicker
+	extends FormElementHelperText,
+		Localized,
+		ErrorText,
+		FormElement,
+		FormElementHelperText {}
+applyMixinsWithObservables(FilePicker, FormElementHelperText, Localized);

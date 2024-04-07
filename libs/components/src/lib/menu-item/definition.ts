@@ -8,14 +8,13 @@ import { MenuItemTemplate as template } from './menu-item.template';
 
 export { MenuItemRole } from './menu-item';
 
-
 /**
  * The menu-item element.
  */
 export const menuItemDefinition = MenuItem.compose<MenuItemOptions>({
 	baseName: 'menu-item',
 	template: template as any,
-	styles
+	styles,
 });
 
 /**

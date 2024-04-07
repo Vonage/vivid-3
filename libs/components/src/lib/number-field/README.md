@@ -2,13 +2,11 @@
 
 The number-field component allows users to enter a number in a text field. It follows the [native number field](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) specification.
 
-The component is not appropriate for values that only happen to consist of numbers but aren't strictly speaking a number, e.g. phone numbers or ZIP codes. 
+The component is not appropriate for values that only happen to consist of numbers but aren't strictly speaking a number, e.g. phone numbers or ZIP codes.
 Use the [`text-field`](/components/text-field/) component instead.
 
 ```js
-<script type="module">
-  import '@vonage/vivid/number-field';
-</script>
+<script type="module">import '@vonage/vivid/number-field';</script>
 ```
 
 ```html preview
@@ -18,12 +16,12 @@ Use the [`text-field`](/components/text-field/) component instead.
 ## Members
 
 ### Label
+
 Add a `label` attribute to add label to the number field.  
 The label is important to help users understand what is needed. In case you choose not to add one, mind our [accessibility notice](#accessibility).
 
 - Type: `string` | `undefined`
 - Default: `undefined`
-
 
 ```html preview
 <vwc-number-field label="My Label"></vwc-number-field>
@@ -75,13 +73,16 @@ Set the `max` attribute to set the maximum value for the number field.
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the number field.
+Add the `helper-text` to add some helper text below the number field. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
 
 ```html preview
-<vwc-number-field label="Helper text below" helper-text="Help text"></vwc-number-field>
+<vwc-number-field
+	label="Helper text below"
+	helper-text="Help text"
+></vwc-number-field>
 ```
 
 ### Success text
@@ -93,7 +94,10 @@ If provided, `success-text` will take precedence over errors.
 - Default: `undefined`
 
 ```html preview
-<vwc-number-field label="Valid value" success-text="Great success"></vwc-number-field>
+<vwc-number-field
+	label="Valid value"
+	success-text="Great success"
+></vwc-number-field>
 ```
 
 ### Shape
@@ -118,8 +122,16 @@ Set the `appearance` attribute to change the number filed's appearance.
 (`'ghost'` is typically used within a composition such as action group / toolbar).
 
 ```html preview blocks
-<vwc-number-field placeholder="appearance" label='fieldset' appearance='fieldset'></vwc-number-field>
-<vwc-number-field placeholder="appearance" label='ghost' appearance='ghost'></vwc-number-field>
+<vwc-number-field
+	placeholder="appearance"
+	label="fieldset"
+	appearance="fieldset"
+></vwc-number-field>
+<vwc-number-field
+	placeholder="appearance"
+	label="ghost"
+	appearance="ghost"
+></vwc-number-field>
 ```
 
 ### Disabled
@@ -130,7 +142,12 @@ Add the `disabled` attribute to disable the number field.
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field disabled value="disabled" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field
+	disabled
+	value="disabled"
+	label="fieldset"
+	appearance="fieldset"
+></vwc-number-field>
 ```
 
 ### Readonly
@@ -141,17 +158,38 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 - Default: `false`
 
 ```html preview blocks
-<vwc-number-field readonly value="8" label='fieldset' appearance='fieldset'></vwc-number-field>
+<vwc-number-field
+	readonly
+	value="8"
+	label="fieldset"
+	appearance="fieldset"
+></vwc-number-field>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the number field's helper text.
+
+Example showing a link in the helper text:
+
+```html preview
+<vwc-number-field label="Timeout">
+	<span slot="helper-text"
+		>The timeout in seconds. <a href="#">Guide to setting timeouts</a></span
+	>
+</vwc-number-field>
 ```
 
 ## Methods
 
 <div class="table-wrapper">
 
-| Name            | Returns  | Description                                   |
-|-----------------|----------|-----------------------------------------------|
-| `stepUp`        | `void`   | Increase value by step (1 if step is not set) |
-| `stepDown`      | `void`   | Decrease value by step (1 if step is not set) |
+| Name       | Returns | Description                                   |
+| ---------- | ------- | --------------------------------------------- |
+| `stepUp`   | `void`  | Increase value by step (1 if step is not set) |
+| `stepDown` | `void`  | Decrease value by step (1 if step is not set) |
 
 </div>
 
@@ -162,9 +200,9 @@ Add the `readonly` attribute to restrict user from changing the number field's v
 
 ```html
 <vwc-number-field
-  aria-label="choose a number"
-  increment-button-aria-label="Add"
-  decrement-button-aria-label="Subtract"
+	aria-label="choose a number"
+	increment-button-aria-label="Add"
+	decrement-button-aria-label="Subtract"
 ></vwc-number-field>
 ```
 

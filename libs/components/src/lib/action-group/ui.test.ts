@@ -7,22 +7,27 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['action-group', 'button', 'text-field', 'layout', 'divider'];
+const components = [
+	'action-group',
+	'button',
+	'text-field',
+	'layout',
+	'divider',
+];
 
 function runActionGroupTest() {
-	return async ({page}: { page: Page }) => {
+	return async ({ page }: { page: Page }) => {
 		const template = extractHTMLBlocksFromReadme(
 			path.join(new URL('.', import.meta.url).pathname, 'README.md')
-		)
-			.reduce(
-				(htmlString: string, block: string) =>
-					`${htmlString} <div style="margin: 5px;">${block}</div>`,
-				'<style> .center { height: 100px; display: flex; place-items: end; place-content: center; } </style>'
-			);
+		).reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			'<style> .center { height: 100px; display: flex; place-items: end; place-content: center; } </style>'
+		);
 
 		await page.setViewportSize({
 			width: 380,
-			height: 1000
+			height: 1000,
 		});
 
 		await loadComponents({
@@ -38,12 +43,10 @@ function runActionGroupTest() {
 
 		await page.waitForLoadState('networkidle');
 
-		expect(await testWrapper?.screenshot({animations: 'disabled'}))
-			.toMatchSnapshot(
-				'./snapshots/action-group.png',
-			);
+		expect(
+			await testWrapper?.screenshot({ animations: 'disabled' })
+		).toMatchSnapshot('./snapshots/action-group.png');
 	};
 }
 
 test('should show the component', runActionGroupTest());
-

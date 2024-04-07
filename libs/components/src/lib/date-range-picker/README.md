@@ -9,15 +9,23 @@ The date picker is localized to the current locale. See [Localization](/guides/l
 ```
 
 ```html preview locale-switcher 460px
-<vwc-date-range-picker label="Date range" start="2023-06-10" end="2023-06-15"></vwc-date-range-picker>
+<vwc-date-range-picker
+	label="Date range"
+	start="2023-06-10"
+	end="2023-06-15"
+></vwc-date-range-picker>
 <script>
-	document.querySelector('vwc-date-range-picker').addEventListener('input:start', (e) => {
-		console.log('start changed:', e.target.start);
-	});
+	document
+		.querySelector('vwc-date-range-picker')
+		.addEventListener('input:start', (e) => {
+			console.log('start changed:', e.target.start);
+		});
 
-	document.querySelector('vwc-date-range-picker').addEventListener('input:end', (e) => {
-		console.log('end changed:', e.target.end);
-	});
+	document
+		.querySelector('vwc-date-range-picker')
+		.addEventListener('input:end', (e) => {
+			console.log('end changed:', e.target.end);
+		});
 </script>
 ```
 
@@ -38,7 +46,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the date range picker.
+Add the `helper-text` to add some helper text below the date range picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -83,14 +91,17 @@ Add the `readonly` attribute to make the date range picker readonly.
 
 ### Start
 
-The `start` member will hold the start date of the date range. An empty string or `undefined` represent no date being selected. 
+The `start` member will hold the start date of the date range. An empty string or `undefined` represent no date being selected.
 
 - Type: `string` | `undefined`
 - Date format: `YYYY-MM-DD`
 - Default: `undefined`
 
 ```html preview locale-switcher 460px
-<vwc-date-range-picker label="Date range" start="2023-06-15"></vwc-date-range-picker>
+<vwc-date-range-picker
+	label="Date range"
+	start="2023-06-15"
+></vwc-date-range-picker>
 ```
 
 ### End
@@ -102,7 +113,10 @@ The `end` member will hold the end date of the date range. An empty string or `u
 - Default: `undefined`
 
 ```html preview locale-switcher 460px
-<vwc-date-range-picker label="Date range" end="2023-06-15"></vwc-date-range-picker>
+<vwc-date-range-picker
+	label="Date range"
+	end="2023-06-15"
+></vwc-date-range-picker>
 ```
 
 ### Min
@@ -114,7 +128,12 @@ Set the `min` attribute to configure the earliest date to accept. The user will 
 - Default: `undefined`
 
 ```html preview locale-switcher 460px
-<vwc-date-range-picker label="Date range" min="2023-06-10" start="2023-06-15" end="2023-06-20"></vwc-date-range-picker>
+<vwc-date-range-picker
+	label="Date range"
+	min="2023-06-10"
+	start="2023-06-15"
+	end="2023-06-20"
+></vwc-date-range-picker>
 ```
 
 ### Max
@@ -126,7 +145,23 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 - Default: `undefined`
 
 ```html preview locale-switcher 460px
-<vwc-date-range-picker label="Date range" max="2023-06-20" start="2023-06-10" end="2023-06-15">
+<vwc-date-range-picker
+	label="Date range"
+	max="2023-06-20"
+	start="2023-06-10"
+	end="2023-06-15"
+></vwc-date-range-picker>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the date range picker's helper text.
+
+```html preview locale-switcher 460px
+<vwc-date-range-picker label="Date range">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
 </vwc-date-range-picker>
 ```
 
@@ -135,7 +170,7 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 <div class="table-wrapper">
 
 | Name        | Description                                             |
-|-------------|---------------------------------------------------------|
+| ----------- | ------------------------------------------------------- |
 | input       | Emitted when the either the start or end value changes. |
 | change      | Emitted when the either the start or end value changes. |
 | input:start | Emitted when the start value changes.                   |
@@ -160,7 +195,11 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 <form>
 	<vwc-layout column-spacing="small" column-basis="block">
 		<div>
-			<vwc-date-range-picker name="date" label="Date range" required></vwc-date-range-picker>
+			<vwc-date-range-picker
+				name="date"
+				label="Date range"
+				required
+			></vwc-date-range-picker>
 		</div>
 		<div class="buttons">
 			<vwc-button label="Reset" type="reset"></vwc-button>

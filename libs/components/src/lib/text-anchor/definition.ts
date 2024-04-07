@@ -4,14 +4,19 @@ import { registerFactory } from '../../shared/design-system';
 import { TextAnchor } from './text-anchor';
 import { textAnchorTemplate as template } from './text-anchor.template';
 
+export type {
+	TextAnchorConnotation,
+	TextAnchorAppearance,
+} from './text-anchor';
 
 /**
  * The text-anchor element.
  */
-export const textAnchorDefinition = TextAnchor.compose<FoundationElementDefinition>({
-	baseName: 'text-anchor',
-	template: template as any,
-});
+export const textAnchorDefinition =
+	TextAnchor.compose<FoundationElementDefinition>({
+		baseName: 'text-anchor',
+		template: template as any,
+	});
 
 /**
  * @internal

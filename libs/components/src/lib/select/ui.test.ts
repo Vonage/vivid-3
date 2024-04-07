@@ -19,7 +19,6 @@ async function testGhostSelect({ page }: { page: Page }) {
 			<vwc-option value="1" text="Option 1"></vwc-option></vwc-select>
 	</div>`;
 
-
 	await loadComponents({
 		page,
 		components,
@@ -33,7 +32,6 @@ async function testGhostSelect({ page }: { page: Page }) {
 
 	await page.waitForLoadState('networkidle');
 
-
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/select-ghost.png',
 		{ maxDiffPixelRatio: 0.01 }
@@ -41,8 +39,8 @@ async function testGhostSelect({ page }: { page: Page }) {
 }
 
 test('should show the component', async ({ page }: { page: Page }) => {
-
-	const template = `
+	const template =
+		`
 			<style>
 				#wrapper {
 					width: 2300px;
@@ -50,9 +48,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					grid-auto-rows: 250px;
 					grid-template-columns: repeat(8, 1fr);
 				}
-			</style>` + extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md'))
-		.reduce((htmlString: string, block: string) => `${htmlString} <div style="margin: 5px;">${block}</div>`, '');
+			</style>` +
+		extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'README.md')
+		).reduce(
+			(htmlString: string, block: string) =>
+				`${htmlString} <div style="margin: 5px;">${block}</div>`,
+			''
+		);
 
 	await page.setViewportSize({ width: 2300, height: 720 });
 

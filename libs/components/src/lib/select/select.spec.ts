@@ -1,4 +1,9 @@
-import { axe, elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';
 
@@ -10,12 +15,11 @@ describe('vwc-select', () => {
 
 	let element: Select;
 
-	global.ResizeObserver = jest.fn()
-		.mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn()
-		}));
+	global.ResizeObserver = jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	}));
 
 	beforeAll(() => {
 		originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
@@ -48,7 +52,7 @@ describe('vwc-select', () => {
 	});
 
 	describe('option label', function () {
-		it('should show the options\'s label instead of the text', async function () {
+		it("should show the options's label instead of the text", async function () {
 			const label = 'label';
 			element.innerHTML = `
 				<vwc-option label="${label}" value="1" text="Option 1"></vwc-option>
@@ -57,7 +61,11 @@ describe('vwc-select', () => {
 				`;
 			await elementUpdated(element);
 
-			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual(label);
+			expect(
+				getControlElement(element)
+					.querySelector('.selected-value')
+					?.textContent?.trim()
+			).toEqual(label);
 		});
 	});
 
@@ -79,7 +87,9 @@ describe('vwc-select', () => {
 		it('should change selection when changed', async () => {
 			element.selectedIndex = 2;
 			await elementUpdated(element);
-			expect(element.selectedOptions).toEqual([element.querySelector('option:nth-child(3)')]);
+			expect(element.selectedOptions).toEqual([
+				element.querySelector('option:nth-child(3)'),
+			]);
 		});
 	});
 
@@ -89,22 +99,19 @@ describe('vwc-select', () => {
 			element.label = labelText;
 			await elementUpdated(element);
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement?.textContent?.trim())
-				.toEqual(labelText);
+			expect(labelElement?.textContent?.trim()).toEqual(labelText);
 		});
 
 		it('should show label element only if label is set', async function () {
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement)
-				.toBeNull();
+			expect(labelElement).toBeNull();
 		});
 
 		it('should not set aria-label on host', async function () {
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-label'))
-				.toEqual(null);
+			expect(element.getAttribute('aria-label')).toEqual(null);
 		});
 	});
 
@@ -113,101 +120,67 @@ describe('vwc-select', () => {
 			const ariaLabel = 'label';
 			element.ariaLabel = ariaLabel;
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-label'))
-				.toEqual(ariaLabel);
+			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
 		});
 	});
 
 	describe('icon', () => {
 		it('should have a icon slot', async () => {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
 		});
 
 		it('should have an icon when icon is set without slotted icon', async function () {
 			const icon = 'info';
 			element.icon = icon;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')).toEqual(icon);
+			expect(
+				element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')
+			).toEqual(icon);
 		});
 	});
 
-	describe('helper text', function () {
-		it('should render the helper text when attribute is set on select', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-text');
-			const helperText = 'Helper Text';
-			element.helperText = helperText;
-			await elementUpdated(element);
-			expect(helperTextElementWithoutText)
-				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-message')
-				?.textContent
-				?.trim())
-				.toEqual(helperText);
-		});
-	});
-
-	describe('success Text', () => {
+	describe('success text', () => {
 		it('should add success class to base when successText is set', async function () {
-			(element as any).successText = 'success';
+			element.successText = 'success';
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('success')).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains('success')
+			).toBeTruthy();
 		});
-
-		it('should show success text when successText is set', async function () {
-			(element as any).successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
-		});
-
-		it('should remove success text when undefined', async function () {
-			(element as any).successText = 'success';
-			await elementUpdated(element);
-			(element as any).successText = undefined;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.success-message')).toBeNull();
-		});
-
 	});
 
-	describe('error Text', () => {
+	describe('error text', () => {
 		it('should add error class to base when errorText is set', async function () {
-			(element as any).errorText = 'error';
+			element.errorText = 'error';
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('error')).toBeTruthy();
+			expect(
+				getControlElement(element).classList.contains('error')
+			).toBeTruthy();
 		});
-
-		it('should show error text when errorText is set', async function () {
-			(element as any).errorText = 'error';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()).toEqual('error');
-		});
-
-		it('should remove error text when undefined', async function () {
-			(element as any).errorText = 'error';
-			await elementUpdated(element);
-			(element as any).errorText = undefined;
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-		});
-
 	});
 
 	describe('disabled', function () {
 		it('should set disabled class for select when disabled is true', async () => {
-			const disableClassExistsWithDisabledFalse = Boolean(element.shadowRoot?.querySelector('.control.disabled'));
+			const disableClassExistsWithDisabledFalse = Boolean(
+				element.shadowRoot?.querySelector('.control.disabled')
+			);
 
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 
 			expect(disableClassExistsWithDisabledFalse).toBeFalsy();
-			expect(element.shadowRoot?.querySelector('.control.disabled')).toBeTruthy();
+			expect(
+				element.shadowRoot?.querySelector('.control.disabled')
+			).toBeTruthy();
 		});
 	});
 
 	describe('multiple', () => {
-
 		it('should set multiple attribute on the element', async () => {
-			const multipleAttributeExistsWithMultipleFalse = element.hasAttribute('multiple');
+			const multipleAttributeExistsWithMultipleFalse =
+				element.hasAttribute('multiple');
 
 			element.multiple = true;
 			await elementUpdated(element);
@@ -253,8 +226,9 @@ describe('vwc-select', () => {
 
 			const control = element.shadowRoot?.querySelector('.control');
 
-			expect(control?.classList.contains(`appearance-${appearance}`))
-				.toBeTruthy();
+			expect(
+				control?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
 		});
 	});
 
@@ -266,8 +240,7 @@ describe('vwc-select', () => {
 
 			const control = element.shadowRoot?.querySelector('.control');
 
-			expect(control?.classList.contains(`shape-${shape}`))
-				.toBeTruthy();
+			expect(control?.classList.contains(`shape-${shape}`)).toBeTruthy();
 		});
 	});
 
@@ -284,8 +257,7 @@ describe('vwc-select', () => {
 		it('should set error message to empty string when pristine', async function () {
 			setValidityToError();
 			await elementUpdated(element);
-			expect(element.errorValidationMessage)
-				.toEqual('');
+			expect(element.errorValidationMessage).toEqual('');
 		});
 
 		it('should validate after a blur', async function () {
@@ -328,13 +300,14 @@ describe('vwc-select', () => {
 
 		it('should leave popup open if relatedTarget is same as element', async () => {
 			element.open = true;
-			element.dispatchEvent(new FocusEvent('focusout', { relatedTarget: element }));
+			element.dispatchEvent(
+				new FocusEvent('focusout', { relatedTarget: element })
+			);
 			expect(element.open).toBeTruthy();
 		});
 	});
 
 	describe('keydown', function () {
-
 		it('should toggle selection if spacebar pressed in single selection mode', async () => {
 			element.open = true;
 
@@ -398,7 +371,7 @@ describe('vwc-select', () => {
 		it('should prevent focusin from firing before click event', async () => {
 			element.innerHTML = `
 				<option value="1" id="id1">1</option>
-				<option value="2" id="id2>2</option>
+				<option value="2" id="id2">2</option>
 				<option value="3">3</option>
 			`;
 			await elementUpdated(element);
@@ -416,7 +389,9 @@ describe('vwc-select', () => {
 
 	describe('slot', () => {
 		it('should have a meta slot', async function () {
-			expect(Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))).toEqual(true);
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))
+			).toEqual(true);
 		});
 
 		it('should add class .has-meta if the meta slot is occupied', async function () {
@@ -425,8 +400,9 @@ describe('vwc-select', () => {
 			element.appendChild(slottedElement);
 			await elementUpdated(element);
 
-			expect(getControlElement(element).classList.contains('has-meta')).toBeTruthy();
-
+			expect(
+				getControlElement(element).classList.contains('has-meta')
+			).toBeTruthy();
 		});
 	});
 
@@ -449,11 +425,15 @@ describe('vwc-select', () => {
 		it('should remove strategy attribute from popup', async function () {
 			element.fixedDropdown = true;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.popup')?.hasAttribute('strategy')).toBeFalsy();
+			expect(
+				element.shadowRoot?.querySelector('.popup')?.hasAttribute('strategy')
+			).toBeFalsy();
 		});
 
 		it('should add strategy="absolute" when fixedDropdown is false', function () {
-			expect(element.shadowRoot?.querySelector('.popup')?.getAttribute('strategy')).toEqual('absolute');
+			expect(
+				element.shadowRoot?.querySelector('.popup')?.getAttribute('strategy')
+			).toEqual('absolute');
 		});
 
 		it('should set --_select-fixed-width to the width of the select on open', async function () {
@@ -464,7 +444,9 @@ describe('vwc-select', () => {
 			await toggleOpenState(true);
 
 			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
-			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			const variableValue = window
+				.getComputedStyle(popup)
+				.getPropertyValue('--_select-fixed-width');
 			expect(variableValue).toEqual(`${width}px`);
 		});
 
@@ -475,10 +457,11 @@ describe('vwc-select', () => {
 			setBoundingClientRect(width);
 			await toggleOpenState(true);
 			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
-			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			const variableValue = window
+				.getComputedStyle(popup)
+				.getPropertyValue('--_select-fixed-width');
 			expect(variableValue).toEqual(`${expectedWidth}px`);
 		});
-
 
 		it('should update the width on each opening', async function () {
 			const width = 50;
@@ -492,7 +475,9 @@ describe('vwc-select', () => {
 			await toggleOpenState(true);
 
 			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
-			const variableValue = window.getComputedStyle(popup).getPropertyValue('--_select-fixed-width');
+			const variableValue = window
+				.getComputedStyle(popup)
+				.getPropertyValue('--_select-fixed-width');
 			expect(variableValue).toEqual(`${width}px`);
 		});
 	});
@@ -509,7 +494,9 @@ describe('vwc-select', () => {
 
 		it('should recieve array of options', async () => {
 			await elementUpdated(element);
-			expect(element.options[1]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.options[1]).toEqual(
+				element.querySelector('option:nth-child(2)')
+			);
 		});
 	});
 
@@ -525,7 +512,9 @@ describe('vwc-select', () => {
 
 		it('should recieve array of selectedOptions', async () => {
 			await elementUpdated(element);
-			expect(element.selectedOptions[0]).toEqual(element.querySelector('option:nth-child(2)'));
+			expect(element.selectedOptions[0]).toEqual(
+				element.querySelector('option:nth-child(2)')
+			);
 		});
 	});
 
@@ -567,11 +556,19 @@ describe('vwc-select', () => {
 			)) as Select;
 
 			await elementUpdated(element);
-			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('placeholder');
-		
+			expect(
+				getControlElement(element)
+					.querySelector('.selected-value')
+					?.textContent?.trim()
+			).toEqual('placeholder');
+
 			element.selectedIndex = 2;
 			await elementUpdated(element);
-			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('3');
+			expect(
+				getControlElement(element)
+					.querySelector('.selected-value')
+					?.textContent?.trim()
+			).toEqual('3');
 		});
 
 		it('should display the value of the selected option and not the placeholder', async () => {
@@ -584,7 +581,24 @@ describe('vwc-select', () => {
 			)) as Select;
 
 			await elementUpdated(element);
-			expect(getControlElement(element).querySelector('.selected-value')?.textContent?.trim()).toEqual('2');
+			expect(
+				getControlElement(element)
+					.querySelector('.selected-value')
+					?.textContent?.trim()
+			).toEqual('2');
+		});
+	});
+
+	describe('feedback messages', () => {
+		it('should ignore events when triggered on feedback messages', async () => {
+			element.helperText = 'helper text';
+			await elementUpdated(element);
+
+			element
+				.shadowRoot!.querySelector('.helper-message')!
+				.dispatchEvent(new Event('click', { bubbles: true, composed: true }));
+
+			expect(element.open).toBe(false);
 		});
 	});
 

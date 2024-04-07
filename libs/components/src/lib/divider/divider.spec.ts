@@ -23,7 +23,7 @@ describe('vwc-divider', () => {
 	});
 
 	describe('orientation', function () {
-		it('should set the orientation class', async function() {
+		it('should set the orientation class', async function () {
 			const base = element.shadowRoot?.querySelector('.base');
 			const orientation = 'vertical';
 			(element as any).orientation = orientation;
@@ -34,7 +34,7 @@ describe('vwc-divider', () => {
 	});
 
 	describe('role', function () {
-		it('should set the role attribute on base', async function() {
+		it('should set the role attribute on base', async function () {
 			element.toggleAttribute('roll', true);
 			await elementUpdated(element);
 

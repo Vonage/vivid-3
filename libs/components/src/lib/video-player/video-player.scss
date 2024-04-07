@@ -1,0 +1,237 @@
+@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+	border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@import '../../../../../node_modules/video.js/dist/video-js.css';
+
+:host {
+	display: block;
+}
+
+.vjs-theme-vivid {
+	$control-size: 40px;
+	$control-background-color: rgba(0 0 0 / 60%);
+	$control-background-color-hover: #000;
+
+	position: relative;
+	overflow: hidden;
+	border-radius: #{border-radius-variables.$border-radius-normal};
+	container-type: inline-size;
+	font: var(#{constants.$vvd-typography-base});
+
+	.vjs-big-play-button {
+		$big-play-btn-size: 60px;
+		$big-play-btn-offset: calc($big-play-btn-size / 2);
+
+		border-radius: #{border-radius-variables.$border-radius-full};
+		background-color: $control-background-color;
+		block-size: $big-play-btn-size;
+		inline-size: $big-play-btn-size;
+		line-height: calc($big-play-btn-size - 5px);
+		margin-block-start: -$big-play-btn-offset;
+		margin-inline-start: -$big-play-btn-offset;
+
+		&:focus-visible {
+			@include focus.focus;
+		}
+	}
+
+	&:hover {
+		.vjs-big-play-button {
+			background-color: $control-background-color-hover;
+		}
+	}
+
+	.vjs-poster,
+	.vjs-tech {
+		overflow: hidden;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+	}
+
+	.vjs-time-control {
+		display: block;
+		padding: 0;
+		inline-size: auto;
+		line-height: 2.9;
+		min-inline-size: auto;
+	}
+
+	.vjs-duration {
+		margin-inline-end: 16px;
+	}
+
+	.vjs-time-divider {
+		padding: 0 4px;
+	}
+
+	.vjs-remaining-time {
+		display: none;
+	}
+
+	.vjs-control-bar {
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		margin: 4px;
+		background-color: $control-background-color;
+		block-size: $control-size;
+		inline-size: calc(100% - 8px);
+	}
+
+	.vjs-button {
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		inline-size: $control-size;
+
+		&:focus-visible {
+			@include focus.focus;
+		}
+
+		> .vjs-svg-icon {
+			block-size: 21px;
+			inline-size: 21px;
+			margin-block-start: 5px;
+		}
+	}
+
+	.vjs-menu-button {
+		border-radius: #{border-radius-variables.$border-radius-normal};
+	}
+
+	.vjs-menu {
+		ul {
+			border-radius: #{border-radius-variables.$border-radius-normal};
+		}
+
+		li {
+			justify-content: start;
+			padding: 4px 8px;
+			text-align: left;
+
+			&:focus-visible {
+				@include focus.focus;
+			}
+		}
+
+		li:not(.vjs-selected, .vjs-menu-title):hover {
+			background: $control-background-color-hover;
+		}
+	}
+
+	.vjs-progress-control {
+		.vjs-progress-holder,
+		.vjs-load-progress,
+		.vjs-play-progress {
+			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		}
+	}
+
+	.vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+	}
+
+	.vjs-subs-caps-button,
+	.vjs-chapters-button,
+	.vjs-descriptions-button {
+		.vjs-menu {
+			left: -62px;
+			inline-size: 168px;
+		}
+	}
+
+	.vjs-skip-backward-5,
+	.vjs-skip-forward-5,
+	.vjs-skip-backward-10,
+	.vjs-skip-forward-10,
+	.vjs-skip-backward-30,
+	.vjs-skip-forward-30 {
+		.vjs-svg-icon {
+			margin-block-start: 2px;
+		}
+	}
+
+	.vjs-playback-rate .vjs-menu {
+		left: -8px;
+		inline-size: 56px;
+	}
+
+	.vjs-menu-button-popup .vjs-menu {
+		margin-block-end: 19px;
+
+		.vjs-menu-content {
+			background-color: $control-background-color;
+		}
+	}
+
+	.vjs-playback-rate .vjs-playback-rate-value {
+		z-index: 1;
+		line-height: 1.9;
+	}
+
+	.vjs-button:hover {
+		background: $control-background-color-hover;
+	}
+
+	.vjs-volume-panel {
+		.vjs-volume-control {
+			border-radius: #{border-radius-variables.$border-radius-normal};
+			background-color: $control-background-color;
+		}
+
+		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical,
+		&.vjs-slider-active
+			.vjs-mute-control
+			~ .vjs-volume-control.vjs-volume-vertical {
+			left: -40px;
+		}
+	}
+
+	.vjs-text-track-display {
+		inline-size: 100%;
+		margin-inline-start: -50%;
+		offset-block-end: 70px;
+	}
+
+	.vjs-modal-dialog-content {
+		text-align: center;
+	}
+
+	.vjs-audio-button
+		+ .vjs-menu
+		.vjs-main-desc-menu-item
+		.vjs-menu-item-text
+		.vjs-icon-placeholder {
+		display: none;
+	}
+
+	@container (max-inline-size: 660px) {
+		.vjs-skip-backward-5,
+		.vjs-skip-forward-5,
+		.vjs-skip-backward-10,
+		.vjs-skip-forward-10,
+		.vjs-skip-backward-30,
+		.vjs-skip-forward-30 {
+			display: none;
+		}
+	}
+
+	@container (max-inline-size: 540px) {
+		.vjs-picture-in-picture-control,
+		.vjs-audio-button {
+			display: none;
+		}
+	}
+
+	@container (max-inline-size: 480px) {
+		.vjs-playback-rate,
+		.vjs-chapters-button,
+		.vjs-subs-caps-button,
+		.vjs-descriptions-button {
+			display: none;
+		}
+	}
+
+	@container (max-inline-size: 345px) {
+		.vjs-time-control {
+			display: none;
+		}
+	}
+}

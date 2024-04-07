@@ -9,9 +9,9 @@
 ```vue
 <!--@include: ./components/switch/BasicExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Checked
 
@@ -24,9 +24,9 @@
 ```vue
 <!--@include: ./components/switch/CheckedExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Disabled
 
@@ -39,9 +39,9 @@
 ```vue
 <!--@include: ./components/switch/DisabledExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Readonly
 
@@ -54,6 +54,7 @@
 ```vue
 <!--@include: ./components/switch/ReadonlyExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -68,9 +69,9 @@
 ```vue
 <!--@include: ./components/switch/ReadonlyExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Name
 
@@ -83,6 +84,7 @@
 ```vue
 <!--@include: ./components/switch/NameExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -97,6 +99,7 @@
 ```vue
 <!--@include: ./components/switch/LabelExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -111,6 +114,7 @@
 ```vue
 <!--@include: ./components/switch/ConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
 

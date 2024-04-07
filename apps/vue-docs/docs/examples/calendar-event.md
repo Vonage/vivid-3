@@ -1,6 +1,5 @@
 # VCalendarEvent Examples
 
-
 ## Basic
 
 <code-tab>
@@ -12,6 +11,7 @@
 ```vue
 <!--@include: ./components/calendar-event/BasicExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -26,6 +26,7 @@
 ```vue
 <!--@include: ./components/calendar-event/HeadingExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -40,9 +41,9 @@
 ```vue
 <!--@include: ./components/calendar-event/DescriptionExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Appearance
 
@@ -55,6 +56,7 @@
 ```vue
 <!--@include: ./components/calendar-event/AppearanceExample.vue-->
 ```
+
 </template>
 </code-tab>
 
@@ -69,9 +71,9 @@
 ```vue
 <!--@include: ./components/calendar-event/ConnotationExample.vue-->
 ```
+
 </template>
 </code-tab>
-
 
 ## Subtle calendar event with connotation
 
@@ -84,6 +86,7 @@
 ```vue
 <!--@include: ./components/calendar-event/SubtitleCalendarEventExample.vue-->
 ```
+
 </template>
 </code-tab>
 

@@ -1,13 +1,23 @@
-import { axe, createFormHTML, elementUpdated, fixture, getBaseElement, listenToFormSubmission } from '@vivid-nx/shared';
+import {
+	axe,
+	createFormHTML,
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	listenToFormSubmission,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import {Connotation} from '../enums';
+import { Connotation } from '../enums';
 import { Radio } from './radio';
 import '.';
 import { radioDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-radio';
 
-async function setBoolAttributeOn(el: Radio, attr: string): Promise<DOMTokenList> {
+async function setBoolAttributeOn(
+	el: Radio,
+	attr: string
+): Promise<DOMTokenList> {
 	el.toggleAttribute(attr, true);
 	await elementUpdated(el);
 	return getBaseElement(el).classList;
@@ -46,7 +56,7 @@ describe('vwc-radio', () => {
 
 	describe('checked', () => {
 		let base: HTMLElement;
-		beforeEach(() => base = getBaseElement(element));
+		beforeEach(() => (base = getBaseElement(element)));
 
 		it('should set the element property and the base class when the attribute is set', async () => {
 			const classes = await setBoolAttributeOn(element, 'checked');
@@ -67,11 +77,13 @@ describe('vwc-radio', () => {
 			expect(element.checked).toBeTruthy();
 		};
 
-		it('should switch to checked when clicked',
-			async () => await sendEventAndVerifyChecked(new MouseEvent('click')));
+		it('should switch to checked when clicked', async () =>
+			await sendEventAndVerifyChecked(new MouseEvent('click')));
 
-		it('should switch to checked when space is pressed',
-			async () => await sendEventAndVerifyChecked(new KeyboardEvent('keypress', { key: ' ' })));
+		it('should switch to checked when space is pressed', async () =>
+			await sendEventAndVerifyChecked(
+				new KeyboardEvent('keypress', { key: ' ' })
+			));
 	});
 
 	describe('connotation', function () {
@@ -79,10 +91,11 @@ describe('vwc-radio', () => {
 			const connotation = Connotation.CTA;
 			(element as any).connotation = 'cta';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.base')
-				?.classList
-				.contains(`connotation-${connotation}`))
-				.toEqual(true);
+			expect(
+				element.shadowRoot
+					?.querySelector('.base')
+					?.classList.contains(`connotation-${connotation}`)
+			).toEqual(true);
 		});
 	});
 
@@ -99,23 +112,23 @@ describe('vwc-radio', () => {
 			const formId = 'testFormId';
 			const fieldName = 'testRadio';
 			const checked = 'on';
-			const {form: formElement} = createFormHTML<Radio>({
+			const { form: formElement } = createFormHTML<Radio>({
 				fieldName,
 				formId,
 				formWrapper,
 				checked,
-				componentTagName: COMPONENT_TAG
+				componentTagName: COMPONENT_TAG,
 			});
 			document.body.append(formWrapper);
 
 			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
-			(await submitPromise).forEach((formDataValue: any, formDataKey: string) => {
-				expect(formDataKey)
-					.toEqual(fieldName);
-				expect(formDataValue)
-					.toEqual(checked);
-			});
+			(await submitPromise).forEach(
+				(formDataValue: any, formDataKey: string) => {
+					expect(formDataKey).toEqual(fieldName);
+					expect(formDataValue).toEqual(checked);
+				}
+			);
 		});
 	});
 
@@ -162,7 +175,7 @@ describe('vwc-radio', () => {
 
 			it('should render the correct a11y attributes', async () => {
 				const baseElement = getBaseElement(element);
-				
+
 				expect(baseElement?.getAttribute('role')).toBe('radio');
 				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
 			});

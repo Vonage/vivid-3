@@ -1,7 +1,7 @@
 import {
 	type ElementViewTemplate,
 	html,
-	slotted
+	slotted,
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type {
@@ -13,7 +13,9 @@ import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import type { Menu } from './menu';
 
 const getClasses = ({
-	headerSlottedContent, actionItemsSlottedContent, items
+	headerSlottedContent,
+	actionItemsSlottedContent,
+	items,
 }: Menu) =>
 	classNames(
 		'base',
@@ -48,7 +50,7 @@ export const MenuTemplate: (
 	}
 
 	return html<Menu>`
-		<template role="presentation">
+		<template role="presentation" @change="${(x, c) => x._onChange(c.event)}">
 			${anchorSlotTemplate}
 			<${popupTag}
 				:placement=${(x) => x.placement}
@@ -65,13 +67,15 @@ export const MenuTemplate: (
 				<div
 					class="body"
 					role="menu"
-					aria-label="${x => x.ariaLabel}"
+					aria-label="${(x) => x.ariaLabel}"
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
 				>
 					<slot ${slotted('items')}></slot>
 				</div>
-				<footer class="action-items"><slot name="action-items"  ${slotted('actionItemsSlottedContent')}></slot></footer>
+				<footer class="action-items"><slot name="action-items"  ${slotted(
+					'actionItemsSlottedContent'
+				)}></slot></footer>
 			</div>
 		</${popupTag}>
 	</template>`;

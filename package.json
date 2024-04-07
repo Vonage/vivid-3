@@ -32,6 +32,7 @@
 		"regenerator-runtime": "^0.13.11",
 		"tslib": "^2.5.0",
 		"uuid": "^9.0.1",
+		"video.js": "^8.10.0",
 		"vite-plugin-static-copy": "^0.17.0",
 		"vitest-fetch-mock": "^0.2.2"
 	},
@@ -140,7 +141,7 @@
 		"tsx": "^3.12.6",
 		"typescript": "5.1.6",
 		"verdaccio": "^5.29.2",
-		"vite": "~4.5.2",
+		"vite": "~4.5.3",
 		"vite-plugin-dts": "~2.3.0",
 		"vite-tsconfig-paths": "~4.2.0",
 		"vitepress": "npm:is-odd@0.1.0",

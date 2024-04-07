@@ -1,6 +1,7 @@
 # VMenu Examples
 
 ## Menu
+
 <code-tab visible-overflow>
 <template #example>
 <MenuExample />
@@ -10,10 +11,12 @@
 ```vue
 <!--@include: ./components/menu/MenuExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Anchor
+
 <code-tab visible-overflow>
 <template #example>
 <AnchorExample />
@@ -23,10 +26,12 @@
 ```vue
 <!--@include: ./components/menu/AnchorExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Placement
+
 <code-tab visible-overflow>
 <template #example>
 <PlacementExample />
@@ -36,10 +41,12 @@
 ```vue
 <!--@include: ./components/menu/PlacementExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Max Inline Size
+
 <code-tab visible-overflow>
 <template #example>
 <MaxInlineSizeExample />
@@ -49,10 +56,12 @@
 ```vue
 <!--@include: ./components/menu/MaxInlineSizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 
 ## Min Inline Size
+
 <code-tab visible-overflow>
 <template #example>
 <MinInlineSizeExample />
@@ -62,6 +71,7 @@
 ```vue
 <!--@include: ./components/menu/MinInlineSizeExample.vue -->
 ```
+
 </template>
 </code-tab>
 

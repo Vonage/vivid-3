@@ -1,4 +1,3 @@
-
 <div class="welcome">
 	<div><img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration"></div>
 	<div class="welcome__hero">
@@ -404,7 +403,6 @@ For Vue.js users, we offer a first-class integration through a [native Vue wrapp
 
 ## Support Matrix
 
-
 This library is supported on 2 recent versions of major browsers (Chrome, Firefox, Safari, Edge).
 
 ## Contributing
@@ -436,6 +434,7 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](htt
 - [Sass](https://sass-lang.com) - for styles authoring extensibility and consistency
 - [Floating UI](https://floating-ui.com) - for positioning floating elements
 - [Dropzone](https://www.dropzone.dev/) - for handling dropped files
+- [Video.js](https://videojs.com/) - for playing videos
 
 ## Have questions?
 

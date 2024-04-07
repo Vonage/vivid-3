@@ -5,7 +5,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-	listenToFormSubmission
+	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import { TextArea } from './text-area';
 import '.';
@@ -17,17 +17,12 @@ function getTextareaElement(element: TextArea) {
 }
 
 describe('vwc-text-area', () => {
-
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
 	}
 
-	function setToFocused() {
-		element.dispatchEvent(new Event('focus'));
-	}
-
 	function setValidityToError(errorMessage = 'error') {
-		element.setValidity({badInput: true}, errorMessage);
+		element.setValidity({ badInput: true }, errorMessage);
 		element.validate();
 	}
 
@@ -41,23 +36,22 @@ describe('vwc-text-area', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-area', async () => {
-			expect(element.charCount).toBe( undefined);
-			expect(element.cols).toBe( 20);
-			expect(element.dirtyValue).toBe( false);
-			expect(element.disabled).toBe( false);
-			expect(element.errorValidationMessage).toBe( '');
-			expect(element.helperText).toBe( undefined);
-			expect(element.label).toBe( undefined);
-			expect(element.maxlength).toBe( undefined);
-			expect(element.minlength).toBe( undefined);
-			expect(element.name).toBe( undefined);
-			expect(element.placeholder).toBe( undefined);
-			expect(element.readOnly).toBe( undefined);
-			expect(element.required).toBe( false);
-			expect(element.rows).toBe( undefined);
-			expect(element.value).toBe( '');
-			expect(element)
-				.toBeInstanceOf(TextArea);
+			expect(element.charCount).toBe(undefined);
+			expect(element.cols).toBe(20);
+			expect(element.dirtyValue).toBe(false);
+			expect(element.disabled).toBe(false);
+			expect(element.errorValidationMessage).toBe('');
+			expect(element.helperText).toBe(undefined);
+			expect(element.label).toBe(undefined);
+			expect(element.maxlength).toBe(undefined);
+			expect(element.minlength).toBe(undefined);
+			expect(element.name).toBe(undefined);
+			expect(element.placeholder).toBe(undefined);
+			expect(element.readOnly).toBe(undefined);
+			expect(element.required).toBe(false);
+			expect(element.rows).toBe(undefined);
+			expect(element.value).toBe('');
+			expect(element).toBeInstanceOf(TextArea);
 		});
 	});
 
@@ -67,16 +61,13 @@ describe('vwc-text-area', () => {
 			element.label = labelText;
 			await elementUpdated(element);
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement)
-				.toBeTruthy();
-			expect(labelElement?.textContent?.trim())
-				.toEqual(labelText);
+			expect(labelElement).toBeTruthy();
+			expect(labelElement?.textContent?.trim()).toEqual(labelText);
 		});
 
 		it('should show label only if label is set', async function () {
 			const labelElement = element.shadowRoot?.querySelector('label');
-			expect(labelElement)
-				.toBeNull();
+			expect(labelElement).toBeNull();
 		});
 	});
 
@@ -85,16 +76,14 @@ describe('vwc-text-area', () => {
 			element.charCount = true;
 			element.maxlength = 20;
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count'))
-				.toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
 			element.charCount = true;
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count'))
-				.toBeNull();
+			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
@@ -102,10 +91,9 @@ describe('vwc-text-area', () => {
 			element.maxlength = 20;
 			const expectedString = '0 / 20';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')
-				?.textContent
-				?.trim())
-				.toEqual(expectedString);
+			expect(
+				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+			).toEqual(expectedString);
 		});
 
 		it('should render count according to value and max', async function () {
@@ -114,27 +102,22 @@ describe('vwc-text-area', () => {
 			element.value = '12345';
 			const expectedString = '5 / 20';
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.char-count')
-				?.textContent
-				?.trim())
-				.toEqual(expectedString);
+			expect(
+				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+			).toEqual(expectedString);
 		});
 	});
 
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
-			const readonlyClassWhenFalse = getBaseElement(element)
-				.classList
-				.contains('readonly');
+			const readonlyClassWhenFalse =
+				getBaseElement(element).classList.contains('readonly');
 			element.readOnly = true;
 			await elementUpdated(element);
-			const readonlyClassWhenTrue = getBaseElement(element)
-				.classList
-				.contains('readonly');
-			expect(readonlyClassWhenFalse)
-				.toEqual(false);
-			expect(readonlyClassWhenTrue)
-				.toEqual(true);
+			const readonlyClassWhenTrue =
+				getBaseElement(element).classList.contains('readonly');
+			expect(readonlyClassWhenFalse).toEqual(false);
+			expect(readonlyClassWhenTrue).toEqual(true);
 		});
 	});
 
@@ -142,38 +125,36 @@ describe('vwc-text-area', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(getControlElement(element)
-				?.hasAttribute('autofocus'))
-				.toEqual(true);
+			expect(getControlElement(element)?.hasAttribute('autofocus')).toEqual(
+				true
+			);
 		});
 	});
 
 	describe('placeholder', function () {
 		const placeholderText = 'Text';
 		it('should set placeholder attribute on the input', async function () {
-
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)
-				?.getAttribute('placeholder'))
-				.toEqual(placeholderText);
+			expect(getTextareaElement(element)?.getAttribute('placeholder')).toEqual(
+				placeholderText
+			);
 		});
 
 		it('should set class placeholder to base', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getBaseElement(element)
-				.classList
-				.contains('placeholder'))
-				.toEqual(true);
+			expect(getBaseElement(element).classList.contains('placeholder')).toEqual(
+				true
+			);
 		});
 
 		it('should have no placeholder if placeholder is not set as string', async function () {
 			element.placeholder = '';
 			await elementUpdated(element);
-			expect(getTextareaElement(element)
-				?.getAttribute('placeholder'))
-				.toBeNull();
+			expect(
+				getTextareaElement(element)?.getAttribute('placeholder')
+			).toBeNull();
 		});
 	});
 
@@ -183,21 +164,18 @@ describe('vwc-text-area', () => {
 		const proxyPropertyName = 'minLength';
 
 		it('should set minlength attribute on the input', async function () {
-
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)
-				?.getAttribute(propertyName))
-				.toEqual(value);
+			expect(getTextareaElement(element)?.getAttribute(propertyName)).toEqual(
+				value
+			);
 		});
 
 		it('should set minLength on proxy input', function () {
 			(element as any)[propertyName] = value;
-			expect((element.proxy as any)[proxyPropertyName])
-				.toEqual(Number(value));
+			expect((element.proxy as any)[proxyPropertyName]).toEqual(Number(value));
 		});
 	});
-
 
 	describe('maxlength', function () {
 		const value = '8';
@@ -205,18 +183,16 @@ describe('vwc-text-area', () => {
 		const proxyPropertyName = 'maxLength';
 
 		it('should set maxlength attribute on the input', async function () {
-
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)
-				?.getAttribute(propertyName))
-				.toEqual(value);
+			expect(getTextareaElement(element)?.getAttribute(propertyName)).toEqual(
+				value
+			);
 		});
 
 		it('should set maxLength on proxy input', function () {
 			(element as any)[propertyName] = value;
-			expect((element.proxy as any)[proxyPropertyName])
-				.toEqual(Number(value));
+			expect((element.proxy as any)[proxyPropertyName]).toEqual(Number(value));
 		});
 	});
 
@@ -239,100 +215,98 @@ describe('vwc-text-area', () => {
 		});
 
 		it('should attach to closest form', async function () {
-			const {form: formElement} = createFormHTML<TextArea>({
+			const { form: formElement } = createFormHTML<TextArea>({
 				componentTagName: COMPONENT_TAG_NAME,
 				fieldName,
 				fieldValue,
 				formId,
-				formWrapper
+				formWrapper,
 			});
 
 			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
 
 			(await submitPromise).forEach((formDataValue, formDataKey) => {
-				expect(formDataKey)
-					.toEqual(fieldName);
-				expect(formDataValue)
-					.toEqual(fieldValue);
+				expect(formDataKey).toEqual(fieldName);
+				expect(formDataValue).toEqual(fieldValue);
 			});
 		});
 
 		it('should attach to form when given form id', async function () {
-			const {otherForm} = createFormHTML<TextArea>(
-				{
-					fieldName, fieldValue, formId, otherFormId: 'otherFormId', componentTagName: COMPONENT_TAG_NAME, formWrapper
-				});
+			const { otherForm } = createFormHTML<TextArea>({
+				fieldName,
+				fieldValue,
+				formId,
+				otherFormId: 'otherFormId',
+				componentTagName: COMPONENT_TAG_NAME,
+				formWrapper,
+			});
 
 			const submitPromise = listenToFormSubmission(otherForm);
 			otherForm.requestSubmit();
 
 			(await submitPromise).forEach((formDataValue, formDataKey) => {
-				expect(formDataKey)
-					.toEqual(fieldName);
-				expect(formDataValue)
-					.toEqual(fieldValue);
+				expect(formDataKey).toEqual(fieldName);
+				expect(formDataValue).toEqual(fieldValue);
 			});
 		});
 
 		it('should reset the value of the custom element to default on form reset', async function () {
-			const {
-				form: formElement,
-				element
-			} = createFormHTML<TextArea>({
+			const { form: formElement, element } = createFormHTML<TextArea>({
 				fieldName,
 				fieldValue,
 				formId,
 				componentTagName: COMPONENT_TAG_NAME,
-				formWrapper
+				formWrapper,
 			});
 
 			element.value = '5';
 			formElement.reset();
 			await elementUpdated(element);
 
-			expect(element.value)
-				.toEqual(fieldValue);
+			expect(element.value).toEqual(fieldValue);
 		});
 	});
 
 	describe('events', function () {
 		it('should emit an input event', async function () {
-			const inputPromise = new Promise(res => element.addEventListener('input', () => res(true)));
+			const inputPromise = new Promise((res) =>
+				element.addEventListener('input', () => res(true))
+			);
 			const innerInput = getTextareaElement(element);
-			innerInput.dispatchEvent(new InputEvent('input', {
-				bubbles: true,
-				composed: true
-			}));
-			expect(await inputPromise)
-				.toEqual(true);
+			innerInput.dispatchEvent(
+				new InputEvent('input', {
+					bubbles: true,
+					composed: true,
+				})
+			);
+			expect(await inputPromise).toEqual(true);
 		});
 
 		it('should emit a change event', async function () {
-			const inputPromise = new Promise(res => element.addEventListener('change', () => res(true)));
+			const inputPromise = new Promise((res) =>
+				element.addEventListener('change', () => res(true))
+			);
 			const innerInput = getTextareaElement(element);
-			innerInput.dispatchEvent(new InputEvent('change', {
-				bubbles: true,
-				composed: true
-			}));
-			expect(await inputPromise)
-				.toEqual(true);
+			innerInput.dispatchEvent(
+				new InputEvent('change', {
+					bubbles: true,
+					composed: true,
+				})
+			);
+			expect(await inputPromise).toEqual(true);
 		});
 
 		describe('disabled', function () {
 			it('should set disabled class when attribute is set', async function () {
-				const disabledClassWhenEnabled = getBaseElement(element)
-					.classList
-					.contains('disabled');
+				const disabledClassWhenEnabled =
+					getBaseElement(element).classList.contains('disabled');
 				element.disabled = true;
 				await elementUpdated(element);
-				const disabledClassWhenDisabled = getBaseElement(element)
-					.classList
-					.contains('disabled');
-				expect(disabledClassWhenEnabled)
-					.toEqual(false);
-				expect(disabledClassWhenDisabled)
-					.toEqual(true);
+				const disabledClassWhenDisabled =
+					getBaseElement(element).classList.contains('disabled');
+				expect(disabledClassWhenEnabled).toEqual(false);
+				expect(disabledClassWhenDisabled).toEqual(true);
 			});
 		});
 	});
@@ -346,129 +320,15 @@ describe('vwc-text-area', () => {
 		});
 	});
 
-	describe('helper text', function () {
-		it('should render the helper text when attribute is set', async function () {
-			const helperTextElementWithoutText = element.shadowRoot?.querySelector('.helper-message');
-			const helperText = 'Helper Text';
-			element.helperText = helperText;
-			await elementUpdated(element);
-			expect(helperTextElementWithoutText)
-				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.helper-message')
-				?.textContent
-				?.trim())
-				.toEqual(helperText);
-		});
-	});
-
 	describe('error message', function () {
-
 		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
 			setToBlurred();
 			setValidityToError('blah');
 			await elementUpdated(element);
 
-			expect(getBaseElement(element)
-				.classList
-				.contains('error'))
-				.toEqual(true);
+			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
 		});
-
-		it('should set required message if submitted', async function () {
-
-			element.required = true;
-			await elementUpdated(element);
-			element.dispatchEvent(new Event('invalid'));
-			await elementUpdated(element);
-			const errorElement = element.shadowRoot?.querySelector('.error-message');
-
-			expect(getBaseElement(element)
-				.classList
-				.contains('error'))
-				.toEqual(true);
-
-			expect(errorElement !== null).toBeTruthy();
-		});
-
-		it('should render the error message when not valid', async function () {
-			const errorElementWithoutText = element.shadowRoot?.querySelector('.error-message');
-			const errorMessage = 'Error Text';
-
-			element.dirtyValue = true;
-			setToBlurred();
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-
-			expect(errorElementWithoutText)
-				.toBeNull();
-			expect(element.shadowRoot?.querySelector('.error-message')
-				?.textContent
-				?.trim())
-				.toEqual(errorMessage);
-		});
-
-		it('should render the error message only after a blur', async function() {
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-		});
-
-		it('should replace helper text', async function () {
-			element.helperText = 'helper text';
-			element.dirtyValue = true;
-			setToBlurred();
-			setValidityToError();
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.helper-text'))
-				.toBeNull();
-		});
-
-		it('should set error message to empty string when pristine', async function () {
-			setValidityToError();
-			await elementUpdated(element);
-			expect(element.errorValidationMessage)
-				.toEqual('');
-		});
-
-		it('should validate after a blur', async function () {
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			setToBlurred();
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')?.
-				textContent?.trim()).toEqual(errorMessage);
-		});
-
-		it('should update error message when blurred', async function() {
-			setToBlurred();
-			const errorMessage = 'Error Text';
-			const errorMessageTwo = 'Error Text 2';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-
-			setValidityToError(errorMessageTwo);
-			await elementUpdated(element);
-
-			expect(element.shadowRoot?.querySelector('.error-message')?.
-				textContent?.trim()).toEqual(errorMessageTwo);
-		});
-
-		it('should change the error message only when already not valid', async function() {
-			setToBlurred();
-			setToFocused();
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-		});
-
 	});
 
 	describe('successText', function () {
@@ -476,80 +336,9 @@ describe('vwc-text-area', () => {
 			element.successText = 'success';
 			await elementUpdated(element);
 
-			expect(getBaseElement(element)
-				.classList
-				.contains('success'))
-				.toEqual(true);
-		});
-
-		it('should not show helper text when success is shown', async function () {
-			element.helperText = 'help';
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.helper-text'))
-				.toBeNull();
-		});
-
-		it('should not show error message when success is shown', async function () {
-			element.dirtyValue = true;
-			setToBlurred();
-			setValidityToError('blah');
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message'))
-				.toBeNull();
-		});
-
-		it('should show success message if set', async function() {
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.success-message')?.textContent?.trim()).toEqual('success');
-		});
-	});
-
-	describe('forced error', function () {
-		const forcedErrorMessage = 'BAD!';
-
-		it('should force the input in custom error mode', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
-		});
-
-		it('should add the error class', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			expect(getBaseElement(element)
-				.classList
-				.contains('error'))
-				.toEqual(true);
-		});
-
-		it('should display the given error message', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			const errorElement = element.shadowRoot?.querySelector('.error-message');
-			expect(errorElement !== null).toBeTruthy();
-		});
-
-		it('should replace the current error state when set', async function () {
-			element.required = true;
-			setToBlurred();
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-		});
-
-		it('should restore the current error state when removed', async function () {
-			element.required = true;
-			setToBlurred();
-			await elementUpdated(element);
-			const initialErrorMessage = element.validationMessage;
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			element.errorText = '';
-			expect(element.validationMessage).toBe(initialErrorMessage);
+			expect(getBaseElement(element).classList.contains('success')).toEqual(
+				true
+			);
 		});
 	});
 
@@ -577,19 +366,15 @@ describe('vwc-text-area', () => {
 	});
 
 	describe('value', function () {
-		it('should set \'has-value\' class when there is a value', async function () {
-			const activeClassWhenEnabled = getBaseElement(element)
-				.classList
-				.contains('has-value');
+		it("should set 'has-value' class when there is a value", async function () {
+			const activeClassWhenEnabled =
+				getBaseElement(element).classList.contains('has-value');
 			element.value = '5';
 			await elementUpdated(element);
-			const activeClassWhenDisabled = getBaseElement(element)
-				.classList
-				.contains('has-value');
-			expect(activeClassWhenEnabled)
-				.toEqual(false);
-			expect(activeClassWhenDisabled)
-				.toEqual(true);
+			const activeClassWhenDisabled =
+				getBaseElement(element).classList.contains('has-value');
+			expect(activeClassWhenEnabled).toEqual(false);
+			expect(activeClassWhenDisabled).toEqual(true);
 		});
 	});
 
@@ -608,4 +393,3 @@ describe('vwc-text-area', () => {
 		});
 	});
 });
-
