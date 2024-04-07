@@ -74,7 +74,9 @@ describe('vwc-nav-item', () => {
 			await elementUpdated(element);
 
 			expect(
-				element?.shadowRoot?.querySelector('.control')?.classList.contains(`appearance-${appearance}`)
+				element?.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains(`appearance-${appearance}`)
 			).toBeTruthy();
 		});
 	});

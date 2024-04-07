@@ -20,18 +20,17 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 
-
 .control {
 	@include connotation.connotation(nav-disclosure);
 	@include appearance.appearance(
-			appearance.state-selectors(
-					map.merge(
-							appearance.$state-aspect-selectors,
-							(
-								selected: '[aria-current]',
-							)
-					)
+		appearance.state-selectors(
+			map.merge(
+				appearance.$state-aspect-selectors,
+				(
+					selected: '[aria-current]',
+				)
 			)
+		)
 	);
 
 	$min-block-size: #{size.$vvd-size-normal};

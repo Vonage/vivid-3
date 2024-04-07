@@ -3,7 +3,6 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { Appearance } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 
-
 /**
  * Types of button appearance.
  *
@@ -12,8 +11,7 @@ import { AffixIcon } from '../../shared/patterns/affix';
 export type NavDisclosureAppearance = Extract<
 	Appearance,
 	Appearance.Ghost | Appearance.GhostLight
-	>;
-
+>;
 
 /**
  * @public
