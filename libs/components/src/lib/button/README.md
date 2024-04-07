@@ -245,6 +245,8 @@ In addition, all of the native attributes of [`<a>`](https://developer.mozilla.o
 Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users. Use this feature with caution.
 </vwc-note>
 
+{% clientSideNavigationHint %}
+
 - Type: `string`
 - Default: `undefined`
 

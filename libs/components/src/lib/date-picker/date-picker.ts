@@ -20,6 +20,7 @@ import {
  *
  * @public
  * @component date-picker
+ * @slot helper-text - Describes how to use the date-picker. Alternative to the `helper-text` attribute.
  * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
