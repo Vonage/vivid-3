@@ -43,6 +43,7 @@ describe('vwc-audio-player', () => {
 			expect(element.notime).toEqual(false);
 			expect(element.disabled).toEqual(false);
 			expect(element.paused).toEqual(true);
+			expect(element.skipBy).toBeUndefined();
 		});
 	});
 
@@ -298,13 +299,55 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			const skipButton = getBaseElement(element).querySelector(
-				'.skip-1'
+				'.backward'
 			) as HTMLButtonElement;
 			skipButton.click();
 
 			await elementUpdated(element);
 			expect(audio.currentTime).toEqual(15);
 		});
+
+		// it('should change the backward icon according to selected skipBy', async function () {
+		// 	element.skipBy = MediaSkipBy.Five;
+		// 	await elementUpdated(element);
+		//
+		// 	const pauseButton = getBaseElement(element).querySelector(
+		// 		'.backward'
+		// 	) as Button;
+		// 	expect(pauseButton.icon).toEqual('5-sec-backward-solid');
+		//
+		// 	element.skipBy = MediaSkipBy.Ten;
+		// 	await elementUpdated(element);
+		//
+		// 	expect(pauseButton.icon).toEqual('10-sec-backward-solid');
+		//
+		// 	element.skipBy = MediaSkipBy.Thirty;
+		// 	await elementUpdated(element);
+		//
+		// 	expect(pauseButton.icon).toEqual('30-sec-backward-solid');
+		//
+		// });
+
+		// it('should change the forward icon according to selected skipBy', async function () {
+		// 	element.skipBy = MediaSkipBy.Five;
+		// 	await elementUpdated(element);
+		//
+		// 	const pauseButton = getBaseElement(element).querySelector(
+		// 		'.forward'
+		// 	) as Button;
+		// 	expect(pauseButton.icon).toEqual('5-sec-forward-solid');
+		//
+		// 	element.skipBy = MediaSkipBy.Ten;
+		// 	await elementUpdated(element);
+		//
+		// 	expect(pauseButton.icon).toEqual('10-sec-forward-solid');
+		//
+		// 	element.skipBy = MediaSkipBy.Thirty;
+		// 	await elementUpdated(element);
+		//
+		// 	expect(pauseButton.icon).toEqual('30-sec-forward-solid');
+		//
+		// });
 	});
 
 	describe('a11y', () => {
