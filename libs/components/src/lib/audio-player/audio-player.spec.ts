@@ -175,6 +175,13 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
+	describe('slider element', () => {
+
+	});
+
+	describe('timestamp element', () => {
+		
+	});
 
 	describe('timeupdate event', function () {
 		it('should update current time on timeupdate event', async function () {
