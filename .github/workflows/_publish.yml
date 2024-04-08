@@ -1,0 +1,56 @@
+name: 🚀 Publish
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        required: true
+        type: string
+      tag:
+        required: false
+        default: latest
+        type: string
+    secrets:
+      NPM_VVD_VNG_AUTOMATION_TOKEN:
+        required: true
+      VNG_VVD_PAT:
+        required: true
+
+jobs:
+  npm-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          name: release-artifacts
+          path: dist/
+
+      - name: Publish to npm registry
+        run: npm publish --tag ${{ inputs.tag }} ${{ inputs.path }} --//registry.npmjs.org/:_authToken=$AUTH_TOKEN
+        env:
+          AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
+
+  github-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          name: release-artifacts
+          path: dist/
+
+      - name: Publish to GitHub registry
+        run: npm publish --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN
+        env:
+          AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
