@@ -39,7 +39,7 @@ describe('vwc-audio-player', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG} timestamp src="https://download.samplelib.com/mp3/sample-6s.mp3"></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG} timestamp src="./sample-6s.mp3"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 	});
 
@@ -47,7 +47,7 @@ describe('vwc-audio-player', () => {
 		it('should be initialized as a vwc-audio-player', async () => {
 			expect(audioPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AudioPlayer);
-			expect(element.src).toEqual('https://download.samplelib.com/mp3/sample-6s.mp3');
+			expect(element.src).toEqual('./sample-6s.mp3');
 			expect(element.connotation).toBeUndefined();
 			expect(element.notime).toEqual(false);
 			expect(element.disabled).toEqual(false);
@@ -79,6 +79,14 @@ describe('vwc-audio-player', () => {
 			expect(currentTimeClassExists).toBeFalsy();
 			expect(totalTimeClassExists).toBeFalsy();
 		});
+
+		it('should update the duration when notime is set to true', async function () {
+			const newElement = (await fixture(
+				`<${COMPONENT_TAG} notime src="./sample-6s.mp3"></${COMPONENT_TAG}>`)) as AudioPlayer;
+			setAudioDuration(60);
+			await elementUpdated(newElement);
+			expect(newElement.duration).toBe(60);
+		});
 	});
 
 	describe('src', function () {
@@ -87,8 +95,11 @@ describe('vwc-audio-player', () => {
 			element.src = src;
 			await elementUpdated(element);
 
-			const audio = audioElement;
-			expect(audio.src).toEqual(src);
+			expect(audioElement.src).toEqual(src);
+		});
+
+		it('should set the source from the element attribute', async function () {
+			expect(audioElement.src).toEqual('http://localhost/sample-6s.mp3');
 		});
 	});
 
@@ -111,10 +122,29 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('disabled', () => {
-		it('should set disabled class on the base element', async function () {
+		it('should set disabled class on the base element when disabled is true', async function () {
 			element.disabled = true;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('disabled')).toBeTruthy();
+		});
+
+		it('should set disabled class on the base element when duration is not set', async function () {
+			element.disabled = false;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('disabled')).toBeTruthy();
+		});
+
+		it('should remove disabled class on the base element when disabled is false and duration is set', async function () {
+			setAudioDuration(60);
+			element.disabled = false;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('disabled')).toBeFalsy();
+		});
+
+		it('should remove disabled class on the base element when disabled is false and duration is zero', async function () {
+			setAudioDuration(0);
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('disabled')).toBeFalsy();
 		});
 	});
 
@@ -146,17 +176,20 @@ describe('vwc-audio-player', () => {
 			expect(element.paused).toEqual(true);
 		});
 
-		it('should pause when rewind is called', async function () {
-			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => 60);
-			audioElement.currentTime = 200;
-
+		it('should play the audio when paused is set to false', async function () {
+			audioElement.play = jest.fn();
 			element.paused = false;
 			await elementUpdated(element);
+			expect(audioElement.play).toHaveBeenCalled();
+		});
 
-			element._rewind();
+		it('should pause the audio when paused is set to true', async function () {
+			element.paused = false;
 			await elementUpdated(element);
-
-			expect(element.paused).toEqual(true);
+			audioElement.pause = jest.fn();
+			element.paused = true;
+			await elementUpdated(element);
+			expect(audioElement.pause).toHaveBeenCalled();
 		});
 	});
 
@@ -176,6 +209,7 @@ describe('vwc-audio-player', () => {
 		jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => {
 			return duration;
 		});
+		audioElement.dispatchEvent(new Event('loadedmetadata'));
 	}
 
 	function setAudioTime(time: number) {
@@ -192,10 +226,19 @@ describe('vwc-audio-player', () => {
 	}
 
 	describe('slider element', () => {
+		function setSliderValueWithMouse(value: number) {
+			slider.dispatchEvent(new Event('mousedown'));
+			slider.value = value.toString();
+			document.dispatchEvent(new Event('mouseup'));
+		}
+
+		let slider: Slider;
+
+		beforeEach(() => {
+			slider = getBaseElement(element).querySelector('.slider') as Slider;
+		});
 
 		it('should set the slider according to the current time and duration', async () => {
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
-
 			setAudioDuration(400);
 			setAudioTime(200);
 			await elementUpdated(element);
@@ -205,8 +248,6 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should update the slider when current time changes', async () => {
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
-
 			await setAudioDuration(400);
 			await setAudioTime(200);
 			await elementUpdated(element);
@@ -226,12 +267,58 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should update the current time when user changes the slider position', async () => {
-			
+			setAudioDuration(120);
+			setAudioTime(60);
+			await elementUpdated(element);
+			setSliderValueWithMouse(75);
+
+			await elementUpdated(element);
+			expect(audioElement.currentTime).toBe(90);
+		});
+
+		it('should keep current paused state false when moving the slider', async () => {
+			element.paused = false;
+			setAudioDuration(400);
+			setAudioTime(200);
+			await elementUpdated(element);
+
+			setSliderValueWithMouse(75);
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(false);
+		});
+
+		it('should remove event listener on mouseup after slider is clicked', async () => {
+			setAudioDuration(400);
+			setAudioTime(200);
+			await elementUpdated(element);
+
+			setSliderValueWithMouse(75);
+			await elementUpdated(element);
+
+			slider.value = '50';
+			document.dispatchEvent(new Event('mouseup'));
+			await elementUpdated(element);
+
+			expect(audioElement.currentTime).toBe(300);
+		});
+
+		it('should keep current paused state true when moving the slider', async () => {
+			element.paused = true;
+			setAudioDuration(400);
+			setAudioTime(200);
+			await elementUpdated(element);
+
+			slider.value = '75';
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(true);
 		});
 	});
 
 	describe('timestamp element', () => {
 		it ('should update the timestamp when the current time changes', async () => {
+			setAudioDuration(300);
 			setAudioTime(200);
 			await elementUpdated(element);
 			const currentTimeFor200 = getCurrentTimeText();
@@ -245,7 +332,6 @@ describe('vwc-audio-player', () => {
 
 		it('should update the total time when the audio finished loading (loadmetadata)', async () => {
 			setAudioDuration(60);
-			audioElement.dispatchEvent(new Event('loadedmetadata'));
 			expect(getTotalTimeText()).toBe('1:00');
 		});
 	});

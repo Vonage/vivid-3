@@ -57,23 +57,17 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@observable paused = true;
 
-	/**
-	 *
-	 * @internal
-	 */
-	@observable duration?: number;
-
-	/**
-	 * @internal
-	 */
-	_sliderEl!: Slider;
+	get #sliderElement() {
+		return this.shadowRoot!.querySelector('.slider') as Slider;
+	}
 
 	#nativeAudioPlayer!: HTMLAudioElement;
 
-	/**
-	 * @internal
-	 */
-	_timeStampEl!: HTMLDivElement;
+	@observable duration?: number;
+
+	get #timeStampElement() {
+		return this.shadowRoot!.querySelector('.time-stamp') as HTMLDivElement;
+	}
 
 	srcChanged(_: string, newSrc: string) {
 		if (!this.#nativeAudioPlayer) {
@@ -87,77 +81,66 @@ export class AudioPlayer extends FoundationElement {
 		this.#nativeAudioPlayer = new Audio();
 		this.#nativeAudioPlayer.addEventListener('timeupdate', this.#updateProgress);
 		this.#nativeAudioPlayer.addEventListener('loadedmetadata', this.#updateTotalTime);
-		this.addEventListener('keydown', this._rewind);
-		this.addEventListener('mousedown', this._rewind);
-		this.addEventListener('keyup', this._rewind);
-		document.addEventListener('mouseup', this._rewind);
+		if (this.src) {
+			this.#nativeAudioPlayer.src = this.src;
+		}
+		this.#sliderElement.addEventListener('mousedown', this.#handleSliderClick);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('keydown', this._rewind);
-		this.removeEventListener('mousedown', this._rewind);
-		this.removeEventListener('keyup', this._rewind);
-		document.removeEventListener('mouseup', this._rewind);
+		this.#sliderElement.removeEventListener('mousedown', this.#handleSliderClick);
 	}
 
-	/**
-	 * @internal
-	 */
-	_togglePlay() {
-		if (this.paused) {
-			this.#updateProgress();
-			this.#nativeAudioPlayer!.play();
-		} else {
-			this.#nativeAudioPlayer!.pause();
-		}
-		this.paused = !this.paused;
-	}
-
-	/**
-	 * @internal
-	 */
 	#updateProgress = () => {
 		let currentTime: HTMLElement | null;
 		const current: number = this.#nativeAudioPlayer.currentTime;
 		const percent = (current / this.#nativeAudioPlayer.duration) * 100;
 
-		if (this._sliderEl) {
-			this._sliderEl.value = percent.toString();
-			this._sliderEl.ariaValuetext = this._formatTime(current);
+		if (this.#sliderElement) {
+			this.#sliderElement.value = percent.toString();
+			this.#sliderElement.ariaValuetext = this._formatTime(current);
 		}
 
 		if (percent === 100) {
 			this.paused = true;
 		}
 
-		if (this._timeStampEl) {
-			currentTime = this._timeStampEl.querySelector('.current-time');
+		if (this.#timeStampElement) {
+			currentTime = this.#timeStampElement.querySelector('.current-time');
 			if (currentTime) currentTime.textContent = this._formatTime(current);
 		}
 	};
 
-	/**
-	 * @internal
-	 */
 	#updateTotalTime = () => {
-		let totalTime: HTMLElement | null;
-		if (this.#nativeAudioPlayer) this.duration = this.#nativeAudioPlayer.duration;
-		if (this._timeStampEl) {
-			totalTime = this._timeStampEl.querySelector('.total-time');
-			if (totalTime) totalTime.textContent = this._formatTime(this.#nativeAudioPlayer.duration);
+		let totalTimeElement: HTMLElement | null;
+		this.duration = this.#nativeAudioPlayer.duration;
+		if (this.#timeStampElement) {
+			totalTimeElement = this.#timeStampElement.querySelector('.total-time');
+			if (totalTimeElement) totalTimeElement.textContent = this._formatTime(this.duration);
 		}
 	};
 
-	/**
-	 * @internal
-	 */
-	_rewind = () => {
-		this.paused = true;
-		if (this.#nativeAudioPlayer) {
-			this.#nativeAudioPlayer.pause();
-			this.#nativeAudioPlayer.currentTime = this.#nativeAudioPlayer.duration * (Number(this._sliderEl.value) / 100);
+	pausedChanged = () => {
+		if (this.paused) {
+			this.#nativeAudioPlayer!.pause();
+		} else {
+			this.#updateProgress();
+			this.#nativeAudioPlayer!.play();
 		}
+	};
+
+	#handleSliderMouseUp = () => {
+		if (this.#nativeAudioPlayer) {
+			const duration = !isNaN(this.#nativeAudioPlayer.duration) ? this.#nativeAudioPlayer.duration : 0;
+			const currentTime = duration * (Number(this.#sliderElement.value) / 100);
+			this.#nativeAudioPlayer.currentTime = currentTime;
+		}
+		document.removeEventListener('mouseup', this.#handleSliderMouseUp);
+	};
+
+	#handleSliderClick = () => {
+		document.addEventListener('mouseup', this.#handleSliderMouseUp);
 	};
 
 	/**
@@ -172,3 +155,4 @@ export class AudioPlayer extends FoundationElement {
 
 export interface AudioPlayer extends Localized { }
 applyMixins(AudioPlayer, Localized);
+

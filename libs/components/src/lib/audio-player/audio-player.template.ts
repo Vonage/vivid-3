@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -7,20 +7,20 @@ import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 
 const getClasses = ({ disabled, duration }: AudioPlayer) => classNames(
-	['disabled', Boolean(disabled) || !Boolean(duration)],
+	['disabled', Boolean(disabled) || duration === undefined],
 );
 
 function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
-	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${x => x._togglePlay()}"
-	icon="${x => x.paused ? 'play-solid' : 'pause-solid'}" 
-	aria-label="${x => x.paused 
-		? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel 
-		: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}" 
-	size='condensed' 
+	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${x => x.paused = !x.paused}"
+	icon="${x => x.paused ? 'play-solid' : 'pause-solid'}"
+	aria-label="${x => x.paused
+		? x.playButtonAriaLabel || x.locale.audioPlayer.playButtonLabel
+		: x.pauseButtonAriaLabel || x.locale.audioPlayer.playButtonLabel}"
+	size='condensed'
 	connotation="${x => x.connotation}"
-	?disabled="${x => x.disabled || !x.duration}" 
+	?disabled="${x => x.disabled || x.duration === undefined }"
   ></${buttonTag}>`;
 }
 
@@ -28,17 +28,17 @@ function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
 	return html<AudioPlayer>`<${sliderTag}
-	${ref('_sliderEl')} class="slider" 
+	class="slider"
 	aria-label="${x => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-	value="0" max="100" 
+	value="0" max="100"
 	connotation="${x => x.connotation}"
-	?disabled="${x => x.disabled || !x.duration}">
+	?disabled="${x => x.disabled || x.duration === undefined}">
 	</${sliderTag}>`;
 }
 
 function renderTimestamp() {
 	return html`
-	<div class="time-stamp" ${ref('_timeStampEl')}>
+	<div class="time-stamp">
 		<span class="current-time">0:00</span>
 		<span>/</span>
 		<span class="total-time">0:00</span>
