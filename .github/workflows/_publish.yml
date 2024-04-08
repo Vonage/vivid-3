@@ -31,7 +31,19 @@ jobs:
           name: release-artifacts
           path: dist/
 
+      - name: Check if version is already published
+        id: check
+        run:
+          NAME=$(npm view {{ inputs.path }} name)
+          VERSION=$(npm view {{ inputs.path }} version)
+          if npm view "$NAME@$VERSION"; then
+            echo "published=true" >> $GITHUB_ENV
+          else
+            echo "published=false" >> $GITHUB_ENV
+          fi
+
       - name: Publish to npm registry
+        if: steps.check.outputs.published == 'false'
         run: npm publish --tag ${{ inputs.tag }} ${{ inputs.path }} --//registry.npmjs.org/:_authToken=$AUTH_TOKEN
         env:
           AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
@@ -50,7 +62,21 @@ jobs:
           name: release-artifacts
           path: dist/
 
+      - name: Check if version is already published
+        id: check
+        run:
+          NAME=$(npm view {{ inputs.path }} name)
+          VERSION=$(npm view {{ inputs.path }} version)
+          if npm view "$NAME@$VERSION" --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN; then
+            echo "published=true" >> $GITHUB_ENV
+          else
+            echo "published=false" >> $GITHUB_ENV
+          fi
+        env:
+          AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
+
       - name: Publish to GitHub registry
+        if: steps.check.outputs.published == 'false'
         run: npm publish --tag ${{ inputs.tag }} ${{ inputs.path }} --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN
         env:
           AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}

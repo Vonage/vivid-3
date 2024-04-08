@@ -67,6 +67,7 @@ jobs:
           npx nx run components:build
           npx nx run components:generateMeta
           npx nx run vue-wrappers:build
+          npx nx run eslint-plugin:build
 
       - name: upload-artifacts
         uses: actions/upload-artifact@v3
@@ -88,6 +89,14 @@ jobs:
     uses: ./.github/workflows/_publish.yml
     with:
       path: dist/libs/vue-wrappers
+    secrets: inherit
+
+  eslint-plugin-publish:
+    needs: build
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: dist/libs/eslint-plugin
     secrets: inherit
 
   deploy-deno:
