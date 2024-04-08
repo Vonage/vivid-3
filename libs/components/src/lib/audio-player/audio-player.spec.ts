@@ -119,7 +119,6 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('paused', function () {
-
 		it('should change button icon to play when true', async () => {
 			element.paused = true;
 			await elementUpdated(element);
@@ -147,19 +146,6 @@ describe('vwc-audio-player', () => {
 			expect(element.paused).toEqual(true);
 		});
 
-		it('should pause audio on click', async function () {
-			const audio = audioElement;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			const pauseButton = getBaseElement(element).querySelector('.pause') as HTMLButtonElement;
-			expect(element.paused).toEqual(true);
-			pauseButton.click();
-
-			await elementUpdated(element);
-			expect(element.paused).toEqual(false);
-		});
-
 		it('should pause when rewind is called', async function () {
 			const audio = audioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
@@ -176,6 +162,19 @@ describe('vwc-audio-player', () => {
 			expect(element.paused).toEqual(true);
 		});
 	});
+
+	describe('play-pause button element', () => {
+		it('should toggle paused state on click', () => {
+			const playButton = getBaseElement(element).querySelector('.pause') as Button;
+			playButton.click();
+			const pausedStateAfterFirstClick = element.paused;
+			playButton.click();
+			const pausedStateAfterSecondClick = element.paused;
+			expect(pausedStateAfterFirstClick).toBe(false);
+			expect(pausedStateAfterSecondClick).toBe(true);
+		});
+	});
+
 
 	describe('timeupdate event', function () {
 		it('should update current time on timeupdate event', async function () {
