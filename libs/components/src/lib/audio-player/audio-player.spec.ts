@@ -217,10 +217,17 @@ describe('vwc-audio-player', () => {
 			expect(slider.ariaValuetext).toEqual('5:00');
 		});
 
-
+		it('should update the current time when user uses left key', async () => {
 
 		});
 
+		it('should update the current time when user uses right key', async () => {
+
+		});
+
+		it('should update the current time when user changes the slider position', async () => {
+			
+		});
 	});
 
 	describe('timestamp element', () => {
