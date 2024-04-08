@@ -6,7 +6,7 @@ import {
 	getBaseElement,
 	getControlElement,
 	listenToFormSubmission,
-	setAttribute,
+	setProperty,
 } from '.';
 
 class DummyElement extends HTMLElement {
@@ -151,16 +151,16 @@ describe(`test-utils`, function () {
 		});
 	});
 
-	describe(`setAttribute`, function () {
-		it(`should set attribute on the element`, function () {
+	describe(`setProperty`, function () {
+		it(`should set property on the element`, function () {
 			const ele = document.createElement('div');
-			setAttribute(ele, 'style', 'background: black;');
-			expect(ele.getAttribute('style')).toEqual('background: black;');
+			setProperty(ele, 'className', 'test');
+			expect(ele.className).toEqual('test');
 		});
 
 		it(`should resolve after rAF`, function (done) {
 			const mockElement = document.createElement('div');
-			const element = setAttribute(mockElement, 'style', 'mock');
+			const element = setProperty(mockElement, 'className', 'test');
 			requestAnimationFrame(() => {
 				element.then(() => {
 					expect(element instanceof Promise).toEqual(true);
