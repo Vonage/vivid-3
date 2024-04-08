@@ -147,12 +147,9 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should pause when rewind is called', async function () {
-			const audio = audioElement;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
+			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => 60);
+			audioElement.currentTime = 200;
 
-			audio.currentTime = 200;
 			element.paused = false;
 			await elementUpdated(element);
 
@@ -175,45 +172,74 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
+	function setAudioDuration(duration: number) {
+		jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => {
+			return duration;
+		});
+	}
+
+	function setAudioTime(time: number) {
+		audioElement.currentTime = time;
+		audioElement.dispatchEvent(new Event('timeupdate'));
+	}
+
+	function getCurrentTimeText() {
+		return getBaseElement(element).querySelector('.current-time')?.textContent;
+	}
+
+	function getTotalTimeText() {
+		return getBaseElement(element).querySelector('.total-time')?.textContent;
+	}
+
 	describe('slider element', () => {
+
+		it('should set the slider according to the current time and duration', async () => {
+			const slider = getBaseElement(element).querySelector('.slider') as Slider;
+
+			setAudioDuration(400);
+			setAudioTime(200);
+			await elementUpdated(element);
+
+			expect(slider.value).toEqual('50');
+			expect(slider.ariaValuetext).toEqual('3:20');
+		});
+
+		it('should update the slider when current time changes', async () => {
+			const slider = getBaseElement(element).querySelector('.slider') as Slider;
+
+			await setAudioDuration(400);
+			await setAudioTime(200);
+			await elementUpdated(element);
+			await setAudioTime(300);
+			await elementUpdated(element);
+
+			expect(slider.value).toEqual('75');
+			expect(slider.ariaValuetext).toEqual('5:00');
+		});
+
+
+
+		});
 
 	});
 
 	describe('timestamp element', () => {
-		
-	});
-
-	describe('timeupdate event', function () {
-		it('should update current time on timeupdate event', async function () {
-			audioElement.currentTime = 200;
-			audioElement.dispatchEvent(new Event('timeupdate'));
+		it ('should update the timestamp when the current time changes', async () => {
+			setAudioTime(200);
 			await elementUpdated(element);
+			const currentTimeFor200 = getCurrentTimeText();
+			setAudioTime(201);
+			await elementUpdated(element);
+			const currentTimeFor201 = getCurrentTimeText();
 
-			expect(getBaseElement(element).querySelector('.current-time')?.textContent).toEqual('3:20');
-		});
-	});
-
-	describe('loadmetadata event', function () {
-		it('should update currentTime on loadmetadata', () => {
-			const event = new Event('loadedmetadata');
-
-			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => {
-				return 60;
-			});
-
-			audioElement.dispatchEvent(event);
-			expect(element.duration).toEqual(60);
+			expect(currentTimeFor200).toEqual('3:20');
+			expect(currentTimeFor201).toEqual('3:21');
 		});
 
-		it('should update total-time on loadmetadata', async function () {
-			const event = new Event('loadedmetadata');
-
-			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => {
-				return 60;
-			});
-
-			audioElement.dispatchEvent(event);
-			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('1:00');
+		it('should update the total time when the audio finished loading (loadmetadata)', async () => {
+			setAudioDuration(60);
+			audioElement.dispatchEvent(new Event('loadedmetadata'));
+			expect(getTotalTimeText()).toBe('1:00');
 		});
 	});
 
