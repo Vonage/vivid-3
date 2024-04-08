@@ -5,9 +5,9 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
-import { MediaSkipBy } from '@vonage/vivid';
 import { AudioPlayer } from './audio-player';
 
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
