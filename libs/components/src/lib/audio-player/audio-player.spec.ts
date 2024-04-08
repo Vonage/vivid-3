@@ -345,7 +345,6 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(backwardButton.icon).toEqual('30-sec-backward-line');
-
 		});
 
 		it('should change the forward icon according to selected skipBy', async function () {
@@ -366,7 +365,6 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(forwardButton.icon).toEqual('30-sec-forward-line');
-
 		});
 	});
 
