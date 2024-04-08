@@ -13,6 +13,7 @@ let audioElement: any;
 class MockAudio extends Audio {
 	constructor() {
 		super();
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
 		audioElement = this;
 	}
 }
@@ -179,7 +180,7 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('timeupdate event', function () {
-		it('should update current time on timeupdate event', async function () {			
+		it('should update current time on timeupdate event', async function () {
 			audioElement.currentTime = 200;
 			audioElement.dispatchEvent(new Event('timeupdate'));
 			await elementUpdated(element);
@@ -196,8 +197,8 @@ describe('vwc-audio-player', () => {
 			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => {
 				return 60;
 			});
-			
-			audioElement.dispatchEvent(event);			
+
+			audioElement.dispatchEvent(event);
 			expect(element.duration).toEqual(60);
 		});
 
@@ -207,8 +208,8 @@ describe('vwc-audio-player', () => {
 			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => {
 				return 60;
 			});
-			
-			audioElement.dispatchEvent(event);			
+
+			audioElement.dispatchEvent(event);
 			expect(getBaseElement(element).querySelector('.total-time')?.textContent).toEqual('1:00');
 		});
 	});

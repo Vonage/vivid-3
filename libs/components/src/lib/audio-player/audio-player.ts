@@ -135,7 +135,7 @@ export class AudioPlayer extends FoundationElement {
 			currentTime = this._timeStampEl.querySelector('.current-time');
 			if (currentTime) currentTime.textContent = this._formatTime(current);
 		}
-	}
+	};
 
 	/**
 	 * @internal
@@ -147,7 +147,7 @@ export class AudioPlayer extends FoundationElement {
 			totalTime = this._timeStampEl.querySelector('.total-time');
 			if (totalTime) totalTime.textContent = this._formatTime(this.#nativeAudioPlayer.duration);
 		}
-	}
+	};
 
 	/**
 	 * @internal
