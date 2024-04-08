@@ -119,6 +119,34 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('paused', function () {
+
+		it('should change button icon to play when true', async () => {
+			element.paused = true;
+			await elementUpdated(element);
+			const pauseButton = getBaseElement(element).querySelector('.pause') as Button;
+			expect(pauseButton.icon).toEqual('play-solid');
+		});
+
+		it('should change button icon to pause when false', async function () {
+			element.paused = false;
+			await elementUpdated(element);
+			const pauseButton = getBaseElement(element).querySelector('.pause') as Button;
+			expect(pauseButton.icon).toEqual('pause-solid');
+		});
+
+		it('should set pause to true when audio finished playing', async function () {
+			element.paused = false;
+			jest.spyOn(audioElement, 'duration', 'get').mockImplementation(() => 60);
+			await elementUpdated(element);
+
+			const event = new Event('timeupdate');
+			audioElement.currentTime = audioElement.duration;
+			audioElement.dispatchEvent(event);
+
+			await elementUpdated(element);
+			expect(element.paused).toEqual(true);
+		});
+
 		it('should pause audio on click', async function () {
 			const audio = audioElement;
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
@@ -130,23 +158,6 @@ describe('vwc-audio-player', () => {
 
 			await elementUpdated(element);
 			expect(element.paused).toEqual(false);
-		});
-
-		it('should change button icon', async function () {
-			const audio = audioElement;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			const pauseButton = getBaseElement(element).querySelector('.pause') as Button;
-			expect(pauseButton.icon).toEqual('play-solid');
-
-			pauseButton.click();
-			await elementUpdated(element);
-			expect(pauseButton.icon).toEqual('pause-solid');
-
-			pauseButton.click();
-			await elementUpdated(element);
-			expect(pauseButton.icon).toEqual('play-solid');
 		});
 
 		it('should pause when rewind is called', async function () {
@@ -164,22 +175,6 @@ describe('vwc-audio-player', () => {
 
 			expect(element.paused).toEqual(true);
 		});
-
-		it('should pause when finished', async function () {
-			const audio = audioElement;
-			element.paused = false;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			await elementUpdated(element);
-
-			const event = new Event('timeupdate');
-			audio.currentTime = audio.duration;
-			audio.dispatchEvent(event);
-
-			await elementUpdated(element);
-			expect(element.paused).toEqual(true);
-		});
 	});
 
 	describe('timeupdate event', function () {
@@ -193,7 +188,6 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('loadmetadata event', function () {
-
 		it('should update currentTime on loadmetadata', () => {
 			const event = new Event('loadedmetadata');
 
