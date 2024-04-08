@@ -56,25 +56,28 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('notime', function () {
-		it('should remove the time stamp when equal to true', async function () {
+		it('should show timestamp when false', async () => {
 			element.notime = false;
 			await elementUpdated(element);
 
 			const controls = getBaseElement(element).querySelector('.controls') as HTMLDivElement;
-			const currentTimeClassExistsBeforeTheChange = controls.querySelector('.current-time');
-			const totalTimeClassExistsBeforeTheChange = controls.querySelector('.total-time');
+			const currentTimeClassExists = controls.querySelector('.current-time');
+			const totalTimeClassExists = controls.querySelector('.total-time');
 
+			expect(currentTimeClassExists).toBeTruthy();
+			expect(totalTimeClassExists).toBeTruthy();
+		});
+
+		it('should remove the time stamp when equal to true', async function () {
 			element.notime = true;
 			await elementUpdated(element);
 
-			const currentTimeClassExistsAfterTheChange = controls.querySelector('.current-time');
-			const totalTimeClassExistsAfterTheChange = controls.querySelector('.total-time');
+			const controls = getBaseElement(element).querySelector('.controls') as HTMLDivElement;
+			const currentTimeClassExists = controls.querySelector('.current-time');
+			const totalTimeClassExists = controls.querySelector('.total-time');
 
-			expect(currentTimeClassExistsBeforeTheChange).toBeTruthy();
-			expect(totalTimeClassExistsBeforeTheChange).toBeTruthy();
-
-			expect(currentTimeClassExistsAfterTheChange).toBeFalsy();
-			expect(totalTimeClassExistsAfterTheChange).toBeFalsy();
+			expect(currentTimeClassExists).toBeFalsy();
+			expect(totalTimeClassExists).toBeFalsy();
 		});
 	});
 
