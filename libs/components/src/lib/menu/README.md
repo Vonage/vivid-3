@@ -35,6 +35,39 @@ The `open` attribute controls the visibility of the menu.
 </vwc-menu>
 ```
 
+### Trigger
+
+The `trigger` attribute controls whether the menu opens and closes itself automatically.
+
+- `auto` - The menu opens and closes automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
+- `legacy` (default) - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
+- `off` - The menu does not open or close automatically.
+
+<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
+
+We will change the default value of `trigger` to `auto` in a future major version of Vivid to make this the default behaviour.
+
+</vwc-note>
+
+- Type: `"auto" | "legacy" | "off"`
+- Default: `"legacy"`
+
+```html preview 300px
+<vwc-menu aria-label="Menu example" trigger="auto" placement="bottom-end">
+	<vwc-button
+		slot="anchor"
+		icon="more-vertical-line"
+		aria-label="Open menu"
+		appearance="outlined"
+	></vwc-button>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+	<vwc-divider></vwc-divider>
+	<vwc-menu-item role="menuitemcheckbox" text="Option 1"></vwc-menu-item>
+	<vwc-menu-item role="menuitemcheckbox" text="Option 2"></vwc-menu-item>
+</vwc-menu>
+```
+
 ### Auto Dismiss
 
 Use the auto dismiss property to automatically close the menu when the user clicks outside of it.
@@ -44,10 +77,15 @@ Use the auto dismiss property to automatically close the menu when the user clic
 
 ```html preview 200px
 <div style="position: relative">
-	<vwc-menu id="menu" open auto-dismiss aria-label="Menu example">
+	<vwc-menu
+		id="menu"
+		open
+		trigger="auto"
+		auto-dismiss
+		aria-label="Menu example"
+	>
 		<vwc-button
 			slot="anchor"
-			id="button"
 			label="Toggle Menu"
 			appearance="outlined"
 		></vwc-button>
@@ -55,13 +93,6 @@ Use the auto dismiss property to automatically close the menu when the user clic
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	</vwc-menu>
 </div>
-
-<script>
-	const button = document.getElementById('button');
-	const menu = document.getElementById('menu');
-
-	button.addEventListener('click', () => (menu.open = !menu.open));
-</script>
 ```
 
 ### Placement
@@ -73,10 +104,14 @@ Use the `placement` attribute to control the position of the menu relative to it
 
 ```html preview 150px
 <div style="position: relative; text-align: end;">
-	<vwc-menu id="menu" placement="left-start" open aria-label="Menu example">
+	<vwc-menu
+		placement="left-start"
+		open
+		trigger="auto"
+		aria-label="Menu example"
+	>
 		<vwc-button
 			slot="anchor"
-			id="button"
 			label="Toggle Menu"
 			appearance="outlined"
 		></vwc-button>
@@ -84,13 +119,6 @@ Use the `placement` attribute to control the position of the menu relative to it
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	</vwc-menu>
 </div>
-
-<script>
-	const button = document.getElementById('button');
-	const menu = document.getElementById('menu');
-
-	button.addEventListener('click', () => (menu.open = !menu.open));
-</script>
 ```
 
 ### Anchor
@@ -105,7 +133,7 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 ```html preview center 200px
 <div style="position: relative">
 	<vwc-button id="button1" label="ID anchor" appearance="outlined"></vwc-button>
-	<vwc-menu id="menu1" anchor="button1" aria-label="ID anchor menu example">
+	<vwc-menu anchor="button1" aria-label="ID anchor menu example">
 		<vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
 	</vwc-menu>
 
@@ -114,19 +142,15 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 		label="HTMLElement anchor"
 		appearance="outlined"
 	></vwc-button>
-	<vwc-menu id="menu2" aria-label="HTML elelemt menu example">
+	<vwc-menu id="menu2" aria-label="HTML element menu example">
 		<vwc-menu-item text="My anchor is an HTMLElement"></vwc-menu-item>
 	</vwc-menu>
 </div>
 
 <script>
-	const button1 = document.getElementById('button1');
 	const button2 = document.getElementById('button2');
-	const menu1 = document.getElementById('menu1');
 	const menu2 = document.getElementById('menu2');
 
-	button1.addEventListener('click', () => (menu1.open = !menu1.open));
-	button2.addEventListener('click', () => (menu2.open = !menu2.open));
 	menu2.anchor = button2;
 </script>
 ```
@@ -303,13 +327,13 @@ This helps ensure elements don't render on top of a menu undesirably.
 ### Dropdown menu with checkbox
 
 ```html preview 350px
-<vwc-menu id="menu" placement="bottom-start" open aria-label="Menu example">
-	<vwc-button
-		slot="anchor"
-		id="button"
-		label="Select"
-		appearance="filled"
-	></vwc-button>
+<vwc-menu
+	placement="bottom-start"
+	open
+	trigger="auto"
+	aria-label="Menu example"
+>
+	<vwc-button slot="anchor" label="Select" appearance="filled"></vwc-button>
 	<vwc-text-field
 		slot="header"
 		placeholder="Search"
@@ -329,20 +353,13 @@ This helps ensure elements don't render on top of a menu undesirably.
 		label="Select"
 	></vwc-button>
 </vwc-menu>
-
-<script>
-	const menu = document.getElementById('menu');
-	const button = document.getElementById('button');
-
-	button.addEventListener('click', () => (menu.open = !menu.open));
-</script>
 ```
 
 ### Menu Anchor
 
 ```html preview 250px
-<vwc-menu id="menu" placement="bottom-start" open aria-label="Menu example">
-	<vwc-button slot="anchor" id="button" icon="close-line"></vwc-button>
+<vwc-menu placement="bottom-start" open aria-label="Menu example">
+	<vwc-button slot="anchor" icon="close-line"></vwc-button>
 	<a
 		role="menuitem"
 		href="https://www.vonage.com"
@@ -392,11 +409,4 @@ This helps ensure elements don't render on top of a menu undesirably.
 		></vwc-menu-item>
 	</a>
 </vwc-menu>
-
-<script>
-	const menu = document.getElementById('menu');
-	const button = document.getElementById('button');
-
-	button.addEventListener('click', () => (menu.open = !menu.open));
-</script>
 ```
