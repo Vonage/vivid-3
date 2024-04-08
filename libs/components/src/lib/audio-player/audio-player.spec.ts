@@ -287,7 +287,7 @@ describe('vwc-audio-player', () => {
 			expect(skipButtonsAfterChange).toBeTruthy();
 		});
 
-		it('should set skip button according to the skip-by attribute', async () => {
+		it('should set skip back button according to the skip-by attribute', async () => {
 			element.skipBy = MediaSkipBy.Five;
 			const audio = getBaseElement(element).querySelector(
 				'audio'
@@ -304,50 +304,70 @@ describe('vwc-audio-player', () => {
 			skipButton.click();
 
 			await elementUpdated(element);
-			expect(audio.currentTime).toEqual(15);
+			expect(audio.currentTime).toEqual(5);
 		});
 
-		// it('should change the backward icon according to selected skipBy', async function () {
-		// 	element.skipBy = MediaSkipBy.Five;
-		// 	await elementUpdated(element);
-		//
-		// 	const pauseButton = getBaseElement(element).querySelector(
-		// 		'.backward'
-		// 	) as Button;
-		// 	expect(pauseButton.icon).toEqual('5-sec-backward-solid');
-		//
-		// 	element.skipBy = MediaSkipBy.Ten;
-		// 	await elementUpdated(element);
-		//
-		// 	expect(pauseButton.icon).toEqual('10-sec-backward-solid');
-		//
-		// 	element.skipBy = MediaSkipBy.Thirty;
-		// 	await elementUpdated(element);
-		//
-		// 	expect(pauseButton.icon).toEqual('30-sec-backward-solid');
-		//
-		// });
+		it('should set skip forward button according to the skip-by attribute', async () => {
+			element.skipBy = MediaSkipBy.Thirty;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
+			audio.currentTime = 10;
+			await elementUpdated(element);
 
-		// it('should change the forward icon according to selected skipBy', async function () {
-		// 	element.skipBy = MediaSkipBy.Five;
-		// 	await elementUpdated(element);
-		//
-		// 	const pauseButton = getBaseElement(element).querySelector(
-		// 		'.forward'
-		// 	) as Button;
-		// 	expect(pauseButton.icon).toEqual('5-sec-forward-solid');
-		//
-		// 	element.skipBy = MediaSkipBy.Ten;
-		// 	await elementUpdated(element);
-		//
-		// 	expect(pauseButton.icon).toEqual('10-sec-forward-solid');
-		//
-		// 	element.skipBy = MediaSkipBy.Thirty;
-		// 	await elementUpdated(element);
-		//
-		// 	expect(pauseButton.icon).toEqual('30-sec-forward-solid');
-		//
-		// });
+			const skipButton = getBaseElement(element).querySelector(
+				'.forward'
+			) as HTMLButtonElement;
+			skipButton.click();
+
+			await elementUpdated(element);
+			expect(audio.currentTime).toEqual(40);
+		});
+
+		it('should change the backward icon according to selected skipBy', async function () {
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			const backwardButton = getBaseElement(element).querySelector(
+				'.backward'
+			) as Button;
+			expect(backwardButton.icon).toEqual('5-sec-backward-line');
+
+			element.skipBy = MediaSkipBy.Ten;
+			await elementUpdated(element);
+
+			expect(backwardButton.icon).toEqual('10-sec-backward-line');
+
+			element.skipBy = MediaSkipBy.Thirty;
+			await elementUpdated(element);
+
+			expect(backwardButton.icon).toEqual('30-sec-backward-line');
+
+		});
+
+		it('should change the forward icon according to selected skipBy', async function () {
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			const forwardButton = getBaseElement(element).querySelector(
+				'.forward'
+			) as Button;
+			expect(forwardButton.icon).toEqual('5-sec-forward-line');
+
+			element.skipBy = MediaSkipBy.Ten;
+			await elementUpdated(element);
+
+			expect(forwardButton.icon).toEqual('10-sec-forward-line');
+
+			element.skipBy = MediaSkipBy.Thirty;
+			await elementUpdated(element);
+
+			expect(forwardButton.icon).toEqual('30-sec-forward-line');
+
+		});
 	});
 
 	describe('a11y', () => {

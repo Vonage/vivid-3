@@ -33,15 +33,13 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip forward" @click="${(x) => x._toggleSkipBackward()}"
+		<${buttonTag} class="skip backward" @click="${(x) => x._toggleSkipBackward()}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
-				? 'error-solid'
-				: x.skipBy == MediaSkipBy.Ten
-				? '10-sec-backward-solid'
+				? '5-sec-backward-line'
 				: x.skipBy == MediaSkipBy.Thirty
-				? 'info-line'
-				: ''}"
+				? '30-sec-backward-line'
+				: '10-sec-backward-line'}"
 		size='condensed'
 		aria-label="${(x) =>
 			x.skipBackwardButtonAriaLabel || x.locale.audioPlayer.skipBackwardButton}"
@@ -49,15 +47,13 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
 
-		<${buttonTag} class="skip backward" @click="${(x) => x._toggleSkipForward()}"
+		<${buttonTag} class="skip forward" @click="${(x) => x._toggleSkipForward()}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
-				? 'error-solid'
-				: x.skipBy == MediaSkipBy.Ten
-				? '10-sec-forward-line'
+				? '5-sec-forward-line'
 				: x.skipBy == MediaSkipBy.Thirty
-				? 'info-line'
-				: ''}"
+				? '30-sec-forward-line'
+				: '10-sec-forward-line'}"
 		size='condensed'
 		aria-label="${(x) =>
 			x.skipForwardButtonAriaLabel || x.locale.audioPlayer.skipForwardButton}"
