@@ -80,7 +80,20 @@ export class AudioPlayer extends FoundationElement {
 		super.connectedCallback();
 		this.#createAudioElement();
 		this.#sliderElement.addEventListener('mousedown', this.#handleSliderClick);
+		this.#sliderElement.addEventListener('keydown', this.#handleSliderKeyDown);
 	}
+	#skipBy = 1;
+
+	#handleSliderKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'ArrowLeft') {
+			this.#nativeAudioPlayer.currentTime -= this.#skipBy;
+			return;
+		}
+		if (e.key === 'ArrowRight') {
+			this.#nativeAudioPlayer.currentTime += this.#skipBy;
+			return;
+		}
+	};
 
 	#createAudioElement() {
 		this.#nativeAudioPlayer = new Audio();

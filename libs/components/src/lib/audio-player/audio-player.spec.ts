@@ -259,11 +259,21 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should update the current time when user uses left key', async () => {
-
+			setAudioDuration(120);
+			setAudioTime(60);
+			await elementUpdated(element);
+			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+			slider.dispatchEvent(keyEvent);
+			expect(audioElement.currentTime).toBe(59);
 		});
 
 		it('should update the current time when user uses right key', async () => {
-
+			setAudioDuration(120);
+			setAudioTime(60);
+			await elementUpdated(element);
+			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+			slider.dispatchEvent(keyEvent);
+			expect(audioElement.currentTime).toBe(61);
 		});
 
 		it('should update the current time when user changes the slider position', async () => {
