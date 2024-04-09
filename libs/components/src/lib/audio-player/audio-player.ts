@@ -51,10 +51,6 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) notime = false;
 
-	/**
-	 *
-	 * @internal
-	 */
 	@observable paused = true;
 
 	get #sliderElement() {
@@ -69,28 +65,20 @@ export class AudioPlayer extends FoundationElement {
 		return this.shadowRoot!.querySelector('.time-stamp') as HTMLDivElement;
 	}
 
-	srcChanged(_: string, newSrc: string) {
-		if (!this.#nativeAudioPlayer) {
-			return;
-		}
-		this.#nativeAudioPlayer.src = newSrc;
-	}
-
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this.#createAudioElement();
-		this.#sliderElement.addEventListener('mousedown', this.#handleSliderClick);
-		this.#sliderElement.addEventListener('keydown', this.#handleSliderKeyDown);
-	}
 	#skipBy = 1;
 
-	#handleSliderKeyDown = (e: KeyboardEvent) => {
+	#handleAudioKeyDown = (e: KeyboardEvent) => {
 		if (e.key === 'ArrowLeft') {
 			this.#nativeAudioPlayer.currentTime -= this.#skipBy;
 			return;
 		}
 		if (e.key === 'ArrowRight') {
 			this.#nativeAudioPlayer.currentTime += this.#skipBy;
+			return;
+		}
+
+		if (this.shadowRoot!.activeElement !== this.shadowRoot!.querySelector('.pause') && e.key === ' ') {
+			this.paused = !this.paused;
 			return;
 		}
 	};
@@ -104,9 +92,33 @@ export class AudioPlayer extends FoundationElement {
 		}
 	}
 
+	srcChanged(_: string, newSrc: string) {
+		if (!this.#nativeAudioPlayer) {
+			return;
+		}
+		this.#nativeAudioPlayer.src = newSrc;
+	}
+
+	pausedChanged = () => {
+		if (this.paused) {
+			this.#nativeAudioPlayer!.pause();
+		} else {
+			this.#updateProgress();
+			this.#nativeAudioPlayer!.play();
+		}
+	};
+
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this.#createAudioElement();
+		this.#sliderElement.addEventListener('mousedown', this.#handleSliderClick);
+		this.addEventListener('keydown', this.#handleAudioKeyDown);
+	}
+	
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#sliderElement.removeEventListener('mousedown', this.#handleSliderClick);
+		this.removeEventListener('keydown', this.#handleAudioKeyDown);
 	}
 
 	#updateProgress = () => {
@@ -138,15 +150,6 @@ export class AudioPlayer extends FoundationElement {
 		}
 	};
 
-	pausedChanged = () => {
-		if (this.paused) {
-			this.#nativeAudioPlayer!.pause();
-		} else {
-			this.#updateProgress();
-			this.#nativeAudioPlayer!.play();
-		}
-	};
-
 	#handleSliderMouseUp = () => {
 		if (this.#nativeAudioPlayer) {
 			const duration = !isNaN(this.#nativeAudioPlayer.duration) ? this.#nativeAudioPlayer.duration : 0;
@@ -168,4 +171,3 @@ export function formatTime(time: number) {
 }
 export interface AudioPlayer extends Localized { }
 applyMixins(AudioPlayer, Localized);
-

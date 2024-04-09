@@ -191,6 +191,37 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(audioElement.pause).toHaveBeenCalled();
 		});
+
+		it('should change paused state on space press', async function () {
+			const keyEvent = new KeyboardEvent('keydown', { key: ' ' });
+			
+			element.dispatchEvent(keyEvent);
+			const pausedStateAfterFirstClick = element.paused;
+			element.dispatchEvent(keyEvent);
+			const pausedStateAfterSecondClick = element.paused;
+
+			expect(pausedStateAfterFirstClick).toBe(false);
+			expect(pausedStateAfterSecondClick).toBe(true);
+		});
+
+		it('should prevent paused state change when space press is coming from the play button', () => {
+			const playButton = getBaseElement(element).querySelector('.pause') as Button;
+			const keyEvent = new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true});
+			
+			playButton.focus();
+			jest.spyOn((element.shadowRoot as any), 'activeElement', 'get').mockImplementation(() => playButton);
+			playButton.dispatchEvent(keyEvent);
+
+			expect(element.paused).toBe(true);
+		});
+
+		it('should remove space down event listener on disconnectedCallback', async () => {
+			const keyEvent = new KeyboardEvent('keydown', { key: ' ' });
+			element.dispatchEvent(keyEvent);
+			element.disconnectedCallback();
+			element.dispatchEvent(keyEvent);
+			expect(element.paused).toBe(false);
+		});
 	});
 
 	describe('play-pause button element', () => {
@@ -262,7 +293,7 @@ describe('vwc-audio-player', () => {
 			setAudioDuration(120);
 			setAudioTime(60);
 			await elementUpdated(element);
-			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, composed: true});
 			slider.dispatchEvent(keyEvent);
 			expect(audioElement.currentTime).toBe(59);
 		});
@@ -271,7 +302,18 @@ describe('vwc-audio-player', () => {
 			setAudioDuration(120);
 			setAudioTime(60);
 			await elementUpdated(element);
-			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, composed: true });
+			slider.dispatchEvent(keyEvent);
+			expect(audioElement.currentTime).toBe(61);
+		});
+
+		it('should remove keydown event listener on disconnectedCallback', async () => {
+			setAudioDuration(120);
+			setAudioTime(60);
+			await elementUpdated(element);
+			const keyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, composed: true  });
+			slider.dispatchEvent(keyEvent);
+			element.disconnectedCallback();
 			slider.dispatchEvent(keyEvent);
 			expect(audioElement.currentTime).toBe(61);
 		});
