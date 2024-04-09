@@ -99,7 +99,7 @@ export class AudioPlayer extends FoundationElement {
 
 		if (this.#sliderElement) {
 			this.#sliderElement.value = percent.toString();
-			this.#sliderElement.ariaValuetext = this._formatTime(current);
+			this.#sliderElement.ariaValuetext = formatTime(current);
 		}
 
 		if (percent === 100) {
@@ -108,7 +108,7 @@ export class AudioPlayer extends FoundationElement {
 
 		if (this.#timeStampElement) {
 			currentTime = this.#timeStampElement.querySelector('.current-time');
-			if (currentTime) currentTime.textContent = this._formatTime(current);
+			if (currentTime) currentTime.textContent = formatTime(current);
 		}
 	};
 
@@ -117,7 +117,7 @@ export class AudioPlayer extends FoundationElement {
 		this.duration = this.#nativeAudioPlayer.duration;
 		if (this.#timeStampElement) {
 			totalTimeElement = this.#timeStampElement.querySelector('.total-time');
-			if (totalTimeElement) totalTimeElement.textContent = this._formatTime(this.duration);
+			if (totalTimeElement) totalTimeElement.textContent = formatTime(this.duration);
 		}
 	};
 
@@ -142,17 +142,13 @@ export class AudioPlayer extends FoundationElement {
 	#handleSliderClick = () => {
 		document.addEventListener('mouseup', this.#handleSliderMouseUp);
 	};
-
-	/**
-	 * @internal
-	 */
-	_formatTime(time: number) {
-		const min = Math.floor(time / 60);
-		const sec = Math.floor(time % 60);
-		return min + ':' + ((sec < 10) ? ('0' + sec) : sec);
-	}
 }
 
+export function formatTime(time: number) {
+	const min = Math.floor(time / 60);
+	const sec = Math.floor(time % 60);
+	return min + ':' + ((sec < 10) ? ('0' + sec) : sec);
+}
 export interface AudioPlayer extends Localized { }
 applyMixins(AudioPlayer, Localized);
 
