@@ -78,13 +78,17 @@ export class AudioPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
+		this.#createAudioElement();
+		this.#sliderElement.addEventListener('mousedown', this.#handleSliderClick);
+	}
+
+	#createAudioElement() {
 		this.#nativeAudioPlayer = new Audio();
 		this.#nativeAudioPlayer.addEventListener('timeupdate', this.#updateProgress);
 		this.#nativeAudioPlayer.addEventListener('loadedmetadata', this.#updateTotalTime);
 		if (this.src) {
 			this.#nativeAudioPlayer.src = this.src;
 		}
-		this.#sliderElement.addEventListener('mousedown', this.#handleSliderClick);
 	}
 
 	override disconnectedCallback() {
