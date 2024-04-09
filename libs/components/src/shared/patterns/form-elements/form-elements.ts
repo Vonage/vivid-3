@@ -176,7 +176,7 @@ type FeedbackConfig = {
 		name: string;
 		slottedContentProperty: '_helperTextSlottedContent';
 	};
-	role: 'status' | 'none'
+	role: 'status' | 'none';
 };
 const feedback: Record<string, FeedbackConfig> = {
 	helper: {
@@ -186,19 +186,19 @@ const feedback: Record<string, FeedbackConfig> = {
 			name: 'helper-text',
 			slottedContentProperty: '_helperTextSlottedContent',
 		},
-		role: 'none'
+		role: 'none',
 	},
 	error: {
 		messageProperty: 'errorValidationMessage',
 		className: 'error',
 		iconType: 'info-line',
-		role: 'status'
+		role: 'status',
 	},
 	success: {
 		messageProperty: 'successText',
 		className: 'success',
 		iconType: 'check-circle-line',
-		role: 'none'
+		role: 'none',
 	},
 };
 
