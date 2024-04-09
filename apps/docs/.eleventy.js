@@ -44,8 +44,9 @@ module.exports = function (eleventyConfig) {
 		return new CleanCSS({}).minify(code).styles;
 	});
 
+	const isServing = process.argv.includes('--serve');
+	eleventyConfig.addGlobalData('isDevBuild', isServing);
 	eleventyConfig.addFilter('publicPageFilter', function (pages) {
-		const isServing = process.argv.includes('--serve');
 		return isServing
 			? pages
 			: pages.filter(
