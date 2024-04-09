@@ -4,6 +4,7 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
+const packageInstallation = require('./_shortcodes/packageInstallation');
 
 const INPUT_DIR = 'apps/docs';
 const ASSETS_DIR = `${INPUT_DIR}/assets`;
@@ -70,6 +71,8 @@ module.exports = function (eleventyConfig) {
 			)
 		);
 	});
+
+	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
 
 	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
 		const swFilePath = path.resolve('dist/apps/docs/sw.js');
