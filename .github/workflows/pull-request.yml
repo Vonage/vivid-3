@@ -67,6 +67,7 @@ jobs:
     uses: ./.github/workflows/_upload-coverage.yml
     with:
       os: ubuntu-latest
+    secrets: inherit
 
   call-visual-regression:
     if: github.event.pull_request.draft == false
