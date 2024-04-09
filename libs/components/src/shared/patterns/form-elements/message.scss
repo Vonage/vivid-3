@@ -19,10 +19,6 @@ $low-ink-color: --_low-ink-color;
 	gap: 4px;
 	grid-column: 1 / -1;
 
-	&.error-message {
-		display: flex;
-	}
-
 	&--visible {
 		display: flex;
 	}
