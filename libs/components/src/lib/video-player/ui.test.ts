@@ -34,9 +34,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<div class="spacer">
 				<vwc-video-player id="video-player-controls-2">
 					<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
-					<track kind="captions" 
+					<track kind="captions"
 						src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English">
-					<track kind="descriptions" 
+					<track kind="descriptions"
 						src="/assets/ui-tests/descriptions.en.vtt" label="English" srclang="en">
 					<track kind="chapters" src="/assets/ui-tests/chapters.en.vtt" srclang="en">
 				</vwc-video-player>
@@ -142,7 +142,7 @@ test('should show the button and populate the menu when adding audio description
 	const template = `
 		<vwc-video-player>
 			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
-			<track kind="descriptions" 
+			<track kind="descriptions"
 				src="/assets/ui-tests/descriptions.en.vtt" label="English" srclang="en">
 		</vwc-video-player>`;
 
@@ -150,13 +150,12 @@ test('should show the button and populate the menu when adding audio description
 	await loadTemplate({ page, template });
 	await page.waitForLoadState('domcontentloaded');
 	await page.waitForSelector('.vjs-tech');
-	const menuOptions = await page.$$(
-		'.vjs-descriptions-button.vjs-control .vjs-menu li'
-	);
 	await expect(
 		page.locator('.vjs-descriptions-button.vjs-control')
 	).not.toHaveClass('.vjs-hidden');
-	expect(menuOptions.length).toBe(2);
+	await expect(
+		page.locator('.vjs-descriptions-button.vjs-control .vjs-menu li')
+	).toHaveCount(2);
 });
 
 test('should show the button when adding caption tracks', async ({
@@ -167,7 +166,7 @@ test('should show the button when adding caption tracks', async ({
 	const template = `
 		<vwc-video-player>
 			<source src="/assets/ui-tests/sample-5s.webm" type="video/webm">
-			<track kind="captions" 
+			<track kind="captions"
 				src="/assets/ui-tests/captions.en.vtt" srclang="en" label="English">
 		</vwc-video-player>`;
 
