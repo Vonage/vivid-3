@@ -3,7 +3,7 @@ import {
 	elementUpdated,
 	fixture,
 	getControlElement,
-	setAttribute,
+	setProperty,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
@@ -227,7 +227,7 @@ describe('vwc-button', () => {
 		'rel',
 		'target',
 		'type',
-	])('%s attribute', (attribute) => {
+	] as const)('%s attribute', (attribute) => {
 		beforeEach(async () => {
 			element.href = '/somewhere';
 			await elementUpdated(element);
@@ -235,7 +235,7 @@ describe('vwc-button', () => {
 
 		it('should be forwarded to the anchor element', async () => {
 			const text = 'link';
-			await setAttribute(element, attribute, text);
+			await setProperty(element, attribute, text);
 
 			expect(
 				element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
