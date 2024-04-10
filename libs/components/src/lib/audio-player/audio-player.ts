@@ -16,11 +16,6 @@ export type AudioPlayerConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
-// export type AudioPlayerSkipBy = Extract<
-// 	MediaSkipBy,
-// 	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
-// >;
-
 /**
  * @public
  * @component audio-player
