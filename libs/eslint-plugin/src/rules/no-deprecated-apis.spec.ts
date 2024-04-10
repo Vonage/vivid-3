@@ -11,9 +11,9 @@ const ruleTester = new RuleTester({
 
 ruleTester.run('no-deprecated-apis', noDeprecatedAPIs, {
 	valid: [
-		`<template><VSelectableBox /></template>`,
 		`<template><VSelectableBox clickable-box /></template>`,
 		`<template><VSelectableBox :clickable-box="true" /></template>`,
+		`<template><VSelectableBox @clickable/></template>`,
 	],
 	invalid: [
 		convertAnnotatedSourceToFailureCase({
