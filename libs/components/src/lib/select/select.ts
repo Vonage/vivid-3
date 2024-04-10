@@ -1,7 +1,4 @@
-import {
-	applyMixins,
-	Select as FoundationSelect,
-} from '@microsoft/fast-foundation';
+import { Select as FoundationSelect } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
 import {
 	AffixIconWithTrailing,
@@ -15,6 +12,7 @@ import {
 import type { Appearance, Shape } from '../enums';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from '../listbox/listbox';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 export type SelectAppearance = Extract<
 	Appearance,
@@ -28,6 +26,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @slot - Default slot.
  * @slot icon - Slot to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
+ * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
  */
 @errorText
@@ -76,6 +75,11 @@ export class Select extends FoundationSelect {
 	 * @internal
 	 */
 	@observable placeholderOption: ListboxOption | null = null;
+
+	/**
+	 * @internal
+	 */
+	@observable _feedbackWrapper: HTMLElement | null = null;
 
 	/**
 	 *
@@ -130,7 +134,7 @@ export interface Select
 		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
-applyMixins(
+applyMixinsWithObservables(
 	Select,
 	AffixIconWithTrailing,
 	FormElementHelperText,

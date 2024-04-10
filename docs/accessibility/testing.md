@@ -63,3 +63,5 @@ Below are some important factors we test when conducting screen reader testing:
 - **Form Accessibility**: Ensure that form elements, labels, and error messages are properly associated and announced.
 - **ARIA Roles and Attributes**: Verify that ARIA roles and attributes are correctly implemented and announced by the screen reader, providing additional context and functionality.
 - **Multimedia Accessibility**: Ensure that appropriate alternative text or captions are provided for multimedia content.
+
+View a [list of valuable resources about accessibility](/accessibility/resources/)

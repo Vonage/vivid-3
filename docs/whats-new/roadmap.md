@@ -1,6 +1,6 @@
 # Roadmap
 
-## Upcoming Components
+## Upcoming Features
 
 <style>
   @media screen and (max-width: 768px){
@@ -39,21 +39,21 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      Dial Pad
+      <a href="/components/dial-pad/">Dial Pad</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/pages/viewpage.action?spaceKey=VIVID&title=Dial+pad" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-    <vwc-button label="In Progress" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="more-horizontal-line" connotation="cta"></vwc-button>
+    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="check" connotation="succes"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Exp: 04/2024" icon="more-horizontal-line" target="_blank" href="https://jira.vonage.com/browse/VIV-1512" connotation="cta"></vwc-button>
+      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/dial-pad/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      <a href="/components/range-slider">Range Slider</a>
+      <a href="/components/range-slider/">Range Slider</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/display/VIVID/Range+slider" icon="check" connotation="success"></vwc-button>
@@ -62,12 +62,12 @@
     <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/range-slider" connotation="success"></vwc-button>
+      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/range-slider/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      <a href="/components/time-picker">Time Picker</a>
+      <a href="/components/time-picker/">Time Picker</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" icon="check" connotation="success"></vwc-button>
@@ -76,12 +76,12 @@
     <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button  label="Awaiting AT" icon="more-horizontal-line" href="/components/time-picker" connotation="success"></vwc-button>
+      <vwc-button  label="Awaiting AT" icon="more-horizontal-line" href="/components/time-picker/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      Video Player
+      <a href="/components/video-player/">Video Player</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" icon="check" target="_blank" icon="check" href="https://confluence.vonage.com/display/VIVID/Video+player" connotation="success"></vwc-button>
@@ -90,7 +90,7 @@
       <vwc-button label="Done" icon="check" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=23%3A13702&mode=design&t=PGI1aODhsHS1YDhV-1" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Exp: 03/2024" icon="more-horizontal-line" target="_blank" href="https://jira.vonage.com/browse/VIV-1486" connotation="cta"></vwc-button>
+      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/video-player/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
 </vwc-data-grid>

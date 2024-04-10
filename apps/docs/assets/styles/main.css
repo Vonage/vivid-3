@@ -14,6 +14,7 @@ code {
 	background-color: var(--vvd-color-neutral-50);
 	border-radius: 4px;
 	padding: 0px 6px;
+	tab-size: 4;
 }
 
 strong {
@@ -257,6 +258,20 @@ article.article > h1 {
 	top: var(--vvd-header-block-size);
 	z-index: 1;
 }
+
+vwc-note ~ vwc-note {
+	display: block;
+	margin-block-start: 16px;
+}
+
+vwc-note p:first-child {
+	margin-block-start: 0;
+}
+
+vwc-note p:last-child {
+	margin-block-end: 0;
+}
+
 /* #endregion article */
 
 /* #region footer */
