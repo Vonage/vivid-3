@@ -43,7 +43,7 @@ describe('vwc-audio-player', () => {
 			expect(element.notime).toEqual(false);
 			expect(element.disabled).toEqual(false);
 			expect(element.paused).toEqual(true);
-			expect(element.skipBy).toBeUndefined();
+			expect(element.skipBy).toEqual(MediaSkipBy.Zero);
 		});
 	});
 

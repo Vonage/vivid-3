@@ -16,10 +16,10 @@ export type AudioPlayerConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
-export type AudioPlayerSkipBy = Extract<
-	MediaSkipBy,
-	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
->;
+// export type AudioPlayerSkipBy = Extract<
+// 	MediaSkipBy,
+// 	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
+// >;
 
 /**
  * @public
@@ -76,21 +76,13 @@ export class AudioPlayer extends FoundationElement {
 	@attr({ mode: 'boolean' }) notime = false;
 
 	/**
-	 * Sets the available playback rates. When an empty string, no choices will be available
-	 *
-	 * @public
-	 * HTML Attribute: playback-rates
-	 */
-	// @attr({ attribute: 'playback-rates', mode: 'fromView' })
-	// playbackRates: string = DEFAULT_PLAYBACK_RATES;
-
-	/**
 	 * Allows the audio to skip back or forward
 	 *
 	 * @public
 	 * HTML Attribute: skip-by
 	 */
-	@attr({ attribute: 'skip-by' }) skipBy?: AudioPlayerSkipBy;
+	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy?: MediaSkipBy =
+		MediaSkipBy.Zero;
 
 	/**
 	 *
