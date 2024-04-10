@@ -176,6 +176,7 @@ type FeedbackConfig = {
 		name: string;
 		slottedContentProperty: '_helperTextSlottedContent';
 	};
+	role: 'status' | 'none';
 };
 const feedback: Record<string, FeedbackConfig> = {
 	helper: {
@@ -185,16 +186,19 @@ const feedback: Record<string, FeedbackConfig> = {
 			name: 'helper-text',
 			slottedContentProperty: '_helperTextSlottedContent',
 		},
+		role: 'none',
 	},
 	error: {
 		messageProperty: 'errorValidationMessage',
 		className: 'error',
 		iconType: 'info-line',
+		role: 'status',
 	},
 	success: {
 		messageProperty: 'successText',
 		className: 'success',
 		iconType: 'check-circle-line',
+		role: 'none',
 	},
 };
 
@@ -249,10 +253,14 @@ function getFeedbackTypeTemplate(
 
 	return html<SomeFormElement>`<div
 		class="${(x) =>
-			classNames('message', `${config.className}-message`, [
-				'message--visible',
-				shouldShow(x),
-			])}"
+			classNames(
+				'message',
+				`${config.className}-message`,
+				['message--visible', config.role === 'status' || shouldShow(x)],
+				['sr-only', !shouldShow(x)]
+			)}"
+		role="${config.role}"
+		aria-atomic="false"
 	>
 		${when(
 			(x) => shouldShow(x) && config.iconType,

@@ -20,11 +20,11 @@ describe('vwc-menu', () => {
 	let popup: Popup;
 	let anchor: Button;
 
-	global.ResizeObserver = jest.fn().mockImplementation(() => ({
-		observe: jest.fn(),
-		unobserve: jest.fn(),
-		disconnect: jest.fn(),
-	}));
+	global.ResizeObserver = class {
+		observe = jest.fn();
+		unobserve = jest.fn();
+		disconnect = jest.fn();
+	};
 
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Menu;
@@ -54,6 +54,92 @@ describe('vwc-menu', () => {
 				await elementUpdated(element);
 
 				expect(popup.hasAttribute('open')).toBe(isOpen);
+			}
+		);
+	});
+
+	describe('trigger', () => {
+		describe.each([
+			{
+				trigger: 'auto',
+				openAfterClickAnchor: true,
+				openAfterClickAnchorWhenOpen: false,
+				openAfterSelectItem: false,
+			},
+			{
+				trigger: 'legacy',
+				openAfterClickAnchor: true,
+				openAfterClickAnchorWhenOpen: true,
+				openAfterSelectItem: true,
+			},
+			{
+				trigger: 'off',
+				openAfterClickAnchor: false,
+				openAfterClickAnchorWhenOpen: true,
+				openAfterSelectItem: true,
+			},
+		] as const)(
+			'trigger=$trigger',
+			({
+				trigger,
+				openAfterClickAnchor,
+				openAfterClickAnchorWhenOpen,
+				openAfterSelectItem,
+			}) => {
+				beforeEach(async () => {
+					element.trigger = trigger;
+					element.anchor = anchor.id;
+					await elementUpdated(element);
+				});
+
+				it(`should have open=${openAfterClickAnchor} after clicking on the anchor`, async () => {
+					anchor.click();
+					await elementUpdated(element);
+
+					expect(element.open).toBe(openAfterClickAnchor);
+				});
+
+				it(`should have open=${openAfterClickAnchorWhenOpen} after clicking on the anchor while open`, async () => {
+					element.open = true;
+					await elementUpdated(element);
+
+					anchor.click();
+					await elementUpdated(element);
+
+					expect(element.open).toBe(openAfterClickAnchorWhenOpen);
+				});
+
+				it.each(['menuitem', 'menuitemradio'])(
+					`should have open=${openAfterSelectItem} when selecting an item with role %s`,
+					async (role) => {
+						element.open = true;
+						const menuItem = document.createElement('div');
+						menuItem.role = role;
+						element.appendChild(menuItem);
+						await elementUpdated(element);
+
+						menuItem.dispatchEvent(
+							new CustomEvent('change', { bubbles: true })
+						);
+						await elementUpdated(element);
+
+						expect(element.open).toBe(openAfterSelectItem);
+					}
+				);
+
+				it('should not close when clicking on menu item with role menuitemcheckbox', async () => {
+					element.open = true;
+
+					const menuItem = document.createElement('div');
+					menuItem.role = 'menuitemcheckbox';
+					element.appendChild(menuItem);
+					await elementUpdated(element);
+
+					menuItem.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+					await elementUpdated(element);
+
+					expect(element.open).toBe(true);
+				});
 			}
 		);
 	});

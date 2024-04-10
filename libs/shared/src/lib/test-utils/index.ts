@@ -32,13 +32,12 @@ export const getControlElement = (element: Element) => {
 	return element.shadowRoot?.querySelector('.control') as HTMLElement;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function setAttribute(
-	element: any,
-	attribute: string,
-	value: string
+export async function setProperty<T extends Element, P extends keyof T>(
+	element: T,
+	property: P,
+	value: T[P]
 ) {
-	element[attribute] = value;
+	element[property] = value;
 	await elementUpdated(element);
 }
 
