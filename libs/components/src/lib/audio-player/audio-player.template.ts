@@ -29,7 +29,7 @@ function renderButton(context: ElementDefinitionContext) {
   ></${buttonTag}>`;
 }
 
-function renderSkipButtons(context: ElementDefinitionContext) {
+function renderBackwardSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
@@ -46,7 +46,13 @@ function renderSkipButtons(context: ElementDefinitionContext) {
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}"
 		></${buttonTag}>
+	`;
+}
 
+function renderForwardSkipButtons(context: ElementDefinitionContext) {
+	const buttonTag = context.tagFor(Button);
+
+	return html<AudioPlayer>`
 		<${buttonTag} class="skip forward" @click="${(x) => x._toggleSkipForward()}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
@@ -89,10 +95,14 @@ export const AudioPlayerTemplate: (
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
 	return html<AudioPlayer>` <div class="base ${getClasses}">
 		<div class="controls">
+			${when(
+				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
+				renderBackwardSkipButtons(context)
+			)}
 			${renderButton(context)}
 			${when(
 				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
-				renderSkipButtons(context)
+				renderForwardSkipButtons(context)
 			)}
 			${when((x) => !x.notime, renderTimestamp())} ${renderSlider(context)}
 		</div>

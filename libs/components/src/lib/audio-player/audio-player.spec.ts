@@ -251,7 +251,7 @@ describe('vwc-audio-player', () => {
 
 	describe('skip buttons', function () {
 		it('should set buttons when MediaSkipBy not set to Zero', async function () {
-			element.skipBy = undefined
+			element.skipBy = undefined;
 			await elementUpdated(element);
 
 			const controls = getBaseElement(element).querySelector(
