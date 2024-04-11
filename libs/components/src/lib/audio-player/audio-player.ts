@@ -200,18 +200,6 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_rewind = () => {
-		this.paused = true;
-		if (this._playerEl) {
-			this._playerEl.pause();
-			this._playerEl.currentTime =
-				this._playerEl.duration * (Number(this._sliderEl.value) / 100);
-		}
-	};
-
-	/**
-	 * @internal
-	 */
 	_formatTime(time: number) {
 		const min = Math.floor(time / 60);
 		const sec = Math.floor(time % 60);

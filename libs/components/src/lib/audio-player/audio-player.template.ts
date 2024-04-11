@@ -68,7 +68,6 @@ function renderSlider(context: ElementDefinitionContext) {
 	//TODO: add play-pause on enter on Slider
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider"
-	@click = ${(x) => x._rewind()}
 	aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
 	value="0" max="100"
 	connotation="${(x) => x.connotation}"

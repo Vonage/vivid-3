@@ -164,24 +164,6 @@ describe('vwc-audio-player', () => {
 			expect(pauseButton.icon).toEqual('play-solid');
 		});
 
-		it('should pause when rewind is called', async function () {
-			const audio = getBaseElement(element).querySelector(
-				'audio'
-			) as HTMLAudioElement;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-
-			audio.currentTime = 200;
-			element.paused = false;
-			await elementUpdated(element);
-
-			element._rewind();
-			await elementUpdated(element);
-
-			expect(element.paused).toEqual(true);
-		});
-
 		it('should pause when finished', async function () {
 			const audio = getBaseElement(element).querySelector(
 				'audio'
@@ -269,8 +251,7 @@ describe('vwc-audio-player', () => {
 
 	describe('skip buttons', function () {
 		it('should set buttons when MediaSkipBy not set to Zero', async function () {
-			// need to add also if no value is set inside then it is zero
-			element.skipBy = MediaSkipBy.Zero;
+			element.skipBy = undefined
 			await elementUpdated(element);
 
 			const controls = getBaseElement(element).querySelector(
@@ -307,8 +288,8 @@ describe('vwc-audio-player', () => {
 			expect(audio.currentTime).toEqual(5);
 		});
 
-		it('should set skip forward button according to the skip-by attribute', async () => {
-			element.skipBy = MediaSkipBy.Thirty;
+		it('should pause when skip buttons gets to the end', async function () {
+			element.skipBy = MediaSkipBy.Five;
 			const audio = getBaseElement(element).querySelector(
 				'audio'
 			) as HTMLAudioElement;
@@ -319,12 +300,33 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			const skipButton = getBaseElement(element).querySelector(
+				'.backward'
+			) as HTMLButtonElement;
+			skipButton.click();
+
+			await elementUpdated(element);
+			expect(audio.currentTime).toEqual(5);
+		});
+
+		it('should set skip forward button according to the skip-by attribute', async () => {
+			element.skipBy = MediaSkipBy.Thirty;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
+			audio.currentTime = 30;
+			await elementUpdated(element);
+
+			const skipButton = getBaseElement(element).querySelector(
 				'.forward'
 			) as HTMLButtonElement;
 			skipButton.click();
 
 			await elementUpdated(element);
-			expect(audio.currentTime).toEqual(40);
+			expect(audio.currentTime).toEqual(60);
+			expect(element.paused).toEqual(true);
 		});
 
 		it('should change the backward icon according to selected skipBy', async function () {
