@@ -7,7 +7,7 @@
 		"build": "webpack",
 		"watch": "npm run build -- --watch"
 	},
-	"author": "",
+	"author": "Rina Oksman",
 	"license": "",
 	"devDependencies": {
 		"@figma/plugin-typings": "^1.90.0",

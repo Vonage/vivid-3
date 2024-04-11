@@ -1,8 +1,8 @@
 <h2>Icons Builder</h2>
 <button id="create">Add Icons to Figma</button>
 <button id="cancel">Cancel</button>
-<script>
 
+<script>
 document.getElementById('create').onclick = async () => {
   parent.postMessage({ pluginMessage: { type: 'add-icons' } }, '*')
 }
@@ -10,5 +10,4 @@ document.getElementById('create').onclick = async () => {
 document.getElementById('cancel').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
 }
-
 </script>
