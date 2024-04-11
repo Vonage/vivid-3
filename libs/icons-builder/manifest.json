@@ -2,17 +2,18 @@
   "name": "icons-builder",
   "id": "1354446799950687095",
   "api": "1.0.0",
-  "main": "src/lib/main.js",
-  "capabilities": [],
+  "main": "dist/index.js",
+  "capabilities": ["inspect", "vscode"],
   "enableProposedApi": false,
   "editorType": [
-    "figma"
+    "dev",
+    "figma",
+    "figjam"
   ],
-  "ui": "src/index.html",
+  "ui": "index.html",
   "networkAccess": {
     "allowedDomains": ["*"],
     "reasoning": "MyPlugin queries google for example responses.",
     "devAllowedDomains": []
-  },
-  "documentAccess": "dynamic-page"
+  }
 }

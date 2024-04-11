@@ -2,43 +2,33 @@
 	"name": "@vonage/icons-builder",
 	"version": "1.0.0",
 	"description": "Vivid icons builder for figma.",
-	"main": "src/lib/main.js",
+	"main": "dist/main.js",
 	"scripts": {
-		"build": "tsc -p tsconfig.json",
-		"lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
-		"lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
+		"build": "webpack",
 		"watch": "npm run build -- --watch"
 	},
 	"author": "",
 	"license": "",
 	"devDependencies": {
-		"@figma/eslint-plugin-figma-plugins": "*",
-		"@figma/plugin-typings": "^1.89.0",
-		"@typescript-eslint/eslint-plugin": "^6.12.0",
-		"@typescript-eslint/parser": "^6.12.0",
-		"eslint": "^8.54.0",
-		"typescript": "^5.3.2"
+		"@figma/plugin-typings": "^1.90.0",
+		"eslint": "^5.16.0",
+		"path-browserify": "^1.0.1",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.4.5",
+		"webpack": "^5.91.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^3.1.4"
 	},
 	"eslintConfig": {
 		"extends": [
-			"eslint:recommended",
-			"plugin:@typescript-eslint/recommended",
 			"plugin:@figma/figma-plugins/recommended"
 		],
-		"parser": "@typescript-eslint/parser",
 		"parserOptions": {
 			"project": "./tsconfig.json"
 		},
-		"root": true,
-		"rules": {
-			"@typescript-eslint/no-unused-vars": [
-				"error",
-				{
-					"argsIgnorePattern": "^_",
-					"varsIgnorePattern": "^_",
-					"caughtErrorsIgnorePattern": "^_"
-				}
-			]
-		}
+		"root": true
+	},
+	"dependencies": {
+		"aws-sdk": "^2.1597.0"
 	}
 }
