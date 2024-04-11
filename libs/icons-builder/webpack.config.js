@@ -36,7 +36,7 @@ module.exports = () => ({
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'], // Include .d.ts extension
+    extensions: ['.tsx', '.ts', '.js'], 
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

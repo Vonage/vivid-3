@@ -16,8 +16,6 @@ function uploadFolderToS3() {
     region: BUCKET_REGION
   });
 
-  console.log(env.BUCKET_ACCESS_KEY_ID, env.BUCKET_SECRET_ACCESS_KEY);
-
   const directoryPath = path.resolve(__dirname, './icons');
 
   // Read files from the directory
