@@ -129,12 +129,12 @@ async function loadSvgs(name: string) {
 async function loadManifest() {
   try {
     const response = await fetch(
-      `${BASE_URL}/v${ICON_SET_VERSION}/_manifest.json`
+      `${BASE_URL}/v${ICON_SET_VERSION}/manifest.json`
     );
     return response.json();
   }
   catch (e) {
-    console.error('error loading the _manifest', e);
+    console.error('error loading the manifest', e);
     figma.closePlugin();
     return;
   }
