@@ -27,7 +27,7 @@ figma.ui.onmessage = async (msg) => {
 
     const svgsJson = await loadManifest();
     const categorizedIcons = categorizeIconsByCategory(svgsJson as Icon[]);
-    const categories = Object.keys(categorizedIcons);
+    const categories = Object.keys(categorizedIcons).sort();
 
     let lastFramePosition = 0;
 
@@ -35,7 +35,7 @@ figma.ui.onmessage = async (msg) => {
     for (let i = 0; i < categories.length; i++) {
       const category = categories[i];
       const categoryNode = createCategoryFrame(category, lastFramePosition);
-      const icons = categorizedIcons[category];
+      const icons = categorizedIcons[category].sort((a: Icon, b: Icon) => a.id.localeCompare(b.id));
       let count = 0;
 
       for (let j = 0; j < icons.length; j++) {
@@ -97,7 +97,7 @@ function categorizeIconsByCategory(icons: Icon[]) {
   categorizedIcons['uncategorized'] = [];
 
   icons.forEach(icon => {
-    const category = icon.tag.find((tag: string) => tag.startsWith('category_'))//?.substring(9);
+    const category = icon.tag.find((tag: string) => tag.startsWith('category_'))?.substring(9);
     if (category) {
       if (!categorizedIcons[category]) {
         categorizedIcons[category] = [];

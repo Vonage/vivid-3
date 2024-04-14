@@ -386,13 +386,13 @@ figma.ui.onmessage = (msg) => (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(v
         });
         const svgsJson = yield loadManifest();
         const categorizedIcons = categorizeIconsByCategory(svgsJson);
-        const categories = Object.keys(categorizedIcons);
+        const categories = Object.keys(categorizedIcons).sort();
         let lastFramePosition = 0;
         // Add icons to frames
         for (let i = 0; i < categories.length; i++) {
             const category = categories[i];
             const categoryNode = createCategoryFrame(category, lastFramePosition);
-            const icons = categorizedIcons[category];
+            const icons = categorizedIcons[category].sort((a, b) => a.id.localeCompare(b.id));
             let count = 0;
             for (let j = 0; j < icons.length; j++) {
                 const icon = icons[j];
@@ -450,7 +450,8 @@ function categorizeIconsByCategory(icons) {
     const categorizedIcons = {};
     categorizedIcons['uncategorized'] = [];
     icons.forEach(icon => {
-        const category = icon.tag.find((tag) => tag.startsWith('category_')); //?.substring(9);
+        var _a;
+        const category = (_a = icon.tag.find((tag) => tag.startsWith('category_'))) === null || _a === void 0 ? void 0 : _a.substring(9);
         if (category) {
             if (!categorizedIcons[category]) {
                 categorizedIcons[category] = [];
