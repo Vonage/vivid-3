@@ -2,7 +2,7 @@ const path = require('path');
 const { uploadFolderToS3 } = require('./s3Uploader');
 
 module.exports = () => ({
-  mode: 'production',
+  mode: 'development',
   devtool: false,
   entry: {
     index: './index.ts',
