@@ -143,16 +143,18 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_toggleSkipBackward() {
+	_skipButton(isForward: boolean) {
 		if (this._playerEl) {
 			const currentTime = this._playerEl.currentTime;
-			const skipValue = parseInt(this.skipBy ? this.skipBy : MediaSkipBy.Zero);
-			const newTime = currentTime - skipValue;
+			const skipDirection = isForward ? 1 : -1; // Positive for forward, negative for backward
+			const skipValue =
+				parseInt(this.skipBy ? this.skipBy : MediaSkipBy.Zero) * skipDirection;
+			const newTime = currentTime + skipValue;
 
-			if (!isNaN(skipValue) && skipValue > 0) {
-				if (newTime <= this._playerEl.duration) {
+			if (!isNaN(skipValue) && Math.abs(skipValue) > 0) {
+				if (newTime >= 0 && newTime <= this._playerEl.duration) {
 					this._playerEl.currentTime = newTime;
-				} else {
+				} else if (newTime > this._playerEl.duration) {
 					this._playerEl.currentTime = this._playerEl.duration;
 					this._playerEl.pause(); // Pause if reached the end
 				}
@@ -160,7 +162,6 @@ export class AudioPlayer extends FoundationElement {
 			}
 		}
 	}
-
 	/**
 	 * @internal
 	 */

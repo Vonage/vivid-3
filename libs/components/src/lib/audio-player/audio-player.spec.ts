@@ -316,6 +316,26 @@ describe('vwc-audio-player', () => {
 			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
 			const mockAudioElement = { duration: 60 };
 			audioConstructor.mockImplementation(() => mockAudioElement.duration);
+			audio.currentTime = 10;
+			await elementUpdated(element);
+
+			const skipButton = getBaseElement(element).querySelector(
+				'.forward'
+			) as HTMLButtonElement;
+			skipButton.click();
+
+			await elementUpdated(element);
+			expect(audio.currentTime).toEqual(40);
+		});
+
+		it('should set pause if the current time got to the end of duration', async function () {
+			element.skipBy = MediaSkipBy.Thirty;
+			const audio = getBaseElement(element).querySelector(
+				'audio'
+			) as HTMLAudioElement;
+			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+			const mockAudioElement = { duration: 60 };
+			audioConstructor.mockImplementation(() => mockAudioElement.duration);
 			audio.currentTime = 30;
 			await elementUpdated(element);
 
@@ -325,7 +345,7 @@ describe('vwc-audio-player', () => {
 			skipButton.click();
 
 			await elementUpdated(element);
-			expect(audio.currentTime).toEqual(60);
+			expect(audio.currentTime).toEqual(audio.duration);
 			expect(element.paused).toEqual(true);
 		});
 
