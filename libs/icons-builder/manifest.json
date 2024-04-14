@@ -13,7 +13,7 @@
   "ui": "index.html",
   "networkAccess": {
     "allowedDomains": ["*"],
-    "reasoning": "MyPlugin queries google for example responses.",
+    "reasoning": "The plugin requires network access to fetch icons from the S3 bucket.",
     "devAllowedDomains": []
   }
 }

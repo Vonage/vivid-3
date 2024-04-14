@@ -40,7 +40,7 @@ module.exports = () => ({
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js' // The output file name,
+    filename: 'index.js'
   },
   plugins: [
     {
@@ -49,7 +49,7 @@ module.exports = () => ({
           console.log('Uploading to S3...');
         });
         compiler.hooks.afterEmit.tap('UploadFolderToS3', () => {
-          //uploadFolderToS3();
+          uploadFolderToS3();
         });
         compiler.hooks.done.tap('UploadFolderToS3', () => {
           console.log('Upload to S3 complete');
