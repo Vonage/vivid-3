@@ -6,7 +6,7 @@
 	"capabilities": ["inspect", "vscode"],
 	"enableProposedApi": false,
 	"editorType": ["dev", "figma", "figjam"],
-	"ui": "index.html",
+	"ui": "src/index.html",
 	"networkAccess": {
 		"allowedDomains": ["*"],
 		"reasoning": "The plugin requires network access to fetch icons from the S3 bucket.",

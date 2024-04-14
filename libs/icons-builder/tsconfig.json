@@ -10,6 +10,8 @@
 		"allowSyntheticDefaultImports": true,
 		"strictPropertyInitialization": false,
 		"typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-		"skipLibCheck": true
-	}
+		"outDir": "./dist",
+		"skipLibCheck": true,
+	},
+	"include": ["src/**/*.ts"]
 }

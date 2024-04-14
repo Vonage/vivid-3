@@ -1,7 +1,7 @@
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
-} from '../consts/src/index';
+} from '../../consts/src/index';
 
 figma.showUI(__html__);
 
