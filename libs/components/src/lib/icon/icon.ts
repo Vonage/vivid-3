@@ -6,6 +6,7 @@ import {
 	ICONS_VERSION as ICON_SET_VERSION,
 } from '@vonage/vwc-consts';
 import type { Connotation } from '../enums';
+import { numberConverter } from '../../shared/utils/numberConverter';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 // Start displaying placeholder if waiting more than this period of time
@@ -67,7 +68,19 @@ export class Icon extends FoundationElement {
 	 */
 	@attr connotation?: IconConnotation;
 
-	@attr size?: -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
+	@attr({ converter: numberConverter }) size?:
+		| -6
+		| -5
+		| -4
+		| -3
+		| -2
+		| -1
+		| 0
+		| 1
+		| 2
+		| 3
+		| 4
+		| 5;
 
 	/**
 	 * @internal

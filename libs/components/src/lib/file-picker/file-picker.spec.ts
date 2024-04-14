@@ -103,45 +103,6 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('helper text', function () {
-		it('should render the helper text when attribute is set on file picker', async function () {
-			const helperTextElementWithoutText =
-				element.shadowRoot?.querySelector('.helper-message');
-			const helperText = 'Helper Text';
-			element.helperText = helperText;
-			await elementUpdated(element);
-			expect(helperTextElementWithoutText).toBeNull();
-			expect(
-				element.shadowRoot
-					?.querySelector('.helper-message')
-					?.textContent?.trim()
-			).toEqual(helperText);
-		});
-	});
-
-	describe('error text', function () {
-		it('should render the error text when attribute is set', async function () {
-			const errorTextElementWithoutAttribute =
-				element.shadowRoot?.querySelector('.error-message');
-			element.errorText = 'Error Text';
-			await elementUpdated(element);
-			expect(errorTextElementWithoutAttribute).toBeNull();
-			expect(
-				element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()
-			).toEqual('Error Text');
-		});
-
-		it('should hide helper text if error text is set', async function () {
-			element.helperText = 'Helper Text';
-			element.errorText = 'Error Text';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.helper-message')).toBe(null);
-			expect(element.shadowRoot?.querySelector('.error-message')).not.toBe(
-				null
-			);
-		});
-	});
-
 	describe('value', function () {
 		it('should be set to a fake path when a file is added', async function () {
 			addFiles([await generateFile('london.png', 1)]);

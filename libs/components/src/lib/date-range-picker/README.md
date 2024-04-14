@@ -46,7 +46,7 @@ In case you choose not to add a label, it is strongly recommended to add an `ari
 
 ### Helper text
 
-Add the `helper-text` to add some helper text below the date range picker.
+Add the `helper-text` to add some helper text below the date range picker. If you need to add HTML to the helper text, use the `helper-text` slot.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
@@ -151,6 +151,18 @@ Set the `max` attribute to configure the latest date to accept. The user will be
 	start="2023-06-10"
 	end="2023-06-15"
 ></vwc-date-range-picker>
+```
+
+## Slots
+
+### Helper-Text
+
+The `helper-text` slot allows you to use rich content as the date range picker's helper text.
+
+```html preview locale-switcher 460px
+<vwc-date-range-picker label="Date range">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-date-range-picker>
 ```
 
 ## Events

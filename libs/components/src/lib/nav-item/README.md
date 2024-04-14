@@ -17,6 +17,21 @@ Add a `text` attribute to add text to the nav item.
 
 ```html preview
 <vwc-nav>
+	<vwc-nav-item text="Account"></vwc-nav-item>
+</vwc-nav>
+```
+
+### Href
+
+Use `href` to set the URL that the nav item links to.
+
+{% clientSideNavigationHint %}
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-nav>
 	<vwc-nav-item href="#" text="Account"></vwc-nav-item>
 </vwc-nav>
 ```

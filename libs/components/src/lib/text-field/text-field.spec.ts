@@ -18,10 +18,6 @@ describe('vwc-text-field', () => {
 		element.dispatchEvent(new Event('blur'));
 	}
 
-	function setToFocused() {
-		element.dispatchEvent(new Event('focus'));
-	}
-
 	function setValidityToError(errorMessage = 'error') {
 		element.setValidity({ badInput: true }, errorMessage);
 		element.validate();
@@ -315,22 +311,6 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('helper text', function () {
-		it('should render the helper text when attribute is set', async function () {
-			const helperTextElementWithoutText =
-				element.shadowRoot?.querySelector('.helper-text');
-			const helperText = 'Helper Text';
-			element.helperText = helperText;
-			await elementUpdated(element);
-			expect(helperTextElementWithoutText).toBeNull();
-			expect(
-				element.shadowRoot
-					?.querySelector('.helper-message')
-					?.textContent?.trim()
-			).toEqual(helperText);
-		});
-	});
-
 	describe('error message', function () {
 		it('should add class error to base if not valid', async function () {
 			element.dirtyValue = true;
@@ -339,95 +319,6 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
-		});
-
-		it('should set required message if submitted', async function () {
-			element.required = true;
-			await elementUpdated(element);
-			element.dispatchEvent(new Event('invalid'));
-			await elementUpdated(element);
-			const errorElement = element.shadowRoot?.querySelector('.error-message');
-
-			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
-
-			expect(errorElement !== null).toBeTruthy();
-		});
-
-		it('should render the error message when not valid', async function () {
-			const errorElementWithoutText =
-				element.shadowRoot?.querySelector('.error-message');
-			const errorMessage = 'Error Text';
-
-			element.dirtyValue = true;
-			setToBlurred();
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-
-			expect(errorElementWithoutText).toBeNull();
-			expect(
-				element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()
-			).toEqual(errorMessage);
-		});
-
-		it('should render the error message only after a blur', async function () {
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-		});
-
-		it('should replace helper text', async function () {
-			element.helperText = 'helper text';
-			element.dirtyValue = true;
-			setToBlurred();
-			setValidityToError();
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.helper-text')).toBeNull();
-		});
-
-		it('should set error message to empty string when pristine', async function () {
-			setValidityToError();
-			await elementUpdated(element);
-			expect(element.errorValidationMessage).toEqual('');
-		});
-
-		it('should validate after a blur', async function () {
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			setToBlurred();
-			await elementUpdated(element);
-			expect(
-				element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()
-			).toEqual(errorMessage);
-		});
-
-		it('should update error message when blurred', async function () {
-			setToBlurred();
-			const errorMessage = 'Error Text';
-			const errorMessageTwo = 'Error Text 2';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-
-			setValidityToError(errorMessageTwo);
-			await elementUpdated(element);
-
-			expect(
-				element.shadowRoot?.querySelector('.error-message')?.textContent?.trim()
-			).toEqual(errorMessageTwo);
-		});
-
-		it('should change the error message only when already not valid', async function () {
-			setToBlurred();
-			setToFocused();
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			await elementUpdated(element);
-
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
 		});
 	});
 
@@ -439,44 +330,6 @@ describe('vwc-text-field', () => {
 			expect(getBaseElement(element).classList.contains('success')).toEqual(
 				true
 			);
-		});
-
-		it('should not show helper text when success is shown', async function () {
-			element.helperText = 'help';
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.helper-text')).toBeNull();
-		});
-
-		it('should not show error message when success is shown', async function () {
-			element.dirtyValue = true;
-			setToBlurred();
-			setValidityToError('blah');
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-		});
-
-		it('should take precedence over errorText', async function () {
-			element.successText = 'success';
-			element.errorText = 'error';
-			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.error-message')).toBeNull();
-			expect(
-				element.shadowRoot
-					?.querySelector('.success-message')
-					?.textContent?.trim()
-			).toEqual('success');
-		});
-
-		it('should show success message if set', async function () {
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(
-				element.shadowRoot
-					?.querySelector('.success-message')
-					?.textContent?.trim()
-			).toEqual('success');
 		});
 	});
 

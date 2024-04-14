@@ -1,7 +1,8 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment intermediate firm fierce,
+	$shades: primary primary-text primary-increment intermediate faint soft firm
+		fierce,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -21,10 +22,8 @@
 
 $low-ink-color: --_low-ink-color;
 
-@supports selector(:focus-visible) {
-	:host(:focus-visible) {
-		outline: none;
-	}
+:host(:focus-visible) {
+	outline: none;
 }
 
 :host {
@@ -130,6 +129,10 @@ $low-ink-color: --_low-ink-color;
 	.control.has-meta & {
 		padding-inline-end: 8px;
 	}
+}
+
+.feedback-wrapper {
+	display: contents;
 }
 
 ::part(popup-base) {
