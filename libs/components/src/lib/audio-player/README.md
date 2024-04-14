@@ -46,8 +46,8 @@ Setting them to `0` removes the buttons.
 
 ```html preview
 <vwc-audio-player
-	src="https://file-examples.com/storage/fe0e2ce82f660c1579f31b4/2017/11/file_example_MP3_1MG.mp3"
-	skip-by="10"
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	skip-by="5"
 ></vwc-audio-player>
 ```
 
