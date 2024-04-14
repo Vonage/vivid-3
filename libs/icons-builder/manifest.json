@@ -1,19 +1,15 @@
 {
-  "name": "icons-builder",
-  "id": "1354446799950687095",
-  "api": "1.0.0",
-  "main": "dist/index.js",
-  "capabilities": ["inspect", "vscode"],
-  "enableProposedApi": false,
-  "editorType": [
-    "dev",
-    "figma",
-    "figjam"
-  ],
-  "ui": "index.html",
-  "networkAccess": {
-    "allowedDomains": ["*"],
-    "reasoning": "The plugin requires network access to fetch icons from the S3 bucket.",
-    "devAllowedDomains": []
-  }
+	"name": "icons-builder",
+	"id": "1354446799950687095",
+	"api": "1.0.0",
+	"main": "dist/index.js",
+	"capabilities": ["inspect", "vscode"],
+	"enableProposedApi": false,
+	"editorType": ["dev", "figma", "figjam"],
+	"ui": "index.html",
+	"networkAccess": {
+		"allowedDomains": ["*"],
+		"reasoning": "The plugin requires network access to fetch icons from the S3 bucket.",
+		"devAllowedDomains": []
+	}
 }

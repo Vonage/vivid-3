@@ -3,11 +3,11 @@
 <button id="cancel">Cancel</button>
 
 <script>
-document.getElementById('create').onclick = async () => {
-  parent.postMessage({ pluginMessage: { type: 'add-icons' } }, '*')
-}
+	document.getElementById('create').onclick = async () => {
+		parent.postMessage({ pluginMessage: { type: 'add-icons' } }, '*');
+	};
 
-document.getElementById('cancel').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-}
+	document.getElementById('cancel').onclick = () => {
+		parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+	};
 </script>
