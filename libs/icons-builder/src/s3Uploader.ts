@@ -3,9 +3,7 @@ import fs from 'fs';
 import AWS from 'aws-sdk';
 import { env } from 'process';
 
-import {
-	ICONS_VERSION as NEW_VERSION,
-} from '../../consts/src/index';
+import { ICONS_VERSION as NEW_VERSION } from '../../consts/src/index';
 
 const BUCKET_REGION = 'us-east-1';
 const BUCKET_NAME = 'vivid-icons-prod';

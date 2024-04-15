@@ -12,12 +12,12 @@
 		"strictPropertyInitialization": false,
 		"typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
 		"outDir": "./dist",
-		"skipLibCheck": true,
+		"skipLibCheck": true
 	},
 	"ts-node": {
 		"compilerOptions": {
-		  "module": "CommonJS"
+			"module": "CommonJS"
 		}
-	  },
+	},
 	"include": ["src/**/*.ts"]
 }
