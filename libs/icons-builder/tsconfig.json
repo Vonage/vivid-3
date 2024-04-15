@@ -5,19 +5,16 @@
 		"target": "es6",
 		"lib": ["es6"],
 		"strict": true,
-		"declaration": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"strictPropertyInitialization": false,
 		"typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-		"outDir": "./dist",
 		"skipLibCheck": true
 	},
 	"ts-node": {
 		"compilerOptions": {
 			"module": "CommonJS"
 		}
-	},
-	"include": ["src/**/*.ts"]
+	}
 }
