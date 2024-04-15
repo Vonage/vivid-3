@@ -2,7 +2,7 @@
 	"name": "@vonage/icons-builder",
 	"version": "1.0.0",
 	"description": "Vivid icons builder for figma.",
-	"main": "dist/main.js",
+	"main": "dist/index.js",
 	"scripts": {
 		"build": "webpack",
 		"watch": "npm run build -- --watch"

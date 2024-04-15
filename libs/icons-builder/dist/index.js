@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ICONS_VERSION: () => (/* binding */ ICONS_VERSION)
 /* harmony export */ });
 const ICONS_BASE_URL = 'https://icon.resources.vonage.com';
-const ICONS_VERSION = '4.5.6';
+const ICONS_VERSION = '5.5.5';
 
 
 /***/ }),

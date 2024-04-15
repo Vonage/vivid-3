@@ -1,12 +1,11 @@
 import path from 'path';
+import webpack from 'webpack';
 import { uploadFolderToS3 } from './src/s3Uploader';
 
-module.exports = () => ({
+const config: webpack.Configuration = {
 	mode: 'development',
 	devtool: false,
-	entry: {
-		index: './src/index.ts',
-	},
+	entry: './src/index.ts',
 	module: {
 		rules: [
 			{
@@ -21,7 +20,7 @@ module.exports = () => ({
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'dist/index.js',
+		filename: 'index.js',
 	},
 	plugins: [
 		{
@@ -32,4 +31,6 @@ module.exports = () => ({
 			},
 		},
 	],
-});
+};
+
+export default config;
