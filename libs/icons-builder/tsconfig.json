@@ -1,6 +1,7 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
+		"module": "ESNext",
 		"target": "es6",
 		"lib": ["es6"],
 		"strict": true,
@@ -13,5 +14,10 @@
 		"outDir": "./dist",
 		"skipLibCheck": true,
 	},
+	"ts-node": {
+		"compilerOptions": {
+		  "module": "CommonJS"
+		}
+	  },
 	"include": ["src/**/*.ts"]
 }

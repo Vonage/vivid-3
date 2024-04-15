@@ -1,5 +1,5 @@
-const path = require('path');
-const { uploadFolderToS3 } = require('./s3Uploader');
+import path from 'path';
+import { uploadFolderToS3 } from './src/s3Uploader';
 
 module.exports = () => ({
 	mode: 'development',
@@ -21,11 +21,11 @@ module.exports = () => ({
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js',
+		filename: 'dist/index.js',
 	},
 	plugins: [
 		{
-			apply: (compiler) => {
+			apply: (compiler: any) => {
 				compiler.hooks.afterEmit.tap('UploadFolderToS3', () => {
 					uploadFolderToS3();
 				});

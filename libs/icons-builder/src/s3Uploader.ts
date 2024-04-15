@@ -1,7 +1,7 @@
-const path = require('path');
-const fs = require('fs');
-const AWS = require('aws-sdk');
-const { env } = require('process');
+import path from 'path';
+import fs from 'fs';
+import AWS from 'aws-sdk';
+import { env } from 'process';
 
 const BUCKET_REGION = 'us-east-1';
 const BUCKET_NAME = 'vivid-icons-prod';
@@ -9,7 +9,7 @@ const BUCKET_BASE_FOLDER = '3f7739a0-a898-4f69-a82b-ad9d743170b6';
 
 const NEW_VERSION = '5.5.5';
 
-function uploadFolderToS3() {
+export function uploadFolderToS3() {
 	const s3 = new AWS.S3({
 		accessKeyId: env.BUCKET_ACCESS_KEY_ID,
 		secretAccessKey: env.BUCKET_SECRET_ACCESS_KEY,
@@ -34,7 +34,7 @@ function uploadFolderToS3() {
 				ContentType: getContentType(file),
 			};
 
-			s3.upload(params, (err, data) => {
+			s3.upload(params, (err: any, data: any) => {
 				if (err) {
 					console.error(`Error uploading ${file} to S3:`, err);
 				} else {
@@ -45,7 +45,7 @@ function uploadFolderToS3() {
 	});
 }
 
-function getContentType(fileName) {
+function getContentType(fileName: string) {
 	const ext = path.extname(fileName).toLowerCase();
 	switch (ext) {
 		case '.svg':
@@ -56,7 +56,3 @@ function getContentType(fileName) {
 			return 'application/octet-stream';
 	}
 }
-
-module.exports = {
-	uploadFolderToS3,
-};
