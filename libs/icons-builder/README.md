@@ -1,40 +1,24 @@
-Below are the steps to get your plugin running. You can also find instructions at:
+# Icons Builder
 
-https://www.figma.com/plugin-docs/plugin-quickstart-guide/
+This is a tool to generate icons for the project.
 
-This plugin template uses Typescript and NPM, two standard tools in creating JavaScript applications.
 
-First, download Node.js which comes with NPM. This will allow you to install TypeScript and other
-libraries. You can find the download link here:
+## Usage
 
-https://nodejs.org/en/download/
+1. Update ICONS_VERSION with the new version in the `libs/consts/src/lib/icons.ts` file.
+2. Go to the `libs/icons-builder` folder.
+3. Add the new svg icons to the `src/icons` folder.
+4. Update the manifest json file in `src/icons/manifest.json` with the new icons.
+5. export BUCKET_ACCESS_KEY_ID and BUCKET_SECRET_ACCESS_KEY environment variables with the AWS credentials.
+You can find the credentials here: https://us-east-1.console.aws.amazon.com/secretsmanager/secret?name=VividGHAUAccessKey&region=us-east-1
+6. Run the following command to generate the icons:
 
-Next, install TypeScript using the command:
+```
+npm run build
+```
 
-npm install -g typescript
+7. Open figma and run the `Vivid icons builder` plugin. 
+You can find the plugin here: https://www.figma.com/community/plugin/1354446799950687095
 
-Finally, in the directory of your plugin, get the latest type definitions for the plugin API by running:
-
-npm install --save-dev @figma/plugin-typings
-
-If you are familiar with JavaScript, TypeScript will look very familiar. In fact, valid JavaScript code
-is already valid Typescript code.
-
-TypeScript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
-
-For more information, visit https://www.typescriptlang.org/
-
-Using TypeScript requires a compiler to convert TypeScript (code.ts) into JavaScript (code.js)
-for the browser to run.
-
-We recommend writing TypeScript code using Visual Studio code:
-
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Open this directory in Visual Studio Code.
-3. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-   then select "npm: watch". You will have to do this again every time
-   you reopen Visual Studio Code.
-
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+8. Press the `Add Icons to Figma` button to generate the icons. 
+The plugin will generate the icons from the latest version of the icons and add them to the Figma file.
