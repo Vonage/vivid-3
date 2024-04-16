@@ -33,7 +33,7 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.icon).toBeUndefined();
 			expect(element.open).toBeFalsy();
 			expect(element.ariaCurrent).toBeFalsy();
-			//expect(element.appearance).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 		});
 	});
 
