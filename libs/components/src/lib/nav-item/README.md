@@ -116,24 +116,6 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		text="Settings"
 	></vwc-nav-item>
 </vwc-nav>
-<hr />
-<vwc-nav>
-	<vwc-nav-item
-		appearance="ghost"
-		connotation="cta"
-		href="#"
-		icon="profile"
-		text="Account"
-	></vwc-nav-item>
-	<vwc-nav-item
-		appearance="ghost"
-		connotation="cta"
-		href="#"
-		aria-current="page"
-		icon="gear-line"
-		text="Settings"
-	></vwc-nav-item>
-</vwc-nav>
 ```
 
 ## Slots
