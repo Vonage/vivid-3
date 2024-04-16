@@ -4,6 +4,7 @@ import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
 import { navItemDefinition } from './definition';
+import {Connotation} from "@vonage/vivid";
 
 const COMPONENT_TAG = 'vwc-nav-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -24,6 +25,7 @@ describe('vwc-nav-item', () => {
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -77,6 +79,21 @@ describe('vwc-nav-item', () => {
 				element?.shadowRoot
 					?.querySelector('.control')
 					?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
+		});
+	});
+
+	describe('nav-item connotation', function () {
+		it('should set the connotation class on control', async function () {
+			const connotation = Connotation.CTA;
+
+			(element as any).connotation = connotation;
+			await elementUpdated(element);
+
+			expect(
+				element?.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains(`connotation-${connotation}`)
 			).toBeTruthy();
 		});
 	});
