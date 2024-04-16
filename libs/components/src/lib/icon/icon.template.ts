@@ -12,7 +12,7 @@ const getClasses = ({ connotation, size }: Icon) =>
 	classNames(
 		'control',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[`size-${size}`, Boolean(size)]
+		[`size-${size}`, typeof size === 'number']
 	);
 
 export const iconTemplate: (

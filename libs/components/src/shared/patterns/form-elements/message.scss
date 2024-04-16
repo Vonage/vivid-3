@@ -2,6 +2,16 @@
 
 $low-ink-color: --_low-ink-color;
 
+.sr-only {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
 .message {
 	display: none;
 	contain: inline-size;
