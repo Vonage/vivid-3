@@ -1,0 +1,74 @@
+main:has(vwc-banner) {
+	--banner-offset: 60px;
+}
+
+.article-toc {
+	flex-shrink: 0;
+	display: none;
+	position: sticky;
+	padding-block: 32px;
+	inline-size: 200px;
+	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px));
+	top: var(--offset-top);
+
+	box-sizing: border-box;
+	height: calc(100vh - var(--offset-top));
+	overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+	.article-toc {
+		display: block;
+	}
+}
+
+.article-toc nav {
+	margin-block-start: 16px;
+	border-left: 1px solid var(--vvd-color-neutral-200);
+}
+
+.article-toc a {
+	display: block;
+	padding: 8px 16px;
+	margin-left: -1px;
+	border-left: 2px solid transparent;
+	color: var(--vvd-color-canvas-text);
+	text-decoration: none;
+	font: var(--vvd-typography-base);
+}
+
+.article-toc a:visited {
+	color: var(--vvd-color-canvas-text);
+}
+
+.article-toc a:hover {
+	background-color: var(--vvd-color-cta-50);
+	border-color: var(--vvd-color-cta-200);
+	color: var(--vvd-color-canvas-text);
+}
+
+.article-toc a:hover:active {
+	background-color: var(--vvd-color-cta-100);
+}
+
+.article-toc a[aria-active] {
+	background-color: var(--vvd-color-cta-100);
+	border-color: var(--vvd-color-cta-600);
+	color: var(--vvd-color-cta-600);
+}
+
+.article-toc ol {
+	margin: 0;
+	padding-inline-start: 0;
+	list-style: none;
+}
+
+.article-toc nav > ol > li:not(:first-child) {
+	padding-block-start: 8px;
+}
+
+.article-toc ol ol a {
+	font: var(--vvd-typography-base-condensed);
+	padding-inline-start: 32px;
+	padding-block: 4px;
+}

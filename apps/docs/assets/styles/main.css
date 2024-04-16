@@ -155,6 +155,25 @@ vwc-nav-item > vwc-badge {
 
 /* #endregion header */
 
+/* #region page */
+
+.page {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 32px;
+	padding-inline: 32px;
+}
+
+@media (min-width: 1280px) {
+	.page {
+		gap: 64px;
+	}
+}
+
+/* #endregion page */
+
 /* #region article */
 
 article h2,
@@ -242,15 +261,10 @@ article.article > h1 {
 }
 
 .article {
-	padding-inline: 16px;
 	word-break: break-word;
-}
-
-@media (min-width: 1200px) {
-	.article {
-		padding-inline: 124px;
-		max-inline-size: 1000px;
-	}
+	inline-size: 100%;
+	max-inline-size: 1000px;
+	min-width: 0;
 }
 
 .banner {
@@ -277,18 +291,10 @@ vwc-note p:last-child {
 /* #region footer */
 
 .footer {
-	padding-inline: 16px;
 	padding-block: 32px;
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	max-inline-size: 1000px;
-}
-
-@media (min-width: 1200px) {
-	.footer {
-		padding-inline: 124px;
-	}
 }
 
 .footer a {
