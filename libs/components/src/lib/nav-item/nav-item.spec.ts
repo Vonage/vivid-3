@@ -1,10 +1,10 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
 import { navItemDefinition } from './definition';
-import { Connotation } from '@vonage/vivid';
 
 const COMPONENT_TAG = 'vwc-nav-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -85,7 +85,7 @@ describe('vwc-nav-item', () => {
 
 	describe('nav-item connotation', function () {
 		it('should set the connotation class on control', async function () {
-			const connotation = Connotation.CTA;
+			const connotation = 'cta' as NavDisclosureConnotation;
 
 			(element as any).connotation = connotation;
 			await elementUpdated(element);
