@@ -57,6 +57,11 @@ main:has(vwc-banner) {
 	color: var(--vvd-color-cta-600);
 }
 
+.article-toc ol ol a {
+	font: var(--vvd-typography-base-condensed);
+	padding-inline-start: 32px;
+}
+
 .article-toc ol {
 	margin: 0;
 	padding-inline-start: 0;
@@ -64,11 +69,5 @@ main:has(vwc-banner) {
 }
 
 .article-toc nav > ol > li:not(:first-child) {
-	padding-block-start: 8px;
-}
-
-.article-toc ol ol a {
-	font: var(--vvd-typography-base-condensed);
-	padding-inline-start: 32px;
-	padding-block: 4px;
+	padding-block-start: 12px;
 }
