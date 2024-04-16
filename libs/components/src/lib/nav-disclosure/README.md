@@ -128,15 +128,15 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 ```html preview 150px
 <vwc-nav>
 	<vwc-nav-disclosure
-	appearance="ghost-light"
-	connotation="cta"
+		appearance="ghost-light"
+		connotation="cta"
 		label="1st level item"
 		icon="profile"
 		aria-current="true"
 	>
 		<vwc-nav-item
-		appearance="ghost-light"
-		connotation="cta"
+			appearance="ghost-light"
+			connotation="cta"
 			href="#"
 			text="2nd level item"
 			aria-current="page"

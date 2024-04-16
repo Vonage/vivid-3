@@ -47,7 +47,6 @@
 		color: var(#{constants.$vvd-color-canvas-text});
 	}
 
-
 	@include connotation.connotation(nav-item);
 	@include appearance.appearance(
 		appearance.state-selectors(

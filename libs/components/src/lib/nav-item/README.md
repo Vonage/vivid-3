@@ -116,7 +116,7 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		text="Settings"
 	></vwc-nav-item>
 </vwc-nav>
-<hr>
+<hr />
 <vwc-nav>
 	<vwc-nav-item
 		appearance="ghost"

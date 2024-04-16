@@ -21,7 +21,7 @@ const getClasses = ({ appearance, connotation }: NavDisclosure) =>
 		'control',
 		[`appearance-${appearance}`, Boolean(appearance)],
 		[`connotation-${connotation}`, Boolean(connotation)]
-		);
+	);
 
 /**
  * The template for the Nav component.

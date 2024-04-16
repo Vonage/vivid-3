@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import {Appearance, Connotation} from '../enums';
+import { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
@@ -21,7 +21,7 @@ export type NavDisclosureAppearance = Extract<
 export type NavDisclosureConnotation = Extract<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
-	>;
+>;
 
 /**
  * @public
