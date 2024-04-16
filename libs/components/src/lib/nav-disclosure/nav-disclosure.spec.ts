@@ -34,6 +34,7 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.open).toBeFalsy();
 			expect(element.ariaCurrent).toBeFalsy();
 			expect(element.appearance).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -142,20 +143,35 @@ describe('vwc-nav-disclosure', () => {
 				).not.toBeNull();
 			});
 		});
+	});
 
-		describe('nav-disclosure appearance', function () {
-			it('should set the appearance class on the base', async function () {
-				const appearance = 'ghost-light';
+	describe('nav-disclosure appearance', function () {
+		it('should set the appearance class on the base', async function () {
+			const appearance = 'ghost-light';
 
-				(element as any).appearance = appearance;
-				await elementUpdated(element);
+			(element as any).appearance = appearance;
+			await elementUpdated(element);
 
-				expect(
-					element?.shadowRoot
-						?.querySelector('.control')
-						?.classList.contains(`appearance-${appearance}`)
-				).toBeTruthy();
-			});
+			expect(
+				element?.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
+		});
+	});
+
+	describe('nav-disclosure connotation', function () {
+		it('should set the connotation class on the base', async function () {
+			const connotation = 'cta';
+
+			(element as any).connotation = connotation;
+			await elementUpdated(element);
+
+			expect(
+				element?.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains(`connotation-${connotation}`)
+			).toBeTruthy();
 		});
 	});
 });

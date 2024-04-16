@@ -118,6 +118,33 @@ Set the `appearance` attribute to change the nav disclosure's appearance.
 </vwc-nav>
 ```
 
+### Connotation
+
+Set the `connotation` attribute to change the nav disclosure's connotation.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview 150px
+<vwc-nav>
+	<vwc-nav-disclosure
+	appearance="ghost-light"
+	connotation="cta"
+		label="1st level item"
+		icon="profile"
+		aria-current="true"
+	>
+		<vwc-nav-item
+		appearance="ghost-light"
+		connotation="cta"
+			href="#"
+			text="2nd level item"
+			aria-current="page"
+		></vwc-nav-item>
+	</vwc-nav-disclosure>
+</vwc-nav>
+```
+
 ## Events
 
 <div class="table-wrapper">
