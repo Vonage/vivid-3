@@ -6,13 +6,14 @@
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
+	$shades: primary primary-text primary-increment contrast fierce fierce-primary
+		faint firm soft,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: ghost,
+	$appearances: ghost ghost-light,
 	$states: idle hover active selected selectedAndHover,
 	$default: ghost
 );

@@ -33,6 +33,7 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.icon).toBeUndefined();
 			expect(element.open).toBeFalsy();
 			expect(element.ariaCurrent).toBeFalsy();
+			expect(element.appearance).toBeUndefined();
 		});
 	});
 
@@ -139,6 +140,21 @@ describe('vwc-nav-disclosure', () => {
 				expect(
 					getControlElement(element).getAttribute('aria-current')
 				).not.toBeNull();
+			});
+		});
+
+		describe('nav-disclosure appearance', function () {
+			it('should set the appearance class on the base', async function () {
+				const appearance = 'ghost-light';
+
+				(element as any).appearance = appearance;
+				await elementUpdated(element);
+
+				expect(
+					element?.shadowRoot
+						?.querySelector('.control')
+						?.classList.contains(`appearance-${appearance}`)
+				).toBeTruthy();
 			});
 		});
 	});
