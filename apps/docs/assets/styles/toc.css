@@ -40,7 +40,7 @@ main:has(vwc-banner) {
 }
 
 .article-toc a[aria-active]::before {
-	content: "";
+	content: '';
 	display: block;
 	position: absolute;
 	inset-block-start: 0;
