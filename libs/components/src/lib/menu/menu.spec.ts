@@ -376,6 +376,20 @@ describe('vwc-menu', () => {
 
 			expect(() => focusOutOfBody()).not.toThrow();
 		});
+
+		it('should ignore anchor when setting tabindex on child focus', async () => {
+			const anchor = document.createElement('button');
+			anchor.slot = 'anchor';
+			element.appendChild(anchor);
+			const child1 = createMenuItem('menuitemcheckbox');
+			const child2 = createMenuItem('menuitemcheckbox');
+			await elementUpdated(element);
+
+			child2.focus();
+
+			expect(anchor.hasAttribute('tabindex')).toBe(false);
+			expect(child1.getAttribute('tabindex')).toBe('-1');
+		});
 	});
 
 	describe('anchor', () => {
