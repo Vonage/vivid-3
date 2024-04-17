@@ -14,11 +14,14 @@ export type TextAnchorConnotation = Extract<
 >;
 
 /**
- * Types of button appearance.
+ * Types of text-anchor appearance.
  *
  * @public
  */
-export type TextAnchorAppearance = Extract<Appearance, Appearance.Ghost>;
+export type TextAnchorAppearance = Extract<
+	Appearance,
+	Appearance.Ghost | Appearance.GhostLight
+>;
 
 /**
  * @component text-anchor

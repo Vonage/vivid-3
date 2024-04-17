@@ -347,7 +347,7 @@ describe('getFeedbackTemplate', () => {
 
 	const getMessage = (type: string) => {
 		const messageEl = element.shadowRoot!.querySelector(
-			`.${type}-message.message--visible`
+			`.${type}-message.message--visible:not(.sr-only)`
 		);
 		if (!messageEl) {
 			return null;
