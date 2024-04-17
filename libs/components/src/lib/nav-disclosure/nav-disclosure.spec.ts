@@ -6,6 +6,7 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { Connotation } from '@vonage/vivid';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
@@ -162,7 +163,7 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('connotation', function () {
 		it('should set the connotation class on the base', async function () {
-			const connotation = 'cta';
+			const connotation = Connotation.CTA;
 
 			element.connotation = connotation;
 			await elementUpdated(element);
