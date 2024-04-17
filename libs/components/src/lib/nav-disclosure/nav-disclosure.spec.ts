@@ -168,7 +168,9 @@ describe('vwc-nav-disclosure', () => {
 			await elementUpdated(element);
 
 			expect(
-				getControlElement(element).classList.contains(`connotation-${connotation}`)
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
 			).toBeTruthy();
 		});
 	});
