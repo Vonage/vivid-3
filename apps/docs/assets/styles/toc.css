@@ -29,12 +29,25 @@ main:has(vwc-banner) {
 
 .article-toc a {
 	display: block;
+	position: relative;
 	padding: 8px 16px;
-	margin-left: -1px;
-	border-left: 2px solid transparent;
+	--inline-start: 8px;
+	margin-inline-start: var(--inline-start);
+	border-radius: 8px;
 	color: var(--vvd-color-canvas-text);
 	text-decoration: none;
 	font: var(--vvd-typography-base);
+}
+
+.article-toc a[aria-active]::before {
+	content: "";
+	display: block;
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: calc(0px - var(--inline-start));
+	block-size: 100%;
+	inline-size: 2px;
+	background-color: currentColor;
 }
 
 .article-toc a:visited {
@@ -43,7 +56,6 @@ main:has(vwc-banner) {
 
 .article-toc a:hover {
 	background-color: var(--vvd-color-cta-50);
-	border-color: var(--vvd-color-cta-200);
 	color: var(--vvd-color-canvas-text);
 }
 
@@ -53,13 +65,13 @@ main:has(vwc-banner) {
 
 .article-toc a[aria-active] {
 	background-color: var(--vvd-color-cta-100);
-	border-color: var(--vvd-color-cta-600);
 	color: var(--vvd-color-cta-600);
 }
 
 .article-toc ol ol a {
 	font: var(--vvd-typography-base-condensed);
-	padding-inline-start: 32px;
+	--inline-start: 24px;
+	padding-block: 6px;
 }
 
 .article-toc ol {
@@ -70,4 +82,8 @@ main:has(vwc-banner) {
 
 .article-toc nav > ol > li:not(:first-child) {
 	padding-block-start: 12px;
+}
+
+.article-toc ol ol li {
+	padding-block-start: 2px;
 }
