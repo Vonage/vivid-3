@@ -160,17 +160,15 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('nav-disclosure connotation', function () {
+	describe('connotation', function () {
 		it('should set the connotation class on the base', async function () {
 			const connotation = 'cta';
 
-			(element as any).connotation = connotation;
+			element.connotation = connotation;
 			await elementUpdated(element);
 
 			expect(
-				element?.shadowRoot
-					?.querySelector('.control')
-					?.classList.contains(`connotation-${connotation}`)
+				getControlElement(element).classList.contains(`connotation-${connotation}`)
 			).toBeTruthy();
 		});
 	});
