@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
@@ -17,10 +17,23 @@ export type AudioPlayerConnotation = Extract<
 >;
 
 /**
+ * Converter to filter out invalid values for the skip-by attribute.
+ */
+const validSkipByConverter: ValueConverter = {
+	toView(value: MediaSkipBy): MediaSkipBy {
+		return value;
+	},
+	fromView(value: string): MediaSkipBy | undefined {
+		return (Object.values(MediaSkipBy) as string[]).includes(value)
+			? (value as MediaSkipBy)
+			: undefined;
+	},
+};
+
+/**
  * @public
  * @component audio-player
  */
-
 export class AudioPlayer extends FoundationElement {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
 		| string
@@ -76,8 +89,11 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: skip-by
 	 */
-	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy?: MediaSkipBy =
-		MediaSkipBy.Zero;
+	@attr({
+		attribute: 'skip-by',
+		converter: validSkipByConverter,
+	})
+	skipBy?: MediaSkipBy;
 
 	/**
 	 *
@@ -106,6 +122,20 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_timeStampEl!: HTMLDivElement;
 
+	override connectedCallback(): void {
+		super.connectedCallback();
+		this._sliderEl.addEventListener('keyup', this.#pauseAndRewind);
+		this._sliderEl.addEventListener('mousedown', this.#pauseAndRewind);
+		document.addEventListener('mouseup', this._rewind);
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this._sliderEl.removeEventListener('keyup', this.#pauseAndRewind);
+		this._sliderEl.removeEventListener('mousedown', this.#pauseAndRewind);
+		document.addEventListener('mouseup', this._rewind);
+	}
+
 	/**
 	 * @internal
 	 */
@@ -122,23 +152,18 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_skipButton(isForward: boolean) {
+	_onSkipButtonClick(isForward: boolean) {
 		if (this._playerEl) {
 			const currentTime = this._playerEl.currentTime;
 			const skipDirection = isForward ? 1 : -1; // Positive for forward, negative for backward
-			const skipValue =
-				parseInt(this.skipBy ? this.skipBy : MediaSkipBy.Zero) * skipDirection;
+			const skipValue = parseInt(this.skipBy!) * skipDirection;
 			const newTime = currentTime + skipValue;
 
-			if (!isNaN(skipValue) && Math.abs(skipValue) > 0) {
-				if (newTime >= 0 && newTime <= this._playerEl.duration) {
-					this._playerEl.currentTime = newTime;
-				} else if (newTime > this._playerEl.duration) {
-					this._playerEl.currentTime = this._playerEl.duration;
-					this._playerEl.pause(); // Pause if reached the end
-				}
-				this._updateProgress(); // Update progress after skipping
-			}
+			this._playerEl.currentTime = Math.max(
+				0,
+				Math.min(this._playerEl.duration, newTime)
+			);
+			this._updateProgress(); // Update progress after skipping
 		}
 	}
 	/**
@@ -176,6 +201,24 @@ export class AudioPlayer extends FoundationElement {
 				totalTime.textContent = this._formatTime(this._playerEl.duration);
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	_rewind = () => {
+		if (this._playerEl) {
+			this._playerEl.currentTime =
+				this._playerEl.duration * (Number(this._sliderEl.value) / 100);
+		}
+	};
+
+	#pauseAndRewind = () => {
+		this.paused = true;
+		if (this._playerEl) {
+			this._playerEl.pause();
+		}
+		this._rewind();
+	};
 
 	/**
 	 * @internal

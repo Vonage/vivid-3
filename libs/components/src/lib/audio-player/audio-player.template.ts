@@ -33,7 +33,8 @@ function renderBackwardSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip backward" @click="${(x) => x._skipButton(false)}"
+		<${buttonTag} class="skip backward" @click="${(x) =>
+		x._onSkipButtonClick(false)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-backward-line'
@@ -53,7 +54,7 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip forward" @click="${(x) => x._skipButton(true)}"
+		<${buttonTag} class="skip forward" @click="${(x) => x._onSkipButtonClick(true)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-forward-line'
