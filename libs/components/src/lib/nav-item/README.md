@@ -91,6 +91,33 @@ Set the `appearance` attribute to change the nav-item's appearance.
 </vwc-nav>
 ```
 
+### Connotation
+
+Set the `connotation` attribute to change the nav-item's connotation.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item
+		appearance="ghost-light"
+		connotation="cta"
+		href="#"
+		icon="profile"
+		text="Account"
+	></vwc-nav-item>
+	<vwc-nav-item
+		appearance="ghost-light"
+		connotation="cta"
+		href="#"
+		aria-current="page"
+		icon="gear-line"
+		text="Settings"
+	></vwc-nav-item>
+</vwc-nav>
+```
+
 ## Slots
 
 ### Meta
