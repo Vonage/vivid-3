@@ -158,7 +158,8 @@
 	"workspaces": [
 		"apps/vue-docs",
 		"libs/storybook-vue2",
-		"libs/storybook-vue3"
+		"libs/storybook-vue3",
+		"libs/icons-builder"
 	],
 	"packageManager": "npm@10.2.4+sha256.36b548120f75f26408d04ff163cd4a699916f1c4b72ebeeab0bbaf054009eb5b"
 }

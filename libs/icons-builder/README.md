@@ -17,11 +17,10 @@ This is a tool to generate icons for the project.
 ### Updating the new icons
 
 1. Update ICONS_VERSION with the new version in the `libs/consts/src/lib/icons.ts` file.
-2. Open the icons-builder repo: `cd libs/icons-builder`
-3. Add the new svg icons to the `src/icons` folder. Make sure you are adding 2 icons: solid + line | color + mono
-4. After adding the SVG - change the `fill="black"` to `fill="currentColor".`
-5. Remove the width + height of the SVG.
-6. Update the manifest json file in `src/icons/manifest.json` with the new icons:
+2. Add the new svg icons to the `src/icons` folder. Make sure you are adding 2 icons: solid + line | color + mono
+3. After adding the SVG - change the `fill="black"` to `fill="currentColor".`
+4. Remove the width + height of the SVG.
+5. Update the manifest json file in `src/icons/manifest.json` with the new icons:
 
 ```
 {
@@ -41,7 +40,7 @@ This is a tool to generate icons for the project.
 
 1. export BUCKET_ACCESS_KEY_ID and BUCKET_SECRET_ACCESS_KEY environment variables with the AWS credentials.
    You can find the credentials here: https://us-east-1.console.aws.amazon.com/secretsmanager/secret?name=VividGHAUAccessKey&region=us-east-1
-2. Run the following command to generate the icons `npm run build`
+2. Run the following command to generate the icons `npx nx run icons-builder:build`
 
 ### Uploading the icons to Figma:
 

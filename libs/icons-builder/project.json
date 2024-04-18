@@ -1,0 +1,36 @@
+{
+	"name": "icons-builder",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"sourceRoot": "libs/icons-builder",
+	"targets": {
+		"build": {
+			"executor": "nx:run-commands",
+			"dependsOn": ["^build"],
+			"outputs": ["{workspaceRoot}/libs/icons-builder"],
+			"options": {
+				"cwd": "libs/icons-builder",
+				"commands": ["npx vite build"]
+			}
+		},
+		"watch": {
+			"executor": "nx:run-commands",
+			"dependsOn": ["^build"],
+			"outputs": ["{workspaceRoot}/libs/icons-builder"],
+			"options": {
+				"cwd": "libs/icons-builder",
+				"commands": ["npx vite build --watch"]
+			}
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"libs/icons-builder/**/*.{ts}",
+					"libs/icons-builder/package.json"
+				]
+			}
+		}
+	}
+}
