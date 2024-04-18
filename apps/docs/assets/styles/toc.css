@@ -73,6 +73,7 @@ main:has(vwc-banner) {
 	font: var(--vvd-typography-base-condensed);
 	--inline-start: 24px;
 	padding-block: 6px;
+	border-radius: 4px;
 }
 
 .article-toc ol {
