@@ -11,7 +11,11 @@
 
 .vjs-theme-vivid {
 	$control-size: 40px;
-	$control-background-color: color-mix(in srgb, var(#{constants.$vvd-color-canvas-text}), transparent 40%);
+	$control-background-color: color-mix(
+		in srgb,
+		var(#{constants.$vvd-color-canvas-text}),
+		transparent 40%
+	);
 	$control-background-color-hover: var(#{constants.$vvd-color-canvas-text});
 
 	position: relative;
@@ -40,7 +44,6 @@
 		.vjs-svg-icon {
 			filter: none;
 		}
-
 	}
 
 	&:hover {
@@ -75,12 +78,10 @@
 		display: none;
 	}
 
-
 	/* "slider" */
 	.vjs-duration {
 		margin-inline-end: 16px;
 	}
-
 
 	.vjs-control-bar {
 		border-radius: #{border-radius-variables.$border-radius-normal};
@@ -159,7 +160,6 @@
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 	}
 
-
 	.vjs-subs-caps-button,
 	.vjs-chapters-button,
 	.vjs-descriptions-button {
@@ -187,13 +187,11 @@
 	}
 
 	.vjs-menu-button-popup .vjs-menu {
-
 		.vjs-menu-content {
 			background-color: $control-background-color;
 			inset-block-end: 20px;
 		}
 	}
-
 
 	.vjs-volume-panel {
 		inline-size: calc($control-size - 8px) !important;
@@ -219,8 +217,6 @@
 		inset-inline: 0 !important;
 	}
 
-
-
 	.vjs-modal-dialog-content {
 		text-align: center;
 	}
@@ -243,7 +239,9 @@
 			display: none;
 		}
 
-		.vjs-fluid:not(.vjs-fullscreen) .vjs-text-track-display .vjs-text-track-cue {
+		.vjs-fluid:not(.vjs-fullscreen)
+			.vjs-text-track-display
+			.vjs-text-track-cue {
 			font: var(--vvd-typography-base-extended-bold) !important;
 		}
 	}
@@ -270,4 +268,3 @@
 		}
 	}
 }
-
