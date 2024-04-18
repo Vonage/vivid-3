@@ -19,6 +19,7 @@ main:has(vwc-banner) {
 @media (min-width: 768px) {
 	.article-toc {
 		display: block;
+		padding-inline-end: 4px;
 	}
 }
 
