@@ -11,8 +11,9 @@
 
 .vjs-theme-vivid {
 	$control-size: 40px;
-	$control-background-color: rgba(0 0 0 / 60%);
-	$control-background-color-hover: #000;
+	//$control-background-color: rgba(0 0 0 / 60%);
+	$control-background-color: color-mix(in srgb, var(#{constants.$vvd-color-canvas-text}), transparent 30%);
+	$control-background-color-hover: var(#{constants.$vvd-color-canvas-text});
 
 	position: relative;
 	overflow: hidden;
@@ -49,46 +50,68 @@
 		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
-	.vjs-time-control {
-		display: block;
-		padding: 0;
-		inline-size: auto;
-		line-height: 2.9;
-		min-inline-size: auto;
+	.vjs-fluid:not(.vjs-fullscreen) .vjs-text-track-display .vjs-text-track-cue {
+		font: var(--vvd-typography-heading-4) !important;
 	}
+
+	/* time */
+	.vjs-time-control {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 0;
+		min-inline-size: auto;
+		font: var(--vvd-typography-base);
+	}
+	.vjs-time-divider {
+		padding: 0 4px;
+	}
+	.vjs-remaining-time {
+		display: none;
+	}
+
+
 
 	.vjs-duration {
 		margin-inline-end: 16px;
 	}
 
-	.vjs-time-divider {
-		padding: 0 4px;
-	}
 
-	.vjs-remaining-time {
-		display: none;
-	}
+
+
 
 	.vjs-control-bar {
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		margin: 4px;
+		padding: 4px;
 		background-color: $control-background-color;
 		block-size: $control-size;
 		inline-size: calc(100% - 8px);
+		column-gap: 4px;
 	}
 
 	.vjs-button {
 		border-radius: #{border-radius-variables.$border-radius-normal};
-		inline-size: $control-size;
+		inline-size: calc($control-size - 8px);
+		aspect-ratio: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font: var(--vvd-typography-base);
 
 		&:focus-visible {
 			@include focus.focus;
 		}
 
+		&:hover {
+			background: $control-background-color-hover;
+		}
+
 		> .vjs-svg-icon {
-			block-size: 21px;
-			inline-size: 21px;
-			margin-block-start: 5px;
+			block-size: 20px;
+			inline-size: 20px;
+			filter: none;
 		}
 	}
 
@@ -96,7 +119,11 @@
 		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
+	/* playback rates */
 	.vjs-menu {
+		&-button {
+			border-radius: #{border-radius-variables.$border-radius-normal};
+		}
 		ul {
 			border-radius: #{border-radius-variables.$border-radius-normal};
 		}
@@ -105,6 +132,7 @@
 			justify-content: start;
 			padding: 4px 8px;
 			text-align: left;
+			font: var(#{constants.$vvd-typography-base});
 
 			&:focus-visible {
 				@include focus.focus;
@@ -128,52 +156,48 @@
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 	}
 
+
 	.vjs-subs-caps-button,
 	.vjs-chapters-button,
 	.vjs-descriptions-button {
 		.vjs-menu {
 			left: -62px;
 			inline-size: 168px;
+			margin-block-end: 16px;
+			inset-block-end: -4px;
 		}
 	}
 
-	.vjs-skip-backward-5,
-	.vjs-skip-forward-5,
-	.vjs-skip-backward-10,
-	.vjs-skip-forward-10,
-	.vjs-skip-backward-30,
-	.vjs-skip-forward-30 {
-		.vjs-svg-icon {
-			margin-block-start: 2px;
+	.vjs-playback-rate {
+		.vjs-playback-rate-value {
+			z-index: 1;
+			font: var(--vvd-typography-base-extended);
+			line-height: calc($control-size - 8px);
 		}
-	}
-
-	.vjs-playback-rate .vjs-menu {
-		left: -8px;
-		inline-size: 56px;
+		.vjs-menu {
+			inset-inline-start: -8px;
+			inset-block-end: -8px;
+			inline-size: 56px;
+		}
 	}
 
 	.vjs-menu-button-popup .vjs-menu {
-		margin-block-end: 19px;
 
 		.vjs-menu-content {
 			background-color: $control-background-color;
+			inset-block-end: 20px;
 		}
 	}
 
-	.vjs-playback-rate .vjs-playback-rate-value {
-		z-index: 1;
-		line-height: 1.9;
-	}
-
-	.vjs-button:hover {
-		background: $control-background-color-hover;
-	}
 
 	.vjs-volume-panel {
+		inline-size: calc($control-size - 8px) !important;
+		font: var(#{constants.$vvd-typography-base});
+
 		.vjs-volume-control {
 			border-radius: #{border-radius-variables.$border-radius-normal};
 			background-color: $control-background-color;
+			bottom: calc(8em + 4px);
 		}
 
 		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical,
@@ -186,9 +210,10 @@
 
 	.vjs-text-track-display {
 		inline-size: 100%;
-		margin-inline-start: -50%;
-		offset-block-end: 70px;
+		inset-inline: 0 !important;
 	}
+
+
 
 	.vjs-modal-dialog-content {
 		text-align: center;
@@ -210,6 +235,10 @@
 		.vjs-skip-backward-30,
 		.vjs-skip-forward-30 {
 			display: none;
+		}
+
+		.vjs-fluid:not(.vjs-fullscreen) .vjs-text-track-display .vjs-text-track-cue {
+			font: var(--vvd-typography-base-extended-bold) !important;
 		}
 	}
 
@@ -235,3 +264,4 @@
 		}
 	}
 }
+
