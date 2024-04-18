@@ -1,9 +1,7 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"module": "ESNext",
-		"target": "es6",
-		"lib": ["es6"],
+		"module": "commonjs",
 		"strict": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
@@ -11,10 +9,5 @@
 		"strictPropertyInitialization": false,
 		"typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
 		"skipLibCheck": true
-	},
-	"ts-node": {
-		"compilerOptions": {
-			"module": "CommonJS"
-		}
 	}
 }

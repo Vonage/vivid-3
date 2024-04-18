@@ -107,17 +107,13 @@ function categorizeIconsByCategory(icons: Icon[]) {
 	categorizedIcons['uncategorized'] = [];
 
 	icons.forEach((icon) => {
-		const category = icon.tag
-			.find((tag: string) => tag.startsWith('category_'))
-			?.substring(9);
-		if (category) {
-			if (!categorizedIcons[category]) {
-				categorizedIcons[category] = [];
-			}
-			categorizedIcons[category].push(icon);
-		} else {
-			categorizedIcons['uncategorized'].push(icon);
+		const categoryTag =
+			icon.tag && icon.tag.find((tag) => tag.startsWith('category_'));
+		const category = categoryTag ? categoryTag.substring(9) : 'uncategorized';
+		if (!categorizedIcons[category]) {
+			categorizedIcons[category] = [];
 		}
+		categorizedIcons[category].push(icon);
 	});
 
 	return categorizedIcons;
