@@ -6,6 +6,7 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { Connotation } from '@vonage/vivid';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
@@ -34,6 +35,7 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.open).toBeFalsy();
 			expect(element.ariaCurrent).toBeFalsy();
 			expect(element.appearance).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -142,20 +144,35 @@ describe('vwc-nav-disclosure', () => {
 				).not.toBeNull();
 			});
 		});
+	});
 
-		describe('nav-disclosure appearance', function () {
-			it('should set the appearance class on the base', async function () {
-				const appearance = 'ghost-light';
+	describe('nav-disclosure appearance', function () {
+		it('should set the appearance class on the base', async function () {
+			const appearance = 'ghost-light';
 
-				(element as any).appearance = appearance;
-				await elementUpdated(element);
+			(element as any).appearance = appearance;
+			await elementUpdated(element);
 
-				expect(
-					element?.shadowRoot
-						?.querySelector('.control')
-						?.classList.contains(`appearance-${appearance}`)
-				).toBeTruthy();
-			});
+			expect(
+				element?.shadowRoot
+					?.querySelector('.control')
+					?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
+		});
+	});
+
+	describe('connotation', function () {
+		it('should set the connotation class on the base', async function () {
+			const connotation = Connotation.CTA;
+
+			element.connotation = connotation;
+			await elementUpdated(element);
+
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
+			).toBeTruthy();
 		});
 	});
 });

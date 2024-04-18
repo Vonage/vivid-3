@@ -1,5 +1,11 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import {
+	axe,
+	elementUpdated,
+	fixture,
+	getControlElement,
+} from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
@@ -24,6 +30,7 @@ describe('vwc-nav-item', () => {
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.connotation).toBeUndefined();
 		});
 	});
 
@@ -77,6 +84,21 @@ describe('vwc-nav-item', () => {
 				element?.shadowRoot
 					?.querySelector('.control')
 					?.classList.contains(`appearance-${appearance}`)
+			).toBeTruthy();
+		});
+	});
+
+	describe('connotation', function () {
+		it('should set the connotation class on control', async function () {
+			const connotation = 'cta' as NavDisclosureConnotation;
+
+			element.connotation = connotation;
+			await elementUpdated(element);
+
+			expect(
+				getControlElement(element).classList.contains(
+					`connotation-${connotation}`
+				)
 			).toBeTruthy();
 		});
 	});
