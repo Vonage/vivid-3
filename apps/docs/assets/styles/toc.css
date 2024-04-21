@@ -1,0 +1,91 @@
+main:has(vwc-banner) {
+	--banner-offset: 60px;
+}
+
+.article-toc {
+	flex-shrink: 0;
+	display: none;
+	position: sticky;
+	padding-block: 32px;
+	inline-size: 200px;
+	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px));
+	top: var(--offset-top);
+
+	box-sizing: border-box;
+	height: calc(100vh - var(--offset-top));
+	overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+	.article-toc {
+		display: block;
+		padding-inline-end: 4px;
+	}
+}
+
+.article-toc nav {
+	margin-block-start: 16px;
+	border-left: 1px solid var(--vvd-color-neutral-200);
+}
+
+.article-toc a {
+	display: block;
+	position: relative;
+	padding: 8px 16px;
+	--inline-start: 8px;
+	margin-inline-start: var(--inline-start);
+	border-radius: 8px;
+	color: var(--vvd-color-canvas-text);
+	text-decoration: none;
+	font: var(--vvd-typography-base);
+}
+
+.article-toc a[aria-active]::before {
+	content: '';
+	display: block;
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: calc(0px - var(--inline-start));
+	block-size: 100%;
+	inline-size: 2px;
+	background-color: currentColor;
+}
+
+.article-toc a:visited {
+	color: var(--vvd-color-canvas-text);
+}
+
+.article-toc a:hover {
+	background-color: var(--vvd-color-cta-50);
+	color: var(--vvd-color-canvas-text);
+}
+
+.article-toc a:hover:active {
+	background-color: var(--vvd-color-cta-100);
+}
+
+.article-toc a[aria-active] {
+	background-color: var(--vvd-color-cta-100);
+	color: var(--vvd-color-cta-600);
+}
+
+.article-toc ol ol a {
+	font: var(--vvd-typography-base-condensed);
+	--inline-start: 24px;
+	padding-block: 6px;
+	border-radius: 4px;
+}
+
+.article-toc ol {
+	margin: 0;
+	padding-inline-start: 0;
+	list-style: none;
+}
+
+.article-toc nav > ol > li:not(:first-child) {
+	padding-block-start: 12px;
+}
+
+.article-toc ol ol li {
+	padding-block-start: 2px;
+}

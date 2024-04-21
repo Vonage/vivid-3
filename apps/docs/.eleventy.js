@@ -1,4 +1,5 @@
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const pluginTOC = require('eleventy-plugin-nesting-toc');
 const markdownLibrary = require('./libraries/markdown-it');
 const CleanCSS = require('clean-css');
 const fs = require('fs');
@@ -13,6 +14,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.setLibrary('md', markdownLibrary);
 
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
+
+	eleventyConfig.addPlugin(pluginTOC);
 
 	eleventyConfig.addPassthroughCopy({
 		'dist/libs/styles': 'assets/styles',
