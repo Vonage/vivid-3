@@ -20,7 +20,7 @@ This is a tool to generate icons for the project.
 2. Add the new svg icons to the `src/icons` folder. Make sure you are adding 2 icons: solid + line | color + mono
 3. After adding the SVG - change the `fill="black"` to `fill="currentColor".`
 4. Remove the width + height of the SVG.
-5. Update the manifest json file in `src/icons/manifest.json` with the new icons:
+5. Update the `_manifest.json` file in `src/icons/_manifest.json` with the new icons:
 
 ```
 {
@@ -29,7 +29,7 @@ This is a tool to generate icons for the project.
 "icon-name-keyword"
 ],
 "tag": [
-"category_category-name", // (choose one of the category-name from: `src/icons/categories.json`).
+"category_category-name", // (choose one of the category-name from: `src/icons/_categories.json`).
 "style_color_single", // (or: `style_color_multi`)
 "style_weight_regular" // (or: `style_weight_solid`)
 ]
