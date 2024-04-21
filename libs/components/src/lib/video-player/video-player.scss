@@ -33,9 +33,14 @@
 		background-color: $control-background-color;
 		block-size: $big-play-btn-size;
 		inline-size: $big-play-btn-size;
-		line-height: calc($big-play-btn-size - 5px);
+		align-items: center;
+		justify-content: center;
 		margin-block-start: -$big-play-btn-offset;
 		margin-inline-start: -$big-play-btn-offset;
+
+		.vjs-fluid:not(.vjs-has-started) & {
+			display: flex;
+		}
 
 		&:focus-visible {
 			@include focus.focus;
@@ -43,6 +48,12 @@
 
 		.vjs-svg-icon {
 			filter: none;
+			inline-size: calc($big-play-btn-size / 2);
+			block-size: calc($big-play-btn-size / 2);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-inline-start: 2px;
 		}
 	}
 
@@ -113,8 +124,8 @@
 		}
 
 		> .vjs-svg-icon {
-			block-size: 16px;
-			inline-size: 16px;
+			block-size: 18px;
+			inline-size: 18px;
 			filter: none;
 		}
 	}
@@ -186,10 +197,18 @@
 		}
 	}
 
+	.vjs-audio-button {
+		.vjs-menu {
+			margin-block-end: 16px;
+			inset-block-end: -4px;
+		}
+	}
+
 	.vjs-menu-button-popup .vjs-menu {
 		.vjs-menu-content {
 			background-color: $control-background-color;
 			inset-block-end: 20px;
+			//bottom: -8px;
 		}
 	}
 
