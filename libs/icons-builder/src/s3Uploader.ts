@@ -26,7 +26,12 @@ export function uploadFolderToS3() {
 
 		files.forEach((file) => {
 			const filePath = path.join(directoryPath, file);
-			const fileName = (file === '_manifest.json') ? 'manifest.json' : (file === '_categories.json') ? 'categories.json' : file;
+			const fileName =
+				file === '_manifest.json'
+					? 'manifest.json'
+					: file === '_categories.json'
+					? 'categories.json'
+					: file;
 
 			const params = {
 				Bucket: BUCKET_NAME,

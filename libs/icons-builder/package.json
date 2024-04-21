@@ -3,8 +3,6 @@
 	"version": "1.0.0",
 	"description": "Vivid icons builder for figma.",
 	"main": "dist/index.js",
-	"generators": "./generators.json",
-	"executors": "./executors.json",
 	"scripts": {
 		"build": "npx vite build",
 		"watch": "npx vite build --watch"
