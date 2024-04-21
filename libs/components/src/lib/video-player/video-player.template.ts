@@ -10,7 +10,6 @@ import { VideoPlayer } from './video-player';
 
 const getClasses = (_: VideoPlayer) => classNames('control');
 
-
 /**
  * The template for the VideoPlayer component.
  *
@@ -31,6 +30,5 @@ export const VideoPlayerTemplate: (
 		</div>
 		<slot></slot>
 		${renderSvgIcons()}
-
 	</div>
 `;

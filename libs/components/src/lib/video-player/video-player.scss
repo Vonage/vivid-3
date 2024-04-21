@@ -21,45 +21,45 @@
 	position: relative;
 	overflow: hidden;
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	color: var(#{constants.$vvd-color-canvas});
 	container-type: inline-size;
 	font: var(#{constants.$vvd-typography-base});
-	color: var(#{constants.$vvd-color-canvas});
 
 	.vjs-big-play-button {
 		$big-play-btn-size: 60px;
 		$big-play-btn-offset: calc($big-play-btn-size / 2);
 
+		align-items: center;
+		justify-content: center;
 		border-radius: #{border-radius-variables.$border-radius-full};
 		background-color: $control-background-color;
 		block-size: $big-play-btn-size;
 		inline-size: $big-play-btn-size;
-		align-items: center;
-		justify-content: center;
 		margin-block-start: -$big-play-btn-offset;
 		margin-inline-start: -$big-play-btn-offset;
-
-		.vjs-fluid:not(.vjs-has-started) & {
-			display: flex;
-		}
 
 		&:focus-visible {
 			@include focus.focus;
 		}
 
+		&:hover {
+			.vjs-big-play-button {
+				background-color: $control-background-color-hover;
+			}
+		}
+
+		.vjs-fluid:not(.vjs-has-started) & {
+			display: flex;
+		}
+
 		.vjs-svg-icon {
-			filter: none;
-			inline-size: calc($big-play-btn-size / 2);
-			block-size: calc($big-play-btn-size / 2);
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			block-size: calc($big-play-btn-size / 2);
+			filter: none;
+			inline-size: calc($big-play-btn-size / 2);
 			margin-inline-start: 2px;
-		}
-	}
-
-	&:hover {
-		.vjs-big-play-button {
-			background-color: $control-background-color-hover;
 		}
 	}
 
@@ -79,8 +79,8 @@
 		flex-direction: column;
 		justify-content: center;
 		padding: 0;
-		min-inline-size: auto;
 		font: var(--vvd-typography-base);
+		min-inline-size: auto;
 	}
 	.vjs-time-divider {
 		padding: 0 4px;
@@ -95,25 +95,25 @@
 	}
 
 	.vjs-control-bar {
+		padding: 4px;
 		border-radius: #{border-radius-variables.$border-radius-normal};
 		margin: 4px;
-		padding: 4px;
 		background-color: $control-background-color;
 		block-size: $control-size;
-		inline-size: calc(100% - 8px);
 		column-gap: 4px;
+		inline-size: calc(100% - 8px);
 	}
 
 	.vjs-button {
-		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		inline-size: calc($control-size - 8px);
-		aspect-ratio: 1;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
-		font: var(--vvd-typography-base);
+		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		aspect-ratio: 1;
 		color: inherit;
+		font: var(--vvd-typography-base);
+		inline-size: calc($control-size - 8px);
 
 		&:focus-visible {
 			@include focus.focus;
@@ -125,13 +125,9 @@
 
 		> .vjs-svg-icon {
 			block-size: 18px;
-			inline-size: 18px;
 			filter: none;
+			inline-size: 18px;
 		}
-	}
-
-	.vjs-menu-button {
-		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 
 	/* playback rates */
@@ -146,8 +142,8 @@
 		li {
 			justify-content: start;
 			padding: 4px 8px;
-			text-align: left;
 			font: var(#{constants.$vvd-typography-base});
+			text-align: left;
 
 			&:focus-visible {
 				@include focus.focus;
@@ -177,8 +173,8 @@
 		.vjs-menu {
 			left: -62px;
 			inline-size: 168px;
-			margin-block-end: 16px;
 			inset-block-end: -4px;
+			margin-block-end: 16px;
 		}
 	}
 
@@ -190,17 +186,17 @@
 			line-height: calc($control-size - 8px);
 		}
 		.vjs-menu {
-			inset-inline-start: -8px;
 			inline-size: 56px;
-			margin-block-end: 16px;
 			inset-block-end: -4px;
+			inset-inline-start: -8px;
+			margin-block-end: 16px;
 		}
 	}
 
 	.vjs-audio-button {
 		.vjs-menu {
-			margin-block-end: 16px;
 			inset-block-end: -4px;
+			margin-block-end: 16px;
 		}
 	}
 
@@ -208,19 +204,18 @@
 		.vjs-menu-content {
 			background-color: $control-background-color;
 			inset-block-end: 20px;
-			//bottom: -8px;
 		}
 	}
 
 	.vjs-volume-panel {
-		inline-size: calc($control-size - 8px) !important;
 		font: var(#{constants.$vvd-typography-base});
+		inline-size: calc($control-size - 8px) !important;
 
 		.vjs-volume-control {
 			border-radius: #{border-radius-variables.$border-radius-normal};
 			background-color: $control-background-color;
-			bottom: calc(8em + 4px);
 			inline-size: 20px;
+			inset-block-end: calc(8em + 4px);
 		}
 
 		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical,
