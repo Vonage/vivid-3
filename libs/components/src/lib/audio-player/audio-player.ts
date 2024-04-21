@@ -124,14 +124,14 @@ export class AudioPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this._sliderEl.addEventListener('keyup', this.#pauseAndRewind);
+		this._sliderEl.addEventListener('keydown', this.#pauseAndRewind);
 		this._sliderEl.addEventListener('mousedown', this.#pauseAndRewind);
 		document.addEventListener('mouseup', this._rewind);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this._sliderEl.removeEventListener('keyup', this.#pauseAndRewind);
+		this._sliderEl.removeEventListener('keydown', this.#pauseAndRewind);
 		this._sliderEl.removeEventListener('mousedown', this.#pauseAndRewind);
 		document.addEventListener('mouseup', this._rewind);
 	}
