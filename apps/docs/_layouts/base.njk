@@ -23,64 +23,25 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Load styles inline -->
+		<link rel="stylesheet" href="/docs/assets/styles/main.scss">
+		<style>
+			:not(:defined), .page-not-ready {
+				visibility: hidden;
+			}
+		</style>
+		<style id="vivid-theme"></style>
 
-    {% set css %}
-    	{% include "../../../node_modules/highlight.js/styles/github.css" %}
-      {% include "../assets/styles/main.css" %}
-      {% include "../assets/styles/toc.css" %}
-    {% endset %}
-
-    <style>
-      {{ css | cssmin | safe }}
-    </style>
-
-    {% set mainJs %}
-      {% include "../assets/scripts/main.js" %}
-    {% endset %}
-
-    <script>
-      {{ mainJs | safe }}
-    </script>
-
-    {% set viewportHandler %}
-      {% include "../assets/scripts/viewport-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ viewportHandler | safe }}
-    </script>
-
-    {% set themeHandler %}
-      {% include "../assets/scripts/theme-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ themeHandler | safe }}
-    </script>
-
-    {% set scrollHandler %}
-      {% include "../assets/scripts/scroll-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ scrollHandler | safe }}
-    </script>
-
-    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
-
-    <script type="module" src="{{ '/assets/scripts/vivid-components.js' | url}}"></script>
+		<script type="text/javascript">
+			window._bufferedLoadedIFrames = [];
+			window.onloadIframe = function(iframe) { window._bufferedLoadedIFrames.push(iframe); };
+		</script>
+		<script type="module" src="/docs/assets/scripts/main.ts"></script>
+		<script type="module" src="/docs/assets/scripts/vivid-components.ts"></script>
 
 		{% block header %}{% endblock %}
-
-    <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/scripts/turbolinks.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/scripts/toc.js' | url}}"></script>
-    <script src="{{ '/assets/scripts/cache-assets.js' | url}}"></script>
-
   </head>
 
-<body hx-boost="true" hx-target="main" hx-select="main" hx-swap="innerHTML scroll:html:top">
+<body class="not-ready" hx-boost="true" hx-target="main" hx-select="main" hx-swap="innerHTML scroll:html:top">
 
 	<vwc-header id="header-main" slot="app-content">
 

@@ -1,11 +1,15 @@
+import { Header } from './vivid';
+
 // sets elevation on scroll
-const updateHeaderElevationShadow = (isShadowed) => {
-	const sideHeader = document.querySelector('vwc-header#header-main');
+const updateHeaderElevationShadow = (isShadowed: boolean) => {
+	const sideHeader = document.querySelector('vwc-header#header-main') as Header;
 	sideHeader.elevationShadow = isShadowed;
 };
 
 const getSideDrawerBase = () =>
-	sidedrawer.shadowRoot.querySelector('[part~="base"]');
+	document
+		.getElementById('sidedrawer')!
+		.shadowRoot!.querySelector('[part~="base"]')!;
 
 const onScroll = () => {
 	const isWindowScrolled = window.scrollY > 0;

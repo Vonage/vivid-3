@@ -1,20 +1,27 @@
-function isComponentHidden(component, term) {
+import { NavDisclosure, NavItem } from './vivid';
+
+function isComponentHidden(component: Element, term: string) {
 	return (
 		component.tagName === 'VWC-NAV-ITEM' &&
-		!component.text.toLowerCase().includes(term.toLowerCase())
+		!(component as NavItem).text.toLowerCase().includes(term.toLowerCase())
 	);
 }
 
-function isDisclosureHidden(disclosure, term) {
+function isDisclosureHidden(disclosure: Element, term: string) {
 	return (
 		disclosure.tagName === 'VWC-NAV-DISCLOSURE' &&
-		!disclosure.label.toLowerCase().includes(term.toLowerCase())
+		!(disclosure as NavDisclosure).label
+			.toLowerCase()
+			.includes(term.toLowerCase())
 	);
 }
 
-function filterComponentsInput(components, nonComponentsNavItems) {
-	return (e) => {
-		const term = e.target.value;
+function filterComponentsInput(
+	components: Element[],
+	nonComponentsNavItems: NodeListOf<Element>
+) {
+	return (e: Event) => {
+		const term = (e.target as HTMLInputElement).value;
 		components.forEach((component) => {
 			isComponentHidden(component, term)
 				? component.classList.add('hidden')
@@ -30,13 +37,13 @@ function filterComponentsInput(components, nonComponentsNavItems) {
 
 window.addEventListener('load', () => {
 	const components = Array.from(
-		document.querySelector('[label="Components"]').children
+		document.querySelector('[label="Components"]')!.children
 	);
 	const nonComponentsNavItems = document.querySelectorAll(
 		'vwc-nav-disclosure:not([label="Components"])'
 	);
 	document
-		.querySelector('.components-filter')
+		.querySelector('.components-filter')!
 		.addEventListener(
 			'input',
 			filterComponentsInput(components, nonComponentsNavItems)

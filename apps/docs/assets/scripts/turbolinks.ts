@@ -1,7 +1,12 @@
-import 'htmx.org';
+import htmx from 'htmx.org';
+import { NavItem } from './vivid';
+
+window.htmx = htmx;
 
 window.addEventListener('DOMContentLoaded', () => {
-	const navItems = document.querySelectorAll('vwc-nav-item');
+	const navItems = document.querySelectorAll(
+		'vwc-nav-item'
+	) as NodeListOf<NavItem>;
 	for (const navItem of navItems) {
 		navItem.setAttribute('hx-get', navItem.href);
 		navItem.setAttribute('hx-push-url', 'true');
@@ -34,7 +39,7 @@ const handleLocationChange = () => {
 	}
 };
 
-const onBeforeProcessNode = (e) => {
+const onBeforeProcessNode = (e: CustomEvent) => {
 	const element = e.detail.elt;
 
 	// Disable Turbo for links to the Vivid Vue documentation
@@ -48,4 +53,7 @@ const onBeforeProcessNode = (e) => {
 
 window.addEventListener('popstate', handleLocationChange);
 window.addEventListener('htmx:pushedIntoHistory', handleLocationChange);
-window.addEventListener('htmx:beforeProcessNode', onBeforeProcessNode);
+window.addEventListener(
+	'htmx:beforeProcessNode',
+	onBeforeProcessNode as EventListener
+);

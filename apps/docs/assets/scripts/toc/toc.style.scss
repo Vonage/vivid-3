@@ -3,20 +3,20 @@ main:has(vwc-banner) {
 }
 
 .article-toc {
-	flex-shrink: 0;
-	display: none;
 	position: sticky;
-	padding-block: 32px;
-	inline-size: 200px;
-	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px));
 	top: var(--offset-top);
-
-	box-sizing: border-box;
+	display: none;
 	height: calc(100vh - var(--offset-top));
+	box-sizing: border-box;
+	flex-shrink: 0;
+	inline-size: 200px;
 	overflow-y: auto;
+	padding-block: 32px;
+
+	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px));
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
 	.article-toc {
 		display: block;
 		padding-inline-end: 4px;
@@ -24,31 +24,42 @@ main:has(vwc-banner) {
 }
 
 .article-toc nav {
-	margin-block-start: 16px;
 	border-left: 1px solid var(--vvd-color-neutral-200);
+	margin-block-start: 16px;
 }
 
 .article-toc a {
-	display: block;
 	position: relative;
+	display: block;
+	overflow: hidden;
 	padding: 8px 16px;
-	--inline-start: 8px;
-	margin-inline-start: var(--inline-start);
 	border-radius: 8px;
 	color: var(--vvd-color-canvas-text);
-	text-decoration: none;
 	font: var(--vvd-typography-base);
+	margin-inline-start: var(--inline-start);
+	text-decoration: none;
+	text-overflow: ellipsis;
+
+	--inline-start: 8px;
 }
 
 .article-toc a[aria-active]::before {
-	content: '';
-	display: block;
 	position: absolute;
+	display: block;
+	background-color: currentColor;
+	block-size: 100%;
+	content: '';
+	inline-size: 2px;
 	inset-block-start: 0;
 	inset-inline-start: calc(0px - var(--inline-start));
-	block-size: 100%;
-	inline-size: 2px;
-	background-color: currentColor;
+}
+
+.article-toc ol ol a {
+	border-radius: 4px;
+	font: var(--vvd-typography-base-condensed);
+	padding-block: 6px;
+
+	--inline-start: 24px;
 }
 
 .article-toc a:visited {
@@ -69,23 +80,16 @@ main:has(vwc-banner) {
 	color: var(--vvd-color-cta-600);
 }
 
-.article-toc ol ol a {
-	font: var(--vvd-typography-base-condensed);
-	--inline-start: 24px;
-	padding-block: 6px;
-	border-radius: 4px;
-}
-
 .article-toc ol {
 	margin: 0;
-	padding-inline-start: 0;
 	list-style: none;
-}
-
-.article-toc nav > ol > li:not(:first-child) {
-	padding-block-start: 12px;
+	padding-inline-start: 0;
 }
 
 .article-toc ol ol li {
 	padding-block-start: 2px;
+}
+
+.article-toc nav > ol > li:not(:first-child) {
+	padding-block-start: 12px;
 }
