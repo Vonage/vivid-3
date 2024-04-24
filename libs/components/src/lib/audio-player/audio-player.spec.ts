@@ -164,26 +164,31 @@ describe('vwc-audio-player', () => {
 			expect(pauseButton.icon).toEqual('play-solid');
 		});
 
-		it('should pause audio on keyup of the slider', async function () {
-			const playButton = getBaseElement(element).querySelector(
-				'.pause'
-			) as Button;
-			playButton.click();
-			await elementUpdated(element);
-			const audio = getBaseElement(element).querySelector(
-				'audio'
-			) as HTMLAudioElement;
-			const audioConstructor = jest.spyOn(audio, 'duration', 'get');
-			const mockAudioElement = { duration: 60 };
-			audioConstructor.mockImplementation(() => mockAudioElement.duration);
-			const slider = getBaseElement(element).querySelector('.slider') as Slider;
+		it.each(['keyup', 'keydown', 'mousedown'])(
+			'should pause audio on %s of the slider',
+			async function (eventName) {
+				const playButton = getBaseElement(element).querySelector(
+					'.pause'
+				) as Button;
+				playButton.click();
+				await elementUpdated(element);
+				const audio = getBaseElement(element).querySelector(
+					'audio'
+				) as HTMLAudioElement;
+				const audioConstructor = jest.spyOn(audio, 'duration', 'get');
+				const mockAudioElement = { duration: 60 };
+				audioConstructor.mockImplementation(() => mockAudioElement.duration);
+				const slider = getBaseElement(element).querySelector(
+					'.slider'
+				) as Slider;
 
-			const event = new KeyboardEvent('keyup', { key: 'Enter' });
-			slider.dispatchEvent(event);
+				const event = new Event(eventName, { bubbles: true });
+				slider.dispatchEvent(event);
 
-			await elementUpdated(element);
-			expect(element.paused).toEqual(true);
-		});
+				await elementUpdated(element);
+				expect(element.paused).toEqual(true);
+			}
+		);
 
 		it('should pause when finished', async function () {
 			const audio = getBaseElement(element).querySelector(

@@ -94,7 +94,12 @@ export const AudioPlayerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
-	return html<AudioPlayer>` <div class="base ${getClasses}">
+	return html<AudioPlayer>` <div
+		class="base ${getClasses}"
+		@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
+		@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
+		@mousedown="${(x, c) => x._handleSliderEvent(c.event)}"
+	>
 		<div class="controls">
 			${when(
 				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
