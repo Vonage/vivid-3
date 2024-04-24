@@ -24,17 +24,15 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Load styles inline -->
-    {% set highlightCss %}
-      {% include "../../../node_modules/highlight.js/styles/github.css" %}
-    {% endset %}
 
-    {% set mainCss %}
+    {% set css %}
+    	{% include "../../../node_modules/highlight.js/styles/github.css" %}
       {% include "../assets/styles/main.css" %}
+      {% include "../assets/styles/toc.css" %}
     {% endset %}
 
     <style>
-      {{ highlightCss | cssmin | safe }}
-      {{ mainCss | cssmin | safe }}
+      {{ css | cssmin | safe }}
     </style>
 
     {% set mainJs %}
@@ -77,6 +75,7 @@
 
     <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
     <script type="module" src="{{ '/assets/scripts/turbolinks.js' | url}}"></script>
+    <script type="module" src="{{ '/assets/scripts/toc.js' | url}}"></script>
     <script src="{{ '/assets/scripts/cache-assets.js' | url}}"></script>
 
   </head>
@@ -107,15 +106,9 @@
 				{% include "navigation.njk" %}
 			</vwc-layout>
 
-				<main slot="app-content" hx-history-elt>
-					{% block banner %}{% endblock %}
-					<vwc-layout column-basis="block" class="main-layout">
-						<article class="article">
-							{% block content %}{% endblock %}
-						</article>
-						{% block footer %}{% endblock %}
-					</vwc-layout>
-				</main>
+			<main slot="app-content" hx-history-elt>
+				{% block main %}{% endblock %}
+			</main>
 		</vwc-side-drawer>
 	</vwc-header>
 

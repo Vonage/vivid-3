@@ -5,10 +5,6 @@ pagination:
     size: 1
     alias: doc
 permalink: "getting-started/{{ doc | pageSlug }}/"
+layout: article.njk
 ---
-
-{% extends '../_layouts/base.njk' %}
-
-{% block content %}
-	{% renderFile doc.markdown %}
-{% endblock %}
+{% renderFile doc.markdown %}

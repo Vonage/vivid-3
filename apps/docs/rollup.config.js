@@ -85,6 +85,7 @@ const DIRS = [
 	'./dist/apps/docs/assets/scripts/',
 	'./dist/apps/docs/assets/scripts/',
 	'./dist/apps/docs/assets/scripts/',
+	'./dist/apps/docs/assets/scripts/',
 	'./dist/apps/docs',
 ];
 export default [
@@ -92,6 +93,7 @@ export default [
 	'./apps/docs/assets/bundled-scripts/cache-assets.js',
 	'./apps/docs/assets/bundled-scripts/icons-gallery.js',
 	'./apps/docs/assets/bundled-scripts/turbolinks.js',
+	'./apps/docs/assets/bundled-scripts/toc.js',
 	'vivid-components',
 	'./apps/docs/assets/bundled-scripts/sw.js',
 ].map((input, index) => {

@@ -5,32 +5,6 @@ pagination:
     size: 1
     alias: component
 permalink: "components/{{ component | pageSlug }}/"
+layout: component.njk
 ---
-
-{% extends '../_layouts/base.njk' %}
-
-
-{% if (component.status == "alpha") or (component.status == 'underlying') %}
-
-
-	{% block banner %}
-		{% if (component.status == "alpha") %}
-			<vwc-banner class="banner" text="ALPHA: If you need this component, please contact the Vivid team to co-ordinate acceptence testing" connotation="warning"></vwc-banner>
-		{% endif %}
-		{% if (component.status == "underlying") %}
-			<vwc-banner class="banner" text="Underlying: this component is only used by other components and not intended to be used by authors outside the Vivid team" connotation="information"></vwc-banner>
-		{% endif %}
-	{% endblock %}
-{% endif %}
-
-
-{% block content %}
-	{% renderFile component.markdown %}
-{% endblock %}
-
-{% block footer %}
-	<footer class="footer">
-		<vwc-divider></vwc-divider>
-  	<a href="{{ component.markdown | githubEditLink }}"><vwc-icon name="edit-line"></vwc-icon> Edit this page on GitHub</a>
-  </footer>
-{% endblock %}
+{% renderFile component.markdown %}
