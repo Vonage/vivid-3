@@ -31,10 +31,13 @@
 		</style>
 		<style id="vivid-theme"></style>
 
-		<script type="text/javascript">
-			window._bufferedLoadedIFrames = [];
-			window.onloadIframe = function(iframe) { window._bufferedLoadedIFrames.push(iframe); };
-		</script>
+		{% set inlinedJs %}
+			{% include "../assets/scripts/live-sample.inline.js" %}
+		{% endset %}
+    <script>
+      {{ inlinedJs | safe }}
+    </script>
+
 		<script type="module" src="/docs/assets/scripts/main.ts"></script>
 		<script type="module" src="/docs/assets/scripts/vivid-components.ts"></script>
 
