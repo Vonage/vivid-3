@@ -42,8 +42,11 @@ describe('vwc-dial-pad', () => {
 			expect(element.pattern).toEqual('^[0-9#*]*$');
 			expect(element.value).toEqual('');
 			expect(element.disabled).toBeFalsy();
+			expect(element.pending).toBeFalsy();
 			expect(element.callActive).toBeFalsy();
 			expect(element.noCall).toBeFalsy();
+			expect(element.callButtonLabel).toBeNull();
+			expect(element.endCallButtonLabel).toBeNull();
 		});
 	});
 
@@ -264,6 +267,31 @@ describe('vwc-dial-pad', () => {
 			element.noCall = true;
 			await elementUpdated(element);
 			expect(getCallButton()).toBeNull();
+		});
+	});
+
+	describe('pending', function () {
+		it('should set call button pending when has pending attribute', async function () {
+			element.pending = true;
+			await elementUpdated(element);
+			expect(getCallButton().pending).toEqual(true);
+		});
+	});
+
+	describe('call button label', function () {
+		it('should set call button label when has call-button-label attribute', async function () {
+			const label = '123';
+			element.callButtonLabel = label;
+			await elementUpdated(element);
+			expect(getCallButton().label).toEqual(label);
+		});
+
+		it('should set call button label when has end-call-button-label attribute', async function () {
+			const label = '123';
+			element.callActive = true;
+			element.endCallButtonLabel = label;
+			await elementUpdated(element);
+			expect(getCallButton().label).toEqual(label);
 		});
 	});
 

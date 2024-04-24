@@ -153,11 +153,12 @@ function renderDialButton(buttonTag: string) {
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
         ?disabled="${(x) => x.disabled}"
+		?pending="${(x) => x.pending}"
         @click="${(x) => x._onDial()}"
         label="${(x) =>
 					x.callActive
-						? x.locale.dialPad.endCallButtonLabel
-						: x.locale.dialPad.callButtonLabel}">
+						? x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel
+						: x.callButtonLabel || x.locale.dialPad.callButtonLabel}">
     </${buttonTag}>`;
 }
 
