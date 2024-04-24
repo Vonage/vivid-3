@@ -1,29 +1,90 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 
+
+@mixin responsive {
+	&.two-lines {
+		display: inline-grid;
+		grid-template: auto auto / 1fr;
+		grid-template-areas: "slider" "controls";
+		inline-size: 100%;
+		row-gap: 4px;
+
+		&.playback {
+			grid-template-areas: "slider slider" "controls playback";
+			grid-template-columns: 1fr auto;
+		}
+	}
+	.time-stamp {
+		margin-inline: auto;
+	}
+	.slider {
+		min-inline-size: auto;
+	}
+}
+
+
+:host {
+	display: inline-block;
+	container-type: inline-size;
+
+	@media not all and (width >= 600px) {
+		inline-size: 100%;
+	}
+}
+
+:host([skip-by]){
+	inline-size: 100%;
+}
+
+:host([playback-speed]){
+	inline-size: 100%;
+}
+
 .base {
 	display: inline-flex;
+	box-sizing: border-box;
 	align-items: center;
 	padding: 8px;
 	color: var(#{constants.$vvd-color-canvas-text});
+	gap: 16px;
+	inline-size: 100%;
 	user-select: none;
 
 	.slider {
+		flex: 1;
+		grid-area: slider;
 		min-inline-size: var(#{variables.$audio-player-min-inline-size}, 200px);
 	}
 
 	.controls {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		justify-content: center;
+		gap: 8px;
+		grid-area: controls;
 	}
 
 	.time-stamp {
 		display: inline-flex;
+		margin-inline-start: 8px;
 		.current-time,
 		.total-time {
 			margin-inline: 6px;
 			min-inline-size: 32px;
 		}
 	}
+
+	.playback {
+		grid-area: playback;
+	}
+
+	@media not all and (width >= 600px) {
+		@include responsive;
+	}
+
+	@container (max-width: 500px) {
+		@include responsive;
+	}
 }
+
