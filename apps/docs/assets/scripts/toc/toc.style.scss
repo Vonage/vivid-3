@@ -31,14 +31,12 @@ main:has(vwc-banner) {
 .article-toc a {
 	position: relative;
 	display: block;
-	overflow: hidden;
 	padding: 8px 16px;
 	border-radius: 8px;
 	color: var(--vvd-color-canvas-text);
 	font: var(--vvd-typography-base);
 	margin-inline-start: var(--inline-start);
 	text-decoration: none;
-	text-overflow: ellipsis;
 
 	--inline-start: 8px;
 }
