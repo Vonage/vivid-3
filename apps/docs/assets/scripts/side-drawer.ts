@@ -1,4 +1,4 @@
-import { Button, SideDrawer } from './vivid';
+import type { Button, SideDrawer } from './vivid.js';
 
 const toggleSideDrawerButtonIcon = (open: boolean) => {
 	const buttonToggle = document.querySelector(

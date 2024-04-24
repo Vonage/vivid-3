@@ -1,4 +1,4 @@
-import { Header } from './vivid';
+import type { Header } from './vivid.js';
 
 // sets elevation on scroll
 const updateHeaderElevationShadow = (isShadowed: boolean) => {

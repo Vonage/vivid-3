@@ -1,4 +1,4 @@
-import { NavDisclosure, NavItem } from './vivid';
+import type { NavDisclosure, NavItem } from './vivid.js';
 
 function isComponentHidden(component: Element, term: string) {
 	return (

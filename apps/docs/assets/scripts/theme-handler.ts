@@ -1,6 +1,6 @@
 import lightCss from 'vivid-styles/tokens/theme-light.css?inline';
 import darkCss from 'vivid-styles/tokens/theme-dark.css?inline';
-import { Button, Menu, MenuItem } from './vivid';
+import type { Button, Menu, MenuItem } from './vivid.js';
 
 type ThemeSetting = 'auto' | 'light' | 'dark';
 

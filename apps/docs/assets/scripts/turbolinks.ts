@@ -1,5 +1,5 @@
 import htmx from 'htmx.org';
-import { NavItem } from './vivid';
+import type { NavItem } from './vivid.js';
 
 window.htmx = htmx;
 
