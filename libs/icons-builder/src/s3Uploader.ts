@@ -16,7 +16,7 @@ export function uploadFolderToS3() {
 		region: BUCKET_REGION,
 	});
 
-	const directoryPath = path.resolve(__dirname, './icons');
+	const directoryPath = path.resolve(__dirname, '../../icons/src/lib');
 
 	fs.readdir(directoryPath, (err, files) => {
 		if (err) {

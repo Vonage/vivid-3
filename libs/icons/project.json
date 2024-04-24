@@ -1,0 +1,27 @@
+{
+	"name": "icons",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/icons/src",
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/icons"
+			}
+		},
+		"publish": {
+			"command": "node tools/scripts/publish.mjs icons {args.ver} {args.tag}",
+			"dependsOn": ["build"]
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/icons/**/*.ts"]
+			}
+		}
+	},
+	"tags": []
+}

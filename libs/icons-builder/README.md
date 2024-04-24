@@ -6,30 +6,34 @@ This is a tool to generate icons for the project.
 
 ### Giudlines for a new SVG icon:
 
-1. Rplace all the colors in the scg file with fill="currentColor".
+1. Rplace all the colors in the svg file with `fill="currentColor"`.
 2. Remove the sizes from the svg file.
-3. The name of the svg should be: icon-name-`icon-type`.
+3. The name of the svg should be: [icon-name]-[icon-type].
 4. Each new icon should have 2 svg's: solid + line | color + mono.
-5. With the svg you should send us the category of the new icons (Can be found here: [category-list](https://vivid.deno.dev/icons/icons-gallery) and the keywords.
+5. With the svg you should send us the category of the new icons (Can be found here: [category-list](https://vivid.deno.dev/icons/icons-gallery)) and the keywords.
 
 ## For developers:
 
 ### Updating the new icons
 
-1. Update ICONS_VERSION with the new version in the `libs/consts/src/lib/icons.ts` file.
-2. Add the new svg icons to the `src/icons` folder. Make sure you are adding 2 icons: solid + line | color + mono
+1. Update `ICONS_VERSION` with the new version in the [consts package](../consts/src/lib/icons.ts).
+2. Add the new svg icons to the [icons package](../icons/src/lib). Make sure you are adding 2 icons: solid + line | color + mono
 3. After adding the SVG - change the `fill="black"` to `fill="currentColor".`
 4. Remove the width + height of the SVG.
-5. Update the `_manifest.json` file in `src/icons/_manifest.json` with the new icons:
+5. Update the `_manifest.json` file in the [icons package](../icons/src/lib/_manifest.json) with the new icons:
 
-```
+Choose one of the `category-name` from the [icons package](../icons/src/lib/_categories.json):
+   
+Example:
+
+```json
 {
 "id": "icon-name-solid", // (or: `icon-name-line` | `icon-name-color` | `icon-name-mono`)
 "keyword": [
 "icon-name-keyword"
 ],
 "tag": [
-"category_category-name", // (choose one of the category-name from: `src/icons/_categories.json`).
+"category_[category-name]",
 "style_color_single", // (or: `style_color_multi`)
 "style_weight_regular" // (or: `style_weight_solid`)
 ]
