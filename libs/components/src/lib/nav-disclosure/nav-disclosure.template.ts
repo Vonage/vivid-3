@@ -16,8 +16,12 @@ function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
 	return ariaCurrent && !open;
 }
 
-const getClasses = ({ appearance }: NavDisclosure) =>
-	classNames('control', [`appearance-${appearance}`, Boolean(appearance)]);
+const getClasses = ({ appearance, connotation }: NavDisclosure) =>
+	classNames(
+		'control',
+		[`appearance-${appearance}`, Boolean(appearance)],
+		[`connotation-${connotation}`, Boolean(connotation)]
+	);
 
 /**
  * The template for the Nav component.

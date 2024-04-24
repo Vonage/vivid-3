@@ -5,10 +5,8 @@ pagination:
     size: 1
     alias: doc
 permalink: "guides/{{ doc | pageSlug }}/"
+layout: article.njk
+eleventyComputed:
+    hideToc: "{{ doc.hideToc }}"
 ---
-
-{% extends '../_layouts/base.njk' %}
-
-{% block content %}
-	{% renderFile doc.markdown %}
-{% endblock %}
+{% renderFile doc.markdown %}
