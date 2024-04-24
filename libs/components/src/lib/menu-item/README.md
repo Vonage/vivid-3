@@ -102,14 +102,38 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 
 ```html preview 350px
 <vwc-menu open aria-label="Example menu">
-  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 1" check-trailing></vwc-menu-item>
-  <vwc-menu-item role="menuitemcheckbox" text="Checkbox 2" check-trailing></vwc-menu-item>
-	<vwc-menu-item icon="image-line" role="menuitemcheckbox" text="Check 3"></vwc-menu-item>
-  <vwc-divider></vwc-divider>
-  <vwc-menu-item role="menuitemradio" text="Radio 1" check-trailing></vwc-menu-item>
-  <vwc-menu-item role="menuitemradio" text="Radio 2" check-trailing></vwc-menu-item>
-	<vwc-menu-item icon="image-line" role="menuitemradio" text="Radio 3"></vwc-menu-item>
-</vwc-menu open>
+	<vwc-menu-item
+		role="menuitemcheckbox"
+		text="Checkbox 1"
+		check-trailing
+	></vwc-menu-item>
+	<vwc-menu-item
+		role="menuitemcheckbox"
+		text="Checkbox 2"
+		check-trailing
+	></vwc-menu-item>
+	<vwc-menu-item
+		icon="image-line"
+		role="menuitemcheckbox"
+		text="Check 3"
+	></vwc-menu-item>
+	<vwc-divider></vwc-divider>
+	<vwc-menu-item
+		role="menuitemradio"
+		text="Radio 1"
+		check-trailing
+	></vwc-menu-item>
+	<vwc-menu-item
+		role="menuitemradio"
+		text="Radio 2"
+		check-trailing
+	></vwc-menu-item>
+	<vwc-menu-item
+		icon="image-line"
+		role="menuitemradio"
+		text="Radio 3"
+	></vwc-menu-item>
+</vwc-menu>
 ```
 
 ### Check appearance

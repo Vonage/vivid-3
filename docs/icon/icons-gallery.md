@@ -7,8 +7,4 @@ As an example, you can use it as follows:
 <vwc-icon name="icon-name-here"></vwc-icon>
 ```
 
-<link rel="stylesheet" href="../../assets/styles/icons-gallery.css">
-
 <vivid-icons-gallery></vivid-icons-gallery>
-
-<script type="module" src="../../assets/scripts/icons-gallery.js"></script>

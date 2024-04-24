@@ -1,0 +1,10 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc",
+		"declaration": true,
+		"types": ["node", "vite/client"]
+	},
+	"include": ["assets/**/*.ts"],
+	"exclude": ["jest.config.ts", "assets/**/*.spec.ts", "assets/**/*.test.ts"]
+}

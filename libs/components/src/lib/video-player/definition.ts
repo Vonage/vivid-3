@@ -1,6 +1,6 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
-import styles from './video-player.scss';
+import styles from './video-player.scss?inline';
 
 import { VideoPlayer } from './video-player';
 import { VideoPlayerTemplate as template } from './video-player.template';
