@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-import { uploadFolderToS3 } from './src/s3Uploader';
+//import { uploadFolderToS3 } from './src/s3Uploader';
 
 import * as path from 'path';
 
@@ -41,12 +41,12 @@ export default defineConfig({
 		outDir: 'dist',
 		emptyOutDir: true,
 	},
-	plugins: [
-		{
-			name: 'upload-to-s3',
-			generateBundle() {
-				uploadFolderToS3();
-			},
-		},
-	],
+	// plugins: [
+	// 	{
+	// 		name: 'upload-to-s3',
+	// 		generateBundle() {
+	// 			uploadFolderToS3();
+	// 		},
+	// 	},
+	// ],
 });
