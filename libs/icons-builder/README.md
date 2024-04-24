@@ -23,7 +23,7 @@ This is a tool to generate icons for the project.
 5. Update the `_manifest.json` file in the [icons package](../icons/src/lib/_manifest.json) with the new icons:
 
 Choose one of the `category-name` from the [icons package](../icons/src/lib/_categories.json):
-   
+
 Example:
 
 ```json
