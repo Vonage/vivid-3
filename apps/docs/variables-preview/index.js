@@ -1,5 +1,5 @@
 const createCodeExamples = require('../code-example-preview/createCodeExample');
-const customElements = require('../../../dist/libs/components/custom-elements.json');
+const customElements = require('../../../dist/libs/components-meta/custom-elements.json');
 
 const CONNOTATIONS = [
 	'accent',
