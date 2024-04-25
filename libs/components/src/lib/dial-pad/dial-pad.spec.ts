@@ -234,9 +234,15 @@ describe('vwc-dial-pad', () => {
 			element.addEventListener('dial', spy);
 			element.value = '123';
 			await elementUpdated(element);
-			const input: HTMLInputElement = getTextField().querySelector('input') as HTMLInputElement;
+			const input: HTMLInputElement = getTextField().querySelector(
+				'input'
+			) as HTMLInputElement;
 			input.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true })
+				new KeyboardEvent('keydown', {
+					key: 'Enter',
+					bubbles: true,
+					composed: true,
+				})
 			);
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
