@@ -243,10 +243,10 @@ describe('vwc-dial-pad', () => {
 			element.addEventListener('dial', spy);
 			element.value = '123';
 			await elementUpdated(element);
-			const textField = getBaseElement(element).querySelector('.phone-field') as HTMLInputElement;
-			textField.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Enter' })
-			);
+			const textField = getBaseElement(element).querySelector(
+				'.phone-field'
+			) as HTMLInputElement;
+			textField.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
