@@ -23,7 +23,7 @@
 			"@vonage/vivid": ["libs/components/src/index.ts"],
 			"@vonage/vivid-vue": ["libs/vue-wrappers/src/index.ts"],
 			"@vonage/vwc-consts": ["libs/consts/src/index.ts"],
-			"@vonage/vwc-icons-builder": ["libs/icons-builder/src/index.ts"]
+			"@vonage/vwc-icons-builder": ["libs/icons-builder/src/index.ts"],
 			"@vonage/vivid/locales/en-GB": ["libs/components/src/locales/en-GB.ts"],
 			"@vonage/vivid/locales/en-US": ["libs/components/src/locales/en-US.ts"],
 			"@vonage/vivid/locales/ja-JP": ["libs/components/src/locales/ja-JP.ts"],
