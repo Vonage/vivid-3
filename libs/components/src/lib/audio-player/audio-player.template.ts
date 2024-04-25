@@ -11,10 +11,10 @@ import { Menu } from '../menu/menu';
 import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 
-const getClasses = ({ disabled, duration,notime, playbackSpeed, skipBy }: AudioPlayer) =>
+const getClasses = ({ disabled, duration,notime, playbackRates, skipBy }: AudioPlayer) =>
 	classNames(['disabled', Boolean(disabled) || !Boolean(duration)],
-		['playback', Boolean(playbackSpeed)],
-		['two-lines', !Boolean(notime) && Boolean(playbackSpeed) || (Boolean(skipBy) && skipBy != MediaSkipBy.Zero) && !Boolean(notime)],
+		['playback', Boolean(playbackRates)],
+		['two-lines', !Boolean(notime) && Boolean(playbackRates) || (Boolean(skipBy) && skipBy != MediaSkipBy.Zero) && !Boolean(notime)],
 	);
 
 function renderButton(context: ElementDefinitionContext) {
@@ -116,7 +116,7 @@ export const AudioPlayerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
-	return html<AudioPlayer>` <div
+	return html<AudioPlayer>` <div class="wrapper"><div
 		class="base ${getClasses}"
 		@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
 		@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
@@ -135,12 +135,13 @@ export const AudioPlayerTemplate: (
 			${when((x) => !x.notime, renderTimestamp())}
 		</div>
 		${renderSlider(context)}
-		${when((x) => x.playbackSpeed, renderPlayback(context))}
+		${when((x) => x.playbackRates, renderPlayback(context))}
 		<audio
 			${ref('_playerEl')}
 			src="${(x) => x.src}"
 			@timeupdate="${(x) => x._updateProgress()}"
 			@loadedmetadata="${(x) => x._updateTotalTime()}"
 		></audio>
+	</div>
 	</div>`;
 };

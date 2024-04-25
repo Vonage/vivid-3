@@ -100,7 +100,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @public
 	 * HTML Attribute: playback speed
 	 */
-	@attr({ mode: 'boolean', attribute: 'playback-speed', }) playbackSpeed = false;
+	@attr({ mode: 'boolean', attribute: 'playback-rates', }) playbackRates = false;
 
 	/**
 	 *

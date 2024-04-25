@@ -51,6 +51,16 @@ Setting them to `0` removes the buttons.
 ></vwc-audio-player>
 ```
 
+### Playback Rates
+Playback rates can be modified by passing a comma separated string of numbers to the `playback-rates` attribute. The playback rates option can be removed by passing an empty string.
+
+```html preview
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	playback-rates
+></vwc-audio-player>
+```
+
 ### Connotation
 
 Use the `connotation` attribute to set the audio-player's color.
@@ -80,6 +90,24 @@ Use the `disabled` attribute to disable the audio-player.
 ```
 
 ## CSS Variables
+
+### Inline Size
+TODO: rephrase :)  
+I had to add a default inline-size of 350px to prevent a breaking change.
+the value causes two lines of control when skip buttons or playback-rates are one.
+Devs can change it by setting a new value on `vwc-audio` like 100% or a fixed width.  
+Maybe we can add this as breaking change that will be added to audio as width 100%, and the css variable `--audio-player-min-inline-size` is not needed anymore :)
+
+```html preview
+<style>
+.custom-width {inline-size: 100%}
+</style>
+<vwc-audio-player class="custom-width"
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	playback-rates
+	skip-by="10"
+></vwc-audio-player>
+```
 
 ### Minimum inline Size
 
