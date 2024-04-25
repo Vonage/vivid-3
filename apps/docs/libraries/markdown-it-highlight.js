@@ -17,7 +17,9 @@ module.exports = function (str, language, attrs) {
 			return `<pre class="${classes.join(
 				' '
 			)}"><code>${highlight}</code></pre>`;
-		} catch (__) {}
+		} catch (__) {
+			// ignore
+		}
 	}
 
 	return (
