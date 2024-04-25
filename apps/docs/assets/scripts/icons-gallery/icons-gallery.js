@@ -1,7 +1,8 @@
 import {
 	ICONS_BASE_URL as BASE_URL,
 	ICONS_VERSION as ICON_SET_VERSION,
-} from '../../../../dist/libs/consts';
+} from '@vonage/vwc-consts';
+import './icons-gallery.style.scss';
 
 const NUM_TO_SHOW = 21;
 
@@ -44,12 +45,13 @@ function addOption(categoryName) {
 	if (!categoryName) return;
 	const option = document.createElement('vwc-option');
 	option.text = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
-	selectCategory.appendChild(option);
+	document.getElementById('select-category').appendChild(option);
 }
 
 function showIcons(data) {
 	index = 0;
 	let last;
+	const iconsLayout = document.getElementById('icons-layout');
 	while ((last = iconsLayout.lastChild)) iconsLayout.removeChild(last);
 	while (index < data.length) {
 		addIcon(data[index].id);
@@ -67,7 +69,8 @@ function showMoreIcons(data) {
 }
 
 function disableShowMoreButton(data) {
-	showMoreButton.disabled = numShown >= data.length;
+	document.getElementById('show-more-button').disabled =
+		numShown >= data.length;
 }
 
 function showMore() {
@@ -77,10 +80,10 @@ function showMore() {
 
 function addIcon(id) {
 	const iconDiv = document.createElement('div');
-	iconDiv.id = 'iconDiv';
+	iconDiv.id = 'icon-div';
 
 	const iconSpan = document.createElement('span');
-	iconSpan.id = 'iconSpan';
+	iconSpan.id = 'icon-span';
 
 	const icon = document.createElement('vwc-icon');
 	icon.name = id;
@@ -88,19 +91,19 @@ function addIcon(id) {
 	iconSpan.appendChild(icon);
 
 	const nameSpan = document.createElement('span');
-	nameSpan.id = 'nameSpan';
+	nameSpan.id = 'name-span';
 	nameSpan.innerText = id;
 
 	iconDiv.appendChild(iconSpan);
 	iconDiv.appendChild(nameSpan);
 
 	iconDiv.onclick = () => onClickiconDiv(id);
-	iconsLayout.appendChild(iconDiv);
+	document.getElementById('icons-layout').appendChild(iconDiv);
 }
 
 function onClickiconDiv(id) {
 	navigator.clipboard.writeText(id);
-	copyAlert.open = true;
+	document.getElementById('copy-alert').open = true;
 }
 
 function onClickFilter() {
@@ -110,10 +113,16 @@ function onClickFilter() {
 
 function filterIcons() {
 	let iconsArray = jsonData.filter((item) =>
-		item.keyword.some((icon) => icon.includes(searchIcons.value.toLowerCase()))
+		item.keyword.some((icon) =>
+			icon.includes(document.getElementById('search-icons').value.toLowerCase())
+		)
 	);
 	iconsArray = iconsArray.concat(
-		jsonData.filter((item) => item.id.includes(searchIcons.value.toLowerCase()))
+		jsonData.filter((item) =>
+			item.id.includes(
+				document.getElementById('search-icons').value.toLowerCase()
+			)
+		)
 	);
 
 	iconsArray = filterIconsByCategory(iconsArray);
@@ -122,7 +131,9 @@ function filterIcons() {
 }
 
 function filterIconsByCategory(iconsArray) {
-	const selectedCategory = selectCategory.selectedOptions[0].text.toLowerCase();
+	const selectedCategory = document
+		.getElementById('select-category')
+		.selectedOptions[0].text.toLowerCase();
 	if (selectedCategory === 'category') {
 		return iconsArray;
 	}
@@ -134,6 +145,11 @@ function filterIconsByCategory(iconsArray) {
 }
 
 function filterIconsByTag(iconsArray) {
+	const solidTag = document.getElementById('solid-tag');
+	const linearTag = document.getElementById('linear-tag');
+	const singleTag = document.getElementById('single-tag');
+	const multiTag = document.getElementById('multi-tag');
+
 	if (
 		!solidTag.selected &&
 		!linearTag.selected &&
@@ -186,30 +202,30 @@ customElements.define(
 			this.innerHTML = `
 			<div class="div-wrapper">
 				<vwc-action-group shape="pill">
-					<vwc-text-field id="searchIcons" icon="search-line" placeholder="Search" appearance='ghost' shape="pill" oninput="onClickFilter()" aria-label="Search Icons"></vwc-text-field>
+					<vwc-text-field id="search-icons" icon="search-line" placeholder="Search" appearance='ghost' shape="pill" oninput="onClickFilter()" aria-label="Search Icons"></vwc-text-field>
 					<vwc-divider orientation="vertical"></vwc-divider>
-					<vwc-select id="selectCategory" appearance='ghost' shape="pill" aria-label="Category" onchange="onClickFilter()">
+					<vwc-select id="select-category" appearance='ghost' shape="pill" aria-label="Category" onchange="onClickFilter()">
 						<vwc-option text="Category"></vwc-option>
 					</vwc-select>
 				</vwc-action-group>
 					<div class="tag-wrapper">
 						<vwc-tag-group class="tag-group" onclick="onClickFilter()">
 							Filter By Style:
-							<vwc-tag id="solidTag" label="Solid" selectable shape="pill"></vwc-tag>
-							<vwc-tag id="linearTag" label="Line" selectable shape="pill"></vwc-tag>
+							<vwc-tag id="solid-tag" label="Solid" selectable shape="pill"></vwc-tag>
+							<vwc-tag id="linear-tag" label="Line" selectable shape="pill"></vwc-tag>
 						</vwc-tag-group>
 						<vwc-tag-group class="tag-group" onclick="onClickFilter()">
 							Filter By Color:
-							<vwc-tag id="singleTag" label="Single Color" selectable shape="pill"></vwc-tag>
-							<vwc-tag id="multiTag" label="Multi Color" selectable shape="pill"></vwc-tag>
+							<vwc-tag id="single-tag" label="Single Color" selectable shape="pill"></vwc-tag>
+							<vwc-tag id="multi-tag" label="Multi Color" selectable shape="pill"></vwc-tag>
 						</vwc-tag-group>
 					</div>
-					<vwc-layout id="iconsLayout" gutters="small">
+					<vwc-layout id="icons-layout" gutters="small">
 					</vwc-layout>
 					<div class="button-wrapper">
-						<vwc-button id="showMoreButton" label="Show More" appearance='filled' onclick="showMore()" shape="pill"></vwc-button>
+						<vwc-button id="show-more-button" label="Show More" appearance='filled' onclick="showMore()" shape="pill"></vwc-button>
 					</div>
-					<vwc-alert id="copyAlert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
+					<vwc-alert id="copy-alert" text="Icon name copied to clipboard" connotation="success" timeoutms="2000"></vwc-alert>
 			</div>`;
 		}
 
