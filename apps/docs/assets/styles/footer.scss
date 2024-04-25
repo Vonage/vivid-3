@@ -1,0 +1,13 @@
+.footer {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-block: 32px;
+}
+
+.footer a {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	gap: 8px;
+}

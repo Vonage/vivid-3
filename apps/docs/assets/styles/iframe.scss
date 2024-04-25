@@ -1,27 +1,9 @@
-/* #region reset */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-	margin: unset;
-}
-
-strong {
-	font-weight: unset;
-}
-/* #endregion reset */
-
-body {
-	margin: 0;
-}
+@forward '../../../../dist/libs/styles/core/all.css';
+@forward 'reset';
 
 body::before {
 	position: fixed;
-	inset: 0;
-	content: '';
+	z-index: -1;
 	background-color: inherit;
 	background-image: linear-gradient(
 			45deg,
@@ -31,15 +13,16 @@ body::before {
 		linear-gradient(135deg, var(--vvd-color-neutral-50) 25%, transparent 25%),
 		linear-gradient(45deg, transparent 75%, var(--vvd-color-neutral-50) 75%),
 		linear-gradient(135deg, transparent 75%, var(--vvd-color-neutral-50) 75%);
+	background-position: 0 0, 10px 0, 10px -10px, 0 10px;
 	background-size: 20px 20px;
-	background-position: 0px 0px, 10px 0px, 10px -10px, 0px 10px;
+	content: '';
+	inset: 0;
 	opacity: 0.5;
-	z-index: -1;
 }
 
 .center {
 	display: flex;
-	place-items: center;
-	place-content: center;
 	block-size: 100vh;
+	place-content: center;
+	place-items: center;
 }
