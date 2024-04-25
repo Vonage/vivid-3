@@ -229,6 +229,18 @@ describe('vwc-dial-pad', () => {
 			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
+		it('should fire dial event when enter is pressed on input', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.value = '123';
+			await elementUpdated(element);
+			const input: HTMLInputElement = getTextField().querySelector('input') as HTMLInputElement;
+			input.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true })
+			);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
 		it('should fire dial event with value when clicked on call button', async function () {
 			const spy = jest.fn();
 			element.addEventListener('dial', spy);
@@ -236,18 +248,6 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			getCallButton().click();
 			expect(spy).toHaveBeenCalledTimes(1);
-		});
-
-		it('should fire dial event when enter is pressed on text field', async function () {
-			const spy = jest.fn();
-			element.addEventListener('dial', spy);
-			element.value = '123';
-			await elementUpdated(element);
-			const textField = getBaseElement(element).querySelector(
-				'.phone-field'
-			) as HTMLInputElement;
-			textField.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
 		it('should not fire dial event when enter is pressed on delete button', async function () {
