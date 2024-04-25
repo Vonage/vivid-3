@@ -52,17 +52,16 @@
 		&.two-lines {
 			display: inline-grid;
 			grid-template: auto auto / 1fr;
-			grid-template-areas: "slider" "controls";
+			grid-template-areas: 'slider' 'controls';
 			inline-size: 100%;
 			row-gap: 4px;
 
 			.time-stamp {
-				margin-inline-start: auto;
-				margin-inline-end: 2px;
+				margin-inline: auto 2px;
 			}
 
 			&.playback {
-				grid-template-areas: "slider slider" "controls playback";
+				grid-template-areas: 'slider slider' 'controls playback';
 				grid-template-columns: 1fr auto;
 
 				.time-stamp {
@@ -72,10 +71,9 @@
 		}
 
 		.slider {
+			box-sizing: border-box;
 			min-inline-size: auto;
 			padding-inline: 2px;
-			box-sizing: border-box;
 		}
 	}
 }
-
