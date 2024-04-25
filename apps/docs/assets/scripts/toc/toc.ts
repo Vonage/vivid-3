@@ -1,8 +1,10 @@
+import './toc.style.scss';
+
 const BANNER_HEIGHT = 60;
 
-let activeAnchor = null;
+let activeAnchor: HTMLAnchorElement | null = null;
 let activeAnchorIsLocked = false;
-function highlightActiveAnchor(anchor, lock = false) {
+function highlightActiveAnchor(anchor: HTMLAnchorElement, lock = false) {
 	if (activeAnchorIsLocked) {
 		return;
 	}
@@ -21,21 +23,21 @@ function highlightActiveAnchor(anchor, lock = false) {
 	activeAnchor = anchor;
 	activeAnchor.setAttribute('aria-active', '');
 
-	const scrollContainer = document.querySelector('.article-toc');
+	const scrollContainer = document.querySelector('.article-toc')!;
 	scrollContainer.scroll({
 		top: anchor.offsetTop - scrollContainer.clientHeight / 2,
 		behavior: 'smooth',
 	});
 }
 
-const intersectingTargets = new Set();
+const intersectingTargets = new Set<HTMLElement>();
 const intersectionObserver = new IntersectionObserver(
 	(entries) => {
 		for (const entry of entries) {
 			if (!entry.isIntersecting) {
-				intersectingTargets.delete(entry.target);
+				intersectingTargets.delete(entry.target as HTMLElement);
 			} else {
-				intersectingTargets.add(entry.target);
+				intersectingTargets.add(entry.target as HTMLElement);
 			}
 
 			let topmostIntersectingTarget;
@@ -48,11 +50,12 @@ const intersectionObserver = new IntersectionObserver(
 				}
 			}
 			if (topmostIntersectingTarget) {
-				highlightActiveAnchor(
-					document.querySelector(
-						`.article-toc a[href="#${topmostIntersectingTarget.id}"]`
-					)
+				const anchor = document.querySelector(
+					`.article-toc a[href="#${topmostIntersectingTarget.id}"]`
 				);
+				if (anchor instanceof HTMLAnchorElement) {
+					highlightActiveAnchor(anchor);
+				}
 			}
 		}
 	},
@@ -62,7 +65,7 @@ const intersectionObserver = new IntersectionObserver(
 	}
 );
 
-const observedTargets = new Set();
+const observedTargets = new Set<HTMLElement>();
 
 function setupToc() {
 	intersectingTargets.clear();
@@ -71,13 +74,15 @@ function setupToc() {
 	}
 	observedTargets.clear();
 
-	const anchors = Array.from(document.querySelectorAll('.article-toc a'));
+	const anchors = Array.from(
+		document.querySelectorAll('.article-toc a')
+	) as HTMLAnchorElement[];
 
 	anchors.forEach((anchor) => {
-		const target = document.querySelector(anchor.getAttribute('href'));
+		const target = document.querySelector(anchor.getAttribute('href')!);
 		if (target) {
 			intersectionObserver.observe(target);
-			observedTargets.add(target);
+			observedTargets.add(target as HTMLElement);
 		}
 
 		anchor.addEventListener('click', (event) => {
@@ -85,9 +90,13 @@ function setupToc() {
 			window.history.pushState({}, '', anchor.getAttribute('href'));
 
 			const hasBanner = Boolean(document.querySelector('main > .banner'));
-			const target = document.querySelector(anchor.getAttribute('href'));
+			const target = document.querySelector(
+				anchor.getAttribute('href')!
+			) as HTMLElement;
 			window.scrollTo({
-				top: target.offsetParent.offsetTop - (hasBanner ? BANNER_HEIGHT : 0),
+				top:
+					(target.offsetParent as HTMLElement).offsetTop -
+					(hasBanner ? BANNER_HEIGHT : 0),
 				behavior: 'instant',
 			});
 			highlightActiveAnchor(anchor, true);

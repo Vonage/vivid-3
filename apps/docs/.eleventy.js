@@ -1,13 +1,15 @@
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const EleventyVitePlugin = require('@11ty/eleventy-plugin-vite');
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 const markdownLibrary = require('./libraries/markdown-it');
 const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
+const glob = require('glob');
+const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 
 const INPUT_DIR = 'apps/docs';
-const ASSETS_DIR = `${INPUT_DIR}/assets`;
 const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
@@ -15,30 +17,55 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 
+	/**
+	 * Hack to inject the generated code example frames into the Eleventy results, so that they will be processed by Vite.
+	 */
+	eleventyConfig.on('eleventy.after', async ({ results }) => {
+		const matchedFiles = glob.sync(`dist/apps/docs/frames/*.html`);
+		for (const matchedFile of matchedFiles) {
+			results.push({
+				inputPath: '',
+				outputPath: matchedFile,
+				url: '',
+				content: '',
+			});
+		}
+	});
+
+	eleventyConfig.addPlugin(EleventyVitePlugin, {
+		viteOptions: {
+			plugins: [nxViteTsPaths()],
+			resolve: {
+				alias: {
+					'/docs': path.resolve('.', 'apps/docs'),
+					/**
+					 * While importing @vonage/vivid works fine, it will load too many files in dev mode.
+					 * Therefore, we bundle it into a single file and reference it here.
+					 */
+					'vivid-bundle': path.resolve(
+						'.',
+						'dist/libs/components-bundle/index.js'
+					),
+					'vivid-styles': path.resolve('.', 'dist/libs/styles'),
+				},
+			},
+			server: {
+				watch: {
+					ignored: '**/frames/**',
+				},
+			},
+		},
+	});
+
 	eleventyConfig.addPlugin(pluginTOC);
 
 	eleventyConfig.addPassthroughCopy({
-		'dist/libs/styles': 'assets/styles',
-		'dist/libs/components': 'assets/modules/components',
-		'assets/images': 'assets/images',
-		[`${ASSETS_DIR}/scripts`]: 'assets/scripts',
-		[`${ASSETS_DIR}/styles`]: 'assets/styles',
+		'assets/images': 'public/assets/images',
 	});
 
-	eleventyConfig.addWatchTarget('dist/libs/styles');
-	eleventyConfig.addWatchTarget('dist/libs/components');
-	eleventyConfig.addWatchTarget(`${ASSETS_DIR}/scripts`);
-	eleventyConfig.addWatchTarget(`${ASSETS_DIR}/styles`);
-	eleventyConfig.addWatchTarget('docs');
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
-	eleventyConfig.setBrowserSyncConfig({
-		server: {
-			baseDir: OUTPUT_DIR,
-		},
-		snippetOptions: {
-			ignorePaths: '/components/**/frames/*.html',
-		},
-	});
+	eleventyConfig.addWatchTarget('docs/');
+	eleventyConfig.addWatchTarget('assets/');
 
 	eleventyConfig.setUseGitIgnore(false);
 
@@ -74,15 +101,6 @@ module.exports = function (eleventyConfig) {
 		);
 	});
 
-	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
-		const swFilePath = path.resolve('dist/apps/docs/sw.js');
-		const fileContents = fs.readFileSync(swFilePath).toString();
-		const result = fileContents.replace(
-			/e="\d+"/gm,
-			`e="${new Date().getTime().toString()}"`
-		);
-		fs.writeFileSync(swFilePath, result);
-	});
 	return {
 		dir: {
 			input: INPUT_DIR,
