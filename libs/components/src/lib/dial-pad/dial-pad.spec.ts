@@ -1,5 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DialPad } from './dial-pad';
 import { dialPadDefinition } from './definition';
@@ -11,9 +12,7 @@ describe('vwc-dial-pad', () => {
 	let element: DialPad;
 
 	function getTextField() {
-		return getBaseElement(element).querySelector(
-			'.phone-field'
-		) as HTMLInputElement;
+		return getBaseElement(element).querySelector('.phone-field') as TextField;
 	}
 
 	function getCallButton() {
@@ -67,7 +66,7 @@ describe('vwc-dial-pad', () => {
 			const helperText = '123';
 			element.helperText = helperText;
 			await elementUpdated(element);
-			expect((getTextField() as any).helperText).toEqual(helperText);
+			expect(getTextField().helperText).toEqual(helperText);
 		});
 
 		it('should set placeholder in text field when has placeholder attribute', async function () {
@@ -244,7 +243,8 @@ describe('vwc-dial-pad', () => {
 			element.addEventListener('dial', spy);
 			element.value = '123';
 			await elementUpdated(element);
-			getTextField().dispatchEvent(
+			const textField = getBaseElement(element).querySelector('.phone-field') as HTMLInputElement;
+			textField.dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
