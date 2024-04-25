@@ -276,6 +276,17 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			expect(getCallButton().pending).toEqual(true);
 		});
+
+		it('should not fire dial event when enter is pressed on text field and pending', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.pending = true;
+			await elementUpdated(element);
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
 	});
 
 	describe('call button label', function () {

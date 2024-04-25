@@ -15,7 +15,7 @@ import type { DialPad } from './dial-pad';
 const getClasses = (_: DialPad) => classNames('base');
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
-	if (e.key === keyEnter) {
+	if (e.key === keyEnter && !x.pending) {
 		x._onDial();
 	} else {
 		const key = e.key === '*' ? 'Asterisk' : e.key === '#' ? 'Hashtag' : e.key;
