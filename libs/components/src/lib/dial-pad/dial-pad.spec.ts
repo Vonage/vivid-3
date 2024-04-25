@@ -175,14 +175,78 @@ describe('vwc-dial-pad', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should fire dial event when enter is pressed on text field', async function () {
+		it('should not fire dial event when enter is pressed on text field and pending', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.pending = true;
+			await elementUpdated(element);
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+
+		it('should not fire dial event when enter is pressed on text field and disabled', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.disabled = true;
+			await elementUpdated(element);
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+
+		it('should not fire dial event when enter is pressed on text field and callActive', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.callActive = true;
+			await elementUpdated(element);
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+
+		it('should not fire dial event when enter is pressed on text field and noCall', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.noCall = true;
+			await elementUpdated(element);
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+
+		it('should not fire dial event when enter is pressed on text field and value is empty', async function () {
 			const spy = jest.fn();
 			element.addEventListener('dial', spy);
 			await elementUpdated(element);
 			getTextField().dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+
+		it('should fire dial event with value when clicked on call button', async function () {
+			const spy = jest.fn();
+			element.addEventListener('dial', spy);
+			element.value = '123';
+			await elementUpdated(element);
+			getCallButton().click();
 			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should not fire dial event when enter is pressed on delete button', async function () {
+			const spy = jest.fn();
+			element.value = '123';
+			element.addEventListener('dial', spy);
+			await elementUpdated(element);
+			getDeleteButton().dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Enter' })
+			);
+			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
 		it('should fire end-call event when clicked on call button when active', async function () {
@@ -275,17 +339,6 @@ describe('vwc-dial-pad', () => {
 			element.pending = true;
 			await elementUpdated(element);
 			expect(getCallButton().pending).toEqual(true);
-		});
-
-		it('should not fire dial event when enter is pressed on text field and pending', async function () {
-			const spy = jest.fn();
-			element.addEventListener('dial', spy);
-			element.pending = true;
-			await elementUpdated(element);
-			getTextField().dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Enter' })
-			);
-			expect(spy).toHaveBeenCalledTimes(0);
 		});
 	});
 
