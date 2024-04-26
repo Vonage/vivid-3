@@ -120,6 +120,10 @@ export class TextField extends FoundationTextfield {
 
 	#reflectToInput?: Reflector<this, HTMLInputElement>;
 
+	#helperTextMirrorEl?: HTMLElement;
+
+	#helperTextSlotMutationObserver?: MutationObserver;
+
 	override connectedCallback() {
 		super.connectedCallback();
 
@@ -128,44 +132,13 @@ export class TextField extends FoundationTextfield {
 
 			const uniqueId = this.id || generateRandomId();
 			const controlId = `vvd-text-field-control-${uniqueId}`;
+			const helperTextId = `vvd-text-field-helper-text-${uniqueId}`;
 
 			const input = document.createElement('input');
 			input.slot = '_control';
 			input.id = controlId;
 			input.className = safariWorkaroundClassName;
 			this.control = input;
-
-			this.#reflectToInput = new Reflector(this, input);
-			this.#reflectToInput.booleanAttribute('autofocus', 'autofocus');
-			this.#reflectToInput.booleanAttribute('disabled', 'disabled');
-			this.#reflectToInput.booleanAttribute('readOnly', 'readonly');
-			this.#reflectToInput.booleanAttribute('required', 'required');
-			this.#reflectToInput.booleanAttribute('spellcheck', 'spellcheck');
-			this.#reflectToInput.attribute('list', 'list');
-			this.#reflectToInput.attribute('maxlength', 'maxlength');
-			this.#reflectToInput.attribute('minlength', 'minlength');
-			this.#reflectToInput.attribute('pattern', 'pattern');
-			this.#reflectToInput.attribute('placeholder', 'placeholder');
-			this.#reflectToInput.attribute('size', 'size');
-			this.#reflectToInput.attribute('autoComplete', 'autocomplete');
-			this.#reflectToInput.attribute('type', 'type');
-			this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
-			this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
-			this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
-			this.#reflectToInput.attribute('ariaDetails', 'aria-details');
-			this.#reflectToInput.attribute('ariaDisabled', 'aria-disabled');
-			this.#reflectToInput.attribute('ariaHaspopup', 'aria-haspopup');
-			this.#reflectToInput.attribute('ariaHidden', 'aria-hidden');
-			this.#reflectToInput.attribute('ariaInvalid', 'aria-invalid');
-			this.#reflectToInput.attribute('ariaKeyshortcuts', 'aria-keyshortcuts');
-			this.#reflectToInput.attribute('ariaLabel', 'aria-label');
-			this.#reflectToInput.attribute('ariaLive', 'aria-live');
-			this.#reflectToInput.attribute('ariaRelevant', 'aria-relevant');
-			this.#reflectToInput.attribute(
-				'ariaRoledescription',
-				'aria-roledescription'
-			);
-			this.#reflectToInput.property('value', 'value', true);
 
 			input.addEventListener('input', () => {
 				this.handleTextInput();
@@ -188,17 +161,123 @@ export class TextField extends FoundationTextfield {
 			this._labelEl = label;
 			this.#handleLabelChange(label);
 
+			// Helper text needs to be mirrored outside shadow DOM to be accessible to screen readers
+			// The mirror still needs to become part of the flat tree to work, so it is assigned to a hidden slot
+			this.#helperTextMirrorEl = document.createElement('div');
+			this.#helperTextMirrorEl.id = helperTextId;
+			this.#helperTextMirrorEl.slot = '_mirrored-helper-text';
+			this.#updateMirroredHelperText();
+			this.appendChild(this.#helperTextMirrorEl);
+
 			installSafariWorkaroundStyle(this);
 		}
+
+		this.#reflectToInput = new Reflector(this, this.control);
+		this.#reflectToInput.booleanAttribute('autofocus', 'autofocus');
+		this.#reflectToInput.booleanAttribute('disabled', 'disabled');
+		this.#reflectToInput.booleanAttribute('readOnly', 'readonly');
+		this.#reflectToInput.booleanAttribute('required', 'required');
+		this.#reflectToInput.booleanAttribute('spellcheck', 'spellcheck');
+		this.#reflectToInput.attribute('list', 'list');
+		this.#reflectToInput.attribute('maxlength', 'maxlength');
+		this.#reflectToInput.attribute('minlength', 'minlength');
+		this.#reflectToInput.attribute('pattern', 'pattern');
+		this.#reflectToInput.attribute('placeholder', 'placeholder');
+		this.#reflectToInput.attribute('size', 'size');
+		this.#reflectToInput.attribute('autoComplete', 'autocomplete');
+		this.#reflectToInput.attribute('type', 'type');
+		this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
+		this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
+		this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
+		this.#reflectToInput.attribute('ariaDetails', 'aria-details');
+		this.#reflectToInput.attribute('ariaDisabled', 'aria-disabled');
+		this.#reflectToInput.attribute('ariaHaspopup', 'aria-haspopup');
+		this.#reflectToInput.attribute('ariaHidden', 'aria-hidden');
+		this.#reflectToInput.attribute('ariaInvalid', 'aria-invalid');
+		this.#reflectToInput.attribute('ariaKeyshortcuts', 'aria-keyshortcuts');
+		this.#reflectToInput.attribute('ariaLabel', 'aria-label');
+		this.#reflectToInput.attribute('ariaLive', 'aria-live');
+		this.#reflectToInput.attribute('ariaRelevant', 'aria-relevant');
+		this.#reflectToInput.attribute(
+			'ariaRoledescription',
+			'aria-roledescription'
+		);
+		this.#reflectToInput.property('value', 'value', true);
+
+		this.#updateHelperTextMutationObserver();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#reflectToInput!.destroy();
+		this.#reflectToInput = undefined;
+		this.#updateHelperTextMutationObserver();
 	}
 
 	override focus() {
 		this.control?.focus();
+	}
+
+	/**
+	 * @internal
+	 */
+	helperTextChanged() {
+		this.#updateMirroredHelperText();
+	}
+
+	/**
+	 * @internal
+	 */
+	_helperTextSlottedContentChanged() {
+		this.#updateMirroredHelperText();
+		this.#updateHelperTextMutationObserver();
+	}
+
+	#updateHelperTextMutationObserver() {
+		const usesHelperTextSlot = this._helperTextSlottedContent!.length;
+		const shouldHaveMutationObserver = usesHelperTextSlot && this.isConnected;
+		if (shouldHaveMutationObserver && !this.#helperTextSlotMutationObserver) {
+			/**
+			 * Mutation observer to update the helper text when the slotted content changes
+			 */
+			this.#helperTextSlotMutationObserver = new MutationObserver((records) => {
+				if (
+					records.some((record) => record.target !== this.#helperTextMirrorEl)
+				) {
+					this.#updateMirroredHelperText();
+				}
+			});
+			this.#helperTextSlotMutationObserver.observe(this, {
+				subtree: true,
+				childList: true,
+				characterData: true,
+			});
+		}
+		if (!shouldHaveMutationObserver && this.#helperTextSlotMutationObserver) {
+			this.#helperTextSlotMutationObserver.disconnect();
+			this.#helperTextSlotMutationObserver = undefined;
+		}
+	}
+
+	#updateMirroredHelperText() {
+		let helperText = this.helperText ?? '';
+		if (this._helperTextSlottedContent?.length) {
+			helperText = this._helperTextSlottedContent
+				.map((node) => node.innerText)
+				.join(' ');
+		}
+		if (this.#helperTextMirrorEl) {
+			this.#helperTextMirrorEl.textContent = helperText;
+
+			if (helperText) {
+				this.control.setAttribute(
+					'aria-describedby',
+					this.#helperTextMirrorEl.id
+				);
+			} else {
+				this.control.removeAttribute('aria-describedby');
+			}
+		}
 	}
 }
 
