@@ -95,6 +95,7 @@ export class AudioPlayer extends FoundationElement {
 	})
 	skipBy?: MediaSkipBy;
 
+
 	/**
 	 *
 	 * @public

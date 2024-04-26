@@ -3,42 +3,43 @@
 	margin-top: 64px;
 }
 
-#iconsLayout {
+#icons-layout {
 	--layout-column-gap: 16px;
 	--layout-row-gap: 16px;
 	--layout-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-#iconDiv {
-	background-color: var(--vvd-color-neutral-50);
-	cursor: pointer;
-	border-radius: 6px;
-	aspect-ratio: 1;
+#icon-div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 16px;
-
-	&:hover {
-		background-color: var(--vvd-color-neutral-100);
-	}
+	border-radius: 6px;
+	aspect-ratio: 1;
+	background-color: var(--vvd-color-neutral-50);
+	cursor: pointer;
 }
 
-#iconSpan {
+#icon-div:hover {
+	background-color: var(--vvd-color-neutral-100);
+}
+
+#icon-span {
 	padding: 16px;
 }
 
-#nameSpan {
+#name-span {
 	text-align: center;
 }
 
 .button-wrapper {
-	text-align: center;
 	margin-block: 32px;
+	text-align: center;
 }
 
-#copyAlert {
+#copy-alert {
 	--alert-min-inline-size: auto;
+
 	pointer-events: none;
 }
 

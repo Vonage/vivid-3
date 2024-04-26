@@ -5,6 +5,7 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { renderSvgIcons } from './vivid-video-svg';
 import { VideoPlayer } from './video-player';
 
 const getClasses = (_: VideoPlayer) => classNames('control');
@@ -28,5 +29,6 @@ export const VideoPlayerTemplate: (
 			</div>
 		</div>
 		<slot></slot>
+		${renderSvgIcons()}
 	</div>
 `;
