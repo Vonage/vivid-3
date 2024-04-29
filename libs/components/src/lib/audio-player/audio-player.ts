@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
+import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
 
@@ -16,10 +17,23 @@ export type AudioPlayerConnotation = Extract<
 >;
 
 /**
+ * Converter to filter out invalid values for the skip-by attribute.
+ */
+const validSkipByConverter: ValueConverter = {
+	toView(value: MediaSkipBy): MediaSkipBy {
+		return value;
+	},
+	fromView(value: string): MediaSkipBy | undefined {
+		return (Object.values(MediaSkipBy) as string[]).includes(value)
+			? (value as MediaSkipBy)
+			: undefined;
+	},
+};
+
+/**
  * @public
  * @component audio-player
  */
-
 export class AudioPlayer extends FoundationElement {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
 		| string
@@ -29,6 +43,15 @@ export class AudioPlayer extends FoundationElement {
 		| null = null;
 	@attr({ attribute: 'slider-aria-label' }) sliderAriaLabel: string | null =
 		null;
+
+	@attr({ attribute: 'skip-forward-aria-label' }) skipForwardButtonAriaLabel:
+		| string
+		| null = null;
+
+	@attr({ attribute: 'skip-backward-aria-label' }) skipBackwardButtonAriaLabel:
+		| string
+		| null = null;
+
 	/**
 	 * The connotation the audio-player should have.
 	 *
@@ -36,6 +59,7 @@ export class AudioPlayer extends FoundationElement {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: AudioPlayerConnotation;
+
 	/**
 	 * Indicates the audio-player's src.
 	 *
@@ -58,6 +82,18 @@ export class AudioPlayer extends FoundationElement {
 	 * HTML Attribute: notime
 	 */
 	@attr({ mode: 'boolean' }) notime = false;
+
+	/**
+	 * Allows the audio to skip back or forward
+	 *
+	 * @public
+	 * HTML Attribute: skip-by
+	 */
+	@attr({
+		attribute: 'skip-by',
+		converter: validSkipByConverter,
+	})
+	skipBy?: MediaSkipBy;
 
 	/**
 	 *
@@ -88,18 +124,12 @@ export class AudioPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.addEventListener('keydown', this._rewind);
-		this.addEventListener('mousedown', this._rewind);
-		this.addEventListener('keyup', this._rewind);
 		document.addEventListener('mouseup', this._rewind);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('keydown', this._rewind);
-		this.removeEventListener('mousedown', this._rewind);
-		this.removeEventListener('keyup', this._rewind);
-		document.removeEventListener('mouseup', this._rewind);
+		document.addEventListener('mouseup', this._rewind);
 	}
 
 	/**
@@ -115,6 +145,23 @@ export class AudioPlayer extends FoundationElement {
 		this.paused = !this.paused;
 	}
 
+	/**
+	 * @internal
+	 */
+	_onSkipButtonClick(isForward: boolean) {
+		if (this._playerEl) {
+			const currentTime = this._playerEl.currentTime;
+			const skipDirection = isForward ? 1 : -1; // Positive for forward, negative for backward
+			const skipValue = parseInt(this.skipBy!) * skipDirection;
+			const newTime = currentTime + skipValue;
+
+			this._playerEl.currentTime = Math.max(
+				0,
+				Math.min(this._playerEl.duration, newTime)
+			);
+			this._updateProgress(); // Update progress after skipping
+		}
+	}
 	/**
 	 * @internal
 	 */
@@ -155,13 +202,26 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_rewind = () => {
-		this.paused = true;
 		if (this._playerEl) {
-			this._playerEl.pause();
 			this._playerEl.currentTime =
 				this._playerEl.duration * (Number(this._sliderEl.value) / 100);
 		}
 	};
+
+	/**
+	 * @internal
+	 */
+	_handleSliderEvent(event: Event) {
+		if (event.target === this._sliderEl) {
+			this.paused = true;
+			if (this._playerEl) {
+				this._playerEl.pause();
+			}
+			this._rewind();
+		}
+
+		return true;
+	}
 
 	/**
 	 * @internal

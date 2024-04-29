@@ -7,7 +7,7 @@ pagination:
 permalink: "icons/{{ icon | pageSlug }}/"
 ---
 
-{% extends '../_layouts/base.njk' %}
+{% extends '../_layouts/page.njk' %}
 
 {% block content %}
 	{% renderFile icon.markdown %}

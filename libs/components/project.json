@@ -69,15 +69,6 @@
 				"outputPath": "dist/libs/components"
 			}
 		},
-		"serve": {
-			"executor": "@nrwl/vite:build",
-			"outputs": ["{options.outputPath}"],
-			"options": {
-				"outputPath": "dist/libs/components",
-				"watch": true
-			},
-			"dependsOn": ["^build"]
-		},
 		"stylelint": {
 			"executor": "nx-stylelint:lint",
 			"outputs": ["{options.outputFile}"],

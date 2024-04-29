@@ -23,65 +23,28 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Load styles inline -->
-    {% set highlightCss %}
-      {% include "../../../node_modules/highlight.js/styles/github.css" %}
-    {% endset %}
+		<link rel="stylesheet" href="/docs/assets/styles/main.scss">
+		<style>
+			:not(:defined), .page-not-ready {
+				visibility: hidden;
+			}
+		</style>
+		<style id="vivid-theme"></style>
 
-    {% set mainCss %}
-      {% include "../assets/styles/main.css" %}
-    {% endset %}
-
-    <style>
-      {{ highlightCss | cssmin | safe }}
-      {{ mainCss | cssmin | safe }}
-    </style>
-
-    {% set mainJs %}
-      {% include "../assets/scripts/main.js" %}
-    {% endset %}
-
+		{% set inlinedJs %}
+			{% include "../assets/scripts/buffer-loaded-iframes.inline.js" %}
+		{% endset %}
     <script>
-      {{ mainJs | safe }}
+      {{ inlinedJs | safe }}
     </script>
 
-    {% set viewportHandler %}
-      {% include "../assets/scripts/viewport-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ viewportHandler | safe }}
-    </script>
-
-    {% set themeHandler %}
-      {% include "../assets/scripts/theme-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ themeHandler | safe }}
-    </script>
-
-    {% set scrollHandler %}
-      {% include "../assets/scripts/scroll-handler.js" %}
-    {% endset %}
-
-    <script type="module">
-      {{ scrollHandler | safe }}
-    </script>
-
-    <link rel="stylesheet" href="{{ '/assets/styles/core/all.css' | url }}">
-
-    <script type="module" src="{{ '/assets/scripts/vivid-components.js' | url}}"></script>
+		<script type="module" src="/docs/assets/scripts/main.ts"></script>
+		<script type="module" src="/docs/assets/scripts/vivid-components.ts"></script>
 
 		{% block header %}{% endblock %}
-
-    <script type="module" src="{{ '/assets/scripts/live-sample.js' | url}}"></script>
-    <script type="module" src="{{ '/assets/scripts/turbolinks.js' | url}}"></script>
-    <script src="{{ '/assets/scripts/cache-assets.js' | url}}"></script>
-
   </head>
 
-<body hx-boost="true" hx-target="main" hx-select="main" hx-swap="innerHTML scroll:html:top">
+<body class="page-not-ready" hx-boost="true" hx-target="main" hx-select="main" hx-swap="innerHTML scroll:html:top">
 
 	<vwc-header id="header-main" slot="app-content">
 
@@ -107,15 +70,9 @@
 				{% include "navigation.njk" %}
 			</vwc-layout>
 
-				<main slot="app-content" hx-history-elt>
-					{% block banner %}{% endblock %}
-					<vwc-layout column-basis="block" class="main-layout">
-						<article class="article">
-							{% block content %}{% endblock %}
-						</article>
-						{% block footer %}{% endblock %}
-					</vwc-layout>
-				</main>
+			<main slot="app-content" hx-history-elt>
+				{% block main %}{% endblock %}
+			</main>
 		</vwc-side-drawer>
 	</vwc-header>
 

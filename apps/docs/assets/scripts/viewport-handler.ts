@@ -1,4 +1,6 @@
-const sideDrawer = document.querySelector('vwc-side-drawer');
+import type { SideDrawer } from './vivid.js';
+
+const sideDrawer = document.querySelector('vwc-side-drawer') as SideDrawer;
 const mobileWidth = 880;
 let pendingUpdate = false;
 

@@ -5,10 +5,6 @@ pagination:
     size: 1
     alias: design
 permalink: "designs/{{ design | pageSlug }}/"
+layout: article.njk
 ---
-
-{% extends '../_layouts/base.njk' %}
-
-{% block content %}
-	{% renderFile design.markdown %}
-{% endblock %}
+{% renderFile design.markdown %}

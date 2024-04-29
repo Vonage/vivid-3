@@ -40,6 +40,8 @@ locales.forEach((locale) => {
 
 input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 
+const isWatchMode = process.env.WATCH === 'true';
+
 export default defineConfig({
 	cacheDir: '../../../node_modules/.vite/components',
 
@@ -107,5 +109,10 @@ export default defineConfig({
 				},
 			],
 		},
+		watch: isWatchMode
+			? {
+					exclude: ['**/*.md'],
+			  }
+			: null,
 	},
 });

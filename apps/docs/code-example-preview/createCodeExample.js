@@ -5,8 +5,13 @@ const components = require('../_data/components.json');
 
 const FONTS =
 	'<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
-const IFRAME_STYLE = '<link rel="stylesheet" href="/assets/styles/iframe.css">';
-const TYPOGRAPHY = '<link rel="stylesheet" href="/assets/styles/core/all.css">';
+const IFRAME_STYLE =
+	'<link rel="stylesheet" href="/docs/assets/styles/iframe.scss">';
+const IFRAME_INLINE_STYLE = `<style>
+	:not(:defined), .page-not-ready {
+		visibility: hidden;
+	}
+</style>`;
 
 const CBD_CONTAINER = 'cbd-container';
 const CBD_DEMO = 'cbd-demo';
@@ -30,7 +35,7 @@ module.exports = function createCodeExample(code, options, cssProperties) {
 };
 
 const renderiFrame = (index, src, content, classList, variableToShow) => {
-	const vwcUsages = content.match(/vwc-[\w\-]+/g) ?? [];
+	const vwcUsages = content.match(/vwc-[\w-]+/g) ?? [];
 	const uniqueComponentNames = [
 		...new Set(vwcUsages.map((name) => name.replace('vwc-', ''))),
 	];
@@ -91,11 +96,13 @@ const createiFrameContent = (code, classList, index) => {
 		 <html class="vvd-root" lang="en-US" style="block-size: ${numberWithPx};">
 			<head>
 				${IFRAME_STYLE}
+				${IFRAME_INLINE_STYLE}
 			 	${FONTS}
-			 	${TYPOGRAPHY}
-				<script type="module" src="/assets/scripts/vivid-components.js"></script>
+				<script type="module" src="/docs/assets/scripts/vivid-components.ts"></script>
 			</head>
-			<body ${classList.includes('full') ? 'id="_target"' : ''}>
+			<body class="page-not-ready" ${
+				classList.includes('full') ? 'id="_target"' : ''
+			}>
 			 	${layout(code, classList)}
 			</body>
 		 </html>`;

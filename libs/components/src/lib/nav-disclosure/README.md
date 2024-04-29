@@ -81,10 +81,62 @@ If label is not applied.
 Within a set of pagination links, set a nav disclosure `aria-current` value to `"true"` to indicate the currently active disclosure.  
 Only when the navigation disclosure is closed the `aria-current` will be set.
 
-```html preview
+```html preview 150px
 <vwc-nav>
 	<vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
 		<vwc-nav-item
+			href="#"
+			text="2nd level item"
+			aria-current="page"
+		></vwc-nav-item>
+	</vwc-nav-disclosure>
+</vwc-nav>
+```
+
+### Appearance
+
+Set the `appearance` attribute to change the nav disclosure's appearance.
+
+- Type: `'ghost'` | `'ghost-light'`
+- Default: `'ghost'`
+
+```html preview 150px
+<vwc-nav>
+	<vwc-nav-disclosure
+		appearance="ghost-light"
+		label="1st level item"
+		icon="profile"
+		aria-current="true"
+	>
+		<vwc-nav-item
+			appearance="ghost-light"
+			href="#"
+			text="2nd level item"
+			aria-current="page"
+		></vwc-nav-item>
+	</vwc-nav-disclosure>
+</vwc-nav>
+```
+
+### Connotation
+
+Set the `connotation` attribute to change the nav disclosure's connotation.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview 150px
+<vwc-nav>
+	<vwc-nav-disclosure
+		appearance="ghost-light"
+		connotation="cta"
+		label="1st level item"
+		icon="profile"
+		aria-current="true"
+	>
+		<vwc-nav-item
+			appearance="ghost-light"
+			connotation="cta"
 			href="#"
 			text="2nd level item"
 			aria-current="page"

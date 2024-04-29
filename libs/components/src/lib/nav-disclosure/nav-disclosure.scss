@@ -3,14 +3,15 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
+	$connotations: accent cta,
+	$shades: primary primary-text primary-increment contrast fierce fierce-primary
+		faint firm soft,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: ghost,
+	$appearances: ghost ghost-light,
 	$states: idle hover active selected selectedAndHover,
 	$default: ghost
 );
@@ -42,7 +43,6 @@
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	background-color: var(#{appearance.get-appearance-token(fill)});
 	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
 	gap: $gap;
@@ -53,6 +53,14 @@
 	padding-inline: $gutter;
 	text-decoration: none;
 	vertical-align: middle;
+
+	&[aria-current] {
+		color: var(#{appearance.get-appearance-token(text)});
+	}
+
+	&:not([aria-current]) {
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
 
 	&:focus-visible {
 		@include focus.focus;
