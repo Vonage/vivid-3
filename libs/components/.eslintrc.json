@@ -16,7 +16,6 @@
 	"rules": {
 		// lint
 		"@nrwl/nx/workspace/no-attribute-default-value": "error",
-		"@typescript-eslint/no-non-null-assertion": "off",
 		"no-var": "error",
 		"prefer-const": "error",
 		// functional
