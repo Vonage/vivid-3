@@ -92,6 +92,8 @@ const enGB: Locale = {
 		playButtonLabel: 'Play',
 		pauseButtonLabel: 'Pause',
 		sliderLabel: 'Audio progress bar',
+		skipForwardButton: 'Skip Forward',
+		skipBackwardButton: 'Skip Backward',
 	},
 	alert: {
 		dismissButtonLabel: 'Close',
