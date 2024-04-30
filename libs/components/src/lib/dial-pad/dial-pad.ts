@@ -110,6 +110,15 @@ export class DialPad extends FoundationElement {
 	@attr({ mode: 'boolean', attribute: 'no-call' }) noCall = false;
 
 	/**
+	 * Indicates the no-input state of the dial-pad.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: no-input
+	 */
+	@attr({ mode: 'boolean', attribute: 'no-input' }) noInput = false;
+
+	/**
 	 *
 	 * @public
 	 * @remarks

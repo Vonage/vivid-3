@@ -78,6 +78,17 @@ Use the `no-call` attribute (or `noCall` property) to disable call/end call func
 <vwc-dial-pad no-call></vwc-dial-pad>
 ```
 
+### No Input
+
+Use the `no-input` attribute (or `noInput` property) to disable the input field.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dial-pad no-input></vwc-dial-pad>
+```
+
 ### Call Button Label
 
 Use the `call-button-label` attribute (or `callButtonLabel` property) to update the call button label.
