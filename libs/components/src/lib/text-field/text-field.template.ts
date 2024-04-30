@@ -63,27 +63,28 @@ export const TextfieldTemplate: (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TextField>` <div class="base ${getStateClasses}">
-		${when((x) => x.charCount && x.maxlength, renderCharCount())}
-		<slot class="label" name="_label"></slot>
-		<div class="fieldset">
-			<div class="leading-items-wrapper">
-				<slot
-					name="leading-action-items"
-					${slotted('leadingActionItemsSlottedContent')}
-				></slot>
-				${(x) => affixIconTemplate(x.icon)}
-			</div>
+			${when((x) => x.charCount && x.maxlength, renderCharCount())}
+			<slot class="label" name="_label"></slot>
+			<div class="fieldset">
+				<div class="leading-items-wrapper">
+					<slot
+						name="leading-action-items"
+						${slotted('leadingActionItemsSlottedContent')}
+					></slot>
+					${(x) => affixIconTemplate(x.icon)}
+				</div>
 
-			<div class="wrapper">
-				<slot class="control" name="_control"></slot>
+				<div class="wrapper">
+					<slot class="control" name="_control"></slot>
+				</div>
+				<div class="action-items-wrapper">
+					<slot
+						name="action-items"
+						${slotted('actionItemsSlottedContent')}
+					></slot>
+				</div>
 			</div>
-			<div class="action-items-wrapper">
-				<slot
-					name="action-items"
-					${slotted('actionItemsSlottedContent')}
-				></slot>
-			</div>
+			${getFeedbackTemplate(context)}
 		</div>
-		${getFeedbackTemplate(context)}
-	</div>`;
+		<slot name="_mirrored-helper-text"></slot>`;
 };

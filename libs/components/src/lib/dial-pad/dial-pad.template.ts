@@ -15,7 +15,15 @@ import type { DialPad } from './dial-pad';
 const getClasses = (_: DialPad) => classNames('base');
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
-	if (e.key === keyEnter) {
+	if (
+		e.key === keyEnter &&
+		!x.pending &&
+		!x.disabled &&
+		!x.callActive &&
+		!x.noCall &&
+		x.value.length > 0 &&
+		e.target instanceof HTMLInputElement
+	) {
 		x._onDial();
 	} else {
 		const key = e.key === '*' ? 'Asterisk' : e.key === '#' ? 'Hashtag' : e.key;
@@ -153,11 +161,12 @@ function renderDialButton(buttonTag: string) {
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
         ?disabled="${(x) => x.disabled}"
+		?pending="${(x) => x.pending}"
         @click="${(x) => x._onDial()}"
         label="${(x) =>
 					x.callActive
-						? x.locale.dialPad.endCallButtonLabel
-						: x.locale.dialPad.callButtonLabel}">
+						? x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel
+						: x.callButtonLabel || x.locale.dialPad.callButtonLabel}">
     </${buttonTag}>`;
 }
 

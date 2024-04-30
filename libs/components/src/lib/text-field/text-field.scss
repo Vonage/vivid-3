@@ -261,3 +261,7 @@ $low-ink-color: --_low-ink-color;
 		text-align: center;
 	}
 }
+
+slot[name='_mirrored-helper-text'] {
+	display: none;
+}
