@@ -11,6 +11,21 @@ import { Icon } from '../icon/icon';
 import { TextField } from './text-field';
 import '.';
 
+// Polyfill innerText for JSDOM
+if (
+	Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'innerText') ===
+	undefined
+) {
+	Object.defineProperty(HTMLElement.prototype, 'innerText', {
+		get() {
+			return this.textContent;
+		},
+		set(value) {
+			this.textContent = value;
+		},
+	});
+}
+
 const COMPONENT_TAG_NAME = 'vwc-text-field';
 
 describe('vwc-text-field', () => {
@@ -568,6 +583,62 @@ describe('vwc-text-field', () => {
 				COMPONENT_TAG_NAME
 			) as TextField;
 			expect(() => unconnectedElement.focus()).not.toThrow();
+		});
+	});
+
+	describe('accessible helper text', function () {
+		function getAccessibleDescription() {
+			const describedBy = element
+				.querySelector('input[slot="_control"]')!
+				.getAttribute('aria-describedby');
+			const describedByTarget = element.querySelector(
+				`#${describedBy}`
+			) as HTMLElement;
+			return describedByTarget.innerText;
+		}
+
+		it('should use helperText value as the accessible description', () => {
+			element.helperText = 'Helper text';
+
+			expect(getAccessibleDescription()).toBe('Helper text');
+		});
+
+		it('should use slotted helper-text as the accessible description, joining text from multiple slotted elements', async () => {
+			const slotted1 = document.createElement('div');
+			slotted1.slot = 'helper-text';
+			slotted1.innerText = 'slotted1';
+			const slotted2 = document.createElement('div');
+			slotted2.slot = 'helper-text';
+			slotted2.innerText = 'slotted2';
+
+			element.appendChild(slotted1);
+			element.appendChild(slotted2);
+			await elementUpdated(element);
+
+			expect(getAccessibleDescription()).toBe('slotted1 slotted2');
+		});
+
+		it('should update its accessible description when slotted helper-text changes', async () => {
+			const slotted = document.createElement('div');
+			slotted.slot = 'helper-text';
+			slotted.innerText = 'initial';
+			element.appendChild(slotted);
+			await elementUpdated(element);
+
+			slotted.innerText = 'updated';
+			await elementUpdated(element);
+
+			expect(getAccessibleDescription()).toBe('updated');
+		});
+
+		it('should handle setting helper text while unconnected', () => {
+			const unconnectedElement = document.createElement(
+				COMPONENT_TAG_NAME
+			) as TextField;
+
+			expect(
+				() => (unconnectedElement.helperText = 'Helper text')
+			).not.toThrow();
 		});
 	});
 
