@@ -12,7 +12,8 @@ import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { DialPad } from './dial-pad';
 
-const getClasses = (_: DialPad) => classNames('base');
+const getClasses = ({ noInput }: DialPad) =>
+	classNames('base', ['no-input', Boolean(noInput)]);
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	if (
@@ -41,7 +42,7 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
-	)} class="phone-field" internal-part
+	)} class="phone-field" internal-part type="tel"
         value="${(x) => x.value}" placeholder="${(x) => x.placeholder}"
             ?disabled="${(x) => x.disabled}" helper-text="${(x) =>
 		x.helperText}" pattern="${(x) => x.pattern}"
@@ -185,7 +186,7 @@ export const DialPadTemplate: (
 	const textFieldTag = context.tagFor(TextField);
 
 	return html<DialPad>` <div class="${getClasses}">
-		${renderTextField(textFieldTag, buttonTag)}
+		${when((x) => !x.noInput, renderTextField(textFieldTag, buttonTag))}
 		<div class="digits">${renderDigits(buttonTag, iconTag)}</div>
 		${when((x) => !x.noCall, renderDialButton(buttonTag))}
 	</div>`;

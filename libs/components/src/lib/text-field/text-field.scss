@@ -249,6 +249,7 @@ $low-ink-color: --_low-ink-color;
 :host([internal-part]) {
 	.fieldset {
 		font: var(#{constants.$vvd-typography-heading-4});
+		background-color: transparent;
 
 		&:not(:focus-within) {
 			&::after {
