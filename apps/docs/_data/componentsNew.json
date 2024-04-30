@@ -1,0 +1,11 @@
+[
+	{
+		"title": "Button",
+		"description": "Button represents an action that the user can take. Use buttons to enable important actions.",
+		"markdown": "./libs/components/src/lib/button/README.md",
+		"overview": "./libs/components/src/lib/button/OVERVIEW.md",
+		"guidelines": "./libs/components/src/lib/button/GUIDELINES.md",
+		"accessibility": "./libs/components/src/lib/button/ACCESSIBILITY.md",
+		"examples": "./libs/components/src/lib/button/EXAMPLES.md"
+	}
+]
