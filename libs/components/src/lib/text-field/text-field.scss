@@ -248,8 +248,8 @@ $low-ink-color: --_low-ink-color;
 /* Customize for Dial-pad */
 :host([internal-part]) {
 	.fieldset {
-		font: var(#{constants.$vvd-typography-heading-4});
 		background-color: transparent;
+		font: var(#{constants.$vvd-typography-heading-4});
 
 		&:not(:focus-within) {
 			&::after {
