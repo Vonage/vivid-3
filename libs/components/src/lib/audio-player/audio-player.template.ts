@@ -129,31 +129,31 @@ export const AudioPlayerTemplate: (
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
 	return html<AudioPlayer>` <div class="wrapper">
 		<div
-		class="base ${getClasses}"
-		@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
-		@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
-		@mousedown="${(x, c) => x._handleSliderEvent(c.event)}"
-	>
-		<div class="controls">
-			${when(
-				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
-				renderBackwardSkipButtons(context)
-			)}
-			${renderButton(context)}
-			${when(
-				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
-				renderForwardSkipButtons(context)
-			)}
-			${when((x) => !x.notime, renderTimestamp())}
-		</div>
+			class="base ${getClasses}"
+			@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
+			@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
+			@mousedown="${(x, c) => x._handleSliderEvent(c.event)}"
+		>
+			<div class="controls">
+				${when(
+					(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
+					renderBackwardSkipButtons(context)
+				)}
+				${renderButton(context)}
+				${when(
+					(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
+					renderForwardSkipButtons(context)
+				)}
+				${when((x) => !x.notime, renderTimestamp())}
+			</div>
 			${renderSlider(context)}
 			${when((x) => x.playbackRates, renderPlayback(context))}
-		<audio
-			${ref('_playerEl')}
-			src="${(x) => x.src}"
-			@timeupdate="${(x) => x._updateProgress()}"
-			@loadedmetadata="${(x) => x._updateTotalTime()}"
-		></audio>
+			<audio
+				${ref('_playerEl')}
+				src="${(x) => x.src}"
+				@timeupdate="${(x) => x._updateProgress()}"
+				@loadedmetadata="${(x) => x._updateTotalTime()}"
+			></audio>
 		</div>
 	</div>`;
 };

@@ -95,7 +95,7 @@ export class AudioPlayer extends FoundationElement {
 	})
 	skipBy?: MediaSkipBy;
 
-// TODO: 1. comment it as its not functional, 2. change it string - same as video-player
+	// TODO: 1. comment it as its not functional, 2. change it string - same as video-player
 	/**
 	 *
 	 * @public
