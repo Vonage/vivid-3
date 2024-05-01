@@ -27,6 +27,9 @@ $gap: 16px;
 	display: grid;
 	box-sizing: border-box;
 	grid-template-rows: 80px 1fr auto;
+	&.no-input {
+		grid-template-rows: 1fr auto;
+	}
 }
 
 .digits {

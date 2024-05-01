@@ -352,6 +352,14 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
+	describe('no input', function () {
+		it('should not show text field when has no-input attribute', async function () {
+			element.noInput = true;
+			await elementUpdated(element);
+			expect(getTextField()).toBeNull();
+		});
+	});
+
 	describe('pending', function () {
 		it('should set call button pending when has pending attribute', async function () {
 			element.pending = true;
