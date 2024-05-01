@@ -83,6 +83,15 @@ export class DialPad extends FoundationElement {
 	@attr({ mode: 'boolean' }) disabled = false;
 
 	/**
+	 * Indicates the pending state of the dial-pad.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: pending
+	 */
+	@attr({ mode: 'boolean' }) pending = false;
+
+	/**
 	 * Indicates the active state of the dial-pad.
 	 *
 	 * @public
@@ -99,6 +108,34 @@ export class DialPad extends FoundationElement {
 	 * HTML Attribute: no-call
 	 */
 	@attr({ mode: 'boolean', attribute: 'no-call' }) noCall = false;
+
+	/**
+	 * Indicates the no-input state of the dial-pad.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: no-input
+	 */
+	@attr({ mode: 'boolean', attribute: 'no-input' }) noInput = false;
+
+	/**
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: end-call-button-label
+	 */
+	@attr({ attribute: 'end-call-button-label' }) endCallButtonLabel:
+		| string
+		| null = null;
+
+	/**
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: call-button-label
+	 */
+	@attr({ attribute: 'call-button-label' }) callButtonLabel: string | null =
+		null;
 
 	/**
 	 *

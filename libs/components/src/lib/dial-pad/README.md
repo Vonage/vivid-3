@@ -78,6 +78,50 @@ Use the `no-call` attribute (or `noCall` property) to disable call/end call func
 <vwc-dial-pad no-call></vwc-dial-pad>
 ```
 
+### No Input
+
+Use the `no-input` attribute (or `noInput` property) to disable the input field.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dial-pad no-input></vwc-dial-pad>
+```
+
+### Call Button Label
+
+Use the `call-button-label` attribute (or `callButtonLabel` property) to update the call button label.
+
+- Type: `string`
+- Default: `Call`
+
+```html preview
+<vwc-dial-pad call-button-label="Dial"></vwc-dial-pad>
+```
+
+### End Call Button Label
+
+Use the `end-call-button-label` attribute (or `endCallButtonLabel` property) to update the end call button label.
+
+- Type: `string`
+- Default: `End Call`
+
+```html preview
+<vwc-dial-pad call-active end-call-button-label="End"></vwc-dial-pad>
+```
+
+### Pending
+
+Add the `pending` attribute to disable the button and display a processing indicator.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-dial-pad pending></vwc-dial-pad>
+```
+
 ### Pattern
 
 Use the `pattern` attribute to set the regex string of allowed characters in the input.  
