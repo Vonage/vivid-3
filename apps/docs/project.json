@@ -38,6 +38,7 @@
 			"executor": "nx:run-commands",
 			"options": {
 				"commands": [
+					"node ./apps/docs/.watch.mjs",
 					"npx eleventy --config=./apps/docs/.eleventy.js --serve"
 				]
 			},
