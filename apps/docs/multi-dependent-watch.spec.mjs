@@ -203,9 +203,6 @@ describe('watchDependencies', () => {
 
 // TODO::handle "Failed tasks:"
 // On error => emit an event + stop child processes (don't forget to use in 11ty)
-// TODO::use in 11ty
-// * Kick it up from the config
-// * Listen to error events and handle them
 // TODO::Handle renamed/deleted folders
 // TODO::debounce the change event handler
 // TODO::Right now supports only one dependency - might we want more?
