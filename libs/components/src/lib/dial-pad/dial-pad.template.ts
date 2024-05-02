@@ -12,10 +12,19 @@ import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { DialPad } from './dial-pad';
 
-const getClasses = (_: DialPad) => classNames('base');
+const getClasses = ({ noInput }: DialPad) =>
+	classNames('base', ['no-input', Boolean(noInput)]);
 
 function handleKeyDown(x: DialPad, e: KeyboardEvent) {
-	if (e.key === keyEnter) {
+	if (
+		e.key === keyEnter &&
+		!x.pending &&
+		!x.disabled &&
+		!x.callActive &&
+		!x.noCall &&
+		x.value.length > 0 &&
+		e.target instanceof HTMLInputElement
+	) {
 		x._onDial();
 	} else {
 		const key = e.key === '*' ? 'Asterisk' : e.key === '#' ? 'Hashtag' : e.key;
@@ -33,7 +42,7 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
-	)} class="phone-field" internal-part
+	)} class="phone-field" internal-part type="tel"
         value="${(x) => x.value}" placeholder="${(x) => x.placeholder}"
             ?disabled="${(x) => x.disabled}" helper-text="${(x) =>
 		x.helperText}" pattern="${(x) => x.pattern}"
@@ -153,11 +162,12 @@ function renderDialButton(buttonTag: string) {
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
         ?disabled="${(x) => x.disabled}"
+		?pending="${(x) => x.pending}"
         @click="${(x) => x._onDial()}"
         label="${(x) =>
 					x.callActive
-						? x.locale.dialPad.endCallButtonLabel
-						: x.locale.dialPad.callButtonLabel}">
+						? x.endCallButtonLabel || x.locale.dialPad.endCallButtonLabel
+						: x.callButtonLabel || x.locale.dialPad.callButtonLabel}">
     </${buttonTag}>`;
 }
 
@@ -176,7 +186,7 @@ export const DialPadTemplate: (
 	const textFieldTag = context.tagFor(TextField);
 
 	return html<DialPad>` <div class="${getClasses}">
-		${renderTextField(textFieldTag, buttonTag)}
+		${when((x) => !x.noInput, renderTextField(textFieldTag, buttonTag))}
 		<div class="digits">${renderDigits(buttonTag, iconTag)}</div>
 		${when((x) => !x.noCall, renderDialButton(buttonTag))}
 	</div>`;
