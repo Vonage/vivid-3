@@ -14,11 +14,13 @@ export default defineConfig({
 
 	test: {
 		coverage: {
-			provider: 'istanbul'
+			provider: 'istanbul',
 		},
 		globals: true,
 		cache: { dir: '../../node_modules/.vitest' },
 		environment: 'jsdom',
-		include: ['apps/docs/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx, mjs}'],
+		include: [
+			'apps/docs/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx, mjs}',
+		],
 	},
 });
