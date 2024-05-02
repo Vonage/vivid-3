@@ -70,7 +70,7 @@ We will change the default value of `trigger` to `auto` in a future major versio
 
 ### Auto Dismiss
 
-Use the auto dismiss property to automatically close the menu when the user clicks outside of it.
+Use the auto dismiss property to automatically close the menu when focus is moved away from it, i.e. by clicking outside the menu.
 
 - Type: `boolean`
 - Default: `false`

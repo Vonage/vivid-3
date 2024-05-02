@@ -145,110 +145,39 @@ describe('vwc-menu', () => {
 	});
 
 	describe('auto-dismiss', () => {
-		it('should set "open" to false when clicked outside', async () => {
+		beforeEach(() => {
 			element.open = true;
-			element.autoDismiss = true;
-
-			await elementUpdated(element);
-
-			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-
-			await elementUpdated(element);
-
-			expect(element.open).toEqual(false);
 		});
 
-		describe('removing listeners', () => {
-			let lastAddedListener: (() => void) | undefined;
-			let lastRemovedListener: (() => void) | undefined;
-			beforeEach(() => {
-				lastAddedListener = undefined;
-				lastRemovedListener = undefined;
-				jest
-					.spyOn(document, 'addEventListener')
-					.mockImplementation(function (_: string, cb: any) {
-						lastAddedListener = cb;
-					});
-				jest
-					.spyOn(document, 'removeEventListener')
-					.mockImplementation(function (_: string, cb: any) {
-						lastRemovedListener = cb;
-					});
-			});
-			afterEach(() => {
-				jest.mocked(document.addEventListener).mockRestore();
-				jest.mocked(document.removeEventListener).mockRestore();
-			});
-
-			it('should remove the listener on attribute change', async function () {
-				element.open = true;
-				element.autoDismiss = true;
-				await elementUpdated(element);
-				element.autoDismiss = false;
-				await elementUpdated(element);
-
-				expect(lastAddedListener).toBe(lastRemovedListener);
-			});
-
-			it('should remove the listener when disconnected', async function () {
-				element.open = true;
-				element.autoDismiss = true;
-				await elementUpdated(element);
-				element.remove();
-				await elementUpdated(element);
-
-				expect(lastAddedListener).toBe(lastRemovedListener);
-			});
-		});
-
-		it('should add the listener again when reconnected', () => {
-			element.open = true;
+		it('should close on focusout if auto-dismiss is set', async () => {
 			element.autoDismiss = true;
-			const parent = element.parentElement!;
-			element.remove();
-			parent.appendChild(element);
 
-			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+			element.dispatchEvent(new FocusEvent('focusout'));
 
 			expect(element.open).toBe(false);
 		});
 
-		it('should leave "open" true when clicked outside and auto-dismiss false', async () => {
-			element.anchor = 'anchorButton';
-			element.open = true;
-			element.autoDismiss = false;
-			await elementUpdated(element);
+		it('should remain open on focusout if auto-dismiss is not set', async () => {
+			element.dispatchEvent(new FocusEvent('focusout'));
 
-			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-			await elementUpdated(element);
-
-			expect(element.open).toEqual(true);
+			expect(element.open).toBe(true);
 		});
 
-		it('should remain open when clicked inside', async () => {
-			element.anchor = 'anchorButton';
-			element.open = true;
+		it('should close on focusout on the anchor if auto-dismiss is set', async () => {
+			element.anchor = anchor;
 			element.autoDismiss = true;
-			await elementUpdated(element);
 
-			element.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-			await elementUpdated(element);
+			element.dispatchEvent(new FocusEvent('focusout'));
 
-			expect(element.open).toEqual(true);
+			expect(element.open).toBe(false);
 		});
 
-		it('should not emit a close event when toggling open state programmatically on button click', async () => {
-			anchor.addEventListener('click', () => (element.open = !element.open));
-			const closeSpy = jest.fn();
-			element.addEventListener('close', closeSpy);
-			element.anchor = anchor.id;
-			element.autoDismiss = true;
-			await elementUpdated(element);
+		it('should remain open on focusout on the anchor if auto-dismiss is not set', async () => {
+			element.anchor = anchor;
 
-			anchor.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-			await elementUpdated(element);
+			element.dispatchEvent(new FocusEvent('focusout'));
 
-			expect(closeSpy).not.toHaveBeenCalled();
+			expect(element.open).toBe(true);
 		});
 	});
 
