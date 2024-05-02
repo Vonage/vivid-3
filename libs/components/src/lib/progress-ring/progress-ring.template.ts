@@ -14,7 +14,7 @@ const getClasses = ({ connotation, size, paused }: ProgressRing) =>
 		[`connotation-${connotation}`, !!connotation],
 		[`size-${size}`, !!size]
 	);
-const progressSegments: number = 44;
+const progressSegments = 44;
 
 /**
  * The template for the ProgressRing component.
