@@ -1,10 +1,27 @@
-docs-search input:focus-visible,
-docs-search button:focus-visible {
-	border-radius: 2px;
-	outline: 2px solid var(--vvd-color-canvas-text);
-}
+docs-search {
+	input:focus-visible,
+	button:focus-visible {
+		border-radius: 2px;
+		outline: 2px solid var(--vvd-color-canvas-text);
+	}
 
-docs-search input::placeholder {
-	color: var(--vvd-color-neutral-600) !important;
-	opacity: unset !important;
+	input::placeholder {
+		color: var(--vvd-color-neutral-600) !important;
+		opacity: unset !important;
+	}
+
+	mark {
+		background-color: var(--vvd-color-cta-200) !important;
+		color: var(--vvd-color-canvas-text) !important;
+	}
+
+	.pagefind-ui__form::before {
+		top: 16px !important;
+		width: 20px !important;
+		height: 20px !important;
+	}
+
+	.pagefind-ui__search-clear {
+		font: var(--vvd-typography-base-condensed) !important;
+	}
 }
