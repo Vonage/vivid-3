@@ -13,7 +13,6 @@ const INPUT_DIR = 'apps/docs';
 const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
-
 	eleventyConfig.setLibrary('md', markdownLibrary);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	/**

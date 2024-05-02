@@ -1,4 +1,4 @@
-import { watchDependencies } from "./multi-dependent-watch.mjs";
+import { watchDependencies } from './multi-dependent-watch.mjs';
 import childProcess from 'child_process';
 import chokidar from 'chokidar';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -10,8 +10,8 @@ function mockChokdiarChange(chokdiarWatchMock, { changedFilePath, stats }) {
 
 describe('watchDependencies', () => {
 	function emitChangeEvent({
-		changedFilePath = "./libs/styles/main.scss",
-		stats= { isDirectory: () => false }
+		changedFilePath = './libs/styles/main.scss',
+		stats = { isDirectory: () => false },
 	}) {
 		mockChokdiarChange(chokdiarWatchMock, { changedFilePath, stats });
 	}
@@ -23,37 +23,36 @@ describe('watchDependencies', () => {
 	}
 
 	const projects = {
-		"styles": {
-			script: "npx nx run styles:build",
+		styles: {
+			script: 'npx nx run styles:build',
 			dependencies: [],
-			watchPaths: ["./libs/styles/**/*.scss"]
+			watchPaths: ['./libs/styles/**/*.scss'],
 		},
-		"build": {
-			script: "npx nx run build:build",
+		build: {
+			script: 'npx nx run build:build',
 			dependencies: [],
-			watchPaths: ["./libs/build/**/*.ts"]
+			watchPaths: ['./libs/build/**/*.ts'],
 		},
-		"docs": {
-			script: "npx nx run docs:build",
+		docs: {
+			script: 'npx nx run docs:build',
 			dependencies: [],
-			watchPaths: ["./libs/build/**/*.docs"]
-		}
+			watchPaths: ['./libs/build/**/*.docs'],
+		},
 	};
 	let processSpawnMock;
 	let chokdiarWatchMock;
 
 	beforeEach(() => {
-		processSpawnMock = vi.spyOn(childProcess, 'spawn')
-			.mockReturnValue({
-				stdout: {
-					on: vi.fn()
-				},
-				stderr: {
-					on: vi.fn()
-				},
-				kill: vi.fn(),
-				on: vi.fn()
-			});
+		processSpawnMock = vi.spyOn(childProcess, 'spawn').mockReturnValue({
+			stdout: {
+				on: vi.fn(),
+			},
+			stderr: {
+				on: vi.fn(),
+			},
+			kill: vi.fn(),
+			on: vi.fn(),
+		});
 
 		chokdiarWatchMock = vi.spyOn(chokidar, 'watch');
 
@@ -81,23 +80,26 @@ describe('watchDependencies', () => {
 		watchDependencies(projects);
 		console.log.mockReset();
 
-    const changedFilePath = "./libs/clear/main.scss";
+		const changedFilePath = './libs/clear/main.scss';
 		mockChokdiarChange(chokdiarWatchMock, { changedFilePath });
 
-		expect(console.log).toHaveBeenCalledWith('Change detected in an unmonitored file: ./libs/clear/main.scss');
+		expect(console.log).toHaveBeenCalledWith(
+			'Change detected in an unmonitored file: ./libs/clear/main.scss'
+		);
 	});
 
 	it('should start a process when its files change', () => {
+		watchDependencies(projects);
 
-    watchDependencies(projects);
+		emitChangeEvent({});
 
-    emitChangeEvent({});
-
-		expect(processSpawnMock).toHaveBeenCalledWith('sh', ['-c', projects['styles'].script]);
-  });
+		expect(processSpawnMock).toHaveBeenCalledWith('sh', [
+			'-c',
+			projects['styles'].script,
+		]);
+	});
 
 	it('should log the spawned process output', () => {
-
 		watchDependencies(projects);
 
 		emitChangeEvent({});
@@ -106,11 +108,9 @@ describe('watchDependencies', () => {
 		processOnSpy.stdout.on.mock.calls[0][1]('Tested');
 
 		expect(console.log).toHaveBeenCalledWith('styles: Tested');
-
 	});
 
 	it('should log the spawned process errors', () => {
-
 		watchDependencies(projects);
 
 		emitChangeEvent({});
@@ -119,7 +119,6 @@ describe('watchDependencies', () => {
 		processOnSpy.stderr.on.mock.calls[0][1]('Error');
 
 		expect(console.error).toHaveBeenCalledWith('styles: Error');
-
 	});
 
 	it('should log the process closed on close', () => {
@@ -145,20 +144,20 @@ describe('watchDependencies', () => {
 
 	it('should run the dependencies after the process closes', () => {
 		const projects = {
-			"styles": {
-				script: "npx nx run styles:build",
-				dependencies: ["build"],
-				watchPaths: ["./libs/styles/**/*.scss"]
+			styles: {
+				script: 'npx nx run styles:build',
+				dependencies: ['build'],
+				watchPaths: ['./libs/styles/**/*.scss'],
 			},
-			"build": {
-				script: "npx nx run build:build",
-				dependencies: ["docs"],
-				watchPaths: ["./libs/build/**/*.build"]
+			build: {
+				script: 'npx nx run build:build',
+				dependencies: ['docs'],
+				watchPaths: ['./libs/build/**/*.build'],
 			},
-			"docs": {
-				script: "npx nx run docs:build",
+			docs: {
+				script: 'npx nx run docs:build',
 				dependencies: [],
-				watchPaths: ["./libs/build/**/*.docs"]
+				watchPaths: ['./libs/build/**/*.docs'],
 			},
 		};
 		watchDependencies(projects);
@@ -167,9 +166,18 @@ describe('watchDependencies', () => {
 		closeRunningProcess();
 		closeRunningProcess(1);
 
-		expect(processSpawnMock.mock.calls[0]).toEqual(['sh', ['-c', projects['styles'].script]]);
-		expect(processSpawnMock.mock.calls[1]).toEqual(['sh', ['-c', projects['build'].script]]);
-		expect(processSpawnMock.mock.calls[2]).toEqual(['sh', ['-c', projects['docs'].script]]);
+		expect(processSpawnMock.mock.calls[0]).toEqual([
+			'sh',
+			['-c', projects['styles'].script],
+		]);
+		expect(processSpawnMock.mock.calls[1]).toEqual([
+			'sh',
+			['-c', projects['build'].script],
+		]);
+		expect(processSpawnMock.mock.calls[2]).toEqual([
+			'sh',
+			['-c', projects['docs'].script],
+		]);
 	});
 
 	it('should kill a running process if there were changes to it and restart it', () => {
@@ -181,8 +189,14 @@ describe('watchDependencies', () => {
 
 		expect(processOnSpy.kill).toHaveBeenCalledTimes(1);
 		expect(processSpawnMock).toHaveBeenCalledTimes(2);
-		expect(processSpawnMock.mock.calls[0]).toEqual(['sh', ['-c', projects['styles'].script]]);
-		expect(processSpawnMock.mock.calls[1]).toEqual(['sh', ['-c', projects['styles'].script]]);
+		expect(processSpawnMock.mock.calls[0]).toEqual([
+			'sh',
+			['-c', projects['styles'].script],
+		]);
+		expect(processSpawnMock.mock.calls[1]).toEqual([
+			'sh',
+			['-c', projects['styles'].script],
+		]);
 	});
 
 	it('should kill a running processes dependencies if it restarts', () => {
@@ -196,10 +210,9 @@ describe('watchDependencies', () => {
 		emitChangeEvent({});
 
 		expect(processOnSpy.kill).toHaveBeenCalledTimes(1);
-		expect(console.log).toHaveBeenCalledWith('Stopping build...')
+		expect(console.log).toHaveBeenCalledWith('Stopping build...');
 	});
 });
-
 
 // TODO::handle "Failed tasks:"
 // On error => emit an event + stop child processes (don't forget to use in 11ty)
