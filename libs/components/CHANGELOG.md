@@ -4,6 +4,29 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.54.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.53.0...vivid-v3.54.0) (2024-04-30)
+
+
+### Features
+
+* **audio-player:** skip buttons (VIV-1645) ([#1656](https://github.com/Vonage/vivid-3/issues/1656)) ([37d5e68](https://github.com/Vonage/vivid-3/commit/37d5e687cca8e42f01deb828acb35093d14fae84))
+* **dial pad:** add attributes to button (VIV-1743) ([#1677](https://github.com/Vonage/vivid-3/issues/1677)) ([bd2a0d1](https://github.com/Vonage/vivid-3/commit/bd2a0d140793cc63e51be204c8837eee155130a4))
+* **icon:** update icons set version to 4.5.6 (VIV-1651)  ([#1667](https://github.com/Vonage/vivid-3/issues/1667)) ([8f8106a](https://github.com/Vonage/vivid-3/commit/8f8106a783a26e46718389140b14bd88bcee7c37))
+* **menu:** support auto trigger (VIV-1469) ([#1659](https://github.com/Vonage/vivid-3/issues/1659)) ([beea145](https://github.com/Vonage/vivid-3/commit/beea145a57aad8f256508c0334ff199f1fb3e43a))
+* **nav-item, nav-disclosure:** add cta connotation (VIV-1670) ([#1672](https://github.com/Vonage/vivid-3/issues/1672)) ([c9bfdad](https://github.com/Vonage/vivid-3/commit/c9bfdadfad8fcba2e86f3da02a8baf379f344aad))
+* **nav-item, nav-disclosure:** add ghost-light appearance (VIV-1466) ([#1512](https://github.com/Vonage/vivid-3/issues/1512)) ([e87e674](https://github.com/Vonage/vivid-3/commit/e87e674e37bd32a64f738c3254f094fdaedb0cc6))
+* **text-field:** use helper-text as accessible description (VIV-1592) ([#1673](https://github.com/Vonage/vivid-3/issues/1673)) ([bb64da9](https://github.com/Vonage/vivid-3/commit/bb64da98864b3d226a968cb996d6db9a0e5c4217))
+* **vue-wrappers:** allow using original attribute instead of v-model (VIV-1640) ([#1648](https://github.com/Vonage/vivid-3/issues/1648)) ([2a18adb](https://github.com/Vonage/vivid-3/commit/2a18adb4ff850c0b07d6ae665f2dffcc10e239b0))
+
+
+### Bug Fixes
+
+* **a11y:** error message announcement in form elements (VIV-1593) ([#1662](https://github.com/Vonage/vivid-3/issues/1662)) ([3bc7707](https://github.com/Vonage/vivid-3/commit/3bc77075dab84984cb359730be5d059e13db651a))
+* **icon:** fix icon size `0` not working when set as prop (VIV-1705) ([#1657](https://github.com/Vonage/vivid-3/issues/1657)) ([80775df](https://github.com/Vonage/vivid-3/commit/80775df71c4134685dffb3674d0e4815da42059b))
+* **menu:** fix setting tabindex on anchor (VIV-1706) ([#1670](https://github.com/Vonage/vivid-3/issues/1670)) ([1022111](https://github.com/Vonage/vivid-3/commit/1022111ce30a96e2c85028d627c9564e4c349d78))
+* **select:** add hover state to ghost appearance (VIV-1714) ([#1664](https://github.com/Vonage/vivid-3/issues/1664)) ([4408795](https://github.com/Vonage/vivid-3/commit/440879531c3f3f5536b6ec770f72036b5e871f54))
+* **video-player:** change font & icons to vivid (VIV-1680) ([#1674](https://github.com/Vonage/vivid-3/issues/1674)) ([08ae243](https://github.com/Vonage/vivid-3/commit/08ae2439b68ad3354780fcaee19dcd6bb0088fe3))
+
 ## [3.53.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.52.0...vivid-v3.53.0) (2024-04-04)
 
 
