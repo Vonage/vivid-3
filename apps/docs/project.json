@@ -20,11 +20,17 @@
 			"executor": "nx:run-commands",
 			"options": {
 				"pathprefix": "",
-				"commands": [
-					"npx esbuild ./dist/libs/components/index.js --bundle --outfile=./dist/libs/components-bundle/index.js --format=esm",
-					"npx eleventy --config=./apps/docs/.eleventy.js"
-				],
+				"commands": ["npx eleventy --config=./apps/docs/.eleventy.js"],
 				"parallel": false
+			},
+			"dependsOn": ["bundle-components"]
+		},
+		"bundle-components": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					"npx esbuild ./dist/libs/components/index.js --bundle --outfile=./dist/libs/components-bundle/index.js --format=esm"
+				]
 			},
 			"dependsOn": ["buildMeta"]
 		},
@@ -32,19 +38,15 @@
 			"executor": "nx:run-commands",
 			"options": {
 				"commands": [
-					"npx esbuild ./dist/libs/components/index.js --bundle --outfile=./dist/libs/components-bundle/index.js --format=esm --watch",
-					"npx nx serve styles",
-					"WATCH=true npx nx build components --watch",
 					"npx eleventy --config=./apps/docs/.eleventy.js --serve"
 				]
 			},
-			"dependsOn": ["buildMeta"]
+			"dependsOn": ["bundle-components"]
 		},
 		"test": {
-			"executor": "@nx/jest:jest",
+			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "apps/docs/jest.config.ts",
 				"passWithNoTests": true
 			}
 		},
