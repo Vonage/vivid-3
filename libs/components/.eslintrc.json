@@ -33,7 +33,6 @@
 		"@typescript-eslint/no-unsafe-declaration-merging": "warn"
 	},
 	"overrides": [
-
 		{
 			"files": ["rollup.config.*.ts"],
 			"rules": {
