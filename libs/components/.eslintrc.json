@@ -29,9 +29,11 @@
 				"accessibility": "no-public"
 			}
 		],
-		"tsdoc/syntax": "warn"
+		"tsdoc/syntax": "warn",
+		"@typescript-eslint/no-unsafe-declaration-merging": "warn"
 	},
 	"overrides": [
+
 		{
 			"files": ["rollup.config.*.ts"],
 			"rules": {
