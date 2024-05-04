@@ -51,6 +51,7 @@
 		"@nrwl/rollup": "18.3.4",
 		"@nrwl/web": "18.3.4",
 		"@nrwl/workspace": "18.3.4",
+		"@nx/eslint": "^18.3.4",
 		"@nx/jest": "18.3.4",
 		"@nx/js": "18.3.4",
 		"@nx/vite": "18.3.4",
