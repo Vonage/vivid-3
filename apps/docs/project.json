@@ -20,7 +20,6 @@
 		"build": {
 			"executor": "nx:run-commands",
 			"options": {
-				"pathprefix": "",
 				"commands": [
 					"npx esbuild ./dist/libs/components/index.js --bundle --outfile=./dist/libs/components-bundle/index.js --format=esm",
 					"npx eleventy --config=./apps/docs/.eleventy.js"
