@@ -4,6 +4,7 @@
 	"projectType": "application",
 	"sourceRoot": "apps/vivid-demo/src",
 	"tags": [],
+	"implicitDependencies": ["components", "styles"],
 	"targets": {
 		"buildMeta": {
 			"executor": "nx:run-commands",
@@ -44,16 +45,12 @@
 			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "apps/docs/jest.config.ts",
-				"passWithNoTests": true
+				"jestConfig": "apps/docs/jest.config.ts"
 			}
 		},
 		"lint": {
 			"executor": "@nx/eslint:lint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": ["apps/docs/**/*.js", "apps/docs/**/*.ts"]
-			}
+			"outputs": ["{options.outputFile}"]
 		},
 		"stylelint": {
 			"executor": "nx-stylelint:lint",
@@ -70,6 +67,5 @@
 				"forwardAllArgs": false
 			}
 		}
-	},
-	"implicitDependencies": ["components", "styles"]
+	}
 }

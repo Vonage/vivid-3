@@ -3,6 +3,8 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/vue-wrappers/src",
 	"projectType": "library",
+	"tags": [],
+	"implicitDependencies": ["wrapper-gen"],
 	"targets": {
 		"vite-build": {
 			"dependsOn": ["^build"],
@@ -30,13 +32,7 @@
 		},
 		"lint": {
 			"executor": "@nx/eslint:lint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"libs/vue-wrappers/**/*.ts",
-					"libs/vue-wrappers/package.json"
-				]
-			}
+			"outputs": ["{options.outputFile}"]
 		},
 		"clean": {
 			"executor": "nx:run-commands",
@@ -49,7 +45,5 @@
 				]
 			}
 		}
-	},
-	"tags": [],
-	"implicitDependencies": ["wrapper-gen"]
+	}
 }

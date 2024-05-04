@@ -22,13 +22,25 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 }
 
 const components = getFoldersInAFolder();
-const input = components.reduce((inputObject, componentName) => {
-	inputObject[`${componentName}/index`] = path.join(
-		process.cwd(),
-		`libs/components/src/lib/${componentName}/index.ts`
-	);
-	return inputObject;
-}, {});
+const input = components.reduce(
+	(inputObject, componentName) => {
+		inputObject[`${componentName}/index`] = path.join(
+			process.cwd(),
+			`libs/components/src/lib/${componentName}/index.ts`
+		);
+		return inputObject;
+	},
+	{
+		root: __dirname,
+		build: {
+			outDir: '../../dist/libs/components',
+			reportCompressedSize: true,
+			commonjsOptions: {
+				transformMixedEsModules: true,
+			},
+		},
+	}
+);
 
 const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
 locales.forEach((locale) => {
