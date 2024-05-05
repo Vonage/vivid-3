@@ -69,10 +69,10 @@ export function watchDependencies(projects) {
 		}
 	);
 
-	watcher.on('change', (changedFilePath, stats) => {
+	watcher.on('change', (changedFilePath: string) => {
 		const path = resolve(changedFilePath);
 		const projectName = Object.keys(projects).find((project) =>
-			projects[project].watchPaths.some((x) =>
+			projects[project].watchPaths.some((x: string) =>
 				path.startsWith(resolve(x.split('**')[0]))
 			)
 		);
