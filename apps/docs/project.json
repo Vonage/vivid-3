@@ -38,7 +38,7 @@
 			"executor": "nx:run-commands",
 			"options": {
 				"commands": [
-					"node ./apps/docs/.watch.mjs",
+					"ts-node --project apps/docs/tsconfig.dev.json ./apps/docs/.watch.ts",
 					"npx eleventy --config=./apps/docs/.eleventy.js --serve"
 				]
 			},

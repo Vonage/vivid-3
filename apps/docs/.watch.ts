@@ -1,4 +1,4 @@
-import { watchDependencies } from './multi-dependent-watch.mjs';
+import { watchDependencies } from "../../libs/multi-deps-watch/src/index";
 
 function proceduralDepsWatch() {
 	const projects = {

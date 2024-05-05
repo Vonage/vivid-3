@@ -19,6 +19,7 @@
 			"@vivid-nx/styles": ["libs/styles/src/index.ts"],
 			"@vivid-nx/tokens": ["libs/tokens/src/index.ts"],
 			"@vivid-nx/wrapper-gen": ["libs/wrapper-gen/src/index.ts"],
+			"@vonage/multi-deps-watch": ["libs/multi-deps-watch/src/index.ts"],
 			"@vonage/nx-vivid": ["libs/nx-vivid/src/index.ts"],
 			"@vonage/vivid": ["libs/components/src/index.ts"],
 			"@vonage/vivid-vue": ["libs/vue-wrappers/src/index.ts"],
