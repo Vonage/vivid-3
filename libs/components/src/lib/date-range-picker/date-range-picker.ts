@@ -46,7 +46,7 @@ export class DateRangePicker extends DatePickerBase {
 	 * @remarks
 	 * HTML Attribute: start
 	 */
-	@attr({ mode: 'fromView', attribute: 'start' }) initialStart: string = '';
+	@attr({ mode: 'fromView', attribute: 'start' }) initialStart = '';
 
 	/**
 	 * @internal
@@ -65,7 +65,7 @@ export class DateRangePicker extends DatePickerBase {
 	 * @remarks
 	 * HTML Attribute: end
 	 */
-	@attr({ mode: 'fromView', attribute: 'end' }) initialEnd: string = '';
+	@attr({ mode: 'fromView', attribute: 'end' }) initialEnd = '';
 
 	/**
 	 * @internal
@@ -82,7 +82,7 @@ export class DateRangePicker extends DatePickerBase {
 	/**
 	 * The start value of the date range.
 	 */
-	@observable start: string = '';
+	@observable start = '';
 
 	/**
 	 * @internal
@@ -102,7 +102,7 @@ export class DateRangePicker extends DatePickerBase {
 	/**
 	 * The end value of the date range.
 	 */
-	@observable end: string = '';
+	@observable end = '';
 
 	/**
 	 * @internal
