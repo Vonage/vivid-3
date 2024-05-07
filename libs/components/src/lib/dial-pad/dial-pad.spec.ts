@@ -329,6 +329,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should set delete button disabled when has disabled attribute', async function () {
 			element.disabled = true;
+			element.value = '123';
 			await elementUpdated(element);
 			expect(getDeleteButton().disabled).toEqual(true);
 		});
@@ -351,6 +352,8 @@ describe('vwc-dial-pad', () => {
 
 		it('should set the delete button to be disabled', async function () {
 			element.callActive = true;
+			element.value = '123';
+			await elementUpdated(element);
 			expect(getDeleteButton().disabled).toBe(true);
 		});
 	});
