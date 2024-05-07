@@ -51,7 +51,7 @@ export class DialPad extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr({ mode: 'fromView' }) value: string = '';
+	@attr({ mode: 'fromView' }) value = '';
 	valueChanged(_oldValue: string, newValue: string) {
 		if (
 			newValue !== undefined &&
@@ -71,7 +71,7 @@ export class DialPad extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: pattern
 	 */
-	@attr({ mode: 'fromView' }) pattern: string = '^[0-9#*]*$';
+	@attr({ mode: 'fromView' }) pattern = '^[0-9#*]*$';
 
 	/**
 	 * Indicates the disabled state of the dial-pad.
