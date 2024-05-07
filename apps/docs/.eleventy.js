@@ -105,16 +105,6 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
 
-	eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
-		const swFilePath = path.resolve('dist/apps/docs/sw.js');
-		const fileContents = fs.readFileSync(swFilePath).toString();
-		const result = fileContents.replace(
-			/e="\d+"/gm,
-			`e="${new Date().getTime().toString()}"`
-		);
-		fs.writeFileSync(swFilePath, result);
-	});
-
 	return {
 		dir: {
 			input: INPUT_DIR,
