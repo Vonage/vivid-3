@@ -51,7 +51,7 @@
 					</vwc-nav-item>
 				{% endif %}
         <vwc-nav-item appearance="ghost-light" href="{{ ('/icons/icons-gallery') | url }}/" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
-        <vwc-text-field class="components-filter" icon="search-line" placeholder="Find Component" label="Filter Components"></vwc-text-field>
+        <vwc-divider></vwc-divider>
         <vwc-nav-disclosure appearance="ghost-light" label="Components" open {% if page.url.includes('/components/') %} aria-current="true" {% endif %}>
             {% for item in components | publicPageFilter | sort(false, false, 'title') %}
                 {% if item.children %}

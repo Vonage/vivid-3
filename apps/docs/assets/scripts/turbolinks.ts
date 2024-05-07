@@ -51,9 +51,23 @@ const onBeforeProcessNode = (e: CustomEvent) => {
 	}
 };
 
+const handleScrollAfterSwap = (e: CustomEvent) => {
+	const anchor = e.detail.pathInfo.anchor;
+
+	if (anchor) {
+		document.getElementById(anchor)?.scrollIntoView();
+	} else {
+		window.scrollTo(0, 0);
+	}
+};
+
 window.addEventListener('popstate', handleLocationChange);
 window.addEventListener('htmx:pushedIntoHistory', handleLocationChange);
 window.addEventListener(
 	'htmx:beforeProcessNode',
 	onBeforeProcessNode as EventListener
+);
+window.addEventListener(
+	'htmx:afterSwap',
+	handleScrollAfterSwap as EventListener
 );
