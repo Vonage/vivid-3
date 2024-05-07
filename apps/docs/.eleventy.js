@@ -100,6 +100,7 @@ module.exports = function (eleventyConfig) {
 			)
 		);
 	});
+	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/`);
 
 	return {
 		dir: {

@@ -98,7 +98,7 @@ const createiFrameContent = (code, classList, index) => {
 				${IFRAME_STYLE}
 				${IFRAME_INLINE_STYLE}
 			 	${FONTS}
-				<script type="module" src="/docs/assets/scripts/vivid-components.ts"></script>
+				<script type="module" src="/docs/assets/scripts/code-example/main.ts"></script>
 			</head>
 			<body class="page-not-ready" ${
 				classList.includes('full') ? 'id="_target"' : ''
