@@ -101,6 +101,7 @@ module.exports = function (eleventyConfig) {
 			)
 		);
 	});
+
 	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/**`);
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
