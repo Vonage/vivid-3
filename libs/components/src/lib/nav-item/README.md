@@ -66,6 +66,58 @@ Within a set of pagination links, set a nav item `aria-current` value to _page_ 
 </vwc-nav>
 ```
 
+### Appearance
+
+Set the `appearance` attribute to change the nav-item's appearance.
+
+- Type: `'ghost'` | `'ghost-light'`
+- Default: `'ghost'`
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item
+		appearance="ghost-light"
+		href="#"
+		icon="profile"
+		text="Account"
+	></vwc-nav-item>
+	<vwc-nav-item
+		appearance="ghost-light"
+		href="#"
+		aria-current="page"
+		icon="gear-line"
+		text="Settings"
+	></vwc-nav-item>
+</vwc-nav>
+```
+
+### Connotation
+
+Set the `connotation` attribute to change the nav-item's connotation.
+
+- Type: `'accent'` | `'cta'`
+- Default: `'accent'`
+
+```html preview
+<vwc-nav>
+	<vwc-nav-item
+		appearance="ghost-light"
+		connotation="cta"
+		href="#"
+		icon="profile"
+		text="Account"
+	></vwc-nav-item>
+	<vwc-nav-item
+		appearance="ghost-light"
+		connotation="cta"
+		href="#"
+		aria-current="page"
+		icon="gear-line"
+		text="Settings"
+	></vwc-nav-item>
+</vwc-nav>
+```
+
 ## Slots
 
 ### Meta

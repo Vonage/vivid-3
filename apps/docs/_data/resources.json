@@ -1,5 +1,9 @@
 [
 	{
+		"title": "Vivid Change Process",
+		"markdown": "./docs/resources/change-process.md"
+	},
+	{
 		"title": "Release Policy",
 		"markdown": "./docs/resources/release-policy.md"
 	}

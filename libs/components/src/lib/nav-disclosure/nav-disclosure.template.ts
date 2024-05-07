@@ -4,6 +4,7 @@ import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
+import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
@@ -14,6 +15,13 @@ import type { NavDisclosure } from './nav-disclosure';
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
 	return ariaCurrent && !open;
 }
+
+const getClasses = ({ appearance, connotation }: NavDisclosure) =>
+	classNames(
+		'control',
+		[`appearance-${appearance}`, Boolean(appearance)],
+		[`connotation-${connotation}`, Boolean(connotation)]
+	);
 
 /**
  * The template for the Nav component.
@@ -29,7 +37,7 @@ export const NavDisclosureTemplate: (
 	const iconTag = context.tagFor(Icon);
 
 	return html`<details class="base" ${ref('details')} ?open=${(x) => x.open}>
-        <summary class="control"
+        <summary class="${getClasses}"
             role="button"
             aria-controls="disclosure-content"
 			aria-expanded="${(x) => x.open}"

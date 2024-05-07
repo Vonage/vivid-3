@@ -89,6 +89,17 @@ export class Menu extends FastMenu {
 
 			handleFocusOut(e);
 		};
+
+		// Override Fast's domChildren method to filter out slotted elements like anchor
+		const privates = this as unknown as {
+			domChildren(): HTMLElement[];
+		};
+		const domChildren = privates.domChildren;
+		privates.domChildren = () => {
+			return domChildren
+				.call(this)
+				.filter((child) => !child.hasAttribute('slot'));
+		};
 	}
 
 	override connectedCallback(): void {

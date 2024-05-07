@@ -58,7 +58,8 @@
 			"extends": ["plugin:@nrwl/nx/typescript"],
 			"rules": {
 				"no-console": 2,
-				"unused-imports/no-unused-imports": "error"
+				"unused-imports/no-unused-imports": "error",
+				"@typescript-eslint/no-non-null-assertion": "off"
 			}
 		},
 		{

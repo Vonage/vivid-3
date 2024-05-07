@@ -4,16 +4,20 @@ import { bracketMatching, indentUnit } from '@codemirror/language';
 import { html } from '@codemirror/lang-html';
 import { Compartment } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
+import enUS from '@vonage/vivid/locales/en-US';
+import enGB from '@vonage/vivid/locales/en-GB';
+import zhCN from '@vonage/vivid/locales/zh-CN';
+import jaJP from '@vonage/vivid/locales/ja-JP';
+import { getCurrentThemeCss } from './theme-handler';
 
 const samplesEditors = new Map();
 const theme = new Compartment();
 
-window.setEditorsTheme = function () {
+function setEditorsTheme() {
 	for (const { view } of samplesEditors.values()) {
-		/* For light theme replace with: window._darkTheme ? oneDark : EditorView.theme({}) */
 		view.dispatch({ effects: theme.reconfigure(oneDark) });
 	}
-};
+}
 
 function addButtonsHandlers() {
 	const copyCodeButtons = document.querySelectorAll(
@@ -73,7 +77,7 @@ function addSamplesEditors() {
 		});
 	});
 
-	window.setEditorsTheme();
+	setEditorsTheme();
 }
 
 function sampleChanged(idx) {
@@ -141,6 +145,13 @@ function openCodePen(event) {
 	codePenForm.submit();
 }
 
+const locales = {
+	'en-US': enUS,
+	'en-GB': enGB,
+	'zh-CN': zhCN,
+	'ja-JP': jaJP,
+};
+
 function addLocaleSwitcher() {
 	const DefaultLocale = 'en-US';
 
@@ -150,7 +161,7 @@ function addLocaleSwitcher() {
 	localeSelects.forEach((localeSelect) => {
 		// Ensure default is first
 		localeSelect.innerHTML += `<vwc-option value='${DefaultLocale}' text='${DefaultLocale}' selected></vwc-option>`;
-		for (const locale of Object.keys(window.locales).filter(
+		for (const locale of Object.keys(locales).filter(
 			(locale) => locale !== DefaultLocale
 		)) {
 			localeSelect.innerHTML += `<vwc-option value='${locale}' text='${locale}'></vwc-option>`;
@@ -163,7 +174,7 @@ function switchLocale(event) {
 	const select = event.target;
 	const { iframe } = samplesEditors.get(+select.dataset.index);
 
-	iframe.contentWindow.setLocale(iframe.contentWindow.locales[select.value]);
+	iframe.contentWindow.setLocale(locales[select.value]);
 	iframe.contentWindow.document.documentElement.lang = select.value;
 }
 
@@ -180,6 +191,66 @@ function setupLiveSamples() {
 	addButtonsHandlers();
 	addLocaleSwitcher();
 }
+
+window.codeBlockButtonClick = (button) => {
+	const details = button.closest('.cbd-actions').nextElementSibling;
+	details.open = !details.open;
+	button.ariaExpanded = details.open;
+};
+
+const iframeObservers = new WeakMap();
+
+const autoResize = (iFrame) => {
+	new ResizeObserver((entries, observer) => {
+		if (entries.length === 0) return;
+		iFrame.style.height = Math.max(30, entries[0].contentRect.height) + 'px';
+		clearTimeout(iframeObservers.get(iFrame));
+		iframeObservers.set(
+			iFrame,
+			setTimeout(() => {
+				observer.disconnect();
+				iframeObservers.delete(iFrame);
+			}, 3000)
+		);
+	}).observe(iFrame.contentWindow.document.documentElement);
+};
+
+const setIframeTheme = (iFrame) => {
+	iFrame.contentWindow.document.getElementById('vivid-theme')?.remove();
+
+	const themeStyle = iFrame.contentWindow.document.createElement('style');
+	themeStyle.id = 'vivid-theme';
+	themeStyle.textContent = getCurrentThemeCss();
+	iFrame.contentWindow.document.head.appendChild(themeStyle);
+
+	iFrame.contentWindow.document.body.classList.remove('page-not-ready');
+};
+
+const updateThemeOfAllIframes = () => {
+	for (const iframe of document.querySelectorAll('[data-vivid-iframe]')) {
+		setIframeTheme(iframe);
+	}
+};
+
+const setupIframeThemeUpdates = () => {
+	document
+		.querySelector('vwc-menu#dark-mode-menu')
+		.addEventListener('change', updateThemeOfAllIframes);
+	window
+		.matchMedia('(prefers-color-scheme: dark)')
+		.addEventListener('change', updateThemeOfAllIframes);
+};
+window.addEventListener('load', setupIframeThemeUpdates);
+
+window.onloadIframe = (iFrame) => {
+	iFrame.setAttribute('data-vivid-iframe', '');
+	setIframeTheme(iFrame);
+	autoResize(iFrame);
+};
+
+// Handle iframes that were loaded before the script
+window._bufferedLoadedIFrames.forEach(window.onloadIframe);
+delete window._bufferedLoadedIFrames;
 
 window.addEventListener('load', setupLiveSamples);
 window.addEventListener('htmx:afterSwap', setupLiveSamples);
