@@ -125,7 +125,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 * HTML Attribute: readonly
 	 */
 	@attr({ attribute: 'readonly', mode: 'boolean' })
-	readOnly: boolean = false;
+	readOnly = false;
 
 	/**
 	 * @internal

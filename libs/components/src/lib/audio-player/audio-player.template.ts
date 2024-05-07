@@ -11,7 +11,7 @@ import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
-	classNames(['disabled', Boolean(disabled) || !Boolean(duration)]);
+	classNames(['disabled', Boolean(disabled) || !duration]);
 
 function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);

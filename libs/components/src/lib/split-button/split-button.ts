@@ -134,7 +134,7 @@ export class SplitButton extends FoundationElement {
 	 * HTML Attribute: split-indicator
 	 */
 	@attr({ attribute: 'split-indicator', mode: 'fromView' })
-	splitIndicator: string = 'chevron-down-line';
+	splitIndicator = 'chevron-down-line';
 
 	/**
 	 * Indicates if the button is disabled.

@@ -59,7 +59,13 @@
 			"rules": {
 				"no-console": 2,
 				"unused-imports/no-unused-imports": "error",
-				"@typescript-eslint/no-non-null-assertion": "off"
+				"no-var": "error",
+				"prefer-const": "error",
+				"import/prefer-default-export": "off",
+				"class-methods-use-this": "off",
+				"no-new": "warn",
+				"@typescript-eslint/no-non-null-assertion": "off",
+				"@typescript-eslint/no-explicit-any": "off"
 			}
 		},
 		{

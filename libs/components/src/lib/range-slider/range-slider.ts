@@ -192,7 +192,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 	#updateValues(
 		{ start, end }: { start?: string; end?: string },
-		emitEvents: boolean = true
+		emitEvents = true
 	) {
 		if (start === this.start) {
 			start = undefined;
