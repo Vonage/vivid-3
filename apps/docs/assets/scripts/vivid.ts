@@ -5,3 +5,8 @@ export type NavDisclosure = HTMLElement & { label: string };
 export type Header = HTMLElement & { elevationShadow: boolean };
 export type Menu = HTMLElement & { open: boolean };
 export type MenuItem = HTMLElement & { checked: boolean; text: string };
+export type Dialog = HTMLElement & {
+	headline: string;
+	showModal: () => void;
+	close: () => void;
+};

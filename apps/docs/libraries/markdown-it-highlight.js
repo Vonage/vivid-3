@@ -16,13 +16,15 @@ module.exports = function (str, language, attrs) {
 
 			return `<pre class="${classes.join(
 				' '
-			)}"><code>${highlight}</code></pre>`;
+			)}" data-pagefind-ignore><code>${highlight}</code></pre>`;
 		} catch (__) {
 			// ignore
 		}
 	}
 
 	return (
-		'<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+		'<pre class="hljs" data-pagefind-ignore><code>' +
+		md.utils.escapeHtml(str) +
+		'</code></pre>'
 	);
 };
