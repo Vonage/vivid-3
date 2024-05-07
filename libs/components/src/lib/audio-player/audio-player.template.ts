@@ -19,7 +19,7 @@ const getClasses = ({
 	skipBy,
 }: AudioPlayer) =>
 	classNames(
-		['disabled', Boolean(disabled) || !Boolean(duration)],
+		['disabled', Boolean(disabled) || !duration],
 		['playback', Boolean(playbackRates)],
 		[
 			'two-lines',

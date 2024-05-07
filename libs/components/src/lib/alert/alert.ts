@@ -95,7 +95,7 @@ export class Alert extends FoundationElement {
 		mode: 'fromView',
 		converter: nullableNumberConverter,
 	})
-	timeoutms: number = 0;
+	timeoutms = 0;
 
 	/**
 	 * alert connotation
