@@ -14,9 +14,7 @@ const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.setLibrary('md', markdownLibrary);
-
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
-
 	/**
 	 * Hack to inject the generated code example frames into the Eleventy results, so that they will be processed by Vite.
 	 */
@@ -66,6 +64,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
 	eleventyConfig.addWatchTarget('docs/');
 	eleventyConfig.addWatchTarget('assets/');
+	eleventyConfig.addWatchTarget('dist/libs/components-bundle/*');
 
 	eleventyConfig.setUseGitIgnore(false);
 

@@ -1,7 +1,7 @@
 {
 	"root": true,
 	"ignorePatterns": ["**/*"],
-	"plugins": ["@nrwl/nx", "ban", "unused-imports"],
+	"plugins": ["@nrwl/nx", "ban", "unused-imports", "@nx"],
 	"overrides": [
 		{
 			"files": ["*.spec.ts", "ui.test.ts"],
