@@ -1,5 +1,6 @@
 {% extends './page.njk' %}
 
+
 {% block banner %}
 	{% if (component.status == "alpha") %}
 		<vwc-banner class="banner" text="ALPHA: If you need this component, please contact the Vivid team to co-ordinate acceptence testing" connotation="warning"></vwc-banner>
@@ -14,6 +15,19 @@
 {% endblock %}
 
 {% block content %}
+
+	<div class="components-header">
+		<h1>{{ component.title }}</h1>
+		<p>{{ component.description }}</p>
+		<nav>
+			<a href="/components/{{ component | pageSlug }}/" {% if ("/components/" + (component | pageSlug) + "/") == page.url %} aria-current="page" {% endif %}>Overview</a>
+			<a href="/components/{{ component | pageSlug }}/guidelines/" {% if ("/components/" + (component | pageSlug) + "/guidelines/") == page.url %} aria-current="page" {% endif %}>Guidelines</a>
+			<a href="/components/{{ component | pageSlug }}/code/" {% if ("/components/" + (component | pageSlug) + "/code/") == page.url %} aria-current="page" {% endif %}>Code</a>
+			<a href="/components/{{ component | pageSlug }}/accessibility/" {% if ("/components/" + (component | pageSlug) + "/accessibility/") == page.url %} aria-current="page" {% endif %}>Accessibility</a>
+			<a href="/components/{{ component | pageSlug }}/examples/" {% if ("/components/" + (component | pageSlug) + "/examples/") == page.url %} aria-current="page" {% endif %}>Examples</a>
+		</nav>
+	</div>
+
 	{{ content | safe }}
 	<footer class="footer">
 		<vwc-divider></vwc-divider>

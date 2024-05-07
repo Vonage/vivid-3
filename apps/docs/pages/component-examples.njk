@@ -1,0 +1,11 @@
+---
+tags: components
+pagination:
+  data: componentsNew
+  size: 1
+  alias: component
+permalink: 'components/{{ component | pageSlug }}/examples/'
+layout: component.njk
+---
+
+{% renderFile component.examples %}

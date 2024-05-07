@@ -1,0 +1,31 @@
+.components-header {
+	margin-block: 50px 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	h1 {
+		margin: 0;
+	}
+
+	p {
+		margin: 0;
+		color: var(--vvd-color-neutral-700);
+		font: var(--vvd-typography-base-extended);
+	}
+
+	nav {
+		border-bottom: 1px solid gray;
+
+		a {
+			display: inline-block;
+			padding: 12px;
+			text-decoration: none;
+
+			&[aria-current='page'] {
+				border-bottom: 2px solid red;
+				color: red;
+			}
+		}
+	}
+}
