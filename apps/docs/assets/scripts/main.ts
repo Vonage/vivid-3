@@ -5,6 +5,6 @@ import './cache-assets.js';
 import './live-sample.js';
 import './turbolinks.js';
 import './toc/toc.js';
-import './components-filter.js';
 import './icons-gallery/icons-gallery.js';
 import './side-drawer.js';
+import './search/search.js';

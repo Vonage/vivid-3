@@ -55,7 +55,7 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 		: '';
 
 	return `
-	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;">
+	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;" data-pagefind-ignore>
 	    ${variableTable}
 		<vwc-card elevation="0">
 			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
