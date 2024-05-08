@@ -127,6 +127,7 @@
 		"markdown-table": "^2.0.0",
 		"nx": "16.6.0",
 		"nx-stylelint": "^16.0.1",
+		"pagefind": "^1.1.0",
 		"playwright": "1.38.0",
 		"prettier": "2.7.1",
 		"rollup-plugin-copy": "^3.4.0",

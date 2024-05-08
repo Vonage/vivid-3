@@ -429,22 +429,3 @@ th {
 }
 
 /* #endregion highlight js */
-
-.hidden {
-	display: none;
-}
-
-.components-filter {
-	position: sticky;
-	z-index: 1;
-	top: 0;
-	border-top: 1px solid var(--vvd-color-neutral-200);
-	border-bottom: 1px solid var(--vvd-color-neutral-200);
-	background-color: var(--vvd-color-neutral-50);
-	margin-block-start: 8px;
-	padding-block: 16px;
-	padding-inline: 8px;
-}
-.side-nav {
-	position: relative;
-}
