@@ -251,7 +251,8 @@ $low-ink-color: --_low-ink-color;
 		background-color: transparent;
 		font: var(#{constants.$vvd-typography-heading-4});
 
-		&:not(:focus-within) {
+		&:not(:focus-within),
+		&:has(.action-items-wrapper:focus-within) {
 			&::after {
 				block-size: 1px;
 				inset-block-end: 0;
