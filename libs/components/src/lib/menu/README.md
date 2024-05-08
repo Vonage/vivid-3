@@ -322,6 +322,21 @@ A common practice used in apps / frameworks to promote a menu component to top o
 
 This helps ensure elements don't render on top of a menu undesirably.
 
+## Keyboard Interaction
+
+When anchor has focus:
+
+- `Enter` - Opens the menu.
+- `Space` - Opens the menu.
+
+When the menu has focus:
+
+- `ArrowDown` - Moves focus to the next menu item.
+- `ArrowUp` - Moves focus to the previous menu item.
+- `Home` - Moves focus to the first menu item.
+- `End` - Moves focus to the last menu item.
+- `Escape` - Closes the menu.
+
 ## Use Cases
 
 ### Dropdown menu with checkbox

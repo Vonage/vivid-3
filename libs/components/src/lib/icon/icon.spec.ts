@@ -120,6 +120,15 @@ describe('icon', function () {
 			);
 		});
 
+		it('should set aria-busy on the figure element when iconLoaded is false', async function () {
+			element.name = 'home';
+			await elementUpdated(element);
+			element.iconLoaded = false;
+			await elementUpdated(element);
+			const figureElement = getControlElement(element);
+			expect(figureElement.hasAttribute('aria-busy')).toBe(true);
+		});
+
 		it('should set iconLoaded to false when name changes', async function () {
 			function fakeFetch() {
 				const originalFetch = global.fetch;

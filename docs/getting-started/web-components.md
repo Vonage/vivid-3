@@ -6,32 +6,7 @@ Vivid components are built as [web components](https://developer.mozilla.org/en-
 
 Add the NPM package to your repository:
 
-<vwc-tabs>
-<vwc-tab label="npm"></vwc-tab>
-<vwc-tab-panel>
-
-```sh
-npm install @vonage/vivid
-```
-
-</vwc-tab-panel>
-<vwc-tab label="yarn"></vwc-tab>
-<vwc-tab-panel>
-
-```sh
-yarn add @vonage/vivid
-```
-
-</vwc-tab-panel>
-<vwc-tab label="pnpm"></vwc-tab>
-<vwc-tab-panel>
-
-```sh
-pnpm install @vonage/vivid
-```
-
-</vwc-tab-panel>
-</vwc-tabs>
+{% packageInstallation "@vonage/vivid" %}
 
 ## Adding the vvd-root Class
 

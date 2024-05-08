@@ -35,6 +35,10 @@
 		},
 		"lint": {
 			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+		},
+		"@nx/vite:test": {
+			"cache": true,
+			"inputs": ["default", "^production"]
 		}
 	},
 	"namedInputs": {

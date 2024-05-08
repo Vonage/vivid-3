@@ -64,7 +64,7 @@ Use the `call-active` attribute (or `callActive` property) to enable the `end ca
 - Default: `false`
 
 ```html preview
-<vwc-dial-pad call-active></vwc-dial-pad>
+<vwc-dial-pad call-active value="01146869483"></vwc-dial-pad>
 ```
 
 ### No Call

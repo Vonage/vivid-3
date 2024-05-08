@@ -72,7 +72,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 * HTML Attribute: max-file-size
 	 */
 	@attr({ mode: 'fromView', attribute: 'max-file-size' })
-	maxFileSize: number = 256;
+	maxFileSize = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
 		if (!this.#dropzone) {
 			return;
