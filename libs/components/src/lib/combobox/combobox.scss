@@ -17,6 +17,7 @@
 	$default: fieldset
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use 'partials/variables' as variables;
 
 :host {
 	position: relative;
@@ -43,15 +44,17 @@
 	@include connotation.connotation(combobox);
 	@include appearance.appearance;
 
+	max-height: var(variables.$combobox-height, 408px);
 	padding: 4px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	background-color: var(#{appearance.get-appearance-token(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 	contain: paint;
+	overflow-y: auto;
 }
 
 ::part(popup-base) {
-	inline-size: 100%;
+	inline-size: max-content;
+	min-inline-size: var(#{variables.$combobox-fixed-width}, 100%);
 }
 
 /* focus */
