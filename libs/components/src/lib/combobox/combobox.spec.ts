@@ -5,8 +5,8 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { Combobox } from './combobox';
 import type { Popup } from '../popup/popup.ts';
+import { Combobox } from './combobox';
 import '.';
 
 const COMPONENT_TAG = 'vwc-combobox';
