@@ -23,7 +23,7 @@
 			}
 		],
 		"tsdoc/syntax": "warn",
-		"@typescript-eslint/no-unsafe-declaration-merging": "warn"
+		"@typescript-eslint/no-unsafe-declaration-merging": "off"
 	},
 	"overrides": [
 		{

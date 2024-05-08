@@ -34,7 +34,7 @@ const DefaultTemplate = () => ({
 });
 export const Default = DefaultTemplate.bind({});
 
-const GraphicTemplate = () => ({
+export const GraphicTemplate = () => ({
 	components: { VEmptyState },
 	template: `<VEmptyState icon="search-line" headline="No results found">
     No results match your search criteria.
