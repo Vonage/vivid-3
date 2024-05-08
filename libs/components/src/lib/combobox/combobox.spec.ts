@@ -180,6 +180,7 @@ describe('vwc-combobox', () => {
 	describe('fixed-dropdown', () => {
 		it("should set strategy 'fixed' on the popup when set", async () => {
 			element.fixedDropdown = true;
+			element.open = true;
 			await elementUpdated(element);
 
 			expect(getPopup().strategy).toBe('fixed');
