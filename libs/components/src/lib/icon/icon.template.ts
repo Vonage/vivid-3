@@ -19,7 +19,7 @@ export const iconTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Icon> = () => html`
-	<figure class="${getClasses}">
+	<figure class="${getClasses}" ?aria-busy="${(x) => !x.iconLoaded}">
 		<slot>
 			${when(
 				(x) => !x.iconLoaded,
