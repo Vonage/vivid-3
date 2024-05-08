@@ -8,21 +8,14 @@
 	},
 	"plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc"],
 	"extends": [
-		"../../.eslintrc.json",
 		"@microsoft/eslint-config-fast-dna",
 		"plugin:compat/recommended",
+		"../../.eslintrc.json",
 		"prettier"
 	],
 	"rules": {
-		// lint
 		"@nrwl/nx/workspace/no-attribute-default-value": "error",
-		"no-var": "error",
-		"prefer-const": "error",
-		// functional
 		"compat/compat": "error",
-		"import/prefer-default-export": "off",
-		"class-methods-use-this": "off",
-		"no-new": "warn",
 		"@typescript-eslint/explicit-member-accessibility": [
 			"error",
 			{
@@ -33,12 +26,6 @@
 		"@typescript-eslint/no-unsafe-declaration-merging": "warn"
 	},
 	"overrides": [
-		{
-			"files": ["rollup.config.*.ts"],
-			"rules": {
-				"@typescript-eslint/no-var-requires": "off"
-			}
-		},
 		{
 			"files": ["*.spec.ts", "*.test.ts"],
 			"rules": {

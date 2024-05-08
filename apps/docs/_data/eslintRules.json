@@ -1,0 +1,6 @@
+[
+	{
+		"name": "no-deprecated-apis",
+		"markdown": "./libs/eslint-plugin/src/rules/no-deprecated-apis.md"
+	}
+]

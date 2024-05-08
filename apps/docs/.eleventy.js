@@ -6,8 +6,10 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
+const packageInstallation = require('./_shortcodes/packageInstallation');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
+const { spawnSync } = require('child_process');
 
 const INPUT_DIR = 'apps/docs';
 const OUTPUT_DIR = 'dist/apps/docs';
@@ -73,8 +75,9 @@ module.exports = function (eleventyConfig) {
 		return new CleanCSS({}).minify(code).styles;
 	});
 
+	const isServing = process.argv.includes('--serve');
+	eleventyConfig.addGlobalData('isDevBuild', isServing);
 	eleventyConfig.addFilter('publicPageFilter', function (pages) {
-		const isServing = process.argv.includes('--serve');
 		return isServing
 			? pages
 			: pages.filter(
@@ -99,6 +102,19 @@ module.exports = function (eleventyConfig) {
 				'utf-8'
 			)
 		);
+	});
+
+	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
+
+	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/**`);
+
+	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
+		if (runMode === 'serve') {
+			spawnSync('npx', ['pagefind', '--site', dir.output], {
+				windowsHide: true,
+				stdio: [process.stdin, process.stdout, process.stderr],
+			});
+		}
 	});
 
 	return {

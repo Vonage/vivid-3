@@ -47,7 +47,7 @@
 	text-align: left;
 
 	&.size-condensed {
-		font: var(#{constants.$vvd-typography-base-bold});
+		font: var(#{constants.$vvd-typography-base-extended-bold});
 		gap: 12px;
 	}
 

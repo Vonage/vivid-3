@@ -22,7 +22,8 @@
 			"options": {
 				"commands": [
 					"npx esbuild ./dist/libs/components/index.js --bundle --outfile=./dist/libs/components-bundle/index.js --format=esm",
-					"npx eleventy --config=./apps/docs/.eleventy.js"
+					"npx eleventy --config=./apps/docs/.eleventy.js",
+					"npx pagefind --site ./dist/apps/docs"
 				],
 				"parallel": false
 			},

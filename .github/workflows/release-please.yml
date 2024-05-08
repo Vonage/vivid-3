@@ -67,6 +67,7 @@ jobs:
           npx nx run components:build
           npx nx run components:generateMeta
           npx nx run vue-wrappers:build
+          npx nx run eslint-plugin:build
 
       - name: upload-artifacts
         uses: actions/upload-artifact@v3
@@ -74,57 +75,29 @@ jobs:
           name: release-artifacts
           path: dist/
 
-  npm-publish:
-    runs-on: ubuntu-latest
+  vivid-publish:
     needs: build
     if: ${{ needs.release-please.outputs.releases_created == 'true' }}
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: dist/libs/components
+    secrets: inherit
 
-      - name: Download Build
-        uses: actions/download-artifact@v3
-        with:
-          name: release-artifacts
-          path: dist/
-
-      - name: publish vivid npm package
-        run: npm publish dist/libs/components --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
-
-      - name: publish vivid-vue npm package
-        run: npm publish dist/libs/vue-wrappers --//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_VVD_VNG_AUTOMATION_TOKEN }}
-
-  github-publish:
-    runs-on: ubuntu-latest
+  vivid-vue-publish:
     needs: build
     if: ${{ needs.release-please.outputs.releases_created == 'true' }}
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: dist/libs/vue-wrappers
+    secrets: inherit
 
-      - name: Download Build
-        uses: actions/download-artifact@v3
-        with:
-          name: release-artifacts
-          path: dist/
-
-      - name: publish vivid to github packages
-        run: npm publish ./dist/libs/components --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
-
-      - name: publish vivid-vue to github packages
-        run: npm publish ./dist/libs/vue-wrappers --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
+  eslint-plugin-publish:
+    needs: build
+    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
+    uses: ./.github/workflows/_publish.yml
+    with:
+      path: dist/libs/eslint-plugin
+    secrets: inherit
 
   deploy-deno:
     needs: release-please
