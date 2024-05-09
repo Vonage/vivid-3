@@ -82,8 +82,8 @@ Use the `open` member to set the combobox's open state.
 
 Use the `placement` member to set the combobox's placement in accordance to its anchor.
 
-- Type: `'top'` | `'bottom'`
-- Default: `'bottom'`
+- Type: `'top-start' | 'top' | 'top-end' | 'bottom-start' | 'bottom' | 'bottom-end'`
+- Default: `'bottom-start'`
 
 ```html preview
 <style>
@@ -97,11 +97,26 @@ Use the `placement` member to set the combobox's placement in accordance to its 
 	}
 </style>
 <div class="combobox-wrapper">
-	<vwc-combobox placement="top">
+	<vwc-combobox placement="top-start">
 		<vwc-option text="First Option"></vwc-option>
 		<vwc-option text="Second Option"></vwc-option>
 	</vwc-combobox>
 </div>
+```
+
+### Fixed-Dropdown
+
+Add the `fixed-dropdown` attribute to use a fixed position for the dropdown instead of the default absolute positioning.
+This is useful for cases in which the dropdown is obstructed by other elements.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 200px
+<vwc-combobox aria-label="Options Selector" fixed-dropdown>
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+</vwc-combobox>
 ```
 
 ### Disabled
@@ -115,6 +130,50 @@ Add the `disabled` attribute to disable the combobox.
 <vwc-combobox disabled>
 	<vwc-option text="First Option"></vwc-option>
 	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+```
+
+## Dimensions
+
+### Height (CSS Variable)
+
+Use `--combobox-height` to set the max-height of the dropdown.
+
+- Default: `408px`
+
+```html preview 300px
+<style>
+	vwc-combobox {
+		--combobox-height: 200px;
+	}
+</style>
+<vwc-combobox aria-label="Options Selector">
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+	<vwc-option value="3" text="Option 3"></vwc-option>
+	<vwc-option value="4" text="Option 4"></vwc-option>
+	<vwc-option value="5" text="Option 5"></vwc-option>
+	<vwc-option value="6" text="Option 6"></vwc-option>
+	<vwc-option value="7" text="Option 7"></vwc-option>
+</vwc-combobox>
+```
+
+### Width
+
+By default, the combobox width is `fit-content` and the same goes for the dropdown.
+
+You can specify width on the `vwc-combobox` if required (the dropdown will not be affected by this setting).
+
+```html preview 230px
+<style>
+	vwc-combobox {
+		width: 140px;
+	}
+</style>
+<vwc-combobox label="Choose one option">
+	<vwc-option value="1" text="Option 1: dogs"></vwc-option>
+	<vwc-option value="2" text="Option 2: cats"></vwc-option>
+	<vwc-option value="3" text="Option 3: dogs and cats"></vwc-option>
 </vwc-combobox>
 ```
 

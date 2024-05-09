@@ -32,6 +32,14 @@ export class Combobox extends FoundationCombobox {
 	 */
 	@attr placement?: PopupPlacement;
 
+	/**
+	 * Whether the dropdown is using a fixed positioning strategy.
+	 *
+	 * @public
+	 * HTML Attribute: fixed-dropdown
+	 */
+	@attr({ mode: 'boolean', attribute: 'fixed-dropdown' }) fixedDropdown = false;
+
 	_popup!: Popup;
 	_anchor!: HTMLElement;
 

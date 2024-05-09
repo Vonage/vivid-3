@@ -32,6 +32,14 @@ const getStateClasses = ({ disabled, placeholder, label }: Combobox) =>
 		['no-label', !label]
 	);
 
+function setFixedDropdownVarWidth(x: Combobox) {
+	return x.open && x.fixedDropdown
+		? `--_combobox-fixed-width: ${Math.round(
+				x.getBoundingClientRect().width
+		  )}px`
+		: null;
+}
+
 /**
  * @param context - element definition context
  */
@@ -88,9 +96,10 @@ export const comboboxTemplate: (
         >
 			${() => renderInput(context)}
 			<${popupTag} class="popup"
+				style="${setFixedDropdownVarWidth}"
 				?open="${(x) => x.open}"
-				placement="${(x) => x.placement}"
-				strategy="absolute"
+				placement="${(x) => x.placement ?? 'bottom-start'}"
+				strategy="${(x) => (x.fixedDropdown ? 'fixed' : 'absolute')}"
 				${ref('_popup')}>
 				<div id="${(x) => x.listboxId}"
 					class="listbox"
