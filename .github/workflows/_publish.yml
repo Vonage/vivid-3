@@ -33,7 +33,8 @@ jobs:
 
       - name: Check if version is already published
         id: check
-        run: NAME=$(npm view {{ inputs.path }} name)
+        run: |
+          NAME=$(npm view {{ inputs.path }} name)
           VERSION=$(npm view {{ inputs.path }} version)
           if npm view "$NAME@$VERSION"; then
           echo "published=true" >> $GITHUB_ENV
@@ -63,7 +64,8 @@ jobs:
 
       - name: Check if version is already published
         id: check
-        run: NAME=$(npm view {{ inputs.path }} name)
+        run: |
+          NAME=$(npm view {{ inputs.path }} name)
           VERSION=$(npm view {{ inputs.path }} version)
           if npm view "$NAME@$VERSION" --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN; then
           echo "published=true" >> $GITHUB_ENV
