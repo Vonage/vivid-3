@@ -32,6 +32,9 @@ export default defineConfig({
 	// Configuration for building your library.
 	// See: https://vitejs.dev/guide/build.html#library-mode
 	build: {
+		outDir: '../../dist/libs/consts',
+		reportCompressedSize: true,
+		commonjsOptions: { transformMixedEsModules: true },
 		lib: {
 			// Could also be a dictionary or array of multiple entry points.
 			entry: 'src/index.ts',

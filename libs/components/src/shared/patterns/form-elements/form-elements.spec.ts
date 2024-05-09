@@ -29,7 +29,7 @@ describe('Form Elements', function () {
 	describe('formElements() validate method', () => {
 		@formElements
 		class Test extends HTMLElement {
-			elementInternals: ElementInternals;
+			elementInternals: any;
 			constructor() {
 				super();
 				this.elementInternals = this.attachInternals();

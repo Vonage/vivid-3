@@ -50,7 +50,9 @@ export const MenuTemplate: (
 	}
 
 	return html<Menu>`
-		<template role="presentation" @change="${(x, c) => x._onChange(c.event)}">
+		<template role="presentation"
+							@change="${(x, c) => x._onChange(c.event)}"
+							@focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
 			${anchorSlotTemplate}
 			<${popupTag}
 				:placement=${(x) => x.placement}
