@@ -1,0 +1,9 @@
+---
+permalink: "eslint-plugin/"
+---
+
+{% extends '../_layouts/base.njk' %}
+
+{% block content %}
+	{% renderFile "./docs/eslint-plugin.md", { rules: eslintRules } %}
+{% endblock %}

@@ -45,6 +45,11 @@
                 </vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>
+        {% if isDevBuild %}
+					<vwc-nav-item href="{{ '/eslint-plugin' | url }}/" text="ESLint Plugin" {% if '/eslint-plugin/' == page.url %} aria-current="page" {% endif %}>
+							<vwc-badge slot="meta" text="alpha" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
+					</vwc-nav-item>
+				{% endif %}
         <vwc-nav-item appearance="ghost-light" href="{{ ('/icons/icons-gallery') | url }}/" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
         <vwc-divider></vwc-divider>
         <vwc-nav-disclosure appearance="ghost-light" label="Components" open {% if page.url.includes('/components/') %} aria-current="true" {% endif %}>

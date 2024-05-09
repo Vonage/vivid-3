@@ -6,6 +6,7 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
+const packageInstallation = require('./_shortcodes/packageInstallation');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 const { spawnSync } = require('child_process');
@@ -74,8 +75,9 @@ module.exports = function (eleventyConfig) {
 		return new CleanCSS({}).minify(code).styles;
 	});
 
+	const isServing = process.argv.includes('--serve');
+	eleventyConfig.addGlobalData('isDevBuild', isServing);
 	eleventyConfig.addFilter('publicPageFilter', function (pages) {
-		const isServing = process.argv.includes('--serve');
 		return isServing
 			? pages
 			: pages.filter(
@@ -101,6 +103,8 @@ module.exports = function (eleventyConfig) {
 			)
 		);
 	});
+
+	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
 
 	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/**`);
 
