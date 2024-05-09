@@ -5,6 +5,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import * as path from 'path';
 
 export default defineConfig({
+	root: __dirname,
 	cacheDir: '../../node_modules/.vite/vue-wrappers',
 
 	plugins: [nxViteTsPaths()],
@@ -21,6 +22,9 @@ export default defineConfig({
 	},
 
 	build: {
+		outDir: '../../dist/libs/vue-wrappers',
+		reportCompressedSize: true,
+		commonjsOptions: { transformMixedEsModules: true },
 		lib: {
 			entry: 'src/index.ts',
 			name: 'vivid-vue',

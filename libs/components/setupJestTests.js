@@ -27,4 +27,11 @@ Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
 });
 CSSStyleSheet.prototype.replaceSync = jest.fn();
 
+global.console = {
+	...console,
+	info: jest.fn(),
+	warn: jest.fn(),
+	// error: jest.fn(),
+};
+
 expect.extend(toHaveNoViolations);

@@ -9,31 +9,31 @@ const ruleTester = new TSESLint.RuleTester({
 ruleTester.run(RULE_NAME, rule, {
 	valid: [
 		`
-    class {
+    class Test{
         @attr example;
     }`,
 		`
-    class {
+    class Test{
         @attr({ mode: 'fromView' }) example = 'someValue';
     }`,
 		`
-    class {
+    class Test {
         @attr({ mode: 'boolean' }) example = false;
     }`,
 		`
-    class {
+    class Test {
         @attr({ mode: 'boolean' }) example;
     }`,
 		`
-    class {
+    class Test {
         @attr nullExample = null;
     }`,
 		`
-    class {
+    class Test {
         @attr({ attribute: null-example}) nullExample = null;
     }`,
 		`
-    class {
+    class Test {
         @someDecorator example = 'someValue';
     }`,
 	],
@@ -42,7 +42,7 @@ ruleTester.run(RULE_NAME, rule, {
 			description:
 				"should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
 			annotatedSource: `
-      class {
+      class Test {
         @attr example = 'someValue';
                         ~~~~~~~~~~~
       }
@@ -53,7 +53,7 @@ ruleTester.run(RULE_NAME, rule, {
 			description:
 				"should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
 			annotatedSource: `
-      class {
+      class Test {
         @attr({ mode: 'reflect' }) example = 'someValue';
                                              ~~~~~~~~~~~
       }
@@ -64,7 +64,7 @@ ruleTester.run(RULE_NAME, rule, {
 			description:
 				"should fail property decorated by 'attr' decorator, if assignment mutates DOM tree",
 			annotatedSource: `
-      class {
+      class Test {
         @attr({ mode: 'boolean' }) example = true;
                                              ~~~~
       }

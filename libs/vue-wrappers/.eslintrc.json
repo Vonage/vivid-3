@@ -7,7 +7,7 @@
 			"rules": {}
 		},
 		{
-			"files": ["*.ts", "*.tsx"],
+			"files": ["*.ts", "*.tsx", "*.stories.js"],
 			"rules": {
 				"@typescript-eslint/ban-ts-comment": 0,
 				"no-mixed-spaces-and-tabs": 0,

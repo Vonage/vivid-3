@@ -1,16 +1,4 @@
 {
-	"npmScope": "vivid-nx",
-	"affected": {
-		"defaultBase": "main"
-	},
-	"tasksRunnerOptions": {
-		"default": {
-			"runner": "nx/tasks-runners/default",
-			"options": {
-				"cacheableOperations": ["build", "lint", "test", "e2e", "stylelint"]
-			}
-		}
-	},
 	"generators": {
 		"@nrwl/web:application": {
 			"style": "scss",
@@ -28,13 +16,39 @@
 	"targetDefaults": {
 		"build": {
 			"dependsOn": ["^build"],
-			"inputs": ["production", "^production"]
+			"inputs": ["production", "^production"],
+			"cache": true
 		},
 		"test": {
-			"inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+			"inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+			"cache": true
 		},
 		"lint": {
-			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+			"cache": true
+		},
+		"e2e": {
+			"cache": true
+		},
+		"stylelint": {
+			"cache": true
+		},
+		"@nx/jest:jest": {
+			"inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+			"cache": true,
+			"options": {
+				"passWithNoTests": true
+			},
+			"configurations": {
+				"ci": {
+					"ci": true,
+					"codeCoverage": true
+				}
+			}
+		},
+		"@nx/eslint:lint": {
+			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+			"cache": true
 		},
 		"@nx/vite:test": {
 			"cache": true,
@@ -56,5 +70,7 @@
 			"!{projectRoot}/.eslintrc.json",
 			"!{projectRoot}/src/test-setup.[jt]s"
 		]
-	}
+	},
+	"useInferencePlugins": false,
+	"defaultBase": "main"
 }
