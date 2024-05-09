@@ -61,7 +61,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: release-please
     outputs:
-      should_release: ${{ needs.release-please.outputs.releases_created == 'true' || github.event.inputs.force-release == 'true' }}
+      should_release: ${{ steps.should-release.outputs.should_release }}
+    steps:
+      - id: should-release
+        run: echo "::set-output name=should_release::${{ needs.release-please.outputs.releases_created == 'true' || github.event.inputs.force-release == 'true' }}"
 
   build:
     runs-on: ubuntu-latest
