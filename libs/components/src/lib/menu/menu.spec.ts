@@ -371,6 +371,17 @@ describe('vwc-menu', () => {
 				await elementUpdated(element);
 				expect(element.open).toEqual(false);
 			});
+
+			it('should no longer close if anchor loses focus and auto-dismiss is set', async () => {
+				element.autoDismiss = true;
+				element.open = true;
+				await elementUpdated(element);
+
+				anchor.dispatchEvent(new FocusEvent('focusout'));
+				await elementUpdated(element);
+
+				expect(element.open).toBe(true);
+			});
 		});
 	});
 
