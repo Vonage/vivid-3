@@ -8,6 +8,10 @@
 		"libs/vue-wrappers": {
 			"component": "vivid-vue",
 			"skip-github-release": true
+		},
+		"libs/eslint-plugin": {
+			"component": "eslint-plugin",
+			"package-name": "eslint-plugin"
 		}
 	},
 	"plugins": [

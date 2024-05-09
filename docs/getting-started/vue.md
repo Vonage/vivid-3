@@ -24,32 +24,7 @@ While web components can also be used with Vue directly, Vivid Vue provides a se
 
 Add the NPM package to your repository:
 
-<vwc-tabs>
-<vwc-tab label="npm"></vwc-tab>
-<vwc-tab-panel>
-
-```sh
-npm install @vonage/vivid-vue
-```
-
-</vwc-tab-panel>
-<vwc-tab label="yarn"></vwc-tab>
-<vwc-tab-panel>
-
-```sh
-yarn add @vonage/vivid-vue
-```
-
-</vwc-tab-panel>
-<vwc-tab label="pnpm"></vwc-tab>
-<vwc-tab-panel>
-
-```sh
-pnpm install @vonage/vivid-vue
-```
-
-</vwc-tab-panel>
-</vwc-tabs>
+{% packageInstallation "@vonage/vivid-vue" %}
 
 ## Setup
 
