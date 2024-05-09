@@ -37,18 +37,12 @@ export class Menu extends FastMenu {
 	}
 
 	/**
-	 * indicates whether the menu will automatically close when
-	 * the user clicks outside the menu
+	 * indicates whether the menu will automatically close when focus moves away from it.
 	 *
 	 * @public
 	 * HTML Attribute: auto-dismiss
 	 */
 	@attr({ mode: 'boolean', attribute: 'auto-dismiss' }) autoDismiss = false;
-	autoDismissChanged(oldValue?: boolean) {
-		if (oldValue === undefined) return;
-
-		this.#updateClickOutsideListeners();
-	}
 
 	/**
 	 * indicates whether the menu is open
@@ -102,16 +96,6 @@ export class Menu extends FastMenu {
 		};
 	}
 
-	override connectedCallback(): void {
-		super.connectedCallback();
-		this.#updateClickOutsideListeners();
-	}
-
-	override disconnectedCallback(): void {
-		super.disconnectedCallback();
-		this.#updateClickOutsideListeners();
-	}
-
 	/**
 	 * @internal
 	 */
@@ -122,6 +106,7 @@ export class Menu extends FastMenu {
 
 	#setupAnchor(a: HTMLElement) {
 		a.addEventListener('click', this.#onAnchorClick, true);
+		a.addEventListener('focusout', this._onFocusout);
 		a.setAttribute('aria-haspopup', 'menu');
 		this.#updateAnchor(a);
 	}
@@ -132,6 +117,7 @@ export class Menu extends FastMenu {
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#onAnchorClick, true);
+		a.removeEventListener('focusout', this._onFocusout);
 		a.removeAttribute('aria-hasPopup');
 		a.removeAttribute('aria-expanded');
 	}
@@ -150,23 +136,11 @@ export class Menu extends FastMenu {
 		DOM.queueUpdate(() => (this.open = newValue));
 	};
 
-	#updateClickOutsideListeners = () => {
-		document.removeEventListener('click', this.#onClickOutsideCapture, true);
-		document.removeEventListener('click', this.#onClickOutside);
-		if (this.autoDismiss && this.isConnected) {
-			document.addEventListener('click', this.#onClickOutsideCapture, true);
-			document.addEventListener('click', this.#onClickOutside);
-		}
-	};
-
-	#wasOpenBeforeClick = new WeakMap<Event, boolean>();
-
-	#onClickOutsideCapture = (e: Event) => {
-		this.#wasOpenBeforeClick.set(e, this.open);
-	};
-
-	#onClickOutside = (e: Event) => {
-		if (!this.contains(e.target as Node) && this.#wasOpenBeforeClick.get(e)) {
+	_onFocusout = (e: FocusEvent) => {
+		const focusTarget = e.relatedTarget as Node;
+		const focusMovedAway =
+			!this.contains(focusTarget) && !this._anchorEl?.contains(focusTarget);
+		if (this.autoDismiss && focusMovedAway) {
 			this.open = false;
 		}
 	};
