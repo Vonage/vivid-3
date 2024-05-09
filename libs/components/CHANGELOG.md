@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.55.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.54.0...vivid-v3.55.0) (2024-05-09)
+
+
+### Features
+
+* **combobox:** add fixed-dropdown support (VIV-1739) ([#1700](https://github.com/Vonage/vivid-3/issues/1700)) ([4d99336](https://github.com/Vonage/vivid-3/commit/4d993363b7f515de147406a49cb0362d8b798135))
+* **dial-pad:** input features and fixes (VIV-1744) ([#1682](https://github.com/Vonage/vivid-3/issues/1682)) ([7089b30](https://github.com/Vonage/vivid-3/commit/7089b30460ef4025afedba31559c444e9108707b))
+
+
+### Bug Fixes
+
+* **accordion-item:** convert trailing icon to be 16px when condensed (VIV-1727) ([#1694](https://github.com/Vonage/vivid-3/issues/1694)) ([cee119d](https://github.com/Vonage/vivid-3/commit/cee119d885c4e34f7995d120d4cc8eccd853c19e))
+* **dial-pad:** disables delete button when call-active is set (VIV-1685) ([#1696](https://github.com/Vonage/vivid-3/issues/1696)) ([3549919](https://github.com/Vonage/vivid-3/commit/35499198d305e016f561e9b7e0258e4dc89ba192))
+* **dial-pad:** keep underline when action-item are focused (VIV-1751) ([#1698](https://github.com/Vonage/vivid-3/issues/1698)) ([eac2f7b](https://github.com/Vonage/vivid-3/commit/eac2f7b7bc8c48b570f6a4f66f7102eb17a420f4))
+* icon - set aria-busy when icon is loading ([a809066](https://github.com/Vonage/vivid-3/commit/a809066269f99b9f2cae10a06b96474f844be3ef))
+* **icon:** set aria-busy when icon is loading (VIV-1749) ([#1697](https://github.com/Vonage/vivid-3/issues/1697)) ([a809066](https://github.com/Vonage/vivid-3/commit/a809066269f99b9f2cae10a06b96474f844be3ef))
+* **menu:** make auto-dismiss dismiss on focusout (VIV-1747) ([#1690](https://github.com/Vonage/vivid-3/issues/1690)) ([c3d2c41](https://github.com/Vonage/vivid-3/commit/c3d2c414a5564ef446dd0e1b0a542ef5e1ff61ef))
+
 ## [3.54.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.53.0...vivid-v3.54.0) (2024-04-30)
 
 
