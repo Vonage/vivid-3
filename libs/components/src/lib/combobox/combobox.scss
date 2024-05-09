@@ -4,19 +4,6 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent,
-	$shades: intermediate primary soft,
-	$default: accent
-);
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
-	appearance-config with (
-	$appearances: fieldset ghost,
-	$states: idle disabled,
-	$default: fieldset
-);
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 
 :host {
@@ -41,13 +28,9 @@
 }
 
 .listbox {
-	@include connotation.connotation(combobox);
-	@include appearance.appearance;
-
 	max-height: var(variables.$combobox-height, 408px);
 	padding: 4px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{appearance.get-appearance-token(fill)});
 	contain: paint;
 	overflow-y: auto;
 }
