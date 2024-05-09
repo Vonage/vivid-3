@@ -22,7 +22,8 @@
 				"accessibility": "no-public"
 			}
 		],
-		"tsdoc/syntax": "warn"
+		"tsdoc/syntax": "warn",
+		"@typescript-eslint/no-unsafe-declaration-merging": "off"
 	},
 	"overrides": [
 		{

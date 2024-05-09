@@ -26,7 +26,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
 		type: 'problem',
 		docs: {
 			description: ``,
-			recommended: 'error',
+			recommended: 'strict',
 		},
 		schema: [],
 		messages: {
