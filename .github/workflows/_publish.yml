@@ -37,9 +37,9 @@ jobs:
           NAME=$(npm view ${{ inputs.path }} name)
           VERSION=$(npm view ${{ inputs.path }} version)
           if npm view "$NAME@$VERSION"; then
-          echo "published=true" >> $GITHUB_ENV
+          echo "published=true" >> "$GITHUB_OUTPUT"
           else
-          echo "published=false" >> $GITHUB_ENV
+          echo "published=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Publish to npm registry
@@ -68,9 +68,9 @@ jobs:
           NAME=$(npm view ${{ inputs.path }} name)
           VERSION=$(npm view ${{ inputs.path }} version)
           if npm view "$NAME@$VERSION" --registry=https://npm.pkg.github.com --//npm.pkg.github.com/:_authToken=$AUTH_TOKEN; then
-          echo "published=true" >> $GITHUB_ENV
+          echo "published=true" >> "$GITHUB_OUTPUT"
           else
-          echo "published=false" >> $GITHUB_ENV
+          echo "published=false" >> "$GITHUB_OUTPUT"
           fi
         env:
           AUTH_TOKEN: ${{ secrets.VNG_VVD_PAT }}
