@@ -17,6 +17,14 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
 	return ratesArray;
 }
 
+
+function appendProgressBarToStart(videoPlayer) {
+	const controlBar = videoPlayer.getChild('ControlBar');
+	const progress = controlBar.getChild('ProgressControl');
+	controlBar.removeChild(progress);
+	controlBar.addChild(progress, {}, 0);
+}
+
 /**
  * Base class for video-player
  *
@@ -144,6 +152,7 @@ export class VideoPlayer extends FoundationElement {
 			  }));
 	}
 
+
 	/**
 	 * @internal
 	 */
@@ -233,6 +242,7 @@ export class VideoPlayer extends FoundationElement {
 			this.#hideNoSourceError();
 			this.#setupVideoElement();
 			this.#setupVideoPlayer(settings);
+			appendProgressBarToStart(this._player);
 			this.#setupPlayerEvents();
 		} else {
 			this.#hideNoSourceError(false);
