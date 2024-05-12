@@ -18,12 +18,27 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
 }
 
 
-function appendProgressBarToStart(videoPlayer) {
+function appendProgressBarToStart(videoPlayer:any) {
 	const controlBar = videoPlayer.getChild('ControlBar');
 	const progress = controlBar.getChild('ProgressControl');
+	const current = controlBar.getChild('CurrentTimeDisplay');
+	const duration = controlBar.getChild('DurationDisplay');
+	controlBar.removeChild(current);
 	controlBar.removeChild(progress);
-	controlBar.addChild(progress, {}, 0);
+	controlBar.removeChild(duration);
+	controlBar.addChild(current, {}, 0);
+	controlBar.addChild(progress, {}, 1);
+	controlBar.addChild(duration, {}, 2);
 }
+
+//
+// function appendProgressBarToStartTest(videoPlayer:any) {
+// 	const controlBar = videoPlayer.getChild('ControlBar');
+// 	const playTest = controlBar.getChild('VolumePanel');
+// 	controlBar.removeChild(playTest);
+// 	controlBar.addChild(playTest, {}, 0);
+// }
+
 
 /**
  * Base class for video-player
@@ -242,6 +257,7 @@ export class VideoPlayer extends FoundationElement {
 			this.#hideNoSourceError();
 			this.#setupVideoElement();
 			this.#setupVideoPlayer(settings);
+			//appendProgressBarToStartTest(this._player);
 			appendProgressBarToStart(this._player);
 			this.#setupPlayerEvents();
 		} else {

@@ -92,12 +92,13 @@
 
 	.vjs-control-bar {
 		padding: 4px;
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		border-radius: 0 0 #{border-radius-variables.$border-radius-normal} #{border-radius-variables.$border-radius-normal};
 		margin: 4px;
 		background-color: $control-background-color;
 		block-size: $control-size;
 		column-gap: 4px;
 		inline-size: calc(100% - 8px);
+		flex-wrap: wrap;
 	}
 
 	.vjs-button {
@@ -152,6 +153,15 @@
 	}
 
 	.vjs-progress-control {
+		position: absolute;
+		top: -20px;
+		left: 0;
+		width: 100%;
+		isolation: isolate;
+		height: 20px;
+		border-radius: #{border-radius-variables.$border-radius-normal} #{border-radius-variables.$border-radius-normal} 0 0;
+		background-color: $control-background-color;
+
 		.vjs-progress-holder,
 		.vjs-load-progress,
 		.vjs-play-progress {
