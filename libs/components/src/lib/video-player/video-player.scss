@@ -86,19 +86,15 @@
 	}
 
 	/* "slider" */
-	.vjs-duration {
-		margin-inline-end: 16px;
-	}
-
 	.vjs-control-bar {
+		flex-wrap: wrap;
 		padding: 4px;
-		border-radius: 0 0 #{border-radius-variables.$border-radius-normal} #{border-radius-variables.$border-radius-normal};
+		border-radius: #{border-radius-variables.$border-radius-normal};
 		margin: 4px;
 		background-color: $control-background-color;
 		block-size: $control-size;
 		column-gap: 4px;
 		inline-size: calc(100% - 8px);
-		flex-wrap: wrap;
 	}
 
 	.vjs-button {
@@ -154,19 +150,29 @@
 
 	.vjs-progress-control {
 		position: absolute;
-		top: -20px;
-		left: 0;
-		width: 100%;
+		block-size: 20px;
+		inline-size: calc(100% - 80px);
+		inset-block-start: -20px;
+		inset-inline-start: 40px;
 		isolation: isolate;
-		height: 20px;
-		border-radius: #{border-radius-variables.$border-radius-normal} #{border-radius-variables.$border-radius-normal} 0 0;
-		background-color: $control-background-color;
 
 		.vjs-progress-holder,
 		.vjs-load-progress,
 		.vjs-play-progress {
 			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		}
+	}
+
+	.vjs-duration,
+	.vjs-current-time {
+		position: absolute;
+		inset-block-start: -30px;
+		inset-inline-end: 8px;
+		text-shadow: 1px 1px 1px var(#{constants.$vvd-color-canvas-text});
+	}
+
+	.vjs-current-time {
+		inset-inline: 8px auto;
 	}
 
 	.vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
@@ -216,6 +222,7 @@
 	.vjs-volume-panel {
 		font: var(#{constants.$vvd-typography-base});
 		inline-size: calc($control-size - 8px) !important;
+		margin-inline-end: auto;
 
 		.vjs-volume-control {
 			border-radius: #{border-radius-variables.$border-radius-normal};
@@ -250,41 +257,10 @@
 	}
 
 	@container (max-inline-size: 660px) {
-		//.vjs-skip-backward-5,
-		//.vjs-skip-forward-5,
-		//.vjs-skip-backward-10,
-		//.vjs-skip-forward-10,
-		//.vjs-skip-backward-30,
-		//.vjs-skip-forward-30 {
-		//	display: none;
-		//}
-
 		.vjs-fluid:not(.vjs-fullscreen)
 			.vjs-text-track-display
 			.vjs-text-track-cue {
 			font: var(--vvd-typography-base-extended-bold) !important;
 		}
-	}
-
-	@container (max-inline-size: 540px) {
-		//.vjs-picture-in-picture-control,
-		//.vjs-audio-button {
-		//	display: none;
-		//}
-	}
-
-	@container (max-inline-size: 480px) {
-		//.vjs-playback-rate,
-		//.vjs-chapters-button,
-		//.vjs-subs-caps-button,
-		//.vjs-descriptions-button {
-		//	display: none;
-		//}
-	}
-
-	@container (max-inline-size: 345px) {
-		//.vjs-time-control {
-		//	display: none;
-		//}
 	}
 }

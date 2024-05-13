@@ -17,28 +17,20 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
 	return ratesArray;
 }
 
-
-function appendProgressBarToStart(videoPlayer:any) {
+function appendProgressBarToStart(videoPlayer: any) {
 	const controlBar = videoPlayer.getChild('ControlBar');
-	const progress = controlBar.getChild('ProgressControl');
 	const current = controlBar.getChild('CurrentTimeDisplay');
+	const progress = controlBar.getChild('ProgressControl');
 	const duration = controlBar.getChild('DurationDisplay');
-	controlBar.removeChild(current);
+	const divider = controlBar.getChild('TimeDivider');
 	controlBar.removeChild(progress);
+	controlBar.removeChild(current);
+	controlBar.removeChild(divider);
 	controlBar.removeChild(duration);
 	controlBar.addChild(current, {}, 0);
 	controlBar.addChild(progress, {}, 1);
 	controlBar.addChild(duration, {}, 2);
 }
-
-//
-// function appendProgressBarToStartTest(videoPlayer:any) {
-// 	const controlBar = videoPlayer.getChild('ControlBar');
-// 	const playTest = controlBar.getChild('VolumePanel');
-// 	controlBar.removeChild(playTest);
-// 	controlBar.addChild(playTest, {}, 0);
-// }
-
 
 /**
  * Base class for video-player
@@ -167,7 +159,6 @@ export class VideoPlayer extends FoundationElement {
 			  }));
 	}
 
-
 	/**
 	 * @internal
 	 */
@@ -257,7 +248,6 @@ export class VideoPlayer extends FoundationElement {
 			this.#hideNoSourceError();
 			this.#setupVideoElement();
 			this.#setupVideoPlayer(settings);
-			//appendProgressBarToStartTest(this._player);
 			appendProgressBarToStart(this._player);
 			this.#setupPlayerEvents();
 		} else {
