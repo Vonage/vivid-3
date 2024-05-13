@@ -3,6 +3,8 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/components/src",
 	"projectType": "library",
+	"tags": [],
+	"implicitDependencies": ["styles"],
 	"targets": {
 		"generateMeta": {
 			"executor": "nx:run-commands",
@@ -76,7 +78,5 @@
 				"lintFilePatterns": ["libs/components/**/*.scss"]
 			}
 		}
-	},
-	"tags": [],
-	"implicitDependencies": ["styles"]
+	}
 }

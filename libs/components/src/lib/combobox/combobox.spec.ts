@@ -5,6 +5,7 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
+import type { Popup } from '../popup/popup.ts';
 import { Combobox } from './combobox';
 import '.';
 
@@ -18,6 +19,10 @@ describe('vwc-combobox', () => {
 		unobserve: jest.fn(),
 		disconnect: jest.fn(),
 	}));
+
+	function getPopup(): Popup {
+		return element.shadowRoot!.querySelector('.popup') as Popup;
+	}
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -156,6 +161,33 @@ describe('vwc-combobox', () => {
 			expect(element.selectedOptions[0]).toEqual(
 				element.querySelector('option:nth-child(2)')
 			);
+		});
+	});
+
+	describe('placement', () => {
+		it('should forward placement to the popup', async () => {
+			element.placement = 'top';
+			await elementUpdated(element);
+
+			expect(getPopup().placement).toBe('top');
+		});
+
+		it("should default the placement to 'bottom-start' when not set", async () => {
+			expect(getPopup().placement).toBe('bottom-start');
+		});
+	});
+
+	describe('fixed-dropdown', () => {
+		it("should set strategy 'fixed' on the popup when set", async () => {
+			element.fixedDropdown = true;
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(getPopup().strategy).toBe('fixed');
+		});
+
+		it("should default the strategy to 'absolute' when not set", async () => {
+			expect(getPopup().strategy).toBe('absolute');
 		});
 	});
 

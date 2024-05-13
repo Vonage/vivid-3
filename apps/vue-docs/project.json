@@ -3,6 +3,8 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
 	"sourceRoot": "apps/vue-docs/docs",
+	"tags": [],
+	"implicitDependencies": ["docs", "wrapper-gen", "vue-wrappers"],
 	"targets": {
 		"dev": {
 			"executor": "nx:run-commands",
@@ -31,16 +33,8 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"apps/vue-docs/**/*.{ts,vue}",
-					"apps/vue-docs/package.json"
-				]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		}
-	},
-	"implicitDependencies": ["docs", "wrapper-gen", "vue-wrappers"],
-	"tags": []
+	}
 }

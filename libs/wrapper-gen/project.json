@@ -3,6 +3,8 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/wrapper-gen/src",
 	"projectType": "library",
+	"tags": [],
+	"implicitDependencies": ["components"],
 	"targets": {
 		"build": {
 			"dependsOn": ["^generateMeta"],
@@ -25,27 +27,15 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": ["libs/wrapper-gen/**/*.ts"]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"test": {
 			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "libs/wrapper-gen/jest.config.ts",
-				"passWithNoTests": true
-			},
-			"configurations": {
-				"ci": {
-					"ci": true,
-					"codeCoverage": true
-				}
+				"jestConfig": "libs/wrapper-gen/jest.config.ts"
 			}
 		}
-	},
-	"tags": [],
-	"implicitDependencies": ["components"]
+	}
 }

@@ -88,7 +88,7 @@ $low-ink-color: --_low-ink-color;
 
 .listbox {
 	display: flex;
-	max-height: var(--select-height, 408px);
+	max-height: var(variables.$select-height, 408px);
 	flex-direction: column;
 	padding: 4px;
 	gap: 2px;

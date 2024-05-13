@@ -334,11 +334,11 @@ The `helper-text` slot allows you to use rich content as the select's helper tex
 
 ### Height (CSS Variable)
 
-Use `--select-height` to set the height of the listbox containing the select options
+Use `--select-height` to set the max-height of the dropdown.
 
-- Default: `fit-content`
+- Default: `408px`
 
-```html preview 230px
+```html preview 300px
 <style>
 	vwc-select {
 		--select-height: 200px;

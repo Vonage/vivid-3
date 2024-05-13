@@ -36,3 +36,5 @@ Thumbs.db
 
 test-results
 *-darwin.png
+
+.nx/cache
