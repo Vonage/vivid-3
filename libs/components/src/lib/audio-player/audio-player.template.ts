@@ -7,26 +7,11 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
-import { Menu } from '../menu/menu';
 import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 
-const getClasses = ({
-	disabled,
-	duration,
-	notime,
-	playbackRates,
-	skipBy,
-}: AudioPlayer) =>
-	classNames(
-		['disabled', Boolean(disabled) || !duration],
-		['playback', Boolean(playbackRates)],
-		[
-			'two-lines',
-			(!Boolean(notime) && Boolean(playbackRates)) ||
-				(Boolean(skipBy) && skipBy != MediaSkipBy.Zero && !Boolean(notime)),
-		]
-	);
+const getClasses = ({ disabled, duration }: AudioPlayer) =>
+	classNames(['disabled', Boolean(disabled) || !duration]);
 
 function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -85,24 +70,6 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 	`;
 }
 
-function renderPlayback(context: ElementDefinitionContext) {
-	const buttonTag = context.tagFor(Button);
-	const menuTag = context.tagFor(Menu);
-
-	return html<AudioPlayer>`
-		<${menuTag} placement="bottom-end">
-	<${buttonTag} class="playback"
-	slot="anchor"
-	icon="playback-speed-line"
-	aria-label="play back rates"
-	size='condensed'
-	connotation="${(x) => x.connotation}"
-	?disabled="${(x) => x.disabled || !x.duration}"
-  ></${buttonTag}>
-		</${menuTag}>
-	`;
-}
-
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
@@ -147,7 +114,6 @@ export const AudioPlayerTemplate: (
 				${when((x) => !x.notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
-			${when((x) => x.playbackRates, renderPlayback(context))}
 			<audio
 				${ref('_playerEl')}
 				src="${(x) => x.src}"
