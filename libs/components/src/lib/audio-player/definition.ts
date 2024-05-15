@@ -22,7 +22,6 @@ export const audioPlayerRegistries = [
 	audioPlayerDefinition(),
 	...buttonRegistries,
 	...sliderRegistries,
-	...menuRegistries,
 ];
 
 /**
