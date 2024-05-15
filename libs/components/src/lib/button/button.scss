@@ -14,7 +14,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: filled outlined ghost,
+	$appearances: filled outlined ghost ghost-light,
 	$states: idle hover disabled active,
 	$default: ghost
 );

@@ -30,6 +30,7 @@ Set the `appearance` attribute to change the button's appearance.
 
 ```html preview
 <vwc-button label="ghost" appearance="ghost"></vwc-button>
+<vwc-button label="ghost-light" appearance="ghost-light"></vwc-button>
 <vwc-button label="filled" appearance="filled"></vwc-button>
 <vwc-button label="outlined" appearance="outlined"></vwc-button>
 ```

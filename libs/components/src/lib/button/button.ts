@@ -24,7 +24,7 @@ export type ButtonConnotation = Extract<
  */
 export type ButtonAppearance = Extract<
 	Appearance,
-	Appearance.Filled | Appearance.Outlined | Appearance.Ghost
+	Appearance.Filled | Appearance.Outlined | Appearance.Ghost | Appearance.GhostLight
 >;
 
 /**
