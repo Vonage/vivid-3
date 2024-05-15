@@ -92,7 +92,8 @@ You can specify a different value or set it to `initial` for full width or takin
 		max-inline-size: initial;
 	}
 </style>
-<vwc-audio-player class="audio-player"
+<vwc-audio-player
+	class="audio-player"
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
 ></vwc-audio-player>
 ```
