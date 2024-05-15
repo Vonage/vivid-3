@@ -81,7 +81,7 @@ Use the `disabled` attribute to disable the audio-player.
 
 ## CSS Variables
 
-### Inline-size
+### Max-Inline-size
 
 By default, audio-player `max-inline-size` is set to `350px`.
 You can specify a different value or set it to `initial` for full width or taking parent width.
@@ -98,17 +98,8 @@ You can specify a different value or set it to `initial` for full width or takin
 ></vwc-audio-player>
 ```
 
-### Minimum inline Size **Deprecated**
+### Minimum inline Size
 
-Use max-inline-size to set audio-player inline-size.
-
-Use the `--audio-player-min-inline-size` variable to set the audio player's minimum inline size.
-
-- Default: `200px`
-
-```html preview
-<vwc-audio-player
-	src="https://download.samplelib.com/mp3/sample-6s.mp3"
-	style="--audio-player-min-inline-size: 100px;"
-></vwc-audio-player>
-```
+`--audio-player-min-inline-size` css-variable is deprecated (as of 05/24) and is replaced with `max-inline-size`.  
+`--audio-player-min-inline-size` is still functional in the component but will be removed in a future major release.  
+This will be communicated when it's removal becomes a release candidate at the end of the support period.
