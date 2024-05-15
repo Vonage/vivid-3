@@ -2,7 +2,6 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { sliderRegistries } from '../slider/definition';
-import { menuRegistries } from '../menu/definition';
 import styles from './audio-player.scss?inline';
 
 import { AudioPlayer } from './audio-player';
