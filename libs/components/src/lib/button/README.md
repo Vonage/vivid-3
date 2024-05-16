@@ -25,7 +25,7 @@ Add a `label` attribute to add text to the button.
 
 Set the `appearance` attribute to change the button's appearance.
 
-- Type: `'ghost'` | `'filled'` | `'outlined'`
+- Type: `'ghost'` | `'ghost-light'` | `'filled'` | `'outlined'`
 - Default: `'ghost'`
 
 ```html preview
@@ -153,6 +153,27 @@ It accepts a subset of predefined values.
 <vwc-button appearance="ghost" label="alert" connotation="alert"></vwc-button>
 ```
 
+#### Ghost-Light button with connotation
+
+```html preview
+<vwc-button
+	appearance="ghost-light"
+	label="accent"
+	connotation="accent"
+></vwc-button>
+<vwc-button appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
+<vwc-button
+	appearance="ghost-light"
+	label="success"
+	connotation="success"
+></vwc-button>
+<vwc-button
+	appearance="ghost-light"
+	label="alert"
+	connotation="alert"
+></vwc-button>
+```
+
 #### Filled button with connotation
 
 ```html preview
@@ -268,6 +289,7 @@ Set the `active` attribute to make the button appear pressed.
 
 ```html preview
 <vwc-button appearance="ghost" label="ghost" active></vwc-button>
+<vwc-button appearance="ghost-light" label="ghost-light" active></vwc-button>
 <vwc-button appearance="filled" label="filled" active></vwc-button>
 <vwc-button appearance="outlined" label="outlined" active></vwc-button>
 ```
