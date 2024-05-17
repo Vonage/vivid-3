@@ -129,8 +129,13 @@
 	-webkit-box-orient: vertical;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
+
+	.base.disabled & {
+		color: var(#{constants.$vvd-color-neutral-300});
+	}
 }
 
+/* stylelint-disable no-descending-specificity */
 .text-primary {
 	font: var(#{constants.$vvd-typography-base});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
@@ -149,3 +154,4 @@
 		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }
+/* stylelint-enable no-descending-specificity */
