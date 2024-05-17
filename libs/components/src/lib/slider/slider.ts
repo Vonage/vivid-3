@@ -1,7 +1,8 @@
-import { attr } from '@microsoft/fast-element';
-import { Slider as FastSlider } from '@microsoft/fast-foundation';
+import { attr, observable } from '@microsoft/fast-element';
+import { applyMixins, Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
+import { Localized } from '../../shared/patterns';
 
 export type SliderConnotation = Connotation.Accent | Connotation.CTA;
 
@@ -32,6 +33,15 @@ export class Slider extends FastSlider {
 	@attr connotation?: SliderConnotation;
 
 	/**
+	 * Custom function that generates a string for the component's "aria-valuetext" attribute based on the current value.
+	 *
+	 * @public
+	 */
+	@observable override valueTextFormatter: (value: string) => string = (
+		value
+	) => parseFloat(value).toLocaleString(this.locale.lang);
+
+	/**
 	 * TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
 	 *
 	 * @internal
@@ -55,3 +65,6 @@ export class Slider extends FastSlider {
 		}
 	}
 }
+
+export interface Slider extends Localized {}
+applyMixins(Slider, Localized);

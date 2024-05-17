@@ -324,7 +324,8 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	 *
 	 * @public
 	 */
-	@observable valueTextFormatter: (value: string) => string = (value) => value;
+	@observable valueTextFormatter: (value: string) => string = (value) =>
+		parseFloat(value).toLocaleString(this.locale.lang);
 
 	// --- Form handling ---
 

@@ -22,7 +22,8 @@ Vivid supports the following locales:
 
 | Locale                                           | BCP-47 code | Import path                   |
 | ------------------------------------------------ | ----------- | ----------------------------- |
-| English (United States)                          | `en-US`     | `@vonage/vivid/locales/en-US` |
 | English (United Kingdom)                         | `en-GB`     | `@vonage/vivid/locales/en-GB` |
-| Chinese (Simplified, People's Republic of China) | `zh-CN`     | `@vonage/vivid/locales/zh-CN` |
+| English (United States)                          | `en-US`     | `@vonage/vivid/locales/en-US` |
+| German (Germany)                                 | `de-DE`     | `@vonage/vivid/locales/de-DE` |
 | Japanese (Japan)                                 | `ja-JP`     | `@vonage/vivid/locales/ja-JP` |
+| Chinese (Simplified, People's Republic of China) | `zh-CN`     | `@vonage/vivid/locales/zh-CN` |
