@@ -7,7 +7,7 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
-		faint,
+		faint firm,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
