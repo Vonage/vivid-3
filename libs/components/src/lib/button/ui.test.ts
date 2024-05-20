@@ -126,6 +126,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button label="Expanded" aria-expanded="true"></vwc-button>
 		<vwc-button label="Active" active></vwc-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-button appearance="ghost-light" label="accent" connotation="accent"></vwc-button>
+		<vwc-button appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
+		<vwc-button appearance="ghost-light" label="success" connotation="success"></vwc-button>
+		<vwc-button appearance="ghost-light" label="alert" connotation="alert"></vwc-button>
+		<vwc-button appearance="ghost-light" label="accent" connotation="accent" active></vwc-button>
+		<vwc-button appearance="ghost-light" label="cta" connotation="cta" active></vwc-button>
+		<vwc-button appearance="ghost-light" label="success" connotation="success" active></vwc-button>
+		<vwc-button appearance="ghost-light" label="alert" connotation="alert" active></vwc-button>
+	</div>
 	</div>
 	`;
 
