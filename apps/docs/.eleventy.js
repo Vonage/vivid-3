@@ -7,9 +7,11 @@ const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
 const packageInstallation = require('./_shortcodes/packageInstallation');
+const editOnGitHub = require('./_shortcodes/editOnGitHub');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 const { spawnSync } = require('child_process');
+const components = require('./_data/components.json');
 
 const INPUT_DIR = 'apps/docs';
 const OUTPUT_DIR = 'dist/apps/docs';
@@ -66,6 +68,10 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/OVERVIEW.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/GUIDELINES.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/ACCESSIBILITY.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/EXAMPLES.md');
 	eleventyConfig.addWatchTarget('docs/');
 	eleventyConfig.addWatchTarget('assets/');
 
@@ -85,11 +91,15 @@ module.exports = function (eleventyConfig) {
 			  );
 	});
 
-	eleventyConfig.addFilter('githubEditLink', function (filePath) {
-		// Transform local path, e.g. "./libs/components/src/lib/alert/README.md"
-		const relativeFilePath = filePath.replace(/^\.\//, '');
-		return `https://github.com/Vonage/vivid-3/edit/main/${relativeFilePath}`;
-	});
+	eleventyConfig.addGlobalData(
+		'componentsNew',
+		components.filter((c) => c.page !== 'legacy')
+	);
+
+	eleventyConfig.addGlobalData(
+		'componentsLegacy',
+		components.filter((c) => c.page === 'legacy')
+	);
 
 	eleventyConfig.addFilter('pageSlug', function (page) {
 		return page.slug || slugify(page.title, { lower: true });
@@ -105,6 +115,7 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
+	eleventyConfig.addShortcode('editOnGitHub', editOnGitHub);
 
 	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/**`);
 

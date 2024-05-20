@@ -67,11 +67,11 @@
                         {% endif %}
                         <vwc-nav-item appearance="ghost-light" href="{{ ('/components/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/components/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
                         {% for child in item.children %}
-                            <vwc-nav-item appearance="ghost-light" href="{{ ('/components/' + (child | slug)) | url }}/" text="{{ child }}" {% if ('/components/' + (child | slug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
+                            <vwc-nav-item appearance="ghost-light" href="{{ ('/components/' + (child | slug)) | url }}/" text="{{ child }}" {% if ('/components/' + (child | slug) + '/') in page.url %} aria-current="page" {% endif %}></vwc-nav-item>
                         {% endfor %}
                     </vwc-nav-disclosure>
                 {% elif item.parent == null %}
-                    <vwc-nav-item appearance="ghost-light" href="{{ ('/components/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/components/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}>
+                    <vwc-nav-item appearance="ghost-light" href="{{ ('/components/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/components/' + (item | pageSlug) + '/') in page.url %} aria-current="page" {% endif %}>
                         {% if (item.status) == "alpha" %}
                             <vwc-badge slot="meta" text="alpha" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
                         {% endif %}

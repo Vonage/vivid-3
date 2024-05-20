@@ -1,0 +1,13 @@
+---
+tags: components
+pagination:
+  data: componentsNew
+  size: 1
+  alias: component
+permalink: 'components/{{ component | pageSlug }}/use-cases/'
+layout: component.njk
+---
+
+{% renderFile component.useCases %}
+
+{% editOnGitHub component.useCases %}

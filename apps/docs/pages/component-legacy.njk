@@ -1,0 +1,13 @@
+---
+tags: components
+pagination:
+  data: componentsLegacy
+  size: 1
+  alias: component
+permalink: 'components/{{ component | pageSlug }}/'
+layout: component.njk
+---
+
+{% renderFile component.markdown %}
+
+{% editOnGitHub component.markdown %}

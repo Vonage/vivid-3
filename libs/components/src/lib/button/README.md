@@ -1,254 +1,56 @@
-# Button
+## Import
 
-A button represents an action that the user can take. Use buttons to enable important actions.
+<docs-code-select>
+<div slot="vue">
 
-All [native attributes of `<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) are supported as well as some enhancements.
+```html
+<script setup lang="ts">
+	import { VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VButton appearance="filled" label="Click me" />
+</template>
+```
+
+</div>
+<div slot="web-component">
+<vwc-tabs>
+<vwc-tab label="Import"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/button';</script>
+import '@vonage/vivid/button';
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Register Function"></vwc-tab>
+<vwc-tab-panel>
 
-### Label
+```js
+import { registerButton } from '@vonage/vivid';
 
-- Type: `string`
-- Default: `undefined`
-
-Add a `label` attribute to add text to the button.
+registerButton('your-prefix');
+```
 
 ```html preview
-<vwc-button appearance="filled" label="A default button"></vwc-button>
+<vwc-button label="Click me"></vwc-button>
 ```
 
-### Appearance
+</vwc-tab-panel>
+</vwc-tabs>
+</div>
+</docs-code-select>
 
-Set the `appearance` attribute to change the button's appearance.
-
-- Type: `'ghost'` | `'filled'` | `'outlined'`
-- Default: `'ghost'`
-
-```html preview
-<vwc-button label="ghost" appearance="ghost"></vwc-button>
-<vwc-button label="filled" appearance="filled"></vwc-button>
-<vwc-button label="outlined" appearance="outlined"></vwc-button>
-```
-
-### Icon
-
-Use `icon` to set an icon to the button.
-View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
-
-Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the button's purpose.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-button
-	appearance="filled"
-	icon="message-sent-line"
-	aria-label="Send Message"
-></vwc-button>
-<vwc-button
-	appearance="filled"
-	icon="message-sent-line"
-	title="Send Message"
-	shape="pill"
-></vwc-button>
-```
-
-### Icon with Label
-
-Button text can be affixed by a decorative icon, either by its start or end.
-Toggle `icon-trailing` to set the icon's horizontal alignment.
-
-```html preview
-<vwc-button appearance="filled" label="icon" icon="check-line"></vwc-button>
-<vwc-button
-	appearance="filled"
-	label="icon-trailing"
-	icon="check-line"
-	icon-trailing
-></vwc-button>
-```
-
-### Shape
-
-Use the `shape` attribute to set the button's edges.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview
-<vwc-button appearance="filled" label="rounded" shape="rounded"></vwc-button>
-<vwc-button appearance="filled" label="pill" shape="pill"></vwc-button>
-```
-
-### Size
-
-Use the `size` attribute to set the button's to one of the predefined block size extent.
-
-- Type: `'super-condensed'` | `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'normal'`
-
-```html preview
-<vwc-button
-	appearance="filled"
-	label="super-condensed"
-	size="super-condensed"
-></vwc-button>
-<vwc-button appearance="filled" label="condensed" size="condensed"></vwc-button>
-<vwc-button appearance="filled" label="normal" size="normal"></vwc-button>
-<vwc-button appearance="filled" label="expanded" size="expanded"></vwc-button>
-```
-
-### Stacked
-
-Set the `stacked` attribute to change the button's layout to stacked.
-
-- Type: `boolean`
-- Default: `false`
-
-Caveats:
-
-- This is only applicable to the `'rounded'` shape.
-- This will override any applied [size](#size) style to match a predefined stacked block size.
-
-```html preview
-<vwc-button
-	stacked
-	appearance="filled"
-	icon="message-sent-line"
-	label="With Icon"
-></vwc-button>
-<vwc-button
-	stacked
-	appearance="filled"
-	icon="message-sent-line"
-	icon-trailing
-	label="Icon Trailing"
-></vwc-button>
-```
-
-### Connotation
-
-Set the `connotation` attribute to change the button's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'accent'`
-
-#### Ghost button with connotation
-
-```html preview
-<vwc-button appearance="ghost" label="accent" connotation="accent"></vwc-button>
-<vwc-button appearance="ghost" label="cta" connotation="cta"></vwc-button>
-<vwc-button
-	appearance="ghost"
-	label="success"
-	connotation="success"
-></vwc-button>
-<vwc-button appearance="ghost" label="alert" connotation="alert"></vwc-button>
-```
-
-#### Filled button with connotation
-
-```html preview
-<vwc-button
-	appearance="filled"
-	label="accent"
-	connotation="accent"
-></vwc-button>
-<vwc-button appearance="filled" label="cta" connotation="cta"></vwc-button>
-<vwc-button
-	appearance="filled"
-	label="success"
-	connotation="success"
-></vwc-button>
-<vwc-button appearance="filled" label="alert" connotation="alert"></vwc-button>
-```
-
-#### Outlined button with connotation
-
-```html preview
-<vwc-button
-	appearance="outlined"
-	label="accent"
-	connotation="accent"
-></vwc-button>
-<vwc-button appearance="outlined" label="cta" connotation="cta"></vwc-button>
-<vwc-button
-	appearance="outlined"
-	label="success"
-	connotation="success"
-></vwc-button>
-<vwc-button
-	appearance="outlined"
-	label="alert"
-	connotation="alert"
-></vwc-button>
-```
-
-### Disabled
-
-Add the `disabled` attribute to disable the button.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-button appearance="ghost" label="ghost" disabled></vwc-button>
-<vwc-button appearance="filled" label="filled" disabled></vwc-button>
-<vwc-button appearance="outlined" label="outlined" disabled></vwc-button>
-```
-
-### Pending
-
-Add the `pending` attribute to disable the button and display a processing indicator.
-The indicator will replace the icon if one is set, or the label text for text-only buttons.
-The indicator is not displayed when using the `super-condensed` size.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-button appearance="ghost" label="ghost" pending></vwc-button>
-<vwc-button appearance="filled" label="filled" pending></vwc-button>
-<vwc-button appearance="outlined" label="outlined" pending></vwc-button>
-<vwc-button
-	appearance="ghost"
-	icon="check-line"
-	label="ghost with icon"
-	pending
-></vwc-button>
-<vwc-button
-	appearance="filled"
-	icon="check-line"
-	label="filled with icon"
-	pending
-></vwc-button>
-<vwc-button
-	appearance="outlined"
-	icon="check-line"
-	label="outlined with icon"
-	pending
-></vwc-button>
-```
-
-### Href
+## Link Buttons
 
 Use the `href` attribute to convert the button to a link.
-In addition, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
+When doing so, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
 
 <vwc-note connotation="warning" icon="warning-solid">
 Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users. Use this feature with caution.
 </vwc-note>
 
 {% clientSideNavigationHint %}
-
-- Type: `string`
-- Default: `undefined`
 
 ```html preview
 <vwc-button
@@ -258,12 +60,9 @@ Semantically, buttons are usually used for triggering actions, while links are u
 ></vwc-button>
 ```
 
-### Active
+## Active State
 
 Set the `active` attribute to make the button appear pressed.
-
-- Type: `boolean`
-- Default: `false`
 
 ```html preview
 <vwc-button appearance="ghost" label="ghost" active></vwc-button>
@@ -271,107 +70,80 @@ Set the `active` attribute to make the button appear pressed.
 <vwc-button appearance="outlined" label="outlined" active></vwc-button>
 ```
 
-## Slots
+## API Reference
 
-### Icon
+### Properties
 
-Set the `icon` slot to show an icon before the button's label.
-If set, the `icon` attribute is ignored.
+<div class="table-wrapper">
 
-```html preview
-<style>
-	.color-animation {
-		animation: heightChange 1.5s infinite;
-	}
-	@keyframes heightChange {
-		0% {
-			clip-path: inset(0% 0% 0% 0%);
-		}
-		25% {
-			clip-path: inset(0% 0% 45% 0%);
-		}
-		50% {
-			clip-path: inset(0% 0% 80% 0%);
-		}
-		100% {
-			clip-path: inset(0% 0% 0% 0%);
-		}
-	}
-</style>
-<vwc-button aria-label="Mute">
-	<vwc-icon slot="icon">
-		<svg
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			xmlns="http://www.w3.org/2000/svg"
-		>
-			<g>
-				<path
-					d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z"
-					fill="var(--vvd-color-success-400)"
-				/>
-				<path
-					d="M5.5 9.6C5.5 13.1344 8.41037 16 12 16C15.5896 16 18.5 13.1344 18.5 9.6V6.4C18.5 2.8656 15.5896 0 12 0C8.41037 0 5.5 2.8656 5.5 6.4V9.6Z"
-					fill="currentColor"
-					id="animation"
-					class="color-animation"
-				/>
-				<path
-					d="M3 10.3333C3 9.59695 2.32843 9 1.5 9C0.671573 9 0 9.59695 0 10.3333C0 15.7728 4.58052 20.2613 10.5 20.9175V24H13.5V20.9175C19.4195 20.2613 24 15.7728 24 10.3333C24 9.59695 23.3284 9 22.5 9C21.6716 9 21 9.59695 21 10.3333C21 14.7516 16.9706 18.3333 12 18.3333C7.02943 18.3333 3 14.7516 3 10.3333Z"
-					fill="currentColor"
-				/>
-			</g>
-		</svg>
-	</vwc-icon>
-</vwc-button>
-```
+| Name               | Type                                                                                                                                                                                                                                                                                                                                                          | Description                                                                                                                                                                                                                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **icon**           | _Enum_:<br/>`10-sec-backward-line`<br/>`10-sec-backward-solid`<br/>`10-sec-forward-line`<br/>`10-sec-forward-solid`<br/>`30-sec-backward-line`<br/>`30-sec-backward-solid`<br/>`30-sec-forward-line`<br/>`30-sec-forward-solid`<br/>`5-sec-backward-line`<br/>`5-sec-backward-solid`<br/>`5-sec-forward-line`<br/>`5-sec-forward-solid`<br/>... 1199 more ... | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/                                                                                                                                                                                       |
+| **icon-trailing**  | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Indicates the icon affix alignment.                                                                                                                                                                                                                                                                                     |
+| **aria-current**   | _Enum_:<br/>`page`<br/>`step`<br/>`location`<br/>`date`<br/>`time`<br/>`true`<br/>`false`                                                                                                                                                                                                                                                                     | Indicates the element that represents the current item within a container or set of related elements.                                                                                                                                                                                                                   |
+| **disabled**       | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Sets the element's disabled state. A disabled element will not be included during form submission.                                                                                                                                                                                                                      |
+| **value**          | `string`                                                                                                                                                                                                                                                                                                                                                      | The initial value of the form. This value sets the `value` property only when the `value` property has not been explicitly set.                                                                                                                                                                                         |
+| **current-value**  | `string`                                                                                                                                                                                                                                                                                                                                                      | The current value of the element. This property serves as a mechanism to set the `value` property through both property assignment and the .setAttribute() method. This is useful for setting the field's value in UI libraries that bind data through the .setAttribute() API and don't support IDL attribute binding. |
+| **name**           | `string`                                                                                                                                                                                                                                                                                                                                                      | The name of the element. This element's value will be surfaced during form submission under the provided name.                                                                                                                                                                                                          |
+| **required**       | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Require the field to be completed prior to form submission.                                                                                                                                                                                                                                                             |
+| **autofocus**      | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Determines if the element should receive document focus on page load.                                                                                                                                                                                                                                                   |
+| **form**           | `string`                                                                                                                                                                                                                                                                                                                                                      | The id of a form to associate the element to.                                                                                                                                                                                                                                                                           |
+| **formaction**     | `string`                                                                                                                                                                                                                                                                                                                                                      | See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button                                                                                                                                                                                                                                                    |
+| **formenctype**    | `string`                                                                                                                                                                                                                                                                                                                                                      | See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button                                                                                                                                                                                                                                                    |
+| **formmethod**     | `string`                                                                                                                                                                                                                                                                                                                                                      | See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button                                                                                                                                                                                                                                                    |
+| **formnovalidate** | `boolean`                                                                                                                                                                                                                                                                                                                                                     | See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button                                                                                                                                                                                                                                                    |
+| **formtarget**     | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top`                                                                                                                                                                                                                                                                                                     | See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button                                                                                                                                                                                                                                                    |
+| **type**           | _Enum_:<br/>`submit`<br/>`reset`<br/>`button`                                                                                                                                                                                                                                                                                                                 | The button type.                                                                                                                                                                                                                                                                                                        |
+| **title**          | `string`                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                         |
+| **connotation**    | _Enum_:<br/>`accent`<br/>`cta`<br/>`success`<br/>`alert`                                                                                                                                                                                                                                                                                                      | The connotation the button should have.                                                                                                                                                                                                                                                                                 |
+| **shape**          | _Enum_:<br/>`rounded`<br/>`pill`                                                                                                                                                                                                                                                                                                                              | The shape the button should have.                                                                                                                                                                                                                                                                                       |
+| **appearance**     | _Enum_:<br/>`filled`<br/>`outlined`<br/>`ghost`                                                                                                                                                                                                                                                                                                               | The appearance the button should have.                                                                                                                                                                                                                                                                                  |
+| **size**           | _Enum_:<br/>`super-condensed`<br/>`condensed`<br/>`normal`<br/>`expanded`                                                                                                                                                                                                                                                                                     | The size the button should have.                                                                                                                                                                                                                                                                                        |
+| **stacked**        | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Indicates the icon is stacked.                                                                                                                                                                                                                                                                                          |
+| **pending**        | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Displays the button in pending state.                                                                                                                                                                                                                                                                                   |
+| **active**         | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Displays the button in active state.                                                                                                                                                                                                                                                                                    |
+| **label**          | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's label.                                                                                                                                                                                                                                                                                           |
+| **href**           | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's href.                                                                                                                                                                                                                                                                                            |
+| **download**       | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's download.                                                                                                                                                                                                                                                                                        |
+| **hreflang**       | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's hreflang.                                                                                                                                                                                                                                                                                        |
+| **ping**           | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's ping.                                                                                                                                                                                                                                                                                            |
+| **referrerpolicy** | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's referrerpolicy.                                                                                                                                                                                                                                                                                  |
+| **rel**            | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's rel.                                                                                                                                                                                                                                                                                             |
+| **target**         | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top`                                                                                                                                                                                                                                                                                                     | Indicates the target's rel.                                                                                                                                                                                                                                                                                             |
 
-## Accessibility
+</div>
 
-Add an `aria-label` or `title` attribute if the button does not have a label or the label is not descriptive enough.
+### Events
 
-Icons are purely decorative and are hidden from assistive technology. Ensure that the button's purpose is still clear without the icon.
+<div class="table-wrapper">
 
-When deciding between `aria-label` or `title`, keep in mind that `aria-label` is better for accessibility.  
-The assistive technology will read the `aria-label` text rather than the `title` if both are set.
+| Name        | Event Type      | Description                                                                                                                                                |
+| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **click**   | `MouseEvent`    | Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element. |
+| **focus**   | `FocusEvent`    | Fires when the element receives focus.                                                                                                                     |
+| **blur**    | `FocusEvent`    | Fires when the element loses focus.                                                                                                                        |
+| **keydown** | `KeyboardEvent` | Fires when a key is pressed.                                                                                                                               |
+| **keyup**   | `KeyboardEvent` | Fires when a key is released.                                                                                                                              |
+| **input**   | `Event`         | Fires when the value of an element has been changed.                                                                                                       |
 
-## Use Cases
+</div>
 
-### Toggle Button
+### Slots
 
-```html preview
-<vwc-button
-	id="button"
-	connotation="cta"
-	shape="pill"
-	icon="microphone-solid"
-	aria-label="Mute"
-></vwc-button>
+<div class="table-wrapper">
 
-<script>
-	document.getElementById('button').addEventListener('click', () => {
-		button.ariaPressed = !button.ariaPressed;
-		button.icon = button.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
-		button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';
-	});
-</script>
-```
+| Name     | Description                   |
+| -------- | ----------------------------- |
+| **icon** | Add an icon to the component. |
 
-### Full-width Button
+</div>
 
-```html preview
-<style>
-	.button-width {
-		display: block;
-	}
-</style>
-<vwc-button
-	class="button-width"
-	label="I'm full width"
-	icon="message-sent-line"
-	shape="pill"
-	appearance="filled"
-></vwc-button>
-```
+### Methods
+
+<div class="table-wrapper">
+
+| Name         | Type         | Description                                         |
+| ------------ | ------------ | --------------------------------------------------- |
+| **validate** | `() => void` | \{@inheritDoc (FormAssociated:interface).validate\} |
+
+</div>
