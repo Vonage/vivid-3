@@ -7,6 +7,9 @@ import {
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums';
+import { setLocale } from '../../shared/localization';
+import enUS from '../../locales/en-US';
+import deDE from '../../locales/de-DE';
 import { RangeSlider } from './range-slider';
 import { rangeSliderDefinition } from './definition';
 import '.';
@@ -639,6 +642,18 @@ describe('vwc-range-slider', () => {
 
 				expect(thumbs.start.getAttribute('aria-valuetext')).toBe('0 bits');
 				expect(thumbs.end.getAttribute('aria-valuetext')).toBe('10 bits');
+			});
+
+			describe('default function', () => {
+				it('should format the value with period for a respective locale', () => {
+					setLocale(enUS);
+					expect(element.valueTextFormatter('1.1')).toBe('1.1');
+				});
+
+				it('should format the value with comma for a respective locale', () => {
+					setLocale(deDE);
+					expect(element.valueTextFormatter('1.1')).toBe('1,1');
+				});
 			});
 		});
 

@@ -156,7 +156,28 @@ export class FilePicker extends FormAssociatedFilePicker {
 			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
 			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
 			dictFileTooBig: this.locale.filePicker.fileTooBigError,
+			// Override the default implementation to localize the error messages
+			error: (file, message: string | any) => {
+				if (file.previewElement) {
+					file.previewElement.classList.add('dz-error');
+					// istanbul ignore next
+					if (typeof message !== 'string' && message.error) {
+						message = message.error;
+					}
+					for (const node of file.previewElement.querySelectorAll(
+						'[data-dz-errormessage]'
+					)) {
+						node.textContent = this.#formatNumbersInMessage(message);
+					}
+				}
+			},
 		});
+
+		(this.#dropzone as any).filesize = (size: number) => {
+			return this.#formatNumbersInMessage(
+				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
+			);
+		};
 
 		this.#dropzone.on('addedfiles', (files) => {
 			for (const file of files) {
@@ -270,6 +291,13 @@ export class FilePicker extends FormAssociatedFilePicker {
 	override formResetCallback(): void {
 		super.formResetCallback();
 		this.#dropzone!.removeAllFiles();
+	}
+
+	#formatNumbersInMessage(message: string) {
+		if (this.locale.common.useCommaAsDecimalSeparator) {
+			return message.replace(/(\d+)\.(\d+)/g, '$1,$2');
+		}
+		return message;
 	}
 }
 
