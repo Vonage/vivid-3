@@ -84,16 +84,16 @@
 .action {
 	color: var(#{appearance.get-appearance-token(text)});
 
-	:host(:not([check-appearance], [aria-checked='true'])) & {
-		color: var(#{constants.$vvd-color-neutral-500});
-	}
-
 	.base.trailing & {
 		order: 2;
 	}
 
 	.base.has-meta & {
 		order: 2;
+	}
+
+	:host(:not([check-appearance], [aria-checked='true'], [disabled])) & {
+		color: var(#{constants.$vvd-color-neutral-500});
 	}
 }
 
@@ -127,31 +127,33 @@
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-box-orient: vertical;
-	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
-
-	.base.disabled & {
-		color: var(#{constants.$vvd-color-neutral-300});
-	}
 }
 
-/* stylelint-disable no-descending-specificity */
 .text-primary {
 	font: var(#{constants.$vvd-typography-base});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
+	.base:not(.disabled) & {
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
+	.base.disabled & {
+		color: var(#{appearance.get-appearance-token(text)});
+	}
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
 }
 
 .text-secondary {
+	color: var(#{constants.$vvd-color-neutral-600});
 	font: var(#{constants.$vvd-typography-base-condensed});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
-	.base.two-lines:not(.disabled) & {
-		color: var(#{constants.$vvd-color-neutral-600});
+
+	.base.disabled & {
+		color: var(#{appearance.get-appearance-token(text)});
 	}
-	.base.two-lines:not(.disabled).selected & {
+
+	.base.selected:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }
-/* stylelint-enable no-descending-specificity */
