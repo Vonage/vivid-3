@@ -53,6 +53,7 @@
 		}
 
 		.vjs-svg-icon {
+			display: flex;
 			filter: none;
 			inline-size: calc($big-play-btn-size / 2);
 			margin-inline-start: 2px;
@@ -87,14 +88,27 @@
 
 	/* "slider" */
 	.vjs-control-bar {
+		$border: #{border-radius-variables.$border-radius-normal};
+
 		flex-wrap: wrap;
 		padding: 4px;
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		border-radius: 0 0 $border $border;
 		margin: 4px;
 		background-color: $control-background-color;
 		block-size: $control-size;
 		column-gap: 4px;
 		inline-size: calc(100% - 8px);
+
+		&::before {
+			position: absolute;
+			border-radius: $border $border 0 0;
+			background-color: inherit;
+			block-size: 24px;
+			content: '';
+			inline-size: 100%;
+			inset-block-start: -24px;
+			inset-inline-start: 0;
+		}
 	}
 
 	.vjs-button {
@@ -156,6 +170,16 @@
 		inset-inline-start: 40px;
 		isolation: isolate;
 
+		&:hover {
+			.vjs-play-progress .vjs-time-tooltip {
+				display: none;
+			}
+		}
+
+		.vjs-icon-placeholder {
+			top: -0.3em;
+		}
+
 		.vjs-progress-holder,
 		.vjs-load-progress,
 		.vjs-play-progress {
@@ -166,9 +190,9 @@
 	.vjs-duration,
 	.vjs-current-time {
 		position: absolute;
-		inset-block-start: -30px;
+		block-size: auto;
+		inset-block-start: -20px;
 		inset-inline-end: 8px;
-		text-shadow: 1px 1px 1px var(#{constants.$vvd-color-canvas-text});
 	}
 
 	.vjs-current-time {
