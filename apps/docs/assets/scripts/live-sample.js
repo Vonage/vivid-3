@@ -6,6 +6,7 @@ import { Compartment } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
 import enUS from '@vonage/vivid/locales/en-US';
 import enGB from '@vonage/vivid/locales/en-GB';
+import deDE from '@vonage/vivid/locales/de-DE';
 import zhCN from '@vonage/vivid/locales/zh-CN';
 import jaJP from '@vonage/vivid/locales/ja-JP';
 import { getCurrentThemeCss } from './theme-handler';
@@ -148,6 +149,7 @@ function openCodePen(event) {
 const locales = {
 	'en-US': enUS,
 	'en-GB': enGB,
+	'de-DE': deDE,
 	'zh-CN': zhCN,
 	'ja-JP': jaJP,
 };
