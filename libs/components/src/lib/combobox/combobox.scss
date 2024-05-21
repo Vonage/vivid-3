@@ -28,8 +28,11 @@
 }
 
 .listbox {
+	display: flex;
 	max-height: var(variables.$combobox-height, 408px);
+	flex-direction: column;
 	padding: 4px;
+	gap: 2px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	contain: paint;
 	overflow-y: auto;
