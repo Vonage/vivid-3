@@ -2,6 +2,7 @@ import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	arrow,
+	autoPlacement,
 	autoUpdate,
 	computePosition,
 	flip,
@@ -11,6 +12,30 @@ import {
 	size,
 } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
+
+export const PlacementStrategy = {
+	Flip: flip(),
+	AutoPlacementHorizontal: autoPlacement({
+		allowedPlacements: [
+			'bottom',
+			'top',
+			'bottom-start',
+			'bottom-end',
+			'top-start',
+			'top-end',
+		],
+	}),
+	AutoPlacementVertical: autoPlacement({
+		allowedPlacements: [
+			'left',
+			'right',
+			'left-start',
+			'left-end',
+			'right-start',
+			'right-end',
+		],
+	}),
+} as const;
 
 /**
  * @public
@@ -22,7 +47,7 @@ export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {
 		let middleware = [
 			inline(),
-			flip(),
+			this.placementStrategy,
 			hide(),
 			size({
 				apply({ availableWidth, availableHeight, elements }) {
@@ -106,6 +131,29 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
+	 * The placement strategy of the popup.
+	 *
+	 * @public
+	 */
+	placementStrategy = PlacementStrategy.Flip;
+
+	/**
+	 * Whether to update the position of the floating element on every animation frame if required.
+	 *
+	 * @public
+	 * HTML Attribute: animation-frame
+	 */
+	@attr({ mode: 'boolean', attribute: 'animation-frame' }) animationFrame =
+		false;
+
+	/**
+	 * @internal
+	 */
+	animationFrameChanged() {
+		this.#updateAutoUpdate();
+	}
+
+	/**
 	 * the strategy of the popup
 	 *
 	 * @public
@@ -140,8 +188,13 @@ export class Popup extends FoundationElement {
 	#updateAutoUpdate() {
 		this.#cleanup?.();
 		if (this.anchorEl && this.open && this.popupEl) {
-			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () =>
-				this.updatePosition()
+			this.#cleanup = autoUpdate(
+				this.anchorEl,
+				this.popupEl,
+				() => this.updatePosition(),
+				{
+					animationFrame: this.animationFrame,
+				}
 			);
 		}
 	}

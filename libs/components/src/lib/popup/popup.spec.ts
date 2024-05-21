@@ -7,7 +7,7 @@ import {
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
-import { Popup } from './popup';
+import { PlacementStrategy, Popup } from './popup';
 import '.';
 
 const COMPONENT_TAG = 'vwc-popup';
@@ -29,11 +29,11 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
-		global.ResizeObserver = jest.fn().mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn(),
-		}));
+		global.ResizeObserver = class {
+			observe = jest.fn();
+			unobserve = jest.fn();
+			disconnect = jest.fn();
+		};
 	});
 
 	afterEach(function () {
@@ -156,6 +156,8 @@ describe('vwc-popup', () => {
 			expect(element.dismissible).toBeFalsy();
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
+			expect(element.placementStrategy).toBe(PlacementStrategy.Flip);
+			expect(element.animationFrame).toBe(false);
 			expect(element.strategy).toEqual('fixed');
 		});
 	});
@@ -252,6 +254,59 @@ describe('vwc-popup', () => {
 			expect(partValueWithoutAlternate).toEqual('');
 			expect(partValueWithAlternate).toEqual('vvd-theme-alternate');
 		});
+	});
+
+	describe('placementStrategy', () => {
+		beforeEach(() => {
+			jest.spyOn(floatingUI, 'computePosition');
+		});
+
+		afterEach(() => {
+			jest.mocked(floatingUI.computePosition).mockRestore();
+		});
+
+		it('should include placementStrategy in the computePosition middleware', async () => {
+			element.placementStrategy = PlacementStrategy.AutoPlacementHorizontal;
+
+			await setupPopupToOpenWithAnchor();
+			await element.updatePosition();
+
+			expect(floatingUI.computePosition).toHaveBeenLastCalledWith(
+				expect.anything(),
+				expect.anything(),
+				expect.objectContaining({
+					middleware: expect.arrayContaining([
+						PlacementStrategy.AutoPlacementHorizontal,
+					]),
+				})
+			);
+		});
+	});
+
+	describe('animationFrame', () => {
+		beforeEach(() => {
+			jest.spyOn(floatingUI, 'autoUpdate');
+		});
+
+		afterEach(() => {
+			jest.mocked(floatingUI.autoUpdate).mockRestore();
+		});
+
+		it.each([false, true])(
+			'should pass animationFrame=%s as autoUpdate option',
+			async (animationFrame) => {
+				element.animationFrame = animationFrame;
+				await setupPopupToOpenWithAnchor();
+				await elementUpdated(element);
+
+				expect(floatingUI.autoUpdate).toHaveBeenCalledWith(
+					expect.anything(),
+					expect.anything(),
+					expect.anything(),
+					{ animationFrame }
+				);
+			}
+		);
 	});
 
 	describe('a11y', () => {
