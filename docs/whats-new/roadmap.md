@@ -56,7 +56,10 @@
       Multi-select Combobox
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In progress" icon="more-horizontal-line"></vwc-button>
+      <div style="padding: 16px; display: inline-flex; gap: 16px; align-items: center;">
+        <vwc-icon name="more-horizontal-line"></vwc-icon>
+        <strong>In progress</strong>
+      </div>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
