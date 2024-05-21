@@ -33,8 +33,8 @@
 	flex-direction: column;
 	padding: 4px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	gap: 2px;
 	contain: paint;
+	gap: 2px;
 	overflow-y: auto;
 }
 
