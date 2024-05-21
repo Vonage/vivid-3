@@ -32,8 +32,8 @@
 	max-height: var(variables.$combobox-height, 408px);
 	flex-direction: column;
 	padding: 4px;
-	gap: 2px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	gap: 2px;
 	contain: paint;
 	overflow-y: auto;
 }
