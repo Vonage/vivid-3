@@ -9,7 +9,8 @@
 		"nx": "nx",
 		"test": "npx nx run components:test",
 		"test:ui": "npx nx run components:e2e",
-		"test:tools": "jest --projects tools"
+		"test:tools": "jest --projects tools",
+		"format": "npx nx format:write --all"
 	},
 	"private": true,
 	"dependencies": {
