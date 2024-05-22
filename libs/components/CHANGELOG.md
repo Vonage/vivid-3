@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.57.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.56.0...vivid-v3.57.0) (2024-05-22)
+
+
+### Features
+
+* **fab:** announcement connotation (VIV-1726) ([#1718](https://github.com/Vonage/vivid-3/issues/1718)) ([a873069](https://github.com/Vonage/vivid-3/commit/a873069357e6f1dd5d438cee8c6b2139cd4ba1c1))
+
 ## [3.56.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.55.0...vivid-v3.56.0) (2024-05-20)
 
 
