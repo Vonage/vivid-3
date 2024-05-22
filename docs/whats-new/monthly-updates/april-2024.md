@@ -47,6 +47,6 @@ The [Nav item](/components/nav-item/#appearance) component also allows you set i
 
 ## Docs updates
 
-- We have documented our new [Change process](/resources/change-process/)
+- We have documented our new [Change process](/resources/vivid-change-process/)
 - We have added a **Table of contents** to each page to make it easy to find the content you need.
 - New search that searches all the content of the site and not just component names
