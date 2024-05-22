@@ -1,8 +1,11 @@
-import { html, ref } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-
+import type {
+	ElementDefinitionContext,
+	FoundationElementDefinition,
+} from '@microsoft/fast-foundation';
+import { PlacementStrategy, Popup } from '../popup/popup';
 import type { Slider } from './slider';
 
 const getClasses = ({ disabled, connotation }: Slider) =>
@@ -29,18 +32,17 @@ export const getMarkersTemplate = (
 	></div>`;
 };
 
-/**
- * The template for the Slider component.
- *
- * @param context - element definition context
- * @public
- */
 export const SliderTemplate: (
-	context: ElementDefinitionContext
-) => ViewTemplate<Slider> = () => {
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
+) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
+	const popupTag = context.tagFor(Popup);
+
 	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template
 		role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
+		@focusin="${(x) => x._onFocusIn()}"
+		@focusout="${(x) => x._onFocusOut()}"
 	>
 		<div
 			role="slider"
@@ -68,9 +70,31 @@ export const SliderTemplate: (
 				</div>
 				<div
 					${ref('thumb')}
-					class="thumb-container"
+					class="${(x) =>
+						classNames('thumb-container', ['focus-visible', x._focusVisible])}"
 					style="${(x) => x.position}"
 				></div>
-			</div></div
-	></template>`;
+				${when(
+					(x) => x.pin,
+					html<Slider>`<${popupTag}
+					class="popup"
+					arrow
+					alternate
+					:anchor="${(x) => x.thumb}"
+					:open=${(x) => x._isThumbPopupOpen}
+					:placementStrategy=${(x) =>
+						x.orientation === Orientation.horizontal
+							? PlacementStrategy.AutoPlacementHorizontal
+							: PlacementStrategy.AutoPlacementVertical}
+					animation-frame
+					exportparts="vvd-theme-alternate"
+					aria-hidden="true"
+				>
+					<div class="tooltip">${(x) =>
+						x.ariaValuetext || x.valueTextFormatter(x.value)}</div>
+				</${popupTag}>`
+				)}
+			</div>
+		</div></template
+	>`;
 };

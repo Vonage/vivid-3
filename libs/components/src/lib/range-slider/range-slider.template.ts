@@ -4,6 +4,7 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
 import { getMarkersTemplate } from '../slider/slider.template';
+import { PlacementStrategy, Popup } from '../popup/popup';
 import type { RangeSlider } from './range-slider';
 
 const getClasses = ({ disabled, connotation }: RangeSlider) =>
@@ -21,7 +22,9 @@ const getClasses = ({ disabled, connotation }: RangeSlider) =>
  */
 export const RangeSliderTemplate: (
 	context: ElementDefinitionContext
-) => ViewTemplate<RangeSlider> = () => {
+) => ViewTemplate<RangeSlider> = (context) => {
+	const popupTag = context.tagFor(Popup);
+
 	return html<RangeSlider>` <template
 		@mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"
 	>
@@ -40,7 +43,11 @@ export const RangeSliderTemplate: (
 				</div>
 				<div
 					${ref('_startThumbEl')}
-					class="thumb-container"
+					class="${(x) =>
+						classNames('thumb-container', [
+							'focus-visible',
+							x._visiblyFocusedThumb === 'start',
+						])}"
 					style="${(x) => x._startThumbCss}"
 					role="slider"
 					tabindex="${(x) => (x.disabled ? null : 0)}"
@@ -53,9 +60,32 @@ export const RangeSliderTemplate: (
 					aria-disabled="${(x) => x.disabled}"
 					aria-orientation="${(x) => x.orientation}"
 				></div>
+				${when(
+					(x) => x.pin,
+					html<RangeSlider>`<${popupTag}
+					class="popup"
+					arrow
+					alternate
+					:anchor="${(x) => x._startThumbEl}"
+					:open=${(x) => x._isThumbPopupOpen('start')}
+					:placementStrategy=${(x) =>
+						x.orientation === Orientation.horizontal
+							? PlacementStrategy.AutoPlacementHorizontal
+							: PlacementStrategy.AutoPlacementVertical}
+					animation-frame
+					exportparts="vvd-theme-alternate"
+					aria-hidden="true"
+				>
+					<div class="tooltip">${(x) => x.valueTextFormatter(x.start)}</div>
+				</${popupTag}>`
+				)}
 				<div
 					${ref('_endThumbEl')}
-					class="thumb-container"
+					class="${(x) =>
+						classNames('thumb-container', [
+							'focus-visible',
+							x._visiblyFocusedThumb === 'end',
+						])}"
 					style="${(x) => x._endThumbCss}"
 					role="slider"
 					tabindex="${(x) => (x.disabled ? null : 0)}"
@@ -68,6 +98,25 @@ export const RangeSliderTemplate: (
 					aria-disabled="${(x) => x.disabled}"
 					aria-orientation="${(x) => x.orientation}"
 				></div>
+				${when(
+					(x) => x.pin,
+					html<RangeSlider>`<${popupTag}
+					class="popup"
+					arrow
+					alternate
+					:anchor="${(x) => x._endThumbEl}"
+					:open=${(x) => x._isThumbPopupOpen('end')}
+					:placementStrategy=${(x) =>
+						x.orientation === Orientation.horizontal
+							? PlacementStrategy.AutoPlacementHorizontal
+							: PlacementStrategy.AutoPlacementVertical}
+					animation-frame
+					exportparts="vvd-theme-alternate"
+					aria-hidden="true"
+				>
+					<div class="tooltip">${(x) => x.valueTextFormatter(x.end)}</div>
+				</${popupTag}>`
+				)}
 			</div>
 		</div>
 	</template>`;
