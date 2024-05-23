@@ -28,20 +28,34 @@ describe('vwc-audio-player', () => {
 	}
 
 	function mockMediaElementPlayAndPause() {
-		play = HTMLMediaElement.prototype.play;
+		originalPlay = HTMLMediaElement.prototype.play;
 		HTMLMediaElement.prototype.play = jest.fn();
-		pause = HTMLMediaElement.prototype.pause;
+		originalPause = HTMLMediaElement.prototype.pause;
 		HTMLMediaElement.prototype.pause = jest.fn();
 	}
 
 	let element: AudioPlayer;
-	let play: any;
-	let pause: any;
+	let originalPlay: any;
+	let originalPause: any;
+	let originalAudio: any;
 	let nativeAudioElement: HTMLAudioElement;
 
+	beforeAll(() => {
+		class AudioMock extends Audio {
+			constructor() {
+				super();
+				// eslint-disable-next-line @typescript-eslint/no-this-alias
+				nativeAudioElement = this;
+			}
+		}
+		originalAudio = window.Audio;
+		window.Audio = AudioMock;
+	});
+
 	afterAll(() => {
-		HTMLMediaElement.prototype.pause = pause;
-		HTMLMediaElement.prototype.play = play;
+		HTMLMediaElement.prototype.pause = originalPause;
+		HTMLMediaElement.prototype.play = originalPlay;
+		window.Audio = originalAudio;
 	});
 
 	const SOURCE = 'https://download.samplelib.com/mp3/sample-6s.mp3';
@@ -53,7 +67,6 @@ describe('vwc-audio-player', () => {
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 
-		nativeAudioElement = getBaseElement(element).querySelector('audio') as HTMLAudioElement;
 	});
 
 	describe('basic', () => {
@@ -129,14 +142,14 @@ describe('vwc-audio-player', () => {
 		jest.spyOn(nativeAudioElement, 'duration', 'get').mockReturnValue(duration);
 	}
 
-	function setAudioCurrentTime(time: number) {
+	function setAudioElementCurrentTime(time: number) {
 		nativeAudioElement.currentTime = time;
 		const event = new Event('timeupdate');
 		nativeAudioElement.dispatchEvent(event);
 	}
 
 	function setAudioTimeToEnd() {
-		setAudioCurrentTime(nativeAudioElement.duration);
+		setAudioElementCurrentTime(nativeAudioElement.duration);
 	}
 
 	describe('paused', function () {
@@ -208,51 +221,51 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('updateProgress', function () {
-		it('should call updateProgress when timeupdate', async function () {
-			element._updateProgress = jest.fn();
 
-			setAudioCurrentTime(200);
+	it('should update current time element text', async () => {
+		const duration = 60;
+		const currentTime = 30;
+		const expectedValue = '0:30';
 
-			await elementUpdated(element);
-			expect(element._updateProgress).toHaveBeenCalled();
-		});
+		setAudioElementDuration(duration);
+		setAudioElementCurrentTime(currentTime);
+		await elementUpdated(element);
 
-		it('should update current time when updateProgress is called', async function () {
-			setAudioElementDuration(60);
-
-			nativeAudioElement.currentTime = 200;
-			await elementUpdated(element);
-
-			element._updateProgress();
-
-			await elementUpdated(element);
-			expect(
-				getCurrentTimeElement()?.textContent
-			).toEqual('3:20');
-		});
+		expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
 	});
 
-	describe('updateTotalTime', function () {
-		it('should call updateTotalTime when loadedmetadata', async function () {
-			element._updateTotalTime = jest.fn();
+	it('should update slider value and ariavaluetext on audio progress', async () => {
+		const duration = 60;
+		const currentTime = 20;
+		const expectedValue = '33';
+		const expectedAriaValuetext = '0:20';
 
-			const event = new Event('loadedmetadata');
-			nativeAudioElement.currentTime = 700;
-			nativeAudioElement.dispatchEvent(event);
+		setAudioElementDuration(duration);
+		setAudioElementCurrentTime(currentTime);
+		await elementUpdated(element);
 
-			await elementUpdated(element);
-			expect(element._updateTotalTime).toHaveBeenCalled();
-		});
+		expect(getSliderElement().value).toEqual(expectedValue);
+		expect(getSliderElement().ariaValuetext).toEqual(expectedAriaValuetext);
+	});
 
-		it('should update total-time when updateTotalTime is called', async function () {
-			setAudioElementDuration(60);
+	it('should update duration on loadmetadata', async function () {
+		setAudioElementDuration(800);
+		const event = new Event('loadedmetadata');
+		nativeAudioElement.currentTime = 700;
+		nativeAudioElement.dispatchEvent(event);
 
-			element._updateTotalTime();
-			expect(
-				getTotalTimeElement()?.textContent
-			).toEqual('1:00');
-		});
+		await elementUpdated(element);
+		expect(element.duration).toEqual(800);
+	});
+
+	it('should update total-time on loadedmetadata', async function () {
+		setAudioElementDuration(60);
+
+		nativeAudioElement.currentTime = 50;
+		const event = new Event('loadedmetadata');
+		nativeAudioElement.dispatchEvent(event);
+
+		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
 	});
 
 	describe('skip-by', function () {
@@ -261,14 +274,9 @@ describe('vwc-audio-player', () => {
 		const getSkipForwardButton = () =>
 			getBaseElement(element).querySelector('.forward') as Button | null;
 
-		let audio: HTMLAudioElement;
-		beforeEach(() => {
-			audio = getBaseElement(element).querySelector(
-				'audio'
-			) as HTMLAudioElement;
-			setAudioElementDuration(60);
-		});
-
+			beforeEach(() => {
+				setAudioElementDuration(60);
+			});
 		it('should hide skip buttons when skip-by is unset', async function () {
 			expect(getSkipBackwardButton()).toBe(null);
 			expect(getSkipForwardButton()).toBe(null);
@@ -300,35 +308,35 @@ describe('vwc-audio-player', () => {
 
 		it('should skip backwards when clicking backward button according to the skip-by attribute', async () => {
 			element.skipBy = MediaSkipBy.Five;
-			audio.currentTime = 10;
+			nativeAudioElement.currentTime = 10;
 			await elementUpdated(element);
 
 			getSkipBackwardButton()?.click();
 
 			await elementUpdated(element);
-			expect(audio.currentTime).toEqual(5);
+			expect(nativeAudioElement.currentTime).toEqual(5);
 		});
 
 		it('should skip forward when clicking forward button according to the skip-by attribute', async () => {
 			element.skipBy = MediaSkipBy.Five;
-			audio.currentTime = 10;
+			nativeAudioElement.currentTime = 10;
 			await elementUpdated(element);
 
 			getSkipForwardButton()?.click();
 
 			await elementUpdated(element);
-			expect(audio.currentTime).toEqual(15);
+			expect(nativeAudioElement.currentTime).toEqual(15);
 		});
 
 		it('should pause when skipping to the end', async function () {
 			element.skipBy = MediaSkipBy.Five;
-			audio.currentTime = 55;
+			nativeAudioElement.currentTime = 55;
 			await elementUpdated(element);
 
 			getSkipForwardButton()?.click();
 
 			await elementUpdated(element);
-			expect(audio.paused).toEqual(true);
+			expect(nativeAudioElement.paused).toEqual(true);
 		});
 
 		it.each([

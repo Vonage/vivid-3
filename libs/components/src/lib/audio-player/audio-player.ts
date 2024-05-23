@@ -112,15 +112,18 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	_sliderEl!: Slider;
 
-	/**
-	 * @internal
-	 */
-	_playerEl!: any;
+	#playerEl = new Audio();
 
 	/**
 	 * @internal
 	 */
 	_timeStampEl!: HTMLDivElement;
+
+	constructor() {
+		super();
+		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
+		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
+	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
@@ -132,12 +135,16 @@ export class AudioPlayer extends FoundationElement {
 		document.addEventListener('mouseup', this._rewind);
 	}
 
-	pausedChanged() {
+	srcChanged() {
+		(this.#playerEl.src as any) = this.src;
+	}
+
+	pausedChanged = () => {
 		if (this.paused) {
-			this._playerEl?.pause();
+			this.#playerEl.pause();
 		} else {
-			this._updateProgress();
-			this._playerEl!.play();
+			this.#updateProgress();
+			this.#playerEl!.play();
 		}
 	}
 
@@ -145,26 +152,26 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_onSkipButtonClick(isForward: boolean) {
-		if (this._playerEl) {
-			const currentTime = this._playerEl.currentTime;
+		if (this.#playerEl) {
+			const currentTime = this.#playerEl.currentTime;
 			const skipDirection = isForward ? 1 : -1; // Positive for forward, negative for backward
 			const skipValue = parseInt(this.skipBy!) * skipDirection;
 			const newTime = currentTime + skipValue;
 
-			this._playerEl.currentTime = Math.max(
+			this.#playerEl.currentTime = Math.max(
 				0,
-				Math.min(this._playerEl.duration, newTime)
+				Math.min(this.#playerEl.duration, newTime)
 			);
-			this._updateProgress(); // Update progress after skipping
+			this.#updateProgress(); // Update progress after skipping
 		}
 	}
 	/**
 	 * @internal
 	 */
-	_updateProgress() {
+	#updateProgress = () =>  {
 		let currentTime: HTMLElement | null;
-		const current: number = this._playerEl.currentTime;
-		const percent = (current / this._playerEl.duration) * 100;
+		const current: number = this.#playerEl.currentTime;
+		const percent = (current / this.#playerEl.duration) * 100;
 
 		if (this._sliderEl) {
 			this._sliderEl.value = percent.toString();
@@ -184,13 +191,13 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_updateTotalTime() {
+	#updateTotalTime = () => {
 		let totalTime: HTMLElement | null;
-		if (this._playerEl) this.duration = this._playerEl.duration;
+		if (this.#playerEl) this.duration = this.#playerEl.duration;
 		if (this._timeStampEl) {
 			totalTime = this._timeStampEl.querySelector('.total-time');
 			if (totalTime)
-				totalTime.textContent = this._formatTime(this._playerEl.duration);
+				totalTime.textContent = this._formatTime(this.#playerEl.duration);
 		}
 	}
 
@@ -198,9 +205,9 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_rewind = () => {
-		if (this._playerEl) {
-			this._playerEl.currentTime =
-				this._playerEl.duration * (Number(this._sliderEl.value) / 100);
+		if (this.#playerEl) {
+			this.#playerEl.currentTime =
+				this.#playerEl.duration * (Number(this._sliderEl.value) / 100);
 		}
 	};
 
@@ -210,8 +217,8 @@ export class AudioPlayer extends FoundationElement {
 	_handleSliderEvent(event: Event) {
 		if (event.target === this._sliderEl) {
 			this.paused = true;
-			if (this._playerEl) {
-				this._playerEl.pause();
+			if (this.#playerEl) {
+				this.#playerEl.pause();
 			}
 			this._rewind();
 		}

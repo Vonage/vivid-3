@@ -114,12 +114,6 @@ export const AudioPlayerTemplate: (
 				${when((x) => !x.notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
-			<audio
-				${ref('_playerEl')}
-				src="${(x) => x.src}"
-				@timeupdate="${(x) => x._updateProgress()}"
-				@loadedmetadata="${(x) => x._updateTotalTime()}"
-			></audio>
 		</div>
 	</div>`;
 };
