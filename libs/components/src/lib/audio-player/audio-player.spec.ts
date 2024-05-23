@@ -34,6 +34,20 @@ describe('vwc-audio-player', () => {
 		HTMLMediaElement.prototype.pause = jest.fn();
 	}
 
+	function setAudioElementDuration(duration: number) {
+		jest.spyOn(nativeAudioElement, 'duration', 'get').mockReturnValue(duration);
+	}
+
+	function setAudioElementCurrentTime(time: number) {
+		nativeAudioElement.currentTime = time;
+		const event = new Event('timeupdate');
+		nativeAudioElement.dispatchEvent(event);
+	}
+
+	function setAudioTimeToEnd() {
+		setAudioElementCurrentTime(nativeAudioElement.duration);
+	}
+
 	let element: AudioPlayer;
 	let originalPlay: any;
 	let originalPause: any;
@@ -67,6 +81,53 @@ describe('vwc-audio-player', () => {
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 
+	});
+
+
+	it('should update current time element text', async () => {
+		const duration = 60;
+		const currentTime = 30;
+		const expectedValue = '0:30';
+
+		setAudioElementDuration(duration);
+		setAudioElementCurrentTime(currentTime);
+		await elementUpdated(element);
+
+		expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
+	});
+
+	it('should update slider value and ariavaluetext on audio progress', async () => {
+		const duration = 60;
+		const currentTime = 20;
+		const expectedValue = '33';
+		const expectedAriaValuetext = '0:20';
+
+		setAudioElementDuration(duration);
+		setAudioElementCurrentTime(currentTime);
+		await elementUpdated(element);
+
+		expect(getSliderElement().value).toEqual(expectedValue);
+		expect(getSliderElement().ariaValuetext).toEqual(expectedAriaValuetext);
+	});
+
+	it('should update duration on loadmetadata', async function () {
+		setAudioElementDuration(800);
+		const event = new Event('loadedmetadata');
+		nativeAudioElement.currentTime = 700;
+		nativeAudioElement.dispatchEvent(event);
+
+		await elementUpdated(element);
+		expect(element.duration).toEqual(800);
+	});
+
+	it('should update total-time on loadedmetadata', async function () {
+		setAudioElementDuration(60);
+
+		nativeAudioElement.currentTime = 50;
+		const event = new Event('loadedmetadata');
+		nativeAudioElement.dispatchEvent(event);
+
+		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
 	});
 
 	describe('basic', () => {
@@ -138,20 +199,6 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	function setAudioElementDuration(duration: number) {
-		jest.spyOn(nativeAudioElement, 'duration', 'get').mockReturnValue(duration);
-	}
-
-	function setAudioElementCurrentTime(time: number) {
-		nativeAudioElement.currentTime = time;
-		const event = new Event('timeupdate');
-		nativeAudioElement.dispatchEvent(event);
-	}
-
-	function setAudioTimeToEnd() {
-		setAudioElementCurrentTime(nativeAudioElement.duration);
-	}
-
 	describe('paused', function () {
 		let pauseButton: Button;
 		beforeEach(() => {
@@ -219,53 +266,6 @@ describe('vwc-audio-player', () => {
 			element.paused = true;
 			expect(nativeAudioElement.pause).toHaveBeenCalled();
 		});
-	});
-
-
-	it('should update current time element text', async () => {
-		const duration = 60;
-		const currentTime = 30;
-		const expectedValue = '0:30';
-
-		setAudioElementDuration(duration);
-		setAudioElementCurrentTime(currentTime);
-		await elementUpdated(element);
-
-		expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
-	});
-
-	it('should update slider value and ariavaluetext on audio progress', async () => {
-		const duration = 60;
-		const currentTime = 20;
-		const expectedValue = '33';
-		const expectedAriaValuetext = '0:20';
-
-		setAudioElementDuration(duration);
-		setAudioElementCurrentTime(currentTime);
-		await elementUpdated(element);
-
-		expect(getSliderElement().value).toEqual(expectedValue);
-		expect(getSliderElement().ariaValuetext).toEqual(expectedAriaValuetext);
-	});
-
-	it('should update duration on loadmetadata', async function () {
-		setAudioElementDuration(800);
-		const event = new Event('loadedmetadata');
-		nativeAudioElement.currentTime = 700;
-		nativeAudioElement.dispatchEvent(event);
-
-		await elementUpdated(element);
-		expect(element.duration).toEqual(800);
-	});
-
-	it('should update total-time on loadedmetadata', async function () {
-		setAudioElementDuration(60);
-
-		nativeAudioElement.currentTime = 50;
-		const event = new Event('loadedmetadata');
-		nativeAudioElement.dispatchEvent(event);
-
-		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
 	});
 
 	describe('skip-by', function () {

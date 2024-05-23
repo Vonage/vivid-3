@@ -238,3 +238,5 @@ export class AudioPlayer extends FoundationElement {
 
 export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);
+
+// TODO::add paused to documentation
