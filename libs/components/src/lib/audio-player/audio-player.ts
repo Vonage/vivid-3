@@ -132,19 +132,21 @@ export class AudioPlayer extends FoundationElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		document.addEventListener('mouseup', this._rewind);
-		this.shadowRoot!.querySelector('.base')!.addEventListener('keyup', this.#handleSliderEvent);
-		this.shadowRoot!.querySelector('.base')!.addEventListener('keydown', this.#handleSliderEvent);
-		this.shadowRoot!.querySelector('.base')!.addEventListener('mousedown', this.#handleSliderEvent);
+		this.#setInteractionListeners(true);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		document.addEventListener('mouseup', this._rewind);
-		this.shadowRoot!.querySelector('.base')!.removeEventListener('keyup', this.#handleSliderEvent);
-		this.shadowRoot!.querySelector('.base')!.removeEventListener('keydown', this.#handleSliderEvent);
-		this.shadowRoot!.querySelector('.base')!.removeEventListener('mousedown', this.#handleSliderEvent);
+		this.#setInteractionListeners(false);
 	}
 
+	#setInteractionListeners(add = true) {
+		const action = add ? 'addEventListener' : 'removeEventListener';
+		this.shadowRoot!.querySelector('.base')![action]('keyup', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')![action]('keydown', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')![action]('mousedown', this.#handleSliderEvent);
+	}
 	srcChanged() {
 		(this.#playerEl.src as any) = this.src;
 	}
