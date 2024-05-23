@@ -245,6 +245,22 @@ describe('vwc-audio-player', () => {
 			}
 		);
 
+		it.each(['keyup', 'keydown', 'mousedown'])(
+			'should remove %s event listener on disconnection',
+			async function (eventName) {
+				element.paused = false;
+				await elementUpdated(element);
+				setAudioElementDuration(60);
+				element.disconnectedCallback();
+
+				const event = new Event(eventName, { bubbles: true });
+				getSliderElement().dispatchEvent(event);
+
+				await elementUpdated(element);
+				expect(element.paused).toEqual(false);
+			}
+		);
+
 		it('should pause when finished', async function () {
 			element.paused = false;
 			setAudioElementDuration(60);

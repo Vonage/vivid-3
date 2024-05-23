@@ -98,9 +98,6 @@ export const AudioPlayerTemplate: (
 	return html<AudioPlayer>` <div class="wrapper">
 		<div
 			class="base ${getClasses}"
-			@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
-			@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
-			@mousedown="${(x, c) => x._handleSliderEvent(c.event)}"
 		>
 			<div class="controls">
 				${when(

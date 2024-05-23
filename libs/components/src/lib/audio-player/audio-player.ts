@@ -132,11 +132,17 @@ export class AudioPlayer extends FoundationElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		document.addEventListener('mouseup', this._rewind);
+		this.shadowRoot!.querySelector('.base')!.addEventListener('keyup', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')!.addEventListener('keydown', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')!.addEventListener('mousedown', this.#handleSliderEvent);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		document.addEventListener('mouseup', this._rewind);
+		this.shadowRoot!.querySelector('.base')!.removeEventListener('keyup', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')!.removeEventListener('keydown', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')!.removeEventListener('mousedown', this.#handleSliderEvent);
 	}
 
 	srcChanged() {
@@ -218,7 +224,7 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_handleSliderEvent(event: Event) {
+	#handleSliderEvent = (event: Event) => {
 		if (event.target === this.#sliderEl) {
 			this.paused = true;
 			if (this.#playerEl) {
