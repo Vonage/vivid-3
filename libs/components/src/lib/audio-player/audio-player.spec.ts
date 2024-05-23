@@ -26,9 +26,11 @@ describe('vwc-audio-player', () => {
 		HTMLMediaElement.prototype.play = play;
 	});
 
+	const SOURCE = 'https://download.samplelib.com/mp3/sample-6s.mp3';
+
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG} timestamp src="https://download.samplelib.com/mp3/sample-6s.mp3"></${COMPONENT_TAG}>`
+			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 	});
 
@@ -37,7 +39,7 @@ describe('vwc-audio-player', () => {
 			expect(audioPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AudioPlayer);
 			expect(element.src).toEqual(
-				'https://download.samplelib.com/mp3/sample-6s.mp3'
+				SOURCE
 			);
 			expect(element.connotation).toBeUndefined();
 			expect(element.notime).toEqual(false);
@@ -47,26 +49,24 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('notime', function () {
-		it('should remove the time stamp when equal to true', async function () {
-			element.notime = false;
-			await elementUpdated(element);
+	function getCurrentTimeElement() {
+		return getBaseElement(element).querySelector('.current-time');
+	}
 
-			const controls = getBaseElement(element).querySelector(
-				'.controls'
-			) as HTMLDivElement;
-			const currentTimeClassExistsBeforeTheChange =
-				controls.querySelector('.current-time');
-			const totalTimeClassExistsBeforeTheChange =
-				controls.querySelector('.total-time');
+	function getTotalTimeElement() {
+		return getBaseElement(element).querySelector('.total-time');
+	}
+
+	describe('notime', function () {
+		it('should remove the time stamp when true', async function () {
+			const currentTimeClassExistsBeforeTheChange = getCurrentTimeElement();
+			const totalTimeClassExistsBeforeTheChange = getTotalTimeElement();
 
 			element.notime = true;
 			await elementUpdated(element);
 
-			const currentTimeClassExistsAfterTheChange =
-				controls.querySelector('.current-time');
-			const totalTimeClassExistsAfterTheChange =
-				controls.querySelector('.total-time');
+			const currentTimeClassExistsAfterTheChange = getCurrentTimeElement();
+			const totalTimeClassExistsAfterTheChange = getTotalTimeElement();
 
 			expect(currentTimeClassExistsBeforeTheChange).toBeTruthy();
 			expect(totalTimeClassExistsBeforeTheChange).toBeTruthy();
@@ -239,7 +239,7 @@ describe('vwc-audio-player', () => {
 
 			await elementUpdated(element);
 			expect(
-				getBaseElement(element).querySelector('.current-time')?.textContent
+				getCurrentTimeElement()?.textContent
 			).toEqual('3:20');
 		});
 	});
