@@ -45,11 +45,24 @@
       <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/pages/viewpage.action?spaceKey=VIVID&title=Dial+pad" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="check" connotation="succes"></vwc-button>
+    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/dial-pad/" connotation="success"></vwc-button>
+      <vwc-button label="AT in progress" icon="more-horizontal-line" href="/components/dial-pad/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      Multi-select Combobox
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <div style="padding: 16px; display: inline-flex; gap: 16px; align-items: center;">
+        <vwc-icon name="more-horizontal-line"></vwc-icon>
+        <strong>In progress</strong>
+      </div>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell></vwc-data-grid-cell>
+    <vwc-data-grid-cell></vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
