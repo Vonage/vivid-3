@@ -70,6 +70,13 @@
 		user-select: none;
 	}
 
+	&:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined) {
+		--vvd-button-accent-firm: var(--vvd-button-accent-primary);
+		--vvd-button-cta-firm: var(--vvd-button-cta-primary);
+		--vvd-button-success-firm: var(--vvd-button-success-primary);
+		--vvd-button-alert-firm: var(--vvd-button-alert-primary);
+	}
+
 	&:not(:disabled) {
 		cursor: pointer;
 	}

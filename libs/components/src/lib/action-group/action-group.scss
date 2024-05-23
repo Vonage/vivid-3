@@ -22,6 +22,8 @@
 	@include connotation.connotation(action-group);
 	@include appearance.appearance;
 
+	--vvd-action-group-accent-firm: var(--vvd-action-group-accent-primary);
+
 	position: relative;
 	display: flex;
 	box-sizing: border-box;

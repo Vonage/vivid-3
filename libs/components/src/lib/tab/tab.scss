@@ -6,7 +6,7 @@
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
-	$shades: primary primary-text firm faint fierce pale,
+	$shades: primary-text firm faint fierce pale soft,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -36,6 +36,9 @@
 
 	@include appearance.appearance;
 	@include connotation.connotation(tab);
+
+	--vvd-tab-cta-firm: var(--vvd-tab-cta-primary);
+	--vvd-tab-accent-firm: var(--vvd-tab-accent-primary);
 
 	position: relative;
 	display: flex;

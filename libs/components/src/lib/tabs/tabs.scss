@@ -4,7 +4,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
-	$shades: primary firm,
+	$shades: firm,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -25,6 +25,9 @@
 .base {
 	@include appearance.appearance;
 	@include connotation.connotation(tabs);
+
+	--vvd-tabs-cta-firm: var(--vvd-tabs-cta-primary);
+	--vvd-tabs-accent-firm: var(--vvd-tabs-accent-primary);
 
 	display: grid;
 	box-sizing: border-box;

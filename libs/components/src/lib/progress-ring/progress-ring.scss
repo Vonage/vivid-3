@@ -4,7 +4,7 @@
 @use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
-	$shades: primary firm,
+	$shades: firm,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -37,6 +37,11 @@ $default-size: list.nth($size-keys, 7);
 .base {
 	@include connotation.connotation(progress-ring);
 	@include appearance.appearance;
+
+	--vvd-progress-ring-accent-firm: var(--vvd-progress-ring-accent-primary);
+	--vvd-progress-ring-cta-firm: var(--vvd-progress-ring-cta-primary);
+	--vvd-progress-ring-success-firm: var(--vvd-progress-ring-success-primary);
+	--vvd-progress-ring-alert-firm: var(--vvd-progress-ring-alert-primary);
 
 	@include utils.spread-list-selectors('.size', $size-keys, $default-size)
 		using($value) {
