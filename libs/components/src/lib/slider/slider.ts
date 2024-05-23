@@ -96,10 +96,10 @@ export class Slider extends FastSlider {
 	constructor() {
 		super();
 
-		// @ts-ignore
-		const originalHandleMouseDown = this.handleMouseDown;
-		// @ts-ignore
-		this.handleMouseDown = (e: MouseEvent) => {
+		const internals = this as any;
+
+		const originalHandleMouseDown = internals.handleMouseDown;
+		internals.handleMouseDown = (e: MouseEvent) => {
 			this.#isNonVisibleFocus = true;
 			originalHandleMouseDown(e);
 			this.#isNonVisibleFocus = false;
@@ -108,18 +108,15 @@ export class Slider extends FastSlider {
 			}
 		};
 
-		// @ts-ignore
-		const originalHandleThumbMouseDown = this.handleThumbMouseDown;
-		// @ts-ignore
-		this.handleThumbMouseDown = (e: MouseEvent) => {
+		const originalHandleThumbMouseDown = internals.handleThumbMouseDown;
+		internals.handleThumbMouseDown = (e: MouseEvent) => {
 			this.#isNonVisibleFocus = true;
 			originalHandleThumbMouseDown(e);
 			this.#isNonVisibleFocus = false;
 		};
 
-		const originalKeypressHandler = this.keypressHandler;
-		// @ts-ignore
-		this.keypressHandler = (e: KeyboardEvent) => {
+		const originalKeypressHandler = internals.keypressHandler;
+		internals.keypressHandler = (e: KeyboardEvent) => {
 			this._focusVisible = true;
 			originalKeypressHandler(e);
 		};
