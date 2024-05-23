@@ -133,26 +133,38 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the too
 
 ## CSS Variables
 
-### Inline Size
+### Max Inline Size
 
-Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
+Use the `--tooltip-max-inline-size` variable to set the tooltip's max inline size.
 
-- Default: `auto`
+- Default: `none`
 
-```html preview center 230px
+<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
+
+We will change the default value of `--tooltip-max-inline-size` to `30ch` in a future major version of Vivid to limit the tooltip's width by default.
+
+</vwc-note>
+
+```html preview center 300px
 <style>
 	.tooltip {
-		--tooltip-inline-size: 160px;
+		--tooltip-max-inline-size: 30ch;
 	}
 </style>
 
-<vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
 <vwc-tooltip
-	anchor="button"
-	text="I'm a tooltip with long text so my inline size is 160px"
+	text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device."
 	class="tooltip"
-></vwc-tooltip>
+>
+	<vwc-button slot="anchor" icon="info-line" shape="pill"></vwc-button>
+</vwc-tooltip>
 ```
+
+### Inline Size
+
+The `--tooltip-inline-size` CSS variable is deprecated (as of 05/24). Use `--tooltip-max-inline-size` instead to limit the inline size.
+`--tooltip-inline-size` is still functional in the component but will be removed in a future major release.
+This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
 ## Caveat
 
