@@ -240,3 +240,4 @@ export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);
 
 // TODO::add paused to documentation
+// TODO::remove all `_` and set them as private (not always trivial)

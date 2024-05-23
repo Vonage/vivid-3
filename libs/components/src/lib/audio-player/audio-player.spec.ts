@@ -274,9 +274,10 @@ describe('vwc-audio-player', () => {
 		const getSkipForwardButton = () =>
 			getBaseElement(element).querySelector('.forward') as Button | null;
 
-			beforeEach(() => {
-				setAudioElementDuration(60);
-			});
+		beforeEach(() => {
+			setAudioElementDuration(60);
+		});
+
 		it('should hide skip buttons when skip-by is unset', async function () {
 			expect(getSkipBackwardButton()).toBe(null);
 			expect(getSkipForwardButton()).toBe(null);
@@ -290,7 +291,7 @@ describe('vwc-audio-player', () => {
 			expect(getSkipForwardButton()).toBe(null);
 		});
 
-		it('should not show skip buttons when skip-by is set to an invalid value', async function () {
+		it('should hide skip buttons when skip-by is set to an invalid value', async function () {
 			element.skipBy = '33' as MediaSkipBy;
 			await elementUpdated(element);
 
@@ -298,7 +299,7 @@ describe('vwc-audio-player', () => {
 			expect(getSkipForwardButton()).toBe(null);
 		});
 
-		it('should set buttons when MediaSkipBy not set to Zero', async function () {
+		it('should show skip buttons when value is a nonzero MediaSkipBy', async function () {
 			element.skipBy = MediaSkipBy.Ten;
 			await elementUpdated(element);
 
@@ -329,6 +330,7 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should pause when skipping to the end', async function () {
+			element.paused = false;
 			element.skipBy = MediaSkipBy.Five;
 			nativeAudioElement.currentTime = 55;
 			await elementUpdated(element);
@@ -336,16 +338,14 @@ describe('vwc-audio-player', () => {
 			getSkipForwardButton()?.click();
 
 			await elementUpdated(element);
-			expect(nativeAudioElement.paused).toEqual(true);
+			expect(element.paused).toEqual(true);
 		});
 
 		it.each([
-			[MediaSkipBy.Five, '5-sec-backward-line'],
-			[MediaSkipBy.Ten, '10-sec-backward-line'],
-			[MediaSkipBy.Thirty, '30-sec-backward-line'],
-		])(
-			'should change the backward icon accordingly when skipBy is %s',
-			async function (skipBy, icon) {
+			['5-sec-backward-line', MediaSkipBy.Five],
+			['10-sec-backward-line', MediaSkipBy.Ten],
+			['30-sec-backward-line', MediaSkipBy.Thirty],
+		])('should change the backward icon to %s when skipBy is %s', async function (icon, skipBy) {
 				element.skipBy = skipBy;
 				await elementUpdated(element);
 
@@ -354,16 +354,14 @@ describe('vwc-audio-player', () => {
 		);
 
 		it.each([
-			[MediaSkipBy.Five, '5-sec-forward-line'],
-			[MediaSkipBy.Ten, '10-sec-forward-line'],
-			[MediaSkipBy.Thirty, '30-sec-forward-line'],
-		])(
-			'should change the forward icon accordingly when skipBy is %s',
-			async function (skipBy, icon) {
-				element.skipBy = skipBy;
-				await elementUpdated(element);
+			['5-sec-forward-line', MediaSkipBy.Five],
+			['10-sec-forward-line', MediaSkipBy.Ten],
+			['30-sec-forward-line', MediaSkipBy.Thirty],
+		])('should change the forward icon to %s when skipBy is %s', async function (icon, skipBy) {
+					element.skipBy = skipBy;
+					await elementUpdated(element);
 
-				expect(getSkipForwardButton()!.icon).toEqual(icon);
+					expect(getSkipForwardButton()!.icon).toEqual(icon);
 			}
 		);
 	});
