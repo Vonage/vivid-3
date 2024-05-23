@@ -1,5 +1,5 @@
 import type { ViewTemplate } from '@microsoft/fast-element';
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -84,7 +84,7 @@ function renderSlider(context: ElementDefinitionContext) {
 }
 
 function renderTimestamp() {
-	return html` <div class="time-stamp" ${ref('_timeStampEl')}>
+	return html` <div class="time-stamp">
 		<span class="current-time">0:00</span>
 		<span>/</span>
 		<span class="total-time">0:00</span>

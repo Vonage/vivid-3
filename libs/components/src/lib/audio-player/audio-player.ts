@@ -119,10 +119,9 @@ export class AudioPlayer extends FoundationElement {
 
 	#playerEl = new Audio();
 
-	/**
-	 * @internal
-	 */
-	_timeStampEl!: HTMLDivElement;
+	get #timeStampEl(): HTMLDivElement | null | undefined {
+		return this.shadowRoot?.querySelector('.time-stamp');
+	}
 
 	constructor() {
 		super();
@@ -187,8 +186,8 @@ export class AudioPlayer extends FoundationElement {
 			this.paused = true;
 		}
 
-		if (this._timeStampEl) {
-			currentTime = this._timeStampEl.querySelector('.current-time');
+		if (this.#timeStampEl) {
+			currentTime = this.#timeStampEl.querySelector('.current-time');
 			if (currentTime) currentTime.textContent = formatTime(current);
 		}
 	}
@@ -199,8 +198,8 @@ export class AudioPlayer extends FoundationElement {
 	#updateTotalTime = () => {
 		let totalTime: HTMLElement | null;
 		if (this.#playerEl) this.duration = this.#playerEl.duration;
-		if (this._timeStampEl) {
-			totalTime = this._timeStampEl.querySelector('.total-time');
+		if (this.#timeStampEl) {
+			totalTime = this.#timeStampEl.querySelector('.total-time');
 			if (totalTime)
 				totalTime.textContent = formatTime(this.#playerEl.duration);
 		}
