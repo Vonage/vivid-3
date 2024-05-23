@@ -9,6 +9,9 @@ import {
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Size } from '../enums';
+import { setLocale } from '../../shared/localization';
+import deDE from '../../locales/de-DE';
+import enUS from '../../locales/en-US';
 import { FilePicker } from './file-picker';
 import { filePickerDefinition } from './definition';
 import '.';
@@ -257,7 +260,50 @@ describe('vwc-file-picker', () => {
 		);
 	});
 
-	/* Failing because element with role of button has no accessible name: aria-label */
+	describe.each([
+		{
+			lang: 'en-US',
+			locale: enUS,
+			localizedErrorMessage: 'File is too big (2.5MiB). Max filesize: 1.5MiB.',
+			localizedFileSize: '0.1 MB',
+		},
+		{
+			lang: 'de-DE',
+			locale: deDE,
+			localizedErrorMessage:
+				'Die Datei ist zu groß (2,5MiB). Maximale Dateigröße: 1,5MiB.',
+			localizedFileSize: '0,1 MB',
+		},
+	])(
+		'localized error messages for $lang',
+		function ({ locale, localizedErrorMessage, localizedFileSize }) {
+			beforeEach(async () => {
+				element.remove();
+				setLocale(locale);
+				element = fixture(
+					`<${COMPONENT_TAG}>Drag & drop or click to upload</${COMPONENT_TAG}>`
+				) as FilePicker;
+			});
+
+			it('should localize error message for oversize file', async function () {
+				element.maxFileSize = 1.5;
+				const file = await generateFile('london.png', 2.5);
+				addFiles([file]);
+
+				expect(getErrorMessage(0)).toBe(localizedErrorMessage);
+			});
+
+			it('should localize displayed file size', async function () {
+				const file = await generateFile('london.png', 0.1);
+				addFiles([file]);
+
+				expect(
+					element.shadowRoot!.querySelector('[data-dz-size]')!.textContent
+				).toBe(localizedFileSize);
+			});
+		}
+	);
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Test label';

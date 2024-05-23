@@ -31,7 +31,10 @@ To give extra context to the number that is being displayed, use the `helper-tex
 - Default: `undefined`
 
 ```html preview
-<vwc-dial-pad helper-text="58 Meeting Room - Extension"></vwc-dial-pad>
+<vwc-dial-pad
+	helper-text="58 Meeting Room - Extension"
+	value="4734"
+></vwc-dial-pad>
 ```
 
 ### Placeholder
