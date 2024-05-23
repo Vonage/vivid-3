@@ -17,7 +17,7 @@ function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${(x) =>
-		x._togglePlay()}"
+		x.paused = !x.paused}"
 	icon="${(x) => (x.paused ? 'play-solid' : 'pause-solid')}"
 	aria-label="${(x) =>
 		x.paused

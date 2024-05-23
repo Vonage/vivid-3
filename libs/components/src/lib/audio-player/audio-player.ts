@@ -132,17 +132,13 @@ export class AudioPlayer extends FoundationElement {
 		document.addEventListener('mouseup', this._rewind);
 	}
 
-	/**
-	 * @internal
-	 */
-	_togglePlay() {
+	pausedChanged() {
 		if (this.paused) {
+			this._playerEl?.pause();
+		} else {
 			this._updateProgress();
 			this._playerEl!.play();
-		} else {
-			this._playerEl!.pause();
 		}
-		this.paused = !this.paused;
 	}
 
 	/**
