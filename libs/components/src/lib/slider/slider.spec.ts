@@ -7,9 +7,12 @@ import {
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
+import { setLocale } from '../../shared/localization';
+import deDE from '../../locales/de-DE';
+import enUS from '../../locales/en-US';
 import { Slider } from './slider';
-import '.';
 import { sliderDefinition } from './definition';
+import '.';
 
 const COMPONENT_TAG = 'vwc-slider';
 
@@ -190,7 +193,6 @@ describe('vwc-slider', () => {
 	describe('a11y', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
-			element.ariaValuetext = '5 bits';
 			element.min = 3;
 			element.max = 10;
 			element.value = '5';
@@ -201,7 +203,10 @@ describe('vwc-slider', () => {
 			expect(element.getAttribute('role')).toBe('presentation');
 		});
 
-		it('should set the correct a11y attributes', () => {
+		it('should set the correct a11y attributes', async () => {
+			element.ariaValuetext = '5 bits';
+			await elementUpdated(element);
+
 			const control = getControlElement(element);
 			expect(control?.getAttribute('role')).toBe('slider');
 			expect(control?.getAttribute('aria-label')).toBe('Label');
@@ -210,6 +215,29 @@ describe('vwc-slider', () => {
 			expect(control?.getAttribute('aria-valuetext')).toBe('5 bits');
 			expect(control?.getAttribute('aria-valuenow')).toBe('5');
 			expect(control?.getAttribute('aria-orientation')).toBe('horizontal');
+		});
+
+		describe('valueTextFormatter', () => {
+			it('should format aria-valuetext', async () => {
+				element.valueTextFormatter = (value) => `${value} bits`;
+				await elementUpdated(element);
+
+				expect(getControlElement(element).getAttribute('aria-valuetext')).toBe(
+					'5 bits'
+				);
+			});
+
+			describe('default function', () => {
+				it('should format the value with period for a respective locale', () => {
+					setLocale(enUS);
+					expect(element.valueTextFormatter('1.1')).toBe('1.1');
+				});
+
+				it('should format the value with comma for a respective locale', () => {
+					setLocale(deDE);
+					expect(element.valueTextFormatter('1.1')).toBe('1,1');
+				});
+			});
 		});
 
 		it('should pass html a11y test', async () => {

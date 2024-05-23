@@ -72,7 +72,7 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
-	//TODO: add play-pause on enter on Slider
+
 	return html<AudioPlayer>`<${sliderTag}
 	${ref('_sliderEl')} class="slider"
 	aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
@@ -94,29 +94,32 @@ export const AudioPlayerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
-	return html<AudioPlayer>` <div
-		class="base ${getClasses}"
-		@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
-		@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
-		@mousedown="${(x, c) => x._handleSliderEvent(c.event)}"
-	>
-		<div class="controls">
-			${when(
-				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
-				renderBackwardSkipButtons(context)
-			)}
-			${renderButton(context)}
-			${when(
-				(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
-				renderForwardSkipButtons(context)
-			)}
-			${when((x) => !x.notime, renderTimestamp())} ${renderSlider(context)}
+	return html<AudioPlayer>` <div class="wrapper">
+		<div
+			class="base ${getClasses}"
+			@keyup="${(x, c) => x._handleSliderEvent(c.event)}"
+			@keydown="${(x, c) => x._handleSliderEvent(c.event)}"
+			@mousedown="${(x, c) => x._handleSliderEvent(c.event)}"
+		>
+			<div class="controls">
+				${when(
+					(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
+					renderBackwardSkipButtons(context)
+				)}
+				${renderButton(context)}
+				${when(
+					(x) => x.skipBy && x.skipBy != MediaSkipBy.Zero,
+					renderForwardSkipButtons(context)
+				)}
+				${when((x) => !x.notime, renderTimestamp())}
+			</div>
+			${renderSlider(context)}
+			<audio
+				${ref('_playerEl')}
+				src="${(x) => x.src}"
+				@timeupdate="${(x) => x._updateProgress()}"
+				@loadedmetadata="${(x) => x._updateTotalTime()}"
+			></audio>
 		</div>
-		<audio
-			${ref('_playerEl')}
-			src="${(x) => x.src}"
-			@timeupdate="${(x) => x._updateProgress()}"
-			@loadedmetadata="${(x) => x._updateTotalTime()}"
-		></audio>
 	</div>`;
 };

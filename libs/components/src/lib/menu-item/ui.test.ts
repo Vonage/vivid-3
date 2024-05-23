@@ -12,7 +12,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<style>
 			#wrapper {
 				width: 250px;
-				height: 2000px;
+				height: 2300px;
 				position: relative;
 				box-sizing: border-box;
 			}
@@ -91,9 +91,18 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-menu-item connotation='cta' role='menuitemradio' text="Radio 2.1" checked></vwc-menu-item>
 			<vwc-menu-item connotation='cta' role='menuitemradio' text="Radio 2.2"></vwc-menu-item>
 			<vwc-menu-item connotation='cta' icon='layout-1-solid' role='menuitemcheckbox' text="Checkbox 1" checked></vwc-menu-item>
+			<vwc-divider></vwc-divider>
+			<vwc-menu-item disabled text="Disabled item"></vwc-menu-item>
+			<vwc-menu-item disabled icon="home" text="primary text" text-secondary="secondary text"></vwc-menu-item>
+			<vwc-menu-item disabled connotation="cta" icon="home" text="primary text" text-secondary="secondary text"></vwc-menu-item>
+			<vwc-menu-item disabled role="menuitemcheckbox" text="Menu item 1"></vwc-menu-item>
+			<vwc-menu-item disabled role="menuitemcheckbox" checked text="Menu item 1"></vwc-menu-item>
+			<vwc-menu-item disabled role="menuitemradio" text="Menu item 1"></vwc-menu-item>
+			<vwc-menu-item disabled role="menuitemradio" checked text="Menu item 1"></vwc-menu-item>
+			<vwc-menu-item disabled role="menuitemcheckbox" checked check-appearance="tick-only" text="Menu item 1"></vwc-menu-item>
 		</vwc-menu>`;
 
-	page.setViewportSize({ width: 200, height: 2000 });
+	page.setViewportSize({ width: 200, height: 2300 });
 
 	await loadComponents({
 		page,

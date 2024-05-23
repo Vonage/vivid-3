@@ -3,6 +3,10 @@ import type { Locale } from '../shared/localization/Locale';
 
 /* eslint-disable max-len */
 const jaJP: Locale = {
+	lang: 'ja-JP',
+	common: {
+		useCommaAsDecimalSeparator: false,
+	},
 	datePicker: {
 		months: {
 			name: [

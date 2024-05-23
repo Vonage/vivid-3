@@ -4,6 +4,27 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.57.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.56.0...vivid-v3.57.0) (2024-05-22)
+
+
+### Features
+
+* **fab:** announcement connotation (VIV-1726) ([#1718](https://github.com/Vonage/vivid-3/issues/1718)) ([a873069](https://github.com/Vonage/vivid-3/commit/a873069357e6f1dd5d438cee8c6b2139cd4ba1c1))
+
+## [3.56.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.55.0...vivid-v3.56.0) (2024-05-20)
+
+
+### Features
+
+* **buttons:** add ghost-light appearance (VIV-1767) ([#1712](https://github.com/Vonage/vivid-3/issues/1712)) ([cc7f9cc](https://github.com/Vonage/vivid-3/commit/cc7f9cc400a1b39ab2d6cb3fcd851bda2aa3fee2))
+* **components:** add de-DE locale (VIV-1761) ([#1713](https://github.com/Vonage/vivid-3/issues/1713)) ([27f3164](https://github.com/Vonage/vivid-3/commit/27f31643682062793203ba7c7745edfe8e404225))
+
+
+### Bug Fixes
+
+* **audio-player:** css for responsive extended audio (VIV-1745) ([#1681](https://github.com/Vonage/vivid-3/issues/1681)) ([667b2ba](https://github.com/Vonage/vivid-3/commit/667b2bafb0c7cc0f43ac0a0580c74cf2feb2a396))
+* **menu-item:** fix disabled style (VIV-1772) ([#1714](https://github.com/Vonage/vivid-3/issues/1714)) ([faa3084](https://github.com/Vonage/vivid-3/commit/faa3084d5dce78e914f4d95d8c4277f0ec536fb0))
+
 ## [3.55.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.54.0...vivid-v3.55.0) (2024-05-09)
 
 
