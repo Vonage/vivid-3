@@ -16,6 +16,12 @@ export type AudioPlayerConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
+function formatTime(time: number) {
+	const min = Math.floor(time / 60);
+	const sec = Math.floor(time % 60);
+	return min + ':' + (sec < 10 ? '0' + sec : sec);
+}
+
 /**
  * Converter to filter out invalid values for the skip-by attribute.
  */
@@ -175,7 +181,7 @@ export class AudioPlayer extends FoundationElement {
 
 		if (this._sliderEl) {
 			this._sliderEl.value = percent.toString();
-			this._sliderEl.ariaValuetext = this._formatTime(current);
+			this._sliderEl.ariaValuetext = formatTime(current);
 		}
 
 		if (percent === 100) {
@@ -184,7 +190,7 @@ export class AudioPlayer extends FoundationElement {
 
 		if (this._timeStampEl) {
 			currentTime = this._timeStampEl.querySelector('.current-time');
-			if (currentTime) currentTime.textContent = this._formatTime(current);
+			if (currentTime) currentTime.textContent = formatTime(current);
 		}
 	}
 
@@ -197,7 +203,7 @@ export class AudioPlayer extends FoundationElement {
 		if (this._timeStampEl) {
 			totalTime = this._timeStampEl.querySelector('.total-time');
 			if (totalTime)
-				totalTime.textContent = this._formatTime(this.#playerEl.duration);
+				totalTime.textContent = formatTime(this.#playerEl.duration);
 		}
 	}
 
@@ -226,14 +232,6 @@ export class AudioPlayer extends FoundationElement {
 		return true;
 	}
 
-	/**
-	 * @internal
-	 */
-	_formatTime(time: number) {
-		const min = Math.floor(time / 60);
-		const sec = Math.floor(time % 60);
-		return min + ':' + (sec < 10 ? '0' + sec : sec);
-	}
 }
 
 export interface AudioPlayer extends Localized {}
