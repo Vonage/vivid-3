@@ -113,10 +113,9 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@observable duration?: number;
 
-	/**
-	 * @internal
-	 */
-	_sliderEl!: Slider;
+	get #sliderEl(): Slider | null | undefined {
+		return this.shadowRoot?.querySelector('.slider');
+	}
 
 	#playerEl = new Audio();
 
@@ -179,9 +178,9 @@ export class AudioPlayer extends FoundationElement {
 		const current: number = this.#playerEl.currentTime;
 		const percent = (current / this.#playerEl.duration) * 100;
 
-		if (this._sliderEl) {
-			this._sliderEl.value = percent.toString();
-			this._sliderEl.ariaValuetext = formatTime(current);
+		if (this.#sliderEl) {
+			this.#sliderEl.value = percent.toString();
+			this.#sliderEl.ariaValuetext = formatTime(current);
 		}
 
 		if (percent === 100) {
@@ -213,7 +212,7 @@ export class AudioPlayer extends FoundationElement {
 	_rewind = () => {
 		if (this.#playerEl) {
 			this.#playerEl.currentTime =
-				this.#playerEl.duration * (Number(this._sliderEl.value) / 100);
+				this.#playerEl.duration * (Number(this.#sliderEl!.value) / 100);
 		}
 	};
 
@@ -221,7 +220,7 @@ export class AudioPlayer extends FoundationElement {
 	 * @internal
 	 */
 	_handleSliderEvent(event: Event) {
-		if (event.target === this._sliderEl) {
+		if (event.target === this.#sliderEl) {
 			this.paused = true;
 			if (this.#playerEl) {
 				this.#playerEl.pause();

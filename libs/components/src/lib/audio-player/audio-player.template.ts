@@ -73,12 +73,13 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 function renderSlider(context: ElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
-	return html<AudioPlayer>`<${sliderTag}
-	${ref('_sliderEl')} class="slider"
-	aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-	value="0" max="100"
-	connotation="${(x) => x.connotation}"
-	?disabled="${(x) => x.disabled || !x.duration}">
+	return html<AudioPlayer>`
+	<${sliderTag}
+		class="slider"
+		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
+		value="0" max="100"
+		connotation="${(x) => x.connotation}"
+		?disabled="${(x) => x.disabled || !x.duration}">
 	</${sliderTag}>`;
 }
 
