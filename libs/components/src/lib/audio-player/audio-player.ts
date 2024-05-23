@@ -131,13 +131,13 @@ export class AudioPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		document.addEventListener('mouseup', this._rewind);
+		document.addEventListener('mouseup', this.#rewind);
 		this.#setInteractionListeners(true);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		document.addEventListener('mouseup', this._rewind);
+		document.addEventListener('mouseup', this.#rewind);
 		this.#setInteractionListeners(false);
 	}
 
@@ -147,6 +147,7 @@ export class AudioPlayer extends FoundationElement {
 		this.shadowRoot!.querySelector('.base')![action]('keydown', this.#handleSliderEvent);
 		this.shadowRoot!.querySelector('.base')![action]('mousedown', this.#handleSliderEvent);
 	}
+
 	srcChanged() {
 		(this.#playerEl.src as any) = this.src;
 	}
@@ -216,7 +217,7 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_rewind = () => {
+	#rewind = () => {
 		if (this.#playerEl) {
 			this.#playerEl.currentTime =
 				this.#playerEl.duration * (Number(this.#sliderEl!.value) / 100);
@@ -232,7 +233,7 @@ export class AudioPlayer extends FoundationElement {
 			if (this.#playerEl) {
 				this.#playerEl.pause();
 			}
-			this._rewind();
+			this.#rewind();
 		}
 
 		return true;
@@ -244,4 +245,4 @@ export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);
 
 // TODO::add paused to documentation
-// TODO::remove all `_` and set them as private (not always trivial)
+// TODO::make _onSkipButtonClick private
