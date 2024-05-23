@@ -8,7 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
-import { AudioPlayer } from './audio-player';
+import { AudioPlayer, SKIP_DIRECTIONS } from './audio-player';
 
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
 	classNames(['disabled', Boolean(disabled) || !duration]);
@@ -34,7 +34,7 @@ function renderBackwardSkipButtons(context: ElementDefinitionContext) {
 
 	return html<AudioPlayer>`
 		<${buttonTag} class="skip backward" @click="${(x) =>
-		x._onSkipButtonClick(false)}"
+		x.skip(SKIP_DIRECTIONS.BACKWARD)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-backward-line'
@@ -54,7 +54,7 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip forward" @click="${(x) => x._onSkipButtonClick(true)}"
+		<${buttonTag} class="skip forward" @click="${(x) => x.skip(SKIP_DIRECTIONS.FORWARD)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-forward-line'

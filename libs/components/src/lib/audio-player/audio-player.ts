@@ -16,6 +16,13 @@ export type AudioPlayerConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
+export const SKIP_DIRECTIONS = {
+	FORWARD: 1,
+	BACKWARD: -1
+};
+
+export type SKIP_DIRECTIONS_TYPE = typeof SKIP_DIRECTIONS[keyof typeof SKIP_DIRECTIONS];
+
 function formatTime(time: number) {
 	const min = Math.floor(time / 60);
 	const sec = Math.floor(time % 60);
@@ -164,10 +171,9 @@ export class AudioPlayer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_onSkipButtonClick(isForward: boolean) {
+	skip(skipDirection: SKIP_DIRECTIONS_TYPE) {
 		if (this.#playerEl) {
 			const currentTime = this.#playerEl.currentTime;
-			const skipDirection = isForward ? 1 : -1; // Positive for forward, negative for backward
 			const skipValue = parseInt(this.skipBy!) * skipDirection;
 			const newTime = currentTime + skipValue;
 
@@ -178,9 +184,7 @@ export class AudioPlayer extends FoundationElement {
 			this.#updateProgress(); // Update progress after skipping
 		}
 	}
-	/**
-	 * @internal
-	 */
+
 	#updateProgress = () =>  {
 		let currentTime: HTMLElement | null;
 		const current: number = this.#playerEl.currentTime;
@@ -201,9 +205,6 @@ export class AudioPlayer extends FoundationElement {
 		}
 	}
 
-	/**
-	 * @internal
-	 */
 	#updateTotalTime = () => {
 		let totalTime: HTMLElement | null;
 		if (this.#playerEl) this.duration = this.#playerEl.duration;
@@ -214,9 +215,6 @@ export class AudioPlayer extends FoundationElement {
 		}
 	}
 
-	/**
-	 * @internal
-	 */
 	#rewind = () => {
 		if (this.#playerEl) {
 			this.#playerEl.currentTime =
@@ -224,9 +222,6 @@ export class AudioPlayer extends FoundationElement {
 		}
 	};
 
-	/**
-	 * @internal
-	 */
 	#handleSliderEvent = (event: Event) => {
 		if (event.target === this.#sliderEl) {
 			this.paused = true;
@@ -245,4 +240,4 @@ export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);
 
 // TODO::add paused to documentation
-// TODO::make _onSkipButtonClick private
+// TODO::add skip method to documentation
