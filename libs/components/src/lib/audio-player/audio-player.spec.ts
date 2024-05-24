@@ -44,6 +44,7 @@ describe('vwc-audio-player', () => {
 	let element: AudioPlayer;
 	let originalAudio: any;
 	let nativeAudioElement: HTMLAudioElement;
+	let pauseButton: Button;
 
 	beforeAll(() => {
 		class AudioMock extends Audio {
@@ -79,6 +80,8 @@ describe('vwc-audio-player', () => {
 		jest.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
 			jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
 		});
+
+		pauseButton = getPauseButtonElement();
 	});
 
 
@@ -207,10 +210,17 @@ describe('vwc-audio-player', () => {
 			await element.play();
 			expect(element.paused).toBe(false);
 		});
+
+		it('should change button icon to "pause-solid" when played', async function () {
+			element.play();
+			await elementUpdated(element);
+			expect(pauseButton.icon).toEqual('pause-solid');
+		});
 	});
 
-	describe('paused', () => {
-		it('should call native pause', () => {
+	describe('pause', () => {
+		it('should call native pause', async () => {
+			await element.play();
 			element.pause();
 			expect(nativeAudioElement.pause).toHaveBeenCalled();
 		});
@@ -219,13 +229,19 @@ describe('vwc-audio-player', () => {
 			element.pause();
 			expect(element.paused).toBe(true);
 		});
+
+		it('should change button icon to "play-solid" when called', async function () {
+			element.play();
+			await elementUpdated(element);
+			element.pause();
+			setAudioElementDuration(60);
+			await elementUpdated(element);
+
+			expect(pauseButton.icon).toEqual('play-solid');
+		});
 	});
 
 	describe('paused', function () {
-		let pauseButton: Button;
-		beforeEach(() => {
-			pauseButton = getPauseButtonElement();
-		});
 
 		it('should init as true', () => {
 			expect(element.paused).toEqual(true);
@@ -238,18 +254,6 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(element.paused).toEqual(false);
-		});
-
-		it('should change button icon to "play-solid" when paused is true', async function () {
-			setAudioElementDuration(60);
-
-			expect(pauseButton.icon).toEqual('play-solid');
-		});
-
-		it('should change button icon to "pause-solid" when paused is false', async function () {
-			element.play();
-			await elementUpdated(element);
-			expect(pauseButton.icon).toEqual('pause-solid');
 		});
 
 		it.each(['keyup', 'keydown', 'mousedown'])(

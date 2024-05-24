@@ -29,6 +29,8 @@ function formatTime(time: number) {
 	return min + ':' + (sec < 10 ? '0' + sec : sec);
 }
 
+const PAUSE = true;
+const PLAY = false;
 /**
  * Converter to filter out invalid values for the skip-by attribute.
  */
@@ -110,7 +112,7 @@ export class AudioPlayer extends FoundationElement {
 
 	get paused(): boolean {
 		Observable.track(this, 'paused');
-		return this.#playerEl ? this.#playerEl.paused : true;
+		return this.#playerEl.paused;
 	}
 
 	set paused(value) {
@@ -142,7 +144,7 @@ export class AudioPlayer extends FoundationElement {
 	override connectedCallback(): void {
 		super.connectedCallback();
 		document.addEventListener('mouseup', this.#rewind);
-		this.#setInteractionListeners(true);
+		this.#setInteractionListeners();
 		this.#setPausedState();
 	}
 
@@ -153,11 +155,11 @@ export class AudioPlayer extends FoundationElement {
 	}
 
 	play() {
-		this.#pausedChanged();
+		this.#pausedChanged(PLAY);
 	}
 
 	pause() {
-		this.#playerEl.pause();
+		this.#pausedChanged(PAUSE);
 	}
 
  	#setInteractionListeners(add = true) {
@@ -171,7 +173,10 @@ export class AudioPlayer extends FoundationElement {
 		(this.#playerEl.src as any) = this.src;
 	}
 
-	#pausedChanged = () => {
+	#pausedChanged = (pausing = PAUSE) => {
+		if (pausing === this.paused) {
+			return;
+		}
 		if (!this.paused) {
 			this.#playerEl.pause();
 		} else {
@@ -181,9 +186,6 @@ export class AudioPlayer extends FoundationElement {
 		this.#setPausedState();
 	}
 
-	/**
-	 * @internal
-	 */
 	skip(skipDirection: SKIP_DIRECTIONS_TYPE) {
 		if (this.#playerEl) {
 			const currentTime = this.#playerEl.currentTime;
@@ -237,10 +239,7 @@ export class AudioPlayer extends FoundationElement {
 
 	#handleSliderEvent = (event: Event) => {
 		if (event.target === this.#sliderEl) {
-			this.paused = true;
-			if (this.#playerEl) {
-				this.#playerEl.pause();
-			}
+			this.pause();
 			this.#rewind();
 		}
 
@@ -260,3 +259,4 @@ applyMixins(AudioPlayer, Localized);
 // TODO::add `play` and `pause` methods to documentation
 // TODO::consider the document event listener - could we have a bug there? Anyway, cover it with tests
 // TODO::is "duration" internal?
+// TODO::handling the slider drag is faulty and buggy - should imitate the native behavior
