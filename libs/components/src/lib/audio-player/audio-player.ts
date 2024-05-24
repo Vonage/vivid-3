@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable, type ValueConverter } from '@microsoft/fast-element';
+import { attr, Observable, observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
@@ -108,11 +108,14 @@ export class AudioPlayer extends FoundationElement {
 	})
 	skipBy?: MediaSkipBy;
 
-	/**
-	 *
-	 * @internal
-	 */
-	@observable paused = true;
+	get paused(): boolean {
+		Observable.track(this, 'paused');
+		return this.#playerEl ? this.#playerEl.paused : true;
+	}
+
+	set paused(value) {
+		value;
+	}
 
 	/**
 	 *
@@ -140,6 +143,7 @@ export class AudioPlayer extends FoundationElement {
 		super.connectedCallback();
 		document.addEventListener('mouseup', this.#rewind);
 		this.#setInteractionListeners(true);
+		this.#setPausedState();
 	}
 
 	override disconnectedCallback() {
@@ -148,7 +152,15 @@ export class AudioPlayer extends FoundationElement {
 		this.#setInteractionListeners(false);
 	}
 
-	#setInteractionListeners(add = true) {
+	play() {
+		this.#pausedChanged();
+	}
+
+	pause() {
+		this.#playerEl.pause();
+	}
+
+ 	#setInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
 		this.shadowRoot!.querySelector('.base')![action]('keyup', this.#handleSliderEvent);
 		this.shadowRoot!.querySelector('.base')![action]('keydown', this.#handleSliderEvent);
@@ -159,13 +171,14 @@ export class AudioPlayer extends FoundationElement {
 		(this.#playerEl.src as any) = this.src;
 	}
 
-	pausedChanged = () => {
-		if (this.paused) {
+	#pausedChanged = () => {
+		if (!this.paused) {
 			this.#playerEl.pause();
 		} else {
 			this.#updateProgress();
 			this.#playerEl!.play();
 		}
+		this.#setPausedState();
 	}
 
 	/**
@@ -196,7 +209,7 @@ export class AudioPlayer extends FoundationElement {
 		}
 
 		if (percent === 100) {
-			this.paused = true;
+			this.pause();
 		}
 
 		if (this.#timeStampEl) {
@@ -234,6 +247,9 @@ export class AudioPlayer extends FoundationElement {
 		return true;
 	}
 
+	#setPausedState = () => {
+		Observable.notify(this, 'paused');
+	};
 }
 
 export interface AudioPlayer extends Localized {}
@@ -241,3 +257,6 @@ applyMixins(AudioPlayer, Localized);
 
 // TODO::add paused to documentation
 // TODO::add skip method to documentation
+// TODO::add `play` and `pause` methods to documentation
+// TODO::consider the document event listener - could we have a bug there? Anyway, cover it with tests
+// TODO::is "duration" internal?

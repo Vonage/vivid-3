@@ -27,13 +27,6 @@ describe('vwc-audio-player', () => {
 		return getBaseElement(element).querySelector('.pause') as Button;
 	}
 
-	function mockMediaElementPlayAndPause() {
-		originalPlay = HTMLMediaElement.prototype.play;
-		HTMLMediaElement.prototype.play = jest.fn();
-		originalPause = HTMLMediaElement.prototype.pause;
-		HTMLMediaElement.prototype.pause = jest.fn();
-	}
-
 	function setAudioElementDuration(duration: number) {
 		jest.spyOn(nativeAudioElement, 'duration', 'get').mockReturnValue(duration);
 	}
@@ -49,8 +42,6 @@ describe('vwc-audio-player', () => {
 	}
 
 	let element: AudioPlayer;
-	let originalPlay: any;
-	let originalPause: any;
 	let originalAudio: any;
 	let nativeAudioElement: HTMLAudioElement;
 
@@ -67,20 +58,27 @@ describe('vwc-audio-player', () => {
 	});
 
 	afterAll(() => {
-		HTMLMediaElement.prototype.pause = originalPause;
-		HTMLMediaElement.prototype.play = originalPlay;
 		window.Audio = originalAudio;
 	});
 
 	const SOURCE = 'https://download.samplelib.com/mp3/sample-6s.mp3';
 
 	beforeEach(async () => {
-		mockMediaElementPlayAndPause();
 
 		element = (await fixture(
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 
+		jest.spyOn(nativeAudioElement, 'play').mockImplementation(() => {
+			return new Promise(res => {
+				jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(false);
+				res();
+			});
+
+		});
+		jest.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
+			jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
+		});
 	});
 
 
@@ -199,6 +197,30 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
+	describe('play', () => {
+		it('should call native play', () => {
+			element.play();
+			expect(nativeAudioElement.play).toHaveBeenCalled();
+		});
+
+		it('should toggle paused state to false', async () => {
+			await element.play();
+			expect(element.paused).toBe(false);
+		});
+	});
+
+	describe('paused', () => {
+		it('should call native pause', () => {
+			element.pause();
+			expect(nativeAudioElement.pause).toHaveBeenCalled();
+		});
+
+		it('should toggle paused state to false', async () => {
+			element.pause();
+			expect(element.paused).toBe(true);
+		});
+	});
+
 	describe('paused', function () {
 		let pauseButton: Button;
 		beforeEach(() => {
@@ -209,7 +231,7 @@ describe('vwc-audio-player', () => {
 			expect(element.paused).toEqual(true);
 		});
 
-		it('should toggle pause on click', async function () {
+		it('should toggle paused on click', async function () {
 			setAudioElementDuration(60);
 
 			pauseButton.click();
@@ -225,7 +247,7 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should change button icon to "pause-solid" when paused is false', async function () {
-			element.paused = false;
+			element.play();
 			await elementUpdated(element);
 			expect(pauseButton.icon).toEqual('pause-solid');
 		});
@@ -248,7 +270,7 @@ describe('vwc-audio-player', () => {
 		it.each(['keyup', 'keydown', 'mousedown'])(
 			'should remove %s event listener on disconnection',
 			async function (eventName) {
-				element.paused = false;
+				element.play();
 				await elementUpdated(element);
 				setAudioElementDuration(60);
 				element.disconnectedCallback();
@@ -262,7 +284,7 @@ describe('vwc-audio-player', () => {
 		);
 
 		it('should pause when finished', async function () {
-			element.paused = false;
+			element.play();
 			setAudioElementDuration(60);
 			await elementUpdated(element);
 
@@ -270,17 +292,6 @@ describe('vwc-audio-player', () => {
 
 			await elementUpdated(element);
 			expect(element.paused).toEqual(true);
-		});
-
-		it('should call native audio play when set to false', async () => {
-			element.paused = false;
-			expect(nativeAudioElement.play).toHaveBeenCalled();
-		});
-
-		it('should call native audio pause when set to true', async () => {
-			element.paused = false;
-			element.paused = true;
-			expect(nativeAudioElement.pause).toHaveBeenCalled();
 		});
 	});
 
