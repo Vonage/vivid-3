@@ -49,6 +49,17 @@ Set the `value` attribute to set the default value for the number field. Setting
 <vwc-number-field label="With default value" value="5"></vwc-number-field>
 ```
 
+### Step
+
+- Type: `number`
+- Default: `1`
+
+Set the `step` attribute to set the step value for the number field.
+
+```html preview
+<vwc-number-field label="With step" step="0.1" value="1.5"></vwc-number-field>
+```
+
 ### Min
 
 - Type: `number` | `undefined`

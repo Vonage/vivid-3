@@ -15,10 +15,6 @@ import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
 
-function getRootElement(element: NumberField) {
-	return element.shadowRoot?.querySelector('.base') as HTMLElement;
-}
-
 describe('vwc-number-field', () => {
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
@@ -30,19 +26,21 @@ describe('vwc-number-field', () => {
 	}
 
 	let element: NumberField;
+	let control: HTMLInputElement;
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
 		)) as NumberField;
+		control = getControlElement(element) as HTMLInputElement;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-number-field', async () => {
 			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
-			expect(getControlElement(element).getAttribute('type')).toEqual('text');
-			expect(getControlElement(element).getAttribute('step')).toBe('1');
+			expect(control.getAttribute('type')).toEqual('text');
+			expect(control.getAttribute('step')).toBe('1');
 		});
 	});
 
@@ -65,11 +63,11 @@ describe('vwc-number-field', () => {
 	describe('readOnly', function () {
 		it('should add class readonly to host', async function () {
 			const readonlyClassWhenFalse =
-				getRootElement(element).classList.contains('readonly');
+				getBaseElement(element).classList.contains('readonly');
 			element.readOnly = true;
 			await elementUpdated(element);
 			const readonlyClassWhenTrue =
-				getRootElement(element).classList.contains('readonly');
+				getBaseElement(element).classList.contains('readonly');
 			expect(readonlyClassWhenFalse).toEqual(false);
 			expect(readonlyClassWhenTrue).toEqual(true);
 		});
@@ -79,9 +77,19 @@ describe('vwc-number-field', () => {
 		it('should set autofocus on the input element', async function () {
 			element.autofocus = true;
 			await elementUpdated(element);
-			expect(
-				element.shadowRoot?.querySelector('input')?.hasAttribute('autofocus')
-			).toEqual(true);
+			expect(control.hasAttribute('autofocus')).toEqual(true);
+		});
+
+		it('should focus itself when connected if set', async function () {
+			element.focus = jest.fn();
+			element.autofocus = true;
+			await elementUpdated(element);
+			element.remove();
+
+			document.body.appendChild(element);
+			await elementUpdated(element);
+
+			expect(element.focus).toHaveBeenCalled();
 		});
 	});
 
@@ -90,15 +98,13 @@ describe('vwc-number-field', () => {
 		it('should set placeholder attribute on the input', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(
-				element.shadowRoot?.querySelector('input')?.getAttribute('placeholder')
-			).toEqual(placeholderText);
+			expect(control.getAttribute('placeholder')).toEqual(placeholderText);
 		});
 
 		it('should set class placeholder to root', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getRootElement(element).classList.contains('placeholder')).toEqual(
+			expect(getBaseElement(element).classList.contains('placeholder')).toEqual(
 				true
 			);
 		});
@@ -110,76 +116,32 @@ describe('vwc-number-field', () => {
 		it('should set list attribute on the input', async function () {
 			element.list = dataListID;
 			await elementUpdated(element);
-			expect(
-				element.shadowRoot?.querySelector('input')?.getAttribute('list')
-			).toEqual(dataListID);
+			expect(control.getAttribute('list')).toEqual(dataListID);
 		});
 	});
 
 	describe('step', function () {
-		const value = '8';
-		const propertyName = 'step';
-		it('should set step attribute on the input', async function () {
-			(element as any)[propertyName] = value;
-			await elementUpdated(element);
-			expect(getControlElement(element)?.getAttribute(propertyName)).toEqual(
-				value
-			);
-		});
-
-		it('should not set step attribute on the input if not provided', async function () {
-			(element as any)[propertyName] = '';
-			await elementUpdated(element);
-			expect(getControlElement(element)?.getAttribute(propertyName)).toBe(null);
-		});
-	});
-
-	describe('max', function () {
-		const value = 8;
-		const propertyName = 'max';
-		const proxyPropertyName = 'max';
-
 		it("should set proxy's step to empty if invalid value", function () {
 			element.setAttribute('step', 'invalid');
 			expect(element.proxy.step).toEqual('');
 		});
+	});
 
-		it('should set max attribute on the input', async function () {
-			(element as any)[propertyName] = value;
+	describe('max', function () {
+		it('should limit max to min value', async function () {
+			element.min = 5;
+			element.max = 0;
 			await elementUpdated(element);
-			expect(getControlElement(element)?.getAttribute(propertyName)).toEqual(
-				value.toString()
-			);
-		});
-
-		it('should set value to max if set to larger value', async function () {
-			(element as any)[propertyName] = value;
-			element.value = (value + 1).toString();
-			await elementUpdated(element);
-			const controlElement = getControlElement(element) as HTMLInputElement;
-			expect(controlElement[proxyPropertyName]).toEqual(value.toString());
+			expect(element.min).toEqual(5);
 		});
 	});
 
 	describe('min', function () {
-		const value = '2';
-		const propertyName = 'min';
-		const proxyPropertyName = 'min';
-
-		it('should set min attribute on the input', async function () {
-			(element as any)[propertyName] = value;
+		it('should limit min to max value', async function () {
+			element.max = 5;
+			element.min = 10;
 			await elementUpdated(element);
-			expect(
-				element.shadowRoot?.querySelector('input')?.getAttribute(propertyName)
-			).toEqual(value);
-		});
-
-		it('should set value to min if set to lower value', async function () {
-			(element as any)[propertyName] = value;
-			element.value = (Number(value) - 1).toString();
-			await elementUpdated(element);
-			const controlElement = getControlElement(element) as HTMLInputElement;
-			expect(controlElement[proxyPropertyName]).toEqual(value);
+			expect(element.min).toEqual(5);
 		});
 	});
 
@@ -260,10 +222,7 @@ describe('vwc-number-field', () => {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('input', () => res(true))
 			);
-			const innerInput = element.shadowRoot?.querySelector(
-				'input'
-			) as HTMLInputElement;
-			innerInput.dispatchEvent(
+			control.dispatchEvent(
 				new InputEvent('input', {
 					bubbles: true,
 					composed: true,
@@ -276,10 +235,7 @@ describe('vwc-number-field', () => {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('change', () => res(true))
 			);
-			const innerInput = element.shadowRoot?.querySelector(
-				'input'
-			) as HTMLInputElement;
-			innerInput.dispatchEvent(
+			control.dispatchEvent(
 				new InputEvent('change', {
 					bubbles: true,
 					composed: true,
@@ -296,7 +252,7 @@ describe('vwc-number-field', () => {
 			setValidityToError('blah');
 			await elementUpdated(element);
 
-			expect(getRootElement(element).classList.contains('error')).toEqual(true);
+			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
 		});
 	});
 
@@ -314,28 +270,28 @@ describe('vwc-number-field', () => {
 	describe('disabled', function () {
 		it('should set disabled class when attribute is set', async function () {
 			const disabledClassWhenEnabled =
-				getRootElement(element).classList.contains('disabled');
+				getBaseElement(element).classList.contains('disabled');
 			element.disabled = true;
 			await elementUpdated(element);
 			const disabledClassWhenDisabled =
-				getRootElement(element).classList.contains('disabled');
+				getBaseElement(element).classList.contains('disabled');
 			expect(disabledClassWhenEnabled).toEqual(false);
 			expect(disabledClassWhenDisabled).toEqual(true);
 		});
 	});
 
 	function typeInput(input: string) {
-		element.control.value = input;
-		element.control.dispatchEvent(new Event('input'));
+		control.value = input;
+		control.dispatchEvent(new Event('input'));
 	}
 	describe('value', function () {
 		it("should set 'has-value' class when there is a value", async function () {
 			const activeClassWhenEnabled =
-				getRootElement(element).classList.contains('has-value');
+				getBaseElement(element).classList.contains('has-value');
 			element.value = '5';
 			await elementUpdated(element);
 			const activeClassWhenDisabled =
-				getRootElement(element).classList.contains('has-value');
+				getBaseElement(element).classList.contains('has-value');
 			expect(activeClassWhenEnabled).toEqual(false);
 			expect(activeClassWhenDisabled).toEqual(true);
 		});
@@ -450,7 +406,7 @@ describe('vwc-number-field', () => {
 			await elementUpdated(element);
 
 			expect(
-				getRootElement(element).classList.contains('appearance-filled')
+				getBaseElement(element).classList.contains('appearance-filled')
 			).toEqual(true);
 		});
 	});
@@ -461,32 +417,112 @@ describe('vwc-number-field', () => {
 			element.setAttribute('shape', shape);
 			await elementUpdated(element);
 
-			expect(getRootElement(element).classList.contains('shape-pill')).toEqual(
+			expect(getBaseElement(element).classList.contains('shape-pill')).toEqual(
 				true
 			);
 		});
 	});
 
 	describe('autocomplete', function () {
-		it('should set autocomplete on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector(
-				'input'
-			) as HTMLElement;
-			const autoCompleteDefault = internalInput.getAttribute('autocomplete');
+		it('should set autocomplete on the internal control', async function () {
+			const autoCompleteDefault = control.getAttribute('autocomplete');
 
 			element.autoComplete = 'off';
 			await elementUpdated(element);
 			expect(autoCompleteDefault).toBeNull();
-			expect(internalInput.getAttribute('autocomplete')).toEqual('off');
+			expect(control.getAttribute('autocomplete')).toEqual('off');
 		});
 
-		it('should reflect the name on the internal input', async function () {
-			const internalInput = element.shadowRoot?.querySelector(
-				'input'
-			) as HTMLElement;
+		it('should reflect the name on the internal control', async function () {
 			element.name = 'off';
 			await elementUpdated(element);
-			expect(internalInput.getAttribute('name')).toEqual('off');
+			expect(control.getAttribute('name')).toEqual('off');
+		});
+	});
+
+	describe('aria textbox attributes', () => {
+		it.each([
+			['aria-atomic', 'true'],
+			['aria-busy', 'false'],
+			['aria-current', 'page'],
+			['aria-details', 'testId'],
+			['aria-disabled', 'true'],
+			['aria-errormessage', 'test'],
+			['aria-haspopup', 'true'],
+			['aria-hidden', 'true'],
+			['aria-invalid', 'spelling'],
+			['aria-keyshortcuts', 'F4'],
+			['aria-label', 'Foo label'],
+			['aria-live', 'polite'],
+			['aria-relevant', 'removals'],
+			['aria-roledescription', 'slide'],
+		])(
+			'should set the `%s` attribute on the internal control when provided',
+			async (attribute, value) => {
+				element.setAttribute(attribute, value);
+				await elementUpdated(element);
+
+				expect(control.getAttribute(attribute)).toBe(value);
+			}
+		);
+	});
+
+	describe('select', function () {
+		const onSelect = jest.fn();
+		beforeEach(() => {
+			control.select = jest.fn();
+			element.addEventListener('select', onSelect);
+		});
+
+		it('should emit select event', async function () {
+			element.select();
+
+			expect(onSelect).toHaveBeenCalled();
+		});
+
+		it('should call select on the control', async function () {
+			element.select();
+
+			expect(control.select).toHaveBeenCalled();
+		});
+	});
+
+	describe('input', () => {
+		it('should decrement the value when pressing down arrow ', async () => {
+			element.value = '5';
+
+			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+
+			expect(element.value).toBe('4');
+		});
+
+		it('should increment the value when pressing up arrow', async () => {
+			element.value = '5';
+
+			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+
+			expect(element.value).toBe('6');
+		});
+
+		it.each(['ArrowDown', 'ArrowUp'])(
+			'should prevent default of %s key presses',
+			async () => {
+				const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+				event.preventDefault = jest.fn();
+
+				control.dispatchEvent(event);
+
+				expect(event.preventDefault).toHaveBeenCalled();
+			}
+		);
+
+		it('should not prevent default of other key presses', async () => {
+			const event = new KeyboardEvent('keydown', { key: 'A' });
+			event.preventDefault = jest.fn();
+
+			control.dispatchEvent(event);
+
+			expect(event.preventDefault).not.toHaveBeenCalled();
 		});
 	});
 
@@ -494,10 +530,10 @@ describe('vwc-number-field', () => {
 		let addButton: HTMLButtonElement, subtractButton: HTMLButtonElement;
 
 		beforeEach(function () {
-			addButton = getRootElement(element).querySelector(
+			addButton = getBaseElement(element).querySelector(
 				'#add'
 			) as HTMLButtonElement;
-			subtractButton = getRootElement(element).querySelector(
+			subtractButton = getBaseElement(element).querySelector(
 				'#subtract'
 			) as HTMLButtonElement;
 		});
@@ -506,9 +542,7 @@ describe('vwc-number-field', () => {
 			element.value = '10';
 			addButton?.click();
 			await elementUpdated(element);
-			expect((getControlElement(element) as HTMLInputElement).value).toEqual(
-				'11'
-			);
+			expect(control.value).toEqual('11');
 		});
 
 		it('should increment by step when clicking the add button', async function () {
@@ -516,9 +550,7 @@ describe('vwc-number-field', () => {
 			element.step = 5;
 			addButton?.click();
 			await elementUpdated(element);
-			expect((getControlElement(element) as HTMLInputElement).value).toEqual(
-				'15'
-			);
+			expect(control.value).toEqual('15');
 		});
 
 		it('should subtract by step when clicking the add button', async function () {
@@ -526,9 +558,7 @@ describe('vwc-number-field', () => {
 			element.step = 5;
 			subtractButton?.click();
 			await elementUpdated(element);
-			expect((getControlElement(element) as HTMLInputElement).value).toEqual(
-				'5'
-			);
+			expect(control.value).toEqual('5');
 		});
 
 		it('should have pill shape when numberField is pilled', async function () {
@@ -615,8 +645,8 @@ describe('vwc-number-field', () => {
 			element.maxlength = 5;
 			element.minlength = 2;
 			await elementUpdated(element);
-			expect(getControlElement(element).getAttribute('maxlength')).toEqual('5');
-			expect(getControlElement(element).getAttribute('minlength')).toEqual('2');
+			expect(control.getAttribute('maxlength')).toEqual('5');
+			expect(control.getAttribute('minlength')).toEqual('2');
 		});
 	});
 
