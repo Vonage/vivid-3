@@ -10,7 +10,6 @@ import '.';
 const COMPONENT_TAG = 'vwc-audio-player';
 
 describe('vwc-audio-player', () => {
-
 	function getCurrentTimeElement() {
 		return getBaseElement(element).querySelector('.current-time');
 	}
@@ -41,20 +40,22 @@ describe('vwc-audio-player', () => {
 		setAudioElementCurrentTime(nativeAudioElement.duration);
 	}
 
-	function getSkipBackwardButton (){
+	function getSkipBackwardButton() {
 		return getBaseElement(element).querySelector('.backward') as Button | null;
 	}
 
-	function getSkipForwardButton (){
+	function getSkipForwardButton() {
 		return getBaseElement(element).querySelector('.forward') as Button | null;
 	}
 
 	function allSubElementsDisabled() {
-		return getBaseElement(element).classList.contains('disabled')
-			&& getSliderElement()?.hasAttribute('disabled')
-			&& getPauseButtonElement()?.hasAttribute('disabled')
-			&& getSkipBackwardButton()?.hasAttribute('disabled')
-			&& getSkipForwardButton()?.hasAttribute('disabled');
+		return (
+			getBaseElement(element).classList.contains('disabled') &&
+			getSliderElement()?.hasAttribute('disabled') &&
+			getPauseButtonElement()?.hasAttribute('disabled') &&
+			getSkipBackwardButton()?.hasAttribute('disabled') &&
+			getSkipForwardButton()?.hasAttribute('disabled')
+		);
 	}
 
 	let element: AudioPlayer;
@@ -81,17 +82,15 @@ describe('vwc-audio-player', () => {
 	const SOURCE = 'https://download.samplelib.com/mp3/sample-6s.mp3';
 
 	beforeEach(async () => {
-
 		element = (await fixture(
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 
 		jest.spyOn(nativeAudioElement, 'play').mockImplementation(() => {
-			return new Promise(res => {
+			return new Promise((res) => {
 				jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(false);
 				res();
 			});
-
 		});
 		jest.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
 			jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
@@ -149,23 +148,23 @@ describe('vwc-audio-player', () => {
 	it('should set currentTime according to slider value on mouseup', () => {
 		const sliderValue = 50;
 		const duration = 100;
-		const expectedCurrentTimeAfterMouseUp = sliderValue * duration / 100;
+		const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
 		setAudioElementCurrentTime(10);
 		setAudioElementDuration(duration);
 		getSliderElement().value = `${sliderValue}`;
 
 		document.dispatchEvent(new Event('mouseup'));
 
-		expect(nativeAudioElement.currentTime).toBe(expectedCurrentTimeAfterMouseUp);
+		expect(nativeAudioElement.currentTime).toBe(
+			expectedCurrentTimeAfterMouseUp
+		);
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-audio-player', async () => {
 			expect(audioPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AudioPlayer);
-			expect(element.src).toEqual(
-				SOURCE
-			);
+			expect(element.src).toEqual(SOURCE);
 			expect(element.connotation).toBeUndefined();
 			expect(element.notime).toEqual(false);
 			expect(element.disabled).toEqual(false);
@@ -219,7 +218,6 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('duration', () => {
-
 		it('should be readonly', async () => {
 			const duration = 60;
 			setAudioElementDuration(duration);
@@ -298,7 +296,6 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('paused', function () {
-
 		it('should init as true', () => {
 			expect(element.paused).toEqual(true);
 		});
@@ -353,11 +350,9 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(element.paused).toEqual(true);
 		});
-
 	});
 
 	describe('skip-by', function () {
-
 		beforeEach(() => {
 			setAudioElementDuration(60);
 		});
@@ -429,7 +424,9 @@ describe('vwc-audio-player', () => {
 			['5-sec-backward-line', MediaSkipBy.Five],
 			['10-sec-backward-line', MediaSkipBy.Ten],
 			['30-sec-backward-line', MediaSkipBy.Thirty],
-		])('should change the backward icon to %s when skipBy is %s', async function (icon, skipBy) {
+		])(
+			'should change the backward icon to %s when skipBy is %s',
+			async function (icon, skipBy) {
 				element.skipBy = skipBy;
 				await elementUpdated(element);
 
@@ -441,11 +438,13 @@ describe('vwc-audio-player', () => {
 			['5-sec-forward-line', MediaSkipBy.Five],
 			['10-sec-forward-line', MediaSkipBy.Ten],
 			['30-sec-forward-line', MediaSkipBy.Thirty],
-		])('should change the forward icon to %s when skipBy is %s', async function (icon, skipBy) {
-					element.skipBy = skipBy;
-					await elementUpdated(element);
+		])(
+			'should change the forward icon to %s when skipBy is %s',
+			async function (icon, skipBy) {
+				element.skipBy = skipBy;
+				await elementUpdated(element);
 
-					expect(getSkipForwardButton()!.icon).toEqual(icon);
+				expect(getSkipForwardButton()!.icon).toEqual(icon);
 			}
 		);
 	});
@@ -456,4 +455,3 @@ describe('vwc-audio-player', () => {
 		});
 	});
 });
-

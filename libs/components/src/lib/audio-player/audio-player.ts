@@ -18,10 +18,11 @@ export type AudioPlayerConnotation = Extract<
 
 export const SKIP_DIRECTIONS = {
 	FORWARD: 1,
-	BACKWARD: -1
+	BACKWARD: -1,
 };
 
-export type SKIP_DIRECTIONS_TYPE = typeof SKIP_DIRECTIONS[keyof typeof SKIP_DIRECTIONS];
+export type SKIP_DIRECTIONS_TYPE =
+	typeof SKIP_DIRECTIONS[keyof typeof SKIP_DIRECTIONS];
 
 function formatTime(time: number) {
 	const min = Math.floor(time / 60);
@@ -166,11 +167,20 @@ export class AudioPlayer extends FoundationElement {
 		this.#pausedChanged(PAUSE);
 	}
 
- 	#setInteractionListeners(add = true) {
+	#setInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
-		this.shadowRoot!.querySelector('.base')![action]('keyup', this.#handleSliderEvent);
-		this.shadowRoot!.querySelector('.base')![action]('keydown', this.#handleSliderEvent);
-		this.shadowRoot!.querySelector('.base')![action]('mousedown', this.#handleSliderEvent);
+		this.shadowRoot!.querySelector('.base')![action](
+			'keyup',
+			this.#handleSliderEvent
+		);
+		this.shadowRoot!.querySelector('.base')![action](
+			'keydown',
+			this.#handleSliderEvent
+		);
+		this.shadowRoot!.querySelector('.base')![action](
+			'mousedown',
+			this.#handleSliderEvent
+		);
 	}
 
 	srcChanged() {
@@ -188,10 +198,10 @@ export class AudioPlayer extends FoundationElement {
 			this.#playerEl!.play();
 		}
 		this.#setPausedState();
-	}
+	};
 
 	#skip = (event: CustomEvent) => {
-    const skipDirection: SKIP_DIRECTIONS_TYPE = event.detail;
+		const skipDirection: SKIP_DIRECTIONS_TYPE = event.detail;
 		if (this.#playerEl) {
 			const currentTime = this.#playerEl.currentTime;
 			const skipValue = parseInt(this.skipBy!) * skipDirection;
@@ -203,9 +213,9 @@ export class AudioPlayer extends FoundationElement {
 			);
 			this.#updateProgress();
 		}
-	}
+	};
 
-	#updateProgress = () =>  {
+	#updateProgress = () => {
 		let currentTime: HTMLElement | null;
 		const current: number = this.#playerEl.currentTime;
 		const percent = (current / this.#playerEl.duration) * 100;
@@ -223,7 +233,7 @@ export class AudioPlayer extends FoundationElement {
 			currentTime = this.#timeStampEl.querySelector('.current-time');
 			if (currentTime) currentTime.textContent = formatTime(current);
 		}
-	}
+	};
 
 	#updateTotalTime = () => {
 		let totalTime: HTMLElement | null;
@@ -233,7 +243,7 @@ export class AudioPlayer extends FoundationElement {
 			if (totalTime)
 				totalTime.textContent = formatTime(this.#playerEl.duration);
 		}
-	}
+	};
 
 	#rewind = () => {
 		if (this.#playerEl) {
@@ -249,7 +259,7 @@ export class AudioPlayer extends FoundationElement {
 		}
 
 		return true;
-	}
+	};
 
 	#setPausedState = () => {
 		Observable.notify(this, 'paused');

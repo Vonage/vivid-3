@@ -122,17 +122,18 @@ Use the `disabled` attribute to disable the audio-player.
 ```
 
 ### Paused (readonly)
+
 Use the `paused` property indicates if the player is currently paused or not.
 
 - Type: `boolean`
 - Default: `true`
 
 ### Duration (readonly)
+
 Use the `duration` property indicates the duration of the loaded audio.
 
 - Type: `number`
 - Default: `undefined`
-
 
 ## CSS Variables
 
