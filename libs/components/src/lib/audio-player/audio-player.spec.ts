@@ -41,6 +41,22 @@ describe('vwc-audio-player', () => {
 		setAudioElementCurrentTime(nativeAudioElement.duration);
 	}
 
+	function getSkipBackwardButton (){
+		return getBaseElement(element).querySelector('.backward') as Button | null;
+	}
+
+	function getSkipForwardButton (){
+		return getBaseElement(element).querySelector('.forward') as Button | null;
+	}
+
+	function allSubElementsDisabled() {
+		return getBaseElement(element).classList.contains('disabled')
+			&& getSliderElement()?.hasAttribute('disabled')
+			&& getPauseButtonElement()?.hasAttribute('disabled')
+			&& getSkipBackwardButton()?.hasAttribute('disabled')
+			&& getSkipForwardButton()?.hasAttribute('disabled');
+	}
+
 	let element: AudioPlayer;
 	let originalAudio: any;
 	let nativeAudioElement: HTMLAudioElement;
@@ -190,6 +206,26 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
+	describe('duration', () => {
+
+		it('should be readonly', async () => {
+			const duration = 60;
+			setAudioElementDuration(duration);
+			await elementUpdated(element);
+			element.duration = 50;
+			expect(element.duration).toBe(duration);
+		});
+
+		it('should disable elements if duration is falsy', async () => {
+			element.disabled = false;
+			element.skipBy = MediaSkipBy.Ten;
+			setAudioElementDuration(0);
+			await elementUpdated(element);
+
+			expect(allSubElementsDisabled()).toBeTruthy();
+		});
+	});
+
 	describe('disabled', () => {
 		it('should set disabled class on the base element', async function () {
 			element.disabled = true;
@@ -197,6 +233,14 @@ describe('vwc-audio-player', () => {
 			expect(
 				getBaseElement(element).classList.contains('disabled')
 			).toBeTruthy();
+		});
+
+		it('should disable all elements when set', async () => {
+			setAudioElementDuration(60);
+			element.disabled = true;
+			element.skipBy = MediaSkipBy.Ten;
+			await elementUpdated(element);
+			expect(allSubElementsDisabled()).toBeTruthy();
 		});
 	});
 
@@ -300,10 +344,6 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('skip-by', function () {
-		const getSkipBackwardButton = () =>
-			getBaseElement(element).querySelector('.backward') as Button | null;
-		const getSkipForwardButton = () =>
-			getBaseElement(element).querySelector('.forward') as Button | null;
 
 		beforeEach(() => {
 			setAudioElementDuration(60);
@@ -403,3 +443,4 @@ describe('vwc-audio-player', () => {
 		});
 	});
 });
+

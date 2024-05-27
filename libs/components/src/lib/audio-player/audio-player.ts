@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, Observable, observable, type ValueConverter } from '@microsoft/fast-element';
+import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
@@ -119,11 +119,14 @@ export class AudioPlayer extends FoundationElement {
 		value;
 	}
 
-	/**
-	 *
-	 * @internal
-	 */
-	@observable duration?: number;
+	get duration() {
+		Observable.track(this, 'duration');
+		return this.#playerEl.duration;
+	}
+
+	set duration(value) {
+		value;
+	}
 
 	get #sliderEl(): Slider | null | undefined {
 		return this.shadowRoot?.querySelector('.slider');
@@ -222,7 +225,7 @@ export class AudioPlayer extends FoundationElement {
 
 	#updateTotalTime = () => {
 		let totalTime: HTMLElement | null;
-		if (this.#playerEl) this.duration = this.#playerEl.duration;
+		Observable.notify(this, 'duration');
 		if (this.#timeStampEl) {
 			totalTime = this.#timeStampEl.querySelector('.total-time');
 			if (totalTime)
@@ -257,6 +260,7 @@ applyMixins(AudioPlayer, Localized);
 // TODO::add paused to documentation
 // TODO::add skip method to documentation
 // TODO::add `play` and `pause` methods to documentation
+// TODO::add duration as readonly API
 // TODO::consider the document event listener - could we have a bug there? Anyway, cover it with tests
-// TODO::is "duration" internal?
-// TODO::handling the slider drag is faulty and buggy - should imitate the native behavior
+// TODO::handling the slider drag is faulty and buggy - should imitate the native behavior (if playing - keep playing after drag)
+// TODO::when setting `src` to '' and then trying tp play it doesn't handle this case... (the rewind function IMO)
