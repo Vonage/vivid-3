@@ -11,7 +11,7 @@ import { Slider } from '../slider/slider';
 import {
 	AudioPlayer,
 	SKIP_DIRECTIONS,
-	SKIP_DIRECTIONS_TYPE,
+	type SKIP_DIRECTIONS_TYPE,
 } from './audio-player';
 
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
