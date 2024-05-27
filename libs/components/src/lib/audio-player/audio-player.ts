@@ -142,6 +142,7 @@ export class AudioPlayer extends FoundationElement {
 		super();
 		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
+		this.addEventListener('vwc-audio-player:skip', this.#skip as EventListener);
 	}
 
 	override connectedCallback(): void {
@@ -189,7 +190,8 @@ export class AudioPlayer extends FoundationElement {
 		this.#setPausedState();
 	}
 
-	skip(skipDirection: SKIP_DIRECTIONS_TYPE) {
+	#skip = (event: CustomEvent) => {
+    const skipDirection: SKIP_DIRECTIONS_TYPE = event.detail;
 		if (this.#playerEl) {
 			const currentTime = this.#playerEl.currentTime;
 			const skipValue = parseInt(this.skipBy!) * skipDirection;
@@ -199,7 +201,7 @@ export class AudioPlayer extends FoundationElement {
 				0,
 				Math.min(this.#playerEl.duration, newTime)
 			);
-			this.#updateProgress(); // Update progress after skipping
+			this.#updateProgress();
 		}
 	}
 
@@ -257,10 +259,7 @@ export class AudioPlayer extends FoundationElement {
 export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);
 
-// TODO::add paused to documentation
-// TODO::add skip method to documentation
-// TODO::add `play` and `pause` methods to documentation
-// TODO::add duration as readonly API
+// TODO::add skip method to documentation or make it private
 // TODO::consider the document event listener - could we have a bug there? Anyway, cover it with tests
 // TODO::handling the slider drag is faulty and buggy - should imitate the native behavior (if playing - keep playing after drag)
 // TODO::when setting `src` to '' and then trying tp play it doesn't handle this case... (the rewind function IMO)
