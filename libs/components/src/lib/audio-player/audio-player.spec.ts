@@ -100,7 +100,6 @@ describe('vwc-audio-player', () => {
 		pauseButton = getPauseButtonElement();
 	});
 
-
 	it('should update current time element text', async () => {
 		const duration = 60;
 		const currentTime = 30;
@@ -145,6 +144,19 @@ describe('vwc-audio-player', () => {
 		nativeAudioElement.dispatchEvent(event);
 
 		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
+	});
+
+	it('should set currentTime according to slider value on mouseup', () => {
+		const sliderValue = 50;
+		const duration = 100;
+		const expectedCurrentTimeAfterMouseUp = sliderValue * duration / 100;
+		setAudioElementCurrentTime(10);
+		setAudioElementDuration(duration);
+		getSliderElement().value = `${sliderValue}`;
+
+		document.dispatchEvent(new Event('mouseup'));
+
+		expect(nativeAudioElement.currentTime).toBe(expectedCurrentTimeAfterMouseUp);
 	});
 
 	describe('basic', () => {
@@ -244,7 +256,7 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('play', () => {
+	describe('play()', () => {
 		it('should call native play', () => {
 			element.play();
 			expect(nativeAudioElement.play).toHaveBeenCalled();
@@ -262,7 +274,7 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('pause', () => {
+	describe('pause()', () => {
 		it('should call native pause', async () => {
 			await element.play();
 			element.pause();
@@ -341,6 +353,7 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(element.paused).toEqual(true);
 		});
+
 	});
 
 	describe('skip-by', function () {
