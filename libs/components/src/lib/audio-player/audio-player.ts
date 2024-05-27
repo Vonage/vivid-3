@@ -259,7 +259,5 @@ export class AudioPlayer extends FoundationElement {
 export interface AudioPlayer extends Localized {}
 applyMixins(AudioPlayer, Localized);
 
-// TODO::add skip method to documentation or make it private
 // TODO::consider the document event listener - could we have a bug there? Anyway, cover it with tests
 // TODO::handling the slider drag is faulty and buggy - should imitate the native behavior (if playing - keep playing after drag)
-// TODO::when setting `src` to '' and then trying tp play it doesn't handle this case... (the rewind function IMO)
