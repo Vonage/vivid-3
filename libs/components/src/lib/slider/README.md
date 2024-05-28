@@ -158,4 +158,4 @@ Use `value` to set the value of the slider.
 
 The slider has a `role` of `slider`, which needs an accessible label. You must provide it using `aria-label`.
 
-You can set the `valueTextFormatter` member to customize how values will be formatted for the sliders' `aria-valuetext` attribute. The formatting will also be used for the tooltip when `pin` is enabled.
+Vivid automatically sets the `aria-valuetext` attribute on the slider. The attribute is read by assistive technology. You can control its format using the `valueTextFormatter` property for a more human-readable value.

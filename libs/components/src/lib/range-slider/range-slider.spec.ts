@@ -66,11 +66,6 @@ describe('vwc-range-slider', () => {
 			expect(element.start).toBe('0');
 			expect(element.end).toBe('10');
 		});
-
-		it('should not have popups by default', async () => {
-			expect(getPopup(thumbs.start)).toBeNull();
-			expect(getPopup(thumbs.end)).toBeNull();
-		});
 	});
 
 	describe('markers', () => {
@@ -282,6 +277,11 @@ describe('vwc-range-slider', () => {
 	});
 
 	describe('pin', () => {
+		it('should not have start and end popup when pin is false', async () => {
+			expect(getPopup(thumbs.start)).toBeNull();
+			expect(getPopup(thumbs.end)).toBeNull();
+		});
+
 		it('should have start and end popup when pin is true', async () => {
 			element.pin = true;
 			await elementUpdated(element);
@@ -298,7 +298,7 @@ describe('vwc-range-slider', () => {
 			expect(getPopup(thumbs.end)!.open).toBe(false);
 		});
 
-		it('should display the current value formatted with valueTextFormatter in the popup', async () => {
+		it('should format popup text according to valueTextFormatter', async () => {
 			element.pin = true;
 			element.valueTextFormatter = (value) => `${value} bits`;
 			await elementUpdated(element);
@@ -349,7 +349,7 @@ describe('vwc-range-slider', () => {
 			expect(getPopup(thumbs.start)!.open).toBe(false);
 		});
 
-		it('should not show popup when thumb focus is not visible', async () => {
+		it('should hide popup when thumb focus is not visible', async () => {
 			element.pin = true;
 			await elementUpdated(element);
 			const mouseEvent = new MouseEvent('mousedown');
@@ -525,7 +525,7 @@ describe('vwc-range-slider', () => {
 				expect(element.end).toBe('7');
 			});
 
-			it('should move non-visible focus to the corresponding thumb', async () => {
+			it('should focus on the closest thumb without displaying focus indicator', async () => {
 				const mouseEvent = new MouseEvent('mousedown');
 				Object.defineProperty(mouseEvent, coordinate, { value: 300 });
 

@@ -34,7 +34,7 @@ const Direction = {
 } as const;
 type Direction = typeof Direction[keyof typeof Direction];
 
-type ThumbId = 'start' | 'end';
+export type ThumbId = 'start' | 'end';
 
 /**
  * Base class for range-slider

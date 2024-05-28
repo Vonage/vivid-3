@@ -144,7 +144,7 @@ Toggles markers display.
 
 ### Pin
 
-Toggles display the start and end values with a tooltip. Use the `valueTextFormatter` member to customize the format of the values.
+Toggles display of the start and end values with a tooltip. Use the `valueTextFormatter` member to customize the format of the values.
 
 - Type: `boolean`
 - Default: `false`
@@ -214,7 +214,7 @@ The upper value of the range.
 Both thumbs have a `role` of `slider`, which needs an accessible label. By default, they use a localized version of "min" and "max".
 You can change the labels by setting the `aria-start-label` and `aria-end-label` attributes.
 
-You can set the `valueTextFormatter` member to customize how values will be formatted for the thumbs' `aria-valuetext` attribute. The formatting will also be used for the tooltip when `pin` is enabled.
+Vivid automatically sets the `aria-valuetext` attribute on the thumbs. The attribute is read by assistive technology. You can control its format using the `valueTextFormatter` property for a more human-readable value.
 
 ## Use Cases
 

@@ -15,6 +15,9 @@ const getClasses = ({ disabled, connotation }: Slider) =>
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
 
+const getThumbClasses = ({ _focusVisible }: Slider) =>
+	classNames('thumb-container', ['focus-visible', _focusVisible]);
+
 export const getMarkersTemplate = (
 	isHorizontal: boolean,
 	numMarkers: number
@@ -70,8 +73,7 @@ export const SliderTemplate: (
 				</div>
 				<div
 					${ref('thumb')}
-					class="${(x) =>
-						classNames('thumb-container', ['focus-visible', x._focusVisible])}"
+					class="${(x) => getThumbClasses(x)}"
 					style="${(x) => x.position}"
 				></div>
 				${when(

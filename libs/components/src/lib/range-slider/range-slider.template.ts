@@ -5,7 +5,7 @@ import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 
 import { getMarkersTemplate } from '../slider/slider.template';
 import { PlacementStrategy, Popup } from '../popup/popup';
-import type { RangeSlider } from './range-slider';
+import type { RangeSlider, ThumbId } from './range-slider';
 
 const getClasses = ({ disabled, connotation }: RangeSlider) =>
 	classNames(
@@ -13,6 +13,14 @@ const getClasses = ({ disabled, connotation }: RangeSlider) =>
 		['disabled', Boolean(disabled)],
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
+
+const getThumbClassesFor =
+	(thumb: ThumbId) =>
+	({ _visiblyFocusedThumb }: RangeSlider) =>
+		classNames('thumb-container', [
+			'focus-visible',
+			_visiblyFocusedThumb === thumb,
+		]);
 
 /**
  * The template for the RangeSlider component.
@@ -43,11 +51,7 @@ export const RangeSliderTemplate: (
 				</div>
 				<div
 					${ref('_startThumbEl')}
-					class="${(x) =>
-						classNames('thumb-container', [
-							'focus-visible',
-							x._visiblyFocusedThumb === 'start',
-						])}"
+					class="${getThumbClassesFor('start')}"
 					style="${(x) => x._startThumbCss}"
 					role="slider"
 					tabindex="${(x) => (x.disabled ? null : 0)}"
@@ -81,11 +85,7 @@ export const RangeSliderTemplate: (
 				)}
 				<div
 					${ref('_endThumbEl')}
-					class="${(x) =>
-						classNames('thumb-container', [
-							'focus-visible',
-							x._visiblyFocusedThumb === 'end',
-						])}"
+					class="${getThumbClassesFor('end')}"
 					style="${(x) => x._endThumbCss}"
 					role="slider"
 					tabindex="${(x) => (x.disabled ? null : 0)}"

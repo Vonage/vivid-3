@@ -278,10 +278,11 @@ describe('vwc-slider', () => {
 			expect(getPopup()!.open).toBe(false);
 		});
 
-		it('should not show popup when thumb focus is not visible', async () => {
+		it('should hide popup when thumb focus is not visible', async () => {
 			element.pin = true;
 			await elementUpdated(element);
 
+			// Set non-visible focus through mouse interaction
 			element.dispatchEvent(new MouseEvent('mousedown'));
 			window.dispatchEvent(new MouseEvent('mouseup'));
 			await elementUpdated(element);
@@ -346,6 +347,12 @@ describe('vwc-slider', () => {
 				window.dispatchEvent(new MouseEvent('mouseup'));
 			};
 
+			const dragThumb = (from: number, to: number) => {
+				mouseDown(thumb, from);
+				mouseMove(to);
+				mouseUp();
+			};
+
 			beforeEach(async () => {
 				element.value = '0';
 				element.orientation = orientation as Orientation;
@@ -353,18 +360,14 @@ describe('vwc-slider', () => {
 			});
 
 			it('should update value by dragging thumb', async () => {
-				mouseDown(thumb, 0);
-				mouseMove(300);
-				mouseUp();
+				dragThumb(0, 300);
 				expect(element.value).toBe('3');
 			});
 
 			it('should not drag when disabled', async () => {
 				element.disabled = true;
 
-				mouseDown(thumb, 0);
-				mouseMove(300);
-				mouseUp();
+				dragThumb(0, 300);
 
 				expect(element.value).toBe('0');
 			});
