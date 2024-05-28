@@ -129,13 +129,13 @@ export class AudioPlayer extends FoundationElement {
 		value;
 	}
 
-	get #sliderEl(): Slider | null  {
+	get #sliderEl(): Slider | null {
 		return this.shadowRoot!.querySelector('.slider');
 	}
 
 	#playerEl = new Audio();
 
-	get #timeStampEl(): HTMLDivElement | null  {
+	get #timeStampEl(): HTMLDivElement | null {
 		return this.shadowRoot!.querySelector('.time-stamp');
 	}
 
