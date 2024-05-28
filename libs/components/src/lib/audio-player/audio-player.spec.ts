@@ -305,8 +305,13 @@ describe('vwc-audio-player', () => {
 
 			pauseButton.click();
 			await elementUpdated(element);
+			const pausedAfterFirstClick = element.paused;
+			pauseButton.click();
+			await elementUpdated(element);
+			const pausedAfterSecondClick = element.paused;
 
-			expect(element.paused).toEqual(false);
+			expect(pausedAfterFirstClick).toEqual(false);
+			expect(pausedAfterSecondClick).toEqual(true);
 		});
 
 		it.each(['keyup', 'keydown', 'mousedown'])(

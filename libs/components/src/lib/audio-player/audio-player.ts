@@ -129,14 +129,14 @@ export class AudioPlayer extends FoundationElement {
 		value;
 	}
 
-	get #sliderEl(): Slider | null | undefined {
-		return this.shadowRoot?.querySelector('.slider');
+	get #sliderEl(): Slider | null  {
+		return this.shadowRoot!.querySelector('.slider');
 	}
 
 	#playerEl = new Audio();
 
-	get #timeStampEl(): HTMLDivElement | null | undefined {
-		return this.shadowRoot?.querySelector('.time-stamp');
+	get #timeStampEl(): HTMLDivElement | null  {
+		return this.shadowRoot!.querySelector('.time-stamp');
 	}
 
 	constructor() {
@@ -187,7 +187,7 @@ export class AudioPlayer extends FoundationElement {
 		(this.#playerEl.src as any) = this.src;
 	}
 
-	#pausedChanged = (pausing = PAUSE) => {
+	#pausedChanged = (pausing: boolean) => {
 		if (pausing === this.paused) {
 			return;
 		}
