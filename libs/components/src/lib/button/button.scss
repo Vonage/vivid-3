@@ -23,6 +23,11 @@
 
 :host {
 	display: inline-block;
+
+	#{variables.$vvd-button-accent-firm-wrapper}: var(--vvd-button-accent-firm);
+	#{variables.$vvd-button-cta-firm-wrapper}: var(--vvd-button-cta-firm);
+	#{variables.$vvd-button-success-firm-wrapper}: var(--vvd-button-success-firm);
+	#{variables.$vvd-button-alert-firm-wrapper}: var(--vvd-button-alert-firm);
 }
 
 .control {
@@ -71,10 +76,22 @@
 	}
 
 	&:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined) {
-		--vvd-button-accent-firm: var(--vvd-button-accent-primary);
-		--vvd-button-cta-firm: var(--vvd-button-cta-primary);
-		--vvd-button-success-firm: var(--vvd-button-success-primary);
-		--vvd-button-alert-firm: var(--vvd-button-alert-primary);
+		--vvd-button-accent-firm: var(
+			#{variables.$vvd-button-accent-firm-wrapper},
+			var(--vvd-button-accent-primary)
+		);
+		--vvd-button-cta-firm: var(
+			#{variables.$vvd-button-cta-firm-wrapper},
+			var(--vvd-button-cta-primary)
+		);
+		--vvd-button-success-firm: var(
+			#{variables.$vvd-button-success-firm-wrapper},
+			var(--vvd-button-success-primary)
+		);
+		--vvd-button-alert-firm: var(
+			#{variables.$vvd-button-alert-firm-wrapper},
+			var(--vvd-button-alert-primary)
+		);
 	}
 
 	&:not(:disabled) {

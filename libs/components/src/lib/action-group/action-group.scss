@@ -1,6 +1,6 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary intermediate faint firm,
+	$shades: primary intermediate faint,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -21,8 +21,6 @@
 .base {
 	@include connotation.connotation(action-group);
 	@include appearance.appearance;
-
-	--vvd-action-group-accent-firm: var(--vvd-action-group-accent-primary);
 
 	position: relative;
 	display: flex;

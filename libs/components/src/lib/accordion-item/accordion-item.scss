@@ -16,10 +16,15 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 
+$vvd-accordion-item-accent-firm-wrapper: --_vvd-accordion-item-accent-firm-wrapper;
+
 :host {
 	display: flex;
 	box-sizing: border-box;
 	flex-direction: column;
+	#{$vvd-accordion-item-accent-firm-wrapper}: var(
+		--vvd-accordion-item-accent-firm
+	);
 }
 
 .heading-container {
@@ -30,7 +35,10 @@
 	@include appearance.appearance;
 	@include connotation.connotation(accordion-item);
 
-	--vvd-accordion-item-accent-firm: var(--vvd-accordion-item-accent-primary);
+	--vvd-accordion-item-accent-firm: var(
+		#{$vvd-accordion-item-accent-firm-wrapper},
+		var(--vvd-accordion-item-accent-primary)
+	);
 
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 

@@ -26,9 +26,6 @@
 	@include appearance.appearance;
 	@include connotation.connotation(tabs);
 
-	--vvd-tabs-cta-firm: var(--vvd-tabs-cta-primary);
-	--vvd-tabs-accent-firm: var(--vvd-tabs-accent-primary);
-
 	display: grid;
 	box-sizing: border-box;
 

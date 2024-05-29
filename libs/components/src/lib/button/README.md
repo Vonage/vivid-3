@@ -18,6 +18,16 @@ All [native attributes of `<button>`](https://developer.mozilla.org/en-US/docs/W
 Add a `label` attribute to add text to the button.
 
 ```html preview
+<vwc-button
+	label="ghost"
+	appearance="ghost"
+	style="--vvd-button-accent-firm: red"
+></vwc-button>
+<vwc-button
+	label="ghost"
+	appearance="ghost"
+	style="--vvd-button-accent-primary: yellow"
+></vwc-button>
 <vwc-button appearance="filled" label="A default button"></vwc-button>
 ```
 

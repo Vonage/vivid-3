@@ -34,14 +34,41 @@ $size: (
 $size-keys: map.keys($size);
 $default-size: list.nth($size-keys, 7);
 
+:host {
+	#{variables.$vvd-progress-ring-accent-firm-wrapper}: var(
+		--vvd-progress-ring-accent-firm
+	);
+	#{variables.$vvd-progress-ring-cta-firm-wrapper}: var(
+		--vvd-progress-ring-cta-firm
+	);
+	#{variables.$vvd-progress-ring-success-firm-wrapper}: var(
+		--vvd-progress-ring-success-firm
+	);
+	#{variables.$vvd-progress-ring-alert-firm-wrapper}: var(
+		--vvd-progress-ring-alert-firm
+	);
+}
+
 .base {
 	@include connotation.connotation(progress-ring);
 	@include appearance.appearance;
 
-	--vvd-progress-ring-accent-firm: var(--vvd-progress-ring-accent-primary);
-	--vvd-progress-ring-cta-firm: var(--vvd-progress-ring-cta-primary);
-	--vvd-progress-ring-success-firm: var(--vvd-progress-ring-success-primary);
-	--vvd-progress-ring-alert-firm: var(--vvd-progress-ring-alert-primary);
+	--vvd-progress-ring-accent-firm: var(
+		#{variables.$vvd-progress-ring-accent-firm-wrapper},
+		var(--vvd-progress-ring-accent-primary)
+	);
+	--vvd-progress-ring-cta-firm: var(
+		#{variables.$vvd-progress-ring-cta-firm-wrapper},
+		var(--vvd-progress-ring-cta-primary)
+	);
+	--vvd-progress-ring-success-firm: var(
+		#{variables.$vvd-progress-ring-success-firm-wrapper},
+		var(--vvd-progress-ring-success-primary)
+	);
+	--vvd-progress-ring-alert-firm: var(
+		#{variables.$vvd-progress-ring-alert-firm-wrapper},
+		var(--vvd-progress-ring-alert-primary)
+	);
 
 	@include utils.spread-list-selectors('.size', $size-keys, $default-size)
 		using($value) {
