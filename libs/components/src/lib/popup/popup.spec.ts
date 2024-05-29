@@ -276,7 +276,9 @@ describe('vwc-popup', () => {
 				expect.anything(),
 				expect.objectContaining({
 					middleware: expect.arrayContaining([
-						PlacementStrategy.AutoPlacementHorizontal,
+						expect.objectContaining({
+							name: 'autoPlacement',
+						}),
 					]),
 				})
 			);

@@ -1,4 +1,4 @@
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, DOM, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	arrow,
@@ -14,8 +14,15 @@ import {
 import type { Placement, Strategy } from '@floating-ui/dom';
 
 export const PlacementStrategy = {
-	Flip: flip(),
-	AutoPlacementHorizontal: autoPlacement({
+	Flip: 'flip',
+	AutoPlacementHorizontal: 'auto-placement-horizontal',
+	AutoPlacementVertical: 'auto-placement-vertical',
+} as const;
+type PlacementStrategyId =
+	typeof PlacementStrategy[keyof typeof PlacementStrategy];
+const placementStrategyMiddlewares = {
+	[PlacementStrategy.Flip]: flip(),
+	[PlacementStrategy.AutoPlacementHorizontal]: autoPlacement({
 		allowedPlacements: [
 			'bottom',
 			'top',
@@ -25,7 +32,7 @@ export const PlacementStrategy = {
 			'top-end',
 		],
 	}),
-	AutoPlacementVertical: autoPlacement({
+	[PlacementStrategy.AutoPlacementVertical]: autoPlacement({
 		allowedPlacements: [
 			'left',
 			'right',
@@ -47,7 +54,7 @@ export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {
 		let middleware = [
 			inline(),
-			this.placementStrategy,
+			placementStrategyMiddlewares[this.placementStrategy],
 			hide(),
 			size({
 				apply({ availableWidth, availableHeight, elements }) {
@@ -86,7 +93,7 @@ export class Popup extends FoundationElement {
 	open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
-		this.#updateAutoUpdate();
+		DOM.queueUpdate(() => this.#updateAutoUpdate());
 	}
 
 	/**
@@ -135,7 +142,7 @@ export class Popup extends FoundationElement {
 	 *
 	 * @public
 	 */
-	placementStrategy = PlacementStrategy.Flip;
+	placementStrategy: PlacementStrategyId = PlacementStrategy.Flip;
 
 	/**
 	 * Whether to update the position of the floating element on every animation frame if required.
