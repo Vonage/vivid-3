@@ -265,7 +265,7 @@ describe('vwc-popup', () => {
 			jest.mocked(floatingUI.computePosition).mockRestore();
 		});
 
-		it('should include placementStrategy in the computePosition middleware', async () => {
+		it('should use placementStrategy to compute position', async () => {
 			element.placementStrategy = PlacementStrategy.AutoPlacementHorizontal;
 
 			await setupPopupToOpenWithAnchor();
@@ -284,29 +284,32 @@ describe('vwc-popup', () => {
 	});
 
 	describe('animationFrame', () => {
-		beforeEach(() => {
-			jest.spyOn(floatingUI, 'autoUpdate');
+		const RAF_CALLS_FROM_SETTING_ATTRIBUTE = 1;
+
+		it('should not continuously update position with requestAnimationFrame when false', async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+			jest.spyOn(window, 'requestAnimationFrame');
+
+			element.open = true;
+
+			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
+				RAF_CALLS_FROM_SETTING_ATTRIBUTE
+			);
 		});
 
-		afterEach(() => {
-			jest.mocked(floatingUI.autoUpdate).mockRestore();
+		it('should continuously update position with requestAnimationFrame when true', async () => {
+			element.animationFrame = true;
+			element.anchor = anchor;
+			await elementUpdated(element);
+			jest.spyOn(window, 'requestAnimationFrame');
+
+			element.open = true;
+
+			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
+				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 2
+			);
 		});
-
-		it.each([false, true])(
-			'should pass animationFrame=%s as autoUpdate option',
-			async (animationFrame) => {
-				element.animationFrame = animationFrame;
-				await setupPopupToOpenWithAnchor();
-				await elementUpdated(element);
-
-				expect(floatingUI.autoUpdate).toHaveBeenCalledWith(
-					expect.anything(),
-					expect.anything(),
-					expect.anything(),
-					{ animationFrame }
-				);
-			}
-		);
 	});
 
 	describe('a11y', () => {
