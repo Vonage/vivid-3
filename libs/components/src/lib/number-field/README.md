@@ -77,7 +77,7 @@ Use the `valueAsNumber` property to get or set the value as a number. If no vali
 - Type: `number`
 - Default: `1`
 
-Set the `step` attribute to set the step value for the number field.
+Set the `step` attribute to change the step value for the number field.
 
 ```html preview
 <vwc-number-field label="With step" step="0.1" value="1.5"></vwc-number-field>

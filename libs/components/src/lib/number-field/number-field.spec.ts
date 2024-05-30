@@ -303,7 +303,7 @@ describe('vwc-number-field', () => {
 			expect(control.value).toEqual('1.');
 		});
 
-		describe('with locale with comma as decimal separator', function () {
+		describe('with locale using comma as decimal separator', function () {
 			beforeEach(() => {
 				setLocale(deDE);
 			});
