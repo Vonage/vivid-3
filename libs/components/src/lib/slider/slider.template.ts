@@ -23,8 +23,8 @@ export const getMarkersTemplate = (
 	return html` <div
 		class="mark"
 		style="
-	background: linear-gradient(to ${placeholder[0]}, currentcolor 3px, transparent 0px)
-	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 3px) / ${numMarkers}) ${placeholder[3]}
+	background: linear-gradient(to ${placeholder[0]}, currentcolor 1px, transparent 0px)
+	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 1px) / ${numMarkers}) ${placeholder[3]}
 	"
 	></div>`;
 };

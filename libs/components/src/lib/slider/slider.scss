@@ -82,8 +82,12 @@ $track-thickness: 2px;
 			block-size: $track-thickness;
 
 			.mark {
-				block-size: 4px;
+				block-size: 6px;
 				inline-size: 100%;
+				position: absolute;
+				z-index: -1;
+				inset-inline-start: 0;
+				inset-block-start: -2px;
 			}
 		}
 	}
@@ -110,7 +114,11 @@ $track-thickness: 2px;
 
 			.mark {
 				block-size: 100%;
-				inline-size: 4px;
+				inline-size: 6px;
+				position: absolute;
+				z-index: -1;
+				inset-inline-start: -2px;
+				inset-block-start: 0;
 			}
 		}
 
