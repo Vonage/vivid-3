@@ -18,8 +18,8 @@ describe('vwc-popup', () => {
 
 	async function setupPopupToOpenWithAnchor() {
 		element.anchor = anchor;
-		await elementUpdated(element);
 		element.open = true;
+		await elementUpdated(element);
 		return anchor;
 	}
 
@@ -309,7 +309,7 @@ describe('vwc-popup', () => {
 			element.open = true;
 
 			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
-				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 2
+				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 1
 			);
 		});
 	});
