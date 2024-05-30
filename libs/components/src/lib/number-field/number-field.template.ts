@@ -114,7 +114,7 @@ export const NumberFieldTemplate: (
 						autocomplete="${(x) => x.autoComplete}"
 						name="${(x) => x.name}"
 						?spellcheck="${(x) => x.spellcheck}"
-						:value="${(x) => x.value}"
+						:value="${(x) => x._presentationValue}"
 						type="text"
 						aria-atomic="${(x) => x.ariaAtomic}"
 						aria-busy="${(x) => x.ariaBusy}"

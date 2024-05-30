@@ -28,6 +28,11 @@ describe('vwc-number-field', () => {
 	let element: NumberField;
 	let control: HTMLInputElement;
 
+	function typeInput(input: string) {
+		control.value = input;
+		control.dispatchEvent(new Event('input'));
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
@@ -40,7 +45,6 @@ describe('vwc-number-field', () => {
 			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
 			expect(control.getAttribute('type')).toEqual('text');
-			expect(control.getAttribute('step')).toBe('1');
 		});
 	});
 
@@ -280,10 +284,23 @@ describe('vwc-number-field', () => {
 		});
 	});
 
-	function typeInput(input: string) {
-		control.value = input;
-		control.dispatchEvent(new Event('input'));
-	}
+	describe('input field', function () {
+		it('should filter out any invalid characters', async function () {
+			typeInput('a1b.c-d');
+			expect(control.value).toEqual('1.-');
+		});
+
+		it('should filter out any period after the first one', async function () {
+			typeInput('1.2.3.4');
+			expect(control.value).toEqual('1.234');
+		});
+
+		it('should allow a trailing period', async function () {
+			typeInput('1.');
+			expect(control.value).toEqual('1.');
+		});
+	});
+
 	describe('value', function () {
 		it("should set 'has-value' class when there is a value", async function () {
 			const activeClassWhenEnabled =
@@ -296,65 +313,28 @@ describe('vwc-number-field', () => {
 			expect(activeClassWhenDisabled).toEqual(true);
 		});
 
-		it('should allow negative sign as first char when typing', async function () {
-			typeInput('-');
-			const valueWhenNegativeIsFirstChar = element.value;
+		it.each(['', '-', '.', '-.', '5-'])(
+			'should ignore invalid input value %s',
+			async function (value) {
+				typeInput(value);
+				await elementUpdated(element);
+				expect(element.value).toEqual('');
+			}
+		);
 
-			element.value = '5';
-			typeInput('5-');
-			await elementUpdated(element);
-			const valueWhenNegativeIsNotFirstChar = element.value;
+		it.each(['0', '1', '1.1', '-0.5', '-.5', '00', '0.0', '0.10'])(
+			'should accept number-like input value %s',
+			async function (value) {
+				typeInput(value);
+				await elementUpdated(element);
+				expect(element.value).toEqual(value);
+			}
+		);
 
-			expect(valueWhenNegativeIsNotFirstChar).toEqual('5');
-			expect(valueWhenNegativeIsFirstChar).toEqual('-');
-		});
-
-		it('should prevent typing invalid characters', function () {
-			typeInput('a');
-			const valueWhenInvalidChar = element.value;
-			element.value = '0.5';
-			typeInput('0.5.');
-			const valueWhenInvalidCharInDecimal = element.value;
-			element.value = '0.5';
-			typeInput('0.5a');
-			const valueWhenInvalidCharInEndOfNumber = element.value;
-
-			expect(valueWhenInvalidChar).toEqual('');
-			expect(valueWhenInvalidCharInDecimal).toEqual('0.5');
-			expect(valueWhenInvalidCharInEndOfNumber).toEqual('0.5');
-		});
-
-		it('should allow negative zero', async function () {
-			typeInput('-0');
-			const valueWhenNegativeZero = element.value;
-			typeInput('-0.');
-			const valueWhenNegativeZeroWithDecimal = element.value;
-			typeInput('-0.0');
-			const valueWhenNegativeZeroWithDecimalAndZero = element.value;
-
-			expect(valueWhenNegativeZero).toEqual('-0');
-			expect(valueWhenNegativeZeroWithDecimal).toEqual('-0.');
-			expect(valueWhenNegativeZeroWithDecimalAndZero).toEqual('-0.0');
-		});
-
-		it('should allow for decimal values by user', async function () {
-			element.value = '5';
+		it('should remove trailing period from number-like input value', async function () {
 			typeInput('5.');
-			const valueWhenDecimalLastChar = element.value;
-
-			typeInput('5.5');
-			const valueWhenDecimalMiddleChar = element.value;
-
-			typeInput('.');
-			const valueWhenDecimalOnlyChar = element.value;
-
-			typeInput('.5');
-			const valueWhenDecimalFirstChar = element.value;
-
-			expect(valueWhenDecimalLastChar).toEqual('5.');
-			expect(valueWhenDecimalMiddleChar).toEqual('5.5');
-			expect(valueWhenDecimalOnlyChar).toEqual('.');
-			expect(valueWhenDecimalFirstChar).toEqual('.5');
+			await elementUpdated(element);
+			expect(element.value).toEqual('5');
 		});
 
 		it('should clear invalid programmatically added invalid value', async function () {

@@ -6,11 +6,11 @@ import {
 } from '@microsoft/fast-element';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { DelegatesARIATextbox } from '@microsoft/fast-foundation';
-import { memoizeWith } from 'ramda';
 import type { Appearance, Shape } from '../enums';
 import {
-	type ErrorText,
+	AffixIcon,
 	errorText,
+	type ErrorText,
 	type FormElement,
 	FormElementCharCount,
 	FormElementHelperText,
@@ -18,7 +18,6 @@ import {
 	FormElementSuccessText,
 	Localized,
 } from '../../shared/patterns';
-import { AffixIcon } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { FormAssociatedNumberField } from './number-field.form-associated';
 
@@ -52,14 +51,12 @@ function makeStep(element: NumberField, direction: number) {
 	element.value = Number(stepUpValue.toFixed(12)).toString();
 }
 
-const getNumberInput = memoizeWith(
-	() => '',
-	() => {
-		const numberInput = document.createElement('input');
-		numberInput.type = 'number';
-		return numberInput;
-	}
-);
+const invalidCharacters = /[^0-9\-+e.]/g;
+const additionalPeriods = /(?<=\..*)\./g;
+const trailingPeriod = /\.$/;
+const numberLike = /^-?((\d*\.\d+)|(\d+))$/;
+const isValidValue = (value: string) => numberLike.test(value);
+
 /**
  * @public
  * @component number-field
@@ -167,7 +164,6 @@ export class NumberField extends FormAssociatedNumberField {
 	 */
 	maxChanged(_: number, next: number) {
 		this.max = Math.max(next, this.min ?? next);
-		this.value = this.getValidValue(this.value);
 	}
 
 	/**
@@ -187,7 +183,6 @@ export class NumberField extends FormAssociatedNumberField {
 	 */
 	minChanged(_: number, next: number) {
 		this.min = Math.min(next, this.max ?? next);
-		this.value = this.getValidValue(this.value);
 	}
 
 	/**
@@ -222,18 +217,17 @@ export class NumberField extends FormAssociatedNumberField {
 	}
 
 	/**
-	 * Validates that the value is a number between the min and max
 	 * @internal
 	 */
 	override valueChanged(previous: string, next: string) {
-		this.value = this.getValidValue(next);
+		this.value = isValidValue(next) ? next : '';
 
 		if (next !== this.value) {
 			return;
 		}
 
 		if (this.control && !this.isUserInput) {
-			this.control.value = this.value;
+			this.control.value = this.#formatPresentationValue(this.value);
 		}
 
 		super.valueChanged(previous, this.value);
@@ -242,46 +236,20 @@ export class NumberField extends FormAssociatedNumberField {
 			this.$emit('input');
 			this.$emit('change');
 		}
+	}
 
-		this.isUserInput = false;
+	/**
+	 * @internal
+	 */
+	@observable _presentationValue = '';
+
+	#formatPresentationValue(value: string): string {
+		return value.replace(invalidCharacters, '').replace(additionalPeriods, '');
 	}
 
 	/** {@inheritDoc (FormAssociated:interface).validate} */
 	override validate() {
 		super.validate(this.control);
-	}
-
-	/**
-	 * Sets the internal value to a valid number between the min and max properties
-	 * @param value - user input
-	 *
-	 * @internal
-	 */
-	private getValidValue(value: string): string {
-		const numberInput = getNumberInput();
-
-		if (!this.isUserInput) {
-			numberInput.value = value;
-			return numberInput.value;
-		}
-
-		if (value === '' || value === '-' || value === '.') {
-			return value;
-		}
-
-		const decimalSplit = value.split('.');
-		let valueSuffix = '';
-		if (decimalSplit.length === 2 && decimalSplit[1] === '') {
-			valueSuffix = '.';
-			numberInput.value = value.slice(0, -1);
-		} else {
-			numberInput.value = value;
-		}
-
-		if (numberInput.value === '') {
-			return this.currentValue;
-		}
-		return numberInput.value + valueSuffix;
 	}
 
 	/**
@@ -311,7 +279,7 @@ export class NumberField extends FormAssociatedNumberField {
 
 		this.proxy.setAttribute('type', 'number');
 		this.validate();
-		this.control.value = this.value;
+		this.control.value = this.#formatPresentationValue(this.value);
 
 		if (this.autofocus) {
 			DOM.queueUpdate(() => {
@@ -342,9 +310,21 @@ export class NumberField extends FormAssociatedNumberField {
 	 * @internal
 	 */
 	handleTextInput() {
-		this.control.value = this.control.value.replace(/[^0-9\-+e.]/g, '');
+		this._presentationValue = this.#formatPresentationValue(this.control.value);
+
+		if (this.control.value !== this._presentationValue) {
+			this.control.value = this._presentationValue;
+		}
+
+		const withoutTrailingPeriod = this._presentationValue.replace(
+			trailingPeriod,
+			''
+		);
 		this.isUserInput = true;
-		this.value = this.control.value;
+		this.value = isValidValue(withoutTrailingPeriod)
+			? withoutTrailingPeriod
+			: '';
+		this.isUserInput = false;
 	}
 
 	/**
