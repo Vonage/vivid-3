@@ -9,6 +9,9 @@ import {
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Shape } from '../enums';
+import { setLocale } from '../../shared/localization';
+import enUS from '../../locales/en-US';
+import deDE from '../../locales/de-DE';
 import { NumberField } from './number-field';
 import { numberFieldDefinition } from './definition';
 import '.';
@@ -286,8 +289,8 @@ describe('vwc-number-field', () => {
 
 	describe('input field', function () {
 		it('should filter out any invalid characters', async function () {
-			typeInput('a1b.c-d');
-			expect(control.value).toEqual('1.-');
+			typeInput('a1,b2.c-d\\/');
+			expect(control.value).toEqual('12.-');
 		});
 
 		it('should filter out any period after the first one', async function () {
@@ -298,6 +301,44 @@ describe('vwc-number-field', () => {
 		it('should allow a trailing period', async function () {
 			typeInput('1.');
 			expect(control.value).toEqual('1.');
+		});
+
+		describe('with locale with comma as decimal separator', function () {
+			beforeEach(() => {
+				setLocale(deDE);
+			});
+
+			afterEach(() => {
+				setLocale(enUS);
+			});
+
+			it('should format values with comma', async function () {
+				element.value = '1.2';
+				await elementUpdated(element);
+
+				expect(control.value).toEqual('1,2');
+			});
+
+			it('should accept values entered with comma', async function () {
+				typeInput('1,2');
+
+				expect(element.value).toEqual('1.2');
+			});
+
+			it('should filter out any invalid characters', async function () {
+				typeInput('a1,b2.c-d\\/');
+				expect(control.value).toEqual('1,2-');
+			});
+
+			it('should filter out any period after the first one', async function () {
+				typeInput('1,2,3,4');
+				expect(control.value).toEqual('1,234');
+			});
+
+			it('should allow a trailing period', async function () {
+				typeInput('1,');
+				expect(control.value).toEqual('1,');
+			});
 		});
 	});
 

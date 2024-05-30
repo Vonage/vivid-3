@@ -51,11 +51,20 @@ function makeStep(element: NumberField, direction: number) {
 	element.value = Number(stepUpValue.toFixed(12)).toString();
 }
 
-const invalidCharacters = /[^0-9\-+e.]/g;
-const additionalPeriods = /(?<=\..*)\./g;
-const trailingPeriod = /\.$/;
-const numberLike = /^-?((\d*\.\d+)|(\d+))$/;
-const isValidValue = (value: string) => numberLike.test(value);
+const buildNumberPatterns = (decimalSeparator: RegExp) => {
+	const ds = decimalSeparator.source;
+
+	return {
+		invalidCharacters: new RegExp(`[^0-9\\-+e${ds}]`, 'g'),
+		additionalDecimalSeparators: new RegExp(`(?<=${ds}.*)${ds}`, 'g'),
+		trailingDecimalSeparator: new RegExp(`${ds}$`),
+		decimalSeparator,
+	};
+};
+const numberPatternsWithPeriod = buildNumberPatterns(/\./);
+const numberPatternsWithComma = buildNumberPatterns(/,/);
+
+const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
 
 /**
  * @public
@@ -220,14 +229,14 @@ export class NumberField extends FormAssociatedNumberField {
 	 * @internal
 	 */
 	override valueChanged(previous: string, next: string) {
-		this.value = isValidValue(next) ? next : '';
+		this.value = validNumber.test(next) ? next : '';
 
 		if (next !== this.value) {
 			return;
 		}
 
 		if (this.control && !this.isUserInput) {
-			this.control.value = this.#formatPresentationValue(this.value);
+			this._presentationValue = this.#valueToPresentationValue(this.value);
 		}
 
 		super.valueChanged(previous, this.value);
@@ -239,12 +248,39 @@ export class NumberField extends FormAssociatedNumberField {
 	}
 
 	/**
+	 * Current value of the input field
 	 * @internal
 	 */
 	@observable _presentationValue = '';
 
-	#formatPresentationValue(value: string): string {
-		return value.replace(invalidCharacters, '').replace(additionalPeriods, '');
+	/**
+	 * @internal
+	 */
+	get _numberPatterns() {
+		return this.locale.common.useCommaAsDecimalSeparator
+			? numberPatternsWithComma
+			: numberPatternsWithPeriod;
+	}
+
+	#valueToPresentationValue(value: string): string {
+		return value.replace(
+			'.',
+			this.locale.common.useCommaAsDecimalSeparator ? ',' : '.'
+		);
+	}
+
+	#inputToPresentationValue(input: string): string {
+		return input
+			.replace(this._numberPatterns.invalidCharacters, '')
+			.replace(this._numberPatterns.additionalDecimalSeparators, '');
+	}
+
+	#presentationValueToValue(presentationValue: string): string {
+		const candidate = presentationValue
+			.replace(this._numberPatterns.trailingDecimalSeparator, '')
+			.replace(this._numberPatterns.decimalSeparator, '.');
+
+		return validNumber.test(candidate) ? candidate : '';
 	}
 
 	/** {@inheritDoc (FormAssociated:interface).validate} */
@@ -279,7 +315,7 @@ export class NumberField extends FormAssociatedNumberField {
 
 		this.proxy.setAttribute('type', 'number');
 		this.validate();
-		this.control.value = this.#formatPresentationValue(this.value);
+		this._presentationValue = this.#valueToPresentationValue(this.value);
 
 		if (this.autofocus) {
 			DOM.queueUpdate(() => {
@@ -310,20 +346,16 @@ export class NumberField extends FormAssociatedNumberField {
 	 * @internal
 	 */
 	handleTextInput() {
-		this._presentationValue = this.#formatPresentationValue(this.control.value);
+		this._presentationValue = this.#inputToPresentationValue(
+			this.control.value
+		);
 
 		if (this.control.value !== this._presentationValue) {
 			this.control.value = this._presentationValue;
 		}
 
-		const withoutTrailingPeriod = this._presentationValue.replace(
-			trailingPeriod,
-			''
-		);
 		this.isUserInput = true;
-		this.value = isValidValue(withoutTrailingPeriod)
-			? withoutTrailingPeriod
-			: '';
+		this.value = this.#presentationValueToValue(this._presentationValue);
 		this.isUserInput = false;
 	}
 
