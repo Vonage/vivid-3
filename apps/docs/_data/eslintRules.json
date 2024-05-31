@@ -2,5 +2,9 @@
 	{
 		"name": "no-deprecated-apis",
 		"markdown": "./libs/eslint-plugin/src/rules/no-deprecated-apis.md"
+	},
+	{
+		"name": "no-slot-attribute",
+		"markdown": "./libs/eslint-plugin/src/rules/no-slot-attribute.md"
 	}
 ]
