@@ -82,12 +82,12 @@ $track-thickness: 2px;
 			block-size: $track-thickness;
 
 			.mark {
-				block-size: 6px;
-				inline-size: 100%;
 				position: absolute;
 				z-index: -1;
-				inset-inline-start: 0;
+				block-size: 6px;
+				inline-size: 100%;
 				inset-block-start: -2px;
+				inset-inline-start: 0;
 			}
 		}
 	}
@@ -113,12 +113,12 @@ $track-thickness: 2px;
 			inline-size: $track-thickness;
 
 			.mark {
-				block-size: 100%;
-				inline-size: 6px;
 				position: absolute;
 				z-index: -1;
-				inset-inline-start: -2px;
+				block-size: 100%;
+				inline-size: 6px;
 				inset-block-start: 0;
+				inset-inline-start: -2px;
 			}
 		}
 
@@ -149,6 +149,17 @@ $track-thickness: 2px;
 		);
 	}
 }
+
+/* stylelint-disable */
+.mark {
+	.control:not(.disabled) & {
+		color: var(#{utils.get-color-token(neutral-950)});
+	}
+	.control.disabled & {
+		color: var(#{variables.$track-start-background-color});
+	}
+}
+/* stylelint-enable */
 
 .thumb-container {
 	position: absolute;
