@@ -17,6 +17,21 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
 	return ratesArray;
 }
 
+function appendProgressBarToStart(videoPlayer: any) {
+	const controlBar = videoPlayer.getChild('ControlBar');
+	const current = controlBar.getChild('CurrentTimeDisplay');
+	const progress = controlBar.getChild('ProgressControl');
+	const duration = controlBar.getChild('DurationDisplay');
+	const divider = controlBar.getChild('TimeDivider');
+	controlBar.removeChild(progress);
+	controlBar.removeChild(current);
+	controlBar.removeChild(divider);
+	controlBar.removeChild(duration);
+	controlBar.addChild(current, {}, 0);
+	controlBar.addChild(progress, {}, 1);
+	controlBar.addChild(duration, {}, 2);
+}
+
 /**
  * Base class for video-player
  *
@@ -233,6 +248,7 @@ export class VideoPlayer extends FoundationElement {
 			this.#hideNoSourceError();
 			this.#setupVideoElement();
 			this.#setupVideoPlayer(settings);
+			appendProgressBarToStart(this._player);
 			this.#setupPlayerEvents();
 		} else {
 			this.#hideNoSourceError(false);
