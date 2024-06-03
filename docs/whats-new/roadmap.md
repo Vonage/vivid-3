@@ -48,7 +48,7 @@
     <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="AT in progress" icon="more-horizontal-line" href="/components/dial-pad/" connotation="success"></vwc-button>
+      <vwc-button label="Done" icon="check" href="/components/dial-pad/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
