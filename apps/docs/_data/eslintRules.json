@@ -2,5 +2,9 @@
 	{
 		"name": "no-deprecated-apis",
 		"markdown": "./libs/eslint-plugin/src/rules/no-deprecated-apis.md"
+	},
+	{
+		"name": "no-inaccessible-events",
+		"markdown": "./libs/eslint-plugin/src/rules/no-inaccessible-events.md"
 	}
 ]
