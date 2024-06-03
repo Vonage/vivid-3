@@ -146,6 +146,10 @@ export class AudioPlayer extends FoundationElement {
 		return this.shadowRoot!.querySelector('.time-stamp');
 	}
 
+	get #baseElement(): HTMLElement | null {
+		return this.shadowRoot!.querySelector('.base');
+	}
+
 	constructor() {
 		super();
 		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
@@ -176,15 +180,15 @@ export class AudioPlayer extends FoundationElement {
 
 	#setInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
-		this.shadowRoot!.querySelector('.base')![action](
+		this.#baseElement![action](
 			'keyup',
 			this.#handleSliderEvent
 		);
-		this.shadowRoot!.querySelector('.base')![action](
+		this.#baseElement![action](
 			'keydown',
 			this.#handleSliderEvent
 		);
-		this.shadowRoot!.querySelector('.base')![action](
+		this.#baseElement![action](
 			'mousedown',
 			this.#handleSliderEvent
 		);
