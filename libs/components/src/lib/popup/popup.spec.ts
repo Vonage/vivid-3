@@ -7,7 +7,7 @@ import {
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
-import { Popup } from './popup';
+import { PlacementStrategy, Popup } from './popup';
 import '.';
 
 const COMPONENT_TAG = 'vwc-popup';
@@ -18,8 +18,8 @@ describe('vwc-popup', () => {
 
 	async function setupPopupToOpenWithAnchor() {
 		element.anchor = anchor;
-		await elementUpdated(element);
 		element.open = true;
+		await elementUpdated(element);
 		return anchor;
 	}
 
@@ -29,11 +29,11 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
-		global.ResizeObserver = jest.fn().mockImplementation(() => ({
-			observe: jest.fn(),
-			unobserve: jest.fn(),
-			disconnect: jest.fn(),
-		}));
+		global.ResizeObserver = class {
+			observe = jest.fn();
+			unobserve = jest.fn();
+			disconnect = jest.fn();
+		};
 	});
 
 	afterEach(function () {
@@ -156,6 +156,8 @@ describe('vwc-popup', () => {
 			expect(element.dismissible).toBeFalsy();
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
+			expect(element.placementStrategy).toBe(PlacementStrategy.Flip);
+			expect(element.animationFrame).toBe(false);
 			expect(element.strategy).toEqual('fixed');
 		});
 	});
@@ -251,6 +253,64 @@ describe('vwc-popup', () => {
 
 			expect(partValueWithoutAlternate).toEqual('');
 			expect(partValueWithAlternate).toEqual('vvd-theme-alternate');
+		});
+	});
+
+	describe('placementStrategy', () => {
+		beforeEach(() => {
+			jest.spyOn(floatingUI, 'computePosition');
+		});
+
+		afterEach(() => {
+			jest.mocked(floatingUI.computePosition).mockRestore();
+		});
+
+		it('should use placementStrategy to compute position', async () => {
+			element.placementStrategy = PlacementStrategy.AutoPlacementHorizontal;
+
+			await setupPopupToOpenWithAnchor();
+			await element.updatePosition();
+
+			expect(floatingUI.computePosition).toHaveBeenLastCalledWith(
+				expect.anything(),
+				expect.anything(),
+				expect.objectContaining({
+					middleware: expect.arrayContaining([
+						expect.objectContaining({
+							name: 'autoPlacement',
+						}),
+					]),
+				})
+			);
+		});
+	});
+
+	describe('animationFrame', () => {
+		const RAF_CALLS_FROM_SETTING_ATTRIBUTE = 1;
+
+		it('should not continuously update position with requestAnimationFrame when false', async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+			jest.spyOn(window, 'requestAnimationFrame');
+
+			element.open = true;
+
+			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
+				RAF_CALLS_FROM_SETTING_ATTRIBUTE
+			);
+		});
+
+		it('should continuously update position with requestAnimationFrame when true', async () => {
+			element.animationFrame = true;
+			element.anchor = anchor;
+			await elementUpdated(element);
+			jest.spyOn(window, 'requestAnimationFrame');
+
+			element.open = true;
+
+			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
+				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 1
+			);
 		});
 	});
 
