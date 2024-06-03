@@ -126,8 +126,8 @@ export class AudioPlayer extends FoundationElement {
 		return this.#playerEl.paused;
 	}
 
-	set paused(value) {
-		value;
+	set paused(_) {
+		//
 	}
 
 	get duration() {
@@ -135,8 +135,8 @@ export class AudioPlayer extends FoundationElement {
 		return this.#playerEl.duration;
 	}
 
-	set duration(value) {
-		value;
+	set duration(_) {
+		//
 	}
 
 	get currentTime() {
