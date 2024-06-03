@@ -67,7 +67,7 @@ function selectValue(context: ElementDefinitionContext) {
 			<span class="text">${(x) => x.displayValue}</span>
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 		</div>
-		${() => affixIconTemplate('chevron-down-line')}
+		<span class="chevron">${() => affixIconTemplate('chevron-down-line')}</span>
 	</div>`;
 }
 

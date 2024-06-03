@@ -101,9 +101,16 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.icon {
+.chevron {
 	display: flex;
 	flex-shrink: 0;
+	font: var(#{constants.$vvd-typography-base-extended});
+	transform: rotate(0);
+	transition: transform 0.2s;
+
+	:host([aria-expanded='true']) & {
+		transform: rotate(180deg);
+	}
 }
 
 .selected-value {
@@ -118,6 +125,10 @@ $low-ink-color: --_low-ink-color;
 		overflow: hidden;
 		max-inline-size: 100%;
 		text-overflow: ellipsis;
+
+		:host([placeholder]) & {
+			color: var(#{constants.$vvd-color-neutral-600});
+		}
 	}
 
 	slot[name='icon'] {
