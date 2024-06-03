@@ -11,7 +11,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<style>
 		.contentWrapper {
-			width: 100px;
+			width: 70px;
 			padding: 4px;
 		}
 
@@ -49,7 +49,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<div class="square small" style="align-self: flex-start"></div>
 			<vwc-popup>
 				<div class="contentWrapper">
-					auto placement vertical
+					vertical auto placement
 				</div>
 			</vwc-popup>
 		</div>
@@ -178,7 +178,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 	`;
 
-	page.setViewportSize({ width: 800, height: 1000 });
+	page.setViewportSize({ width: 800, height: 1100 });
 
 	await loadComponents({
 		page,
