@@ -1,5 +1,7 @@
 const { unescapeAll } = require('markdown-it/lib/common/utils');
-const createCodeExample = require('../code-example-preview/createCodeExample');
+const {
+	createCodeExample,
+} = require('../code-example-preview/createCodeExample');
 const createVariablePreview = require('../variables-preview');
 
 /**
