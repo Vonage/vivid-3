@@ -199,6 +199,15 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(nativeAudioElement.src).toEqual(src);
 		});
+
+		it('should remove src from the audio if unset', async () => {
+			const src = 'http://localhost/audio.mp3';
+			element.src = src;
+			await elementUpdated(element);
+			element.src = undefined;
+			await elementUpdated(element);
+			expect(nativeAudioElement.src).toEqual('');
+		});
 	});
 
 	describe('connotation', function () {

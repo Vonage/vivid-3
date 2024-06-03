@@ -84,6 +84,13 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr src?: string;
 
+	srcChanged() {
+		if (this.src === undefined) {
+			this.#playerEl.removeAttribute('src');
+		} else {
+			this.#playerEl.src = this.src;
+		}
+	}
 	/**
 	 * Indicates whether audio player is disabled.
 	 *
@@ -181,10 +188,6 @@ export class AudioPlayer extends FoundationElement {
 			'mousedown',
 			this.#handleSliderEvent
 		);
-	}
-
-	srcChanged() {
-		(this.#playerEl.src as any) = this.src;
 	}
 
 	#pausedChanged = (pausing: boolean) => {
