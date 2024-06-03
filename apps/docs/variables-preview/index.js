@@ -1,4 +1,6 @@
-const createCodeExamples = require('../code-example-preview/createCodeExample');
+const {
+	createCodeExample,
+} = require('../code-example-preview/createCodeExample');
 const customElements = require('../../../dist/libs/components-meta/custom-elements.json');
 
 const CONNOTATIONS = [
@@ -75,7 +77,7 @@ module.exports = function (exampleCode, options) {
 			output += `
 					<vwc-tab label='${connotation}'></vwc-tab>
 					<vwc-tab-panel>
-						${createCodeExamples(exampleCodeWithStyle, options, connotationProperties)}
+						${createCodeExample(exampleCodeWithStyle, options, connotationProperties)}
 					</vwc-tab-panel>
 				`;
 		}
@@ -95,7 +97,7 @@ module.exports = function (exampleCode, options) {
 		});
 		const exampleCodeWithStyle =
 			renderVariablesStylesheet(cssProperties) + exampleCode;
-		return createCodeExamples(exampleCodeWithStyle, options, cssProperties);
+		return createCodeExample(exampleCodeWithStyle, options, cssProperties);
 	}
 };
 
