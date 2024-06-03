@@ -120,6 +120,12 @@ Use the `disabled` attribute to disable the audio-player.
 	disabled
 ></vwc-audio-player>
 ```
+### CurrentTime
+
+Use the `currentTime` property change or get the audio player's current time.
+
+- Type: `number`
+- Default: `undefined`
 
 ### Paused (readonly)
 

@@ -8,22 +8,34 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
+
 import {
 	AudioPlayer,
+	formatTime,
 	SKIP_DIRECTIONS,
 	type SKIP_DIRECTIONS_TYPE,
 } from './audio-player';
 
+function getCurrentTimePercentage(x: AudioPlayer) {
+	if (Number.isNaN(x.currentTime) || Number.isNaN(x.duration)) {
+		return 0;
+	}
+	return  (x.currentTime / x.duration) * 100;
+}
+
+function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
+	const currentTime = audioElement.currentTime;
+	const skipValue = parseInt(audioElement.skipBy!) * skipDirection;
+	const newTime = currentTime + skipValue;
+
+	audioElement.currentTime = Math.max(
+		0,
+		Math.min(audioElement.duration, newTime)
+	);
+}
+
 const getClasses = ({ disabled, duration }: AudioPlayer) =>
 	classNames(['disabled', Boolean(disabled) || !duration]);
-
-function skip(audioPlayer: AudioPlayer, direction: SKIP_DIRECTIONS_TYPE) {
-	const skipEvent = new CustomEvent('vwc-audio-player:skip', {
-		bubbles: false,
-		detail: direction,
-	});
-	audioPlayer.dispatchEvent(skipEvent);
-}
 
 function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -45,8 +57,8 @@ function renderBackwardSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip backward" @click="${(x) =>
-		skip(x, SKIP_DIRECTIONS.BACKWARD)}"
+		<${buttonTag} class="skip backward"
+			@click="${(element) => skip(element, SKIP_DIRECTIONS.BACKWARD)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-backward-line'
@@ -66,8 +78,8 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
-		<${buttonTag} class="skip forward" @click="${(x) =>
-		skip(x, SKIP_DIRECTIONS.FORWARD)}"
+		<${buttonTag} class="skip forward"
+		@click="${(element) => skip(element, SKIP_DIRECTIONS.FORWARD)}"
 		icon="${(x) =>
 			x.skipBy == MediaSkipBy.Five
 				? '5-sec-forward-line'
@@ -90,7 +102,8 @@ function renderSlider(context: ElementDefinitionContext) {
 	<${sliderTag}
 		class="slider"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-		value="0" max="100"
+		value="${getCurrentTimePercentage}" max="100"
+		ariaValuetext="${x => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}">
 	</${sliderTag}>`;
@@ -98,9 +111,9 @@ function renderSlider(context: ElementDefinitionContext) {
 
 function renderTimestamp() {
 	return html` <div class="time-stamp">
-		<span class="current-time">0:00</span>
+		<span class="current-time">${x => formatTime(x.currentTime)}</span>
 		<span>/</span>
-		<span class="total-time">0:00</span>
+		<span class="total-time">${x => formatTime(x.duration)}</span>
 	</div>`;
 }
 

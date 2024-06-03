@@ -24,7 +24,10 @@ export const SKIP_DIRECTIONS = {
 export type SKIP_DIRECTIONS_TYPE =
 	typeof SKIP_DIRECTIONS[keyof typeof SKIP_DIRECTIONS];
 
-function formatTime(time: number) {
+export function formatTime(time: number) {
+	if (!time || Number.isNaN(time)) {
+		return '0:00';
+	}
 	const min = Math.floor(time / 60);
 	const sec = Math.floor(time % 60);
 	return min + ':' + (sec < 10 ? '0' + sec : sec);
@@ -136,15 +139,20 @@ export class AudioPlayer extends FoundationElement {
 		value;
 	}
 
+	get currentTime() {
+		Observable.track(this, 'currentTime');
+		return this.#playerEl.currentTime;
+	}
+
+	set currentTime(value) {
+		this.#playerEl.currentTime = value;
+	}
+
 	get #sliderEl(): Slider | null {
 		return this.shadowRoot!.querySelector('.slider');
 	}
 
 	#playerEl = new Audio();
-
-	get #timeStampEl(): HTMLDivElement | null {
-		return this.shadowRoot!.querySelector('.time-stamp');
-	}
 
 	get #baseElement(): HTMLElement | null {
 		return this.shadowRoot!.querySelector('.base');
@@ -154,7 +162,6 @@ export class AudioPlayer extends FoundationElement {
 		super();
 		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
 		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
-		this.addEventListener('vwc-audio-player:skip', this.#skip as EventListener);
 	}
 
 	override connectedCallback(): void {
@@ -207,55 +214,22 @@ export class AudioPlayer extends FoundationElement {
 		this.#setPausedState();
 	};
 
-	#skip = (event: CustomEvent) => {
-		const skipDirection: SKIP_DIRECTIONS_TYPE = event.detail;
-		if (this.#playerEl) {
-			const currentTime = this.#playerEl.currentTime;
-			const skipValue = parseInt(this.skipBy!) * skipDirection;
-			const newTime = currentTime + skipValue;
-
-			this.#playerEl.currentTime = Math.max(
-				0,
-				Math.min(this.#playerEl.duration, newTime)
-			);
-			this.#updateProgress();
-		}
-	};
-
 	#updateProgress = () => {
-		let currentTime: HTMLElement | null;
-		const current: number = this.#playerEl.currentTime;
-		const percent = (current / this.#playerEl.duration) * 100;
-
-		if (this.#sliderEl) {
-			this.#sliderEl.value = percent.toString();
-			this.#sliderEl.ariaValuetext = formatTime(current);
-		}
-
+		Observable.notify(this, 'currentTime');
+		const percent = (this.currentTime / this.duration) * 100;
 		if (percent === 100) {
 			this.pause();
-		}
-
-		if (this.#timeStampEl) {
-			currentTime = this.#timeStampEl.querySelector('.current-time');
-			if (currentTime) currentTime.textContent = formatTime(current);
 		}
 	};
 
 	#updateTotalTime = () => {
-		let totalTime: HTMLElement | null;
 		Observable.notify(this, 'duration');
-		if (this.#timeStampEl) {
-			totalTime = this.#timeStampEl.querySelector('.total-time');
-			if (totalTime)
-				totalTime.textContent = formatTime(this.#playerEl.duration);
-		}
 	};
 
 	#rewind = () => {
 		if (this.#playerEl) {
-			this.#playerEl.currentTime =
-				this.#playerEl.duration * (Number(this.#sliderEl!.value) / 100);
+			this.currentTime =
+				this.duration *  Number(this.#sliderEl!.value) / 100;
 		}
 	};
 

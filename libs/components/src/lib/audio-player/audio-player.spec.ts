@@ -122,7 +122,7 @@ describe('vwc-audio-player', () => {
 		await elementUpdated(element);
 
 		expect(getSliderElement().value).toEqual(expectedValue);
-		expect(getSliderElement().ariaValuetext).toEqual(expectedAriaValuetext);
+		expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(expectedAriaValuetext);
 	});
 
 	it('should update duration on loadmetadata', async function () {
@@ -141,11 +141,12 @@ describe('vwc-audio-player', () => {
 		nativeAudioElement.currentTime = 50;
 		const event = new Event('loadedmetadata');
 		nativeAudioElement.dispatchEvent(event);
+		await elementUpdated(element);
 
 		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
 	});
 
-	it('should set currentTime according to slider value on mouseup', () => {
+	it('should set currentTime according to slider value on mouseup', async () => {
 		const sliderValue = 50;
 		const duration = 100;
 		const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
@@ -242,6 +243,22 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(allSubElementsDisabled()).toBeTruthy();
+		});
+	});
+
+	describe('currentTime', () => {
+		it('should change the native currentTime', async () => {
+			const currentTime = 60;
+			setAudioElementCurrentTime(currentTime);
+			await elementUpdated(element);
+			element.currentTime = 50;
+			expect(element.currentTime).toBe(nativeAudioElement.currentTime);
+		});
+
+		it('should reflect the native currentTime', async () => {
+			setAudioElementCurrentTime(60);
+			await elementUpdated(element);
+			expect(element.currentTime).toBe(nativeAudioElement.currentTime);
 		});
 	});
 
