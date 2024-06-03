@@ -8,48 +8,6 @@ The `vwc-audio-player` component is used to play audio files. It is based on the
 
 ## Members
 
-### Play()
-
-Use the play method to start the audio if loaded.
-
-```html preview
-<vwc-audio-player
-	src="https://download.samplelib.com/mp3/sample-6s.mp3"
-></vwc-audio-player>
-<vwc-button label="play"></vwc-button>
-<script>
-	const button = document.querySelector('vwc-button');
-	const player = document.querySelector('vwc-audio-player');
-	button.addEventListener('click', () => {
-		player.play();
-	});
-</script>
-```
-
-### Pause()
-
-Use the pause method to pause the audio if playing.
-
-```html preview
-<vwc-audio-player
-	src="https://download.samplelib.com/mp3/sample-6s.mp3"
-></vwc-audio-player>
-<vwc-button label="play"></vwc-button>
-<script>
-	const button = document.querySelector('vwc-button');
-	const player = document.querySelector('vwc-audio-player');
-	button.addEventListener('click', () => {
-		if (player.paused) {
-			player.play();
-			button.label = 'pause';
-		} else {
-			player.pause();
-			button.label = 'play';
-		}
-	});
-</script>
-```
-
 ### Src
 
 Use the `src` attribute to add source to the audio-player.
@@ -120,6 +78,7 @@ Use the `disabled` attribute to disable the audio-player.
 	disabled
 ></vwc-audio-player>
 ```
+
 ### CurrentTime
 
 Use the `currentTime` property change or get the audio player's current time.
@@ -140,6 +99,48 @@ Use the `duration` property indicates the duration of the loaded audio.
 
 - Type: `number`
 - Default: `undefined`
+
+### Play()
+
+Use the play method to start the audio if loaded.
+
+```html preview
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+></vwc-audio-player>
+<vwc-button label="play"></vwc-button>
+<script>
+	const button = document.querySelector('vwc-button');
+	const player = document.querySelector('vwc-audio-player');
+	button.addEventListener('click', () => {
+		player.play();
+	});
+</script>
+```
+
+### Pause()
+
+Use the pause method to pause the audio if playing.
+
+```html preview
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+></vwc-audio-player>
+<vwc-button label="play"></vwc-button>
+<script>
+	const button = document.querySelector('vwc-button');
+	const player = document.querySelector('vwc-audio-player');
+	button.addEventListener('click', () => {
+		if (player.paused) {
+			player.play();
+			button.label = 'pause';
+		} else {
+			player.pause();
+			button.label = 'play';
+		}
+	});
+</script>
+```
 
 ## CSS Variables
 
