@@ -122,7 +122,9 @@ describe('vwc-audio-player', () => {
 		await elementUpdated(element);
 
 		expect(getSliderElement().value).toEqual(expectedValue);
-		expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(expectedAriaValuetext);
+		expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(
+			expectedAriaValuetext
+		);
 	});
 
 	it('should update duration on loadmetadata', async function () {

@@ -187,18 +187,9 @@ export class AudioPlayer extends FoundationElement {
 
 	#setInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
-		this.#baseElement![action](
-			'keyup',
-			this.#handleSliderEvent
-		);
-		this.#baseElement![action](
-			'keydown',
-			this.#handleSliderEvent
-		);
-		this.#baseElement![action](
-			'mousedown',
-			this.#handleSliderEvent
-		);
+		this.#baseElement![action]('keyup', this.#handleSliderEvent);
+		this.#baseElement![action]('keydown', this.#handleSliderEvent);
+		this.#baseElement![action]('mousedown', this.#handleSliderEvent);
 	}
 
 	#pausedChanged = (pausing: boolean) => {
@@ -228,8 +219,7 @@ export class AudioPlayer extends FoundationElement {
 
 	#rewind = () => {
 		if (this.#playerEl) {
-			this.currentTime =
-				this.duration *  Number(this.#sliderEl!.value) / 100;
+			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
 		}
 	};
 

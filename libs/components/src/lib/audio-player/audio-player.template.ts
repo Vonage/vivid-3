@@ -20,7 +20,7 @@ function getCurrentTimePercentage(x: AudioPlayer) {
 	if (Number.isNaN(x.currentTime) || Number.isNaN(x.duration)) {
 		return 0;
 	}
-	return  (x.currentTime / x.duration) * 100;
+	return (x.currentTime / x.duration) * 100;
 }
 
 function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
@@ -103,7 +103,7 @@ function renderSlider(context: ElementDefinitionContext) {
 		class="slider"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
 		value="${getCurrentTimePercentage}" max="100"
-		ariaValuetext="${x => formatTime(x.currentTime)}"
+		ariaValuetext="${(x) => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}">
 	</${sliderTag}>`;
@@ -111,9 +111,9 @@ function renderSlider(context: ElementDefinitionContext) {
 
 function renderTimestamp() {
 	return html` <div class="time-stamp">
-		<span class="current-time">${x => formatTime(x.currentTime)}</span>
+		<span class="current-time">${(x) => formatTime(x.currentTime)}</span>
 		<span>/</span>
-		<span class="total-time">${x => formatTime(x.duration)}</span>
+		<span class="total-time">${(x) => formatTime(x.duration)}</span>
 	</div>`;
 }
 
