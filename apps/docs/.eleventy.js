@@ -10,6 +10,9 @@ const packageInstallation = require('./_shortcodes/packageInstallation');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 const { spawnSync } = require('child_process');
+const {
+	resetExampleIndex,
+} = require('./code-example-preview/createCodeExample');
 
 const INPUT_DIR = 'apps/docs';
 const OUTPUT_DIR = 'dist/apps/docs';
@@ -107,6 +110,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
 
 	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/**`);
+
+	eleventyConfig.on('eleventy.before', resetExampleIndex);
 
 	eleventyConfig.on('eleventy.after', async ({ dir, runMode }) => {
 		if (runMode === 'serve') {

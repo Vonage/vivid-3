@@ -27,12 +27,15 @@ const EXISTING_COMPONENTS = new Set(
 const OUTPUT_PATH = 'dist/apps/docs/frames';
 
 let exampleIndex = 0;
+function resetExampleIndex() {
+	exampleIndex = 0;
+}
 
-module.exports = function createCodeExample(code, options, cssProperties) {
+function createCodeExample(code, options, cssProperties) {
 	const index = exampleIndex++;
 	const src = createiFrameContent(code, options, index);
 	return renderiFrame(index, src, code, options, cssProperties);
-};
+}
 
 const renderiFrame = (index, src, content, classList, variableToShow) => {
 	const vwcUsages = content.match(/vwc-[\w-]+/g) ?? [];
@@ -160,4 +163,9 @@ const renderVariablesTable = (cssProperties) => {
 				.join('\n')}
 		</tbody>
 	</table>`;
+};
+
+module.exports = {
+	resetExampleIndex,
+	createCodeExample,
 };
