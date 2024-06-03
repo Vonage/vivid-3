@@ -317,7 +317,6 @@ describe('vwc-audio-player', () => {
 		it.each(['keyup', 'keydown', 'mousedown'])(
 			'should pause audio on %s of the slider',
 			async function (eventName) {
-				element.paused = false;
 				await elementUpdated(element);
 				setAudioElementDuration(60);
 
@@ -354,6 +353,11 @@ describe('vwc-audio-player', () => {
 
 			await elementUpdated(element);
 			expect(element.paused).toEqual(true);
+		});
+
+		it('should be readonly', () => {
+			element.paused = false;
+			expect(element.paused).toBe(true);
 		});
 	});
 
@@ -414,7 +418,6 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should pause when skipping to the end', async function () {
-			element.paused = false;
 			element.skipBy = MediaSkipBy.Five;
 			nativeAudioElement.currentTime = 55;
 			await elementUpdated(element);
