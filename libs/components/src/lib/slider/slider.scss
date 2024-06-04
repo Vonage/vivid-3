@@ -81,9 +81,17 @@ $track-thickness: 2px;
 			left: 0;
 			block-size: $track-thickness;
 
+			&-start {
+				:host([markers]) & {
+					#{variables.$track-start-inset-inline-start}: 1px;
+
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
+			}
+
 			.mark {
 				position: absolute;
-				z-index: -1;
 				block-size: 6px;
 				inline-size: 100%;
 				inset-block-start: -2px;
@@ -114,19 +122,24 @@ $track-thickness: 2px;
 
 			.mark {
 				position: absolute;
-				z-index: -1;
 				block-size: 100%;
 				inline-size: 6px;
 				inset-block-start: 0;
 				inset-inline-start: -2px;
 			}
 		}
-
+		/* stylelint-disable */
 		.track-start {
 			block-size: auto;
 			inline-size: 100%;
 			inset-block-start: var(#{variables.$track-start-inset-block-start});
+			:host([markers]) & {
+				#{variables.$track-start-inset-block-start}: 1px;
+
+				border-radius: 0;
+			}
 		}
+		/* stylelint-enable */
 	}
 
 	&.disabled {
