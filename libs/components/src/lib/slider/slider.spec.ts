@@ -326,7 +326,7 @@ describe('vwc-slider', () => {
 		});
 	});
 
-	describe('dragging', () => {
+	describe('dragging the thumb', () => {
 		describe.each([
 			{ orientation: 'horizontal', coordinate: 'pageX' },
 			{ orientation: 'vertical', coordinate: 'pageY' },
