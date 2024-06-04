@@ -162,6 +162,42 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	describe('open', () => {
+		beforeEach(() => {
+			jest.spyOn(floatingUI, 'autoUpdate');
+		});
+
+		afterEach(() => {
+			jest.mocked(floatingUI.autoUpdate).mockRestore();
+		});
+
+		it('should hide control if not set', async () => {
+			expect(getControlElement(element).classList).not.toContain('open');
+		});
+
+		it('should show control if set', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain('open');
+		});
+
+		it('should not begin to auto update position before DOM is updated', async function () {
+			element.anchor = anchor;
+			element.open = true;
+
+			expect(floatingUI.autoUpdate).not.toHaveBeenCalled();
+		});
+
+		it('should begin to auto update after DOM is updated', async function () {
+			element.anchor = anchor;
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(floatingUI.autoUpdate).toHaveBeenCalled();
+		});
+	});
+
 	describe('show', () => {
 		it('should set "open" to true', async () => {
 			element.show();
