@@ -1,4 +1,4 @@
-# March 2024
+# March 2024 - Monthly Update
 
 ## New Vivid "Office Hours" Meeting
 
@@ -30,6 +30,6 @@ When a phase is complete, the icon in the table will link to the relavant delive
 - **Design** links to **Figma design file**
 - **Alpha** links to **Component document** in the Vivid docs
 
-## Accessibility section
+## Accessibility Section
 
 We have added a section to our Vivid docs site around [accessibility](/accessibility/overview/). It outlines why accessibility is important, covers how we test for accessibility in the Vivid team and gives some tips on how and what you need to be testing in your app.
