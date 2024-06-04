@@ -7,7 +7,7 @@ Represents a content box to used in a group where one or more can be selected.
 ```
 
 ```html preview
-<vwc-selectable-box control-aria-label="Box 1">Box content</vwc-selectable-box>
+<vwc-selectable-box aria-label="Box 1">Box content</vwc-selectable-box>
 ```
 
 ## Members
