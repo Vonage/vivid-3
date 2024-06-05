@@ -295,6 +295,7 @@ describe('vwc-slider', () => {
 		beforeEach(() => {
 			// Work around JSDOM not supporting delegatesFocus correctly
 			element.focus = () => getControlElement(element).focus();
+			thumb.focus = () => getControlElement(element).focus();
 		});
 
 		it('should have visible focus when control is focused', async () => {
@@ -304,8 +305,18 @@ describe('vwc-slider', () => {
 			expect(thumb.classList).toContain('focus-visible');
 		});
 
-		it('should have no visible focus when control is focused through mousedown', async () => {
+		it('should have non-visible focus when control is focused through mousedown', async () => {
 			element.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(
+				getControlElement(element)
+			);
+			expect(thumb.classList).not.toContain('focus-visible');
+		});
+
+		it('should have non-visible focus when control is focused through mousedown on thumb', async () => {
+			thumb.dispatchEvent(new MouseEvent('mousedown'));
 			await elementUpdated(element);
 
 			expect(element.shadowRoot!.activeElement).toBe(
