@@ -21,6 +21,10 @@
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@include connotation.variables-backwards-compatibility(
+	'split-button',
+	':where(.control, .indicator):not(.appearance-filled, .appearance-outlined)'
+);
 
 :host {
 	display: inline-block;
@@ -260,18 +264,6 @@
 		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 }
-
-/* stylelint-disable -- prevent duplicated code */
-.control,
-.indicator {
-	&:not(.appearance-filled, .appearance-outlined) {
-		--vvd-split-button-accent-firm: var(--vvd-split-button-accent-primary);
-		--vvd-split-button-cta-firm: var(--vvd-split-button-cta-primary);
-		--vvd-split-button-success-firm: var(--vvd-split-button-success-primary);
-		--vvd-split-button-alert-firm: var(--vvd-split-button-alert-primary);
-	}
-}
-/* stylelint-enable */
 
 /* Icon */
 .icon {

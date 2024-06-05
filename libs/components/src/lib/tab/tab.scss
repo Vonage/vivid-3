@@ -17,14 +17,7 @@
 	$default: ghost
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-
-$vvd-tab-accent-firm-wrapper: --_vvd-tab-accent-firm-wrapper;
-$vvd-tab-cta-firm-wrapper: --_vvd-tab-cta-firm-wrapper;
-
-:host {
-	#{$vvd-tab-accent-firm-wrapper}: var(--vvd-tab-accent-firm);
-	#{$vvd-tab-cta-firm-wrapper}: var(--vvd-tab-cta-firm);
-}
+@include connotation.variables-backwards-compatibility('tab', '.base');
 
 :host(.vertical) {
 	justify-content: end;
@@ -44,15 +37,6 @@ $vvd-tab-cta-firm-wrapper: --_vvd-tab-cta-firm-wrapper;
 
 	@include appearance.appearance;
 	@include connotation.connotation(tab);
-
-	--vvd-tab-accent-firm: var(
-		#{$vvd-tab-accent-firm-wrapper},
-		var(--vvd-tab-accent-primary)
-	);
-	--vvd-tab-cta-firm: var(
-		#{$vvd-tab-cta-firm-wrapper},
-		var(--vvd-tab-cta-primary)
-	);
 
 	position: relative;
 	display: flex;
