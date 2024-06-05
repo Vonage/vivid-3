@@ -322,42 +322,73 @@ describe('vwc-popup', () => {
 	});
 
 	describe('animationFrame', () => {
-		const RAF_CALLS_FROM_SETTING_ATTRIBUTE = 1;
+		function openPopup() {
+			jest.mocked(window.requestAnimationFrame).mockImplementation((_) => 0);
+			element.open = true;
+			const frameCallbackRequestedFromPopup = jest.mocked(
+				window.requestAnimationFrame
+			).mock.lastCall![0];
+			jest.mocked(window.requestAnimationFrame).mockClear();
+			frameCallbackRequestedFromPopup(0);
+		}
+
+		beforeEach(async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+			jest.spyOn(window, 'requestAnimationFrame');
+		});
 
 		afterEach(() => {
 			jest.mocked(window.requestAnimationFrame).mockRestore();
 		});
 
 		it('should not continuously update position with requestAnimationFrame when false', async () => {
-			element.anchor = anchor;
-			await elementUpdated(element);
-			jest.spyOn(window, 'requestAnimationFrame');
+			openPopup();
 
-			element.open = true;
-
-			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
-				RAF_CALLS_FROM_SETTING_ATTRIBUTE
-			);
+			expect(window.requestAnimationFrame).not.toHaveBeenCalled();
 		});
 
-		it('should continuously update position with requestAnimationFrame when true', async () => {
-			element.animationFrame = true;
-			element.anchor = anchor;
-			await elementUpdated(element);
-			jest.spyOn(window, 'requestAnimationFrame').mockImplementation((_) => 0);
+		describe('when true', () => {
+			beforeEach(async () => {
+				element.animationFrame = true;
+				openPopup();
+				jest
+					.spyOn(element, 'updatePosition')
+					.mockImplementation(async () => {});
+			});
 
-			element.open = true;
-			jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
+			it('should requestAnimationFrame to check for updates', async () => {
+				expect(window.requestAnimationFrame).toHaveBeenCalledTimes(1);
+			});
 
-			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
-				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 1
-			);
+			it('should continuously call requestAnimationFrame', async () => {
+				jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
 
-			jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
+				expect(window.requestAnimationFrame).toHaveBeenCalledTimes(2);
+			});
 
-			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
-				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 2
-			);
+			it("should not updatePosition if position didn't change", async () => {
+				jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
+
+				expect(element.updatePosition).not.toHaveBeenCalled();
+			});
+
+			it('should updatePosition if position changes', async () => {
+				jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
+					x: 1,
+					y: 1,
+					width: 1,
+					height: 1,
+					top: 1,
+					right: 1,
+					bottom: 1,
+					left: 1,
+				} as DOMRect);
+
+				jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
+
+				expect(element.updatePosition).toHaveBeenCalledTimes(1);
+			});
 		});
 	});
 
