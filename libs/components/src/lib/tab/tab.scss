@@ -75,9 +75,8 @@
 	}
 
 	:host(.vertical) & {
-		padding-inline-start: calc(
-			var(#{tabs-variables.$tabs-active-indicator-stroke-width}) +
-				var(#{tabs-variables.$tabs-tablist-gutter})
+		margin-inline-start: var(
+			#{tabs-variables.$tabs-active-indicator-stroke-width}
 		);
 	}
 }

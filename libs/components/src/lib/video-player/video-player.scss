@@ -53,6 +53,7 @@
 		}
 
 		.vjs-svg-icon {
+			display: flex;
 			filter: none;
 			inline-size: calc($big-play-btn-size / 2);
 			margin-inline-start: 2px;
@@ -86,18 +87,28 @@
 	}
 
 	/* "slider" */
-	.vjs-duration {
-		margin-inline-end: 16px;
-	}
-
 	.vjs-control-bar {
+		$border: #{border-radius-variables.$border-radius-normal};
+
+		flex-wrap: wrap;
 		padding: 4px;
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		border-radius: 0 0 $border $border;
 		margin: 4px;
 		background-color: $control-background-color;
 		block-size: $control-size;
 		column-gap: 4px;
 		inline-size: calc(100% - 8px);
+
+		&::before {
+			position: absolute;
+			border-radius: $border $border 0 0;
+			background-color: inherit;
+			block-size: 24px;
+			content: '';
+			inline-size: 100%;
+			inset-block-start: -24px;
+			inset-inline-start: 0;
+		}
 	}
 
 	.vjs-button {
@@ -152,11 +163,40 @@
 	}
 
 	.vjs-progress-control {
+		position: absolute;
+		block-size: 20px;
+		inline-size: calc(100% - 80px);
+		inset-block-start: -20px;
+		inset-inline-start: 40px;
+		isolation: isolate;
+
+		&:hover {
+			.vjs-play-progress .vjs-time-tooltip {
+				display: none;
+			}
+		}
+
+		.vjs-icon-placeholder {
+			top: -0.3em;
+		}
+
 		.vjs-progress-holder,
 		.vjs-load-progress,
 		.vjs-play-progress {
 			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		}
+	}
+
+	.vjs-duration,
+	.vjs-current-time {
+		position: absolute;
+		block-size: auto;
+		inset-block-start: -20px;
+		inset-inline-end: 8px;
+	}
+
+	.vjs-current-time {
+		inset-inline: 8px auto;
 	}
 
 	.vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
@@ -206,6 +246,7 @@
 	.vjs-volume-panel {
 		font: var(#{constants.$vvd-typography-base});
 		inline-size: calc($control-size - 8px) !important;
+		margin-inline-end: auto;
 
 		.vjs-volume-control {
 			border-radius: #{border-radius-variables.$border-radius-normal};
@@ -240,41 +281,10 @@
 	}
 
 	@container (max-inline-size: 660px) {
-		.vjs-skip-backward-5,
-		.vjs-skip-forward-5,
-		.vjs-skip-backward-10,
-		.vjs-skip-forward-10,
-		.vjs-skip-backward-30,
-		.vjs-skip-forward-30 {
-			display: none;
-		}
-
 		.vjs-fluid:not(.vjs-fullscreen)
 			.vjs-text-track-display
 			.vjs-text-track-cue {
 			font: var(--vvd-typography-base-extended-bold) !important;
-		}
-	}
-
-	@container (max-inline-size: 540px) {
-		.vjs-picture-in-picture-control,
-		.vjs-audio-button {
-			display: none;
-		}
-	}
-
-	@container (max-inline-size: 480px) {
-		.vjs-playback-rate,
-		.vjs-chapters-button,
-		.vjs-subs-caps-button,
-		.vjs-descriptions-button {
-			display: none;
-		}
-	}
-
-	@container (max-inline-size: 345px) {
-		.vjs-time-control {
-			display: none;
 		}
 	}
 }
