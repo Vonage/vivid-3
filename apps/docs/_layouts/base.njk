@@ -44,7 +44,18 @@
 		{% block header %}{% endblock %}
   </head>
 
-<body class="page-not-ready" hx-boost="true" hx-target="main" hx-select="main" hx-swap="outerHTML">
+<body class="page-not-ready with-announcement-banner" hx-boost="true" hx-target="main" hx-select="main" hx-swap="outerHTML">
+		<vwc-banner class="announcement-banner"
+       text="We'll soon release vivid-4.0 - don't worry, it won't be as drastic as version 2 to 3."
+       connotation="announcement"
+      >
+      <vwc-button
+      	slot="action-items"
+      	class="vvd-theme-alternate"
+      	label="For more info"
+      	icon="double-chevron-right-line" icon-trailing
+      	href="https://vivid.deno.dev/resources/release-policy/#major-releases"
+      ></vwc-button></vwc-banner>
 
 	<vwc-header id="header-main" slot="app-content">
 

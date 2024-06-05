@@ -429,3 +429,28 @@ th {
 }
 
 /* #endregion highlight js */
+
+/* announcement-banner style*/
+.with-announcement-banner vwc-header::part(base)  {
+	inset-block-start: 60px;
+}
+
+.with-announcement-banner vwc-side-drawer > main {
+	margin-block-start: calc(var(--vvd-header-block-size) + 60px);
+}
+
+.with-announcement-banner vwc-side-drawer::part(base) {
+	inset-block: calc(var(--vvd-header-block-size) + 60px + env(safe-area-inset-top)) env(safe-area-inset-bottom);
+}
+
+.with-announcement-banner .article-toc {
+	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px) + 60px);
+}
+
+
+.announcement-banner {
+	position: fixed;
+	inline-size: 100%;
+	inset-block-start: 0;
+	z-index: 1;
+}
