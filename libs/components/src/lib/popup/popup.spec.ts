@@ -324,6 +324,10 @@ describe('vwc-popup', () => {
 	describe('animationFrame', () => {
 		const RAF_CALLS_FROM_SETTING_ATTRIBUTE = 1;
 
+		afterEach(() => {
+			jest.useRealTimers();
+		});
+
 		it('should not continuously update position with requestAnimationFrame when false', async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
@@ -340,12 +344,20 @@ describe('vwc-popup', () => {
 			element.animationFrame = true;
 			element.anchor = anchor;
 			await elementUpdated(element);
+			jest.useFakeTimers();
 			jest.spyOn(window, 'requestAnimationFrame');
 
 			element.open = true;
+			jest.advanceTimersToNextTimer();
 
 			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
 				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 1
+			);
+
+			jest.advanceTimersToNextTimer();
+
+			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
+				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 2
 			);
 		});
 	});
