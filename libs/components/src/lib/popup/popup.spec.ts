@@ -325,7 +325,7 @@ describe('vwc-popup', () => {
 		const RAF_CALLS_FROM_SETTING_ATTRIBUTE = 1;
 
 		afterEach(() => {
-			jest.useRealTimers();
+			jest.mocked(window.requestAnimationFrame).mockRestore();
 		});
 
 		it('should not continuously update position with requestAnimationFrame when false', async () => {
@@ -344,17 +344,16 @@ describe('vwc-popup', () => {
 			element.animationFrame = true;
 			element.anchor = anchor;
 			await elementUpdated(element);
-			jest.useFakeTimers();
-			jest.spyOn(window, 'requestAnimationFrame');
+			jest.spyOn(window, 'requestAnimationFrame').mockImplementation((_) => 0);
 
 			element.open = true;
-			jest.advanceTimersToNextTimer();
+			jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
 
 			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
 				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 1
 			);
 
-			jest.advanceTimersToNextTimer();
+			jest.mocked(window.requestAnimationFrame).mock.lastCall![0](0);
 
 			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
 				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 2
