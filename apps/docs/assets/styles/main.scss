@@ -431,20 +431,33 @@ th {
 /* #endregion highlight js */
 
 /* announcement-banner style*/
+@media (width <= 768px) {
+	.with-announcement-banner {
+		--announcement-banner-block-size: 60px;
+	}
+}
+
+@media (width <= 769px) {
+	.with-announcement-banner {
+		--announcement-banner-block-size: 80px;
+	}
+}
+
+
 .with-announcement-banner vwc-header::part(base)  {
-	inset-block-start: 60px;
+	inset-block-start: var(--announcement-banner-block-size);
 }
 
 .with-announcement-banner vwc-side-drawer > main {
-	margin-block-start: calc(var(--vvd-header-block-size) + 60px);
+	margin-block-start: calc(var(--vvd-header-block-size) + var(--announcement-banner-block-size));
 }
 
 .with-announcement-banner vwc-side-drawer::part(base) {
-	inset-block: calc(var(--vvd-header-block-size) + 60px + env(safe-area-inset-top)) env(safe-area-inset-bottom);
+	inset-block: calc(var(--vvd-header-block-size) + var(--announcement-banner-block-size) + env(safe-area-inset-top)) env(safe-area-inset-bottom);
 }
 
 .with-announcement-banner .article-toc {
-	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px) + 60px);
+	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px) + var(--announcement-banner-block-size));
 }
 
 
@@ -453,4 +466,8 @@ th {
 	inline-size: 100%;
 	inset-block-start: 0;
 	z-index: 1;
+}
+
+.announcement-banner vwc-button {
+	flex-shrink: 0;
 }
