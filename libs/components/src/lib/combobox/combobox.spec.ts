@@ -39,6 +39,7 @@ describe('vwc-combobox', () => {
 			expect(element.value).toEqual('');
 			expect(element.placeholder).toBeUndefined();
 			expect(element.autocomplete).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
@@ -101,6 +102,18 @@ describe('vwc-combobox', () => {
 			expect(getBaseElement(element).classList.contains('placeholder')).toEqual(
 				true
 			);
+		});
+	});
+
+	describe('appearance', function () {
+		it('should set the shape class on the root', async function () {
+			const appearance = 'ghost';
+			element.setAttribute('appearance', appearance);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains('appearance-ghost')
+			).toEqual(true);
 		});
 	});
 

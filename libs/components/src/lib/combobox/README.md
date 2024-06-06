@@ -139,6 +139,26 @@ Add the `disabled` attribute to disable the combobox.
 </vwc-combobox>
 ```
 
+### Appearance
+
+Set the `appearance` attribute to change the combobox's appearance.
+
+- Type: `'fieldset'` | `'ghost'`
+- Default: `'fieldset'`
+
+(`'ghost'` is typically used within a composition such as action group / toolbar).
+
+```html preview blocks
+<vwc-combobox label="fieldset" appearance="fieldset" placeholder="appearance">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+<vwc-combobox label="ghost" appearance="ghost" placeholder="appearance">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+```
+
 ## Dimensions
 
 ### Height (CSS Variable)
