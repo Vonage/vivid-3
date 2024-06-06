@@ -430,7 +430,7 @@ th {
 
 /* #endregion highlight js */
 
-/* announcement-banner style*/
+/* announcement-banner style */
 @media (width <= 460px) {
 	.with-announcement-banner {
 		--announcement-banner-block-size: 76px;
@@ -470,9 +470,9 @@ th {
 
 .announcement-banner {
 	position: fixed;
+	z-index: 1;
 	inline-size: 100%;
 	inset-block-start: 0;
-	z-index: 1;
 }
 
 .announcement-banner vwc-button {
