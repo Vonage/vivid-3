@@ -363,6 +363,7 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 		},
 	],
 	TrappedFocus: [],
+	DelegatesARIATextbox: [],
 };
 
 /**
