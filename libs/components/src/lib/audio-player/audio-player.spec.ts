@@ -6,6 +6,7 @@ import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 import { audioPlayerDefinition } from './definition';
 import '.';
+import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 
 const COMPONENT_TAG = 'vwc-audio-player';
 
@@ -177,6 +178,15 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('notime', function () {
+		it('should remove "two-lines" class from base if set to true', async () => {
+			element.notime = true;
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(false);
+		});
+
 		it('should remove the time stamp when true', async function () {
 			const currentTimeClassExistsBeforeTheChange = getCurrentTimeElement();
 			const totalTimeClassExistsBeforeTheChange = getTotalTimeElement();
@@ -389,9 +399,64 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('skip-by', function () {
+	describe('playbackRates', () => {
+		it('should default to default rates', () => {
+			expect(element.playbackRates).toBe(DEFAULT_PLAYBACK_RATES);
+		});
+
+		it('should set class playback on base when playbackRates is truthy', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('playback')).toBe(true);
+		});
+
+		it('should remove class playback on base when playbackRates is truthy', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			element.playbackRates = '';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('playback')).toBe(false);
+		});
+
+		it('should set class two-lines on base when time is shown and playbackRates is truthy', async () => {
+			element.notime = false;
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(true);
+		});
+
+		it('should set class two-lines on base when time is shown and playbackRates is empty', async () => {
+			element.notime = false;
+			element.playbackRates = '';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(false);
+		});
+	});
+
+	describe('skipBy', function () {
 		beforeEach(() => {
 			setAudioElementDuration(60);
+		});
+
+		it('should set class two-lines on base when time is shown without playbackRates and skipBy is set and playbackrates', async () => {
+			element.playbackRates = '';
+			element.notime = false;
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(true);
+		});
+
+		it('should set class two-lines on base when time is shown without playbackRates and skipBy is removed', async () => {
+			element.playbackRates = '';
+			element.notime = false;
+			element.skipBy = MediaSkipBy.Zero;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(false);
 		});
 
 		it('should hide skip buttons when skip-by is unset', async function () {

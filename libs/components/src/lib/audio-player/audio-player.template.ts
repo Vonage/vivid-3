@@ -34,8 +34,12 @@ function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
 	);
 }
 
-const getClasses = ({ disabled, duration }: AudioPlayer) =>
-	classNames(['disabled', Boolean(disabled) || !duration]);
+const getClasses = ({ notime, disabled, duration, skipBy, playbackRates }: AudioPlayer) =>
+	classNames(
+		['disabled', Boolean(disabled) || !duration],
+		['two-lines', !notime && (Boolean(Number(skipBy)) || Boolean(playbackRates))],
+		['playback', Boolean(playbackRates)]
+	);
 
 function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);

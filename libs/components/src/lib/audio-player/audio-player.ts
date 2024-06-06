@@ -5,6 +5,7 @@ import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
+import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 
 /**
  * Types of audio player connotation.
@@ -120,6 +121,16 @@ export class AudioPlayer extends FoundationElement {
 		converter: validSkipByConverter,
 	})
 	skipBy?: MediaSkipBy;
+
+	/**
+	 * Sets the available playback rates. When an empty string, no choices will be available
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: playback-rates
+	 */
+	@attr({ attribute: 'playback-rates', mode: 'fromView' })
+	playbackRates: string = DEFAULT_PLAYBACK_RATES;
 
 	get paused(): boolean {
 		Observable.track(this, 'paused');
