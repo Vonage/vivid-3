@@ -107,16 +107,22 @@ Use the `placement` member to set the combobox's placement in accordance to its 
 ### Fixed-Dropdown
 
 Add the `fixed-dropdown` attribute to use a fixed position for the dropdown instead of the default absolute positioning.
-This is useful for cases in which the dropdown is obstructed by other elements.
+This is useful for cases in which the dropdown is obstructed by other elements. For example, when the combobox is inside a small dialog.
 
 - Type: `boolean`
 - Default: `false`
 
-```html preview 200px
-<vwc-combobox aria-label="Options Selector" fixed-dropdown>
-	<vwc-option value="1" text="Option 1"></vwc-option>
-	<vwc-option value="2" text="Option 2"></vwc-option>
-</vwc-combobox>
+```html preview 320px
+<vwc-dialog open headline="Dialog Content">
+	<div slot="body">
+		<vwc-combobox autocomplete="both" fixed-dropdown>
+			<vwc-option text="First Option"></vwc-option>
+			<vwc-option text="Second Option"></vwc-option>
+			<vwc-option text="Third Option"></vwc-option>
+			<vwc-option text="Fourth Option"></vwc-option>
+		</vwc-combobox>
+	</div>
+</vwc-dialog>
 ```
 
 ### Disabled

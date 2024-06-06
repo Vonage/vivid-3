@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr, observable, type ValueConverter } from '@microsoft/fast-element';
+import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
@@ -16,6 +16,25 @@ export type AudioPlayerConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
+export const SKIP_DIRECTIONS = {
+	FORWARD: 1,
+	BACKWARD: -1,
+};
+
+export type SKIP_DIRECTIONS_TYPE =
+	typeof SKIP_DIRECTIONS[keyof typeof SKIP_DIRECTIONS];
+
+export function formatTime(time: number) {
+	if (!time || Number.isNaN(time)) {
+		return '0:00';
+	}
+	const min = Math.floor(time / 60);
+	const sec = Math.floor(time % 60);
+	return min + ':' + (sec < 10 ? '0' + sec : sec);
+}
+
+const PAUSE = true;
+const PLAY = false;
 /**
  * Converter to filter out invalid values for the skip-by attribute.
  */
@@ -68,6 +87,13 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr src?: string;
 
+	srcChanged() {
+		if (this.src === undefined) {
+			this.#playerEl.removeAttribute('src');
+		} else {
+			this.#playerEl.src = this.src;
+		}
+	}
 	/**
 	 * Indicates whether audio player is disabled.
 	 *
@@ -95,142 +121,120 @@ export class AudioPlayer extends FoundationElement {
 	})
 	skipBy?: MediaSkipBy;
 
-	/**
-	 *
-	 * @internal
-	 */
-	@observable paused = true;
+	get paused(): boolean {
+		Observable.track(this, 'paused');
+		return this.#playerEl.paused;
+	}
 
-	/**
-	 *
-	 * @internal
-	 */
-	@observable duration?: number;
+	set paused(_) {
+		//
+	}
 
-	/**
-	 * @internal
-	 */
-	_sliderEl!: Slider;
+	get duration() {
+		Observable.track(this, 'duration');
+		return this.#playerEl.duration;
+	}
 
-	/**
-	 * @internal
-	 */
-	_playerEl!: any;
+	set duration(_) {
+		//
+	}
 
-	/**
-	 * @internal
-	 */
-	_timeStampEl!: HTMLDivElement;
+	get currentTime() {
+		Observable.track(this, 'currentTime');
+		return this.#playerEl.currentTime;
+	}
+
+	set currentTime(value) {
+		this.#playerEl.currentTime = value;
+	}
+
+	get #sliderEl(): Slider | null {
+		return this.shadowRoot!.querySelector('.slider');
+	}
+
+	#playerEl = new Audio();
+
+	get #baseElement(): HTMLElement | null {
+		return this.shadowRoot!.querySelector('.base');
+	}
+
+	constructor() {
+		super();
+		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
+		this.#playerEl.addEventListener('loadedmetadata', this.#updateTotalTime);
+	}
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		document.addEventListener('mouseup', this._rewind);
+		document.addEventListener('mouseup', this.#rewind);
+		this.#setInteractionListeners();
+		this.#setPausedState();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		document.addEventListener('mouseup', this._rewind);
+		document.addEventListener('mouseup', this.#rewind);
+		this.#setInteractionListeners(false);
 	}
 
-	/**
-	 * @internal
-	 */
-	_togglePlay() {
-		if (this.paused) {
-			this._updateProgress();
-			this._playerEl!.play();
+	play() {
+		this.#pausedChanged(PLAY);
+	}
+
+	pause() {
+		this.#pausedChanged(PAUSE);
+	}
+
+	#setInteractionListeners(add = true) {
+		const action = add ? 'addEventListener' : 'removeEventListener';
+		this.#baseElement![action]('keyup', this.#handleSliderEvent);
+		this.#baseElement![action]('keydown', this.#handleSliderEvent);
+		this.#baseElement![action]('mousedown', this.#handleSliderEvent);
+	}
+
+	#pausedChanged = (pausing: boolean) => {
+		if (pausing === this.paused) {
+			return;
+		}
+		if (!this.paused) {
+			this.#playerEl.pause();
 		} else {
-			this._playerEl!.pause();
+			this.#updateProgress();
+			this.#playerEl!.play();
 		}
-		this.paused = !this.paused;
-	}
+		this.#setPausedState();
+	};
 
-	/**
-	 * @internal
-	 */
-	_onSkipButtonClick(isForward: boolean) {
-		if (this._playerEl) {
-			const currentTime = this._playerEl.currentTime;
-			const skipDirection = isForward ? 1 : -1; // Positive for forward, negative for backward
-			const skipValue = parseInt(this.skipBy!) * skipDirection;
-			const newTime = currentTime + skipValue;
-
-			this._playerEl.currentTime = Math.max(
-				0,
-				Math.min(this._playerEl.duration, newTime)
-			);
-			this._updateProgress(); // Update progress after skipping
-		}
-	}
-	/**
-	 * @internal
-	 */
-	_updateProgress() {
-		let currentTime: HTMLElement | null;
-		const current: number = this._playerEl.currentTime;
-		const percent = (current / this._playerEl.duration) * 100;
-
-		if (this._sliderEl) {
-			this._sliderEl.value = percent.toString();
-			this._sliderEl.ariaValuetext = this._formatTime(current);
-		}
-
+	#updateProgress = () => {
+		Observable.notify(this, 'currentTime');
+		const percent = (this.currentTime / this.duration) * 100;
 		if (percent === 100) {
-			this.paused = true;
-		}
-
-		if (this._timeStampEl) {
-			currentTime = this._timeStampEl.querySelector('.current-time');
-			if (currentTime) currentTime.textContent = this._formatTime(current);
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_updateTotalTime() {
-		let totalTime: HTMLElement | null;
-		if (this._playerEl) this.duration = this._playerEl.duration;
-		if (this._timeStampEl) {
-			totalTime = this._timeStampEl.querySelector('.total-time');
-			if (totalTime)
-				totalTime.textContent = this._formatTime(this._playerEl.duration);
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_rewind = () => {
-		if (this._playerEl) {
-			this._playerEl.currentTime =
-				this._playerEl.duration * (Number(this._sliderEl.value) / 100);
+			this.pause();
 		}
 	};
 
-	/**
-	 * @internal
-	 */
-	_handleSliderEvent(event: Event) {
-		if (event.target === this._sliderEl) {
-			this.paused = true;
-			if (this._playerEl) {
-				this._playerEl.pause();
-			}
-			this._rewind();
+	#updateTotalTime = () => {
+		Observable.notify(this, 'duration');
+	};
+
+	#rewind = () => {
+		if (this.#playerEl) {
+			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
+		}
+	};
+
+	#handleSliderEvent = (event: Event) => {
+		if (event.target === this.#sliderEl) {
+			this.pause();
+			this.#rewind();
 		}
 
 		return true;
-	}
+	};
 
-	/**
-	 * @internal
-	 */
-	_formatTime(time: number) {
-		const min = Math.floor(time / 60);
-		const sec = Math.floor(time % 60);
-		return min + ':' + (sec < 10 ? '0' + sec : sec);
-	}
+	#setPausedState = () => {
+		Observable.notify(this, 'paused');
+	};
 }
 
 export interface AudioPlayer extends Localized {}
