@@ -17,6 +17,12 @@
 			},
 			"dependsOn": ["^generateMeta"]
 		},
+		"clean": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": ["npx rimraf ./dist/apps/docs"]
+			}
+		},
 		"build": {
 			"executor": "nx:run-commands",
 			"options": {
@@ -27,7 +33,7 @@
 				],
 				"parallel": false
 			},
-			"dependsOn": ["buildMeta"]
+			"dependsOn": ["buildMeta", "clean"]
 		},
 		"serve": {
 			"executor": "nx:run-commands",
@@ -39,7 +45,7 @@
 					"npx eleventy --config=./apps/docs/.eleventy.js --serve"
 				]
 			},
-			"dependsOn": ["buildMeta"]
+			"dependsOn": ["buildMeta", "clean"]
 		},
 		"test": {
 			"executor": "@nx/jest:jest",

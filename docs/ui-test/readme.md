@@ -54,7 +54,7 @@ In order to avoid flakiness, we've set up a docker image to run the tests. This 
 
 After you have docker installed, run:
 
-`npm run nx e2e components`
+`npx nx run components:e2e`
 
 If you wish to update the visual snapshots (i.e. you've changed the design and want it to reflect in the saved snapshots) run:
 
