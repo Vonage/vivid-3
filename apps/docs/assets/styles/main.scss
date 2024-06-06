@@ -443,23 +443,30 @@ th {
 	}
 }
 
-
-.with-announcement-banner vwc-header::part(base)  {
+.with-announcement-banner vwc-header::part(base) {
 	inset-block-start: var(--announcement-banner-block-size);
 }
 
 .with-announcement-banner vwc-side-drawer > main {
-	margin-block-start: calc(var(--vvd-header-block-size) + var(--announcement-banner-block-size));
+	margin-block-start: calc(
+		var(--vvd-header-block-size) + var(--announcement-banner-block-size)
+	);
 }
 
 .with-announcement-banner vwc-side-drawer::part(base) {
-	inset-block: calc(var(--vvd-header-block-size) + var(--announcement-banner-block-size) + env(safe-area-inset-top)) env(safe-area-inset-bottom);
+	inset-block: calc(
+			var(--vvd-header-block-size) + var(--announcement-banner-block-size) +
+				env(safe-area-inset-top)
+		)
+		env(safe-area-inset-bottom);
 }
 
 .with-announcement-banner .article-toc {
-	--offset-top: calc(var(--vvd-header-block-size) + var(--banner-offset, 0px) + var(--announcement-banner-block-size));
+	--offset-top: calc(
+		var(--vvd-header-block-size) + var(--banner-offset, 0px) +
+			var(--announcement-banner-block-size)
+	);
 }
-
 
 .announcement-banner {
 	position: fixed;
