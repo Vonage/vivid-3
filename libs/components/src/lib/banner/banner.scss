@@ -40,6 +40,8 @@ $banner-transition-delay: --transition-delay;
 	align-items: center;
 	font: var(#{constants.$vvd-typography-base-bold});
 	inline-size: 100%;
+	//padding-block: 8px;
+	box-sizing: border-box;
 
 	.content {
 		display: flex;
@@ -48,7 +50,7 @@ $banner-transition-delay: --transition-delay;
 		justify-content: center;
 		column-gap: 16px;
 		inline-size: 100%;
-		padding-inline: 16px;
+		padding: 8px 16px;
 
 		slot[name='icon'] {
 			flex-shrink: 0;

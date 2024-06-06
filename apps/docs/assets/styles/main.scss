@@ -431,15 +431,15 @@ th {
 /* #endregion highlight js */
 
 /* announcement-banner style*/
-@media (width <= 768px) {
+@media (width <= 460px) {
 	.with-announcement-banner {
-		--announcement-banner-block-size: 60px;
+		--announcement-banner-block-size: 76px;
 	}
 }
 
-@media (width <= 769px) {
+@media (width >= 461px) {
 	.with-announcement-banner {
-		--announcement-banner-block-size: 80px;
+		--announcement-banner-block-size: 60px;
 	}
 }
 
