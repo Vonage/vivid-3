@@ -4,7 +4,7 @@ import {
 	Combobox as FoundationCombobox,
 } from '@microsoft/fast-foundation';
 import type { Popup } from '../popup/popup';
-import type { TextFieldAppearance } from '../components';
+import type { Appearance } from '../enums';
 import {
 	AffixIcon,
 	type FormElement,
@@ -17,6 +17,16 @@ import {
  * @public
  */
 export type PopupPlacement = 'top' | 'bottom';
+
+/**
+ * Types of input appearance
+ *
+ * @public
+ */
+export type ComboboxAppearance = Extract<
+	Appearance,
+	Appearance.Fieldset | Appearance.Ghost
+>;
 
 /**
  * @public
@@ -32,7 +42,7 @@ export class Combobox extends FoundationCombobox {
 	 * @public
 	 * HTML Attribute: appearance
 	 */
-	@attr appearance?: TextFieldAppearance;
+	@attr appearance?: ComboboxAppearance;
 
 	/**
 	 * the placement of the combobox
