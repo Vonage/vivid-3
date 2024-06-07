@@ -106,7 +106,7 @@ describe('vwc-combobox', () => {
 	});
 
 	describe('appearance', function () {
-		it('should set the shape class on the root', async function () {
+		it('should set the appearance class on the control', async function () {
 			const appearance = 'ghost';
 			element.setAttribute('appearance', appearance);
 			await elementUpdated(element);
