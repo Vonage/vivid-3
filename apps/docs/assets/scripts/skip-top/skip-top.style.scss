@@ -1,0 +1,12 @@
+.skip-top { 
+  position: sticky;
+	bottom: 16px;
+	float: right;
+	margin-inline-end: -26px;
+}
+
+@media (width >= 768px) {
+  .skip-top {
+    margin-inline-end: -52px;
+  }
+}
