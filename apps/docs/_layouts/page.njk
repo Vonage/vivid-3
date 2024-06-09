@@ -6,6 +6,7 @@
 		{% block aside %}{% endblock %}
 		<article class="article">
 			{% block content %}{% endblock %}
+			{% include '../_includes/skip-top.njk' %}
 		</article>
 	</div>
 {% endblock %}

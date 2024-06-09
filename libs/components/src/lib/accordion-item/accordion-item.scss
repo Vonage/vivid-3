@@ -1,7 +1,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary faint soft,
+	$shades: faint soft firm,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -15,6 +15,10 @@
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@include connotation.variables-backwards-compatibility(
+	'accordion-item',
+	'.heading-button'
+);
 
 :host {
 	display: flex;
@@ -29,7 +33,6 @@
 .heading-button {
 	@include appearance.appearance;
 	@include connotation.connotation(accordion-item);
-
 	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	&:focus-visible {

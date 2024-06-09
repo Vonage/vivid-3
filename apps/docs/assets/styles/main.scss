@@ -236,10 +236,15 @@ article.article > h1 {
 }
 
 .article {
+	position: relative;
 	min-width: 0;
 	inline-size: 100%;
 	max-inline-size: 1000px;
 	word-break: break-word;
+}
+
+.skip-top {
+	display: none;
 }
 
 .banner {
