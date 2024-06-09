@@ -36,19 +36,20 @@ $banner-transition-delay: --transition-delay;
 
 .header {
 	display: flex;
-	min-height: #{size.$vvd-size-ultra-expanded};
+	box-sizing: border-box;
 	align-items: center;
 	font: var(#{constants.$vvd-typography-base-bold});
 	inline-size: 100%;
+	min-block-size: #{size.$vvd-size-ultra-expanded};
 
 	.content {
 		display: flex;
 		flex-grow: 1;
 		align-items: center;
 		justify-content: center;
+		padding: 10px 16px;
 		column-gap: 16px;
 		inline-size: 100%;
-		padding-inline: 16px;
 
 		slot[name='icon'] {
 			flex-shrink: 0;
