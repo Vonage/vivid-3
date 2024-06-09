@@ -94,7 +94,7 @@ The playback rates option can be removed by passing an empty string.
 - Type: `string`
 - Default: `'0.5, 1, 1.5, 2'`
 
-```html preview
+```html preview 400px
 <style>
 	html {
 		max-inline-size: 800px;

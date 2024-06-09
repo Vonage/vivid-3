@@ -169,8 +169,9 @@ export const AudioPlayerTemplate: (
 				${when((x) => !x.notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
-			<${menuTag} class="playback-rates" trigger="auto">
+			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss>
 				<${buttonTag} id="playback-open-button"
+					class="playback-button"
 					slot="anchor"
 					icon="playback-speed-line"
 					aria-label="play back rates"
@@ -180,8 +181,8 @@ export const AudioPlayerTemplate: (
 				></${buttonTag}>
 				${repeat(
 					(x) => getPlaybackRatesArray(x.playbackRates),
-					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}" 
-												 class="playback-rate ${getPlaybackRateClasses}" 
+					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
+												 class="playback-rate ${getPlaybackRateClasses}"
 												 text="${(x) => x}"></${menuItemTag}>`
 				)}
 			</${menuTag}>
