@@ -3,11 +3,11 @@ import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation, MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
-import { AudioPlayer } from './audio-player';
-import { audioPlayerDefinition } from './definition';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
-import '.';
 import { MenuItem } from '../menu-item/menu-item';
+import { audioPlayerDefinition } from './definition';
+import { AudioPlayer } from './audio-player';
+import '.';
 
 const COMPONENT_TAG = 'vwc-audio-player';
 
