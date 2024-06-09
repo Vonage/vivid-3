@@ -1,14 +1,16 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
-import { html, when } from '@microsoft/fast-element';
+import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
+import { html, repeat, when } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { MediaSkipBy } from '../enums';
+import { getPlaybackRatesArray } from '../video-player/video-player.js';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
-
+import { Menu } from '../menu/menu';
+import { MenuItem } from '../menu-item/menu-item';
 import {
 	AudioPlayer,
 	formatTime,
@@ -34,12 +36,28 @@ function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
 	);
 }
 
-const getClasses = ({ notime, disabled, duration, skipBy, playbackRates }: AudioPlayer) =>
+const getClasses = ({
+	notime,
+	disabled,
+	duration,
+	skipBy,
+	playbackRates,
+}: AudioPlayer) =>
 	classNames(
 		['disabled', Boolean(disabled) || !duration],
-		['two-lines', !notime && (Boolean(Number(skipBy)) || Boolean(playbackRates))],
+		[
+			'two-lines',
+			!notime && (Boolean(Number(skipBy)) || Boolean(playbackRates)),
+		],
 		['playback', Boolean(playbackRates)]
 	);
+
+const getPlaybackRateClasses = (
+	playbackRate: number,
+	{ parent }: ExecutionContext
+) => {
+	return classNames(['selected', playbackRate === parent.playbackRate]);
+};
 
 function renderButton(context: ElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
@@ -121,10 +139,21 @@ function renderTimestamp() {
 	</div>`;
 }
 
+function handlePlaybackRateClick(
+	playbackRate: string,
+	context: ExecutionContext
+) {
+	context.parent.playbackRate = playbackRate;
+	return true;
+}
+
 export const AudioPlayerTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
+	const menuTag = context.tagFor(Menu);
+	const buttonTag = context.tagFor(Button);
+	const menuItemTag = context.tagFor(MenuItem);
 	return html<AudioPlayer>` <div class="wrapper">
 		<div class="base ${getClasses}">
 			<div class="controls">
@@ -140,6 +169,22 @@ export const AudioPlayerTemplate: (
 				${when((x) => !x.notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
+			<${menuTag} class="playback-rates" trigger="auto">
+				<${buttonTag} id="playback-open-button"
+					slot="anchor"
+					icon="playback-speed-line"
+					aria-label="play back rates"
+					size='condensed'
+					connotation="${(x) => x.connotation}"
+					?disabled="${(x) => x.disabled || !x.duration}"
+				></${buttonTag}>
+				${repeat(
+					(x) => getPlaybackRatesArray(x.playbackRates),
+					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}" 
+												 class="playback-rate ${getPlaybackRateClasses}" 
+												 text="${(x) => x}"></${menuItemTag}>`
+				)}
+			</${menuTag}>
 		</div>
 	</div>`;
 };

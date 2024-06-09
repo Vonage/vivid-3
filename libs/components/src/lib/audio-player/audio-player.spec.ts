@@ -5,8 +5,9 @@ import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { AudioPlayer } from './audio-player';
 import { audioPlayerDefinition } from './definition';
-import '.';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
+import '.';
+import { MenuItem } from '../menu-item/menu-item';
 
 const COMPONENT_TAG = 'vwc-audio-player';
 
@@ -184,7 +185,9 @@ describe('vwc-audio-player', () => {
 			element.skipBy = MediaSkipBy.Five;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('two-lines')).toBe(false);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				false
+			);
 		});
 
 		it('should remove the time stamp when true', async function () {
@@ -400,6 +403,10 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('playbackRates', () => {
+		function getPlaybackRatesMenuElement() {
+			return getBaseElement(element).querySelector('.playback-rates');
+		}
+
 		it('should default to default rates', () => {
 			expect(element.playbackRates).toBe(DEFAULT_PLAYBACK_RATES);
 		});
@@ -411,13 +418,15 @@ describe('vwc-audio-player', () => {
 			expect(getBaseElement(element).classList.contains('playback')).toBe(true);
 		});
 
-		it('should remove class playback on base when playbackRates is truthy', async () => {
+		it('should remove class playback on base when playbackRates is falsy', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.playbackRates = '';
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('playback')).toBe(false);
+			expect(getBaseElement(element).classList.contains('playback')).toBe(
+				false
+			);
 		});
 
 		it('should set class two-lines on base when time is shown and playbackRates is truthy', async () => {
@@ -425,15 +434,100 @@ describe('vwc-audio-player', () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('two-lines')).toBe(true);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				true
+			);
 		});
 
-		it('should set class two-lines on base when time is shown and playbackRates is empty', async () => {
+		it('should remove class two-lines from base when time is shown and playbackRates is empty', async () => {
 			element.notime = false;
 			element.playbackRates = '';
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('two-lines')).toBe(false);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				false
+			);
+		});
+
+		it('should start with a closed menu item', () => {
+			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
+		});
+
+		it('should open the menu on click on the button', async () => {
+			const playbackOpenButton = getBaseElement(element).querySelector(
+				'#playback-open-button'
+			) as Button;
+			playbackOpenButton.click();
+			await elementUpdated(element);
+			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(true);
+		});
+
+		it('should close the menu on selection', async () => {
+			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
+				'.playback-rate'
+			) as MenuItem;
+			(getPlaybackRatesMenuElement() as any).open = true;
+			menuItem.click();
+			await elementUpdated(element);
+			await elementUpdated(element);
+			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
+		});
+
+		it('should show menu items according to playback rates', async () => {
+			element.playbackRates = '1,2,3,4,5';
+			await elementUpdated(element);
+
+			element.playbackRates.split(',').forEach((pbRate) => {
+				expect(
+					getPlaybackRatesMenuElement()?.querySelector(
+						`.playback-rate[text="${pbRate}"]`
+					)
+				).toBeTruthy();
+			});
+		});
+
+		it('should show only numeric values', async () => {
+			element.playbackRates = 'a,b,c,d,1';
+			await elementUpdated(element);
+			expect(
+				getPlaybackRatesMenuElement()?.querySelectorAll(`.playback-rate`).length
+			).toBe(1);
+			expect(
+				getPlaybackRatesMenuElement()
+					?.querySelector(`.playback-rate`)
+					?.getAttribute('text')
+			).toBe('1');
+		});
+
+		it('should set playbackRate to the value selected', async () => {
+			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
+				'.playback-rate'
+			) as MenuItem;
+			menuItem.click();
+			await elementUpdated(element);
+			expect(element.playbackRate).toBe(Number(menuItem.text));
+		});
+
+		it('should add class `selected` to the selected playback rate', async () => {
+			element.playbackRate = 2;
+			await elementUpdated(element);
+			expect(
+				getPlaybackRatesMenuElement()
+					?.querySelector(`[text="${element.playbackRate}"]`)
+					?.classList.contains('selected')
+			).toBe(true);
+		});
+	});
+
+	describe('playbackRate', () => {
+		it('should default to 1', () => {
+			expect(element.playbackRate).toBe(1);
+		});
+
+		it('should set playbackRate of native audio', async () => {
+			element.playbackRate = 555;
+			await elementUpdated(element);
+			expect(nativeAudioElement.playbackRate).toBe(element.playbackRate);
 		});
 	});
 
@@ -448,7 +542,9 @@ describe('vwc-audio-player', () => {
 			element.skipBy = MediaSkipBy.Five;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).classList.contains('two-lines')).toBe(true);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				true
+			);
 		});
 
 		it('should set class two-lines on base when time is shown without playbackRates and skipBy is removed', async () => {
@@ -456,7 +552,9 @@ describe('vwc-audio-player', () => {
 			element.notime = false;
 			element.skipBy = MediaSkipBy.Zero;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('two-lines')).toBe(false);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				false
+			);
 		});
 
 		it('should hide skip buttons when skip-by is unset', async function () {

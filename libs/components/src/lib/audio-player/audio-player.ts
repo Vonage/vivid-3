@@ -88,6 +88,16 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr src?: string;
 
+	get playbackRate() {
+		Observable.track(this, 'playbackRate');
+		return this.#playerEl.playbackRate;
+	}
+
+	set playbackRate(value) {
+		this.#playerEl.playbackRate = value;
+		Observable.notify(this, 'playbackRate');
+	}
+
 	srcChanged() {
 		if (this.src === undefined) {
 			this.#playerEl.removeAttribute('src');
