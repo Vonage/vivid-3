@@ -448,6 +448,18 @@ th {
 	}
 }
 
+.desktop {
+	@media (width <= 599px) {
+		display: none;
+	}
+}
+
+.mobile-only {
+	@media (width >= 600px) {
+		display: none;
+	}
+}
+
 .with-announcement-banner vwc-header::part(base) {
 	inset-block-start: var(--announcement-banner-block-size);
 }
