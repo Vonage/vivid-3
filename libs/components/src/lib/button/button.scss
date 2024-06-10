@@ -20,6 +20,10 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@include connotation.variables-backwards-compatibility(
+	'button',
+	'.control:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined)'
+);
 
 :host {
 	display: inline-block;

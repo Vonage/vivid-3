@@ -36,3 +36,25 @@
 		);
 	}
 }
+/**
+ * Ghost text color has changed from primary to firm in VIV-1774. For backwards compatibility with code
+ * setting primary we need to default firm to primary value if it is provided.
+ */
+@mixin variables-backwards-compatibility($component, $element-class) {
+	:host {
+		@each $type in config.$connotations {
+			--_vvd-#{$component}-#{$type}-firm-wrapper: var(
+				--vvd-#{$component}-#{$type}-firm
+			);
+		}
+	}
+
+	#{$element-class} {
+		@each $type in config.$connotations {
+			--vvd-#{$component}-#{$type}-firm: var(
+				--_vvd-#{$component}-#{$type}-firm-wrapper,
+				var(--vvd-#{$component}-#{$type}-primary)
+			);
+		}
+	}
+}
