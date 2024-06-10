@@ -145,7 +145,11 @@ It accepts a subset of predefined values.
 ```html preview
 <vwc-button appearance="ghost" label="accent" connotation="accent"></vwc-button>
 <vwc-button appearance="ghost" label="cta" connotation="cta"></vwc-button>
-<vwc-button appearance="ghost" label="announcement" connotation="announcement"></vwc-button>
+<vwc-button
+	appearance="ghost"
+	label="announcement"
+	connotation="announcement"
+></vwc-button>
 <vwc-button
 	appearance="ghost"
 	label="success"
@@ -163,7 +167,11 @@ It accepts a subset of predefined values.
 	connotation="accent"
 ></vwc-button>
 <vwc-button appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
-<vwc-button appearance="ghost-light" label="announcement" connotation="announcement"></vwc-button>
+<vwc-button
+	appearance="ghost-light"
+	label="announcement"
+	connotation="announcement"
+></vwc-button>
 <vwc-button
 	appearance="ghost-light"
 	label="success"
@@ -185,7 +193,11 @@ It accepts a subset of predefined values.
 	connotation="accent"
 ></vwc-button>
 <vwc-button appearance="filled" label="cta" connotation="cta"></vwc-button>
-<vwc-button appearance="filled" label="announcement" connotation="announcement"></vwc-button>
+<vwc-button
+	appearance="filled"
+	label="announcement"
+	connotation="announcement"
+></vwc-button>
 <vwc-button
 	appearance="filled"
 	label="success"
@@ -203,7 +215,11 @@ It accepts a subset of predefined values.
 	connotation="accent"
 ></vwc-button>
 <vwc-button appearance="outlined" label="cta" connotation="cta"></vwc-button>
-<vwc-button appearance="outlined" label="announcement" connotation="announcement"></vwc-button>
+<vwc-button
+	appearance="outlined"
+	label="announcement"
+	connotation="announcement"
+></vwc-button>
 <vwc-button
 	appearance="outlined"
 	label="success"
