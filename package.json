@@ -85,7 +85,7 @@
 		"@typescript-eslint/utils": "7.8.0",
 		"@vitest/coverage-v8": "^1.0.4",
 		"@vitest/ui": "^1.6.0",
-		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v0.4.0",
+		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v0.4.1",
 		"@vue/eslint-config-prettier": "7.1.0",
 		"@vue/eslint-config-typescript": "^11.0.3",
 		"@vue/tsconfig": "^0.4.0",
