@@ -24,11 +24,17 @@ function renderLabel() {
 	</label>`;
 }
 
-const getStateClasses = ({ disabled, placeholder, label }: Combobox) =>
+const getStateClasses = ({
+	disabled,
+	placeholder,
+	label,
+	appearance,
+}: Combobox) =>
 	classNames(
 		'base',
 		['disabled', disabled],
 		['placeholder', Boolean(placeholder)],
+		[`appearance-${appearance}`, Boolean(appearance)],
 		['no-label', !label]
 	);
 

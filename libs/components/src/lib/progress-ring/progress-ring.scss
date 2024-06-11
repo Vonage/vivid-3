@@ -4,7 +4,7 @@
 @use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta alert success,
-	$shades: primary,
+	$shades: firm,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -33,6 +33,11 @@ $size: (
 );
 $size-keys: map.keys($size);
 $default-size: list.nth($size-keys, 7);
+
+@include connotation.variables-backwards-compatibility(
+	'progress-ring',
+	'.base'
+);
 
 .base {
 	@include connotation.connotation(progress-ring);

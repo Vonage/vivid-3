@@ -23,8 +23,8 @@ export const getMarkersTemplate = (
 	return html` <div
 		class="mark"
 		style="
-	background: linear-gradient(to ${placeholder[0]}, currentcolor 3px, transparent 0px)
-	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 3px) / ${numMarkers}) ${placeholder[3]}
+	background: linear-gradient(to ${placeholder[0]}, currentcolor 1px, transparent 0px)
+	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 1px) / ${numMarkers}) ${placeholder[3]}
 	"
 	></div>`;
 };
@@ -57,7 +57,6 @@ export const SliderTemplate: (
 		>
 			<div class="positioning-region">
 				<div ${ref('track')} class="track">
-					<div class="track-start" style="${(x) => x.position}"></div>
 					${(x) =>
 						x.markers
 							? getMarkersTemplate(
@@ -65,6 +64,7 @@ export const SliderTemplate: (
 									Math.floor((x.max - x.min) / x.step)
 							  )
 							: void 0}
+					<div class="track-start" style="${(x) => x.position}"></div>
 				</div>
 				<div
 					${ref('thumb')}

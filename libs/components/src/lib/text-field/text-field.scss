@@ -242,6 +242,7 @@ $low-ink-color: --_low-ink-color;
 		border-radius: inherit;
 		content: '';
 		inset: 0;
+		pointer-events: none;
 	}
 }
 

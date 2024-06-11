@@ -4,6 +4,28 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.58.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.57.0...vivid-v3.58.0) (2024-06-04)
+
+
+### Features
+
+* **audio-player:** expose currentTime ([4f2c817](https://github.com/Vonage/vivid-3/commit/4f2c8177040df808e930e6a865c379991c00414f))
+* **audio-player:** expose duration ([4f2c817](https://github.com/Vonage/vivid-3/commit/4f2c8177040df808e930e6a865c379991c00414f))
+* **audio-player:** expose paused ([4f2c817](https://github.com/Vonage/vivid-3/commit/4f2c8177040df808e930e6a865c379991c00414f))
+* **audio-player:** expose play and pause methods ([4f2c817](https://github.com/Vonage/vivid-3/commit/4f2c8177040df808e930e6a865c379991c00414f))
+* **badge:** add announcement connotation (VIV-1649) ([#1740](https://github.com/Vonage/vivid-3/issues/1740)) ([6545e04](https://github.com/Vonage/vivid-3/commit/6545e047b53dfc532a67f9ab253563eb1e4d3940))
+* **tooltip:** add max-inline-size variable (VIV-1660) ([#1725](https://github.com/Vonage/vivid-3/issues/1725)) ([e50f367](https://github.com/Vonage/vivid-3/commit/e50f3677edff6916e301e77ff404ea0acd178116))
+
+
+### Bug Fixes
+
+* **combobox:** adds options gap (VIV-1768) ([#1719](https://github.com/Vonage/vivid-3/issues/1719)) ([df2db60](https://github.com/Vonage/vivid-3/commit/df2db6048d79fc6e4fd2db37dbc7d210f314cede))
+* **select:** design alignment (VIV-1755) ([#1731](https://github.com/Vonage/vivid-3/issues/1731)) ([b59e5cf](https://github.com/Vonage/vivid-3/commit/b59e5cf40554d5137ae0bab0aea21210189ae7e1))
+* **slider:** new marker design (VIV-1766) ([#1732](https://github.com/Vonage/vivid-3/issues/1732)) ([af7e4ab](https://github.com/Vonage/vivid-3/commit/af7e4aba121d300ff23878b193fbed2d386fddde))
+* **tab:** change tab padding to margin (VIV-1790) ([#1735](https://github.com/Vonage/vivid-3/issues/1735)) ([a6748df](https://github.com/Vonage/vivid-3/commit/a6748dfb9f9f27879f662fac4d4abd5ede9cebdc))
+* **text-field:** remove pointer event to focus ring in old browsers (VIV-1788) ([#1741](https://github.com/Vonage/vivid-3/issues/1741)) ([4d75920](https://github.com/Vonage/vivid-3/commit/4d7592048bafe30ac461a3dd33174a86bc6ace8a))
+* **video-player:** responsive control bar (VIV-1681) ([#1709](https://github.com/Vonage/vivid-3/issues/1709)) ([486031c](https://github.com/Vonage/vivid-3/commit/486031ccda40a6fb02905807744d7f9136339c12))
+
 ## [3.57.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.56.0...vivid-v3.57.0) (2024-05-22)
 
 

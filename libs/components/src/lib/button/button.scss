@@ -6,7 +6,7 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert,
+	$connotations: accent cta success alert announcement,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
 		faint fierce-primary,
 	$default: accent
@@ -20,6 +20,10 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@include connotation.variables-backwards-compatibility(
+	'button',
+	'.control:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined)'
+);
 
 :host {
 	display: inline-block;
