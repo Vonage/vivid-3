@@ -104,6 +104,26 @@ Use the `placement` member to set the combobox's placement in accordance to its 
 </div>
 ```
 
+### Appearance
+
+Set the `appearance` attribute to change the combobox's appearance.
+
+- Type: `'fieldset'` | `'ghost'`
+- Default: `'fieldset'`
+
+(`'ghost'` is typically used within a composition such as action group / toolbar).
+
+```html preview 200px
+<vwc-combobox label="fieldset" appearance="fieldset" placeholder="appearance">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+<vwc-combobox label="ghost" appearance="ghost" placeholder="appearance">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+```
+
 ### Fixed-Dropdown
 
 Add the `fixed-dropdown` attribute to use a fixed position for the dropdown instead of the default absolute positioning.

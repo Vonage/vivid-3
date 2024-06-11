@@ -142,6 +142,11 @@ It accepts a subset of predefined values.
 ></vwc-split-button>
 <vwc-split-button
 	appearance="filled"
+	label="announcement"
+	connotation="announcement"
+></vwc-split-button>
+<vwc-split-button
+	appearance="filled"
 	label="success"
 	connotation="success"
 ></vwc-split-button>
