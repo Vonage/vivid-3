@@ -329,15 +329,6 @@ Assign menu to the `submenu` slot to create a submenu.
 
 </div>
 
-<div class="table-wrapper">
-
-| Name              | Description                                                                                                                         |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes.                                                             |
-| `change`          | Fires a custom `change` event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked. |
-
-</div>
-
 ### Click
 
 Fires a click event when its role is `presentation`
