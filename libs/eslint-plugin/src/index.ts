@@ -10,14 +10,14 @@ const eslintPluginVivid: ESLint.Plugin = {
 			rules: {
 				'@vonage/vivid/no-deprecated-apis': 'error',
 				'@vonage/vivid/no-inaccessible-events': 'error',
-        '@vonage/vivid/no-slot-attribute': 'error',
+				'@vonage/vivid/no-slot-attribute': 'error',
 			},
 		},
 	},
 	rules: {
 		'no-deprecated-apis': noDeprecatedAPIs,
 		'no-inaccessible-events': noInaccessibleEvents,
-    'no-slot-attribute': noSlotAttribute,
+		'no-slot-attribute': noSlotAttribute,
 	},
 };
 

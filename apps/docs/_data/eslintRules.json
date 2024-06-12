@@ -8,7 +8,7 @@
 		"markdown": "./libs/eslint-plugin/src/rules/no-inaccessible-events.md"
 	},
 	{
-    "name": "no-slot-attribute",
+		"name": "no-slot-attribute",
 		"markdown": "./libs/eslint-plugin/src/rules/no-slot-attribute.md"
 	}
 ]
