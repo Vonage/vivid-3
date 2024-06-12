@@ -169,11 +169,13 @@ The `helper-text` slot allows you to use rich content as the date range picker's
 
 <div class="table-wrapper">
 
-| Name          | Type                      | Bubbles | Composed | Description                                     |
-| ------------- | ------------------------- | ------- | -------- | ----------------------------------------------- |
-| `input:start` | `CustomEvent<undefined>`  | Yes     | Yes      | Event emitted when the start value changes      |
-| `input:end`   | `CustomEvent<undefined>`  | Yes     | Yes      | Event emitted when the end value changes        |
-| `clear-click` | `CustomEvent<undefined> ` | Yes     | Yes      | Event emitted when the clear button is clicked. |
+| Name          | Type                      | Bubbles | Composed | Description                                        |
+| ------------- | ------------------------- | ------- | -------- | -------------------------------------------------- |
+| `input:start` | `CustomEvent<undefined>`  | Yes     | Yes      | Event emitted when the start value changes         |
+| `input:end`   | `CustomEvent<undefined>`  | Yes     | Yes      | Event emitted when the end value changes           |
+| `clear-click` | `CustomEvent<undefined> ` | Yes     | Yes      | Event emitted when the clear button is clicked.    |
+| `input`       | `CustomEvent<undefined> ` | Yes     | Yes      | Emitted when either the start or end value changes |
+| `change`      | `CustomEvent<undefined> ` | Yes     | Yes      | Emitted when either the start or end value changes |
 
 </div>
 
