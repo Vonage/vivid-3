@@ -9,13 +9,13 @@ import { Button } from '../button/button';
  *
  * @public
  * @component dial-pad
- * @event change - Emitted when the text field value changes
- * @event input - Emitted when the text field value changes
- * @event blur - Emitted when the text field loses focus
- * @event focus - Emitted when the text field receives focus
- * @event keypad-click - Emitted when a digit button is clicked
- * @event dial - Emitted when the call button is clicked
- * @event end-call - Emitted when the end call button is clicked
+ * @event {CustomEvent<undefined>} change - Emitted when the text field value changes
+ * @event {CustomEvent<undefined>} input - Emitted when the text field value changes
+ * @event {CustomEvent<undefined>} blur - Emitted when the text field loses focus
+ * @event {CustomEvent<undefined>} focus - Emitted when the text field receives focus
+ * @event {CustomEvent<HTMLElement>}keypad-click - Emitted when a digit button is clicked
+ * @event {CustomEvent<undefined>} dial - Emitted when the call button is clicked
+ * @event {CustomEvent<undefined>} end-call - Emitted when the end call button is clicked
  * @vueModel modelValue value input `(event.target as any).value`
  *
  */
