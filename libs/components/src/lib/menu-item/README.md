@@ -322,6 +322,15 @@ Assign menu to the `submenu` slot to create a submenu.
 
 <div class="table-wrapper">
 
+| Name              | Type                       | Bubbles | Composed | Description                                                                                                                        |
+| ----------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `expanded-change` | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                             |
+| `change`          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked |
+
+</div>
+
+<div class="table-wrapper">
+
 | Name              | Description                                                                                                                         |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes.                                                             |

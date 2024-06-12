@@ -224,10 +224,10 @@ When `loop` is set, the video will restart automatically when it reaches the end
 
 <div class="table-wrapper">
 
-| Name    | Description                    |
-| ------- | ------------------------------ |
-| `play`  | Fired when the video is played |
-| `pause` | Fired when the video is paused |
-| `ended` | Fired when the video is ended  |
+| Name    | Type                     | Bubbles | Composed | Description                    |
+| ------- | ------------------------ | ------- | -------- | ------------------------------ |
+| `play`  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is played |
+| `pause` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is paused |
+| `ended` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is ended  |
 
 </div>

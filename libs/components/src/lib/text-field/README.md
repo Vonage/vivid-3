@@ -274,6 +274,16 @@ Don't worry if it is set - the design still be the same :)
 <br>
 ~~Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-items` slot.~~
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                              |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value has changed |
+
+</div>
+
 ## Use Cases
 
 ```html preview

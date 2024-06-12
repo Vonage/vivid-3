@@ -141,9 +141,9 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 <div class="table-wrapper">
 
-| Name     | Description                                                     |
-| -------- | --------------------------------------------------------------- |
-| `change` | Fires a custom `change` event when the `checked` state changes. |
+| Name     | Type                     | Bubbles | Composed | Description                          |
+| -------- | ------------------------ | ------- | -------- | ------------------------------------ |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the checked state changes |
 
 </div>
 
