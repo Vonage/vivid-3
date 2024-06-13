@@ -50,7 +50,7 @@ const ValidDateFilter: ValueConverter = {
 /**
  * Base class for date-picker
  *
- * @event clear-click - Event emitted when the clear value changes
+ * @event {CustomEvent<undefined>} clear-click - Event emitted when the clear button is clicked.
  *
  * @public
  */

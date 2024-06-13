@@ -76,8 +76,8 @@ Set the `orientation` member to set the orientation (`horizontal` or `vertical`)
 
 <div class="table-wrapper">
 
-| Name   | Description                     |
-| ------ | ------------------------------- |
-| change | Emitted when the value changes. |
+| Name     | Type                     | Bubbles | Composed | Description                                          |
+| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
 
 </div>

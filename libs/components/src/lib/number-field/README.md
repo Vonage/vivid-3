@@ -216,6 +216,17 @@ Example showing a link in the helper text:
 </vwc-number-field>
 ```
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                              |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the value has changed  |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value has changed |
+
+</div>
+
 ## Methods
 
 <div class="table-wrapper">

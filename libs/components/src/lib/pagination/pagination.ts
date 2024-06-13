@@ -24,7 +24,7 @@ const totalConverter: ValueConverter = {
 /**
  * @public
  * @component pagination
- * @event pagination-change - Fires when the page changes.
+ * @event {CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>} pagination-change - Fires when the page changes.
  */
 export class Pagination extends FoundationElement {
 	/**

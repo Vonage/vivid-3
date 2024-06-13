@@ -149,9 +149,9 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 
 <div class="table-wrapper">
 
-| Name     | Description                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `toggle` | The `toggle` event is dispatched when the open/closed state of the nav-disclosure is toggled. This event does not bubble. |
+| Name     | Type                     | Bubbles | Composed | Description                                       |
+| -------- | ------------------------ | ------- | -------- | ------------------------------------------------- |
+| `toggle` | `CustomEvent<undefined>` | No      | Yes      | Event emitted when the nav disclosure is toggled. |
 
 </div>
 

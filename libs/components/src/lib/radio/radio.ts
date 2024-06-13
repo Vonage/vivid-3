@@ -14,6 +14,7 @@ export type RadioConnotation = Extract<
 
 /**
  * @public
+ * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @component radio
  */
 export class Radio extends FastRadio {

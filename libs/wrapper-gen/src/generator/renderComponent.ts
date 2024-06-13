@@ -271,13 +271,23 @@ export const renderComponent = (
 		.join(',\n');
 
 	// Declare events
-	const eventDefinitionsSrc = declaredEvents
-		.map(
-			({ name, description, type }) => `
-        ${renderJsDoc(description, type)}
-        '${name}'`
-		)
-		.join(',\n');
+	const eventDefinitionsSrc = isVue3Stub
+		? `{
+			${declaredEvents
+				.map(
+					({ name, description, type }) => `
+						${renderJsDoc(description, type)}
+						['${name}'](event: ${type.map((t) => t.text).join(' | ')}) { return true }`
+				)
+				.join(',\n')}}`
+		: `[
+			${declaredEvents
+				.map(
+					({ name, description, type }) => `
+						${renderJsDoc(description, type)}
+							'${name}'`
+				)
+				.join(',\n')}]`;
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
 	const vue2VModelSrc = vueModels.some((model) => model.name === 'modelValue')
@@ -349,9 +359,7 @@ export default defineComponent({
   props: {
     ${propDefinitionsSrc}
   },
-  emits: [
-    ${eventDefinitionsSrc}
-  ],
+  emits: ${eventDefinitionsSrc},
   methods: {
   	${methodDefinitionsSrc}
 	},

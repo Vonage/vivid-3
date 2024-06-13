@@ -85,9 +85,9 @@ Set the `nav-icons` attribute to change the pagination's navigation buttons type
 
 <div class="table-wrapper">
 
-| Name                | Description                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pagination-change` | Listen to the `pagination-change` event to get notified when the pagination's state changes. Returns detail{selectedIndex, total, oldIndex} |
+| Name                | Type                                                                    | Bubbles | Composed | Description                  |
+| ------------------- | ----------------------------------------------------------------------- | ------- | -------- | ---------------------------- |
+| `pagination-change` | `CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>` | Yes     | Yes      | Fires when the page changes. |
 
 </div>
 
