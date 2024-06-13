@@ -407,8 +407,8 @@ describe('vwc-audio-player', () => {
 			return getBaseElement(element).querySelector('.playback-rates');
 		}
 
-		it('should default to default rates', () => {
-			expect(element.playbackRates).toBe(DEFAULT_PLAYBACK_RATES);
+		it('should default to empty string', () => {
+			expect(element.playbackRates).toBe('');
 		});
 
 		it('should set class playback on base when playbackRates is truthy', async () => {
@@ -457,19 +457,24 @@ describe('vwc-audio-player', () => {
 			const playbackOpenButton = getBaseElement(element).querySelector(
 				'#playback-open-button'
 			) as Button;
+
 			playbackOpenButton.click();
 			await elementUpdated(element);
+
 			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(true);
 		});
 
 		it('should close the menu on selection', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
 			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
 				'.playback-rate'
 			) as MenuItem;
 			(getPlaybackRatesMenuElement() as any).open = true;
+
 			menuItem.click();
 			await elementUpdated(element);
-			await elementUpdated(element);
+			
 			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
 		});
 
@@ -489,6 +494,7 @@ describe('vwc-audio-player', () => {
 		it('should show only numeric values', async () => {
 			element.playbackRates = 'a,b,c,d,1';
 			await elementUpdated(element);
+
 			expect(
 				getPlaybackRatesMenuElement()?.querySelectorAll(`.playback-rate`).length
 			).toBe(1);
@@ -500,17 +506,23 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should set playbackRate to the value selected', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
 			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
 				'.playback-rate'
 			) as MenuItem;
+
 			menuItem.click();
 			await elementUpdated(element);
+
 			expect(element.playbackRate).toBe(Number(menuItem.text));
 		});
 
 		it('should add class `selected` to the selected playback rate', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			element.playbackRate = 2;
 			await elementUpdated(element);
+			
 			expect(
 				getPlaybackRatesMenuElement()
 					?.querySelector(`[text="${element.playbackRate}"]`)
@@ -536,7 +548,7 @@ describe('vwc-audio-player', () => {
 			setAudioElementDuration(60);
 		});
 
-		it('should set class two-lines on base when time is shown without playbackRates and skipBy is set and playbackrates', async () => {
+		it('should set class two-lines on base with time shown and skipBy set when playbackrates is empty', async () => {
 			element.playbackRates = '';
 			element.notime = false;
 			element.skipBy = MediaSkipBy.Five;

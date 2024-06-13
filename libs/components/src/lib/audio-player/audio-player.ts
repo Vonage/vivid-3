@@ -5,7 +5,6 @@ import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
-import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 
 /**
  * Types of audio player connotation.
@@ -140,7 +139,7 @@ export class AudioPlayer extends FoundationElement {
 	 * HTML Attribute: playback-rates
 	 */
 	@attr({ attribute: 'playback-rates', mode: 'fromView' })
-	playbackRates: string = DEFAULT_PLAYBACK_RATES;
+	playbackRates: string = '';
 
 	get paused(): boolean {
 		Observable.track(this, 'paused');
