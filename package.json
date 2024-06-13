@@ -13,7 +13,7 @@
 	},
 	"private": true,
 	"dependencies": {
-		"@angular-eslint/utils": "^16.1.0",
+		"@angular-eslint/utils": "^17.0.0",
 		"@codemirror/lang-html": "^6.4.1",
 		"@codemirror/theme-one-dark": "^6.1.0",
 		"@floating-ui/dom": "^1.2.0",

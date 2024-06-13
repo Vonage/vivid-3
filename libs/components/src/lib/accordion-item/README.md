@@ -162,3 +162,13 @@ If set, the `icon` attribute is ignored.
 	</vwc-accordion-item>
 </vwc-accordion>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                              |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the button is invoked |
+
+</div>

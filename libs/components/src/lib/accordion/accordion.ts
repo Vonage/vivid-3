@@ -7,6 +7,7 @@ import type { AccordionItem } from '../accordion-item/accordion-item';
 /**
  * @public
  * @component accordion
+ * @event {CustomEvent<string | null>} change - Fires a custom 'change' event when the active item changes
  * @slot - Default slot.
  */
 export class Accordion extends FastAccordion {
