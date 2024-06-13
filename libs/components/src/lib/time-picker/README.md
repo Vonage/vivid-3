@@ -170,12 +170,10 @@ The `helper-text` slot allows you to use rich content as the time-picker's helpe
 
 <div class="table-wrapper">
 
-| Name   | Description                                   |
-| ------ | --------------------------------------------- |
-| input  | Emitted when the time is changed by the user. |
-| change | Emitted when the time is changed by the user. |
-| focus  | Emitted when the component receives focus.    |
-| blur   | Emitted when the component loses focus.       |
+| Name     | Type                     | Bubbles | Composed | Description                                   |
+| -------- | ------------------------ | ------- | -------- | --------------------------------------------- |
+| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the time is changed by the user. |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the time is changed by the user. |
 
 </div>
 

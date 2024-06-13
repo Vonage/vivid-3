@@ -172,8 +172,8 @@ Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that whe
 
 <div class="table-wrapper">
 
-| Name     | Description                                                                        |
-| -------- | ---------------------------------------------------------------------------------- |
-| `change` | Fires a custom `change` event when a tab is clicked or during keyboard navigation. |
+| Name     | Type                       | Bubbles | Composed | Description                                                                       |
+| -------- | -------------------------- | ------- | -------- | --------------------------------------------------------------------------------- |
+| `change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'change' event when a tab is clicked or during keyboard navigation |
 
 </div>

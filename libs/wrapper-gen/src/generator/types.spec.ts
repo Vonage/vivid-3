@@ -40,6 +40,12 @@ describe('makeTypeResolver', () => {
 		]);
 	});
 
+	it('should leave union types in type parameters intact', () => {
+		expect(resolver('CustomEvent<number | string>')).toEqual([
+			{ text: 'CustomEvent<number | string>', vuePropType: 'CustomEvent' },
+		]);
+	});
+
 	it.each([
 		['"string"', 'String'],
 		['123', 'Number'],
@@ -54,6 +60,7 @@ describe('makeTypeResolver', () => {
 		['MouseEvent', 'MouseEvent'],
 		['FocusEvent', 'FocusEvent'],
 		['KeyboardEvent', 'KeyboardEvent'],
+		['CustomEvent', 'CustomEvent'],
 		['any', 'null as unknown'],
 		['unknown', 'null as unknown'],
 		['undefined', 'null as unknown'],
@@ -62,6 +69,12 @@ describe('makeTypeResolver', () => {
 	])(`should resolve %s with a vuePropType of %s`, (typeStr, vuePropType) => {
 		expect(resolver(typeStr)).toEqual([
 			{ text: expect.anything(), vuePropType },
+		]);
+	});
+
+	it('should strip out type parameters from vuePropType', () => {
+		expect(resolver('CustomEvent<number>')).toEqual([
+			{ text: 'CustomEvent<number>', vuePropType: 'CustomEvent' },
 		]);
 	});
 

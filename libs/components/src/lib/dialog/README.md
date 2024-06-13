@@ -388,9 +388,9 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Name    | Description                                                                                                                                                   |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `close` | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
+| Name    | Type                  | Bubbles | Composed | Description                                                                                                                                                   |
+| ------- | --------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `close` | `CustomEvent<string>` | Yes     | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
 
 </div>
 

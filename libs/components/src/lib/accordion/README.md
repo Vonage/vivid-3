@@ -53,6 +53,16 @@ Use the `expand-mode` attribute to control the expand mode of the accordion, eit
 </vwc-accordion>
 ```
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                          | Bubbles | Composed | Description                                                |
+| -------- | ----------------------------- | ------- | -------- | ---------------------------------------------------------- |
+| `change` | `CustomEvent<string \| null>` | Yes     | Yes      | Fires a custom 'change' event when the active item changes |
+
+</div>
+
 ## Methods
 
 <div class="table-wrapper">
