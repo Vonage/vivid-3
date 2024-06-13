@@ -390,10 +390,10 @@ You can specify width on the `vwc-select` if required (the listbox will not be a
 
 <div class="table-wrapper">
 
-| Name   | Description                     |
-| ------ | ------------------------------- |
-| input  | Emitted when the value updates. |
-| change | Emitted when the value updates. |
+| Name     | Type                       | Bubbles | Composed | Description                   |
+| -------- | -------------------------- | ------- | -------- | ----------------------------- |
+| `input`  | `CustomEvent<undefined>`   | Yes     | Yes      | Fired when the menu is opened |
+| `change` | `CustomEvent<HTMLElement>` | Yes     | No       | Fired when the menu is closed |
 
 </div>
 

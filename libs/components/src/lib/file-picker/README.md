@@ -155,9 +155,9 @@ The `helper-text` slot allows you to use rich content as the file picker's helpe
 
 <div class="table-wrapper">
 
-| Name     | Description                              |
-| -------- | ---------------------------------------- |
-| `change` | Emitted when a file is added or removed. |
+| Name     | Type                     | Bubbles | Composed | Description                              |
+| -------- | ------------------------ | ------- | -------- | ---------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when a file is added or removed. |
 
 </div>
 

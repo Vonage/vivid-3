@@ -32,6 +32,7 @@ export type ComboboxAppearance = Extract<
  * @public
  * @component combobox
  * @slot - Default slot.
+ * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
  */
 @formElements

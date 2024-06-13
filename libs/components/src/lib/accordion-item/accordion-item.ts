@@ -18,6 +18,7 @@ export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
  * @component accordion-item
  * @slot - Default slot.
  * @slot icon - Add an icon to the component.
+ * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the button is invoked
  */
 export class AccordionItem extends FASTAccordionItem {
 	/**

@@ -103,6 +103,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance="ghost" icon="check-line" label="ghost" pending></vwc-button>
 		<vwc-button appearance="filled" icon="check-line" label="filled" pending></vwc-button>
 		<vwc-button appearance="outlined" icon="check-line" label="outlined" pending></vwc-button>
+		<vwc-button appearance="outlined" icon="check-line" label="outlined" pending icon-trailing></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-button>

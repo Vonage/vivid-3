@@ -287,10 +287,10 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 <div class="table-wrapper">
 
-| Name    | Description                                      |
-| ------- | ------------------------------------------------ |
-| `open`  | The `open` event fires when the menu is opened.  |
-| `close` | The `close` event fires when the menu is closed. |
+| Name    | Type                     | Bubbles | Composed | Description                   |
+| ------- | ------------------------ | ------- | -------- | ----------------------------- |
+| `open`  | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is opened |
+| `close` | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is closed |
 
 </div>
 

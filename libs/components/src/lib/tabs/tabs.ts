@@ -23,6 +23,7 @@ export type Gutters = Extract<TabsSize, TabsSize.Small>;
  * @public
  * @component tabs
  * @slot - Default slot.
+ * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when a tab is clicked or during keyboard navigation
  */
 export class Tabs extends FoundationTabs {
 	@observable tablist?: HTMLElement;

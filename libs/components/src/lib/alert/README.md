@@ -296,9 +296,9 @@ This is helpful to prevent the alert from becoming too wide when displaying a lo
 
 <div class="table-wrapper">
 
-| Name    | Description                                       |
-| ------- | ------------------------------------------------- |
-| `open`  | The `open` event fires when the alert is opened.  |
-| `close` | The `close` event fires when the alert is closed. |
+| Name    | Type                     | Bubbles | Composed | Description                    |
+| ------- | ------------------------ | ------- | -------- | ------------------------------ |
+| `open`  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the alert is opened |
+| `close` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the alert is closed |
 
 </div>

@@ -91,3 +91,13 @@ Use `name` in order to set the name of the switch. Mainly used inside a form tha
 ```html
 <vwc-switch name="my-name"></vwc-switch>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                                |
+| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
+
+</div>

@@ -13,12 +13,14 @@ declare interface ColumnDefinitionExtended extends ColumnDefinition {
 declare interface DataGridCellExtension {
 	columnDefinition: ColumnDefinitionExtended | null;
 }
+
 /**
  * @public
  * @component data-grid-cell
  * @slot - Default slot.
- * @event sort - Event that fires when a sortable column header is clicked
- * @event cell-click - Event that fires when a cell is clicked
+ * @event {CustomEvent<{columnDataKey: string, ariaSort: string | null}>} sort - Event that fires when a sortable column header is clicked
+ * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
+ * @event {CustomEvent<HTMLElement>} cell-focused - Fires a custom 'cell-focused' event when focus is on the cell or its contents
  */
 export class DataGridCell extends FoundationDataGridCell {
 	/**
