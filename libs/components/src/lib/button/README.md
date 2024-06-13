@@ -261,6 +261,7 @@ The indicator is not displayed when using the `super-condensed` size.
 <vwc-button
 	appearance="ghost"
 	icon="check-line"
+	icon-trailing
 	label="ghost with icon"
 	pending
 ></vwc-button>
