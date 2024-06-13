@@ -474,7 +474,7 @@ describe('vwc-audio-player', () => {
 
 			menuItem.click();
 			await elementUpdated(element);
-			
+
 			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
 		});
 
@@ -522,7 +522,7 @@ describe('vwc-audio-player', () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			element.playbackRate = 2;
 			await elementUpdated(element);
-			
+
 			expect(
 				getPlaybackRatesMenuElement()
 					?.querySelector(`[text="${element.playbackRate}"]`)
