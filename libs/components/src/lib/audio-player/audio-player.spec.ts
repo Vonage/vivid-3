@@ -548,8 +548,7 @@ describe('vwc-audio-player', () => {
 			setAudioElementDuration(60);
 		});
 
-		it('should set class two-lines on base with time shown and skipBy set when playbackrates is empty', async () => {
-			element.playbackRates = '';
+		it('should set class two-lines on base with time shown and skipBy set', async () => {
 			element.notime = false;
 			element.skipBy = MediaSkipBy.Five;
 			await elementUpdated(element);
@@ -559,8 +558,7 @@ describe('vwc-audio-player', () => {
 			);
 		});
 
-		it('should set class two-lines on base when time is shown without playbackRates and skipBy is removed', async () => {
-			element.playbackRates = '';
+		it('should remove class two-lines on base when skipBy is set to false', async () => {
 			element.notime = false;
 			element.skipBy = MediaSkipBy.Zero;
 			await elementUpdated(element);
