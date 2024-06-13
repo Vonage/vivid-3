@@ -147,12 +147,14 @@ If set, the `icon` attribute is ignored.
 
 ## Events
 
+## Events
+
 <div class="table-wrapper">
 
-| Name              | Description                                                          |
-| ----------------- | -------------------------------------------------------------------- |
-| `removed`         | Fires `removed` when the tag removed.                                |
-| `selected-change` | Fires a custom 'selected-change' event when a tag has been selected. |
+| Name              | Type                     | Bubbles | Composed | Description                           |
+| ----------------- | ------------------------ | ------- | -------- | ------------------------------------- |
+| `selected-change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires when the selected state changes |
+| `removed`         | `CustomEvent<undefined>` | Yes     | Yes      | Fires when the tag is removed         |
 
 </div>
 

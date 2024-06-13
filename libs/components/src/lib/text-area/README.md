@@ -193,6 +193,16 @@ The `helper-text` slot allows you to use rich content as the text area's helper 
 </vwc-text-area>
 ```
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                                          |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom 'change' event when the textarea emits a change event |
+
+</div>
+
 ## Accessibility
 
 If no label is set - it is highly recommended that `aria-label` will be added.
