@@ -170,17 +170,17 @@ export const AudioPlayerTemplate: (
 			</div>
 			${renderSlider(context)}
 			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss>
-				<${buttonTag} id="playback-open-button"
-					class="playback-button"
-					slot="anchor"
-					icon="playback-speed-line"
-					aria-label="play back rates"
-					size='condensed'
-					connotation="${(x) => x.connotation}"
-					?disabled="${(x) => x.disabled || !x.duration}"
-				></${buttonTag}>
+				${when(x => Boolean(x.playbackRates), html`<${buttonTag} id="playback-open-button"
+							  class="playback-button"
+							  slot="anchor"
+							  icon="playback-speed-line"
+							  aria-label="play back rates"
+							  size='condensed'
+							  connotation="${(x) => x.connotation}"
+							  ?disabled="${(x) => x.disabled || !x.duration}"
+				></${buttonTag}>`)}
 				${repeat(
-					(x) => getPlaybackRatesArray(x.playbackRates),
+					(x) => x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
 					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
 												 class="playback-rate ${getPlaybackRateClasses}"
 												 text="${(x) => x}"></${menuItemTag}>`

@@ -407,8 +407,36 @@ describe('vwc-audio-player', () => {
 			return getBaseElement(element).querySelector('.playback-rates');
 		}
 
+		function getPlaybackRatesButton() {
+			return getBaseElement(element).querySelector(
+				'#playback-open-button'
+			) as Button;
+		}
+
 		it('should default to empty string', () => {
-			expect(element.playbackRates).toBe('');
+			expect(element.playbackRates).toBe(null);
+		});
+
+		it('should hide playbackRates button as default', async () => {
+			expect(getPlaybackRatesButton()).toBeNull();
+		});
+
+		it('should hide playbackRates button when attribute is removed', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			element.removeAttribute('playback-rates');
+			await elementUpdated(element);
+
+			expect(getPlaybackRatesButton()).toBeNull();
+		});
+
+		it('should hide playbackRates button when empty', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			element.playbackRates = '';
+			await elementUpdated(element);
+			
+			expect(getPlaybackRatesButton()).toBeNull();
 		});
 
 		it('should set class playback on base when playbackRates is truthy', async () => {
@@ -454,9 +482,9 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should open the menu on click on the button', async () => {
-			const playbackOpenButton = getBaseElement(element).querySelector(
-				'#playback-open-button'
-			) as Button;
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			const playbackOpenButton = getPlaybackRatesButton();
 
 			playbackOpenButton.click();
 			await elementUpdated(element);

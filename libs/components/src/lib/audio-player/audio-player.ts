@@ -138,8 +138,8 @@ export class AudioPlayer extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: playback-rates
 	 */
-	@attr({ attribute: 'playback-rates', mode: 'fromView' })
-	playbackRates = '';
+	@attr({ attribute: 'playback-rates' })
+	playbackRates: string|null = null;
 
 	get paused(): boolean {
 		Observable.track(this, 'paused');

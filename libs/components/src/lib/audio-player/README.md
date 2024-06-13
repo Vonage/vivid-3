@@ -92,7 +92,7 @@ Playback rates can be modified by passing a comma separated string of numbers to
 The playback rates option can be removed by passing an empty string.
 
 - Type: `string`
-- Default: `''`
+- Default: `null`
 
 ```html preview 400px
 <style>
