@@ -435,7 +435,7 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			element.playbackRates = '';
 			await elementUpdated(element);
-			
+
 			expect(getPlaybackRatesButton()).toBeNull();
 		});
 
@@ -511,11 +511,11 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			element.playbackRates.split(',').forEach((pbRate) => {
-				expect(
-					getPlaybackRatesMenuElement()?.querySelector(
-						`.playback-rate[text="${pbRate}"]`
-					)
-				).toBeTruthy();
+				const element = getPlaybackRatesMenuElement()?.querySelector(
+					`.playback-rate[text="${pbRate}"]`
+				);
+				expect(element).toBeTruthy();
+				expect(element?.getAttribute('check-appearance')).toBe('tick-only');
 			});
 		});
 
@@ -546,7 +546,7 @@ describe('vwc-audio-player', () => {
 			expect(element.playbackRate).toBe(Number(menuItem.text));
 		});
 
-		it('should add class `selected` to the selected playback rate', async () => {
+		it('should add "checked" attribute to the selected playback rate', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			element.playbackRate = 2;
 			await elementUpdated(element);
@@ -554,7 +554,7 @@ describe('vwc-audio-player', () => {
 			expect(
 				getPlaybackRatesMenuElement()
 					?.querySelector(`[text="${element.playbackRate}"]`)
-					?.classList.contains('selected')
+					?.hasAttribute('checked')
 			).toBe(true);
 		});
 	});

@@ -52,11 +52,11 @@ const getClasses = ({
 		['playback', Boolean(playbackRates)]
 	);
 
-const getPlaybackRateClasses = (
+const isMenuItemChekced = (
 	playbackRate: number,
 	{ parent }: ExecutionContext
 ) => {
-	return classNames(['selected', playbackRate === parent.playbackRate]);
+	return playbackRate === parent.playbackRate;
 };
 
 function renderButton(context: ElementDefinitionContext) {
@@ -170,7 +170,9 @@ export const AudioPlayerTemplate: (
 			</div>
 			${renderSlider(context)}
 			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss>
-				${when(x => Boolean(x.playbackRates), html`<${buttonTag} id="playback-open-button"
+				${when(
+					(x) => Boolean(x.playbackRates),
+					html`<${buttonTag} id="playback-open-button"
 							  class="playback-button"
 							  slot="anchor"
 							  icon="playback-speed-line"
@@ -178,12 +180,16 @@ export const AudioPlayerTemplate: (
 							  size='condensed'
 							  connotation="${(x) => x.connotation}"
 							  ?disabled="${(x) => x.disabled || !x.duration}"
-				></${buttonTag}>`)}
+				></${buttonTag}>`
+				)}
 				${repeat(
-					(x) => x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
+					(x) =>
+						x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
 					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
-												 class="playback-rate ${getPlaybackRateClasses}"
-												 text="${(x) => x}"></${menuItemTag}>`
+												 class="playback-rate"
+												 text="${(x) => x}"
+												 check-appearance="tick-only"
+												 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
 				)}
 			</${menuTag}>
 		</div>
