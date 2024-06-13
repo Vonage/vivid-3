@@ -94,8 +94,8 @@ export const exampleComponent: ComponentDef = {
 			name: 'input:start',
 			type: [
 				{
-					text: 'Event',
-					vuePropType: 'Event',
+					text: 'CustomEvent<{a: string | number}>',
+					vuePropType: 'CustomEvent',
 				},
 			],
 		},

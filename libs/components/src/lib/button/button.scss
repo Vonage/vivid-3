@@ -244,3 +244,9 @@ slot[name='icon'] {
 		visibility: hidden;
 	}
 }
+
+:host([icon-trailing][pending]) {
+	.pending {
+		order: 1;
+	}
+}

@@ -227,3 +227,13 @@ Place [vwc-option](/components/option/) elements inside the default slot to crea
 	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                          |
+| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value updates |
+
+</div>

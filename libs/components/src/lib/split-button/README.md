@@ -193,10 +193,10 @@ Add the `disabled` attribute to disable the split button.
 
 <div class="table-wrapper">
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| `action-click`    | Fired when the action button is clicked.    |
-| `indicator-click` | Fired when the indicator button is clicked. |
+| Name              | Type                     | Bubbles | Composed | Description                                        |
+| ----------------- | ------------------------ | ------- | -------- | -------------------------------------------------- |
+| `action-click`    | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the action button is clicked    |
+| `indicator-click` | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the indicator button is clicked |
 
 </div>
 

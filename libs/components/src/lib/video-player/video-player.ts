@@ -38,9 +38,9 @@ function appendProgressBarToStart(videoPlayer: any) {
  * @public
  * @component video-player
  * @slot - Default slot
- * @event play - Fired when the video is played
- * @event pause - Fired when the video is paused
- * @event ended - Fired when the video is ended
+ * @event {CustomEvent<undefined>} play - Fired when the video is played
+ * @event {CustomEvent<undefined>} pause - Fired when the video is paused
+ * @event {CustomEvent<undefined>} ended - Fired when the video is ended
  */
 export class VideoPlayer extends FoundationElement {
 	/**

@@ -69,6 +69,7 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
+	eleventyConfig.addWatchTarget('libs/eslint-plugin/src/rules/*.md');
 	eleventyConfig.addWatchTarget('docs/');
 	eleventyConfig.addWatchTarget('assets/');
 

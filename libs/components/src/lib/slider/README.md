@@ -138,6 +138,16 @@ Use `value` to set the value of the slider.
 <vwc-slider value="3"></vwc-slider>
 ```
 
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                                 |
+| -------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
+
+</div>
+
 ## Accessibility
 
 - The slider's `role` is `slider` which means it needs an accessible label.

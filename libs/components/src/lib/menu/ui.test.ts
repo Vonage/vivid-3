@@ -11,16 +11,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
 			.wrapper {
-				width: 300px;
+				width: 100%;
 				height: 700px;
 				position: relative;
 			}
 		</style>
 
 		<div class="wrapper">
-			<vwc-button id="button" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
-
-			<vwc-menu id="menu" anchor="button" placement="right-start" open>
+			<vwc-menu id="menu" placement="right-start" open>
+				<vwc-button slot="anchor" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
 				<vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
 				<vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
