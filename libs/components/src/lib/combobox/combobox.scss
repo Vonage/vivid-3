@@ -4,6 +4,13 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle hover disabled readonly error success,
+	$default: fieldset
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 
 :host {
@@ -11,6 +18,8 @@
 }
 
 .base {
+	@include appearance.appearance;
+
 	#{text-field-variables.$text-field-gutter-end}: 44px;
 }
 
@@ -63,5 +72,6 @@
 		border-radius: inherit;
 		content: '';
 		inset: 0;
+		pointer-events: none;
 	}
 }

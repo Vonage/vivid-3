@@ -434,3 +434,64 @@ th {
 }
 
 /* #endregion highlight js */
+
+/* announcement-banner style */
+@media (width <= 460px) {
+	.with-announcement-banner {
+		--announcement-banner-block-size: 80px;
+	}
+}
+
+@media (width >= 461px) {
+	.with-announcement-banner {
+		--announcement-banner-block-size: 60px;
+	}
+}
+
+.desktop {
+	@media (width <= 599px) {
+		display: none;
+	}
+}
+
+.mobile-only {
+	@media (width >= 600px) {
+		display: none;
+	}
+}
+
+.with-announcement-banner vwc-header::part(base) {
+	inset-block-start: var(--announcement-banner-block-size);
+}
+
+.with-announcement-banner vwc-side-drawer > main {
+	margin-block-start: calc(
+		var(--vvd-header-block-size) + var(--announcement-banner-block-size)
+	);
+}
+
+.with-announcement-banner vwc-side-drawer::part(base) {
+	inset-block: calc(
+			var(--vvd-header-block-size) + var(--announcement-banner-block-size) +
+				env(safe-area-inset-top)
+		)
+		env(safe-area-inset-bottom);
+}
+
+.with-announcement-banner .article-toc {
+	--offset-top: calc(
+		var(--vvd-header-block-size) + var(--banner-offset, 0px) +
+			var(--announcement-banner-block-size)
+	);
+}
+
+.announcement-banner {
+	position: fixed;
+	z-index: 1;
+	inline-size: 100%;
+	inset-block-start: 0;
+}
+
+.announcement-banner vwc-button {
+	flex-shrink: 0;
+}
