@@ -2,7 +2,7 @@
 
 V-4 is currently scheduled for the 1st July 2024.  
 Vivid v-4 is a small iteration, not a rewrite like the last major release.  
-This is a migration guide to make the upgrade easy :) 
+This is a migration guide to make the upgrade easy :)
 
 ---
 
@@ -11,7 +11,7 @@ This is a migration guide to make the upgrade easy :)
 ### The change
 
 |                                               | V-3      | V-4       |
-|-----------------------------------------------| -------- |-----------|
+| --------------------------------------------- | -------- | --------- |
 | audio-player `max-inline-size`                | `350px`  | `100%`    |
 | css-variable `--audio-player-min-inline-size` | `in-use` | `removed` |
 
