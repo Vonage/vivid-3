@@ -13,7 +13,6 @@
 	},
 	"private": true,
 	"dependencies": {
-		"@angular-eslint/utils": "^17.0.0",
 		"@codemirror/lang-html": "^6.4.1",
 		"@codemirror/theme-one-dark": "^6.1.0",
 		"@floating-ui/dom": "^1.2.0",
@@ -38,6 +37,7 @@
 	"devDependencies": {
 		"@11ty/eleventy": "^2.0.1",
 		"@11ty/eleventy-plugin-vite": "^4.0.0",
+		"@angular-eslint/utils": "^17.0.0",
 		"@custom-elements-manifest/analyzer": "^0.5.7",
 		"@microsoft/api-extractor": "^7.36.3",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
