@@ -6,9 +6,12 @@ Vivid v-4 is a small iteration, not a rewrite like the last major release.
 
 ## Audio-player
 ### The change
-Audio-player inline-size is set to be max of 350px.  
-This will be removed and the inline-size will be as wide as its container.  
-THe css-variable `--audio-player-min-inline-size` will not be in use anymore.  
+|                                               | V-3      | V-4       |
+|-----------------------------------------------|----------|-----------|
+| audio-player `max-inline-size`                | `350px`  | `100%`    |
+| css-variable `--audio-player-min-inline-size` | `in-use` | `removed` |
+
+
 
 ### How to get ready?
 Setting a value to `--audio-player-min-inline-size` defined the audio player inline-size. 
@@ -18,17 +21,16 @@ Set an inline-size or max / min inline size on the component.
 ----
 ## Data-grid
 ### The change
-Data-grid-cell `block-size` and `white-space` default values will be changed:  
 
-| Css-variable                      | V-3 default value | V-4 default value |
-|-----------------------------------|-------------------|-------------------|
-| `--data-grid-cell-block-size`     | `48px`            | `100%`            |
-| `--data-grid-cell-white-space`    | `nowrap`          | `normal`          |
+|                              | V-3      | V-4      |
+|------------------------------|----------|----------|
+| data-grid-cell `block-size`  | `48px`   | `100%`   |
+| data-grid-cell `white-space` | `nowrap` | `normal` |
 
 
 ### How to get ready?
 #### Keeping the tables the same as before:
-set the css-variable for the table:  
+set the css-variable for the Data-grid:  
 ```js
 --data-grid-cell-block-size: 48px;
 --data-grid-cell-white-space: nowrap;
@@ -37,37 +39,54 @@ set the css-variable for the table:
 If you set the css-variable - you can either remove them from your code or leave them as they are.
 
 
-
-
-
 ----
 
 ## Tabs
 
 ### The change
-Visual change.  
-Tab panel will get [gutters](/components/tabs/#gutters) by default (16px padding around tab content).
+
+|                                                | V-3    | V-4                      |
+|------------------------------------------------|--------|--------------------------|
+| Tab panel [gutters](/components/tabs/#gutters) | `none` | `small (= 16px padding)` |
+
+
 
 ### How to get ready?
 If you do not wish to have gutters, set `gutters="none"` on tabs:
 
-```html
+``` js
 <vwc-tabs gutters="none">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+	...
 </vwc-tabs>
 ```
-----
+
 ----
 ## Tooltip
-### The change 
+### The change
+|                                | V-3 default value | V-4 default value |
+|--------------------------------|-------------------|-------------------|
+| tooltip `max-inline-size`      | `none`            | `30ch`            |
 
 ### How to get ready?
 
+If you do not wish to have a set `max-inline-size` use the css-variable `--tooltip-max-inline-size`.
+
+```js
+vwc-tooltip {
+	--tooltip-max-inline-size: initial; 
+}
+```
 ----
 
+## Vue Wrappers
 
+### The change
+Form elements will now forward their value props as DOM properties instead of attributes.  
+
+|                     | V-3                                                                       | V-4                                                            |
+|---------------------|---------------------------------------------------------------------------|----------------------------------------------------------------|
+| Form elements props | the value prop holds the initial value and currentValue the current value | value holds the current value and initialValue the initial one |
+
+
+### How to get ready? 
+TBA: Look into how we help with an upgrade script?
