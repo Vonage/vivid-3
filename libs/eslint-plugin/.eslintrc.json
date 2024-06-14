@@ -2,7 +2,8 @@
 	"extends": ["../../.eslintrc.json", "prettier"],
 	"ignorePatterns": ["!**/*"],
 	"rules": {
-		"@typescript-eslint/no-non-null-assertion": "off"
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"@typescript-eslint/no-attribute-default-value": "off"
 	},
 	"overrides": [
 		{
