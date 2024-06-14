@@ -6,5 +6,9 @@
 	{
 		"title": "Release Policy",
 		"markdown": "./docs/resources/release-policy.md"
+	},
+	{
+		"title": "V4 release Migration",
+		"markdown": "./docs/resources/v4-release-migration.md"
 	}
 ]
