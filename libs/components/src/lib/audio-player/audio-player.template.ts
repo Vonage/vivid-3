@@ -124,7 +124,7 @@ function renderSlider(context: ElementDefinitionContext) {
 	<${sliderTag}
 		class="slider"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-		value="${getCurrentTimePercentage}" max="100"
+		current-value="${getCurrentTimePercentage}" max="100"
 		ariaValuetext="${(x) => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}">

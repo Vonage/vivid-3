@@ -275,6 +275,15 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(element.currentTime).toBe(nativeAudioElement.currentTime);
 		});
+
+		it('should set "current-value" on slider', async () => {
+			const duration = 120;
+			const currentTime = 30;
+			setAudioElementDuration(duration);
+			setAudioElementCurrentTime(currentTime);
+			await elementUpdated(element);
+			expect(getSliderElement().getAttribute('current-value')).toBe((100*currentTime/duration).toString());
+		});
 	});
 
 	describe('disabled', () => {
