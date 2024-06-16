@@ -186,6 +186,7 @@ export const AudioPlayerTemplate: (
 					(x) =>
 						x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
 					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
+                          role="menuitemradio"
 												 class="playback-rate"
 												 text="${(x) => x}"
 												 check-appearance="tick-only"
