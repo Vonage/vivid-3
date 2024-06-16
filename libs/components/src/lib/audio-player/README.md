@@ -94,7 +94,7 @@ The playback rates option can be removed by passing an empty string.
 - Type: `string`
 - Default: `null`
 
-```html preview 400px
+```html preview 300px
 <vwc-audio-player
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
 	playback-rates="0.5, 1, 1.5 2"
