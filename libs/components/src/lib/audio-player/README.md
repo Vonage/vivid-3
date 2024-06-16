@@ -102,7 +102,7 @@ The playback rates option can be removed by passing an empty string.
 </style>
 <vwc-audio-player
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
-	playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5"
+	playback-rates="0.5, 1, 1.5 2"
 >
 </vwc-audio-player>
 ```
