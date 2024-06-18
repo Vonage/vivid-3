@@ -480,17 +480,29 @@ The default slot, where all the content is rendered.
 
 ## Events
 
+### Row Events
+
 <div class="table-wrapper">
 
-| Name           | Description                      |
-| -------------- | -------------------------------- |
-| `row-focused`  | Fires when a row is focused.     |
-| `cell-focused` | Fires when a cell is focused.    |
-| `cell-click`   | Fires when a cell is clicked on. |
+| Name          | Type                       | Bubbles | Composed | Description                                                                                                |
+| ------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `row-focused` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'row-focused' event when focus is on an element (usually a cell or its contents) in the row |
 
 </div>
 
-### Cell-click
+### Cell Events
+
+<div class="table-wrapper">
+
+| Name           | Type                                                                                               | Bubbles | Composed | Description                                                                   |
+| -------------- | -------------------------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------- |
+| `cell-focused` | `CustomEvent<HTMLElement>`                                                                         | Yes     | Yes      | Fires a custom 'cell-focused' event when focus is on the cell or its contents |
+| `sort`         | `CustomEvent<{columnDataKey: string, ariaSort: string \| null}>`                                   | Yes     | Yes      | Event that fires when a sortable column header is clicked                     |
+| `cell-click`   | `CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>` | Yes     | Yes      | Event that fires when a cell is clicked                                       |
+
+</div>
+
+#### Cell-click
 
 The `cell-click` event is fired when a cell is clicked on or when the enter or space key is pressed on a focused cell.
 

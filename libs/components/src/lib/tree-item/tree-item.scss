@@ -3,7 +3,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
-	$shades: primary primary-text primary-increment faint soft,
+	$shades: primary primary-text primary-increment faint soft firm,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -100,7 +100,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
-	margin-block: 4px;
+	margin-block-start: 4px;
 	padding-inline-start: 48px;
 }
 

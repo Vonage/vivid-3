@@ -35,7 +35,7 @@ Use the `notime` attribute to remove the time stamp from the audio-player.
 ></vwc-audio-player>
 ```
 
-### Skip by button
+### Skip by
 
 By default, the skip backward/forward buttons are not showing.
 They can be set to skip by `0`, `5`, `10` and `30` seconds using the `skip-by` attribute.
@@ -77,6 +77,85 @@ Use the `disabled` attribute to disable the audio-player.
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
 	disabled
 ></vwc-audio-player>
+```
+
+### CurrentTime
+
+Use the `currentTime` property change or get the audio player's current time.
+
+- Type: `number`
+- Default: `undefined`
+
+### Playback rates
+
+Playback rates can be modified by passing a comma separated string of numbers to the `playback-rates` attribute.
+The playback rates option can be removed by passing an empty string.
+
+- Type: `string`
+- Default: `null`
+
+```html preview 300px
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	playback-rates="0.5, 1, 1.5, 2"
+>
+</vwc-audio-player>
+```
+
+### Paused (readonly)
+
+Use the `paused` property indicates if the player is currently paused or not.
+
+- Type: `boolean`
+- Default: `true`
+
+### Duration (readonly)
+
+Use the `duration` property indicates the duration of the loaded audio.
+
+- Type: `number`
+- Default: `undefined`
+
+### Play()
+
+Use the play method to start the audio if loaded.
+
+```html preview
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+></vwc-audio-player>
+<vwc-button label="play"></vwc-button>
+<script>
+	const button = document.querySelector('vwc-button');
+	const player = document.querySelector('vwc-audio-player');
+	button.addEventListener('click', () => {
+		player.play();
+	});
+</script>
+```
+
+### Pause()
+
+Use the pause method to pause the audio if playing.
+
+```html preview
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+></vwc-audio-player>
+<vwc-button label="play"></vwc-button>
+<script>
+	const button = document.querySelector('vwc-button');
+	const player = document.querySelector('vwc-audio-player');
+	button.addEventListener('click', () => {
+		if (player.paused) {
+			player.play();
+			button.label = 'pause';
+		} else {
+			player.pause();
+			button.label = 'play';
+		}
+	});
+</script>
 ```
 
 ## CSS Variables

@@ -35,6 +35,8 @@ export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @public
  * @component tag
  * @slot icon - Add an icon to the component.
+ * @event {CustomEvent<undefined>} selected-change - Fires when the selected state changes
+ * @event {CustomEvent<undefined>} removed - Fires when the tag is removed
  */
 export class Tag extends FoundationElement {
 	/**

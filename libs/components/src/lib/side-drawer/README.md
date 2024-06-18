@@ -134,10 +134,10 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 
 <div class="table-wrapper">
 
-| Name    | Description                                    |
-| ------- | ---------------------------------------------- |
-| `open`  | Fires `open` when the side drawer is opening.  |
-| `close` | Fires `close` when the side drawer is closing. |
+| Name    | Type                     | Bubbles | Composed | Description                   |
+| ------- | ------------------------ | ------- | -------- | ----------------------------- |
+| `open`  | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is opened |
+| `close` | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is closed |
 
 </div>
 

@@ -65,18 +65,28 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance="ghost" label='cta' connotation='cta'></vwc-button>
 		<vwc-button appearance="ghost" label='success' connotation='success'></vwc-button>
 		<vwc-button appearance="ghost" label='alert' connotation='alert'></vwc-button>
+		<vwc-button appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance="filled" label='accent' connotation='accent'></vwc-button>
 		<vwc-button appearance="filled" label='cta' connotation='cta'></vwc-button>
 		<vwc-button appearance="filled" label='success' connotation='success'></vwc-button>
 		<vwc-button appearance="filled" label='alert' connotation='alert'></vwc-button>
+		<vwc-button appearance="filled" label='announcement' connotation='announcement'></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance="outlined" label='accent' connotation='accent'></vwc-button>
 		<vwc-button appearance="outlined" label='cta' connotation='cta'></vwc-button>
 		<vwc-button appearance="outlined" label='success' connotation='success'></vwc-button>
 		<vwc-button appearance="outlined" label='alert' connotation='alert'></vwc-button>
+		<vwc-button appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+		<div style="margin: 5px;">
+			<vwc-button appearance="ghost-light" label="accent" connotation="accent"></vwc-button>
+		<vwc-button appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
+		<vwc-button appearance="ghost-light" label="success" connotation="success"></vwc-button>
+		<vwc-button appearance="ghost-light" label="alert" connotation="alert"></vwc-button>
+		<vwc-button appearance="ghost-light" label="announcement" connotation="announcement"></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance='ghost' label='ghost' disabled></vwc-button>
@@ -93,6 +103,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance="ghost" icon="check-line" label="ghost" pending></vwc-button>
 		<vwc-button appearance="filled" icon="check-line" label="filled" pending></vwc-button>
 		<vwc-button appearance="outlined" icon="check-line" label="outlined" pending></vwc-button>
+		<vwc-button appearance="outlined" icon="check-line" label="outlined" pending icon-trailing></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button connotation='cta' shape='pill' icon='microphone-solid' aria-label="Mute"></vwc-button>
@@ -127,14 +138,32 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button label="Active" active></vwc-button>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-button appearance="ghost-light" label="accent" connotation="accent"></vwc-button>
-		<vwc-button appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
-		<vwc-button appearance="ghost-light" label="success" connotation="success"></vwc-button>
-		<vwc-button appearance="ghost-light" label="alert" connotation="alert"></vwc-button>
-		<vwc-button appearance="ghost-light" label="accent" connotation="accent" active></vwc-button>
-		<vwc-button appearance="ghost-light" label="cta" connotation="cta" active></vwc-button>
-		<vwc-button appearance="ghost-light" label="success" connotation="success" active></vwc-button>
-		<vwc-button appearance="ghost-light" label="alert" connotation="alert" active></vwc-button>
+		<vwc-button active appearance="ghost" label='accent' connotation='accent'></vwc-button>
+		<vwc-button active appearance="ghost" label='cta' connotation='cta'></vwc-button>
+		<vwc-button active appearance="ghost" label='success' connotation='success'></vwc-button>
+		<vwc-button active appearance="ghost" label='alert' connotation='alert'></vwc-button>
+		<vwc-button active appearance="ghost" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button active appearance="filled" label='accent' connotation='accent'></vwc-button>
+		<vwc-button active appearance="filled" label='cta' connotation='cta'></vwc-button>
+		<vwc-button active appearance="filled" label='success' connotation='success'></vwc-button>
+		<vwc-button active appearance="filled" label='alert' connotation='alert'></vwc-button>
+		<vwc-button active appearance="filled" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button active appearance="outlined" label='accent' connotation='accent'></vwc-button>
+		<vwc-button active appearance="outlined" label='cta' connotation='cta'></vwc-button>
+		<vwc-button active appearance="outlined" label='success' connotation='success'></vwc-button>
+		<vwc-button active appearance="outlined" label='alert' connotation='alert'></vwc-button>
+		<vwc-button active appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+		<div style="margin: 5px;">
+			<vwc-button active appearance="ghost-light" label="accent" connotation="accent"></vwc-button>
+		<vwc-button active appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
+		<vwc-button active appearance="ghost-light" label="success" connotation="success"></vwc-button>
+		<vwc-button active appearance="ghost-light" label="alert" connotation="alert"></vwc-button>
+		<vwc-button active appearance="ghost-light" label="announcement" connotation="announcement"></vwc-button>
 	</div>
 	</div>
 	`;
