@@ -87,6 +87,16 @@ export class AudioPlayer extends FoundationElement {
 	 */
 	@attr src?: string;
 
+	get playbackRate() {
+		Observable.track(this, 'playbackRate');
+		return this.#playerEl.playbackRate;
+	}
+
+	set playbackRate(value) {
+		this.#playerEl.playbackRate = value;
+		Observable.notify(this, 'playbackRate');
+	}
+
 	srcChanged() {
 		if (this.src === undefined) {
 			this.#playerEl.removeAttribute('src');
@@ -120,6 +130,16 @@ export class AudioPlayer extends FoundationElement {
 		converter: validSkipByConverter,
 	})
 	skipBy?: MediaSkipBy;
+
+	/**
+	 * Sets the available playback rates. When an empty string, no choices will be available
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: playback-rates
+	 */
+	@attr({ attribute: 'playback-rates' })
+	playbackRates: string | null = null;
 
 	get paused(): boolean {
 		Observable.track(this, 'paused');

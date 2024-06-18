@@ -6,7 +6,7 @@ import { Localized } from '../../shared/patterns';
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
-function getPlaybackRatesArray(playbackRates: string): number[] {
+export function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
 	const ratesArray: number[] = [];
 
