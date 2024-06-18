@@ -182,19 +182,13 @@ describe('vwc-popup', () => {
 			expect(getControlElement(element).classList).toContain('open');
 		});
 
-		it('should not begin to auto update position before DOM is updated', async function () {
-			element.anchor = anchor;
-			element.open = true;
-
-			expect(floatingUI.autoUpdate).not.toHaveBeenCalled();
-		});
-
 		it('should begin to auto update after DOM is updated', async function () {
 			element.anchor = anchor;
 			element.open = true;
+			const updateCallsBeforeDOMUpdate = floatingUI.autoUpdate.mock.calls.length;
 			await elementUpdated(element);
-
-			expect(floatingUI.autoUpdate).toHaveBeenCalled();
+      expect(updateCallsBeforeDOMUpdate).toBe(0);
+			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(1);
 		});
 	});
 
