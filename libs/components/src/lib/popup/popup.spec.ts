@@ -189,7 +189,7 @@ describe('vwc-popup', () => {
 				.calls.length;
 			await elementUpdated(element);
 			expect(updateCallsBeforeDOMUpdate).toBe(0);
-			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(1);
+			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(2);
 		});
 	});
 
