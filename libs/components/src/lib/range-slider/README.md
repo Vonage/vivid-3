@@ -179,12 +179,12 @@ The upper value of the range.
 
 <div class="table-wrapper">
 
-| Name        | Description                                 |
-| ----------- | ------------------------------------------- |
-| input       | When either the start or end value changes. |
-| change      | When either the start or end value changes. |
-| input:start | When the start value changes                |
-| input:end   | When the end value changes                  |
+| Name          | Type                     | Bubbles | Composed | Description                                               |
+| ------------- | ------------------------ | ------- | -------- | --------------------------------------------------------- |
+| `input:start` | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the start value changes                |
+| `input:end`   | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the end value changes                  |
+| `input`       | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
+| `change`      | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
 
 </div>
 
