@@ -185,9 +185,10 @@ describe('vwc-popup', () => {
 		it('should begin to auto update after DOM is updated', async function () {
 			element.anchor = anchor;
 			element.open = true;
-			const updateCallsBeforeDOMUpdate = floatingUI.autoUpdate.mock.calls.length;
+			const updateCallsBeforeDOMUpdate = jest.mocked(floatingUI.autoUpdate).mock
+				.calls.length;
 			await elementUpdated(element);
-      expect(updateCallsBeforeDOMUpdate).toBe(0);
+			expect(updateCallsBeforeDOMUpdate).toBe(0);
 			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(1);
 		});
 	});
