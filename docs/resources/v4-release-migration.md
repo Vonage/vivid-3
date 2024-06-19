@@ -94,14 +94,70 @@ vwc-tooltip {
 
 ## Vue Wrappers
 
+Form elements like `VTextField` will now forward value props consistently as DOM properties.
+
+This change will affect the props `value` and `currentValue` on:
+
+- VTextField
+- VTextArea
+- VNumberField
+- VSelect
+- VCombobox
+- VSlider
+- VRangeSlider
+- VDatePicker
+- VDateRangePicker
+- VTimePicker
+- VFilePicker
+
+`checked` and `currentChecked` props on:
+
+- VCheckbox
+- VSwitch
+- VRadio
+
+`currentStart` / `currentEnd` on:
+
+- VDateRangePicker
+- VRangeSlider
+
+Usage of these props is discouraged. To set the current value, you should use the `v-model` instead:
+
+```html
+<VTextField v-model="value" />
+<!-- Which is syntactic sugar for: -->
+<VTextField
+	:model-value="value"
+	@update:model-value="$event => (value = $event)"
+/>
+```
+
+Code using `v-model` or `modelValue` is not affected.
+
 ### The change
 
-Form elements will now forward their value props as DOM properties instead of attributes.
+|                                                                   | V-3                                | V-4                    |
+| ----------------------------------------------------------------- | ---------------------------------- | ---------------------- |
+| `currentValue` / `currentChecked` / `currentStart` / `currentEnd` | Controls current value             | Removed                |
+| `value`/`checked`                                                 | Inconsistent between Vue 2 / Vue 3 | Controls current value |
+| `initialValue` / `defaultChecked`                                 | Doesn't exist                      | Controls initial value |
 
-|                     | V-3                                                                       | V-4                                                            |
-| ------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Form elements props | the value prop holds the initial value and currentValue the current value | value holds the current value and initialValue the initial one |
+## How to get ready?
 
-### How to get ready?
+- First, make sure you're on the latest version of Vivid 2.x.  
+  Optionally, install the latest version of our new ESLint plugin, which can help with the migration.
 
-TBA: Look into how we help with an upgrade script?
+- Replace all usage of `currentValue` / `currentChecked` with `modelValue`.
+- Replace `currentStart` / `currentEnd` with `start` / `end`.  
+  The `no-current-value-attribute` rule of our ESLint plugin can perform this migration automatically.
+
+- Replace all usages of `value` / `checked`:
+
+  - **Vue 3:**  
+    `value`/`checked` sets the current value and can be replaced with `modelValue`.
+
+  - **Vue 2:**  
+    `value` / `checked` sets the initial value and can be replaced with `initalValue` / `defaultChecked`.  
+    Keep in mind that the original code may be wrong and intended to set the current value instead.
+
+  The `no-value-attribute` rule of our ESLint plugin will warn about any usages of `value` / `checked`.
