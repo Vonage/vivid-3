@@ -3,8 +3,10 @@ import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation, MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
-import { AudioPlayer } from './audio-player';
+import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
+import { MenuItem } from '../menu-item/menu-item';
 import { audioPlayerDefinition } from './definition';
+import { AudioPlayer } from './audio-player';
 import '.';
 
 const COMPONENT_TAG = 'vwc-audio-player';
@@ -177,6 +179,17 @@ describe('vwc-audio-player', () => {
 	});
 
 	describe('notime', function () {
+		it('should remove "two-lines" class from base if set to true', async () => {
+			element.notime = true;
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				false
+			);
+		});
+
 		it('should remove the time stamp when true', async function () {
 			const currentTimeClassExistsBeforeTheChange = getCurrentTimeElement();
 			const totalTimeClassExistsBeforeTheChange = getTotalTimeElement();
@@ -261,6 +274,17 @@ describe('vwc-audio-player', () => {
 			setAudioElementCurrentTime(60);
 			await elementUpdated(element);
 			expect(element.currentTime).toBe(nativeAudioElement.currentTime);
+		});
+
+		it('should set "current-value" on slider', async () => {
+			const duration = 120;
+			const currentTime = 30;
+			setAudioElementDuration(duration);
+			setAudioElementCurrentTime(currentTime);
+			await elementUpdated(element);
+			expect(getSliderElement().getAttribute('current-value')).toBe(
+				((100 * currentTime) / duration).toString()
+			);
 		});
 	});
 
@@ -389,9 +413,197 @@ describe('vwc-audio-player', () => {
 		});
 	});
 
-	describe('skip-by', function () {
+	describe('playbackRates', () => {
+		function getPlaybackRatesMenuElement() {
+			return getBaseElement(element).querySelector('.playback-rates');
+		}
+
+		function getPlaybackRatesButton() {
+			return getBaseElement(element).querySelector(
+				'#playback-open-button'
+			) as Button;
+		}
+
+		it('should default to empty string', () => {
+			expect(element.playbackRates).toBe(null);
+		});
+
+		it('should hide playbackRates button as default', async () => {
+			expect(getPlaybackRatesButton()).toBeNull();
+		});
+
+		it('should hide playbackRates button when attribute is removed', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			element.removeAttribute('playback-rates');
+			await elementUpdated(element);
+
+			expect(getPlaybackRatesButton()).toBeNull();
+		});
+
+		it('should hide playbackRates button when empty', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			element.playbackRates = '';
+			await elementUpdated(element);
+
+			expect(getPlaybackRatesButton()).toBeNull();
+		});
+
+		it('should set class playback on base when playbackRates is truthy', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('playback')).toBe(true);
+		});
+
+		it('should remove class playback on base when playbackRates is falsy', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			element.playbackRates = '';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('playback')).toBe(
+				false
+			);
+		});
+
+		it('should set class two-lines on base when time is shown and playbackRates is truthy', async () => {
+			element.notime = false;
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				true
+			);
+		});
+
+		it('should remove class two-lines from base when time is shown and playbackRates is empty', async () => {
+			element.notime = false;
+			element.playbackRates = '';
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				false
+			);
+		});
+
+		it('should start with a closed menu item', () => {
+			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
+		});
+
+		it('should open the menu on click on the button', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			const playbackOpenButton = getPlaybackRatesButton();
+
+			playbackOpenButton.click();
+			await elementUpdated(element);
+
+			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(true);
+		});
+
+		it('should close the menu on selection', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
+				'.playback-rate'
+			) as MenuItem;
+			(getPlaybackRatesMenuElement() as any).open = true;
+
+			menuItem.click();
+			await elementUpdated(element);
+
+			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
+		});
+
+		it('should show menu items according to playback rates', async () => {
+			element.playbackRates = '1,2,3,4,5';
+			await elementUpdated(element);
+
+			element.playbackRates.split(',').forEach((pbRate) => {
+				const element = getPlaybackRatesMenuElement()?.querySelector(
+					`.playback-rate[text="${pbRate}"]`
+				);
+				expect(element).toBeTruthy();
+				expect(element?.getAttribute('check-appearance')).toBe('tick-only');
+			});
+		});
+
+		it('should show only numeric values', async () => {
+			element.playbackRates = 'a,b,c,d,1';
+			await elementUpdated(element);
+
+			expect(
+				getPlaybackRatesMenuElement()?.querySelectorAll(`.playback-rate`).length
+			).toBe(1);
+			expect(
+				getPlaybackRatesMenuElement()
+					?.querySelector(`.playback-rate`)
+					?.getAttribute('text')
+			).toBe('1');
+		});
+
+		it('should set playbackRate to the value selected', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
+			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
+				'.playback-rate'
+			) as MenuItem;
+
+			menuItem.click();
+			await elementUpdated(element);
+
+			expect(element.playbackRate).toBe(Number(menuItem.text));
+		});
+
+		it('should add "checked" attribute to the selected playback rate', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			element.playbackRate = 2;
+			await elementUpdated(element);
+
+			expect(
+				getPlaybackRatesMenuElement()
+					?.querySelector(`[text="${element.playbackRate}"]`)
+					?.hasAttribute('checked')
+			).toBe(true);
+		});
+	});
+
+	describe('playbackRate', () => {
+		it('should default to 1', () => {
+			expect(element.playbackRate).toBe(1);
+		});
+
+		it('should set playbackRate of native audio', async () => {
+			element.playbackRate = 555;
+			await elementUpdated(element);
+			expect(nativeAudioElement.playbackRate).toBe(element.playbackRate);
+		});
+	});
+
+	describe('skipBy', function () {
 		beforeEach(() => {
 			setAudioElementDuration(60);
+		});
+
+		it('should set class two-lines on base with time shown and skipBy set', async () => {
+			element.notime = false;
+			element.skipBy = MediaSkipBy.Five;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				true
+			);
+		});
+
+		it('should remove class two-lines on base when skipBy is set to false', async () => {
+			element.notime = false;
+			element.skipBy = MediaSkipBy.Zero;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('two-lines')).toBe(
+				false
+			);
 		});
 
 		it('should hide skip buttons when skip-by is unset', async function () {
