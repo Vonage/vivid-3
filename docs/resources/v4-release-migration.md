@@ -1,8 +1,7 @@
-# vivid-4.0.0
+# Vivid v4.0.0 Migration Guide
 
-V-4 is currently scheduled for the 1st July 2024.  
-Vivid v-4 is a small iteration, not a rewrite like the last major release.  
-This is a migration guide to make the upgrade easy :)
+Release date: 1st July 2024.  
+This document provides descriptions of the breaking changes in this release and instructions on how to prepare for them.
 
 ---
 
