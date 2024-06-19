@@ -144,7 +144,11 @@ Code using `v-model` or `modelValue` is not affected.
 
 ## How to get ready?
 
-- First, make sure you're on the latest version of Vivid 2.x.  
+<vwc-note connotation="information" icon="info-solid" headline="This is not available yet">
+It will be introduced in Version 4
+</vwc-note>
+
+- First, make sure you're on the latest version of Vivid 3.x.  
   Optionally, install the latest version of our new ESLint plugin, which can help with the migration.
 
 - Replace all usage of `currentValue` / `currentChecked` with `modelValue`.
