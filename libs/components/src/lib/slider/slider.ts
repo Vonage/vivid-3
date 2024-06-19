@@ -1,4 +1,4 @@
-import { attr, observable, volatile } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { applyMixins, Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
@@ -73,103 +73,17 @@ export class Slider extends FastSlider {
 		}
 	}
 
-	/**
-	 * @internal
-	 */
-	@observable _focusVisible = false;
-
-	/**
-	 * @internal
-	 */
-	@observable _hoveringOnThumb = false;
-
-	/**
-	 * @internal
-	 */
-	@volatile
-	get _isThumbPopupOpen() {
-		return this._focusVisible || this._hoveringOnThumb || this.isDragging;
-	}
-
-	#isNonVisibleFocus = false;
-
 	constructor() {
 		super();
-
-		const fastSliderInternals = this as any;
-
-		const originalHandleMouseDown = fastSliderInternals.handleMouseDown;
-		fastSliderInternals.handleMouseDown = (e: MouseEvent) => {
-			this.#isNonVisibleFocus = true;
-			originalHandleMouseDown(e);
-			this.#isNonVisibleFocus = false;
-			if (e === null || (!this.disabled && !this.readOnly)) {
-				this.isDragging = true;
-			}
-		};
-
-		const originalHandleThumbMouseDown =
-			fastSliderInternals.handleThumbMouseDown;
-		fastSliderInternals.handleThumbMouseDown = (e: MouseEvent) => {
-			this.#isNonVisibleFocus = true;
-			originalHandleThumbMouseDown(e);
-			this.#isNonVisibleFocus = false;
-		};
-
-		const originalKeypressHandler = fastSliderInternals.keypressHandler;
-		fastSliderInternals.keypressHandler = (e: KeyboardEvent) => {
-			this._focusVisible = true;
-			originalKeypressHandler(e);
-		};
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.#registerThumbListeners();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.#unregisterThumbListeners();
 	}
-
-	#registerThumbListeners() {
-		this.thumb.addEventListener('mouseover', this.#onMouseOver, {
-			passive: true,
-		});
-		this.thumb.addEventListener('mouseout', this.#onMouseOut, {
-			passive: true,
-		});
-	}
-
-	#unregisterThumbListeners() {
-		this.thumb.removeEventListener('mouseover', this.#onMouseOver);
-		this.thumb.removeEventListener('mouseout', this.#onMouseOut);
-	}
-
-	/**
-	 * @internal
-	 */
-	_onFocusIn = () => {
-		if (!this.#isNonVisibleFocus) {
-			this._focusVisible = true;
-		}
-	};
-
-	/**
-	 * @internal
-	 */
-	_onFocusOut = () => {
-		this._focusVisible = false;
-	};
-
-	#onMouseOver = () => {
-		this._hoveringOnThumb = true;
-	};
-
-	#onMouseOut = () => {
-		this._hoveringOnThumb = false;
-	};
 }
 
 export interface Slider extends Localized {}

@@ -15,8 +15,41 @@ const getClasses = ({ disabled, connotation }: Slider) =>
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
 
-const getThumbClasses = ({ _focusVisible }: Slider) =>
-	classNames('thumb-container', ['focus-visible', _focusVisible]);
+const OPEN = true;
+const CLOSE = false;
+
+function togglePopup(slider: Slider, open: boolean) {
+	const popup = slider.shadowRoot?.querySelector('.popup');
+	if (popup) (popup as Popup).open = open;
+}
+
+function toggleFocusRing(slider: Slider, show: boolean) {
+	slider.thumb.classList[show ? 'add' : 'remove']('focus-visible');
+}
+
+function onFocusIn(slider: Slider) {
+	togglePopup(slider, OPEN);
+	toggleFocusRing(slider, OPEN);
+}
+
+function onKeyPress(slider: Slider) {
+	togglePopup(slider, OPEN);
+	toggleFocusRing(slider, OPEN);
+	return;
+}
+
+function onFocusOut(slider: Slider) {
+	togglePopup(slider, CLOSE);
+	toggleFocusRing(slider, CLOSE);
+}
+
+function onMouseDown(slider: Slider) {
+	const handleFocusAfterMouseDown = () => {
+		toggleFocusRing(slider, CLOSE);
+		slider.removeEventListener('focusin', handleFocusAfterMouseDown)
+	}
+	slider.addEventListener('focusin', handleFocusAfterMouseDown);	
+}
 
 export const getMarkersTemplate = (
 	isHorizontal: boolean,
@@ -44,8 +77,10 @@ export const SliderTemplate: (
 	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template
 		role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
-		@focusin="${(x) => x._onFocusIn()}"
-		@focusout="${(x) => x._onFocusOut()}"
+		@focusin="${onFocusIn}"
+		@focusout="${onFocusOut}"
+		@mousedown="${onMouseDown}"
+		@keydown="${onKeyPress}"
 	>
 		<div
 			role="slider"
@@ -73,8 +108,11 @@ export const SliderTemplate: (
 				</div>
 				<div
 					${ref('thumb')}
-					class="${(x) => getThumbClasses(x)}"
+					class="thumb-container"
 					style="${(x) => x.position}"
+					@mouseover="${x => togglePopup(x, OPEN)}"
+					@mouseout="${x => togglePopup(x, CLOSE)}"
+					@mousedown="${onMouseDown}"
 				></div>
 				${when(
 					(x) => x.pin,
@@ -83,7 +121,7 @@ export const SliderTemplate: (
 					arrow
 					alternate
 					:anchor="${(x) => x.thumb}"
-					:open=${(x) => x._isThumbPopupOpen}
+					:open=${(x) => x.isDragging}
 					:placementStrategy=${(x) =>
 						x.orientation === Orientation.horizontal
 							? PlacementStrategy.AutoPlacementHorizontal
