@@ -8,6 +8,7 @@ This document provides descriptions of the breaking changes in this release and 
 ## Audio-player
 
 ### The change
+
 The audio-player will now stretch to fill it's container's inline-size by default. Previously it was restricted to 350px.
 
 |                                               | V-3      | V-4       |
@@ -22,6 +23,7 @@ set `max-inline-size` or `inline-size` directly on audio-player or on its parent
 ---
 
 ## Data-grid
+
 Data-grid-cell will no longer have a fixed block-size but will adjust to its content and its text will not be trimmed by default ad before.
 
 ### The change
@@ -51,7 +53,8 @@ If you set the css-variable - you can either remove them from your code or leave
 ## Tabs
 
 ### The change
-Tab panel will now have a 16px padding by default, previously  it had no padding at all.
+
+Tab panel will now have a 16px padding by default, previously it had no padding at all.
 
 |                                                | V-3    | V-4                      |
 | ---------------------------------------------- | ------ | ------------------------ |
@@ -70,6 +73,7 @@ If you do not wish to have gutters, set `gutters="none"` on tabs:
 ## Tooltip
 
 ### The change
+
 The tooltip will now have a default max-inline-size of 30 characters. Previously it didn't have max-inline-size.
 
 |                           | V-3 default value | V-4 default value |
