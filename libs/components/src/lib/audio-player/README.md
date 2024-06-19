@@ -86,6 +86,22 @@ Use the `currentTime` property change or get the audio player's current time.
 - Type: `number`
 - Default: `undefined`
 
+### Playback rates
+
+Playback rates can be modified by passing a comma separated string of numbers to the `playback-rates` attribute.
+The playback rates option can be removed by passing an empty string.
+
+- Type: `string`
+- Default: `null`
+
+```html preview 300px
+<vwc-audio-player
+	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	playback-rates="0.5, 1, 1.5, 2"
+>
+</vwc-audio-player>
+```
+
 ### Paused (readonly)
 
 Use the `paused` property indicates if the player is currently paused or not.
