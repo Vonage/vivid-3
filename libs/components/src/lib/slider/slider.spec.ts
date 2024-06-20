@@ -335,63 +335,63 @@ describe('vwc-slider', () => {
 			);
 			expect(thumb.classList).toContain('focus-visible');
 		});
-	});
 
-	describe('dragging the thumb', () => {
-		describe.each([
-			{ orientation: 'horizontal', coordinate: 'pageX' },
-			{ orientation: 'vertical', coordinate: 'pageY' },
-		])('with $orientation orientation', ({ orientation, coordinate }) => {
-			const mouseDown = (thumb: HTMLElement, value: number) => {
-				const mouseEvent = new MouseEvent('mousedown');
-				Object.defineProperty(mouseEvent, coordinate, { value });
-				thumb.dispatchEvent(mouseEvent);
-			};
+		describe('dragging the thumb', () => {
+			describe.each([
+				{ orientation: 'horizontal', coordinate: 'pageX' },
+				{ orientation: 'vertical', coordinate: 'pageY' },
+			])('with $orientation orientation', ({ orientation, coordinate }) => {
+				const mouseDown = (thumb: HTMLElement, value: number) => {
+					const mouseEvent = new MouseEvent('mousedown');
+					Object.defineProperty(mouseEvent, coordinate, { value });
+					thumb.dispatchEvent(mouseEvent);
+				};
 
-			const mouseMove = (value: number) => {
-				const mouseMoveEvent = new MouseEvent('mousemove');
-				Object.defineProperty(mouseMoveEvent, coordinate, { value });
-				window.dispatchEvent(mouseMoveEvent);
-			};
+				const mouseMove = (value: number) => {
+					const mouseMoveEvent = new MouseEvent('mousemove');
+					Object.defineProperty(mouseMoveEvent, coordinate, { value });
+					window.dispatchEvent(mouseMoveEvent);
+				};
 
-			const mouseUp = () => {
-				window.dispatchEvent(new MouseEvent('mouseup'));
-			};
+				const mouseUp = () => {
+					window.dispatchEvent(new MouseEvent('mouseup'));
+				};
 
-			const dragThumb = (from: number, to: number) => {
-				mouseDown(thumb, from);
-				mouseMove(to);
-				mouseUp();
-			};
+				const dragThumb = (from: number, to: number) => {
+					mouseDown(thumb, from);
+					mouseMove(to);
+					mouseUp();
+				};
 
-			beforeEach(async () => {
-				element.value = '0';
-				element.orientation = orientation as Orientation;
-				await elementUpdated(element);
-			});
+				beforeEach(async () => {
+					element.value = '0';
+					element.orientation = orientation as Orientation;
+					await elementUpdated(element);
+				});
 
-			it('should update value by dragging thumb', async () => {
-				dragThumb(0, 300);
-				expect(element.value).toBe('3');
-			});
+				it('should update value by dragging thumb', async () => {
+					dragThumb(0, 300);
+					expect(element.value).toBe('3');
+				});
 
-			it('should not drag when disabled', async () => {
-				element.disabled = true;
+				it('should not drag when disabled', async () => {
+					element.disabled = true;
 
-				dragThumb(0, 300);
+					dragThumb(0, 300);
 
-				expect(element.value).toBe('0');
-			});
+					expect(element.value).toBe('0');
+				});
 
-			it('should show pin popup while dragging', async () => {
-				element.pin = true;
-				await elementUpdated(element);
+				it('should show pin popup while dragging', async () => {
+					element.pin = true;
+					await elementUpdated(element);
 
-				mouseDown(thumb, 0);
-				mouseMove(50);
-				await elementUpdated(element);
+					mouseDown(thumb, 0);
+					mouseMove(50);
+					await elementUpdated(element);
 
-				expect(getPopup()!.open).toBe(true);
+					expect(getPopup()!.open).toBe(true);
+				});
 			});
 		});
 	});
