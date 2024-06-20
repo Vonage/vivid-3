@@ -6,7 +6,7 @@ import { Localized } from '../../shared/patterns';
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
-function getPlaybackRatesArray(playbackRates: string): number[] {
+export function getPlaybackRatesArray(playbackRates: string): number[] {
 	if (playbackRates === '') return [];
 	const ratesArray: number[] = [];
 
@@ -38,9 +38,9 @@ function appendProgressBarToStart(videoPlayer: any) {
  * @public
  * @component video-player
  * @slot - Default slot
- * @event play - Fired when the video is played
- * @event pause - Fired when the video is paused
- * @event ended - Fired when the video is ended
+ * @event {CustomEvent<undefined>} play - Fired when the video is played
+ * @event {CustomEvent<undefined>} pause - Fired when the video is paused
+ * @event {CustomEvent<undefined>} ended - Fired when the video is ended
  */
 export class VideoPlayer extends FoundationElement {
 	/**

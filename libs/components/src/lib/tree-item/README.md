@@ -111,9 +111,9 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name              | Description                                                             |
-| ----------------- | ----------------------------------------------------------------------- |
-| `expanded-change` | Fires a custom `expanded-change` event when the expanded state changes. |
-| `selected-change` | Fires a custom `selected-change` event when an item has been selected.  |
+| Name              | Type                       | Bubbles | Composed | Description                                                            |
+| ----------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------- |
+| `expanded-change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'expanded-change' event when the expanded state changes |
+| `selected-change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'selected-change' event when the selected state changes |
 
 </div>

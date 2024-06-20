@@ -69,6 +69,16 @@ export const exampleComponent: ComponentDef = {
 				},
 			],
 		},
+		{
+			name: 'forced-dom-prop',
+			type: [
+				{
+					text: 'string',
+					vuePropType: 'String',
+				},
+			],
+			forceDomProp: true,
+		},
 	],
 	events: [
 		{
@@ -94,8 +104,8 @@ export const exampleComponent: ComponentDef = {
 			name: 'input:start',
 			type: [
 				{
-					text: 'Event',
-					vuePropType: 'Event',
+					text: 'CustomEvent<{a: string | number}>',
+					vuePropType: 'CustomEvent',
 				},
 			],
 		},

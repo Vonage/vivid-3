@@ -6,7 +6,7 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert,
+	$connotations: accent cta success alert announcement,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
 		faint fierce-primary,
 	$default: accent
@@ -242,5 +242,11 @@ slot[name='icon'] {
 
 	& + .text {
 		visibility: hidden;
+	}
+}
+
+:host([icon-trailing][pending]) {
+	.pending {
+		order: 1;
 	}
 }

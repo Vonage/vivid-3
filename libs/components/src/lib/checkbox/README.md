@@ -187,10 +187,10 @@ The `helper-text` slot allows you to use rich content as the checkbox's helper t
 
 <div class="table-wrapper">
 
-| Name     | Description                             |
-| -------- | --------------------------------------- |
-| `input`  | Emitted when the checked state changes. |
-| `change` | Emitted when the checked state changes. |
+| Name     | Type                     | Bubbles | Composed | Description                             |
+| -------- | ------------------------ | ------- | -------- | --------------------------------------- |
+| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
 
 </div>
 

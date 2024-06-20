@@ -4,6 +4,25 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.59.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.58.0...vivid-v3.59.0) (2024-06-18)
+
+
+### Features
+
+* **audio-player:** implement playback rates selector (VIV-1713) ([#1754](https://github.com/Vonage/vivid-3/issues/1754)) ([7a46449](https://github.com/Vonage/vivid-3/commit/7a4644989a76f86317edfcfea96225907721626a))
+* **button, split-button:** add announcement connotation (VIV-1650) ([#1755](https://github.com/Vonage/vivid-3/issues/1755)) ([017d16d](https://github.com/Vonage/vivid-3/commit/017d16da438a8999f7282f4130343741670b2798))
+* **combobox:** adds ghost appearance to combobox (VIV-1784) ([#1749](https://github.com/Vonage/vivid-3/issues/1749)) ([d9bc74e](https://github.com/Vonage/vivid-3/commit/d9bc74e93f48a40ec5f99aa54d7f116bb84809aa))
+* **components:** annotate event types (VIV-1762) ([#1764](https://github.com/Vonage/vivid-3/issues/1764)) ([7b01636](https://github.com/Vonage/vivid-3/commit/7b0163647584348c43f72c7a2c7240e6bfd6bb86))
+* **number-field:** support locales with comma (VIV-1771) ([#1733](https://github.com/Vonage/vivid-3/issues/1733)) ([e6f1b85](https://github.com/Vonage/vivid-3/commit/e6f1b850e49d720cfcd38f2ac33e931d5c568245))
+
+
+### Bug Fixes
+
+* **appearance:** change ghost text-color from 500 to 600 (VIV-1774) ([#1716](https://github.com/Vonage/vivid-3/issues/1716)) ([17eb547](https://github.com/Vonage/vivid-3/commit/17eb547b031fe065c34476f97b5365696f4e9a07))
+* **banner:** add padding-block (VIV-1819) ([#1750](https://github.com/Vonage/vivid-3/issues/1750)) ([b8c8bbc](https://github.com/Vonage/vivid-3/commit/b8c8bbc23fcd8a339b9216eaef6d9b1fbcefacea))
+* **button:** pending position when icon-trailing (VIV-1810) ([#1770](https://github.com/Vonage/vivid-3/issues/1770)) ([e72c357](https://github.com/Vonage/vivid-3/commit/e72c357348a3f3cc4624d739546c88a3d0e720c2))
+* **tree-item:** remove un-needed bottom margin (VIV-1818) ([#1769](https://github.com/Vonage/vivid-3/issues/1769)) ([c74701f](https://github.com/Vonage/vivid-3/commit/c74701f6abcd9c40cc09511b38371c31f14203f9))
+
 ## [3.58.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.57.0...vivid-v3.58.0) (2024-06-04)
 
 

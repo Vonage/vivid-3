@@ -39,8 +39,10 @@ type Direction = typeof Direction[keyof typeof Direction];
  *
  * @component range-slider
  * @public
- * @event input:start - Event emitted when the start value changes
- * @event input:end - Event emitted when the end value changes
+ * @event {CustomEvent<undefined>} input:start - Event emitted when the start value changes
+ * @event {CustomEvent<undefined>} input:end - Event emitted when the end value changes
+ * @event {CustomEvent<undefined>} input - Event emitted when either the start or end value changes.
+ * @event {CustomEvent<undefined>} change - Event emitted when either the start or end value changes.
  * @vueModel start current-start input:start `(event.target as any).start`
  * @vueModel end current-end input:end `(event.target as any).end`
  */
