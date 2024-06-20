@@ -82,9 +82,21 @@ $track-thickness: 2px;
 			left: 0;
 			block-size: $track-thickness;
 
+			&-start {
+				:host([markers]) & {
+					#{variables.$track-start-inset-inline-start}: 1px;
+
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
+			}
+
 			.mark {
-				block-size: 4px;
+				position: absolute;
+				block-size: 6px;
 				inline-size: 100%;
+				inset-block-start: -2px;
+				inset-inline-start: 0;
 			}
 		}
 	}
@@ -110,16 +122,25 @@ $track-thickness: 2px;
 			inline-size: $track-thickness;
 
 			.mark {
+				position: absolute;
 				block-size: 100%;
-				inline-size: 4px;
+				inline-size: 6px;
+				inset-block-start: 0;
+				inset-inline-start: -2px;
 			}
 		}
-
+		/* stylelint-disable */
 		.track-start {
 			block-size: auto;
 			inline-size: 100%;
 			inset-block-start: var(#{variables.$track-start-inset-block-start});
+			:host([markers]) & {
+				#{variables.$track-start-inset-block-start}: 1px;
+
+				border-radius: 0;
+			}
 		}
+		/* stylelint-enable */
 	}
 
 	&.disabled {
@@ -142,6 +163,17 @@ $track-thickness: 2px;
 		);
 	}
 }
+
+/* stylelint-disable */
+.mark {
+	.control:not(.disabled) & {
+		color: var(#{utils.get-color-token(neutral-950)});
+	}
+	.control.disabled & {
+		color: var(#{variables.$track-start-background-color});
+	}
+}
+/* stylelint-enable */
 
 .thumb-container {
 	position: absolute;

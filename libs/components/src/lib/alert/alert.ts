@@ -35,8 +35,8 @@ export type AlertStrategy = 'fixed' | 'static';
  * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
  * @slot icon - Add an icon to the component.
- * @event open - Fired when the alert is opened
- * @event close - Fired when the alert is closed
+ * @event {CustomEvent<undefined>} open - Fired when the alert is opened
+ * @event {CustomEvent<undefined>} close - Fired when the alert is closed
  */
 export class Alert extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:

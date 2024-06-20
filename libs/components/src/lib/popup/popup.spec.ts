@@ -162,6 +162,37 @@ describe('vwc-popup', () => {
 		});
 	});
 
+	describe('open', () => {
+		beforeEach(() => {
+			jest.spyOn(floatingUI, 'autoUpdate');
+		});
+
+		afterEach(() => {
+			jest.mocked(floatingUI.autoUpdate).mockRestore();
+		});
+
+		it('should hide control if not set', async () => {
+			expect(getControlElement(element).classList).not.toContain('open');
+		});
+
+		it('should show control if set', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(getControlElement(element).classList).toContain('open');
+		});
+
+		it('should begin to auto update after DOM is updated', async function () {
+			element.anchor = anchor;
+			element.open = true;
+			const updateCallsBeforeDOMUpdate = jest.mocked(floatingUI.autoUpdate).mock
+				.calls.length;
+			await elementUpdated(element);
+			expect(updateCallsBeforeDOMUpdate).toBe(0);
+			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(2);
+		});
+	});
+
 	describe('show', () => {
 		it('should set "open" to true', async () => {
 			element.show();
@@ -286,31 +317,104 @@ describe('vwc-popup', () => {
 	});
 
 	describe('animationFrame', () => {
-		const RAF_CALLS_FROM_SETTING_ATTRIBUTE = 1;
+		function resetMethodCallCount(property: any) {
+			jest.spyOn(element, property).mockReset();
+		}
 
-		it('should not continuously update position with requestAnimationFrame when false', async () => {
+		async function openPopup() {
+			element.open = true;
+			await elementUpdated(element);
+		}
+
+		function getLastFrameCallback() {
+			return rAFStub.mock.lastCall[0];
+		}
+
+		function callLastFrameCallback() {
+			getLastFrameCallback()();
+		}
+
+		function setElementClientRect(overrides = {}) {
+			const clientRect = {
+				x: 4,
+				y: 4,
+				width: 1,
+				height: 1,
+				top: 1,
+				right: 1,
+				bottom: 1,
+				left: 1,
+			} as DOMRect;
+			jest
+				.spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+				.mockReturnValue({ ...clientRect, ...overrides });
+		}
+
+		let rAFStub: any;
+
+		beforeEach(async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
-			jest.spyOn(window, 'requestAnimationFrame');
-
-			element.open = true;
-
-			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
-				RAF_CALLS_FROM_SETTING_ATTRIBUTE
-			);
+			rAFStub = jest.spyOn(window, 'requestAnimationFrame');
 		});
 
-		it('should continuously update position with requestAnimationFrame when true', async () => {
+		afterEach(() => {
+			jest.mocked(window.requestAnimationFrame).mockRestore();
+		});
+
+		it('should disable recursive calls to requestAnimationFrame when false', async () => {
+			await openPopup();
+			const cb = getLastFrameCallback();
+			rAFStub.mockReset();
+			cb();
+
+			expect(rAFStub).toHaveBeenCalledTimes(0);
+		});
+
+		it('should call rAF recursively when true', async () => {
 			element.animationFrame = true;
-			element.anchor = anchor;
-			await elementUpdated(element);
-			jest.spyOn(window, 'requestAnimationFrame');
+			await openPopup();
+			const cb = getLastFrameCallback();
+			rAFStub.mockReset();
+			cb();
+			cb();
+			expect(rAFStub).toHaveBeenCalledTimes(2);
+			expect(getLastFrameCallback()).toBe(cb);
+		});
 
-			element.open = true;
+		it("should prevent call to updatePosition if position or size didn't change", async () => {
+			setElementClientRect({ width: 100, top: 100 });
+			element.animationFrame = true;
+			await openPopup();
+			resetMethodCallCount('updatePosition');
 
-			expect(window.requestAnimationFrame).toHaveBeenCalledTimes(
-				RAF_CALLS_FROM_SETTING_ATTRIBUTE + 1
-			);
+			callLastFrameCallback();
+
+			expect(element.updatePosition).toBeCalledTimes(0);
+		});
+
+		it('should updatePosition if size changes', async () => {
+			setElementClientRect({ width: 300 });
+			element.animationFrame = true;
+			await openPopup();
+			resetMethodCallCount('updatePosition');
+			setElementClientRect({ width: 400 });
+
+			callLastFrameCallback();
+
+			expect(element.updatePosition).toBeCalledTimes(1);
+		});
+
+		it('should updatePosition on next frame if position changes', async () => {
+			setElementClientRect({ top: 100 });
+			element.animationFrame = true;
+			await openPopup();
+			resetMethodCallCount('updatePosition');
+			setElementClientRect({ top: 200 });
+
+			callLastFrameCallback();
+
+			expect(element.updatePosition).toBeCalledTimes(1);
 		});
 	});
 

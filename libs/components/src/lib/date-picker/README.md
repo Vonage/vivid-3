@@ -136,13 +136,11 @@ The `helper-text` slot allows you to use rich content as the date picker's helpe
 
 <div class="table-wrapper">
 
-| Name        | Description                                   |
-| ----------- | --------------------------------------------- |
-| input       | Emitted when the date is changed by the user. |
-| change      | Emitted when the date is changed by the user. |
-| focus       | Emitted when the component receives focus.    |
-| blur        | Emitted when the component loses focus.       |
-| clear-click | Emitted when clear button is pressed.         |
+| Name          | Type                      | Bubbles | Composed | Description                                     |
+| ------------- | ------------------------- | ------- | -------- | ----------------------------------------------- |
+| `input`       | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the date is changed by the user.   |
+| `change`      | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the date is changed by the user.   |
+| `clear-click` | `CustomEvent<undefined> ` | Yes     | Yes      | Event emitted when the clear button is clicked. |
 
 </div>
 

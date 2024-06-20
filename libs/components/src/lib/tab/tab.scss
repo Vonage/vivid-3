@@ -6,7 +6,7 @@
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta,
-	$shades: primary primary-text firm faint fierce pale,
+	$shades: primary-text firm faint fierce pale soft,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -17,6 +17,7 @@
 	$default: ghost
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@include connotation.variables-backwards-compatibility('tab', '.base');
 
 :host(.vertical) {
 	justify-content: end;
@@ -74,9 +75,8 @@
 	}
 
 	:host(.vertical) & {
-		padding-inline-start: calc(
-			var(#{tabs-variables.$tabs-active-indicator-stroke-width}) +
-				var(#{tabs-variables.$tabs-tablist-gutter})
+		margin-inline-start: var(
+			#{tabs-variables.$tabs-active-indicator-stroke-width}
 		);
 	}
 }

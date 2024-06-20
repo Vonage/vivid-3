@@ -9,7 +9,7 @@ import styles from './combobox.scss?inline';
 import { Combobox } from './combobox';
 import { comboboxTemplate as template } from './combobox.template';
 
-export type { PopupPlacement } from './combobox';
+export type { PopupPlacement, ComboboxAppearance } from './combobox';
 
 /**
  * The combobox element.

@@ -97,7 +97,8 @@ When used vertically, the slider fills the height of its container.
 
 ### Markers
 
-Toggles markers display.
+Toggles markers display.  
+Markers are set according to the value of step (1 by default).
 
 - Type: `boolean`
 - Default: `false`
@@ -153,6 +154,16 @@ Use `value` to set the value of the slider.
 ```html preview blocks
 <vwc-slider value="3"></vwc-slider>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                                 |
+| -------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
+
+</div>
 
 ## Accessibility
 

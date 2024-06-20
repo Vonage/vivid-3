@@ -74,9 +74,9 @@ Use the `value` member to set the radio's value.
 
 <div class="table-wrapper">
 
-| Name   | Description                         |
-| ------ | ----------------------------------- |
-| change | Emitted when checked state changes. |
+| Name     | Type                     | Bubbles | Composed | Description                                                |
+| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
 
 </div>
 

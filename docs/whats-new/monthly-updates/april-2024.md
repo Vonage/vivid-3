@@ -1,4 +1,4 @@
-# April 2024
+# April 2024 - Monthly Update
 
 ## Office Hours Meetings
 
@@ -21,31 +21,31 @@
 
 The [Dial Pad](/components/dial-pad/) component is now in Alpha. If you need to use it, please let the Vivid team know so that we can arrange acceptance testing before moving it out of alpha to general availablity status.
 
-## Data-grid: Dynamic row height
+## Data-grid: Dynamic Row Height
 
 The [Data grid](/components/data-grid/#block-size) component now supports dynamic row heights, meaning the height of the row's cells adjust automatically based on the size of the content.
 
-## Form elements: helper-text slot
+## Form elements: helper-text Slot
 
 [Form elements](/components/text-field/#helper-text-1) now provide a `helper-text` slot which allows you to use rich content instead of a single string.
 
-## Audio-player: Skip by buttons
+## Audio-player: Skip By Buttons
 
 The [Audio player](/components/audio-player/#skip-by-button) component has been enhanced with skip forward/back functionality.
 
-## Menu: auto trigger support
+## Menu: Auto Trigger Support
 
 The [Menu](/components/menu/#trigger) component now allows you to set it to open and close automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
 
-## Nav item & discosure: CTA connotation
+## Nav Item & Discosure: CTA Connotation
 
 The [Nav item](/components/nav-item/#connotation) components now allows you set it's `connotation` to `cta`.
 
-## Nav item & discosure: ghost-light appearance
+## Nav Item & Discosure: ghost-light Appearance
 
 The [Nav item](/components/nav-item/#appearance) component also allows you set it's `appearance` to `ghost-light` which introduces some opacity to the design.
 
-## Docs updates
+## Docs Updates
 
 - We have documented our new [Change process](/resources/vivid-change-process/)
 - We have added a **Table of contents** to each page to make it easy to find the content you need.

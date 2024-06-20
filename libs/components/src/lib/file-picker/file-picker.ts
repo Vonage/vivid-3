@@ -31,7 +31,7 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
  * @public
  * @component file-picker
  * @slot helper-text - Describes how to use the file-picker. Alternative to the `helper-text` attribute.
- * @event change - Emitted when a file is added or removed.
+ * @event {CustomEvent<undefined>} change - Emitted when a file is added or removed.
  */
 @errorText
 @formElements
