@@ -206,22 +206,20 @@ describe('vwc-slider', () => {
 	});
 
 	describe('pin', () => {
-		it('should have a popup when pin is true', async () => {
+		beforeEach(async () => {
 			element.pin = true;
 			await elementUpdated(element);
+		});
 
+		it('should have a popup when pin is true', async () => {
 			expect(getPopup()).toBeInstanceOf(Popup);
 		});
 
 		it('should hide the popup by default', async () => {
-			element.pin = true;
-			await elementUpdated(element);
-
 			expect(getPopup()!.open).toBe(false);
 		});
 
 		it('should display the current value formatted with valueTextFormatter in the popup', async () => {
-			element.pin = true;
 			element.valueTextFormatter = (value) => `${value} bits`;
 			await elementUpdated(element);
 
@@ -229,65 +227,92 @@ describe('vwc-slider', () => {
 		});
 
 		it('should display ariaValuetext in the popup if provided', async () => {
-			element.pin = true;
 			element.ariaValuetext = 'value text';
 			await elementUpdated(element);
 
 			expect(getPopup()!.textContent!.trim()).toBe('value text');
 		});
 
-		it('should show popup when hovering over thumb', async () => {
-			element.pin = true;
-			await elementUpdated(element);
+		const visiblePopupConditions = [
+			{
+				name: 'hovering over thumb',
+				meet() {
+					thumb.dispatchEvent(new MouseEvent('mouseover'));
+				},
+				stopMeeting() {
+					thumb.dispatchEvent(new MouseEvent('mouseout'));
+				},
+			},
+			{
+				name: 'element has visible focus',
+				meet() {
+					getControlElement(element).focus();
+				},
+				stopMeeting() {
+					getControlElement(element).blur();
+				},
+			},
+			{
+				name: 'dragging thumb',
+				meet() {
+					thumb.dispatchEvent(new MouseEvent('mousedown'));
+				},
+				stopMeeting() {
+					window.dispatchEvent(new MouseEvent('mouseup'));
+				},
+			},
+		];
 
-			thumb.dispatchEvent(new MouseEvent('mouseover'));
-			await elementUpdated(element);
+		describe.each(visiblePopupConditions)(`when $name`, (condition) => {
+			it('should show popup', async () => {
+				condition.meet();
+				await elementUpdated(element);
+				expect(getPopup()!.open).toBe(true);
+			});
 
-			expect(getPopup()!.open).toBe(true);
+			it('should keep popup open when other conditions stop being met', async () => {
+				const otherConditions = visiblePopupConditions.filter(
+					(c) => c !== condition
+				);
+
+				for (const otherCondition of otherConditions) {
+					otherCondition.meet();
+				}
+				condition.meet();
+				for (const otherCondition of otherConditions) {
+					otherCondition.stopMeeting();
+				}
+				await elementUpdated(element);
+
+				expect(getPopup()!.open).toBe(true);
+			});
+
+			it('should hide popup when stopping', async () => {
+				condition.meet();
+				condition.stopMeeting();
+				await elementUpdated(element);
+
+				expect(getPopup()!.open).toBe(false);
+			});
 		});
 
-		it('should hide popup when hovering off thumb', async () => {
-			element.pin = true;
-			await elementUpdated(element);
-
-			thumb.dispatchEvent(new MouseEvent('mouseover'));
-			thumb.dispatchEvent(new MouseEvent('mouseout'));
-			await elementUpdated(element);
-
-			expect(getPopup()!.open).toBe(false);
-		});
-
-		it('should show popup when element has visible focus', async () => {
-			element.pin = true;
-			await elementUpdated(element);
-
-			getControlElement(element).focus();
-			await elementUpdated(element);
-
-			expect(getPopup()!.open).toBe(true);
-		});
-
-		it('should hide popup when element loses focus', async () => {
-			element.pin = true;
-			await elementUpdated(element);
-
-			getControlElement(element).focus();
-			getControlElement(element).blur();
-			await elementUpdated(element);
-
-			expect(getPopup()!.open).toBe(false);
-		});
-
-		it('should hide popup when thumb focus is not visible', async () => {
-			element.pin = true;
-			await elementUpdated(element);
-
-			// Set non-visible focus through mouse interaction
-			element.dispatchEvent(new MouseEvent('mousedown'));
+		function setNonVisibleFocus() {
+			thumb.dispatchEvent(new MouseEvent('mousedown'));
 			window.dispatchEvent(new MouseEvent('mouseup'));
+		}
+
+		it('should not show popup when thumb focus is not visible', async () => {
+			setNonVisibleFocus();
 			await elementUpdated(element);
 
 			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should show popup when dragging the thumb by clicking on track', async () => {
+			element.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
 		});
 	});
 
@@ -380,17 +405,6 @@ describe('vwc-slider', () => {
 					dragThumb(0, 300);
 
 					expect(element.value).toBe('0');
-				});
-
-				it('should show pin popup while dragging', async () => {
-					element.pin = true;
-					await elementUpdated(element);
-
-					mouseDown(thumb, 0);
-					mouseMove(50);
-					await elementUpdated(element);
-
-					expect(getPopup()!.open).toBe(true);
 				});
 			});
 		});
