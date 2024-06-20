@@ -10,7 +10,7 @@ import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
-import { Popup } from '../popup/popup.ts';
+import { PlacementStrategy, Popup } from '../popup/popup.ts';
 import { Slider } from './slider';
 import { sliderDefinition } from './definition';
 import '.';
@@ -117,6 +117,20 @@ describe('vwc-slider', () => {
 			expect(classesInitialValue).toContain('horizontal');
 			expect(controlClasses()).toContain('vertical');
 		});
+
+		it.each([
+			['horizontal', PlacementStrategy.AutoPlacementHorizontal],
+			['vertical', PlacementStrategy.AutoPlacementVertical],
+		] as const)(
+			'should set the appropriate popup placement strategy for %s orientation',
+			async (orientation, strategy) => {
+				element.pin = true;
+				element.orientation = orientation;
+				await elementUpdated(element);
+
+				expect(getPopup()!.placementStrategy).toBe(strategy);
+			}
+		);
 	});
 
 	describe('min/max', () => {
