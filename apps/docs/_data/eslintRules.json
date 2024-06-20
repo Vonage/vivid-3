@@ -10,8 +10,8 @@
 	{
 		"name": "no-anchor-attribute",
 		"markdown": "./libs/eslint-plugin/src/rules/no-anchor-attribute.md"
-  },
-  {
+	},
+	{
 		"name": "no-slot-attribute",
 		"markdown": "./libs/eslint-plugin/src/rules/no-slot-attribute.md"
 	}
