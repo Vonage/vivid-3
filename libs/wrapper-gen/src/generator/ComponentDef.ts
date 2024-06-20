@@ -11,6 +11,7 @@ export interface ComponentDef {
 		name: string; // Attribute on the vivid component in kebab-case. E.g. action-href
 		description?: string;
 		type: TypeUnion;
+		forceDomProp?: boolean; // Force the attribute to be set as a DOM property
 	}[];
 	events: {
 		name: string; // Name of the event on the vivid component in kebab-case. E.g. 'change'
