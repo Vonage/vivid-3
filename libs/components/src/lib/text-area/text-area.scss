@@ -65,6 +65,7 @@ $outline-width: 2px;
 }
 
 .control {
+	box-sizing: border-box;
 	padding: 8px 16px;
 	border: 0 none;
 	border-radius: #{border-radius-variables.$border-radius-normal};
@@ -74,7 +75,7 @@ $outline-width: 2px;
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	grid-column: 1 / -1;
-	min-block-size: #{size.$vvd-size-normal};
+	min-block-size: #{size.$vvd-size-condensed};
 	resize: none;
 	transition: box-shadow 0.2s, background-color 0.2s, color 0.2s;
 
