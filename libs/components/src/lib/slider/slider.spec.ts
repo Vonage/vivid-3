@@ -328,6 +328,24 @@ describe('vwc-slider', () => {
 
 			expect(getPopup()!.open).toBe(true);
 		});
+
+		it('should not show popup when clicking on track while disabled', async () => {
+			element.disabled = true;
+
+			element.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should not show popup when clicking on track while readOnly', async () => {
+			element.readOnly = true;
+
+			element.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
 	});
 
 	describe('thumb', () => {
