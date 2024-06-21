@@ -100,11 +100,14 @@ export class Slider extends FastSlider {
 		const fastSliderInternals = this as any;
 
 		const originalHandleMouseDown = fastSliderInternals.handleMouseDown;
-		fastSliderInternals.handleMouseDown = (e: MouseEvent) => {
+		// Called with e=null to clean up after releasing the mouse
+		fastSliderInternals.handleMouseDown = (e: MouseEvent | null) => {
 			this.#isNonVisibleFocus = true;
 			originalHandleMouseDown(e);
 			this.#isNonVisibleFocus = false;
-			if (e === null || (!this.disabled && !this.readOnly)) {
+
+			if (e && !this.disabled && !this.readOnly) {
+				// Fix bug in FAST: isDragging is not set on mousedown
 				this.isDragging = true;
 			}
 		};
