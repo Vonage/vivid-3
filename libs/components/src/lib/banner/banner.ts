@@ -37,7 +37,8 @@ export class Banner extends FoundationElement {
 	@attr({ attribute: 'action-href' }) actionHref: string | undefined;
 	@attr({ attribute: 'action-text' }) actionText: string | undefined;
 	@attr({ mode: 'boolean' }) removable = false;
-	@attr({ attribute: 'aria-live' }) override ariaLive: any;
+	// @ts-expect-error: allow uninitialized value
+	@attr({ attribute: 'aria-live' }) override ariaLive: string | null;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 
