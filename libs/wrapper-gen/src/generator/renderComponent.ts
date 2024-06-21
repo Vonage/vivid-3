@@ -83,8 +83,9 @@ export const renderComponent = (
 			(attr) => attr.name === model.attributeName
 		);
 		const event = componentDef.events.find((e) => e.name === model.eventName);
-		if (!attribute) throw new Error('v-model attribute not found');
-		if (!event) throw new Error('v-model event not found');
+		if (!attribute)
+			throw new Error(`v-model attribute not found: ${model.attributeName}`);
+		if (!event) throw new Error(`v-model event not found: ${model.eventName}`);
 
 		return {
 			...model,
