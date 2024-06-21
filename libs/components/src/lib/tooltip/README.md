@@ -154,7 +154,7 @@ Use the `--tooltip-max-inline-size` variable to set the tooltip's max inline siz
 </vwc-tooltip>
 ```
 
-### Inline Size
+### Deprecated CSS Variable: Inline Size
 
 The `--tooltip-inline-size` CSS variable is deprecated (as of 05/24). Use `--tooltip-max-inline-size` instead to limit the inline size.
 `--tooltip-inline-size` is still functional in the component but will be removed in a future major release.
