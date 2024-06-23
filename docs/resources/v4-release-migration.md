@@ -24,7 +24,7 @@ set `max-inline-size` or `inline-size` directly on audio-player or on its parent
 
 ## Data-grid
 
-Data-grid-cell will no longer have a fixed block-size but will adjust to its content and its text will not be trimmed by default ad before.
+Data-grid-cells outside of the table header will no longer have a fixed block-size but will adjust to its content and its text will not be trimmed by default as before.
 
 ### The change
 
@@ -128,7 +128,7 @@ Usage of these props is discouraged. To set the current value, you should use th
 <!-- Which is syntactic sugar for: -->
 <VTextField
 	:model-value="value"
-	@update:model-value="$event => (value = $event)"
+	@update:modelValue="$event => (value = $event)"
 />
 ```
 
@@ -144,15 +144,11 @@ Code using `v-model` or `modelValue` is not affected.
 
 ## How to get ready?
 
-<vwc-note connotation="information" icon="info-solid" headline="This is not available yet">
-It will be introduced in Version 4
-</vwc-note>
 
 - First, make sure you're on the latest version of Vivid 3.x.  
   Optionally, install the latest version of our new ESLint plugin, which can help with the migration.
 
-- Replace all usage of `currentValue` / `currentChecked` with `modelValue`.
-- Replace `currentStart` / `currentEnd` with `start` / `end`.  
+- Replace all usage of `currentValue` / `currentChecked` with `modelValue` and all usages `currentStart` / `currentEnd` with `start` / `end`.  
   The `no-current-value-attribute` rule of our ESLint plugin can perform this migration automatically.
 
 - Replace all usages of `value` / `checked`:
