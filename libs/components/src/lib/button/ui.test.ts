@@ -82,6 +82,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance="outlined" label='announcement' connotation='announcement'></vwc-button>
 	</div>
 		<div style="margin: 5px;">
+		<vwc-button appearance="outlined-light" label='accent' connotation='accent'></vwc-button>
+		<vwc-button appearance="outlined-light" label='cta' connotation='cta'></vwc-button>
+		<vwc-button appearance="outlined-light" label='success' connotation='success'></vwc-button>
+		<vwc-button appearance="outlined-light" label='alert' connotation='alert'></vwc-button>
+		<vwc-button appearance="outlined-light" label='announcement' connotation='announcement'></vwc-button>
+	</div>
+		<div style="margin: 5px;">
 			<vwc-button appearance="ghost-light" label="accent" connotation="accent"></vwc-button>
 		<vwc-button appearance="ghost-light" label="cta" connotation="cta"></vwc-button>
 		<vwc-button appearance="ghost-light" label="success" connotation="success"></vwc-button>
@@ -164,6 +171,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button active appearance="ghost-light" label="success" connotation="success"></vwc-button>
 		<vwc-button active appearance="ghost-light" label="alert" connotation="alert"></vwc-button>
 		<vwc-button active appearance="ghost-light" label="announcement" connotation="announcement"></vwc-button>
+	</div>
+		<div style="margin: 5px;">
+		<vwc-button active appearance="outlined-light" label='accent' connotation='accent'></vwc-button>
+		<vwc-button active appearance="outlined-light" label='cta' connotation='cta'></vwc-button>
+		<vwc-button active appearance="outlined-light" label='success' connotation='success'></vwc-button>
+		<vwc-button active appearance="outlined-light" label='alert' connotation='alert'></vwc-button>
+		<vwc-button active appearance="outlined-light" label='announcement' connotation='announcement'></vwc-button>
 	</div>
 	</div>
 	`;
