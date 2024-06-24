@@ -247,83 +247,114 @@ describe('vwc-slider', () => {
 			expect(getPopup()!.textContent!.trim()).toBe('value text');
 		});
 
-		const visiblePopupConditions = [
-			{
-				name: 'hovering over thumb',
-				meet() {
-					thumb.dispatchEvent(new MouseEvent('mouseover'));
-				},
-				stopMeeting() {
-					thumb.dispatchEvent(new MouseEvent('mouseout'));
-				},
-			},
-			{
-				name: 'element has visible focus',
-				meet() {
-					getControlElement(element).focus();
-				},
-				stopMeeting() {
-					getControlElement(element).blur();
-				},
-			},
-			{
-				name: 'dragging thumb',
-				meet() {
-					thumb.dispatchEvent(new MouseEvent('mousedown'));
-				},
-				stopMeeting() {
-					window.dispatchEvent(new MouseEvent('mouseup'));
-				},
-			},
-		];
-
-		describe.each(visiblePopupConditions)(`when $name`, (condition) => {
-			it('should show popup', async () => {
-				condition.meet();
-				await elementUpdated(element);
-				expect(getPopup()!.open).toBe(true);
-			});
-
-			it('should keep popup open when other conditions stop being met', async () => {
-				const otherConditions = visiblePopupConditions.filter(
-					(c) => c !== condition
-				);
-
-				for (const otherCondition of otherConditions) {
-					otherCondition.meet();
-				}
-				condition.meet();
-				for (const otherCondition of otherConditions) {
-					otherCondition.stopMeeting();
-				}
-				await elementUpdated(element);
-
-				expect(getPopup()!.open).toBe(true);
-			});
-
-			it('should hide popup when stopping', async () => {
-				condition.meet();
-				condition.stopMeeting();
-				await elementUpdated(element);
-
-				expect(getPopup()!.open).toBe(false);
-			});
-		});
-
-		function setNonVisibleFocus() {
+		const hoverOverThumb = () =>
+			thumb.dispatchEvent(new MouseEvent('mouseover'));
+		const hoverOffThumb = () => thumb.dispatchEvent(new MouseEvent('mouseout'));
+		const visiblyFocusThumb = () => getControlElement(element).focus();
+		const nonVisiblyFocusThumb = () => {
 			thumb.dispatchEvent(new MouseEvent('mousedown'));
 			window.dispatchEvent(new MouseEvent('mouseup'));
-		}
+		};
+		const blurThumb = () => getControlElement(element).blur();
+		const startDraggingThumb = () =>
+			thumb.dispatchEvent(new MouseEvent('mousedown'));
+		const startDraggingThumbByClickingOnTrack = () =>
+			element.dispatchEvent(new MouseEvent('mousedown'));
+		const stopDraggingThumb = () =>
+			window.dispatchEvent(new MouseEvent('mouseup'));
+
+		it('should show the popup when hovering over the thumb', async () => {
+			hoverOverThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should hide the popup when hovering off the thumb', async () => {
+			hoverOverThumb();
+
+			hoverOffThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should keep the popup open while hovering thumb when losing focus or stop dragging thumb', async () => {
+			hoverOverThumb();
+			visiblyFocusThumb();
+			startDraggingThumb();
+
+			blurThumb();
+			stopDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should show the popup when the thumb has visible focus', async () => {
+			visiblyFocusThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should hide the popup when the thumb loses focus', async () => {
+			visiblyFocusThumb();
+
+			blurThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should keep the popup open while thumb has visible focus when hovering off or stop dragging thumb', async () => {
+			visiblyFocusThumb();
+			hoverOverThumb();
+			startDraggingThumb();
+
+			hoverOffThumb();
+			stopDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should show the popup when dragging the thumb', async () => {
+			startDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should hide the popup when stopping dragging the thumb', async () => {
+			startDraggingThumb();
+			stopDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should keep the popup open while thumb is dragged when hovering off or thumb loses focus', async () => {
+			startDraggingThumb();
+			hoverOverThumb();
+			visiblyFocusThumb();
+
+			hoverOffThumb();
+			blurThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
 
 		it('should not show popup when thumb focus is not visible', async () => {
-			setNonVisibleFocus();
+			nonVisiblyFocusThumb();
 			await elementUpdated(element);
 
 			expect(getPopup()!.open).toBe(false);
 		});
 
 		it('should show popup when dragging the thumb by clicking on track', async () => {
-			element.dispatchEvent(new MouseEvent('mousedown'));
+			startDraggingThumbByClickingOnTrack();
 			await elementUpdated(element);
 
 			expect(getPopup()!.open).toBe(true);
@@ -332,7 +363,7 @@ describe('vwc-slider', () => {
 		it('should not show popup when clicking on track while disabled', async () => {
 			element.disabled = true;
 
-			element.dispatchEvent(new MouseEvent('mousedown'));
+			startDraggingThumbByClickingOnTrack();
 			await elementUpdated(element);
 
 			expect(getPopup()!.open).toBe(false);
@@ -341,7 +372,7 @@ describe('vwc-slider', () => {
 		it('should not show popup when clicking on track while readOnly', async () => {
 			element.readOnly = true;
 
-			element.dispatchEvent(new MouseEvent('mousedown'));
+			startDraggingThumbByClickingOnTrack();
 			await elementUpdated(element);
 
 			expect(getPopup()!.open).toBe(false);
