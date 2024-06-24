@@ -279,12 +279,22 @@ describe('vwc-slider', () => {
 			expect(getPopup()!.open).toBe(false);
 		});
 
-		it('should keep the popup open while hovering thumb when losing focus or stop dragging thumb', async () => {
+		it('should keep the popup open while hovering thumb when losing focus', async () => {
 			hoverOverThumb();
 			visiblyFocusThumb();
 			startDraggingThumb();
 
 			blurThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should keep the popup open while hovering thumb when stop dragging thumb', async () => {
+			hoverOverThumb();
+			visiblyFocusThumb();
+			startDraggingThumb();
+
 			stopDraggingThumb();
 			await elementUpdated(element);
 
@@ -307,12 +317,22 @@ describe('vwc-slider', () => {
 			expect(getPopup()!.open).toBe(false);
 		});
 
-		it('should keep the popup open while thumb has visible focus when hovering off or stop dragging thumb', async () => {
+		it('should keep the popup open while thumb has visible focus when hovering off thumb', async () => {
 			visiblyFocusThumb();
 			hoverOverThumb();
 			startDraggingThumb();
 
 			hoverOffThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should keep the popup open while thumb has visible focus when stop dragging thumb', async () => {
+			visiblyFocusThumb();
+			hoverOverThumb();
+			startDraggingThumb();
+
 			stopDraggingThumb();
 			await elementUpdated(element);
 
@@ -334,12 +354,22 @@ describe('vwc-slider', () => {
 			expect(getPopup()!.open).toBe(false);
 		});
 
-		it('should keep the popup open while thumb is dragged when hovering off or thumb loses focus', async () => {
+		it('should keep the popup open while thumb is dragged when hovering off thumb', async () => {
 			startDraggingThumb();
 			hoverOverThumb();
 			visiblyFocusThumb();
 
 			hoverOffThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should keep the popup open while thumb is dragged when thumb loses focus', async () => {
+			startDraggingThumb();
+			hoverOverThumb();
+			visiblyFocusThumb();
+
 			blurThumb();
 			await elementUpdated(element);
 
