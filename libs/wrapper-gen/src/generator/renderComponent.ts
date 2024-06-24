@@ -135,9 +135,12 @@ export const renderComponent = (
 	 * Vue requires us to filter out undefined properties
 	 * before passing them into the h function
 	 */
-	const renderProps = (attributes: ComponentDef['attributes']) =>
+	const renderProps = (
+		attributes: ComponentDef['attributes'],
+		asV2DomProps: boolean
+	) =>
 		attributes
-			.map(({ name }) => {
+			.map(({ name, forceDomProp }) => {
 				const vueModel = componentDef.vueModels.find(
 					(model) => model.attributeName === name
 				);
@@ -148,17 +151,24 @@ export const renderComponent = (
 					valueToUse = `this.${vueModel.name} ?? ${valueToUse}`;
 				}
 
-				return `...(${valueToUse} !== undefined ? {'${name}': ${valueToUse} } : {})`;
+				const passedAsDomProp = asV2DomProps || forceDomProp;
+				const nameToUse = passedAsDomProp ? `${kebabToCamel(name)}` : `${name}`;
+				const prefix = forceDomProp && !asV2DomProps ? '.' : '';
+
+				return `...(${valueToUse} !== undefined ? {'${prefix}${nameToUse}': ${valueToUse} } : {})`;
 			})
 			.join(',');
-	const propsV3Src = renderProps(attributes);
+	const propsV3Src = renderProps(attributes, false);
 
 	/**
 	 * DOM attributes can only be strings, therefore complex data (e.g. HTMLElement) needs to be passed as props.
 	 * While Vue 3 handles this for us, in Vue 2 we need to figure out which attributes should be passed as props.
 	 */
-	const canBePassedAsAttribute = (type: TypeUnion) =>
-		withImportsResolved(type).every(
+	const shouldBePassedAsAttribute = (
+		attribute: ComponentDef['attributes'][number]
+	) =>
+		!attribute.forceDomProp &&
+		withImportsResolved(attribute.type).every(
 			(t) =>
 				t.text === 'string' ||
 				t.text === 'number' ||
@@ -171,10 +181,12 @@ export const renderComponent = (
 				t.text === 'unknown'
 		);
 	const propsV2Src = renderProps(
-		attributes.filter((prop) => canBePassedAsAttribute(prop.type))
+		attributes.filter(shouldBePassedAsAttribute),
+		false
 	);
 	const domPropsV2Src = renderProps(
-		attributes.filter((prop) => !canBePassedAsAttribute(prop.type))
+		attributes.filter((prop) => !shouldBePassedAsAttribute(prop)),
+		true
 	);
 
 	/**
