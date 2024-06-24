@@ -174,10 +174,6 @@ export class AudioPlayer extends FoundationElement {
 
 	#playerEl = new Audio();
 
-	get #baseElement(): HTMLElement | null {
-		return this.shadowRoot!.querySelector('.base');
-	}
-
 	constructor() {
 		super();
 		this.#playerEl.addEventListener('timeupdate', this.#updateProgress);
@@ -186,15 +182,13 @@ export class AudioPlayer extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		document.addEventListener('mouseup', this.#rewind);
-		this.#setInteractionListeners();
+		this.#setSliderInteractionListeners();
 		this.#setPausedState();
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		document.addEventListener('mouseup', this.#rewind);
-		this.#setInteractionListeners(false);
+		this.#setSliderInteractionListeners(false);
 	}
 
 	play() {
@@ -205,11 +199,9 @@ export class AudioPlayer extends FoundationElement {
 		this.#pausedChanged(PAUSE);
 	}
 
-	#setInteractionListeners(add = true) {
+	#setSliderInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
-		this.#baseElement![action]('keyup', this.#handleSliderEvent);
-		this.#baseElement![action]('keydown', this.#handleSliderEvent);
-		this.#baseElement![action]('mousedown', this.#handleSliderEvent);
+		this.#sliderEl ? this.#sliderEl[action]('change', this.#updateCurrentTimeOnSliderChange) : '';
 	}
 
 	#pausedChanged = (pausing: boolean) => {
@@ -225,7 +217,9 @@ export class AudioPlayer extends FoundationElement {
 		this.#setPausedState();
 	};
 
+	#currentTimeChanged = false;
 	#updateProgress = () => {
+		this.#currentTimeChanged = true;
 		Observable.notify(this, 'currentTime');
 		const percent = (this.currentTime / this.duration) * 100;
 		if (percent === 100) {
@@ -237,19 +231,11 @@ export class AudioPlayer extends FoundationElement {
 		Observable.notify(this, 'duration');
 	};
 
-	#rewind = () => {
-		if (this.#playerEl) {
+	#updateCurrentTimeOnSliderChange = () => {
+		if (!this.#currentTimeChanged && this.#playerEl) {
 			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
 		}
-	};
-
-	#handleSliderEvent = (event: Event) => {
-		if (event.target === this.#sliderEl) {
-			this.pause();
-			this.#rewind();
-		}
-
-		return true;
+		this.#currentTimeChanged = false;
 	};
 
 	#setPausedState = () => {

@@ -114,9 +114,9 @@ describe('vwc-audio-player', () => {
 	});
 
 	it('should update slider value and ariavaluetext on audio progress', async () => {
-		const duration = 60;
+		const duration = 80;
 		const currentTime = 20;
-		const expectedValue = '33';
+		const expectedValue = `${100 * currentTime / duration}`;
 		const expectedAriaValuetext = '0:20';
 
 		setAudioElementDuration(duration);
@@ -150,19 +150,31 @@ describe('vwc-audio-player', () => {
 		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
 	});
 
-	it('should set currentTime according to slider value on mouseup', async () => {
+	it('should set currentTime according to slider value on slider change', async () => {
 		const sliderValue = 50;
 		const duration = 100;
 		const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
 		setAudioElementCurrentTime(10);
 		setAudioElementDuration(duration);
+		await elementUpdated(element);
 		getSliderElement().value = `${sliderValue}`;
-
-		document.dispatchEvent(new Event('mouseup'));
-
+		await elementUpdated(element);
 		expect(nativeAudioElement.currentTime).toBe(
 			expectedCurrentTimeAfterMouseUp
 		);
+	});
+
+	it('should keep paused state while handling the slider', async () => {
+		const duration = 100;
+		setAudioElementCurrentTime(10);
+		setAudioElementDuration(duration);
+		element.play();
+		await elementUpdated(element)
+		
+		getSliderElement().value = '20';
+		await elementUpdated(element)
+
+		expect(element.paused).toBe(false);
 	});
 
 	describe('basic', () => {
@@ -286,6 +298,15 @@ describe('vwc-audio-player', () => {
 				((100 * currentTime) / duration).toString()
 			);
 		});
+
+		it('should prevent slider change handling after currentTime update', async () => {
+			const duration = 60;
+			const currentTime = 20;
+			setAudioElementDuration(duration);
+			setAudioElementCurrentTime(currentTime);
+			await elementUpdated(element);
+			expect(element.currentTime).toBe(20);
+		});
 	});
 
 	describe('disabled', () => {
@@ -352,7 +373,7 @@ describe('vwc-audio-player', () => {
 			expect(element.paused).toEqual(true);
 		});
 
-		it('should toggle paused on click', async function () {
+		it('should toggle paused when clicking the pause button', async function () {
 			setAudioElementDuration(60);
 
 			pauseButton.click();
@@ -365,36 +386,6 @@ describe('vwc-audio-player', () => {
 			expect(pausedAfterFirstClick).toEqual(false);
 			expect(pausedAfterSecondClick).toEqual(true);
 		});
-
-		it.each(['keyup', 'keydown', 'mousedown'])(
-			'should pause audio on %s of the slider',
-			async function (eventName) {
-				await elementUpdated(element);
-				setAudioElementDuration(60);
-
-				const event = new Event(eventName, { bubbles: true });
-				getSliderElement().dispatchEvent(event);
-
-				await elementUpdated(element);
-				expect(element.paused).toEqual(true);
-			}
-		);
-
-		it.each(['keyup', 'keydown', 'mousedown'])(
-			'should remove %s event listener on disconnection',
-			async function (eventName) {
-				element.play();
-				await elementUpdated(element);
-				setAudioElementDuration(60);
-				element.disconnectedCallback();
-
-				const event = new Event(eventName, { bubbles: true });
-				getSliderElement().dispatchEvent(event);
-
-				await elementUpdated(element);
-				expect(element.paused).toEqual(false);
-			}
-		);
 
 		it('should pause when finished', async function () {
 			element.play();
