@@ -571,69 +571,44 @@ Use `--data-grid-row-background` to change the sticky row background-color.
 
 ### Block Size
 
-By default, cells have a fixed `block-size`. Use `--data-grid-cell-block-size` to change the cell's `block-size`.
+Use `--data-grid-cell-block-size` to change the cell's `block-size`.
 
-Set it to `100%` to make the cells' height dynamic based on content.
-
-<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
-
-We will change the default value of `--data-grid-cell-block-size` to `100%` in a future major version of Vivid to make dynamic row heights the default behavior.
-
-</vwc-note>
+By default, header cells have a fixed height while data cells have a dynamic height based on content.
 
 ```html preview
 <style>
-	.dynamic-height {
-		--data-grid-cell-block-size: 100%;
+	.fixed-height {
+		--data-grid-cell-block-size: 100px;
 	}
 </style>
 <vwc-data-grid>
 	<vwc-data-grid-row row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader"> Column 1 </vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader"> Column 2 </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
-		<vwc-data-grid-cell> Fixed height (default) </vwc-data-grid-cell>
-		<vwc-data-grid-cell>
-			<vwc-button label="Action" appearance="outlined"></vwc-button>
-		</vwc-data-grid-cell>
+		<vwc-data-grid-cell> Dynamic height (default) </vwc-data-grid-cell>
 	</vwc-data-grid-row>
-	<vwc-data-grid-row class="dynamic-height">
-		<vwc-data-grid-cell> Variable height </vwc-data-grid-cell>
-		<vwc-data-grid-cell>
-			<vwc-button
-				label="Action"
-				appearance="outlined"
-				size="expanded"
-			></vwc-button>
-		</vwc-data-grid-cell>
+	<vwc-data-grid-row class="fixed-height">
+		<vwc-data-grid-cell> Fixed height </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
 ```
 
 ### White Space
 
-By default, the cell's `white-space` is `nowrap`, which prevents text from wrapping to multiple lines.
+Use `--data-grid-cell-white-space` to change the cell's `white-space`.
 
-Set the value to `normal` in combination with a `--data-grid-cell-block-size` of `100%` to allow text to wrap to multiple lines.
-
-<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
-
-We will change the default value of `--data-grid-cell-white-space` to `normal` in a future major version of Vivid to make dynamic row heights the default behavior.
-
-</vwc-note>
+By default, header cells will not wrap text (`nowrap`), while data cells will wrap text (`normal`).
 
 ```html preview
 <style>
-	vwc-data-grid {
-		--data-grid-cell-white-space: normal;
-		--data-grid-cell-block-size: 100%;
+	.nowrap {
+		--data-grid-cell-white-space: nowrap;
 	}
 </style>
 <vwc-data-grid>
 	<vwc-data-grid-row row-type="header">
 		<vwc-data-grid-cell cell-type="columnheader"> Column 1 </vwc-data-grid-cell>
-		<vwc-data-grid-cell cell-type="columnheader"> Column 2 </vwc-data-grid-cell>
 	</vwc-data-grid-row>
 	<vwc-data-grid-row>
 		<vwc-data-grid-cell>
@@ -642,8 +617,13 @@ We will change the default value of `--data-grid-cell-white-space` to `normal` i
 			feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim
 			metus.
 		</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row class="nowrap">
 		<vwc-data-grid-cell>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius
+			libero ipsum, ut rhoncus nulla varius sit amet. Vestibulum volutpat
+			feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim
+			metus.
 		</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>

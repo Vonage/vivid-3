@@ -33,15 +33,16 @@
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
-	padding: 14px 12px;
 	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
 	block-size: var(
 		#{variables.$data-grid-cell-block-size},
-		#{size.$vvd-size-expanded}
+		var(#{variables.$data-grid-cell-default-block-size})
 	);
 	color: var(#{appearance.get-appearance-token(text)});
 	font: var(#{constants.$vvd-typography-base});
 	min-block-size: #{size.$vvd-size-expanded};
+	padding-block: 13px 14px;
+	padding-inline: 12px;
 
 	:host(:focus-visible) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -52,6 +53,13 @@
 	:host([cell-type='columnheader']) & {
 		border-color: var(#{constants.$vvd-color-canvas-text});
 		font: var(#{constants.$vvd-typography-base-bold});
+		#{variables.$data-grid-cell-default-block-size}: #{size.$vvd-size-expanded};
+		#{variables.$data-grid-cell-default-white-space}: nowrap;
+	}
+
+	:host(:not([cell-type='columnheader'])) & {
+		#{variables.$data-grid-cell-default-block-size}: 100%; // Fit content
+		#{variables.$data-grid-cell-default-white-space}: normal;
 	}
 
 	:host(:is([aria-selected]):not([cell-type='columnheader'])) & {
@@ -64,7 +72,10 @@ slot {
 	overflow: hidden;
 	inline-size: 100%;
 	text-overflow: ellipsis;
-	white-space: var(#{variables.$data-grid-cell-white-space}, nowrap);
+	white-space: var(
+		#{variables.$data-grid-cell-white-space},
+		var(#{variables.$data-grid-cell-default-white-space})
+	);
 }
 
 .header-icon {
