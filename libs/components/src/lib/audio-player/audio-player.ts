@@ -201,7 +201,9 @@ export class AudioPlayer extends FoundationElement {
 
 	#setSliderInteractionListeners(add = true) {
 		const action = add ? 'addEventListener' : 'removeEventListener';
-		this.#sliderEl ? this.#sliderEl[action]('change', this.#updateCurrentTimeOnSliderChange) : '';
+		if (this.#sliderEl) {
+			this.#sliderEl[action]('change', this.#updateCurrentTimeOnSliderChange);
+		}
 	}
 
 	#pausedChanged = (pausing: boolean) => {

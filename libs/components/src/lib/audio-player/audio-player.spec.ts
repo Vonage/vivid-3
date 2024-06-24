@@ -116,7 +116,7 @@ describe('vwc-audio-player', () => {
 	it('should update slider value and ariavaluetext on audio progress', async () => {
 		const duration = 80;
 		const currentTime = 20;
-		const expectedValue = `${100 * currentTime / duration}`;
+		const expectedValue = `${(100 * currentTime) / duration}`;
 		const expectedAriaValuetext = '0:20';
 
 		setAudioElementDuration(duration);
@@ -169,10 +169,10 @@ describe('vwc-audio-player', () => {
 		setAudioElementCurrentTime(10);
 		setAudioElementDuration(duration);
 		element.play();
-		await elementUpdated(element)
-		
+		await elementUpdated(element);
+
 		getSliderElement().value = '20';
-		await elementUpdated(element)
+		await elementUpdated(element);
 
 		expect(element.paused).toBe(false);
 	});
