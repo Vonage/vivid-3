@@ -536,9 +536,8 @@ currently ghost-light appearance is being used only with `accent` connotation
 
 ### Used in
 
-`button`, `split-button`
+`button`
 
-### Important to know
 
 ```html preview
 <style>
