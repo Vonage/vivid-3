@@ -28,6 +28,7 @@ export type ButtonAppearance = Extract<
 	| Appearance.Outlined
 	| Appearance.Ghost
 	| Appearance.GhostLight
+	| Appearance.OutlinedLight
 >;
 
 /**
