@@ -39,6 +39,7 @@ describe('vwc-audio-player', () => {
 	}
 
 	function setAudioTimeToEnd() {
+		nativeAudioElement.pause();
 		setAudioElementCurrentTime(nativeAudioElement.duration);
 	}
 
@@ -302,6 +303,18 @@ describe('vwc-audio-player', () => {
 			expect(nativeAudioElement.currentTime).toBe(
 				expectedCurrentTimeAfterMouseUp
 			);
+		});
+
+		it('should change button icon to "play-solid" updates to end of audio', async () => {
+			setCurrentTimeAndDuration(10, 100);
+			element.play();
+			await elementUpdated(element);
+
+			setAudioTimeToEnd();
+			await elementUpdated(element);
+
+			expect(pauseButton.icon).toEqual('play-solid');
+
 		});
 	});
 
