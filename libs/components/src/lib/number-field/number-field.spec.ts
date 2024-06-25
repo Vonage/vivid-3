@@ -618,6 +618,20 @@ describe('vwc-number-field', () => {
 			expect(inertWhenDisabled).toEqual(true);
 		});
 
+		it('should set the disabled in readOnly', async function () {
+			element.readOnly = true;
+			await elementUpdated(element);
+			expect(addButton.hasAttribute('disabled')).toBe(true);
+			expect(subtractButton.hasAttribute('disabled')).toBe(true);
+		});
+
+		it('should set the disabled in disabled', async function () {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(addButton.hasAttribute('disabled')).toBe(true);
+			expect(subtractButton.hasAttribute('disabled')).toBe(true);
+		});
+
 		it('should set tabindex="-1" on the buttons', async function () {
 			function isButtonsWrapperInert() {
 				return (

@@ -1,6 +1,6 @@
 import { ClassMember, ClassMethod } from 'custom-elements-manifest';
 import { ComponentDef } from './ComponentDef';
-import { kebabToPascal } from './utils/casing';
+import { camelToKebab, kebabToPascal } from './utils/casing';
 import {
 	getAttributeName,
 	getClassNameOfVividComponent,
@@ -8,6 +8,12 @@ import {
 } from './customElementDeclarations';
 import { makeTypeResolver } from './types';
 import { globalTypeDefs } from './globalTypeDefs';
+
+const isInitialValueAttribute = (attribute: { fieldName?: string }) =>
+	attribute.fieldName &&
+	['initialValue', 'defaultChecked', 'initialStart', 'initialEnd'].includes(
+		attribute.fieldName
+	);
 
 export const parseComponent = (name: string): ComponentDef => {
 	const className = getClassNameOfVividComponent(name);
@@ -22,16 +28,29 @@ export const parseComponent = (name: string): ComponentDef => {
 
 	const attributes: ComponentDef['attributes'] = (
 		declaration.attributes ?? []
-	).map((attribute) => {
+	).flatMap((attribute) => {
 		if (!attribute.type) {
 			throw new Error(`Attribute type is missing: ${attribute}`);
 		}
 
-		return {
-			name: getAttributeName(attribute),
-			description: attribute.description,
-			type: resolveLocalType(attribute.type.text, true),
-		};
+		return [
+			// Add initial value attributes for forward compatibility with Vivid 4.x
+			...(isInitialValueAttribute(attribute)
+				? [
+						{
+							name: camelToKebab(attribute.fieldName),
+							description: attribute.description,
+							type: resolveLocalType(attribute.type.text, true),
+							forceDomProp: true,
+						},
+				  ]
+				: []),
+			{
+				name: getAttributeName(attribute),
+				description: attribute.description,
+				type: resolveLocalType(attribute.type.text, true),
+			},
+		];
 	});
 
 	const isClassMethod = (m: ClassMember): m is ClassMethod =>

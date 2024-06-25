@@ -69,6 +69,16 @@ export const exampleComponent: ComponentDef = {
 				},
 			],
 		},
+		{
+			name: 'forced-dom-prop',
+			type: [
+				{
+					text: 'string',
+					vuePropType: 'String',
+				},
+			],
+			forceDomProp: true,
+		},
 	],
 	events: [
 		{
