@@ -13,6 +13,7 @@ export type AppearanceUIAppearance = Extract<
 	| Appearance.Ghost
 	| Appearance.GhostLight
 	| Appearance.Outlined
+	| Appearance.OutlinedLight
 	| Appearance.Duotone
 	| Appearance.Fieldset
 	| Appearance.Subtle
