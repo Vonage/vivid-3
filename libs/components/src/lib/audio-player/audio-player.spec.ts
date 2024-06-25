@@ -60,6 +60,20 @@ describe('vwc-audio-player', () => {
 		);
 	}
 
+	function setCurrentTimeAndDuration(currentTime: number, duration: number) {
+		setAudioElementDuration(duration);
+		setAudioElementCurrentTime(currentTime);
+	}
+
+	function dragSliderTo(percent: number) {
+		getSliderElement().isDragging = true;
+		getSliderElement().value = percent.toString();
+	}
+
+	function stopSliderDrag() {
+		getSliderElement().isDragging = false;
+	}
+
 	let element: AudioPlayer;
 	let originalAudio: any;
 	let nativeAudioElement: HTMLAudioElement;
@@ -99,82 +113,6 @@ describe('vwc-audio-player', () => {
 		});
 
 		pauseButton = getPauseButtonElement();
-	});
-
-	it('should update current time element text', async () => {
-		const duration = 60;
-		const currentTime = 30;
-		const expectedValue = '0:30';
-
-		setAudioElementDuration(duration);
-		setAudioElementCurrentTime(currentTime);
-		await elementUpdated(element);
-
-		expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
-	});
-
-	it('should update slider value and ariavaluetext on audio progress', async () => {
-		const duration = 80;
-		const currentTime = 20;
-		const expectedValue = `${(100 * currentTime) / duration}`;
-		const expectedAriaValuetext = '0:20';
-
-		setAudioElementDuration(duration);
-		setAudioElementCurrentTime(currentTime);
-		await elementUpdated(element);
-
-		expect(getSliderElement().value).toEqual(expectedValue);
-		expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(
-			expectedAriaValuetext
-		);
-	});
-
-	it('should update duration on loadmetadata', async function () {
-		setAudioElementDuration(800);
-		const event = new Event('loadedmetadata');
-		nativeAudioElement.currentTime = 700;
-		nativeAudioElement.dispatchEvent(event);
-
-		await elementUpdated(element);
-		expect(element.duration).toEqual(800);
-	});
-
-	it('should update total-time on loadedmetadata', async function () {
-		setAudioElementDuration(60);
-
-		nativeAudioElement.currentTime = 50;
-		const event = new Event('loadedmetadata');
-		nativeAudioElement.dispatchEvent(event);
-		await elementUpdated(element);
-
-		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
-	});
-
-	it('should set currentTime according to slider value on slider change', async () => {
-		const sliderValue = 50;
-		const duration = 100;
-		const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
-		setAudioElementCurrentTime(10);
-		setAudioElementDuration(duration);
-		await elementUpdated(element);
-		getSliderElement().value = `${sliderValue}`;
-		await elementUpdated(element);
-		expect(nativeAudioElement.currentTime).toBe(
-			expectedCurrentTimeAfterMouseUp
-		);
-	});
-
-	it('should keep paused state while handling the slider', async () => {
-		const duration = 100;
-		setAudioElementCurrentTime(10);
-		setAudioElementDuration(duration);
-		element.play();
-		await elementUpdated(element);
-
-		getSliderElement().value = '20';
-		await elementUpdated(element);
-
-		expect(element.paused).toBe(false);
 	});
 
 	describe('basic', () => {
@@ -271,6 +209,27 @@ describe('vwc-audio-player', () => {
 
 			expect(allSubElementsDisabled()).toBeTruthy();
 		});
+
+		it('should update duration on loadmetadata', async function () {
+			setAudioElementDuration(800);
+			const event = new Event('loadedmetadata');
+			nativeAudioElement.currentTime = 700;
+			nativeAudioElement.dispatchEvent(event);
+
+			await elementUpdated(element);
+			expect(element.duration).toEqual(800);
+		});
+
+		it('should update total-time on loadedmetadata', async function () {
+			setAudioElementDuration(60);
+
+			nativeAudioElement.currentTime = 50;
+			const event = new Event('loadedmetadata');
+			nativeAudioElement.dispatchEvent(event);
+			await elementUpdated(element);
+
+			expect(getTotalTimeElement()?.textContent).toEqual('1:00');
+		});
 	});
 
 	describe('currentTime', () => {
@@ -291,8 +250,7 @@ describe('vwc-audio-player', () => {
 		it('should set "current-value" on slider', async () => {
 			const duration = 60;
 			const currentTime = 20;
-			setAudioElementDuration(duration);
-			setAudioElementCurrentTime(currentTime);
+			setCurrentTimeAndDuration(currentTime, duration);
 			await elementUpdated(element);
 			expect(getSliderElement().getAttribute('current-value')).toBe(
 				Math.round(100 * (currentTime / duration)).toString()
@@ -302,10 +260,48 @@ describe('vwc-audio-player', () => {
 		it('should prevent slider change handling after currentTime update', async () => {
 			const duration = 60;
 			const currentTime = 20;
-			setAudioElementDuration(duration);
-			setAudioElementCurrentTime(currentTime);
+			setCurrentTimeAndDuration(currentTime, duration);
 			await elementUpdated(element);
 			expect(element.currentTime).toBe(20);
+		});
+
+		it('should update current time element text', async () => {
+			const duration = 60;
+			const currentTime = 30;
+			const expectedValue = '0:30';
+
+			setCurrentTimeAndDuration(currentTime, duration);
+			await elementUpdated(element);
+
+			expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
+		});
+
+		it('should update slider value and ariavaluetext on audio progress', async () => {
+			const duration = 80;
+			const currentTime = 20;
+			const expectedValue = `${(100 * currentTime) / duration}`;
+			const expectedAriaValuetext = '0:20';
+
+			setCurrentTimeAndDuration(currentTime, duration);
+			await elementUpdated(element);
+
+			expect(getSliderElement().value).toEqual(expectedValue);
+			expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(
+				expectedAriaValuetext
+			);
+		});
+
+		it('should set currentTime according to slider value on slider change', async () => {
+			const sliderValue = 50;
+			const duration = 100;
+			const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
+			setCurrentTimeAndDuration(10, duration);
+			await elementUpdated(element);
+			getSliderElement().value = `${sliderValue}`;
+			await elementUpdated(element);
+			expect(nativeAudioElement.currentTime).toBe(
+				expectedCurrentTimeAfterMouseUp
+			);
 		});
 	});
 
@@ -343,6 +339,23 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(pauseButton.icon).toEqual('pause-solid');
 		});
+
+		it('should call play only once if dragged twice', async () => {
+			setCurrentTimeAndDuration(10, 100);
+			element.play();
+			await elementUpdated(element);
+
+			dragSliderTo(20);
+			dragSliderTo(25);
+			await elementUpdated(element);
+
+			const playSpy = jest.spyOn(element, 'play');
+			stopSliderDrag();
+			getSliderElement().value = '20';
+			await elementUpdated(element);
+
+			expect(playSpy).toHaveBeenCalledTimes(1);
+		});
 	});
 
 	describe('pause()', () => {
@@ -365,6 +378,18 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(pauseButton.icon).toEqual('play-solid');
+		});
+
+		it('should call pause 0 times if already paused while dragging', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			await elementUpdated(element);
+
+			const pauseSpy = jest.spyOn(element, 'pause');
+			dragSliderTo(20);
+			await elementUpdated(element);
+
+			expect(pauseSpy).toHaveBeenCalledTimes(0);
 		});
 	});
 
@@ -401,6 +426,46 @@ describe('vwc-audio-player', () => {
 		it('should be readonly', () => {
 			element.paused = false;
 			expect(element.paused).toBe(true);
+		});
+
+		it('should keep paused state while changing the slider value', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			element.play();
+			await elementUpdated(element);
+
+			getSliderElement().value = '20';
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(false);
+		});
+
+		it('should pause while dragging the slider', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			element.play();
+			await elementUpdated(element);
+
+			dragSliderTo(20);
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(true);
+		});
+
+		it('should keep playing when stop dragging the slider', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			element.play();
+			await elementUpdated(element);
+
+			dragSliderTo(20);
+			await elementUpdated(element);
+
+			stopSliderDrag();
+			getSliderElement().value = '25';
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(false);
 		});
 	});
 

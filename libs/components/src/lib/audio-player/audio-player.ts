@@ -208,6 +208,9 @@ export class AudioPlayer extends FoundationElement {
 
 	#pausedChanged = (pausing: boolean) => {
 		if (pausing === this.paused) {
+			if (this.#sliderEl!.currentValue === '100') {
+				this.#setPausedState();
+			}
 			return;
 		}
 		if (!this.paused) {
@@ -224,17 +227,29 @@ export class AudioPlayer extends FoundationElement {
 		this.#currentTimeChanged = true;
 		Observable.notify(this, 'currentTime');
 		const percent = (this.currentTime / this.duration) * 100;
+		this.#sliderEl!.currentValue = percent.toString();
 		if (percent === 100) {
 			this.pause();
 		}
-		this.#sliderEl!.currentValue = percent.toString();
 	};
 
 	#updateTotalTime = () => {
 		Observable.notify(this, 'duration');
 	};
 
+	#dragInterval?: number;
+
 	#updateCurrentTimeOnSliderChange = () => {
+		if (!this.paused && this.#sliderEl!.isDragging) {
+			this.pause();
+			this.#dragInterval = window.setInterval(() => {
+				if (!this.#sliderEl!.isDragging) {
+					clearInterval(this.#dragInterval);
+					this.play();
+				}
+			}, 0);
+		}
+
 		if (!this.#currentTimeChanged && this.#playerEl) {
 			this.currentTime = (this.duration * Number(this.#sliderEl!.value)) / 100;
 		}
