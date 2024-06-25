@@ -207,10 +207,9 @@ export class AudioPlayer extends FoundationElement {
 	}
 
 	#pausedChanged = (pausing: boolean) => {
+		
 		if (pausing === this.paused) {
-			if (this.#sliderEl!.currentValue === '100') {
-				this.#setPausedState();
-			}
+			this.#setPausedState();
 			return;
 		}
 		if (!this.paused) {
@@ -220,6 +219,7 @@ export class AudioPlayer extends FoundationElement {
 			this.#playerEl!.play();
 		}
 		this.#setPausedState();
+		
 	};
 
 	#currentTimeChanged = false;
