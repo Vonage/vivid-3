@@ -63,3 +63,69 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'./snapshots/slider.png'
 	);
 });
+
+test('should show a tooltip for horizontal slider', async ({
+	page,
+}: {
+	page: Page;
+}) => {
+	const template = `
+		<div style="height: 100px;">
+			<vwc-slider value="5" pin></vwc-slider>
+		</div>
+	`;
+
+	await page.setViewportSize({ width: 600, height: 600 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.keyboard.press('Tab');
+
+	await page.waitForLoadState('networkidle');
+
+	const testWrapper = await page.$('#wrapper');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/slider-tooltip-horizontal.png'
+	);
+});
+
+test('should show a tooltip for vertical slider', async ({
+	page,
+}: {
+	page: Page;
+}) => {
+	const template = `
+		<vwc-slider orientation="vertical" value="5" pin></vwc-slider>
+	`;
+
+	await page.setViewportSize({ width: 100, height: 600 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.keyboard.press('Tab');
+
+	await page.waitForLoadState('networkidle');
+
+	const testWrapper = await page.$('#wrapper');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/slider-tooltip-vertical.png'
+	);
+});

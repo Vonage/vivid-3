@@ -116,6 +116,23 @@ Markers are set according to the value of step (1 by default).
 <vwc-slider connotation="cta"></vwc-slider>
 ```
 
+### Pin
+
+Toggles display the value through a tooltip. Use the `valueTextFormatter` member to customize the format of the value.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-slider pin></vwc-slider>
+<vwc-slider orientation="vertical" style="height: 200px" pin></vwc-slider>
+<script>
+	for (const slider of document.querySelectorAll('vwc-slider')) {
+		slider.valueTextFormatter = (value) => `${value} units`;
+	}
+</script>
+```
+
 ### Disabled
 
 Toggle the `disabled` member to disable/enable the slider.
@@ -150,5 +167,6 @@ Use `value` to set the value of the slider.
 
 ## Accessibility
 
-- The slider's `role` is `slider` which means it needs an accessible label.
-- It is the consumer's concern to add `aria-label` to the `slider` element.
+The slider has a `role` of `slider`, which needs an accessible label. You must provide it using `aria-label`.
+
+Vivid automatically sets the `aria-valuetext` attribute on the slider. The attribute is read by assistive technology. You can control its format using the `valueTextFormatter` property for a more human-readable value.

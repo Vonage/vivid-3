@@ -10,6 +10,7 @@ import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
+import { PlacementStrategy, Popup } from '../popup/popup.ts';
 import { Slider } from './slider';
 import { sliderDefinition } from './definition';
 import '.';
@@ -27,9 +28,23 @@ async function setBoolAttributeOn(
 
 describe('vwc-slider', () => {
 	let element: Slider;
+	let thumb: HTMLElement;
+	const getPopup = () =>
+		element.shadowRoot!.querySelector('.popup') as Popup | null;
 
 	beforeEach(async () => {
+		jest
+			.spyOn(HTMLElement.prototype, 'clientWidth', 'get')
+			.mockReturnValue(1000);
+		jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+			bottom: 1000,
+			top: 0,
+			left: 0,
+		} as DOMRect);
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Slider;
+		thumb = element.shadowRoot!.querySelector(
+			'.thumb-container'
+		) as HTMLElement;
 	});
 
 	describe('basic', () => {
@@ -102,6 +117,20 @@ describe('vwc-slider', () => {
 			expect(classesInitialValue).toContain('horizontal');
 			expect(controlClasses()).toContain('vertical');
 		});
+
+		it.each([
+			['horizontal', PlacementStrategy.AutoPlacementHorizontal],
+			['vertical', PlacementStrategy.AutoPlacementVertical],
+		] as const)(
+			'should set the appropriate popup placement strategy for %s orientation',
+			async (orientation, strategy) => {
+				element.pin = true;
+				element.orientation = orientation;
+				await elementUpdated(element);
+
+				expect(getPopup()!.placementStrategy).toBe(strategy);
+			}
+		);
 	});
 
 	describe('min/max', () => {
@@ -188,6 +217,290 @@ describe('vwc-slider', () => {
 				).toEqual(true);
 			}
 		);
+	});
+
+	describe('pin', () => {
+		beforeEach(async () => {
+			element.pin = true;
+			await elementUpdated(element);
+		});
+
+		it('should have a popup when pin is true', async () => {
+			expect(getPopup()).toBeInstanceOf(Popup);
+		});
+
+		it('should hide the popup by default', async () => {
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should display the current value formatted with valueTextFormatter in the popup', async () => {
+			element.valueTextFormatter = (value) => `${value} bits`;
+			await elementUpdated(element);
+
+			expect(getPopup()!.textContent!.trim()).toBe('5 bits');
+		});
+
+		it('should display ariaValuetext in the popup if provided', async () => {
+			element.ariaValuetext = 'value text';
+			await elementUpdated(element);
+
+			expect(getPopup()!.textContent!.trim()).toBe('value text');
+		});
+
+		const hoverOverThumb = () =>
+			thumb.dispatchEvent(new MouseEvent('mouseover'));
+		const hoverOffThumb = () => thumb.dispatchEvent(new MouseEvent('mouseout'));
+		const visiblyFocusThumb = () => getControlElement(element).focus();
+		const nonVisiblyFocusThumb = () => {
+			thumb.dispatchEvent(new MouseEvent('mousedown'));
+			window.dispatchEvent(new MouseEvent('mouseup'));
+		};
+		const blurThumb = () => getControlElement(element).blur();
+		const startDraggingThumb = () =>
+			thumb.dispatchEvent(new MouseEvent('mousedown'));
+		const startDraggingThumbByClickingOnTrack = () =>
+			element.dispatchEvent(new MouseEvent('mousedown'));
+		const stopDraggingThumb = () =>
+			window.dispatchEvent(new MouseEvent('mouseup'));
+
+		it('should show the popup when hovering over the thumb', async () => {
+			hoverOverThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should hide the popup when hovering off the thumb', async () => {
+			hoverOverThumb();
+
+			hoverOffThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should keep the popup open while hovering thumb when losing focus', async () => {
+			hoverOverThumb();
+			visiblyFocusThumb();
+			startDraggingThumb();
+
+			blurThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should keep the popup open while hovering thumb when stop dragging thumb', async () => {
+			hoverOverThumb();
+			visiblyFocusThumb();
+			startDraggingThumb();
+
+			stopDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should show the popup when the thumb has visible focus', async () => {
+			visiblyFocusThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should hide the popup when the thumb loses focus', async () => {
+			visiblyFocusThumb();
+
+			blurThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should keep the popup open while thumb has visible focus when hovering off thumb', async () => {
+			visiblyFocusThumb();
+			hoverOverThumb();
+			startDraggingThumb();
+
+			hoverOffThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should keep the popup open while thumb has visible focus when stop dragging thumb', async () => {
+			visiblyFocusThumb();
+			hoverOverThumb();
+			startDraggingThumb();
+
+			stopDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should show the popup when dragging the thumb', async () => {
+			startDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should hide the popup when stopping dragging the thumb', async () => {
+			startDraggingThumb();
+			stopDraggingThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should keep the popup open while thumb is dragged when hovering off thumb', async () => {
+			startDraggingThumb();
+			hoverOverThumb();
+			visiblyFocusThumb();
+
+			hoverOffThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should keep the popup open while thumb is dragged when thumb loses focus', async () => {
+			startDraggingThumb();
+			hoverOverThumb();
+			visiblyFocusThumb();
+
+			blurThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should not show popup when thumb focus is not visible', async () => {
+			nonVisiblyFocusThumb();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should show popup when dragging the thumb by clicking on track', async () => {
+			startDraggingThumbByClickingOnTrack();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(true);
+		});
+
+		it('should not show popup when clicking on track while disabled', async () => {
+			element.disabled = true;
+
+			startDraggingThumbByClickingOnTrack();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+
+		it('should not show popup when clicking on track while readOnly', async () => {
+			element.readOnly = true;
+
+			startDraggingThumbByClickingOnTrack();
+			await elementUpdated(element);
+
+			expect(getPopup()!.open).toBe(false);
+		});
+	});
+
+	describe('thumb', () => {
+		beforeEach(() => {
+			// Work around JSDOM not supporting delegatesFocus correctly
+			element.focus = () => getControlElement(element).focus();
+			thumb.focus = () => getControlElement(element).focus();
+		});
+
+		it('should have visible focus when control is focused', async () => {
+			getControlElement(element).focus();
+			await elementUpdated(element);
+
+			expect(thumb.classList).toContain('focus-visible');
+		});
+
+		it('should have non-visible focus when control is focused through mousedown', async () => {
+			element.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(
+				getControlElement(element)
+			);
+			expect(thumb.classList).not.toContain('focus-visible');
+		});
+
+		it('should have non-visible focus when control is focused through mousedown on thumb', async () => {
+			thumb.dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(
+				getControlElement(element)
+			);
+			expect(thumb.classList).not.toContain('focus-visible');
+		});
+
+		it('should make focus visible when any key is pressed', async () => {
+			element.dispatchEvent(new MouseEvent('mousedown'));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'A' }));
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(
+				getControlElement(element)
+			);
+			expect(thumb.classList).toContain('focus-visible');
+		});
+
+		describe('dragging the thumb', () => {
+			describe.each([
+				{ orientation: 'horizontal', coordinate: 'pageX' },
+				{ orientation: 'vertical', coordinate: 'pageY' },
+			])('with $orientation orientation', ({ orientation, coordinate }) => {
+				const mouseDown = (thumb: HTMLElement, value: number) => {
+					const mouseEvent = new MouseEvent('mousedown');
+					Object.defineProperty(mouseEvent, coordinate, { value });
+					thumb.dispatchEvent(mouseEvent);
+				};
+
+				const mouseMove = (value: number) => {
+					const mouseMoveEvent = new MouseEvent('mousemove');
+					Object.defineProperty(mouseMoveEvent, coordinate, { value });
+					window.dispatchEvent(mouseMoveEvent);
+				};
+
+				const mouseUp = () => {
+					window.dispatchEvent(new MouseEvent('mouseup'));
+				};
+
+				const dragThumb = (from: number, to: number) => {
+					mouseDown(thumb, from);
+					mouseMove(to);
+					mouseUp();
+				};
+
+				beforeEach(async () => {
+					element.value = '0';
+					element.orientation = orientation as Orientation;
+					await elementUpdated(element);
+				});
+
+				it('should update value by dragging thumb', async () => {
+					dragThumb(0, 300);
+					expect(element.value).toBe('3');
+				});
+
+				it('should not drag when disabled', async () => {
+					element.disabled = true;
+
+					dragThumb(0, 300);
+
+					expect(element.value).toBe('0');
+				});
+			});
+		});
 	});
 
 	describe('a11y', () => {
