@@ -1,3 +1,5 @@
+import 'element-internals-polyfill';
+
 import {
 	axe,
 	elementUpdated,
@@ -245,28 +247,42 @@ describe('vwc-select', () => {
 	});
 
 	describe('validation', function () {
-		function setValidityToError(errorMessage = 'error') {
-			element.setValidity({ badInput: true }, errorMessage);
-			element.validate();
+		function setValidityToError() {
+			element.required = true;
+			element.value = '';
 		}
 
-		function setToBlurred() {
-			element.dispatchEvent(new Event('blur'));
-		}
+		const visibleErrorMessage = () =>
+			(
+				element.shadowRoot!.querySelector('.error-message') as HTMLElement
+			).textContent!.trim();
 
-		it('should set error message to empty string when pristine', async function () {
+		it('should hide error message when pristine', async function () {
 			setValidityToError();
 			await elementUpdated(element);
-			expect(element.errorValidationMessage).toEqual('');
+
+			expect(visibleErrorMessage()).toBe('');
 		});
 
-		it('should validate after a blur', async function () {
-			const errorMessage = 'Error Text';
-			element.dirtyValue = true;
-			setValidityToError(errorMessage);
-			setToBlurred();
+		it('should show error message after validity is checked', async function () {
+			setValidityToError();
+
+			element.checkValidity();
 			await elementUpdated(element);
-			expect(element.errorValidationMessage).toEqual(errorMessage);
+
+			expect(visibleErrorMessage()).toBe('Constraints not satisfied');
+		});
+
+		it('should initialize as valid if required constraint is met by defaulting to first value', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} required>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			expect(element.validity.valid).toBe(true);
 		});
 	});
 
@@ -586,6 +602,18 @@ describe('vwc-select', () => {
 					.querySelector('.selected-value')
 					?.textContent?.trim()
 			).toEqual('2');
+		});
+
+		it('should be invalid if required and no value selected', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} required placeholder="placeholder">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}>`
+			)) as Select;
+
+			expect(element.validity.valid).toBe(false);
 		});
 	});
 
