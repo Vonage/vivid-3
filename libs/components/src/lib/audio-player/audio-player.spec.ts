@@ -289,13 +289,13 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should set "current-value" on slider', async () => {
-			const duration = 120;
-			const currentTime = 30;
+			const duration = 60;
+			const currentTime = 20;
 			setAudioElementDuration(duration);
 			setAudioElementCurrentTime(currentTime);
 			await elementUpdated(element);
 			expect(getSliderElement().getAttribute('current-value')).toBe(
-				((100 * currentTime) / duration).toString()
+				Math.round(100 * (currentTime / duration)).toString()
 			);
 		});
 

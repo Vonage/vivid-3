@@ -227,6 +227,7 @@ export class AudioPlayer extends FoundationElement {
 		if (percent === 100) {
 			this.pause();
 		}
+		this.#sliderEl!.currentValue = percent.toString();
 	};
 
 	#updateTotalTime = () => {
