@@ -207,7 +207,6 @@ export class AudioPlayer extends FoundationElement {
 	}
 
 	#pausedChanged = (pausing: boolean) => {
-		
 		if (pausing === this.paused) {
 			this.#setPausedState();
 			return;
@@ -219,7 +218,6 @@ export class AudioPlayer extends FoundationElement {
 			this.#playerEl!.play();
 		}
 		this.#setPausedState();
-		
 	};
 
 	#currentTimeChanged = false;

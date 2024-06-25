@@ -314,7 +314,6 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(pauseButton.icon).toEqual('play-solid');
-
 		});
 	});
 
