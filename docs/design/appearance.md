@@ -538,7 +538,6 @@ currently ghost-light appearance is being used only with `accent` connotation
 
 `button`
 
-
 ```html preview
 <style>
 	.grid {
