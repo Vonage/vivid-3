@@ -10,8 +10,8 @@
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: filled ghost ghost-light outlined duotone subtle fieldset
-		listitem,
+	$appearances: filled ghost ghost-light outlined outlined-light duotone subtle
+		fieldset listitem,
 	$states: idle hover active selected checked checkedAndHover selectedAndHover
 		disabled selectedAndDisabled readonly,
 	$default: filled
