@@ -194,7 +194,7 @@ function inheritItems<T>(
 	];
 }
 
-export const getAttributeName = (attribute: schema.Attribute): string => {
+const getAttributeName = (attribute: schema.Attribute): string => {
 	const name = attribute.name || attribute.fieldName;
 	if (!name) {
 		throw new Error('Attribute must have a name or a fieldName');
@@ -353,7 +353,8 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			name: 'columnDefinition',
 			description:
 				'Extends the data grid cell definition to hold more options.',
-			type: { text: 'any' },
+			type: { text: 'object' },
+			fieldName: 'columnDefinition',
 		},
 	],
 	Localized: [],
@@ -364,6 +365,7 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: {
 				text: 'string | HTMLElement',
 			},
+			fieldName: 'anchor',
 		},
 	],
 	TrappedFocus: [],
