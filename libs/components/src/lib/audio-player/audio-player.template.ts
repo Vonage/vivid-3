@@ -18,13 +18,6 @@ import {
 	type SKIP_DIRECTIONS_TYPE,
 } from './audio-player';
 
-function getCurrentTimePercentage(x: AudioPlayer) {
-	if (Number.isNaN(x.currentTime) || Number.isNaN(x.duration)) {
-		return 0;
-	}
-	return (x.currentTime / x.duration) * 100;
-}
-
 function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
 	const currentTime = audioElement.currentTime;
 	const skipValue = parseInt(audioElement.skipBy!) * skipDirection;
@@ -123,8 +116,9 @@ function renderSlider(context: ElementDefinitionContext) {
 	return html<AudioPlayer>`
 	<${sliderTag}
 		class="slider"
+		value="0"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-		current-value="${getCurrentTimePercentage}" max="100"
+		max="100"
 		ariaValuetext="${(x) => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}">
