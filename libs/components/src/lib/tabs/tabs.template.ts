@@ -12,8 +12,7 @@ const getClasses = ({
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`orientation-${orientation}`, Boolean(orientation)],
-		[`gutters-${gutters}`, Boolean(gutters)],
-		['gutters-small', !gutters],
+		`gutters-${gutters ?? 'small'}`,
 		['scroll', Boolean(scrollablePanel)]
 	);
 
