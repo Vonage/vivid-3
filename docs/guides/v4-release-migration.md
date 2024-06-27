@@ -145,7 +145,7 @@ Code using `v-model` or `modelValue` is not affected.
 ## How to get ready?
 
 - First, make sure you're on the latest version of Vivid 3.x.  
-  Optionally, install the latest version of our new ESLint plugin, which can help with the migration.
+  Optionally, install the latest version of our new [ESLint plugin](/eslint-plugin), which can help with the migration.
 
 - Replace all usage of `currentValue` / `currentChecked` with `modelValue` and all usages `currentStart` / `currentEnd` with `start` / `end`.  
   The `no-current-value-attribute` rule of our ESLint plugin can perform this migration automatically.
