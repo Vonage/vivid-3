@@ -14,5 +14,13 @@
 	{
 		"name": "no-slot-attribute",
 		"markdown": "./libs/eslint-plugin/src/rules/no-slot-attribute.md"
+	},
+	{
+		"name": "no-value-attribute",
+		"markdown": "./libs/eslint-plugin/src/rules/no-value-attribute.md"
+	},
+	{
+		"name": "no-current-value-attribute",
+		"markdown": "./libs/eslint-plugin/src/rules/no-current-value-attribute.md"
 	}
 ]
