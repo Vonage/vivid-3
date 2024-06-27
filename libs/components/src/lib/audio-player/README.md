@@ -162,23 +162,19 @@ Use the pause method to pause the audio if playing.
 
 ### Max-Inline-size
 
-By default, audio-player `max-inline-size` is set to `350px`.
-You can specify a different value or set it to `initial` for full width or taking parent width.
+By default, audio-player `max-inline-size` is 100%;
+You can specify a different value with setting `max-inline-size` on the `vwc-audio-layer.`
 
-```html preview
+```html preview 200px
 <style>
 	.audio-player {
-		max-inline-size: initial;
+		max-inline-size: 350px;
 	}
 </style>
 <vwc-audio-player
+	playback-rates="0.5, 1, 1.5, 2"
+	skip-by="5"
 	class="audio-player"
 	src="https://download.samplelib.com/mp3/sample-6s.mp3"
 ></vwc-audio-player>
 ```
-
-### Minimum inline Size
-
-`--audio-player-min-inline-size` css-variable is deprecated (as of 05/24) and is replaced with `max-inline-size`.  
-`--audio-player-min-inline-size` is still functional in the component but will be removed in a future major release.  
-This will be communicated when it's removal becomes a release candidate at the end of the support period.
