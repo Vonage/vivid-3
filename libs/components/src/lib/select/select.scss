@@ -19,7 +19,7 @@
 @use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
-@import '../../shared/patterns/chevron.scss';
+@import '../../shared/patterns/chevron';
 
 $low-ink-color: --_low-ink-color;
 
