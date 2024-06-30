@@ -5,6 +5,7 @@ import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 import { MenuItem } from '../menu-item/menu-item';
+import { Menu } from '../menu/menu';
 import { audioPlayerDefinition } from './definition';
 import { AudioPlayer } from './audio-player';
 import '.';
@@ -492,30 +493,36 @@ describe('vwc-audio-player', () => {
 			) as Button;
 		}
 
+		function getPlaybackRatesMenu() {
+			return getBaseElement(element).querySelector(
+				'#playback-menu'
+			) as Menu;
+		}
+
 		it('should default to empty string', () => {
 			expect(element.playbackRates).toBe(null);
 		});
 
-		it('should hide playbackRates button as default', async () => {
-			expect(getPlaybackRatesButton()).toBeNull();
+		it('should hide playbackRates menu as default', async () => {
+			expect(getPlaybackRatesMenu()).toBeNull();
 		});
 
-		it('should hide playbackRates button when attribute is removed', async () => {
+		it('should hide playbackRates menu when attribute is removed', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.removeAttribute('playback-rates');
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesButton()).toBeNull();
+			expect(getPlaybackRatesMenu()).toBeNull();
 		});
 
-		it('should hide playbackRates button when empty', async () => {
+		it('should hide playbackRates menu when empty', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.playbackRates = '';
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesButton()).toBeNull();
+			expect(getPlaybackRatesMenu()).toBeNull();
 		});
 
 		it('should set class playback on base when playbackRates is truthy', async () => {

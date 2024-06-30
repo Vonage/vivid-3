@@ -163,10 +163,11 @@ export const AudioPlayerTemplate: (
 				${when((x) => !x.notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
-			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss>
-				${when(
-					(x) => Boolean(x.playbackRates),
-					html`<${buttonTag} id="playback-open-button"
+			${when(
+				(x) => Boolean(x.playbackRates),
+		html`
+			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss id="playback-menu">
+				<${buttonTag} id="playback-open-button"
 							  class="playback-button"
 							  slot="anchor"
 							  icon="playback-speed-line"
@@ -174,8 +175,8 @@ export const AudioPlayerTemplate: (
 							  size='condensed'
 							  connotation="${(x) => x.connotation}"
 							  ?disabled="${(x) => x.disabled || !x.duration}"
-				></${buttonTag}>`
-				)}
+				></${buttonTag}>
+
 				${repeat(
 					(x) =>
 						x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
@@ -186,7 +187,8 @@ export const AudioPlayerTemplate: (
 												 check-appearance="tick-only"
 												 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
 				)}
-			</${menuTag}>
+			</${menuTag}>`
+	)}
 		</div>
 	</div>`;
 };
