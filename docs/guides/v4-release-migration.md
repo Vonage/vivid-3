@@ -86,7 +86,29 @@ If you do not wish to have a set `max-inline-size` use the css-variable `--toolt
 
 ```js
 vwc-tooltip {
-	--tooltip-max-inline-size: initial;
+	--tooltip-max-inline-size: none;
+}
+```
+
+---
+
+## Toggletip
+
+### The change
+
+The toggletip will now have a default max-inline-size of 30 characters. Previously it didn't have max-inline-size.
+
+|                             | V-3 default value | V-4 default value |
+| --------------------------- | ----------------- | ----------------- |
+| toggletip `max-inline-size` | `none`            | `30ch`            |
+
+### How to get ready?
+
+If you do not wish to have a set `max-inline-size` use the css-variable `--toggletip-max-inline-size`.
+
+```js
+vwc-toggletip {
+	--toggletip-max-inline-size: none;
 }
 ```
 
