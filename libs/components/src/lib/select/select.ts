@@ -128,6 +128,19 @@ export class Select extends FoundationSelect {
 			return;
 		}
 	}
+
+	/*
+	 * @internal
+	 */
+	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
+		super.slottedOptionsChanged(prev, next);
+
+		// Workaround for bug in FAST:
+		// Proxy value is set before options are added to proxy, which causes the value to be discarded
+		// Therefore, we need to set the value again and update validation
+		this.proxy.value = this.value;
+		this.validate();
+	}
 }
 
 export interface Select

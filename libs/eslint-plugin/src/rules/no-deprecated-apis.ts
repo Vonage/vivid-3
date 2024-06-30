@@ -2,7 +2,7 @@ import * as utils from 'eslint-plugin-vue/lib/utils';
 import type { Rule } from 'eslint';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
-import { Node } from '../types/vue-eslint-parser';
+import { getAttributes } from '../utils/attributes';
 
 const renamedProps = new ComponentMetadata<
 	{
@@ -30,22 +30,7 @@ export const noDeprecatedAPIs: Rule.RuleModule = {
 				renamedProps.forTag(
 					normalizeTag(node.name),
 					(componentName, renamedProps) => {
-						const attrs: Array<{ name: string; node: Node }> =
-							node.startTag.attributes.flatMap((attr: Node) => {
-								if (
-									attr.directive &&
-									attr.key.name.name === 'bind' &&
-									attr.key.argument &&
-									attr.key.argument.type === 'VIdentifier'
-								) {
-									return [
-										{ name: attr.key.argument.name, node: attr.key.argument },
-									];
-								} else if (!attr.directive) {
-									return [{ name: attr.key.name, node: attr.key }];
-								}
-								return [];
-							});
+						const attrs = getAttributes(node.startTag);
 
 						for (const renamedProp of renamedProps) {
 							const deprecatedPropUsage = attrs.find(
