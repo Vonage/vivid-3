@@ -29,7 +29,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
- * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements

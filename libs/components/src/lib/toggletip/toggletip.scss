@@ -7,6 +7,7 @@ $padding: 16px;
 .content-wrapper {
 	width: var(#{variables.$toggletip-inline-size}, auto);
 	padding: $padding;
+	max-inline-size: var(#{variables.$toggletip-max-inline-size}, 30ch);
 }
 
 .headline {
