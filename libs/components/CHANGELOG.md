@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.60.0...vivid-v4.0.0) (2024-07-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tooltip:** sets default max width (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798))
+* **tooltip:** sets default max width 222 (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798))
+
+### Features
+
+* **ogre:** sets default max width 333 (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798)) ([adb8afe](https://github.com/Vonage/vivid-3/commit/adb8afe83eb4307b6e37c3ba1745475fc08e0047))
+* **tooltip:** sets default max width (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798)) ([adb8afe](https://github.com/Vonage/vivid-3/commit/adb8afe83eb4307b6e37c3ba1745475fc08e0047))
+* **tooltip:** sets default max width 222 (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798)) ([adb8afe](https://github.com/Vonage/vivid-3/commit/adb8afe83eb4307b6e37c3ba1745475fc08e0047))
+
 ## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.59.0...vivid-v3.60.0) (2024-07-01)
 
 
