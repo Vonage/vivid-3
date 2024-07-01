@@ -3,7 +3,6 @@
 
 :host {
 	display: block;
-	max-inline-size: 350px;
 }
 
 .wrapper {
@@ -23,7 +22,6 @@
 	.slider {
 		flex: 1;
 		grid-area: slider;
-		min-inline-size: var(#{variables.$audio-player-min-inline-size}, 200px);
 	}
 
 	.controls {

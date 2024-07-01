@@ -22,14 +22,14 @@ The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as
 
 ### Gutters
 
-Use the `gutters` attribute to add a margin to the component.
+Use the `gutters` attribute to control the tabs panel padding.
 
-- Type: `'small'`
+- Type: `'small'` | `'none'`
 
-- Default: `none`
+- Default: `small`
 
 ```html preview full
-<vwc-tabs gutters="small">
+<vwc-tabs gutters="none">
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -47,7 +47,7 @@ Add a `orientation` attribute to control the orientation.
 - Default: `'horizontal'`
 
 ```html preview full
-<vwc-tabs gutters="small" orientation="vertical">
+<vwc-tabs orientation="vertical">
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -65,7 +65,7 @@ Add a `orientation` attribute to control the orientation.
 Setting a connotation will only affect the active tab
 
 ```html preview full
-<vwc-tabs gutters="small" connotation="cta">
+<vwc-tabs connotation="cta">
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -83,7 +83,7 @@ Add an `activeid` attribute of the active tab.
 - Default: `''`
 
 ```html preview full
-<vwc-tabs gutters="small" activeid="two">
+<vwc-tabs activeid="two">
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -106,7 +106,7 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 		block-size: 200px;
 	}
 </style>
-<vwc-tabs class="tabs" gutters="small" scrollable-panel>
+<vwc-tabs class="tabs" scrollable-panel>
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -139,7 +139,7 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 		block-size: 150px;
 	}
 </style>
-<vwc-tabs class="tabs" gutters="small" scrollable-panel orientation="vertical">
+<vwc-tabs class="tabs" scrollable-panel orientation="vertical">
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
