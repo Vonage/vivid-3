@@ -28,6 +28,10 @@ describe('renderComponent', () => {
 				attributes: [
 					{
 						name: 'value',
+						forwardTo: {
+							type: 'attribute',
+							name: 'value',
+						},
 						type: [
 							{
 								text: 'string',

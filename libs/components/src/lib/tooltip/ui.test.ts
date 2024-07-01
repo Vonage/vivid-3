@@ -17,13 +17,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 <style>
   .wrapper{
     width: 100%;
-    height: 250px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   vwc-tooltip.tooltip{
-    --tooltip-inline-size:150px;
+    --tooltip-max-inline-size: 150px;
   }
 </style>
 <div class="wrapper">
@@ -36,9 +36,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
   </vwc-tooltip>
   <vwc-tooltip id="tooltip2" anchor="anchor" open text="left" placement="left">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip3" anchor="anchor" open text="top" placement="top">
+  <vwc-tooltip id="tooltip3" anchor="anchor" open text="top with some text that will wrap onto another line" placement="top">
   </vwc-tooltip>
-  <vwc-tooltip id="tooltip4" anchor="anchor" open text="bottom with custom width" placement="bottom"> </vwc-tooltip>
+  <vwc-tooltip id="tooltip4" anchor="anchor" open text="bottom" placement="bottom"> </vwc-tooltip>
   <vwc-tooltip id="tooltip5" class="tooltip" anchor="anchor" text="Dynamic Anchor Change" placement="right">
   </vwc-tooltip>
 
