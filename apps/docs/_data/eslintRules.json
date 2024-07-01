@@ -4,6 +4,10 @@
 		"markdown": "./libs/eslint-plugin/src/rules/no-deprecated-apis.md"
 	},
 	{
+		"name": "accessible-names",
+		"markdown": "./libs/eslint-plugin/src/rules/accessible-names.md"
+	},
+	{
 		"name": "no-inaccessible-events",
 		"markdown": "./libs/eslint-plugin/src/rules/no-inaccessible-events.md"
 	},
