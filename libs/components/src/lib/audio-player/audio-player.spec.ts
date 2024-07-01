@@ -496,26 +496,26 @@ describe('vwc-audio-player', () => {
 			expect(element.playbackRates).toBe(null);
 		});
 
-		it('should hide playbackRates button as default', async () => {
-			expect(getPlaybackRatesButton()).toBeNull();
+		it('should hide playbackRates menu as default', async () => {
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
-		it('should hide playbackRates button when attribute is removed', async () => {
+		it('should hide playbackRates menu when attribute is removed', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.removeAttribute('playback-rates');
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesButton()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
-		it('should hide playbackRates button when empty', async () => {
+		it('should hide playbackRates menu when empty', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.playbackRates = '';
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesButton()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
 		it('should set class playback on base when playbackRates is truthy', async () => {
@@ -556,7 +556,9 @@ describe('vwc-audio-player', () => {
 			);
 		});
 
-		it('should start with a closed menu item', () => {
+		it('should start with a closed menu item', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
 			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
 		});
 
