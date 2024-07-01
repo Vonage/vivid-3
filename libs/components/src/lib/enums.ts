@@ -55,7 +55,8 @@ export enum LayoutSize {
 	Large = 'large',
 }
 
-export enum TabsSize {
+export enum TabsGutters {
+	None = 'none',
 	Small = 'small',
 }
 

@@ -3,7 +3,7 @@ import {
 	Tabs as FoundationTabs,
 	TabsOrientation,
 } from '@microsoft/fast-foundation';
-import type { Connotation, TabsSize } from '../enums.js';
+import type { Connotation, TabsGutters } from '../enums.js';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 
@@ -17,7 +17,10 @@ export type TabsConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
-export type Gutters = Extract<TabsSize, TabsSize.Small>;
+export type Gutters = Extract<
+	TabsGutters,
+	TabsGutters.Small | TabsGutters.None
+>;
 
 /**
  * @public
