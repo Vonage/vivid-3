@@ -43,8 +43,8 @@ type Direction = typeof Direction[keyof typeof Direction];
  * @event {CustomEvent<undefined>} input:end - Event emitted when the end value changes
  * @event {CustomEvent<undefined>} input - Event emitted when either the start or end value changes.
  * @event {CustomEvent<undefined>} change - Event emitted when either the start or end value changes.
- * @vueModel start current-start input:start `(event.target as any).start`
- * @vueModel end current-end input:end `(event.target as any).end`
+ * @vueModel start start input:start `(event.target as any).start`
+ * @vueModel end end input:end `(event.target as any).end`
  */
 @formElements
 export class RangeSlider extends FormAssociatedRangeSlider {
