@@ -5,7 +5,6 @@ import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 import { MenuItem } from '../menu-item/menu-item';
-import { Menu } from '../menu/menu';
 import { audioPlayerDefinition } from './definition';
 import { AudioPlayer } from './audio-player';
 import '.';
@@ -492,19 +491,19 @@ describe('vwc-audio-player', () => {
 				'#playback-open-button'
 			) as Button;
 		}
-
-		function getPlaybackRatesMenu() {
-			return getBaseElement(element).querySelector(
-				'#playback-menu'
-			) as Menu;
-		}
+		//
+		// function getPlaybackRatesMenu() {
+		// 	return getBaseElement(element).querySelector(
+		// 		'#playback-menu'
+		// 	) as Menu;
+		// }
 
 		it('should default to empty string', () => {
 			expect(element.playbackRates).toBe(null);
 		});
 
 		it('should hide playbackRates menu as default', async () => {
-			expect(getPlaybackRatesMenu()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
 		it('should hide playbackRates menu when attribute is removed', async () => {
@@ -513,7 +512,7 @@ describe('vwc-audio-player', () => {
 			element.removeAttribute('playback-rates');
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesMenu()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
 		it('should hide playbackRates menu when empty', async () => {
@@ -522,7 +521,7 @@ describe('vwc-audio-player', () => {
 			element.playbackRates = '';
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesMenu()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
 		it('should set class playback on base when playbackRates is truthy', async () => {
@@ -563,7 +562,9 @@ describe('vwc-audio-player', () => {
 			);
 		});
 
-		it('should start with a closed menu item', () => {
+		it('should start with a closed menu item', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
 			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
 		});
 

@@ -165,7 +165,7 @@ export const AudioPlayerTemplate: (
 			${renderSlider(context)}
 			${when(
 				(x) => Boolean(x.playbackRates),
-		html`
+				html`
 			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss id="playback-menu">
 				<${buttonTag} id="playback-open-button"
 							  class="playback-button"
@@ -188,7 +188,7 @@ export const AudioPlayerTemplate: (
 												 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
 				)}
 			</${menuTag}>`
-	)}
+			)}
 		</div>
 	</div>`;
 };
