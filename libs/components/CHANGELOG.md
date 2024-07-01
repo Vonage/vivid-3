@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.59.0...vivid-v3.60.0) (2024-07-01)
+
+
+### Features
+
+* **buttons:** add outline-light appearance (VIV-1775) ([#1791](https://github.com/Vonage/vivid-3/issues/1791)) ([6eebefe](https://github.com/Vonage/vivid-3/commit/6eebefe99566c5df57546757d822453d6ca3264c))
+
+
+### Bug Fixes
+
+* **audio-player:** keep paused state while dragging (VIV-1787) ([#1792](https://github.com/Vonage/vivid-3/issues/1792)) ([90d7a58](https://github.com/Vonage/vivid-3/commit/90d7a58667bc68802a152ce53459513d0297783a))
+* disabled buttons in number field ([219bba7](https://github.com/Vonage/vivid-3/commit/219bba7a6797c13854d10e486ae2e57c8574db89))
+* **number-field:** disabled buttons in number field (VIV-1817) ([#1779](https://github.com/Vonage/vivid-3/issues/1779)) ([219bba7](https://github.com/Vonage/vivid-3/commit/219bba7a6797c13854d10e486ae2e57c8574db89))
+* **select:** fix initial select validity (VIV-1822) ([#1794](https://github.com/Vonage/vivid-3/issues/1794)) ([e8ea809](https://github.com/Vonage/vivid-3/commit/e8ea809fc047b43e5beccfd615ae51d9ee368d59))
+* **text-area:** row="1" min-height (VIV-1647) ([#1783](https://github.com/Vonage/vivid-3/issues/1783)) ([db7277a](https://github.com/Vonage/vivid-3/commit/db7277afc00bf38bb433464ef0785b543a7dc28d))
+
 ## [3.59.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.58.0...vivid-v3.59.0) (2024-06-18)
 
 
