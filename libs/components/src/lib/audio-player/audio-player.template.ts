@@ -178,14 +178,13 @@ export const AudioPlayerTemplate: (
 				></${buttonTag}>
 
 				${repeat(
-					(x) =>
-						x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
+					(x) => getPlaybackRatesArray(x.playbackRates),
 					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
-                          role="menuitemradio"
-												 class="playback-rate"
-												 text="${(x) => x}"
-												 check-appearance="tick-only"
-												 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
+																			 role="menuitemradio"
+																			 class="playback-rate"
+																			 text="${(x) => x}"
+																			 check-appearance="tick-only"
+																			 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
 				)}
 			</${menuTag}>`
 			)}
