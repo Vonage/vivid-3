@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [3.61.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.60.0...vivid-v3.61.0) (2024-07-01)
+
+
+### Features
+
+* **vivid:** attempt at releasing ([#1823](https://github.com/Vonage/vivid-3/issues/1823)) ([958ef90](https://github.com/Vonage/vivid-3/commit/958ef90d33ff67c48811f0efbcae57a6bb5d825c))
+
 ## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.59.0...vivid-v3.60.0) (2024-07-01)
 
 
