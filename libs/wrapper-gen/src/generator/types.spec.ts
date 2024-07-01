@@ -54,6 +54,7 @@ describe('makeTypeResolver', () => {
 		['number', 'Number'],
 		['boolean', 'Boolean'],
 		['string[]', 'Array'],
+		['Element[]', 'Array'],
 		['Date', 'Date'],
 		['HTMLElement', 'HTMLElement'],
 		['Event', 'Event'],
