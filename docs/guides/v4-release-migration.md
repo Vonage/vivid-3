@@ -164,7 +164,7 @@ Code using `v-model` or `modelValue` is not affected.
 | `value`/`checked`                                                 | Inconsistent between Vue 2 / Vue 3 | Controls current value |
 | `initialValue` / `defaultChecked`                                 | Doesn't exist                      | Controls initial value |
 
-## How to get ready?
+### How to get ready?
 
 - First, make sure you're on the latest version of Vivid 3.x.  
   Optionally, install the latest version of our new [ESLint plugin](/eslint-plugin), which can help with the migration.

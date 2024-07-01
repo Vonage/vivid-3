@@ -154,12 +154,6 @@ Use the `--tooltip-max-inline-size` variable to set the tooltip's max inline siz
 </vwc-tooltip>
 ```
 
-### Deprecated CSS Variable: Inline Size
-
-The `--tooltip-inline-size` CSS variable is deprecated (as of 05/24). Use `--tooltip-max-inline-size` instead to limit the inline size.
-`--tooltip-inline-size` is still functional in the component but will be removed in a future major release.
-This will be communicated when it's removal becomes a release candidate at the end of the support period.
-
 ## Caveat
 
 Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
