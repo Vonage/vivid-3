@@ -491,12 +491,6 @@ describe('vwc-audio-player', () => {
 				'#playback-open-button'
 			) as Button;
 		}
-		//
-		// function getPlaybackRatesMenu() {
-		// 	return getBaseElement(element).querySelector(
-		// 		'#playback-menu'
-		// 	) as Menu;
-		// }
 
 		it('should default to empty string', () => {
 			expect(element.playbackRates).toBe(null);
