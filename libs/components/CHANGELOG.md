@@ -4,6 +4,17 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.60.0...vivid-v4.0.0) (2024-07-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vivid:** v4 release (VIV-000) ([#1821](https://github.com/Vonage/vivid-3/issues/1821))
+
+### Miscellaneous Chores
+
+* **vivid:** v4 release (VIV-000) ([#1821](https://github.com/Vonage/vivid-3/issues/1821)) ([5e5ad50](https://github.com/Vonage/vivid-3/commit/5e5ad50e637aef39cdbd86df2c180e10bc3f0d31))
+
 ## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.59.0...vivid-v3.60.0) (2024-07-01)
 
 
