@@ -18,10 +18,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		.square {
 			height: 150px;
 			width: 400px;
+			background: darkgoldenrod;
 		}
 
 		.small {
 			height: 20px;
+			width: 20px;
 		}
 
 		.wrapper {
@@ -43,6 +45,15 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		}
 	</style>
 	<div>
+		<div id="auto-placement-vertical-tests" class="wrapper" style="flex-direction: row; justify-content: flex-start; height: 100px">
+			<div class="square small" style="align-self: flex-start"></div>
+			<vwc-popup>
+				<div class="contentWrapper">
+					vertical auto placement
+				</div>
+			</vwc-popup>
+		</div>
+		<hr>
 		<div class="wrapper">
 			<div id="mainTestAnchor" class="square"></div>
 			<vwc-popup open arrow placement="right-end" alternate>
@@ -125,10 +136,49 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</div>
 			</vwc-popup>
 		</div>
+		<hr>
+		<div id="flip-tests" class="wrapper" style="flex-direction: column; height: 100px">
+			<div class="square small" style="align-self: flex-start"></div>
+			<vwc-popup open placement="left">
+				<div class="contentWrapper">
+					flipped to right
+				</div>
+			</vwc-popup>
+			<div class="square small" style="align-self: flex-end"></div>
+			<vwc-popup open placement="left">
+				<div class="contentWrapper">
+					left
+				</div>
+			</vwc-popup>
+		</div>
+		<hr>
+		<div id="auto-placement-horizontal-tests" class="wrapper" style="flex-direction: column; justify-content: flex-end; height: 100px">
+			<div class="square small" style="align-self: flex-start"></div>
+			<vwc-popup>
+				<div class="contentWrapper">
+					auto placement horizontal
+				</div>
+			</vwc-popup>
+			<div class="square small" style="align-self: flex-end"></div>
+			<vwc-popup>
+				<div class="contentWrapper">
+					auto placement horizontal
+				</div>
+			</vwc-popup>
+		</div>
+		<hr>
+		<div id="auto-placement-vertical-tests" class="wrapper" style="justify-content: flex-start; height: 100px">
+			<div class="square small" style="align-self: flex-end"></div>
+			<vwc-popup>
+				<div class="contentWrapper">
+					vertical auto placement
+				</div>
+			</vwc-popup>
+		</div>
 	</div>
 	`;
 
-	page.setViewportSize({ width: 800, height: 720 });
+	page.setViewportSize({ width: 800, height: 1100 });
 
 	await loadComponents({
 		page,
@@ -139,7 +189,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		template,
 	});
 
-	// RUn script
 	await page.evaluate(() => {
 		const mainAnchor = document.querySelector('#mainTestAnchor') as HTMLElement;
 		document
@@ -155,11 +204,30 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		document
 			.querySelectorAll('#anchor-wrapping ~ vwc-popup')
 			.forEach((popup: Popup) => (popup.anchor = wrappingAnchor));
+		document
+			.querySelectorAll('#flip-tests vwc-popup')
+			.forEach((popup: Popup) => {
+				popup.anchor = popup.previousElementSibling as HTMLElement;
+			});
+		document
+			.querySelectorAll('#auto-placement-horizontal-tests vwc-popup')
+			.forEach((popup: Popup) => {
+				popup.anchor = popup.previousElementSibling as HTMLElement;
+				popup.placementStrategy = 'auto-placement-horizontal';
+				popup.open = true;
+			});
+		document
+			.querySelectorAll('#auto-placement-vertical-tests vwc-popup')
+			.forEach((popup: Popup) => {
+				popup.anchor = popup.previousElementSibling as HTMLElement;
+				popup.placementStrategy = 'auto-placement-vertical';
+				popup.open = true;
+			});
 	});
 
 	const testWrapper = await page.$('#wrapper');
 	await page.waitForLoadState('networkidle');
-	+expect(await testWrapper?.screenshot()).toMatchSnapshot(
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/popup.png'
 	);
 });
