@@ -4,6 +4,39 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.60.0...vivid-v4.0.0) (2024-07-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tooltip:** sets default max width (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798))
+* **data-grid-cell:** change default value of block-size and white-space (VIV-1797) ([#1793](https://github.com/Vonage/vivid-3/issues/1793))
+* **audio-player:** remove css-variable for min-inline-size and max-inline-size on host (VIV-1800) ([#1803](https://github.com/Vonage/vivid-3/issues/1803))
+* **vue-wrappers:** forward form values by DOM prop name (VIV-1798) ([#1789](https://github.com/Vonage/vivid-3/issues/1789))
+* **vue-wrappers:** forward form values by DOM prop name (VIV-1798)
+* **tabs:** change gutters default to small (VIV-1796) ([#1804](https://github.com/Vonage/vivid-3/issues/1804))
+* **docs:** refine docs for v-4 (VIV-000) ([#1813](https://github.com/Vonage/vivid-3/issues/1813))
+* **toggletip:** add max-inline-size of 30ch & css-variable for custom size (VIV-1846) ([#1814](https://github.com/Vonage/vivid-3/issues/1814))
+
+### Features
+
+* **audio-player:** remove css-variable for min-inline-size and max-inline-size on host (VIV-1800) ([#1803](https://github.com/Vonage/vivid-3/issues/1803)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+* **data-grid-cell:** change default value of block-size and white-space (VIV-1797) ([#1793](https://github.com/Vonage/vivid-3/issues/1793)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+* **toggletip:** add max-inline-size of 30ch & css-variable for custom size (VIV-1846) ([#1814](https://github.com/Vonage/vivid-3/issues/1814)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+* **tooltip:** sets default max width (VIV-1799) ([#1798](https://github.com/Vonage/vivid-3/issues/1798)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+* **vue-wrappers:** forward form values by DOM prop name (VIV-1798) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+* **vue-wrappers:** forward form values by DOM prop name (VIV-1798) ([#1789](https://github.com/Vonage/vivid-3/issues/1789)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+
+
+### Bug Fixes
+
+* **tabs:** change gutters default to small (VIV-1796) ([#1804](https://github.com/Vonage/vivid-3/issues/1804)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+
+
+### Miscellaneous Chores
+
+* **docs:** refine docs for v-4 (VIV-000) ([#1813](https://github.com/Vonage/vivid-3/issues/1813)) ([06ee68a](https://github.com/Vonage/vivid-3/commit/06ee68a6918612569f61a866716c1b1b96f1d1d6))
+
 ## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.59.0...vivid-v3.60.0) (2024-07-01)
 
 
