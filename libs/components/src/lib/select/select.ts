@@ -29,7 +29,7 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
- * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements
@@ -127,6 +127,19 @@ export class Select extends FoundationSelect {
 			this.selectedIndex = selectedIndex;
 			return;
 		}
+	}
+
+	/*
+	 * @internal
+	 */
+	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
+		super.slottedOptionsChanged(prev, next);
+
+		// Workaround for bug in FAST:
+		// Proxy value is set before options are added to proxy, which causes the value to be discarded
+		// Therefore, we need to set the value again and update validation
+		this.proxy.value = this.value;
+		this.validate();
 	}
 }
 

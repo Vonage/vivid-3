@@ -4,6 +4,10 @@
 		"markdown": "./libs/eslint-plugin/src/rules/no-deprecated-apis.md"
 	},
 	{
+		"name": "accessible-names",
+		"markdown": "./libs/eslint-plugin/src/rules/accessible-names.md"
+	},
+	{
 		"name": "no-inaccessible-events",
 		"markdown": "./libs/eslint-plugin/src/rules/no-inaccessible-events.md"
 	},
@@ -14,5 +18,13 @@
 	{
 		"name": "no-slot-attribute",
 		"markdown": "./libs/eslint-plugin/src/rules/no-slot-attribute.md"
+	},
+	{
+		"name": "no-value-attribute",
+		"markdown": "./libs/eslint-plugin/src/rules/no-value-attribute.md"
+	},
+	{
+		"name": "no-current-value-attribute",
+		"markdown": "./libs/eslint-plugin/src/rules/no-current-value-attribute.md"
 	}
 ]

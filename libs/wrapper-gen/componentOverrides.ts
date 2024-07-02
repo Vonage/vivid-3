@@ -34,5 +34,6 @@ ComponentRegister.addComponentOverride('data-grid', (component) => {
 		name: 'rowsData',
 		description: 'Array of objects representing the rows of the grid.',
 		type: [{ text: 'any[]', vuePropType: 'Array' }],
+		forwardTo: { type: 'property', name: 'rowsData' },
 	});
 });

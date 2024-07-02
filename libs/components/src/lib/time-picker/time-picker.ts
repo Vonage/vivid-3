@@ -55,7 +55,7 @@ const ValidTimeFilter: ValueConverter = {
  * @slot helper-text - Describes how to use the time-picker. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Emitted when the time is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the time is changed by the user.
- * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements
