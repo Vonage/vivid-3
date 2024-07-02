@@ -14,6 +14,10 @@
 		"markdown": "./docs/guides/localization.md"
 	},
 	{
+		"title": "ESLint Plugin",
+		"markdown": "./docs/guides/eslint-plugin.md"
+	},
+	{
 		"title": "V4 release Migration",
 		"markdown": "./docs/guides/v4-release-migration.md"
 	},
