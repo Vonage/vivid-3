@@ -141,6 +141,13 @@ export class Select extends FoundationSelect {
 		this.proxy.value = this.value;
 		this.validate();
 	}
+
+	override formResetCallback() {
+		super.formResetCallback();
+		if (this.placeholder) {
+			this.selectedIndex = -1;
+		}
+	}
 }
 
 export interface Select
