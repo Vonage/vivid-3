@@ -124,6 +124,19 @@ export class Button extends FoundationButton {
 	pending = false;
 
 	/**
+	 * Display a chevron to indicate that the button opens a dropdown.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: dropdown-indicator
+	 */
+	@attr({
+		mode: 'boolean',
+		attribute: 'dropdown-indicator',
+	})
+	dropdownIndicator = false;
+
+	/**
 	 * Displays the button in active state.
 	 *
 	 * @public

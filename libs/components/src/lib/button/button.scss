@@ -20,6 +20,7 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@import '../../shared/patterns/chevron';
 @include connotation.variables-backwards-compatibility(
 	'button',
 	'.control:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined)'
@@ -36,7 +37,7 @@
 	display: inline-flex;
 	box-sizing: border-box;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	border: 0 none;
 	border-radius: var(#{variables.$button-border-radius});
 	margin: 0;
@@ -80,20 +81,6 @@
 
 	&:disabled {
 		cursor: not-allowed;
-	}
-
-	&.icon-only {
-		contain: size;
-		padding-inline: 0;
-		place-content: center;
-
-		@supports (aspect-ratio: 1) {
-			aspect-ratio: 1;
-		}
-
-		@supports not (aspect-ratio: 1) {
-			inline-size: var(#{variables.$block-size});
-		}
 	}
 
 	/* Size */
@@ -170,9 +157,6 @@
 	}
 
 	&.stacked {
-		flex-direction: column;
-		justify-content: center;
-
 		&.size-super-condensed {
 			--stacked-size: #{size.$vvd-size-super-condensed};
 
@@ -228,13 +212,30 @@ slot[name='icon'] {
 		order: 1;
 	}
 
-	.control.stacked > & {
+	.control.stacked & {
 		font-size: calc(var(--stacked-size) / 2);
 	}
 
-	.control:not(.stacked) > & {
+	.control:not(.stacked) & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
 	}
+}
+
+.content {
+	display: flex;
+	overflow: hidden;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	gap: var(#{variables.$icon-gap});
+
+	.control.stacked & {
+		flex-direction: column;
+	}
+}
+
+.chevron {
+	flex-shrink: 0;
 }
 
 :host(:not([icon])) .pending {

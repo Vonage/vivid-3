@@ -9,9 +9,13 @@
 	#{variables.$block-size}: $block-size;
 
 	font: var(#{$font-face});
-	&:not(.icon-only) {
-		#{variables.$icon-gap}: $icon-gap;
 
+	#{variables.$icon-gap}: $icon-gap;
+
+	&.icon-only {
+		padding-inline: calc(var(#{variables.$block-size}) / 4);
+	}
+	&:not(.icon-only) {
 		padding-inline: $padding-inline;
 	}
 }

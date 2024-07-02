@@ -337,6 +337,27 @@ Semantically, buttons are usually used for triggering actions, while links are u
 ></vwc-button>
 ```
 
+### Dropdown Indicator
+
+When the button is used to trigger a menu or other dropdown, you can set `dropdown-indicator` to add a chevron to the button.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 200px
+<vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
+	<vwc-button
+		slot="anchor"
+		appearance="filled"
+		label="Menu"
+		dropdown-indicator
+	></vwc-button>
+	<vwc-menu-item icon="copy-line" text="Copy"></vwc-menu-item>
+	<vwc-menu-item icon="inbox-line" text="Share"></vwc-menu-item>
+	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>
+</vwc-menu>
+```
+
 ### Active
 
 Set the `active` attribute to make the button appear pressed.

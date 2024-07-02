@@ -19,6 +19,7 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
+import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from './select';
 
 const getStateClasses = ({
@@ -56,6 +57,7 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 
 function selectValue(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const chevronTemplate = chevronTemplateFactory(context);
 	return html<Select>` <div
 		class="control ${getStateClasses}"
 		${ref('_anchor')}
@@ -67,7 +69,7 @@ function selectValue(context: ElementDefinitionContext) {
 			<span class="text">${(x) => x.displayValue}</span>
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 		</div>
-		<span class="chevron">${() => affixIconTemplate('chevron-down-line')}</span>
+		${chevronTemplate}
 	</div>`;
 }
 

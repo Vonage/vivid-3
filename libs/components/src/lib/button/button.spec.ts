@@ -117,6 +117,21 @@ describe('vwc-button', () => {
 		});
 	});
 
+	describe('dropdown-indicator', () => {
+		const getChevron = () => element.shadowRoot?.querySelector('.chevron');
+
+		it('should not display a chevron if not set', async () => {
+			expect(getChevron()).toBe(null);
+		});
+
+		it('should display a chevron if set', async () => {
+			element.dropdownIndicator = true;
+			await elementUpdated(element);
+
+			expect(getChevron()).toBeInstanceOf(Element);
+		});
+	});
+
 	describe('active', () => {
 		it('should set active class when active is true', async () => {
 			element.active = true;
