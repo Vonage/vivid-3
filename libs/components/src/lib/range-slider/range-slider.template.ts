@@ -1,4 +1,4 @@
-import { html, ref, when } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
@@ -68,10 +68,9 @@ export const RangeSliderTemplate: (
 					(x) => x.pin,
 					html<RangeSlider>`<${popupTag}
 					class="popup"
-					id="popup"
+					id="start-popup"
 					arrow
 					alternate
-					:anchor="${(x) => x.shadowRoot!.getElementById('start-thumb')}"
 					:open=${(x) => x._isThumbPopupOpen('start')}
 					:placementStrategy=${(x) =>
 						x.orientation === Orientation.horizontal
@@ -85,7 +84,7 @@ export const RangeSliderTemplate: (
 				</${popupTag}>`
 				)}
 				<div
-					${ref('_endThumbEl')}
+					id="end-thumb"
 					class="${getThumbClassesFor('end')}"
 					style="${(x) => x._endThumbCss}"
 					role="slider"
@@ -103,9 +102,9 @@ export const RangeSliderTemplate: (
 					(x) => x.pin,
 					html<RangeSlider>`<${popupTag}
 					class="popup"
+					id="end-popup"
 					arrow
 					alternate
-					:anchor="${(x) => x._endThumbEl}"
 					:open=${(x) => x._isThumbPopupOpen('end')}
 					:placementStrategy=${(x) =>
 						x.orientation === Orientation.horizontal

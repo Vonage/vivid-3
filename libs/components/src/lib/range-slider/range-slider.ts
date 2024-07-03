@@ -1,5 +1,5 @@
 import {
-	attr,
+	attr, DOM,
 	nullableNumberConverter,
 	observable,
 } from '@microsoft/fast-element';
@@ -25,6 +25,7 @@ import {
 import { FormAssociatedRangeSlider } from './range-slider.form-associated';
 import { roundToStepValue } from './utils/roundToStepValue';
 import { inverseLerp, lerp } from './utils/lerp';
+import {Popup} from "../popup/popup";
 
 export type RangeSliderConnotation = Connotation.Accent | Connotation.CTA;
 
@@ -329,6 +330,13 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	 */
 	@attr({ mode: 'boolean' }) pin = false;
 
+	pinChanged(oldValue, newValue) {
+		if(newValue) {
+			DOM.queueUpdate( _=> {(this.shadowRoot.getElementById('start-popup') as Popup).anchor=this.#startThumbEl!});
+			DOM.queueUpdate( _=> {(this.shadowRoot.getElementById('end-popup') as Popup).anchor=this.#endThumbEl!});
+		}
+	}
+
 	/**
 	 * Custom function that generates a string for the component's "aria-valuetext" attribute based on the current value.
 	 *
@@ -367,23 +375,18 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	}
 
 	// --- Thumbs ---
-
-	/**
-	 * @internal
-	 */
 	get #startThumbEl(): HTMLDivElement | null {
 		return this.shadowRoot!.getElementById('start-thumb') as HTMLDivElement;
 	}
 
-	/**
-	 * @internal
-	 */
-	_endThumbEl: HTMLDivElement | null = null;
+	get #endThumbEl(): HTMLDivElement | null {
+		return this.shadowRoot!.getElementById('end-thumb') as HTMLDivElement;
+	}
 
 	get #thumbs() {
 		return {
 			start: this.#startThumbEl,
-			end: this._endThumbEl,
+			end: this.#endThumbEl,
 		};
 	}
 
@@ -623,7 +626,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 		let target = event.target as HTMLElement;
 		if (
-			target === this._endThumbEl &&
+			target === this.#endThumbEl &&
 			this.startAsNumber === this.max &&
 			this.endAsNumber === this.max
 		) {
