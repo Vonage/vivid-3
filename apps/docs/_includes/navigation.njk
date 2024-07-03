@@ -15,7 +15,6 @@
                         <vwc-nav-item href="{{ ('/whats-new/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/whats-new/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
                     {% endif %}
                 {% endfor %}
-                <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
         </vwc-nav-disclosure>
         <vwc-nav-disclosure appearance="ghost-light" label="Getting Started" {% if page.url.includes('/getting-started/') %} open aria-current="true" {% endif %}>
             {% for item in introduction %}
@@ -31,7 +30,6 @@
                 {% for item in accessibility %}
                         <vwc-nav-item appearance="ghost-light" href="{{ ('/accessibility/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/accessibility/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
                 {% endfor %}
-                <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
         </vwc-nav-disclosure>
         <vwc-nav-disclosure appearance="ghost-light" label="Design Tokens" {% if page.url.includes('/designs/') %} open aria-current="true" {% endif %}>
             {% for item in designs | publicPageFilter %}
@@ -45,11 +43,6 @@
                 </vwc-nav-item>
             {% endfor %}
         </vwc-nav-disclosure>
-        {% if isDevBuild %}
-					<vwc-nav-item href="{{ '/eslint-plugin' | url }}/" text="ESLint Plugin" {% if '/eslint-plugin/' == page.url %} aria-current="page" {% endif %}>
-							<vwc-badge slot="meta" text="alpha" connotation="warning" appearance="subtle" shape="pill"></vwc-badge>
-					</vwc-nav-item>
-				{% endif %}
         <vwc-nav-item appearance="ghost-light" href="{{ ('/icons/icons-gallery') | url }}/" text="Icons Gallery" {% if ('/icons/icons-gallery/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
         <vwc-divider></vwc-divider>
         <vwc-nav-disclosure appearance="ghost-light" label="Components" open {% if page.url.includes('/components/') %} aria-current="true" {% endif %}>
@@ -83,7 +76,6 @@
             {% endfor %}
         </vwc-nav-disclosure>
          <vwc-nav-disclosure appearance="ghost-light" label="Resources" {% if page.url.includes('/resources/') %} open aria-current="true" {% endif %}>
-            <vwc-badge slot="meta" text="new" connotation="cta" appearance="subtle" shape="pill"></vwc-badge>
             {% for item in resources %}
                     <vwc-nav-item appearance="ghost-light" href="{{ ('/resources/' + (item | pageSlug)) | url }}/" text="{{ item.title }}" {% if ('/resources/' + (item | pageSlug) + '/') == page.url %} aria-current="page" {% endif %}></vwc-nav-item>
             {% endfor %}

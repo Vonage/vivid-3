@@ -53,7 +53,8 @@ export class Tab extends FoundationTab {
 	 */
 	@attr label?: string;
 
-	@attr({ mode: 'fromView' }) override tabIndex: any = '-1';
+	@attr({ mode: 'fromView' }) override tabIndex: number =
+		'-1' as unknown as number;
 
 	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null =
 		null;

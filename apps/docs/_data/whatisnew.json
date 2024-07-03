@@ -2,7 +2,12 @@
 	{
 		"title": "Monthly Updates",
 		"markdown": "./docs/whats-new/monthly-updates/may-2024.md",
-		"children": ["May 2024", "April 2024", "March 2024"]
+		"children": ["June 2024", "May 2024", "April 2024", "March 2024"]
+	},
+	{
+		"title": "June 2024",
+		"markdown": "./docs/whats-new/monthly-updates/june-2024.md",
+		"parent": ["Monthly Updates"]
 	},
 	{
 		"title": "May 2024",

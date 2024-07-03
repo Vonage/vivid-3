@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { Connotation, TabsSize } from '../enums';
+import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
 import { Tabs } from './tabs';
 import '.';
@@ -239,11 +239,13 @@ describe('vwc-tabs', () => {
 	});
 
 	describe('gutters', () => {
-		it('should set gutters property', async () => {
-			const gutters = TabsSize.Small;
-			expect(getBaseElement(element).classList.toString()).not.toContain(
-				`gutters-${gutters}`
+		it('should set class .gutters-small on .base as default and if no gutters are set', async () => {
+			expect(getBaseElement(element).classList.toString()).toContain(
+				`gutters-small`
 			);
+		});
+		it('should set gutters class on .base', async () => {
+			const gutters = TabsGutters.None;
 			element.gutters = gutters;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.toString()).toContain(
