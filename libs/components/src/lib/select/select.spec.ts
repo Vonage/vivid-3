@@ -613,6 +613,28 @@ describe('vwc-select', () => {
 
 			expect(element.validity.valid).toBe(false);
 		});
+
+		it('should display placeholder if form resets and placeholder exists', async () => {
+			const placeholderText = 'placeholder';
+			const form = (await fixture(
+				`<form><${COMPONENT_TAG} name="select" required placeholder="${placeholderText}">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}></form>`
+			)) as HTMLFormElement;
+			element = form.children[0] as Select;
+			element.selectedIndex = 1;
+			await elementUpdated(element);
+
+			form.reset();
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(-1);
+			expect(
+				element.shadowRoot?.querySelector('.selected-value .text')?.textContent
+			).toBe(placeholderText);
+		});
 	});
 
 	describe('feedback messages', () => {
