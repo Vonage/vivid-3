@@ -301,7 +301,7 @@ export function errorText<
 		}
 
 		#clearCustomErrorAndRevalidate() {
-			this.setValidity({ customError: false }, '', this.control);
+			this.setValidity({}, '', this.control);
 			this.#blockValidateCalls = false;
 
 			this.validate();
