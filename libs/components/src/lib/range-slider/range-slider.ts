@@ -330,10 +330,12 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	 */
 	@attr({ mode: 'boolean' }) pin = false;
 
-	pinChanged(oldValue, newValue) {
+	pinChanged(_: boolean, newValue: boolean) {
 		if(newValue) {
-			DOM.queueUpdate( _=> {(this.shadowRoot.getElementById('start-popup') as Popup).anchor=this.#startThumbEl!});
-			DOM.queueUpdate( _=> {(this.shadowRoot.getElementById('end-popup') as Popup).anchor=this.#endThumbEl!});
+			DOM.queueUpdate( _=> {
+				(this.shadowRoot!.getElementById('start-popup') as Popup).anchor=this.#startThumbEl!;
+				(this.shadowRoot!.getElementById('end-popup') as Popup).anchor=this.#endThumbEl!;
+			});
 		}
 	}
 
