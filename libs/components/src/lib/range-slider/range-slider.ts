@@ -371,12 +371,9 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	/**
 	 * @internal
 	 */
-	_trackEl: HTMLDivElement | null = null;
-
-	/**
-	 * @internal
-	 */
-	_startThumbEl: HTMLDivElement | null = null;
+	get #startThumbEl(): HTMLDivElement | null {
+		return this.shadowRoot!.getElementById('start-thumb') as HTMLDivElement;
+	}
 
 	/**
 	 * @internal
@@ -385,7 +382,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 	get #thumbs() {
 		return {
-			start: this._startThumbEl,
+			start: this.#startThumbEl,
 			end: this._endThumbEl,
 		};
 	}
@@ -413,7 +410,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	@observable _hoveredThumb: ThumbId | null = null;
 
 	#getThumbId(thumb: HTMLElement): ThumbId {
-		return thumb === this._startThumbEl ? 'start' : 'end';
+		return thumb === this.#startThumbEl ? 'start' : 'end';
 	}
 
 	#getThumbIdFromEvent(e: Event): ThumbId {
@@ -460,12 +457,13 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 
 	#calculateValueFromMouseEvent(e: Pick<MouseEvent, 'pageX' | 'pageY'>) {
 		// Determine the position in pixel space
-		const trackClientRect = this._trackEl!.getBoundingClientRect();
+		const trackEl = this.shadowRoot!.getElementById('track');
+		const trackClientRect = trackEl!.getBoundingClientRect();
 		const [minPos, maxPos, valuePos] =
 			this.orientation === Orientation.horizontal
 				? [
-						this._trackEl!.clientLeft,
-						this._trackEl!.clientWidth,
+						trackEl!.clientLeft,
+						trackEl!.clientWidth,
 						e.pageX -
 							document.documentElement.scrollLeft -
 							this.getBoundingClientRect().left,
@@ -630,7 +628,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 			this.endAsNumber === this.max
 		) {
 			// Prevent both thumbs getting stuck at the max value
-			target = this._startThumbEl!;
+			target = this.#startThumbEl!;
 		}
 		this.#focusThumbNonVisibly(target);
 		this._draggingThumb = this.#getThumbId(target);

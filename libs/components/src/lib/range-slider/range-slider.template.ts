@@ -38,7 +38,7 @@ export const RangeSliderTemplate: (
 	>
 		<div class="${getClasses} ${(x) => x.orientation}">
 			<div class="positioning-region">
-				<div ${ref('_trackEl')} class="track">
+				<div id="track" class="track">
 					<div class="track-start" style="${(x) => x._selectedRangeCss}"></div>
 					${when(
 						(x) => x.markers,
@@ -50,7 +50,7 @@ export const RangeSliderTemplate: (
 					)}
 				</div>
 				<div
-					${ref('_startThumbEl')}
+					id="start-thumb"
 					class="${getThumbClassesFor('start')}"
 					style="${(x) => x._startThumbCss}"
 					role="slider"
@@ -68,9 +68,10 @@ export const RangeSliderTemplate: (
 					(x) => x.pin,
 					html<RangeSlider>`<${popupTag}
 					class="popup"
+					id="popup"
 					arrow
 					alternate
-					:anchor="${(x) => x._startThumbEl}"
+					:anchor="${(x) => x.shadowRoot!.getElementById('start-thumb')}"
 					:open=${(x) => x._isThumbPopupOpen('start')}
 					:placementStrategy=${(x) =>
 						x.orientation === Orientation.horizontal
