@@ -122,6 +122,14 @@ export class DocsSearch extends FASTElement {
 			element: '#pagefind-container',
 			showSubResults: true,
 			showImages: false,
+			ranking: {
+				// Reduce how much shorter pages are ranked higher
+				pageLength: 0.1,
+				// Increase similarity to require closer match to search terms
+				termSimilarity: 5,
+				// Increase saturation to boost pages with high term frequencies
+				termSaturation: 2,
+			},
 			processResult: (result: unknown) => {
 				setTimeout(() => {
 					window.htmx.process(pagefindContainer);
