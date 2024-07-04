@@ -1,3 +1,5 @@
+import 'element-internals-polyfill';
+
 import {
 	axe,
 	createFormHTML,
@@ -21,11 +23,6 @@ const COMPONENT_TAG_NAME = 'vwc-number-field';
 describe('vwc-number-field', () => {
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
-	}
-
-	function setValidityToError(errorMessage = 'error') {
-		element.setValidity({ badInput: true }, errorMessage);
-		element.validate();
 	}
 
 	let element: NumberField;
@@ -253,10 +250,10 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('error message', function () {
-		it('should add class error to base if not valid', async function () {
-			element.dirtyValue = true;
+		it('should add class error to base if not valid and blurred', async function () {
+			element.max = 6;
+			element.valueAsNumber = 7;
 			setToBlurred();
-			setValidityToError('blah');
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
