@@ -577,17 +577,12 @@ describe('vwc-select', () => {
 					.querySelector('.selected-value')
 					?.textContent?.trim()
 			).toEqual('placeholder');
-
-			element.selectedIndex = 2;
-			await elementUpdated(element);
-			expect(
-				getControlElement(element)
-					.querySelector('.selected-value')
-					?.textContent?.trim()
-			).toEqual('3');
+			expect(getControlElement(element).classList).toContain(
+				'shows-placeholder'
+			);
 		});
 
-		it('should display the value of the selected option and not the placeholder', async () => {
+		it('should display a selected option instead of the placeholder', async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG} placeholder="placeholder">
 					<option value="1">1</option>
@@ -602,6 +597,9 @@ describe('vwc-select', () => {
 					.querySelector('.selected-value')
 					?.textContent?.trim()
 			).toEqual('2');
+			expect(getControlElement(element).classList).not.toContain(
+				'shows-placeholder'
+			);
 		});
 
 		it('should be invalid if required and no value selected', async () => {
@@ -614,6 +612,28 @@ describe('vwc-select', () => {
 			)) as Select;
 
 			expect(element.validity.valid).toBe(false);
+		});
+
+		it('should display placeholder if form resets and placeholder exists', async () => {
+			const placeholderText = 'placeholder';
+			const form = (await fixture(
+				`<form><${COMPONENT_TAG} name="select" required placeholder="${placeholderText}">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}></form>`
+			)) as HTMLFormElement;
+			element = form.children[0] as Select;
+			element.selectedIndex = 1;
+			await elementUpdated(element);
+
+			form.reset();
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(-1);
+			expect(
+				element.shadowRoot?.querySelector('.selected-value .text')?.textContent
+			).toBe(placeholderText);
 		});
 	});
 

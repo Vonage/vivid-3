@@ -29,6 +29,8 @@ const getStateClasses = ({
 	metaSlottedContent,
 	errorValidationMessage,
 	successText,
+	placeholder,
+	value,
 }: Select) =>
 	classNames(
 		['disabled', disabled],
@@ -37,7 +39,8 @@ const getStateClasses = ({
 		['has-meta', Boolean(metaSlottedContent?.length)],
 		['error', Boolean(errorValidationMessage)],
 		['success', !!successText],
-		['has-meta', Boolean(metaSlottedContent?.length)]
+		['has-meta', Boolean(metaSlottedContent?.length)],
+		['shows-placeholder', Boolean(placeholder) && !value]
 	);
 
 function renderLabel() {

@@ -32,10 +32,6 @@ const STEP_DIRECTION = {
 	down: -1,
 };
 
-const PROXY_REFLECTED_ATTRIBUTES = {
-	max: true,
-	min: true,
-};
 function makeStep(element: NumberField, direction: number) {
 	const value = parseFloat(element.value);
 	const stepUpValue = !isNaN(value)
@@ -173,6 +169,8 @@ export class NumberField extends FormAssociatedNumberField {
 	 */
 	maxChanged(_: number, next: number) {
 		this.max = Math.max(next, this.min ?? next);
+		this.proxy.max = this.max.toString();
+		this.validate();
 	}
 
 	/**
@@ -192,6 +190,8 @@ export class NumberField extends FormAssociatedNumberField {
 	 */
 	minChanged(_: number, next: number) {
 		this.min = Math.min(next, this.max ?? next);
+		this.proxy.min = this.min.toString();
+		this.validate();
 	}
 
 	/**
@@ -401,17 +401,6 @@ export class NumberField extends FormAssociatedNumberField {
 	@attr appearance?: NumberFieldAppearance;
 	@attr shape?: NumberFieldShape;
 	@attr autoComplete?: string;
-
-	override attributeChangedCallback(
-		name: string,
-		previous: string,
-		next: string
-	) {
-		super.attributeChangedCallback(name, previous, next);
-		if ((<any>PROXY_REFLECTED_ATTRIBUTES)[name]) {
-			this.proxy.setAttribute(name, next);
-		}
-	}
 }
 
 export interface NumberField

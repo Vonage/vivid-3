@@ -115,7 +115,7 @@ $low-ink-color: --_low-ink-color;
 		max-inline-size: 100%;
 		text-overflow: ellipsis;
 
-		:host([placeholder]) & {
+		.control.shows-placeholder & {
 			color: var(#{constants.$vvd-color-neutral-600});
 		}
 	}
