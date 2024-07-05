@@ -234,9 +234,6 @@ slot[name='icon'] {
 	}
 }
 
-.chevron {
-	flex-shrink: 0;
-}
 
 :host(:not([icon])) .pending {
 	position: absolute;
