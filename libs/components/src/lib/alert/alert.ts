@@ -9,6 +9,7 @@ export type AlertConnotation =
 	| Connotation.Information
 	| Connotation.Success
 	| Connotation.Warning
+	| Connotation.Announcement
 	| Connotation.Alert;
 
 const connotationIconMap = new Map([
@@ -16,6 +17,7 @@ const connotationIconMap = new Map([
 	[Connotation.Information, 'info-line'],
 	[Connotation.Success, 'check-circle-line'],
 	[Connotation.Warning, 'warning-line'],
+	[Connotation.Announcement, 'sparkles-line'],
 	[Connotation.Alert, 'error-line'],
 ]);
 

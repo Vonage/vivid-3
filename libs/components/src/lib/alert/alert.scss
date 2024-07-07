@@ -3,7 +3,7 @@
 	border-radius-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent success information alert warning,
+	$connotations: accent success information alert warning announcement,
 	$shades: primary primary-text,
 	$default: accent
 );
