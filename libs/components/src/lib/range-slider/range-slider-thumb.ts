@@ -1,6 +1,4 @@
 import {
-	attr,
-	FASTElement,
 	html,
 	observable,
 	ref,
@@ -10,9 +8,13 @@ import {
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { PlacementStrategy, Popup } from '../popup/popup';
+import {
+	PlacementStrategy,
+	type PlacementStrategyId,
+	Popup,
+} from '../popup/popup';
 import type { ThumbId } from './range-slider';
-import {RangeSlider} from "./range-slider";
+import { RangeSlider } from './range-slider';
 
 // TODO: take care of visibilyFocusedThumb
 const getThumbClassesFor =
@@ -56,7 +58,8 @@ export const RangeSliderThumbTemplate: (
       exportparts="vvd-theme-alternate"
       aria-hidden="true"
     >
-      <div class="tooltip">${(x) => x.rangeSlider.valueTextFormatter(x.value)}</div>
+      <div class="tooltip">${(x) =>
+				x.rangeSlider.valueTextFormatter(x.value)}</div>
     </${popupTag}>`
 		)}
 	`;
@@ -65,12 +68,21 @@ export const RangeSliderThumbTemplate: (
 export class RangeSliderThumb extends FoundationElement {
 	thumb: HTMLDivElement | null = null;
 	popup: HTMLDivElement | null = null;
-	@observable placementStrategy: PlacementStrategy;
+	@observable placementStrategy: PlacementStrategyId =
+		PlacementStrategy.AutoPlacementHorizontal;
 	@observable thumbCss = '';
 	@observable value = '';
-	@observable min? : number;
-	@observable max? : number;
+	@observable min?: number;
+	@observable max?: number;
 	@observable label = '';
-	rangeSlider: RangeSlider;
+	rangeSlider!: RangeSlider;
+	@observable _draggingThumb = false;
+	@observable _visiblyFocusedThumb = false;
+	@observable _hoveredThumb = false;
 
+	get _isThumbPopupOpen() {
+		return (
+			this._visiblyFocusedThumb || this._hoveredThumb || this._draggingThumb
+		);
+	}
 }

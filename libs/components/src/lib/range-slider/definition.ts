@@ -4,7 +4,10 @@ import { popupRegistries } from '../popup/definition';
 import styles from './range-slider.scss?inline';
 import { RangeSlider } from './range-slider';
 import { RangeSliderTemplate as template } from './range-slider.template';
-import { RangeSliderThumb, RangeSliderThumbTemplate } from './range-slider-thumb';
+import {
+	RangeSliderThumb,
+	RangeSliderThumbTemplate,
+} from './range-slider-thumb';
 
 export const rangeSliderDefinition =
 	RangeSlider.compose<FoundationElementDefinition>({
@@ -16,7 +19,7 @@ export const rangeSliderDefinition =
 		},
 	});
 
-	export const rangeSliderThumbDefinition =
+export const rangeSliderThumbDefinition =
 	RangeSliderThumb.compose<FoundationElementDefinition>({
 		baseName: 'range-slider-thumb',
 		template: RangeSliderThumbTemplate as any,
