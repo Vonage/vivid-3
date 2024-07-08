@@ -1,5 +1,6 @@
 import type { ESLint } from 'eslint';
 import { noDeprecatedAPIs } from './rules/no-deprecated-apis';
+import { accessibleNames } from './rules/accessible-names';
 import { noInaccessibleEvents } from './rules/no-inaccessible-events';
 import { noAnchorAttribute } from './rules/no-anchor-attribute';
 import { noSlotAttribute } from './rules/no-slot-attribute';
@@ -12,6 +13,7 @@ const eslintPluginVivid: ESLint.Plugin = {
 			plugins: ['@vonage/vivid'],
 			rules: {
 				'@vonage/vivid/no-deprecated-apis': 'error',
+				'@vonage/vivid/accessible-names': 'error',
 				'@vonage/vivid/no-inaccessible-events': 'error',
 				'@vonage/vivid/no-anchor-attribute': 'error',
 				'@vonage/vivid/no-slot-attribute': 'error',
@@ -22,6 +24,7 @@ const eslintPluginVivid: ESLint.Plugin = {
 	},
 	rules: {
 		'no-deprecated-apis': noDeprecatedAPIs,
+		'accessible-names': accessibleNames,
 		'no-inaccessible-events': noInaccessibleEvents,
 		'no-anchor-attribute': noAnchorAttribute,
 		'no-slot-attribute': noSlotAttribute,
