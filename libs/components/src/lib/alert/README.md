@@ -62,7 +62,7 @@ Use the `open` attribute to toggle the alert open state.
 
 Use the `connotation` attribute to change the alert's icon and icon color.
 
-- Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'`
+- Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'` | `'announcement'`
 - Default: `undefined`
 
 Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
@@ -85,6 +85,7 @@ Note that each connotation comes with a default icon (that you can override with
 	<vwc-option value="warning" text="warning"></vwc-option>
 	<vwc-option value="alert" text="alert"></vwc-option>
 	<vwc-option value="information" text="information"></vwc-option>
+	<vwc-option value="announcement" text="announcement"></vwc-option>
 </vwc-select>
 
 <script>
