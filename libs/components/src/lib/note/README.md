@@ -45,7 +45,7 @@ Add a `icon='icon-name'` attribute to set a decorative icon.
 Set the `connotation` attribute to change the note's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'success'` | `'alert'` | `'warning'` | `'information'`
+- Type: `'accent'` | `'success'` | `'alert'` | `'warning'` | `'information'` | `'announcement'`
 - Default: `'accent'`
 
 ```html preview blocks
@@ -68,6 +68,11 @@ It accepts a subset of predefined values.
 	connotation="information"
 	icon="info-solid"
 	headline="information note"
+></vwc-note>
+<vwc-note
+	connotation="announcement"
+	icon="sparkles-solid"
+	headline="announcement note"
 ></vwc-note>
 <vwc-note
 	connotation="accent"
