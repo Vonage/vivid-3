@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.0.0...vivid-v4.1.0) (2024-07-08)
+
+
+### Features
+
+* **alert:** add announcement connotation (VIV-1830) ([#1840](https://github.com/Vonage/vivid-3/issues/1840)) ([b1a980f](https://github.com/Vonage/vivid-3/commit/b1a980fae03f3232b2a7b2d3d15a45c2a024d3a4))
+* **note:** add announcement connotation (VIV-1829) ([#1839](https://github.com/Vonage/vivid-3/issues/1839)) ([9202a3d](https://github.com/Vonage/vivid-3/commit/9202a3d8ae8e69229e95aeccf19874909de93163))
+
+
+### Bug Fixes
+
+* **audio-player:** hide menu when playback rates are not set (VIV-1845) ([#1815](https://github.com/Vonage/vivid-3/issues/1815)) ([f0e32d1](https://github.com/Vonage/vivid-3/commit/f0e32d1584f24f52c3a16ef8a999f52f309543e4))
+* **badge:** centers text inside badge (VIV-1824) ([#1841](https://github.com/Vonage/vivid-3/issues/1841)) ([8be57da](https://github.com/Vonage/vivid-3/commit/8be57da6eef2b433fe001f498d5d76f0b85e5d5c))
+* **number-field:** fix not updating validation after min/max change (VIV-1842) ([5afde52](https://github.com/Vonage/vivid-3/commit/5afde52660594af06e8a18f63facdc312561b4e3))
+* **number-field:** update validation after min/max change (VIV-1842) ([#1833](https://github.com/Vonage/vivid-3/issues/1833)) ([5afde52](https://github.com/Vonage/vivid-3/commit/5afde52660594af06e8a18f63facdc312561b4e3))
+* **select:** fix text color (VIV-1851) ([#1835](https://github.com/Vonage/vivid-3/issues/1835)) ([4e04daa](https://github.com/Vonage/vivid-3/commit/4e04daa157948d13192534b5f0a667dc8b64ff86))
+* **select:** reset form clears selected value if placeholder exists (VIV-1841) ([#1831](https://github.com/Vonage/vivid-3/issues/1831)) ([1faa01b](https://github.com/Vonage/vivid-3/commit/1faa01be71cf220ccb1fc0c6302e86f6e63469fd))
+
 ## [4.0.0](https://github.com/Vonage/vivid-3/compare/vivid-v3.60.0...vivid-v4.0.0) (2024-07-01)
 
 
