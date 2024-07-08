@@ -9,6 +9,7 @@ import {
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import { PlacementStrategy, Popup } from '../popup/popup';
 import type { ThumbId } from './range-slider';
 import {RangeSlider} from "./range-slider";
@@ -34,16 +35,16 @@ export const RangeSliderThumbTemplate: (
 			role="slider"
 			tabindex="${(x) => (x.rangeSlider.disabled ? null : 0)}"
 			aria-label="${(x) =>
-				x.rangeSlider.ariaStartLabel || x.locale.rangeSlider.startThumbLabel}"
-			aria-valuetext="${(x) => x.valueTextFormatter(x.start)}"
-			aria-valuenow="${(x) => x.start}"
+				x.label || x.rangeSlider.locale.rangeSlider.startThumbLabel}"
+			aria-valuetext="${(x) => x.rangeSlider.valueTextFormatter(x.value)}"
+			aria-valuenow="${(x) => x.value}"
 			aria-valuemin="${(x) => x.min}"
-			aria-valuemax="${(x) => x.end}"
-			aria-disabled="${(x) => x.disabled}"
-			aria-orientation="${(x) => x.orientation}"
+			aria-valuemax="${(x) => x.max}"
+			aria-disabled="${(x) => x.rangeSlider.disabled}"
+			aria-orientation="${(x) => x.rangeSlider.orientation}"
 		></div>
 		${when(
-			(x) => x.pin,
+			(x) => x.rangeSlider.pin,
 			html<RangeSliderThumb>`<${popupTag}
       class='popup'
       ${ref('popup')}
@@ -55,17 +56,21 @@ export const RangeSliderThumbTemplate: (
       exportparts="vvd-theme-alternate"
       aria-hidden="true"
     >
-      <div class="tooltip">${(x) => x.valueTextFormatter(x.start)}</div>
+      <div class="tooltip">${(x) => x.rangeSlider.valueTextFormatter(x.value)}</div>
     </${popupTag}>`
 		)}
 	`;
 };
 
-export class RangeSliderThumb extends FASTElement {
+export class RangeSliderThumb extends FoundationElement {
 	thumb: HTMLDivElement | null = null;
 	popup: HTMLDivElement | null = null;
 	@observable placementStrategy: PlacementStrategy;
-	@observable 'thumbCss';
+	@observable thumbCss = '';
+	@observable value = '';
+	@observable min? : number;
+	@observable max? : number;
+	@observable label = '';
 	rangeSlider: RangeSlider;
 
 }
