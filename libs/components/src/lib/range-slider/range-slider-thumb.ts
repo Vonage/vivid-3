@@ -1,4 +1,5 @@
 import {
+	attr,
 	FASTElement,
 	html,
 	observable,
@@ -10,6 +11,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { PlacementStrategy, Popup } from '../popup/popup';
 import type { ThumbId } from './range-slider';
+import {RangeSlider} from "./range-slider";
 
 // TODO: take care of visibilyFocusedThumb
 const getThumbClassesFor =
@@ -28,11 +30,11 @@ export const RangeSliderThumbTemplate: (
 		<div
 			${ref('thumb')}
 			class="${getThumbClassesFor('start')}"
-			style="${(x) => x._startThumbCss}"
+			style="${(x) => x.thumbCss}"
 			role="slider"
-			tabindex="${(x) => (x.disabled ? null : 0)}"
+			tabindex="${(x) => (x.rangeSlider.disabled ? null : 0)}"
 			aria-label="${(x) =>
-				x.ariaStartLabel || x.locale.rangeSlider.startThumbLabel}"
+				x.rangeSlider.ariaStartLabel || x.locale.rangeSlider.startThumbLabel}"
 			aria-valuetext="${(x) => x.valueTextFormatter(x.start)}"
 			aria-valuenow="${(x) => x.start}"
 			aria-valuemin="${(x) => x.min}"
@@ -63,4 +65,7 @@ export class RangeSliderThumb extends FASTElement {
 	thumb: HTMLDivElement | null = null;
 	popup: HTMLDivElement | null = null;
 	@observable placementStrategy: PlacementStrategy;
+	@observable 'thumbCss';
+	rangeSlider: RangeSlider;
+
 }
