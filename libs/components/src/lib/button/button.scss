@@ -211,7 +211,11 @@ slot[name='icon'] {
 		display: flex;
 		order: 1;
 	}
+}
 
+/* stylelint-disable-next-line no-descending-specificity */
+slot[name='icon'],
+.chevron {
 	.control.stacked & {
 		font-size: calc(var(--stacked-size) / 2);
 	}
