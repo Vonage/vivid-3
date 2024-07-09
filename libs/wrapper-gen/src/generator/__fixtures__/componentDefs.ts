@@ -102,6 +102,20 @@ export const exampleComponent: ComponentDef = {
 				},
 			],
 		},
+		{
+			name: 'boolean-attribute',
+			forwardTo: {
+				type: 'attribute',
+				name: 'boolean-attribute',
+				boolean: true,
+			},
+			type: [
+				{
+					text: 'boolean',
+					vuePropType: 'Boolean',
+				},
+			],
+		},
 	],
 	events: [
 		{
