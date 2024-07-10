@@ -153,10 +153,22 @@ export const renderComponent = (
 						? `^${forwardTo.name}`
 						: `.${forwardTo.name}`;
 
+				// Vue 2 and 3 differ in how they handle boolean attributes
+				// Remove false attributes in Vue 3 to make it behave like Vue 2
+				const booleanFilter =
+					forwardTo.type === 'attribute' &&
+					forwardTo.boolean &&
+					syntax === 'vue3'
+						? ` && (${valueToUse}) !== false`
+						: '';
+
 				// Vue requires us to filter out undefined properties before passing them into the h function
-				return `...(${valueToUse} !== undefined ? {'${nameToUse}': ${valueToUse} } : {})`;
+				const filter = `(${valueToUse}) !== undefined${booleanFilter}`;
+
+				return `...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`;
 			})
 			.join(',');
+
 	const propsV3Src = renderProps(attributes, 'vue3');
 
 	const propsV2Src = renderProps(
