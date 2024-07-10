@@ -37,7 +37,9 @@ export default defineComponent({
 
         start: {type: String as PropType<string>, default: undefined},
 
-        forcedDomProp: {type: String as PropType<string>, default: undefined}
+        forcedDomProp: {type: String as PropType<string>, default: undefined},
+
+        booleanAttribute: {type: Boolean as PropType<boolean>, default: undefined}
   },
   emits: [
 			
@@ -86,9 +88,9 @@ export default defineComponent({
     if (isVue2) {
         return h(this.componentName, {
             ref: 'element',
-            attrs: { ...(this.exampleAttribute !== undefined ? {'example-attribute': this.exampleAttribute } : {}),...(this.typeUnion !== undefined ? {'type-union': this.typeUnion } : {}),...(this.modelValue ?? this.value !== undefined ? {'value': this.modelValue ?? this.value } : {}),...(this.start !== undefined ? {'start': this.start } : {}) },
+            attrs: { ...((this.exampleAttribute) !== undefined ? {'example-attribute': this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.modelValue ?? this.value) !== undefined ? {'value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanAttribute) !== undefined ? {'boolean-attribute': this.booleanAttribute } : {}) },
             class: 'vvd-component',
-            domProps: { ...(this.importedType !== undefined ? {'importedType': this.importedType } : {}),...(this.forcedDomProp !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
+            domProps: { ...((this.importedType) !== undefined ? {'importedType': this.importedType } : {}),...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
             on: { 'example-event': (event: Event) => this.$emit('example-event', event),'input': (event: Event) => {
           this.$emit('update:modelValue', (event.target as any).value);
           this.$emit('input', event);
@@ -107,7 +109,7 @@ export default defineComponent({
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          ...(this.exampleAttribute !== undefined ? {'^example-attribute': this.exampleAttribute } : {}),...(this.typeUnion !== undefined ? {'^type-union': this.typeUnion } : {}),...(this.importedType !== undefined ? {'.importedType': this.importedType } : {}),...(this.modelValue ?? this.value !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...(this.start !== undefined ? {'^start': this.start } : {}),...(this.forcedDomProp !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),'onExampleEvent': (event: Event) => this.$emit('example-event', event),'onInput': (event: Event) => {
+          ...((this.exampleAttribute) !== undefined ? {'^example-attribute': this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.importedType) !== undefined ? {'.importedType': this.importedType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanAttribute) !== undefined && (this.booleanAttribute) !== false ? {'^boolean-attribute': this.booleanAttribute } : {}),'onExampleEvent': (event: Event) => this.$emit('example-event', event),'onInput': (event: Event) => {
           this.$emit('update:modelValue', (event.target as any).value);
           this.$emit('input', event);
         },'onInput:start': (event: Event) => {
@@ -165,7 +167,9 @@ export default defineComponent({
 
         start: {type: String as PropType<string>, default: undefined},
 
-        forcedDomProp: {type: String as PropType<string>, default: undefined}
+        forcedDomProp: {type: String as PropType<string>, default: undefined},
+
+        booleanAttribute: {type: Boolean as PropType<boolean>, default: undefined}
   },
   emits: {
 			
