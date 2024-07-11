@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.1.0...vivid-v4.2.0) (2024-07-11)
+
+
+### Features
+
+* **menu-item:** emit click event on activation (VIV-1859) ([#1844](https://github.com/Vonage/vivid-3/issues/1844)) ([cc58852](https://github.com/Vonage/vivid-3/commit/cc5885241afda538702b22cef4b5ceffc66973ac))
+
 ## [4.1.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.0.0...vivid-v4.1.0) (2024-07-08)
 
 
