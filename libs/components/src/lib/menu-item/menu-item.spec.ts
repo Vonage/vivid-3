@@ -4,8 +4,11 @@ import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Connotation } from '@vonage/vivid';
+import {
+	keyArrowLeft,
+	keyArrowRight,
+} from '@microsoft/fast-web-utilities/dist/key-codes';
 import { Icon } from '../icon/icon';
-import { Menu } from '../menu/menu';
 import { CheckAppearance, MenuItem } from './menu-item';
 import { menuItemDefinition, MenuItemRole } from './definition';
 
@@ -14,12 +17,24 @@ const COMPONENT_TAG = 'vwc-menu-item';
 const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-menu-item', () => {
-	let menuElement: Menu;
 	let element: MenuItem;
 
-	beforeAll(async () => {
-		await customElements.whenDefined(COMPONENT_TAG);
-	});
+	function pressKey(key: string) {
+		element.dispatchEvent(
+			new KeyboardEvent('keydown', {
+				key,
+				cancelable: true,
+			} as KeyboardEventInit)
+		);
+	}
+
+	function addSubmenu() {
+		element.innerHTML = `<${MENU_TAG} slot="submenu">
+			<${COMPONENT_TAG} text="Menu item 1.1"></${COMPONENT_TAG}>
+			<${COMPONENT_TAG} text="Menu item 1.2"></${COMPONENT_TAG}>
+			<${COMPONENT_TAG} text="Menu item 1.3"></${COMPONENT_TAG}>
+		</${MENU_TAG}>`;
+	}
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -223,48 +238,57 @@ describe('vwc-menu-item', () => {
 
 	describe('expanded', () => {
 		beforeEach(async function () {
-			menuElement = (await fixture(
-				`<${MENU_TAG} open>
-					<${COMPONENT_TAG} id="menuitem" text="Menu item 1">
-						<${MENU_TAG} slot="submenu">
-							<${COMPONENT_TAG} text="Menu item 1.1"></${COMPONENT_TAG}>
-						</${MENU_TAG}>
-					</${COMPONENT_TAG}>
-				</${MENU_TAG}>`
-			)) as Menu;
-
-			await elementUpdated(menuElement);
+			addSubmenu();
+			await elementUpdated(element);
 		});
 
 		it('should toggle "expanded" on mouse over and mouse out', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
+			fireEvent(element, new Event('mouseover'));
+			expect(element.expanded).toEqual(true);
 
-			fireEvent(menuitem, new Event('mouseover'));
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(true);
-
-			fireEvent(menuitem, new Event('mouseout'));
-			elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
+			fireEvent(element, new Event('mouseout'));
+			expect(element.expanded).toEqual(false);
 		});
 
 		it('should keep expanded on mouseover when submenu already open', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-			menuitem.expanded = true;
+			element.expanded = true;
 
-			fireEvent(menuitem, new Event('mouseover'));
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(true);
+			fireEvent(element, new Event('mouseover'));
+			expect(element.expanded).toEqual(true);
 		});
 
 		it('should keep closed on mouseout when submenu already closed', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-			menuitem.expanded = false;
+			element.expanded = false;
 
-			fireEvent(menuitem, new Event('mouseout'));
-			elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
+			fireEvent(element, new Event('mouseout'));
+			expect(element.expanded).toEqual(false);
 		});
+
+		it.each(['Enter', ' ', 'ArrowRight'])(
+			'should expand on "%s"',
+			async (key) => {
+				pressKey(key);
+
+				expect(element.expanded).toEqual(true);
+			}
+		);
+
+		it('should collapse on ArrowLeft', async () => {
+			element.expanded = true;
+
+			pressKey(keyArrowLeft);
+
+			expect(element.expanded).toEqual(false);
+		});
+
+		it.each(['ArrowLeft', 'ArrowDown', 'ArrowUp', 'Escape'])(
+			'should remain closed on "%s"',
+			async (key) => {
+				pressKey(key);
+
+				expect(element.expanded).toEqual(undefined);
+			}
+		);
 	});
 
 	describe('checked', () => {
@@ -305,48 +329,102 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('change event', () => {
+		let changeSpy: jest.Mock;
+		beforeEach(async () => {
+			changeSpy = jest.fn();
+			element.addEventListener('change', changeSpy);
+		});
+
 		it('should fire "change" on click', async () => {
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-			await elementUpdated(element);
 			element.click();
-			expect(spy).toHaveBeenCalled();
+
+			expect(changeSpy).toHaveBeenCalled();
 		});
 
 		it('should fire "change" event on spacebar press', async () => {
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-			const event = new KeyboardEvent('keydown', {
-				key: keySpace,
-			} as KeyboardEventInit);
-			element.dispatchEvent(event);
-			expect(spy).toHaveBeenCalled();
+			pressKey(keySpace);
+
+			expect(changeSpy).toHaveBeenCalled();
 		});
 
 		it('should fire "change" event when enter is pressed', async () => {
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
-			const event = new KeyboardEvent('keydown', {
-				key: keyEnter,
-			} as KeyboardEventInit);
-			element.dispatchEvent(event);
-			expect(spy).toHaveBeenCalled();
+			pressKey(keyEnter);
+
+			expect(changeSpy).toHaveBeenCalled();
 		});
 
 		it('should fire "change" event when checked is changed', async () => {
-			const spy = jest.fn();
-			element.addEventListener('change', spy);
 			element.checked = !element.checked;
-			expect(spy).toHaveBeenCalled();
+
+			expect(changeSpy).toHaveBeenCalled();
+		});
+	});
+
+	describe('click event', () => {
+		let clickSpy: jest.Mock;
+		beforeEach(async () => {
+			clickSpy = jest.fn();
+			element.addEventListener('click', clickSpy);
+		});
+
+		it('should emit a "click" event if space is pressed', async () => {
+			pressKey(keySpace);
+
+			expect(clickSpy).toHaveBeenCalled();
+		});
+
+		it('should not emit a "click" event on keydown if default is prevented', async () => {
+			element.addEventListener('keydown', (e) => e.preventDefault(), {
+				capture: true,
+			});
+
+			pressKey(keySpace);
+
+			expect(clickSpy).not.toHaveBeenCalled();
+		});
+
+		it('should not emit a "click" event if space is pressed when disabled', async () => {
+			element.disabled = true;
+
+			pressKey(keySpace);
+
+			expect(clickSpy).not.toHaveBeenCalled();
+		});
+
+		it('should emit a "click" event if arrow left is pressed while expanded', async () => {
+			element.expanded = true;
+			expect(element.expanded).toEqual(true);
+
+			pressKey(keyArrowLeft);
+
+			expect(clickSpy).toHaveBeenCalled();
+		});
+
+		it('should emit a "click" event if arrow right is pressed on submenu', async () => {
+			addSubmenu();
+			await elementUpdated(element);
+
+			pressKey(keyArrowRight);
+
+			expect(clickSpy).toHaveBeenCalled();
+		});
+
+		it('should not emit multiple "click" events when clicked on', async () => {
+			element.click();
+
+			expect(clickSpy).toHaveBeenCalledTimes(1);
 		});
 	});
 
 	describe('expanded-change event', () => {
-		it('should fire "expanded-change" event when submenu exists and expanded changes', function () {
+		it('should fire "expanded-change" event when submenu exists and expanded changes', async function () {
 			const spy = jest.fn();
 			element.addEventListener('expanded-change', spy);
-			element.submenu = document.createElement('div');
+			addSubmenu();
+			await elementUpdated(element);
+
 			element.expanded = !element.expanded;
+
 			expect(spy).toHaveBeenCalled();
 		});
 	});
@@ -388,92 +466,6 @@ describe('vwc-menu-item', () => {
 			expect(
 				getBaseElement(element).classList.contains('has-meta')
 			).toBeTruthy();
-		});
-	});
-
-	describe('keydown', () => {
-		beforeEach(async function () {
-			menuElement = (await fixture(
-				`<${MENU_TAG} open>
-					<${COMPONENT_TAG} id="menuitem" text="Menu item 1">
-						<${MENU_TAG} slot="submenu">
-							<${COMPONENT_TAG} text="Menu item 1.1"></${COMPONENT_TAG}>
-							<${COMPONENT_TAG} text="Menu item 1.2"></${COMPONENT_TAG}>
-							<${COMPONENT_TAG} text="Menu item 1.3"></${COMPONENT_TAG}>
-						</${MENU_TAG}>
-					</${COMPONENT_TAG}>
-				</${MENU_TAG}>`
-			)) as Menu;
-
-			await elementUpdated(menuElement);
-		});
-
-		it('should expand first menuitem on ArrowRight and close on ArrowLeft', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-
-			menuitem.focus();
-			menuitem.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'ArrowRight' })
-			);
-
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(true);
-
-			menuitem.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
-			);
-
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
-		});
-
-		it.each(['Enter', ' '])(
-			'should expand first menuitem when "%s" is pressed',
-			async (key) => {
-				const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-
-				menuitem.focus();
-				menuitem.dispatchEvent(new KeyboardEvent('keydown', { key }));
-
-				await elementUpdated(menuElement);
-				expect(menuitem.expanded).toEqual(true);
-			}
-		);
-
-		it('should keep closed on keydown if not expanded', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-
-			menuitem.expanded = false;
-			menuitem.focus();
-			menuitem.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
-			);
-
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
-
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
-		});
-
-		it('should keep closed on ArrowDown and ArrowUp', async () => {
-			const menuitem = menuElement.querySelector('#menuitem') as MenuItem;
-
-			menuitem.expanded = false;
-			menuitem.focus();
-			menuitem.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'ArrowDown' })
-			);
-
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
-
-			menuitem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
-
-			await elementUpdated(menuElement);
-			expect(menuitem.expanded).toEqual(false);
 		});
 	});
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.2.0...eslint-plugin-v1.2.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* **eslint-plugin:** add missing export of accessible-names (VIV-000) ([#1838](https://github.com/Vonage/vivid-3/issues/1838)) ([bd53694](https://github.com/Vonage/vivid-3/commit/bd5369414f5ae657b5e87118bb10d0622a6a8450))
+
 ## [1.2.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.1.0...eslint-plugin-v1.2.0) (2024-07-01)
 
 

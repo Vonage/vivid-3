@@ -92,6 +92,7 @@ export const parseComponent = (name: string): ComponentDef => {
 				forwardTo: {
 					type: 'attribute',
 					name: attribute.name || attribute.fieldName,
+					boolean: type.some((t) => t.text === 'boolean'),
 				},
 			};
 		} else {
