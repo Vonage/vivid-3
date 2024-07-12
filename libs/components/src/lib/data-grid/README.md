@@ -390,7 +390,7 @@ The element tag for header row cells. If not set, the default tag `vwc-data-grid
 
 #### aria-selected
 
-User the `aria-selected` attribute to indicate the selected state of a row.
+Use the `aria-selected` attribute to indicate the selected state of a row.
 For a full selection functionality the cell has to be inside a grid with the proper `selectionMode`.
 The grid also adds the `aria-selected` attribute to the row when it is selected and adds `aria-selected="false"` for none-selected rows.
 
@@ -411,6 +411,44 @@ The grid also adds the `aria-selected` attribute to the row when it is selected 
 		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
 	</vwc-data-grid-row>
 </vwc-data-grid>
+```
+
+#### row-type
+
+- Type: `'header'` | `'sticky-header'` | `'default'`
+- Default: `default`
+
+Use the `row-type` attribute to indicate the row's type. Note that under a `data-grid` that its generate-header is not "`none`" the first row will be a header row (not selectable and separated with a line).
+
+```html preview
+<vwc-select onchange="changeHeader()">
+	<vwc-option value="header" text="header" selected></vwc-option>
+	<vwc-option value="default" text="default"></vwc-option>
+	<vwc-option value="sticky-header" text="sticky"></vwc-option>
+</vwc-select>
+<vwc-data-grid selection-mode="single-row">
+	<vwc-data-grid-row role="row">
+		<vwc-data-grid-cell cell-type="columnheader" role="columnheader">
+			data1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader"> data2 </vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row aria-selected="true">
+		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row aria-selected="false">
+		<vwc-data-grid-cell>Cell 1</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Cell 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+<script>
+	function changeHeader() {
+		grid.children[0].setAttribute('row-type', event.target.value);
+	}
+
+	grid = document.querySelector('vwc-data-grid');
+</script>
 ```
 
 ### Cell

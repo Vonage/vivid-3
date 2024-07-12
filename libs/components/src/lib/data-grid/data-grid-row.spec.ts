@@ -40,10 +40,27 @@ describe('vwc-data-grid-row', () => {
 	});
 
 	describe('rowType', () => {
-		it('should reflect row-type', async () => {
+		it('should reflect header row-type', async () => {
 			element.rowType = 'header';
 			await elementUpdated(element);
 			expect(element.getAttribute('row-type')).toEqual('header');
+			expect(element.classList.length).toBe(1);
+			expect(element.classList.contains('header'));
+		});
+
+		it('should reflect sticky-header row-type', async () => {
+			element.rowType = 'sticky-header';
+			await elementUpdated(element);
+			expect(element.getAttribute('row-type')).toEqual('sticky-header');
+			expect(element.classList.length).toBe(1);
+			expect(element.classList.contains('sticky-header'));
+		});
+
+		it('shuold remove class when row-type is default', async () => {
+			element.rowType = 'default';
+			await elementUpdated(element);
+			expect(element.getAttribute('row-type')).toEqual('default');
+			expect(element.classList.length).toBe(0);
 		});
 	});
 
