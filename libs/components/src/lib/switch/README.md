@@ -27,12 +27,13 @@ Use `label` in order to set the label of the switch.
 
 Use `connotation` in order to set the connotation of the switch.
 
-- Type: `'primary'`, `'cta'`, `'success'`, `'alert'`
+- Type: `'primary'`, `'cta'`, `'success'`, `'alert'`, `'announcement'`
 - Default: `primary`
 
 ```html preview
 <vwc-switch connotation="primary" checked></vwc-switch>
 <vwc-switch connotation="cta" checked></vwc-switch>
+<vwc-switch connotation="announcement" checked></vwc-switch>
 <vwc-switch connotation="success" checked></vwc-switch>
 <vwc-switch connotation="alert" checked></vwc-switch>
 ```
