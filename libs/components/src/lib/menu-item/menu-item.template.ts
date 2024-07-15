@@ -54,6 +54,11 @@ const getClasses = ({
 	);
 
 function handleClick(x: MenuItem, { event }: ExecutionContext<MenuItem>) {
+	if (x._isSyntheticClickEvent(event)) {
+		// Ignore synthetic events created through keyboard input
+		return true;
+	}
+
 	x.handleMenuItemClick(event as MouseEvent);
 	return (x as any).role === MenuItemRole.presentation;
 }
