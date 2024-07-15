@@ -25,32 +25,21 @@ const getClasses = ({
 			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
 		]
 	);
-/**
- *
- */
+
 function icon(iconTag: string) {
 	return html<Dialog>`
 		<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 	`;
 }
 
-/**
- *
- */
 function headline() {
 	return html<Dialog>` <div class="headline">${(x) => x.headline}</div> `;
 }
 
-/**
- *
- */
 function subtitle() {
 	return html<Dialog>` <div class="subtitle">${(x) => x.subtitle}</div> `;
 }
 
-/**
- *
- */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
 	<${buttonTag}
@@ -70,12 +59,6 @@ function handleEscapeKey(dialog: Dialog, event: Event) {
 	return true;
 }
 
-/**
- * The template for the Dialog component.
- *
- * @param context - element definition context
- * @public
- */
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
@@ -89,7 +72,6 @@ export const DialogTemplate: (
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
-				returnValue="${(x) => x.returnValue}"
 				aria-label="${(x) => x.ariaLabel}"
 		>
 			<slot name="main">

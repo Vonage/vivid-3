@@ -101,8 +101,8 @@ export class Dialog extends FoundationElement {
 		if (!newValue) {
 			this.close();
 		} else {
-			if (this.#dialog) {
-				this.#dialog.open = true;
+			if (!this.#dialog?.open) {
+				this.#dialog?.show();
 			}
 		}
 	}
