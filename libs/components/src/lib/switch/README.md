@@ -27,7 +27,7 @@ Use `label` in order to set the label of the switch.
 
 Use `connotation` in order to set the connotation of the switch.
 
-- Type: `'primary'`, `'cta'`, `'success'`, `'alert'`, `'announcement'`
+- Type: `'primary'`, `'cta'`, `'announcement'`, `'success'`, `'alert'`
 - Default: `primary`
 
 ```html preview
