@@ -45,3 +45,9 @@ We've assigned the highest ratings to the browsers that are most commonly used a
 | Chrome (Mobile), latest version |	A |
 | Samsung Internet, latest version | B |
 | All other browsers & versions |	C |
+
+**Note:** 
+
+Although we recommend to test and support only the latest browser version, it is recommended to check before using a new browser feature, that could be essential for the user experience, is supported by all our supported browsers.
+
+For non-essential features, you can follow the principles of progressive enhancement and use features that are not yet supported by all browsers, in the knowledge that full support is on its way.
