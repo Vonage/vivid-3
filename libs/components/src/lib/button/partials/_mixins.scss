@@ -4,13 +4,16 @@
 	$block-size,
 	$font-face,
 	$icon-gap,
-	$padding-inline
+	$padding-inline,
+	$chevron-size
 ) {
 	#{variables.$block-size}: $block-size;
 
 	font: var(#{$font-face});
 
 	#{variables.$icon-gap}: $icon-gap;
+
+	#{variables.$chevron-size}: $chevron-size;
 
 	&.icon-only {
 		padding-inline: calc(var(#{variables.$block-size}) / 4);

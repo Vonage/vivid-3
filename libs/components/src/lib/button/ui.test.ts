@@ -216,6 +216,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button dropdown-indicator appearance="filled" label="normal" size="normal"></vwc-button>
 		<vwc-button dropdown-indicator appearance="filled" label="expanded" size="expanded"></vwc-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="super-condensed" size="super-condensed"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="condensed" size="condensed"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="normal" size="normal"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="expanded" size="expanded"></vwc-button>
+	</div>
 	</div>
 	`;
 

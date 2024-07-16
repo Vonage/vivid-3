@@ -90,7 +90,8 @@
 				#{size.$vvd-size-super-condensed},
 				#{constants.$vvd-typography-base-condensed-bold},
 				4px,
-				8px
+				8px,
+				10px
 			);
 		}
 
@@ -99,6 +100,7 @@
 				#{size.$vvd-size-condensed},
 				#{constants.$vvd-typography-base-condensed-bold},
 				8px,
+				12px,
 				12px
 			);
 		}
@@ -108,7 +110,8 @@
 				#{size.$vvd-size-expanded},
 				#{constants.$vvd-typography-base-extended-bold},
 				10px,
-				20px
+				20px,
+				16px
 			);
 		}
 
@@ -117,6 +120,7 @@
 				#{size.$vvd-size-normal},
 				#{constants.$vvd-typography-base-bold},
 				8px,
+				16px,
 				16px
 			);
 		}
@@ -164,7 +168,8 @@
 				calc(var(--stacked-size) + 20 * 1px),
 				#{constants.$vvd-typography-base-condensed-bold},
 				4px,
-				16px
+				16px,
+				10px
 			);
 		}
 
@@ -175,6 +180,7 @@
 				calc(var(--stacked-size) + 24 * 1px),
 				#{constants.$vvd-typography-base-condensed-bold},
 				6px,
+				12px,
 				12px
 			);
 		}
@@ -186,7 +192,8 @@
 				calc(var(--stacked-size) + 32 * 1px),
 				#{constants.$vvd-typography-base-extended-bold},
 				10px,
-				20px
+				20px,
+				16px
 			);
 		}
 
@@ -197,6 +204,7 @@
 				calc(var(--stacked-size) + 28 * 1px),
 				#{constants.$vvd-typography-base-bold},
 				8px,
+				16px,
 				16px
 			);
 		}
@@ -211,11 +219,7 @@ slot[name='icon'] {
 		display: flex;
 		order: 1;
 	}
-}
 
-/* stylelint-disable-next-line no-descending-specificity */
-slot[name='icon'],
-.chevron {
 	.control.stacked & {
 		font-size: calc(var(--stacked-size) / 2);
 	}
@@ -223,6 +227,10 @@ slot[name='icon'],
 	.control:not(.stacked) & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
 	}
+}
+
+.chevron {
+	font-size: var(#{variables.$chevron-size});
 }
 
 .content {
