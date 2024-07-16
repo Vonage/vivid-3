@@ -4,6 +4,11 @@ import {
 	MenuItem as FastMenuItem,
 	MenuItemRole as FastMenuItemRole,
 } from '@microsoft/fast-foundation';
+import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import {
+	keyArrowLeft,
+	keyArrowRight,
+} from '@microsoft/fast-web-utilities/dist/key-codes';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 import { Connotation } from '../enums';
@@ -107,6 +112,7 @@ export class MenuItem extends FastMenuItem {
 		super();
 		(this as any).updateSubmenu = () => this.#updateSubmenu();
 		this.addEventListener('expanded-change', this.#expandedChange);
+		(this as any).handleMenuItemKeyDown = this.#handleMenuItemKeyDown;
 	}
 
 	#updateSubmenu() {
@@ -129,6 +135,58 @@ export class MenuItem extends FastMenuItem {
 		if (this.hasSubmenu) {
 			(this.submenu as Menu).open = this.expanded;
 		}
+	}
+
+	#handleMenuItemKeyDown = (e: KeyboardEvent): boolean => {
+		if (e.defaultPrevented) {
+			return false;
+		}
+
+		switch (e.key) {
+			case keyEnter:
+			case keySpace:
+				(this as any).invoke();
+				if (!this.disabled) {
+					this.#emitSyntheticClick();
+				}
+				return false;
+
+			case keyArrowRight:
+				//open/focus on submenu
+				(this as any).expandAndFocus();
+				if (this.hasSubmenu) {
+					this.#emitSyntheticClick();
+				}
+				return false;
+
+			case keyArrowLeft:
+				//close submenu
+				if (this.expanded) {
+					this.expanded = false;
+					this.focus();
+					this.#emitSyntheticClick();
+					return false;
+				}
+		}
+
+		return true;
+	};
+
+	#syntheticClickEvents = new WeakSet<Event>();
+	/**
+	 * @internal
+	 */
+	_isSyntheticClickEvent(event: Event) {
+		return this.#syntheticClickEvents.has(event);
+	}
+
+	#emitSyntheticClick() {
+		const mouseEvent = new MouseEvent('click', {
+			bubbles: true,
+			composed: true,
+		});
+		this.#syntheticClickEvents.add(mouseEvent);
+		this.dispatchEvent(mouseEvent);
 	}
 }
 

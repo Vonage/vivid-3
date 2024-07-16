@@ -13,6 +13,7 @@ export interface ComponentDef {
 		| {
 					type: 'attribute';
 					name: string; // Name of the attribute on the vivid component. E.g. action-href
+					boolean?: boolean;
 			  }
 			| {
 					type: 'property';
