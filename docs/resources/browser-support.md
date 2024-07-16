@@ -28,25 +28,25 @@ We've assigned the highest ratings to the browsers that are most commonly used a
 
 ### Desktop
 
-| Browser | Grading |
-| ------ | ----- |
-| Chrome, latest version (MacOS & Windows) | A |
-| Edge, latest version (Windows) |	A |
-| Firefox, latest version (MacOS & Windows) |	A |
-| Safari (MacOS), latest version | A |
-| All other browsers & versions |	C |
+| Browser                                   | Grading |
+| ----------------------------------------- | ------- |
+| Chrome, latest version (MacOS & Windows)  | A       |
+| Edge, latest version (Windows)            | A       |
+| Firefox, latest version (MacOS & Windows) | A       |
+| Safari (MacOS), latest version            | A       |
+| All other browsers & versions             | C       |
 
 ### Mobile
 
-| Browser | Grading |
-| ------ | ----- |
-| Safari (iPhone), latest version |	A |
-| Safari (iPad), latest version |	A |
-| Chrome (Mobile), latest version |	A |
-| Samsung Internet, latest version | B |
-| All other browsers & versions |	C |
+| Browser                          | Grading |
+| -------------------------------- | ------- |
+| Safari (iPhone), latest version  | A       |
+| Safari (iPad), latest version    | A       |
+| Chrome (Mobile), latest version  | A       |
+| Samsung Internet, latest version | B       |
+| All other browsers & versions    | C       |
 
-**Note:** 
+**Note:**
 
 Although we recommend to test and support only the latest browser version, it is recommended to check before using a new browser feature, that could be essential for the user experience, is supported by all our supported browsers.
 
