@@ -99,10 +99,10 @@ $alert-transition-delay: --transition-delay;
 			font: var(#{constants.$vvd-typography-base});
 		}
 
-		.headline + ::slotted([slot='main'i]:first-child):before,
-		.main-text + ::slotted([slot='main'i]:first-child):before {
-			content: '';
+		.headline + ::slotted([slot='main'i]:first-child)::before,
+		.main-text + ::slotted([slot='main'i]:first-child)::before {
 			display: block;
+			content: '';
 			margin-top: 8px;
 		}
 	}
