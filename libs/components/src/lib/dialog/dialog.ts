@@ -57,21 +57,36 @@ export class Dialog extends FoundationElement {
 	@attr({ attribute: 'no-light-dismiss', mode: 'boolean' }) noLightDismiss =
 		false;
 
-	#modal = false;
-
-	set returnValue(value) {
-		this.#dialog.returnValue = value;
-	}
-
-	get returnValue(): string {
-		return this.#dialog?.returnValue;
-	}
+	/**
+	 * Controls whether the dialog is modal.
+	 * @remarks
+	 * HTML Attribute: modal
+	 */
+	@attr({ mode: 'boolean' }) modal = false;
 
 	/**
 	 * @internal
 	 */
-	get modal() {
-		return this.#modal;
+	modalChanged(_: boolean, newValue: boolean) {
+		if (this.open) {
+			this._openedAsModal = newValue;
+
+			if (this.$fastController.isConnected) {
+				// Transition open dialog to new modal state
+				this.#closeDialog();
+				this.#showDialog();
+			}
+		}
+	}
+
+	set returnValue(value) {
+		if (this.#dialog) {
+			this.#dialog.returnValue = value;
+		}
+	}
+
+	get returnValue(): string {
+		return this.#dialog?.returnValue;
 	}
 
 	#dialogElement?: HTMLDialogElement;
@@ -82,7 +97,6 @@ export class Dialog extends FoundationElement {
 				'dialog'
 			) as HTMLDialogElement;
 			if (this.#dialogElement) {
-				this.#dialogElement.open = this.open;
 				if (dialogPolyfill) {
 					dialogPolyfill.registerDialog(this.#dialogElement);
 				}
@@ -94,15 +108,25 @@ export class Dialog extends FoundationElement {
 	/**
 	 * @internal
 	 */
+	@observable _openedAsModal = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean) {
 		if (oldValue === undefined) {
 			return;
 		}
 		if (!newValue) {
-			this.close();
+			this._openedAsModal = false;
+			if (this.$fastController.isConnected) {
+				this.#closeDialog();
+			}
+			this.$emit('close', this.returnValue, { bubbles: false });
 		} else {
-			if (!this.#dialog?.open) {
-				this.#dialog?.show();
+			this._openedAsModal = this._openedAsModal || this.modal;
+			if (this.$fastController.isConnected) {
+				this.#showDialog();
 			}
 		}
 	}
@@ -131,40 +155,44 @@ export class Dialog extends FoundationElement {
 	};
 
 	close() {
-		if (this.#dialog.open) {
-			this.#dialog.close();
-			this.$emit('close', this.returnValue, { bubbles: false });
-		}
-
 		this.open = false;
-		this.#handleModal(false);
-	}
-
-	#handleModal(show: boolean) {
-		this.#modal = show;
-		this.#dialog.toggleAttribute('aria-modal', show);
-		this.#dialog.classList.toggle('modal', show);
 	}
 
 	show() {
-		this.#dialog.show();
 		this.open = true;
 	}
 
 	showModal() {
-		this.#handleModal(true);
-		this.#dialog.showModal();
+		this._openedAsModal = true;
 		this.open = true;
+	}
+
+	#closeDialog() {
+		this.#dialog.close();
+	}
+
+	#showDialog() {
+		if (this._openedAsModal) {
+			this.#dialog.showModal();
+		} else {
+			this.#dialog.show();
+		}
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
+		if (this.open) {
+			this.#showDialog();
+		}
 		this.#dialog.addEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.addEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
+		if (this.open) {
+			this.#closeDialog();
+		}
 		this.#dialog.removeEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}

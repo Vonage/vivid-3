@@ -15,6 +15,7 @@ const getClasses = ({
 	bodySlottedContent,
 	footerSlottedContent,
 	actionItemsSlottedContent,
+	_openedAsModal,
 }: Dialog) =>
 	classNames(
 		'base',
@@ -23,7 +24,8 @@ const getClasses = ({
 		[
 			'hide-footer',
 			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
-		]
+		],
+		['modal', _openedAsModal]
 	);
 
 function icon(iconTag: string) {
@@ -53,7 +55,7 @@ function renderDismissButton(buttonTag: string) {
 }
 
 function handleEscapeKey(dialog: Dialog, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
+	if ((event as KeyboardEvent).key === 'Escape' && dialog._openedAsModal) {
 		dialog.open = false;
 	}
 	return true;
@@ -73,6 +75,7 @@ export const DialogTemplate: (
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
 				aria-label="${(x) => x.ariaLabel}"
+				?aria-modal="${(x) => x._openedAsModal}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">

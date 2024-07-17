@@ -24,27 +24,17 @@ describe('vwc-dialog', () => {
 
 	let element: Dialog;
 	let dialogEl: HTMLDialogElement;
-	let dialogOpenState: 'closed' | 'non-modal' | 'modal';
+
+	const dialogOpenState = () => {
+		if (!dialogEl.open) {
+			return 'closed';
+		}
+		return dialogEl.style.zIndex ? 'modal' : 'non-modal';
+	};
 
 	const setUpFixture = async (template: string) => {
 		element = fixture(template) as Dialog;
 		dialogEl = getBaseElement(element) as HTMLDialogElement;
-		dialogOpenState = dialogEl.open ? 'non-modal' : 'closed';
-		const originalClose = dialogEl.close;
-		jest.spyOn(dialogEl, 'close').mockImplementation(() => {
-			originalClose.call(dialogEl);
-			dialogOpenState = 'closed';
-		});
-		const originalShow = dialogEl.show;
-		jest.spyOn(dialogEl, 'show').mockImplementation(() => {
-			originalShow.call(dialogEl);
-			dialogOpenState = 'non-modal';
-		});
-		const originalShowModal = dialogEl.showModal;
-		jest.spyOn(dialogEl, 'showModal').mockImplementation(() => {
-			originalShowModal.call(dialogEl);
-			dialogOpenState = 'modal';
-		});
 		await elementUpdated(element);
 	};
 
@@ -69,22 +59,41 @@ describe('vwc-dialog', () => {
 	describe('open', function () {
 		it('should open the dialog when set to true', async function () {
 			element.open = true;
-			await elementUpdated(element);
-			expect(dialogOpenState).toBe('non-modal');
+			expect(dialogOpenState()).toBe('non-modal');
+		});
+
+		it('should open the dialog as modal if modal is set', async function () {
+			element.modal = true;
+
+			element.open = true;
+
+			expect(dialogOpenState()).toBe('modal');
 		});
 
 		it('should close the dialog when set to false', async function () {
 			await showDialog();
 
 			element.open = false;
-			await elementUpdated(element);
 
-			expect(dialogOpenState).toBe('closed');
+			expect(dialogOpenState()).toBe('closed');
 		});
 
 		it('should be opened when initialized with open attribute', async function () {
 			await setUpFixture(`<${COMPONENT_TAG} open></${COMPONENT_TAG}>`);
-			expect(dialogOpenState).toBe('non-modal');
+			expect(dialogOpenState()).toBe('non-modal');
+		});
+
+		it('should be opened as modal when initialized with open and modal attribute', async function () {
+			await setUpFixture(`<${COMPONENT_TAG} open modal></${COMPONENT_TAG}>`);
+			expect(dialogOpenState()).toBe('modal');
+		});
+
+		it('should handle opening and closing the dialog before first mount', async function () {
+			element = document.createElement(COMPONENT_TAG) as Dialog;
+
+			element.open = true;
+
+			expect(() => (element.open = false)).not.toThrow();
 		});
 	});
 
@@ -101,7 +110,7 @@ describe('vwc-dialog', () => {
 	});
 
 	describe('iconPlacement', function () {
-		it('should add class of icon placement  to .base', async () => {
+		it('should add class of icon placement to underlying dialog', async () => {
 			element.iconPlacement = 'side';
 			await elementUpdated(element);
 			expect(dialogEl.classList.contains('icon-placement-side')).toEqual(true);
@@ -149,7 +158,7 @@ describe('vwc-dialog', () => {
 
 		it('should close underlying dialog', async function () {
 			await closeDialog();
-			expect(dialogOpenState).toBe('closed');
+			expect(dialogOpenState()).toBe('closed');
 		});
 
 		it('should fire the "close" event only when closing', async function () {
@@ -173,11 +182,6 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(true);
 			expect(element.hasAttribute('open')).toEqual(true);
 		});
-
-		it('should open the underlying dialog as non-modal', async function () {
-			await showDialog();
-			expect(dialogOpenState).toBe('non-modal');
-		});
 	});
 
 	describe('showModal method', function () {
@@ -189,11 +193,35 @@ describe('vwc-dialog', () => {
 
 		it('should open the underlying dialog as modal', async function () {
 			await showModalDialog();
-			expect(dialogOpenState).toBe('modal');
+			expect(dialogOpenState()).toBe('modal');
+		});
+
+		it('should not set modal', async function () {
+			await showModalDialog();
+			expect(element.modal).toBe(false);
+		});
+
+		it('should only open the dialog as modal once', async function () {
+			await showModalDialog();
+			await closeDialog();
+			await showDialog();
+			expect(dialogOpenState()).toBe('non-modal');
+		});
+	});
+
+	describe('modal', () => {
+		it('should transition the underlying dialog to new modal state if already open', async function () {
+			element.open = true;
+
+			element.modal = true;
+
+			expect(dialogOpenState()).toBe('modal');
 		});
 
 		it('should add class "modal" to underlying dialog', async function () {
-			await showModalDialog();
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
 			expect(dialogEl.classList.contains('modal')).toEqual(true);
 		});
 	});
@@ -440,6 +468,14 @@ describe('vwc-dialog', () => {
 				expect(baseElementClasses).not.toContain('hide-footer');
 			}
 		);
+	});
+
+	it('should close the underlying dialog when disconnecting', async function () {
+		await showDialog();
+
+		element.remove();
+
+		expect(dialogOpenState()).toBe('closed');
 	});
 
 	describe('a11y', function () {
