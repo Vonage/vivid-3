@@ -10,10 +10,10 @@ const components = ['switch', 'layout'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
-  	<vwc-layout gutters="small"><div><vwc-switch id="focused"></vwc-switch></div></vwc-layout>
+  	<vwc-layout gutters="small"><div><vwc-switch ></vwc-switch></div></vwc-layout>
   </div>
   <div style="margin: 5px;">
-  	<vwc-layout gutters="small"><div><vwc-switch checked></vwc-switch></div></vwc-layout>
+  	<vwc-layout gutters="small"><div><vwc-switch checked id="focused"></vwc-switch></div></vwc-layout>
   </div>
 	<div style="margin: 5px;">
   	<vwc-layout gutters="small">
@@ -41,11 +41,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-switch connotation="primary" checked=""></vwc-switch>
 	      <vwc-switch connotation="cta" checked=""></vwc-switch>
 	      <vwc-switch connotation="alert" checked=""></vwc-switch>
+	      <vwc-switch connotation="success" checked=""></vwc-switch>
+	      <vwc-switch connotation="announcement" checked=""></vwc-switch>
 	    </div>
   	</vwc-layout>
   </div>`;
 
-	page.setViewportSize({ width: 200, height: 800 });
+	page.setViewportSize({ width: 250, height: 800 });
 
 	await loadComponents({
 		page,
