@@ -30,24 +30,32 @@ We've assigned the highest ratings to the browsers that are most commonly used a
 
 | Browser                                   | Grading |
 | ----------------------------------------- | ------- |
-| Chrome, latest version (MacOS & Windows)  | A       |
-| Edge, latest version (Windows)            | A       |
-| Firefox, latest version (MacOS & Windows) | A       |
-| Safari (MacOS), latest version            | A       |
+| Chrome, latest / previous (MacOS & Windows)  | A       |
+| Edge, latest / previous version (Windows)            | A       |
+| Firefox, latest / previous version (MacOS & Windows) | A       |
+| Safari (MacOS), latest / previous version            | A       |
 | All other browsers & versions             | C       |
 
 ### Mobile
 
 | Browser                          | Grading |
 | -------------------------------- | ------- |
-| Safari (iPhone), latest version  | A       |
-| Safari (iPad), latest version    | A       |
-| Chrome (Mobile), latest version  | A       |
+| Safari (iPhone), latest / previous version  | A       |
+| Safari (iPad), latest / previous version    | A       |
+| Chrome (Mobile), latest / previous version  | A       |
 | Samsung Internet, latest version | B       |
 | All other browsers & versions    | C       |
 
-**Note:**
+## Notes
 
-Although we recommend to test and support only the latest browser version, it is recommended to check before using a new browser feature, that could be essential for the user experience, is supported by all our supported browsers.
+**Check support first**
+
+Although we recommend to test and support only the latest and previous browser version, it is recommended to check (using [can I use](https://caniuse.com/)) before using a new browser feature, that could be essential for the user experience, is supported by all our supported browsers.
+
+**Progressive enhancement**
 
 For non-essential features, you can follow the principles of progressive enhancement and use features that are not yet supported by all browsers, in the knowledge that full support is on its way.
+
+**Review frequency**
+
+This policy will be reviewed at the start of each year to assess analytics data and emerging trends.
