@@ -28,23 +28,23 @@ We've assigned the highest ratings to the browsers that are most commonly used a
 
 ### Desktop
 
-| Browser                                   | Grading |
-| ----------------------------------------- | ------- |
-| Chrome, latest / previous (MacOS & Windows)  | A       |
+| Browser                                              | Grading |
+| ---------------------------------------------------- | ------- |
+| Chrome, latest / previous (MacOS & Windows)          | A       |
 | Edge, latest / previous version (Windows)            | A       |
 | Firefox, latest / previous version (MacOS & Windows) | A       |
 | Safari (MacOS), latest / previous version            | A       |
-| All other browsers & versions             | C       |
+| All other browsers & versions                        | C       |
 
 ### Mobile
 
-| Browser                          | Grading |
-| -------------------------------- | ------- |
-| Safari (iPhone), latest / previous version  | A       |
-| Safari (iPad), latest / previous version    | A       |
-| Chrome (Mobile), latest / previous version  | A       |
-| Samsung Internet, latest version | B       |
-| All other browsers & versions    | C       |
+| Browser                                    | Grading |
+| ------------------------------------------ | ------- |
+| Safari (iPhone), latest / previous version | A       |
+| Safari (iPad), latest / previous version   | A       |
+| Chrome (Mobile), latest / previous version | A       |
+| Samsung Internet, latest version           | B       |
+| All other browsers & versions              | C       |
 
 ## Notes
 
