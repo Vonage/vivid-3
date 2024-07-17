@@ -5,6 +5,7 @@ import type { Connotation } from '../enums';
 export type SwitchConnotation =
 	| Connotation.Accent
 	| Connotation.Alert
+	| Connotation.Announcement
 	| Connotation.Success
 	| Connotation.CTA;
 /**
