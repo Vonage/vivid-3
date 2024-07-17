@@ -121,7 +121,7 @@ export default {
 								}
 
 								if (tag.tagName.getText() === 'vueModel') {
-									const [name, attributeName, eventName, ...valueMappingParts] =
+									const [name, attributeName, eventNames, ...valueMappingParts] =
 										tag.comment.split(' ');
 									const valueMappingStr = valueMappingParts.join(' ');
 									const valueMapping = valueMappingStr.substring(
@@ -136,7 +136,7 @@ export default {
 									vividComponent.vueModels.push({
 										name,
 										attributeName,
-										eventName,
+										eventNames: eventNames.split(',').map((x) => x.trim()),
 										valueMapping,
 									});
 								}

@@ -52,7 +52,7 @@ export function getTagFromComponentDefinition({
 			})),
 		events: events
 			// filter out v-model event
-			.filter((event) => event.name !== vueModel?.eventName)
+			.filter((event) => vueModel?.eventNames.includes(event))
 			// eslint-disable-next-line no-shadow
 			.map((event) => ({
 				name: event.name,

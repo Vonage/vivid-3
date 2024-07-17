@@ -35,7 +35,7 @@ export type IconPlacement = 'top' | 'side';
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
  * @event {CustomEvent<undefined>} open - The `open` event fires when the dialog opens.
  * @event {CustomEvent<string>} close - The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.
- *
+ * @vueModel open open open,close `(event.target as any).open`
  */
 export class Dialog extends FoundationElement {
 	/**
