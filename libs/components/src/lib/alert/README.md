@@ -208,7 +208,10 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 - Default: `0` (stays open indefinitely)
 
 ```html preview
-<vwc-alert text="Some important information for you" timeoutms="2000"></vwc-alert>
+<vwc-alert
+	text="Some important information for you"
+	timeoutms="2000"
+></vwc-alert>
 
 <vwc-button
 	appearance="outlined"
