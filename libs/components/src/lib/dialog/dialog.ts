@@ -33,7 +33,9 @@ export type IconPlacement = 'top' | 'side';
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.
  * @slot main - Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
+ * @event {CustomEvent<undefined>} open - The `open` event fires when the dialog opens.
  * @event {CustomEvent<string>} close - The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.
+ *
  */
 export class Dialog extends FoundationElement {
 	/**
@@ -128,6 +130,7 @@ export class Dialog extends FoundationElement {
 			if (this.$fastController.isConnected) {
 				this.#showDialog();
 			}
+			this.$emit('open', undefined, { bubbles: false });
 		}
 	}
 

@@ -243,9 +243,31 @@ describe('vwc-dialog', () => {
 		it("should not bubble 'close' event", async () => {
 			await showDialog();
 			const fn = jest.fn();
-			element.parentElement?.addEventListener('close', fn);
+			element.parentElement!.addEventListener('close', fn);
+
 			await closeDialog();
+
 			expect(fn).not.toBeCalled();
+		});
+	});
+
+	describe('open event', function () {
+		it("should fire 'open' event when opened", async function () {
+			const onOpen = jest.fn();
+			element.addEventListener('open', onOpen);
+
+			await showDialog();
+
+			expect(onOpen).toHaveBeenCalledTimes(1);
+		});
+
+		it('should not bubble', async () => {
+			const onOpen = jest.fn();
+			element.parentElement!.addEventListener('open', onOpen);
+
+			await showDialog();
+
+			expect(onOpen).not.toBeCalled();
 		});
 	});
 
