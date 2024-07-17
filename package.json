@@ -131,7 +131,7 @@
 		"nx-stylelint": "^16.0.1",
 		"pagefind": "^1.1.0",
 		"playwright": "1.38.0",
-		"prettier": "2.8.8",
+		"prettier": "2.7.1",
 		"rollup-plugin-copy": "^3.4.0",
 		"rollup-plugin-delete": "^2.0.0",
 		"sass": "^1.77.8",
