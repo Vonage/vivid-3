@@ -53,12 +53,14 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      Multi-select Combobox
+      Combobox (Multi-select)
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In progress" target="_blank" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research" icon="more-horizontal-line" connotation="announcement"></vwc-button>
+      <vwc-button label="Done" icon="check" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
-    <vwc-data-grid-cell></vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-icon name="more-horizontal-line"></vwc-icon>&nbsp;<strong>In progress</strong>
+    </vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -86,7 +88,7 @@
     <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button  label="Awaiting AT" icon="more-horizontal-line" href="/components/time-picker/" connotation="success"></vwc-button>
+      <vwc-button  label="In progress" icon="more-horizontal-line" href="/components/time-picker/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
