@@ -179,6 +179,49 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button active appearance="outlined-light" label='alert' connotation='alert'></vwc-button>
 		<vwc-button active appearance="outlined-light" label='announcement' connotation='announcement'></vwc-button>
 	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator appearance="ghost" label="ghost"></vwc-button>
+		<vwc-button dropdown-indicator appearance="outlined" label="outlined"></vwc-button>
+		<vwc-button dropdown-indicator appearance="filled" label="filled"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator appearance="ghost-light" label="ghost-light"></vwc-button>
+		<vwc-button dropdown-indicator appearance="outlined-light" label="outlined-light"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator connotation="cta" appearance="ghost" label="ghost"></vwc-button>
+		<vwc-button dropdown-indicator connotation="cta" appearance="outlined" label="outlined"></vwc-button>
+		<vwc-button dropdown-indicator connotation="cta" appearance="filled" label="filled"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator connotation="cta" appearance="ghost-light" label="ghost-light"></vwc-button>
+		<vwc-button dropdown-indicator connotation="cta" appearance="outlined-light" label="outlined-light"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button style="width: 200px" appearance="filled" dropdown-indicator label="wide"></vwc-button>
+		<vwc-button style="width: 100px" appearance="filled" dropdown-indicator label="too small for label"></vwc-button>
+		<vwc-button appearance="filled" dropdown-indicator icon="user-line"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button appearance="filled" dropdown-indicator label="expanded" aria-expanded="true"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button appearance="filled" dropdown-indicator icon="user-line" label="stacked" stacked></vwc-button>
+		<vwc-button style="width: 200px" appearance="filled" dropdown-indicator icon="user-line" label="wide" stacked></vwc-button>
+		<vwc-button style="width: 100px" appearance="filled" dropdown-indicator icon="user-line" label="too small for label" stacked></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator appearance="filled" label="super-condensed" size="super-condensed"></vwc-button>
+		<vwc-button dropdown-indicator appearance="filled" label="condensed" size="condensed"></vwc-button>
+		<vwc-button dropdown-indicator appearance="filled" label="normal" size="normal"></vwc-button>
+		<vwc-button dropdown-indicator appearance="filled" label="expanded" size="expanded"></vwc-button>
+	</div>
+	<div style="margin: 5px;">
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="super-condensed" size="super-condensed"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="condensed" size="condensed"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="normal" size="normal"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line" stacked appearance="filled" label="expanded" size="expanded"></vwc-button>
+	</div>
 	</div>
 	`;
 
