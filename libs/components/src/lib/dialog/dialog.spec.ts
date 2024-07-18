@@ -333,6 +333,13 @@ describe('vwc-dialog', () => {
 			y: 50,
 			toJSON(): any {},
 		};
+
+		function submitForm(formElement: HTMLFormElement) {
+			const event = new Event('submit');
+			Object.defineProperty(event, 'target', { value: formElement });
+			dialogEl.dispatchEvent(event);
+		}
+
 		beforeEach(async function () {
 			element.headline = 'headline';
 			await showModalDialog();
@@ -396,7 +403,7 @@ describe('vwc-dialog', () => {
 			formElement.setAttribute('slot', 'main');
 			element.appendChild(formElement);
 
-			formElement.requestSubmit();
+			submitForm(formElement);
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
@@ -407,7 +414,7 @@ describe('vwc-dialog', () => {
 			element.appendChild(formElement);
 			formElement.onsubmit = (_) => false;
 
-			formElement.requestSubmit();
+			submitForm(formElement);
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(true);
@@ -419,10 +426,9 @@ describe('vwc-dialog', () => {
 			formElement.setAttribute('slot', 'main');
 			element.appendChild(formElement);
 
-			element.disconnectedCallback();
-			formElement.requestSubmit();
+			element.remove();
+			submitForm(formElement);
 			await elementUpdated(element);
-
 			expect(element.open).toEqual(true);
 		});
 
@@ -434,7 +440,7 @@ describe('vwc-dialog', () => {
 				screenX: 25,
 				screenY: 25,
 			});
-			element.disconnectedCallback();
+			element.remove();
 			dialogEl.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
