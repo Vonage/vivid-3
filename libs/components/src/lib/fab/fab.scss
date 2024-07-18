@@ -91,7 +91,7 @@
 	}
 
 	&:disabled {
-		@include elevation.elevation(0);
+		@include elevation.elevation(none);
 
 		cursor: not-allowed;
 	}
