@@ -70,8 +70,7 @@ export const AlertTemplate: (
 						html`<header class="headline">${(x) => x.headline}</header>`
 					)}
 					${when((x) => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}
-					<slot name="main">
-					</slot>
+					<slot name="main"></slot>
 				</div>
 				<slot class="action-items" name="action-items"></slot>
 				${when((x) => x.removable, renderDismissButton(buttonTag))}

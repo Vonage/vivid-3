@@ -4,6 +4,10 @@
 		"markdown": "./docs/resources/change-process.md"
 	},
 	{
+		"title": "Browser Support",
+		"markdown": "./docs/resources/browser-support.md"
+	},
+	{
 		"title": "Release Policy",
 		"markdown": "./docs/resources/release-policy.md"
 	}
