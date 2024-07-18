@@ -121,8 +121,12 @@ export default {
 								}
 
 								if (tag.tagName.getText() === 'vueModel') {
-									const [name, attributeName, eventNames, ...valueMappingParts] =
-										tag.comment.split(' ');
+									const [
+										name,
+										attributeName,
+										eventNames,
+										...valueMappingParts
+									] = tag.comment.split(' ');
 									const valueMappingStr = valueMappingParts.join(' ');
 									const valueMapping = valueMappingStr.substring(
 										1,
