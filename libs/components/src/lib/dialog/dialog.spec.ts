@@ -182,6 +182,24 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(true);
 			expect(element.hasAttribute('open')).toEqual(true);
 		});
+
+		it('should not throw when called on an open non-modal dialog', async function () {
+			await showDialog();
+			expect(() => element.show()).not.toThrow();
+		});
+
+		it('should not throw when called on modal dialog if modal is set', async function () {
+			element.modal = true;
+			await showDialog();
+			expect(() => element.show()).not.toThrow();
+		});
+
+		it('should throw when called on modal dialog if modal is not set', async function () {
+			await showModalDialog();
+			expect(() => element.show()).toThrowError(
+				"Failed to execute 'show' on 'Dialog': The dialog is already open as a modal dialog, and therefore cannot be opened as a non-modal dialog."
+			);
+		});
 	});
 
 	describe('showModal method', function () {
@@ -206,6 +224,18 @@ describe('vwc-dialog', () => {
 			await closeDialog();
 			await showDialog();
 			expect(dialogOpenState()).toBe('non-modal');
+		});
+
+		it('should not throw if called on an open modal dialog', async function () {
+			await showModalDialog();
+			expect(() => element.showModal()).not.toThrow();
+		});
+
+		it('should throw if called on an open non-modal dialog', async function () {
+			await showDialog();
+			expect(() => element.showModal()).toThrowError(
+				"Failed to execute 'showModal' on 'Dialog': The dialog is already open as a non-modal dialog, and therefore cannot be opened as a modal dialog."
+			);
 		});
 	});
 

@@ -162,10 +162,22 @@ export class Dialog extends FoundationElement {
 	}
 
 	show() {
+		if (this._openedAsModal && !this.modal) {
+			throw new DOMException(
+				"Failed to execute 'show' on 'Dialog': The dialog is already open as a modal dialog, and therefore cannot be opened as a non-modal dialog.",
+				'InvalidStateError'
+			);
+		}
 		this.open = true;
 	}
 
 	showModal() {
+		if (this.open && !this._openedAsModal) {
+			throw new DOMException(
+				"Failed to execute 'showModal' on 'Dialog': The dialog is already open as a non-modal dialog, and therefore cannot be opened as a modal dialog.",
+				'InvalidStateError'
+			);
+		}
 		this._openedAsModal = true;
 		this.open = true;
 	}
