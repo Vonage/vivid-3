@@ -141,6 +141,13 @@ The `helper-text` slot allows you to use rich content as the file picker's helpe
 </vwc-file-picker>
 ```
 
+## CSS Variables
+
+### file-picker-list-item-background-color
+
+Each added file in the preview list has a default background-color of `vvd-color-canvas` (`#fff` in light theme, `#000` in dark).  
+If needed, the background of the item can be changed using the `--file-picker-list-item-background-color` CSS variable.
+
 ## Properties
 
 <div class="table-wrapper">
