@@ -3,27 +3,21 @@ import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
 	extractHTMLBlocksFromReadme,
-	loadComponents,
+	loadPage,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['appearance-ui'];
-
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
-		path.join(
-			new URL('.', import.meta.url).pathname,
-			'../../../../../docs/design/appearance.md'
-		)
+		path.join(__dirname, '../../../../../../docs/design/appearance.md')
 	).reduce(
 		(htmlString: string, block: string) =>
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
 		''
 	);
 
-	await loadComponents({
+	await loadPage({
 		page,
-		components,
 	});
 
 	page.setViewportSize({ width: 900, height: 3600 });

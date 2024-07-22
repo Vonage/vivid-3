@@ -20,20 +20,29 @@ jobs:
       - uses: actions/cache@v3
         id: cache
         with:
-          path: node_modules/
+          path: |
+            node_modules/
+            apps/vue-docs/node_modules/
+            libs/storybook-vue2/node_modules/
+            libs/storybook-vue3/node_modules/
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - uses: actions/cache@v3
-        id: build-cache
-        with:
-          path: dist/
-          key: ${{ runner.os }}-dist-${{ hashFiles('libs/**/*.*') }}
+      - name: Build components
+        run: npx nx run-many -t build -p components docs
 
-      - run: scripts/visual-tests/run.tests.sh
+      - name: Run components tests
+        run: scripts/visual-tests/run.tests.sh . ./libs/components/playwright.config.ts
+        env:
+          # Fix Firefox crash in GitHub Actions
+          # Details: https://github.com/microsoft/playwright/issues/6500#issuecomment-838515115
+          HOME: /root
+
+      - name: Run docs tests
+        run: scripts/visual-tests/run.tests.sh dist/apps/docs/ ./apps/docs/playwright.config.ts
         env:
           # Fix Firefox crash in GitHub Actions
           # Details: https://github.com/microsoft/playwright/issues/6500#issuecomment-838515115
