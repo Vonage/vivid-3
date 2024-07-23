@@ -1,12 +1,6 @@
 import { ComponentDef } from './ComponentDef';
 import { kebabToCamel, kebabToPascal } from './utils/casing';
-import {
-	isBooleanLiteral,
-	isNumberLiteral,
-	isStringLiteral,
-	TypeUnion,
-	withImportsResolved,
-} from './types';
+import { TypeUnion } from './types';
 import { getImportPath } from './vividPackage';
 
 type Import = {
@@ -83,8 +77,9 @@ export const renderComponent = (
 			(attr) => attr.name === model.attributeName
 		);
 		const event = componentDef.events.find((e) => e.name === model.eventName);
-		if (!attribute) throw new Error('v-model attribute not found');
-		if (!event) throw new Error('v-model event not found');
+		if (!attribute)
+			throw new Error(`v-model attribute not found: ${model.attributeName}`);
+		if (!event) throw new Error(`v-model event not found: ${model.eventName}`);
 
 		return {
 			...model,
@@ -131,16 +126,16 @@ export const renderComponent = (
 	}
 
 	/**
-	 * All props should be forwarded.
-	 * Vue requires us to filter out undefined properties
-	 * before passing them into the h function
+	 * Forward all props to their respective attribute / dom property.
+	 * In Vue 2, attributes and properties are under separate keys.
+	 * In Vue 3, we need to prefix attributes with '^' and properties with '.' to differentiate them.
 	 */
 	const renderProps = (
 		attributes: ComponentDef['attributes'],
-		asV2DomProps: boolean
+		syntax: 'vue2' | 'vue3'
 	) =>
 		attributes
-			.map(({ name, forceDomProp }) => {
+			.map(({ name, forwardTo }) => {
 				const vueModel = componentDef.vueModels.find(
 					(model) => model.attributeName === name
 				);
@@ -151,42 +146,38 @@ export const renderComponent = (
 					valueToUse = `this.${vueModel.name} ?? ${valueToUse}`;
 				}
 
-				const passedAsDomProp = asV2DomProps || forceDomProp;
-				const nameToUse = passedAsDomProp ? `${kebabToCamel(name)}` : `${name}`;
-				const prefix = forceDomProp && !asV2DomProps ? '.' : '';
+				const nameToUse =
+					syntax === 'vue2'
+						? forwardTo.name
+						: forwardTo.type === 'attribute'
+						? `^${forwardTo.name}`
+						: `.${forwardTo.name}`;
 
-				return `...(${valueToUse} !== undefined ? {'${prefix}${nameToUse}': ${valueToUse} } : {})`;
+				// Vue 2 and 3 differ in how they handle boolean attributes
+				// Remove false attributes in Vue 3 to make it behave like Vue 2
+				const booleanFilter =
+					forwardTo.type === 'attribute' &&
+					forwardTo.boolean &&
+					syntax === 'vue3'
+						? ` && (${valueToUse}) !== false`
+						: '';
+
+				// Vue requires us to filter out undefined properties before passing them into the h function
+				const filter = `(${valueToUse}) !== undefined${booleanFilter}`;
+
+				return `...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`;
 			})
 			.join(',');
-	const propsV3Src = renderProps(attributes, false);
 
-	/**
-	 * DOM attributes can only be strings, therefore complex data (e.g. HTMLElement) needs to be passed as props.
-	 * While Vue 3 handles this for us, in Vue 2 we need to figure out which attributes should be passed as props.
-	 */
-	const shouldBePassedAsAttribute = (
-		attribute: ComponentDef['attributes'][number]
-	) =>
-		!attribute.forceDomProp &&
-		withImportsResolved(attribute.type).every(
-			(t) =>
-				t.text === 'string' ||
-				t.text === 'number' ||
-				t.text === 'boolean' ||
-				isStringLiteral(t.text) ||
-				isNumberLiteral(t.text) ||
-				isBooleanLiteral(t.text) ||
-				// If unknown, default to attribute
-				t.text === 'any' ||
-				t.text === 'unknown'
-		);
+	const propsV3Src = renderProps(attributes, 'vue3');
+
 	const propsV2Src = renderProps(
-		attributes.filter(shouldBePassedAsAttribute),
-		false
+		attributes.filter((a) => a.forwardTo.type === 'attribute'),
+		'vue2'
 	);
 	const domPropsV2Src = renderProps(
-		attributes.filter((prop) => !shouldBePassedAsAttribute(prop)),
-		true
+		attributes.filter((a) => a.forwardTo.type === 'property'),
+		'vue2'
 	);
 
 	/**

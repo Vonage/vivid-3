@@ -18,13 +18,6 @@ import {
 	type SKIP_DIRECTIONS_TYPE,
 } from './audio-player';
 
-function getCurrentTimePercentage(x: AudioPlayer) {
-	if (Number.isNaN(x.currentTime) || Number.isNaN(x.duration)) {
-		return 0;
-	}
-	return (x.currentTime / x.duration) * 100;
-}
-
 function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
 	const currentTime = audioElement.currentTime;
 	const skipValue = parseInt(audioElement.skipBy!) * skipDirection;
@@ -123,8 +116,9 @@ function renderSlider(context: ElementDefinitionContext) {
 	return html<AudioPlayer>`
 	<${sliderTag}
 		class="slider"
+		value="0"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
-		current-value="${getCurrentTimePercentage}" max="100"
+		max="100"
 		ariaValuetext="${(x) => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}">
@@ -169,10 +163,11 @@ export const AudioPlayerTemplate: (
 				${when((x) => !x.notime, renderTimestamp())}
 			</div>
 			${renderSlider(context)}
-			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss>
-				${when(
-					(x) => Boolean(x.playbackRates),
-					html`<${buttonTag} id="playback-open-button"
+			${when(
+				(x) => Boolean(x.playbackRates),
+				html`
+			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss id="playback-menu">
+				<${buttonTag} id="playback-open-button"
 							  class="playback-button"
 							  slot="anchor"
 							  icon="playback-speed-line"
@@ -180,19 +175,19 @@ export const AudioPlayerTemplate: (
 							  size='condensed'
 							  connotation="${(x) => x.connotation}"
 							  ?disabled="${(x) => x.disabled || !x.duration}"
-				></${buttonTag}>`
-				)}
+				></${buttonTag}>
+
 				${repeat(
-					(x) =>
-						x.playbackRates ? getPlaybackRatesArray(x.playbackRates) : [],
+					(x) => getPlaybackRatesArray(x.playbackRates),
 					html<number>`<${menuItemTag} @click="${handlePlaybackRateClick}"
-                          role="menuitemradio"
-												 class="playback-rate"
-												 text="${(x) => x}"
-												 check-appearance="tick-only"
-												 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
+																			 role="menuitemradio"
+																			 class="playback-rate"
+																			 text="${(x) => x}"
+																			 check-appearance="tick-only"
+																			 ?checked="${isMenuItemChekced}"></${menuItemTag}>`
 				)}
-			</${menuTag}>
+			</${menuTag}>`
+			)}
 		</div>
 	</div>`;
 };

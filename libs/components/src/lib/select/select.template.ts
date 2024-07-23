@@ -19,6 +19,7 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
+import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from './select';
 
 const getStateClasses = ({
@@ -28,6 +29,8 @@ const getStateClasses = ({
 	metaSlottedContent,
 	errorValidationMessage,
 	successText,
+	placeholder,
+	value,
 }: Select) =>
 	classNames(
 		['disabled', disabled],
@@ -36,7 +39,8 @@ const getStateClasses = ({
 		['has-meta', Boolean(metaSlottedContent?.length)],
 		['error', Boolean(errorValidationMessage)],
 		['success', !!successText],
-		['has-meta', Boolean(metaSlottedContent?.length)]
+		['has-meta', Boolean(metaSlottedContent?.length)],
+		['shows-placeholder', Boolean(placeholder) && !value]
 	);
 
 function renderLabel() {
@@ -56,6 +60,7 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 
 function selectValue(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const chevronTemplate = chevronTemplateFactory(context);
 	return html<Select>` <div
 		class="control ${getStateClasses}"
 		${ref('_anchor')}
@@ -67,7 +72,7 @@ function selectValue(context: ElementDefinitionContext) {
 			<span class="text">${(x) => x.displayValue}</span>
 			<slot name="meta" ${slotted('metaSlottedContent')}></slot>
 		</div>
-		<span class="chevron">${() => affixIconTemplate('chevron-down-line')}</span>
+		${chevronTemplate}
 	</div>`;
 }
 

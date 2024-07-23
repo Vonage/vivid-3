@@ -19,6 +19,7 @@
 @use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@import '../../shared/patterns/chevron';
 
 $low-ink-color: --_low-ink-color;
 
@@ -101,18 +102,6 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.chevron {
-	display: flex;
-	flex-shrink: 0;
-	font: var(#{constants.$vvd-typography-base-extended});
-	transform: rotate(0);
-	transition: transform 0.2s;
-
-	:host([aria-expanded='true']) & {
-		transform: rotate(180deg);
-	}
-}
-
 .selected-value {
 	display: flex;
 	overflow: hidden;
@@ -126,7 +115,7 @@ $low-ink-color: --_low-ink-color;
 		max-inline-size: 100%;
 		text-overflow: ellipsis;
 
-		:host([placeholder]) & {
+		.control.shows-placeholder & {
 			color: var(#{constants.$vvd-color-neutral-600});
 		}
 	}

@@ -5,13 +5,14 @@ import type { Connotation } from '../enums';
 export type SwitchConnotation =
 	| Connotation.Accent
 	| Connotation.Alert
+	| Connotation.Announcement
 	| Connotation.Success
 	| Connotation.CTA;
 /**
  * @public
  * @component switch
  * @event {CustomEvent<undefined>} change - Emits a custom change event when the checked state changes
- * @vueModel modelValue current-checked change `(event.target as HTMLInputElement).checked`
+ * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
 export class Switch extends FoundationSwitch {
 	/**

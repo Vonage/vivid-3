@@ -10,7 +10,7 @@ export type SliderConnotation = Connotation.Accent | Connotation.CTA;
  * @public
  * @component slider
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
- * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
 export class Slider extends FastSlider {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;

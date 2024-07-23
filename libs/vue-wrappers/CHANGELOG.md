@@ -1,5 +1,40 @@
 # Changelog
 
+## [4.3.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.2.0...vivid-vue-v4.3.0) (2024-07-18)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.2.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.1.0...vivid-vue-v4.2.0) (2024-07-11)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.1.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.0.0...vivid-vue-v4.1.0) (2024-07-08)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.0.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.60.0...vivid-vue-v4.0.0) (2024-07-01)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.59.0...vivid-vue-v3.60.0) (2024-07-01)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [3.59.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.58.0...vivid-vue-v3.59.0) (2024-06-18)
 
 

@@ -27,6 +27,10 @@ export const exampleComponent: ComponentDef = {
 		{
 			name: 'example-attribute',
 			description: 'This is an example attribute',
+			forwardTo: {
+				type: 'attribute',
+				name: 'example-attribute',
+			},
 			type: [
 				{
 					text: 'string',
@@ -36,6 +40,10 @@ export const exampleComponent: ComponentDef = {
 		},
 		{
 			name: 'type-union',
+			forwardTo: {
+				type: 'attribute',
+				name: 'type-union',
+			},
 			type: [
 				{ text: 'string', vuePropType: 'String' },
 				{ text: 'number', vuePropType: 'Number' },
@@ -43,6 +51,10 @@ export const exampleComponent: ComponentDef = {
 		},
 		{
 			name: 'imported-type',
+			forwardTo: {
+				type: 'property',
+				name: 'importedType',
+			},
 			type: [
 				{
 					text: 'Imported',
@@ -53,6 +65,10 @@ export const exampleComponent: ComponentDef = {
 		},
 		{
 			name: 'value',
+			forwardTo: {
+				type: 'attribute',
+				name: 'value',
+			},
 			type: [
 				{
 					text: 'string',
@@ -62,6 +78,10 @@ export const exampleComponent: ComponentDef = {
 		},
 		{
 			name: 'start',
+			forwardTo: {
+				type: 'attribute',
+				name: 'start',
+			},
 			type: [
 				{
 					text: 'string',
@@ -71,13 +91,30 @@ export const exampleComponent: ComponentDef = {
 		},
 		{
 			name: 'forced-dom-prop',
+			forwardTo: {
+				type: 'property',
+				name: 'forcedDomProp',
+			},
 			type: [
 				{
 					text: 'string',
 					vuePropType: 'String',
 				},
 			],
-			forceDomProp: true,
+		},
+		{
+			name: 'boolean-attribute',
+			forwardTo: {
+				type: 'attribute',
+				name: 'boolean-attribute',
+				boolean: true,
+			},
+			type: [
+				{
+					text: 'boolean',
+					vuePropType: 'Boolean',
+				},
+			],
 		},
 	],
 	events: [

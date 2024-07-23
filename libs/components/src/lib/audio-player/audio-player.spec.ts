@@ -39,6 +39,7 @@ describe('vwc-audio-player', () => {
 	}
 
 	function setAudioTimeToEnd() {
+		nativeAudioElement.pause();
 		setAudioElementCurrentTime(nativeAudioElement.duration);
 	}
 
@@ -58,6 +59,20 @@ describe('vwc-audio-player', () => {
 			getSkipBackwardButton()?.hasAttribute('disabled') &&
 			getSkipForwardButton()?.hasAttribute('disabled')
 		);
+	}
+
+	function setCurrentTimeAndDuration(currentTime: number, duration: number) {
+		setAudioElementDuration(duration);
+		setAudioElementCurrentTime(currentTime);
+	}
+
+	function dragSliderTo(percent: number) {
+		getSliderElement().isDragging = true;
+		getSliderElement().value = percent.toString();
+	}
+
+	function stopSliderDrag() {
+		getSliderElement().isDragging = false;
 	}
 
 	let element: AudioPlayer;
@@ -99,70 +114,6 @@ describe('vwc-audio-player', () => {
 		});
 
 		pauseButton = getPauseButtonElement();
-	});
-
-	it('should update current time element text', async () => {
-		const duration = 60;
-		const currentTime = 30;
-		const expectedValue = '0:30';
-
-		setAudioElementDuration(duration);
-		setAudioElementCurrentTime(currentTime);
-		await elementUpdated(element);
-
-		expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
-	});
-
-	it('should update slider value and ariavaluetext on audio progress', async () => {
-		const duration = 60;
-		const currentTime = 20;
-		const expectedValue = '33';
-		const expectedAriaValuetext = '0:20';
-
-		setAudioElementDuration(duration);
-		setAudioElementCurrentTime(currentTime);
-		await elementUpdated(element);
-
-		expect(getSliderElement().value).toEqual(expectedValue);
-		expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(
-			expectedAriaValuetext
-		);
-	});
-
-	it('should update duration on loadmetadata', async function () {
-		setAudioElementDuration(800);
-		const event = new Event('loadedmetadata');
-		nativeAudioElement.currentTime = 700;
-		nativeAudioElement.dispatchEvent(event);
-
-		await elementUpdated(element);
-		expect(element.duration).toEqual(800);
-	});
-
-	it('should update total-time on loadedmetadata', async function () {
-		setAudioElementDuration(60);
-
-		nativeAudioElement.currentTime = 50;
-		const event = new Event('loadedmetadata');
-		nativeAudioElement.dispatchEvent(event);
-		await elementUpdated(element);
-
-		expect(getTotalTimeElement()?.textContent).toEqual('1:00');
-	});
-
-	it('should set currentTime according to slider value on mouseup', async () => {
-		const sliderValue = 50;
-		const duration = 100;
-		const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
-		setAudioElementCurrentTime(10);
-		setAudioElementDuration(duration);
-		getSliderElement().value = `${sliderValue}`;
-
-		document.dispatchEvent(new Event('mouseup'));
-
-		expect(nativeAudioElement.currentTime).toBe(
-			expectedCurrentTimeAfterMouseUp
-		);
 	});
 
 	describe('basic', () => {
@@ -259,6 +210,27 @@ describe('vwc-audio-player', () => {
 
 			expect(allSubElementsDisabled()).toBeTruthy();
 		});
+
+		it('should update duration on loadmetadata', async function () {
+			setAudioElementDuration(800);
+			const event = new Event('loadedmetadata');
+			nativeAudioElement.currentTime = 700;
+			nativeAudioElement.dispatchEvent(event);
+
+			await elementUpdated(element);
+			expect(element.duration).toEqual(800);
+		});
+
+		it('should update total-time on loadedmetadata', async function () {
+			setAudioElementDuration(60);
+
+			nativeAudioElement.currentTime = 50;
+			const event = new Event('loadedmetadata');
+			nativeAudioElement.dispatchEvent(event);
+			await elementUpdated(element);
+
+			expect(getTotalTimeElement()?.textContent).toEqual('1:00');
+		});
 	});
 
 	describe('currentTime', () => {
@@ -277,14 +249,71 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should set "current-value" on slider', async () => {
-			const duration = 120;
-			const currentTime = 30;
-			setAudioElementDuration(duration);
-			setAudioElementCurrentTime(currentTime);
+			const duration = 60;
+			const currentTime = 20;
+			setCurrentTimeAndDuration(currentTime, duration);
 			await elementUpdated(element);
 			expect(getSliderElement().getAttribute('current-value')).toBe(
-				((100 * currentTime) / duration).toString()
+				Math.round(100 * (currentTime / duration)).toString()
 			);
+		});
+
+		it('should prevent slider change handling after currentTime update', async () => {
+			const duration = 60;
+			const currentTime = 20;
+			setCurrentTimeAndDuration(currentTime, duration);
+			await elementUpdated(element);
+			expect(element.currentTime).toBe(20);
+		});
+
+		it('should update current time element text', async () => {
+			const duration = 60;
+			const currentTime = 30;
+			const expectedValue = '0:30';
+
+			setCurrentTimeAndDuration(currentTime, duration);
+			await elementUpdated(element);
+
+			expect(getCurrentTimeElement()?.textContent).toBe(expectedValue);
+		});
+
+		it('should update slider value and ariavaluetext on audio progress', async () => {
+			const duration = 80;
+			const currentTime = 20;
+			const expectedValue = `${(100 * currentTime) / duration}`;
+			const expectedAriaValuetext = '0:20';
+
+			setCurrentTimeAndDuration(currentTime, duration);
+			await elementUpdated(element);
+
+			expect(getSliderElement().value).toEqual(expectedValue);
+			expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(
+				expectedAriaValuetext
+			);
+		});
+
+		it('should set currentTime according to slider value on slider change', async () => {
+			const sliderValue = 50;
+			const duration = 100;
+			const expectedCurrentTimeAfterMouseUp = (sliderValue * duration) / 100;
+			setCurrentTimeAndDuration(10, duration);
+			await elementUpdated(element);
+			getSliderElement().value = `${sliderValue}`;
+			await elementUpdated(element);
+			expect(nativeAudioElement.currentTime).toBe(
+				expectedCurrentTimeAfterMouseUp
+			);
+		});
+
+		it('should change button icon to "play-solid" updates to end of audio', async () => {
+			setCurrentTimeAndDuration(10, 100);
+			element.play();
+			await elementUpdated(element);
+
+			setAudioTimeToEnd();
+			await elementUpdated(element);
+
+			expect(pauseButton.icon).toEqual('play-solid');
 		});
 	});
 
@@ -322,6 +351,23 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 			expect(pauseButton.icon).toEqual('pause-solid');
 		});
+
+		it('should call play only once if dragged twice', async () => {
+			setCurrentTimeAndDuration(10, 100);
+			element.play();
+			await elementUpdated(element);
+
+			dragSliderTo(20);
+			dragSliderTo(25);
+			await elementUpdated(element);
+
+			const playSpy = jest.spyOn(element, 'play');
+			stopSliderDrag();
+			getSliderElement().value = '20';
+			await elementUpdated(element);
+
+			expect(playSpy).toHaveBeenCalledTimes(1);
+		});
 	});
 
 	describe('pause()', () => {
@@ -345,6 +391,18 @@ describe('vwc-audio-player', () => {
 
 			expect(pauseButton.icon).toEqual('play-solid');
 		});
+
+		it('should call pause 0 times if already paused while dragging', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			await elementUpdated(element);
+
+			const pauseSpy = jest.spyOn(element, 'pause');
+			dragSliderTo(20);
+			await elementUpdated(element);
+
+			expect(pauseSpy).toHaveBeenCalledTimes(0);
+		});
 	});
 
 	describe('paused', function () {
@@ -352,7 +410,7 @@ describe('vwc-audio-player', () => {
 			expect(element.paused).toEqual(true);
 		});
 
-		it('should toggle paused on click', async function () {
+		it('should toggle paused when clicking the pause button', async function () {
 			setAudioElementDuration(60);
 
 			pauseButton.click();
@@ -365,36 +423,6 @@ describe('vwc-audio-player', () => {
 			expect(pausedAfterFirstClick).toEqual(false);
 			expect(pausedAfterSecondClick).toEqual(true);
 		});
-
-		it.each(['keyup', 'keydown', 'mousedown'])(
-			'should pause audio on %s of the slider',
-			async function (eventName) {
-				await elementUpdated(element);
-				setAudioElementDuration(60);
-
-				const event = new Event(eventName, { bubbles: true });
-				getSliderElement().dispatchEvent(event);
-
-				await elementUpdated(element);
-				expect(element.paused).toEqual(true);
-			}
-		);
-
-		it.each(['keyup', 'keydown', 'mousedown'])(
-			'should remove %s event listener on disconnection',
-			async function (eventName) {
-				element.play();
-				await elementUpdated(element);
-				setAudioElementDuration(60);
-				element.disconnectedCallback();
-
-				const event = new Event(eventName, { bubbles: true });
-				getSliderElement().dispatchEvent(event);
-
-				await elementUpdated(element);
-				expect(element.paused).toEqual(false);
-			}
-		);
 
 		it('should pause when finished', async function () {
 			element.play();
@@ -410,6 +438,46 @@ describe('vwc-audio-player', () => {
 		it('should be readonly', () => {
 			element.paused = false;
 			expect(element.paused).toBe(true);
+		});
+
+		it('should keep paused state while changing the slider value', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			element.play();
+			await elementUpdated(element);
+
+			getSliderElement().value = '20';
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(false);
+		});
+
+		it('should pause while dragging the slider', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			element.play();
+			await elementUpdated(element);
+
+			dragSliderTo(20);
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(true);
+		});
+
+		it('should keep playing when stop dragging the slider', async () => {
+			const duration = 100;
+			setCurrentTimeAndDuration(10, duration);
+			element.play();
+			await elementUpdated(element);
+
+			dragSliderTo(20);
+			await elementUpdated(element);
+
+			stopSliderDrag();
+			getSliderElement().value = '25';
+			await elementUpdated(element);
+
+			expect(element.paused).toBe(false);
 		});
 	});
 
@@ -428,26 +496,26 @@ describe('vwc-audio-player', () => {
 			expect(element.playbackRates).toBe(null);
 		});
 
-		it('should hide playbackRates button as default', async () => {
-			expect(getPlaybackRatesButton()).toBeNull();
+		it('should hide playbackRates menu as default', async () => {
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
-		it('should hide playbackRates button when attribute is removed', async () => {
+		it('should hide playbackRates menu when attribute is removed', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.removeAttribute('playback-rates');
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesButton()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
-		it('should hide playbackRates button when empty', async () => {
+		it('should hide playbackRates menu when empty', async () => {
 			element.playbackRates = DEFAULT_PLAYBACK_RATES;
 			await elementUpdated(element);
 			element.playbackRates = '';
 			await elementUpdated(element);
 
-			expect(getPlaybackRatesButton()).toBeNull();
+			expect(getPlaybackRatesMenuElement()).toBeNull();
 		});
 
 		it('should set class playback on base when playbackRates is truthy', async () => {
@@ -488,7 +556,9 @@ describe('vwc-audio-player', () => {
 			);
 		});
 
-		it('should start with a closed menu item', () => {
+		it('should start with a closed menu item', async () => {
+			element.playbackRates = DEFAULT_PLAYBACK_RATES;
+			await elementUpdated(element);
 			expect(getPlaybackRatesMenuElement()?.hasAttribute('open')).toBe(false);
 		});
 

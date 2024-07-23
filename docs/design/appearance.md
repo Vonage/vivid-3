@@ -532,4 +532,73 @@ currently ghost-light appearance is being used only with `accent` connotation
 </div>
 ```
 
-## Last update: 12.2023
+## Outlined-light
+
+### Used in
+
+`button`
+
+```html preview
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: 80px auto;
+		inline-size: 820px;
+		row-gap: 12px;
+		align-items: center;
+	}
+	span {
+		max-width: 80px;
+	}
+	.not-set {
+		grid-column: 1/-1;
+	}
+	.one-example {
+		grid-column: 2/-1;
+	}
+</style>
+<div class="grid">
+	<span><b>idle</b></span>
+	<vwc-appearance-ui appearance="outlined-light"></vwc-appearance-ui>
+
+	<span><b>hover</b></span>
+	<vwc-appearance-ui hovered appearance="outlined-light"></vwc-appearance-ui>
+
+	<span><b>active</b></span>
+	<vwc-appearance-ui active appearance="outlined-light"></vwc-appearance-ui>
+
+	<span><b>selected</b></span>
+	<vwc-appearance-ui selected appearance="outlined-light"></vwc-appearance-ui>
+
+	<span><b>selected & hover</b></span>
+	<vwc-appearance-ui
+		selected
+		appearance="outlined-light"
+		hovered
+	></vwc-appearance-ui>
+
+	<span><b>disabled</b></span>
+	<vwc-appearance-ui
+		disabled
+		appearance="outlined-light"
+		class="one-example"
+	></vwc-appearance-ui>
+
+	<span><b>selected & disabled</b></span>
+	<vwc-appearance-ui
+		selected
+		appearance="outlined-light"
+		disabled
+		class="one-example"
+	></vwc-appearance-ui>
+
+	<span><b>readonly</b></span>
+	<vwc-appearance-ui
+		readonly
+		appearance="outlined-light"
+		class="one-example"
+	></vwc-appearance-ui>
+</div>
+```
+
+## Last update: 06.2024

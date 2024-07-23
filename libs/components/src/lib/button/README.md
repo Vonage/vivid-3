@@ -25,7 +25,7 @@ Add a `label` attribute to add text to the button.
 
 Set the `appearance` attribute to change the button's appearance.
 
-- Type: `'ghost'` | `'ghost-light'` | `'filled'` | `'outlined'`
+- Type: `'ghost'` | `'ghost-light'` | `'filled'` | `'outlined'` | `'outlined-light'`
 - Default: `'ghost'`
 
 ```html preview
@@ -33,6 +33,7 @@ Set the `appearance` attribute to change the button's appearance.
 <vwc-button label="ghost-light" appearance="ghost-light"></vwc-button>
 <vwc-button label="filled" appearance="filled"></vwc-button>
 <vwc-button label="outlined" appearance="outlined"></vwc-button>
+<vwc-button label="outlined-light" appearance="outlined-light"></vwc-button>
 ```
 
 ### Icon
@@ -232,6 +233,36 @@ It accepts a subset of predefined values.
 ></vwc-button>
 ```
 
+#### Outlined-Light button with connotation
+
+```html preview
+<vwc-button
+	appearance="outlined-light"
+	label="accent"
+	connotation="accent"
+></vwc-button>
+<vwc-button
+	appearance="outlined-light"
+	label="cta"
+	connotation="cta"
+></vwc-button>
+<vwc-button
+	appearance="outlined-light"
+	label="announcement"
+	connotation="announcement"
+></vwc-button>
+<vwc-button
+	appearance="outlined-light"
+	label="success"
+	connotation="success"
+></vwc-button>
+<vwc-button
+	appearance="outlined-light"
+	label="alert"
+	connotation="alert"
+></vwc-button>
+```
+
 ### Disabled
 
 Add the `disabled` attribute to disable the button.
@@ -256,7 +287,12 @@ The indicator is not displayed when using the `super-condensed` size.
 
 ```html preview
 <vwc-button appearance="ghost" label="ghost" pending></vwc-button>
-<vwc-button appearance="filled" label="filled" pending></vwc-button>
+<vwc-button
+	appearance="filled"
+	aria-label="filled"
+	icon="check-line"
+	pending
+></vwc-button>
 <vwc-button appearance="outlined" label="outlined" pending></vwc-button>
 <vwc-button
 	appearance="ghost"
@@ -301,6 +337,27 @@ Semantically, buttons are usually used for triggering actions, while links are u
 ></vwc-button>
 ```
 
+### Dropdown Indicator
+
+When the button is used to trigger a menu or other dropdown, you can set `dropdown-indicator` to add a chevron to the button.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 200px
+<vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
+	<vwc-button
+		slot="anchor"
+		appearance="filled"
+		label="Menu"
+		dropdown-indicator
+	></vwc-button>
+	<vwc-menu-item icon="copy-line" text="Copy"></vwc-menu-item>
+	<vwc-menu-item icon="inbox-line" text="Share"></vwc-menu-item>
+	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>
+</vwc-menu>
+```
+
 ### Active
 
 Set the `active` attribute to make the button appear pressed.
@@ -313,6 +370,11 @@ Set the `active` attribute to make the button appear pressed.
 <vwc-button appearance="ghost-light" label="ghost-light" active></vwc-button>
 <vwc-button appearance="filled" label="filled" active></vwc-button>
 <vwc-button appearance="outlined" label="outlined" active></vwc-button>
+<vwc-button
+	appearance="outlined-light"
+	label="outlined-light"
+	active
+></vwc-button>
 ```
 
 ## Slots

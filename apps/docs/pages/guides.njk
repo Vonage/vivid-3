@@ -9,4 +9,4 @@ layout: article.njk
 eleventyComputed:
     hideToc: "{{ doc.hideToc }}"
 ---
-{% renderFile doc.markdown %}
+{% renderFile doc.markdown, { rules: eslintRules } %}

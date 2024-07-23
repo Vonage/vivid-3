@@ -3,7 +3,7 @@
 	border-radius-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent success information alert warning,
+	$connotations: accent success information alert warning announcement,
 	$shades: primary primary-text,
 	$default: accent
 );
@@ -97,6 +97,13 @@ $alert-transition-delay: --transition-delay;
 
 		.main-text {
 			font: var(#{constants.$vvd-typography-base});
+		}
+
+		.headline + ::slotted([slot='main'i]:first-child)::before,
+		.main-text + ::slotted([slot='main'i]:first-child)::before {
+			display: block;
+			margin-top: 8px;
+			content: '';
 		}
 	}
 

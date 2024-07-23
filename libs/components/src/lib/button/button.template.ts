@@ -11,6 +11,7 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 const getAppearanceClassName = (
@@ -71,6 +72,18 @@ function renderIconOrPending(
 	}
 }
 
+const buttonContent = (context: ElementDefinitionContext) => {
+	const chevronTemplate = chevronTemplateFactory(context);
+	return html<Button>`<span class="content">
+			${(x) => renderIconOrPending(context, x.icon, x.pending, x.size)}
+			${when(
+				(x) => x.label,
+				html`<span class="text" role="presentation">${(x) => x.label}</span>`
+			)}
+		</span>
+		${when((x) => x.dropdownIndicator, chevronTemplate)}`;
+};
+
 function renderButtonContent(context: ElementDefinitionContext) {
 	return html` <button
 		class="${getClasses}"
@@ -103,11 +116,7 @@ function renderButtonContent(context: ElementDefinitionContext) {
 		title="${(x) => x.title}"
 		${ref('control')}
 	>
-		${(x) => renderIconOrPending(context, x.icon, x.pending, x.size)}
-		${when(
-			(x) => x.label,
-			html`<span class="text" role="presentation">${(x) => x.label}</span>`
-		)}
+		${buttonContent(context)}
 	</button>`;
 }
 
@@ -139,11 +148,7 @@ function renderAnchorContent(context: ElementDefinitionContext) {
 		aria-roledescription="${(x) => x.ariaRoledescription}"
 		${ref('control')}
 	>
-		${(x) => renderIconOrPending(context, x.icon, x.pending, x.size)}
-		${when(
-			(x) => x.label,
-			html`<span class="text" role="presentation">${(x) => x.label}</span>`
-		)}
+		${buttonContent(context)}
 	</a>`;
 }
 

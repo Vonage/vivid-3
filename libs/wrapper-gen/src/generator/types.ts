@@ -38,6 +38,10 @@ const vuePropTypeFor = (typeStr: string) => {
 			return 'Boolean';
 		case 'string[]':
 			return 'Array';
+		case 'object':
+			return 'Object';
+		case 'Element[]':
+			return 'Array';
 		case 'Date':
 		case 'HTMLElement':
 		case 'Event':
