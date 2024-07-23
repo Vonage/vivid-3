@@ -39,7 +39,7 @@
 		"@11ty/eleventy": "^2.0.1",
 		"@11ty/eleventy-plugin-vite": "^4.0.0",
 		"@angular-eslint/utils": "^17.0.0",
-		"@custom-elements-manifest/analyzer": "^0.5.7",
+		"@custom-elements-manifest/analyzer": "^0.10.3",
 		"@microsoft/api-extractor": "^7.47.0",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
 		"@nrwl/devkit": "19.0.1",
