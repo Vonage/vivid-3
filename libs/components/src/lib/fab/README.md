@@ -48,8 +48,8 @@ Toggle `icon-trailing` to set the icon's horizontal alignment.
 Set the `connotation` attribute to change the FAB's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'`, `'cta'`, `'announcement'`
-- Default: `'accent'`
+- Type: `undefined`, `'accent'`, `'cta'`, `'announcement'`
+- Default: `undefined`
 
 ```html preview
 <vwc-fab icon="plus-line" connotation="accent"></vwc-fab>
