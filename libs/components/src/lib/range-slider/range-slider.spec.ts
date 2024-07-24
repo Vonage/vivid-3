@@ -10,6 +10,7 @@ import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
+import { Popup } from '../popup/popup.ts';
 import { RangeSlider } from './range-slider';
 import { rangeSliderDefinition } from './definition';
 import '.';
@@ -22,6 +23,13 @@ describe('vwc-range-slider', () => {
 		start: HTMLElement;
 		end: HTMLElement;
 	};
+	function getPopup(thumb: HTMLElement) {
+		const next = thumb.nextElementSibling as Popup;
+		if (next && next.classList.contains('popup')) {
+			return next;
+		}
+		return null;
+	}
 
 	beforeEach(async () => {
 		jest
@@ -268,6 +276,93 @@ describe('vwc-range-slider', () => {
 		});
 	});
 
+	describe('pin', () => {
+		it('should not have start and end popup when pin is false', async () => {
+			expect(getPopup(thumbs.start)).toBeNull();
+			expect(getPopup(thumbs.end)).toBeNull();
+		});
+
+		it('should have start and end popup when pin is true', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)).toBeInstanceOf(Popup);
+			expect(getPopup(thumbs.end)).toBeInstanceOf(Popup);
+		});
+
+		it('should hide the popups by default', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.open).toBe(false);
+			expect(getPopup(thumbs.end)!.open).toBe(false);
+		});
+
+		it('should format popup text according to valueTextFormatter', async () => {
+			element.pin = true;
+			element.valueTextFormatter = (value) => `${value} bits`;
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.textContent!.trim()).toBe('0 bits');
+			expect(getPopup(thumbs.end)!.textContent!.trim()).toBe('10 bits');
+		});
+
+		it('should show corresponding popup when hovering over thumb', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+
+			thumbs.start.dispatchEvent(new MouseEvent('mouseover'));
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.open).toBe(true);
+		});
+
+		it('should hide the corresponding popup when hovering off thumb', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+
+			thumbs.start.dispatchEvent(new MouseEvent('mouseover'));
+			thumbs.start.dispatchEvent(new MouseEvent('mouseout'));
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.open).toBe(false);
+		});
+
+		it('should show popup when thumb has visible focus', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+
+			thumbs.start.focus();
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.open).toBe(true);
+		});
+
+		it('should hide popup when thumb loses focus', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+
+			thumbs.start.focus();
+			thumbs.start.blur();
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.open).toBe(false);
+		});
+
+		it('should hide popup when thumb focus is not visible', async () => {
+			element.pin = true;
+			await elementUpdated(element);
+			const mouseEvent = new MouseEvent('mousedown');
+			Object.defineProperty(mouseEvent, 'pageX', { value: 300 });
+
+			element.dispatchEvent(mouseEvent);
+			window.dispatchEvent(new MouseEvent('mouseup'));
+			await elementUpdated(element);
+
+			expect(getPopup(thumbs.start)!.open).toBe(false);
+		});
+	});
+
 	describe.each([
 		{
 			thumb: 'start',
@@ -353,6 +448,31 @@ describe('vwc-range-slider', () => {
 
 			expect(element[thumb]).toBe('8');
 		});
+
+		it('should have visible focus when focused', async () => {
+			thumbs[thumb].focus();
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(thumbs[thumb]);
+			expect(thumbs[thumb].classList).toContain('focus-visible');
+		});
+
+		it('should receive non-visible focus on mousedown', async () => {
+			thumbs[thumb].dispatchEvent(new MouseEvent('mousedown'));
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(thumbs[thumb]);
+			expect(thumbs[thumb].classList).not.toContain('focus-visible');
+		});
+
+		it('should make focus visible when any key is pressed', async () => {
+			thumbs[thumb].dispatchEvent(new MouseEvent('mousedown'));
+			thumbs[thumb].dispatchEvent(new KeyboardEvent('keydown', { key: 'A' }));
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(thumbs[thumb]);
+			expect(thumbs[thumb].classList).toContain('focus-visible');
+		});
 	});
 
 	describe('clicking on track', () => {
@@ -403,6 +523,17 @@ describe('vwc-range-slider', () => {
 				element.dispatchEvent(mouseEvent);
 
 				expect(element.end).toBe('7');
+			});
+
+			it('should focus on the closest thumb without displaying focus indicator', async () => {
+				const mouseEvent = new MouseEvent('mousedown');
+				Object.defineProperty(mouseEvent, coordinate, { value: 300 });
+
+				element.dispatchEvent(mouseEvent);
+				await elementUpdated(element);
+
+				expect(element.shadowRoot!.activeElement).toBe(thumbs.start);
+				expect(thumbs.start.classList).not.toContain('focus-visible');
 			});
 
 			it('should not change values when disabled', async () => {
@@ -537,6 +668,17 @@ describe('vwc-range-slider', () => {
 					expect(eventSpy).toHaveBeenCalledTimes(1);
 				}
 			);
+
+			it('should show pin popup while dragging', async () => {
+				element.pin = true;
+				await elementUpdated(element);
+
+				mouseDown(thumbs.start, 0);
+				mouseMove(50);
+				await elementUpdated(element);
+
+				expect(getPopup(thumbs.start)!.open).toBe(true);
+			});
 		});
 	});
 

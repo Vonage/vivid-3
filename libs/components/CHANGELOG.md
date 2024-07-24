@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.2.0...vivid-v4.3.0) (2024-07-18)
+
+
+### Features
+
+* **button:** add dropdown-indicator option (VIV-1741) ([#1702](https://github.com/Vonage/vivid-3/issues/1702)) ([5caaf84](https://github.com/Vonage/vivid-3/commit/5caaf841352343b147a033f8082d36edfe2a074b))
+* **switch:** add announcement connotation (VIV-1756) ([#1848](https://github.com/Vonage/vivid-3/issues/1848)) ([edf18f8](https://github.com/Vonage/vivid-3/commit/edf18f872b140af806e8da04460fd36879ce4244))
+
+
+### Bug Fixes
+
+* **alert:** adds main slot margin when heading/text is present (VIV-1871) ([#1851](https://github.com/Vonage/vivid-3/issues/1851)) ([1f7cdaa](https://github.com/Vonage/vivid-3/commit/1f7cdaae22acfba2e9a3b554c427aea44dab7637))
+* **fab:** removes elevation (border) when disabled (VIV-1908) ([#1854](https://github.com/Vonage/vivid-3/issues/1854)) ([f5af75d](https://github.com/Vonage/vivid-3/commit/f5af75d22d9f5aef14ca360a52af1d1787d81611))
+* remove elevation from disabled fab ([f5af75d](https://github.com/Vonage/vivid-3/commit/f5af75d22d9f5aef14ca360a52af1d1787d81611))
+
 ## [4.2.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.1.0...vivid-v4.2.0) (2024-07-11)
 
 
