@@ -16,6 +16,7 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 $track-thickness: 2px;
 :host {
@@ -180,11 +181,10 @@ $track-thickness: 2px;
 	block-size: var(#{variables.$thumb-interaction-indicator-size});
 	cursor: inherit;
 	inline-size: var(#{variables.$thumb-interaction-indicator-size});
-	outline-color: transparent;
+	outline: none;
 	touch-action: none;
 
-	:focus-visible &,
-	&:focus-visible {
+	&.focus-visible {
 		@include focus.focus;
 
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -241,4 +241,15 @@ $track-thickness: 2px;
 				) / 2
 		);
 	}
+}
+
+.popup {
+	pointer-events: none;
+}
+
+.tooltip {
+	width: auto;
+	padding: 8px 12px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base-bold});
 }
