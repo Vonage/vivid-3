@@ -6,6 +6,8 @@ import styles from './empty-state.scss?inline';
 import { EmptyState } from './empty-state';
 import { EmptyStateTemplate as template } from './empty-state.template';
 
+export type { EmptyStateConnotation } from './empty-state'
+
 export const emptyStateDefinition =
 	EmptyState.compose<FoundationElementDefinition>({
 		baseName: 'empty-state',

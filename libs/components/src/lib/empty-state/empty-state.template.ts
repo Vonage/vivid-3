@@ -8,8 +8,14 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { EmptyState } from './empty-state';
 
-const getClasses = (x: EmptyState) =>
-	classNames('base', ['no-actions', x.slottedActionItems?.length === 0]);
+const getClasses = ({
+											connotation, appearance, slottedActionItems
+										}: EmptyState) =>
+	classNames(
+		'base',
+		[`connotation-${connotation}`, Boolean(connotation)],
+		[`appearance-${appearance}`, Boolean(appearance)],
+		['no-actions', slottedActionItems?.length === 0]);
 
 /**
  * The template for the EmptyState component.
@@ -28,7 +34,7 @@ export const EmptyStateTemplate: (
 			${when(
 				(x) => x.icon,
 				html<EmptyState>`<div class="icon-container">
-					<${iconTag} class="icon" name="${(x) => x.icon}" size="5"></${iconTag}>
+					<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 				</div>`
 			)}
 		</slot>
