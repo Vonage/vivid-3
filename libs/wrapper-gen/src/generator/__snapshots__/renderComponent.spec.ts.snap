@@ -60,11 +60,13 @@ export default defineComponent({
 							'input:start',
 
 						/**
+ * Fires when the modelValue value changes
  * @type {string}
  */
 							'update:modelValue',
 
 						/**
+ * Fires when the start value changes
  * @type {string}
  */
 							'update:start'],
@@ -190,11 +192,13 @@ export default defineComponent({
 						['input:start'](event: CustomEvent<{a: string | number}>) { return true },
 
 						/**
+ * Fires when the modelValue value changes
  * @type {string}
  */
 						['update:modelValue'](event: string) { return true },
 
 						/**
+ * Fires when the start value changes
  * @type {string}
  */
 						['update:start'](event: string) { return true }},
