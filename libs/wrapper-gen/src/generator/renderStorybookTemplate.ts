@@ -1,5 +1,5 @@
 import { ComponentDef } from './ComponentDef';
-import { camelToPascal, kebabToCamel, kebabToPascal } from './utils/casing';
+import { kebabToCamel, kebabToPascal } from './utils/casing';
 import {
 	isNumberLiteral,
 	isStringLiteral,
@@ -41,36 +41,26 @@ export const renderStorybookTemplate = (def: ComponentDef) => {
 		const vueModel = def.vueModels.find((vm) => vm.attributeName === attribute);
 		return vueModel ? vueModel.name : kebabToCamel(attribute);
 	};
-	const eventHandlerName = (event: string) => {
-		const vueModel = def.vueModels.find((vm) => vm.eventName === event);
-		return vueModel
-			? `onUpdate${camelToPascal(vueModel.name)}`
-			: `on${kebabToPascal(event.replaceAll(':', '-'))}`;
-	};
-	const eventName = (event: string) => {
-		const vueModel = def.vueModels.find((vm) => vm.eventName === event);
-		return vueModel ? `update:${vueModel.name}` : event;
-	};
+	const eventHandlerName = (event: string) =>
+		`on${kebabToPascal(event.replaceAll(':', '-'))}`;
 
 	const argTypesSrc = def.attributes
 		.map((attr) => `${propName(attr.name)}: ${renderArgType(attr)},`)
 		.join('\n');
 
-	const eventsSrc = def.events
-		.map(
-			(event) =>
-				`${eventHandlerName(event.name)}: { action: '${eventName(
-					event.name
-				)}' },`
-		)
+	const events = [
+		...def.events.map((event) => event.name),
+		...def.vueModels.map((vm) => `update:${vm.name}`),
+	];
+
+	const eventsSrc = events
+		.map((event) => `${eventHandlerName(event)}: { action: '${event}' },`)
 		.join('\n');
-	const eventListSrc = def.events
-		.map((event) => `${eventHandlerName(event.name)}, `)
+	const eventListSrc = events
+		.map((event) => `${eventHandlerName(event)}, `)
 		.join('');
-	const eventBindingsSrc = def.events
-		.map(
-			(event) => `@${eventName(event.name)}="${eventHandlerName(event.name)}"`
-		)
+	const eventBindingsSrc = events
+		.map((event) => `@${event}="${eventHandlerName(event)}"`)
 		.join(' ');
 
 	return `import { ${def.wrappedClassName} } from '@vonage/vivid-vue';

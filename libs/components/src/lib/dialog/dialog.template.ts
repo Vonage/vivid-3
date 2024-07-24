@@ -15,6 +15,7 @@ const getClasses = ({
 	bodySlottedContent,
 	footerSlottedContent,
 	actionItemsSlottedContent,
+	_openedAsModal,
 }: Dialog) =>
 	classNames(
 		'base',
@@ -23,34 +24,24 @@ const getClasses = ({
 		[
 			'hide-footer',
 			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
-		]
+		],
+		['modal', _openedAsModal]
 	);
-/**
- *
- */
+
 function icon(iconTag: string) {
 	return html<Dialog>`
 		<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 	`;
 }
 
-/**
- *
- */
 function headline() {
 	return html<Dialog>` <div class="headline">${(x) => x.headline}</div> `;
 }
 
-/**
- *
- */
 function subtitle() {
 	return html<Dialog>` <div class="subtitle">${(x) => x.subtitle}</div> `;
 }
 
-/**
- *
- */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
 	<${buttonTag}
@@ -64,18 +55,12 @@ function renderDismissButton(buttonTag: string) {
 }
 
 function handleEscapeKey(dialog: Dialog, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
+	if ((event as KeyboardEvent).key === 'Escape' && dialog._openedAsModal) {
 		dialog.open = false;
 	}
 	return true;
 }
 
-/**
- * The template for the Dialog component.
- *
- * @param context - element definition context
- * @public
- */
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
@@ -89,8 +74,8 @@ export const DialogTemplate: (
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
-				returnValue="${(x) => x.returnValue}"
 				aria-label="${(x) => x.ariaLabel}"
+				?aria-modal="${(x) => x._openedAsModal}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">

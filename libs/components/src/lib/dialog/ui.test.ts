@@ -4,7 +4,6 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
-import type { Dialog } from './dialog';
 
 const components = ['dialog'];
 
@@ -133,10 +132,11 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 	const template = `
 		<div style="height: 800px">
 			<vwc-dialog
-				id="modal"
 				icon="info"
 				headline="Headline"
 				subtitle="This is the content that I want to show and I will show it!!!"
+				open
+				modal
 			></vwc-dialog>
 		</div>
 	`;
@@ -151,15 +151,8 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 	});
 
 	const testWrapper = await page.locator('#wrapper');
-	await page.locator('#modal');
 
 	await page.waitForLoadState('networkidle');
-
-	await page.evaluate(() => {
-		const modal = document.getElementById('modal') as Dialog;
-		modal.showModal();
-		return modal;
-	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/dialog-modal.png'
