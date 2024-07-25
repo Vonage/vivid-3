@@ -2,113 +2,6 @@
 
 The Empty State component is used to display a message when there is no data to show.
 
-## NEW DESIGN
-### According to Aviad's design
-#### PROS
-- as was designed
-- 
-#### CONS
-- the heading text has a dark shade
-- in the original design of the empty state - the icon color looks too dark
-
-```html preview 600px
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-<vwc-empty-state icon="search-line" headline="No results found" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="check-solid" headline="No results found" connotation="success" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="error-solid" headline="No results found" connotation="alert" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="sparkles-solid" headline="No results found" connotation="cta" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="envelope-solid" headline="No results found" connotation="information" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="warning-solid" headline="No results found" connotation="warning" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-</div>
-<hr style="margin-block: 32px;">
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-<vwc-empty-state aviad icon="error-solid" headline="No results found" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="check-solid" headline="No results found" connotation="success" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="error-solid" headline="No results found" connotation="alert" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="sparkles-solid" headline="No results found" connotation="cta" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="envelope-solid" headline="No results found" connotation="information" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="warning-solid" headline="No results found" connotation="warning" appearance="subtle">
-	No results match your search criteria.
-</vwc-empty-state>
-</div>
-```
-
-## My new suggestion
-#### PROS
-- in the original design of the empty state - the icon color looks good
-- heading text color is more vibrant 
--
-#### CONS
-- not 100% as Aviad's design
-- warning connotation looks bad :(
-
-```html preview 600px
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-<vwc-empty-state icon="search-line" headline="No results found">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="check-solid" headline="No results found" connotation="success">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="error-solid" headline="No results found" connotation="alert">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="sparkles-solid" headline="No results found" connotation="cta">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="envelope-solid" headline="No results found" connotation="information">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state icon="warning-solid" headline="No results found" connotation="warning">
-	No results match your search criteria.
-</vwc-empty-state>
-</div>
-<hr style="margin-block: 32px;">
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-<vwc-empty-state aviad icon="search-line" headline="No results found">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="check-solid" headline="No results found" connotation="success">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="error-solid" headline="No results found" connotation="alert">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="sparkles-solid" headline="No results found" connotation="cta">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="envelope-solid" headline="No results found" connotation="information">
-	No results match your search criteria.
-</vwc-empty-state>
-<vwc-empty-state aviad icon="warning-solid" headline="No results found" connotation="warning">
-	No results match your search criteria.
-</vwc-empty-state>
-</div>
-```
-
-
 ```js
 <script type="module">import '@vonage/vivid/empty-state';</script>
 ```
@@ -150,13 +43,110 @@ Use the `icon` attribute to set the icon of the empty state.
 ```
 
 ### Connotation
+
 Set the `connotation` attribute to change the empty-state's connotation.
 It accepts a subset of predefined values.
 
 - Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'information'` | `'cta'`
 - Default: `'accent'`
 
+```html preview 300px
+<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
+	<vwc-empty-state icon="search-line" headline="No results found">
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="check-solid"
+		headline="No results found"
+		connotation="success"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="error-solid"
+		headline="No results found"
+		connotation="alert"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="sparkles-solid"
+		headline="No results found"
+		connotation="cta"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="envelope-solid"
+		headline="No results found"
+		connotation="information"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="warning-solid"
+		headline="No results found"
+		connotation="warning"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+</div>
+```
 
+### Icon-design
+
+Use icon-design to change the design of the circle wrapping the icon
+
+- Type: `boolean`
+- Default: `undefined`
+
+```html preview 300px
+<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
+	<vwc-empty-state icon-design icon="error-solid" headline="No results found">
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-design
+		icon="check-solid"
+		headline="No results found"
+		connotation="success"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-design
+		icon="error-solid"
+		headline="No results found"
+		connotation="alert"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-design
+		icon="sparkles-solid"
+		headline="No results found"
+		connotation="cta"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-design
+		icon="envelope-solid"
+		headline="No results found"
+		connotation="information"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-design
+		icon="warning-solid"
+		headline="No results found"
+		connotation="warning"
+	>
+		No results match your search criteria.
+	</vwc-empty-state>
+</div>
+```
 
 ## Slots
 

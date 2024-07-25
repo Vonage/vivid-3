@@ -9,13 +9,16 @@ import { Icon } from '../icon/icon';
 import type { EmptyState } from './empty-state';
 
 const getClasses = ({
-											connotation, appearance, slottedActionItems
-										}: EmptyState) =>
+	connotation,
+	iconDesign,
+	slottedActionItems,
+}: EmptyState) =>
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[`appearance-${appearance}`, Boolean(appearance)],
-		['no-actions', slottedActionItems?.length === 0]);
+		['icon-wrapper-design', Boolean(iconDesign)],
+		['no-actions', slottedActionItems?.length === 0]
+	);
 
 /**
  * The template for the EmptyState component.

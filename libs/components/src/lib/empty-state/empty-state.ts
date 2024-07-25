@@ -1,7 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
-import {Appearance} from "../enums.js";
 
 /**
  * An empty state element. Used when there is no data to display to the user.
@@ -26,16 +25,9 @@ export type EmptyStateConnotation = Extract<
 	| Connotation.Alert
 	| Connotation.Warning
 	| Connotation.Information
-	>;
-
-export type EmptyAppearance = Extract<
-	Appearance,
-	| Appearance.Ghost
-	| Appearance.Subtle
-	>;
+>;
 
 export class EmptyState extends FoundationElement {
-	@attr appearance?: EmptyAppearance;
 	/**
 	 * The connotation the empty state should have.
 	 *
@@ -55,6 +47,14 @@ export class EmptyState extends FoundationElement {
 	 * @public
 	 */
 	@attr icon?: string;
+
+	/**
+	 * option to a new design for the icon circle
+	 *
+	 * @public
+	 * HTML Attribute: icon-design
+	 */
+	@attr({ mode: 'boolean', attribute: 'icon-design' }) iconDesign = false;
 
 	/**
 	 * The action items to display in the empty state.
