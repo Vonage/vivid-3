@@ -56,9 +56,11 @@
       Multi-select Combobox
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In progress" target="_blank" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research" icon="more-horizontal-line" connotation="announcement"></vwc-button>
+      <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research"  icon="check" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
-    <vwc-data-grid-cell></vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <span><vwc-icon name="more-horizontal-line"></vwc-icon> <strong>In progress</strong></span>
+    </vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
