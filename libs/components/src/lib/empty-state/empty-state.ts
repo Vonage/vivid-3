@@ -2,7 +2,6 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 
-
 /**
  * Types of empty-state connotation.
  *
@@ -16,8 +15,7 @@ export type EmptyStateConnotation = Extract<
 	| Connotation.Alert
 	| Connotation.Warning
 	| Connotation.Information
-	>;
-
+>;
 
 /**
  * An empty state element. Used when there is no data to display to the user.
