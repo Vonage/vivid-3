@@ -2,18 +2,9 @@ import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 
-/**
- * An empty state element. Used when there is no data to display to the user.
- *
- * @public
- * @component empty-state
- * @slot - The default slot controls the body text of the empty state
- * @slot graphic - The graphic slot allows overriding the icon with a custom illustration
- * @slot action-items - Slot to add action items to the empty state
- */
 
 /**
- * Types of badge connotation.
+ * Types of empty-state connotation.
  *
  * @public
  */
@@ -25,8 +16,18 @@ export type EmptyStateConnotation = Extract<
 	| Connotation.Alert
 	| Connotation.Warning
 	| Connotation.Information
->;
+	>;
 
+
+/**
+ * An empty state element. Used when there is no data to display to the user.
+ *
+ * @public
+ * @component empty-state
+ * @slot - The default slot controls the body text of the empty state
+ * @slot graphic - The graphic slot allows overriding the icon with a custom illustration
+ * @slot action-items - Slot to add action items to the empty state
+ */
 export class EmptyState extends FoundationElement {
 	/**
 	 * The connotation the empty state should have.
