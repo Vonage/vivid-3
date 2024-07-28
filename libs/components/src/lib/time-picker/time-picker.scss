@@ -43,16 +43,11 @@
 }
 
 .time-pickers {
-	$item-inline-size: --_item-inline-size;
-	#{$item-inline-size}: 50px;
+	$item-inline-size: 50px;
 	$item-block-size: 28px;
 	$item-gap: 4px;
 	$num-items-visible: 6;
 	$num-items-to-reserve-space-for: ($num-items-visible - 1);
-
-	:host([clock="24h"]) & {
-		#{$item-inline-size}: 50%;
-	}
 
 	@function space-for-items($n) {
 		@return $item-block-size * $n + $item-gap * ($n - 1);
@@ -60,6 +55,7 @@
 
 	display: flex;
 	overflow: hidden;
+	justify-content: center;
 	padding: $item-gap;
 	block-size: space-for-items($num-items-visible);
 	gap: $item-gap;
@@ -73,7 +69,7 @@
 		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		margin: 0;
 		gap: $item-gap;
-		inline-size: var(#{$item-inline-size});
+		inline-size: $item-inline-size;
 		list-style: none;
 
 		// Make scrollbar appearance less intrusive
@@ -114,12 +110,6 @@
 		color: var(#{appearance.get-appearance-token(text)});
 		cursor: pointer;
 		font: var(#{constants.$vvd-typography-base});
-		inline-size: 100%;
+		inline-size: $item-inline-size;
 	}
 }
-
-//:host([clock="24h"]) {
-//	.time-pickers {
-//		#{$item-inline-size}: 50%;
-//	}
-//}
