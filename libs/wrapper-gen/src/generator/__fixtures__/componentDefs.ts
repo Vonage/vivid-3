@@ -151,13 +151,13 @@ export const exampleComponent: ComponentDef = {
 		{
 			name: 'modelValue',
 			attributeName: 'value',
-			eventName: 'input',
+			eventNames: ['input'],
 			valueMapping: '(event.target as any).value',
 		},
 		{
 			name: 'start',
 			attributeName: 'start',
-			eventName: 'input:start',
+			eventNames: ['input:start'],
 			valueMapping: '(event.target as any).start',
 		},
 	],

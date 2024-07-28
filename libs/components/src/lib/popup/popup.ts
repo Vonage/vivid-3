@@ -1,7 +1,8 @@
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, DOM, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	arrow,
+	autoPlacement,
 	autoUpdate,
 	computePosition,
 	flip,
@@ -11,6 +12,37 @@ import {
 	size,
 } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
+
+export const PlacementStrategy = {
+	Flip: 'flip',
+	AutoPlacementHorizontal: 'auto-placement-horizontal',
+	AutoPlacementVertical: 'auto-placement-vertical',
+} as const;
+type PlacementStrategyId =
+	typeof PlacementStrategy[keyof typeof PlacementStrategy];
+const placementStrategyMiddlewares = {
+	[PlacementStrategy.Flip]: flip(),
+	[PlacementStrategy.AutoPlacementHorizontal]: autoPlacement({
+		allowedPlacements: [
+			'bottom',
+			'top',
+			'bottom-start',
+			'bottom-end',
+			'top-start',
+			'top-end',
+		],
+	}),
+	[PlacementStrategy.AutoPlacementVertical]: autoPlacement({
+		allowedPlacements: [
+			'left',
+			'right',
+			'left-start',
+			'left-end',
+			'right-start',
+			'right-end',
+		],
+	}),
+} as const;
 
 /**
  * @public
@@ -22,7 +54,7 @@ export class Popup extends FoundationElement {
 	get #middleware(): Array<any> {
 		let middleware = [
 			inline(),
-			flip(),
+			placementStrategyMiddlewares[this.placementStrategy],
 			hide(),
 			size({
 				apply({ availableWidth, availableHeight, elements }) {
@@ -61,7 +93,7 @@ export class Popup extends FoundationElement {
 	open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
-		this.#updateAutoUpdate();
+		DOM.queueUpdate(() => this.#updateAutoUpdate());
 	}
 
 	/**
@@ -106,6 +138,29 @@ export class Popup extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: Placement;
 
 	/**
+	 * The placement strategy of the popup.
+	 *
+	 * @public
+	 */
+	placementStrategy: PlacementStrategyId = PlacementStrategy.Flip;
+
+	/**
+	 * Whether to update the position of the floating element on every animation frame if required.
+	 *
+	 * @public
+	 * HTML Attribute: animation-frame
+	 */
+	@attr({ mode: 'boolean', attribute: 'animation-frame' }) animationFrame =
+		false;
+
+	/**
+	 * @internal
+	 */
+	animationFrameChanged() {
+		this.#updateAutoUpdate();
+	}
+
+	/**
 	 * the strategy of the popup
 	 *
 	 * @public
@@ -140,8 +195,13 @@ export class Popup extends FoundationElement {
 	#updateAutoUpdate() {
 		this.#cleanup?.();
 		if (this.anchorEl && this.open && this.popupEl) {
-			this.#cleanup = autoUpdate(this.anchorEl, this.popupEl, () =>
-				this.updatePosition()
+			this.#cleanup = autoUpdate(
+				this.anchorEl,
+				this.popupEl,
+				() => this.updatePosition(),
+				{
+					animationFrame: this.animationFrame,
+				}
 			);
 		}
 	}
