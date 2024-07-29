@@ -150,6 +150,22 @@ Use the `placement` attribute to set the placement of the popup around the ancho
 </script>
 ```
 
+### Placement Strategy
+
+Controls the placement strategy of the popup. The `Flip` strategy will flip the popup to the opposite side if there is not enough space. The `AutoPlacementHorizontal` and `AutoPlacementVertical` strategies will place the popup on the side with the most space in the respective axis.
+
+- Type: `PlacementStrategy.Flip` | `PlacementStrategy.AutoPlacementHorizontal` | `PlacementStrategy.AutoPlacementVertical`
+- Default: `PlacementStrategy.Flip`
+
+### Animation Frame
+
+Whether to update the position of the floating element on every animation frame if required.
+
+See the [Floating UI Documentation](https://floating-ui.com/docs/autoUpdate#animationframe) for more information.
+
+- Type: `boolean`
+- Default: `false`
+
 ### Strategy
 
 Use the `strategy` attribute to set the placement strategy.

@@ -1,5 +1,6 @@
 import type { SliderOptions } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { popupRegistries } from '../popup/definition';
 import styles from './slider.scss?inline';
 
 import { Slider } from './slider';
@@ -21,7 +22,7 @@ export const sliderDefinition = Slider.compose<SliderOptions>({
 /**
  * @internal
  */
-export const sliderRegistries = [sliderDefinition()];
+export const sliderRegistries = [...popupRegistries, sliderDefinition()];
 
 /**
  * Registers the slider elements with the design system.

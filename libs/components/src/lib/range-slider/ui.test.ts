@@ -63,6 +63,72 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 
+test('should show a tooltip for horizontal range slider', async ({
+	page,
+}: {
+	page: Page;
+}) => {
+	const template = `
+		<div style="height: 100px;">
+			<vwc-range-slider start="3" end="7" pin></vwc-range-slider>
+		</div>
+	`;
+
+	await page.setViewportSize({ width: 600, height: 600 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.keyboard.press('Tab');
+
+	await page.waitForLoadState('networkidle');
+
+	const testWrapper = await page.$('#wrapper');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/range-slider-tooltip-horizontal.png'
+	);
+});
+
+test('should show a tooltip for vertical range slider', async ({
+	page,
+}: {
+	page: Page;
+}) => {
+	const template = `
+		<vwc-range-slider orientation="vertical" start="3" end="7" pin></vwc-range-slider>
+	`;
+
+	await page.setViewportSize({ width: 100, height: 600 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.keyboard.press('Tab');
+
+	await page.waitForLoadState('networkidle');
+
+	const testWrapper = await page.$('#wrapper');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/range-slider-tooltip-vertical.png'
+	);
+});
+
 test('selecting a range', async ({ page }: { page: Page }) => {
 	const template =
 		'<vwc-range-slider style="width: 1000px;"></vwc-range-slider>';

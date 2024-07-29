@@ -11,8 +11,17 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
 ```
 
 ```html preview 300px
-<vwc-button label="Open non-modal Dialog" onclick="openNonModal()"></vwc-button>
-<vwc-button label="Open modal Dialog" onclick="openModal()"></vwc-button>
+<div style="display: flex; align-items: center; gap: 16px">
+	<vwc-radio-group>
+		<vwc-radio label="Non-modal" value="false" checked></vwc-radio>
+		<vwc-radio label="Modal" value="true"></vwc-radio>
+	</vwc-radio-group>
+	<vwc-button
+		appearance="filled"
+		label="Open Dialog"
+		onclick="openDialog()"
+	></vwc-button>
+</div>
 
 <vwc-dialog icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
@@ -33,18 +42,16 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
 <script>
 	const dialog = document.querySelector('vwc-dialog');
 
-	function openNonModal() {
-		if (dialog.open) dialog.close();
-		dialog.show();
+	function openDialog() {
+		dialog.open = true;
 	}
 
-	function openModal() {
-		if (dialog.open) dialog.close();
-		dialog.showModal();
-	}
+	document.querySelector('vwc-radio-group').addEventListener('change', (e) => {
+		dialog.modal = e.target.value === 'true';
+	});
 
 	function closeDialog() {
-		dialog.close();
+		dialog.open = false;
 	}
 </script>
 ```
@@ -105,8 +112,6 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 
 Sets or returns whether a dialog should be open or not.
 
-Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal()` instead.
-
 - Type: `boolean`
 - Default: `false`
 
@@ -116,6 +121,17 @@ Note: You cannot use the `open` attribute to open a modal dialog. Use `showModal
 	onclick="dialog.open = !dialog.open"
 ></vwc-button>
 <vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
+```
+
+### Modal
+
+Controls whether the dialog is modal or not.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-dialog headline="Modal Dialog" modal open></vwc-dialog>
 ```
 
 ### No-light-dismiss
@@ -128,9 +144,9 @@ Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismis
 ```html preview 230px
 <vwc-button
 	label="Open modal dialog"
-	onclick="document.querySelector('vwc-dialog').showModal()"
+	onclick="document.querySelector('vwc-dialog').open = true"
 ></vwc-button>
-<vwc-dialog no-light-dismiss headline="Headline"></vwc-dialog>
+<vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
 
 ### Return Value
@@ -164,7 +180,7 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 			buttonType = e.target.label;
 			console.log(buttonType);
 			dialog.returnValue = buttonType;
-			dialog.close();
+			dialog.open = false;
 		}
 
 		cancelButton = document.querySelector('[label="Cancel"]');
@@ -179,11 +195,9 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 		);
 		window.handleClick = handleClick;
 	})();
-</script>
-<script>
+
 	function openDialog() {
-		dialog = document.querySelector('vwc-dialog');
-		dialog.show();
+		document.querySelector('vwc-dialog').open = true;
 	}
 </script>
 ```
@@ -388,9 +402,10 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Name    | Type                  | Bubbles | Composed | Description                                                                                                                                                   |
-| ------- | --------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `close` | `CustomEvent<string>` | Yes     | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
+| Name    | Type                     | Bubbles | Composed | Description                                                                                                                                                   |
+| ------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`  | `CustomEvent<undefined>` | No      | Yes      | The `open` event fires when the dialog opens.                                                                                                                 |
+| `close` | `CustomEvent<string>`    | No      | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
 
 </div>
 
@@ -398,11 +413,11 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Namen       | Returns | Description                                                |
-| ----------- | ------- | ---------------------------------------------------------- |
-| `show`      | `void`  | Shows the dialog. Positioned in a top position by default. |
-| `close`     | `void`  | Closes the dialog.                                         |
-| `showModal` | `void`  | Shows the dialog and makes it the top-most modal dialog.   |
+| Namen       | Returns | Description                                                                 |
+| ----------- | ------- | --------------------------------------------------------------------------- |
+| `show`      | `void`  | Shows the dialog.                                                           |
+| `close`     | `void`  | Closes the dialog.                                                          |
+| `showModal` | `void`  | Shows the dialog as a modal, irregardless of the value of the modal member. |
 
 </div>
 
@@ -413,18 +428,6 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 - The dismiss button is automatically given a localized version of the word "Close". This can be overriden using `dismiss-button-aria-label`.
 
 ## Use Cases
-
-### Modal Dialog
-
-Use the `showModal` method to open a dialog as a modal. It will display in the [top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer). Positioned in a center position by default. Interaction outside the dialog is blocked and the content outside it is rendered inert. For more information, see the native [Dialog.showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
-
-```html preview 400px
-<vwc-button
-	label="Open Modal Dialog"
-	onclick="document.querySelector('vwc-dialog').showModal()"
-></vwc-button>
-<vwc-dialog headline="Modal Dialog"></vwc-dialog>
-```
 
 ### Dialog Form
 

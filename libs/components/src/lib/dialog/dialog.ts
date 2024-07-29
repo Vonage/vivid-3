@@ -33,7 +33,9 @@ export type IconPlacement = 'top' | 'side';
  * @slot footer - Use the footer slot in order to add action buttons to the bottom of the dialog.
  * @slot main - Assign nodes to the main slot to fully override a dialog’s predefined flow and style with your own.
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
+ * @event {CustomEvent<undefined>} open - The `open` event fires when the dialog opens.
  * @event {CustomEvent<string>} close - The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.
+ * @vueModel open open open,close `(event.target as any).open`
  */
 export class Dialog extends FoundationElement {
 	/**
@@ -57,21 +59,36 @@ export class Dialog extends FoundationElement {
 	@attr({ attribute: 'no-light-dismiss', mode: 'boolean' }) noLightDismiss =
 		false;
 
-	#modal = false;
-
-	set returnValue(value) {
-		this.#dialog.returnValue = value;
-	}
-
-	get returnValue(): string {
-		return this.#dialog?.returnValue;
-	}
+	/**
+	 * Controls whether the dialog is modal.
+	 * @remarks
+	 * HTML Attribute: modal
+	 */
+	@attr({ mode: 'boolean' }) modal = false;
 
 	/**
 	 * @internal
 	 */
-	get modal() {
-		return this.#modal;
+	modalChanged(_: boolean, newValue: boolean) {
+		if (this.open) {
+			this._openedAsModal = newValue;
+
+			if (this.$fastController.isConnected) {
+				// Transition open dialog to new modal state
+				this.#closeDialog();
+				this.#showDialog();
+			}
+		}
+	}
+
+	set returnValue(value) {
+		if (this.#dialog) {
+			this.#dialog.returnValue = value;
+		}
+	}
+
+	get returnValue(): string {
+		return this.#dialog?.returnValue;
 	}
 
 	#dialogElement?: HTMLDialogElement;
@@ -82,7 +99,6 @@ export class Dialog extends FoundationElement {
 				'dialog'
 			) as HTMLDialogElement;
 			if (this.#dialogElement) {
-				this.#dialogElement.open = this.open;
 				if (dialogPolyfill) {
 					dialogPolyfill.registerDialog(this.#dialogElement);
 				}
@@ -94,16 +110,27 @@ export class Dialog extends FoundationElement {
 	/**
 	 * @internal
 	 */
+	@observable _openedAsModal = false;
+
+	/**
+	 * @internal
+	 */
 	openChanged(oldValue: boolean, newValue: boolean) {
 		if (oldValue === undefined) {
 			return;
 		}
 		if (!newValue) {
-			this.close();
-		} else {
-			if (this.#dialog) {
-				this.#dialog.open = true;
+			this._openedAsModal = false;
+			if (this.$fastController.isConnected) {
+				this.#closeDialog();
 			}
+			this.$emit('close', this.returnValue, { bubbles: false });
+		} else {
+			this._openedAsModal = this._openedAsModal || this.modal;
+			if (this.$fastController.isConnected) {
+				this.#showDialog();
+			}
+			this.$emit('open', undefined, { bubbles: false });
 		}
 	}
 
@@ -131,40 +158,56 @@ export class Dialog extends FoundationElement {
 	};
 
 	close() {
-		if (this.#dialog.open) {
-			this.#dialog.close();
-			this.$emit('close', this.returnValue, { bubbles: false });
-		}
-
 		this.open = false;
-		this.#handleModal(false);
-	}
-
-	#handleModal(show: boolean) {
-		this.#modal = show;
-		this.#dialog.toggleAttribute('aria-modal', show);
-		this.#dialog.classList.toggle('modal', show);
 	}
 
 	show() {
-		this.#dialog.show();
+		if (this._openedAsModal && !this.modal) {
+			throw new DOMException(
+				"Failed to execute 'show' on 'Dialog': The dialog is already open as a modal dialog, and therefore cannot be opened as a non-modal dialog.",
+				'InvalidStateError'
+			);
+		}
 		this.open = true;
 	}
 
 	showModal() {
-		this.#handleModal(true);
-		this.#dialog.showModal();
+		if (this.open && !this._openedAsModal) {
+			throw new DOMException(
+				"Failed to execute 'showModal' on 'Dialog': The dialog is already open as a non-modal dialog, and therefore cannot be opened as a modal dialog.",
+				'InvalidStateError'
+			);
+		}
+		this._openedAsModal = true;
 		this.open = true;
+	}
+
+	#closeDialog() {
+		this.#dialog.close();
+	}
+
+	#showDialog() {
+		if (this._openedAsModal) {
+			this.#dialog.showModal();
+		} else {
+			this.#dialog.show();
+		}
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
+		if (this.open) {
+			this.#showDialog();
+		}
 		this.#dialog.addEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.addEventListener('submit', this.#handleInternalFormSubmit);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
+		if (this.open) {
+			this.#closeDialog();
+		}
 		this.#dialog.removeEventListener('mousedown', this.#handleScrimClick);
 		this.#dialog.removeEventListener('submit', this.#handleInternalFormSubmit);
 	}

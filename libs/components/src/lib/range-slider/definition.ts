@@ -1,7 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
+import { popupRegistries } from '../popup/definition';
 import styles from './range-slider.scss?inline';
-
 import { RangeSlider } from './range-slider';
 import { RangeSliderTemplate as template } from './range-slider.template';
 
@@ -18,7 +18,10 @@ export const rangeSliderDefinition =
 /**
  * @internal
  */
-export const rangeSliderRegistries = [rangeSliderDefinition()];
+export const rangeSliderRegistries = [
+	...popupRegistries,
+	rangeSliderDefinition(),
+];
 
 /**
  * Registers the range-slider element with the design system.
