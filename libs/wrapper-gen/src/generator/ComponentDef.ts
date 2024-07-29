@@ -30,7 +30,7 @@ export interface ComponentDef {
 	vueModels: {
 		name: string; // Name of the v-model, e.g. 'modelValue' or 'start'
 		attributeName: string; // Name of the attribute that will be used for v-model, e.g. 'current-checked'
-		eventName: string; // Name of the event that will be used for v-model, e.g. 'change'
+		eventNames: string[]; // Name of the events that will be used for v-model, e.g. 'change'
 		valueMapping: string; // Code for extracting the new value from event. E.g. "event.target.value"
 	}[];
 	methods: {

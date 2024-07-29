@@ -76,22 +76,23 @@ export const renderComponent = (
 		const attribute = componentDef.attributes.find(
 			(attr) => attr.name === model.attributeName
 		);
-		const event = componentDef.events.find((e) => e.name === model.eventName);
 		if (!attribute)
 			throw new Error(`v-model attribute not found: ${model.attributeName}`);
-		if (!event) throw new Error(`v-model event not found: ${model.eventName}`);
+		for (const eventName of model.eventNames) {
+			const event = componentDef.events.find((e) => e.name === eventName);
+			if (!event) throw new Error(`v-model event not found: ${eventName}`);
+		}
 
 		return {
 			...model,
 			attribute,
-			event,
 		};
 	});
 
 	for (const vueModel of vueModels) {
 		declaredEvents.push({
 			name: `update:${vueModel.name}`,
-			description: vueModel.event.description,
+			description: `Fires when the ${vueModel.name} value changes`,
 			type: vueModel.attribute.type,
 		});
 	}
@@ -185,7 +186,9 @@ export const renderComponent = (
 	 */
 	const eventsSrc = componentDef.events
 		.map(({ name }) => {
-			const vueModel = vueModels.find((model) => model.eventName === name);
+			const vueModel = vueModels.find((model) =>
+				model.eventNames.includes(name)
+			);
 			return vueModel
 				? `'${name}': (event: Event) => {
           this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
@@ -197,7 +200,9 @@ export const renderComponent = (
 
 	const eventsV3Src = componentDef.events
 		.map(({ name }) => {
-			const vueModel = vueModels.find((model) => model.eventName === name);
+			const vueModel = vueModels.find((model) =>
+				model.eventNames.includes(name)
+			);
 			return vueModel
 				? `'on${kebabToPascal(name)}': (event: Event) => {
           this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
