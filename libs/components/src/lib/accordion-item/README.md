@@ -163,6 +163,28 @@ If set, the `icon` attribute is ignored.
 </vwc-accordion>
 ```
 
+## CSS Variables
+
+### Meta-data Max-inline-size
+
+Use `--accordion-item-meta-inline-size` to set a custom inline-size to the meta-data text.
+
+- Default: `20%`
+
+```html preview full
+<vwc-accordion
+	expand-mode="multi"
+	style="--accordion-item-meta-inline-size: 230px;"
+>
+	<vwc-accordion-item
+		heading="Accordion item"
+		meta="meta-data with custom width"
+	>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+```
+
 ## Events
 
 <div class="table-wrapper">
