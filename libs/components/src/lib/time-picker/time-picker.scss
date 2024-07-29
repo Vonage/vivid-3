@@ -55,6 +55,7 @@
 
 	display: flex;
 	overflow: hidden;
+	justify-content: center;
 	padding: $item-gap;
 	block-size: space-for-items($num-items-visible);
 	gap: $item-gap;
