@@ -40,7 +40,7 @@
 	background-color: color-mix(
 		in srgb,
 		var(#{appearance.get-appearance-token(outline)}),
-		var(#{constants.$vvd-color-canvas}) 80%
+		var(#{constants.$vvd-color-canvas}) 70%
 	);
 	block-size: 120px;
 	color: var(#{appearance.get-appearance-token(text)});
@@ -76,7 +76,7 @@
 .content {
 	display: flex;
 	flex-direction: column;
-	color: var(#{constants.$vvd-color-canvas});
+	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
 	gap: 8px;
 	text-align: center;
