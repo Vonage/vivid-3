@@ -18,7 +18,7 @@ export type EmptyStateConnotation = Extract<
 >;
 
 /**
- * Types of empty-state Graphic-design
+ * Types of empty-state IconDecoration
  *
  * @public
  */
