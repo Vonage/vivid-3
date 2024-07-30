@@ -175,7 +175,7 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 		{ text: "'radio'", vuePropType: 'String' },
 	],
 
-	// Empty-state icon-decoration:
+	// Empty-state:
 	EmptyStateIconDecoration: [
 		{ text: "'outlined'", vuePropType: 'String' },
 		{ text: "'filled'", vuePropType: 'String' },
