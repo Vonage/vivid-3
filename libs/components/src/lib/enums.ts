@@ -35,7 +35,7 @@ export enum Appearance {
 	Elevated = 'elevated',
 }
 
-export enum GraphicDesign {
+export enum IconDecoration {
 	Filled = 'filled',
 	Outlined = 'outlined',
 }

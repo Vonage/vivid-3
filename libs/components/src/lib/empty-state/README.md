@@ -93,20 +93,20 @@ It accepts a subset of predefined values.
 </div>
 ```
 
-### Graphic-design
+### Icon-Decoration
 
 Use graphic-design to change the design of the icon circle
 
-- Type: `string`
+- Type: `filled` | `outlined`
 - Default: `filled`
 
 ```html preview 300px
 <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start">
-	<vwc-empty-state graphic-design="outlined" icon="search-line" headline="Accent connotation">
+	<vwc-empty-state icon-decoration="outlined" icon="search-line" headline="Accent connotation">
 	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-	graphic-design="outlined"
+	icon-decoration="outlined"
 		icon="check-solid"
 		headline="Success connotation"
 		connotation="success"
@@ -114,7 +114,7 @@ Use graphic-design to change the design of the icon circle
 	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-	graphic-design="outlined"
+	icon-decoration="outlined"
 		icon="error-solid"
 		headline="Alert connotation"
 		connotation="alert"
@@ -122,7 +122,7 @@ Use graphic-design to change the design of the icon circle
 	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-	graphic-design="outlined"
+	icon-decoration="outlined"
 		icon="sparkles-solid"
 		headline="Cta connotation"
 		connotation="cta"
@@ -130,7 +130,7 @@ Use graphic-design to change the design of the icon circle
 	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-	graphic-design="outlined"
+	icon-decoration="outlined"
 		icon="envelope-solid"
 		headline="Information connotation"
 		connotation="information"
@@ -138,7 +138,7 @@ Use graphic-design to change the design of the icon circle
 	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-	graphic-design="outlined"
+	icon-decoration="outlined"
 		icon="warning-solid"
 		headline="Warning connotation"
 		connotation="warning"

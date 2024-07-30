@@ -1,6 +1,6 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
-import type { Connotation, GraphicDesign } from '../enums.js';
+import type { Connotation, IconDecoration } from '../enums.js';
 
 /**
  * Types of empty-state connotation.
@@ -22,9 +22,9 @@ export type EmptyStateConnotation = Extract<
  *
  * @public
  */
-export type EmptyGraphicDesign = Extract<
-	| GraphicDesign.Filled,
-	| GraphicDesign.Outlined
+export type EmptyStateIconDecoration = Extract<
+	| IconDecoration.Filled,
+	| IconDecoration.Outlined
 	>;
 
 /**
@@ -63,7 +63,7 @@ export class EmptyState extends FoundationElement {
 	 * @public
 	 * HTML Attribute: icon-design
 	 */
-	@attr({attribute: 'graphic-design'}) graphicDesign?: EmptyGraphicDesign;
+	@attr({attribute: 'icon-decoration'}) iconDecoration?: EmptyStateIconDecoration;
 
 	/**
 	 * The action items to display in the empty state.

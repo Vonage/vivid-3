@@ -10,13 +10,13 @@ import type { EmptyState } from './empty-state';
 
 const getClasses = ({
 	connotation,
-	graphicDesign,
+	iconDecoration,
 	slottedActionItems,
 }: EmptyState) =>
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[`graphic-design-${graphicDesign}`, Boolean(graphicDesign)],
+		[`icon-decoration-${iconDecoration}`, Boolean(iconDecoration)],
 		['no-actions', slottedActionItems?.length === 0]
 	);
 
