@@ -23,8 +23,8 @@ export type EmptyStateConnotation = Extract<
  * @public
  */
 export type EmptyStateIconDecoration = Extract<
-	IconDecoration.Filled,
-	IconDecoration.Outlined
+	IconDecoration,
+	IconDecoration.Filled | IconDecoration.Outlined
 >;
 
 /**
