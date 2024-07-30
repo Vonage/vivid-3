@@ -15,7 +15,6 @@ import { MenuItemRole, MediaSkipBy } from '@vonage/vivid';
 import { Direction, Orientation } from '@microsoft/fast-web-utilities';
 import { TypeUnion } from './types';
 
-
 const typeFromEnumObj = (enumObj: Record<string, string>): TypeUnion =>
 	Object.values(enumObj).map((value) => ({
 		text: `'${value}'`,
