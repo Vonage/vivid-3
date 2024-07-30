@@ -23,9 +23,9 @@ export type EmptyStateConnotation = Extract<
  * @public
  */
 export type EmptyStateIconDecoration = Extract<
-	| IconDecoration.Filled,
-	| IconDecoration.Outlined
-	>;
+	IconDecoration.Filled,
+	IconDecoration.Outlined
+>;
 
 /**
  * An empty state element. Used when there is no data to display to the user.
@@ -63,7 +63,8 @@ export class EmptyState extends FoundationElement {
 	 * @public
 	 * HTML Attribute: icon-design
 	 */
-	@attr({attribute: 'icon-decoration'}) iconDecoration?: EmptyStateIconDecoration;
+	@attr({ attribute: 'icon-decoration' })
+	iconDecoration?: EmptyStateIconDecoration;
 
 	/**
 	 * The action items to display in the empty state.
