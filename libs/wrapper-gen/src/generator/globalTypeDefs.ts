@@ -15,6 +15,7 @@ import { MenuItemRole, MediaSkipBy } from '@vonage/vivid';
 import { Direction, Orientation } from '@microsoft/fast-web-utilities';
 import { TypeUnion } from './types';
 
+
 const typeFromEnumObj = (enumObj: Record<string, string>): TypeUnion =>
 	Object.values(enumObj).map((value) => ({
 		text: `'${value}'`,
@@ -172,5 +173,11 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 	SelectableBoxControlType: [
 		{ text: "'checkbox'", vuePropType: 'String' },
 		{ text: "'radio'", vuePropType: 'String' },
+	],
+
+	// Empty-state icon-decoration:
+	EmptyStateIconDecoration: [
+		{ text: "'outlined'", vuePropType: 'String' },
+		{ text: "'filled'", vuePropType: 'String' },
 	],
 };
