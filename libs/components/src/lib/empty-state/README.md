@@ -93,7 +93,7 @@ It accepts a subset of predefined values.
 </div>
 ```
 
-### Icon-Decoration
+### Icon-decoration
 
 Use graphic-design to change the design of the icon circle
 
