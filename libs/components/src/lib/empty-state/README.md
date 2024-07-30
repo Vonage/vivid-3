@@ -47,106 +47,107 @@ Use the `icon` attribute to set the icon of the empty state.
 Set the `connotation` attribute to change the empty-state's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'` | `'warning'` | `'information'` | `'cta'`
+- Type: `'accent'` | `'success'` | `'alert'` | `'cta'` | `'information'` | `'warning'`
 - Default: `'accent'`
 
 ```html preview 300px
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-	<vwc-empty-state icon="search-line" headline="No results found">
-		No results match your search criteria.
+<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start">
+	<vwc-empty-state icon="search-line" headline="Accent connotation">
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
 		icon="check-solid"
-		headline="No results found"
+		headline="Success connotation"
 		connotation="success"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
 		icon="error-solid"
-		headline="No results found"
+		headline="Alert connotation"
 		connotation="alert"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
 		icon="sparkles-solid"
-		headline="No results found"
+		headline="Cta connotation"
 		connotation="cta"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
 		icon="envelope-solid"
-		headline="No results found"
+		headline="Information connotation"
 		connotation="information"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
 		icon="warning-solid"
-		headline="No results found"
+		headline="Warning connotation"
 		connotation="warning"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 </div>
 ```
 
-### Icon-design
+### Graphic-design
 
-Use icon-design to change the design of the circle wrapping the icon
+Use graphic-design to change the design of the icon circle
 
-- Type: `boolean`
-- Default: `undefined`
+- Type: `string`
+- Default: `filled`
 
 ```html preview 300px
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-	<vwc-empty-state icon-design icon="error-solid" headline="No results found">
-		No results match your search criteria.
+<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start">
+	<vwc-empty-state graphic-design="outlined" icon="search-line" headline="Accent connotation">
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-		icon-design
+	graphic-design="outlined"
 		icon="check-solid"
-		headline="No results found"
+		headline="Success connotation"
 		connotation="success"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-		icon-design
+	graphic-design="outlined"
 		icon="error-solid"
-		headline="No results found"
+		headline="Alert connotation"
 		connotation="alert"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-		icon-design
+	graphic-design="outlined"
 		icon="sparkles-solid"
-		headline="No results found"
+		headline="Cta connotation"
 		connotation="cta"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-		icon-design
+	graphic-design="outlined"
 		icon="envelope-solid"
-		headline="No results found"
+		headline="Information connotation"
 		connotation="information"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 	<vwc-empty-state
-		icon-design
+	graphic-design="outlined"
 		icon="warning-solid"
-		headline="No results found"
+		headline="Warning connotation"
 		connotation="warning"
 	>
-		No results match your search criteria.
+	No results
 	</vwc-empty-state>
 </div>
 ```
+
 
 ## Slots
 

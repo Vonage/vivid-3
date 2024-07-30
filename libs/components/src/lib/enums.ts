@@ -35,6 +35,11 @@ export enum Appearance {
 	Elevated = 'elevated',
 }
 
+export enum GraphicDesign {
+	Filled = 'filled',
+	Outlined = 'outlined',
+}
+
 export enum Size {
 	UltraCondensed = 'ultra-condensed',
 	SuperCondensed = 'super-condensed',
