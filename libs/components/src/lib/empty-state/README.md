@@ -97,7 +97,7 @@ It accepts a subset of predefined values.
 
 ### Icon-decoration
 
-Use graphic-design to change the design of the icon circle
+Use icon-decoration to change the design of the icon circle.
 
 - Type: `filled` | `outlined`
 - Default: `filled`

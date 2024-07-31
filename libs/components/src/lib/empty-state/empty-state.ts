@@ -61,7 +61,7 @@ export class EmptyState extends FoundationElement {
 	 * option to a new design for the icon circle
 	 *
 	 * @public
-	 * HTML Attribute: icon-design
+	 * HTML Attribute: icon-decoration
 	 */
 	@attr({ attribute: 'icon-decoration' })
 	iconDecoration?: EmptyStateIconDecoration;
