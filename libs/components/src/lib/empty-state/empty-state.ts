@@ -1,5 +1,31 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
+import type { Connotation, IconDecoration } from '../enums.js';
+
+/**
+ * Types of empty-state connotation.
+ *
+ * @public
+ */
+export type EmptyStateConnotation = Extract<
+	Connotation,
+	| Connotation.Accent
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Alert
+	| Connotation.Warning
+	| Connotation.Information
+>;
+
+/**
+ * Types of empty-state IconDecoration
+ *
+ * @public
+ */
+export type EmptyStateIconDecoration = Extract<
+	IconDecoration,
+	IconDecoration.Filled | IconDecoration.Outlined
+>;
 
 /**
  * An empty state element. Used when there is no data to display to the user.
@@ -12,6 +38,14 @@ import { attr, observable } from '@microsoft/fast-element';
  */
 export class EmptyState extends FoundationElement {
 	/**
+	 * The connotation the empty state should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
+	@attr connotation?: EmptyStateConnotation;
+	/**
 	 * An optional headline for the empty state.
 	 * @public
 	 */
@@ -22,6 +56,15 @@ export class EmptyState extends FoundationElement {
 	 * @public
 	 */
 	@attr icon?: string;
+
+	/**
+	 * option to a new design for the icon circle
+	 *
+	 * @public
+	 * HTML Attribute: icon-decoration
+	 */
+	@attr({ attribute: 'icon-decoration' })
+	iconDecoration?: EmptyStateIconDecoration;
 
 	/**
 	 * The action items to display in the empty state.

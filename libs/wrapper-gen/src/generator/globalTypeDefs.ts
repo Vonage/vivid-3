@@ -173,4 +173,10 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 		{ text: "'checkbox'", vuePropType: 'String' },
 		{ text: "'radio'", vuePropType: 'String' },
 	],
+
+	// Empty-state:
+	EmptyStateIconDecoration: [
+		{ text: "'outlined'", vuePropType: 'String' },
+		{ text: "'filled'", vuePropType: 'String' },
+	],
 };
