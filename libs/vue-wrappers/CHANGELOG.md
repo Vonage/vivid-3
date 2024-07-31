@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.3.0...vivid-vue-v4.4.0) (2024-07-31)
+
+
+### Features
+
+* **dialog:** improve api with modal attribute (VIV-1657) ([#1853](https://github.com/Vonage/vivid-3/issues/1853)) ([daf06bc](https://github.com/Vonage/vivid-3/commit/daf06bc64d1e52895780fe501f09e2d1d5570fa5))
+
 ## [4.3.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.2.0...vivid-vue-v4.3.0) (2024-07-18)
 
 
