@@ -4,6 +4,24 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.3.0...vivid-v4.4.0) (2024-07-31)
+
+
+### Features
+
+* **accordion-item:** add css variable for meta-data custom max-inline-size (VIV-1951) ([#1865](https://github.com/Vonage/vivid-3/issues/1865)) ([a711d16](https://github.com/Vonage/vivid-3/commit/a711d169af0173ae71e3f6bdea80a27851550119))
+* **dialog:** improve api with modal attribute (VIV-1657) ([#1853](https://github.com/Vonage/vivid-3/issues/1853)) ([daf06bc](https://github.com/Vonage/vivid-3/commit/daf06bc64d1e52895780fe501f09e2d1d5570fa5))
+* **empty-state:** adding connotation and design variation (VIV-1378) ([#1863](https://github.com/Vonage/vivid-3/issues/1863)) ([953db49](https://github.com/Vonage/vivid-3/commit/953db49c4576e6943dffeed51c5cb32e850e29fb))
+* **slider, range-slider:** add pin feature (VIV-1611) ([#1736](https://github.com/Vonage/vivid-3/issues/1736)) ([74944b4](https://github.com/Vonage/vivid-3/commit/74944b47cc7d23c0102b111384ede8e71623ef05))
+
+
+### Bug Fixes
+
+* **date-picker:** align button padding to design (VIV-1828) ([#1856](https://github.com/Vonage/vivid-3/issues/1856)) ([b987b69](https://github.com/Vonage/vivid-3/commit/b987b696941754b9e29dec0c78308eade622be3c))
+* **file-picker:** add background color to uploaded items in list (VIV-1823) ([#1857](https://github.com/Vonage/vivid-3/issues/1857)) ([9c1a929](https://github.com/Vonage/vivid-3/commit/9c1a929c4b9b278d38c2b04b4dd35b1fe5ac8f79))
+* **menu:** change padding of header + footer slots (VIV-000) ([#1868](https://github.com/Vonage/vivid-3/issues/1868)) ([18808db](https://github.com/Vonage/vivid-3/commit/18808db750ee941dd77a8d36ef45038aa1c08a2e))
+* **time-picker:** center time columns (VIV-1903) ([#1864](https://github.com/Vonage/vivid-3/issues/1864)) ([92ea017](https://github.com/Vonage/vivid-3/commit/92ea017454efd62a7b028e3a3f1a1efd3fbb7a54))
+
 ## [4.3.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.2.0...vivid-v4.3.0) (2024-07-18)
 
 

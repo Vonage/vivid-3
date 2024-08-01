@@ -39,20 +39,6 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      <a href="/components/dial-pad/">Dial Pad</a>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-      <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/pages/viewpage.action?spaceKey=VIVID&title=Dial+pad" icon="check" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="check" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" href="/components/dial-pad/" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-  </vwc-data-grid-row>
-  <vwc-data-grid-row>
-    <vwc-data-grid-cell>
       Combobox (Multi-select)
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
@@ -79,20 +65,6 @@
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      <a href="/components/time-picker/">Time Picker</a>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-    <vwc-data-grid-cell>
-      <vwc-button  label="In progress" icon="more-horizontal-line" href="/components/time-picker/" connotation="success"></vwc-button>
-    </vwc-data-grid-cell>
-  </vwc-data-grid-row>
-  <vwc-data-grid-row>
-    <vwc-data-grid-cell>
       <a href="/components/video-player/">Video Player</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
@@ -103,6 +75,34 @@
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Awaiting AT" icon="more-horizontal-line" href="/components/video-player/" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      <a href="/components/time-picker/">Time Picker</a>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="Done" icon="check" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="Done" icon="check" href="/components/time-picker/" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      <a href="/components/dial-pad/">Dial Pad</a>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="Done" target="_blank" href="https://confluence.vonage.com/pages/viewpage.action?spaceKey=VIVID&title=Dial+pad" icon="check" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+    <vwc-button label="Done" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=67-39674&mode=design&t=X4VuTNKdOR3AX037-0" icon="check" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="Done" icon="check" href="/components/dial-pad/" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
 </vwc-data-grid>

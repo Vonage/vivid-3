@@ -217,7 +217,6 @@
 	},
 	{
 		"title": "Time Picker",
-		"status": "alpha",
 		"markdown": "./libs/components/src/lib/time-picker/README.md"
 	},
 	{
