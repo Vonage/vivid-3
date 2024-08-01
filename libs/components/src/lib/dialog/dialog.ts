@@ -35,6 +35,7 @@ export type IconPlacement = 'top' | 'side';
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
  * @event {CustomEvent<undefined>} open - The `open` event fires when the dialog opens.
  * @event {CustomEvent<string>} close - The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.
+ * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `(event.target as any).open`
  */
 export class Dialog extends FoundationElement {
@@ -146,7 +147,9 @@ export class Dialog extends FoundationElement {
 			rect.left <= event.clientX &&
 			event.clientX <= rect.left + rect.width;
 
-		this.open = clickedInDialog;
+		if (!clickedInDialog) {
+			this._handleCloseRequest();
+		}
 	};
 
 	#handleInternalFormSubmit = (event: SubmitEvent) => {
@@ -156,6 +159,31 @@ export class Dialog extends FoundationElement {
 
 		this.open = false;
 	};
+
+	/**
+	 * @internal
+	 */
+	_onKeyDown(event: KeyboardEvent) {
+		if ((event as KeyboardEvent).key === 'Escape' && this._openedAsModal) {
+			this._handleCloseRequest();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_handleCloseRequest() {
+		if (
+			this.$emit('cancel', undefined, {
+				bubbles: false,
+				cancelable: true,
+			})
+		) {
+			this.open = false;
+		}
+	}
 
 	close() {
 		this.open = false;

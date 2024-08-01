@@ -14,6 +14,9 @@ const COMPONENT_TAG = 'vwc-side-drawer';
 describe('vwc-side-drawer', () => {
 	let element: SideDrawer;
 
+	const clickOnScrim = () =>
+		(element.shadowRoot?.querySelector('.scrim') as HTMLElement).click();
+
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}>
 								</${COMPONENT_TAG}>`)) as SideDrawer;
@@ -184,15 +187,52 @@ describe('vwc-side-drawer', () => {
 		});
 	});
 
+	describe('cancel event', function () {
+		const triggerCancelEvent = clickOnScrim;
+
+		beforeEach(async () => {
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
+		});
+
+		it('should prevent side drawer from closing when cancelled', async () => {
+			element.addEventListener('cancel', (event) => {
+				event.preventDefault();
+			});
+
+			triggerCancelEvent();
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should not bubble', async () => {
+			const onCancel = jest.fn();
+			element.parentElement!.addEventListener('cancel', onCancel);
+
+			triggerCancelEvent();
+
+			expect(onCancel).not.toBeCalled();
+		});
+	});
+
 	describe('scrim', () => {
 		it('should close after clicking on scrim', async () => {
 			element.modal = true;
 			element.open = true;
 			await elementUpdated(element);
-			const scrim: any = element.shadowRoot?.querySelector('.scrim');
-			scrim?.click();
-			await elementUpdated(element);
+			clickOnScrim();
 			expect(element.open).toEqual(false);
+		});
+
+		it('should emit cancel event after clicking on scrim', async () => {
+			const cancelSpy = jest.fn();
+			element.addEventListener('cancel', cancelSpy);
+			element.modal = true;
+			element.open = true;
+			await elementUpdated(element);
+			clickOnScrim();
+			expect(cancelSpy).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -208,8 +248,14 @@ describe('vwc-side-drawer', () => {
 
 		it('should close after keydown on Escape', async () => {
 			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-			await elementUpdated(element);
 			expect(element.open).toEqual(false);
+		});
+
+		it('should emit cancel after keydown on Escape', async () => {
+			const cancelSpy = jest.fn();
+			element.addEventListener('cancel', cancelSpy);
+			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			expect(cancelSpy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should leave open after keydown that is not Escape', async () => {
