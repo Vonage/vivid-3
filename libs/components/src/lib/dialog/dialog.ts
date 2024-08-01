@@ -166,6 +166,11 @@ export class Dialog extends FoundationElement {
 	_onKeyDown(event: KeyboardEvent) {
 		if ((event as KeyboardEvent).key === 'Escape' && this._openedAsModal) {
 			this._handleCloseRequest();
+
+			// Return false to .preventDefault() which will prevent the <dialog>'s cancel event from being fired.
+			// Otherwise, pressing ESC twice would close the <dialog> without the ability to prevent it.
+			// This is because subsequent close requests without "intervening user action" between them are not cancelable.
+			// See: https://html.spec.whatwg.org/multipage/interaction.html#close-watcher-infrastructure
 			return false;
 		}
 		return true;
