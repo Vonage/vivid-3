@@ -14,7 +14,8 @@ const {
 	resetExampleIndex,
 } = require('./code-example-preview/createCodeExample');
 
-const INPUT_DIR = 'apps/docs';
+const DOCS_DIR = 'apps/docs';
+const INPUT_DIR = `${DOCS_DIR}/pages`;
 const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
@@ -102,7 +103,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {
 		return markdownLibrary.render(
 			fs.readFileSync(
-				`${INPUT_DIR}/_shortcodes/client-side-navigation-hint.md`,
+				`${DOCS_DIR}/_shortcodes/client-side-navigation-hint.md`,
 				'utf-8'
 			)
 		);
@@ -110,7 +111,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
 
-	eleventyConfig.ignores.add(`${INPUT_DIR}/_shortcodes/**`);
+	eleventyConfig.ignores.add(`${DOCS_DIR}/_shortcodes/**`);
 
 	eleventyConfig.on('eleventy.before', resetExampleIndex);
 
