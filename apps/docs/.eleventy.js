@@ -6,7 +6,7 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
-const packageInstallation = require('./_shortcodes/packageInstallation');
+const packageInstallation = require('./shortcodes/packageInstallation');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 const { spawnSync } = require('child_process');
@@ -103,7 +103,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {
 		return markdownLibrary.render(
 			fs.readFileSync(
-				`${DOCS_DIR}/_shortcodes/client-side-navigation-hint.md`,
+				`${DOCS_DIR}/shortcodes/client-side-navigation-hint.md`,
 				'utf-8'
 			)
 		);
@@ -111,7 +111,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
 
-	eleventyConfig.ignores.add(`${DOCS_DIR}/_shortcodes/**`);
+	eleventyConfig.ignores.add(`${DOCS_DIR}/shortcodes/**`);
 
 	eleventyConfig.on('eleventy.before', resetExampleIndex);
 
