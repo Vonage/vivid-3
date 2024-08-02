@@ -15,8 +15,4 @@
 
 {% block content %}
 	{{ content | safe }}
-	<footer class="footer">
-		<vwc-divider></vwc-divider>
-		<a href="{{ component.markdown | githubEditLink }}"><vwc-icon name="edit-line"></vwc-icon> Edit this page on GitHub</a>
-	</footer>
 {% endblock %}

@@ -1,11 +1,11 @@
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const EleventyVitePlugin = require('@11ty/eleventy-plugin-vite');
 const pluginTOC = require('eleventy-plugin-nesting-toc');
+const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const markdownLibrary = require('./libraries/markdown-it');
 const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
-const slugify = require('slugify');
 const packageInstallation = require('./shortcodes/packageInstallation');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
@@ -13,6 +13,13 @@ const { spawnSync } = require('child_process');
 const {
 	resetExampleIndex,
 } = require('./code-example-preview/createCodeExample');
+const { githubEditLinkFromPath } = require('./filters/githubEditLink');
+const { isNavItemActive } = require('./filters/isNavItemActive');
+const { onlyPublicPages } = require('./filters/publicPages');
+const { componentSlug } = require('./filters/componentSlug');
+const {
+	navigationFromComponents,
+} = require('./filters/navigationFromComponents');
 
 const DOCS_DIR = 'apps/docs';
 const INPUT_DIR = `${DOCS_DIR}/content`;
@@ -65,6 +72,8 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(pluginTOC);
 
+	eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
 	eleventyConfig.addPassthroughCopy({
 		'assets/images': 'public/assets/images',
 	});
@@ -80,25 +89,17 @@ module.exports = function (eleventyConfig) {
 		return new CleanCSS({}).minify(code).styles;
 	});
 
-	const isServing = process.argv.includes('--serve');
-	eleventyConfig.addGlobalData('isDevBuild', isServing);
-	eleventyConfig.addFilter('publicPageFilter', function (pages) {
-		return isServing
-			? pages
-			: pages.filter(
-					(page) => page?.status !== 'underlying' && page?.status !== 'alpha'
-			  );
-	});
-
-	eleventyConfig.addFilter('githubEditLink', function (filePath) {
-		// Transform local path, e.g. "./libs/components/src/lib/alert/README.md"
-		const relativeFilePath = filePath.replace(/^\.\//, '');
-		return `https://github.com/Vonage/vivid-3/edit/main/${relativeFilePath}`;
-	});
-
-	eleventyConfig.addFilter('pageSlug', function (page) {
-		return page.slug || slugify(page.title, { lower: true });
-	});
+	eleventyConfig.addFilter('onlyPublicPages', onlyPublicPages);
+	eleventyConfig.addFilter('githubEditLink', githubEditLinkFromPath);
+	eleventyConfig.addFilter('componentSlug', componentSlug);
+	eleventyConfig.addFilter('isNavItemActive', isNavItemActive);
+	eleventyConfig.addFilter('onlyNavPages', (entries) =>
+		entries.filter((entry) => Boolean(entry.data.title))
+	);
+	eleventyConfig.addFilter(
+		'navigationFromComponents',
+		navigationFromComponents
+	);
 
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {
 		return markdownLibrary.render(
@@ -110,8 +111,6 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
-
-	eleventyConfig.ignores.add(`${DOCS_DIR}/shortcodes/**`);
 
 	eleventyConfig.on('eleventy.before', resetExampleIndex);
 
