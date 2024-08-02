@@ -15,7 +15,7 @@ const {
 } = require('./code-example-preview/createCodeExample');
 
 const DOCS_DIR = 'apps/docs';
-const INPUT_DIR = `${DOCS_DIR}/pages`;
+const INPUT_DIR = `${DOCS_DIR}/content`;
 const OUTPUT_DIR = 'dist/apps/docs';
 
 module.exports = function (eleventyConfig) {
