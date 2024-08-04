@@ -34,10 +34,12 @@ $control-border: 2px;
 	@include connotation.connotation(radio);
 	@include appearance.appearance;
 
-	display: inline-flex;
-	align-items: center;
-	cursor: pointer;
-	gap: 8px;
+	& {
+		display: inline-flex;
+		align-items: center;
+		cursor: pointer;
+		gap: 8px;
+	}
 
 	@supports (user-select: none) {
 		user-select: none;
