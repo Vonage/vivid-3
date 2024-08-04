@@ -51,28 +51,30 @@
 		(100% - #{calendar-variables.$total-rows - 1}px) / #{calendar-variables.$total-rows}
 	);
 
-	#{variables.$indent}: calc(
-		0px + var(#{variables.$overlap-count}, 0) * #{$unit-indent}
-	);
+	& {
+		#{variables.$indent}: calc(
+			0px + var(#{variables.$overlap-count}, 0) * #{$unit-indent}
+		);
 
-	position: absolute;
-	z-index: var(#{variables.$overlap-count});
-	top: $top;
-	overflow: hidden;
-	box-sizing: border-box;
-	padding: $gutter $gutter * 2;
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: calc(
-		var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} -
+		position: absolute;
+		z-index: var(#{variables.$overlap-count});
+		top: $top;
+		overflow: hidden;
+		box-sizing: border-box;
+		padding: $gutter $gutter * 2;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: calc(
+			var(#{variables.$duration}, 1) * #{$hour-block-size} + #{$dividers-block-size} -
 			#{$margin-block * 2}
-	);
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
-	margin-block-start: #{$margin-block};
-	margin-inline: #{$indent-calc} #{$unit-indent};
-	max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
+		);
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(#{appearance.get-appearance-token(text)});
+		inline-size: calc(100% - #{$unit-indent} - #{$indent-calc});
+		margin-block-start: #{$margin-block};
+		margin-inline: #{$indent-calc} #{$unit-indent};
+		max-block-size: calc(100% - #{$top} - #{$margin-block * 2});
+	}
 
 	@supports (contain: content) {
 		contain: strict;

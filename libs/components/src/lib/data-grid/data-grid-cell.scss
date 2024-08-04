@@ -30,6 +30,7 @@
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
 
+	&{
 	display: flex;
 	box-sizing: border-box;
 	align-items: center;
@@ -43,6 +44,7 @@
 	min-block-size: #{size.$vvd-size-expanded};
 	padding-block: 13px 14px;
 	padding-inline: 12px;
+	}
 
 	:host(:focus-visible) & {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;

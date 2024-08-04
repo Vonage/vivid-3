@@ -25,21 +25,24 @@
 	@include connotation.connotation(badge);
 	@include appearance.appearance;
 
-	#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
+	& {
+		#{variables.$badge-block-size}: #{size.$vvd-size-ultra-condensed};
 
-	display: inline-flex;
-	box-sizing: border-box;
-	align-items: center;
-	justify-content: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: var(#{variables.$badge-block-size});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	column-gap: 8px;
-	font: var(#{constants.$vvd-typography-base-condensed-bold});
-	inline-size: 100%;
-	padding-inline: 8px;
-	vertical-align: middle;
+		display: inline-flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: var(#{variables.$badge-block-size});
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(#{appearance.get-appearance-token(text)});
+		column-gap: 8px;
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+		inline-size: 100%;
+		padding-inline: 8px;
+		vertical-align: middle;
+	}
+
 
 	&:not(.icon-only) {
 		max-inline-size: 100%;
