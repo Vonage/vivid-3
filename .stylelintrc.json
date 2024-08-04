@@ -14,7 +14,7 @@
 				"selector-class-pattern": null,
 				"max-nesting-depth": null,
 				"selector-max-compound-selectors": null,
-				"no-duplicate-selectors": true,
+				"no-duplicate-selectors": null,
 				"declaration-block-no-duplicate-properties": true,
 				"rule-empty-line-before": null,
 				"value-keyword-case": [
