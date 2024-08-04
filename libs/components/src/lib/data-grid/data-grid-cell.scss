@@ -30,20 +30,20 @@
 	@include connotation.connotation(data-grid-cell);
 	@include appearance.appearance;
 
-	&{
-	display: flex;
-	box-sizing: border-box;
-	align-items: center;
-	border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
-	block-size: var(
-		#{variables.$data-grid-cell-block-size},
-		var(#{variables.$data-grid-cell-default-block-size})
-	);
-	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
-	min-block-size: #{size.$vvd-size-expanded};
-	padding-block: 13px 14px;
-	padding-inline: 12px;
+	& {
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		border-bottom: 1px solid var(#{constants.$vvd-color-neutral-300});
+		block-size: var(
+			#{variables.$data-grid-cell-block-size},
+			var(#{variables.$data-grid-cell-default-block-size})
+		);
+		color: var(#{appearance.get-appearance-token(text)});
+		font: var(#{constants.$vvd-typography-base});
+		min-block-size: #{size.$vvd-size-expanded};
+		padding-block: 13px 14px;
+		padding-inline: 12px;
 	}
 
 	:host(:focus-visible) & {

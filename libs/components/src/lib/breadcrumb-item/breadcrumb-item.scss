@@ -19,8 +19,8 @@
 }
 
 .control {
-	font: inherit;
 	border-radius: #{border-radius-variables.$border-radius-condensed};
+	font: inherit;
 
 	&:focus-visible {
 		@include focus.focus;

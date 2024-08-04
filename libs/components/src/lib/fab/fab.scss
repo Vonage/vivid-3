@@ -32,13 +32,13 @@
 		border: 0 none;
 		border-radius: var(#{variables.$border-radius});
 		background: var(
-				#{appearance.get-appearance-token(fill)},
-				var(elevation.$vvd-elevation-fill)
+			#{appearance.get-appearance-token(fill)},
+			var(elevation.$vvd-elevation-fill)
 		);
 		block-size: var(#{variables.$block-size});
 		color: var(
-				#{appearance.get-appearance-token(text)},
-				var(constants.$vvd-color-canvas-text)
+			#{appearance.get-appearance-token(text)},
+			var(constants.$vvd-color-canvas-text)
 		);
 		column-gap: var(#{variables.$icon-gap});
 		filter: var(#{elevation.$vvd-elevation-shadow});
