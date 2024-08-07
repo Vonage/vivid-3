@@ -30,10 +30,12 @@ $outline-width: 2px;
 	@include appearance.appearance;
 	@include connotation.connotation(text-area);
 
-	display: inline-grid;
-	grid-template-columns: 1fr max-content;
-	inline-size: 100%;
-	row-gap: 4px;
+	& {
+		display: inline-grid;
+		grid-template-columns: 1fr max-content;
+		inline-size: 100%;
+		row-gap: 4px;
+	}
 
 	@supports (user-select: none) {
 		user-select: none;

@@ -54,6 +54,21 @@
 				"jestConfig": "apps/docs/jest.config.ts"
 			}
 		},
+		"e2e": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					{
+						"command": "npx nx run docs:build",
+						"forwardAllArgs": false
+					},
+					{
+						"command": "./scripts/visual-tests/run.tests.in.container.sh dist/apps/docs/ ./apps/docs/playwright.config.ts",
+						"forwardAllArgs": true
+					}
+				]
+			}
+		},
 		"lint": {
 			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"]

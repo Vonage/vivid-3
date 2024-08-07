@@ -34,21 +34,24 @@
 .heading-button {
 	@include appearance.appearance;
 	@include connotation.connotation(accordion-item);
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+	& {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		display: flex;
+		width: 100%;
+		align-items: center;
+		padding: 16px;
+		border: none;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		color: var(#{appearance.get-appearance-token(text)});
+		cursor: pointer;
+		text-align: left;
+	}
 
 	&:focus-visible {
 		@include focus.focus;
 	}
-
-	display: flex;
-	width: 100%;
-	align-items: center;
-	padding: 16px;
-	border: none;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	color: var(#{appearance.get-appearance-token(text)});
-	cursor: pointer;
-	text-align: left;
 
 	&.size-condensed {
 		font: var(#{constants.$vvd-typography-base-extended-bold});

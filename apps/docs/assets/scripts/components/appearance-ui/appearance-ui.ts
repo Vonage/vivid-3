@@ -1,6 +1,8 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
-import type { Appearance } from '../enums.js';
+import { attr, customElement } from '@microsoft/fast-element';
+import type { Appearance } from 'vivid-bundle';
+import { AppearanceUiTemplate } from './appearance-ui.template';
+import styles from './appearance-ui.scss?inline';
 
 /**
  * Types of appearances.
@@ -20,9 +22,11 @@ export type AppearanceUIAppearance = Extract<
 	| Appearance.Listitem
 >;
 
-/**
- * @component appearance-ui
- */
+@customElement({
+	name: 'docs-appearance-ui',
+	template: AppearanceUiTemplate,
+	styles,
+})
 export class AppearanceUi extends FoundationElement {
 	/**
 	 * The appearance.

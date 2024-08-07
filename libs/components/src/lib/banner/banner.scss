@@ -23,11 +23,13 @@ $banner-transition-delay: --transition-delay;
 	@include connotation.connotation(banner);
 	@include appearance.appearance;
 
-	overflow: hidden;
-	max-height: 160px;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	color: var(#{appearance.get-appearance-token(text)});
-	transition: max-height var(#{$banner-transition-delay}, 200ms);
+	& {
+		overflow: hidden;
+		max-height: 160px;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		color: var(#{appearance.get-appearance-token(text)});
+		transition: max-height var(#{$banner-transition-delay}, 200ms);
+	}
 
 	&.removing {
 		max-height: 0;

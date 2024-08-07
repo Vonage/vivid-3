@@ -16,19 +16,21 @@
 .base {
 	@include connotation.connotation(empty-state);
 
-	#{variables.$empty-state-icon-container}: 120px;
-	#{variables.$empty-state-icon-background}: var(
-		#{connotation.get-connotation-token(faint)}
-	);
-	#{variables.$empty-state-icon-font-size}: 52px;
+	& {
+		#{variables.$empty-state-icon-container}: 120px;
+		#{variables.$empty-state-icon-background}: var(
+			#{connotation.get-connotation-token(faint)}
+		);
+		#{variables.$empty-state-icon-font-size}: 52px;
 
-	display: flex;
-	box-sizing: border-box;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	block-size: 100%;
-	gap: 24px;
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		block-size: 100%;
+		gap: 24px;
+	}
 }
 
 .icon-container {

@@ -35,10 +35,12 @@ $gutter: 2px;
 	@include connotation.connotation(checkbox);
 	@include appearance.appearance;
 
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	vertical-align: middle;
+	& {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		vertical-align: middle;
+	}
 
 	&:focus-visible {
 		outline: none;

@@ -31,24 +31,26 @@
 	@include connotation.connotation(option);
 	@include appearance.appearance;
 
-	display: flex;
-	box-sizing: border-box;
-	align-items: center;
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(
-		#{listbox-variables.$option-appearance-color-text},
-		var(#{appearance.get-appearance-token(text)})
-	);
-	font: var(#{constants.$vvd-typography-base});
-	gap: $gap;
-	hyphens: auto;
-	inline-size: 100%;
-	min-block-size: $min-block-size;
-	padding-inline: $gutter;
-	vertical-align: middle;
-	word-break: break-word;
+	& {
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(
+			#{listbox-variables.$option-appearance-color-text},
+			var(#{appearance.get-appearance-token(text)})
+		);
+		font: var(#{constants.$vvd-typography-base});
+		gap: $gap;
+		hyphens: auto;
+		inline-size: 100%;
+		min-block-size: $min-block-size;
+		padding-inline: $gutter;
+		vertical-align: middle;
+		word-break: break-word;
+	}
 
 	@supports (user-select: none) {
 		user-select: none;
