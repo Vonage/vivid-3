@@ -48,11 +48,13 @@ $default-size: list.nth($size-keys, 7);
 		#{variables.$progress-ring-size}: map.get($size, $value);
 	}
 
-	align-items: center;
-	block-size: var(#{variables.$progress-ring-size});
-	color: var(#{appearance.get-appearance-token(text)});
-	inline-size: var(#{variables.$progress-ring-size});
-	outline: none;
+	& {
+		align-items: center;
+		block-size: var(#{variables.$progress-ring-size});
+		color: var(#{appearance.get-appearance-token(text)});
+		inline-size: var(#{variables.$progress-ring-size});
+		outline: none;
+	}
 }
 
 .progress {

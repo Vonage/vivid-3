@@ -22,13 +22,15 @@
 	@include connotation.connotation(action-group);
 	@include appearance.appearance;
 
-	position: relative;
-	display: flex;
-	box-sizing: border-box;
-	align-items: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	inline-size: inherit;
-	vertical-align: middle;
+	& {
+		position: relative;
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		inline-size: inherit;
+		vertical-align: middle;
+	}
 
 	&::before {
 		position: absolute;

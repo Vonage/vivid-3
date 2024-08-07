@@ -26,14 +26,16 @@
 	@include connotation.connotation(selectable-box);
 	@include appearance.appearance;
 
-	position: relative;
-	padding: var(#{variables.$spacing-var}, 16px);
-	border: 1px solid var(#{appearance.get-appearance-token(outline)});
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	inline-size: 100%;
-	padding-block-start: calc(var(#{variables.$spacing-var}, 16px) + 36px);
-	text-align: start;
+	& {
+		position: relative;
+		padding: var(#{variables.$spacing-var}, 16px);
+		border: 1px solid var(#{appearance.get-appearance-token(outline)});
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		inline-size: 100%;
+		padding-block-start: calc(var(#{variables.$spacing-var}, 16px) + 36px);
+		text-align: start;
+	}
 
 	&:focus-visible {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;

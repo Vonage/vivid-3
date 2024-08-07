@@ -40,14 +40,16 @@ $track-thickness: 2px;
 	@include connotation.connotation(slider);
 	@include appearance.appearance;
 
-	#{variables.$thumb-size}: 12px;
-	#{variables.$thumb-interaction-indicator-size}: 36px;
-	#{variables.$track-start-inset-inline-start}: 0;
-	#{variables.$track-start-inset-block-start}: 0;
+	& {
+		#{variables.$thumb-size}: 12px;
+		#{variables.$thumb-interaction-indicator-size}: 36px;
+		#{variables.$track-start-inset-inline-start}: 0;
+		#{variables.$track-start-inset-block-start}: 0;
 
-	cursor: pointer;
-	outline: none;
-	user-select: none;
+		cursor: pointer;
+		outline: none;
+		user-select: none;
+	}
 
 	.positioning-region {
 		position: relative;
