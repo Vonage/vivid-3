@@ -12,9 +12,15 @@ The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab label="Tab four" id="four"></vwc-tab>
+	<vwc-tab label="Tab five" id="five"></vwc-tab>
+	<vwc-tab label="Tab six" id="six"></vwc-tab>
 	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
 	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
 	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+		<vwc-tab-panel id="fourPanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="fivePanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="sixPanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
 ```
 
@@ -47,7 +53,7 @@ Add a `orientation` attribute to control the orientation.
 - Default: `'horizontal'`
 
 ```html preview full
-<vwc-tabs orientation="vertical">
+<vwc-tabs orientation="vertical" style="height: 100px;">
 	<vwc-tab label="Tab one" id="one"></vwc-tab>
 	<vwc-tab label="Tab two" id="two"></vwc-tab>
 	<vwc-tab label="Tab three" id="tree"></vwc-tab>

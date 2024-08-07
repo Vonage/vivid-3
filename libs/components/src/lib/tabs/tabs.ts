@@ -113,6 +113,20 @@ export class Tabs extends FoundationTabs {
 		return this.shadowRoot!.querySelector('.tablist-wrapper') as HTMLElement;
 	}
 
+	// setShadowWhenScrollTabs() {
+	// 	//const tabsWrapper = document.querySelector('.tabs-wrapper');
+	// 	const overflow = this.shadowRoot!.querySelector('.tablist') as HTMLElement;
+	// 	const scrollLeft = overflow.scrollLeft;
+	//
+	//
+	// 	if (scrollLeft > 0) {
+	// 		return "--start-shadow: 1";
+	// 		return this.shadowRoot!.querySelector('.tablist-wrapper').append('style', "--start-shadow: 1");
+	// 	} else {
+	// 		return this.shadowRoot!.querySelector('.tablist-wrapper').append('style', "--start-shadow: 0");
+	// 	}
+	// }
+
 	#scrollToIndex(index: number) {
 		const tab = this.tabs[index];
 		if (!tab) return;

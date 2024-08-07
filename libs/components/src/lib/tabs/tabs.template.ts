@@ -16,6 +16,27 @@ const getClasses = ({
 		['scroll', Boolean(scrollablePanel)]
 	);
 
+
+function setShadowWhenScrollTabs(x: Tabs) {
+	//const tabsWrapper = document.querySelector('.tabs-wrapper');
+	const overflow = x.shadowRoot.querySelector('.tablist-wrapper') as HTMLElement;
+	console.log("overflow is", overflow);
+
+
+
+		return "--start-shadow: 1";
+
+
+	// const scrollLeft = overflow.scrollLeft;
+	//
+	//
+	// if (scrollLeft > 0) {
+	// 	return "--start-shadow: 1";
+	// } else {
+	// 	return "--start-shadow: 0";
+	// }
+}
+
 /**
  * The template for the (Tabs:class) component.
  *
@@ -25,7 +46,7 @@ export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
 		<template>
 			<div class="${getClasses}">
-				<div class="tablist-wrapper">
+				<div class="tablist-wrapper" style=${setShadowWhenScrollTabs}>
 					<div class="tablist" role="tablist" ${ref('tablist')}>
 						<slot name="tab" ${slotted('tabs')}></slot>
 						${when(

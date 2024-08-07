@@ -54,6 +54,35 @@
 	box-sizing: border-box;
 	color: var(#{appearance.get-appearance-token(text)});
 
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 10px;
+		opacity: var(--_shadow-opacity);
+		transition: opacity 0.1s;
+	}
+
+	&::before {
+		left: 0;
+		background: linear-gradient(to left, rgba(black, 0), rgba(black, 0.05));
+	}
+
+	&::after {
+		right: 0;
+		background: linear-gradient(to right, rgba(black, 0), rgba(black, 0.05));
+	}
+
+	&.is-overflowing:not(.is-scrolled-left)::before {
+		opacity: 1;
+	}
+
+	&.is-overflowing:not(.is-scrolled-right)::after {
+		opacity: 1;
+	}
+
 	.base.orientation-vertical & {
 		padding: var(#{variables.$tabs-tablist-gutter});
 		grid-row: 1 / 2;
