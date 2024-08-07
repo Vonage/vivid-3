@@ -9,7 +9,7 @@ import {
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
-		path.join(__dirname, '../../../../../../docs/design/appearance.md')
+		path.join(__dirname, '../../../../content/designs/appearance.md')
 	).reduce(
 		(htmlString: string, block: string) =>
 			`${htmlString} <div style="margin: 5px;">${block}</div>`,
