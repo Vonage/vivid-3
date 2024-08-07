@@ -22,6 +22,7 @@
 		},
 		"./*.css": "./*.css"
 	},
+	"sideEffects": ["./*/index.js", "./*/index.cjs", "*.css"],
 	"customElements": "./custom-elements.json",
 	"homepage": "https://vivid.deno.dev",
 	"repository": {
