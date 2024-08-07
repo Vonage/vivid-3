@@ -58,6 +58,12 @@
 
 	&[aria-current] {
 		color: var(#{appearance.get-appearance-token(text)});
+
+		@supports not (
+			color: color-mix(in srgb, var(--one-color), var(--second-color))
+		) {
+			background-color: var(#{connotation.get-connotation-token(primary)});
+		}
 	}
 
 	&:not([aria-current]) {
