@@ -3,19 +3,9 @@ import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
+import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
-
-export function getPlaybackRatesArray(playbackRates: string): number[] {
-	if (playbackRates === '') return [];
-	const ratesArray: number[] = [];
-
-	playbackRates.split(',').forEach((numStr: string) => {
-		const num = Number(numStr);
-		if (!isNaN(num)) ratesArray.push(num);
-	});
-	return ratesArray;
-}
 
 function appendProgressBarToStart(videoPlayer: any) {
 	const controlBar = videoPlayer.getChild('ControlBar');
