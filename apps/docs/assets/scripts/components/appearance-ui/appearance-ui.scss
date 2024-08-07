@@ -29,14 +29,16 @@
 	@include connotation.connotation(appearanceUI);
 	@include appearance.appearance;
 
-	display: inline-flex;
-	box-sizing: border-box;
-	align-items: center;
-	justify-content: center;
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: 40px;
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	padding-inline: 16px;
+	& {
+		display: inline-flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: 40px;
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(#{appearance.get-appearance-token(text)});
+		padding-inline: 16px;
+	}
 }

@@ -50,18 +50,20 @@
 		)
 	);
 
-	display: inline-flex;
-	box-sizing: border-box;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
-	padding: 0;
-	border: 1px solid var(#{appearance.get-appearance-token(outline)});
-	margin: 0;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: var(#{variables.$block-size});
-	color: var(#{appearance.get-appearance-token(text)});
-	vertical-align: middle;
+	& {
+		display: inline-flex;
+		box-sizing: border-box;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		border: 1px solid var(#{appearance.get-appearance-token(outline)});
+		margin: 0;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: var(#{variables.$block-size});
+		color: var(#{appearance.get-appearance-token(text)});
+		vertical-align: middle;
+	}
 
 	@supports (user-select: none) {
 		user-select: none;
