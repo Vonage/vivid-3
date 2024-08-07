@@ -6,11 +6,11 @@ import type {
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { MediaSkipBy } from '../enums';
-import { getPlaybackRatesArray } from '../video-player/video-player.js';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { Menu } from '../menu/menu';
 import { MenuItem } from '../menu-item/menu-item';
+import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
 import {
 	AudioPlayer,
 	formatTime,
