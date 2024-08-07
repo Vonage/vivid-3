@@ -18,35 +18,7 @@ concurrency:
 jobs:
   deps-cache:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: node_modules/
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-
-      - uses: actions/cache@v3
-        id: build_cache
-        with:
-          path: dist/
-          key: ${{ runner.os }}-dist-${{ hashFiles('libs/**/*.*') }}
-
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Build
-        if: steps.build_cache.outputs.cache-hit != 'true'
-        run: npx nx run components:build --skip-nx-cache && npx nx reset
+    uses: ./.github/workflows/_deps-cache.yml
 
   call-lint:
     if: github.event.pull_request.draft == false

@@ -1,14 +1,15 @@
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../shared/src/lib/sass/mixins/border-radius' as
+@use '../../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../../../libs/shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
-@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '../../../../../../libs/shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning information announcement,
 	$shades: faint soft dim pale light primary primary-text primary-increment firm
 		firm-all fierce fierce-primary contrast intermediate,
 	$default: accent
 );
-@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+@use '../../../../../../libs/shared/src/lib/sass/mixins/connotation' as
+	connotation;
+@use '../../../../../../libs/shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
 	$appearances: filled ghost ghost-light outlined outlined-light duotone subtle
 		fieldset listitem,
@@ -16,7 +17,8 @@
 		disabled selectedAndDisabled readonly,
 	$default: filled
 );
-@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../../../libs/shared/src/lib/sass/mixins/appearance' as
+	appearance;
 
 .wrapper {
 	display: grid;

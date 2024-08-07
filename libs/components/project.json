@@ -23,7 +23,7 @@
 				"commands": [
 					"npx nx run components:build",
 					{
-						"command": "./scripts/visual-tests/run.tests.in.container.sh",
+						"command": "./scripts/visual-tests/run.tests.in.container.sh . ./libs/components/playwright.config.ts",
 						"forwardAllArgs": true
 					}
 				],

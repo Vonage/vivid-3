@@ -1,12 +1,9 @@
 import { axe, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { AppearanceUi } from './appearance-ui';
-import { appearanceUiDefinition } from './definition';
-import '.';
 
-const COMPONENT_TAG = 'vwc-appearance-ui';
+const COMPONENT_TAG = 'docs-appearance-ui';
 
-describe('vwc-appearance-ui', () => {
+describe('docs-appearance-ui', () => {
 	let element: AppearanceUi;
 
 	beforeEach(async () => {
@@ -16,10 +13,7 @@ describe('vwc-appearance-ui', () => {
 	});
 
 	describe('basic', () => {
-		it('should be initialized as a vwc-appearance-ui', async () => {
-			expect(appearanceUiDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
+		it('should be initialized as a docs-appearance-ui', async () => {
 			expect(element).toBeInstanceOf(AppearanceUi);
 		});
 	});
