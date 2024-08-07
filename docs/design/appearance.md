@@ -58,13 +58,13 @@ Not all components have all appearances or connotation.
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui></vwc-appearance-ui>
+	<docs-appearance-ui></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered></vwc-appearance-ui>
+	<docs-appearance-ui hovered></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active></vwc-appearance-ui>
+	<docs-appearance-ui active></docs-appearance-ui>
 
 	<span><b>selected</b></span>
 	<span class="one-example" class="one-example">not set</span>
@@ -73,13 +73,13 @@ Not all components have all appearances or connotation.
 	<span class="one-example" class="one-example">not set</span>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui disabled class="one-example"></vwc-appearance-ui>
+	<docs-appearance-ui disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<vwc-appearance-ui disabled class="one-example"></vwc-appearance-ui>
+	<docs-appearance-ui disabled class="one-example"></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui readonly class="one-example"></vwc-appearance-ui>
+	<docs-appearance-ui readonly class="one-example"></docs-appearance-ui>
 </div>
 ```
 
@@ -114,41 +114,41 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="ghost"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="ghost"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="ghost"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="ghost"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="ghost"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="ghost"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="ghost"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="ghost"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<vwc-appearance-ui selected appearance="ghost" hovered></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="ghost" hovered></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="ghost"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="ghost"
 		disabled
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		readonly
 		appearance="ghost"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 </div>
 ```
 
@@ -179,13 +179,13 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="outlined"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="outlined"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="outlined"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="outlined"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="outlined"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="outlined"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
 	<span class="one-example" class="one-example">not set</span>
@@ -194,20 +194,20 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 	<span class="one-example" class="one-example">not set</span>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="outlined"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		readonly
 		appearance="outlined"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 </div>
 ```
 
@@ -238,26 +238,30 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="duotone"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="duotone"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="duotone"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="duotone"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="duotone"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="duotone"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="duotone"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="duotone"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<vwc-appearance-ui selected hovered appearance="duotone"></vwc-appearance-ui>
+	<docs-appearance-ui
+		selected
+		hovered
+		appearance="duotone"
+	></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="duotone"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>
@@ -294,26 +298,26 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="subtle"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="subtle"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="subtle"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="subtle"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="subtle"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="subtle"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="subtle"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="subtle"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
 	<span class="one-example" class="one-example">not set</span>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="subtle"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
 	<span class="one-example" class="one-example">not set</span>
@@ -350,41 +354,45 @@ currently ghost appearance is not being used in `warning`, `information` and `an
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="fieldset"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="fieldset"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="fieldset"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="fieldset"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="fieldset"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="fieldset"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="fieldset"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="fieldset"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<vwc-appearance-ui selected appearance="fieldset" hovered></vwc-appearance-ui>
+	<docs-appearance-ui
+		selected
+		appearance="fieldset"
+		hovered
+	></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="fieldset"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="fieldset"
 		disabled
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		readonly
 		appearance="fieldset"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 </div>
 ```
 
@@ -421,41 +429,45 @@ only `accent` is being used
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="listitem"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="listitem"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="listitem"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="listitem"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="listitem"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="listitem"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="listitem"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="listitem"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<vwc-appearance-ui selected appearance="listitem" hovered></vwc-appearance-ui>
+	<docs-appearance-ui
+		selected
+		appearance="listitem"
+		hovered
+	></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="listitem"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="listitem"
 		disabled
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		readonly
 		appearance="listitem"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 </div>
 ```
 
@@ -490,45 +502,45 @@ currently ghost-light appearance is being used only with `accent` connotation
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="ghost-light"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="ghost-light"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="ghost-light"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="ghost-light"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="ghost-light"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="ghost-light"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="ghost-light"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="ghost-light"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="ghost-light"
 		hovered
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="ghost-light"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="ghost-light"
 		disabled
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		readonly
 		appearance="ghost-light"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 </div>
 ```
 
@@ -559,45 +571,45 @@ currently ghost-light appearance is being used only with `accent` connotation
 </style>
 <div class="grid">
 	<span><b>idle</b></span>
-	<vwc-appearance-ui appearance="outlined-light"></vwc-appearance-ui>
+	<docs-appearance-ui appearance="outlined-light"></docs-appearance-ui>
 
 	<span><b>hover</b></span>
-	<vwc-appearance-ui hovered appearance="outlined-light"></vwc-appearance-ui>
+	<docs-appearance-ui hovered appearance="outlined-light"></docs-appearance-ui>
 
 	<span><b>active</b></span>
-	<vwc-appearance-ui active appearance="outlined-light"></vwc-appearance-ui>
+	<docs-appearance-ui active appearance="outlined-light"></docs-appearance-ui>
 
 	<span><b>selected</b></span>
-	<vwc-appearance-ui selected appearance="outlined-light"></vwc-appearance-ui>
+	<docs-appearance-ui selected appearance="outlined-light"></docs-appearance-ui>
 
 	<span><b>selected & hover</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="outlined-light"
 		hovered
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		disabled
 		appearance="outlined-light"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>selected & disabled</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		selected
 		appearance="outlined-light"
 		disabled
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 
 	<span><b>readonly</b></span>
-	<vwc-appearance-ui
+	<docs-appearance-ui
 		readonly
 		appearance="outlined-light"
 		class="one-example"
-	></vwc-appearance-ui>
+	></docs-appearance-ui>
 </div>
 ```
 
