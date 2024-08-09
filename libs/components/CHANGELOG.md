@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.4.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.4.0...vivid-v4.4.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* **nav, nav-disclosure:** add fallback background-color for selected (VIV-1966) ([#1876](https://github.com/Vonage/vivid-3/issues/1876)) ([9a8f769](https://github.com/Vonage/vivid-3/commit/9a8f769ef7e1d928681d54defa8e2b4b46274712))
+
 ## [4.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.3.0...vivid-v4.4.0) (2024-07-31)
 
 
