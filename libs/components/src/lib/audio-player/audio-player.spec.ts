@@ -368,6 +368,15 @@ describe('vwc-audio-player', () => {
 
 			expect(playSpy).toHaveBeenCalledTimes(1);
 		});
+
+		it('should stop playing on disconnectedCallback', async () => {
+			setCurrentTimeAndDuration(10, 100);
+			element.play();
+			await elementUpdated(element);
+
+			element.remove();
+			expect(element.paused).toBe(true);
+		});
 	});
 
 	describe('pause()', () => {

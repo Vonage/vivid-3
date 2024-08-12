@@ -189,6 +189,7 @@ export class AudioPlayer extends FoundationElement {
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#setSliderInteractionListeners(false);
+		this.pause();
 	}
 
 	play() {
