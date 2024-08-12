@@ -42,6 +42,120 @@ Use the `icon` attribute to set the icon of the empty state.
 <vwc-empty-state icon="search-line"></vwc-empty-state>
 ```
 
+### Connotation
+
+Set the `connotation` attribute to change the empty-state's connotation.
+It accepts a subset of predefined values.
+
+- Type: `'accent'` | `'success'` | `'alert'` | `'cta'` | `'information'` | `'warning'`
+- Default: `'accent'`
+
+```html preview 300px
+<div
+	style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start"
+>
+	<vwc-empty-state icon="search-line" headline="Accent connotation">
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="check-solid"
+		headline="Success connotation"
+		connotation="success"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="error-solid"
+		headline="Alert connotation"
+		connotation="alert"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="sparkles-solid"
+		headline="Cta connotation"
+		connotation="cta"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="envelope-solid"
+		headline="Information connotation"
+		connotation="information"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon="warning-solid"
+		headline="Warning connotation"
+		connotation="warning"
+	>
+		No results
+	</vwc-empty-state>
+</div>
+```
+
+### Icon-decoration
+
+Use icon-decoration to change the design of the icon circle.
+
+- Type: `filled` | `outlined`
+- Default: `filled`
+
+```html preview 300px
+<div
+	style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start"
+>
+	<vwc-empty-state
+		icon-decoration="outlined"
+		icon="search-line"
+		headline="Accent connotation"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-decoration="outlined"
+		icon="check-solid"
+		headline="Success connotation"
+		connotation="success"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-decoration="outlined"
+		icon="error-solid"
+		headline="Alert connotation"
+		connotation="alert"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-decoration="outlined"
+		icon="sparkles-solid"
+		headline="Cta connotation"
+		connotation="cta"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-decoration="outlined"
+		icon="envelope-solid"
+		headline="Information connotation"
+		connotation="information"
+	>
+		No results
+	</vwc-empty-state>
+	<vwc-empty-state
+		icon-decoration="outlined"
+		icon="warning-solid"
+		headline="Warning connotation"
+		connotation="warning"
+	>
+		No results
+	</vwc-empty-state>
+</div>
+```
+
 ## Slots
 
 ### Default

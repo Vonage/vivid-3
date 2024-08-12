@@ -33,20 +33,23 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 	@include connotation.connotation(text-field);
-	#{variables.$text-field-gutter-start}: calc(
-		#{size.$vvd-size-normal} / 2.5
-	); // default of 16px
-	#{variables.$text-field-gutter-end}: calc(
-		#{size.$vvd-size-normal} / 2.5
-	); // default of 16px
-	#{variables.$text-field-icon-size}: calc(
-		#{size.$vvd-size-normal} / 2
-	); // default of 20px
 
-	display: inline-grid;
-	width: 100%;
-	gap: 4px;
-	grid-template-columns: min-content 1fr max-content;
+	& {
+		#{variables.$text-field-gutter-start}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // default of 16px
+		#{variables.$text-field-gutter-end}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // default of 16px
+		#{variables.$text-field-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2
+		); // default of 20px
+
+		display: inline-grid;
+		width: 100%;
+		gap: 4px;
+		grid-template-columns: min-content 1fr max-content;
+	}
 
 	@supports (user-select: none) {
 		user-select: none;

@@ -13,6 +13,7 @@
 	},
 	"private": true,
 	"dependencies": {
+		"@11ty/eleventy-navigation": "^0.3.5",
 		"@codemirror/lang-html": "^6.4.1",
 		"@codemirror/theme-one-dark": "^6.1.0",
 		"@floating-ui/dom": "^1.2.0",

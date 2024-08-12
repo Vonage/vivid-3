@@ -26,8 +26,10 @@
 	@include appearance.appearance;
 	@include connotation.connotation(tabs);
 
-	display: grid;
-	box-sizing: border-box;
+	& {
+		display: grid;
+		box-sizing: border-box;
+	}
 
 	&.orientation-vertical {
 		overflow: hidden;

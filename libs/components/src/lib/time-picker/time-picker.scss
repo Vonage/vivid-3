@@ -100,16 +100,18 @@
 		@include connotation.connotation(time-picker);
 		@include appearance.appearance;
 
-		display: flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: center;
-		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-		background-color: var(#{appearance.get-appearance-token(fill)});
-		block-size: $item-block-size;
-		color: var(#{appearance.get-appearance-token(text)});
-		cursor: pointer;
-		font: var(#{constants.$vvd-typography-base});
-		inline-size: $item-inline-size;
+		& {
+			display: flex;
+			flex-shrink: 0;
+			align-items: center;
+			justify-content: center;
+			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+			background-color: var(#{appearance.get-appearance-token(fill)});
+			block-size: $item-block-size;
+			color: var(#{appearance.get-appearance-token(text)});
+			cursor: pointer;
+			font: var(#{constants.$vvd-typography-base});
+			inline-size: $item-inline-size;
+		}
 	}
 }

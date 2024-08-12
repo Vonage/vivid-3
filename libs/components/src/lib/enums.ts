@@ -35,6 +35,12 @@ export enum Appearance {
 	Elevated = 'elevated',
 }
 
+/* eslint-disable no-shadow */
+export enum IconDecoration {
+	Filled = 'filled',
+	Outlined = 'outlined',
+}
+
 export enum Size {
 	UltraCondensed = 'ultra-condensed',
 	SuperCondensed = 'super-condensed',

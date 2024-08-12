@@ -27,12 +27,14 @@
 	@include connotation.connotation(switch);
 	@include appearance.appearance;
 
-	display: inline-flex;
-	border-radius: #{border-radius-variables.$border-radius-semi-expanded};
-	gap: 8px;
+	& {
+		display: inline-flex;
+		border-radius: #{border-radius-variables.$border-radius-semi-expanded};
+		gap: 8px;
 
-	#{focus-variables.$focus-inset}: -4px;
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{focus-variables.$focus-inset}: -4px;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
 
 	&:focus-visible {
 		@include focus.focus;
