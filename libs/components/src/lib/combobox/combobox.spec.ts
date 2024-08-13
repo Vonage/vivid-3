@@ -24,6 +24,10 @@ describe('vwc-combobox', () => {
 		return element.shadowRoot!.querySelector('.popup') as Popup;
 	}
 
+	function getListbox(): HTMLDivElement {
+		return element.shadowRoot!.querySelector('.listbox') as HTMLDivElement;
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -216,10 +220,20 @@ describe('vwc-combobox', () => {
 
 			const control = await getControlElement(element);
 			const label = element.shadowRoot?.querySelector('.label');
+			const listbox = getListbox();
 
 			expect(control.getAttribute('role')).toBe('combobox');
 			expect(control.getAttribute('aria-haspopup')).toBe('listbox');
+			expect(control.getAttribute('aria-controls')).toBe(listbox.id);
+			expect(control.getAttribute('aria-expanded')).toBe('false');
 			expect(label?.getAttribute('for')).toBe(control.id);
+		});
+
+		it('should update the aria-expanded attribute when the listbox is open', async () => {
+			const control = await getControlElement(element);
+			element.click();
+			await elementUpdated(element);
+			expect(control.getAttribute('aria-expanded')).toBe('true');
 		});
 
 		it('should pass html a11y test', async () => {
