@@ -20,12 +20,6 @@ describe('vwc-tooltip', () => {
 	let popup: Popup;
 	let anchor: Button;
 
-	global.ResizeObserver = jest.fn().mockImplementation(() => ({
-		observe: jest.fn(),
-		unobserve: jest.fn(),
-		disconnect: jest.fn(),
-	}));
-
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`

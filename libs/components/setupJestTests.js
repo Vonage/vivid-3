@@ -27,6 +27,12 @@ Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
 });
 CSSStyleSheet.prototype.replaceSync = jest.fn();
 
+global.ResizeObserver = class {
+	observe = jest.fn();
+	unobserve = jest.fn();
+	disconnect = jest.fn();
+};
+
 global.console = {
 	...console,
 	info: jest.fn(),
