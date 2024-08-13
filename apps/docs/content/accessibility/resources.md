@@ -39,3 +39,4 @@ Below are some resources related to building accessible digital products:
 
 - [Accessibility for teams](https://accessibility.digital.gov/)
 - [A11y Project accessibility checklist](https://www.a11yproject.com/checklist/)
+- [Magentaa - accessibility accecptence criteria](https://www.magentaa11y.com/)
