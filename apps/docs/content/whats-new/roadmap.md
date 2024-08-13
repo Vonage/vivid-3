@@ -44,15 +44,17 @@ order: 2
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      Combobox (Multi-select)
+      Searchable Select (multi)
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       <vwc-button label="Done" icon="check" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research" connotation="success"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
+      <vwc-button label="Done" icon="check" href="https://www.figma.com/design/Zau4yNbnfBCBT53FZDoLr2/%C2%A0Multiselect-Combobox?node-id=1-3&t=c5CHXRHGC946vCQu-0" connotation="success"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
       <vwc-icon name="more-horizontal-line"></vwc-icon>&nbsp;<strong>In progress</strong>
     </vwc-data-grid-cell>
-    <vwc-data-grid-cell></vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
