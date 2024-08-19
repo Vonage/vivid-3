@@ -10,8 +10,8 @@ import type {
 } from '@microsoft/fast-foundation';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
-import type { Menu } from './menu';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
+import type { Menu } from './menu';
 
 const getClasses = ({
 	headerSlottedContent,

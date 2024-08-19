@@ -2,8 +2,8 @@ import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
-import type { SideDrawer } from './side-drawer';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
+import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({ modal, open, trailing }: SideDrawer) =>
 	classNames(

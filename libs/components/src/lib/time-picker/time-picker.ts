@@ -17,6 +17,7 @@ import {
 import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import { FormAssociatedTimePicker } from './time-picker.form-associated';
 import {
 	formatPresentationTime,
@@ -35,7 +36,6 @@ import {
 	getMinutesOptions,
 	getSecondsOptions,
 } from './time/picker';
-import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 
 /// Converter ensures that the value is always a valid time string or empty string
 const ValidTimeFilter: ValueConverter = {
