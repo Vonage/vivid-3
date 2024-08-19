@@ -11,7 +11,7 @@ import type {
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import type { Menu } from './menu';
-import { handleEscapeKeyAndStopPropogation } from '../dialog/dialog.template';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 
 const getClasses = ({
 	headerSlottedContent,

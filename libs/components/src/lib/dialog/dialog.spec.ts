@@ -564,7 +564,9 @@ describe('vwc-dialog', () => {
 			await showModalDialog();
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
-			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Escape' })
+			);
 			await elementUpdated(element);
 			expect(spy.mock.calls.length).toBe(0);
 		});

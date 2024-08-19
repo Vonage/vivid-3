@@ -9,6 +9,7 @@ import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
 import { applyMixinsWithObservables } from '../utils/applyMixinsWithObservables';
+import { handleEscapeKeyAndStopPropogation } from '../dialog/index';
 import {
 	addDays,
 	compareDateStr,
@@ -315,7 +316,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 */
 	_onBaseKeyDown(event: KeyboardEvent) {
 		// Close dialog on Escape
-		if (event.key === 'Escape') {
+		if (handleEscapeKeyAndStopPropogation(event)) {
 			this._closePopup();
 			return false;
 		}

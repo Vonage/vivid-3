@@ -2,6 +2,7 @@ import {
 	createFormHTML,
 	elementUpdated,
 	fixture,
+	getBaseElement,
 	listenToFormSubmission,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
@@ -341,6 +342,18 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 		});
 
 		describe('popup', () => {
+			let eventSpy: any;
+			let spy: any;
+
+			beforeEach(() => {
+				spy = jest.fn();
+				getBaseElement(element).addEventListener('keydown', spy);
+				eventSpy = jest.spyOn(KeyboardEvent.prototype, 'preventDefault');
+			});
+
+			afterEach(() => {
+				eventSpy.mockRestore();
+			});
 			it('should close when pressing ESC', async () => {
 				await openPopup();
 
@@ -357,6 +370,34 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 				await elementUpdated(element);
 
 				expect(popup.open).toBe(false);
+			});
+
+			it('should stop propgation on escape key', async () => {
+				await openPopup();
+
+				const parentSpy = jest.fn();
+				element.parentElement!.addEventListener('keydown', parentSpy);
+				pressKey('Escape', { composed: true });
+				await elementUpdated(element);
+				expect(parentSpy.mock.calls.length).toBe(0);
+			});
+
+			it('should prevent default if Escape was pressed', async () => {
+				await openPopup();
+
+				pressKey('Escape');
+				await elementUpdated(element);
+				const event = spy.mock.calls[0][0];
+				expect(event.preventDefault).toBeCalledTimes(1);
+			});
+
+			it('should enable default if key is not Escape', async () => {
+				await openPopup();
+
+				pressKey(' ');
+				await elementUpdated(element);
+				const event = spy.mock.calls[0][0];
+				expect(event.preventDefault).toBeCalledTimes(0);
 			});
 		});
 

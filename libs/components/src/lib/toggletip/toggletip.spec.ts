@@ -95,7 +95,11 @@ describe('vwc-toggletip', () => {
 
 		function pressEscapeKey() {
 			document.body.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Escape', composed: true, bubbles: true })
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					composed: true,
+					bubbles: true,
+				})
 			);
 		}
 		it('should set open to false when Escape is pressed', async () => {
@@ -103,7 +107,7 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 
 			pressEscapeKey();
-			
+
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);

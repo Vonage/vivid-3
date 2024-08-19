@@ -35,7 +35,7 @@ import {
 	getMinutesOptions,
 	getSecondsOptions,
 } from './time/picker';
-import { handleEscapeKeyAndStopPropogation } from '../dialog/dialog.template';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 
 /// Converter ensures that the value is always a valid time string or empty string
 const ValidTimeFilter: ValueConverter = {

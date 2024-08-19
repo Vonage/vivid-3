@@ -182,10 +182,9 @@ describe('vwc-menu', () => {
 	});
 
 	describe('esc key press', () => {
-
 		let event: KeyboardEvent;
 
-		beforeEach(async function() {
+		beforeEach(async function () {
 			element.open = true;
 			element.autoDismiss = true;
 			event = new KeyboardEvent('keydown', {
@@ -197,7 +196,6 @@ describe('vwc-menu', () => {
 		});
 
 		it('should set "open" to false', async () => {
-
 			getBaseElement(element).dispatchEvent(event);
 
 			await elementUpdated(element);

@@ -354,11 +354,13 @@ describe('vwc-alert', () => {
 			it('should stop propgation on escape key', async () => {
 				const spy = jest.fn();
 				element.parentElement!.addEventListener('keydown', spy);
-				getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+				getBaseElement(element).dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'Escape' })
+				);
 				await elementUpdated(element);
 				expect(spy.mock.calls.length).toBe(0);
 			});
-	
+
 			it('should enable default if Escape was pressed', async () => {
 				const event = new KeyboardEvent('keydown', { key: 'Escape' });
 				jest.spyOn(event, 'preventDefault');
@@ -366,7 +368,7 @@ describe('vwc-alert', () => {
 				await elementUpdated(element);
 				expect(event.preventDefault).toBeCalledTimes(0);
 			});
-	
+
 			it('should enable default if key is not Escape', async () => {
 				const event = new KeyboardEvent('keydown', { key: ' ' });
 				jest.spyOn(event, 'preventDefault');

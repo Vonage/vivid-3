@@ -8,6 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { Dialog } from './dialog';
 
 const getClasses = ({
@@ -52,14 +53,6 @@ function renderDismissButton(buttonTag: string) {
 		icon="close-line"
 		@click="${(x) => (x.open = false)}"
 	></${buttonTag}>`;
-}
-
-export function handleEscapeKeyAndStopPropogation(event: KeyboardEvent) {
-	if (event.key === 'Escape') {
-		event.stopPropagation();
-		return true;
-	}
-	return false;
 }
 
 function handleEscapeKey(dialog: Dialog, event: KeyboardEvent) {
