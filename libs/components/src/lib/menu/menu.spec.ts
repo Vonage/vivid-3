@@ -182,23 +182,49 @@ describe('vwc-menu', () => {
 	});
 
 	describe('esc key press', () => {
-		it('should set "open" to false', async () => {
+
+		let event: KeyboardEvent;
+
+		beforeEach(async function() {
 			element.open = true;
 			element.autoDismiss = true;
-
+			event = new KeyboardEvent('keydown', {
+				key: 'Escape',
+				bubbles: true,
+				composed: true,
+			});
 			await elementUpdated(element);
+		});
 
-			getBaseElement(element).dispatchEvent(
-				new KeyboardEvent('keydown', {
-					key: 'Escape',
-					bubbles: true,
-					composed: true,
-				})
-			);
+		it('should set "open" to false', async () => {
+
+			getBaseElement(element).dispatchEvent(event);
 
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
+		});
+
+		it('should stop propgation on escape key', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(0);
+		});
+
+		it('should allow default if Escape was pressed', async () => {
+			jest.spyOn(event, 'preventDefault');
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(event.preventDefault).toBeCalledTimes(0);
+		});
+
+		it('should enable default if key is not Escape', async () => {
+			jest.spyOn(event, 'preventDefault');
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(event.preventDefault).toBeCalledTimes(0);
 		});
 	});
 

@@ -11,6 +11,7 @@ import type {
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import type { Menu } from './menu';
+import { handleEscapeKeyAndStopPropogation } from '../dialog/dialog.template';
 
 const getClasses = ({
 	headerSlottedContent,
@@ -24,8 +25,8 @@ const getClasses = ({
 		['hide-body', items && !(items as unknown as HTMLElement[]).length]
 	);
 
-function handleEscapeKey(menu: Menu, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && menu.open) {
+function handleEscapeKey(menu: Menu, event: KeyboardEvent) {
+	if (handleEscapeKeyAndStopPropogation(event) && menu.open) {
 		menu.open = false;
 	}
 	return true;
@@ -58,7 +59,7 @@ export const MenuTemplate: (
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x._anchorEl}
-				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event as KeyboardEvent)}"
 				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
 				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"
 			>
