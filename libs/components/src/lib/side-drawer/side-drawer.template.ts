@@ -47,13 +47,18 @@ export const sideDrawerTemplate: FoundationElementTemplate<
 	)}
 `;
 
-const handleKeydown = (x: any, { key }: KeyboardEvent): boolean | void => {
-	if (key === 'Escape') {
+function handleEscapeKey(event: KeyboardEvent) {
+	if (event.key === 'Escape') {
+		event.stopPropagation();
+		return true;
+	}
+	return false;
+}
+
+const handleKeydown = (x: any, event: KeyboardEvent): boolean | void => {
+	if (handleEscapeKey(event)) {
 		x.open = false;
 	} else {
-		// after this event handler is executed,
-		// preventDefault() will be called on the event object by default.
-		// we need to return true from our handler to opt - out of this behavior.
 		return true;
 	}
 };

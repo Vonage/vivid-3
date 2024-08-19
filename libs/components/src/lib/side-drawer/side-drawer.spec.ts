@@ -216,6 +216,30 @@ describe('vwc-side-drawer', () => {
 			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect(element.open).toEqual(true);
 		});
+
+		it('should stop propgation on escape key', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(0);
+		});
+
+		it('should preventDefaut if Escape was pressed', async () => {
+			const event = new KeyboardEvent('keydown', { key: 'Escape' });
+			jest.spyOn(event, 'preventDefault');
+			control.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(event.preventDefault).toBeCalledTimes(1);
+		});
+
+		it('should enable default if key is not Escape', async () => {
+			const event = new KeyboardEvent('keydown', { key: ' ' });
+			jest.spyOn(event, 'preventDefault');
+			control.dispatchEvent(event);
+			await elementUpdated(element);
+			expect(event.preventDefault).toBeCalledTimes(0);
+		});
 	});
 
 	describe('a11y', () => {
