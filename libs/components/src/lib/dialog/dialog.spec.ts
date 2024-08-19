@@ -560,6 +560,33 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(true);
 		});
 
+		it('should stop propgation on escape key', async () => {
+			await showModalDialog();
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getBaseElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(0);
+		});
+
+		it('should preventDefaut if Escape was pressed', async () => {
+			await showModalDialog();
+			const event = new KeyboardEvent('keydown', { key: 'Escape' });
+			jest.spyOn(event, 'preventDefault');
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(event.preventDefault).toBeCalledTimes(1);
+		});
+
+		it('should enable default if key is not Escape', async () => {
+			await showModalDialog();
+			const event = new KeyboardEvent('keydown', { key: ' ' });
+			jest.spyOn(event, 'preventDefault');
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(event.preventDefault).toBeCalledTimes(0);
+		});
+
 		it('should set role "dialog" on the underlying dialog', function () {
 			expect(dialogEl.getAttribute('role')).toEqual('dialog');
 		});

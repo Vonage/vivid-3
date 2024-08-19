@@ -54,11 +54,21 @@ function renderDismissButton(buttonTag: string) {
 	></${buttonTag}>`;
 }
 
-function handleEscapeKey(dialog: Dialog, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && dialog._openedAsModal) {
-		dialog.open = false;
+export function handleEscapeKeyAndStopPropogation(event: KeyboardEvent) {
+	if (event.key === 'Escape') {
+		event.stopPropagation();
+		return true;
 	}
-	return true;
+	return false;
+}
+
+function handleEscapeKey(dialog: Dialog, event: KeyboardEvent) {
+	if (handleEscapeKeyAndStopPropogation(event) && dialog._openedAsModal) {
+		dialog.open = false;
+		return false;
+	} else {
+		return true;
+	}
 }
 
 export const DialogTemplate: (
@@ -72,7 +82,7 @@ export const DialogTemplate: (
 	return html<Dialog>`
 	<${elevationTag} dp="8">
 		<dialog class="${getClasses}"
-				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event as KeyboardEvent)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
 				aria-label="${(x) => x.ariaLabel}"
 				?aria-modal="${(x) => x._openedAsModal}"

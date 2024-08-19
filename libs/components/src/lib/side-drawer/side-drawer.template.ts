@@ -3,6 +3,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
 import type { SideDrawer } from './side-drawer';
+import { handleEscapeKeyAndStopPropogation } from '../dialog/dialog.template';
 
 const getClasses = ({ modal, open, trailing }: SideDrawer) =>
 	classNames(
@@ -47,16 +48,8 @@ export const sideDrawerTemplate: FoundationElementTemplate<
 	)}
 `;
 
-function handleEscapeKey(event: KeyboardEvent) {
-	if (event.key === 'Escape') {
-		event.stopPropagation();
-		return true;
-	}
-	return false;
-}
-
 const handleKeydown = (x: any, event: KeyboardEvent): boolean | void => {
-	if (handleEscapeKey(event)) {
+	if (handleEscapeKeyAndStopPropogation(event)) {
 		x.open = false;
 	} else {
 		return true;
