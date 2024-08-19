@@ -3,6 +3,7 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { handleEscapeKeyAndStopPropogation } from '../dialog/dialog.template';
 
 export type AlertConnotation =
 	| Connotation.Accent
@@ -182,7 +183,7 @@ export class Alert extends FoundationElement {
 	}
 
 	#closeOnEscape = (e: KeyboardEvent) => {
-		if (this.removable && e.key === 'Escape') this.open = false;
+		if (this.removable && handleEscapeKeyAndStopPropogation(e)) this.open = false;
 	};
 
 	#onTransitionEnd = () => {
