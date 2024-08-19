@@ -35,6 +35,7 @@ import {
 	getMinutesOptions,
 	getSecondsOptions,
 } from './time/picker';
+import { handleEscapeKeyAndStopPropogation } from '../dialog/dialog.template';
 
 /// Converter ensures that the value is always a valid time string or empty string
 const ValidTimeFilter: ValueConverter = {
@@ -288,7 +289,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	_onBaseKeyDown(event: KeyboardEvent) {
 		// Close dialog on Escape
-		if (event.key === 'Escape') {
+		if (handleEscapeKeyAndStopPropogation(event)) {
 			this._closePopup();
 			return false;
 		}
