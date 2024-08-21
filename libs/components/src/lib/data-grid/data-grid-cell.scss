@@ -72,7 +72,7 @@
 slot {
 	display: block;
 	overflow: hidden;
-	inline-size: 100%;
+	// inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: var(
 		#{variables.$data-grid-cell-white-space},
@@ -81,5 +81,5 @@ slot {
 }
 
 .header-icon {
-	margin-inline-start: auto;
+	margin-inline-start: 16px;
 }
