@@ -72,7 +72,6 @@
 slot {
 	display: block;
 	overflow: hidden;
-	// inline-size: 100%;
 	text-overflow: ellipsis;
 	white-space: var(
 		#{variables.$data-grid-cell-white-space},
