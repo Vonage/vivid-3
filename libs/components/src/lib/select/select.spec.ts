@@ -355,6 +355,15 @@ describe('vwc-select', () => {
 			expect(element.open).toBeFalsy();
 		});
 
+		it('should stop propgation on escape key', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, composed: true }));
+						
+			expect(spy.mock.calls.length).toBe(0);
+		});
+
 		it('should close selection if tab key pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);

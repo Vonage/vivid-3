@@ -69,12 +69,20 @@ describe('vwc-tooltip', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should disappear when Escape is pressed and tooltip is focused', () => {
+			element.open = true;
+
+			fireEvent(getControlElement(element), new KeyboardEvent('keydown', { key: 'Escape' }));
+
+			expect(element.open).toEqual(false);
+		});
+
 		it('should stop propgation on escape key', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
-			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
+			getControlElement(element).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, composed: true }));
 			await elementUpdated(element);
 			expect(spy.mock.calls.length).toBe(0);
 		});
