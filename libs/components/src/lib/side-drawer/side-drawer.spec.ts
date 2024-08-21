@@ -220,7 +220,13 @@ describe('vwc-side-drawer', () => {
 		it('should stop propgation on escape key', async () => {
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
-			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, composed: true }));
+			control.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
 			await elementUpdated(element);
 			expect(spy.mock.calls.length).toBe(0);
 		});

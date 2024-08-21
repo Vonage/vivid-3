@@ -32,9 +32,9 @@ ${anchorSlotTemplate}
 	:placement=${(x) => x.placement}
 	:anchor="${(x) => x._anchorEl}"
 	:open="${(x) => x.open}"
-	@keydown="${(_, c) => {
+	@keydown="${(x, c) => {
 		if (handleEscapeKeyAndStopPropogation(c.event as KeyboardEvent)) {
-			document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
+			x.open = false;
 		}
 	}}"
   exportparts="vvd-theme-alternate">
