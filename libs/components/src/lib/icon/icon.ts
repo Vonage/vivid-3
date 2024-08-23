@@ -43,7 +43,15 @@ const resolveIcon = memoizeWith(identity as () => string, (iconId = '') =>
  *
  * @public
  */
-export type IconConnotation = Connotation;
+export type IconConnotation = Extract<
+Connotation,
+| Connotation.Accent
+| Connotation.CTA
+| Connotation.Success
+| Connotation.Alert
+| Connotation.Warning
+| Connotation.Information
+>;
 
 /**
  * @public
