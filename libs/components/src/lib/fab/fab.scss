@@ -68,7 +68,17 @@
 		#{variables.$inline-padding}: 20px;
 	}
 
-	&:not(.size-expanded) {
+	&.size-condensed {
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-expanded};
+		#{variables.$block-size}: #{size.$vvd-size-condensed};
+		font-size: 12px;
+
+		vwc-icon {
+			font-size: 16px;
+		}
+	}
+
+	&:not(.size-expanded, .size-condensed) {
 		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		#{variables.$block-size}: #{size.$vvd-size-normal};
 	}
