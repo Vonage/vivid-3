@@ -19,7 +19,7 @@ const getClasses = ({
 
 function setShadowWhenScrollTabs(tabs: Tabs, {event}: ExecutionContext) {
 	const scrollWrapper = event.target as HTMLElement;
-	const scrollShadow = tabs.tablist!.parentElement.parentElement;
+	const scrollShadow = tabs.tablist!.parentElement!.parentElement;
 
 	if(!(scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined)) {
 		return
@@ -45,21 +45,20 @@ export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
 		<template>
 			<div class="${getClasses}">
-				<div class="added-div /start-scroll /end-scroll">
-				<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
-
-						<div class="tablist" role="tablist" ${ref('tablist')} >
-							<slot name="tab" ${slotted('tabs')}></slot>
-							${when(
-								(x) => x.showActiveIndicator,
-								html<T>`
-									<div
-										${ref('activeIndicatorRef')}
-										class="active-indicator"
-									></div>
-								`
-							)}
-						</div>
+				<div class="added-div">
+					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
+							<div class="tablist" role="tablist" ${ref('tablist')} >
+								<slot name="tab" ${slotted('tabs')}></slot>
+								${when(
+									(x) => x.showActiveIndicator,
+									html<T>`
+										<div
+											${ref('activeIndicatorRef')}
+											class="active-indicator"
+										></div>
+									`
+								)}
+							</div>
 					</div>
 				</div>
 				<div class="tabpanel">
