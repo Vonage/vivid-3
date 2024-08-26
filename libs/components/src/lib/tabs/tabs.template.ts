@@ -1,4 +1,4 @@
-import { html, ref, slotted, when } from '@microsoft/fast-element';
+import {ExecutionContext, html, ref, slotted, when} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 
@@ -17,24 +17,23 @@ const getClasses = ({
 	);
 
 
-function setShadowWhenScrollTabs(x: Tabs) {
-	//const tabsWrapper = document.querySelector('.tabs-wrapper');
-	const overflow = x.shadowRoot.querySelector('.tablist-wrapper') as HTMLElement;
-	console.log("overflow is", overflow);
+function setShadowWhenScrollTabs(tabs: Tabs, {event}: ExecutionContext) {
+	const scrollWrapper = event.target as HTMLElement;
+	const scrollShadow = tabs.tablist!.parentElement;
 
+	if(!(scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined)) {
+		return
+	}
 
+	if (scrollWrapper.scrollWidth <= scrollWrapper.clientWidth) {
+		scrollShadow.classList.toggle('start-scroll', false);
+		scrollShadow.classList.toggle('end-scroll', false);
+		return;
+	}
+	scrollShadow.classList.toggle('start-scroll', scrollWrapper.scrollLeft > 0);
 
-		return "--start-shadow: 1";
+	scrollShadow.classList.toggle('end-scroll', scrollWrapper.scrollLeft < scrollWrapper.scrollWidth - scrollWrapper.clientWidth);
 
-
-	// const scrollLeft = overflow.scrollLeft;
-	//
-	//
-	// if (scrollLeft > 0) {
-	// 	return "--start-shadow: 1";
-	// } else {
-	// 	return "--start-shadow: 0";
-	// }
 }
 
 /**
@@ -46,18 +45,21 @@ export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
 		<template>
 			<div class="${getClasses}">
-				<div class="tablist-wrapper" style=${setShadowWhenScrollTabs}>
-					<div class="tablist" role="tablist" ${ref('tablist')}>
-						<slot name="tab" ${slotted('tabs')}></slot>
-						${when(
-							(x) => x.showActiveIndicator,
-							html<T>`
-								<div
-									${ref('activeIndicatorRef')}
-									class="active-indicator"
-								></div>
-							`
-						)}
+
+				<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
+					<div class="added-div">
+						<div class="tablist" role="tablist" ${ref('tablist')} >
+							<slot name="tab" ${slotted('tabs')}></slot>
+							${when(
+								(x) => x.showActiveIndicator,
+								html<T>`
+									<div
+										${ref('activeIndicatorRef')}
+										class="active-indicator"
+									></div>
+								`
+							)}
+						</div>
 					</div>
 				</div>
 				<div class="tabpanel">

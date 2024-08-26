@@ -86,7 +86,66 @@ describe('vwc-tabs', () => {
 				getBaseElement(element).classList.contains(`orientation-${orientation}`)
 			).toBeTruthy();
 		});
+
+		describe('scroll shadow', () => {
+			let scrollWrapper: HTMLElement;
+			let shadowWrapper: HTMLElement;
+
+			beforeEach(
+				function () {
+					scrollWrapper = getBaseElement(element).querySelector('.tablist-wrapper') as HTMLElement;
+					shadowWrapper = getBaseElement(element).querySelector('.added-div') as HTMLElement;
+					jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(200);
+					jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(150);
+				}
+			);
+
+			it('should remove class "start-scroll" if scroll position is 0', async () => {
+				shadowWrapper.classList.add('start-scroll');
+				scrollWrapper.scrollLeft = 0;
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
+			});
+
+			it('should add class "start-scroll" if scroll position is bigger then 0', async () => {
+
+				scrollWrapper.scrollLeft = 2;
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
+			});
+
+			it('should remove class "end-scroll" if scroll position is scroll-width', async () => {
+				scrollWrapper.scrollLeft = scrollWrapper.scrollWidth;
+				shadowWrapper.classList.add('end-scroll');
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+			});
+
+			it('should add class "end-scroll" if scroll position is less then scroll-width', async () => {
+				scrollWrapper.scrollLeft = 90;
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+			});
+
+			it('should add class "end-scroll + start-scroll" if scroll position is less then scroll-width and bigger then 0', async () => {
+				scrollWrapper.scrollLeft = 90;
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+			});
+
+			it('should remove class "end-scroll + start-scroll" if scroll-width less or equal to wrapper', async () => {
+				jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(100);
+				jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(150);
+
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+			});
+		});
 	});
+
+
 
 	describe('activeid', () => {
 		it('should set activeid property', async () => {
@@ -345,4 +404,5 @@ describe('vwc-tabs', () => {
 			expect(tablist?.getAttribute('role')).toBe('tablist');
 		});
 	});
+
 });

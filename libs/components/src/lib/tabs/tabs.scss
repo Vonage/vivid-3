@@ -44,33 +44,28 @@
 		max-block-size: 100%;
 	}
 }
-
-.tablist {
-	#{variables.$tabs-tablist-gutter}: 8px;
-	#{variables.$tabs-active-indicator-stroke-width}: 2px;
-
+.added-div {
 	position: relative;
-	display: grid;
-	box-sizing: border-box;
-	color: var(#{appearance.get-appearance-token(text)});
 
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		width: 10px;
-		opacity: var(--_shadow-opacity);
-		transition: opacity 0.1s;
-	}
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 10px;
+			opacity: 0;
+			transition: opacity 0.1s;
+		}
 
 	&::before {
+		opacity: var(--start-shadow);
 		left: 0;
 		background: linear-gradient(to left, rgba(black, 0), rgba(black, 0.05));
 	}
 
 	&::after {
+		opacity: var(--end-shadow);
 		right: 0;
 		background: linear-gradient(to right, rgba(black, 0), rgba(black, 0.05));
 	}
@@ -82,6 +77,15 @@
 	&.is-overflowing:not(.is-scrolled-right)::after {
 		opacity: 1;
 	}
+}
+.tablist {
+	#{variables.$tabs-tablist-gutter}: 8px;
+	#{variables.$tabs-active-indicator-stroke-width}: 2px;
+
+	position: relative;
+	display: grid;
+	box-sizing: border-box;
+	color: var(#{appearance.get-appearance-token(text)});
 
 	.base.orientation-vertical & {
 		padding: var(#{variables.$tabs-tablist-gutter});
