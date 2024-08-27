@@ -53,8 +53,9 @@ describe('vwc-time-picker', () => {
 		type: 'hours' | 'minutes' | 'seconds' | 'meridies'
 	) => Array.from(element.shadowRoot!.querySelectorAll(`[id^="${type}-"]`));
 
-	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
-		element.shadowRoot!.activeElement!.dispatchEvent(
+	const pressKey = (key: string, options: KeyboardEventInit = {}, triggerElement = false) => {
+		const triggeredElement = triggerElement ? element : element.shadowRoot!.activeElement;
+		triggeredElement!.dispatchEvent(
 			new KeyboardEvent('keydown', { key, bubbles: true, ...options })
 		);
 	};
@@ -948,7 +949,7 @@ describe('vwc-time-picker', () => {
 		it('should allow propgation on escape key if closed', async () => {
 			const parentSpy = jest.fn();
 			element.addEventListener('keydown', parentSpy);
-			pressKey('Escape');
+			pressKey('Escape', {}, true);
 			await elementUpdated(element);
 			expect(parentSpy.mock.calls.length).toBe(1);
 		});

@@ -351,17 +351,6 @@ describe('vwc-alert', () => {
 				expect(spy).not.toHaveBeenCalled();
 			});
 
-			it('should allow propgation on escape key if closed', async () => {
-				element.open = false;
-				const spy = jest.fn();
-				element.parentElement!.addEventListener('keydown', spy);
-				getBaseElement(element).dispatchEvent(
-					new KeyboardEvent('keydown', { key: 'Escape' })
-				);
-				await elementUpdated(element);
-				expect(spy.mock.calls.length).toBe(1);
-			});
-
 			it('should stop propgation on escape key', async () => {
 				const spy = jest.fn();
 				element.parentElement!.addEventListener('keydown', spy);

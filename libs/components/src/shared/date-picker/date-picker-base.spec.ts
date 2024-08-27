@@ -57,8 +57,9 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 				element.shadowRoot!.querySelectorAll('[data-month]')
 			) as HTMLButtonElement[];
 
-		const pressKey = (key: string, options: KeyboardEventInit = {}) => {
-			element.shadowRoot!.activeElement!.dispatchEvent(
+		const pressKey = (key: string, options: KeyboardEventInit = {}, triggerEl = false) => {
+			const triggeredElement = triggerEl ? element : element.shadowRoot!.activeElement;
+			triggeredElement!.dispatchEvent(
 				new KeyboardEvent('keydown', { key, bubbles: true, ...options })
 			);
 		};
@@ -375,7 +376,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			it('should allow propgation on escape key if closed', async () => {
 				const parentSpy = jest.fn();
 				element.parentElement!.addEventListener('keydown', parentSpy);
-				pressKey('Escape', { composed: true });
+				pressKey('Escape', { composed: true }, true);
 				await elementUpdated(element);
 				expect(parentSpy.mock.calls.length).toBe(1);
 			});
