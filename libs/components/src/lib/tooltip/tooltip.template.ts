@@ -33,7 +33,7 @@ ${anchorSlotTemplate}
 	:anchor="${(x) => x._anchorEl}"
 	:open="${(x) => x.open}"
 	@keydown="${(x, c) => {
-		if (handleEscapeKeyAndStopPropogation(c.event as KeyboardEvent)) {
+		if (x.open && handleEscapeKeyAndStopPropogation(c.event as KeyboardEvent)) {
 			x.open = false;
 		}
 	}}"

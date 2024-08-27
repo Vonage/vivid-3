@@ -7,6 +7,7 @@ import type {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { Toggletip } from './toggletip';
 
 const getClasses = (_: Toggletip) => classNames('control');
@@ -27,6 +28,12 @@ export const ToggletipTemplate: (
 	return html`
 		${anchorSlotTemplate}
 		<${popup}
+			@keydown="${(x, {event}) => {
+				if (x.open && handleEscapeKeyAndStopPropogation(event as KeyboardEvent)) {
+					return false;
+				}
+				return true;
+			}}"
 			class="${getClasses}"
 			arrow
 			:anchor="${(x) => x._anchorEl}"

@@ -113,34 +113,32 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should allow propgation on escape key if closed', async () => {
+			element.open = false;
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getControlElement(element).dispatchEvent(new KeyboardEvent('keydown', {
+				key: 'Escape',
+				bubbles: true,
+				composed: true
+			}));
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
 		it('should stop propgation on escape key', async () => {
 			element.open = true;
 			await elementUpdated(element);
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
-			pressEscapeKey();
+			getControlElement(element).dispatchEvent(new KeyboardEvent('keydown', {
+				key: 'Escape',
+				bubbles: true,
+				composed: true
+			}));
 			await elementUpdated(element);
 			expect(spy.mock.calls.length).toBe(0);
-		});
-
-		it('should enable default if Escape was pressed', async () => {
-			element.open = true;
-			await elementUpdated(element);
-			const event = new KeyboardEvent('keydown', { key: 'Escape' });
-			jest.spyOn(event, 'preventDefault');
-			pressEscapeKey();
-			await elementUpdated(element);
-			expect(event.preventDefault).toBeCalledTimes(0);
-		});
-
-		it('should enable default if key is not Escape', async () => {
-			element.open = true;
-			await elementUpdated(element);
-			const event = new KeyboardEvent('keydown', { key: ' ' });
-			jest.spyOn(event, 'preventDefault');
-			pressEscapeKey();
-			await elementUpdated(element);
-			expect(event.preventDefault).toBeCalledTimes(0);
 		});
 	});
 
