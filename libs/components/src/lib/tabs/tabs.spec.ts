@@ -122,13 +122,13 @@ describe('vwc-tabs', () => {
 			});
 
 			it('should add class "end-scroll" if scroll position is less then scroll-width', async () => {
-				scrollWrapper.scrollLeft = 90;
+				scrollWrapper.scrollLeft = 20;
 				scrollWrapper.dispatchEvent(new Event('scroll'));
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 			});
 
 			it('should add class "end-scroll + start-scroll" if scroll position is less then scroll-width and bigger then 0', async () => {
-				scrollWrapper.scrollLeft = 90;
+				scrollWrapper.scrollLeft = 20;
 				scrollWrapper.dispatchEvent(new Event('scroll'));
 				expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
@@ -141,6 +141,10 @@ describe('vwc-tabs', () => {
 				scrollWrapper.dispatchEvent(new Event('scroll'));
 				expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+			});
+
+			it('should add class "end-scroll" if scroll-width bigger then wrapper on component load', async () => {
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 			});
 		});
 	});

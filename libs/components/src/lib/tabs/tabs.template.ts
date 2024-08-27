@@ -17,9 +17,10 @@ const getClasses = ({
 	);
 
 
-function setShadowWhenScrollTabs(tabs: Tabs, {event}: ExecutionContext) {
+function setShadowWhenScrollTabs(_: Tabs, {event}: ExecutionContext) {
 	const scrollWrapper = event.target as HTMLElement;
-	const scrollShadow = tabs.tablist!.parentElement!.parentElement;
+	const scrollShadow = scrollWrapper!.parentElement;
+	console.log('on load');
 
 	if(!(scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined)) {
 		return
@@ -46,7 +47,7 @@ export function TabsTemplate<T extends Tabs>() {
 		<template>
 			<div class="${getClasses}">
 				<div class="added-div">
-					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
+					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}" @load="${_ => console.log('hi')}">
 							<div class="tablist" role="tablist" ${ref('tablist')} >
 								<slot name="tab" ${slotted('tabs')}></slot>
 								${when(
