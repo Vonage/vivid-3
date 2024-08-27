@@ -57,8 +57,14 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 				element.shadowRoot!.querySelectorAll('[data-month]')
 			) as HTMLButtonElement[];
 
-		const pressKey = (key: string, options: KeyboardEventInit = {}, triggerEl = false) => {
-			const triggeredElement = triggerEl ? element : element.shadowRoot!.activeElement;
+		const pressKey = (
+			key: string,
+			options: KeyboardEventInit = {},
+			triggerEl = false
+		) => {
+			const triggeredElement = triggerEl
+				? element
+				: element.shadowRoot!.activeElement;
 			triggeredElement!.dispatchEvent(
 				new KeyboardEvent('keydown', { key, bubbles: true, ...options })
 			);

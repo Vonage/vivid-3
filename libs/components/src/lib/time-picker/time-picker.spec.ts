@@ -53,8 +53,14 @@ describe('vwc-time-picker', () => {
 		type: 'hours' | 'minutes' | 'seconds' | 'meridies'
 	) => Array.from(element.shadowRoot!.querySelectorAll(`[id^="${type}-"]`));
 
-	const pressKey = (key: string, options: KeyboardEventInit = {}, triggerElement = false) => {
-		const triggeredElement = triggerElement ? element : element.shadowRoot!.activeElement;
+	const pressKey = (
+		key: string,
+		options: KeyboardEventInit = {},
+		triggerElement = false
+	) => {
+		const triggeredElement = triggerElement
+			? element
+			: element.shadowRoot!.activeElement;
 		triggeredElement!.dispatchEvent(
 			new KeyboardEvent('keydown', { key, bubbles: true, ...options })
 		);
