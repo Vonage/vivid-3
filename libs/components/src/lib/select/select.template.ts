@@ -161,7 +161,7 @@ export const SelectTemplate: (
 				x.focusoutHandler(e)
 			)}"
 			@keydown="${ifNotFromFeedback<KeyboardEvent>((x, e) => {
-				handleEscapeKeyAndStopPropogation(e);
+				x.open && handleEscapeKeyAndStopPropogation(e);
 				return x.keydownHandler(e);
 			})}"
 			@mousedown="${ifNotFromFeedback<MouseEvent>((x, e) =>

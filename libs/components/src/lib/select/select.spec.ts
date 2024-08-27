@@ -355,7 +355,23 @@ describe('vwc-select', () => {
 			expect(element.open).toBeFalsy();
 		});
 
-		it('should stop propgation on escape key', async () => {
+		it('should allow propgation on escape key if not open', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
+		it('should stop propgation on escape key if open', async () => {
+			element.open = true;
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
