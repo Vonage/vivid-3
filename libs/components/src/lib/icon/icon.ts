@@ -47,9 +47,9 @@ export type IconConnotation = Extract<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.CTA
-	| Connotation.Announcement
 	| Connotation.Success
 	| Connotation.Alert
+	| Connotation.Warning
 	| Connotation.Information
 >;
 
