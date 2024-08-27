@@ -99,10 +99,11 @@ export const comboboxTemplate: (
             tabindex="${(x) => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${((x, {event}) => {
-				x.open && handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
-				return x.keydownHandler(event as KeyboardEvent);
-			})}"
+            @keydown="${(x, { event }) => {
+							x.open &&
+								handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
+							return x.keydownHandler(event as KeyboardEvent);
+						}}"
         >
 			${() => renderInput(context)}
 			<${popupTag} class="popup"

@@ -28,8 +28,11 @@ export const ToggletipTemplate: (
 	return html`
 		${anchorSlotTemplate}
 		<${popup}
-			@keydown="${(x, {event}) => {
-				if (x.open && handleEscapeKeyAndStopPropogation(event as KeyboardEvent)) {
+			@keydown="${(x, { event }) => {
+				if (
+					x.open &&
+					handleEscapeKeyAndStopPropogation(event as KeyboardEvent)
+				) {
 					return false;
 				}
 				return true;

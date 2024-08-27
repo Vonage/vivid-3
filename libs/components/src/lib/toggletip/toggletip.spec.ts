@@ -118,11 +118,13 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
-			getControlElement(element).dispatchEvent(new KeyboardEvent('keydown', {
-				key: 'Escape',
-				bubbles: true,
-				composed: true
-			}));
+			getControlElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
 			await elementUpdated(element);
 			expect(spy.mock.calls.length).toBe(1);
 		});
@@ -132,11 +134,13 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
-			getControlElement(element).dispatchEvent(new KeyboardEvent('keydown', {
-				key: 'Escape',
-				bubbles: true,
-				composed: true
-			}));
+			getControlElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
 			await elementUpdated(element);
 			expect(spy.mock.calls.length).toBe(0);
 		});
