@@ -99,8 +99,7 @@ export class Tabs extends FoundationTabs {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		setTimeout(() => this.tablist!.parentElement!.dispatchEvent!(new Event('scroll')), 100);
-		//this.tablist!.parentElement!.dispatchEvent!(new Event('scroll'));
+		requestAnimationFrame(() => this.tablist!.parentElement!.dispatchEvent!(new Event('scroll')));
 	}
 
 	#updateTabsConnotation() {

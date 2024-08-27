@@ -144,6 +144,7 @@ describe('vwc-tabs', () => {
 			});
 
 			it('should add class "end-scroll" if scroll-width bigger then wrapper on component load', async () => {
+				await elementUpdated(element);
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 			});
 		});

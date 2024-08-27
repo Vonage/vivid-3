@@ -20,7 +20,6 @@ const getClasses = ({
 function setShadowWhenScrollTabs(_: Tabs, {event}: ExecutionContext) {
 	const scrollWrapper = event.target as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement;
-	console.log('on load');
 
 	if(!(scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined)) {
 		return
