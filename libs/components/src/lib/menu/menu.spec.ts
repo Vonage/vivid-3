@@ -203,7 +203,17 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(false);
 		});
 
-		it('should stop propgation on escape key', async () => {
+		it('should allow propgation on escape key and menu is closed', async () => {
+			element.open = false;
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getBaseElement(element).dispatchEvent(event);
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
+		it('should stop propgation on escape key and menu is open', async () => {
+			element.open = true;
 			const spy = jest.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getBaseElement(element).dispatchEvent(event);

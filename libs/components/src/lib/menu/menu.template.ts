@@ -26,7 +26,7 @@ const getClasses = ({
 	);
 
 function handleEscapeKey(menu: Menu, event: KeyboardEvent) {
-	if (handleEscapeKeyAndStopPropogation(event) && menu.open) {
+	if (menu.open && handleEscapeKeyAndStopPropogation(event)) {
 		menu.open = false;
 	}
 	return true;
