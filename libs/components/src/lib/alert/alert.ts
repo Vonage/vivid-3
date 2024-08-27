@@ -183,7 +183,7 @@ export class Alert extends FoundationElement {
 	}
 
 	#closeOnEscape = (e: KeyboardEvent) => {
-		if (this.removable && handleEscapeKeyAndStopPropogation(e))
+		if (this.open && this.removable && handleEscapeKeyAndStopPropogation(e))
 			this.open = false;
 	};
 

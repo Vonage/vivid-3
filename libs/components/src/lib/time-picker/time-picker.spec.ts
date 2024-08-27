@@ -945,6 +945,14 @@ describe('vwc-time-picker', () => {
 			expect(popup.open).toBe(false);
 		});
 
+		it('should allow propgation on escape key if closed', async () => {
+			const parentSpy = jest.fn();
+			element.addEventListener('keydown', parentSpy);			
+			pressKey('Escape');
+			await elementUpdated(element);
+			expect(parentSpy.mock.calls.length).toBe(1);
+		});
+		
 		it('should stop propgation on escape key', async () => {
 			await openPopup();
 

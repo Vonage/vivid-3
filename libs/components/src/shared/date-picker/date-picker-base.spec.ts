@@ -372,6 +372,14 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 				expect(popup.open).toBe(false);
 			});
 
+			it('should allow propgation on escape key if closed', async () => {
+				const parentSpy = jest.fn();
+				element.parentElement!.addEventListener('keydown', parentSpy);
+				pressKey('Escape', { composed: true });
+				await elementUpdated(element);
+				expect(parentSpy.mock.calls.length).toBe(1);
+			});
+
 			it('should stop propgation on escape key', async () => {
 				await openPopup();
 
