@@ -7,7 +7,39 @@ import '.';
 const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
+	const originalResizeObserver = global.ResizeObserver;
+	let resizeObserver: any;
+
 	beforeEach(function () {
+		(global.ResizeObserver as any) = class implements ResizeObserver {
+					callback(_: any) {
+
+					}
+
+					observer: HTMLElement | null = null;
+
+					constructor(callback: <T>(arg0: T) => void) {
+						this.callback = callback;
+						// eslint-disable-next-line @typescript-eslint/no-this-alias
+						resizeObserver = this;
+					}
+
+					observe(target: HTMLElement) {
+						this.observer = target;
+					}
+
+					disconnect() {
+						this.observer = null;
+					}
+					unobserve = jest.fn();
+					// Simulate resize event
+					triggerResize() {
+						if (this.observer) {
+							this.callback([{ target: this.observer }]);
+						}
+					}
+					
+				}
 		window.HTMLElement.prototype.getBoundingClientRect = function () {
 			return {
 				x: 146,
@@ -22,6 +54,10 @@ describe('vwc-tabs', () => {
 		};
 		window.HTMLElement.prototype.scrollIntoView = jest.fn();
 		window.HTMLElement.prototype.scrollTo = jest.fn();
+	});
+
+	afterAll(() => {
+		global.ResizeObserver = originalResizeObserver;
 	});
 
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
@@ -158,34 +194,31 @@ describe('vwc-tabs', () => {
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
 			});
 
-			fit('should remove class "end-scroll" if client width grows above scroll width', async () => {
-				class MockResizeObserver {
-					constructor(callback: () => void) {
-						this.callback = callback;
-						this.observer = null;
-					}
+			it('should add class "end-scroll" if number of slotted tabs increased scroll-wrapper width above client-width', async () => {
+				await elementUpdated(element);
+				jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(500);
+				const tab: Tab = document.createElement('vwc-tab') as Tab;
+				element.appendChild(tab);
+				await elementUpdated(element);
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+			});
 
-					observe(target) {
-						this.observer = target;
-					}
-
-					disconnect() {
-						this.observer = null;
-					}
-					unobserve = jest.fn();
-					// Simulate resize event
-					triggerResize() {
-						if (this.observer) {
-							this.callback([{ target: this.observer }]);
-						}
-					}
-				}
-
-				global.ResizeObserver = MockResizeObserver as unknown as ResizeObserver;
+			it('should remove class "end-scroll" if client width grows above scroll width', async () => {
 				await elementUpdated(element);
 				jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(350);
+				resizeObserver.triggerResize();
 				await elementUpdated(element);
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+			});
+
+			it('should add class "end-scroll" if client width reduces below scroll width', async () => {
+				jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(350);
+				scrollWrapper.dispatchEvent(new Event('scroll'));
+				await elementUpdated(element);
+				jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(50);
+				resizeObserver.triggerResize();
+				await elementUpdated(element);
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 			});
 		});
 	});
