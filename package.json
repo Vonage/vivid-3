@@ -157,7 +157,7 @@
 		"vitest-axe": "^0.1.0",
 		"vitest-fetch-mock": "^0.2.2",
 		"vue": "2.7.8",
-		"vue-tsc": "^1.8.27",
+		"vue-tsc": "^2.0.29",
 		"vue3": "npm:vue@3.3.7"
 	},
 	"customElements": "/dist/libs/components/custom-elements.json",
