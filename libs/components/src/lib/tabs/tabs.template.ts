@@ -22,7 +22,10 @@ const getClasses = ({
 		['scroll', Boolean(scrollablePanel)]
 	);
 
-function setNoScrollState (scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
+function setNoScrollState(
+	scrollShadow: HTMLElement,
+	scrollWrapper: HTMLElement
+) {
 	if (scrollWrapper.scrollWidth <= scrollWrapper.clientWidth) {
 		scrollShadow.classList.toggle('start-scroll', false);
 		scrollShadow.classList.toggle('end-scroll', false);
@@ -39,7 +42,7 @@ function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 	scrollShadow.classList.toggle(
 		'end-scroll',
 		scrollWrapper.scrollLeft <
-		scrollWrapper.scrollWidth - scrollWrapper.clientWidth
+			scrollWrapper.scrollWidth - scrollWrapper.clientWidth
 	);
 }
 
@@ -47,13 +50,14 @@ function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	const scrollWrapper = event.target as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement;
 
-	const isScrollable = (scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined);
+	const isScrollable =
+		scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined;
 
 	if (!isScrollable) {
 		return;
 	}
 
-	if(setNoScrollState(scrollShadow, scrollWrapper)) {
+	if (setNoScrollState(scrollShadow, scrollWrapper)) {
 		return;
 	}
 
@@ -71,10 +75,7 @@ export function TabsTemplate<T extends Tabs>() {
 		<template>
 			<div class="${getClasses}">
 				<div class="scroll-shadow">
-					<div
-						class="tablist-wrapper"
-						@scroll="${setShadowWhenScrollTabs}"
-					>
+					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
 						<div class="tablist" role="tablist" ${ref('tablist')}>
 							<slot name="tab" ${slotted('tabs')}></slot>
 							${when(

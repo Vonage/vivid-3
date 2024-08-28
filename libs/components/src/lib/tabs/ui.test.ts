@@ -44,7 +44,6 @@ async function testScroll({ page }: { page: Page }) {
 		'./snapshots/tabs-scroll.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-
 }
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(

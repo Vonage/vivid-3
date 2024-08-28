@@ -12,33 +12,30 @@ describe('vwc-tabs', () => {
 
 	beforeEach(function () {
 		(global.ResizeObserver as any) = class implements ResizeObserver {
-					callback(_: any) {
+			callback(_: any) {}
 
-					}
+			observer: HTMLElement | null = null;
 
-					observer: HTMLElement | null = null;
+			constructor(callback: <T>(arg0: T) => void) {
+				this.callback = callback;
+				// eslint-disable-next-line @typescript-eslint/no-this-alias
+				resizeObserver = this;
+			}
 
-					constructor(callback: <T>(arg0: T) => void) {
-						this.callback = callback;
-						// eslint-disable-next-line @typescript-eslint/no-this-alias
-						resizeObserver = this;
-					}
-
-					observe(target: HTMLElement) {
-						this.observer = target;
-					}
-					disconnect = jest.fn(() => {
-						this.observer = null;
-					})
-					unobserve = jest.fn();
-					// Simulate resize event
-					triggerResize() {
-						if (this.observer) {
-							this.callback([{ target: this.observer }]);
-						}
-					}
-
+			observe(target: HTMLElement) {
+				this.observer = target;
+			}
+			disconnect = jest.fn(() => {
+				this.observer = null;
+			});
+			unobserve = jest.fn();
+			// Simulate resize event
+			triggerResize() {
+				if (this.observer) {
+					this.callback([{ target: this.observer }]);
 				}
+			}
+		};
 		window.HTMLElement.prototype.getBoundingClientRect = function () {
 			return {
 				x: 146,

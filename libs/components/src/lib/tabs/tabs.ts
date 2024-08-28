@@ -58,7 +58,6 @@ export class Tabs extends FoundationTabs {
 		this.#updateTabsConnotation();
 	}
 
-
 	override orientationChanged(): void {
 		super.orientationChanged();
 		this.patchIndicatorStyleTransition();
@@ -105,13 +104,11 @@ export class Tabs extends FoundationTabs {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		requestAnimationFrame(() =>
-			this.#updateScrollStatus()
-		);
+		requestAnimationFrame(() => this.#updateScrollStatus());
 
 		const scrollWrapper = this.tablist!.parentElement as HTMLElement;
 		this.#resizeObserver = new ResizeObserver(() => {
-		this.#updateScrollStatus();
+			this.#updateScrollStatus();
 		});
 
 		this.#resizeObserver!.observe(scrollWrapper);
