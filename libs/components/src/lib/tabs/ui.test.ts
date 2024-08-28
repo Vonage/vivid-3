@@ -9,6 +9,43 @@ import {
 
 const components = ['tabs', 'tab', 'tab-panel'];
 
+async function testScroll({ page }: { page: Page }) {
+	const template = `<vwc-tabs style="inline-size: 400px">
+<vwc-tab label="Tab one" id="one"></vwc-tab>
+<vwc-tab label="Tab two" id="two"></vwc-tab>
+<vwc-tab label="Tab three" id="tree"></vwc-tab>
+<vwc-tab label="Tab four" id="four"></vwc-tab>
+<vwc-tab label="Tab five" id="five"></vwc-tab>
+<vwc-tab label="Tab six" id="six"></vwc-tab>
+<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+<vwc-tab-panel id="fourPanel">Tab one content</vwc-tab-panel>
+<vwc-tab-panel id="fivePanel">Tab two content</vwc-tab-panel>
+<vwc-tab-panel id="sixPanel">Tab three content</vwc-tab-panel>
+</vwc-tabs>
+
+	`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/tabs-scroll.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+
+}
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = extractHTMLBlocksFromReadme(
 		path.join(new URL('.', import.meta.url).pathname, 'README.md')
@@ -75,3 +112,5 @@ test('should scroll only inside tabs', async ({ page }: { page: Page }) => {
 
 	expect(bodyScrollTop).toEqual(0);
 });
+
+test('tabs scroll shadow', testScroll);
