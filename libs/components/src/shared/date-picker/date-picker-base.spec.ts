@@ -63,7 +63,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			triggerEl = false
 		) => {
 			const triggeredElement = triggerEl
-				? element
+				? getBaseElement(element)
 				: element.shadowRoot!.activeElement;
 			triggeredElement!.dispatchEvent(
 				new KeyboardEvent('keydown', { key, bubbles: true, ...options })

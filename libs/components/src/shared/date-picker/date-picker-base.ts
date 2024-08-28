@@ -316,7 +316,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	 */
 	_onBaseKeyDown(event: KeyboardEvent) {
 		// Close dialog on Escape
-		if (handleEscapeKeyAndStopPropogation(event)) {
+		if (this._popupOpen && handleEscapeKeyAndStopPropogation(event)) {
 			this._closePopup();
 			return false;
 		}
