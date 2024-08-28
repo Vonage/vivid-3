@@ -22,7 +22,10 @@ export type FabConnotation = Extract<
  *
  * @public
  */
-export type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
+export type FABSize = Extract<
+	Size,
+	Size.Condensed | Size.Normal | Size.Expanded
+>;
 
 /**
  * @public

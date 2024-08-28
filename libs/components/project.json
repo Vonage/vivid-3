@@ -33,9 +33,11 @@
 				"watch": {
 					"commands": [
 						{
-							"command": "npx nx run components:build --watch"
+							"forwardAllArgs": false,
+							"command": "WATCH=true npx nx build components --watch"
 						},
 						{
+							"forwardAllArgs": false,
 							"command": "npx nx run styles:serve"
 						},
 						{

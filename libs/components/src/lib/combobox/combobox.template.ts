@@ -61,9 +61,9 @@ function renderInput(context: ElementDefinitionContext) {
 				aria-activedescendant="${(x) =>
 					x.open ? x.ariaActiveDescendant : null}"
 				aria-autocomplete="${(x) => x.ariaAutoComplete}"
-				aria-controls="${(x) => x.ariaControls}"
+				aria-controls="${(x) => x.listboxId}"
 				aria-disabled="${(x) => x.ariaDisabled}"
-				aria-expanded="${(x) => x.ariaExpanded}"
+				aria-expanded="${(x) => x.open}"
 				aria-haspopup="listbox"
 				placeholder="${(x) => x.placeholder}"
 				role="combobox"
