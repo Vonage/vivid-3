@@ -1,5 +1,5 @@
 {
-  "settingsInheritedFrom": "vonage/whitesource-config@main",
+  "settingsInheritedFrom": "whitesource-config@api-platform",
   "remediateSettings": {
     "enableRenovate": true,
     "extends": [
