@@ -110,11 +110,18 @@ export class Tabs extends FoundationTabs {
 		);
 
 		const scrollWrapper = this.tablist!.parentElement as HTMLElement;
-		const resizeObserver = new ResizeObserver(() => {
+		this.#resizeObserver = new ResizeObserver(() => {
 		this.#updateScrollStatus();
 		});
 
-		resizeObserver.observe(scrollWrapper);
+		this.#resizeObserver!.observe(scrollWrapper);
+	}
+
+	#resizeObserver?: ResizeObserver;
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#resizeObserver!.disconnect();
 	}
 
 	#updateTabsConnotation() {

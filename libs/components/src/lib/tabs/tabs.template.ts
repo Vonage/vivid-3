@@ -22,32 +22,32 @@ const getClasses = ({
 		['scroll', Boolean(scrollablePanel)]
 	);
 
+function setNoScrollState (scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
+	if (scrollWrapper.scrollWidth <= scrollWrapper.clientWidth) {
+		scrollShadow.classList.toggle('start-scroll', false);
+		scrollShadow.classList.toggle('end-scroll', false);
+		return true;
+	}
+	return false;
+}
+
+function addStartShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
+	scrollShadow.classList.toggle('start-scroll', scrollWrapper.scrollLeft > 0);
+}
+
+function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
+	scrollShadow.classList.toggle(
+		'end-scroll',
+		scrollWrapper.scrollLeft <
+		scrollWrapper.scrollWidth - scrollWrapper.clientWidth
+	);
+}
+
 function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	const scrollWrapper = event.target as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement;
 
 	const isScrollable = (scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined);
-
-	function setNoScrollState (scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
-		if (scrollWrapper.scrollWidth <= scrollWrapper.clientWidth) {
-			scrollShadow.classList.toggle('start-scroll', false);
-			scrollShadow.classList.toggle('end-scroll', false);
-			return true;
-		}
-		return false;
-	}
-
-	function addStartShadow(scrollShadow: HTMLElement) {
-		scrollShadow.classList.toggle('start-scroll', scrollWrapper.scrollLeft > 0);
-	}
-
-	function addEndShadow(scrollShadow: HTMLElement) {
-		scrollShadow.classList.toggle(
-			'end-scroll',
-			scrollWrapper.scrollLeft <
-			scrollWrapper.scrollWidth - scrollWrapper.clientWidth
-		);
-	}
 
 	if (!isScrollable) {
 		return;
@@ -57,8 +57,8 @@ function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 		return;
 	}
 
-	addStartShadow(scrollShadow);
-	addEndShadow(scrollShadow);
+	addStartShadow(scrollShadow, scrollWrapper);
+	addEndShadow(scrollShadow, scrollWrapper);
 }
 
 /**
