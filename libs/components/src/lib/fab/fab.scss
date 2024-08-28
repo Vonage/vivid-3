@@ -68,9 +68,24 @@
 		#{variables.$inline-padding}: 20px;
 	}
 
-	&:not(.size-expanded) {
+	&.size-condensed {
+		#{variables.$border-radius}: #{border-radius-variables.$border-radius-expanded};
+		#{variables.$block-size}: #{size.$vvd-size-condensed};
+
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+
+		vwc-icon {
+			font-size: calc(#{size.$vvd-size-condensed} / 2);
+		}
+	}
+
+	&:not(.size-expanded, .size-condensed) {
 		#{variables.$border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 		#{variables.$block-size}: #{size.$vvd-size-normal};
+	}
+
+	&:not(.size-condensed) {
+		font: var(#{constants.$vvd-typography-base-bold});
 	}
 
 	&.icon-only {

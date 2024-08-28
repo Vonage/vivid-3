@@ -61,10 +61,11 @@ It accepts a subset of predefined values.
 
 Use the `size` attribute to set the FAB's to one of the predefined block size extent.
 
-- Type: `'normal'` | `'expanded'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
+<vwc-fab icon="thumbs-up-line" label="condensed" size="condensed"></vwc-fab>
 <vwc-fab icon="thumbs-up-line" label="normal" size="normal"></vwc-fab>
 <vwc-fab icon="thumbs-up-line" label="expanded" size="expanded"></vwc-fab>
 ```
