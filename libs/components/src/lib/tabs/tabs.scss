@@ -42,42 +42,42 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
 		max-block-size: 100%;
-	}
-}
-.added-div {
-	position: relative;
-	inline-size: 100%;
-	overflow: hidden;
 
-		&::before,
-		&::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			width: 10px;
-			opacity: 0;
-			transition: opacity 0.1s;
+		.scroll-shadow {
+			position: relative;
+			overflow: hidden;
+			inline-size: 100%;
+			isolation: isolate;
+
+			&.start-scroll,
+			&.end-scroll {
+				&::before,
+				&::after {
+					position: absolute;
+					content: '';
+					inline-size: 10px;
+					inset-block: 0;
+					opacity: 0;
+					transition: opacity 0.1s;
+				}
+			}
+
+			&.start-scroll::before {
+				z-index: 1;
+				box-shadow: inset 7px 1px 5px -3px var(--vvd-color-neutral-950);
+				inset-inline-start: 0;
+				opacity: 0.5;
+			}
+
+			&.end-scroll::after {
+				box-shadow: inset -7px 1px 5px -3px var(--vvd-color-neutral-950);
+				inset-inline-end: 0;
+				opacity: 0.5;
+			}
 		}
-
-	&::before {
-		left: 0;
-		background: linear-gradient(to left, rgba(black, 0), rgba(black, 1));
-	}
-
-	&::after {
-		right: 0;
-		background: linear-gradient(to right, rgba(black, 0), rgba(black, 1));
-	}
-
-	&.start-scroll::before {
-		opacity: 1;
-	}
-
-	&.end-scroll::after {
-		opacity: 1;
 	}
 }
+
 .tablist {
 	#{variables.$tabs-tablist-gutter}: 8px;
 	#{variables.$tabs-active-indicator-stroke-width}: 2px;

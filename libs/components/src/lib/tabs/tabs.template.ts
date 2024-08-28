@@ -1,4 +1,10 @@
-import {ExecutionContext, html, ref, slotted, when} from '@microsoft/fast-element';
+import {
+	ExecutionContext,
+	html,
+	ref,
+	slotted,
+	when,
+} from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 
@@ -16,13 +22,14 @@ const getClasses = ({
 		['scroll', Boolean(scrollablePanel)]
 	);
 
-
-function setShadowWhenScrollTabs(_: Tabs, {event}: ExecutionContext) {
+function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	const scrollWrapper = event.target as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement;
 
-	if(!(scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined)) {
-		return
+	if (
+		!(scrollShadow && scrollWrapper && scrollWrapper.scrollLeft !== undefined)
+	) {
+		return;
 	}
 
 	if (scrollWrapper.scrollWidth <= scrollWrapper.clientWidth) {
@@ -32,8 +39,11 @@ function setShadowWhenScrollTabs(_: Tabs, {event}: ExecutionContext) {
 	}
 	scrollShadow.classList.toggle('start-scroll', scrollWrapper.scrollLeft > 0);
 
-	scrollShadow.classList.toggle('end-scroll', scrollWrapper.scrollLeft < scrollWrapper.scrollWidth - scrollWrapper.clientWidth);
-
+	scrollShadow.classList.toggle(
+		'end-scroll',
+		scrollWrapper.scrollLeft <
+			scrollWrapper.scrollWidth - scrollWrapper.clientWidth
+	);
 }
 
 /**
@@ -45,20 +55,24 @@ export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
 		<template>
 			<div class="${getClasses}">
-				<div class="added-div">
-					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}" @load="${_ => console.log('hi')}">
-							<div class="tablist" role="tablist" ${ref('tablist')} >
-								<slot name="tab" ${slotted('tabs')}></slot>
-								${when(
-									(x) => x.showActiveIndicator,
-									html<T>`
-										<div
-											${ref('activeIndicatorRef')}
-											class="active-indicator"
-										></div>
-									`
-								)}
-							</div>
+				<div class="scroll-shadow">
+					<div
+						class="tablist-wrapper"
+						@scroll="${setShadowWhenScrollTabs}"
+						@load="${(_) => console.log('hi')}"
+					>
+						<div class="tablist" role="tablist" ${ref('tablist')}>
+							<slot name="tab" ${slotted('tabs')}></slot>
+							${when(
+								(x) => x.showActiveIndicator,
+								html<T>`
+									<div
+										${ref('activeIndicatorRef')}
+										class="active-indicator"
+									></div>
+								`
+							)}
+						</div>
 					</div>
 				</div>
 				<div class="tabpanel">

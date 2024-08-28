@@ -18,7 +18,7 @@ The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as
 	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
 	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
 	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-		<vwc-tab-panel id="fourPanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="fourPanel">Tab one content</vwc-tab-panel>
 	<vwc-tab-panel id="fivePanel">Tab two content</vwc-tab-panel>
 	<vwc-tab-panel id="sixPanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>

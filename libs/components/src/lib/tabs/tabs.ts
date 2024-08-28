@@ -99,7 +99,9 @@ export class Tabs extends FoundationTabs {
 
 	override connectedCallback() {
 		super.connectedCallback();
-		requestAnimationFrame(() => this.tablist!.parentElement!.dispatchEvent!(new Event('scroll')));
+		requestAnimationFrame(() =>
+			this.tablist!.parentElement!.dispatchEvent!(new Event('scroll'))
+		);
 	}
 
 	#updateTabsConnotation() {
