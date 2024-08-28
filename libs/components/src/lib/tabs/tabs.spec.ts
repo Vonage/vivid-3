@@ -148,6 +148,45 @@ describe('vwc-tabs', () => {
 				await elementUpdated(element);
 				expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 			});
+
+			it('should remove class "end-scroll" if number of slotted tabs reduced scroll-wrapper width bellow client-width', async () => {
+				await elementUpdated(element);
+				jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(50);
+				const tab: Tab = document.createElement('vwc-tab') as Tab;
+				element.appendChild(tab);
+				await elementUpdated(element);
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+			});
+
+			fit('should remove class "end-scroll" if client width grows above scroll width', async () => {
+				class MockResizeObserver {
+					constructor(callback: () => void) {
+						this.callback = callback;
+						this.observer = null;
+					}
+
+					observe(target) {
+						this.observer = target;
+					}
+
+					disconnect() {
+						this.observer = null;
+					}
+					unobserve = jest.fn();
+					// Simulate resize event
+					triggerResize() {
+						if (this.observer) {
+							this.callback([{ target: this.observer }]);
+						}
+					}
+				}
+
+				global.ResizeObserver = MockResizeObserver as unknown as ResizeObserver;
+				await elementUpdated(element);
+				jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(350);
+				await elementUpdated(element);
+				expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+			});
 		});
 	});
 

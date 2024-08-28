@@ -59,7 +59,6 @@ export function TabsTemplate<T extends Tabs>() {
 					<div
 						class="tablist-wrapper"
 						@scroll="${setShadowWhenScrollTabs}"
-						@load="${(_) => console.log('hi')}"
 					>
 						<div class="tablist" role="tablist" ${ref('tablist')}>
 							<slot name="tab" ${slotted('tabs')}></slot>
