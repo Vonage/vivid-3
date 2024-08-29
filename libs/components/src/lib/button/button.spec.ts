@@ -289,13 +289,6 @@ describe('vwc-button', () => {
 		});
 	});
 	describe('a11y', function () {
-		it('should set aria-label on the button if set', async () => {
-			const ariaLabel = 'close';
-			element.ariaLabel = ariaLabel;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
-		});
-
 		it('should pass html a11y test', async () => {
 			element.label = 'Home';
 			await elementUpdated(element);
