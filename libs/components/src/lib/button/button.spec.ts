@@ -314,7 +314,7 @@ describe('vwc-button', () => {
 		describe('icon-only', () => {
 			it('should pass html a11y test', async () => {
 				element.icon = 'home';
-				element.ariaLabel = 'Home'
+				element.ariaLabel = 'Home';
 				await elementUpdated(element);
 
 				expect(await axe(element)).toHaveNoViolations();
@@ -322,10 +322,10 @@ describe('vwc-button', () => {
 
 			it('should pass html a11y test when anchor', async () => {
 				element.icon = 'home';
-				element.ariaLabel = 'Home'
+				element.ariaLabel = 'Home';
 				element.href = '/somewhere';
 				await elementUpdated(element);
-	
+
 				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
