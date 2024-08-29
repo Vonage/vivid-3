@@ -80,6 +80,49 @@ describe('vwc-combobox', () => {
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 		});
+
+		it('should set open to false when escape key is pressed', async () => {
+			element.open = true;
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+			expect(element.open).toBe(false);
+		});
+
+		it('should allow propgation on escape key if not open', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
+		it('should stop propgation on escape key if open', async () => {
+			element.open = true;
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(0);
+		});
 	});
 
 	describe('placeholder', function () {

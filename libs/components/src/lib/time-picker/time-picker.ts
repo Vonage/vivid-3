@@ -17,6 +17,7 @@ import {
 import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import { FormAssociatedTimePicker } from './time-picker.form-associated';
 import {
 	formatPresentationTime,
@@ -288,7 +289,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	_onBaseKeyDown(event: KeyboardEvent) {
 		// Close dialog on Escape
-		if (event.key === 'Escape') {
+		if (handleEscapeKeyAndStopPropogation(event)) {
 			this._closePopup();
 			return false;
 		}
