@@ -18,7 +18,14 @@ All [native attributes of `<button>`](https://developer.mozilla.org/en-US/docs/W
 Add a `label` attribute to add text to the button.
 
 ```html preview
-<vwc-button appearance="filled" label="A default button"></vwc-button>
+<vwc-button appearance="filled" label="A default button with a really long label text"></vwc-button>
+<vwc-button appearance="filled" href="/" label="A link button"></vwc-button>
+<vwc-button appearance="filled" label="A third default button"></vwc-button>
+<vwc-button
+	appearance="filled"
+	icon="message-sent-line"
+	aria-label="Send Message"
+></vwc-button>
 ```
 
 ### Appearance
