@@ -93,16 +93,56 @@ describe('vwc-toggletip', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		function pressEscapeKey() {
+			document.body.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					composed: true,
+					bubbles: true,
+				})
+			);
+		}
 		it('should set open to false when Escape is pressed', async () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			document.body.dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
-			);
+			pressEscapeKey();
+
 			await elementUpdated(element);
 
 			expect(element.open).toEqual(false);
+		});
+
+		it('should allow propgation on escape key if closed', async () => {
+			element.open = false;
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getControlElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
+		it('should stop propgation on escape key', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+			getControlElement(element).dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+			await elementUpdated(element);
+			expect(spy.mock.calls.length).toBe(0);
 		});
 	});
 

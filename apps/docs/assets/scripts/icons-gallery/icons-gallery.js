@@ -125,10 +125,6 @@ function filterIcons() {
 		)
 	);
 
-	iconsArray = Array.from(
-		new Map(iconsArray.map((item) => [item.id, item])).values()
-	);
-
 	iconsArray = filterIconsByCategory(iconsArray);
 	iconsArray = filterIconsByTag(iconsArray);
 	numShown > NUM_TO_SHOW ? showMoreIcons(iconsArray) : showIcons(iconsArray);
