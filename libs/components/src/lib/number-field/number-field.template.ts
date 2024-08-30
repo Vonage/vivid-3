@@ -60,7 +60,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 			     ?inert="${(x) => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
 								?disabled="${(x) => x.disabled || x.readOnly}"
-								aria-label=${(x) =>
+								accessible-label=${(x) =>
 									x.decrementButtonAriaLabel ||
 									x.locale.numberField.decrementButtonLabel}
 					            shape="${setControlButtonShape}"
@@ -71,7 +71,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
 								?disabled="${(x) => x.disabled || x.readOnly}"
-								aria-label=${(x) =>
+								accessible-label=${(x) =>
 									x.incrementButtonAriaLabel ||
 									x.locale.numberField.incrementButtonLabel}
 					            shape="${setControlButtonShape}"

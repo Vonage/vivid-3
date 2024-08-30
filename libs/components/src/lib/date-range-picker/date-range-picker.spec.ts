@@ -370,16 +370,18 @@ describe('vwc-date-range-picker', () => {
 	});
 
 	describe('calendar button', () => {
-		it('should have an aria-label of "Choose dates" when no date is selected', async () => {
-			expect(calendarButton.getAttribute('aria-label')).toBe('Choose dates');
+		it('should have an accessible-label of "Choose dates" when no date is selected', async () => {
+			expect(calendarButton.getAttribute('accessible-label')).toBe(
+				'Choose dates'
+			);
 		});
 
-		it('should have an aria-label of "Change dates, DATES" when both dates are selected', async () => {
+		it('should have an accessible-label of "Change dates, DATES" when both dates are selected', async () => {
 			element.start = '2021-01-01';
 			element.end = '2021-01-02';
 			await elementUpdated(element);
 
-			expect(calendarButton.getAttribute('aria-label')).toBe(
+			expect(calendarButton.getAttribute('accessible-label')).toBe(
 				'Change dates, 01/01/2021 – 01/02/2021'
 			);
 		});

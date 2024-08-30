@@ -39,7 +39,7 @@ describe('vwc-date-picker', () => {
 
 	const getButtonByLabel = (label: string) =>
 		element.shadowRoot!.querySelector(
-			`[aria-label="${label}"],[label="${label}"]`
+			`[accessible-label="${label}"],[label="${label}"]`
 		) as Button;
 
 	const getDialogTitle = () => titleAction.textContent!.trim();
@@ -221,15 +221,17 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('calendar button', () => {
-		it('should have an aria-label of "Choose date" when no date is selected', async () => {
-			expect(calendarButton.getAttribute('aria-label')).toBe('Choose date');
+		it('should have an accessible-label of "Choose date" when no date is selected', async () => {
+			expect(calendarButton.getAttribute('accessible-label')).toBe(
+				'Choose date'
+			);
 		});
 
-		it('should have an aria-label of "Change date, DATE" when a date is selected', async () => {
+		it('should have an accessible-label of "Change date, DATE" when a date is selected', async () => {
 			element.value = '2021-01-01';
 			await elementUpdated(element);
 
-			expect(calendarButton.getAttribute('aria-label')).toBe(
+			expect(calendarButton.getAttribute('accessible-label')).toBe(
 				'Change date, 01/01/2021'
 			);
 		});

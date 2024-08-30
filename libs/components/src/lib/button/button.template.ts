@@ -108,6 +108,7 @@ function renderButtonContent(context: ElementDefinitionContext) {
 		aria-hidden="${(x) => x.ariaHidden}"
 		aria-invalid="${(x) => x.ariaInvalid}"
 		aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
+		aria-label="${(x) => x.accessibleLabel}"
 		aria-live="${(x) => x.ariaLive}"
 		aria-pressed="${(x) => x.ariaPressed}"
 		aria-relevant="${(x) => x.ariaRelevant}"
@@ -141,6 +142,7 @@ function renderAnchorContent(context: ElementDefinitionContext) {
 		aria-hidden="${(x) => x.ariaHidden}"
 		aria-invalid="${(x) => x.ariaInvalid}"
 		aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
+		aria-label="${(x) => x.accessibleLabel}"
 		aria-live="${(x) => x.ariaLive}"
 		aria-relevant="${(x) => x.ariaRelevant}"
 		aria-roledescription="${(x) => x.ariaRoledescription}"
@@ -160,7 +162,7 @@ export const buttonTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
-	return html` <template role="presentation">
+	return html` <template>
 		${when((x) => !x.href, html<Button>`${renderButtonContent(context)}`)}
 		${when((x) => x.href, html<Button>`${renderAnchorContent(context)}`)}
 	</template>`;

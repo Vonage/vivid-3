@@ -159,6 +159,18 @@ export class Button extends FoundationButton {
 	@attr label?: string;
 
 	/**
+	 * Indicates the button's aria-label. Use when there is no label present (icon only)
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: accessible-label
+	 */
+	@attr({
+		attribute: 'accessible-label',
+	})
+	accessibleLabel?: string;
+
+	/**
 	 * Indicates the button's href.
 	 *
 	 * @public

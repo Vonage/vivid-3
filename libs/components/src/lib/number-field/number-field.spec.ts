@@ -855,29 +855,31 @@ describe('vwc-number-field', () => {
 		});
 
 		describe('add and subtract buttons', () => {
-			it('renders a localized "aria-label" on the add button', async () => {
+			it('renders a localized "accessible-label" on the add button', async () => {
 				const addButton = element.shadowRoot?.getElementById('add');
-				expect(addButton?.getAttribute('aria-label')).toBe('Increment');
+				expect(addButton?.getAttribute('accessible-label')).toBe('Increment');
 			});
 
-			it('renders a localized "aria-label" on the subtract button', async () => {
+			it('renders a localized "accessible-label" on the subtract button', async () => {
 				const subtractButton = element.shadowRoot?.getElementById('subtract');
-				expect(subtractButton?.getAttribute('aria-label')).toBe('Decrement');
+				expect(subtractButton?.getAttribute('accessible-label')).toBe(
+					'Decrement'
+				);
 			});
 
 			describe('aria overrides', () => {
-				it('renders the correct text for "aria-label" in the add button', async () => {
+				it('renders the correct text for "accessible-label" in the add button', async () => {
 					element.incrementButtonAriaLabel = 'Add label';
 					await elementUpdated(element);
 					const addButton = element.shadowRoot?.getElementById('add');
-					expect(addButton?.getAttribute('aria-label')).toBe('Add label');
+					expect(addButton?.getAttribute('accessible-label')).toBe('Add label');
 				});
 
-				it('renders the correct text for "aria-label" in the subtract button', async () => {
+				it('renders the correct text for "accessible-label" in the subtract button', async () => {
 					element.decrementButtonAriaLabel = 'Subtract label';
 					await elementUpdated(element);
 					const subtractButton = element.shadowRoot?.getElementById('subtract');
-					expect(subtractButton?.getAttribute('aria-label')).toBe(
+					expect(subtractButton?.getAttribute('accessible-label')).toBe(
 						'Subtract label'
 					);
 				});

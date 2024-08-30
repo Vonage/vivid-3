@@ -34,7 +34,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 							c.parent._inMonthPicker
 								? 'chevron-left-line'
 								: 'double-chevron-left-line'}"
-						aria-label="${(_, c) => c.parent.locale.datePicker.prevYearLabel}"
+						accessible-label="${(_, c) => c.parent.locale.datePicker.prevYearLabel}"
 						?disabled="${(_, c) => c.parent._isPrevYearDisabled}"
 						@click="${(_, c) => c.parent._onPrevYearClick()}"
 					></${buttonTag}>
@@ -48,7 +48,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 						class="vwc-button"
 						size="super-condensed"
 						icon="chevron-left-line"
-						aria-label="${(_, c) => c.parent.locale.datePicker.prevMonthLabel}"
+						accessible-label="${(_, c) => c.parent.locale.datePicker.prevMonthLabel}"
 						?disabled="${(_, c) => c.parent._isPrevMonthDisabled}"
 						@click="${(_, c) => c.parent._onPrevMonthClick()}"
 					></${buttonTag}>
@@ -91,7 +91,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 					class="vwc-button"
 					size="super-condensed"
 					icon="chevron-right-line"
-					aria-label="${(_, c) => c.parent.locale.datePicker.nextMonthLabel}"
+					accessible-label="${(_, c) => c.parent.locale.datePicker.nextMonthLabel}"
 					?disabled="${(_, c) => c.parent._isNextMonthDisabled}"
 					@click="${(_, c) => c.parent._onNextMonthClick()}"
 				></${buttonTag}>
@@ -108,7 +108,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 						c.parent._inMonthPicker
 							? 'chevron-right-line'
 							: 'double-chevron-right-line'}"
-					aria-label="${(_, c) => c.parent.locale.datePicker.nextYearLabel}"
+					accessible-label="${(_, c) => c.parent.locale.datePicker.nextYearLabel}"
 					?disabled="${(_, c) => c.parent._isNextYearDisabled}"
 					@click="${(_, c) => c.parent._onNextYearClick()}"
 				></${buttonTag}>
@@ -303,6 +303,7 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 						`
 					)}
 				</div>
+				calendar-button
 			`
 		)}
 	</div>`;
@@ -349,7 +350,7 @@ export const DatePickerBaseTemplate: (
 				icon="calendar-line"
 				appearance="ghost"
 				?disabled="${(x) => x.disabled || x.readOnly}"
-				aria-label="${(x) => x._calendarButtonLabel}"
+				accessible-label="${(x) => x._calendarButtonLabel}"
 				@click="${(x) => x._onCalendarButtonClick()}"
 			></${buttonTag}>
 		</${textFieldTag}>

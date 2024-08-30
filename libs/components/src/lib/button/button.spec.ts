@@ -289,6 +289,16 @@ describe('vwc-button', () => {
 		});
 	});
 	describe('a11y', function () {
+		describe('accessible-label', function () {
+			it('should add an aria-label to the control element', async () => {
+				element.icon = 'home';
+				element.accessibleLabel = 'Home';
+				await elementUpdated(element);
+				const control = getControlElement(element);
+				expect(control.getAttribute('aria-label')).toBe('Home');
+			});
+		});
+
 		it('should pass html a11y test', async () => {
 			element.label = 'Home';
 			await elementUpdated(element);
@@ -307,7 +317,7 @@ describe('vwc-button', () => {
 		describe('icon-only', () => {
 			it('should pass html a11y test', async () => {
 				element.icon = 'home';
-				element.ariaLabel = 'Home';
+				element.accessibleLabel = 'Home';
 				await elementUpdated(element);
 
 				expect(await axe(element)).toHaveNoViolations();
@@ -315,7 +325,7 @@ describe('vwc-button', () => {
 
 			it('should pass html a11y test when anchor', async () => {
 				element.icon = 'home';
-				element.ariaLabel = 'Home';
+				element.accessibleLabel = 'Home';
 				element.href = '/somewhere';
 				await elementUpdated(element);
 

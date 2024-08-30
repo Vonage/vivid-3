@@ -72,7 +72,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 
 		const getButtonByLabel = (label: string) =>
 			element.shadowRoot!.querySelector(
-				`[aria-label="${label}"],[label="${label}"]`
+				`[accessible-label="${label}"],[label="${label}"]`
 			) as Button;
 
 		const getDialogTitle = () => getTitleAction().textContent!.trim();
