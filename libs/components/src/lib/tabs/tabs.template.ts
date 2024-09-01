@@ -47,7 +47,7 @@ function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 }
 
 function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
-	const scrollWrapper = event.target as HTMLElement
+	const scrollWrapper = event.target as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement as HTMLElement;
 
 	if (setNoScrollState(scrollShadow, scrollWrapper)) {
