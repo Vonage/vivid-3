@@ -20,6 +20,7 @@ import {
 } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { Select } from './select';
 
 const getStateClasses = ({
@@ -159,9 +160,10 @@ export const SelectTemplate: (
 			@focusout="${ifNotFromFeedback<FocusEvent>((x, e) =>
 				x.focusoutHandler(e)
 			)}"
-			@keydown="${ifNotFromFeedback<KeyboardEvent>((x, e) =>
-				x.keydownHandler(e)
-			)}"
+			@keydown="${ifNotFromFeedback<KeyboardEvent>((x, e) => {
+				x.open && handleEscapeKeyAndStopPropogation(e);
+				return x.keydownHandler(e);
+			})}"
 			@mousedown="${ifNotFromFeedback<MouseEvent>((x, e) =>
 				x.mousedownHandler(e)
 			)}"

@@ -8,6 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { Dialog } from './dialog';
 
 const getClasses = ({
@@ -54,11 +55,13 @@ function renderDismissButton(buttonTag: string) {
 	></${buttonTag}>`;
 }
 
-function handleEscapeKey(dialog: Dialog, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && dialog._openedAsModal) {
+function handleEscapeKey(dialog: Dialog, event: KeyboardEvent) {
+	if (handleEscapeKeyAndStopPropogation(event) && dialog._openedAsModal) {
 		dialog.open = false;
+		return false;
+	} else {
+		return true;
 	}
-	return true;
 }
 
 export const DialogTemplate: (
@@ -72,7 +75,7 @@ export const DialogTemplate: (
 	return html<Dialog>`
 	<${elevationTag} dp="8">
 		<dialog class="${getClasses}"
-				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event as KeyboardEvent)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
 				aria-label="${(x) => x.ariaLabel}"
 				?aria-modal="${(x) => x._openedAsModal}"
