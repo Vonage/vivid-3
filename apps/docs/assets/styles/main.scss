@@ -219,6 +219,12 @@ vwc-note p:last-child {
 	margin-block-end: 0;
 }
 
+.heading-wrapper > h2 {
+	border-block-end: 1px solid var(--vvd-color-neutral-200);
+	margin-block: 72px 0;
+	text-align: left;
+}
+
 article.article > h1 + p,
 p.lede {
 	font-size: 18px;
@@ -226,9 +232,14 @@ p.lede {
 	max-inline-size: 55ch;
 }
 
+article.article > h1 + .heading-wrapper h2,
+article.article > h1 + p + .heading-wrapper h2 {
+	margin-block-start: 0;
+}
+
 vwc-tab-panel pre.hljs:first-child {
 	border-radius: 0 0 8px 8px;
-	margin-top: 0;
+	margin-block-start: 0;
 }
 
 .heading-wrapper {
@@ -246,13 +257,6 @@ vwc-tab-panel pre.hljs:first-child {
 
 .heading-wrapper:not(:hover) > .anchor {
 	display: none;
-}
-
-.heading-wrapper > h2 {
-	border-block-end: 1px solid var(--vvd-color-neutral-200);
-	margin-block-end: 0;
-	margin-block-start: 72px;
-	text-align: left;
 }
 
 .article {
@@ -286,12 +290,13 @@ vwc-note ~ vwc-note {
 .table-wrapper {
 	display: inline-flex;
 	box-sizing: border-box;
+	padding-block: 8px;
 }
 
 @media (width <= 768px) {
 	.table-wrapper {
 		overflow: auto;
-		max-width: calc(100vw - 32px);
+		max-width: calc(100vw - 64px);
 	}
 }
 
