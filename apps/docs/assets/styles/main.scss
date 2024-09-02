@@ -142,10 +142,10 @@ vwc-nav-item > vwc-badge {
 	flex-direction: row-reverse;
 	align-items: flex-start;
 	justify-content: center;
-	gap: 32px;
-	padding-inline: 32px;
-	max-inline-size: 1024px;
 	margin: auto;
+	gap: 32px;
+	max-inline-size: 1024px;
+	padding-inline: 32px;
 }
 
 @media (width >= 1280px) {
@@ -163,6 +163,10 @@ article h3,
 article h4 {
 	max-inline-size: 80ch;
 	word-wrap: balance;
+}
+
+vwc-note > p {
+	margin-block: 0 !important;
 }
 
 .article p {
@@ -203,15 +207,28 @@ article.article > h1 {
 	margin-block-end: 0;
 }
 
-article.article > h1 + p, p.lede {
+p:empty {
+	margin: 0;
+}
+
+vwc-note p:first-child {
+	margin-block-start: 0;
+}
+
+vwc-note p:last-child {
+	margin-block-end: 0;
+}
+
+article.article > h1 + p,
+p.lede {
 	font-size: 18px;
-	max-inline-size: 55ch;
 	margin-block-end: 24px;
+	max-inline-size: 55ch;
 }
 
 vwc-tab-panel pre.hljs:first-child {
-	margin-top: 0;
 	border-radius: 0 0 8px 8px;
+	margin-top: 0;
 }
 
 .heading-wrapper {
@@ -232,9 +249,9 @@ vwc-tab-panel pre.hljs:first-child {
 }
 
 .heading-wrapper > h2 {
-	text-align: left;
-	border-bottom: 1px solid var(--vvd-color-neutral-200);
+	border-block-end: 1px solid var(--vvd-color-neutral-200);
 	margin-block-end: 0;
+	text-align: left;
 }
 
 .article {
@@ -242,8 +259,8 @@ vwc-tab-panel pre.hljs:first-child {
 	min-width: 0;
 	inline-size: 100%;
 	max-inline-size: 1000px;
-	word-break: break-word;
 	padding-block: 24px 32px;
+	word-break: break-word;
 }
 
 .skip-top {
@@ -259,22 +276,6 @@ vwc-tab-panel pre.hljs:first-child {
 vwc-note ~ vwc-note {
 	display: block;
 	margin-block-start: 16px;
-}
-
-vwc-note > p {
-	margin-block: 0 !important;
-}
-
-p:empty {
-	margin: 0;
-}
-
-vwc-note p:first-child {
-	margin-block-start: 0;
-}
-
-vwc-note p:last-child {
-	margin-block-end: 0;
 }
 
 /* #endregion article */

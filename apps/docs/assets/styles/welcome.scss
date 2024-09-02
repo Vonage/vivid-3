@@ -1,6 +1,6 @@
 .welcome__image {
-	max-inline-size: 650px;
 	margin-block-end: 8px;
+	max-inline-size: 650px;
 }
 
 .welcome__buttons {
@@ -12,8 +12,8 @@
 @media (width >= 1200px) {
 	.welcome {
 		display: flex;
+		flex-direction: row-reverse;
 		gap: 32px;
 		margin-block: 16px;
-		flex-direction: row-reverse;
 	}
 }
