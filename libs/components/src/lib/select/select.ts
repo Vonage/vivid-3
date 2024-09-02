@@ -91,6 +91,12 @@ export class Select extends FoundationSelect {
 	 */
 	@observable metaSlottedContent?: Node[];
 
+	labelChanged() {
+		if (!this.ariaLabel) {
+			this.ariaLabel = this.label;
+		}
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 	}
