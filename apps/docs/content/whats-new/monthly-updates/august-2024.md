@@ -18,6 +18,10 @@ See the [Office Hours minutes](https://docs.google.com/document/d/1E0yvyGUzBoQFH
 
 - Enhancement requests for FilePicker
 
+## Time picker: moves out of alpha
+
+The [time picker component](/components/time-picker/) has passed acceptence testing and moves out of alpha into GA.
+
 ## Accordion item: new css variable for meta text
 
 We've added a [css variable](/components/accordion-item/#meta-data-max-inline-size) to set a custom inline-size to the meta-data text.
