@@ -373,7 +373,7 @@ Click on "Edit code" to be able to modify the variables.
 		--vvd-tab-accent-faint: var(--vvd-color-announcement-50);
 	}
 </style>
-<vwc-tabs activeid="apps">
+<vwc-tabs activeid="apps" gutter="none">
 	<vwc-tab label="Appetizers" id="apps"></vwc-tab>
 	<vwc-tab label="Entrees" id="entrees"></vwc-tab>
 	<vwc-tab label="Desserts" id="desserts"></vwc-tab>

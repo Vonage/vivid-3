@@ -13,4 +13,10 @@ As an example, you can use it as follows:
 <vwc-icon name="icon-name-here"></vwc-icon>
 ```
 
-<vivid-icons-gallery></vivid-icons-gallery>
+<p class="icons-gallery"><vivid-icons-gallery></vivid-icons-gallery></p>
+
+<style>
+  .article .icons-gallery {
+    max-inline-size: 106ch;
+  }
+</style>
