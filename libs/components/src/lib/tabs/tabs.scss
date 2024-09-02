@@ -66,13 +66,13 @@
 				z-index: 1;
 				box-shadow: inset 7px 1px 5px -3px var(--vvd-color-neutral-950);
 				inset-inline-start: 0;
-				opacity: 0.4;
+				opacity: 0.2;
 			}
 
 			&.end-scroll::after {
 				box-shadow: inset -7px 1px 5px -3px var(--vvd-color-neutral-950);
 				inset-inline-end: 0;
-				opacity: 0.4;
+				opacity: 0.2;
 			}
 		}
 	}
