@@ -56,7 +56,7 @@ module.exports = function (exampleCode, options) {
 
 	if (groupIntoTabs) {
 		// Group the variables by connotation and render a tab for each
-		let output = '<vwc-tabs>';
+		let output = '<vwc-tabs gutters="none">';
 		for (const connotation of CONNOTATIONS) {
 			const connotationProperties = cssProperties.filter(
 				(prop) => getConnotation(prop.name, componentName) === connotation

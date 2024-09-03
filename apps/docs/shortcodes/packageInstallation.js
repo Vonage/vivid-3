@@ -1,7 +1,7 @@
 const markdownLibrary = require('../libraries/markdown-it');
 
 module.exports = function packageInstallation(packageNames, devDependency) {
-	return markdownLibrary.render(`<vwc-tabs>
+	return markdownLibrary.render(`<vwc-tabs gutters="none">
 <vwc-tab label="npm"></vwc-tab>
 <vwc-tab-panel>
 

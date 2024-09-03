@@ -29,7 +29,7 @@ How to load CSS may vary from project to project, so we cannot provide a one-siz
 
 See the [list of styles that come with Vivid](/guides/styles/) for more information.
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="CSS"></vwc-tab>
 <vwc-tab-panel>
 
@@ -100,7 +100,7 @@ You have two options to import the components:
 - Using [side effect imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only) to register them with the default `vwc` prefix.
 - Using a register function to register them with a [custom prefix](/guides/prefix/).
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Import"></vwc-tab>
 <vwc-tab-panel>
 

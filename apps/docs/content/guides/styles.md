@@ -36,7 +36,7 @@ How to load styles will depend on your project's setup. You can find more guidan
 
 ### Design Tokens
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab id="light" label="Light Theme"></vwc-tab>
 <vwc-tab-panel>
 

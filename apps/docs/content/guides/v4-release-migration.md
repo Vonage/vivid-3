@@ -8,8 +8,6 @@ order: 5
 Release date: 1st July 2024.  
 This document provides descriptions of the breaking changes in this release and instructions on how to prepare for them.
 
----
-
 ## Audio-player
 
 ### The change
@@ -24,8 +22,6 @@ The audio-player will now stretch to fill it's container's inline-size by defaul
 ### How to get ready?
 
 set `max-inline-size` or `inline-size` directly on audio-player or on its parent.
-
----
 
 ## Data-grid
 
@@ -53,8 +49,6 @@ set the css-variable for the Data-grid:
 
 If you set the css-variable - you can either remove them from your code or leave them as they are.
 
----
-
 ## Tabs
 
 ### The change
@@ -72,8 +66,6 @@ If you do not wish to have gutters, set `gutters="none"` on tabs:
 ```js
 <vwc-tabs gutters="none">...</vwc-tabs>
 ```
-
----
 
 ## Tooltip
 
@@ -95,8 +87,6 @@ vwc-tooltip {
 }
 ```
 
----
-
 ## Toggletip
 
 ### The change
@@ -116,8 +106,6 @@ vwc-toggletip {
 	--toggletip-max-inline-size: none;
 }
 ```
-
----
 
 ## Vue Wrappers
 
