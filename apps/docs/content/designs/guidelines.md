@@ -28,8 +28,6 @@ The following types of design tokens are the building blocks and design decision
 
 Application of the color palette brings a unified and recognizable consistency to Vonage’s vast array of digital products and interfaces. This consistency is grounded by a set of well-defined rules on how to work with the Vivid component library in the context of dark and light themes.
 
----
-
 ## Brand colors
 
 Vivid’s default theme is derived from the Vonage Brand Identity color palette. Black is our Primary color and the core Purple family serves as the main action color across all Vonage products and experiences. The Neutral Gray family is dominant in our default theme, making use of subtle shifts in value and lightness to help organize content into distinct sections.
