@@ -55,18 +55,26 @@ The **A11y Project checklist** provides an excellent resource that includes item
 
 ## Screen Reader Testing
 
-To carry out screen reader testing we currently only use [Apple Voiceover](https://support.apple.com/en-gb/guide/voiceover/welcome/mac). This is due to the Vivid team only having access to macs.
-
-We recognise the need to test on Windows based screen readers such as [NVDA](https://www.nvaccess.org/about-nvda/) and are looking into solutions such as [Assistiv Labs](https://assistivlabs.com/) which allow you to test on various different OS / screen reader combinations.
+To carry out screen reader testing we currently use [Apple Voiceover](https://support.apple.com/en-gb/guide/voiceover/welcome/mac). We recognise the need to test on Windows based screen readers such as [NVDA](https://www.nvaccess.org/about-nvda/) and are looking into solutions that allow us test on various different OS / screen reader combinations.
 
 Below are some important factors we test when conducting screen reader testing:
 
-- **Compatibility**: The screen reader should be able to navigate through the content, read the text, and interact with the controls.
-- **Navigation and Focus**: The screen reader should be able to navigate through the page using keyboard commands, landmarks, headings, and other navigation techniques.
-- **Reading Order**: The screen reader should read content in a logical and meaningful order.
-- **Alternative Text (Alt Text)**: Images should have appropriate alternative text descriptions (alt text) to provide meaningful information to visually impaired users.
-- **Form Accessibility**: Ensure that form elements, labels, and error messages are properly associated and announced.
-- **ARIA Roles and Attributes**: Verify that ARIA roles and attributes are correctly implemented and announced by the screen reader, providing additional context and functionality.
-- **Multimedia Accessibility**: Ensure that appropriate alternative text or captions are provided for multimedia content.
+**Compatibility**<br />
+The screen reader should be able to navigate through the content, read the text, and interact with the controls.
+
+**Navigation and Focus**<br />The screen reader should be able to navigate through the page using keyboard commands, landmarks, headings, and other navigation techniques.
+
+**Reading Order**<br />
+The screen reader should read content in a logical and meaningful order.
+
+**Alternative Text (Alt Text)**<br />
+Images should have appropriate alternative text descriptions (alt text) to provide meaningful information to visually impaired users.
+
+**Form Accessibility**<br />
+Ensure that form elements, labels, and error messages are properly associated and announced.
+
+**ARIA Roles and Attributes**<br />Verify that ARIA roles and attributes are correctly implemented and announced by the screen reader, providing additional context and functionality.
+
+**Multimedia Accessibility**<br />Ensure that appropriate alternative text or captions are provided for multimedia content.
 
 View a [list of valuable resources about accessibility](/accessibility/resources/)

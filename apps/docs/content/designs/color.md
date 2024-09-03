@@ -20,9 +20,10 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
 <style>
  dl{
   border: 1px solid var(--vvd-color-neutral-100);
-  border-radius: 6px;
-  width: max-content;
+  border-radius: 8px;
+  max-width: 760px;
   margin: 0;
+  overflow: auto;
  }
 
  dd {
@@ -36,7 +37,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
  }
 
  .scale>div {
-  --box-size: 60px;
+  --box-size: 50px;
   margin-block-start: var(--box-size);
   position: relative;
   display: flex;
@@ -50,7 +51,7 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   background-color: var(--color);
   position: absolute;
   inset: 0;
-  border-radius: 6px;
+  border-radius: 8px;
   content: '';
   transform: translateY(calc(0px - var(--box-size)));
   border: 1px solid var(--vvd-color-neutral-100);
@@ -225,10 +226,9 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
    </vwc-layout>
   </dd>
  </vwc-layout>
-
 </dl>
 
-#### Usage
+### Usage
 
 The color tokens are referenced using the `--vvd-color-{name}-{n}`.
 
@@ -238,19 +238,11 @@ vwc-side-drawer::part(base) {
 }
 ```
 
----
-
 ## Alternate
 
 A single component can be set with alternate colors.
 
-### Class
-
 Add the class `vvd-theme-alternate` to the component.
-
-<p><vwc-note icon="info-solid" connotation="information" headline="Part">
-If the component has part, add `part='vvd-theme-alternate'`
-</vwc-note></p>
 
 ```html preview
 <style>
@@ -270,3 +262,7 @@ If the component has part, add `part='vvd-theme-alternate'`
 	></vwc-button>
 </div>
 ```
+
+<vwc-note connotation="information">
+  <p>If the component has <code>part</code>, add <code>part='vvd-theme-alternate'</code></p>
+</vwc-note>
