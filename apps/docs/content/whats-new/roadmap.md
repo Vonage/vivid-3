@@ -8,6 +8,9 @@ order: 2
 ## Upcoming Features
 
 <style>
+  vwc-data-grid {
+    margin-block: 20px;
+  }
   @media screen and (max-width: 768px){
     vwc-data-grid {
       inline-size: calc(100vw - 32px);
@@ -26,7 +29,6 @@ order: 2
   }
 </style>
 
-<vwc-elevation dp="2">
 <vwc-data-grid selection-mode="single-row">
   <vwc-data-grid-row role="row" class="header" row-type="header">
     <vwc-data-grid-cell cell-type="columnheader" role="columnheader">
@@ -113,7 +115,6 @@ order: 2
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
 </vwc-data-grid>
-</vwc-elevation>
 
 ### Key
 

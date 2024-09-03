@@ -11,11 +11,20 @@ In this section you’ll find useful information about accessibility and why it 
 
 ## Why is Accessibility Important?
 
-- **Inclusivity**: An accessible design systems ensure that everyone, including individuals with disabilities, can access and use digital products and services. This promotes inclusivity and equity in user experiences.
-- **User Experience**: Accessibility improvements often enhance the overall user experience for all users, not just those with disabilities. Features such as clear navigation, readable text, and intuitive interactions benefit everyone.
-- **Legal Compliance**: Many regions have regulations and standards in place that require digital products and services to be accessible to people with disabilities. Designing with accessibility in mind helps Vonage comply with these regulations, reducing the risk of legal consequences.
-- **Market Reach**: Accessible design can increase the potential market reach for our products and services. By catering to a wider range of users, including those with disabilities, organizations can tap into previously underserved markets and gain a competitive advantage.
-- **Brand Reputation**: Demonstrating a commitment to accessibility can enhance a Vonage's reputation and brand image. It shows that the organization values inclusivity and cares about providing equal opportunities for all users.
+**Inclusivity**<br />
+An accessible design system ensure that everyone, including individuals with disabilities, can access and use digital products and services. This promotes inclusivity and equity in user experiences.
+
+**User Experience**<br />
+Accessibility improvements often enhance the overall user experience for all users, not just those with disabilities. Features such as clear navigation, readable text, and intuitive interactions benefit everyone.
+
+**Legal Compliance**<br />
+Many regions have regulations and standards in place that require digital products and services to be accessible to people with disabilities. Designing with accessibility in mind helps Vonage comply with these regulations, reducing the risk of legal consequences.
+
+**Market Reach**<br />
+Accessible design can increase the potential market reach for our products and services. By catering to a wider range of users, including those with disabilities, organizations can tap into previously underserved markets and gain a competitive advantage.
+
+**Brand Reputation**<br />
+Demonstrating a commitment to accessibility can enhance a Vonage's reputation and brand image. It shows that the organization values inclusivity and cares about providing equal opportunities for all users.
 
 ## How to Build Accessible Experiences
 

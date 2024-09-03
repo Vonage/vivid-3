@@ -13,17 +13,19 @@ While web components can also be used with Vue directly, Vivid Vue provides a se
 
 ### Native Bindings
 
-- Vivid Vue components can be imported and used like any other Vue component, including features like `v-model` and slots.
-- It comes with full type definitions providing type safety and auto-complete in your IDE.
+Vivid Vue components can be imported and used like any other Vue component, including features like `v-model` and slots.
+
+It comes with full type definitions providing type safety and auto-complete in your IDE.
 
 ### Complete and Up-To-Date
 
-- Vivid Vue is generated from the Vivid web components automatically, so it is always up-to-date with the latest version of Vivid.
-- The version number is kept in sync with Vivid.
+Vivid Vue is generated from the Vivid web components automatically, so it is always up-to-date with the latest version of Vivid.
+
+The version number is kept in sync with Vivid.
 
 ### Supports Vue 2 & Vue 3
 
-- There is no additional setup required, just install the library, and you are ready to go!
+There is no additional setup required, just install the library, and you are ready to go!
 
 ## Installation
 
@@ -33,7 +35,7 @@ Add the NPM package to your repository:
 
 ## Setup
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Vue 3"></vwc-tab>
 <vwc-tab-panel>
 
@@ -98,7 +100,7 @@ createApp(App)
 
 The Vivid tokens require a `vvd-root` class to be present. It is recommended to add it on the `<html>` element, but it can also be added to your App component to scope it to the application.
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Global"></vwc-tab>
 <vwc-tab-panel>
 
@@ -132,7 +134,7 @@ Modify your `App.vue` file to import the Vivid styles.
 
 See the [list of styles that come with Vivid](/guides/styles/) for more information.
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="CSS"></vwc-tab>
 <vwc-tab-panel>
 
