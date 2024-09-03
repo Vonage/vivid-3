@@ -10,7 +10,7 @@ import {
 const components = ['tabs', 'tab', 'tab-panel'];
 
 async function testScroll({ page }: { page: Page }) {
-	const template = `<vwc-tabs style="inline-size: 400px">
+	const template = `<div style="margin-inline: 16px;"><vwc-tabs style="inline-size: 300px;">
 <vwc-tab label="Tab one" id="one"></vwc-tab>
 <vwc-tab label="Tab two" id="two"></vwc-tab>
 <vwc-tab label="Tab three" id="tree"></vwc-tab>
@@ -24,6 +24,7 @@ async function testScroll({ page }: { page: Page }) {
 <vwc-tab-panel id="fivePanel">Tab two content</vwc-tab-panel>
 <vwc-tab-panel id="sixPanel">Tab three content</vwc-tab-panel>
 </vwc-tabs>
+</div>
 
 	`;
 
@@ -39,6 +40,15 @@ async function testScroll({ page }: { page: Page }) {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
+
+	await page.evaluate((selector) => {
+		const element = document
+			.querySelector('vwc-tabs')
+			.shadowRoot.querySelector(selector);
+		if (element) {
+			element.scrollTo(95, 0);
+		}
+	}, '.tablist-wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/tabs-scroll.png',
