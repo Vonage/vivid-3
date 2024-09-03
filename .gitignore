@@ -38,3 +38,4 @@ test-results
 *-darwin.png
 
 .nx/cache
+.nx/workspace-data
