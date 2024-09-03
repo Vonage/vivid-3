@@ -10,7 +10,7 @@ Represents a select custom element.
 
 ### Label
 
-Add a `label` attribute to add label to the Select.
+Add a `label` attribute to add label to the Select. If aria-label is not set, setting the label automatically adds aria-label to the element.
 
 - Type: `string` | `undefined`
 - Default: `undefined`
