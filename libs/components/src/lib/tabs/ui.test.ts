@@ -39,16 +39,14 @@ async function testScroll({ page }: { page: Page }) {
 
 	const testWrapper = await page.$('#wrapper');
 
-	await page.waitForLoadState('networkidle');
-
-	await page.evaluate((selector) => {
-		const element = document
-			.querySelector('vwc-tabs')
-			.shadowRoot.querySelector(selector);
+	const wrapperElement = await page.locator('.tablist-wrapper');
+	await wrapperElement.evaluate((element) => {
 		if (element) {
 			element.scrollTo(95, 0);
 		}
-	}, '.tablist-wrapper');
+	});
+
+	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/tabs-scroll.png',
