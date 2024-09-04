@@ -78,6 +78,11 @@ export class Tabs extends FoundationTabs {
 		super.tabsChanged();
 		this.patchIndicatorStyleTransition();
 		this.#patchActiveID();
+		this.#updateScrollStatus();
+	}
+
+	#updateScrollStatus() {
+		this.tablist!.parentElement!.dispatchEvent!(new Event('scroll'));
 	}
 
 	override tabpanelsChanged(): void {
@@ -95,6 +100,25 @@ export class Tabs extends FoundationTabs {
 			return;
 		const width = this.activetab.getBoundingClientRect().width;
 		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
+	}
+
+	override connectedCallback() {
+		super.connectedCallback();
+		requestAnimationFrame(() => this.#updateScrollStatus());
+
+		const scrollWrapper = this.tablist!.parentElement as HTMLElement;
+		this.#resizeObserver = new ResizeObserver(() => {
+			this.#updateScrollStatus();
+		});
+
+		this.#resizeObserver!.observe(scrollWrapper);
+	}
+
+	#resizeObserver?: ResizeObserver;
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#resizeObserver!.disconnect();
 	}
 
 	#updateTabsConnotation() {
