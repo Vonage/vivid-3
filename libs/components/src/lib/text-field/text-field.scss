@@ -44,7 +44,7 @@ $low-ink-color: --_low-ink-color;
 		#{variables.$text-field-icon-size}: calc(
 			#{size.$vvd-size-normal} / 2
 		); // default of 20px
-
+		#{variables.$text-field-block-size}: #{size.$vvd-size-normal};
 		display: inline-grid;
 		width: 100%;
 		gap: 4px;
@@ -114,7 +114,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	.base > & {
-		block-size: #{size.$vvd-size-normal};
+		block-size: var(#{variables.$text-field-block-size});
 	}
 
 	/* Shape */
@@ -280,3 +280,4 @@ $low-ink-color: --_low-ink-color;
 slot[name='_mirrored-helper-text'] {
 	display: none;
 }
+
