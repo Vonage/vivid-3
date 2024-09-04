@@ -8,9 +8,9 @@ import {
 } from '@vivid-nx/shared';
 import { TextFieldType } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
+import { Size } from '../enums';
 import { TextField } from './text-field';
 import '.';
-import { Size } from '../enums';
 
 // Polyfill innerText for JSDOM
 if (

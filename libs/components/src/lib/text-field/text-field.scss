@@ -45,6 +45,7 @@ $low-ink-color: --_low-ink-color;
 			#{size.$vvd-size-normal} / 2
 		); // default of 20px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-normal};
+		
 		display: inline-grid;
 		width: 100%;
 		gap: 4px;
@@ -62,6 +63,7 @@ $low-ink-color: --_low-ink-color;
 			#{size.$vvd-size-condensed} / 2
 		); // default of 20px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
+
 		display: inline-grid;
 		width: 100%;
 		gap: 4px;
