@@ -51,6 +51,23 @@ $low-ink-color: --_low-ink-color;
 		grid-template-columns: min-content 1fr max-content;
 	}
 
+	&.condensed {
+		#{variables.$text-field-gutter-start}: calc(
+			#{size.$vvd-size-condensed} / 2.5
+		); // default of 16px
+		#{variables.$text-field-gutter-end}: calc(
+			#{size.$vvd-size-condensed} / 2.5
+		); // default of 16px
+		#{variables.$text-field-icon-size}: calc(
+			#{size.$vvd-size-condensed} / 2
+		); // default of 20px
+		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
+		display: inline-grid;
+		width: 100%;
+		gap: 4px;
+		grid-template-columns: min-content 1fr max-content;
+	}
+
 	@supports (user-select: none) {
 		user-select: none;
 	}
