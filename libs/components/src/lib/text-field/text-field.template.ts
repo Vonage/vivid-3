@@ -22,7 +22,7 @@ const getStateClasses = ({
 	actionItemsSlottedContent,
 	leadingActionItemsSlottedContent,
 	icon,
-	blockSize
+	blockSize,
 }: TextField) =>
 	classNames(
 		['error', Boolean(errorValidationMessage)],
@@ -38,7 +38,7 @@ const getStateClasses = ({
 		['action-items', !!actionItemsSlottedContent?.length],
 		['leading-action-items', !!leadingActionItemsSlottedContent?.length],
 		['no-leading', !(leadingActionItemsSlottedContent?.length || icon)],
-		[`size-${blockSize}`, Boolean(blockSize)],
+		[`size-${blockSize}`, Boolean(blockSize)]
 	);
 
 /**

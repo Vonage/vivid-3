@@ -63,7 +63,7 @@ describe('vwc-text-field', () => {
 
 	describe('blockSize', () => {
 		function hasSizeClass(baseElement: HTMLElement) {
-			return Array.from(baseElement.classList).some(className => {
+			return Array.from(baseElement.classList).some((className) => {
 				return className.includes('size-');
 			});
 		}
@@ -80,13 +80,15 @@ describe('vwc-text-field', () => {
 			expect(element.blockSize).toBe(Size.Condensed);
 		});
 
-		it('should init without a size class on base element', async () => {	
+		it('should init without a size class on base element', async () => {
 			expect(hasSizeClass(getBaseElement(element))).toBe(false);
 		});
 		it('should set size class on base element', async () => {
 			element.blockSize = Size.Condensed;
 			await elementUpdated(element);
-			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(true);
+			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(
+				true
+			);
 		});
 
 		it('should remove size class from base element', async () => {
