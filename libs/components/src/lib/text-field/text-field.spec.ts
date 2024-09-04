@@ -10,6 +10,7 @@ import { TextFieldType } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { TextField } from './text-field';
 import '.';
+import { Size } from '../enums';
 
 // Polyfill innerText for JSDOM
 if (
@@ -57,6 +58,43 @@ describe('vwc-text-field', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-field', async () => {
 			expect(element).toBeInstanceOf(TextField);
+		});
+	});
+
+	describe('blockSize', () => {
+		function hasSizeClass(baseElement: HTMLElement) {
+			return Array.from(baseElement.classList).some(className => {
+				return className.includes('size-');
+			});
+		}
+
+		it('should reflect the property as an attribute', async () => {
+			element.blockSize = Size.Condensed;
+			await elementUpdated(element);
+			expect(element.getAttribute('block-size')).toBe(Size.Condensed);
+		});
+
+		it('should reflect the attribute as a property', async () => {
+			element.setAttribute('block-size', Size.Condensed);
+			await elementUpdated(element);
+			expect(element.blockSize).toBe(Size.Condensed);
+		});
+
+		it('should init without a size class on base element', async () => {	
+			expect(hasSizeClass(getBaseElement(element))).toBe(false);
+		});
+		it('should set size class on base element', async () => {
+			element.blockSize = Size.Condensed;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(true);
+		});
+
+		it('should remove size class from base element', async () => {
+			element.blockSize = Size.Condensed;
+			await elementUpdated(element);
+			element.blockSize = undefined;
+			await elementUpdated(element);
+			expect(hasSizeClass(getBaseElement(element))).toBe(false);
 		});
 	});
 

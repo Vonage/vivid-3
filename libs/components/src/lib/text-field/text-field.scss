@@ -51,7 +51,7 @@ $low-ink-color: --_low-ink-color;
 		grid-template-columns: min-content 1fr max-content;
 	}
 
-	&.condensed {
+	&.size-condensed {
 		#{variables.$text-field-gutter-start}: calc(
 			#{size.$vvd-size-condensed} / 2.5
 		); // default of 16px

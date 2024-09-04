@@ -122,6 +122,17 @@ Use the `icon` attribute to add an icon.
 <vwc-text-field icon="search-line" label="Search..."></vwc-text-field>
 ```
 
+### BlockSize
+
+Use the `block-size` attribute to change the text field's size.
+
+- Type: `'condensed'` | `'normal'`
+- Default: `'normal'`
+
+```html preview blocks
+<vwc-text-field label="Condensed" block-size="condensed"></vwc-text-field>
+```
+
 ### Shape
 
 Use the `shape` attribute to change the text field's edges.
