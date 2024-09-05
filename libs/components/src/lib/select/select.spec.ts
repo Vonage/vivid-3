@@ -6,9 +6,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
+import { Size } from '../enums';
 import { Select } from './select';
 import '.';
-import { Size } from '../enums';
 
 const COMPONENT_TAG = 'vwc-select';
 const ICON_SELECTOR = 'vwc-icon';
