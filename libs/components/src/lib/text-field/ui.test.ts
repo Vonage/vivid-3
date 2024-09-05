@@ -48,7 +48,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</div>
 			</vwc-layout>
 		</form>
-		<vwc-text-field icon="search-line" label="Condensed" current-value="value" block-size="condensed"></vwc-text-field>
+		<vwc-text-field icon="search-line" label="Condensed" current-value="value" scale="condensed"></vwc-text-field>
 	</div>
 	`;
 

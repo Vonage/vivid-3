@@ -93,7 +93,7 @@ export class TextField extends FoundationTextfield {
 	 * @remarks
 	 * HTML Attribute: size
 	 */
-	@attr({ attribute: 'block-size' }) blockSize?: TextFieldSize;
+	@attr() scale?: TextFieldSize;
 
 	/**
 	 *

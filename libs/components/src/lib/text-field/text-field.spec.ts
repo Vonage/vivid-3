@@ -61,7 +61,7 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('blockSize', () => {
+	describe('scale', () => {
 		function hasSizeClass(baseElement: HTMLElement) {
 			return Array.from(baseElement.classList).some((className) => {
 				return className.includes('size-');
@@ -69,22 +69,22 @@ describe('vwc-text-field', () => {
 		}
 
 		it('should reflect the property as an attribute', async () => {
-			element.blockSize = Size.Condensed;
+			element.scale = Size.Condensed;
 			await elementUpdated(element);
-			expect(element.getAttribute('block-size')).toBe(Size.Condensed);
+			expect(element.getAttribute('scale')).toBe(Size.Condensed);
 		});
 
 		it('should reflect the attribute as a property', async () => {
-			element.setAttribute('block-size', Size.Condensed);
+			element.setAttribute('scale', Size.Condensed);
 			await elementUpdated(element);
-			expect(element.blockSize).toBe(Size.Condensed);
+			expect(element.scale).toBe(Size.Condensed);
 		});
 
 		it('should init without a size class on base element', async () => {
 			expect(hasSizeClass(getBaseElement(element))).toBe(false);
 		});
 		it('should set size class on base element', async () => {
-			element.blockSize = Size.Condensed;
+			element.scale = Size.Condensed;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(
 				true
@@ -92,9 +92,9 @@ describe('vwc-text-field', () => {
 		});
 
 		it('should remove size class from base element', async () => {
-			element.blockSize = Size.Condensed;
+			element.scale = Size.Condensed;
 			await elementUpdated(element);
-			element.blockSize = undefined;
+			element.scale = undefined;
 			await elementUpdated(element);
 			expect(hasSizeClass(getBaseElement(element))).toBe(false);
 		});
