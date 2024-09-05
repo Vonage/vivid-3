@@ -4,6 +4,27 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.4.0...vivid-v4.5.0) (2024-09-04)
+
+
+### Features
+
+* **components:** support tree shaking (VIV-1672) ([#1875](https://github.com/Vonage/vivid-3/issues/1875)) ([0aa396c](https://github.com/Vonage/vivid-3/commit/0aa396c86536ac2e27429163a45aa2293c454c88))
+* **data-grid:** position grid sort icon near text (VIV-1958) ([#1884](https://github.com/Vonage/vivid-3/issues/1884)) ([b16ce63](https://github.com/Vonage/vivid-3/commit/b16ce639cbdf1acb7acc8e65ceca08d9e277fde2))
+* **fab:** adds condensed size (VIV-1964) ([#1886](https://github.com/Vonage/vivid-3/issues/1886)) ([5df80a0](https://github.com/Vonage/vivid-3/commit/5df80a0fca1c8f96fe30973375767f410363d474))
+* **icon:** adds warning connotation (VIV-1979) ([#1885](https://github.com/Vonage/vivid-3/issues/1885)) ([b1b78a9](https://github.com/Vonage/vivid-3/commit/b1b78a99830a0881010d8ebdaa3d8c092cff92ea))
+* **select:** auto add aria-label when setting a label (VIV-1978) ([#1893](https://github.com/Vonage/vivid-3/issues/1893)) ([3af0875](https://github.com/Vonage/vivid-3/commit/3af08755cfcfb4a68157a8dfd9607c077c40f75a))
+* **tabs:** add shadow when horizontal tabs has scroll (VIV-1946) ([#1889](https://github.com/Vonage/vivid-3/issues/1889)) ([e5caa7a](https://github.com/Vonage/vivid-3/commit/e5caa7a161bf891f7580e71e26269d72e6ef0031))
+
+
+### Bug Fixes
+
+* address combobox a11y errors ([dabd18c](https://github.com/Vonage/vivid-3/commit/dabd18cfd90f516d6a2a3dca9fe241af92065032))
+* **audio-player:** stops playing when removed from DOM (VIV-1967) ([#1880](https://github.com/Vonage/vivid-3/issues/1880)) ([12355d3](https://github.com/Vonage/vivid-3/commit/12355d3488ceabdeb21bd626279ed5b504fc1000))
+* **combobox:** aria-expanded and aria-controls attributes corrected (VIV-1976) ([#1881](https://github.com/Vonage/vivid-3/issues/1881)) ([dabd18c](https://github.com/Vonage/vivid-3/commit/dabd18cfd90f516d6a2a3dca9fe241af92065032))
+* **dialog:** stop escape press propagation (VIV-1950) ([#1883](https://github.com/Vonage/vivid-3/issues/1883)) ([553f921](https://github.com/Vonage/vivid-3/commit/553f921d57ea93f491662a9146e2034df9dfcc80))
+* **nav, nav-disclosure:** add fallback background-color for selected (VIV-1966) ([#1876](https://github.com/Vonage/vivid-3/issues/1876)) ([9a8f769](https://github.com/Vonage/vivid-3/commit/9a8f769ef7e1d928681d54defa8e2b4b46274712))
+
 ## [4.4.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.3.0...vivid-v4.4.0) (2024-07-31)
 
 
