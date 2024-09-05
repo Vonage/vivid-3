@@ -32,7 +32,7 @@ const getStateClasses = ({
 	successText,
 	placeholder,
 	value,
-	scale
+	scale,
 }: Select) =>
 	classNames(
 		['disabled', disabled],

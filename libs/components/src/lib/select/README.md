@@ -119,7 +119,6 @@ Use the `scale` attribute to change the select's size.
 </vwc-select>
 ```
 
-
 ### Shape
 
 Use the `shape` attribute to change the Select edges.

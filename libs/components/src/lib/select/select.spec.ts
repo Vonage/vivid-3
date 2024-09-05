@@ -56,7 +56,7 @@ describe('vwc-select', () => {
 
 	describe('scale', () => {
 		function hasSizeClass(baseElement: HTMLElement) {
-			return Array.from(baseElement.classList).some(className => {
+			return Array.from(baseElement.classList).some((className) => {
 				return className.includes('size-');
 			});
 		}
@@ -73,13 +73,15 @@ describe('vwc-select', () => {
 			expect(element.scale).toBe(Size.Condensed);
 		});
 
-		it('should init without a size class on base element', async () => {	
+		it('should init without a size class on base element', async () => {
 			expect(hasSizeClass(getControlElement(element))).toBe(false);
 		});
 		it('should set size class on base element', async () => {
 			element.scale = Size.Condensed;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('size-condensed')).toBe(true);
+			expect(
+				getControlElement(element).classList.contains('size-condensed')
+			).toBe(true);
 		});
 
 		it('should remove size class from base element', async () => {
