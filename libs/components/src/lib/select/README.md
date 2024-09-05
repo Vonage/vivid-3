@@ -101,6 +101,25 @@ Set the `appearance` attribute to change the Select appearance.
 </vwc-select>
 ```
 
+### Scale
+
+Use the `scale` attribute to change the select's size.
+
+- Type: `'condensed'` | `'normal'`
+- Default: `'normal'`
+
+```html preview blocks
+<vwc-select aria-label="Options Selector" scale="condensed">
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+</vwc-select>
+<vwc-select aria-label="Options Selector" scale="normal">
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+</vwc-select>
+```
+
+
 ### Shape
 
 Use the `shape` attribute to change the Select edges.

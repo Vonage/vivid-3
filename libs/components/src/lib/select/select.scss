@@ -65,6 +65,10 @@ $low-ink-color: --_low-ink-color;
 		transition: box-shadow 0.2s, background-color 0.2s;
 	}
 
+	&.size-condensed {
+		block-size: #{size.$vvd-size-condensed};
+	}
+
 	&-wrapper {
 		position: relative;
 	}

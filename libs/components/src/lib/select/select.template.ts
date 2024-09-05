@@ -32,6 +32,7 @@ const getStateClasses = ({
 	successText,
 	placeholder,
 	value,
+	scale
 }: Select) =>
 	classNames(
 		['disabled', disabled],
@@ -41,7 +42,8 @@ const getStateClasses = ({
 		['error', Boolean(errorValidationMessage)],
 		['success', !!successText],
 		['has-meta', Boolean(metaSlottedContent?.length)],
-		['shows-placeholder', Boolean(placeholder) && !value]
+		['shows-placeholder', Boolean(placeholder) && !value],
+		[`size-${scale}`, Boolean(scale)]
 	);
 
 function renderLabel() {
