@@ -51,6 +51,8 @@ $low-ink-color: --_low-ink-color;
 	@include connotation.connotation(select);
 
 	& {
+		#{variables.$select-icon-size}: 20px;
+
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -66,7 +68,12 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.size-condensed {
+		#{variables.$select-icon-size}: 16px;
 		block-size: #{size.$vvd-size-condensed};
+
+		& .chevron {
+			font-size: 12px;
+		}
 	}
 
 	&-wrapper {
@@ -128,8 +135,8 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	slot[name='icon'] {
-		flex: 0 0 20px;
-		font-size: 20px;
+		flex: 0 0 var(#{variables.$select-icon-size});
+		font-size: var(#{variables.$select-icon-size});
 		line-height: 1;
 	}
 
