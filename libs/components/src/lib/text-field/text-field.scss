@@ -63,11 +63,6 @@ $low-ink-color: --_low-ink-color;
 			#{size.$vvd-size-condensed} / 2
 		); // default of 16px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
-
-		display: inline-grid;
-		width: 100%;
-		gap: 4px;
-		grid-template-columns: min-content 1fr max-content;
 	}
 
 	@supports (user-select: none) {
