@@ -66,7 +66,6 @@ $low-ink-color: --_low-ink-color;
 		); // default of 16px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
 		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
-		#{variables.$text-field-pill-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
 	@supports (user-select: none) {
