@@ -8,4 +8,5 @@ import './toc/toc.js';
 import './icons-gallery/icons-gallery.js';
 import './side-drawer.js';
 import './search/search.js';
+import './components-nav.js';
 import './components/components.js';

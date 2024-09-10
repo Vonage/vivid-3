@@ -1,540 +1,278 @@
-## Anatomy
+## Appearance
 
-<docs-anatomy>
+The `appearance` attribute controls the style of button displayed.
 
-![Anatomy](/assets/images/components/button/anatomy.png)
-
-</docs-anatomy>
-
-## Options
-
-### Connotation
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
-<vwc-button
-	connotation="accent"
-	appearance="filled"
-	label="Click me"
-></vwc-button>
-```
-
+```html preview 72px
 <div>
-
-**Accent:**
-
-Is used as the Primary button indicating the main button or action, and should only appear once per group of buttons.
-
+	<vwc-button appearance="filled" label="Filled"></vwc-button>
+	<vwc-button appearance="outlined" label="Outlined"></vwc-button>
+	<vwc-button appearance="outlined-light" label="Outlined Light"></vwc-button>
+	<vwc-button appearance="ghost" label="Ghost"></vwc-button>
+	<vwc-button appearance="ghost-light" label="Ghost Light"></vwc-button>
 </div>
 
-</div>
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
-<vwc-button connotation="cta" appearance="filled" label="Click me"></vwc-button>
-```
-
-<div>
-
-**CTA:**
-
-Is the single most important action on the page. It should be used only in specific instances such as the Sign-In process. It can only be used once per section/page.
-
-</div>
-
-</div>
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
-<vwc-button
-	connotation="success"
-	appearance="filled"
-	label="Click me"
-></vwc-button>
-```
-
-<div>
-
-**Success:**
-
-Is used to represent a constructive action, such as: complete, approve, resolve, add etc.
-
-</div>
-
-</div>
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
-<vwc-button
-	connotation="alert"
-	appearance="filled"
-	label="Click me"
-></vwc-button>
-```
-
-<div>
-
-**Alert:**
-
-Is used for actions that could have destructive effects on the user’s data, for example delete or remove.
-
-</div>
-
-</div>
-
-### Appearance
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
 <style>
-	.wrapper {
+	div {
 		display: flex;
 		gap: 16px;
 	}
 </style>
-<div class="wrapper">
-	<vwc-button
-		connotation="accent"
-		appearance="filled"
-		label="Accent"
-	></vwc-button>
+```
+
+## Connotation
+
+The `connotation` attribute controls the purpose of the button, expressed in it's colours.
+
+```html preview 240px
+<div>
+	<vwc-button connotation="accent" appearance="filled" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="outlined" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="outlined-light" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="ghost" label="Accent"></vwc-button>
+	<vwc-button connotation="accent" appearance="ghost-light" label="Accent"></vwc-button>
+</div>
+<div>
 	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="filled"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="filled"
-		label="Alert"
-	></vwc-button>
-</div>
-```
-
-<div>
-
-**Filled:**
-
-Is used as the Primary button and is used for the principal main action on the page. Filled buttons should only appear once per section (not including the application header, modal dialog, or side panel).
-
-</div>
-
-</div>
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
-<style>
-	.wrapper {
-		display: flex;
-		gap: 16px;
-	}
-</style>
-<div class="wrapper">
-	<vwc-button
-		connotation="accent"
-		appearance="outlined"
-		label="Accent"
-	></vwc-button>
 	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="outlined"
-		label="Success"
-	></vwc-button>
-	<vwc-button
-		connotation="alert"
-		appearance="outlined"
-		label="Alert"
-	></vwc-button>
-</div>
-```
-
-<div>
-
-**Outlined:**
-
-Is used as the Secondary button and is your basic default button. it can appear multiple times in a given group. It can be used in isolation or paired with a Primary Button when there are multiple calls to action.
-
-</div>
-
-</div>
-
-<div class="code-example-wrapper">
-
-```html preview center example 72px
-<style>
-	.wrapper {
-		display: flex;
-		gap: 16px;
-	}
-</style>
-<div class="wrapper">
-	<vwc-button
-		connotation="accent"
-		appearance="ghost"
-		label="Accent"
-	></vwc-button>
+	<vwc-button connotation="cta" appearance="outlined-light" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="ghost" label="CTA"></vwc-button>
-	<vwc-button
-		connotation="success"
-		appearance="ghost"
-		label="Success"
-	></vwc-button>
-	<vwc-button connotation="alert" appearance="ghost" label="Alert"></vwc-button>
+	<vwc-button connotation="cta" appearance="ghost-light" label="CTA"></vwc-button>
 </div>
-```
-
 <div>
-
-**Ghost:**
-
-Is used as the Tertiary button and is used for the least pronounced actions. Often used in conjunction with a Primary or Connotation button. Use sparringly and only when the text clearly describes it’s action.
-
+	<vwc-button connotation="success" appearance="filled" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="outlined" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="outlined-light" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="ghost" label="Success"></vwc-button>
+	<vwc-button connotation="success" appearance="ghost-light" label="Success"></vwc-button>
+</div>
+<div>
+	<vwc-button connotation="alert" appearance="filled" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="outlined" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="outlined-light" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="ghost" label="Alert"></vwc-button>
+	<vwc-button connotation="alert" appearance="ghost-light" label="Alert"></vwc-button>
 </div>
 
-</div>
-
-### Size
-
-```html preview center 100px
 <style>
-	.wrapper {
+	div > div {
 		display: flex;
-		align-items: center;
-		gap: 16px;
+		flex-basis: 100%;
+		width: 100%;
+		gap: 8px;
+		margin-block-end: 16px;
 	}
 </style>
-<div class="wrapper">
-	<vwc-button
-		appearance="filled"
-		label="super-condensed"
-		size="super-condensed"
-	></vwc-button>
-	<vwc-button
-		appearance="filled"
-		label="condensed"
-		size="condensed"
-	></vwc-button>
-	<vwc-button appearance="filled" label="normal" size="normal"></vwc-button>
-	<vwc-button appearance="filled" label="expanded" size="expanded"></vwc-button>
-</div>
 ```
 
-#### When to Use
+## Icons
 
-Buttons come in three different sizes. The medium size is the default and most frequent option. Use the other sizes sparingly; they should be used to create a hierarchy of importance within the page.
+The `icon` attribute displays an icon from the [Vivid Icon Library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button. 
 
-### Shape
+Custom icons can be provided using the [`icon` slot](/components/button/code/#icon-slot).
 
-```html preview center 72px
-<style>
-	.wrapper {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
-<div class="wrapper">
-	<vwc-button appearance="filled" label="Rounded shape"></vwc-button>
-	<vwc-button appearance="filled" label="Pill shape" shape="pill"></vwc-button>
-</div>
-```
-
-#### When to Use
-
-Both shapes of buttons provide the same functionality, so the shape you use can depend on style alone. Choose the type that works best with your app’s visual style and best delivers the goals of your UI. If both shapes of buttons are used in a single UI, they should be used consistently within different sections, and not intermixed within the same region.
-
-### Icon
-
-Buttons can have an icon, which can be displayed on the leading or trailing side of the button.
-
-```html preview center 72px
-<style>
-	.wrapper {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
-<div class="wrapper">
-	<vwc-button appearance="filled" label="icon" icon="check-line"></vwc-button>
+```html preview 72px
+<div class="container">
+	<vwc-button 
+		appearance="outlined" 
+		label="Copy document" 
+		icon="copy-line"
+	></vwc-button>
 	<vwc-button
-		appearance="filled"
-		label="icon-trailing"
-		icon="check-line"
+		appearance="outlined"
+		label="Continue"
+		icon="chevron-right-line"
 		icon-trailing
 	></vwc-button>
 </div>
-```
 
-<details>
-<summary>Code</summary>
-
-Use can use the `icon` attribute to select an icon from the [Vivid Icon Library](https://vonage.github.io/vivid/icons/). Alternatively, you can use the `icon` slot to provide a custom icon.
-
-The `icon-trailing` attribute will move the icon to the trailing side of the button.
-
-</details>
-
-#### Icon-only Buttons
-
-If the label is omitted, the button will be displayed as an icon-only button, which are always square.
-
-```html preview 150px
 <style>
 	.container {
 		display: flex;
-		align-items: stretch;
-		justify-content: center;
-		gap: 64px;
-		padding-inline: 64px;
+		gap: 16px;
 	}
 </style>
-<div class="container">
-	<vwc-tooltip text="Send Message">
-		<vwc-button
-			slot="anchor"
-			appearance="filled"
-			icon="message-sent-line"
-			aria-label="Send Message"
-		></vwc-button>
-	</vwc-tooltip>
-</div>
 ```
 
-<details>
-<summary>Code</summary>
+### Icon only
 
-You must provide an `aria-label` attribute to an icon-only button to ensure that it is accessible to screen readers.
+If the `label` is omitted, the button will be displayed as an *icon-only* button.
 
-</details>
+It is best practice to provide a [tooltip](/components/tooltip) to describe the function of the button. If not, an `aria-label` is needed to ensure accessibility.
 
-<details>
-<summary>Figma</summary>
-
-The icon-only button is a separate component in Figma.
-
-</details>
-
-Use icon-only buttons to in situations where space is limited, such as in a toolbar.
-
-Icon-only buttons should almost always be paired with a tooltip to provide a label for the button. Otherwise, the purpose of the button may not be clear to users.
+```html preview 72px
+<vwc-tooltip text="Send Message" placement="right-start">
+	<vwc-button
+		slot="anchor"
+		appearance="filled"
+		connotation="cta"
+		icon="message-sent-line"
+		aria-label="Send Message"
+	></vwc-button>
+</vwc-tooltip>
+```
 
 ### Stacked
 
-When using an icon, the button can be displayed in a stacked format. This layout is only available with the 'rounded' shape.
+When using an icon, the `stacked` attribute causes the button to be displayed in a stacked format. This layout is only available with the 'rounded' [shape](#shape).
 
 ```html preview
-<style>
-	.container {
-		display: flex;
-		align-items: stretch;
-		justify-content: center;
-		gap: 64px;
-		padding-inline: 64px;
-	}
-	.group {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
 <div class="container">
-	<div class="group">
-		<vwc-button
-			icon="compose-line"
-			appearance="filled"
-			label="Leading"
-		></vwc-button>
-		<vwc-button
-			icon="compose-line"
-			appearance="filled"
-			label="Trailing"
-			icon-trailing
-		></vwc-button>
-	</div>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<div class="group">
-		<vwc-button
-			stacked
-			icon="compose-line"
-			appearance="filled"
-			label="Leading"
-		></vwc-button>
-		<vwc-button
-			stacked
-			icon="compose-line"
-			appearance="filled"
-			label="Trailing"
-			icon-trailing
-		></vwc-button>
-	</div>
-</div>
-```
-
-### Pending
-
-Buttons can be in a pending state, which indicates that the action is being processed.
-The indicator will replace the icon if one is set, or the label text for text-only buttons.
-The indicator is not displayed when using the `super-condensed` size.
-
-```html preview
-<style>
-	.container {
-		display: flex;
-		align-items: stretch;
-		justify-content: center;
-		gap: 64px;
-		padding-inline: 64px;
-	}
-	.group {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
-<div class="container">
-	<div class="group">
-		<vwc-button
-			icon="compose-line"
-			appearance="filled"
-			label="Leading"
-			pending
-		></vwc-button>
-		<vwc-button
-			icon="compose-line"
-			appearance="filled"
-			label="Trailing"
-			icon-trailing
-			pending
-		></vwc-button>
-	</div>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<div class="group">
-		<vwc-button
-			stacked
-			icon="compose-line"
-			appearance="filled"
-			label="Leading"
-			pending
-		></vwc-button>
-		<vwc-button
-			stacked
-			icon="compose-line"
-			appearance="filled"
-			label="Trailing"
-			icon-trailing
-			pending
-		></vwc-button>
-	</div>
-</div>
-```
-
-### Disabled
-
-Buttons can be disabled, which indicates that the action is not available.
-
-```html preview center 72px
-<style>
-	.wrapper {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
-<div class="wrapper">
-	<vwc-button appearance="ghost" label="ghost" disabled></vwc-button>
-	<vwc-button appearance="filled" label="filled" disabled></vwc-button>
-	<vwc-button appearance="outlined" label="outlined" disabled></vwc-button>
-</div>
-```
-
-Disabled buttons should be used with caution. Ensure that the user is able to understand why the action is disabled and what they need to do to enable it.
-
-## Toggle
-
-Buttons may be toggled. The icon and label represents the change in the state. For example mic on and mic off or a user’s selection such as add to favorite.
-
-```html preview center 72px
-<style>
-	.wrapper {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
-<div class="wrapper">
 	<vwc-button
-		id="mute"
-		icon="microphone-solid"
+		stacked
+		icon="compose-line"
 		appearance="filled"
-		aria-label="Mute"
+		label="Leading"
 	></vwc-button>
 	<vwc-button
-		id="favorite"
-		icon="star-line"
+		stacked
+		icon="compose-line"
 		appearance="filled"
-		label="Favorite"
+		label="Trailing"
+		icon-trailing
 	></vwc-button>
 </div>
 
-<script>
-	document.getElementById('mute').addEventListener('click', () => {
-		mute.ariaPressed = !mute.ariaPressed;
-		mute.icon = mute.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
-		mute.ariaLabel = mute.ariaPressed ? 'Unmute' : 'Mute';
-	});
-
-	document.getElementById('favorite').addEventListener('click', () => {
-		favorite.ariaPressed = !favorite.ariaPressed;
-		favorite.icon = favorite.ariaPressed ? 'star-solid' : 'star-line';
-		favorite.label = favorite.ariaPressed ? 'Unfavorite' : 'Favorite';
-	});
-</script>
-```
-
-<details>
-<summary>Code</summary>
-
-The `aria-pressed` attribute is used to indicate the state of the button to assistive technologies.
-
-</details>
-
-## Behaviour
-
-### Layout
-
-A buttons may be wider than it's content, in which case the label and icon will be centered within the button.
-
-```html preview
 <style>
-	vwc-button {
-		width: 300px;
+	.container {
+		display: flex;
+		gap: 16px;
 	}
 </style>
-<vwc-button icon="compose-line" appearance="filled" label="Edit"></vwc-button>
 ```
 
-If the button is too narrow to fit the content, the label will be truncated with an ellipsis. Buttons text will never wrap to a new line.
+## Size
 
-```html preview
+The `size` attribute controls the size of the button.
+
+```html preview 100px
+<div class="container">
+	<vwc-button size="super-condensed" appearance="filled" label="Super-condensed"></vwc-button>
+	<vwc-button size="condensed" appearance="filled" label="Condensed"></vwc-button>
+	<vwc-button size="normal" appearance="filled" label="Normal"></vwc-button>
+	<vwc-button size="expanded" appearance="filled" label="Expanded"></vwc-button>
+</div>
+
 <style>
-	vwc-button {
-		width: 170px;
+	.container {
+		display: flex;
+		gap: 16px;
 	}
 </style>
-<vwc-button
-	icon="compose-line"
-	appearance="filled"
-	label="This is a very long button label"
-></vwc-button>
 ```
 
-A buttons height is determined by the `size` option and cannot be changed.
+## Shape
+
+The `shape` attribute controls the shape of the button.
+
+```html preview 72px
+<div class="container">
+	<vwc-button appearance="filled" label="Rounded shape"></vwc-button>
+	<vwc-button appearance="filled" label="Pill shape" shape="pill"></vwc-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+## Pending
+
+The `pending` attribute triggers the pending state, which indicates that the action is being processed.
+
+```html preview
+<div class="container">
+	<vwc-button
+		icon="compose-line"
+		appearance="filled"
+		label="Pending"
+		pending
+	></vwc-button>
+	<vwc-button
+		icon="compose-line"
+		appearance="outlined"
+		label="Pending"
+		pending
+	></vwc-button>
+	<vwc-button
+		icon="compose-line"
+		appearance="ghost"
+		label="Pending"
+		pending
+	></vwc-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+<vwc-note connotation="warning" icon="warning-line">
+	
+The spinner is not displayed when using the `super-condensed` size.
+
+</vwc-note>
+
+## Disabled
+
+The `disabled` attribute disables the buttons and indicates that the action is not available.
+
+```html preview 72px
+<div class="container">
+	<vwc-button appearance="filled" label="Disabled" disabled></vwc-button>
+	<vwc-button appearance="outlined" label="Disabled" disabled></vwc-button>
+	<vwc-button appearance="ghost" label="Disabled" disabled></vwc-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+## Active
+
+The `active` attribute causes the button to appear pressed. Use with the `aria-pressed` attribute to ensure accessibility.
+
+```html preview 72px
+<div class="container">
+	<vwc-button appearance="filled" label="Active" active></vwc-button>
+	<vwc-button appearance="outlined" label="Active" active></vwc-button>
+	<vwc-button appearance="outlined-light" label="Active" active></vwc-button>
+	<vwc-button appearance="ghost" label="Active" active></vwc-button>
+	<vwc-button appearance="ghost-light" label="Active" active></vwc-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+## Dropdown Indicator
+
+When the button is used to trigger a menu / dropdown, you can set `dropdown-indicator` to add a chevron to the button.
+
+```html preview 220px
+<!-- Feel free to edit the code below. The live preview will update as you make changes. -->
+<vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
+	<vwc-button
+		slot="anchor"
+		appearance="filled"
+		label="Menu"
+		dropdown-indicator
+	></vwc-button>
+	<vwc-menu-item icon="copy-line" text="Copy"></vwc-menu-item>
+	<vwc-menu-item icon="inbox-line" text="Share"></vwc-menu-item>
+	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>
+</vwc-menu>
+```
