@@ -45,6 +45,8 @@ $low-ink-color: --_low-ink-color;
 			#{size.$vvd-size-normal} / 2
 		); // default of 20px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-normal};
+		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-normal};
+		#{variables.$text-field-pill-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 
 		display: inline-grid;
 		width: 100%;
@@ -63,6 +65,8 @@ $low-ink-color: --_low-ink-color;
 			#{size.$vvd-size-condensed} / 2
 		); // default of 16px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
+		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		#{variables.$text-field-pill-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
 	}
 
 	@supports (user-select: none) {
@@ -133,11 +137,11 @@ $low-ink-color: --_low-ink-color;
 
 	/* Shape */
 	.base:not(.shape-pill) & {
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		border-radius: var(#{variables.$text-field-border-radius});
 	}
 
 	.base.shape-pill & {
-		border-radius: #{border-radius-variables.$border-radius-extra-expanded};
+		border-radius: var(#{variables.$text-field-pill-border-radius});
 	}
 }
 
