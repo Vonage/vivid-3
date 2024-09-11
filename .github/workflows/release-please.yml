@@ -86,10 +86,11 @@ jobs:
           npx nx run eslint-plugin:build
 
       - name: upload-artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: dist/
+          include-hidden-files: true
 
   vivid-publish:
     needs: build
