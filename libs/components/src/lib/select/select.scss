@@ -69,7 +69,7 @@ $low-ink-color: --_low-ink-color;
 
 	&.size-condensed {
 		#{variables.$select-icon-size}: 16px;
-		
+
 		block-size: #{size.$vvd-size-condensed};
 
 		& .chevron {
