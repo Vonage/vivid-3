@@ -44,29 +44,7 @@
 		{% block header %}{% endblock %}
   </head>
 
-<body class="page-not-ready with-announcement-banner" hx-boost="true" hx-target="main" hx-select="main" hx-swap="outerHTML">
-		<vwc-banner class="announcement-banner" icon="sparkles-solid"
-       text="We are pleased to announce Vivid v4.0.0. Please check out the migration guide"
-       connotation="announcement"
-      >
-      <vwc-button
-      	appearance="ghost"
-      	slot="action-items"
-      	class="vvd-theme-alternate desktop"
-      	label="V4 Migration Guide"
-      	icon="double-chevron-right-line" icon-trailing
-      	href="/guides/v4-release-migration/"
-      ></vwc-button>
-      <vwc-button
-            	appearance="ghost"
-            	slot="action-items"
-            	class="vvd-theme-alternate mobile-only"
-            	aria-label="V4 Migration Guide"
-            	icon="open-line"
-            	href="/guides/v4-release-migration/"
-            ></vwc-button>
-            </vwc-banner>
-
+<body class="page-not-ready" hx-boost="true" hx-target="main" hx-select="main" hx-swap="outerHTML">
 	<vwc-header id="header-main" slot="app-content">
 
 		<div class="header-content-wrapper">
