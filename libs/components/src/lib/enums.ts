@@ -30,8 +30,15 @@ export enum Appearance {
 	Subtle = 'subtle',
 	Ghost = 'ghost',
 	GhostLight = 'ghost-light',
+	OutlinedLight = 'outlined-light',
 	Listitem = 'listitem',
 	Elevated = 'elevated',
+}
+
+/* eslint-disable no-shadow */
+export enum IconDecoration {
+	Filled = 'filled',
+	Outlined = 'outlined',
 }
 
 export enum Size {
@@ -54,7 +61,8 @@ export enum LayoutSize {
 	Large = 'large',
 }
 
-export enum TabsSize {
+export enum TabsGutters {
+	None = 'none',
 	Small = 'small',
 }
 

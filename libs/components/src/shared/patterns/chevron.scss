@@ -1,0 +1,13 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
+.chevron {
+	display: flex;
+	flex-shrink: 0;
+	font: var(#{constants.$vvd-typography-base-extended});
+	transform: rotate(0);
+	transition: transform 0.2s;
+
+	:host([aria-expanded='true']) & {
+		transform: rotate(180deg);
+	}
+}

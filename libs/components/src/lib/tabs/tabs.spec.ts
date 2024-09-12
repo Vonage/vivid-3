@@ -1,5 +1,5 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { Connotation, TabsSize } from '../enums';
+import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
 import { Tabs } from './tabs';
 import '.';
@@ -7,7 +7,35 @@ import '.';
 const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
+	const originalResizeObserver = global.ResizeObserver;
+	let resizeObserver: any;
+
 	beforeEach(function () {
+		(global.ResizeObserver as any) = class implements ResizeObserver {
+			callback(_: any) {}
+
+			observer: HTMLElement | null = null;
+
+			constructor(callback: <T>(arg0: T) => void) {
+				this.callback = callback;
+				// eslint-disable-next-line @typescript-eslint/no-this-alias
+				resizeObserver = this;
+			}
+
+			observe(target: HTMLElement) {
+				this.observer = target;
+			}
+			disconnect = jest.fn(() => {
+				this.observer = null;
+			});
+			unobserve = jest.fn();
+			// Simulate resize event
+			triggerResize() {
+				if (this.observer) {
+					this.callback([{ target: this.observer }]);
+				}
+			}
+		};
 		window.HTMLElement.prototype.getBoundingClientRect = function () {
 			return {
 				x: 146,
@@ -22,6 +50,10 @@ describe('vwc-tabs', () => {
 		};
 		window.HTMLElement.prototype.scrollIntoView = jest.fn();
 		window.HTMLElement.prototype.scrollTo = jest.fn();
+	});
+
+	afterAll(() => {
+		global.ResizeObserver = originalResizeObserver;
 	});
 
 	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
@@ -85,6 +117,119 @@ describe('vwc-tabs', () => {
 			expect(
 				getBaseElement(element).classList.contains(`orientation-${orientation}`)
 			).toBeTruthy();
+		});
+	});
+
+	describe('scroll shadow', () => {
+		let scrollWrapper: HTMLElement;
+		let shadowWrapper: HTMLElement;
+
+		function setScrollWidth(value: number) {
+			jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(value);
+		}
+
+		function setClientWidth(value: number) {
+			jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(value);
+		}
+
+		beforeEach(function () {
+			scrollWrapper = getBaseElement(element).querySelector(
+				'.tablist-wrapper'
+			) as HTMLElement;
+			shadowWrapper = getBaseElement(element).querySelector(
+				'.scroll-shadow'
+			) as HTMLElement;
+
+			setScrollWidth(200);
+			setClientWidth(150);
+		});
+
+		it('should remove class "start-scroll" if scroll position is 0', async () => {
+			shadowWrapper.classList.add('start-scroll');
+			scrollWrapper.scrollLeft = 0;
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
+		});
+
+		it('should add class "start-scroll" if scroll position is bigger then 0', async () => {
+			scrollWrapper.scrollLeft = 2;
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
+		});
+
+		it('should remove class "end-scroll" if scroll position is scroll-width', async () => {
+			scrollWrapper.scrollLeft = scrollWrapper.scrollWidth;
+			shadowWrapper.classList.add('end-scroll');
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+		});
+
+		it('should add class "end-scroll" if scroll position is less then scroll-width', async () => {
+			scrollWrapper.scrollLeft = 20;
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+		});
+
+		it('should add class "end-scroll + start-scroll" if scroll position is less then scroll-width and bigger then 0', async () => {
+			scrollWrapper.scrollLeft = 20;
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+		});
+
+		it('should remove class "end-scroll + start-scroll" if scroll-width less or equal to wrapper', async () => {
+			setScrollWidth(100);
+			setClientWidth(150);
+
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+		});
+
+		it('should add class "end-scroll" if scroll-width bigger then wrapper on component load', async () => {
+			await elementUpdated(element);
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+		});
+
+		it('should remove class "end-scroll" if number of slotted tabs reduced scroll-wrapper width bellow client-width', async () => {
+			await elementUpdated(element);
+			setScrollWidth(50);
+			const tab: Tab = document.createElement('vwc-tab') as Tab;
+			element.appendChild(tab);
+			await elementUpdated(element);
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+		});
+
+		it('should add class "end-scroll" if number of slotted tabs increased scroll-wrapper width above client-width', async () => {
+			await elementUpdated(element);
+			setScrollWidth(500);
+			const tab: Tab = document.createElement('vwc-tab') as Tab;
+			element.appendChild(tab);
+			await elementUpdated(element);
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+		});
+
+		it('should remove class "end-scroll" if client width grows above scroll width', async () => {
+			await elementUpdated(element);
+			setClientWidth(350);
+			resizeObserver.triggerResize();
+			await elementUpdated(element);
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
+		});
+
+		it('should add class "end-scroll" if client width reduces below scroll width', async () => {
+			setClientWidth(350);
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await elementUpdated(element);
+			setClientWidth(50);
+			resizeObserver.triggerResize();
+			await elementUpdated(element);
+			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
+		});
+
+		it('should disconnect resize observer on disconnected callback', async () => {
+			element.disconnectedCallback();
+			expect(resizeObserver.disconnect).toHaveBeenCalled();
 		});
 	});
 
@@ -239,11 +384,13 @@ describe('vwc-tabs', () => {
 	});
 
 	describe('gutters', () => {
-		it('should set gutters property', async () => {
-			const gutters = TabsSize.Small;
-			expect(getBaseElement(element).classList.toString()).not.toContain(
-				`gutters-${gutters}`
+		it('should set class .gutters-small on .base as default and if no gutters are set', async () => {
+			expect(getBaseElement(element).classList.toString()).toContain(
+				`gutters-small`
 			);
+		});
+		it('should set gutters class on .base', async () => {
+			const gutters = TabsGutters.None;
 			element.gutters = gutters;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.toString()).toContain(

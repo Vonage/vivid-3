@@ -1,12 +1,6 @@
 import { ComponentDef } from './ComponentDef';
 import { kebabToCamel, kebabToPascal } from './utils/casing';
-import {
-	isBooleanLiteral,
-	isNumberLiteral,
-	isStringLiteral,
-	TypeUnion,
-	withImportsResolved,
-} from './types';
+import { TypeUnion } from './types';
 import { getImportPath } from './vividPackage';
 
 type Import = {
@@ -82,21 +76,23 @@ export const renderComponent = (
 		const attribute = componentDef.attributes.find(
 			(attr) => attr.name === model.attributeName
 		);
-		const event = componentDef.events.find((e) => e.name === model.eventName);
-		if (!attribute) throw new Error('v-model attribute not found');
-		if (!event) throw new Error('v-model event not found');
+		if (!attribute)
+			throw new Error(`v-model attribute not found: ${model.attributeName}`);
+		for (const eventName of model.eventNames) {
+			const event = componentDef.events.find((e) => e.name === eventName);
+			if (!event) throw new Error(`v-model event not found: ${eventName}`);
+		}
 
 		return {
 			...model,
 			attribute,
-			event,
 		};
 	});
 
 	for (const vueModel of vueModels) {
 		declaredEvents.push({
 			name: `update:${vueModel.name}`,
-			description: vueModel.event.description,
+			description: `Fires when the ${vueModel.name} value changes`,
 			type: vueModel.attribute.type,
 		});
 	}
@@ -131,13 +127,16 @@ export const renderComponent = (
 	}
 
 	/**
-	 * All props should be forwarded.
-	 * Vue requires us to filter out undefined properties
-	 * before passing them into the h function
+	 * Forward all props to their respective attribute / dom property.
+	 * In Vue 2, attributes and properties are under separate keys.
+	 * In Vue 3, we need to prefix attributes with '^' and properties with '.' to differentiate them.
 	 */
-	const renderProps = (attributes: ComponentDef['attributes']) =>
+	const renderProps = (
+		attributes: ComponentDef['attributes'],
+		syntax: 'vue2' | 'vue3'
+	) =>
 		attributes
-			.map(({ name }) => {
+			.map(({ name, forwardTo }) => {
 				const vueModel = componentDef.vueModels.find(
 					(model) => model.attributeName === name
 				);
@@ -148,33 +147,38 @@ export const renderComponent = (
 					valueToUse = `this.${vueModel.name} ?? ${valueToUse}`;
 				}
 
-				return `...(${valueToUse} !== undefined ? {'${name}': ${valueToUse} } : {})`;
+				const nameToUse =
+					syntax === 'vue2'
+						? forwardTo.name
+						: forwardTo.type === 'attribute'
+						? `^${forwardTo.name}`
+						: `.${forwardTo.name}`;
+
+				// Vue 2 and 3 differ in how they handle boolean attributes
+				// Remove false attributes in Vue 3 to make it behave like Vue 2
+				const booleanFilter =
+					forwardTo.type === 'attribute' &&
+					forwardTo.boolean &&
+					syntax === 'vue3'
+						? ` && (${valueToUse}) !== false`
+						: '';
+
+				// Vue requires us to filter out undefined properties before passing them into the h function
+				const filter = `(${valueToUse}) !== undefined${booleanFilter}`;
+
+				return `...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`;
 			})
 			.join(',');
-	const propsV3Src = renderProps(attributes);
 
-	/**
-	 * DOM attributes can only be strings, therefore complex data (e.g. HTMLElement) needs to be passed as props.
-	 * While Vue 3 handles this for us, in Vue 2 we need to figure out which attributes should be passed as props.
-	 */
-	const canBePassedAsAttribute = (type: TypeUnion) =>
-		withImportsResolved(type).every(
-			(t) =>
-				t.text === 'string' ||
-				t.text === 'number' ||
-				t.text === 'boolean' ||
-				isStringLiteral(t.text) ||
-				isNumberLiteral(t.text) ||
-				isBooleanLiteral(t.text) ||
-				// If unknown, default to attribute
-				t.text === 'any' ||
-				t.text === 'unknown'
-		);
+	const propsV3Src = renderProps(attributes, 'vue3');
+
 	const propsV2Src = renderProps(
-		attributes.filter((prop) => canBePassedAsAttribute(prop.type))
+		attributes.filter((a) => a.forwardTo.type === 'attribute'),
+		'vue2'
 	);
 	const domPropsV2Src = renderProps(
-		attributes.filter((prop) => !canBePassedAsAttribute(prop.type))
+		attributes.filter((a) => a.forwardTo.type === 'property'),
+		'vue2'
 	);
 
 	/**
@@ -182,7 +186,9 @@ export const renderComponent = (
 	 */
 	const eventsSrc = componentDef.events
 		.map(({ name }) => {
-			const vueModel = vueModels.find((model) => model.eventName === name);
+			const vueModel = vueModels.find((model) =>
+				model.eventNames.includes(name)
+			);
 			return vueModel
 				? `'${name}': (event: Event) => {
           this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
@@ -194,7 +200,9 @@ export const renderComponent = (
 
 	const eventsV3Src = componentDef.events
 		.map(({ name }) => {
-			const vueModel = vueModels.find((model) => model.eventName === name);
+			const vueModel = vueModels.find((model) =>
+				model.eventNames.includes(name)
+			);
 			return vueModel
 				? `'on${kebabToPascal(name)}': (event: Event) => {
           this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
@@ -271,13 +279,23 @@ export const renderComponent = (
 		.join(',\n');
 
 	// Declare events
-	const eventDefinitionsSrc = declaredEvents
-		.map(
-			({ name, description, type }) => `
-        ${renderJsDoc(description, type)}
-        '${name}'`
-		)
-		.join(',\n');
+	const eventDefinitionsSrc = isVue3Stub
+		? `{
+			${declaredEvents
+				.map(
+					({ name, description, type }) => `
+						${renderJsDoc(description, type)}
+						['${name}'](event: ${type.map((t) => t.text).join(' | ')}) { return true }`
+				)
+				.join(',\n')}}`
+		: `[
+			${declaredEvents
+				.map(
+					({ name, description, type }) => `
+						${renderJsDoc(description, type)}
+							'${name}'`
+				)
+				.join(',\n')}]`;
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
 	const vue2VModelSrc = vueModels.some((model) => model.name === 'modelValue')
@@ -349,9 +367,7 @@ export default defineComponent({
   props: {
     ${propDefinitionsSrc}
   },
-  emits: [
-    ${eventDefinitionsSrc}
-  ],
+  emits: ${eventDefinitionsSrc},
   methods: {
   	${methodDefinitionsSrc}
 	},

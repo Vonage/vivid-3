@@ -1,4 +1,9 @@
-import { camelToPascal, kebabToCamel, kebabToPascal } from './casing';
+import {
+	camelToKebab,
+	camelToPascal,
+	kebabToCamel,
+	kebabToPascal,
+} from './casing';
 
 describe('kebabToPascal', () => {
 	it('should convert kebab case to pascal case', () => {
@@ -15,5 +20,11 @@ describe('kebabToCamel', () => {
 describe('camelToPascal', () => {
 	it('should convert camel case to pascal case', () => {
 		expect(camelToPascal('camelCase')).toBe('CamelCase');
+	});
+});
+
+describe('camelToKebab', () => {
+	it('should convert camel case to kebab case', () => {
+		expect(camelToKebab('camelCase')).toBe('camel-case');
 	});
 });

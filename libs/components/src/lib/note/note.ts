@@ -8,6 +8,7 @@ export type NoteConnotation =
 	| Connotation.Information
 	| Connotation.Success
 	| Connotation.Warning
+	| Connotation.Announcement
 	| Connotation.Alert;
 /**
  * @public

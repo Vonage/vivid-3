@@ -33,8 +33,8 @@
 }
 
 .header {
-	padding-block-start: 8px;
-	padding-inline: 16px;
+	padding-block-start: 4px;
+	padding-inline: 12px;
 
 	.hide-header & {
 		display: none;
@@ -55,7 +55,8 @@
 	display: flex;
 	justify-content: flex-end;
 	gap: 8px;
-	padding-inline: 8px;
+	padding-block-end: 4px;
+	padding-inline: 12px;
 
 	.hide-actions & {
 		display: none;

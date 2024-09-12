@@ -3,7 +3,7 @@
 	background: var(--vvd-color-canvas);
 	width: 100%;
 	position: sticky;
-	top: 64px;
+	top: var(--offset-top, 64px);
 	z-index: 10;
 	
 	nav {

@@ -23,11 +23,13 @@ $banner-transition-delay: --transition-delay;
 	@include connotation.connotation(banner);
 	@include appearance.appearance;
 
-	overflow: hidden;
-	max-height: 160px;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	color: var(#{appearance.get-appearance-token(text)});
-	transition: max-height var(#{$banner-transition-delay}, 200ms);
+	& {
+		overflow: hidden;
+		max-height: 160px;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		color: var(#{appearance.get-appearance-token(text)});
+		transition: max-height var(#{$banner-transition-delay}, 200ms);
+	}
 
 	&.removing {
 		max-height: 0;
@@ -36,19 +38,20 @@ $banner-transition-delay: --transition-delay;
 
 .header {
 	display: flex;
-	min-height: #{size.$vvd-size-ultra-expanded};
+	box-sizing: border-box;
 	align-items: center;
 	font: var(#{constants.$vvd-typography-base-bold});
 	inline-size: 100%;
+	min-block-size: #{size.$vvd-size-ultra-expanded};
 
 	.content {
 		display: flex;
 		flex-grow: 1;
 		align-items: center;
 		justify-content: center;
+		padding: 10px 16px;
 		column-gap: 16px;
 		inline-size: 100%;
-		padding-inline: 16px;
 
 		slot[name='icon'] {
 			flex-shrink: 0;

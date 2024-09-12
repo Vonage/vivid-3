@@ -12,6 +12,10 @@ import type { RangeSliderLocale } from '../../lib/range-slider/locale';
 import type { DialPadLocale } from '../../lib/dial-pad/locale';
 
 export interface Locale {
+	lang: string;
+	common: {
+		useCommaAsDecimalSeparator: boolean;
+	};
 	datePicker: DatePickerLocale;
 	timePicker: TimePickerLocale;
 	filePicker: FilePickerLocale;

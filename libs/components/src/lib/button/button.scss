@@ -6,20 +6,25 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta success alert,
+	$connotations: accent cta success alert announcement,
 	$shades: primary primary-text primary-increment contrast fierce firm soft
-		faint,
+		faint fierce-primary,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: filled outlined ghost,
+	$appearances: filled outlined ghost ghost-light outlined-light,
 	$states: idle hover disabled active,
 	$default: ghost
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@import '../../shared/patterns/chevron';
+@include connotation.variables-backwards-compatibility(
+	'button',
+	'.control:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined)'
+);
 
 :host {
 	display: inline-block;
@@ -29,20 +34,24 @@
 	@include connotation.connotation(button);
 	@include appearance.appearance;
 
-	display: inline-flex;
-	box-sizing: border-box;
-	align-items: center;
-	justify-content: center;
-	border: 0 none;
-	border-radius: var(#{variables.$button-border-radius});
-	margin: 0;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: var(#{variables.$block-size});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	gap: var(#{variables.$icon-gap});
-	text-decoration: none;
-	vertical-align: middle;
+	& {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		display: inline-flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: space-between;
+		border: 0 none;
+		border-radius: var(#{variables.$button-border-radius});
+		margin: 0;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: var(#{variables.$block-size});
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(#{appearance.get-appearance-token(text)});
+		gap: var(#{variables.$icon-gap});
+		text-decoration: none;
+		vertical-align: middle;
+	}
 
 	.text {
 		display: -webkit-box;
@@ -55,8 +64,6 @@
 	&:not(.icon-only) {
 		inline-size: 100%;
 	}
-
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 	&.appearance-filled {
 		#{focus-variables.$focus-stroke-gap-color}: unset;
@@ -78,20 +85,6 @@
 		cursor: not-allowed;
 	}
 
-	&.icon-only {
-		contain: size;
-		padding-inline: 0;
-		place-content: center;
-
-		@supports (aspect-ratio: 1) {
-			aspect-ratio: 1;
-		}
-
-		@supports not (aspect-ratio: 1) {
-			inline-size: var(#{variables.$block-size});
-		}
-	}
-
 	/* Size */
 	&:not(.stacked) {
 		&.size-super-condensed {
@@ -99,7 +92,8 @@
 				#{size.$vvd-size-super-condensed},
 				#{constants.$vvd-typography-base-condensed-bold},
 				4px,
-				8px
+				8px,
+				10px
 			);
 		}
 
@@ -108,6 +102,7 @@
 				#{size.$vvd-size-condensed},
 				#{constants.$vvd-typography-base-condensed-bold},
 				8px,
+				12px,
 				12px
 			);
 		}
@@ -117,7 +112,8 @@
 				#{size.$vvd-size-expanded},
 				#{constants.$vvd-typography-base-extended-bold},
 				10px,
-				20px
+				20px,
+				16px
 			);
 		}
 
@@ -126,6 +122,7 @@
 				#{size.$vvd-size-normal},
 				#{constants.$vvd-typography-base-bold},
 				8px,
+				16px,
 				16px
 			);
 		}
@@ -166,9 +163,6 @@
 	}
 
 	&.stacked {
-		flex-direction: column;
-		justify-content: center;
-
 		&.size-super-condensed {
 			--stacked-size: #{size.$vvd-size-super-condensed};
 
@@ -176,7 +170,8 @@
 				calc(var(--stacked-size) + 20 * 1px),
 				#{constants.$vvd-typography-base-condensed-bold},
 				4px,
-				16px
+				16px,
+				10px
 			);
 		}
 
@@ -187,6 +182,7 @@
 				calc(var(--stacked-size) + 24 * 1px),
 				#{constants.$vvd-typography-base-condensed-bold},
 				6px,
+				12px,
 				12px
 			);
 		}
@@ -198,7 +194,8 @@
 				calc(var(--stacked-size) + 32 * 1px),
 				#{constants.$vvd-typography-base-extended-bold},
 				10px,
-				20px
+				20px,
+				16px
 			);
 		}
 
@@ -209,6 +206,7 @@
 				calc(var(--stacked-size) + 28 * 1px),
 				#{constants.$vvd-typography-base-bold},
 				8px,
+				16px,
 				16px
 			);
 		}
@@ -224,12 +222,29 @@ slot[name='icon'] {
 		order: 1;
 	}
 
-	.control.stacked > & {
+	.control.stacked & {
 		font-size: calc(var(--stacked-size) / 2);
 	}
 
-	.control:not(.stacked) > & {
+	.control:not(.stacked) & {
 		font-size: calc(var(#{variables.$block-size}) / 2);
+	}
+}
+
+.chevron {
+	font-size: var(#{variables.$chevron-size});
+}
+
+.content {
+	display: flex;
+	overflow: hidden;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	gap: var(#{variables.$icon-gap});
+
+	.control.stacked & {
+		flex-direction: column;
 	}
 }
 
@@ -238,5 +253,11 @@ slot[name='icon'] {
 
 	& + .text {
 		visibility: hidden;
+	}
+}
+
+:host([icon-trailing][pending]) {
+	.pending {
+		order: 1;
 	}
 }

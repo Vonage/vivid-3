@@ -27,9 +27,10 @@ function generateTableWithType(
 			const resolvedType = withImportsResolved(type);
 			return [
 				`**${name}**`,
-				resolvedType.length === 1
+				(resolvedType.length === 1
 					? `\`${resolvedType[0].text}\``
-					: `*Enum*:<br/>${generateEnumType(resolvedType)}`,
+					: `*Enum*:<br/>${generateEnumType(resolvedType)}`
+				).replace(/\|/g, '\\|'),
 				escapeDescription(description),
 			];
 		}),

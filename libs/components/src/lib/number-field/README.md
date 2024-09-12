@@ -9,7 +9,7 @@ Use the [`text-field`](/components/text-field/) component instead.
 <script type="module">import '@vonage/vivid/number-field';</script>
 ```
 
-```html preview
+```html preview locale-switcher
 <vwc-number-field label="Quantity"></vwc-number-field>
 ```
 
@@ -45,8 +45,42 @@ Add a `placeholder` attribute to add placeholder text to the number field.
 
 Set the `value` attribute to set the default value for the number field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
+Values always use the period (".") as the decimal separator, regardless of the user's locale. Only the value on the screen is localized.
+
 ```html preview
 <vwc-number-field label="With default value" value="5"></vwc-number-field>
+```
+
+### Value as Number
+
+- Type: `number`
+- Default: `undefined`
+
+Use the `valueAsNumber` property to get or set the value as a number. If no valid value is entered in the field, the `valueAsNumber` is `NaN`.
+
+```html preview locale-switcher
+<vwc-number-field label="Quantity"></vwc-number-field>
+<p>valueAsNumber: <span id="value"></span></p>
+<script>
+	function update() {
+		document.getElementById('value').textContent =
+			document.querySelector('vwc-number-field').valueAsNumber;
+	}
+
+	customElements.whenDefined('vwc-number-field').then(update);
+	document.querySelector('vwc-number-field').addEventListener('input', update);
+</script>
+```
+
+### Step
+
+- Type: `number`
+- Default: `1`
+
+Set the `step` attribute to change the step value for the number field.
+
+```html preview
+<vwc-number-field label="With step" step="0.1" value="1.5"></vwc-number-field>
 ```
 
 ### Min
@@ -181,6 +215,17 @@ Example showing a link in the helper text:
 	>
 </vwc-number-field>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                              |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the value has changed  |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value has changed |
+
+</div>
 
 ## Methods
 

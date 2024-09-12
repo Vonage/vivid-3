@@ -119,7 +119,9 @@ export class Toggletip extends FoundationElement {
 	};
 
 	#closeOnEscape = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') this.open = false;
+		if (e.key === 'Escape') {
+			this.open = false;
+		}
 	};
 }
 

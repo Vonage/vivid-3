@@ -8,6 +8,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { Dialog } from './dialog';
 
 const getClasses = ({
@@ -15,6 +16,7 @@ const getClasses = ({
 	bodySlottedContent,
 	footerSlottedContent,
 	actionItemsSlottedContent,
+	_openedAsModal,
 }: Dialog) =>
 	classNames(
 		'base',
@@ -23,34 +25,24 @@ const getClasses = ({
 		[
 			'hide-footer',
 			!(footerSlottedContent?.length || actionItemsSlottedContent?.length),
-		]
+		],
+		['modal', _openedAsModal]
 	);
-/**
- *
- */
+
 function icon(iconTag: string) {
 	return html<Dialog>`
 		<${iconTag} class="icon" name="${(x) => x.icon}"></${iconTag}>
 	`;
 }
 
-/**
- *
- */
 function headline() {
 	return html<Dialog>` <div class="headline">${(x) => x.headline}</div> `;
 }
 
-/**
- *
- */
 function subtitle() {
 	return html<Dialog>` <div class="subtitle">${(x) => x.subtitle}</div> `;
 }
 
-/**
- *
- */
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
 	<${buttonTag}
@@ -63,19 +55,15 @@ function renderDismissButton(buttonTag: string) {
 	></${buttonTag}>`;
 }
 
-function handleEscapeKey(dialog: Dialog, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && dialog.modal) {
+function handleEscapeKey(dialog: Dialog, event: KeyboardEvent) {
+	if (handleEscapeKeyAndStopPropogation(event) && dialog._openedAsModal) {
 		dialog.open = false;
+		return false;
+	} else {
+		return true;
 	}
-	return true;
 }
 
-/**
- * The template for the Dialog component.
- *
- * @param context - element definition context
- * @public
- */
 export const DialogTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
@@ -87,10 +75,10 @@ export const DialogTemplate: (
 	return html<Dialog>`
 	<${elevationTag} dp="8">
 		<dialog class="${getClasses}"
-				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event as KeyboardEvent)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
-				returnValue="${(x) => x.returnValue}"
 				aria-label="${(x) => x.ariaLabel}"
+				?aria-modal="${(x) => x._openedAsModal}"
 		>
 			<slot name="main">
 				<div class="main-wrapper">

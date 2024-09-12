@@ -1,0 +1,29 @@
+name: 📦 Cache Dependencies
+
+on: workflow_call
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            node_modules/
+            apps/vue-docs/node_modules/
+            libs/storybook-vue2/node_modules/
+            libs/storybook-vue3/node_modules/
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci

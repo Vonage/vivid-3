@@ -31,12 +31,14 @@
 	@include appearance.appearance;
 	@include connotation.connotation(menu-item);
 
-	display: flex;
-	box-sizing: border-box;
-	align-items: center;
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	inline-size: 100%;
+	& {
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		inline-size: 100%;
+	}
 
 	&:not(.two-lines) {
 		gap: 12px;
@@ -84,16 +86,16 @@
 .action {
 	color: var(#{appearance.get-appearance-token(text)});
 
-	:host(:not([check-appearance], [aria-checked='true'])) & {
-		color: var(#{constants.$vvd-color-neutral-500});
-	}
-
 	.base.trailing & {
 		order: 2;
 	}
 
 	.base.has-meta & {
 		order: 2;
+	}
+
+	:host(:not([check-appearance], [aria-checked='true'], [disabled])) & {
+		color: var(#{constants.$vvd-color-neutral-500});
 	}
 }
 
@@ -127,25 +129,37 @@
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-box-orient: vertical;
-	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
 }
 
 .text-primary {
 	font: var(#{constants.$vvd-typography-base});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-primary-line-clamp}, 1);
+	.base:not(.disabled) & {
+		color: var(#{constants.$vvd-color-canvas-text});
+	}
+	.base.disabled & {
+		color: var(#{appearance.get-appearance-token(text)});
+	}
 	.base.two-lines & {
 		font: var(#{constants.$vvd-typography-base-bold});
 	}
 }
 
 .text-secondary {
+	color: var(#{constants.$vvd-color-neutral-800});
 	font: var(#{constants.$vvd-typography-base-condensed});
 	-webkit-line-clamp: var(#{menu-item-variables.$text-secondary-line-clamp}, 1);
-	.base.two-lines:not(.disabled) & {
+
+	.base.two-lines & {
 		color: var(#{constants.$vvd-color-neutral-600});
 	}
-	.base.two-lines:not(.disabled).selected & {
+
+	.base.disabled & {
+		color: var(#{appearance.get-appearance-token(text)});
+	}
+
+	.base.selected:not(.disabled) & {
 		color: var(#{constants.$vvd-color-neutral-800});
 	}
 }

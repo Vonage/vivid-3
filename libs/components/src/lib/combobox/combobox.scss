@@ -4,6 +4,13 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
+	$appearances: fieldset ghost,
+	$states: idle hover disabled readonly error success,
+	$default: fieldset
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 
 :host {
@@ -12,6 +19,8 @@
 
 .base {
 	#{text-field-variables.$text-field-gutter-end}: 44px;
+
+	@include appearance.appearance;
 }
 
 .icon {
@@ -28,10 +37,13 @@
 }
 
 .listbox {
+	display: flex;
 	max-height: var(variables.$combobox-height, 408px);
+	flex-direction: column;
 	padding: 4px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	contain: paint;
+	gap: 2px;
 	overflow-y: auto;
 }
 
@@ -60,5 +72,6 @@
 		border-radius: inherit;
 		content: '';
 		inset: 0;
+		pointer-events: none;
 	}
 }

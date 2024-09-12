@@ -1,14 +1,16 @@
-import { attr } from '@microsoft/fast-element';
-import { Slider as FastSlider } from '@microsoft/fast-foundation';
+import { attr, observable, volatile } from '@microsoft/fast-element';
+import { applyMixins, Slider as FastSlider } from '@microsoft/fast-foundation';
 import { limit } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
+import { Localized } from '../../shared/patterns';
 
 export type SliderConnotation = Connotation.Accent | Connotation.CTA;
 
 /**
  * @public
  * @component slider
- * @vueModel modelValue current-value change `(event.target as HTMLInputElement).value`
+ * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
+ * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
 export class Slider extends FastSlider {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
@@ -25,11 +27,28 @@ export class Slider extends FastSlider {
 	markers = false;
 
 	/**
+	 * Show current value on the thumb.
+	 *
+	 * @public
+	 * HTML Attribute: pin
+	 */
+	@attr({ mode: 'boolean' }) pin = false;
+
+	/**
 	 * slider connotation
 	 *
 	 * @public
 	 */
 	@attr connotation?: SliderConnotation;
+
+	/**
+	 * Custom function that generates a string for the component's "aria-valuetext" attribute based on the current value.
+	 *
+	 * @public
+	 */
+	@observable override valueTextFormatter: (value: string) => string = (
+		value
+	) => parseFloat(value).toLocaleString(this.locale.lang);
 
 	/**
 	 * TO BE REMOVED WHEN UPGRADING TO FAST-FOUNDATION 3
@@ -54,4 +73,108 @@ export class Slider extends FastSlider {
 			super.valueChanged(previous, value);
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	@observable _focusVisible = false;
+
+	/**
+	 * @internal
+	 */
+	@observable _hoveringOnThumb = false;
+
+	/**
+	 * @internal
+	 */
+	@volatile
+	get _isThumbPopupOpen() {
+		return this._focusVisible || this._hoveringOnThumb || this.isDragging;
+	}
+
+	#isNonVisibleFocus = false;
+
+	constructor() {
+		super();
+
+		const fastSliderInternals = this as any;
+
+		const originalHandleMouseDown = fastSliderInternals.handleMouseDown;
+		// Called with e=null to clean up after releasing the mouse
+		fastSliderInternals.handleMouseDown = (e: MouseEvent | null) => {
+			this.#isNonVisibleFocus = true;
+			originalHandleMouseDown(e);
+			this.#isNonVisibleFocus = false;
+
+			if (e && !this.disabled && !this.readOnly) {
+				// Fix bug in FAST: isDragging is not set on mousedown
+				this.isDragging = true;
+			}
+		};
+
+		const originalHandleThumbMouseDown =
+			fastSliderInternals.handleThumbMouseDown;
+		fastSliderInternals.handleThumbMouseDown = (e: MouseEvent) => {
+			this.#isNonVisibleFocus = true;
+			originalHandleThumbMouseDown(e);
+			this.#isNonVisibleFocus = false;
+		};
+
+		const originalKeypressHandler = fastSliderInternals.keypressHandler;
+		fastSliderInternals.keypressHandler = (e: KeyboardEvent) => {
+			this._focusVisible = true;
+			originalKeypressHandler(e);
+		};
+	}
+
+	override connectedCallback() {
+		super.connectedCallback();
+		this.#registerThumbListeners();
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#unregisterThumbListeners();
+	}
+
+	#registerThumbListeners() {
+		this.thumb.addEventListener('mouseover', this.#onMouseOver, {
+			passive: true,
+		});
+		this.thumb.addEventListener('mouseout', this.#onMouseOut, {
+			passive: true,
+		});
+	}
+
+	#unregisterThumbListeners() {
+		this.thumb.removeEventListener('mouseover', this.#onMouseOver);
+		this.thumb.removeEventListener('mouseout', this.#onMouseOut);
+	}
+
+	/**
+	 * @internal
+	 */
+	_onFocusIn = () => {
+		if (!this.#isNonVisibleFocus) {
+			this._focusVisible = true;
+		}
+	};
+
+	/**
+	 * @internal
+	 */
+	_onFocusOut = () => {
+		this._focusVisible = false;
+	};
+
+	#onMouseOver = () => {
+		this._hoveringOnThumb = true;
+	};
+
+	#onMouseOut = () => {
+		this._hoveringOnThumb = false;
+	};
 }
+
+export interface Slider extends Localized {}
+applyMixins(Slider, Localized);

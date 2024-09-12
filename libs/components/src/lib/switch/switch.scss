@@ -3,7 +3,7 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent cta alert success,
+	$connotations: accent cta alert success announcement,
 	$shades: primary-text primary primary-increment firm intermediate fierce,
 	$default: accent
 );
@@ -27,12 +27,14 @@
 	@include connotation.connotation(switch);
 	@include appearance.appearance;
 
-	display: inline-flex;
-	border-radius: #{border-radius-variables.$border-radius-semi-expanded};
-	gap: 8px;
+	& {
+		display: inline-flex;
+		border-radius: #{border-radius-variables.$border-radius-semi-expanded};
+		gap: 8px;
 
-	#{focus-variables.$focus-inset}: -4px;
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
+		#{focus-variables.$focus-inset}: -4px;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+	}
 
 	&:focus-visible {
 		@include focus.focus;

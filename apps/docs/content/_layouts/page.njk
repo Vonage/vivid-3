@@ -1,0 +1,18 @@
+{% extends './base.njk' %}
+
+{% block main %}
+	{% block banner %}{% endblock %}
+	<div class="page">
+		{% block aside %}{% endblock %}
+		<article class="article">
+			{% block content %}{% endblock %}
+			{% if githubEditLink %}
+				<footer class="footer">
+					<vwc-divider></vwc-divider>
+					<a href="{{ githubEditLink }}"><vwc-icon name="edit-line"></vwc-icon> Edit this page on GitHub</a>
+				</footer>
+			{% endif %}
+			{% include '../_includes/skip-top.njk' %}
+		</article>
+	</div>
+{% endblock %}

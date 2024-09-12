@@ -46,8 +46,8 @@ export type SplitButtonSize = Extract<
  * @component split-button
  * @slot - Default slot.
  * @slot icon - Add an icon to the component.
- * @event action-click - Event emitted when the action button is clicked
- * @event indicator-click - Event emitted when the indicator button is clicked
+ * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
+ * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
  */
 export class SplitButton extends FoundationElement {
 	/**

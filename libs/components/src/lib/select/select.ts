@@ -27,7 +27,9 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @slot icon - Slot to add an icon to the select control.
  * @slot meta - Slot to add meta content to the select control.
  * @slot helper-text - Describes how to use the select. Alternative to the `helper-text` attribute.
- * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
+ * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value updates
+ * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when the value updates
+ * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements
@@ -89,6 +91,12 @@ export class Select extends FoundationSelect {
 	 */
 	@observable metaSlottedContent?: Node[];
 
+	labelChanged() {
+		if (!this.ariaLabel) {
+			this.ariaLabel = this.label;
+		}
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 	}
@@ -124,6 +132,26 @@ export class Select extends FoundationSelect {
 		if (selectedIndex !== -1 || this.placeholder !== '') {
 			this.selectedIndex = selectedIndex;
 			return;
+		}
+	}
+
+	/*
+	 * @internal
+	 */
+	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
+		super.slottedOptionsChanged(prev, next);
+
+		// Workaround for bug in FAST:
+		// Proxy value is set before options are added to proxy, which causes the value to be discarded
+		// Therefore, we need to set the value again and update validation
+		this.proxy.value = this.value;
+		this.validate();
+	}
+
+	override formResetCallback() {
+		super.formResetCallback();
+		if (this.placeholder) {
+			this.selectedIndex = -1;
 		}
 	}
 }

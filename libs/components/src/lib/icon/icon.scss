@@ -2,7 +2,7 @@
 @use 'sass:list';
 @use '../../../../shared/src/lib/sass/utils' as utils;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent announcement cta success alert information,
+	$connotations: accent announcement cta success warning alert information,
 	$shades: primary
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
@@ -40,12 +40,14 @@ $default-size: list.nth($size-keys, 1);
 		#{variables.$block-size}: map.get($size, $value);
 	}
 
-	display: flex;
-	margin: unset;
-	block-size: var(#{variables.$block-size});
-	color: currentColor;
-	contain: strict;
-	inline-size: var(#{variables.$block-size});
+	& {
+		display: flex;
+		margin: unset;
+		block-size: var(#{variables.$block-size});
+		color: currentColor;
+		contain: strict;
+		inline-size: var(#{variables.$block-size});
+	}
 }
 
 // TODO: add a :where selector to unset any connotation variant from a mixin level

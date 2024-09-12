@@ -3,6 +3,10 @@ import type { Locale } from '../shared/localization/Locale';
 
 /* eslint-disable max-len */
 const enGB: Locale = {
+	lang: 'en-GB',
+	common: {
+		useCommaAsDecimalSeparator: false,
+	},
 	datePicker: {
 		months: {
 			name: [

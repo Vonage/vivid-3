@@ -1,29 +1,77 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use 'partials/variables' as variables;
 
+:host {
+	display: block;
+}
+
+.wrapper {
+	container-type: inline-size;
+}
+
 .base {
 	display: inline-flex;
+	box-sizing: border-box;
 	align-items: center;
 	padding: 8px;
 	color: var(#{constants.$vvd-color-canvas-text});
+	gap: 16px;
+	inline-size: 100%;
 	user-select: none;
 
 	.slider {
-		min-inline-size: var(#{variables.$audio-player-min-inline-size}, 200px);
+		flex: 1;
+		grid-area: slider;
 	}
 
 	.controls {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		justify-content: center;
+		gap: 8px;
+		grid-area: controls;
 	}
 
 	.time-stamp {
 		display: inline-flex;
+
 		.current-time,
 		.total-time {
 			margin-inline: 6px;
 			min-inline-size: 32px;
+		}
+	}
+
+	.playback-button {
+		grid-area: playback;
+	}
+
+	@container (max-width: 500px) {
+		&.two-lines {
+			display: inline-grid;
+			grid-template: auto auto / 1fr;
+			grid-template-areas: 'slider' 'controls';
+			inline-size: 100%;
+			row-gap: 4px;
+
+			.time-stamp {
+				margin-inline: auto 2px;
+			}
+
+			&.playback {
+				grid-template-areas: 'slider slider' 'controls playback';
+				grid-template-columns: 1fr auto;
+
+				.time-stamp {
+					margin-inline: auto;
+				}
+			}
+		}
+
+		.slider {
+			box-sizing: border-box;
+			min-inline-size: auto;
+			padding-inline: 2px;
 		}
 	}
 }

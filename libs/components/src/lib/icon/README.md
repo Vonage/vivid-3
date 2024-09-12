@@ -85,7 +85,7 @@ If the predefined sizes are not enough, you can use the `font-size` property to 
 Set the `connotation` attribute to change the icon's connotation and thereby color.
 It accepts a subset of predefined values.
 
-- Type: `'accent'` | `'announcement'` | `'cta'` | `'success'` | `'alert'` | `'information'`
+- Type: `'accent'` | `'announcement'` | `'cta'` | `'success'` | `'warning'` |`'alert'` | `'information'`
 - Default: `undefined`
 
 ```html preview
@@ -110,6 +110,10 @@ It accepts a subset of predefined values.
 	<li>
 		<vwc-icon name="heart-solid" connotation="success"></vwc-icon>
 		success
+	</li>
+	<li>
+		<vwc-icon name="heart-solid" connotation="warning"></vwc-icon>
+		warning
 	</li>
 	<li>
 		<vwc-icon name="heart-solid" connotation="alert"></vwc-icon>

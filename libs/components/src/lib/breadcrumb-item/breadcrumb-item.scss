@@ -19,14 +19,13 @@
 }
 
 .control {
+	border-radius: #{border-radius-variables.$border-radius-condensed};
 	font: inherit;
 
 	&:focus-visible {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 		#{focus-variables.$focus-inset}: -4px;
-
-		border-radius: #{border-radius-variables.$border-radius-condensed};
 	}
 
 	&:any-link {

@@ -24,6 +24,10 @@ describe('vwc-combobox', () => {
 		return element.shadowRoot!.querySelector('.popup') as Popup;
 	}
 
+	function getListbox(): HTMLDivElement {
+		return element.shadowRoot!.querySelector('.listbox') as HTMLDivElement;
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
@@ -39,6 +43,7 @@ describe('vwc-combobox', () => {
 			expect(element.value).toEqual('');
 			expect(element.placeholder).toBeUndefined();
 			expect(element.autocomplete).toBeUndefined();
+			expect(element.appearance).toBeUndefined();
 			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
@@ -75,6 +80,49 @@ describe('vwc-combobox', () => {
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 		});
+
+		it('should set open to false when escape key is pressed', async () => {
+			element.open = true;
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+			expect(element.open).toBe(false);
+		});
+
+		it('should allow propgation on escape key if not open', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
+		it('should stop propgation on escape key if open', async () => {
+			element.open = true;
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(0);
+		});
 	});
 
 	describe('placeholder', function () {
@@ -101,6 +149,18 @@ describe('vwc-combobox', () => {
 			expect(getBaseElement(element).classList.contains('placeholder')).toEqual(
 				true
 			);
+		});
+	});
+
+	describe('appearance', function () {
+		it('should set the appearance class on the control', async function () {
+			const appearance = 'ghost';
+			element.setAttribute('appearance', appearance);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains('appearance-ghost')
+			).toEqual(true);
 		});
 	});
 
@@ -203,10 +263,20 @@ describe('vwc-combobox', () => {
 
 			const control = await getControlElement(element);
 			const label = element.shadowRoot?.querySelector('.label');
+			const listbox = getListbox();
 
 			expect(control.getAttribute('role')).toBe('combobox');
 			expect(control.getAttribute('aria-haspopup')).toBe('listbox');
+			expect(control.getAttribute('aria-controls')).toBe(listbox.id);
+			expect(control.getAttribute('aria-expanded')).toBe('false');
 			expect(label?.getAttribute('for')).toBe(control.id);
+		});
+
+		it('should update the aria-expanded attribute when the listbox is open', async () => {
+			const control = await getControlElement(element);
+			element.click();
+			await elementUpdated(element);
+			expect(control.getAttribute('aria-expanded')).toBe('true');
 		});
 
 		it('should pass html a11y test', async () => {

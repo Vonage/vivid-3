@@ -1,13 +1,67 @@
-import { ClassMember, ClassMethod } from 'custom-elements-manifest';
+import { ClassMember, ClassMethod, Attribute } from 'custom-elements-manifest';
 import { ComponentDef } from './ComponentDef';
-import { kebabToPascal } from './utils/casing';
+import { camelToKebab, kebabToPascal } from './utils/casing';
 import {
-	getAttributeName,
 	getClassNameOfVividComponent,
 	getVividComponentDeclaration,
 } from './customElementDeclarations';
-import { makeTypeResolver } from './types';
+import {
+	isBooleanLiteral,
+	isNumberLiteral,
+	isStringLiteral,
+	makeTypeResolver,
+	TypeUnion,
+	withImportsResolved,
+} from './types';
 import { globalTypeDefs } from './globalTypeDefs';
+
+/**
+ * DOM attributes can only be strings, therefore complex data (e.g. HTMLElement) needs to be passed as props.
+ * We can determine this by type.
+ */
+const canBePassedAsAttribute = (type: TypeUnion) =>
+	withImportsResolved(type).every(
+		(t) =>
+			t.text === 'string' ||
+			t.text === 'number' ||
+			t.text === 'boolean' ||
+			isStringLiteral(t.text) ||
+			isNumberLiteral(t.text) ||
+			isBooleanLiteral(t.text)
+	);
+
+/**
+ * These field names have a different attribute name, e.g. 'value' -> 'current-value'  and 'initialValue' -> 'value'
+ */
+const isFormValueAttribute = (attribute: Attribute): boolean =>
+	[
+		'value',
+		'checked',
+		'start',
+		'end',
+		'initialValue',
+		'defaultChecked',
+		'initialStart',
+		'initialEnd',
+	].includes(attribute.fieldName ?? '');
+
+const vuePropNameForAttribute = (attribute: Attribute): string => {
+	let name = isFormValueAttribute(attribute)
+		? camelToKebab(attribute.fieldName) // Use the field name for value attributes, e.g. 'value' instead of 'current-value'
+		: attribute.name || camelToKebab(attribute.fieldName); // Otherwise, prefer the attribute name even when different. E.g. 'heading-level' instead of 'headinglevel'
+
+	if (!name) {
+		throw new Error('Attribute must have a name or a fieldName');
+	}
+
+	// On certain component there is actually a currentValue field for 'current-value' attribute
+	// In this case, we still want to use 'value' as the prop name
+	if (name.startsWith('current-')) {
+		name = name.replace(/^current-/, '');
+	}
+
+	return name;
+};
 
 export const parseComponent = (name: string): ComponentDef => {
 	const className = getClassNameOfVividComponent(name);
@@ -22,16 +76,40 @@ export const parseComponent = (name: string): ComponentDef => {
 
 	const attributes: ComponentDef['attributes'] = (
 		declaration.attributes ?? []
-	).map((attribute) => {
+	).map((attribute: Attribute) => {
 		if (!attribute.type) {
 			throw new Error(`Attribute type is missing: ${attribute}`);
 		}
 
-		return {
-			name: getAttributeName(attribute),
-			description: attribute.description,
-			type: resolveLocalType(attribute.type.text, true),
-		};
+		const name = vuePropNameForAttribute(attribute);
+		const type = resolveLocalType(attribute.type.text, true);
+
+		if (canBePassedAsAttribute(type)) {
+			return {
+				name,
+				description: attribute.description,
+				type,
+				forwardTo: {
+					type: 'attribute',
+					name: attribute.name || attribute.fieldName,
+					boolean: type.some((t) => t.text === 'boolean'),
+				},
+			};
+		} else {
+			if (!attribute.fieldName) {
+				throw new Error(`Attribute fieldName is missing: ${attribute.name}`);
+			}
+
+			return {
+				name,
+				description: attribute.description,
+				type,
+				forwardTo: {
+					type: 'property',
+					name: attribute.fieldName,
+				},
+			};
+		}
 	});
 
 	const isClassMethod = (m: ClassMember): m is ClassMethod =>

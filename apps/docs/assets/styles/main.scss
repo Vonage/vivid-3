@@ -86,6 +86,7 @@ vwc-side-drawer > main {
 	z-index: 0;
 	margin-top: var(--vvd-header-block-size);
 	max-inline-size: 1200px;
+	max-inline-size: 1200px;
 }
 
 /* #endregion side drawer */
@@ -523,6 +524,13 @@ th {
 }
 
 .with-announcement-banner .article-toc {
+	--offset-top: calc(
+		var(--vvd-header-block-size) + var(--banner-offset, 0px) +
+			var(--announcement-banner-block-size)
+	);
+}
+
+.with-announcement-banner .components-header {
 	--offset-top: calc(
 		var(--vvd-header-block-size) + var(--banner-offset, 0px) +
 			var(--announcement-banner-block-size)

@@ -28,6 +28,10 @@ describe('renderComponent', () => {
 				attributes: [
 					{
 						name: 'value',
+						forwardTo: {
+							type: 'attribute',
+							name: 'value',
+						},
 						type: [
 							{
 								text: 'string',
@@ -40,7 +44,7 @@ describe('renderComponent', () => {
 					{
 						name: 'modelValue',
 						attributeName: 'value',
-						eventName: 'not-found',
+						eventNames: ['not-found'],
 						valueMapping: '(event.target as any).value',
 					},
 				],
@@ -67,7 +71,7 @@ describe('renderComponent', () => {
 					{
 						name: 'modelValue',
 						attributeName: 'not-found',
-						eventName: 'input',
+						eventNames: ['input'],
 						valueMapping: '(event.target as any).value',
 					},
 				],

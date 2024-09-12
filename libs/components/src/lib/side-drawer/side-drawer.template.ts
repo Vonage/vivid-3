@@ -2,6 +2,7 @@ import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({ modal, open, trailing }: SideDrawer) =>
@@ -47,13 +48,10 @@ export const sideDrawerTemplate: FoundationElementTemplate<
 	)}
 `;
 
-const handleKeydown = (x: any, { key }: KeyboardEvent): boolean | void => {
-	if (key === 'Escape') {
+const handleKeydown = (x: any, event: KeyboardEvent): boolean | void => {
+	if (handleEscapeKeyAndStopPropogation(event)) {
 		x.open = false;
 	} else {
-		// after this event handler is executed,
-		// preventDefault() will be called on the event object by default.
-		// we need to return true from our handler to opt - out of this behavior.
 		return true;
 	}
 };

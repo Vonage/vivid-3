@@ -14,7 +14,7 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
  */
 export type FabConnotation = Extract<
 	Connotation,
-	Connotation.CTA | Connotation.Accent
+	Connotation.CTA | Connotation.Accent | Connotation.Announcement
 >;
 
 /**
@@ -22,7 +22,10 @@ export type FabConnotation = Extract<
  *
  * @public
  */
-export type FABSize = Extract<Size, Size.Normal | Size.Expanded>;
+export type FABSize = Extract<
+	Size,
+	Size.Condensed | Size.Normal | Size.Expanded
+>;
 
 /**
  * @public

@@ -1,0 +1,59 @@
+{
+  "settingsInheritedFrom": "vonage/whitesource-config@api-platform",
+  "remediateSettings": {
+    "enableRenovate": true,
+    "extends": [
+      "config:base",
+      "github>whitesource/merge-confidence:beta",
+      ":semanticCommits",
+      ":rebaseStalePrs"
+    ],
+    "baseBranches": [
+      "main"
+    ],
+    "dependencyDashboard": true,
+    "dependencyDashboardTitle": "Mend Vivid 3",
+    "dependencyDashboardOSVVulnerabilitySummary": "unresolved",
+    "lockFileMaintenance": {
+      "enabled": true,
+      "schedule": [
+        "before 4am on monday"
+      ]
+    },
+    "major": {
+      "dependencyDashboardApproval": true
+    },
+    "packageRules": [
+      {
+        "matchUpdateTypes": [
+          "patch",
+          "minor"
+        ],
+        "labels": [
+          "patch release",
+          "mend"
+        ]
+      },
+      {
+        "matchDepTypes": [
+          "devDependencies"
+        ],
+        "matchUpdateTypes": [
+          "patch",
+          "minor"
+        ],
+        "labels": [
+          "patch release",
+          "mend"
+        ],
+        "groupName": "devDependencies (non-major)",
+        "groupSlug": "dev-dependencies-non-major"
+      }
+    ],
+    "minimumReleaseAge": "5 days",
+    "osvVulnerabilityAlerts": true,
+    "prConcurrentLimit": 2,
+    "separateMinorPatch": false,
+    "separateMultipleMajor": true
+  }
+}

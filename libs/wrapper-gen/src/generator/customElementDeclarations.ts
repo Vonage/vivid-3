@@ -122,6 +122,7 @@ const getFastFormAssociatedDeclaration = (className: string): Declaration => {
 				description: `The initial value of the form. This value sets the \`value\` property
 only when the \`value\` property has not been explicitly set.`,
 				type: { text: 'string' },
+				fieldName: 'initialValue',
 			},
 			{
 				name: 'current-value',
@@ -131,6 +132,7 @@ to set the \`value\` property through both property assignment and the
 in UI libraries that bind data through the .setAttribute() API
 and don't support IDL attribute binding.`,
 				type: { text: 'string' },
+				fieldName: 'value',
 			},
 			{
 				name: 'name',
@@ -160,6 +162,7 @@ and don't support IDL attribute binding.`,
 				name: 'checked',
 				description: `Provides the default checkedness of the input element`,
 				type: { text: 'boolean' },
+				fieldName: 'defaultChecked',
 			},
 			{
 				name: 'current-checked',
@@ -169,6 +172,7 @@ to set the \`checked\` property through both property assignment and the
 in UI libraries that bind data through the .setAttribute() API
 and don't support IDL attribute binding.`,
 				type: { text: 'boolean' },
+				fieldName: 'checked',
 			}
 		);
 	}
@@ -190,7 +194,7 @@ function inheritItems<T>(
 	];
 }
 
-export const getAttributeName = (attribute: schema.Attribute): string => {
+const getAttributeName = (attribute: schema.Attribute): string => {
 	const name = attribute.name || attribute.fieldName;
 	if (!name) {
 		throw new Error('Attribute must have a name or a fieldName');
@@ -349,7 +353,8 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			name: 'columnDefinition',
 			description:
 				'Extends the data grid cell definition to hold more options.',
-			type: { text: 'any' },
+			type: { text: 'object' },
+			fieldName: 'columnDefinition',
 		},
 	],
 	Localized: [],
@@ -360,9 +365,11 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: {
 				text: 'string | HTMLElement',
 			},
+			fieldName: 'anchor',
 		},
 	],
 	TrappedFocus: [],
+	DelegatesARIATextbox: [],
 };
 
 /**

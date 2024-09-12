@@ -52,6 +52,32 @@ const OpenImperativeTemplate = () => ({
 });
 export const OpenImperative = OpenImperativeTemplate.bind({});
 
+const OpenVModelTemplate = () => ({
+	components: { VDialog },
+	setup() {
+		const open = ref(false);
+		return { open };
+	},
+	template: `<div>
+    <div>open: {{open}} <button @click="open = !open">toggle</button></div>
+    <VDialog :open="open" @update:open="open = $event" headline="Dialog"/>
+  </div>`,
+});
+export const OpenVModel = OpenVModelTemplate.bind({});
+
+const OpenVModelVue3OnlyTemplate = () => ({
+	components: { VDialog },
+	setup() {
+		const open = ref(false);
+		return { open };
+	},
+	template: `<div>
+    <div>open: {{open}} <button @click="open = !open">toggle</button></div>
+    <VDialog v-model:open="open" headline="Dialog"/>
+  </div>`,
+});
+export const OpenVModelVue3Only = OpenVModelVue3OnlyTemplate.bind({});
+
 const SubtitleTemplate = () => ({
 	components: { VDialog },
 	template: `

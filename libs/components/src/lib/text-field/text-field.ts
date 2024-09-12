@@ -1,7 +1,7 @@
 import { TextField as FoundationTextfield } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { memoizeWith } from 'ramda';
-import type { Appearance, Shape } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	type ErrorText,
@@ -21,6 +21,8 @@ export type TextFieldAppearance = Extract<
 	Appearance.Fieldset | Appearance.Ghost
 >;
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+
+export type TextFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 // Safari does not support styling the `::placeholder` pseudo-element on slotted input
 // See bug: https://bugs.webkit.org/show_bug.cgi?id=223814
@@ -74,7 +76,8 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  * @slot leading-action-items - Used to add action items to the start of the text-field.
  * @slot action-items - Used to add action items to the end of the text-field.
  * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
- * @vueModel modelValue current-value input `(event.target as HTMLInputElement).value`
+ * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
+ * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  */
 @errorText
 @formElements
@@ -82,6 +85,15 @@ export class TextField extends FoundationTextfield {
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
 	@attr autoComplete?: string;
+
+	/**
+	 * The size the text-field should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr() scale?: TextFieldSize;
 
 	/**
 	 *

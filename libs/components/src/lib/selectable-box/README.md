@@ -7,7 +7,7 @@ Represents a content box to used in a group where one or more can be selected.
 ```
 
 ```html preview
-<vwc-selectable-box control-aria-label="Box 1">Box content</vwc-selectable-box>
+<vwc-selectable-box aria-label="Box 1">Box content</vwc-selectable-box>
 ```
 
 ## Members
@@ -141,9 +141,9 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 <div class="table-wrapper">
 
-| Name     | Description                                                     |
-| -------- | --------------------------------------------------------------- |
-| `change` | Fires a custom `change` event when the `checked` state changes. |
+| Name     | Type                     | Bubbles | Composed | Description                          |
+| -------- | ------------------------ | ------- | -------- | ------------------------------------ |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the checked state changes |
 
 </div>
 

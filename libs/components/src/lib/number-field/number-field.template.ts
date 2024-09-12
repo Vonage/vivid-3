@@ -59,6 +59,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 			<div class="control-buttons"
 			     ?inert="${(x) => x.disabled || x.readOnly}">
 				<${buttonTag} id="subtract" icon="minus-line"
+								?disabled="${(x) => x.disabled || x.readOnly}"
 								aria-label=${(x) =>
 									x.decrementButtonAriaLabel ||
 									x.locale.numberField.decrementButtonLabel}
@@ -69,6 +70,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 					            @click="${(x) => x.stepDown()}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 				<${buttonTag} id="add" icon="plus-line"
+								?disabled="${(x) => x.disabled || x.readOnly}"
 								aria-label=${(x) =>
 									x.incrementButtonAriaLabel ||
 									x.locale.numberField.incrementButtonLabel}
@@ -101,12 +103,10 @@ export const NumberFieldTemplate: (
 						id="control"
 						@input="${(x) => x.handleTextInput()}"
 						@change="${(x) => x.handleChange()}"
+						@keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
 						?autofocus="${(x) => x.autofocus}"
 						?disabled="${(x) => x.disabled}"
 						list="${(x) => x.list}"
-						step="${(x) => (x.step ? x.step : null)}"
-						max="${(x) => x.max}"
-						min="${(x) => x.min}"
 						maxlength="${(x) => x.maxlength}"
 						minlength="${(x) => x.minlength}"
 						placeholder="${(x) => x.placeholder}"
@@ -116,7 +116,7 @@ export const NumberFieldTemplate: (
 						autocomplete="${(x) => x.autoComplete}"
 						name="${(x) => x.name}"
 						?spellcheck="${(x) => x.spellcheck}"
-						:value="${(x) => x.value}"
+						:value="${(x) => x._presentationValue}"
 						type="text"
 						aria-atomic="${(x) => x.ariaAtomic}"
 						aria-busy="${(x) => x.ariaBusy}"

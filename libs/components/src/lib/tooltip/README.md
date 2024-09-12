@@ -133,25 +133,25 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the too
 
 ## CSS Variables
 
-### Inline Size
+### Max Inline Size
 
-Use the `--tooltip-inline-size` variable to set the tooltip's inline size.
+Use the `--tooltip-max-inline-size` variable to set the tooltip's max inline size.
 
-- Default: `auto`
+- Default: `30ch`
 
-```html preview center 230px
+```html preview center 300px
 <style>
 	.tooltip {
-		--tooltip-inline-size: 160px;
+		--tooltip-max-inline-size: 40ch;
 	}
 </style>
 
-<vwc-button id="button" icon="info-line" shape="pill"></vwc-button>
 <vwc-tooltip
-	anchor="button"
-	text="I'm a tooltip with long text so my inline size is 160px"
+	text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device."
 	class="tooltip"
-></vwc-tooltip>
+>
+	<vwc-button slot="anchor" icon="info-line" shape="pill"></vwc-button>
+</vwc-tooltip>
 ```
 
 ## Caveat

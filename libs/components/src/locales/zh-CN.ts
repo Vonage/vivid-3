@@ -3,6 +3,10 @@ import type { Locale } from '../shared/localization/Locale';
 
 /* eslint-disable max-len */
 const zhCN: Locale = {
+	lang: 'zh-CN',
+	common: {
+		useCommaAsDecimalSeparator: false,
+	},
 	datePicker: {
 		months: {
 			name: [
