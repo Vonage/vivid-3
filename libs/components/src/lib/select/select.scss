@@ -51,7 +51,9 @@ $low-ink-color: --_low-ink-color;
 	@include connotation.connotation(select);
 
 	& {
-		#{variables.$select-icon-size}: 20px;
+		#{variables.$select-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2
+		);
 
 		display: flex;
 		align-items: center;
@@ -63,15 +65,17 @@ $low-ink-color: --_low-ink-color;
 		color: var(#{appearance.get-appearance-token(text)});
 		font: var(#{constants.$vvd-typography-base});
 		gap: 8px;
-		padding-inline: 16px;
+		padding-inline: calc(#{size.$vvd-size-normal} / 2.5);
 		transition: box-shadow 0.2s, background-color 0.2s;
 	}
 
 	&.size-condensed {
-		#{variables.$select-icon-size}: 16px;
+		#{variables.$select-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		);
 
 		block-size: #{size.$vvd-size-condensed};
-		padding-inline: 12px;
+		padding-inline: calc(#{size.$vvd-size-super-condensed} / 2);
 
 		& .chevron {
 			font-size: 12px;
