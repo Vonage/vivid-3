@@ -11,6 +11,7 @@ import { FASTElement, customElement, html, css, attr } from '@microsoft/fast-ele
 			justify-content: start;
 			border-left: 2px solid var(--do-dont-color);
 			padding-inline-start: 24px;
+			margin-block-start: 24px;
 		}
 
 		:host([dont]) {
@@ -29,11 +30,17 @@ import { FASTElement, customElement, html, css, attr } from '@microsoft/fast-ele
 		.cbd-container p:not(:empty) {
 			margin-block-start: 0;
 		} 
+
+		@media (width >= 600px) {
+			:host {
+				margin-block-start: 0;
+			}
+		}
 	`,
 	template: html<DocsDo>`
 		<h3>
 			<vwc-icon name="${(x) => x.dont ? 'close-circle-line' : 'check-circle-line'}" size="0"></vwc-icon>
-			Do${(x) => x.dont ? "n't" : ''} ${(x) => x.headline}
+			${(x) => x.headline ? x.headline : `Do${x.dont ? `n't` : ''}`}
 		</h3>
 		<div>
 			<slot></slot>

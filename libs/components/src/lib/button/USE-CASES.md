@@ -1,23 +1,16 @@
-## Use Cases
+## Toggle
 
-## Toggle (use cases)
-
-Buttons may be toggled. The icon and label represents the change in the state. For example mic on and mic off or a user’s selection such as add to favorite.
+Buttons may be toggled. The `active` prop represents the change in the state along with the icon and label.
 
 ```html preview center 72px
-<style>
-	.wrapper {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
-</style>
 <div class="wrapper">
 	<vwc-button
 		id="mute"
-		icon="microphone-solid"
+		icon="mic-mute-solid"
 		appearance="filled"
-		aria-label="Mute"
+		label="Unmute"
+		aria-pressed="true"
+		active
 	></vwc-button>
 	<vwc-button
 		id="favorite"
@@ -28,91 +21,151 @@ Buttons may be toggled. The icon and label represents the change in the state. F
 </div>
 
 <script>
-	document.getElementById('mute').addEventListener('click', () => {
-		mute.ariaPressed = !mute.ariaPressed;
-		mute.icon = mute.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
-		mute.ariaLabel = mute.ariaPressed ? 'Unmute' : 'Mute';
+	function toggleButton(e, { label, icon, pressedLabel, pressedIcon }) {
+		const pressed = !e.target.ariaPressed;
+		e.target.ariaPressed = pressed;
+		e.target.icon = pressed ? pressedIcon : icon;
+		e.target.label = pressed ? pressedLabel : label;
+		e.target.active = pressed
+	}
+	
+	document.getElementById('mute').addEventListener('click', (e) => {
+		toggleButton(e, {
+			label: 'Mute',
+			icon: 'microphone-line',
+			pressedLabel: 'Unmute',
+			pressedIcon: 'mic-mute-solid',
+		});
 	});
 
-	document.getElementById('favorite').addEventListener('click', () => {
-		favorite.ariaPressed = !favorite.ariaPressed;
-		favorite.icon = favorite.ariaPressed ? 'star-solid' : 'star-line';
-		favorite.label = favorite.ariaPressed ? 'Unfavorite' : 'Favorite';
+	document.getElementById('favorite').addEventListener('click', (e) => {
+		toggleButton(e, {
+			label: 'Favourite',
+			icon: 'star-line',
+			pressedLabel: 'Unfavourite',
+			pressedIcon: 'star-solid',
+		});
 	});
 </script>
+
+<style>
+	.wrapper {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+</style>
 ```
 
-<details>
-<summary>Code</summary>
+<vwc-note connotation="information" icon="info-line">
 
-The `aria-pressed` attribute is used to indicate the state of the button to assistive technologies.
+Use the `aria-pressed` attribute to indicate the state of the button to assistive technologies.
 
-</details>
+</vwc-note>
 
-### Toggle Button
+## Custom Width
+
+A button's width can be easily customised by attaching styles to the button component directly.
 
 ```html preview
 <vwc-button
-	id="button"
-	connotation="cta"
-	shape="pill"
-	icon="microphone-solid"
-	aria-label="Mute"
+	appearance="filled"
+	label="Full width button"
+	class="full-width"
+></vwc-button>
+<br />
+<vwc-button
+	appearance="outlined"
+	label="Custom width button"
+	class="custom-width"
 ></vwc-button>
 
-<script>
-	document.getElementById('button').addEventListener('click', () => {
-		button.ariaPressed = !button.ariaPressed;
-		button.icon = button.ariaPressed ? 'mic-mute-solid' : 'microphone-solid';
-		button.ariaLabel = button.ariaPressed ? 'Unmute' : 'Mute';
-	});
-</script>
-```
-
-### Full-width Button
-
-```html preview
 <style>
-	.button-width {
+	.full-width {
 		display: block;
 	}
-</style>
-<vwc-button
-	class="button-width"
-	label="I'm full width"
-	icon="message-sent-line"
-	shape="pill"
-	appearance="filled"
-></vwc-button>
-```
 
-### Layout
-
-A buttons may be wider than it's content, in which case the label and icon will be centered within the button.
-
-```html preview
-<style>
-	vwc-button {
-		width: 300px;
+	.custom-width {
+		width: 160px;
 	}
 </style>
-<vwc-button icon="compose-line" appearance="filled" label="Edit"></vwc-button>
 ```
 
-If the button is too narrow to fit the content, the label will be truncated with an ellipsis. Buttons text will never wrap to a new line.
+<vwc-note connotation="warning" icon="warning-line" headline="Use custom width buttons with caution">
 
-```html preview
+When there is not enough space for the `label` text, the content will be truncated as in the example above. 
+
+</vwc-note>
+
+## Toolbars
+
+Toolbars can be created using ghost buttons contained inside an [action-group](/components/action-group) component. 
+
+```html preview 115px
+<div class="container">
+	<vwc-action-group role="region" aria-label="Main toolbar">
+		<vwc-button size="super-condensed" label="File"></vwc-button>
+		<vwc-button size="super-condensed" label="Edit"></vwc-button>
+		<vwc-button size="super-condensed" label="View"></vwc-button>
+		<vwc-button size="super-condensed" label="Help"></vwc-button>
+	</vwc-action-group>
+
+	<vwc-action-group role="region" aria-label="Text formatting">
+		<vwc-tooltip text="Bold" placement="bottom-start">
+			<vwc-button
+				icon="bold-solid"
+				onclick="onClick(event)"
+				slot="anchor"
+				size="condensed"
+			></vwc-button>
+		</vwc-tooltip>
+		<vwc-tooltip text="Italic">
+			<vwc-button
+				aria-pressed="true"
+				slot="anchor"
+				icon="italic-solid"
+				size="condensed"
+				active
+				onclick="onClick(event)"
+			></vwc-button>
+		</vwc-tooltip>
+		<vwc-tooltip text="Underline">
+			<vwc-button
+				icon="underline-solid"
+				onclick="onClick(event)"
+				size="condensed"
+				slot="anchor"
+			></vwc-button>
+		</vwc-tooltip>
+		<vwc-tooltip text="Strike through" placement="bottom-end">
+			<vwc-button
+				icon="strikethrough-solid"
+				size="condensed"
+				onclick="onClick(event)"
+				slot="anchor"
+			></vwc-button>
+		</vwc-tooltip>
+	</vwc-action-group>
+</div>
+
+<script>
+	function onClick(event) {
+		const btn = event.currentTarget;
+		if (btn.hasAttribute('active')) {
+			btn.removeAttribute('active');
+			btn.setAttribute('aria-pressed', 'false');
+		} else {
+			btn.setAttribute('active', '');
+			btn.setAttribute('aria-pressed', 'true');
+		}
+	}
+</script>
 <style>
-	vwc-button {
-		width: 170px;
+	.container { 
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		align-items: start;
 	}
 </style>
-<vwc-button
-	icon="compose-line"
-	appearance="filled"
-	label="This is a very long button label"
-></vwc-button>
 ```
-
-A buttons height is determined by the `size` option and cannot be changed.
-

@@ -329,7 +329,6 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </vwc-note>
 
 <docs-do-dont headline="Use Icon-only buttons when space is limited" reverse>
-
 <div slot="description">
 
 - Examples: toolbar or in the `meta` slot of a [card](/components/card)
@@ -339,32 +338,34 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </div>
 <docs-do>
 
-```html preview center example 150px
-<vwc-action-group role="region" aria-label="Text Alignment">
-  <vwc-tooltip text="Left align" placement="bottom-start">
-    <vwc-button
-      icon="align-left-line"
-      onclick="onClick(event)"
-      slot="anchor"
-    ></vwc-button>
-  </vwc-tooltip>
-  <vwc-tooltip text="Center">
-    <vwc-button
-      aria-pressed="true"
-      slot="anchor"
-      icon="align-center-line"
-      appearance="filled"
-      onclick="onClick(event)"
-    ></vwc-button>
-  </vwc-tooltip>
-  <vwc-tooltip text="Right align" placement="bottom-end">
-    <vwc-button
-      icon="align-right-line"
-      onclick="onClick(event)"
-      slot="anchor"
-    ></vwc-button>
-  </vwc-tooltip>
-</vwc-action-group>
+```html preview example 120px
+<div class="container">
+  <vwc-action-group role="region" aria-label="Text Alignment">
+    <vwc-tooltip text="Left align" placement="bottom-start">
+      <vwc-button
+        icon="align-left-line"
+        onclick="onClick(event)"
+        slot="anchor"
+      ></vwc-button>
+    </vwc-tooltip>
+    <vwc-tooltip text="Center">
+      <vwc-button
+        aria-pressed="true"
+        slot="anchor"
+        icon="align-center-line"
+        appearance="filled"
+        onclick="onClick(event)"
+      ></vwc-button>
+    </vwc-tooltip>
+    <vwc-tooltip text="Right align" placement="bottom-end">
+      <vwc-button
+        icon="align-right-line"
+        onclick="onClick(event)"
+        slot="anchor"
+      ></vwc-button>
+    </vwc-tooltip>
+  </vwc-action-group>
+</div>
 
 <script>
 	function onClick(event) {
@@ -375,6 +376,13 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 		event.currentTarget.setAttribute('appearance', 'filled');
 	}
 </script>
+
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+</style>
 ```
 
 </docs-do>
@@ -434,8 +442,68 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 
 ## Size
 
+<docs-do-dont headline="Use smaller size buttons when space is limited" reverse>
+
+<div slot="description">
+
+The smaller size buttons (`condensed` and `super-condensed`) are useful when used inside other components (inside [data-grid-cell](/components/data-grid/#cell) or [action-group](/components/action-group/) for a [toolbar](/components/button/use-cases/#toolbars)) as they take up less space.
+
+</div>
+<docs-do>
+
+```html preview example
+<div class="container">
+  <vwc-action-group role="region" aria-label="Main toolbar">
+    <vwc-button size="super-condensed" label="File"></vwc-button>
+    <vwc-button size="super-condensed" label="Edit"></vwc-button>
+    <vwc-button size="super-condensed" label="View"></vwc-button>
+    <vwc-button size="super-condensed" label="Help"></vwc-button>
+  </vwc-action-group>
+</div>
+<div class="container">
+  <vwc-data-grid>
+    <vwc-data-grid-row row-type="header">
+      <vwc-data-grid-cell cell-type="columnheader">User</vwc-data-grid-cell>
+      <vwc-data-grid-cell class="controls" cell-type="columnheader"></vwc-data-grid-cell>
+    </vwc-data-grid-row>
+    <vwc-data-grid-row>
+      <vwc-data-grid-cell>Joe</vwc-data-grid-cell>
+      <vwc-data-grid-cell class="controls">
+        <vwc-button
+          appearance="outlined"
+          size="condensed"
+          icon="edit-line"
+          aria-label="Edit"
+        ></vwc-button>
+        <vwc-button
+          appearance="outlined"
+          size="condensed"
+          icon="delete-line"
+          aria-label="Delete"
+          connotation="alert"
+        ></vwc-button>
+      </vwc-data-grid-cell>
+    </vwc-data-grid-row>
+  </vwc-data-grid>
+</div>
+
+<style>
+  .conainer {
+    display: block;
+    padding: 8px 0;
+  }
+
+  .controls {
+    width: 5.75rem;
+  }
+</style>
+```
+
+</docs-do>
+</docs-do-dont>
+
 <docs-do-dont>
-<docs-do slot="description" headline="use same button size for adjacent buttons">
+<docs-do slot="description" headline="Use same button size for adjacent buttons">
 
 ```html preview center example 290px
 <vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side">
@@ -461,7 +529,7 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 ```
 
 </docs-do>
-<docs-do dont headline="use different size buttons for adjacent buttons">
+<docs-do dont headline="Don't use different size buttons for adjacent buttons">
 
 ```html preview center example 290px
 <vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side">
@@ -490,47 +558,97 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </docs-do>
 </docs-do-dont>
 
-## Disabled 
-
-<vwc-note connotation="warning" icon="warning-line" headline="Disabled buttons should be used with caution">
-
-Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/) instead of disabled buttons.
-
-</vwc-note>
-
-Ensure that the user is able to understand why the action is disabled and what they need to do to enable it.
-
 ## Button Groups
 
 A button group is a grouping of buttons whose actions are related to each other.
 
+### Alignment and Positioning
+
+In general, the primary button placement should match the alignment of the button group. For example, right aligned button groups place the primary button on the right. Left aligned button groups place the primary button on the left.
+
 <docs-do-dont>
-<docs-do headline="use only two appearances" caption="The top-level action within a button group should be a connotation or primary button. The other buttons should always be secondary buttons of the same style (outlined or ghost)." slot="description">
+<docs-do headline="Use right align buttons for focussed tasks" caption="Eg. dialogs, onboarding and other areas with less content." slot="description">
+
+```html preview center example 290px
+<vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side">
+  <div slot="body">Are you sure you want to delete this appointment?</div>
+  <vwc-button
+    appearance="outlined"
+    label="Cancel"
+    slot="action-items"
+  ></vwc-button>
+  <vwc-button
+    label="Delete"
+    appearance="filled"
+    connotation="alert"
+    slot="action-items"
+  ></vwc-button>
+</vwc-dialog>
+
+<style>
+	vwc-dialog {
+		--dialog-max-inline-size: 330px;
+	}
+</style>
+```
+
+</docs-do>
+
+<docs-do headline="Use left align buttons for full-page tasks" caption="Eg. full-page forms or other screens with a lot of full-page content.">
+
+```html preview example 290px
+<form>
+  <vwc-layout gutters="small" row-spacing="small">
+    <vwc-text-field label="First name"></vwc-text-field>
+    <vwc-text-field label="Last name"></vwc-text-field>
+    <div class="container">
+      <vwc-button appearance="filled" label="Submit" type="submit"></vwc-button>
+      <vwc-button appearance="outlined" label="Reset" type="reset"></vwc-button>
+    </div>
+  </vwc-layout>
+</form>
+
+<style>
+  .container {
+    display: flex;
+    gap: 8px;
+    padding-block: 16px;
+  }
+</style>
+```
+
+</docs-do>
+</docs-do-dont>
+
+### Appearance and connotation
+
+<docs-do-dont>
+<docs-do headline="Use a maximum of two appearances" caption="The top-level action within a button group should be a connotation or primary button. The other buttons should always be secondary buttons of the same style (outlined or ghost)." slot="description">
   
 ```html preview example 195px
 <div class="container">
   <vwc-button
-    label="Cancel"
-    appearance="ghost"
-  ></vwc-button>
-  <vwc-button
     label="Confirm"
     appearance="filled"
+  ></vwc-button>
+  <vwc-button
+    label="Cancel"
+    appearance="ghost"
   ></vwc-button>
 </div>
 <div class="container">
   <vwc-button
-    label="Undo"
-    appearance="outlined"
+    label="Complete"
+    appearance="filled"
+    connotation="cta"
   ></vwc-button>
   <vwc-button
     label="Save"
     appearance="outlined"
   ></vwc-button>
   <vwc-button
-    label="Complete"
-    appearance="filled"
-    connotation="cta"
+    label="Undo"
+    appearance="outlined"
   ></vwc-button>
 </div>
 <div class="container">
@@ -555,22 +673,22 @@ A button group is a grouping of buttons whose actions are related to each other.
 
 </docs-do>
 
-<docs-do dont headline="use more than two appearances">
+<docs-do dont headline="Don't use more than two appearances">
 
 ```html preview example 135px
 <div class="container">
   <vwc-button
-    label="Undo"
-    appearance="ghost"
+    label="Complete"
+    appearance="filled"
+    connotation="cta"
   ></vwc-button>
   <vwc-button
     label="Save"
     appearance="outlined"
   ></vwc-button>
   <vwc-button
-    label="Complete"
-    appearance="filled"
-    connotation="cta"
+    label="Undo"
+    appearance="ghost"
   ></vwc-button>
 </div>
 <div class="container">
@@ -597,21 +715,26 @@ A button group is a grouping of buttons whose actions are related to each other.
 </docs-do-dont>
 
 <docs-do-dont>
-<docs-do slot="description" headline="use only one connotation" caption="Only the most important action in the group may have a connotation.">
+<docs-do slot="description" headline="Use only one connotation" caption="Only the most important action in the group may have a connotation.">
 
 ```html preview example 135px
 <div class="container">
-  <vwc-button
-    label="Cancel"
-    appearance="outlined"
-  ></vwc-button>
   <vwc-button
     label="Delete"
     appearance="outlined"
     connotation="alert"
   ></vwc-button>
+  <vwc-button
+    label="Cancel"
+    appearance="outlined"
+  ></vwc-button>
 </div>
 <div class="container">
+  <vwc-button
+    label="Submit"
+    appearance="filled"
+    connotation="cta"
+  ></vwc-button>
   <vwc-button
     label="New"
     appearance="ghost"
@@ -619,11 +742,6 @@ A button group is a grouping of buttons whose actions are related to each other.
   <vwc-button
     label="Edit"
     appearance="ghost"
-  ></vwc-button>
-  <vwc-button
-    label="Submit"
-    appearance="filled"
-    connotation="cta"
   ></vwc-button>
 </div>
 
@@ -637,7 +755,7 @@ A button group is a grouping of buttons whose actions are related to each other.
 ```
 
 </docs-do>
-<docs-do dont headline="use more than one connotation">
+<docs-do dont headline="Don't use more than one connotation">
 
 ```html preview example 135px
 <div class="container">
@@ -654,6 +772,11 @@ A button group is a grouping of buttons whose actions are related to each other.
 </div>
 <div class="container">
   <vwc-button
+    label="Submit"
+    appearance="filled"
+    connotation="cta"
+  ></vwc-button>
+  <vwc-button
     label="New"
     appearance="outlined"
     connotation="success"
@@ -661,11 +784,6 @@ A button group is a grouping of buttons whose actions are related to each other.
   <vwc-button
     label="Help"
     appearance="outlined"
-  ></vwc-button>
-  <vwc-button
-    label="Submit"
-    appearance="filled"
-    connotation="cta"
   ></vwc-button>
 </div>
 
@@ -681,8 +799,10 @@ A button group is a grouping of buttons whose actions are related to each other.
 </docs-do>
 </docs-do-dont>
 
+### Ghost buttons
+
 <docs-do-dont>
-<docs-do slot="description" headline="use ghost buttons inside a container">
+<docs-do slot="description" headline="Use ghost buttons inside a container">
 
 ```html preview example 110px
 <vwc-action-group>
@@ -704,7 +824,7 @@ A button group is a grouping of buttons whose actions are related to each other.
 ```
 
 </docs-do>
-<docs-do dont headline="use ghost buttons without a container">
+<docs-do dont headline="Don't use ghost buttons without a container">
 
 ```html preview example 110px
 <div class="container">
@@ -726,3 +846,13 @@ A button group is a grouping of buttons whose actions are related to each other.
 
 </docs-do>
 </docs-do-dont>
+
+## Disabled 
+
+<vwc-note connotation="warning" icon="warning-line" headline="Disabled buttons should be used with caution">
+
+Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/) instead of disabled buttons.
+
+</vwc-note>
+
+Ensure that the user is able to understand why the action is disabled and what they need to do to enable it.

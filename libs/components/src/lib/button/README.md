@@ -1,16 +1,27 @@
-## Import
+## Install
 
 <vwc-tabs>
-<vwc-tab label="Import"></vwc-tab>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VButton appearance="filled" label="Click me" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
 ```js
 import '@vonage/vivid/button';
 ```
 
-</vwc-tab-panel>
-<vwc-tab label="Register Function"></vwc-tab>
-<vwc-tab-panel>
+or, if you need to use a unique prefix:
 
 ```js
 import { registerButton } from '@vonage/vivid';

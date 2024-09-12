@@ -327,7 +327,7 @@ vwc-note ~ vwc-note {
 /* #startregion table */
 
 .table-wrapper {
-	display: inline-flex;
+	display: flex;
 	box-sizing: border-box;
 	padding-block: 8px;
 }
@@ -341,6 +341,7 @@ vwc-note ~ vwc-note {
 
 table {
 	border-collapse: collapse;
+	width: 100%;
 }
 
 thead > tr {
@@ -357,6 +358,7 @@ th {
 	max-inline-size: 80ch;
 	text-align: left;
 	word-break: normal;
+	vertical-align: top;
 }
 
 /* #endregion table */

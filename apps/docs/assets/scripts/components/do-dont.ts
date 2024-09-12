@@ -20,14 +20,14 @@ import {
 		}
 
 		h3 {
-			margin-block: 0;
+			margin-block-start: 16px;
 		}
 
 		.description ul {
 			margin-block-start: 0;
 		}
 
-		@media (width >= 550px) {
+		@media (width >= 600px) {
 			:host {
 				display: flex;
 				gap: 16px;

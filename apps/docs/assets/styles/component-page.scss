@@ -9,8 +9,7 @@
 	nav {
 		border-bottom: 1px solid var(--vvd-color-neutral-200);
 		background: var(--vvd-color-canvas);
-		overflow: auto;
-
+		
 		ul,
 		li {
 			all: unset;
@@ -18,7 +17,7 @@
 
 		ul {
 			display: flex;
-			flex-wrap: nowrap;
+			flex-wrap: wrap;
 			margin-bottom: -1px;
 		}
 
@@ -93,11 +92,5 @@
 		padding: 12px;
 		background-color: var(--vvd-color-neutral-50);
 		cursor: pointer;
-	}
-}
-
-@media (width >= 1280px) {
-	.code-example-wrapper {
-		gap: 48px;
 	}
 }
