@@ -1,0 +1,15 @@
+---
+tags: components
+pagination:
+  data: componentsNew
+  size: 1
+  alias: component
+permalink: "components/{{ component | componentSlug }}/code/"
+layout: component.njk
+eleventyComputed:
+  githubEditLink: "{{ component.code | githubEditLink }}"
+---
+
+<docs-code-switch></docs-code-switch>
+
+{% renderFile component.code %}

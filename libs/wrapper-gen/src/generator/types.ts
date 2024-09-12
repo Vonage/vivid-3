@@ -13,6 +13,9 @@ export const isNumberLiteral = (typeStr: string) =>
 export const isBooleanLiteral = (typeStr: string) =>
 	typeStr.match(/^true|false$/);
 
+/// Removes any type parameters, e.g. CustomEvent<number> -> CustomEvent
+const stripTypeParameters = (typeStr: string) => typeStr.replace(/<.*>/, '');
+
 const vuePropTypeFor = (typeStr: string) => {
 	if (isStringLiteral(typeStr)) {
 		return 'String';
@@ -24,7 +27,9 @@ const vuePropTypeFor = (typeStr: string) => {
 		return 'Boolean';
 	}
 
-	switch (typeStr) {
+	const baseType = stripTypeParameters(typeStr);
+
+	switch (baseType) {
 		case 'string':
 			return 'String';
 		case 'number':
@@ -33,13 +38,18 @@ const vuePropTypeFor = (typeStr: string) => {
 			return 'Boolean';
 		case 'string[]':
 			return 'Array';
+		case 'object':
+			return 'Object';
+		case 'Element[]':
+			return 'Array';
 		case 'Date':
 		case 'HTMLElement':
 		case 'Event':
 		case 'MouseEvent':
 		case 'FocusEvent':
 		case 'KeyboardEvent':
-			return typeStr;
+		case 'CustomEvent':
+			return baseType;
 		case 'any':
 		case 'unknown':
 		case 'undefined':
@@ -56,11 +66,36 @@ const resolveSingleType = (typeStr: string): TypeRef => ({
 	vuePropType: vuePropTypeFor(typeStr),
 });
 
+/// Splits a type union string along the '|' character, while respecting nested '<' and '>' brackets
+const splitTypeUnion = (typeStr: string): string[] => {
+	const unionMembers: string[] = [];
+
+	let bracketDepth = 0;
+	let currentMember = '';
+	for (const char of typeStr) {
+		if (char === '<') {
+			bracketDepth++;
+		} else if (char === '>') {
+			bracketDepth--;
+		}
+
+		if (char === '|' && bracketDepth === 0) {
+			unionMembers.push(currentMember.trim());
+			currentMember = '';
+		} else {
+			currentMember += char;
+		}
+	}
+
+	unionMembers.push(currentMember.trim());
+
+	return unionMembers;
+};
+
 export const makeTypeResolver =
 	(typeDefs: Record<string, TypeUnion>) =>
 	(typeStr = 'unknown', isAttribute = false): TypeUnion => {
-		let unionMembers = typeStr
-			.split('|')
+		let unionMembers = splitTypeUnion(typeStr)
 			.map((t) => t.trim())
 			.filter((t) => t.length > 0);
 

@@ -34,15 +34,19 @@ const Direction = {
 } as const;
 type Direction = typeof Direction[keyof typeof Direction];
 
+export type ThumbId = 'start' | 'end';
+
 /**
  * Base class for range-slider
  *
  * @component range-slider
  * @public
- * @event input:start - Event emitted when the start value changes
- * @event input:end - Event emitted when the end value changes
- * @vueModel start current-start input:start `(event.target as any).start`
- * @vueModel end current-end input:end `(event.target as any).end`
+ * @event {CustomEvent<undefined>} input:start - Event emitted when the start value changes
+ * @event {CustomEvent<undefined>} input:end - Event emitted when the end value changes
+ * @event {CustomEvent<undefined>} input - Event emitted when either the start or end value changes.
+ * @event {CustomEvent<undefined>} change - Event emitted when either the start or end value changes.
+ * @vueModel start start input:start `(event.target as any).start`
+ * @vueModel end end input:end `(event.target as any).end`
  */
 @formElements
 export class RangeSlider extends FormAssociatedRangeSlider {
@@ -320,11 +324,20 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	@attr connotation?: RangeSliderConnotation;
 
 	/**
+	 * Show current values on the thumbs.
+	 *
+	 * @public
+	 * HTML Attribute: pin
+	 */
+	@attr({ mode: 'boolean' }) pin = false;
+
+	/**
 	 * Custom function that generates a string for the component's "aria-valuetext" attribute based on the current value.
 	 *
 	 * @public
 	 */
-	@observable valueTextFormatter: (value: string) => string = (value) => value;
+	@observable valueTextFormatter: (value: string) => string = (value) =>
+		parseFloat(value).toLocaleString(this.locale.lang);
 
 	// --- Form handling ---
 
@@ -386,7 +399,28 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		};
 	}
 
-	#draggingThumb: false | 'start' | 'end' = false;
+	/**
+	 * @internal
+	 */
+	@observable _draggingThumb: false | ThumbId = false;
+
+	/**
+	 * @internal
+	 */
+	@observable _visiblyFocusedThumb: ThumbId | null = null;
+
+	/**
+	 * @internal
+	 */
+	@observable _hoveredThumb: ThumbId | null = null;
+
+	#getThumbId(thumb: HTMLElement): ThumbId {
+		return thumb === this._startThumbEl ? 'start' : 'end';
+	}
+
+	#getThumbIdFromEvent(e: Event): ThumbId {
+		return this.#getThumbId(e.target as HTMLElement);
+	}
 
 	/**
 	 * @internal
@@ -412,7 +446,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 				? ['right', 'width']
 				: ['bottom', 'height'];
 		const transition = `transition: ${
-			this.#draggingThumb ? 'none' : 'all 0.2s ease'
+			this._draggingThumb ? 'none' : 'all 0.2s ease'
 		};`;
 
 		this._startThumbCss = `${dirProp}: ${startOffsetPct}%; ${transition}`;
@@ -448,11 +482,29 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		return lerp(this.min, this.max, inverseLerp(minPos, maxPos, valuePos));
 	}
 
-	#roundToNearestStep(thumb: 'start' | 'end', value: number) {
+	#roundToNearestStep(thumb: ThumbId, value: number) {
 		return limit(
 			this.#thumbConstraints[thumb].min,
 			this.#thumbConstraints[thumb].max,
 			roundToStepValue(value - this.min, this.step) + this.min
+		);
+	}
+
+	#isNonVisibleFocus = false;
+	#focusThumbNonVisibly(thumb: HTMLElement) {
+		this.#isNonVisibleFocus = true;
+		thumb.focus();
+		this.#isNonVisibleFocus = false;
+	}
+
+	/**
+	 * @internal
+	 */
+	_isThumbPopupOpen(thumb: ThumbId) {
+		return (
+			this._visiblyFocusedThumb === thumb ||
+			this._hoveredThumb === thumb ||
+			this._draggingThumb === thumb
 		);
 	}
 
@@ -492,6 +544,14 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 				this.#onThumbMousedown,
 				{ passive: true }
 			);
+			this.#thumbs[thumb]!.addEventListener('mouseover', this.#onMouseOver, {
+				passive: true,
+			});
+			this.#thumbs[thumb]!.addEventListener('mouseout', this.#onMouseOut, {
+				passive: true,
+			});
+			this.#thumbs[thumb]!.addEventListener('focus', this.#onThumbFocus);
+			this.#thumbs[thumb]!.addEventListener('blur', this.#onThumbBlur);
 		}
 	}
 
@@ -506,6 +566,10 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 				'touchstart',
 				this.#onThumbMousedown
 			);
+			this.#thumbs[thumb]!.removeEventListener('mouseover', this.#onMouseOver);
+			this.#thumbs[thumb]!.removeEventListener('mouseout', this.#onMouseOut);
+			this.#thumbs[thumb]!.removeEventListener('focus', this.#onThumbFocus);
+			this.#thumbs[thumb]!.removeEventListener('blur', this.#onThumbBlur);
 		}
 	}
 
@@ -513,7 +577,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	 * @internal
 	 */
 	_onMouseDown(e: MouseEvent) {
-		if (this.disabled || this.#draggingThumb) {
+		if (this.disabled || this._draggingThumb) {
 			return;
 		}
 
@@ -532,11 +596,29 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		this.#updateValues({
 			[thumb]: `${this.#roundToNearestStep(thumb, value)}`,
 		});
-		this.#draggingThumb = thumb;
-		this.#thumbs[thumb]!.focus();
+		this._draggingThumb = thumb;
+		this.#focusThumbNonVisibly(this.#thumbs[thumb]!);
 
 		this.#registerDragHandlers();
 	}
+
+	#onThumbFocus = (e: FocusEvent) => {
+		if (!this.#isNonVisibleFocus) {
+			this._visiblyFocusedThumb = this.#getThumbIdFromEvent(e);
+		}
+	};
+
+	#onThumbBlur = () => {
+		this._visiblyFocusedThumb = null;
+	};
+
+	#onMouseOver = (e: MouseEvent) => {
+		this._hoveredThumb = this.#getThumbIdFromEvent(e);
+	};
+
+	#onMouseOut = () => {
+		this._hoveredThumb = null;
+	};
 
 	#onThumbMousedown = (event: MouseEvent | TouchEvent) => {
 		if (this.disabled || event.defaultPrevented) {
@@ -552,15 +634,15 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 			// Prevent both thumbs getting stuck at the max value
 			target = this._startThumbEl!;
 		}
-
-		target.focus();
-		this.#draggingThumb = target === this._startThumbEl ? 'start' : 'end';
+		this.#focusThumbNonVisibly(target);
+		this._draggingThumb = this.#getThumbId(target);
 
 		this.#registerDragHandlers();
 	};
 
 	#onThumbKeydown = (e: KeyboardEvent) => {
-		const thumb = e.target === this._startThumbEl ? 'start' : 'end';
+		const thumb = this.#getThumbIdFromEvent(e);
+		this._visiblyFocusedThumb = thumb;
 
 		if (e.key === keyHome) {
 			e.preventDefault();
@@ -601,7 +683,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	}
 
 	#onDragMove = (e: MouseEvent | TouchEvent) => {
-		if (this.disabled || e.defaultPrevented || !this.#draggingThumb) {
+		if (this.disabled || e.defaultPrevented || !this._draggingThumb) {
 			return;
 		}
 
@@ -613,15 +695,15 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 		const value = this.#calculateValueFromMouseEvent(sourceEvent);
 
 		this.#updateValues({
-			[this.#draggingThumb]: `${this.#roundToNearestStep(
-				this.#draggingThumb,
+			[this._draggingThumb]: `${this.#roundToNearestStep(
+				this._draggingThumb,
 				value
 			)}`,
 		});
 	};
 
 	#onDragEnd = () => {
-		this.#draggingThumb = false;
+		this._draggingThumb = false;
 		this.#unregisterDragListeners();
 	};
 }

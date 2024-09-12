@@ -167,11 +167,11 @@ Note that the text area has padding-block of 4 pixels and minimum height of 40 p
 
 That means that:
 
-`rows="1"` will have a height of 40 pixels (which is the minimum height).
+`rows="1"` will have a height of 40 pixels (which is the minimum height in vivid for elements).
 
-`rows="2"` will have a height of 48 pixels.
+`rows="2"` will have a height of 56 pixels.
 
-3 `rows` and on will add 20 pixels each (lineheight).
+3 `rows` and on will add 20 pixels each (addition of the line-height value).
 
 ```html preview
 <vwc-text-area rows="1" value="1 row text area"></vwc-text-area>
@@ -192,6 +192,16 @@ The `helper-text` slot allows you to use rich content as the text area's helper 
 	>
 </vwc-text-area>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                                          |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom 'change' event when the textarea emits a change event |
+
+</div>
 
 ## Accessibility
 

@@ -297,11 +297,7 @@ describe('Form Elements', function () {
 
 			instance.errorText = '';
 
-			expect(instance.setValidity).toHaveBeenLastCalledWith(
-				{ customError: false },
-				'',
-				undefined
-			);
+			expect(instance.setValidity).toHaveBeenLastCalledWith({}, '', undefined);
 			expect(instance.errorValidationMessage).toEqual(VALIDATION_MESSAGE);
 		});
 

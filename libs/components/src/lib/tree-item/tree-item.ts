@@ -8,6 +8,8 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * @component tree-item
  * @slot item - To specify a child tree item.
  * @slot icon - Add an icon to the component.
+ * @event {CustomEvent<HTMLElement>} expanded-change - Fires a custom 'expanded-change' event when the expanded state changes
+ * @event {CustomEvent<HTMLElement>} selected-change - Fires a custom 'selected-change' event when the selected state changes
  */
 export class TreeItem extends FastTreeItem {
 	/**

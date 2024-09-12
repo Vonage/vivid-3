@@ -3,7 +3,7 @@
 	border-radius-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
-	$connotations: accent success information alert warning,
+	$connotations: accent success information alert warning announcement,
 	$shades: primary primary-text,
 	$default: accent
 );
@@ -23,12 +23,14 @@ $alert-transition-delay: --transition-delay;
 	z-index: 10;
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: max-content;
-
-	// placement
 	inset-block-end: 0;
 	inset-inline: 0 0;
 	margin-block: 16px;
 	margin-inline: auto;
+	max-inline-size: var(#{variables.$alert-max-inline-size}, fit-content);
+	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
+	transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+		transform 150ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 
 	&.placement-top,
 	&.placement-top-start,
@@ -65,11 +67,6 @@ $alert-transition-delay: --transition-delay;
 		transform: scale(1);
 	}
 
-	max-inline-size: var(#{variables.$alert-max-inline-size}, fit-content);
-	min-inline-size: var(#{variables.$alert-min-inline-size}, 420px);
-	transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1) 0ms,
-		transform 150ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-
 	@media (width <= 768px) {
 		min-inline-size: var(#{variables.$alert-min-inline-size}, auto);
 	}
@@ -79,13 +76,15 @@ $alert-transition-delay: --transition-delay;
 	@include connotation.connotation(alert);
 	@include appearance.appearance;
 
-	display: flex;
-	align-items: center;
-	padding: 16px;
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{constants.$vvd-color-neutral-50});
-	color: var(#{constants.$vvd-color-canvas-text});
-	column-gap: 16px;
+	& {
+		display: flex;
+		align-items: center;
+		padding: 16px;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		background-color: var(#{constants.$vvd-color-neutral-50});
+		color: var(#{constants.$vvd-color-canvas-text});
+		column-gap: 16px;
+	}
 
 	.alert-text {
 		margin-inline-end: auto;
@@ -97,6 +96,13 @@ $alert-transition-delay: --transition-delay;
 
 		.main-text {
 			font: var(#{constants.$vvd-typography-base});
+		}
+
+		.headline + ::slotted([slot='main'i]:first-child)::before,
+		.main-text + ::slotted([slot='main'i]:first-child)::before {
+			display: block;
+			margin-top: 8px;
+			content: '';
 		}
 	}
 

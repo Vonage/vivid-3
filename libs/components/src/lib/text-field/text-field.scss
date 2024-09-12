@@ -33,20 +33,40 @@ $low-ink-color: --_low-ink-color;
 	// before showing the error.
 	@include appearance.appearance;
 	@include connotation.connotation(text-field);
-	#{variables.$text-field-gutter-start}: calc(
-		#{size.$vvd-size-normal} / 2.5
-	); // default of 16px
-	#{variables.$text-field-gutter-end}: calc(
-		#{size.$vvd-size-normal} / 2.5
-	); // default of 16px
-	#{variables.$text-field-icon-size}: calc(
-		#{size.$vvd-size-normal} / 2
-	); // default of 20px
 
-	display: inline-grid;
-	width: 100%;
-	gap: 4px;
-	grid-template-columns: min-content 1fr max-content;
+	& {
+		#{variables.$text-field-gutter-start}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // default of 16px
+		#{variables.$text-field-gutter-end}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // default of 16px
+		#{variables.$text-field-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2
+		); // default of 20px
+		#{variables.$text-field-block-size}: #{size.$vvd-size-normal};
+		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-normal};
+		#{variables.$text-field-pill-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
+
+		display: inline-grid;
+		width: 100%;
+		gap: 4px;
+		grid-template-columns: min-content 1fr max-content;
+	}
+
+	&.size-condensed {
+		#{variables.$text-field-gutter-start}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		); // default of 12px
+		#{variables.$text-field-gutter-end}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		); // default of 12px
+		#{variables.$text-field-icon-size}: calc(
+			#{size.$vvd-size-condensed} / 2
+		); // default of 16px
+		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
+		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+	}
 
 	@supports (user-select: none) {
 		user-select: none;
@@ -111,16 +131,16 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	.base > & {
-		block-size: #{size.$vvd-size-normal};
+		block-size: var(#{variables.$text-field-block-size});
 	}
 
 	/* Shape */
 	.base:not(.shape-pill) & {
-		border-radius: #{border-radius-variables.$border-radius-normal};
+		border-radius: var(#{variables.$text-field-border-radius});
 	}
 
 	.base.shape-pill & {
-		border-radius: #{border-radius-variables.$border-radius-extra-expanded};
+		border-radius: var(#{variables.$text-field-pill-border-radius});
 	}
 }
 
@@ -242,6 +262,7 @@ $low-ink-color: --_low-ink-color;
 		border-radius: inherit;
 		content: '';
 		inset: 0;
+		pointer-events: none;
 	}
 }
 

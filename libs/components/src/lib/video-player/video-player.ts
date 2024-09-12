@@ -3,18 +3,23 @@ import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
+import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
-function getPlaybackRatesArray(playbackRates: string): number[] {
-	if (playbackRates === '') return [];
-	const ratesArray: number[] = [];
-
-	playbackRates.split(',').forEach((numStr: string) => {
-		const num = Number(numStr);
-		if (!isNaN(num)) ratesArray.push(num);
-	});
-	return ratesArray;
+function appendProgressBarToStart(videoPlayer: any) {
+	const controlBar = videoPlayer.getChild('ControlBar');
+	const current = controlBar.getChild('CurrentTimeDisplay');
+	const progress = controlBar.getChild('ProgressControl');
+	const duration = controlBar.getChild('DurationDisplay');
+	const divider = controlBar.getChild('TimeDivider');
+	controlBar.removeChild(progress);
+	controlBar.removeChild(current);
+	controlBar.removeChild(divider);
+	controlBar.removeChild(duration);
+	controlBar.addChild(current, {}, 0);
+	controlBar.addChild(progress, {}, 1);
+	controlBar.addChild(duration, {}, 2);
 }
 
 /**
@@ -23,9 +28,9 @@ function getPlaybackRatesArray(playbackRates: string): number[] {
  * @public
  * @component video-player
  * @slot - Default slot
- * @event play - Fired when the video is played
- * @event pause - Fired when the video is paused
- * @event ended - Fired when the video is ended
+ * @event {CustomEvent<undefined>} play - Fired when the video is played
+ * @event {CustomEvent<undefined>} pause - Fired when the video is paused
+ * @event {CustomEvent<undefined>} ended - Fired when the video is ended
  */
 export class VideoPlayer extends FoundationElement {
 	/**
@@ -233,6 +238,7 @@ export class VideoPlayer extends FoundationElement {
 			this.#hideNoSourceError();
 			this.#setupVideoElement();
 			this.#setupVideoPlayer(settings);
+			appendProgressBarToStart(this._player);
 			this.#setupPlayerEvents();
 		} else {
 			this.#hideNoSourceError(false);

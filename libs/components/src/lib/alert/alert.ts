@@ -3,12 +3,14 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 
 export type AlertConnotation =
 	| Connotation.Accent
 	| Connotation.Information
 	| Connotation.Success
 	| Connotation.Warning
+	| Connotation.Announcement
 	| Connotation.Alert;
 
 const connotationIconMap = new Map([
@@ -16,6 +18,7 @@ const connotationIconMap = new Map([
 	[Connotation.Information, 'info-line'],
 	[Connotation.Success, 'check-circle-line'],
 	[Connotation.Warning, 'warning-line'],
+	[Connotation.Announcement, 'sparkles-line'],
 	[Connotation.Alert, 'error-line'],
 ]);
 
@@ -35,8 +38,8 @@ export type AlertStrategy = 'fixed' | 'static';
  * @slot main - The main content of the alert.
  * @slot action-items - Add action items to alert using this slot.
  * @slot icon - Add an icon to the component.
- * @event open - Fired when the alert is opened
- * @event close - Fired when the alert is closed
+ * @event {CustomEvent<undefined>} open - Fired when the alert is opened
+ * @event {CustomEvent<undefined>} close - Fired when the alert is closed
  */
 export class Alert extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
@@ -180,7 +183,9 @@ export class Alert extends FoundationElement {
 	}
 
 	#closeOnEscape = (e: KeyboardEvent) => {
-		if (this.removable && e.key === 'Escape') this.open = false;
+		if (this.open && this.removable && handleEscapeKeyAndStopPropogation(e)) {
+			this.open = false;
+		}
 	};
 
 	#onTransitionEnd = () => {

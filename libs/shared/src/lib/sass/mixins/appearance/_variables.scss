@@ -10,7 +10,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 		ghost: (
-			text: var(#{connotation.get-connotation-token(primary)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
 			outline: transparent,
 		),
@@ -23,6 +23,11 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
 			outline: var(#{connotation.get-connotation-token(firm)}),
+		),
+		outlined-light: (
+			text: var(#{connotation.get-connotation-token(firm)}),
+			fill: transparent,
+			outline: var(#{constants.$vvd-color-neutral-300}),
 		),
 		duotone: (
 			text: var(#{connotation.get-connotation-token(firm-all)}),
@@ -57,7 +62,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 		ghost: (
-			text: var(#{connotation.get-connotation-token(primary)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: transparent,
 		),
@@ -75,6 +80,16 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: var(#{connotation.get-connotation-token(firm)}),
+		),
+		outlined-light: (
+			text: var(#{connotation.get-connotation-token(fierce-primary)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 90%
+				),
+			outline: var(#{constants.$vvd-color-neutral-300}),
 		),
 		duotone: (
 			text: var(#{connotation.get-connotation-token(firm-all)}),
@@ -104,7 +119,7 @@ $states-mapping: (
 			outline: transparent,
 		),
 		ghost: (
-			text: var(#{connotation.get-connotation-token(primary)}),
+			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
@@ -122,6 +137,16 @@ $states-mapping: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: var(#{connotation.get-connotation-token(firm)}),
+		),
+		outlined-light: (
+			text: var(#{connotation.get-connotation-token(fierce-primary)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 80%
+				),
+			outline: var(#{constants.$vvd-color-neutral-300}),
 		),
 		duotone: (
 			text: var(#{connotation.get-connotation-token(firm-all)}),
@@ -161,6 +186,11 @@ $states-mapping: (
 			outline: transparent,
 		),
 		outlined: (
+			text: var(#{constants.$vvd-color-neutral-300}),
+			fill: transparent,
+			outline: var(#{constants.$vvd-color-neutral-300}),
+		),
+		outlined-light: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: transparent,
 			outline: var(#{constants.$vvd-color-neutral-300}),
@@ -206,6 +236,11 @@ $states-mapping: (
 			text: var(#{constants.$vvd-color-neutral-600}),
 			fill: transparent,
 			outline: var(#{constants.$vvd-color-neutral-400}),
+		),
+		outlined-light: (
+			text: var(#{constants.$vvd-color-neutral-600}),
+			fill: transparent,
+			outline: var(#{constants.$vvd-color-neutral-300}),
 		),
 		duotone: (
 			text: notset,
@@ -254,6 +289,16 @@ $states-mapping: (
 			fill: notset,
 			outline: notset,
 		),
+		outlined-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(firm)}),
+					transparent 10%
+				),
+			outline: var(#{constants.$vvd-color-neutral-300}),
+		),
 		duotone: (
 			text: var(#{connotation.get-connotation-token(firm-all)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
@@ -301,6 +346,16 @@ $states-mapping: (
 			fill: notset,
 			outline: notset,
 		),
+		outlined-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(fierce-primary)}),
+					transparent 20%
+				),
+			outline: var(#{constants.$vvd-color-neutral-300}),
+		),
 		duotone: (
 			text: var(#{connotation.get-connotation-token(firm-all)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
@@ -339,6 +394,11 @@ $states-mapping: (
 			outline: transparent,
 		),
 		outlined: (
+			text: notset,
+			fill: notset,
+			outline: notset,
+		),
+		outlined-light: (
 			text: notset,
 			fill: notset,
 			outline: notset,
@@ -390,6 +450,11 @@ $states-mapping: (
 			fill: notset,
 			outline: notset,
 		),
+		outlined-light: (
+			text: notset,
+			fill: notset,
+			outline: notset,
+		),
 		duotone: (
 			text: var(#{connotation.get-connotation-token(firm-all)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
@@ -433,6 +498,11 @@ $states-mapping: (
 			outline: transparent,
 		),
 		outlined: (
+			text: notset,
+			fill: notset,
+			outline: notset,
+		),
+		outlined-light: (
 			text: notset,
 			fill: notset,
 			outline: notset,

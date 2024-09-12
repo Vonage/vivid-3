@@ -4,7 +4,7 @@ export const convertAnnotatedSourceToFailureCase = ({
 	message,
 }: {
 	annotatedSource: string;
-	fixedSource: string;
+	fixedSource?: string;
 	message: string;
 }) => {
 	const annotatedSourceLines = annotatedSource.replace(/\t/g, '  ').split('\n');
@@ -17,7 +17,7 @@ export const convertAnnotatedSourceToFailureCase = ({
 
 	return {
 		code: annotatedSourceLines.join('\n'),
-		output: fixedSource.replace(/\t/g, '  '),
+		...(fixedSource && { output: fixedSource.replace(/\t/g, '  ') }),
 		errors: [
 			{
 				message,

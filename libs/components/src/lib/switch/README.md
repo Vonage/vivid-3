@@ -27,12 +27,13 @@ Use `label` in order to set the label of the switch.
 
 Use `connotation` in order to set the connotation of the switch.
 
-- Type: `'primary'`, `'cta'`, `'success'`, `'alert'`
+- Type: `'primary'`, `'cta'`, `'announcement'`, `'success'`, `'alert'`
 - Default: `primary`
 
 ```html preview
 <vwc-switch connotation="primary" checked></vwc-switch>
 <vwc-switch connotation="cta" checked></vwc-switch>
+<vwc-switch connotation="announcement" checked></vwc-switch>
 <vwc-switch connotation="success" checked></vwc-switch>
 <vwc-switch connotation="alert" checked></vwc-switch>
 ```
@@ -91,3 +92,13 @@ Use `name` in order to set the name of the switch. Mainly used inside a form tha
 ```html
 <vwc-switch name="my-name"></vwc-switch>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                                |
+| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
+
+</div>

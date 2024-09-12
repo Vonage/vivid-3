@@ -16,6 +16,7 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 $track-thickness: 2px;
 :host {
@@ -39,14 +40,16 @@ $track-thickness: 2px;
 	@include connotation.connotation(slider);
 	@include appearance.appearance;
 
-	#{variables.$thumb-size}: 12px;
-	#{variables.$thumb-interaction-indicator-size}: 36px;
-	#{variables.$track-start-inset-inline-start}: 0;
-	#{variables.$track-start-inset-block-start}: 0;
+	& {
+		#{variables.$thumb-size}: 12px;
+		#{variables.$thumb-interaction-indicator-size}: 36px;
+		#{variables.$track-start-inset-inline-start}: 0;
+		#{variables.$track-start-inset-block-start}: 0;
 
-	cursor: pointer;
-	outline: none;
-	user-select: none;
+		cursor: pointer;
+		outline: none;
+		user-select: none;
+	}
 
 	.positioning-region {
 		position: relative;
@@ -81,9 +84,21 @@ $track-thickness: 2px;
 			left: 0;
 			block-size: $track-thickness;
 
+			&-start {
+				:host([markers]) & {
+					#{variables.$track-start-inset-inline-start}: 1px;
+
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
+			}
+
 			.mark {
-				block-size: 4px;
+				position: absolute;
+				block-size: 6px;
 				inline-size: 100%;
+				inset-block-start: -2px;
+				inset-inline-start: 0;
 			}
 		}
 	}
@@ -109,16 +124,25 @@ $track-thickness: 2px;
 			inline-size: $track-thickness;
 
 			.mark {
+				position: absolute;
 				block-size: 100%;
-				inline-size: 4px;
+				inline-size: 6px;
+				inset-block-start: 0;
+				inset-inline-start: -2px;
 			}
 		}
-
+		/* stylelint-disable */
 		.track-start {
 			block-size: auto;
 			inline-size: 100%;
 			inset-block-start: var(#{variables.$track-start-inset-block-start});
+			:host([markers]) & {
+				#{variables.$track-start-inset-block-start}: 1px;
+
+				border-radius: 0;
+			}
 		}
+		/* stylelint-enable */
 	}
 
 	&.disabled {
@@ -142,17 +166,27 @@ $track-thickness: 2px;
 	}
 }
 
+/* stylelint-disable */
+.mark {
+	.control:not(.disabled) & {
+		color: var(#{utils.get-color-token(neutral-950)});
+	}
+	.control.disabled & {
+		color: var(#{variables.$track-start-background-color});
+	}
+}
+/* stylelint-enable */
+
 .thumb-container {
 	position: absolute;
 	border-radius: #{border-radius-variables.$border-radius-full};
 	block-size: var(#{variables.$thumb-interaction-indicator-size});
 	cursor: inherit;
 	inline-size: var(#{variables.$thumb-interaction-indicator-size});
-	outline-color: transparent;
+	outline: none;
 	touch-action: none;
 
-	:focus-visible &,
-	&:focus-visible {
+	&.focus-visible {
 		@include focus.focus;
 
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
@@ -209,4 +243,15 @@ $track-thickness: 2px;
 				) / 2
 		);
 	}
+}
+
+.popup {
+	pointer-events: none;
+}
+
+.tooltip {
+	width: auto;
+	padding: 8px 12px;
+	color: var(#{constants.$vvd-color-canvas-text});
+	font: var(#{constants.$vvd-typography-base-bold});
 }

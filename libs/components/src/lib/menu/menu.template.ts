@@ -10,6 +10,7 @@ import type {
 } from '@microsoft/fast-foundation';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { Menu } from './menu';
 
 const getClasses = ({
@@ -24,8 +25,8 @@ const getClasses = ({
 		['hide-body', items && !(items as unknown as HTMLElement[]).length]
 	);
 
-function handleEscapeKey(menu: Menu, event: Event) {
-	if ((event as KeyboardEvent).key === 'Escape' && menu.open) {
+function handleEscapeKey(menu: Menu, event: KeyboardEvent) {
+	if (menu.open && handleEscapeKeyAndStopPropogation(event)) {
 		menu.open = false;
 	}
 	return true;
@@ -58,7 +59,7 @@ export const MenuTemplate: (
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x._anchorEl}
-				@keydown="${(x, c) => handleEscapeKey(x, c.event)}"
+				@keydown="${(x, c) => handleEscapeKey(x, c.event as KeyboardEvent)}"
 				@vwc-popup:open="${(x, c) => handlePopupEvents(x, c.event, true)}"
 				@vwc-popup:close="${(x, c) => handlePopupEvents(x, c.event, false)}"
 			>

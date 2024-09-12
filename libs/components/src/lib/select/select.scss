@@ -19,6 +19,7 @@
 @use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@import '../../shared/patterns/chevron';
 
 $low-ink-color: --_low-ink-color;
 
@@ -49,18 +50,21 @@ $low-ink-color: --_low-ink-color;
 	@include appearance.appearance;
 	@include connotation.connotation(select);
 
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	border-radius: var(#{variables.$select-control-border-radius});
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	block-size: #{size.$vvd-size-normal};
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	color: var(#{appearance.get-appearance-token(text)});
-	font: var(#{constants.$vvd-typography-base});
-	gap: 8px;
-	padding-inline: 16px;
-	transition: box-shadow 0.2s, background-color 0.2s;
+	& {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: var(#{variables.$select-control-border-radius});
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		block-size: #{size.$vvd-size-normal};
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		color: var(#{appearance.get-appearance-token(text)});
+		font: var(#{constants.$vvd-typography-base});
+		gap: 8px;
+		padding-inline: 16px;
+		transition: box-shadow 0.2s, background-color 0.2s;
+	}
+
 	&-wrapper {
 		position: relative;
 	}
@@ -101,11 +105,6 @@ $low-ink-color: --_low-ink-color;
 	}
 }
 
-.icon {
-	display: flex;
-	flex-shrink: 0;
-}
-
 .selected-value {
 	display: flex;
 	overflow: hidden;
@@ -118,6 +117,10 @@ $low-ink-color: --_low-ink-color;
 		overflow: hidden;
 		max-inline-size: 100%;
 		text-overflow: ellipsis;
+
+		.control.shows-placeholder & {
+			color: var(#{constants.$vvd-color-neutral-600});
+		}
 	}
 
 	slot[name='icon'] {

@@ -1,8 +1,11 @@
-import { html, ref } from '@microsoft/fast-element';
+import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-
+import type {
+	ElementDefinitionContext,
+	FoundationElementDefinition,
+} from '@microsoft/fast-foundation';
+import { PlacementStrategy, Popup } from '../popup/popup';
 import type { Slider } from './slider';
 
 const getClasses = ({ disabled, connotation }: Slider) =>
@@ -11,6 +14,9 @@ const getClasses = ({ disabled, connotation }: Slider) =>
 		['disabled', Boolean(disabled)],
 		[`connotation-${connotation}`, Boolean(connotation)]
 	);
+
+const getThumbClasses = ({ _focusVisible }: Slider) =>
+	classNames('thumb-container', ['focus-visible', _focusVisible]);
 
 export const getMarkersTemplate = (
 	isHorizontal: boolean,
@@ -23,24 +29,23 @@ export const getMarkersTemplate = (
 	return html` <div
 		class="mark"
 		style="
-	background: linear-gradient(to ${placeholder[0]}, currentcolor 3px, transparent 0px)
-	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 3px) / ${numMarkers}) ${placeholder[3]}
+	background: linear-gradient(to ${placeholder[0]}, currentcolor 1px, transparent 0px)
+	0px ${placeholder[1]} / ${placeholder[2]} calc((100% - 1px) / ${numMarkers}) ${placeholder[3]}
 	"
 	></div>`;
 };
 
-/**
- * The template for the Slider component.
- *
- * @param context - element definition context
- * @public
- */
 export const SliderTemplate: (
-	context: ElementDefinitionContext
-) => ViewTemplate<Slider> = () => {
+	context: ElementDefinitionContext,
+	definition: FoundationElementDefinition
+) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
+	const popupTag = context.tagFor(Popup);
+
 	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template
 		role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
+		@focusin="${(x) => x._onFocusIn()}"
+		@focusout="${(x) => x._onFocusOut()}"
 	>
 		<div
 			role="slider"
@@ -57,7 +62,6 @@ export const SliderTemplate: (
 		>
 			<div class="positioning-region">
 				<div ${ref('track')} class="track">
-					<div class="track-start" style="${(x) => x.position}"></div>
 					${(x) =>
 						x.markers
 							? getMarkersTemplate(
@@ -65,12 +69,34 @@ export const SliderTemplate: (
 									Math.floor((x.max - x.min) / x.step)
 							  )
 							: void 0}
+					<div class="track-start" style="${(x) => x.position}"></div>
 				</div>
 				<div
 					${ref('thumb')}
-					class="thumb-container"
+					class="${(x) => getThumbClasses(x)}"
 					style="${(x) => x.position}"
 				></div>
-			</div></div
-	></template>`;
+				${when(
+					(x) => x.pin,
+					html<Slider>`<${popupTag}
+					class="popup"
+					arrow
+					alternate
+					:anchor="${(x) => x.thumb}"
+					:open=${(x) => x._isThumbPopupOpen}
+					:placementStrategy=${(x) =>
+						x.orientation === Orientation.horizontal
+							? PlacementStrategy.AutoPlacementHorizontal
+							: PlacementStrategy.AutoPlacementVertical}
+					animation-frame
+					exportparts="vvd-theme-alternate"
+					aria-hidden="true"
+				>
+					<div class="tooltip">${(x) =>
+						x.ariaValuetext || x.valueTextFormatter(x.value)}</div>
+				</${popupTag}>`
+				)}
+			</div>
+		</div></template
+	>`;
 };

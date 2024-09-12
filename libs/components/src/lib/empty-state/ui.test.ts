@@ -13,7 +13,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template =
 		`<style>
 			#wrapper {
-				width: 500px;
+				width: 800px;
 				display: grid;
 				grid-auto-rows: 380px;
 				grid-template-columns: 1fr;

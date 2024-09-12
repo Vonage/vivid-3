@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-const components = require('../_data/components.json');
+const components = require('../content/_data/components.json');
 
 const FONTS =
 	'<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">';
@@ -27,12 +27,15 @@ const EXISTING_COMPONENTS = new Set(
 const OUTPUT_PATH = 'dist/apps/docs/frames';
 
 let exampleIndex = 0;
+function resetExampleIndex() {
+	exampleIndex = 0;
+}
 
-module.exports = function createCodeExample(code, options, cssProperties) {
+function createCodeExample(code, options, cssProperties) {
 	const index = exampleIndex++;
 	const src = createiFrameContent(code, options, index);
 	return renderiFrame(index, src, code, options, cssProperties);
-};
+}
 
 const renderiFrame = (index, src, content, classList, variableToShow) => {
 	const vwcUsages = content.match(/vwc-[\w-]+/g) ?? [];
@@ -164,4 +167,9 @@ const renderVariablesTable = (cssProperties) => {
 				.join('\n')}
 		</tbody>
 	</table>`;
+};
+
+module.exports = {
+	resetExampleIndex,
+	createCodeExample,
 };

@@ -48,22 +48,24 @@ Toggle `icon-trailing` to set the icon's horizontal alignment.
 Set the `connotation` attribute to change the FAB's connotation.
 It accepts a subset of predefined values.
 
-- Type: `'accent'`, `'cta'`
-- Default: `'accent'`
+- Type: `undefined`, `'accent'`, `'cta'`, `'announcement'`
+- Default: `undefined`
 
 ```html preview
 <vwc-fab icon="plus-line" connotation="accent"></vwc-fab>
 <vwc-fab icon="plus-line" connotation="cta"></vwc-fab>
+<vwc-fab icon="plus-line" connotation="announcement"></vwc-fab>
 ```
 
 ### Size
 
 Use the `size` attribute to set the FAB's to one of the predefined block size extent.
 
-- Type: `'normal'` | `'expanded'`
+- Type: `'condensed'` | `'normal'` | `'expanded'`
 - Default: `'normal'`
 
 ```html preview
+<vwc-fab icon="thumbs-up-line" label="condensed" size="condensed"></vwc-fab>
 <vwc-fab icon="thumbs-up-line" label="normal" size="normal"></vwc-fab>
 <vwc-fab icon="thumbs-up-line" label="expanded" size="expanded"></vwc-fab>
 ```

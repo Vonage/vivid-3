@@ -23,7 +23,7 @@
 				"commands": [
 					"npx nx run components:build",
 					{
-						"command": "./scripts/visual-tests/run.tests.in.container.sh",
+						"command": "./scripts/visual-tests/run.tests.in.container.sh . ./libs/components/playwright.config.ts",
 						"forwardAllArgs": true
 					}
 				],
@@ -33,9 +33,11 @@
 				"watch": {
 					"commands": [
 						{
-							"command": "npx nx run components:build --watch"
+							"forwardAllArgs": false,
+							"command": "WATCH=true npx nx build components --watch"
 						},
 						{
+							"forwardAllArgs": false,
 							"command": "npx nx run styles:serve"
 						},
 						{

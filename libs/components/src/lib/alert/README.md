@@ -16,7 +16,7 @@ Use the `text` attribute to set the alert's main text.
 - Default: `undefined`
 
 ```html preview 100px
-<vwc-alert text="An important information for you" open></vwc-alert>
+<vwc-alert text="Some important information for you" open></vwc-alert>
 ```
 
 ### Headline
@@ -29,7 +29,7 @@ Use the `headline` attribute to add a headline to your alert.
 ```html preview 100px
 <vwc-alert
 	headline="This requires your attention"
-	text="An important information for you"
+	text="Some important information for you"
 	open
 ></vwc-alert>
 ```
@@ -42,7 +42,7 @@ Use the `open` attribute to toggle the alert open state.
 - Default: `false`
 
 ```html preview
-<vwc-alert text="An important information for you"></vwc-alert>
+<vwc-alert text="Some important information for you"></vwc-alert>
 
 <vwc-button
 	appearance="outlined"
@@ -62,7 +62,7 @@ Use the `open` attribute to toggle the alert open state.
 
 Use the `connotation` attribute to change the alert's icon and icon color.
 
-- Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'`
+- Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'` | `'announcement'`
 - Default: `undefined`
 
 Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
@@ -74,7 +74,7 @@ Note that each connotation comes with a default icon (that you can override with
 	}
 </style>
 <vwc-alert
-	text="An important information for you"
+	text="Some important information for you"
 	connotation="accent"
 	open
 ></vwc-alert>
@@ -85,6 +85,7 @@ Note that each connotation comes with a default icon (that you can override with
 	<vwc-option value="warning" text="warning"></vwc-option>
 	<vwc-option value="alert" text="alert"></vwc-option>
 	<vwc-option value="information" text="information"></vwc-option>
+	<vwc-option value="announcement" text="announcement"></vwc-option>
 </vwc-select>
 
 <script>
@@ -106,7 +107,7 @@ over the connotation's icon, if any.
 
 ```html preview 100px
 <vwc-alert
-	text="An important information for you"
+	text="Some important information for you"
 	open
 	icon="megaphone-solid"
 ></vwc-alert>
@@ -183,7 +184,7 @@ Use the `removable` attribute to add a close button to the alert.
 - Default: `false`
 
 ```html preview 100px
-<vwc-alert text="An important information for you" removable open></vwc-alert>
+<vwc-alert text="Some important information for you" removable open></vwc-alert>
 
 <vwc-button
 	appearance="outlined"
@@ -207,7 +208,10 @@ Use the `timeoutms` attribute to set the time after which the alert will automat
 - Default: `0` (stays open indefinitely)
 
 ```html preview
-<vwc-alert text="An important information for you" timeoutms="2000"></vwc-alert>
+<vwc-alert
+	text="Some important information for you"
+	timeoutms="2000"
+></vwc-alert>
 
 <vwc-button
 	appearance="outlined"
@@ -240,7 +244,7 @@ If you want to add rich content to your alert, you can use the main slot.
 You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the alert.
 
 ```html preview 100px
-<vwc-alert text="An important information for you" open>
+<vwc-alert text="Some important information for you" open>
 	<vwc-button
 		slot="action-items"
 		appearance="outlined"
@@ -256,7 +260,7 @@ Set the `icon` slot to add an icon to the alert.
 If set, the `icon` attribute is ignored.
 
 ```html preview 100px
-<vwc-alert text="An important information for you" open>
+<vwc-alert text="Some important information for you" open>
 	<vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
 </vwc-alert>
 ```
@@ -296,9 +300,9 @@ This is helpful to prevent the alert from becoming too wide when displaying a lo
 
 <div class="table-wrapper">
 
-| Name    | Description                                       |
-| ------- | ------------------------------------------------- |
-| `open`  | The `open` event fires when the alert is opened.  |
-| `close` | The `close` event fires when the alert is closed. |
+| Name    | Type                     | Bubbles | Composed | Description                    |
+| ------- | ------------------------ | ------- | -------- | ------------------------------ |
+| `open`  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the alert is opened |
+| `close` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the alert is closed |
 
 </div>

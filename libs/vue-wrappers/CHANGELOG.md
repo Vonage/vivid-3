@@ -1,5 +1,82 @@
 # Changelog
 
+## [4.5.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.4.0...vivid-vue-v4.5.0) (2024-09-04)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.4.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.3.0...vivid-vue-v4.4.0) (2024-07-31)
+
+
+### Features
+
+* **dialog:** improve api with modal attribute (VIV-1657) ([#1853](https://github.com/Vonage/vivid-3/issues/1853)) ([daf06bc](https://github.com/Vonage/vivid-3/commit/daf06bc64d1e52895780fe501f09e2d1d5570fa5))
+
+## [4.3.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.2.0...vivid-vue-v4.3.0) (2024-07-18)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.2.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.1.0...vivid-vue-v4.2.0) (2024-07-11)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.1.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.0.0...vivid-vue-v4.1.0) (2024-07-08)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.0.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.60.0...vivid-vue-v4.0.0) (2024-07-01)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.60.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.59.0...vivid-vue-v3.60.0) (2024-07-01)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.59.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.58.0...vivid-vue-v3.59.0) (2024-06-18)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.58.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.57.0...vivid-vue-v3.58.0) (2024-06-04)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.57.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.56.0...vivid-vue-v3.57.0) (2024-05-22)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [3.56.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.55.0...vivid-vue-v3.56.0) (2024-05-20)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [3.55.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v3.54.0...vivid-vue-v3.55.0) (2024-05-09)
 
 

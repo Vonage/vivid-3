@@ -6,6 +6,7 @@
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 
 $low-ink-color: --_low-ink-color;
+$file-picker-list-item-background-color: --file-picker-list-item-background-color;
 
 :host {
 	display: block;
@@ -55,8 +56,12 @@ $low-ink-color: --_low-ink-color;
 .dz-preview {
 	display: grid;
 	box-sizing: border-box;
-	padding: 6px 12px;
+	padding: 8px;
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	background-color: var(
+		#{$file-picker-list-item-background-color},
+		var(#{constants.$vvd-color-canvas})
+	);
 	grid-template-columns: 1fr auto;
 	grid-template-rows: auto auto;
 	inline-size: 100%;
@@ -116,13 +121,13 @@ $low-ink-color: --_low-ink-color;
 }
 
 .preview-list {
-	&:empty {
-		display: none;
-	}
-
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
 	margin-block-start: 12px;
 	overflow-y: auto;
+
+	&:empty {
+		display: none;
+	}
 }

@@ -142,6 +142,27 @@ Toggles markers display.
 <vwc-range-slider connotation="cta"></vwc-range-slider>
 ```
 
+### Pin
+
+Toggles display of the start and end values with a tooltip. Use the `valueTextFormatter` member to customize the format of the values.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview
+<vwc-range-slider pin></vwc-range-slider>
+<vwc-range-slider
+	orientation="vertical"
+	style="height: 200px"
+	pin
+></vwc-range-slider>
+<script>
+	for (const slider of document.querySelectorAll('vwc-range-slider')) {
+		slider.valueTextFormatter = (value) => `${value} units`;
+	}
+</script>
+```
+
 ### Disabled
 
 Toggle the `disabled` member to disable/enable the slider.
@@ -179,12 +200,12 @@ The upper value of the range.
 
 <div class="table-wrapper">
 
-| Name        | Description                                 |
-| ----------- | ------------------------------------------- |
-| input       | When either the start or end value changes. |
-| change      | When either the start or end value changes. |
-| input:start | When the start value changes                |
-| input:end   | When the end value changes                  |
+| Name          | Type                     | Bubbles | Composed | Description                                               |
+| ------------- | ------------------------ | ------- | -------- | --------------------------------------------------------- |
+| `input:start` | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the start value changes                |
+| `input:end`   | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the end value changes                  |
+| `input`       | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
+| `change`      | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
 
 </div>
 
@@ -193,7 +214,7 @@ The upper value of the range.
 Both thumbs have a `role` of `slider`, which needs an accessible label. By default, they use a localized version of "min" and "max".
 You can change the labels by setting the `aria-start-label` and `aria-end-label` attributes.
 
-You can set the `valueTextFormatter` member to customize how values will be formatted for the thumbs' `aria-valuetext` attribute.
+Vivid automatically sets the `aria-valuetext` attribute on the thumbs. The attribute is read by assistive technology. You can control its format using the `valueTextFormatter` property for a more human-readable value.
 
 ## Use Cases
 

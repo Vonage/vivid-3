@@ -201,3 +201,25 @@ You can add action items elements using the `action-items` slot. They will be di
 	></vwc-button>
 </vwc-toggletip>
 ```
+
+## CSS Variables
+
+### Max Inline Size
+
+Use the `--toggletip-max-inline-size` variable to set the toggletip's max inline size.
+
+- Default: `30ch`
+
+```html preview center 250px
+<style>
+	.toggletip {
+		--toggletip-max-inline-size: 50ch;
+	}
+</style>
+
+<vwc-toggletip class="toggletip" placement="top">
+	<vwc-button slot="anchor" icon="help-solid" shape="pill"></vwc-button>
+	Turn on to receive notifications for important updates and alerts directly to
+	your email or mobile device.
+</vwc-toggletip>
+```

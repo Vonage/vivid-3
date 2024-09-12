@@ -20,7 +20,7 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
  * @public
  * @component selectable-box
  * @slot default - Slot for box's content.
- * @event change - Fired when the checked state changes
+ * @event {CustomEvent<undefined>} change - Fired when the checked state changes
  */
 export class SelectableBox extends FoundationElement {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;

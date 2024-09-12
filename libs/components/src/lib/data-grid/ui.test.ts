@@ -54,7 +54,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 
-test('should support dynamic row height', async ({ page }: { page: Page }) => {
+test('should use dynamic row height in data-cells by default', async ({
+	page,
+}: {
+	page: Page;
+}) => {
 	await loadComponents({
 		page,
 		components,
@@ -62,22 +66,34 @@ test('should support dynamic row height', async ({ page }: { page: Page }) => {
 	await loadTemplate({
 		page,
 		template: `
-			<style>
-				vwc-data-grid {
-					--data-grid-cell-white-space: normal;
-					--data-grid-cell-block-size: 100%;
-				}
-			</style>
 			<vwc-data-grid>
 				<vwc-data-grid-row row-type='header'>
 					<vwc-data-grid-cell cell-type='columnheader'>
-						Column 1
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius
+						sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus.
 					</vwc-data-grid-cell>
 					<vwc-data-grid-cell cell-type='columnheader'>
 						Column 2
 					</vwc-data-grid-cell>
 				</vwc-data-grid-row>
 				<vwc-data-grid-row>
+					<vwc-data-grid-cell>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius
+						sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus.
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+				<vwc-data-grid-row style="--data-grid-cell-block-size: 100px">
+					<vwc-data-grid-cell>
+						Lorem ipsum.
+					</vwc-data-grid-cell>
+					<vwc-data-grid-cell>
+						Lorem ipsum.
+					</vwc-data-grid-cell>
+				</vwc-data-grid-row>
+				<vwc-data-grid-row style="--data-grid-cell-white-space: nowrap">
 					<vwc-data-grid-cell>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin varius libero ipsum, ut rhoncus nulla varius
 						sit amet. Vestibulum volutpat feugiat neque eget semper. Nam commodo pharetra lobortis. Sed id enim metus.
