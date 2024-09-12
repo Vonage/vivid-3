@@ -71,6 +71,7 @@ $low-ink-color: --_low-ink-color;
 		#{variables.$select-icon-size}: 16px;
 
 		block-size: #{size.$vvd-size-condensed};
+		padding-inline: 12px;
 
 		& .chevron {
 			font-size: 12px;
