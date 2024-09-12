@@ -26,9 +26,9 @@ Buttons may be toggled. The `active` prop represents the change in the state alo
 		e.target.ariaPressed = pressed;
 		e.target.icon = pressed ? pressedIcon : icon;
 		e.target.label = pressed ? pressedLabel : label;
-		e.target.active = pressed
+		e.target.active = pressed;
 	}
-	
+
 	document.getElementById('mute').addEventListener('click', (e) => {
 		toggleButton(e, {
 			label: 'Mute',
@@ -93,13 +93,13 @@ A button's width can be easily customised by attaching styles to the button comp
 
 <vwc-note connotation="warning" icon="warning-line" headline="Use custom width buttons with caution">
 
-When there is not enough space for the `label` text, the content will be truncated as in the example above. 
+When there is not enough space for the `label` text, the content will be truncated as in the example above.
 
 </vwc-note>
 
 ## Toolbars
 
-Toolbars can be created using ghost buttons contained inside an [action-group](/components/action-group) component. 
+Toolbars can be created using ghost buttons contained inside an [action-group](/components/action-group) component.
 
 ```html preview 115px
 <div class="container">
@@ -161,7 +161,7 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 	}
 </script>
 <style>
-	.container { 
+	.container {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 16px;

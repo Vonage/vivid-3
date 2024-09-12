@@ -5,11 +5,11 @@
 	position: sticky;
 	top: var(--offset-top, 64px);
 	z-index: 10;
-	
+
 	nav {
 		border-bottom: 1px solid var(--vvd-color-neutral-200);
 		background: var(--vvd-color-canvas);
-		
+
 		ul,
 		li {
 			all: unset;
@@ -62,7 +62,7 @@
 
 	& > * {
 		flex: 1;
-		
+
 		> p:first-child,
 		> ul:first-child,
 		> ol:first-child {

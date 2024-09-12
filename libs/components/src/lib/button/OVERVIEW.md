@@ -25,32 +25,96 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 
 ```html preview 240px
 <div>
-	<vwc-button connotation="accent" appearance="filled" label="Accent"></vwc-button>
-	<vwc-button connotation="accent" appearance="outlined" label="Accent"></vwc-button>
-	<vwc-button connotation="accent" appearance="outlined-light" label="Accent"></vwc-button>
-	<vwc-button connotation="accent" appearance="ghost" label="Accent"></vwc-button>
-	<vwc-button connotation="accent" appearance="ghost-light" label="Accent"></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="filled"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="outlined"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="outlined-light"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="ghost"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="ghost-light"
+		label="Accent"
+	></vwc-button>
 </div>
 <div>
 	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
-	<vwc-button connotation="cta" appearance="outlined-light" label="CTA"></vwc-button>
+	<vwc-button
+		connotation="cta"
+		appearance="outlined-light"
+		label="CTA"
+	></vwc-button>
 	<vwc-button connotation="cta" appearance="ghost" label="CTA"></vwc-button>
-	<vwc-button connotation="cta" appearance="ghost-light" label="CTA"></vwc-button>
+	<vwc-button
+		connotation="cta"
+		appearance="ghost-light"
+		label="CTA"
+	></vwc-button>
 </div>
 <div>
-	<vwc-button connotation="success" appearance="filled" label="Success"></vwc-button>
-	<vwc-button connotation="success" appearance="outlined" label="Success"></vwc-button>
-	<vwc-button connotation="success" appearance="outlined-light" label="Success"></vwc-button>
-	<vwc-button connotation="success" appearance="ghost" label="Success"></vwc-button>
-	<vwc-button connotation="success" appearance="ghost-light" label="Success"></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="filled"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="outlined"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="outlined-light"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="ghost"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="ghost-light"
+		label="Success"
+	></vwc-button>
 </div>
 <div>
-	<vwc-button connotation="alert" appearance="filled" label="Alert"></vwc-button>
-	<vwc-button connotation="alert" appearance="outlined" label="Alert"></vwc-button>
-	<vwc-button connotation="alert" appearance="outlined-light" label="Alert"></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="filled"
+		label="Alert"
+	></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="outlined"
+		label="Alert"
+	></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="outlined-light"
+		label="Alert"
+	></vwc-button>
 	<vwc-button connotation="alert" appearance="ghost" label="Alert"></vwc-button>
-	<vwc-button connotation="alert" appearance="ghost-light" label="Alert"></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="ghost-light"
+		label="Alert"
+	></vwc-button>
 </div>
 
 <style>
@@ -66,15 +130,15 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 
 ## Icons
 
-The `icon` attribute displays an icon from the [Vivid Icon Library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button. 
+The `icon` attribute displays an icon from the [Vivid Icon Library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button.
 
 Custom icons can be provided using the [`icon` slot](/components/button/code/#icon-slot).
 
 ```html preview 72px
 <div class="container">
-	<vwc-button 
-		appearance="outlined" 
-		label="Copy document" 
+	<vwc-button
+		appearance="outlined"
+		label="Copy document"
 		icon="copy-line"
 	></vwc-button>
 	<vwc-button
@@ -95,7 +159,7 @@ Custom icons can be provided using the [`icon` slot](/components/button/code/#ic
 
 ### Icon only
 
-If the `label` is omitted, the button will be displayed as an *icon-only* button.
+If the `label` is omitted, the button will be displayed as an _icon-only_ button.
 
 It is best practice to provide a [tooltip](/components/tooltip) to describe the function of the button. If not, an `aria-label` is needed to ensure accessibility.
 
@@ -146,8 +210,16 @@ The `size` attribute controls the size of the button.
 
 ```html preview 100px
 <div class="container">
-	<vwc-button size="super-condensed" appearance="filled" label="Super-condensed"></vwc-button>
-	<vwc-button size="condensed" appearance="filled" label="Condensed"></vwc-button>
+	<vwc-button
+		size="super-condensed"
+		appearance="filled"
+		label="Super-condensed"
+	></vwc-button>
+	<vwc-button
+		size="condensed"
+		appearance="filled"
+		label="Condensed"
+	></vwc-button>
 	<vwc-button size="normal" appearance="filled" label="Normal"></vwc-button>
 	<vwc-button size="expanded" appearance="filled" label="Expanded"></vwc-button>
 </div>

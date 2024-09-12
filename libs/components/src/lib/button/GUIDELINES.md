@@ -14,10 +14,7 @@
 <div>
 
 ```html preview center example 72px
-  <vwc-button
-    appearance="filled"
-    label="Filled"
-  ></vwc-button>
+<vwc-button appearance="filled" label="Filled"></vwc-button>
 ```
 
 </div>
@@ -36,10 +33,7 @@
 <div>
 
 ```html preview center example 72px
-  <vwc-button
-		appearance="outlined"
-		label="Outlined"
-	></vwc-button>
+<vwc-button appearance="outlined" label="Outlined"></vwc-button>
 ```
 
 </div>
@@ -59,10 +53,7 @@
 <div>
 
 ```html preview center example 72px
-  <vwc-button
-		appearance="ghost"
-		label="Ghost"
-	></vwc-button>
+<vwc-button appearance="ghost" label="Ghost"></vwc-button>
 ```
 
 </div>
@@ -81,10 +72,7 @@
 <div>
 
 ```html preview center example 72px
-  <vwc-button
-		appearance="outlined-light"
-		label="Outlined Light"
-	></vwc-button>
+<vwc-button appearance="outlined-light" label="Outlined Light"></vwc-button>
 ```
 
 </div>
@@ -104,10 +92,7 @@
 <div>
 
 ```html preview center example 72px
-  <vwc-button
-		appearance="ghost-light"
-		label="Ghost Light"
-	></vwc-button>
+<vwc-button appearance="ghost-light" label="Ghost Light"></vwc-button>
 ```
 
 </div>
@@ -129,38 +114,38 @@
 
 ```html preview example 72px
 <div class="wrapper">
-  <vwc-button
-    connotation="accent"
-    appearance="filled"
-    label="Accent"
-  ></vwc-button>
-  <vwc-button
-    connotation="accent"
-    appearance="outlined"
-    label="Accent"
-  ></vwc-button>
-  <vwc-button
-    connotation="accent"
-    appearance="ghost"
-    label="Accent"
-  ></vwc-button>
-  <vwc-button
-    connotation="accent"
-    appearance="outlined-light"
-    label="Accent"
-  ></vwc-button>
-  <vwc-button
-    connotation="accent"
-    appearance="ghost-light"
-    label="Accent"
-  ></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="filled"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="outlined"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="ghost"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="outlined-light"
+		label="Accent"
+	></vwc-button>
+	<vwc-button
+		connotation="accent"
+		appearance="ghost-light"
+		label="Accent"
+	></vwc-button>
 </div>
 
 <style>
-  .wrapper {
-    display: flex;
-    gap: 16px;
-  }
+	.wrapper {
+		display: flex;
+		gap: 16px;
+	}
 </style>
 ```
 
@@ -180,38 +165,26 @@
 
 ```html preview example 72px
 <div class="wrapper">
-  <vwc-button
-    connotation="cta"
-    appearance="filled"
-    label="CTA"
-  ></vwc-button>
-  <vwc-button
-    connotation="cta"
-    appearance="outlined"
-    label="CTA"
-  ></vwc-button>
-  <vwc-button
-    connotation="cta"
-    appearance="ghost"
-    label="CTA"
-  ></vwc-button>
-  <vwc-button
-    connotation="cta"
-    appearance="outlined-light"
-    label="CTA"
-  ></vwc-button>
-  <vwc-button
-    connotation="cta"
-    appearance="ghost-light"
-    label="CTA"
-  ></vwc-button>
+	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
+	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
+	<vwc-button connotation="cta" appearance="ghost" label="CTA"></vwc-button>
+	<vwc-button
+		connotation="cta"
+		appearance="outlined-light"
+		label="CTA"
+	></vwc-button>
+	<vwc-button
+		connotation="cta"
+		appearance="ghost-light"
+		label="CTA"
+	></vwc-button>
 </div>
 
 <style>
-  .wrapper {
-    display: flex;
-    gap: 16px;
-  }
+	.wrapper {
+		display: flex;
+		gap: 16px;
+	}
 </style>
 ```
 
@@ -231,38 +204,38 @@
 
 ```html preview example 72px
 <div class="wrapper">
-  <vwc-button
-    connotation="success"
-    appearance="filled"
-    label="Success"
-  ></vwc-button>
-  <vwc-button
-    connotation="success"
-    appearance="outlined"
-    label="Success"
-  ></vwc-button>
-  <vwc-button
-    connotation="success"
-    appearance="ghost"
-    label="Success"
-  ></vwc-button>
-  <vwc-button
-    connotation="success"
-    appearance="outlined-light"
-    label="Success"
-  ></vwc-button>
-  <vwc-button
-    connotation="success"
-    appearance="ghost-light"
-    label="Success"
-  ></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="filled"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="outlined"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="ghost"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="outlined-light"
+		label="Success"
+	></vwc-button>
+	<vwc-button
+		connotation="success"
+		appearance="ghost-light"
+		label="Success"
+	></vwc-button>
 </div>
 
 <style>
-  .wrapper {
-    display: flex;
-    gap: 16px;
-  }
+	.wrapper {
+		display: flex;
+		gap: 16px;
+	}
 </style>
 ```
 
@@ -282,38 +255,34 @@
 
 ```html preview example 72px
 <div class="wrapper">
-  <vwc-button
-    connotation="alert"
-    appearance="filled"
-    label="Alert"
-  ></vwc-button>
-  <vwc-button
-    connotation="alert"
-    appearance="outlined"
-    label="Alert"
-  ></vwc-button>
-  <vwc-button
-    connotation="alert"
-    appearance="ghost"
-    label="Alert"
-  ></vwc-button>
-  <vwc-button
-    connotation="alert"
-    appearance="outlined-light"
-    label="Alert"
-  ></vwc-button>
-  <vwc-button
-    connotation="alert"
-    appearance="ghost-light"
-    label="Alert"
-  ></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="filled"
+		label="Alert"
+	></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="outlined"
+		label="Alert"
+	></vwc-button>
+	<vwc-button connotation="alert" appearance="ghost" label="Alert"></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="outlined-light"
+		label="Alert"
+	></vwc-button>
+	<vwc-button
+		connotation="alert"
+		appearance="ghost-light"
+		label="Alert"
+	></vwc-button>
 </div>
 
 <style>
-  .wrapper {
-    display: flex;
-    gap: 16px;
-  }
+	.wrapper {
+		display: flex;
+		gap: 16px;
+	}
 </style>
 ```
 
@@ -340,31 +309,31 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 
 ```html preview example 120px
 <div class="container">
-  <vwc-action-group role="region" aria-label="Text Alignment">
-    <vwc-tooltip text="Left align" placement="bottom-start">
-      <vwc-button
-        icon="align-left-line"
-        onclick="onClick(event)"
-        slot="anchor"
-      ></vwc-button>
-    </vwc-tooltip>
-    <vwc-tooltip text="Center">
-      <vwc-button
-        aria-pressed="true"
-        slot="anchor"
-        icon="align-center-line"
-        appearance="filled"
-        onclick="onClick(event)"
-      ></vwc-button>
-    </vwc-tooltip>
-    <vwc-tooltip text="Right align" placement="bottom-end">
-      <vwc-button
-        icon="align-right-line"
-        onclick="onClick(event)"
-        slot="anchor"
-      ></vwc-button>
-    </vwc-tooltip>
-  </vwc-action-group>
+	<vwc-action-group role="region" aria-label="Text Alignment">
+		<vwc-tooltip text="Left align" placement="bottom-start">
+			<vwc-button
+				icon="align-left-line"
+				onclick="onClick(event)"
+				slot="anchor"
+			></vwc-button>
+		</vwc-tooltip>
+		<vwc-tooltip text="Center">
+			<vwc-button
+				aria-pressed="true"
+				slot="anchor"
+				icon="align-center-line"
+				appearance="filled"
+				onclick="onClick(event)"
+			></vwc-button>
+		</vwc-tooltip>
+		<vwc-tooltip text="Right align" placement="bottom-end">
+			<vwc-button
+				icon="align-right-line"
+				onclick="onClick(event)"
+				slot="anchor"
+			></vwc-button>
+		</vwc-tooltip>
+	</vwc-action-group>
 </div>
 
 <script>
@@ -378,10 +347,10 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 </script>
 
 <style>
-  .container {
-    display: flex;
-    justify-content: center;
-  }
+	.container {
+		display: flex;
+		justify-content: center;
+	}
 </style>
 ```
 
@@ -393,22 +362,19 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 
 ```html preview center example 72px
 <div class="container">
-  <vwc-button
-    icon="export-line"
-    label="Export"
-  ></vwc-button>
-  <vwc-button
-    icon="chevron-right-line"
-    label="Continue"
-    icon-trailing
-  ></vwc-button>
+	<vwc-button icon="export-line" label="Export"></vwc-button>
+	<vwc-button
+		icon="chevron-right-line"
+		label="Continue"
+		icon-trailing
+	></vwc-button>
 </div>
 
 <style>
-  .container {
-    display: flex;
-    gap: 16px;
-  }
+	.container {
+		display: flex;
+		gap: 16px;
+	}
 </style>
 ```
 
@@ -418,22 +384,15 @@ The [icon-only button](/link/to/figma) is a separate component in Figma.
 
 ```html preview center example 72px
 <div class="container">
-  <vwc-button
-    icon="chevron-right-line"
-    label="See comments"
-  ></vwc-button>
-  <vwc-button
-    icon="save-line"
-    label="Save"
-    icon-trailing
-  ></vwc-button>
+	<vwc-button icon="chevron-right-line" label="See comments"></vwc-button>
+	<vwc-button icon="save-line" label="Save" icon-trailing></vwc-button>
 </div>
 
 <style>
-  .container {
-    display: flex;
-    gap: 16px;
-  }
+	.container {
+		display: flex;
+		gap: 16px;
+	}
 </style>
 ```
 
@@ -453,49 +412,52 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 
 ```html preview example
 <div class="container">
-  <vwc-action-group role="region" aria-label="Main toolbar">
-    <vwc-button size="super-condensed" label="File"></vwc-button>
-    <vwc-button size="super-condensed" label="Edit"></vwc-button>
-    <vwc-button size="super-condensed" label="View"></vwc-button>
-    <vwc-button size="super-condensed" label="Help"></vwc-button>
-  </vwc-action-group>
+	<vwc-action-group role="region" aria-label="Main toolbar">
+		<vwc-button size="super-condensed" label="File"></vwc-button>
+		<vwc-button size="super-condensed" label="Edit"></vwc-button>
+		<vwc-button size="super-condensed" label="View"></vwc-button>
+		<vwc-button size="super-condensed" label="Help"></vwc-button>
+	</vwc-action-group>
 </div>
 <div class="container">
-  <vwc-data-grid>
-    <vwc-data-grid-row row-type="header">
-      <vwc-data-grid-cell cell-type="columnheader">User</vwc-data-grid-cell>
-      <vwc-data-grid-cell class="controls" cell-type="columnheader"></vwc-data-grid-cell>
-    </vwc-data-grid-row>
-    <vwc-data-grid-row>
-      <vwc-data-grid-cell>Joe</vwc-data-grid-cell>
-      <vwc-data-grid-cell class="controls">
-        <vwc-button
-          appearance="outlined"
-          size="condensed"
-          icon="edit-line"
-          aria-label="Edit"
-        ></vwc-button>
-        <vwc-button
-          appearance="outlined"
-          size="condensed"
-          icon="delete-line"
-          aria-label="Delete"
-          connotation="alert"
-        ></vwc-button>
-      </vwc-data-grid-cell>
-    </vwc-data-grid-row>
-  </vwc-data-grid>
+	<vwc-data-grid>
+		<vwc-data-grid-row row-type="header">
+			<vwc-data-grid-cell cell-type="columnheader">User</vwc-data-grid-cell>
+			<vwc-data-grid-cell
+				class="controls"
+				cell-type="columnheader"
+			></vwc-data-grid-cell>
+		</vwc-data-grid-row>
+		<vwc-data-grid-row>
+			<vwc-data-grid-cell>Joe</vwc-data-grid-cell>
+			<vwc-data-grid-cell class="controls">
+				<vwc-button
+					appearance="outlined"
+					size="condensed"
+					icon="edit-line"
+					aria-label="Edit"
+				></vwc-button>
+				<vwc-button
+					appearance="outlined"
+					size="condensed"
+					icon="delete-line"
+					aria-label="Delete"
+					connotation="alert"
+				></vwc-button>
+			</vwc-data-grid-cell>
+		</vwc-data-grid-row>
+	</vwc-data-grid>
 </div>
 
 <style>
-  .conainer {
-    display: block;
-    padding: 8px 0;
-  }
+	.conainer {
+		display: block;
+		padding: 8px 0;
+	}
 
-  .controls {
-    width: 5.75rem;
-  }
+	.controls {
+		width: 5.75rem;
+	}
 </style>
 ```
 
@@ -506,19 +468,24 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 <docs-do slot="description" headline="Use same button size for adjacent buttons">
 
 ```html preview center example 290px
-<vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side">
-  <div slot="body">Are you sure you want to delete this appointment?</div>
-  <vwc-button
-    appearance="outlined"
-    label="Cancel"
-    slot="action-items"
-  ></vwc-button>
-  <vwc-button
-    label="Delete"
-    appearance="filled"
-    connotation="alert"
-    slot="action-items"
-  ></vwc-button>
+<vwc-dialog
+	open
+	headline="Delete appointment"
+	icon="delete-line"
+	icon-placement="side"
+>
+	<div slot="body">Are you sure you want to delete this appointment?</div>
+	<vwc-button
+		appearance="outlined"
+		label="Cancel"
+		slot="action-items"
+	></vwc-button>
+	<vwc-button
+		label="Delete"
+		appearance="filled"
+		connotation="alert"
+		slot="action-items"
+	></vwc-button>
 </vwc-dialog>
 
 <style>
@@ -532,20 +499,25 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 <docs-do dont headline="Don't use different size buttons for adjacent buttons">
 
 ```html preview center example 290px
-<vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side">
-  <div slot="body">Are you sure you want to delete this appointment?</div>
-  <vwc-button
-    size="condensed"
-    appearance="outlined"
-    label="Cancel"
-    slot="action-items"
-  ></vwc-button>
-  <vwc-button
-    label="Delete"
-    appearance="filled"
-    connotation="alert"
-    slot="action-items"
-  ></vwc-button>
+<vwc-dialog
+	open
+	headline="Delete appointment"
+	icon="delete-line"
+	icon-placement="side"
+>
+	<div slot="body">Are you sure you want to delete this appointment?</div>
+	<vwc-button
+		size="condensed"
+		appearance="outlined"
+		label="Cancel"
+		slot="action-items"
+	></vwc-button>
+	<vwc-button
+		label="Delete"
+		appearance="filled"
+		connotation="alert"
+		slot="action-items"
+	></vwc-button>
 </vwc-dialog>
 
 <style>
@@ -570,19 +542,24 @@ In general, the primary button placement should match the alignment of the butto
 <docs-do headline="Use right align buttons for focussed tasks" caption="Eg. dialogs, onboarding and other areas with less content." slot="description">
 
 ```html preview center example 290px
-<vwc-dialog open headline="Delete appointment" icon="delete-line" icon-placement="side">
-  <div slot="body">Are you sure you want to delete this appointment?</div>
-  <vwc-button
-    appearance="outlined"
-    label="Cancel"
-    slot="action-items"
-  ></vwc-button>
-  <vwc-button
-    label="Delete"
-    appearance="filled"
-    connotation="alert"
-    slot="action-items"
-  ></vwc-button>
+<vwc-dialog
+	open
+	headline="Delete appointment"
+	icon="delete-line"
+	icon-placement="side"
+>
+	<div slot="body">Are you sure you want to delete this appointment?</div>
+	<vwc-button
+		appearance="outlined"
+		label="Cancel"
+		slot="action-items"
+	></vwc-button>
+	<vwc-button
+		label="Delete"
+		appearance="filled"
+		connotation="alert"
+		slot="action-items"
+	></vwc-button>
 </vwc-dialog>
 
 <style>
@@ -598,22 +575,22 @@ In general, the primary button placement should match the alignment of the butto
 
 ```html preview example 290px
 <form>
-  <vwc-layout gutters="small" row-spacing="small">
-    <vwc-text-field label="First name"></vwc-text-field>
-    <vwc-text-field label="Last name"></vwc-text-field>
-    <div class="container">
-      <vwc-button appearance="filled" label="Submit" type="submit"></vwc-button>
-      <vwc-button appearance="outlined" label="Reset" type="reset"></vwc-button>
-    </div>
-  </vwc-layout>
+	<vwc-layout gutters="small" row-spacing="small">
+		<vwc-text-field label="First name"></vwc-text-field>
+		<vwc-text-field label="Last name"></vwc-text-field>
+		<div class="container">
+			<vwc-button appearance="filled" label="Submit" type="submit"></vwc-button>
+			<vwc-button appearance="outlined" label="Reset" type="reset"></vwc-button>
+		</div>
+	</vwc-layout>
 </form>
 
 <style>
-  .container {
-    display: flex;
-    gap: 8px;
-    padding-block: 16px;
-  }
+	.container {
+		display: flex;
+		gap: 8px;
+		padding-block: 16px;
+	}
 </style>
 ```
 
@@ -669,7 +646,8 @@ In general, the primary button placement should match the alignment of the butto
     padding: 8px 0;
   }
 </style>
-```
+
+````
 
 </docs-do>
 
@@ -709,7 +687,7 @@ In general, the primary button placement should match the alignment of the butto
     padding: 8px 0;
   }
 </style>
-```
+````
 
 </docs-do>
 </docs-do-dont>
@@ -719,38 +697,25 @@ In general, the primary button placement should match the alignment of the butto
 
 ```html preview example 135px
 <div class="container">
-  <vwc-button
-    label="Delete"
-    appearance="outlined"
-    connotation="alert"
-  ></vwc-button>
-  <vwc-button
-    label="Cancel"
-    appearance="outlined"
-  ></vwc-button>
+	<vwc-button
+		label="Delete"
+		appearance="outlined"
+		connotation="alert"
+	></vwc-button>
+	<vwc-button label="Cancel" appearance="outlined"></vwc-button>
 </div>
 <div class="container">
-  <vwc-button
-    label="Submit"
-    appearance="filled"
-    connotation="cta"
-  ></vwc-button>
-  <vwc-button
-    label="New"
-    appearance="ghost"
-  ></vwc-button>
-  <vwc-button
-    label="Edit"
-    appearance="ghost"
-  ></vwc-button>
+	<vwc-button label="Submit" appearance="filled" connotation="cta"></vwc-button>
+	<vwc-button label="New" appearance="ghost"></vwc-button>
+	<vwc-button label="Edit" appearance="ghost"></vwc-button>
 </div>
 
 <style>
 	.container {
-    display: flex;
-    gap: 8px;
-    padding: 8px 0;
-  }
+		display: flex;
+		gap: 8px;
+		padding: 8px 0;
+	}
 </style>
 ```
 
@@ -759,40 +724,33 @@ In general, the primary button placement should match the alignment of the butto
 
 ```html preview example 135px
 <div class="container">
-  <vwc-button
-    label="Delete"
-    appearance="outlined"
-    connotation="alert"
-  ></vwc-button>
-  <vwc-button
-    label="Save"
-    appearance="outlined"
-    connotation="success"
-  ></vwc-button>
+	<vwc-button
+		label="Delete"
+		appearance="outlined"
+		connotation="alert"
+	></vwc-button>
+	<vwc-button
+		label="Save"
+		appearance="outlined"
+		connotation="success"
+	></vwc-button>
 </div>
 <div class="container">
-  <vwc-button
-    label="Submit"
-    appearance="filled"
-    connotation="cta"
-  ></vwc-button>
-  <vwc-button
-    label="New"
-    appearance="outlined"
-    connotation="success"
-  ></vwc-button>
-  <vwc-button
-    label="Help"
-    appearance="outlined"
-  ></vwc-button>
+	<vwc-button label="Submit" appearance="filled" connotation="cta"></vwc-button>
+	<vwc-button
+		label="New"
+		appearance="outlined"
+		connotation="success"
+	></vwc-button>
+	<vwc-button label="Help" appearance="outlined"></vwc-button>
 </div>
 
 <style>
 	.container {
-    display: flex;
-    gap: 8px;
-    padding: 8px 0;
-  }
+		display: flex;
+		gap: 8px;
+		padding: 8px 0;
+	}
 </style>
 ```
 
@@ -806,20 +764,20 @@ In general, the primary button placement should match the alignment of the butto
 
 ```html preview example 110px
 <vwc-action-group>
-    <vwc-tooltip text="Undo" placement="bottom-start">
-      <vwc-button icon="reply-line" slot="anchor" size="condensed"></vwc-button>
-    </vwc-tooltip>
-    <vwc-button label="Copy" size="condensed"></vwc-button>
-    <vwc-button label="Paste" size="condensed"></vwc-button>
-    <vwc-button label="Delete" size="condensed"></vwc-button>
+	<vwc-tooltip text="Undo" placement="bottom-start">
+		<vwc-button icon="reply-line" slot="anchor" size="condensed"></vwc-button>
+	</vwc-tooltip>
+	<vwc-button label="Copy" size="condensed"></vwc-button>
+	<vwc-button label="Paste" size="condensed"></vwc-button>
+	<vwc-button label="Delete" size="condensed"></vwc-button>
 </vwc-action-group>
 
 <style>
 	.container {
-    display: flex;
-    gap: 8px;
-    padding: 8px 0;
-  }
+		display: flex;
+		gap: 8px;
+		padding: 8px 0;
+	}
 </style>
 ```
 
@@ -828,26 +786,26 @@ In general, the primary button placement should match the alignment of the butto
 
 ```html preview example 110px
 <div class="container">
-    <vwc-tooltip text="Undo" placement="bottom-start">
-      <vwc-button icon="reply-line" slot="anchor" size="condensed"></vwc-button>
-    </vwc-tooltip>
-    <vwc-button label="Copy" size="condensed"></vwc-button>
-    <vwc-button label="Paste" size="condensed"></vwc-button>
-    <vwc-button label="Delete" size="condensed"></vwc-button>
+	<vwc-tooltip text="Undo" placement="bottom-start">
+		<vwc-button icon="reply-line" slot="anchor" size="condensed"></vwc-button>
+	</vwc-tooltip>
+	<vwc-button label="Copy" size="condensed"></vwc-button>
+	<vwc-button label="Paste" size="condensed"></vwc-button>
+	<vwc-button label="Delete" size="condensed"></vwc-button>
 </div>
 
 <style>
 	.container {
-    display: flex;
-    gap: 8px;
-  }
+		display: flex;
+		gap: 8px;
+	}
 </style>
 ```
 
 </docs-do>
 </docs-do-dont>
 
-## Disabled 
+## Disabled
 
 <vwc-note connotation="warning" icon="warning-line" headline="Disabled buttons should be used with caution">
 

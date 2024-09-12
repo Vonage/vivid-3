@@ -1,4 +1,10 @@
-import { FASTElement, customElement, html, css, attr } from '@microsoft/fast-element';
+import {
+	FASTElement,
+	customElement,
+	html,
+	css,
+	attr,
+} from '@microsoft/fast-element';
 
 @customElement({
 	name: 'docs-do',
@@ -29,7 +35,7 @@ import { FASTElement, customElement, html, css, attr } from '@microsoft/fast-ele
 
 		.cbd-container p:not(:empty) {
 			margin-block-start: 0;
-		} 
+		}
 
 		@media (width >= 600px) {
 			:host {
@@ -39,8 +45,11 @@ import { FASTElement, customElement, html, css, attr } from '@microsoft/fast-ele
 	`,
 	template: html<DocsDo>`
 		<h3>
-			<vwc-icon name="${(x) => x.dont ? 'close-circle-line' : 'check-circle-line'}" size="0"></vwc-icon>
-			${(x) => x.headline ? x.headline : `Do${x.dont ? `n't` : ''}`}
+			<vwc-icon
+				name="${(x) => (x.dont ? 'close-circle-line' : 'check-circle-line')}"
+				size="0"
+			></vwc-icon>
+			${(x) => (x.headline ? x.headline : `Do${x.dont ? `n't` : ''}`)}
 		</h3>
 		<div>
 			<slot></slot>

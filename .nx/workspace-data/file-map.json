@@ -4187,7 +4187,7 @@
         },
         {
           "file": "apps/docs/assets/scripts/components/do.ts",
-          "hash": "9244681429366383379",
+          "hash": "11215226574668674943",
           "deps": [
             "npm:@microsoft/fast-element"
           ]
@@ -4318,7 +4318,7 @@
         },
         {
           "file": "apps/docs/assets/styles/component-page.scss",
-          "hash": "584167571810982116"
+          "hash": "293378900886140905"
         },
         {
           "file": "apps/docs/assets/styles/footer.scss",
@@ -6291,15 +6291,15 @@
         },
         {
           "file": "libs/components/src/lib/button/ACCESSIBILITY.md",
-          "hash": "7104039419608166113"
+          "hash": "5713667897678420623"
         },
         {
           "file": "libs/components/src/lib/button/GUIDELINES.md",
-          "hash": "5925634909866007314"
+          "hash": "411375058400851818"
         },
         {
           "file": "libs/components/src/lib/button/OVERVIEW.md",
-          "hash": "5071986317263307397"
+          "hash": "17877545556065472326"
         },
         {
           "file": "libs/components/src/lib/button/README.md",
@@ -6307,7 +6307,7 @@
         },
         {
           "file": "libs/components/src/lib/button/USE-CASES.md",
-          "hash": "10236924506293548486"
+          "hash": "1951281261083762935"
         },
         {
           "file": "libs/components/src/lib/button/button.scss",

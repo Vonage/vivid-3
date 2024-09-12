@@ -2,7 +2,7 @@
 
 ### Icon-only Buttons
 
-Use the `aria-label` attribute to provide alternative text for *icon-only* buttons. This text is read by screen readers and lets the user know the purpose of the button.
+Use the `aria-label` attribute to provide alternative text for _icon-only_ buttons. This text is read by screen readers and lets the user know the purpose of the button.
 
 ### Pending Buttons
 
