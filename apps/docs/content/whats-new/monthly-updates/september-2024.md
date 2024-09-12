@@ -15,7 +15,7 @@ See the [Office Hours minutes](https://docs.google.com/document/d/1E0yvyGUzBoQFH
   - Libraries such as Video.js are being exported even when not used
   - It was agreed to look into improving tree shaking in the Vue bindings
 
-## Date-grid: sort icon placement change
+## Data-grid: sort icon placement change
 
 The [sort icon in the header](/components/data-grid/#columndefinitions) of data-grid are now aligned closer to the header text.
 
