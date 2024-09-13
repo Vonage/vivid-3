@@ -62,6 +62,4 @@ The plugin provides a set of rules that can be extended or overridden. To custom
 
 ### {{ rule.name }}
 
-{% renderFile rule.markdown %}
-
 {% endfor %}
