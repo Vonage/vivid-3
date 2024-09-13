@@ -51,9 +51,7 @@ $low-ink-color: --_low-ink-color;
 	@include connotation.connotation(select);
 
 	& {
-		#{variables.$select-icon-size}: calc(
-			#{size.$vvd-size-normal} / 2
-		);
+		#{variables.$select-icon-size}: calc(#{size.$vvd-size-normal} / 2);
 
 		display: flex;
 		align-items: center;
@@ -70,9 +68,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&.size-condensed {
-		#{variables.$select-icon-size}: calc(
-			#{size.$vvd-size-normal} / 2.5
-		);
+		#{variables.$select-icon-size}: calc(#{size.$vvd-size-normal} / 2.5);
 
 		block-size: #{size.$vvd-size-condensed};
 		padding-inline: calc(#{size.$vvd-size-super-condensed} / 2);
