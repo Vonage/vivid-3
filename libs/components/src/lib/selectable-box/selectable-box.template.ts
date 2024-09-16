@@ -83,8 +83,8 @@ export const SelectableBoxTemplate: (
 			class="${getClasses}"
 			tabindex="${(x) => (x.clickableBox || x.clickable ? '0' : null)}"
 			role="${(x) => (x.clickableBox || x.clickable ? 'button' : null)}"
-			aria-pressed="${(x) => (x.clickableBox || x.clickable) ? 
-				x.checked ? 'true' : 'false' : null }"
+			aria-pressed="${(x) =>
+				x.clickableBox || x.clickable ? (x.checked ? 'true' : 'false') : null}"
 			aria-label="${(x) =>
 				x.clickableBox || x.clickable ? x.ariaLabel : null}"
 			@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
