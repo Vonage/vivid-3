@@ -19,6 +19,7 @@ import {
 	Localized,
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import type { TextFieldSize } from '../text-field/text-field';
 import { FormAssociatedNumberField } from './number-field.form-associated';
 
 export type NumberFieldAppearance = Extract<
@@ -135,6 +136,15 @@ export class NumberField extends FormAssociatedNumberField {
 	@attr({ converter: nullableNumberConverter })
 	size!: number;
 
+	/**
+	 * The size the text-field should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr() scale?: TextFieldSize;
+	
 	/**
 	 * Amount to increment or decrement the value by
 	 * @public

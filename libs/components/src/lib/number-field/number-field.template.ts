@@ -21,6 +21,7 @@ const getStateClasses = ({
 	shape,
 	label,
 	successText,
+	scale
 }: NumberField) =>
 	classNames(
 		['error', Boolean(errorValidationMessage)],
@@ -31,7 +32,8 @@ const getStateClasses = ({
 		[`appearance-${appearance}`, Boolean(appearance)],
 		[`shape-${shape}`, Boolean(shape)],
 		['no-label', !label],
-		['success', !!successText]
+		['success', !!successText],
+		[`size-${scale}`, Boolean(scale)]
 	);
 
 function renderLabel() {
