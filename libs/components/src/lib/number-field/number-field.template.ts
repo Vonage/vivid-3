@@ -21,7 +21,7 @@ const getStateClasses = ({
 	shape,
 	label,
 	successText,
-	scale
+	scale,
 }: NumberField) =>
 	classNames(
 		['error', Boolean(errorValidationMessage)],
@@ -67,7 +67,10 @@ function numberControlButtons(context: ElementDefinitionContext) {
 									x.locale.numberField.decrementButtonLabel}
 					            shape="${setControlButtonShape}"
 								type="button"
-					            size="${x => x.scale === 'condensed' ? 'super-condensed' : 'condensed'}"
+					            size="${(x) =>
+												x.scale === 'condensed'
+													? 'super-condensed'
+													: 'condensed'}"
 								tabindex="${getTabIndex}"
 					            @click="${(x) => x.stepDown()}"></${buttonTag}>
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
@@ -78,7 +81,10 @@ function numberControlButtons(context: ElementDefinitionContext) {
 									x.locale.numberField.incrementButtonLabel}
 					            shape="${setControlButtonShape}"
 								type="button"
-					            size="${x => x.scale === 'condensed' ? 'super-condensed' : 'condensed'}"
+					            size="${(x) =>
+												x.scale === 'condensed'
+													? 'super-condensed'
+													: 'condensed'}"
 								tabindex="${getTabIndex}"
 					            @click="${(x) => x.stepUp()}"></${buttonTag}>
 		    </div>

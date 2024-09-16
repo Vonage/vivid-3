@@ -144,7 +144,7 @@ export class NumberField extends FormAssociatedNumberField {
 	 * HTML Attribute: scale
 	 */
 	@attr() scale?: TextFieldSize;
-	
+
 	/**
 	 * Amount to increment or decrement the value by
 	 * @public

@@ -133,6 +133,7 @@ If provided, `success-text` will take precedence over errors.
 	success-text="Great success"
 ></vwc-number-field>
 ```
+
 ### Scale
 
 Use the `scale` attribute to change the number field's size.

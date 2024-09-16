@@ -86,7 +86,7 @@ describe('vwc-number-field', () => {
 			expect(hasSizeClass(getBaseElement(element))).toBe(false);
 		});
 	});
-	
+
 	describe('label', function () {
 		it('should set a label if label is set', async function () {
 			const labelText = 'label';
