@@ -25,7 +25,7 @@ PRO TIP: utilizing the _component_ generator (`npx nx g @vonage/nx-vivid:compone
 
 Running the tests can be done locally by running:
 
-`npx http-server -s & npx playwright test`
+`npx http-server -p 8080 -s & npx playwright test -c ./libs/components/playwright.config.ts`
 
 This will start the tests locally with the local playwright and browsers versions.
 
@@ -63,6 +63,10 @@ If you wish to update the visual snapshots (i.e. you've changed the design and w
 All arguments are passed to playwright, so if you want to update a single component's snapshots, run:
 
 `npx nx run components:e2e --update-snapshots button`
+
+### Running the docs tests
+
+The visual tests for the documentation are run separately from the components. They are run the same way as the components, but with a different command: `npx nx run docs:e2e`. The config file is located in `./apps/docs/playwright.config.ts`.
 
 ## Updating the docker image
 

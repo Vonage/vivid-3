@@ -109,11 +109,22 @@ describe('vwc-select', () => {
 			expect(labelElement).toBeNull();
 		});
 
-		it('should not set aria-label on host', async function () {
+		it('should set aria-label on host if aria-label unset', async function () {
+			element.removeAttribute('aria-label');
 			const labelText = 'label';
 			element.label = labelText;
 			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(null);
+			expect(element.getAttribute('aria-label')).toEqual(labelText);
+		});
+
+		it('should leave ariaLabel unchanged if aria-label already set', async () => {
+			const ariaLabelText = 'aria-label';
+			element.ariaLabel = ariaLabelText;
+			const labelText = 'label';
+			element.label = labelText;
+
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-label')).toEqual(ariaLabelText);
 		});
 	});
 
@@ -353,6 +364,37 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(element.open).toBeFalsy();
+		});
+
+		it('should allow propgation on escape key if not open', async () => {
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(1);
+		});
+
+		it('should stop propgation on escape key if open', async () => {
+			element.open = true;
+			const spy = jest.fn();
+			element.parentElement!.addEventListener('keydown', spy);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'Escape',
+					bubbles: true,
+					composed: true,
+				})
+			);
+
+			expect(spy.mock.calls.length).toBe(0);
 		});
 
 		it('should close selection if tab key pressed', async () => {
@@ -658,7 +700,7 @@ describe('vwc-select', () => {
 				<option value="3">3</option>
 			`;
 			element.selectedIndex = 2;
-			element.ariaLabel = 'Label';
+			element.label = 'Label';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

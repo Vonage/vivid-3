@@ -1,6 +1,7 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 
 // eslint-disable-next-line compat/compat
 export const isDialogSupported = Boolean(
@@ -164,7 +165,7 @@ export class Dialog extends FoundationElement {
 	 * @internal
 	 */
 	_onKeyDown(event: KeyboardEvent) {
-		if ((event as KeyboardEvent).key === 'Escape' && this._openedAsModal) {
+		if (handleEscapeKeyAndStopPropogation(event) && this._openedAsModal) {
 			this._handleCloseRequest();
 
 			// Return false to .preventDefault() which will prevent the <dialog>'s cancel event from being fired.

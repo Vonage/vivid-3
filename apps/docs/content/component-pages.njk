@@ -1,0 +1,12 @@
+---
+tags: components
+pagination:
+    data: components
+    size: 1
+    alias: component
+permalink: "components/{{ component | componentSlug }}/"
+layout: component.njk
+eleventyComputed:
+    githubEditLink: "{{ component.markdown | githubEditLink }}"
+---
+{% renderFile component.markdown %}

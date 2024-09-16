@@ -18,9 +18,9 @@
 }
 
 .base {
-	@include appearance.appearance;
-
 	#{text-field-variables.$text-field-gutter-end}: 44px;
+
+	@include appearance.appearance;
 }
 
 .icon {

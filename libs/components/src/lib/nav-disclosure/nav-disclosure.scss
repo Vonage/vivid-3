@@ -33,29 +33,37 @@
 		)
 	);
 
-	$min-block-size: #{size.$vvd-size-normal};
-	$gap: 12px;
-	$gutter: 16px;
+	& {
+		$min-block-size: #{size.$vvd-size-normal};
+		$gap: 12px;
+		$gutter: 16px;
 
-	display: flex;
-	box-sizing: border-box;
-	align-items: center;
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	background-color: var(#{appearance.get-appearance-token(fill)});
-	box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
-	cursor: pointer;
-	font: var(#{constants.$vvd-typography-base});
-	gap: $gap;
-	hyphens: auto;
-	inline-size: 100%;
-	min-block-size: $min-block-size;
-	padding-block: 10px;
-	padding-inline: $gutter;
-	text-decoration: none;
-	vertical-align: middle;
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		background-color: var(#{appearance.get-appearance-token(fill)});
+		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
+		cursor: pointer;
+		font: var(#{constants.$vvd-typography-base});
+		gap: $gap;
+		hyphens: auto;
+		inline-size: 100%;
+		min-block-size: $min-block-size;
+		padding-block: 10px;
+		padding-inline: $gutter;
+		text-decoration: none;
+		vertical-align: middle;
+	}
 
 	&[aria-current] {
 		color: var(#{appearance.get-appearance-token(text)});
+
+		@supports not (
+			color: color-mix(in srgb, var(--one-color), var(--second-color))
+		) {
+			background-color: var(#{connotation.get-connotation-token(primary)});
+		}
 	}
 
 	&:not([aria-current]) {

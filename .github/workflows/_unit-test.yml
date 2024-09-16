@@ -28,23 +28,28 @@ jobs:
       - uses: actions/cache@v3
         id: cache
         with:
-          path: node_modules/
+          path: |
+            node_modules/
+            apps/vue-docs/node_modules/
+            libs/storybook-vue2/node_modules/
+            libs/storybook-vue3/node_modules/
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci --only=dev
+        run: npm ci
 
       - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
         id: test
 
       - run: node ./tools/coverageMerger.js
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: ${{ inputs.report_coverage }}
         with:
           name: coverage
           path: ./coverage
+          include-hidden-files: true
 
       - run: exit 0
         if: ${{ steps.test.outcome == 'success' }}

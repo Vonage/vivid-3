@@ -1,5 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 
 /**
  * @public
@@ -75,14 +76,11 @@ export class SideDrawer extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	_onKeydown({ key }: KeyboardEvent) {
-		if (key === 'Escape') {
+	_onKeydown(event: KeyboardEvent) {
+		if (handleEscapeKeyAndStopPropogation(event)) {
 			this._handleCloseRequest();
 			return undefined;
 		} else {
-			// after this event handler is executed,
-			// preventDefault() will be called on the event object by default.
-			// we need to return true from our handler to opt - out of this behavior.
 			return true;
 		}
 	}

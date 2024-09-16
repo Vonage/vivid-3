@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"outDir": "../../dist/out-tsc",
 		"module": "commonjs",
-		"types": ["jest", "node"]
+		"esModuleInterop": false,
+		"allowJs": true,
+		"types": ["jest", "node", "vite/client"]
 	},
 	"include": [
 		"jest.config.ts",

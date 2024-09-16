@@ -13,6 +13,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
 import { Listbox } from '../listbox/listbox';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { Combobox } from './combobox';
 
 /**
@@ -61,9 +62,9 @@ function renderInput(context: ElementDefinitionContext) {
 				aria-activedescendant="${(x) =>
 					x.open ? x.ariaActiveDescendant : null}"
 				aria-autocomplete="${(x) => x.ariaAutoComplete}"
-				aria-controls="${(x) => x.ariaControls}"
+				aria-controls="${(x) => x.listboxId}"
 				aria-disabled="${(x) => x.ariaDisabled}"
-				aria-expanded="${(x) => x.ariaExpanded}"
+				aria-expanded="${(x) => x.open}"
 				aria-haspopup="listbox"
 				placeholder="${(x) => x.placeholder}"
 				role="combobox"
@@ -98,7 +99,11 @@ export const comboboxTemplate: (
             tabindex="${(x) => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
-            @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
+            @keydown="${(x, { event }) => {
+							x.open &&
+								handleEscapeKeyAndStopPropogation(event as KeyboardEvent);
+							return x.keydownHandler(event as KeyboardEvent);
+						}}"
         >
 			${() => renderInput(context)}
 			<${popupTag} class="popup"

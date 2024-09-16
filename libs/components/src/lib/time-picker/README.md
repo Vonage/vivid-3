@@ -108,7 +108,7 @@ Set the `max` attribute to configure the latest time to accept. The user will be
 - Time format: `HH:MM:SS`
 - Default: `undefined`
 
-```html preview locale-switcher
+```html preview locale-switcher 360px
 <style>
 	html {
 		block-size: 360px; /* for demo purposes */
