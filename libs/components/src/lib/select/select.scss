@@ -73,7 +73,9 @@ $low-ink-color: --_low-ink-color;
 	&.size-condensed {
 		#{variables.$select-icon-size}: calc(#{size.$vvd-size-normal} / 2.5);
 		#{variables.$select-block-size}: #{size.$vvd-size-condensed};
-		#{variables.$select-padding-inline}: calc(#{size.$vvd-size-super-condensed} / 2);
+		#{variables.$select-padding-inline}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		);
 	}
 
 	&-wrapper {
