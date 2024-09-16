@@ -353,6 +353,10 @@ describe('vwc-dialog', () => {
 			});
 		}
 
+		const clickOnScrim = () => {
+			dialogEl.dispatchEvent(createMouseEventOutsideTheDialog('mousedown'));
+		};
+
 		const dialogClientRect: DOMRect = {
 			bottom: 50,
 			height: 100,
@@ -405,8 +409,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should close the dialog when scrim is clicked', async function () {
-			const event = createMouseEventOutsideTheDialog('mousedown');
-			dialogEl.dispatchEvent(event);
+			clickOnScrim();
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
@@ -414,8 +417,7 @@ describe('vwc-dialog', () => {
 		it('should emit a cancel event when scrim is clicked', async function () {
 			const cancelSpy = jest.fn();
 			element.addEventListener('cancel', cancelSpy);
-			const event = createMouseEventOutsideTheDialog('mousedown');
-			dialogEl.dispatchEvent(event);
+			clickOnScrim();
 			await elementUpdated(element);
 			expect(cancelSpy).toHaveBeenCalledTimes(1);
 		});
@@ -424,8 +426,7 @@ describe('vwc-dialog', () => {
 			element.noLightDismiss = true;
 			await elementUpdated(element);
 
-			const event = createMouseEventOutsideTheDialog('mousedown');
-			dialogEl.dispatchEvent(event);
+			clickOnScrim();
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 		});
