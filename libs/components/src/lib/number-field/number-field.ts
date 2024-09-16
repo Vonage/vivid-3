@@ -137,11 +137,11 @@ export class NumberField extends FormAssociatedNumberField {
 	size!: number;
 
 	/**
-	 * The size the text-field should have.
+	 * The size the number-field should have.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: size
+	 * HTML Attribute: scale
 	 */
 	@attr() scale?: TextFieldSize;
 	
