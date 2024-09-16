@@ -206,7 +206,7 @@ describe('vwc-side-drawer', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should not bubble', async () => {
+		it('should emit a non-bubbling event', async () => {
 			const onCancel = jest.fn();
 			element.parentElement!.addEventListener('cancel', onCancel);
 

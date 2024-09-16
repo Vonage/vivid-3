@@ -312,7 +312,7 @@ describe('vwc-dialog', () => {
 			await showDialog();
 		});
 
-		it('should prevent dialog from closing when cancelled', async () => {
+		it('should prevent dialog from closing when event default is prevented', async () => {
 			element.addEventListener('cancel', (event) => {
 				event.preventDefault();
 			});
@@ -322,7 +322,7 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should not bubble', async () => {
+		it('should emit a non-bubbling event', async () => {
 			const onCancel = jest.fn();
 			element.parentElement!.addEventListener('cancel', onCancel);
 
