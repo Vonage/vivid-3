@@ -46,13 +46,12 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 }
 
-.control {	
-
+.control {
 	@include appearance.appearance;
 	@include connotation.connotation(select);
 
 	/* Size related properties */
-	& { 
+	& {
 		border-radius: var(#{variables.$select-control-border-radius});
 		block-size: var(#{variables.$select-block-size});
 		padding-inline: var(#{variables.$select-padding-inline});
