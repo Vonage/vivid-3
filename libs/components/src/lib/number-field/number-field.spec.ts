@@ -10,7 +10,7 @@ import {
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { Shape } from '../enums';
+import { Shape, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
@@ -45,6 +45,45 @@ describe('vwc-number-field', () => {
 			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
 			expect(control.getAttribute('type')).toEqual('text');
+		});
+	});
+
+	describe('scale', () => {
+		function hasSizeClass(baseElement: HTMLElement) {
+			return Array.from(baseElement.classList).some((className) => {
+				return className.includes('size-');
+			});
+		}
+
+		it('should reflect the property as an attribute', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(element.getAttribute('scale')).toBe(Size.Condensed);
+		});
+
+		it('should reflect the attribute as a property', async () => {
+			element.setAttribute('scale', Size.Condensed);
+			await elementUpdated(element);
+			expect(element.scale).toBe(Size.Condensed);
+		});
+
+		it('should init without a size class on base element', async () => {
+			expect(hasSizeClass(getBaseElement(element))).toBe(false);
+		});
+		it('should set size class on base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(
+				true
+			);
+		});
+
+		it('should remove size class from base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			element.scale = undefined;
+			await elementUpdated(element);
+			expect(hasSizeClass(getBaseElement(element))).toBe(false);
 		});
 	});
 
