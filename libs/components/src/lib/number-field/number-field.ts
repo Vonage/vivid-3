@@ -27,6 +27,7 @@ export type NumberFieldAppearance = Extract<
 	Appearance.Fieldset | Appearance.Ghost
 >;
 export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type NumberFieldSize = TextFieldSize;
 
 const STEP_DIRECTION = {
 	up: 1,
@@ -143,7 +144,7 @@ export class NumberField extends FormAssociatedNumberField {
 	 * @remarks
 	 * HTML Attribute: scale
 	 */
-	@attr() scale?: TextFieldSize;
+	@attr() scale?: NumberFieldSize;
 
 	/**
 	 * Amount to increment or decrement the value by
