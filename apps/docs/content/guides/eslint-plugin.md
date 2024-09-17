@@ -58,7 +58,7 @@ The plugin provides a set of rules that can be extended or overridden. To custom
 
 ## Rules
 
-{% for rule in rules %}
+{% for rule in eslintRules %}
 
 ### {{ rule.name }}
 

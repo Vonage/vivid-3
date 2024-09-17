@@ -248,6 +248,10 @@ article.article .components-header + .heading-wrapper h2 {
 	margin-block-start: 0;
 }
 
+.heading-wrapper:first-of-type h2 {
+	margin-block-start: 36px;
+}
+
 vwc-tab-panel pre.hljs:first-child {
 	border-radius: 0 0 8px 8px;
 	margin-block-start: 0;
@@ -330,7 +334,6 @@ vwc-note ~ vwc-note {
 .table-wrapper {
 	display: flex;
 	box-sizing: border-box;
-	padding-block: 8px;
 }
 
 @media (width <= 768px) {
@@ -343,6 +346,7 @@ vwc-note ~ vwc-note {
 table {
 	border-collapse: collapse;
 	width: 100%;
+	margin-block: 16px;
 }
 
 thead > tr {
