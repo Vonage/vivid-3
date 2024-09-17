@@ -334,13 +334,7 @@ vwc-note ~ vwc-note {
 .table-wrapper {
 	display: flex;
 	box-sizing: border-box;
-}
-
-@media (width <= 768px) {
-	.table-wrapper {
-		overflow: auto;
-		max-width: calc(100vw - 64px);
-	}
+	overflow: auto;
 }
 
 table {
