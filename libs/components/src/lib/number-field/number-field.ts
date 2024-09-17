@@ -6,7 +6,7 @@ import {
 } from '@microsoft/fast-element';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { DelegatesARIATextbox } from '@microsoft/fast-foundation';
-import type { Appearance, Shape } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	errorText,
@@ -19,7 +19,6 @@ import {
 	Localized,
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import type { TextFieldSize } from '../text-field/text-field';
 import { FormAssociatedNumberField } from './number-field.form-associated';
 
 export type NumberFieldAppearance = Extract<
@@ -27,7 +26,7 @@ export type NumberFieldAppearance = Extract<
 	Appearance.Fieldset | Appearance.Ghost
 >;
 export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-export type NumberFieldSize = TextFieldSize;
+export type NumberFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 const STEP_DIRECTION = {
 	up: 1,
@@ -142,7 +141,7 @@ export class NumberField extends FormAssociatedNumberField {
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: scale
+	 * HTML Attribute: size
 	 */
 	@attr() scale?: NumberFieldSize;
 
