@@ -123,6 +123,16 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			expect(getTextField().value).toEqual('12');
 		});
+
+		it('should emit a change event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('change', spy);
+			element.value = '123';
+			await elementUpdated(element);
+			getDeleteButton().click();
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
 	});
 
 	describe('keypad-click', function () {
