@@ -40,11 +40,11 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 }
 
 function eventHandlerFactory(eventName: 'input' | 'change' | 'blur' | 'focus') {
-	return (x: DialPad, {event: e}: ExecutionContext) => {
+	return (x: DialPad, { event: e }: ExecutionContext) => {
 		e?.stopImmediatePropagation();
 		x.$emit(eventName);
 		return false;
-	}
+	};
 }
 
 function renderTextField(textFieldTag: string, buttonTag: string) {

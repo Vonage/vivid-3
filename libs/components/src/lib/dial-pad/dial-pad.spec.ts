@@ -279,7 +279,9 @@ describe('vwc-dial-pad', () => {
 
 	describe('events', () => {
 		function dispatchEvent(eventType: string) {
-			getTextField().dispatchEvent(new InputEvent(eventType, {bubbles: true, composed: true}));
+			getTextField().dispatchEvent(
+				new InputEvent(eventType, { bubbles: true, composed: true })
+			);
 		}
 
 		function shouldFireEventOnce(eventName: string) {
@@ -290,7 +292,7 @@ describe('vwc-dial-pad', () => {
 				element.value = '123';
 				dispatchEvent(eventName);
 				await elementUpdated(element);
-	
+
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
 		}
@@ -302,7 +304,7 @@ describe('vwc-dial-pad', () => {
 				getDigitButtons().forEach((button) => {
 					button.click();
 				});
-	
+
 				await elementUpdated(element);
 				expect(spy).toHaveBeenCalledTimes(12);
 			});
@@ -311,16 +313,16 @@ describe('vwc-dial-pad', () => {
 		describe('focus event', () => {
 			shouldFireEventOnce('focus');
 		});
-	
+
 		describe('blur event', () => {
 			shouldFireEventOnce('blur');
 		});
-	
+
 		describe('input event', () => {
 			shouldFireOnDialPadButtonClick('input');
 			shouldFireEventOnce('input');
 		});
-	
+
 		describe('change event', () => {
 			shouldFireOnDialPadButtonClick('change');
 			shouldFireEventOnce('change');
