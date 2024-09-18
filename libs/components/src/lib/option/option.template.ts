@@ -1,5 +1,5 @@
-import { html, when } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
+import { html, when } from '@microsoft/fast-element';
 import type {
 	ElementDefinitionContext,
 	FoundationElementDefinition,
@@ -9,15 +9,17 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import { Icon } from '../icon/icon';
 import type { ListboxOption } from './option';
 
-const getClasses = ({ icon, disabled, selected, checked }: ListboxOption) =>
+const getClasses = (x: ListboxOption) =>
 	classNames(
 		'base',
-		['disabled', disabled],
-		['selected', Boolean(selected)],
-		['active', Boolean(checked)],
-		['icon', Boolean(icon)]
+		['disabled', x.disabled],
+		['selected', Boolean(x.selected)],
+		['hover', Boolean(x._highlighted)],
+		['active', Boolean(x.checked)],
+		['icon', Boolean(x.icon)]
 	);
 
 export const ListboxOptionTemplate: (
@@ -25,6 +27,7 @@ export const ListboxOptionTemplate: (
 	definition: FoundationElementDefinition
 ) => ViewTemplate<ListboxOption> = (context: ElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const iconTag = context.tagFor(Icon);
 
 	return html`
 		<template
@@ -38,6 +41,10 @@ export const ListboxOptionTemplate: (
 			<div class="${getClasses}">
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 				${when((x) => x.text, html`<div class="text">${(x) => x.text}</div>`)}
+				${when(
+					(x) => x._displayCheckmark && x.selected,
+					html`<${iconTag} class="checkmark" name="check-line"></${iconTag}>`
+				)}
 			</div>
 		</template>
 	`;
