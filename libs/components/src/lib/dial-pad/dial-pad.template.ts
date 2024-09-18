@@ -39,28 +39,12 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	return true;
 }
 
-function handleInput(x: DialPad, {event: e}: ExecutionContext) {
-	e?.stopImmediatePropagation();
-	x.$emit('input');
-	return false;
-}
-
-function handleFocus(x: DialPad, {event: e}: ExecutionContext) {
-	e?.stopImmediatePropagation();
-	x.$emit('focus');
-	return false;
-}
-
-function handleBlur(x: DialPad, {event: e}: ExecutionContext) {
-	e?.stopImmediatePropagation();
-	x.$emit('blur');
-	return false;
-}
-
-function handleChange(x: DialPad, {event: e}: ExecutionContext) {
-	e?.stopImmediatePropagation();
-	x.$emit('change');
-	return false;
+function eventHandlerFactory(eventName: 'input' | 'change' | 'blur' | 'focus') {
+	return (x: DialPad, {event: e}: ExecutionContext) => {
+		e?.stopImmediatePropagation();
+		x.$emit(eventName);
+		return false;
+	}
 }
 
 function renderTextField(textFieldTag: string, buttonTag: string) {
@@ -72,8 +56,10 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
-            @input="${handleInput}" @change="${handleChange}"
-            @blur="${handleBlur}" @focus="${handleFocus}">
+            @input="${eventHandlerFactory('input')}" 
+			@change="${eventHandlerFactory('change')}"
+            @blur="${eventHandlerFactory('blur')}"
+			@focus="${eventHandlerFactory('focus')}">
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
 						html`<${buttonTag}

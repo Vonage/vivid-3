@@ -277,100 +277,53 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	function dispatchEvent(eventType: string) {
-		getTextField().dispatchEvent(new InputEvent(eventType, {bubbles: true, composed: true}));
-	}
+	describe('events', () => {
+		function dispatchEvent(eventType: string) {
+			getTextField().dispatchEvent(new InputEvent(eventType, {bubbles: true, composed: true}));
+		}
 
-	describe('focus event', () => {
-		const eventName =  'focus';
+		function shouldFireEventOnce(eventName: string) {
+			it('should be fired when user enters a valid text into the text field', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
 
-		it('should be fired when user enters a valid text into the text field', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-
-			element.value = '123';
-			dispatchEvent(eventName);
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
-
-	describe('blur event', () => {
-		const eventName =  'blur';
-
-		it('should be fired when user enters a valid text into the text field', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-
-			element.value = '123';
-			dispatchEvent(eventName);
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
-
-	describe('input event', () => {
-		const eventName =  'input';
-		it('should be fired when user clicks the keyboard buttons', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-			getDigitButtons().forEach((button) => {
-				button.click();
+				element.value = '123';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+	
+				expect(spy).toHaveBeenCalledTimes(1);
 			});
+		}
 
-			await elementUpdated(element);
-			expect(spy).toHaveBeenCalledTimes(12);
-		});
-
-		it('should be fired when user enters a valid text into the text field', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-
-			element.value = '123';
-			dispatchEvent(eventName);
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
-
-	describe('change event', () => {
-		const eventName =  'change';
-		it('should be fired when user clicks the keyboard buttons', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-			getDigitButtons().forEach((button) => {
-				button.click();
+		function shouldFireOnDialPadButtonClick(eventName: string) {
+			it('should fire when user clicks the dial pad buttons', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+				getDigitButtons().forEach((button) => {
+					button.click();
+				});
+	
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(12);
 			});
+		}
 
-			await elementUpdated(element);
-			expect(spy).toHaveBeenCalledTimes(12);
+		describe('focus event', () => {
+			shouldFireEventOnce('focus');
 		});
-
-		it('should be fired when user enters a valid text into the text field', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-
-			element.value = '123';
-			dispatchEvent(eventName);
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalledTimes(1);
+	
+		describe('blur event', () => {
+			shouldFireEventOnce('blur');
 		});
-	});
-
-	describe.each(['input', 'change'])('%s event', (eventName) => {
-		it('should be fired when user clicks the keyboard buttons', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-			getDigitButtons().forEach((button) => {
-				button.click();
-			});
-
-			await elementUpdated(element);
-			expect(spy).toHaveBeenCalledTimes(12);
+	
+		describe('input event', () => {
+			shouldFireOnDialPadButtonClick('input');
+			shouldFireEventOnce('input');
+		});
+	
+		describe('change event', () => {
+			shouldFireOnDialPadButtonClick('change');
+			shouldFireEventOnce('change');
 		});
 	});
 
