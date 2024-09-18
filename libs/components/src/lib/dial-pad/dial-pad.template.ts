@@ -41,6 +41,7 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 
 function eventHandlerFactory(eventName: 'input' | 'change' | 'blur' | 'focus') {
 	return (x: DialPad, { event: e }: ExecutionContext) => {
+		x.value = x._textFieldEl.value;
 		e?.stopImmediatePropagation();
 		x.$emit(eventName);
 		return false;

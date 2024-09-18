@@ -310,22 +310,44 @@ describe('vwc-dial-pad', () => {
 			});
 		}
 
+		function shouldSetElementValueAfterEvent(eventName: string) {
+			it('should set element value after event', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+
+				element.value = '123';
+				getTextField().value = '55';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+
+				expect(element.value).toBe('55');
+			});
+		}
+
 		describe('focus event', () => {
-			shouldFireEventOnce('focus');
+			const eventName = 'focus';
+			shouldFireEventOnce(eventName);
+			shouldSetElementValueAfterEvent(eventName);
 		});
 
 		describe('blur event', () => {
-			shouldFireEventOnce('blur');
+			const eventName = 'blur';
+			shouldFireEventOnce(eventName);
+			shouldSetElementValueAfterEvent(eventName);
 		});
 
 		describe('input event', () => {
-			shouldFireOnDialPadButtonClick('input');
-			shouldFireEventOnce('input');
+			const eventName = 'input';
+			shouldFireOnDialPadButtonClick(eventName);
+			shouldFireEventOnce(eventName);
+			shouldSetElementValueAfterEvent(eventName);
 		});
 
 		describe('change event', () => {
-			shouldFireOnDialPadButtonClick('change');
-			shouldFireEventOnce('change');
+			const eventName = 'change';
+			shouldFireOnDialPadButtonClick(eventName);
+			shouldFireEventOnce(eventName);
+			shouldSetElementValueAfterEvent(eventName);
 		});
 	});
 
