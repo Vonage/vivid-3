@@ -134,6 +134,18 @@ If provided, `success-text` will take precedence over errors.
 ></vwc-number-field>
 ```
 
+### Scale
+
+Use the `scale` attribute to change the number field's size.
+
+- Type: `'condensed'` | `'normal'`
+- Default: `'normal'`
+
+```html preview blocks
+<vwc-number-field label="Condensed" scale="condensed"></vwc-number-field>
+<vwc-number-field label="Normal" scale="normal"></vwc-number-field>
+```
+
 ### Shape
 
 Use the `shape` attribute to change the number field's edges.
