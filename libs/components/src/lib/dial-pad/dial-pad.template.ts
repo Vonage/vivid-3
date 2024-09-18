@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { html, ref, when } from '@microsoft/fast-element';
+import { ExecutionContext, html, ref, when } from '@microsoft/fast-element';
 import { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type {
@@ -39,6 +39,30 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	return true;
 }
 
+function handleInput(x: DialPad, {event: e}: ExecutionContext) {
+	e?.stopImmediatePropagation();
+	x.$emit('input');
+	return false;
+}
+
+function handleFocus(x: DialPad, {event: e}: ExecutionContext) {
+	e?.stopImmediatePropagation();
+	x.$emit('focus');
+	return false;
+}
+
+function handleBlur(x: DialPad, {event: e}: ExecutionContext) {
+	e?.stopImmediatePropagation();
+	x.$emit('blur');
+	return false;
+}
+
+function handleChange(x: DialPad, {event: e}: ExecutionContext) {
+	e?.stopImmediatePropagation();
+	x.$emit('change');
+	return false;
+}
+
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
@@ -48,10 +72,8 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
-            @input="${(x) => x._handleInput()}" @change="${(x) =>
-		x._handleChange()}"
-            @blur="${(x) => x._handleBlur()}" @focus="${(x) =>
-		x._handleFocus()}">
+            @input="${handleInput}" @change="${handleChange}"
+            @blur="${handleBlur}" @focus="${handleFocus}">
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
 						html`<${buttonTag}

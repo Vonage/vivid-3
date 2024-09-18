@@ -76,7 +76,7 @@ describe('vwc-dial-pad', () => {
 			expect(getTextField().placeholder).toEqual(placeholder);
 		});
 
-		it('should activate number buttons when input event is fired a number', async function () {
+		it('should activate number buttons when input event is fired with a number', async function () {
 			expect(getDigitButtons()[3].active).toBeFalsy();
 			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
 			elementUpdated(element);
@@ -277,21 +277,89 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe.each(['input', 'change', 'blur', 'focus'])(
-		'%s event',
-		(eventName) => {
-			it('should be fired when user enters a valid text into the text field', async () => {
-				const spy = jest.fn();
-				element.addEventListener(eventName, spy);
+	function dispatchEvent(eventType: string) {
+		getTextField().dispatchEvent(new InputEvent(eventType, {bubbles: true, composed: true}));
+	}
 
-				element.value = '123';
-				getTextField().dispatchEvent(new InputEvent(eventName));
-				await elementUpdated(element);
+	describe('focus event', () => {
+		const eventName =  'focus';
 
-				expect(spy).toHaveBeenCalledTimes(1);
+		it('should be fired when user enters a valid text into the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			element.value = '123';
+			dispatchEvent(eventName);
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('blur event', () => {
+		const eventName =  'blur';
+
+		it('should be fired when user enters a valid text into the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			element.value = '123';
+			dispatchEvent(eventName);
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('input event', () => {
+		const eventName =  'input';
+		it('should be fired when user clicks the keyboard buttons', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+			getDigitButtons().forEach((button) => {
+				button.click();
 			});
-		}
-	);
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(12);
+		});
+
+		it('should be fired when user enters a valid text into the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			element.value = '123';
+			dispatchEvent(eventName);
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('change event', () => {
+		const eventName =  'change';
+		it('should be fired when user clicks the keyboard buttons', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+			getDigitButtons().forEach((button) => {
+				button.click();
+			});
+
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(12);
+		});
+
+		it('should be fired when user enters a valid text into the text field', async () => {
+			const spy = jest.fn();
+			element.addEventListener(eventName, spy);
+
+			element.value = '123';
+			dispatchEvent(eventName);
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when user clicks the keyboard buttons', async () => {
