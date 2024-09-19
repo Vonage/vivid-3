@@ -133,6 +133,48 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
+
+		it('should emit an input event', async () => {
+			const spy = jest.fn();
+			element.addEventListener('input', spy);
+			element.value = '123';
+			await elementUpdated(element);
+			getDeleteButton().click();
+			await elementUpdated(element);
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should stop prevent blur event after deleting the last value', async () => {
+			const spy = jest.fn();
+			element.addEventListener('blur', spy);
+			element.value = '1';
+			await elementUpdated(element);
+			getDeleteButton().click();
+			await elementUpdated(element);
+			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			expect(spy).toHaveBeenCalledTimes(0);
+		});
+
+		it('should allow blur event when not after deleting the last value', async () => {
+			const spy = jest.fn();
+			element.addEventListener('blur', spy);
+			element.value = '1';
+			await elementUpdated(element);
+			getDeleteButton().click();
+			await elementUpdated(element);
+			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			expect(spy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should focus on the dialpad after the blur was prevented', async () => {
+			element.value = '1';
+			await elementUpdated(element);
+			getDeleteButton().click();
+			await elementUpdated(element);
+			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			expect(document.activeElement === element).toBe(true);
+		});
 	});
 
 	describe('dial', function () {

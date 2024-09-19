@@ -163,8 +163,19 @@ export class DialPad extends FoundationElement {
 	 */
 	_deleteLastCharacter = () => {
 		this.value = this.value.slice(0, -1);
+		this.$emit('input');
 		this.$emit('change');
+		if (this.value === '') {
+			document.addEventListener('blur', this.#blurHandlerAfterDeleteButtonRemoved, true);
+		}
 	};
+
+	#blurHandlerAfterDeleteButtonRemoved = (event: FocusEvent): any => {
+		event.stopImmediatePropagation();
+		event.preventDefault();
+		this._textFieldEl.focus();
+		document.removeEventListener('blur', this.#blurHandlerAfterDeleteButtonRemoved, true);
+	}
 }
 
 export interface DialPad extends Localized {}
