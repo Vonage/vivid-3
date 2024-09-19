@@ -2,7 +2,7 @@ import {
 	applyMixins,
 	ListboxOption as FoundationListboxOption,
 } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
 /**
@@ -42,6 +42,18 @@ export class ListboxOption extends FoundationListboxOption {
 		this._label = value;
 	}
 	// #endregion overrides
+
+	/**
+	 * Whether to appear highlighted to indicate visual focus for keyboard interactions.
+	 * @internal
+	 */
+	@observable _highlighted = false;
+
+	/**
+	 * Whether selected options should be decorated with a checkmark.
+	 * @internal
+	 */
+	@observable _displayCheckmark = false;
 }
 
 export interface ListboxOption extends AffixIconWithTrailing {}
