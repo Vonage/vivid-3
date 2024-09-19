@@ -303,7 +303,7 @@ describe('vwc-dial-pad', () => {
 				});
 				expect(spy).toHaveBeenCalledTimes(12);
 			});
-	
+
 			it('should fire keypad-click event with the button which was clicked', async function () {
 				const spy = jest.fn();
 				element.addEventListener('keypad-click', spy);
@@ -315,7 +315,7 @@ describe('vwc-dial-pad', () => {
 					);
 				});
 			});
-	
+
 			it('should set value in text field when clicked on keypad', async function () {
 				await elementUpdated(element);
 				getDigitButtons().forEach((button) => {
@@ -324,7 +324,7 @@ describe('vwc-dial-pad', () => {
 				await elementUpdated(element);
 				expect(getTextField().value).toEqual('123456789*0#');
 			});
-	
+
 			it('should prevent focus and blur events on subsequent keypad buttons', async () => {
 				const spy = jest.fn();
 				element.addEventListener('focus', spy);
@@ -337,7 +337,7 @@ describe('vwc-dial-pad', () => {
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
 		});
-	
+
 		describe('focus event', () => {
 			const eventName = 'focus';
 			shouldFireEventOnce(eventName);
