@@ -76,36 +76,72 @@ describe('vwc-dial-pad', () => {
 			expect(getTextField().placeholder).toEqual(placeholder);
 		});
 
-		it('should activate number buttons when input event is fired a number', async function () {
-			expect(getDigitButtons()[3].active).toBeFalsy();
-			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
-			elementUpdated(element);
-			expect(getDigitButtons()[3].active).toBeTruthy();
+		it('should activate number buttons when input event is fired a number for 200ms', async function () {
+			const digitButton = getDigitButtons()[3];
+			const activeStateBeforeTyping = digitButton.active;
+			jest.useFakeTimers();
+
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: digitButton.value })
+			);
+			const activeStateAfterTyping = digitButton.active;
+
+			jest.advanceTimersByTime(200);
+			jest.useRealTimers();
+
+			expect(activeStateBeforeTyping).toBe(false);
+			expect(activeStateAfterTyping).toBe(true);
+			expect(digitButton.active).toBe(false);
 		});
 
-		it('should activate * button when input event is fired with *', async function () {
-			expect(getDigitButtons()[9].active).toBeFalsy();
-			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '*' }));
-			elementUpdated(element);
-			expect(getDigitButtons()[9].active).toBeTruthy();
+		it('should activate * buttons when input event is fired a * for 200ms', async function () {
+			const digitButton = getDigitButtons()[9];
+			const activeStateBeforeTyping = digitButton.active;
+			jest.useFakeTimers();
+
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: digitButton.value })
+			);
+			const activeStateAfterTyping = digitButton.active;
+
+			jest.advanceTimersByTime(200);
+			jest.useRealTimers();
+
+			expect(activeStateBeforeTyping).toBe(false);
+			expect(activeStateAfterTyping).toBe(true);
+			expect(digitButton.active).toBe(false);
 		});
 
-		it('should activate # button when input event is fired with #', async function () {
-			expect(getDigitButtons()[11].active).toBeFalsy();
-			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '#' }));
-			elementUpdated(element);
-			expect(getDigitButtons()[11].active).toBeTruthy();
+		it('should activate # buttons when input event is fired a # for 200ms', async function () {
+			const digitButton = getDigitButtons()[11];
+			const activeStateBeforeTyping = digitButton.active;
+			jest.useFakeTimers();
+
+			getTextField().dispatchEvent(
+				new KeyboardEvent('keydown', { key: digitButton.value })
+			);
+			const activeStateAfterTyping = digitButton.active;
+
+			jest.advanceTimersByTime(200);
+			jest.useRealTimers();
+
+			expect(activeStateBeforeTyping).toBe(false);
+			expect(activeStateAfterTyping).toBe(true);
+			expect(digitButton.active).toBe(false);
 		});
 
-		it('should not activate any button when input event is fired with an undefined key', async function () {
-			for (let i = 0; i < 12; i++) {
-				expect(getDigitButtons()[i].active).toBeFalsy();
+		it('should ignore input with unsupported keys', async function () {
+			function areAllDigitButtonsFalse() {
+				return Array.from(getDigitButtons()).every((b) => b.active === false);
 			}
+
+			const allDigitButtonsFlaseBefore = areAllDigitButtonsFalse();
+
 			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
 			elementUpdated(element);
-			for (let i = 0; i < 12; i++) {
-				expect(getDigitButtons()[i].active).toBeFalsy();
-			}
+
+			expect(allDigitButtonsFlaseBefore).toBe(true);
+			expect(areAllDigitButtonsFalse()).toBe(true);
 		});
 	});
 
