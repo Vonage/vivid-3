@@ -138,6 +138,13 @@ const zhCN: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	searchableSelect: {
+		clearButtonLabel: '清除',
+		noOptionsMessage: '没有选项',
+		noMatchesMessage: '未找到选项',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`${label} 删除`,
+	},
 };
 
 export default zhCN;

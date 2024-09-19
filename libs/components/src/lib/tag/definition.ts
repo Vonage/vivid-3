@@ -21,7 +21,7 @@ export const tagDefinition = Tag.compose<FoundationElementDefinition>({
 	},
 });
 
-const tagRegistries = [tagDefinition(), ...iconRegistries];
+export const tagRegistries = [tagDefinition(), ...iconRegistries];
 /**
  * Registers the tag elements with the design system.
  *

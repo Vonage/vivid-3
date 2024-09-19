@@ -44,6 +44,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{connotation.get-connotation-token(contrast)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(contrast)}),
+					transparent 87.5%
+				),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
@@ -208,6 +218,16 @@ $states-mapping: (
 		subtle: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: var(#{constants.$vvd-color-neutral-100}),
+			outline: transparent,
+		),
+		subtle-light: (
+			text: var(#{constants.$vvd-color-neutral-300}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{constants.$vvd-color-neutral-800}),
+					transparent 87.5%
+				),
 			outline: transparent,
 		),
 		listitem: (

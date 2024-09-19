@@ -40,6 +40,7 @@ export * from './progress/definition';
 export * from './radio-group/definition';
 export * from './radio/definition';
 export * from './range-slider/definition';
+export * from './searchable-select/definition';
 export * from './select/definition';
 export * from './selectable-box/definition';
 export * from './side-drawer/definition';
