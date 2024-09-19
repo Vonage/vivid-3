@@ -6,7 +6,7 @@ import {
 } from '@microsoft/fast-element';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import { DelegatesARIATextbox } from '@microsoft/fast-foundation';
-import type { Appearance, Shape } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	errorText,
@@ -26,6 +26,7 @@ export type NumberFieldAppearance = Extract<
 	Appearance.Fieldset | Appearance.Ghost
 >;
 export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type NumberFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 const STEP_DIRECTION = {
 	up: 1,
@@ -134,6 +135,15 @@ export class NumberField extends FormAssociatedNumberField {
 	 */
 	@attr({ converter: nullableNumberConverter })
 	size!: number;
+
+	/**
+	 * The size the number-field should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr() scale?: NumberFieldSize;
 
 	/**
 	 * Amount to increment or decrement the value by
