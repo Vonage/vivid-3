@@ -20,12 +20,6 @@ describe('vwc-menu', () => {
 	let popup: Popup;
 	let anchor: Button;
 
-	global.ResizeObserver = class {
-		observe = jest.fn();
-		unobserve = jest.fn();
-		disconnect = jest.fn();
-	};
-
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Menu;
 		popup = element.shadowRoot?.querySelector('vwc-popup') as Popup;

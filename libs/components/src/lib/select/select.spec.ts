@@ -18,12 +18,6 @@ describe('vwc-select', () => {
 
 	let element: Select;
 
-	global.ResizeObserver = jest.fn().mockImplementation(() => ({
-		observe: jest.fn(),
-		unobserve: jest.fn(),
-		disconnect: jest.fn(),
-	}));
-
 	beforeAll(() => {
 		originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
 		HTMLElement.prototype.scrollIntoView = jest.fn();
