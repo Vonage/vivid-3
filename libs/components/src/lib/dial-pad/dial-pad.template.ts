@@ -39,13 +39,8 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	return true;
 }
 
-function eventHandlerFactory(eventName: 'input' | 'change' | 'blur' | 'focus') {
-	return (x: DialPad, { event: e }: ExecutionContext) => {
-		x.value = x._textFieldEl.value;
-		e?.stopImmediatePropagation();
-		x.$emit(eventName);
-		return false;
-	};
+function syncFieldAndPadValues(x: DialPad) {
+	x.value = x._textFieldEl.value;
 }
 
 function stopPropagation(_: DialPad, { event: e }: ExecutionContext) {
@@ -62,8 +57,8 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
-            @input="${eventHandlerFactory('input')}" 
-			@change="${eventHandlerFactory('change')}"
+            @input="${syncFieldAndPadValues}" 
+			@change="${syncFieldAndPadValues}"
 			@focus="${stopPropagation}"
 			@blur="${stopPropagation}"
 			>
