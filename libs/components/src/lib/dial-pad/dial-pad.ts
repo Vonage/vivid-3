@@ -166,7 +166,11 @@ export class DialPad extends FoundationElement {
 		this.$emit('input');
 		this.$emit('change');
 		if (this.value === '') {
-			document.addEventListener('blur', this.#blurHandlerAfterDeleteButtonRemoved, true);
+			document.addEventListener(
+				'blur',
+				this.#blurHandlerAfterDeleteButtonRemoved,
+				true
+			);
 		}
 	};
 
@@ -174,8 +178,12 @@ export class DialPad extends FoundationElement {
 		event.stopImmediatePropagation();
 		event.preventDefault();
 		this._textFieldEl.focus();
-		document.removeEventListener('blur', this.#blurHandlerAfterDeleteButtonRemoved, true);
-	}
+		document.removeEventListener(
+			'blur',
+			this.#blurHandlerAfterDeleteButtonRemoved,
+			true
+		);
+	};
 }
 
 export interface DialPad extends Localized {}

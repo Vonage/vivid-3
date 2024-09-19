@@ -151,7 +151,9 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			getDeleteButton().click();
 			await elementUpdated(element);
-			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			element.dispatchEvent(
+				new InputEvent('blur', { bubbles: true, composed: true })
+			);
 			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
@@ -162,8 +164,12 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			getDeleteButton().click();
 			await elementUpdated(element);
-			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
-			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			element.dispatchEvent(
+				new InputEvent('blur', { bubbles: true, composed: true })
+			);
+			element.dispatchEvent(
+				new InputEvent('blur', { bubbles: true, composed: true })
+			);
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
@@ -172,7 +178,9 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			getDeleteButton().click();
 			await elementUpdated(element);
-			element.dispatchEvent(new InputEvent('blur', {bubbles: true, composed: true}));
+			element.dispatchEvent(
+				new InputEvent('blur', { bubbles: true, composed: true })
+			);
 			expect(document.activeElement === element).toBe(true);
 		});
 	});
