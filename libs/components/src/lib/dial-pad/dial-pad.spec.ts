@@ -225,7 +225,7 @@ describe('vwc-dial-pad', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should not fire dial event when enter is pressed on delete button', async function () {
+		it('should prevent dial event when enter is pressed on delete button', async function () {
 			const spy = jest.fn();
 			element.value = '123';
 			element.addEventListener('dial', spy);
@@ -253,7 +253,7 @@ describe('vwc-dial-pad', () => {
 			);
 		}
 
-		function shouldFireEventOnce(eventName: string) {
+		function shouldFireEventOnceFromTextField(eventName: string) {
 			it('should fire only once on the dial pad element', async () => {
 				const spy = jest.fn();
 				element.addEventListener(eventName, spy);
@@ -340,25 +340,43 @@ describe('vwc-dial-pad', () => {
 
 		describe('focus event', () => {
 			const eventName = 'focus';
-			shouldFireEventOnce(eventName);
+			it('should prevent propagation of focus event from textfield', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+
+				element.value = '123';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+
+				expect(spy).toHaveBeenCalledTimes(0);
+			});
 		});
 
 		describe('blur event', () => {
 			const eventName = 'blur';
-			shouldFireEventOnce(eventName);
+			it('should prevent propagation of blur event from textfield', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+
+				element.value = '123';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+
+				expect(spy).toHaveBeenCalledTimes(0);
+			});
 		});
 
 		describe('input event', () => {
 			const eventName = 'input';
 			shouldFireOnDialPadButtonClick(eventName);
-			shouldFireEventOnce(eventName);
+			shouldFireEventOnceFromTextField(eventName);
 			shouldSetElementValueAfterEvent(eventName);
 		});
 
 		describe('change event', () => {
 			const eventName = 'change';
 			shouldFireOnDialPadButtonClick(eventName);
-			shouldFireEventOnce(eventName);
+			shouldFireEventOnceFromTextField(eventName);
 			shouldSetElementValueAfterEvent(eventName);
 		});
 	});
