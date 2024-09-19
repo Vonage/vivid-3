@@ -45,7 +45,6 @@ function syncFieldAndPadValues(x: DialPad) {
 
 function stopPropagation(_: DialPad, { event: e }: ExecutionContext) {
 	e.stopImmediatePropagation();
-	_.$emit('Blah');
 }
 
 function renderTextField(textFieldTag: string, buttonTag: string) {
