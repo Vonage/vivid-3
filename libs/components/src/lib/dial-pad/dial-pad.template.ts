@@ -48,6 +48,11 @@ function eventHandlerFactory(eventName: 'input' | 'change' | 'blur' | 'focus') {
 	};
 }
 
+function stopPropagation(_: DialPad, { event: e }: ExecutionContext) {
+	e.stopImmediatePropagation();
+	_.$emit('Blah');
+}
+
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
@@ -59,8 +64,9 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
             @input="${eventHandlerFactory('input')}" 
 			@change="${eventHandlerFactory('change')}"
-            @blur="${eventHandlerFactory('blur')}"
-			@focus="${eventHandlerFactory('focus')}">
+			@focus="${stopPropagation}"
+			@blur="${stopPropagation}"
+			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
 						html`<${buttonTag}
@@ -165,8 +171,8 @@ function renderDigits(buttonTag: string, iconTag: string) {
 }
 
 function renderDialButton(buttonTag: string) {
-	return html<DialPad>`<${buttonTag} class='call-btn'
-        size='expanded'
+	return html<DialPad>`<${buttonTag} class="call-btn"
+        size="expanded"
         appearance="filled"
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
