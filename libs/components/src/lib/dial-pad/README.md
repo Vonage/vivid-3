@@ -150,8 +150,8 @@ You can change the error text with the `error-text` attribute.
 | -------------- | --------------------------- | ------- | -------- | ------------------------------------------- |
 | `input`        | `CustomEvent<undefined>`    | Yes     | Yes      | Emitted when the text field value changes   |
 | `change`       | `CustomEvent<undefined>`    | Yes     | Yes      | Emitted when the text field value changes   |
-| `blur`         | `CustomEvent<undefined>`    | Yes     | Yes      | Emitted when the text field loses focus     |
-| `focus`        | `CustomEvent<undefined>`    | Yes     | Yes      | Emitted when the text field receives focus  |
+| `blur`         | `CustomEvent<undefined>`    | Yes     | Yes      | Emitted when the dialpad loses focus     |
+| `focus`        | `CustomEvent<undefined>`    | Yes     | Yes      | Emitted when the dialpad children receive focus  |
 | `keypad-click` | `CustomEvent<HTMLElement> ` | Yes     | Yes      | Emitted when a digit button is clicked      |
 | `dial`         | `CustomEvent<undefined> `   | Yes     | Yes      | Emitted when the call button is clicked     |
 | `end-call`     | `CustomEvent<undefined> `   | Yes     | Yes      | Emitted when the end call button is clicked |
