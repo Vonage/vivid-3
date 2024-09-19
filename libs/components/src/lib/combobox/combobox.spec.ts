@@ -14,12 +14,6 @@ const COMPONENT_TAG = 'vwc-combobox';
 describe('vwc-combobox', () => {
 	let element: Combobox;
 
-	global.ResizeObserver = jest.fn().mockImplementation(() => ({
-		observe: jest.fn(),
-		unobserve: jest.fn(),
-		disconnect: jest.fn(),
-	}));
-
 	function getPopup(): Popup {
 		return element.shadowRoot!.querySelector('.popup') as Popup;
 	}
