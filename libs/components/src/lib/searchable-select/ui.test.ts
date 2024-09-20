@@ -74,11 +74,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.setViewportSize({ width: 350, height: 2000 });
 
+	await page.evaluate(() => {
+		(document.querySelector('vwc-searchable-select') as HTMLElement).blur();
+	});
+
 	await page.waitForLoadState('networkidle');
-
-	await page.focus('vwc-searchable-select:first-child');
-
-	await page.keyboard.press('Escape');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/searchable-select.png'
