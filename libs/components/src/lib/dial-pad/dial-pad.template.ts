@@ -139,7 +139,7 @@ function renderDigits(buttonTag: string, iconTag: string) {
 					  stacked 
 					  appearance="ghost-light" 
 					  shape="pill" 
-					  label="${(x) => x.label === '&nbsp;' ? '\u00A0' : x.label}"
+					  label="${(x) => (x.label === '&nbsp;' ? '\u00A0' : x.label)}"
 					  size='condensed' 
 					  class="digit-btn" 
 					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}" 
