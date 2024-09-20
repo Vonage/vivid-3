@@ -40,7 +40,7 @@ const DIAL_PAD_BUTTONS = [
 	new DialPadButton('4', 'GHI', 'digitFourLabel', 'four-solid', 'btn4'),
 	new DialPadButton('5', 'JKL', 'digitFiveLabel', 'five-solid', 'btn5'),
 	new DialPadButton('6', 'MNO', 'digitSixLabel', 'six-solid', 'btn6'),
-	new DialPadButton('7', 'PQRS', 'digitSevenLabel', 'seven-solid', 'btn6'),
+	new DialPadButton('7', 'PQRS', 'digitSevenLabel', 'seven-solid', 'btn7'),
 	new DialPadButton('8', 'TUV', 'digitEightLabel', 'eight-solid', 'btn8'),
 	new DialPadButton('9', 'WXYZ', 'digitNineLabel', 'nine-solid', 'btn9'),
 	new DialPadButton(
