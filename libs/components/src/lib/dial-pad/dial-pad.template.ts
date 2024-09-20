@@ -14,13 +14,13 @@ import type { DialPad } from './dial-pad';
 
 class DialPadButton {
 	value: string;
-	label: string;
+	label: string | null;
 	ariaLabel: string;
 	icon: string;
 	id: string;
 	constructor(
 		value: string,
-		label: string,
+		label: string | null,
 		ariaLabel: string,
 		icon: string,
 		id: string
@@ -34,7 +34,7 @@ class DialPadButton {
 }
 
 const DIAL_PAD_BUTTONS = [
-	new DialPadButton('1', '', 'digitOneLabel', 'one-solid', 'btn1'),
+	new DialPadButton('1', '&nbsp;', 'digitOneLabel', 'one-solid', 'btn1'),
 	new DialPadButton('2', 'ABC', 'digitTwoLabel', 'two-solid', 'btn2'),
 	new DialPadButton('3', 'DEF', 'digitThreeLabel', 'three-solid', 'btn3'),
 	new DialPadButton('4', 'GHI', 'digitFourLabel', 'four-solid', 'btn4'),
@@ -45,7 +45,7 @@ const DIAL_PAD_BUTTONS = [
 	new DialPadButton('9', 'WXYZ', 'digitNineLabel', 'nine-solid', 'btn9'),
 	new DialPadButton(
 		'*',
-		'WXYZ',
+		null,
 		'digitAsteriskLabel',
 		'asterisk-2-solid',
 		'btnAsterisk'
@@ -53,7 +53,7 @@ const DIAL_PAD_BUTTONS = [
 	new DialPadButton('0', '+', 'digitZeroLabel', 'zero-solid', 'btn0'),
 	new DialPadButton(
 		'#',
-		'WXYZ',
+		null,
 		'digitHashtagLabel',
 		'hashtag-solid',
 		'btnHashtag'
@@ -131,7 +131,7 @@ function onDigitClick(
 function renderDigits(buttonTag: string, iconTag: string) {
 	return html<DialPad>`
 		${repeat(
-			(_) => DIAL_PAD_BUTTONS,
+			(_: DialPad) => DIAL_PAD_BUTTONS,
 			html<DialPadButton>`
 			<${buttonTag} 
 					  id="${(x) => x.id}"
@@ -139,7 +139,7 @@ function renderDigits(buttonTag: string, iconTag: string) {
 					  stacked 
 					  appearance="ghost-light" 
 					  shape="pill" 
-					  label="${(x) => x.label}" 
+					  label="${(x) => x.label === '&nbsp;' ? '\u00A0' : x.label}"
 					  size='condensed' 
 					  class="digit-btn" 
 					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}" 
