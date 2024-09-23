@@ -9,7 +9,7 @@ import {
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
-import type { Appearance, Shape } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import type { ListboxOption } from '../option/option';
 import { Listbox } from '../listbox/listbox';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
@@ -19,6 +19,7 @@ export type SelectAppearance = Extract<
 	Appearance.Fieldset | Appearance.Ghost
 >;
 export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type SelectSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 /**
  * @public
@@ -38,6 +39,15 @@ export class Select extends FoundationSelect {
 	 * @internal
 	 */
 	@observable _anchor!: HTMLElement;
+
+	/**
+	 * The size the select should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr() scale?: SelectSize;
 
 	/**
 	 * The appearance attribute.

@@ -6,6 +6,7 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
+import { Size } from '../enums';
 import { Select } from './select';
 import '.';
 
@@ -16,12 +17,6 @@ describe('vwc-select', () => {
 	let originalScrollIntoView: any;
 
 	let element: Select;
-
-	global.ResizeObserver = jest.fn().mockImplementation(() => ({
-		observe: jest.fn(),
-		unobserve: jest.fn(),
-		disconnect: jest.fn(),
-	}));
 
 	beforeAll(() => {
 		originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
@@ -53,6 +48,44 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('scale', () => {
+		function hasSizeClass(baseElement: HTMLElement) {
+			return Array.from(baseElement.classList).some((className) => {
+				return className.includes('size-');
+			});
+		}
+
+		it('should reflect the property as an attribute', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(element.getAttribute('scale')).toBe(Size.Condensed);
+		});
+
+		it('should reflect the attribute as a property', async () => {
+			element.setAttribute('scale', Size.Condensed);
+			await elementUpdated(element);
+			expect(element.scale).toBe(Size.Condensed);
+		});
+
+		it('should init without a size class on base element', async () => {
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+		it('should set size class on base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(
+				getControlElement(element).classList.contains('size-condensed')
+			).toBe(true);
+		});
+
+		it('should remove size class from base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			element.scale = undefined;
+			await elementUpdated(element);
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+	});
 	describe('option label', function () {
 		it("should show the options's label instead of the text", async function () {
 			const label = 'label';

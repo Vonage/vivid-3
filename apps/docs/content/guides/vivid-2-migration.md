@@ -5,10 +5,8 @@ order: 6
 
 # Migrating From Vivid 2.x to Vivid 3.x
 
-Vivid 3.x has been rewritten from scratch.
-
-It comes with almost all components that are available in Vivid 2.x, and many new ones.
-All of them are better in both code and semantics. All the components are aligned with the HTML spec and are accessible.
+Vivid 3.x has been rewritten from scratch.<br />It comes with almost all components that are available in Vivid 2.x, and many new ones.
+All of them are better in both code and semantics. All the components are aligned with the HTML spec and are more accessible.
 
 If you are migrating to Vivid 3.x, you can install it alongside Vivid 2.x for an easy and gradual migration.
 

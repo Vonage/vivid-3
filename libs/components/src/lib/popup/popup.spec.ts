@@ -29,11 +29,6 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
-		global.ResizeObserver = class {
-			observe = jest.fn();
-			unobserve = jest.fn();
-			disconnect = jest.fn();
-		};
 	});
 
 	afterEach(function () {

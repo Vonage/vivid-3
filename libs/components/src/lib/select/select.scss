@@ -50,19 +50,35 @@ $low-ink-color: --_low-ink-color;
 	@include appearance.appearance;
 	@include connotation.connotation(select);
 
+	/* Size related properties */
 	& {
+		border-radius: var(#{variables.$select-control-border-radius});
+		block-size: var(#{variables.$select-block-size});
+		padding-inline: var(#{variables.$select-padding-inline});
+	}
+
+	& {
+		#{variables.$select-icon-size}: calc(#{size.$vvd-size-normal} / 2);
+		#{variables.$select-block-size}: #{size.$vvd-size-normal};
+		#{variables.$select-padding-inline}: calc(#{size.$vvd-size-normal} / 2.5);
+
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border-radius: var(#{variables.$select-control-border-radius});
 		background-color: var(#{appearance.get-appearance-token(fill)});
-		block-size: #{size.$vvd-size-normal};
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
 		color: var(#{appearance.get-appearance-token(text)});
 		font: var(#{constants.$vvd-typography-base});
 		gap: 8px;
-		padding-inline: 16px;
 		transition: box-shadow 0.2s, background-color 0.2s;
+	}
+
+	&.size-condensed {
+		#{variables.$select-icon-size}: calc(#{size.$vvd-size-normal} / 2.5);
+		#{variables.$select-block-size}: #{size.$vvd-size-condensed};
+		#{variables.$select-padding-inline}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		);
 	}
 
 	&-wrapper {
@@ -124,8 +140,8 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	slot[name='icon'] {
-		flex: 0 0 20px;
-		font-size: 20px;
+		flex: 0 0 var(#{variables.$select-icon-size});
+		font-size: var(#{variables.$select-icon-size});
 		line-height: 1;
 	}
 

@@ -434,6 +434,7 @@ describe('vwc-selectable-box', () => {
 
 			expect(control?.getAttribute('tabindex')).toBe(null);
 			expect(control?.getAttribute('aria-label')).toBe('Box 1');
+			expect(control?.getAttribute('aria-press')).toBe(null);
 		});
 
 		describe('radio', () => {
@@ -473,7 +474,7 @@ describe('vwc-selectable-box', () => {
 
 			it('should put the correct a11y attributes on the base element', async () => {
 				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
-				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
+				expect(baseElement?.getAttribute('aria-pressed')).toBe('false');
 				expect(baseElement?.getAttribute('role')).toBe('button');
 				expect(baseElement?.getAttribute('tabindex')).toBe('0');
 			});
@@ -518,7 +519,7 @@ describe('vwc-selectable-box', () => {
 
 			it('should put the correct a11y attributes on the base element', async () => {
 				expect(baseElement?.getAttribute('aria-label')).toBe('Box 1');
-				expect(baseElement?.getAttribute('aria-pressed')).toBe(null);
+				expect(baseElement?.getAttribute('aria-pressed')).toBe('false');
 				expect(baseElement?.getAttribute('role')).toBe('button');
 				expect(baseElement?.getAttribute('tabindex')).toBe('0');
 			});
