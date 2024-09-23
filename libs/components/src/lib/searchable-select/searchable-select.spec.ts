@@ -1134,6 +1134,24 @@ describe('vwc-searchable-select', () => {
 			expect(getVisibleOptions()).toEqual(['Apple', 'Banana']);
 		});
 
+		it('should not highlight a matched range when no text is entered', async function () {
+			focusInput();
+			await elementUpdated(element);
+
+			expect(getOption('Apple')._matchedRange).toEqual(null);
+		});
+
+		it('should highlight matched text of options', async function () {
+			focusInput();
+			await elementUpdated(element);
+
+			typeInput('a');
+			await elementUpdated(element);
+
+			expect(getOption('Apple')._matchedRange).toEqual({ from: 0, to: 1 });
+			expect(getOption('Banana')._matchedRange).toEqual({ from: 1, to: 2 });
+		});
+
 		it('should display an empty state if options are available', async function () {
 			await setUpFixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 			focusInput();
