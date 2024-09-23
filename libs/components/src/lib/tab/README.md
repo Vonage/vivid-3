@@ -69,6 +69,39 @@ Use the `shape` attribute in order to set `rounded` and `sharp` to the backgroun
 </vwc-tabs>
 ```
 
+### Closable
+
+Use the `closable` attribute to add a *close button* to the tab.
+
+Clicking the close button or pressing the `DELETE` key when focussed on the tab will emit the `close` event.
+
+<vwc-note connotation="warning" icon="warning-line">
+	<p>Triggering ther <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
+</vwc-note>
+
+```html preview full
+<vwc-tabs>
+	<vwc-tab label="Tab one" closable></vwc-tab>
+	<vwc-tab label="Tab two" closable></vwc-tab>
+	<vwc-tab label="Tab three" closable></vwc-tab>
+	<vwc-tab-panel>Tab one content</vwc-tab-panel>
+	<vwc-tab-panel>Tab two content</vwc-tab-panel>
+	<vwc-tab-panel>Tab three content</vwc-tab-panel>
+</vwc-tabs>
+
+<script>
+	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
+		const tab = e.srcElement;
+		const tabPanelId = tab.getAttribute('aria-controls');
+		const tabPanel = document.getElementById(tabPanelId);
+		if (tabPanel) {
+			tabPanel.remove();
+			e.srcElement.remove();
+		}
+	});
+</script>
+```
+
 ### Disabled
 
 The disabled state of the element.
@@ -108,3 +141,13 @@ If set, the `icon` attribute is ignored.
 	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
+
+## Events
+
+<div class="table-wrapper">
+
+| Name     | Type                          | Bubbles | Composed | Description                                                |
+| -------- | ----------------------------- | ------- | -------- | ---------------------------------------------------------- |
+| `close` | `CustomEvent` | Yes     | Yes      | Fires a custom 'close' event when the close button is clicked or the `DELETE` key is pressed |
+
+</div>

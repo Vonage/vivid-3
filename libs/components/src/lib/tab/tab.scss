@@ -28,6 +28,10 @@
 	cursor: not-allowed;
 }
 
+:host([closable]) {
+	position: relative;
+}
+
 :host(:focus-visible) {
 	outline: none;
 }
@@ -68,6 +72,10 @@
 
 	&.disabled {
 		pointer-events: none;
+	}
+
+	&.closable {
+		padding-inline-end: 36px;
 	}
 
 	:host(:focus-visible) & {
@@ -119,4 +127,11 @@ slot[name='icon'] {
 			opacity: 0;
 		}
 	}
+}
+
+.close {
+	position: absolute;
+	inset-inline-end: 4px;
+	inset-block-start: 50%;
+	margin-block-start: -12px;
 }

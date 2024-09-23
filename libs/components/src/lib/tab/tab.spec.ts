@@ -76,6 +76,47 @@ describe('vwc-tab', () => {
 		});
 	});
 
+	describe('closable', function () {
+		it('should display the close button when closable is true', async () => {
+			expect(element.shadowRoot?.querySelector('.close')).toBeFalsy();
+			element.toggleAttribute('closable', true);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.close')).toBeTruthy();
+		});
+
+		it('should set closable class when closable is true', async () => {
+			expect(element.shadowRoot?.querySelector('.closable')).toBeFalsy();
+			element.toggleAttribute('closable', true);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.closable')).toBeTruthy();
+		});
+
+		describe('closable is true', () => {
+			beforeEach(async () => {
+				element.toggleAttribute('closable', true);
+				await elementUpdated(element);
+			});
+
+			it('should emit the close event when the close button is clicked', async () => {
+				const closeBtn = element.shadowRoot?.querySelector('#close-btn') as HTMLButtonElement;
+				closeBtn?.setAttribute('tabindex', '0');
+				const spy = jest.fn();
+				element.addEventListener('close', spy);
+				closeBtn?.click();
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
+
+			it('should emit the close event when the delete key is pressed', async () => {
+				const spy = jest.fn();
+				element.addEventListener('close', spy);
+				element.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'Delete' })
+				);	
+			});
+		});
+	});
+
 	describe('ariaSelected', function () {
 		it('should set connotation class on base if true', async () => {
 			element.connotation = Connotation.CTA;

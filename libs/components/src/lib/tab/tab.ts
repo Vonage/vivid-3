@@ -53,11 +53,34 @@ export class Tab extends FoundationTab {
 	 */
 	@attr label?: string;
 
+	/**
+	 * Indicates the tab's label.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: label
+	 */
+	@attr({ mode: 'boolean' }) closable = false;
+
 	@attr({ mode: 'fromView' }) override tabIndex: number =
 		'-1' as unknown as number;
 
 	@attr({ attribute: 'aria-selected' }) override ariaSelected: string | null =
 		null;
+
+	_handleCloseClick(e: Event) {
+		e.stopImmediatePropagation();
+		this.$emit('close');
+	}
+
+	_onKeyDown(e: KeyboardEvent) {
+		if (e.key === 'Delete') {
+			e.stopImmediatePropagation();
+			this.$emit('close');
+			return false;
+		}
+		return true;
+	}
 }
 
 export interface Tab extends AffixIconWithTrailing {}

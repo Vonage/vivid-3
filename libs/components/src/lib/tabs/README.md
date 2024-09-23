@@ -7,17 +7,6 @@ The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as
 <script type="module">import '@vonage/vivid/tabs';</script>
 ```
 
-```html preview full
-<vwc-tabs>
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
-
 ## Members
 
 ### Gutters
@@ -177,3 +166,30 @@ Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that whe
 | `change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'change' event when a tab is clicked or during keyboard navigation |
 
 </div>
+
+## Use cases
+
+### Closable tabs
+
+```html preview full
+<vwc-tabs orientation="vertical">
+	<vwc-tab label="Tab one" closable></vwc-tab>
+	<vwc-tab label="Tab two" closable></vwc-tab>
+	<vwc-tab label="Tab three" closable></vwc-tab>
+	<vwc-tab-panel>Tab one content</vwc-tab-panel>
+	<vwc-tab-panel>Tab two content</vwc-tab-panel>
+	<vwc-tab-panel>Tab three content</vwc-tab-panel>
+</vwc-tabs>
+
+<script>
+	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
+		const tab = e.srcElement;
+		const tabPanelId = tab.getAttribute('aria-controls');
+		const tabPanel = document.getElementById(tabPanelId);
+		if (tabPanel) {
+			tabPanel.remove();
+			e.srcElement.remove();
+		}
+	});
+</script>
+```
