@@ -101,6 +101,7 @@ function renderFieldset(context: ElementDefinitionContext) {
 		<div
 			class="fieldset ${getStateClasses}"
 			@click="${(x, c) => x._onFieldsetClick(c.event as MouseEvent)}"
+			${ref('_anchor')}
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			<div class="content-area" ${ref('_contentArea')}>
@@ -175,49 +176,49 @@ function renderControl(context: ElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
-		<div ${ref('_anchor')}>
+		<div>
 			${when((x) => x.label, renderLabel())}
 			${renderFieldset(context)}
-		</div>
-		<div class="popup-wrapper">
-			<${popupTag}
-				:anchor="${(x) => x._anchor}"
-				:open="${(x) => x.open}"
-				class="popup"
-				placement="bottom-start"
-				strategy="${(x) => (x.fixedDropdown ? 'fixed' : 'absolute')}">
-				<div
-					class="listbox"
-					role="listbox"
-					${ref('_listbox')}
-					@click="${(x, c) => x._onListboxClick(c.event as MouseEvent)}"
-					@mousedown="${() => false}"
-				>
-					<slot
-						${slotted({
-							filter: Listbox.slottedOptionFilter as any,
-							flatten: true,
-							property: '_slottedOptions',
-						})}>
-					</slot>
-					${when(
-						(x) => x._inputValue !== '' && x._filteredOptions.length === 0,
-						html<SearchableSelect>`<div class="empty-message">
-							<slot name="no-matches"
-								>${(x) => x.locale.searchableSelect.noMatchesMessage}</slot
-							>
-						</div>`
-					)}
-					${when(
-						(x) => x._inputValue === '' && x._slottedOptions.length === 0,
-						html<SearchableSelect>`<div class="empty-message">
-							<slot name="no-options"
-								>${(x) => x.locale.searchableSelect.noOptionsMessage}</slot
-							>
-						</div>`
-					)}
-				</div>
-			</${popupTag}>
+			<div class="popup-wrapper">
+				<${popupTag}
+					:anchor="${(x) => x._anchor}"
+					:open="${(x) => x.open}"
+					class="popup"
+					placement="bottom-start"
+					strategy="${(x) => (x.fixedDropdown ? 'fixed' : 'absolute')}">
+					<div
+						class="listbox"
+						role="listbox"
+						${ref('_listbox')}
+						@click="${(x, c) => x._onListboxClick(c.event as MouseEvent)}"
+						@mousedown="${() => false}"
+					>
+						<slot
+							${slotted({
+								filter: Listbox.slottedOptionFilter as any,
+								flatten: true,
+								property: '_slottedOptions',
+							})}>
+						</slot>
+						${when(
+							(x) => x._inputValue !== '' && x._filteredOptions.length === 0,
+							html<SearchableSelect>`<div class="empty-message">
+								<slot name="no-matches"
+									>${(x) => x.locale.searchableSelect.noMatchesMessage}</slot
+								>
+							</div>`
+						)}
+						${when(
+							(x) => x._inputValue === '' && x._slottedOptions.length === 0,
+							html<SearchableSelect>`<div class="empty-message">
+								<slot name="no-options"
+									>${(x) => x.locale.searchableSelect.noOptionsMessage}</slot
+								>
+							</div>`
+						)}
+					</div>
+				</${popupTag}>
+			</div>
 		</div>
 	`;
 }
