@@ -21,6 +21,8 @@
 	border-radius-variables;
 @import '../../shared/patterns/chevron';
 
+$low-ink-color: --_low-ink-color;
+
 :host(:focus-visible) {
 	outline: none;
 }
@@ -28,9 +30,11 @@
 :host {
 	display: inline-block;
 	inline-size: 300px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
 
 :host([disabled]) {
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
 	cursor: not-allowed;
 }
 
