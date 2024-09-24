@@ -98,7 +98,9 @@ describe('vwc-tab', () => {
 			});
 
 			it('should emit the close event when the close button is clicked', async () => {
-				const closeBtn = element.shadowRoot?.querySelector('#close-btn') as HTMLButtonElement;
+				const closeBtn = element.shadowRoot?.querySelector(
+					'#close-btn'
+				) as HTMLButtonElement;
 				closeBtn?.setAttribute('tabindex', '0');
 				const spy = jest.fn();
 				element.addEventListener('close', spy);
@@ -110,9 +112,7 @@ describe('vwc-tab', () => {
 			it('should emit the close event when the delete key is pressed', async () => {
 				const spy = jest.fn();
 				element.addEventListener('close', spy);
-				element.dispatchEvent(
-					new KeyboardEvent('keydown', { key: 'Delete' })
-				);	
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 			});
 		});
 	});

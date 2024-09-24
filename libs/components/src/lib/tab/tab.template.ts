@@ -26,21 +26,21 @@ const getClasses = ({
 		['disabled', Boolean(disabled)],
 		['selected', ariaSelected === 'true'],
 		['icon-trailing', iconTrailing],
-		['closable', closable],
+		['closable', closable]
 	);
 
-	function renderDismissButton(buttonTag: string) {
-		return html<Tab>`
+function renderDismissButton(buttonTag: string) {
+	return html<Tab>`
 		<${buttonTag}
 			aria-label=""
 			size="super-condensed"
 			class="close"
 			id="close-btn"
 			icon="close-line"
-			@click="${(x, c) => (x._handleCloseClick(c.event))}"
+			@click="${(x, c) => x._handleCloseClick(c.event)}"
 			tabindex="-1"
 		></${buttonTag}>`;
-	}
+}
 
 /**
  * The template for the (Tab:class) component.
@@ -52,11 +52,11 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const buttonTag = context.tagFor(Button);
 
-	return html<T>`<template 
-		slot="tab" 
+	return html<T>`<template
+		slot="tab"
 		@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 	>
-		<div 
+		<div
 			role="tab"
 			aria-disabled="${(x) => x.disabled}"
 			aria-selected="${(x) => x.ariaSelected}"

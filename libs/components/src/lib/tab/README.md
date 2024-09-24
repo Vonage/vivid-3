@@ -71,7 +71,7 @@ Use the `shape` attribute in order to set `rounded` and `sharp` to the backgroun
 
 ### Closable
 
-Use the `closable` attribute to add a *close button* to the tab.
+Use the `closable` attribute to add a _close button_ to the tab.
 
 Clicking the close button or pressing the `DELETE` key when focussed on the tab will emit the `close` event.
 
@@ -146,8 +146,8 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name     | Type                          | Bubbles | Composed | Description                                                |
-| -------- | ----------------------------- | ------- | -------- | ---------------------------------------------------------- |
+| Name    | Type          | Bubbles | Composed | Description                                                                                  |
+| ------- | ------------- | ------- | -------- | -------------------------------------------------------------------------------------------- |
 | `close` | `CustomEvent` | Yes     | Yes      | Fires a custom 'close' event when the close button is clicked or the `DELETE` key is pressed |
 
 </div>
