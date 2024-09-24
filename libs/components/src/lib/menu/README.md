@@ -122,6 +122,7 @@ Use the `placement` attribute to control the position of the menu relative to it
 ```
 
 ### Strategy-Absolute
+
 Add the `strategy-absolute` attribute to set the menu to be positioned `absolute` instead of `fixed`.  
 This is useful for cases in which the menu is a child or a parent with `container-type` value.
 
@@ -130,16 +131,21 @@ This is useful for cases in which the menu is a child or a parent with `containe
 
 ```html preview 200px
 <div style="position: absolute; container-type: inline-size;">
-<vwc-menu strategy-absolute trigger="auto" aria-label="Menu example" placement="bottom-end">
-	<vwc-button
-		slot="anchor"
-		icon="more-vertical-line"
-		aria-label="Open menu"
-		appearance="outlined"
-	></vwc-button>
-	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-</vwc-menu>
+	<vwc-menu
+		strategy-absolute
+		trigger="auto"
+		aria-label="Menu example"
+		placement="bottom-end"
+	>
+		<vwc-button
+			slot="anchor"
+			icon="more-vertical-line"
+			aria-label="Open menu"
+			appearance="outlined"
+		></vwc-button>
+		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+	</vwc-menu>
 </div>
 ```
 
@@ -198,16 +204,16 @@ The menu positions itself relative to an anchor element. Place it inside the `an
 
 ```html preview 200px
 <div style="position: absolute; container-type: inline-size;">
-<vwc-menu open aria-label="Menu example" placement="bottom-end">
-	<vwc-button
-		slot="anchor"
-		icon="more-vertical-line"
-		aria-label="Open menu"
-		appearance="outlined"
-	></vwc-button>
-	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-</vwc-menu>
+	<vwc-menu open aria-label="Menu example" placement="bottom-end">
+		<vwc-button
+			slot="anchor"
+			icon="more-vertical-line"
+			aria-label="Open menu"
+			appearance="outlined"
+		></vwc-button>
+		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+	</vwc-menu>
 </div>
 ```
 

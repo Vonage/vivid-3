@@ -434,7 +434,7 @@ describe('vwc-menu', () => {
 				element.shadowRoot?.querySelector('vwc-popup')?.hasAttribute('strategy')
 			).toBeFalsy();
 		});
-	})
+	});
 
 	describe('open', () => {
 		it('should remain open when clicked inside', async () => {
