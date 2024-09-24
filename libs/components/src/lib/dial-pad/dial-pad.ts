@@ -165,6 +165,10 @@ export class DialPad extends FoundationElement {
 		this.value = this.value.slice(0, -1);
 		this.$emit('input');
 		this.$emit('change');
+		this.#refocusOnInputAfterLastCharDelete();
+	};
+
+	#refocusOnInputAfterLastCharDelete() {
 		if (this.value === '') {
 			document.addEventListener(
 				'blur',
@@ -172,7 +176,7 @@ export class DialPad extends FoundationElement {
 				true
 			);
 		}
-	};
+	}
 
 	#blurHandlerAfterDeleteButtonRemoved = (event: FocusEvent): any => {
 		event.stopImmediatePropagation();
