@@ -421,31 +421,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		},
 	};
 
-	#clonedTagIcons = new Map<ListboxOption, HTMLElement>();
-
 	#updateSelectedOnSlottedOptions() {
 		for (const option of this._slottedOptions) {
 			option.selected = this.values.includes(option.value);
-
-			// Clone slotted tag-icon and give them a unique slot name, so that they can be forwarded to the correct tag
-			if (option.selected && option.querySelector('[slot="tag-icon"]')) {
-				let clone = this.#clonedTagIcons.get(option);
-				if (!clone) {
-					clone = option
-						.querySelector('[slot="tag-icon"]')!
-						.cloneNode(true) as HTMLElement;
-					this.#clonedTagIcons.set(option, clone);
-				}
-				clone.slot = `_tag-icon-${this.values.indexOf(option.value)}`;
-				this.appendChild(clone);
-			} else {
-				// Remove the cloned tag-icon if the option is no longer selected
-				const clone = this.#clonedTagIcons.get(option);
-				if (clone) {
-					clone.remove();
-					this.#clonedTagIcons.delete(option);
-				}
-			}
+			this.#updateClonedTagIconOfOption(option);
 		}
 	}
 
@@ -471,6 +450,39 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 
 		this.#updateValuesThroughUserInteraction(newValues);
+	}
+
+	// --- Option tag icons ---
+
+	#clonedTagIcons = new Map<ListboxOption, HTMLElement>();
+
+	#tagIconOfOption(option: ListboxOption) {
+		return option.querySelector('[slot="tag-icon"]');
+	}
+
+	/**
+	 * @internal
+	 */
+	_tagIconSlotName(value: string) {
+		return `_tag-icon-${this.values.indexOf(value)}`;
+	}
+
+	#updateClonedTagIconOfOption(option: ListboxOption) {
+		if (option.selected && this.#tagIconOfOption(option)) {
+			let clone = this.#clonedTagIcons.get(option);
+			if (!clone) {
+				clone = this.#tagIconOfOption(option)!.cloneNode(true) as HTMLElement;
+				this.#clonedTagIcons.set(option, clone);
+			}
+			clone.slot = this._tagIconSlotName(option.value);
+			this.appendChild(clone);
+		} else {
+			const clone = this.#clonedTagIcons.get(option);
+			if (clone) {
+				clone.remove();
+				this.#clonedTagIcons.delete(option);
+			}
+		}
 	}
 
 	// --- Option filtering ---
@@ -685,7 +697,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			const tagWidth = this.#measureTagWidth(
 				this._tagLabelForValue(this.values[i])!,
 				true,
-				this.selectedOptions[i].querySelector('[slot="tag-icon"]') !== null
+				this.#tagIconOfOption(this.selectedOptions[i]) !== null
 			);
 			const entry: TagLayoutEntry = {
 				value: this.values[i],
