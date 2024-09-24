@@ -163,40 +163,7 @@ export class DialPad extends FoundationElement {
 	 */
 	_deleteLastCharacter = () => {
 		this.value = this.value.slice(0, -1);
-	};
-
-	/**
-	 *
-	 * @internal
-	 */
-	_handleInput = () => {
-		this.value = this._textFieldEl.value;
-		this.$emit('input');
-	};
-
-	/**
-	 *
-	 * @internal
-	 */
-	_handleChange = () => {
-		this.value = this._textFieldEl.value;
 		this.$emit('change');
-	};
-
-	/**
-	 *
-	 * @internal
-	 */
-	_handleFocus = () => {
-		this.$emit('focus');
-	};
-
-	/**
-	 *
-	 * @internal
-	 */
-	_handleBlur = () => {
-		this.$emit('blur');
 	};
 }
 
