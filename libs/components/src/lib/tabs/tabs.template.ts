@@ -83,7 +83,7 @@ export function TabsTemplate<T extends Tabs>() {
 						</div>
 					</div>
 				</div>
-				<div class="tabpanel">
+				<div class="tabpanel" part="tab-panel">
 					<slot name="tabpanel" ${slotted('tabpanels')}></slot>
 				</div>
 			</div>
