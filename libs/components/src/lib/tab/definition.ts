@@ -1,6 +1,7 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
+import { buttonRegistries } from '../button/definition';
 import styles from './tab.scss?inline';
 
 import { Tab } from './tab';
@@ -20,7 +21,7 @@ export const tabDefinition = Tab.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const tabRegistries = [tabDefinition(), ...iconRegistries];
+export const tabRegistries = [tabDefinition(), ...buttonRegistries, ...iconRegistries];
 
 /**
  * Registers the tab elements with the design system.
