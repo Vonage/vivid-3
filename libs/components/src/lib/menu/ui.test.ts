@@ -12,7 +12,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<style>
 			.wrapper {
 				width: 100%;
-				height: 700px;
+				height: 400px;
 				position: relative;
 			}
 		</style>
@@ -29,6 +29,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-button slot="action-items" appearance="outlined" label="Close"></vwc-button>
 				<vwc-button slot="action-items" appearance="filled" label="Select"></vwc-button>
 			</vwc-menu>
+		</div>
+		<div class="wrapper">
+		<div style="container-type: inline-size">
+			<vwc-menu id="menu" placement="right-start" open strategy-absolute>
+				<vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
+				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+				<vwc-menu-item text="Menu item 3"></vwc-menu-item>
+			</vwc-menu>
+			</div>
 		</div>`;
 
 	page.setViewportSize({ width: 720, height: 720 });
