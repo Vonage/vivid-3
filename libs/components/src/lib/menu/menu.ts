@@ -44,6 +44,15 @@ export class Menu extends FastMenu {
 	 */
 	@attr({ mode: 'boolean', attribute: 'auto-dismiss' }) autoDismiss = false;
 
+
+	/**
+	 * The strategy-absolute attribute.
+	 *
+	 * @public
+	 * HTML Attribute: strategy
+	 */
+	@attr({ mode: 'boolean', attribute: 'strategy-absolute' }) strategyAbsolute = false;
+
 	/**
 	 * indicates whether the menu is open
 	 *

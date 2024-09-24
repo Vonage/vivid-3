@@ -37,6 +37,7 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(false);
 			expect(element.anchor).toEqual(undefined);
 			expect(element.placement).toEqual('bottom');
+			expect(element.strategyAbsolute).toEqual(false);
 		});
 	});
 
@@ -412,6 +413,28 @@ describe('vwc-menu', () => {
 			});
 		});
 	});
+
+	describe('strategy-absolute', () => {
+		it('should reflect strategy-absolute attribute to property', async function () {
+			element.toggleAttribute('strategy-absolute', true);
+			await elementUpdated(element);
+			expect(element.strategyAbsolute).toBe(true);
+		});
+
+		it('should reflect its value to popup strategy', async function () {
+			element.strategyAbsolute = true;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector('vwc-popup')?.hasAttribute('strategy')
+			).toBeTruthy();
+		});
+
+		it('should have no strategy attribute on popup when strategy-absolute is false ', async function () {
+			expect(
+				element.shadowRoot?.querySelector('vwc-popup')?.hasAttribute('strategy')
+			).toBeFalsy();
+		});
+	})
 
 	describe('open', () => {
 		it('should remain open when clicked inside', async () => {
