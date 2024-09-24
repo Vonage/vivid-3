@@ -19,6 +19,10 @@ The `appearance` attribute controls the style of button displayed.
 </style>
 ```
 
+<vwc-note connotation="information" icon="info-line">
+	<p>The <code>outlined-light</code> and <code>ghost-light</code> appearances are the same as <code>outlined</code> and <code>ghost</code> except their background colours have opacity when hovered.</p>
+</vwc-note>
+
 ## Connotation
 
 The `connotation` attribute controls the purpose of the button, expressed in it's colours.
@@ -284,7 +288,7 @@ The `pending` attribute triggers the pending state, which indicates that the act
 </style>
 ```
 
-<vwc-note connotation="warning" icon="warning-line">
+<vwc-note connotation="information" icon="info-line">
 	
 The spinner is not displayed when using the `super-condensed` size.
 

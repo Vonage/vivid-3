@@ -21223,12 +21223,12 @@
       },
       {
         "source": "docs",
-        "target": "npm:@microsoft/fast-element",
+        "target": "shared",
         "type": "static"
       },
       {
         "source": "docs",
-        "target": "shared",
+        "target": "npm:@microsoft/fast-element",
         "type": "static"
       },
       {

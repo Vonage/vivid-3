@@ -80,7 +80,7 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/OVERVIEW.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/VARIATIONS.md');
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/GUIDELINES.md');
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/ACCESSIBILITY.md');
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/EXAMPLES.md');

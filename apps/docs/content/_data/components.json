@@ -41,8 +41,9 @@
 	{
 		"title": "Button",
 		"description": "Buttons trigger an action, such as submitting a form, closing a dialog, or navigating to a new page.",
-		"overview": "./libs/components/src/lib/button/OVERVIEW.md",
+		"variations": "./libs/components/src/lib/button/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/button/GUIDELINES.md",
+		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/button/README.md",
 		"accessibility": "./libs/components/src/lib/button/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/button/USE-CASES.md"

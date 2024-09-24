@@ -43,11 +43,11 @@ registerButton('your-prefix');
 
 ## Link Buttons
 
-The `href` attribute changes the button to a link.
+Use the `href` attribute to change the button to a link.
 When doing so, all of the native attributes of [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) are supported, including `target`.
 
-<vwc-note connotation="warning" icon="warning-solid">
-Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users. Use this feature with caution.
+<vwc-note connotation="warning" icon="warning-line" headline="Use link buttons with caution">
+Semantically, buttons are usually used for triggering actions, while links are used for navigation. Mixing these semantics might lead to confusion or unexpected behavior for users.
 </vwc-note>
 
 ```html preview
@@ -188,15 +188,5 @@ Custom icons can be provided using the `icon` slot. If set, the icon attribute i
 | Name     | Description                   |
 | -------- | ----------------------------- |
 | **icon** | Add an icon to the component. |
-
-</div>
-
-### Methods
-
-<div class="table-wrapper">
-
-| Name         | Type         | Description                                         |
-| ------------ | ------------ | --------------------------------------------------- |
-| **validate** | `() => void` | \{@inheritDoc (FormAssociated:interface).validate\} |
 
 </div>
