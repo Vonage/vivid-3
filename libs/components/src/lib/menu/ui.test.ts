@@ -32,7 +32,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</div>
 		<div class="wrapper">
 		<div style="container-type: inline-size">
-			<vwc-menu id="menu" placement="right-start" open strategy-absolute>
+			<vwc-menu id="menu-1" placement="right-start" open strategy-absolute>
 				<vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 2"></vwc-menu-item>
