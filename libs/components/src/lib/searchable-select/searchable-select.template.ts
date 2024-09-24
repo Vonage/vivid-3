@@ -59,6 +59,8 @@ const tagTemplateFactory = (
 				@remove="${(x, c) => getComponent(c)._onTagRemoved(x)}"
 				@keydown="${(_, c) => getComponent(c)._onTagKeydown(c.event as KeyboardEvent)}"
 				@mousedown="${() => false}">
+				<slot slot="icon" name="_tag-icon-${(x, c) =>
+					getComponent(c).values.indexOf(x)}"></slot>
 			</${optionTagTag}>
 		</div>
 	`;
