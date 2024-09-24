@@ -1,10 +1,10 @@
 .components-header {
-	margin-block: 32px 24px;
-	background: var(--vvd-color-canvas);
-	width: 100%;
 	position: sticky;
-	top: var(--offset-top, 64px);
 	z-index: 10;
+	top: var(--offset-top, 64px);
+	width: 100%;
+	background: var(--vvd-color-canvas);
+	margin-block: 32px 24px;
 
 	nav {
 		border-bottom: 1px solid var(--vvd-color-neutral-200);
@@ -39,8 +39,8 @@
 				--hover-background: var(--vvd-color-cta-50);
 				--active-background: var(--vvd-color-cta-100);
 
-				margin-bottom: 0;
 				border-bottom: 2px solid var(--primary-color);
+				margin-bottom: 0;
 			}
 
 			&:hover {
@@ -57,8 +57,8 @@
 
 .code-example-wrapper {
 	display: flex;
-	gap: 32px;
 	align-items: start;
+	gap: 32px;
 
 	& > * {
 		flex: 1;
@@ -71,8 +71,8 @@
 	}
 
 	p:empty {
-		display: none;
 		position: absolute;
+		display: none;
 	}
 
 	.cbd-container {
@@ -80,17 +80,3 @@
 	}
 }
 
-.article > details {
-	border: 1px solid var(--vvd-color-neutral-200);
-	border-radius: 4px;
-	margin-block: 16px;
-	padding-inline: 16px;
-	overflow: hidden;
-
-	summary {
-		margin-inline: -16px;
-		padding: 12px;
-		background-color: var(--vvd-color-neutral-50);
-		cursor: pointer;
-	}
-}
