@@ -203,18 +203,16 @@ While any DOM content is permissible as a child of the menu, only `vwc-menu-item
 The menu positions itself relative to an anchor element. Place it inside the `anchor` slot of the menu.
 
 ```html preview 200px
-<div style="position: absolute; container-type: inline-size;">
-	<vwc-menu open aria-label="Menu example" placement="bottom-end">
-		<vwc-button
-			slot="anchor"
-			icon="more-vertical-line"
-			aria-label="Open menu"
-			appearance="outlined"
-		></vwc-button>
-		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-	</vwc-menu>
-</div>
+<vwc-menu open aria-label="Menu example" placement="bottom-end">
+	<vwc-button
+		slot="anchor"
+		icon="more-vertical-line"
+		aria-label="Open menu"
+		appearance="outlined"
+	></vwc-button>
+	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+</vwc-menu>
 ```
 
 ### Header
