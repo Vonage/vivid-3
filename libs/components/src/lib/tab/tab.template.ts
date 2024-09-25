@@ -51,24 +51,24 @@ function renderDismissButton(buttonTag: string) {
 export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const buttonTag = context.tagFor(Button);
-	
+
 	return html<T>`
 		<template
 			slot="tab"
-			role="${(x) => !x.removable ? 'tab' : null}"
-			aria-disabled="${(x) => !x.removable ? x.disabled : null}"
-			aria-selected="${(x) => !x.removable ? x.ariaSelected : null}"
+			role="${(x) => (!x.removable ? 'tab' : null)}"
+			aria-disabled="${(x) => (!x.removable ? x.disabled : null)}"
+			aria-selected="${(x) => (!x.removable ? x.ariaSelected : null)}"
 			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 		>
 			<div
-				role="${(x) => x.removable ? 'tab' : null}"
-				aria-disabled="${(x) => x.removable ? x.disabled : null}"
-				aria-selected="${(x) => x.removable ? x.ariaSelected : null}"
+				role="${(x) => (x.removable ? 'tab' : null)}"
+				aria-disabled="${(x) => (x.removable ? x.disabled : null)}"
+				aria-selected="${(x) => (x.removable ? x.ariaSelected : null)}"
 				class="${getClasses}"
 			>
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
 			</div>
-			${(x) => x.removable ? renderDismissButton(buttonTag) : null}
+			${(x) => (x.removable ? renderDismissButton(buttonTag) : null)}
 		</template>
 	`;
 }

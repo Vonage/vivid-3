@@ -146,8 +146,8 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name    | Type          | Bubbles | Composed | Description                                                                                  |
-| ------- | ------------- | ------- | -------- | -------------------------------------------------------------------------------------------- |
+| Name    | Type          | Bubbles | Composed | Description                                                                                                           |
+| ------- | ------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
 | `close` | `CustomEvent` | Yes     | Yes      | When `removable` is set, fires a custom 'close' event when the close button is clicked or the `DELETE` key is pressed |
 
 </div>
