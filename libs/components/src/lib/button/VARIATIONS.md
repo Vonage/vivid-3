@@ -71,14 +71,26 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 	></vwc-button>
 </div>
 <div>
-	<vwc-button connotation="announcement" appearance="filled" label="Announcement"></vwc-button>
-	<vwc-button connotation="announcement" appearance="outlined" label="Announcement"></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="filled"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="outlined"
+		label="Announcement"
+	></vwc-button>
 	<vwc-button
 		connotation="announcement"
 		appearance="outlined-light"
 		label="Announcement"
 	></vwc-button>
-	<vwc-button connotation="announcement" appearance="ghost" label="Announcement"></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="ghost"
+		label="Announcement"
+	></vwc-button>
 	<vwc-button
 		connotation="announcement"
 		appearance="ghost-light"
@@ -358,7 +370,7 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 <vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
 	<vwc-button
 		slot="anchor"
-		appearance="filled"
+		appearance="outlined-light"
 		label="Menu"
 		dropdown-indicator
 	></vwc-button>
