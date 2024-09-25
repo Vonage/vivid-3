@@ -188,30 +188,3 @@ The tab panel part inside the tabs component.
 | `change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'change' event when a tab is clicked or during keyboard navigation |
 
 </div>
-
-## Use cases
-
-### Removable tabs
-
-```html preview full
-<vwc-tabs orientation="vertical">
-	<vwc-tab label="Tab one" removable></vwc-tab>
-	<vwc-tab label="Tab two" removable></vwc-tab>
-	<vwc-tab label="Tab three" removable></vwc-tab>
-	<vwc-tab-panel>Tab one content</vwc-tab-panel>
-	<vwc-tab-panel>Tab two content</vwc-tab-panel>
-	<vwc-tab-panel>Tab three content</vwc-tab-panel>
-</vwc-tabs>
-
-<script>
-	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
-		const tab = e.srcElement;
-		const tabPanelId = tab.getAttribute('aria-controls');
-		const tabPanel = document.getElementById(tabPanelId);
-		if (tabPanel) {
-			tabPanel.remove();
-			e.srcElement.remove();
-		}
-	});
-</script>
-```
