@@ -1,4 +1,4 @@
-import { html, when } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
@@ -51,19 +51,24 @@ function renderDismissButton(buttonTag: string) {
 export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const buttonTag = context.tagFor(Button);
-
-	return html<T>`<template
-		slot="tab"
-		@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
-	>
-		<div
-			role="tab"
-			aria-disabled="${(x) => x.disabled}"
-			aria-selected="${(x) => x.ariaSelected}"
-			class="${getClasses}"
+	
+	return html<T>`
+		<template
+			slot="tab"
+			role="${(x) => !x.removable ? 'tab' : null}"
+			aria-disabled="${(x) => !x.removable ? x.disabled : null}"
+			aria-selected="${(x) => !x.removable ? x.ariaSelected : null}"
+			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 		>
-			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
-		</div>
-		${when((x) => x.removable, renderDismissButton(buttonTag))}
-	</template>`;
+			<div
+				role="${(x) => x.removable ? 'tab' : null}"
+				aria-disabled="${(x) => x.removable ? x.disabled : null}"
+				aria-selected="${(x) => x.removable ? x.ariaSelected : null}"
+				class="${getClasses}"
+			>
+				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
+			</div>
+			${(x) => x.removable ? renderDismissButton(buttonTag) : null}
+		</template>
+	`;
 }

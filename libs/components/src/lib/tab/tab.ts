@@ -74,12 +74,11 @@ export class Tab extends FoundationTab {
 	}
 
 	_onKeyDown(e: KeyboardEvent) {
-		if (e.key === 'Delete') {
-			e.stopImmediatePropagation();
-			this.$emit('close');
-			return false;
-		}
-		return true;
+		if (!this.removable || e.key !== 'Delete') return true;
+		
+		e.stopImmediatePropagation();
+		this.$emit('close');
+		return false;
 	}
 }
 
