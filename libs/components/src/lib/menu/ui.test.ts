@@ -7,7 +7,7 @@ import {
 
 const components = ['menu', 'menu-item', 'button', 'text-field'];
 
-async function testAbsolutStrategy ({ page }: { page: Page }) {
+async function testAbsolutStrategy({ page }: { page: Page }) {
 	const template = `
 <style>
 			.wrapper {
@@ -44,7 +44,6 @@ async function testAbsolutStrategy ({ page }: { page: Page }) {
 		'./snapshots/absolute-menu.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
-
 }
 
 test('should show the component', async ({ page }: { page: Page }) => {
