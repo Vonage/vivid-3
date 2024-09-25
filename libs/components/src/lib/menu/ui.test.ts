@@ -13,13 +13,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			.wrapper {
 				width: 100%;
 				height: 400px;
-				position: relative;
 			}
 		</style>
 
 		<div class="wrapper">
 			<vwc-menu id="menu" placement="right-start" open>
-				<vwc-button slot="anchor" label="Toggle Menu" onclick="menu.open = !menu.open" appearance="outlined"></vwc-button>
+				<vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
 				<vwc-text-field slot="header" placeholder="Search" icon="search"></vwc-text-field>
 				<vwc-menu-item text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"></vwc-menu-item>
 				<vwc-menu-item text="Menu item 1"></vwc-menu-item>
@@ -41,7 +40,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</div>
 		</div>`;
 
-	page.setViewportSize({ width: 720, height: 720 });
+	page.setViewportSize({ width: 720, height: 800 });
 
 	await loadComponents({
 		page,
