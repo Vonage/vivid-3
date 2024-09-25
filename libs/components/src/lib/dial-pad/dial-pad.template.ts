@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { html, ref, when } from '@microsoft/fast-element';
+import { ExecutionContext, html, ref, when } from '@microsoft/fast-element';
 import { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type {
@@ -39,6 +39,14 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	return true;
 }
 
+function syncFieldAndPadValues(x: DialPad) {
+	x.value = x._textFieldEl.value;
+}
+
+function stopPropagation(_: DialPad, { event: e }: ExecutionContext) {
+	e.stopImmediatePropagation();
+}
+
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
@@ -48,10 +56,11 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
-            @input="${(x) => x._handleInput()}" @change="${(x) =>
-		x._handleChange()}"
-            @blur="${(x) => x._handleBlur()}" @focus="${(x) =>
-		x._handleFocus()}">
+            @input="${syncFieldAndPadValues}" 
+			@change="${syncFieldAndPadValues}"
+			@focus="${stopPropagation}"
+			@blur="${stopPropagation}"
+			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
 						html`<${buttonTag}
@@ -156,8 +165,8 @@ function renderDigits(buttonTag: string, iconTag: string) {
 }
 
 function renderDialButton(buttonTag: string) {
-	return html<DialPad>`<${buttonTag} class='call-btn'
-        size='expanded'
+	return html<DialPad>`<${buttonTag} class="call-btn"
+        size="expanded"
         appearance="filled"
         icon="${(x) => (x.callActive ? 'disable-call-line' : 'call-line')}"
         connotation="${(x) => (x.callActive ? 'alert' : 'cta')}"
