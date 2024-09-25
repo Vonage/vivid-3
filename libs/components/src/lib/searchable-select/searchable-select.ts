@@ -36,6 +36,10 @@ interface TagLayoutEntry {
 	width: number;
 }
 
+const isFormAssociatedTryingToSetFormValue = (
+	value: File | string | FormData | null
+) => typeof value === 'string';
+
 /**
  * @public
  * @component searchable-select
@@ -142,6 +146,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		if (this.$fastController.isConnected) {
 			this.#updateTagLayout();
 		}
+		this.#updateFormValue();
 	}
 
 	#updateValuesThroughUserInteraction(newValues: string[]) {
@@ -162,6 +167,21 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			.concat([...newValues].filter((v) => !oldSet.has(v)));
 	}
 
+	/**
+	 * The initial values. This value sets the `values` property
+	 * only when the `values` property has not been explicitly set.
+	 */
+	@observable initialValues: string[] = [];
+	/**
+	 * @internal
+	 */
+	initialValuesChanged() {
+		if (!this.dirtyValue) {
+			this.values = this.initialValues;
+			this.dirtyValue = false;
+		}
+	}
+
 	#isValidValue(value: string) {
 		return this._slottedOptions.some((option) => option.value === value);
 	}
@@ -169,7 +189,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	override valueChanged(_: string, next: string) {
+	override valueChanged(prev: string, next: string) {
+		super.valueChanged(prev, next);
+
 		if (!this._areOptionsInitialized) {
 			// Leave value in potential invalid state until options are available
 			return;
@@ -865,6 +887,56 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		);
 	}
 
+	// --- Form handling ---
+
+	#determineInitialValues() {
+		return this.initialValues.length
+			? this.initialValues
+			: this.initialValue
+			? [this.initialValue]
+			: [];
+	}
+
+	/**
+	 * @internal
+	 */
+	override nameChanged(previous: string, next: string) {
+		super.nameChanged!(previous, next);
+		this.#updateFormValue();
+	}
+
+	#updateFormValue() {
+		if (!this.name) {
+			this.setFormValue(null);
+		} else {
+			const formData = new FormData();
+			for (const value of this.values) {
+				formData.append(this.name, value);
+			}
+			this.setFormValue(formData);
+		}
+	}
+
+	override setFormValue = (
+		value: File | string | FormData | null,
+		state?: File | string | FormData | null
+	) => {
+		if (isFormAssociatedTryingToSetFormValue(value)) {
+			return;
+		}
+
+		super.setFormValue(value, state);
+	};
+
+	/**
+	 * @internal
+	 */
+	override formResetCallback() {
+		super.formResetCallback();
+
+		this.#updateValuesThroughUserInteraction(this.#determineInitialValues());
+	}
+
 	// --- Core ---
 
 	#resizeObserver = new ResizeObserver(() => {
@@ -893,6 +965,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	override connectedCallback() {
 		super.connectedCallback();
 
+		if (!this.values.length) {
+			this.values = this.#determineInitialValues();
+		}
+
 		this.#resizeObserver.observe(this._contentArea);
 	}
 
@@ -900,6 +976,13 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		super.disconnectedCallback();
 
 		this.#resizeObserver.disconnect();
+	}
+
+	/**
+	 * @internal
+	 */
+	override validate() {
+		super.validate(this._input ?? undefined);
 	}
 }
 
