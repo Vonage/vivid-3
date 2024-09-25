@@ -27,8 +27,12 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-searchable-select></vwc-searchable-select>
 				<vwc-searchable-select label="label"></vwc-searchable-select>
 				<vwc-searchable-select helper-text="helper-text"></vwc-searchable-select>
-				<vwc-searchable-select success-text="success-text"></vwc-searchable-select>
-				<vwc-searchable-select error-text="error-text"></vwc-searchable-select>
+				<vwc-searchable-select success-text="success-text" multiple clearable>
+					<vwc-option value="1" text="Option 1" selected></vwc-option>
+				</vwc-searchable-select>
+				<vwc-searchable-select error-text="error-text" multiple clearable>
+					<vwc-option value="1" text="Option 1" selected></vwc-option>
+				</vwc-searchable-select>
 				<vwc-searchable-select icon="user-line"></vwc-searchable-select>
 				<vwc-searchable-select>
 					<vwc-icon name="user-line" slot="icon"></vwc-icon>
