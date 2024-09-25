@@ -168,6 +168,28 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 
 Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that when activated, displays the `tab panel`.
 
+## CSS Parts
+
+### Tab-Panel
+
+The tab panel part inside the tabs component.
+
+```html preview full
+<style>
+	.panel::part(tab-panel) {
+		background-color: var(--vvd-color-cta-50);
+	}
+</style>
+<vwc-tabs class="panel">
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+</vwc-tabs>
+```
+
 ## Events
 
 <div class="table-wrapper">
