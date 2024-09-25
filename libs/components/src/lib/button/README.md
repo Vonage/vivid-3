@@ -1,19 +1,6 @@
 ## Install
 
 <vwc-tabs>
-<vwc-tab label="Vue"></vwc-tab>
-<vwc-tab-panel>
-
-```html
-<script setup lang="ts">
-	import { VButton } from '@vonage/vivid-vue';
-</script>
-<template>
-	<VButton appearance="filled" label="Click me" />
-</template>
-```
-
-</vwc-tab-panel>
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -36,6 +23,19 @@ registerButton('your-prefix');
 </script>
 
 <your-prefix-button label="My Button"></your-prefix-button>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VButton appearance="filled" label="Click me" />
+</template>
 ```
 
 </vwc-tab-panel>
@@ -70,7 +70,7 @@ See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for m
 
 ## Icon Slot
 
-Custom icons can be provided using the `icon` slot. If set, the icon attribute is ignored.
+Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 
 ```html preview
 <!-- Feel free to edit the code below. The live preview will update as you make changes. -->
@@ -131,7 +131,7 @@ Custom icons can be provided using the `icon` slot. If set, the icon attribute i
 
 | Name               | Type                                                                                                                                                                                                                                                                                                                                                          | Description                                                                                                                                                                                                                                                                                                             |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **icon**           | _Enum_:<br/>`10-sec-backward-line`<br/>`10-sec-backward-solid`<br/>`10-sec-forward-line`<br/>`10-sec-forward-solid`<br/>`30-sec-backward-line`<br/>`30-sec-backward-solid`<br/>`30-sec-forward-line`<br/>`30-sec-forward-solid`<br/>`5-sec-backward-line`<br/>`5-sec-backward-solid`<br/>`5-sec-forward-line`<br/>`5-sec-forward-solid`<br/>... 1199 more ... | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/                                                                                                                                                                                       |
+| **icon**           | _Enum_:<br/>`[icon-name]` | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s                                                                                              |
 | **icon-trailing**  | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Indicates the icon affix alignment.                                                                                                                                                                                                                                                                                     |
 | **aria-current**   | _Enum_:<br/>`page`<br/>`step`<br/>`location`<br/>`date`<br/>`time`<br/>`true`<br/>`false`                                                                                                                                                                                                                                                                     | Indicates the element that represents the current item within a container or set of related elements.                                                                                                                                                                                                                   |
 | **disabled**       | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Sets the element's disabled state. A disabled element will not be included during form submission.                                                                                                                                                                                                                      |
@@ -154,7 +154,8 @@ Custom icons can be provided using the `icon` slot. If set, the icon attribute i
 | **size**           | _Enum_:<br/>`super-condensed`<br/>`condensed`<br/>`normal`<br/>`expanded`                                                                                                                                                                                                                                                                                     | The size the button should have.                                                                                                                                                                                                                                                                                        |
 | **stacked**        | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Indicates the icon is stacked.                                                                                                                                                                                                                                                                                          |
 | **pending**        | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Displays the button in pending state.                                                                                                                                                                                                                                                                                   |
-| **active**         | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Displays the button in active state.                                                                                                                                                                                                                                                                                    |
+| **active**         | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Displays the button in active state.                                                                                                                                                                                         
+| **dropdown-indication**         | `boolean`                                                                                                                                                                                                                                                                                                                                                     | Display a chevron to indicate that the button opens a dropdown.                                                                                                                                                                                                                                                                                    |
 | **label**          | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's label.                                                                                                                                                                                                                                                                                           |
 | **href**           | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's href.                                                                                                                                                                                                                                                                                            |
 | **download**       | `string`                                                                                                                                                                                                                                                                                                                                                      | Indicates the button's download.                                                                                                                                                                                                                                                                                        |

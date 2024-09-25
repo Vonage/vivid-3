@@ -27,7 +27,7 @@ The `appearance` attribute controls the style of button displayed.
 
 The `connotation` attribute controls the purpose of the button, expressed in it's colours.
 
-```html preview 240px
+```html preview 300px
 <div>
 	<vwc-button
 		connotation="accent"
@@ -68,6 +68,21 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 		connotation="cta"
 		appearance="ghost-light"
 		label="CTA"
+	></vwc-button>
+</div>
+<div>
+	<vwc-button connotation="announcement" appearance="filled" label="Announcement"></vwc-button>
+	<vwc-button connotation="announcement" appearance="outlined" label="Announcement"></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="outlined-light"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button connotation="announcement" appearance="ghost" label="Announcement"></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="ghost-light"
+		label="Announcement"
 	></vwc-button>
 </div>
 <div>
