@@ -28,7 +28,7 @@
 	cursor: not-allowed;
 }
 
-:host([closable]) {
+:host([removable]) {
 	position: relative;
 }
 
@@ -74,7 +74,7 @@
 		pointer-events: none;
 	}
 
-	&.closable {
+	&.removable {
 		padding-inline-end: 36px;
 	}
 

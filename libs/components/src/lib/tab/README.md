@@ -69,9 +69,9 @@ Use the `shape` attribute in order to set `rounded` and `sharp` to the backgroun
 </vwc-tabs>
 ```
 
-### Closable
+### Removable
 
-Use the `closable` attribute to add a _close button_ to the tab.
+Use the `removable` attribute to add a _close button_ to the tab.
 
 Clicking the close button or pressing the `DELETE` key when focussed on the tab will emit the `close` event.
 
@@ -81,9 +81,9 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 
 ```html preview full
 <vwc-tabs>
-	<vwc-tab label="Tab one" closable></vwc-tab>
-	<vwc-tab label="Tab two" closable></vwc-tab>
-	<vwc-tab label="Tab three" closable></vwc-tab>
+	<vwc-tab label="Tab one" removable></vwc-tab>
+	<vwc-tab label="Tab two" removable></vwc-tab>
+	<vwc-tab label="Tab three" removable></vwc-tab>
 	<vwc-tab-panel>Tab one content</vwc-tab-panel>
 	<vwc-tab-panel>Tab two content</vwc-tab-panel>
 	<vwc-tab-panel>Tab three content</vwc-tab-panel>
@@ -148,6 +148,6 @@ If set, the `icon` attribute is ignored.
 
 | Name    | Type          | Bubbles | Composed | Description                                                                                  |
 | ------- | ------------- | ------- | -------- | -------------------------------------------------------------------------------------------- |
-| `close` | `CustomEvent` | Yes     | Yes      | Fires a custom 'close' event when the close button is clicked or the `DELETE` key is pressed |
+| `close` | `CustomEvent` | Yes     | Yes      | When `removable` is set, fires a custom 'close' event when the close button is clicked or the `DELETE` key is pressed |
 
 </div>

@@ -14,7 +14,7 @@ const getClasses = ({
 	ariaSelected,
 	iconTrailing,
 	shape,
-	closable,
+	removable,
 }: Tab) =>
 	classNames(
 		'base',
@@ -26,7 +26,7 @@ const getClasses = ({
 		['disabled', Boolean(disabled)],
 		['selected', ariaSelected === 'true'],
 		['icon-trailing', iconTrailing],
-		['closable', closable]
+		['removable', removable]
 	);
 
 function renderDismissButton(buttonTag: string) {
@@ -64,6 +64,6 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
 		</div>
-		${when((x) => x.closable, renderDismissButton(buttonTag))}
+		${when((x) => x.removable, renderDismissButton(buttonTag))}
 	</template>`;
 }

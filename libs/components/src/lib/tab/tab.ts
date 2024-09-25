@@ -60,7 +60,7 @@ export class Tab extends FoundationTab {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr({ mode: 'boolean' }) closable = false;
+	@attr({ mode: 'boolean' }) removable = false;
 
 	@attr({ mode: 'fromView' }) override tabIndex: number =
 		'-1' as unknown as number;

@@ -191,13 +191,13 @@ The tab panel part inside the tabs component.
 
 ## Use cases
 
-### Closable tabs
+### Removable tabs
 
 ```html preview full
 <vwc-tabs orientation="vertical">
-	<vwc-tab label="Tab one" closable></vwc-tab>
-	<vwc-tab label="Tab two" closable></vwc-tab>
-	<vwc-tab label="Tab three" closable></vwc-tab>
+	<vwc-tab label="Tab one" removable></vwc-tab>
+	<vwc-tab label="Tab two" removable></vwc-tab>
+	<vwc-tab label="Tab three" removable></vwc-tab>
 	<vwc-tab-panel>Tab one content</vwc-tab-panel>
 	<vwc-tab-panel>Tab two content</vwc-tab-panel>
 	<vwc-tab-panel>Tab three content</vwc-tab-panel>

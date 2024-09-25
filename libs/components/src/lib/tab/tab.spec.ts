@@ -76,24 +76,24 @@ describe('vwc-tab', () => {
 		});
 	});
 
-	describe('closable', function () {
-		it('should display the close button when closable is true', async () => {
+	describe('removable', function () {
+		it('should display the close button when removable is true', async () => {
 			expect(element.shadowRoot?.querySelector('.close')).toBeFalsy();
-			element.toggleAttribute('closable', true);
+			element.toggleAttribute('removable', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.close')).toBeTruthy();
 		});
 
-		it('should set closable class when closable is true', async () => {
-			expect(element.shadowRoot?.querySelector('.closable')).toBeFalsy();
-			element.toggleAttribute('closable', true);
+		it('should set removable class when removable is true', async () => {
+			expect(element.shadowRoot?.querySelector('.removable')).toBeFalsy();
+			element.toggleAttribute('removable', true);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('.closable')).toBeTruthy();
+			expect(element.shadowRoot?.querySelector('.removable')).toBeTruthy();
 		});
 
-		describe('closable is true', () => {
+		describe('removable is true', () => {
 			beforeEach(async () => {
-				element.toggleAttribute('closable', true);
+				element.toggleAttribute('removable', true);
 				await elementUpdated(element);
 			});
 
