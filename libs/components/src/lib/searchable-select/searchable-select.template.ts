@@ -134,6 +134,7 @@ function renderFieldset(context: ElementDefinitionContext) {
 						id="control"
 						class="control"
 						autofocus
+						autocomplete="off"
 						aria-autocomplete="${(x) => x.ariaAutoComplete}"
 						aria-disabled="${(x) => x.ariaDisabled}"
 						aria-expanded="${(x) => x.ariaExpanded}"
