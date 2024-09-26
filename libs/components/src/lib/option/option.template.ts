@@ -12,14 +12,15 @@ import {
 import { Icon } from '../icon/icon';
 import type { ListboxOption } from './option';
 
-const getClasses = (x: ListboxOption) =>
+const getClasses = ({disabled, selected, _highlighted, checked, icon, scale}: ListboxOption) =>
 	classNames(
 		'base',
-		['disabled', x.disabled],
-		['selected', Boolean(x.selected)],
-		['hover', Boolean(x._highlighted)],
-		['active', Boolean(x.checked)],
-		['icon', Boolean(x.icon)]
+		['disabled', disabled],
+		['selected', Boolean(selected)],
+		['hover', Boolean(_highlighted)],
+		['active', Boolean(checked)],
+		['icon', Boolean(icon)],
+		[`size-${scale}`, Boolean(scale)]
 	);
 
 export const ListboxOptionTemplate: (

@@ -52,6 +52,10 @@
 		word-break: break-word;
 	}
 
+	&.size-condensed {
+		background-color: red;
+	}
+
 	@supports (user-select: none) {
 		user-select: none;
 	}
