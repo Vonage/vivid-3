@@ -138,6 +138,13 @@ const deDE: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	searchableSelect: {
+		clearButtonLabel: 'Löschen',
+		noOptionsMessage: 'Keine Optionen',
+		noMatchesMessage: 'Keine Optionen gefunden',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`${label} entfernen`,
+	},
 };
 
 export default deDE;

@@ -37,3 +37,12 @@ ComponentRegister.addComponentOverride('data-grid', (component) => {
 		forwardTo: { type: 'property', name: 'rowsData' },
 	});
 });
+
+ComponentRegister.addComponentOverride('searchable-select', (component) => {
+	component.attributes.push({
+		name: 'values',
+		description: 'List of selected option values.',
+		type: [{ text: 'string[]', vuePropType: 'Array' }],
+		forwardTo: { type: 'property', name: 'values' },
+	});
+});
