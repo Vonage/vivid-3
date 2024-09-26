@@ -133,5 +133,5 @@ slot[name='icon'] {
 	position: absolute;
 	inset-block-start: 50%;
 	inset-inline-end: 4px;
-	margin-block-start: -12px;
+	transform: translateY(-50%);
 }
