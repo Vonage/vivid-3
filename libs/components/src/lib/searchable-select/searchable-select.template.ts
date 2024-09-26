@@ -202,19 +202,20 @@ function renderControl(context: ElementDefinitionContext) {
 							})}>
 						</slot>
 						${when(
-							(x) => x._inputValue !== '' && x._filteredOptions.length === 0,
+							(x) => x._filteredOptions.length === 0,
 							html<SearchableSelect>`<div class="empty-message">
-								<slot name="no-matches"
-									>${(x) => x.locale.searchableSelect.noMatchesMessage}</slot
-								>
-							</div>`
-						)}
-						${when(
-							(x) => x._inputValue === '' && x._slottedOptions.length === 0,
-							html<SearchableSelect>`<div class="empty-message">
-								<slot name="no-options"
-									>${(x) => x.locale.searchableSelect.noOptionsMessage}</slot
-								>
+								${when(
+									(x) => x._inputValue === '',
+									html<SearchableSelect>`<slot name="no-options">
+										${(x) => x.locale.searchableSelect.noOptionsMessage}
+									</slot>`
+								)}
+								${when(
+									(x) => x._inputValue !== '',
+									html<SearchableSelect>`<slot name="no-matches">
+										${(x) => x.locale.searchableSelect.noMatchesMessage}
+									</slot>`
+								)}
 							</div>`
 						)}
 					</div>
