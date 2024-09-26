@@ -53,7 +53,6 @@ import {
 			:host {
 				gap: 32px;
 			}
-		}n-block-start: 16px;
 		}
 	`,
 	template: html<DocsDo>`
