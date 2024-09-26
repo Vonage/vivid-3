@@ -176,8 +176,8 @@ function renderControl(context: ElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
+		${when((x) => x.label, renderLabel())}
 		<div>
-			${when((x) => x.label, renderLabel())}
 			${renderFieldset(context)}
 			<div class="popup-wrapper">
 				<${popupTag}
