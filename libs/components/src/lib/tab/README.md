@@ -76,7 +76,7 @@ Use the `removable` attribute to add a _close button_ to the tab.
 Clicking the close button or pressing the `DELETE` key when focussed on the tab will emit the `close` event.
 
 <vwc-note connotation="warning" icon="warning-line">
-	<p>Triggering ther <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
+	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
 </vwc-note>
 
 ```html preview full
