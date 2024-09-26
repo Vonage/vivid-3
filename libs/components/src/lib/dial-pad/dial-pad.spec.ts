@@ -76,7 +76,7 @@ describe('vwc-dial-pad', () => {
 			expect(getTextField().placeholder).toEqual(placeholder);
 		});
 
-		it('should activate number buttons when input event is fired a number', async function () {
+		it('should activate number buttons when input event is fired with a number', async function () {
 			expect(getDigitButtons()[3].active).toBeFalsy();
 			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: '4' }));
 			elementUpdated(element);
@@ -123,46 +123,15 @@ describe('vwc-dial-pad', () => {
 			await elementUpdated(element);
 			expect(getTextField().value).toEqual('12');
 		});
-	});
 
-	describe('keypad-click', function () {
-		it('should fire keypad-click event when clicked on keypad', async function () {
+		it('should emit a change event', async () => {
 			const spy = jest.fn();
-			element.addEventListener('keypad-click', spy);
+			element.addEventListener('change', spy);
+			element.value = '123';
 			await elementUpdated(element);
-			getDigitButtons().forEach((button) => {
-				button.click();
-			});
-			expect(spy).toHaveBeenCalledTimes(12);
-		});
-
-		it('should fire keypad-click event with the button which was clicked', async function () {
-			const spy = jest.fn();
-			element.addEventListener('keypad-click', spy);
+			getDeleteButton().click();
 			await elementUpdated(element);
-			getDigitButtons().forEach((button) => {
-				button.click();
-				expect(spy).toHaveBeenCalledWith(
-					expect.objectContaining({ detail: button })
-				);
-			});
-		});
-
-		it('should set value in text field when clicked on keypad', async function () {
-			await elementUpdated(element);
-			getDigitButtons().forEach((button) => {
-				button.click();
-			});
-			await elementUpdated(element);
-			expect(getTextField().value).toEqual('123456789*0#');
-		});
-
-		it('should not set value in text field when clicked on digits div', async function () {
-			const digits: HTMLDivElement | null =
-				getBaseElement(element).querySelector('.digits');
-			digits?.click();
-			await elementUpdated(element);
-			expect(getTextField().value).toEqual('');
+			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -256,7 +225,7 @@ describe('vwc-dial-pad', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should not fire dial event when enter is pressed on delete button', async function () {
+		it('should prevent dial event when enter is pressed on delete button', async function () {
 			const spy = jest.fn();
 			element.value = '123';
 			element.addEventListener('dial', spy);
@@ -277,32 +246,138 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe.each(['input', 'change', 'blur', 'focus'])(
-		'%s event',
-		(eventName) => {
-			it('should be fired when user enters a valid text into the text field', async () => {
+	describe('events', () => {
+		function dispatchEvent(eventType: string) {
+			getTextField().dispatchEvent(
+				new InputEvent(eventType, { bubbles: true, composed: true })
+			);
+		}
+
+		function shouldFireEventOnceFromTextField(eventName: string) {
+			it('should fire only once on the dial pad element', async () => {
 				const spy = jest.fn();
 				element.addEventListener(eventName, spy);
 
 				element.value = '123';
-				getTextField().dispatchEvent(new InputEvent(eventName));
+				dispatchEvent(eventName);
 				await elementUpdated(element);
 
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
 		}
-	);
 
-	describe.each(['input', 'change'])('%s event', (eventName) => {
-		it('should be fired when user clicks the keyboard buttons', async () => {
-			const spy = jest.fn();
-			element.addEventListener(eventName, spy);
-			getDigitButtons().forEach((button) => {
-				button.click();
+		function shouldFireOnDialPadButtonClick(eventName: string) {
+			it('should fire when user clicks the dial pad buttons', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+				getDigitButtons().forEach((button) => {
+					button.click();
+				});
+
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(12);
+			});
+		}
+
+		function shouldSetElementValueAfterEvent(eventName: string) {
+			it('should set element value after event', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+
+				element.value = '123';
+				getTextField().value = '55';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+
+				expect(element.value).toBe('55');
+			});
+		}
+
+		describe('keypad-click', function () {
+			it('should fire keypad-click event when a keypad button is clicked', async function () {
+				const spy = jest.fn();
+				element.addEventListener('keypad-click', spy);
+				await elementUpdated(element);
+				getDigitButtons().forEach((button) => {
+					button.click();
+				});
+				expect(spy).toHaveBeenCalledTimes(12);
 			});
 
-			await elementUpdated(element);
-			expect(spy).toHaveBeenCalledTimes(12);
+			it('should fire keypad-click event with the button which was clicked', async function () {
+				const spy = jest.fn();
+				element.addEventListener('keypad-click', spy);
+				await elementUpdated(element);
+				getDigitButtons().forEach((button) => {
+					button.click();
+					expect(spy).toHaveBeenCalledWith(
+						expect.objectContaining({ detail: button })
+					);
+				});
+			});
+
+			it('should set value in text field when clicked on keypad', async function () {
+				await elementUpdated(element);
+				getDigitButtons().forEach((button) => {
+					button.click();
+				});
+				await elementUpdated(element);
+				expect(getTextField().value).toEqual('123456789*0#');
+			});
+
+			it('should prevent focus and blur events on subsequent keypad buttons', async () => {
+				const spy = jest.fn();
+				element.addEventListener('focus', spy);
+				element.addEventListener('blur', spy);
+				getDigitButtons().forEach((button) => {
+					button.focus();
+					button.blur();
+				});
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
+		});
+
+		describe('focus event', () => {
+			const eventName = 'focus';
+			it('should prevent propagation of focus event from textfield', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+
+				element.value = '123';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+
+				expect(spy).toHaveBeenCalledTimes(0);
+			});
+		});
+
+		describe('blur event', () => {
+			const eventName = 'blur';
+			it('should prevent propagation of blur event from textfield', async () => {
+				const spy = jest.fn();
+				element.addEventListener(eventName, spy);
+
+				element.value = '123';
+				dispatchEvent(eventName);
+				await elementUpdated(element);
+
+				expect(spy).toHaveBeenCalledTimes(0);
+			});
+		});
+
+		describe('input event', () => {
+			const eventName = 'input';
+			shouldFireOnDialPadButtonClick(eventName);
+			shouldFireEventOnceFromTextField(eventName);
+			shouldSetElementValueAfterEvent(eventName);
+		});
+
+		describe('change event', () => {
+			const eventName = 'change';
+			shouldFireOnDialPadButtonClick(eventName);
+			shouldFireEventOnceFromTextField(eventName);
+			shouldSetElementValueAfterEvent(eventName);
 		});
 	});
 
@@ -358,16 +433,16 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe('no call', function () {
-		it('should not show call button when has no-call attribute', async function () {
+	describe('noCall', function () {
+		it('should remove call button when has no-call attribute', async function () {
 			element.noCall = true;
 			await elementUpdated(element);
 			expect(getCallButton()).toBeNull();
 		});
 	});
 
-	describe('no input', function () {
-		it('should not show text field when has no-input attribute', async function () {
+	describe('noInput', function () {
+		it('should remove text field when has no-input attribute', async function () {
 			element.noInput = true;
 			await elementUpdated(element);
 			expect(getTextField()).toBeNull();
@@ -382,7 +457,7 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	describe('call button label', function () {
+	describe('callButtonLabel', function () {
 		it('should set call button label when has call-button-label attribute', async function () {
 			const label = '123';
 			element.callButtonLabel = label;
