@@ -7,7 +7,7 @@ pagination:
 permalink: 'components/{{ component | componentSlug }}/guidelines/'
 layout: component.njk
 eleventyComputed:
-	githubEditLink: "{{ component.guidelines | githubEditLink }}"
+  githubEditLink: "{{ component.guidelines | githubEditLink }}"
 ---
 
 {% renderFile component.guidelines %}
