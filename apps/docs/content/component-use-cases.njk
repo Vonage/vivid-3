@@ -7,7 +7,7 @@ pagination:
 permalink: 'components/{{ component | componentSlug }}/use-cases/'
 layout: component.njk
 eleventyComputed:
-		githubEditLink: "{{ component.useCases | githubEditLink }}"
+	githubEditLink: "{{ component.useCases | githubEditLink }}"
 ---
 
 {% renderFile component.useCases %}

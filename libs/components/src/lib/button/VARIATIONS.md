@@ -72,6 +72,33 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 </div>
 <div>
 	<vwc-button
+		connotation="announcement"
+		appearance="filled"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="outlined"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="outlined-light"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="ghost"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="ghost-light"
+		label="Announcement"
+	></vwc-button>
+</div>
+<div>
+	<vwc-button
 		connotation="success"
 		appearance="filled"
 		label="Success"

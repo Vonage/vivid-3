@@ -33,12 +33,13 @@ import {
 				gap: 16px;
 				align-items: start;
 				margin-block: 24px 48px;
-				
+
 				h3 {
 					margin-block: 12px -8px;
 				}
 
-				.examples, .description {
+				.examples,
+				.description {
 					flex-grow: 1;
 					width: 50%;
 				}
@@ -53,7 +54,6 @@ import {
 			:host {
 				gap: 32px;
 			}
-		}n-block-start: 16px;
 		}
 	`,
 	template: html<DocsDo>`

@@ -191,6 +191,56 @@
 </div>
 </docs-do-dont>
 
+### Announcement
+
+<docs-do-dont no-gutters>
+<div slot="description">
+
+-
+
+</div>
+<div>
+
+```html preview example 72px
+<div class="wrapper">
+	<vwc-button
+		connotation="announcement"
+		appearance="filled"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="outlined"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="ghost"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="outlined-light"
+		label="Announcement"
+	></vwc-button>
+	<vwc-button
+		connotation="announcement"
+		appearance="ghost-light"
+		label="Announcement"
+	></vwc-button>
+</div>
+
+<style>
+	.wrapper {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+</div>
+</docs-do-dont>
+
 ### Success
 
 <docs-do-dont no-gutters>

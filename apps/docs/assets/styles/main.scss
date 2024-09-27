@@ -86,7 +86,6 @@ vwc-side-drawer > main {
 	z-index: 0;
 	margin-top: var(--vvd-header-block-size);
 	max-inline-size: 1200px;
-	max-inline-size: 1200px;
 }
 
 /* #endregion side drawer */
@@ -213,6 +212,11 @@ article.article > h1 {
 	margin-block-end: 16px;
 }
 
+.article:has(.components-header) .heading-wrapper.h3 {
+	margin-block-start: -32px;
+	padding-block-start: 32px;
+}
+
 .article:has(.components-header) .heading-wrapper.h2 + .heading-wrapper.h3 {
 	margin-block-start: -60px;
 }
@@ -242,25 +246,22 @@ p.lede {
 	max-inline-size: 55ch;
 }
 
-article.article > h1 + .heading-wrapper h2,
-article.article > h1 + p + .heading-wrapper h2,
-article.article .components-header + .heading-wrapper h2 {
-	margin-block-start: 0;
-}
-
 .heading-wrapper:first-of-type h2 {
 	margin-block-start: 36px;
 }
 
-vwc-tab-panel pre.hljs:first-child {
-	border-radius: 0 0 8px 8px;
+article.article > h1 + .heading-wrapper h2,
+article.article > h1 + p + .heading-wrapper h2 {
 	margin-block-start: 0;
 }
 
-.heading-wrapper {
-	position: relative;
-	margin-inline-start: -20px;
-	padding-inline-start: 20px;
+.article:has(.components-header) .heading-wrapper > h2 {
+	margin-block-start: 20px;
+	padding-block-start: 52px;
+}
+
+article.article .components-header + .heading-wrapper h2 {
+	margin-block-start: 0;
 }
 
 .heading-wrapper > .anchor {
@@ -274,12 +275,13 @@ vwc-tab-panel pre.hljs:first-child {
 	display: none;
 }
 
-.article:has(.components-header) .heading-wrapper {
-	> h2 {
-		padding-block-start: 52px;
-		margin-block-start: 20px;
-	}
+.heading-wrapper {
+	position: relative;
+	margin-inline-start: -20px;
+	padding-inline-start: 20px;
+}
 
+.article:has(.components-header) .heading-wrapper {
 	&.h2 {
 		position: relative;
 		z-index: 5;
@@ -294,9 +296,9 @@ vwc-tab-panel pre.hljs:first-child {
 	}
 }
 
-.article:has(.components-header) .heading-wrapper.h3 {
-	padding-block-start: 32px;
-	margin-block-start: -32px;
+vwc-tab-panel pre.hljs:first-child {
+	border-radius: 0 0 8px 8px;
+	margin-block-start: 0;
 }
 
 .article .components-header + .heading-wrapper.h2 {
@@ -333,13 +335,13 @@ vwc-note ~ vwc-note {
 
 .table-wrapper {
 	display: flex;
-	box-sizing: border-box;
 	overflow: auto;
+	box-sizing: border-box;
 }
 
 table {
-	border-collapse: collapse;
 	width: 100%;
+	border-collapse: collapse;
 	margin-block: 16px;
 }
 
@@ -356,8 +358,8 @@ th {
 	padding: 8px 16px;
 	max-inline-size: 80ch;
 	text-align: left;
-	word-break: normal;
 	vertical-align: top;
+	word-break: normal;
 }
 
 /* #endregion table */
