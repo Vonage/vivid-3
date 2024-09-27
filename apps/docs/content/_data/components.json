@@ -210,6 +210,11 @@
 		"markdown": "./libs/components/src/lib/option/README.md"
 	},
 	{
+		"title": "Searchable Select",
+		"status": "alpha",
+		"markdown": "./libs/components/src/lib/searchable-select/README.md"
+	},
+	{
 		"title": "Switch",
 		"page": "legacy",
 		"markdown": "./libs/components/src/lib/switch/README.md"
