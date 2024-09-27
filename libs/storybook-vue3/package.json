@@ -7,14 +7,14 @@
 		"@storybook/blocks": "^7.0.2",
 		"@storybook/builder-vite": "^7.0.2",
 		"@storybook/testing-library": "^0.2.2",
-		"@storybook/vue3": "^7.0.2",
-		"@storybook/vue3-vite": "^7.0.2",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
+		"@storybook/vue3": "^7.6.20",
+		"@storybook/vue3-vite": "^7.6.20",
+		"@types/react": "^18.3.9",
+		"@types/react-dom": "^18.3.0",
 		"@vitejs/plugin-vue": "^4.6.2",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"storybook": "^7.0.2",
-		"vue": "^3.2.45"
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"storybook": "^7.6.20",
+		"vue": "^3.5.9"
 	}
 }
