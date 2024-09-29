@@ -1,6 +1,6 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
 import { Menu as FastMenu } from '@microsoft/fast-foundation';
-import type { Placement } from '@floating-ui/dom';
+import type { Placement, Strategy } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 
 /**
@@ -50,9 +50,8 @@ export class Menu extends FastMenu {
 	 * @public
 	 * HTML Attribute: strategy
 	 */
-	@attr({ mode: 'boolean', attribute: 'strategy-absolute' }) strategyAbsolute =
-		false;
-
+	@attr({ mode: 'fromView', attribute: 'placement-strategy' })
+	placementStrategy?: Strategy = 'fixed';
 	/**
 	 * indicates whether the menu is open
 	 *

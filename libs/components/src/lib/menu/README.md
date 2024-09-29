@@ -121,18 +121,18 @@ Use the `placement` attribute to control the position of the menu relative to it
 </div>
 ```
 
-### Strategy-Absolute
+### Placement-Strategy
 
-Add the `strategy-absolute` attribute to set the menu to be positioned `absolute` instead of `fixed`.  
+Add the `placement-strategy` attribute to set the menu to be positioned `absolute` instead of `fixed`.  
 This is useful for cases in which the menu is a child or a parent with `container-type` value.
 
-- Type: `boolean`
-- Default: `false`
+- Type: `fixed` | `absolute`
+- Default: `fixed`
 
 ```html preview 200px
 <div style="position: absolute; container-type: inline-size;">
 	<vwc-menu
-		strategy-absolute
+		placement-strategy="absolute"
 		trigger="auto"
 		aria-label="Menu example"
 		placement="bottom-end"
