@@ -155,6 +155,12 @@ export const exampleComponent: ComponentDef = {
 			valueMapping: '(event.target as any).value',
 		},
 		{
+			name: 'sameEvent',
+			attributeName: 'example-attribute',
+			eventNames: ['input'],
+			valueMapping: '(event.target as any).exampleAttribute',
+		},
+		{
 			name: 'start',
 			attributeName: 'start',
 			eventNames: ['input:start'],

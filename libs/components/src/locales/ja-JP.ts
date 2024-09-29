@@ -138,6 +138,13 @@ const jaJP: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	searchableSelect: {
+		clearButtonLabel: 'クリア',
+		noOptionsMessage: 'オプションがありません',
+		noMatchesMessage: 'オプションが見つかりません',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`${label}を削除`,
+	},
 };
 
 export default jaJP;
