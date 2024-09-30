@@ -112,6 +112,16 @@ describe('vwc-tab', () => {
 				const spy = jest.fn();
 				element.addEventListener('close', spy);
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
+
+			it('should not emit the close event when another key is pressed', async () => {
+				const spy = jest.fn();
+				element.addEventListener('close', spy);
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(0);
 			});
 		});
 	});
