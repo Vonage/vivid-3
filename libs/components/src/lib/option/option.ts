@@ -54,6 +54,20 @@ export class ListboxOption extends FoundationListboxOption {
 	 * @internal
 	 */
 	@observable _displayCheckmark = false;
+
+	/**
+	 * Range of text that should be highlighted as matching a search query.
+	 * From is inclusive, to is exclusive.
+	 * @internal
+	 */
+	@observable _matchedRange: { from: number; to: number } | null = null;
+
+	/**
+	 * @internal
+	 */
+	get _matchedRangeSafe() {
+		return this._matchedRange ?? { from: 0, to: 0 };
+	}
 }
 
 export interface ListboxOption extends AffixIconWithTrailing {}
