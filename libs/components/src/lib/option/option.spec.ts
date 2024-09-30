@@ -148,6 +148,29 @@ describe('vwc-option', () => {
 		});
 	});
 
+	describe('_matchedRange', () => {
+		const getText = () => element.shadowRoot!.querySelector('.text')!;
+		const getMatch = () => element.shadowRoot!.querySelector('.match');
+
+		beforeEach(async () => {
+			element.text = 'Option text';
+			await elementUpdated(element);
+		});
+
+		it('should not mark any text as matched if not set', async () => {
+			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getMatch()).toBe(null);
+		});
+
+		it('should mark the provided range as matched', async () => {
+			element._matchedRange = { from: 1, to: 4 };
+			await elementUpdated(element);
+
+			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getMatch()!.textContent).toBe('pti');
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element = (await fixture(

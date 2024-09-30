@@ -469,11 +469,21 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		const newFilteredOptions = [];
 
 		for (const option of this._slottedOptions ?? []) {
-			const matches =
-				this.#suppressFilter ||
-				option.text.toLowerCase().includes(this._inputValue.toLowerCase());
+			if (this.#suppressFilter || this._inputValue === '') {
+				option.hidden = false;
+				option._matchedRange = null;
+			} else {
+				const matchIndex = option.text
+					.toLowerCase()
+					.indexOf(this._inputValue.toLowerCase());
+				const matchedRange =
+					matchIndex === -1
+						? null
+						: { from: matchIndex, to: matchIndex + this._inputValue.length };
 
-			option.hidden = !matches;
+				option.hidden = !matchedRange;
+				option._matchedRange = matchedRange;
+			}
 
 			if (!option.hidden) {
 				newFilteredOptions.push(option);
