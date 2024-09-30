@@ -212,6 +212,7 @@
 	{
 		"title": "Searchable Select",
 		"status": "alpha",
+		"page": "legacy",
 		"markdown": "./libs/components/src/lib/searchable-select/README.md"
 	},
 	{
