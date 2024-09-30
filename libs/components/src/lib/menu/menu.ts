@@ -50,8 +50,8 @@ export class Menu extends FastMenu {
 	 * @public
 	 * HTML Attribute: strategy
 	 */
-	@attr({ mode: 'fromView', attribute: 'placement-strategy' })
-	placementStrategy?: Strategy = 'fixed';
+	@attr({ mode: 'fromView', attribute: 'position-strategy' })
+		positionStrategy?: Strategy = 'fixed';
 	/**
 	 * indicates whether the menu is open
 	 *

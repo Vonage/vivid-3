@@ -37,7 +37,7 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(false);
 			expect(element.anchor).toEqual(undefined);
 			expect(element.placement).toEqual('bottom');
-			expect(element.placementStrategy).toEqual('fixed');
+			expect(element.positionStrategy).toEqual('fixed');
 		});
 	});
 
@@ -414,21 +414,18 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('placement strategy', () => {
-		it('should reflect placement strategy attribute to property', async function () {
-			element.setAttribute('placement-strategy', 'absolute');
+	describe('position-strategy', () => {
+		it('should reflect position-strategy attribute to property', async function () {
+			element.setAttribute('position-strategy', 'absolute');
 			await elementUpdated(element);
-			expect(element.placementStrategy).toEqual('absolute');
+			expect(element.positionStrategy).toEqual('absolute');
 		});
 
 		it('should reflect its value to popup class', async function () {
-			element.placementStrategy = 'absolute';
+			element.positionStrategy = 'absolute';
 			await elementUpdated(element);
-			expect(
-				element.shadowRoot
-					?.querySelector('.popup-wrapper')
-					?.classList.contains('absolute')
-			);
+
+			expect(popup.strategy).toBe('absolute')
 		});
 	});
 
