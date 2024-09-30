@@ -425,7 +425,7 @@ describe('vwc-menu', () => {
 			element.positionStrategy = 'absolute';
 			await elementUpdated(element);
 
-			expect(popup.strategy).toBe('absolute')
+			expect(popup.strategy).toBe('absolute');
 		});
 	});
 
