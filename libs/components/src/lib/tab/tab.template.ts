@@ -61,9 +61,7 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 			aria-selected="${(x) => x.ariaSelected}"
 			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 		>
-			<div
-				class="${getClasses}"
-			>
+			<div class="${getClasses}">
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
 				${(x) => (x.removable ? renderDismissButton(iconTag) : null)}
 			</div>

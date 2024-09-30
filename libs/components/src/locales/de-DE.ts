@@ -139,7 +139,8 @@ const deDE: Locale = {
 		digitHashtagLabel: '#',
 	},
 	tab: {
-		dismissButtonLabel: 'Drücken Sie die ENTF-Taste, um diese Registerkarte zu schließen',
+		dismissButtonLabel:
+			'Drücken Sie die ENTF-Taste, um diese Registerkarte zu schließen',
 	},
 	searchableSelect: {
 		clearButtonLabel: 'Löschen',

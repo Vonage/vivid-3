@@ -88,7 +88,7 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 <script>
 	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
 		const tab = e.srcElement;
-		const tabs =tab.parentElement;
+		const tabs = tab.parentElement;
 		const tabPanelId = tab.getAttribute('aria-controls');
 		const tabPanel = document.getElementById(tabPanelId);
 		if (tabs.querySelectorAll('vwc-tab').length === 1) {

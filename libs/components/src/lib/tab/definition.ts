@@ -20,10 +20,7 @@ export const tabDefinition = Tab.compose<FoundationElementDefinition>({
 /**
  * @internal
  */
-export const tabRegistries = [
-	tabDefinition(),
-	...iconRegistries,
-];
+export const tabRegistries = [tabDefinition(), ...iconRegistries];
 
 /**
  * Registers the tab elements with the design system.
