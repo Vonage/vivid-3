@@ -35,13 +35,17 @@
 			--hover-background: var(--vvd-color-neutral-50);
 			--active-background: var(--vvd-color-neutral-100);
 
-			&[aria-current='page'] {
+			&[aria-current='page']::after {
 				--primary-color: var(--vvd-color-cta-600);
-				--hover-background: var(--vvd-color-cta-50);
-				--active-background: var(--vvd-color-cta-100);
 
-				border-bottom: 2px solid var(--primary-color);
-				margin-bottom: 0;
+				position: absolute;
+				display: block;
+				background-color: var(--primary-color);
+				block-size: 2px;
+				content: '';
+				inline-size: 100%;
+				inset-block-end: -2px;
+				inset-inline-start: 0;
 			}
 
 			&:hover {
