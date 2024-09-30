@@ -1,7 +1,6 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { Shape } from '../enums';
-import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 
 export type OptionTagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
@@ -11,6 +10,7 @@ export class OptionTag extends FoundationElement {
 	@attr label?: string;
 	@attr({ mode: 'boolean' }) removable = false;
 	@attr({ mode: 'boolean' }) disabled = false;
+	@observable hasIconPlaceholder = false;
 
 	_onClickRemove() {
 		this.$emit('remove', undefined, {
@@ -19,5 +19,5 @@ export class OptionTag extends FoundationElement {
 	}
 }
 
-export interface OptionTag extends AffixIcon, Localized {}
-applyMixins(OptionTag, AffixIcon, Localized);
+export interface OptionTag extends Localized {}
+applyMixins(OptionTag, Localized);

@@ -2,6 +2,7 @@ import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { buttonRegistries } from '../button/definition';
 import { popupRegistries } from '../popup/definition';
+import { iconRegistries } from '../icon/definition';
 import styles from './searchable-select.scss?inline';
 import optionTagStyles from './option-tag.scss?inline';
 
@@ -36,6 +37,7 @@ export const searchableSelectDefinition =
 export const searchableSelectRegistries = [
 	...buttonRegistries,
 	...popupRegistries,
+	...iconRegistries,
 	optionTagDefinition(),
 	searchableSelectDefinition(),
 ];

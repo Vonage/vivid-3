@@ -424,6 +424,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateSelectedOnSlottedOptions() {
 		for (const option of this._slottedOptions) {
 			option.selected = this.values.includes(option.value);
+			this.#updateClonedTagIconOfOption(option);
 		}
 	}
 
@@ -449,6 +450,39 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 
 		this.#updateValuesThroughUserInteraction(newValues);
+	}
+
+	// --- Option tag icons ---
+
+	#clonedTagIcons = new Map<ListboxOption, HTMLElement>();
+
+	#tagIconOfOption(option: ListboxOption) {
+		return option.querySelector('[slot="tag-icon"]');
+	}
+
+	/**
+	 * @internal
+	 */
+	_tagIconSlotName(value: string) {
+		return `_tag-icon-${this.values.indexOf(value)}`;
+	}
+
+	#updateClonedTagIconOfOption(option: ListboxOption) {
+		if (option.selected && this.#tagIconOfOption(option)) {
+			let clone = this.#clonedTagIcons.get(option);
+			if (!clone) {
+				clone = this.#tagIconOfOption(option)!.cloneNode(true) as HTMLElement;
+				this.#clonedTagIcons.set(option, clone);
+			}
+			clone.slot = this._tagIconSlotName(option.value);
+			this.appendChild(clone);
+		} else {
+			const clone = this.#clonedTagIcons.get(option);
+			if (clone) {
+				clone.remove();
+				this.#clonedTagIcons.delete(option);
+			}
+		}
 	}
 
 	// --- Option filtering ---
@@ -608,11 +642,12 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	#measureTagWidth(label: string, removable: boolean) {
+	#measureTagWidth(label: string, removable: boolean, hasIcon: boolean) {
 		const tag = document.createElement(this._optionTagTagName) as OptionTag;
 		tag.label = label;
 		tag.removable = removable;
 		tag.style.cssText = 'position: absolute; visibility: hidden;';
+		tag.hasIconPlaceholder = hasIcon;
 		this.shadowRoot!.appendChild(tag);
 		const width = tag.getBoundingClientRect().width;
 		tag.remove();
@@ -671,7 +706,8 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 			const tagWidth = this.#measureTagWidth(
 				this._tagLabelForValue(this.values[i])!,
-				true
+				true,
+				this.#tagIconOfOption(this.selectedOptions[i]) !== null
 			);
 			const entry: TagLayoutEntry = {
 				value: this.values[i],
@@ -684,7 +720,8 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				const numElidedTags = i;
 				if (numElidedTags) {
 					elidedTagCounterWidth =
-						TagGapPx + this.#measureTagWidth(numElidedTags.toString(), false);
+						TagGapPx +
+						this.#measureTagWidth(numElidedTags.toString(), false, false);
 				}
 			}
 
@@ -730,7 +767,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			if (i === 0 && this._numEllidedTags) {
 				lineWidth +=
 					TagGapPx +
-					this.#measureTagWidth(this._numEllidedTags.toString(), false);
+					this.#measureTagWidth(this._numEllidedTags.toString(), false, false);
 			}
 
 			// Pull up tags from the next line as long as they fit

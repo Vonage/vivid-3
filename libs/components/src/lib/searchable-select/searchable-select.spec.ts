@@ -5,12 +5,14 @@ import '../option';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { Button } from '../button/button';
+import { Icon } from '../icon/icon.ts';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
 import { searchableSelectDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-searchable-select';
 const OPTION_TAG = 'vwc-option';
+const ICON_TAG = 'vwc-icon';
 
 describe('vwc-searchable-select', () => {
 	let element: SearchableSelect;
@@ -1489,6 +1491,41 @@ describe('vwc-searchable-select', () => {
 			getClearButton()!.dispatchEvent(event);
 
 			expect(event.defaultPrevented).toBe(true);
+		});
+	});
+
+	describe('option tag icon', () => {
+		let icon: Icon;
+		beforeEach(async () => {
+			await setUpFixture(`
+				<${COMPONENT_TAG} multiple>
+					<${OPTION_TAG} value="apple" text="Apple" selected>
+						<${ICON_TAG} slot="tag-icon" name="apple-mono"></${ICON_TAG}>
+					</${OPTION_TAG}>
+				</${COMPONENT_TAG}>
+			`);
+			const tagIconSlot = getTag('Apple').shadowRoot!.querySelector(
+				'slot[name="icon"]'
+			) as HTMLSlotElement;
+			const iconForwarderSlot =
+				tagIconSlot.assignedElements()[0] as HTMLSlotElement;
+			icon = iconForwarderSlot.assignedElements()[0] as Icon;
+		});
+
+		it('should display an icon placed into the tag-icon slot of a selected option in the tag', async () => {
+			expect(icon.tagName).toBe(ICON_TAG.toUpperCase());
+			expect(icon.name).toBe('apple-mono');
+		});
+
+		it('should clone the icon into the light DOM', async () => {
+			expect(icon).not.toBe(element.querySelector('[slot="tag-icon"]'));
+			expect(icon.getRootNode()).toBe(document);
+		});
+
+		it('should cleanup the cloned when the option is unselected', async () => {
+			element.values = [];
+
+			expect(element.querySelectorAll(ICON_TAG).length).toBe(1);
 		});
 	});
 
