@@ -10,6 +10,7 @@ import type { VideoPlayerLocale } from '../../lib/video-player/locale';
 import type { TimePickerLocale } from '../../lib/time-picker/locale';
 import type { RangeSliderLocale } from '../../lib/range-slider/locale';
 import type { DialPadLocale } from '../../lib/dial-pad/locale';
+import type { SearchableSelectLocale } from '../../lib/searchable-select/locale';
 
 export interface Locale {
 	lang: string;
@@ -28,4 +29,5 @@ export interface Locale {
 	videoPlayer: VideoPlayerLocale;
 	rangeSlider: RangeSliderLocale;
 	dialPad: DialPadLocale;
+	searchableSelect: SearchableSelectLocale;
 }

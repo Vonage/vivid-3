@@ -69,10 +69,24 @@ export const parseComponent = (name: string): ComponentDef => {
 	const declaration = getVividComponentDeclaration(name, className);
 
 	const localTypeDefs = declaration._localTypeDefs;
-	const resolveLocalType = makeTypeResolver({
+	const localTypeResolver = makeTypeResolver({
 		...globalTypeDefs,
 		...localTypeDefs,
 	});
+	const resolveLocalType = (
+		debugInfo: string,
+		...args: Parameters<typeof localTypeResolver>
+	) => {
+		try {
+			return localTypeResolver(...args);
+		} catch (e) {
+			throw new Error(
+				`Error resolving type for ${debugInfo} of "${name}": ${
+					(e as Error).message
+				}`
+			);
+		}
+	};
 
 	const attributes: ComponentDef['attributes'] = (
 		declaration.attributes ?? []
@@ -82,7 +96,11 @@ export const parseComponent = (name: string): ComponentDef => {
 		}
 
 		const name = vuePropNameForAttribute(attribute);
-		const type = resolveLocalType(attribute.type.text, true);
+		const type = resolveLocalType(
+			`attribute "${attribute.name}"`,
+			attribute.type.text,
+			true
+		);
 
 		if (canBePassedAsAttribute(type)) {
 			return {
@@ -132,17 +150,23 @@ export const parseComponent = (name: string): ComponentDef => {
 
 				return {
 					name: paramName,
-					type: resolveLocalType(p.type?.text),
+					type: resolveLocalType(
+						`parameter "${paramName}" of "${m.name}"`,
+						p.type?.text
+					),
 				};
 			}),
-			returnType: resolveLocalType(m.return?.type.text ?? 'unknown'),
+			returnType: resolveLocalType(
+				`return type of "${m.name}"`,
+				m.return?.type.text ?? 'unknown'
+			),
 		}));
 
 	const events: ComponentDef['events'] = (declaration.events ?? []).map(
 		(e) => ({
 			name: e.name,
 			description: e.description,
-			type: resolveLocalType(e.type?.text),
+			type: resolveLocalType(`event ${e.name}`, e.type?.text),
 		})
 	);
 

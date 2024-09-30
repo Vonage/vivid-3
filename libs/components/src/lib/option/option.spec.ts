@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
@@ -111,6 +111,40 @@ describe('vwc-option', () => {
 			element.setAttribute('label', label);
 
 			expect(element.label).toEqual(label);
+		});
+	});
+
+	describe('_highlighted', () => {
+		it('should not add hover class if unset', async () => {
+			expect(getBaseElement(element).classList.contains('hover')).toBe(false);
+		});
+
+		it('should add hover class if set', async () => {
+			element._highlighted = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('hover')).toBe(true);
+		});
+	});
+
+	describe('_displayCheckmark', () => {
+		const getCheckmark = () =>
+			element.shadowRoot?.querySelector('vwc-icon.checkmark');
+
+		it('should not display a checkmark icon if unset', async () => {
+			expect(getCheckmark()).toBeNull();
+		});
+
+		it('should not display a checkmark icon if set and not selected', async () => {
+			element._displayCheckmark = true;
+			await elementUpdated(element);
+			expect(getCheckmark()).toBeNull();
+		});
+
+		it('should display a checkmark icon if set and selected', async () => {
+			element._displayCheckmark = true;
+			element.selected = true;
+			await elementUpdated(element);
+			expect(getCheckmark()).not.toBeNull();
 		});
 	});
 
