@@ -141,6 +141,13 @@ const jaJP: Locale = {
 	tab: {
 		dismissButtonLabel: 'このタブを閉じるにはDELETEキーを押してください',
 	},
+	searchableSelect: {
+		clearButtonLabel: 'クリア',
+		noOptionsMessage: 'オプションがありません',
+		noMatchesMessage: 'オプションが見つかりません',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`${label}を削除`,
+	},
 };
 
 export default jaJP;

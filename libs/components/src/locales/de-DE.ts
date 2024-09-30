@@ -141,6 +141,13 @@ const deDE: Locale = {
 	tab: {
 		dismissButtonLabel: 'Drücken Sie die ENTF-Taste, um diese Registerkarte zu schließen',
 	},
+	searchableSelect: {
+		clearButtonLabel: 'Löschen',
+		noOptionsMessage: 'Keine Optionen',
+		noMatchesMessage: 'Keine Optionen gefunden',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`${label} entfernen`,
+	},
 };
 
 export default deDE;
