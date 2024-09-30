@@ -138,6 +138,9 @@ const enUS: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: 'Press the DELETE key to close this tab',
+	},
 };
 
 export default enUS;

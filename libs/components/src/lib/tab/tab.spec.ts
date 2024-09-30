@@ -101,7 +101,6 @@ describe('vwc-tab', () => {
 				const closeBtn = element.shadowRoot?.querySelector(
 					'#close-btn'
 				) as HTMLButtonElement;
-				closeBtn?.setAttribute('tabindex', '0');
 				const spy = jest.fn();
 				element.addEventListener('close', spy);
 				closeBtn?.click();

@@ -206,8 +206,13 @@ The tab panel part inside the tabs component.
 <script>
 	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
 		const tab = e.srcElement;
+		const tabs = tab.parentElement;
 		const tabPanelId = tab.getAttribute('aria-controls');
 		const tabPanel = document.getElementById(tabPanelId);
+		if (tabs.querySelectorAll('vwc-tab').length === 1) {
+			tabs.remove();
+			return;
+		}
 		if (tabPanel) {
 			tabPanel.remove();
 			e.srcElement.remove();

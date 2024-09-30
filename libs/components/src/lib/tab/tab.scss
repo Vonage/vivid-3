@@ -75,7 +75,7 @@
 	}
 
 	&.removable {
-		padding-inline-end: 36px;
+		padding-inline-end: 40px;
 	}
 
 	:host(:focus-visible) & {
@@ -131,7 +131,16 @@ slot[name='icon'] {
 
 .close {
 	position: absolute;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+	inline-size: 24px;
+	block-size: 24px;
 	inset-block-start: 50%;
 	inset-inline-end: 4px;
 	transform: translateY(-50%);
+
+	vwc-icon {
+		font-size: 12px;
+	}
 }

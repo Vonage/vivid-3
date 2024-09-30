@@ -138,6 +138,9 @@ const zhCN: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: '按 DELETE 键关闭此选项卡',
+	},
 };
 
 export default zhCN;

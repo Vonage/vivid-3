@@ -75,10 +75,6 @@ Use the `removable` attribute to add a _close button_ to the tab.
 
 Clicking the close button or pressing the `DELETE` key when focussed on the tab will emit the `close` event.
 
-<vwc-note connotation="warning" icon="warning-line">
-	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
-</vwc-note>
-
 ```html preview full
 <vwc-tabs>
 	<vwc-tab label="Tab one" removable></vwc-tab>
@@ -92,8 +88,13 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 <script>
 	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
 		const tab = e.srcElement;
+		const tabs =tab.parentElement;
 		const tabPanelId = tab.getAttribute('aria-controls');
 		const tabPanel = document.getElementById(tabPanelId);
+		if (tabs.querySelectorAll('vwc-tab').length === 1) {
+			tabs.remove();
+			return;
+		}
 		if (tabPanel) {
 			tabPanel.remove();
 			e.srcElement.remove();
@@ -101,6 +102,11 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 	});
 </script>
 ```
+
+<vwc-note connotation="warning" icon="warning-line">
+	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
+	<p>The consuming application must also handle whether the user can close all the tabs or not.</p>
+</vwc-note>
 
 ### Disabled
 

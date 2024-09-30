@@ -1,7 +1,7 @@
 import { html } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Button } from '../button/button';
+import { Icon } from '../icon/icon';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
@@ -29,17 +29,18 @@ const getClasses = ({
 		['removable', removable]
 	);
 
-function renderDismissButton(buttonTag: string) {
+function renderDismissButton(iconTag: string) {
 	return html<Tab>`
-		<${buttonTag}
-			aria-label=""
-			size="super-condensed"
+		<span
+			aria-label="${(x) => x.locale.tab.dismissButtonLabel}"
 			class="close"
 			id="close-btn"
-			icon="close-line"
 			@click="${(x, c) => x._handleCloseClick(c.event)}"
-			tabindex="-1"
-		></${buttonTag}>`;
+		>
+			<${iconTag}
+				name="close-line"
+			></${iconTag}>
+		</span>`;
 }
 
 /**
@@ -50,25 +51,22 @@ function renderDismissButton(buttonTag: string) {
  */
 export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const buttonTag = context.tagFor(Button);
+	const iconTag = context.tagFor(Icon);
 
 	return html<T>`
 		<template
 			slot="tab"
-			role="${(x) => (!x.removable ? 'tab' : null)}"
-			aria-disabled="${(x) => (!x.removable ? x.disabled : null)}"
-			aria-selected="${(x) => (!x.removable ? x.ariaSelected : null)}"
+			role="tab"
+			aria-disabled="${(x) => x.disabled}"
+			aria-selected="${(x) => x.ariaSelected}"
 			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 		>
 			<div
-				role="${(x) => (x.removable ? 'tab' : null)}"
-				aria-disabled="${(x) => (x.removable ? x.disabled : null)}"
-				aria-selected="${(x) => (x.removable ? x.ariaSelected : null)}"
 				class="${getClasses}"
 			>
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
+				${(x) => (x.removable ? renderDismissButton(iconTag) : null)}
 			</div>
-			${(x) => (x.removable ? renderDismissButton(buttonTag) : null)}
 		</template>
 	`;
 }

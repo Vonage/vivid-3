@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins, Tab as FoundationTab } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { Localized } from '../../shared/patterns';
 
 import type { Connotation, Shape } from '../enums.js';
 
@@ -82,5 +83,6 @@ export class Tab extends FoundationTab {
 	}
 }
 
-export interface Tab extends AffixIconWithTrailing {}
+export interface Tab extends Localized, AffixIconWithTrailing {}
 applyMixins(Tab, AffixIconWithTrailing);
+applyMixins(Tab, Localized);
