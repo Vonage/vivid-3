@@ -48,6 +48,7 @@ const vuePropTypeFor = (typeStr: string) => {
 		case 'MouseEvent':
 		case 'FocusEvent':
 		case 'KeyboardEvent':
+		case 'InputEvent':
 		case 'CustomEvent':
 			return baseType;
 		case 'any':

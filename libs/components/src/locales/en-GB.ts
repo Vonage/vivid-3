@@ -138,6 +138,13 @@ const enGB: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	searchableSelect: {
+		clearButtonLabel: 'Clear',
+		noOptionsMessage: 'No options',
+		noMatchesMessage: 'No options found',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`Remove ${label}`,
+	},
 };
 
 export default enGB;

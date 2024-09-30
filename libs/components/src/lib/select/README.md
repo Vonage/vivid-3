@@ -423,7 +423,7 @@ If needed a `z-index` value can be set on the host
 
 ## Accessibility
 
-### Arial Label
+### Aria Label
 
 A select requires a label to be set for screen readers to be able to describe the component.
 If label is set, it is used as the `aria-label` attribute value on the host element.
