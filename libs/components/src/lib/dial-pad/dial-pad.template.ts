@@ -1,5 +1,11 @@
 /* eslint-disable max-len */
-import { ExecutionContext, html, ref, repeat, when } from '@microsoft/fast-element';
+import {
+	ExecutionContext,
+	html,
+	ref,
+	repeat,
+	when,
+} from '@microsoft/fast-element';
 import { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type {
