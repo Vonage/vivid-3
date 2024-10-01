@@ -123,11 +123,17 @@ Use the `placement` attribute to control the position of the menu relative to it
 
 ### Position Strategy
 
-Add the `position-strategy` attribute to set the menu to be positioned `absolute` instead of `fixed`.  
-This is useful for cases in which the menu is a child or a parent with `container-type` value.
+Add the `position-strategy` attribute to set the menu to be positioned `absolute` instead of `fixed`.
 
 - Type: `fixed` | `absolute`
 - Default: `fixed`
+
+<vwc-note connotation="information" icon="info-solid" headline="when to use position-strategy=absolute">
+When the menu is within a container that has properties such as `transform`, `perspective`, or `container-type`, which modify its containing block, it's best to use `position-strategy=absolute`.
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">read more about Layout and the containing block</a>
+
+</vwc-note>
 
 ```html preview 200px
 <div style="position: absolute; container-type: inline-size;">
