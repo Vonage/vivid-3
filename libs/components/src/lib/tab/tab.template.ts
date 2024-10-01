@@ -1,7 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../icon/icon';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
@@ -29,18 +28,17 @@ const getClasses = ({
 		['removable', removable]
 	);
 
-function renderDismissButton(iconTag: string) {
-	return html<Tab>`
-		<span
-			aria-label="${(x) => x.locale.tab.dismissButtonLabel}"
-			class="close"
-			id="close-btn"
-			@click="${(x, c) => x._handleCloseClick(c.event)}"
-		>
-			<${iconTag}
-				name="close-line"
-			></${iconTag}>
-		</span>`;
+function renderDismissButton(context: ElementDefinitionContext) {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html<Tab>` <span
+		aria-label="${(x) => x.locale.tab.dismissButtonLabel}"
+		class="close"
+		id="close-btn"
+		@click="${(x, c) => x._handleCloseClick(c.event)}"
+	>
+		${() => affixIconTemplate('close-line', IconWrapper.Span)}
+	</span>`;
 }
 
 /**
@@ -51,7 +49,6 @@ function renderDismissButton(iconTag: string) {
  */
 export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
-	const iconTag = context.tagFor(Icon);
 
 	return html<T>`
 		<template
@@ -63,7 +60,7 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 		>
 			<div class="${getClasses}">
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
-				${(x) => (x.removable ? renderDismissButton(iconTag) : null)}
+				${(x) => (x.removable ? renderDismissButton(context) : null)}
 			</div>
 		</template>
 	`;

@@ -143,4 +143,10 @@ slot[name='icon'] {
 	vwc-icon {
 		font-size: 12px;
 	}
+
+	.icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
