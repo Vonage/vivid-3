@@ -57,12 +57,8 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 		<vwc-select id="selectLocale${index}" class="cbd-locale-switcher" icon="globe-line" aria-label="Locale" data-index="${index}" slot="main"></vwc-select>`
 		: '';
 
-	return `
-	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto;" data-pagefind-ignore>
-	    ${variableTable}
-		<vwc-card elevation="0">
-			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
-			<div class="${CBD_ACTIONS}" slot="main">
+	const toolbar = !classList.includes('example')
+		? `<div class="${CBD_ACTIONS}" slot="main">
 				<div>${localeSwitcher}</div>
 				<vwc-action-group appearance="ghost" style="direction: rtl;" slot="main">
 					<vwc-tooltip text="Edit on CodePen" placement="top">
@@ -75,7 +71,15 @@ const renderiFrame = (index, src, content, classList, variableToShow) => {
 						<vwc-button slot="anchor" slot="anchor" id="buttonCopy${index}" connotation="cta" aria-label="Copy source code" icon="copy-2-line" data-index="${index}"></vwc-button>
 					</vwc-tooltip>
 				</vwc-action-group>
-			</div>
+			</div>`
+		: '';
+
+	return `
+	<div class="${CBD_CONTAINER}" style="--tooltip-inline-size: auto" data-pagefind-ignore>
+	    ${variableTable}
+		<vwc-card elevation="0">
+			<iframe id="iframe-sample-${index}" src="${src}" class="${CBD_DEMO}" onload=onloadIframe(this) loading="lazy" aria-label="code block preview iframe" slot="main"></iframe>
+			${toolbar}
 			<details class="${CBD_DETAILS}" slot="main">
 				<summary></summary>
 				<div class="cbd-live-sample" data-index="${index}" role="region">
