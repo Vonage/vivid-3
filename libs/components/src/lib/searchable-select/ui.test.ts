@@ -5,7 +5,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['searchable-select', 'option'];
+const components = ['searchable-select', 'option', 'icon'];
 
 const genOptions = (count: number) => {
 	const options = [];
@@ -69,6 +69,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</vwc-searchable-select>
 				<vwc-searchable-select max-lines="3" multiple>
 					${genOptions(30)}
+				</vwc-searchable-select>
+				<vwc-searchable-select multiple>
+					<vwc-option value="afghanistan" text="Afghanistan" selected>
+						<vwc-icon slot="tag-icon" name="flag-afghanistan"></vwc-icon>
+					</vwc-option>
+					<vwc-option value="albania" text="Albania" selected>
+						<vwc-icon slot="tag-icon" name="flag-albania"></vwc-icon>
+					</vwc-option>
 				</vwc-searchable-select>
 			</div>
 		`,
