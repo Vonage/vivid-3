@@ -18,6 +18,7 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
+import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
 
@@ -556,8 +557,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 		this._highlightedOptionIndex = index;
 		if (typeof this._highlightedOptionIndex === 'number') {
-			this._filteredEnabledOptions[this._highlightedOptionIndex]._highlighted =
-				true;
+			const highlightedOption =
+				this._filteredEnabledOptions[this._highlightedOptionIndex];
+			highlightedOption._highlighted = true;
+			scrollIntoView(highlightedOption, this._listbox!, 'nearest');
 		}
 	}
 
