@@ -1647,10 +1647,10 @@ describe('vwc-searchable-select', () => {
 			form.reset();
 
 			expect(element.values).toEqual(['apple']);
-    });
+		});
 	});
-  
-  describe('option tag icon', () => {
+
+	describe('option tag icon', () => {
 		let icon: Icon;
 		beforeEach(async () => {
 			await setUpFixture(`
