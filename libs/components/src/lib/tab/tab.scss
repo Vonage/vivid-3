@@ -28,6 +28,10 @@
 	cursor: not-allowed;
 }
 
+:host([removable]) {
+	position: relative;
+}
+
 :host(:focus-visible) {
 	outline: none;
 }
@@ -68,6 +72,10 @@
 
 	&.disabled {
 		pointer-events: none;
+	}
+
+	&.removable {
+		padding-inline-end: 40px;
 	}
 
 	:host(:focus-visible) & {
@@ -118,5 +126,27 @@ slot[name='icon'] {
 		.base::after {
 			opacity: 0;
 		}
+	}
+}
+
+.close {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	block-size: 24px;
+	inline-size: 24px;
+	inset-block-start: 50%;
+	inset-inline-end: 4px;
+	transform: translateY(-50%);
+
+	vwc-icon {
+		font-size: 12px;
+	}
+
+	.icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 }

@@ -121,6 +121,40 @@ Use the `placement` attribute to control the position of the menu relative to it
 </div>
 ```
 
+### Position Strategy
+
+Add the `position-strategy` attribute to set the menu to be positioned `absolute` instead of `fixed`.
+
+- Type: `fixed` | `absolute`
+- Default: `fixed`
+
+<vwc-note connotation="information" icon="info-solid" headline="when to use position-strategy=absolute">
+When the menu is within a container that has properties such as `transform`, `perspective`, or `container-type`, which modify its containing block, it's best to use `position-strategy=absolute`.
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">read more about Layout and the containing block</a>
+
+</vwc-note>
+
+```html preview 200px
+<div style="position: absolute; container-type: inline-size;">
+	<vwc-menu
+		position-strategy="absolute"
+		trigger="auto"
+		aria-label="Menu example"
+		placement="bottom-end"
+	>
+		<vwc-button
+			slot="anchor"
+			icon="more-vertical-line"
+			aria-label="Open menu"
+			appearance="outlined"
+		></vwc-button>
+		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
+		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
+	</vwc-menu>
+</div>
+```
+
 ### Anchor
 
 It's best to use the [`anchor` slot](#anchor-1) to set the anchor, but you can also use the `anchor` member.
