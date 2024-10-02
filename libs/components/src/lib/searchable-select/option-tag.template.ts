@@ -5,10 +5,6 @@ import type {
 	FoundationElementDefinition,
 } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import {
-	affixIconTemplateFactory,
-	IconWrapper,
-} from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { OptionTag } from './option-tag';
 
@@ -38,11 +34,15 @@ export const optionTagTemplate: (
 	context: ElementDefinitionContext,
 	definition: FoundationElementDefinition
 ) => ViewTemplate<OptionTag> = (context: ElementDefinitionContext) => {
-	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
 	return html`<span class="${getClasses}" aria-disabled="${(x) => x.disabled}">
-		${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+		<slot name="icon" aria-hidden="true">
+			${when(
+				(x) => x.hasIconPlaceholder,
+				html`<div class="icon-placeholder"></div>`
+			)}
+		</slot>
 		${when(
 			(x) => x.label,
 			(x) => html<OptionTag>`<span class="label">${x.label!}</span>`

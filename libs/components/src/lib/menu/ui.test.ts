@@ -7,6 +7,45 @@ import {
 
 const components = ['menu', 'menu-item', 'button', 'text-field'];
 
+async function testAbsolutStrategy({ page }: { page: Page }) {
+	const template = `
+<style>
+			.wrapper {
+				width: 100%;
+				height: 700px;
+				position: relative;
+			}
+		</style>
+		<div class="wrapper"><div style="container-type: inline-size">
+ <vwc-menu id="menu-1" placement="right-start" open strategy-absolute>
+  <vwc-button slot="anchor" label="Toggle Menu" appearance="outlined"></vwc-button>
+  <vwc-menu-item text="Menu item 1"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 3"></vwc-menu-item>
+ </vwc-menu>
+ </div></div>`;
+
+	page.setViewportSize({ width: 500, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/absolute-menu.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
@@ -50,3 +89,5 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'./snapshots/menu.png'
 	);
 });
+
+test('menu with absolute strategy', testAbsolutStrategy);

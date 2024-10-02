@@ -719,6 +719,27 @@ Holds the available options as [Option](/components/option/) elements.
 </vwc-searchable-select>
 ```
 
+You can use the [Option's `tag-icon` slot](/components/option/#tag-icon) to display an icon next to the selected option's tag.
+
+```html preview 320px
+<vwc-searchable-select label="Country" clearable multiple>
+	<vwc-option
+		icon="flag-afghanistan"
+		value="afghanistan"
+		text="Afghanistan"
+		selected
+	>
+		<vwc-icon slot="tag-icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option icon="flag-albania" value="albania" text="Albania">
+		<vwc-icon slot="tag-icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option icon="flag-algeria" value="algeria" text="Algeria">
+		<vwc-icon slot="tag-icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
+</vwc-searchable-select>
+```
+
 ### Icon
 
 Set the `icon` slot to show an icon at the start of the input.

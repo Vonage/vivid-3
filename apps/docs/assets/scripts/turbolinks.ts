@@ -24,10 +24,12 @@ const handleLocationChange = () => {
 		el.removeAttribute('aria-current');
 	}
 
-	let current = document.querySelector(`
-			vwc-nav-item[href="${location.pathname}"],
-			vwc-nav-item[href="${location.pathname.replace(/\/$/, '')}"]
-		`);
+	let current =
+		Array.from(document.querySelectorAll('vwc-nav-item')).find((el) =>
+			location.pathname.includes(
+				(el.getAttribute('href') ?? '').replace(/\/$/, '')
+			)
+		) ?? null;
 	while (current) {
 		if (
 			current.tagName === 'VWC-NAV-ITEM' ||

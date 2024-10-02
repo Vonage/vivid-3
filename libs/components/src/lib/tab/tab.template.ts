@@ -13,6 +13,7 @@ const getClasses = ({
 	ariaSelected,
 	iconTrailing,
 	shape,
+	removable,
 }: Tab) =>
 	classNames(
 		'base',
@@ -23,8 +24,22 @@ const getClasses = ({
 		[`shape-${shape}`, Boolean(shape)],
 		['disabled', Boolean(disabled)],
 		['selected', ariaSelected === 'true'],
-		['icon-trailing', iconTrailing]
+		['icon-trailing', iconTrailing],
+		['removable', removable]
 	);
+
+function renderDismissButton(context: ElementDefinitionContext) {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+
+	return html<Tab>` <span
+		aria-label="${(x) => x.locale.tab.dismissButtonLabel}"
+		class="close"
+		id="close-btn"
+		@click="${(x, c) => x._handleCloseClick(c.event)}"
+	>
+		${() => affixIconTemplate('close-line', IconWrapper.Span)}
+	</span>`;
+}
 
 /**
  * The template for the (Tab:class) component.
@@ -35,14 +50,18 @@ const getClasses = ({
 export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html<T>` <template
-		slot="tab"
-		role="tab"
-		aria-disabled="${(x) => x.disabled}"
-		aria-selected="${(x) => x.ariaSelected}"
-	>
-		<div class="${getClasses}">
-			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
-		</div>
-	</template>`;
+	return html<T>`
+		<template
+			slot="tab"
+			role="tab"
+			aria-disabled="${(x) => x.disabled}"
+			aria-selected="${(x) => x.ariaSelected}"
+			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
+		>
+			<div class="${getClasses}">
+				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}
+				${(x) => (x.removable ? renderDismissButton(context) : null)}
+			</div>
+		</template>
+	`;
 }

@@ -3,6 +3,7 @@
 @forward 'reset';
 @forward './welcome';
 @forward './footer';
+@forward './component-page';
 
 /* #region document */
 
@@ -174,6 +175,10 @@ vwc-note > p {
 	word-wrap: pretty;
 }
 
+.article ul {
+	padding-inline-start: 1.5rem;
+}
+
 .article li {
 	max-inline-size: 60ch;
 	word-wrap: pretty;
@@ -204,7 +209,16 @@ article.article > h1 {
 }
 
 .article h3 {
-	margin-block-end: 0;
+	margin-block-end: 16px;
+}
+
+.article:has(.components-header) .heading-wrapper.h3 {
+	margin-block-start: -32px;
+	padding-block-start: 32px;
+}
+
+.article:has(.components-header) .heading-wrapper.h2 + .heading-wrapper.h3 {
+	margin-block-start: -60px;
 }
 
 p:empty {
@@ -221,7 +235,7 @@ vwc-note p:last-child {
 
 .heading-wrapper > h2 {
 	border-block-end: 1px solid var(--vvd-color-neutral-200);
-	margin-block: 72px 0;
+	margin-block: 72px 32px;
 	text-align: left;
 }
 
@@ -236,15 +250,18 @@ p.lede {
 	margin-block-start: 36px;
 }
 
-vwc-tab-panel pre.hljs:first-child {
-	border-radius: 0 0 8px 8px;
+article.article > h1 + .heading-wrapper h2,
+article.article > h1 + p + .heading-wrapper h2 {
 	margin-block-start: 0;
 }
 
-.heading-wrapper {
-	position: relative;
-	margin-inline-start: -20px;
-	padding-inline-start: 20px;
+.article:has(.components-header) .heading-wrapper > h2 {
+	margin-block-start: 20px;
+	padding-block-start: 52px;
+}
+
+article.article .components-header + .heading-wrapper h2 {
+	margin-block-start: 0;
 }
 
 .heading-wrapper > .anchor {
@@ -256,6 +273,36 @@ vwc-tab-panel pre.hljs:first-child {
 
 .heading-wrapper:not(:hover) > .anchor {
 	display: none;
+}
+
+.heading-wrapper {
+	position: relative;
+	margin-inline-start: -20px;
+	padding-inline-start: 20px;
+}
+
+.article:has(.components-header) .heading-wrapper {
+	&.h2 {
+		position: relative;
+		z-index: 5;
+
+		.anchor {
+			inset-block-start: 75px;
+		}
+	}
+
+	&.h3 .anchor {
+		inset-block-start: 72px;
+	}
+}
+
+vwc-tab-panel pre.hljs:first-child {
+	border-radius: 0 0 8px 8px;
+	margin-block-start: 0;
+}
+
+.article .components-header + .heading-wrapper.h2 {
+	margin-block-start: -48px;
 }
 
 .article {
@@ -287,18 +334,13 @@ vwc-note ~ vwc-note {
 /* #startregion table */
 
 .table-wrapper {
-	display: inline-flex;
+	display: flex;
+	overflow: auto;
 	box-sizing: border-box;
 }
 
-@media (width <= 768px) {
-	.table-wrapper {
-		overflow: auto;
-		max-width: calc(100vw - 64px);
-	}
-}
-
 table {
+	width: 100%;
 	border-collapse: collapse;
 	margin-block: 16px;
 }
@@ -316,6 +358,7 @@ th {
 	padding: 8px 16px;
 	max-inline-size: 80ch;
 	text-align: left;
+	vertical-align: top;
 	word-break: normal;
 }
 
@@ -481,6 +524,13 @@ th {
 }
 
 .with-announcement-banner .article-toc {
+	--offset-top: calc(
+		var(--vvd-header-block-size) + var(--banner-offset, 0px) +
+			var(--announcement-banner-block-size)
+	);
+}
+
+.with-announcement-banner .components-header {
 	--offset-top: calc(
 		var(--vvd-header-block-size) + var(--banner-offset, 0px) +
 			var(--announcement-banner-block-size)
