@@ -138,6 +138,9 @@ const jaJP: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: 'このタブを閉じるにはDELETEキーを押してください',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'クリア',
 		noOptionsMessage: 'オプションがありません',
