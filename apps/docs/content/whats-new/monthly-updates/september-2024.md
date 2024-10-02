@@ -24,7 +24,7 @@ See the [Office Hours minutes](https://docs.google.com/document/d/1E0yvyGUzBoQFH
 
 ## Searchable Select component released to alpha
 
-**Announcing the new [Searchable select](/components/searchable-select) component.** 
+**Announcing the new [Searchable select](/components/searchable-select) component.**
 
 Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.
 
