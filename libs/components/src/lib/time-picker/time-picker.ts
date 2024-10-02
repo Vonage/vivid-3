@@ -18,6 +18,7 @@ import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
+import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import { FormAssociatedTimePicker } from './time-picker.form-associated';
 import {
 	formatPresentationTime,
@@ -566,25 +567,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 			return;
 		}
 
-		// Use scrollTop instead of scrollIntoView() because scrollIntoView() scrolls the whole page in Firefox
-		const parent = element.parentElement!;
-		switch (position) {
-			case 'start':
-				parent.scrollTop = element.offsetTop;
-				break;
-			case 'nearest':
-				if (element.offsetTop < parent.scrollTop) {
-					parent.scrollTop = element.offsetTop;
-				}
-				if (
-					element.offsetTop + element.offsetHeight >
-					parent.scrollTop + parent.offsetHeight
-				) {
-					parent.scrollTop =
-						element.offsetTop + element.offsetHeight - parent.offsetHeight;
-				}
-				break;
-		}
+		scrollIntoView(element, element.parentElement!, position);
 	}
 
 	/**
