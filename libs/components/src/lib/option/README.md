@@ -128,3 +128,15 @@ If set, the `icon` attribute is ignored.
 	</vwc-option>
 </div>
 ```
+
+### Tag Icon
+
+If the option is represented as a tag in a [`searchable-select`](/components/searchable-select/) component, you can use `tag-icon` slot to show an icon in the tag.
+
+```html preview 230px
+<vwc-searchable-select multiple>
+	<vwc-option value="afghanistan" text="Afghanistan" selected>
+		<vwc-icon slot="tag-icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+</vwc-searchable-select>
+```

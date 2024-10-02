@@ -76,6 +76,56 @@ describe('vwc-tab', () => {
 		});
 	});
 
+	describe('removable', function () {
+		it('should display the close button when removable is true', async () => {
+			expect(element.shadowRoot?.querySelector('.close')).toBeFalsy();
+			element.toggleAttribute('removable', true);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.close')).toBeTruthy();
+		});
+
+		it('should set removable class when removable is true', async () => {
+			expect(element.shadowRoot?.querySelector('.removable')).toBeFalsy();
+			element.toggleAttribute('removable', true);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('.removable')).toBeTruthy();
+		});
+
+		describe('removable is true', () => {
+			beforeEach(async () => {
+				element.toggleAttribute('removable', true);
+				await elementUpdated(element);
+			});
+
+			it('should emit the close event when the close button is clicked', async () => {
+				const closeBtn = element.shadowRoot?.querySelector(
+					'#close-btn'
+				) as HTMLButtonElement;
+				const spy = jest.fn();
+				element.addEventListener('close', spy);
+				closeBtn?.click();
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
+
+			it('should emit the close event when the delete key is pressed', async () => {
+				const spy = jest.fn();
+				element.addEventListener('close', spy);
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
+
+			it('should not emit the close event when another key is pressed', async () => {
+				const spy = jest.fn();
+				element.addEventListener('close', spy);
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
+				await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(0);
+			});
+		});
+	});
+
 	describe('ariaSelected', function () {
 		it('should set connotation class on base if true', async () => {
 			element.connotation = Connotation.CTA;

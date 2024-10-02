@@ -138,6 +138,9 @@ const enGB: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: 'Press the DELETE key to close this tab',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Clear',
 		noOptionsMessage: 'No options',
