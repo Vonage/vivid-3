@@ -42,7 +42,7 @@ describe('vwc-searchable-select', () => {
 			`vwc-option-tag[label="${label}"]`
 		) as OptionTag;
 
-	const getEllidedOptionsCounterTag = () =>
+	const getElidedOptionsCounterTag = () =>
 		element.shadowRoot!.querySelector(
 			`vwc-option-tag:not([removable])`
 		) as OptionTag;
@@ -103,6 +103,12 @@ describe('vwc-searchable-select', () => {
 		`);
 	});
 
+	const originalGetBoundingClientRect =
+		HTMLElement.prototype.getBoundingClientRect;
+	afterEach(() => {
+		HTMLElement.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+	});
+
 	describe('basic', () => {
 		it('should be initialized as a vwc-searchable-select', async () => {
 			expect(searchableSelectDefinition()).toBeInstanceOf(
@@ -141,13 +147,13 @@ describe('vwc-searchable-select', () => {
 			expect(getTag('Apple').disabled).toBe(true);
 		});
 
-		it('should disable ellided options counter', async function () {
+		it('should disable elided options counter', async function () {
 			element.externalTags = true;
 			element.multiple = true;
 			element.values = ['apple'];
 			await elementUpdated(element);
 
-			expect(getEllidedOptionsCounterTag().disabled).toBe(true);
+			expect(getElidedOptionsCounterTag().disabled).toBe(true);
 		});
 
 		it('should disable the clear button', async function () {
@@ -801,11 +807,29 @@ describe('vwc-searchable-select', () => {
 
 				expect(element.shadowRoot!.activeElement).toBe(input);
 			});
+
+			it('should ignore elided option tags when pressing ArrowLeft', async () => {
+				HTMLElement.prototype.getBoundingClientRect = jest.fn(
+					() =>
+						({
+							width: 100,
+						} as DOMRect)
+				);
+				element.maxLines = 1;
+				element.values = ['apple', 'banana'];
+				focusInput();
+				await elementUpdated(element);
+				getTag('Banana').focus();
+
+				pressKey('ArrowLeft');
+
+				expect(element.shadowRoot!.activeElement).toBe(getTag('Banana'));
+			});
 		});
 	});
 
 	describe('externalTags', () => {
-		it('should display only the ellided options counter if set', async () => {
+		it('should display only the elided options counter if set', async () => {
 			element.multiple = true;
 			element.externalTags = true;
 			element.values = ['apple', 'banana'];
@@ -813,21 +837,11 @@ describe('vwc-searchable-select', () => {
 
 			expect(getTag('Apple')).toBeNull();
 			expect(getTag('Banana')).toBeNull();
-			expect(getEllidedOptionsCounterTag().label).toBe('2');
+			expect(getElidedOptionsCounterTag().label).toBe('2');
 		});
 	});
 
 	describe('tag layout', () => {
-		let originalGetBoundingClientRect: any;
-		beforeEach(() => {
-			originalGetBoundingClientRect =
-				HTMLElement.prototype.getBoundingClientRect;
-		});
-		afterEach(() => {
-			HTMLElement.prototype.getBoundingClientRect =
-				originalGetBoundingClientRect;
-		});
-
 		let resizeObserverCallback;
 		let resizeObserverDisconnected = false;
 		let currentWrapperWidth: any;
@@ -1484,7 +1498,7 @@ describe('vwc-searchable-select', () => {
 			expect(event.defaultPrevented).toBe(true);
 		});
 
-		it('should prevent default of mousedown on ellided tag counter', async () => {
+		it('should prevent default of mousedown on elided tag counter', async () => {
 			element.multiple = true;
 			element.externalTags = true;
 			element.values = ['apple'];
@@ -1494,7 +1508,7 @@ describe('vwc-searchable-select', () => {
 				bubbles: true,
 				cancelable: true,
 			});
-			getEllidedOptionsCounterTag().dispatchEvent(event);
+			getElidedOptionsCounterTag().dispatchEvent(event);
 
 			expect(event.defaultPrevented).toBe(true);
 		});

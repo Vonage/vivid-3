@@ -66,7 +66,7 @@ const tagTemplateFactory = (
 	`;
 };
 
-const ellidedTagTemplateFactory = (
+const elidedTagTemplateFactory = (
 	context: ElementDefinitionContext,
 	getComponent: (x: any, c: any) => SearchableSelect
 ) => {
@@ -76,7 +76,7 @@ const ellidedTagTemplateFactory = (
 		<${optionTagTag}
 			class="tag"
 			tabindex="-1"
-			:label="${(x, c) => getComponent(x, c)._numEllidedTags.toString()}"
+			:label="${(x, c) => getComponent(x, c)._numElidedTags.toString()}"
 			:shape="${(x, c) => getComponent(x, c).shape}"
 			?disabled="${(x, c) => getComponent(x, c).disabled}"
 			@mousedown="${() => false}">
@@ -93,8 +93,8 @@ function renderFieldset(context: ElementDefinitionContext) {
 		context,
 		(c) => c.parentContext.parent
 	);
-	const ellidedTagTemplate = ellidedTagTemplateFactory(context, (x, _) => x);
-	const nestedEllidedTagTemplate = ellidedTagTemplateFactory(
+	const elidedTagTemplate = elidedTagTemplateFactory(context, (x, _) => x);
+	const nestedElidedTagTemplate = elidedTagTemplateFactory(
 		context,
 		(_, c) => c.parent
 	);
@@ -112,8 +112,8 @@ function renderFieldset(context: ElementDefinitionContext) {
 					html<string[]>`
 						<div class="tag-row">
 							${when(
-								(_, c) => c.isFirst && c.parent._numEllidedTags,
-								nestedEllidedTagTemplate
+								(_, c) => c.isFirst && c.parent._numElidedTags,
+								nestedElidedTagTemplate
 							)}
 							${repeat((x) => x, nestedTagTemplate)}
 						</div>
@@ -128,8 +128,8 @@ function renderFieldset(context: ElementDefinitionContext) {
 						])}"
 				>
 					${when(
-						(x) => x._tagRows.length === 0 && x._numEllidedTags,
-						ellidedTagTemplate
+						(x) => x._tagRows.length === 0 && x._numElidedTags,
+						elidedTagTemplate
 					)}
 					${repeat((x) => x._lastTagRow, tagTemplate)}
 					<input
