@@ -148,6 +148,15 @@ const deDE: Locale = {
 		noMatchesMessage: 'Keine Optionen gefunden',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} entfernen`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
+			`Option ${name} ausgewählt.`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) =>
+			`Option ${name} entfernt.`,
+		optionFocusedMessage: /* istanbul ignore next */ (
+			name: string,
+			position: number,
+			total: number
+		) => `Option ${name} fokussiert, ${position} von ${total}.`,
 	},
 };
 

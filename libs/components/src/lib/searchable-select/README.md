@@ -901,19 +901,17 @@ Use `--searchable-select-height` to set the max-height of the dropdown.
 
 ## Accessibility
 
-## Use Cases
+If `label` is not set, you must provide an accessible name with the `aria-label` attribute.
 
-### Disabled Options
-
-If an option is disabled, it cannot be selected or unselected.
-
-```html preview 230px
+````html preview 230px
+## Use Cases ### Disabled Options If an option is disabled, it cannot be
+selected or unselected. ```html preview 230px
 <vwc-searchable-select label="Select an option" clearable multiple>
 	<vwc-option value="1" text="Option 1" disabled></vwc-option>
 	<vwc-option value="2" text="Option 2" disabled selected></vwc-option>
 	<vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-searchable-select>
-```
+````
 
 ### In a Form
 
