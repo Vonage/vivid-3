@@ -4,6 +4,30 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.6.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.5.0...vivid-v4.6.0) (2024-10-03)
+
+
+### Features
+
+* **menu:** add position-strategy to allow positioning menu absolute rather then fixed (VIV-2135) ([#1918](https://github.com/Vonage/vivid-3/issues/1918)) ([55d2b87](https://github.com/Vonage/vivid-3/commit/55d2b8729e486b1487a7d45b69d57ed608d9eca0))
+* **number-field:** scale condensed (VIV-1835) ([#1906](https://github.com/Vonage/vivid-3/issues/1906)) ([fc81c6e](https://github.com/Vonage/vivid-3/commit/fc81c6e091bac87586363a3e6ddc1512bc5c4604))
+* **searchable-select:** add component (VIV-1793) ([#1882](https://github.com/Vonage/vivid-3/issues/1882)) ([c352df7](https://github.com/Vonage/vivid-3/commit/c352df7eb365071de7a4dec89d802cf2e93a4197))
+* **searchable-select:** highlight matched search text (VIV-2045) ([#1914](https://github.com/Vonage/vivid-3/issues/1914)) ([d3353b3](https://github.com/Vonage/vivid-3/commit/d3353b36c3bfef36316aae882c5a5e1652625aea))
+* **searchable-select:** scroll to highlighted option (VIV-2162) ([#1925](https://github.com/Vonage/vivid-3/issues/1925)) ([aac1b9c](https://github.com/Vonage/vivid-3/commit/aac1b9ca3f859988d1a2df2fc94998f7b14fbe5e))
+* **searchable-select:** support form association (VIV-2046) ([#1919](https://github.com/Vonage/vivid-3/issues/1919)) ([750a20e](https://github.com/Vonage/vivid-3/commit/750a20e3eb6bd456411e68c6d2fce04c2468bdf8))
+* **searchable-select:** support tag icons (VIV-2044) ([#1917](https://github.com/Vonage/vivid-3/issues/1917)) ([f8d5f25](https://github.com/Vonage/vivid-3/commit/f8d5f25ef62746bf7d021b44305a525b3ac0a513))
+* **select:** add scale attribute with condensed (VIV-1836) ([#1901](https://github.com/Vonage/vivid-3/issues/1901)) ([0138a54](https://github.com/Vonage/vivid-3/commit/0138a547688c98e5acd85efcca3353c93400f1ec))
+* **tab:** adds closable attribute and close event (VIV-2030) ([#1915](https://github.com/Vonage/vivid-3/issues/1915)) ([1249285](https://github.com/Vonage/vivid-3/commit/1249285de696f0856cdb36a4a85352b91a08fc87))
+* **tabs:** export tab-panel as part (VIV-2004) ([#1903](https://github.com/Vonage/vivid-3/issues/1903)) ([d86cf91](https://github.com/Vonage/vivid-3/commit/d86cf917bcb753d8de710dce491c92adfbee9fa2))
+* **text-field:** add scale attribute with condensed (VIV-1813) ([#1899](https://github.com/Vonage/vivid-3/issues/1899)) ([cc373cd](https://github.com/Vonage/vivid-3/commit/cc373cd823f0bde4d44ee74ee706282809f1c35e))
+
+
+### Bug Fixes
+
+* **dial-pad:** action-slot alignment (VIV-000) ([#1922](https://github.com/Vonage/vivid-3/issues/1922)) ([6f90b07](https://github.com/Vonage/vivid-3/commit/6f90b07a1d9874809c510982d54abb0dc81a89ae))
+* **dial-pad:** fix input, blur, change and focus events leak (VIV-2065) ([#1911](https://github.com/Vonage/vivid-3/issues/1911)) ([5dce670](https://github.com/Vonage/vivid-3/commit/5dce670b71b28fc678ee395d3889bef22b1c4c11))
+* **selectable box:** screen-reader accessibility when box is clickable (VIV-000) ([#1907](https://github.com/Vonage/vivid-3/issues/1907)) ([512cc7c](https://github.com/Vonage/vivid-3/commit/512cc7ca395d7bebe6a246345ac75f8d379c0289))
+
 ## [4.5.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.4.0...vivid-v4.5.0) (2024-09-04)
 
 
