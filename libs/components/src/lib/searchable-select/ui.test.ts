@@ -96,3 +96,35 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'./snapshots/searchable-select.png'
 	);
 });
+
+test('should contribute values to form data', async ({
+	page,
+}: {
+	page: Page;
+}) => {
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template: `
+			<form id="form">
+				<vwc-searchable-select name="select" multiple>
+					<vwc-option value="1" text="Option 1" selected></vwc-option>
+					<vwc-option value="2" text="Option 2" selected></vwc-option>
+				</vwc-searchable-select>
+			</form>
+		`,
+	});
+
+	const form = await page.$('#form');
+
+	const formDataValues = await page.evaluate((form) => {
+		const formElement = form as HTMLFormElement;
+		const formData = new FormData(formElement);
+		return formData.getAll('select');
+	}, form);
+
+	expect(formDataValues).toEqual(['1', '2']);
+});

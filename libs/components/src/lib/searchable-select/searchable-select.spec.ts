@@ -73,7 +73,12 @@ describe('vwc-searchable-select', () => {
 			| undefined;
 
 	const setUpFixture = async (template: string) => {
-		element = fixture(template) as SearchableSelect;
+		const root = fixture(template);
+		element = (
+			root.tagName === COMPONENT_TAG.toUpperCase()
+				? root
+				: root.querySelector(COMPONENT_TAG)!
+		) as SearchableSelect;
 		input = element.shadowRoot!.querySelector('input') as HTMLInputElement;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
 		fieldset = element.shadowRoot!.querySelector('.fieldset') as HTMLDivElement;
@@ -1009,6 +1014,21 @@ describe('vwc-searchable-select', () => {
 			expect(eventSpy).toHaveBeenCalledTimes(1);
 		});
 
+		it('should fire when the form is reset', async () => {
+			await setUpFixture(`
+				<form>
+					<${COMPONENT_TAG} name="fruit">
+						<${OPTION_TAG} value="apple" text="Apple" selected></${OPTION_TAG}>
+					</${COMPONENT_TAG}>
+				</form>
+			`);
+			element.addEventListener(eventName, eventSpy);
+
+			element.closest('form')!.reset();
+
+			expect(eventSpy).toHaveBeenCalledTimes(1);
+		});
+
 		it('should not fire when values is changed programmatically', async () => {
 			element.values = ['apple'];
 
@@ -1494,6 +1514,142 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
+	describe('required', () => {
+		it('should have valueMissing error if no option is selected', async () => {
+			await setUpFixture(`
+				<${COMPONENT_TAG} name="fruit" required>
+					<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+				</${COMPONENT_TAG}>
+			`);
+
+			expect(element.validity.valid).toBe(false);
+			expect(element.validity.valueMissing).toBe(true);
+		});
+
+		it('should be valid if an option is selected', async () => {
+			await setUpFixture(`
+				<${COMPONENT_TAG} name="fruit" required>
+					<${OPTION_TAG} value="apple" text="Apple" selected></${OPTION_TAG}>
+				</${COMPONENT_TAG}>
+			`);
+
+			expect(element.validity.valid).toBe(true);
+		});
+	});
+
+	describe('initialValue', () => {
+		it('should initialize values to initialValue', async () => {
+			const component = document.createElement(
+				COMPONENT_TAG
+			) as SearchableSelect;
+			component.innerHTML = `
+				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+				<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
+			`;
+
+			component.initialValue = 'banana';
+			element.replaceWith(component);
+
+			expect(component.values).toEqual(['banana']);
+		});
+
+		it('should set values if values have not been explicitly set', async () => {
+			element.initialValue = 'apple';
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should not set values if values has already been explicitly set', async () => {
+			element.values = ['banana'];
+
+			element.initialValue = 'apple';
+
+			expect(element.values).toEqual(['banana']);
+		});
+	});
+
+	describe('initialValues', () => {
+		it('should initialize values to initialValues', async () => {
+			const component = document.createElement(
+				COMPONENT_TAG
+			) as SearchableSelect;
+			component.innerHTML = `
+				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+				<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
+			`;
+
+			component.initialValues = ['banana'];
+			element.replaceWith(component);
+
+			expect(component.values).toEqual(['banana']);
+		});
+
+		it('should set values if values have not been explicitly set', async () => {
+			element.initialValues = ['apple'];
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should not set values if values have already been explicitly set', async () => {
+			element.values = ['banana'];
+
+			element.initialValues = ['apple'];
+
+			expect(element.values).toEqual(['banana']);
+		});
+	});
+
+	describe('form reset', () => {
+		let form: HTMLFormElement;
+		beforeEach(async () => {
+			await setUpFixture(`
+				<form>
+					<${COMPONENT_TAG} name="fruit" required>
+						<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+						<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
+					</${COMPONENT_TAG}>
+				</form>
+			`);
+			form = element.closest('form') as HTMLFormElement;
+		});
+
+		it('should clear values by default', async () => {
+			element.values = ['banana'];
+
+			form.reset();
+
+			expect(element.values).toEqual([]);
+		});
+
+		it('should reset values to initialValues', async () => {
+			element.values = ['banana'];
+			element.initialValues = ['apple'];
+
+			form.reset();
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should reset values to initialValue', async () => {
+			element.values = ['banana'];
+			element.initialValue = 'apple';
+
+			form.reset();
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should prefer initialValues over initialValue if both are present', async () => {
+			element.values = ['banana'];
+			element.initialValues = ['apple'];
+			element.initialValue = 'banana';
+
+			form.reset();
+
+			expect(element.values).toEqual(['apple']);
+		});
+	});
+
 	describe('option tag icon', () => {
 		let icon: Icon;
 		beforeEach(async () => {
@@ -1522,7 +1678,7 @@ describe('vwc-searchable-select', () => {
 			expect(icon.getRootNode()).toBe(document);
 		});
 
-		it('should cleanup the cloned when the option is unselected', async () => {
+		it('should cleanup the cloned icon when the option is unselected', async () => {
 			element.values = [];
 
 			expect(element.querySelectorAll(ICON_TAG).length).toBe(1);

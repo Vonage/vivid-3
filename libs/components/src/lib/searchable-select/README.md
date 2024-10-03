@@ -894,6 +894,8 @@ Use `--searchable-select-height` to set the max-height of the dropdown.
 | `selectedIndex`   | `number`          | Index of the first selected option or `-1` if no option is selected.             |
 | `options`         | `ListboxOption[]` | Read-only collections of all options.                                            |
 | `selectedOptions` | `ListboxOption[]` | Read-only collections of selected options.                                       |
+| `initialValues`   | `string[]`        | List of initially selected option's values. Used in case of form reset.          |
+| `initialValue`    | `string`          | Initially selected option's value. Used in case of form reset.                   |
 
 </div>
 
@@ -911,4 +913,34 @@ If an option is disabled, it cannot be selected or unselected.
 	<vwc-option value="2" text="Option 2" disabled selected></vwc-option>
 	<vwc-option value="3" text="Option 3"></vwc-option>
 </vwc-searchable-select>
+```
+
+### In a Form
+
+```html preview 250px
+<style>
+	.buttons {
+		display: flex;
+		gap: 12px;
+	}
+</style>
+<form>
+	<vwc-layout column-spacing="small" column-basis="block">
+		<div>
+			<vwc-searchable-select name="country" multiple required>
+				<vwc-option
+					icon="flag-afghanistan"
+					value="AF"
+					text="Afghanistan"
+				></vwc-option>
+				<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
+				<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+			</vwc-searchable-select>
+		</div>
+		<div class="buttons">
+			<vwc-button label="Reset" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
+	</vwc-layout>
+</form>
 ```
