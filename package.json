@@ -130,7 +130,7 @@
 		"markdown-table": "^2.0.0",
 		"nx": "19.6.4",
 		"nx-stylelint": "17.1.5",
-		"pagefind": "^1.1.0",
+		"pagefind": "^1.1.1",
 		"playwright": "1.38.0",
 		"prettier": "2.7.1",
 		"rollup-plugin-copy": "^3.4.0",
