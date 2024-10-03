@@ -855,7 +855,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		} else {
 			(
 				this.shadowRoot!.querySelector(`[data-index="${index}"]`) as HTMLElement
-			).focus();
+			)?.focus();
 		}
 	}
 

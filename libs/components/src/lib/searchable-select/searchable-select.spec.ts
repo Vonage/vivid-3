@@ -103,6 +103,12 @@ describe('vwc-searchable-select', () => {
 		`);
 	});
 
+	const originalGetBoundingClientRect =
+		HTMLElement.prototype.getBoundingClientRect;
+	afterEach(() => {
+		HTMLElement.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+	});
+
 	describe('basic', () => {
 		it('should be initialized as a vwc-searchable-select', async () => {
 			expect(searchableSelectDefinition()).toBeInstanceOf(
@@ -801,6 +807,24 @@ describe('vwc-searchable-select', () => {
 
 				expect(element.shadowRoot!.activeElement).toBe(input);
 			});
+
+			it('should ignore elided option tags when pressing ArrowLeft', async () => {
+				HTMLElement.prototype.getBoundingClientRect = jest.fn(
+					() =>
+						({
+							width: 100,
+						} as DOMRect)
+				);
+				element.maxLines = 1;
+				element.values = ['apple', 'banana'];
+				focusInput();
+				await elementUpdated(element);
+				getTag('Banana').focus();
+
+				pressKey('ArrowLeft');
+
+				expect(element.shadowRoot!.activeElement).toBe(getTag('Banana'));
+			});
 		});
 	});
 
@@ -818,16 +842,6 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('tag layout', () => {
-		let originalGetBoundingClientRect: any;
-		beforeEach(() => {
-			originalGetBoundingClientRect =
-				HTMLElement.prototype.getBoundingClientRect;
-		});
-		afterEach(() => {
-			HTMLElement.prototype.getBoundingClientRect =
-				originalGetBoundingClientRect;
-		});
-
 		let resizeObserverCallback;
 		let resizeObserverDisconnected = false;
 		let currentWrapperWidth: any;
