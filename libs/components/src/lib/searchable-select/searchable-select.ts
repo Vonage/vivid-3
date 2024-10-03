@@ -688,7 +688,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * The number of tags that are not visible due to space constraints.
 	 * @internal
 	 */
-	@observable _numEllidedTags = 0;
+	@observable _numElidedTags = 0;
 
 	/**
 	 * The visible option tags laid out in rows.
@@ -704,7 +704,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateTagLayout() {
 		if (!this.multiple) {
 			// Single select does not display tags
-			this._numEllidedTags = 0;
+			this._numElidedTags = 0;
 			this._tagRows = [];
 			this._lastTagRow = [];
 			return;
@@ -712,7 +712,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 		if (this.externalTags) {
 			// Elide all tags
-			this._numEllidedTags = this.values.length;
+			this._numElidedTags = this.values.length;
 			this._tagRows = [];
 			this._lastTagRow = [];
 			return;
@@ -777,7 +777,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			currentRowWidth += TagGapPx + tagWidth;
 		}
 
-		this._numEllidedTags = i + 1;
+		this._numElidedTags = i + 1;
 
 		// Bring rows into the correct order
 		rows.reverse();
@@ -789,10 +789,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				(rows[i].length - 1) * TagGapPx;
 
 			// Add tag counter if needed
-			if (i === 0 && this._numEllidedTags) {
+			if (i === 0 && this._numElidedTags) {
 				lineWidth +=
 					TagGapPx +
-					this.#measureTagWidth(this._numEllidedTags.toString(), false, false);
+					this.#measureTagWidth(this._numElidedTags.toString(), false, false);
 			}
 
 			// Pull up tags from the next line as long as they fit
