@@ -1,14 +1,16 @@
-import { BreadcrumbItem as FastBreadcrumbItem } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
+import { Anchor } from '../../shared/patterns/anchor';
 
 /**
  * @public
  * @component breadcrumb-item
  */
-export class BreadcrumbItem extends FastBreadcrumbItem {
+export class BreadcrumbItem extends Anchor {
 	@attr text?: string;
 
-	constructor() {
-		super();
-	}
+	/**
+	 * @internal
+	 */
+	@observable
+	separator = true;
 }
