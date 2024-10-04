@@ -1,11 +1,11 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { ARIAGlobalStatesAndProperties } from './aria-global';
 
 /**
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
  */
-export class Anchor extends FoundationElement {
+export class Anchor {
 	/**
 	 * Prompts the user to save the linked URL. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element } for more information.
 	 * @public

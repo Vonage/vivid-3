@@ -13,6 +13,10 @@ export class Breadcrumb extends FoundationElement {
 	 */
 	@observable
 	slottedBreadcrumbItems?: HTMLElement[];
+
+	/**
+	 * @internal
+	 */
 	slottedBreadcrumbItemsChanged(
 		_: HTMLElement[] | undefined,
 		newItems: HTMLElement[] | undefined
