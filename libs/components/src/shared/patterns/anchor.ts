@@ -13,7 +13,7 @@ export class Anchor {
 	 * HTML Attribute: download
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	download: string;
 
 	/**
@@ -23,7 +23,7 @@ export class Anchor {
 	 * HTML Attribute: href
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	href: string;
 
 	/**
@@ -33,7 +33,7 @@ export class Anchor {
 	 * HTML Attribute: hreflang
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	hreflang: string;
 
 	/**
@@ -43,7 +43,7 @@ export class Anchor {
 	 * HTML Attribute: ping
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ping: string;
 
 	/**
@@ -53,7 +53,7 @@ export class Anchor {
 	 * HTML Attribute: referrerpolicy
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	referrerpolicy: string;
 
 	/**
@@ -63,7 +63,7 @@ export class Anchor {
 	 * HTML Attribute: rel
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	rel: string;
 
 	/**
@@ -73,7 +73,7 @@ export class Anchor {
 	 * HTML Attribute: target
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	target: '_self' | '_blank' | '_parent' | '_top';
 
 	/**
@@ -83,7 +83,7 @@ export class Anchor {
 	 * HTML Attribute: type
 	 */
 	@attr
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	type: string;
 }
 
@@ -98,7 +98,7 @@ export class DelegatesARIALink {
 	 * HTML Attribute: aria-expanded
 	 */
 	@attr({ attribute: 'aria-expanded' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaExpanded: 'true' | 'false' | string | null;
 }
 

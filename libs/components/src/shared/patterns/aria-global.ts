@@ -20,7 +20,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-atomic
 	 */
 	@attr({ attribute: 'aria-atomic' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaAtomic: 'true' | 'false' | string | null;
 
 	/**
@@ -33,7 +33,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-busy
 	 */
 	@attr({ attribute: 'aria-busy' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaBusy: 'true' | 'false' | string | null;
 
 	/**
@@ -45,7 +45,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-controls
 	 */
 	@attr({ attribute: 'aria-controls' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaControls: string | null;
 
 	/**
@@ -57,7 +57,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-current
 	 */
 	@attr({ attribute: 'aria-current' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaCurrent:
 		| 'page'
 		| 'step'
@@ -78,7 +78,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-describedby
 	 */
 	@attr({ attribute: 'aria-describedby' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaDescribedby: string | null;
 
 	/**
@@ -90,7 +90,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-details
 	 */
 	@attr({ attribute: 'aria-details' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaDetails: string | null;
 
 	/**
@@ -102,7 +102,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-disabled
 	 */
 	@attr({ attribute: 'aria-disabled' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaDisabled: 'true' | 'false' | string | null;
 
 	/**
@@ -114,7 +114,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-errormessage
 	 */
 	@attr({ attribute: 'aria-errormessage' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaErrormessage: string | null;
 
 	/**
@@ -127,7 +127,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-flowto
 	 */
 	@attr({ attribute: 'aria-flowto' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaFlowto: string | null;
 
 	/**
@@ -140,7 +140,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-haspopup
 	 */
 	@attr({ attribute: 'aria-haspopup' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaHaspopup:
 		| 'false'
 		| 'true'
@@ -161,7 +161,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-hidden
 	 */
 	@attr({ attribute: 'aria-hidden' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaHidden: 'false' | 'true' | string | null;
 
 	/**
@@ -173,7 +173,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-invalid
 	 */
 	@attr({ attribute: 'aria-invalid' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaInvalid: 'false' | 'true' | 'grammar' | 'spelling' | string | null;
 
 	/**
@@ -185,7 +185,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-keyshortcuts
 	 */
 	@attr({ attribute: 'aria-keyshortcuts' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaKeyshortcuts: string | null;
 
 	/**
@@ -197,7 +197,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-label
 	 */
 	@attr({ attribute: 'aria-label' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaLabel: string | null;
 
 	/**
@@ -209,7 +209,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-labelledby
 	 */
 	@attr({ attribute: 'aria-labelledby' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaLabelledby: string | null;
 
 	/**
@@ -222,7 +222,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-live
 	 */
 	@attr({ attribute: 'aria-live' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaLive: 'assertive' | 'off' | 'polite' | string | null;
 
 	/**
@@ -236,7 +236,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-owns
 	 */
 	@attr({ attribute: 'aria-owns' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaOwns: string | null;
 
 	/**
@@ -248,7 +248,7 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-relevant
 	 */
 	@attr({ attribute: 'aria-relevant' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaRelevant:
 		| 'additions'
 		| 'additions text'
@@ -267,6 +267,6 @@ export class ARIAGlobalStatesAndProperties {
 	 * HTML Attribute: aria-roledescription
 	 */
 	@attr({ attribute: 'aria-roledescription' })
-	// @ts-expect-error
+	// @ts-expect-error Type is incorrectly non-optional
 	ariaRoledescription: string | null;
 }
