@@ -42,7 +42,7 @@ describe('vwc-searchable-select', () => {
 			`vwc-option-tag[label="${label}"]`
 		) as OptionTag;
 
-	const getEllidedOptionsCounterTag = () =>
+	const getElidedOptionsCounterTag = () =>
 		element.shadowRoot!.querySelector(
 			`vwc-option-tag:not([removable])`
 		) as OptionTag;
@@ -73,7 +73,12 @@ describe('vwc-searchable-select', () => {
 			| undefined;
 
 	const setUpFixture = async (template: string) => {
-		element = fixture(template) as SearchableSelect;
+		const root = fixture(template);
+		element = (
+			root.tagName === COMPONENT_TAG.toUpperCase()
+				? root
+				: root.querySelector(COMPONENT_TAG)!
+		) as SearchableSelect;
 		input = element.shadowRoot!.querySelector('input') as HTMLInputElement;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
 		fieldset = element.shadowRoot!.querySelector('.fieldset') as HTMLDivElement;
@@ -96,6 +101,12 @@ describe('vwc-searchable-select', () => {
 				<${OPTION_TAG} value="cherry" text="Cherry"></${OPTION_TAG}>
 			</${COMPONENT_TAG}>
 		`);
+	});
+
+	const originalGetBoundingClientRect =
+		HTMLElement.prototype.getBoundingClientRect;
+	afterEach(() => {
+		HTMLElement.prototype.getBoundingClientRect = originalGetBoundingClientRect;
 	});
 
 	describe('basic', () => {
@@ -136,13 +147,13 @@ describe('vwc-searchable-select', () => {
 			expect(getTag('Apple').disabled).toBe(true);
 		});
 
-		it('should disable ellided options counter', async function () {
+		it('should disable elided options counter', async function () {
 			element.externalTags = true;
 			element.multiple = true;
 			element.values = ['apple'];
 			await elementUpdated(element);
 
-			expect(getEllidedOptionsCounterTag().disabled).toBe(true);
+			expect(getElidedOptionsCounterTag().disabled).toBe(true);
 		});
 
 		it('should disable the clear button', async function () {
@@ -796,11 +807,29 @@ describe('vwc-searchable-select', () => {
 
 				expect(element.shadowRoot!.activeElement).toBe(input);
 			});
+
+			it('should ignore elided option tags when pressing ArrowLeft', async () => {
+				HTMLElement.prototype.getBoundingClientRect = jest.fn(
+					() =>
+						({
+							width: 100,
+						} as DOMRect)
+				);
+				element.maxLines = 1;
+				element.values = ['apple', 'banana'];
+				focusInput();
+				await elementUpdated(element);
+				getTag('Banana').focus();
+
+				pressKey('ArrowLeft');
+
+				expect(element.shadowRoot!.activeElement).toBe(getTag('Banana'));
+			});
 		});
 	});
 
 	describe('externalTags', () => {
-		it('should display only the ellided options counter if set', async () => {
+		it('should display only the elided options counter if set', async () => {
 			element.multiple = true;
 			element.externalTags = true;
 			element.values = ['apple', 'banana'];
@@ -808,21 +837,11 @@ describe('vwc-searchable-select', () => {
 
 			expect(getTag('Apple')).toBeNull();
 			expect(getTag('Banana')).toBeNull();
-			expect(getEllidedOptionsCounterTag().label).toBe('2');
+			expect(getElidedOptionsCounterTag().label).toBe('2');
 		});
 	});
 
 	describe('tag layout', () => {
-		let originalGetBoundingClientRect: any;
-		beforeEach(() => {
-			originalGetBoundingClientRect =
-				HTMLElement.prototype.getBoundingClientRect;
-		});
-		afterEach(() => {
-			HTMLElement.prototype.getBoundingClientRect =
-				originalGetBoundingClientRect;
-		});
-
 		let resizeObserverCallback;
 		let resizeObserverDisconnected = false;
 		let currentWrapperWidth: any;
@@ -1005,6 +1024,21 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			clickOnTagRemoveButton('Apple');
+
+			expect(eventSpy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should fire when the form is reset', async () => {
+			await setUpFixture(`
+				<form>
+					<${COMPONENT_TAG} name="fruit">
+						<${OPTION_TAG} value="apple" text="Apple" selected></${OPTION_TAG}>
+					</${COMPONENT_TAG}>
+				</form>
+			`);
+			element.addEventListener(eventName, eventSpy);
+
+			element.closest('form')!.reset();
 
 			expect(eventSpy).toHaveBeenCalledTimes(1);
 		});
@@ -1464,7 +1498,7 @@ describe('vwc-searchable-select', () => {
 			expect(event.defaultPrevented).toBe(true);
 		});
 
-		it('should prevent default of mousedown on ellided tag counter', async () => {
+		it('should prevent default of mousedown on elided tag counter', async () => {
 			element.multiple = true;
 			element.externalTags = true;
 			element.values = ['apple'];
@@ -1474,7 +1508,7 @@ describe('vwc-searchable-select', () => {
 				bubbles: true,
 				cancelable: true,
 			});
-			getEllidedOptionsCounterTag().dispatchEvent(event);
+			getElidedOptionsCounterTag().dispatchEvent(event);
 
 			expect(event.defaultPrevented).toBe(true);
 		});
@@ -1491,6 +1525,142 @@ describe('vwc-searchable-select', () => {
 			getClearButton()!.dispatchEvent(event);
 
 			expect(event.defaultPrevented).toBe(true);
+		});
+	});
+
+	describe('required', () => {
+		it('should have valueMissing error if no option is selected', async () => {
+			await setUpFixture(`
+				<${COMPONENT_TAG} name="fruit" required>
+					<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+				</${COMPONENT_TAG}>
+			`);
+
+			expect(element.validity.valid).toBe(false);
+			expect(element.validity.valueMissing).toBe(true);
+		});
+
+		it('should be valid if an option is selected', async () => {
+			await setUpFixture(`
+				<${COMPONENT_TAG} name="fruit" required>
+					<${OPTION_TAG} value="apple" text="Apple" selected></${OPTION_TAG}>
+				</${COMPONENT_TAG}>
+			`);
+
+			expect(element.validity.valid).toBe(true);
+		});
+	});
+
+	describe('initialValue', () => {
+		it('should initialize values to initialValue', async () => {
+			const component = document.createElement(
+				COMPONENT_TAG
+			) as SearchableSelect;
+			component.innerHTML = `
+				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+				<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
+			`;
+
+			component.initialValue = 'banana';
+			element.replaceWith(component);
+
+			expect(component.values).toEqual(['banana']);
+		});
+
+		it('should set values if values have not been explicitly set', async () => {
+			element.initialValue = 'apple';
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should not set values if values has already been explicitly set', async () => {
+			element.values = ['banana'];
+
+			element.initialValue = 'apple';
+
+			expect(element.values).toEqual(['banana']);
+		});
+	});
+
+	describe('initialValues', () => {
+		it('should initialize values to initialValues', async () => {
+			const component = document.createElement(
+				COMPONENT_TAG
+			) as SearchableSelect;
+			component.innerHTML = `
+				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+				<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
+			`;
+
+			component.initialValues = ['banana'];
+			element.replaceWith(component);
+
+			expect(component.values).toEqual(['banana']);
+		});
+
+		it('should set values if values have not been explicitly set', async () => {
+			element.initialValues = ['apple'];
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should not set values if values have already been explicitly set', async () => {
+			element.values = ['banana'];
+
+			element.initialValues = ['apple'];
+
+			expect(element.values).toEqual(['banana']);
+		});
+	});
+
+	describe('form reset', () => {
+		let form: HTMLFormElement;
+		beforeEach(async () => {
+			await setUpFixture(`
+				<form>
+					<${COMPONENT_TAG} name="fruit" required>
+						<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
+						<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
+					</${COMPONENT_TAG}>
+				</form>
+			`);
+			form = element.closest('form') as HTMLFormElement;
+		});
+
+		it('should clear values by default', async () => {
+			element.values = ['banana'];
+
+			form.reset();
+
+			expect(element.values).toEqual([]);
+		});
+
+		it('should reset values to initialValues', async () => {
+			element.values = ['banana'];
+			element.initialValues = ['apple'];
+
+			form.reset();
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should reset values to initialValue', async () => {
+			element.values = ['banana'];
+			element.initialValue = 'apple';
+
+			form.reset();
+
+			expect(element.values).toEqual(['apple']);
+		});
+
+		it('should prefer initialValues over initialValue if both are present', async () => {
+			element.values = ['banana'];
+			element.initialValues = ['apple'];
+			element.initialValue = 'banana';
+
+			form.reset();
+
+			expect(element.values).toEqual(['apple']);
 		});
 	});
 
@@ -1522,7 +1692,7 @@ describe('vwc-searchable-select', () => {
 			expect(icon.getRootNode()).toBe(document);
 		});
 
-		it('should cleanup the cloned when the option is unselected', async () => {
+		it('should cleanup the cloned icon when the option is unselected', async () => {
 			element.values = [];
 
 			expect(element.querySelectorAll(ICON_TAG).length).toBe(1);
