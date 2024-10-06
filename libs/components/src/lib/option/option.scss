@@ -49,20 +49,26 @@
 		word-break: break-word;
 	}
 
-	&:not(.size-condensed) {
+	& {
 		#{variables.$option-min-block-size}: #{size.$vvd-size-normal}; // 40px
-		#{variables.$option-padding-inline}: calc(#{size.$vvd-size-normal} / 2.5); // 16px
-		#{variables.$option-gap}: calc(#{size.$vvd-size-semi-condensed} / 3); // 12px
+		#{variables.$option-padding-inline}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // 16px
+		#{variables.$option-gap}: calc(
+			#{size.$vvd-size-semi-condensed} / 3
+		); // 12px
 		#{variables.$option-icon-size}: calc(#{size.$vvd-size-normal} / 2); // 20px
 	}
 
-	&.size-condensed {
+	:host([scale='condensed']) & {
 		#{variables.$option-min-block-size}: #{size.$vvd-size-condensed}; // 32px
 		#{variables.$option-padding-inline}: calc(
 			#{size.$vvd-size-super-condensed} / 2
 		); // 12px
 		#{variables.$option-gap}: calc(#{size.$vvd-size-normal} / 5); // 8px
-		#{variables.$option-icon-size}: calc(#{size.$vvd-size-normal} / 2.5); // 16px
+		#{variables.$option-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // 16px
 	}
 
 	@supports (user-select: none) {

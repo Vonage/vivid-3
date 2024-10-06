@@ -3,18 +3,14 @@ import {
 	ListboxOption as FoundationListboxOption,
 } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
-import type { Size } from '../enums';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 
-
-export type OptionSize = Extract<Size, Size.Condensed | Size.Normal>;
 /**
  * @public
  * @component option
  * @slot icon - Slot to add an icon to the option.
  */
 export class ListboxOption extends FoundationListboxOption {
-
 	/**
 	 *
 	 * @public
@@ -34,15 +30,6 @@ export class ListboxOption extends FoundationListboxOption {
 	override get text() {
 		return this._text ?? '';
 	}
-
-	/**
-	 * The size the option should have
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: size
-	 */
-	@attr() scale?: OptionSize;
 
 	@attr({
 		attribute: 'label',
