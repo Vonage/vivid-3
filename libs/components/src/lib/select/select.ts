@@ -151,10 +151,22 @@ export class Select extends FoundationSelect {
 	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
 		super.slottedOptionsChanged(prev, next);
 
+		// Check if the parent has a 'scale' property
+		const scale = this.getAttribute('scale') || this.scale; // Adjust as needed
+
+		// Assign the 'scale' property to the slotted items
+		next.forEach((element) => {
+			if (scale) {
+				element.setAttribute('scale', scale); // Assign the scale attribute to slotted items
+				(element as any).scale = scale; // Optionally assign as a property if needed
+			}
+		});
+
 		// Workaround for bug in FAST:
 		// Proxy value is set before options are added to proxy, which causes the value to be discarded
 		// Therefore, we need to set the value again and update validation
 		this.proxy.value = this.value;
+
 		this.validate();
 	}
 

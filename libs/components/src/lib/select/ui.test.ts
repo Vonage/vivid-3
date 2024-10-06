@@ -38,6 +38,34 @@ async function testGhostSelect({ page }: { page: Page }) {
 	);
 }
 
+async function testScaleOptions({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px; block-size: 400px">
+			<vwc-select label="scale condensed" scale="condensed" open>
+			<vwc-option value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+			</vwc-select>
+	</div>`;
+
+	await page.setViewportSize({ width: 300, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'./snapshots/select-scale-condensed.png'
+	);
+}
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template =
 		`
@@ -77,3 +105,4 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 test('select ghost', testGhostSelect);
+test('select scale', testScaleOptions);
