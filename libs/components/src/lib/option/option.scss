@@ -60,17 +60,6 @@
 		#{variables.$option-icon-size}: calc(#{size.$vvd-size-normal} / 2); // 20px
 	}
 
-	:host([scale='condensed']) & {
-		#{variables.$option-min-block-size}: #{size.$vvd-size-condensed}; // 32px
-		#{variables.$option-padding-inline}: calc(
-			#{size.$vvd-size-super-condensed} / 2
-		); // 12px
-		#{variables.$option-gap}: calc(#{size.$vvd-size-normal} / 5); // 8px
-		#{variables.$option-icon-size}: calc(
-			#{size.$vvd-size-normal} / 2.5
-		); // 16px
-	}
-
 	@supports (user-select: none) {
 		user-select: none;
 	}
@@ -81,6 +70,17 @@
 
 	&.disabled {
 		pointer-events: none;
+	}
+
+	:host([scale='condensed']) & {
+		#{variables.$option-min-block-size}: #{size.$vvd-size-condensed}; // 32px
+		#{variables.$option-padding-inline}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		); // 12px
+		#{variables.$option-gap}: calc(#{size.$vvd-size-normal} / 5); // 8px
+		#{variables.$option-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // 16px
 	}
 
 	:host([aria-checked='true']) & {
