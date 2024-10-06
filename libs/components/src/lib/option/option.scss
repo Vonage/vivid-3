@@ -77,10 +77,6 @@
 		pointer-events: none;
 	}
 
-	.text {
-		font: var(#{constants.$vvd-typography-base});
-	}
-
 	:host([aria-checked='true']) & {
 		#{focus-variables.$focus-stroke-color}: var(
 			#{constants.$vvd-color-neutral-500}
@@ -89,6 +85,15 @@
 
 		@include focus.focus;
 	}
+}
+
+.text {
+	font: var(#{constants.$vvd-typography-base});
+}
+
+.match {
+	color: var(#{constants.$vvd-color-cta-600});
+	font: var(#{constants.$vvd-typography-base-bold});
 }
 
 slot[name='icon'] {

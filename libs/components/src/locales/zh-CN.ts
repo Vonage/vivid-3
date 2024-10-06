@@ -138,6 +138,16 @@ const zhCN: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: '按 DELETE 键关闭此选项卡',
+	},
+	searchableSelect: {
+		clearButtonLabel: '清除',
+		noOptionsMessage: '没有选项',
+		noMatchesMessage: '未找到选项',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`${label} 删除`,
+	},
 };
 
 export default zhCN;

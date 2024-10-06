@@ -271,6 +271,7 @@ $low-ink-color: --_low-ink-color;
 	.fieldset {
 		background-color: transparent;
 		font: var(#{constants.$vvd-typography-heading-4});
+		line-height: 1.1;
 
 		&:not(:focus-within) {
 			&::after {

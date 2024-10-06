@@ -37,6 +37,7 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(false);
 			expect(element.anchor).toEqual(undefined);
 			expect(element.placement).toEqual('bottom');
+			expect(element.positionStrategy).toEqual('fixed');
 		});
 	});
 
@@ -410,6 +411,21 @@ describe('vwc-menu', () => {
 
 				expect(element.open).toBe(true);
 			});
+		});
+	});
+
+	describe('position-strategy', () => {
+		it('should reflect position-strategy attribute to property', async function () {
+			element.setAttribute('position-strategy', 'absolute');
+			await elementUpdated(element);
+			expect(element.positionStrategy).toEqual('absolute');
+		});
+
+		it('should reflect its value to popup class', async function () {
+			element.positionStrategy = 'absolute';
+			await elementUpdated(element);
+
+			expect(popup.strategy).toBe('absolute');
 		});
 	});
 

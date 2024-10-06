@@ -41,7 +41,22 @@ export const ListboxOptionTemplate: (
 		>
 			<div class="${getClasses}">
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
-				${when((x) => x.text, html`<div class="text">${(x) => x.text}</div>`)}
+				${when(
+					(x) => x.text,
+					html<ListboxOption>`<div class="text">
+						${when(
+							(x) => x._matchedRange,
+							html<ListboxOption>`${(x) =>
+									x.text.slice(0, x._matchedRangeSafe.from)}<span class="match"
+									>${(x) =>
+										x.text.slice(
+											x._matchedRangeSafe.from,
+											x._matchedRangeSafe.to
+										)}</span
+								>`
+						)}${(x) => x.text.slice(x._matchedRangeSafe.to)}
+					</div>`
+				)}
 				${when(
 					(x) => x._displayCheckmark && x.selected,
 					html`<${iconTag} class="checkmark" name="check-line"></${iconTag}>`

@@ -138,6 +138,16 @@ const enGB: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: 'Press the DELETE key to close this tab',
+	},
+	searchableSelect: {
+		clearButtonLabel: 'Clear',
+		noOptionsMessage: 'No options',
+		noMatchesMessage: 'No options found',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
+			`Remove ${label}`,
+	},
 };
 
 export default enGB;

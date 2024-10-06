@@ -2,22 +2,6 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
 
-// eslint-disable-next-line compat/compat
-export const isDialogSupported = Boolean(
-	window.HTMLDialogElement && window.HTMLDialogElement.prototype.showModal
-);
-
-// Make sure we support Safari 14
-let dialogPolyfill: any;
-(async () => {
-	if (!isDialogSupported) {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		delete window.HTMLDialogElement;
-		dialogPolyfill = await import('dialog-polyfill');
-	}
-})();
-
 /**
  * Types of icon placement
  *
@@ -98,11 +82,6 @@ export class Dialog extends FoundationElement {
 			this.#dialogElement = this.shadowRoot!.querySelector(
 				'dialog'
 			) as HTMLDialogElement;
-			if (this.#dialogElement) {
-				if (dialogPolyfill) {
-					dialogPolyfill.registerDialog(this.#dialogElement);
-				}
-			}
 		}
 		return this.#dialogElement as HTMLDialogElement;
 	}

@@ -186,31 +186,35 @@ export const renderComponent = (
 	 */
 	const eventsSrc = componentDef.events
 		.map(({ name }) => {
-			const vueModel = vueModels.find((model) =>
+			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
-			return vueModel
-				? `'${name}': (event: Event) => {
-          this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
+			return `'${name}': (event: Event) => {
+          ${eventVueModels
+						.map(
+							(vueModel) =>
+								`this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`
+						)
+						.join('\n')}
           this.$emit('${name}', event);
-        }`
-				: `'${name}': (event: Event) => this.$emit('${name}', event)`;
+        }`;
 		})
 		.join(',');
 
 	const eventsV3Src = componentDef.events
 		.map(({ name }) => {
-			const vueModel = vueModels.find((model) =>
+			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
-			return vueModel
-				? `'on${kebabToPascal(name)}': (event: Event) => {
-          this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});
+			return `'on${kebabToPascal(name)}': (event: Event) => {
+					 ${eventVueModels
+							.map(
+								(vueModel) =>
+									`this.$emit('update:${vueModel.name}', ${vueModel.valueMapping});`
+							)
+							.join('\n')}
           this.$emit('${name}', event);
-        }`
-				: `'on${kebabToPascal(
-						name
-				  )}': (event: Event) => this.$emit('${name}', event)`;
+        }`;
 		})
 		.join(',');
 
