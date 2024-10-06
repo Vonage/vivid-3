@@ -151,14 +151,11 @@ export class Select extends FoundationSelect {
 	override slottedOptionsChanged(prev: Element[] | undefined, next: Element[]) {
 		super.slottedOptionsChanged(prev, next);
 
-		// Check if the parent has a 'scale' property
-		const scale = this.getAttribute('scale') || this.scale; // Adjust as needed
-
-		// Assign the 'scale' property to the slotted items
+		const scale = this.getAttribute('scale') || this.scale;
 		next.forEach((element) => {
 			if (scale) {
-				element.setAttribute('scale', scale); // Assign the scale attribute to slotted items
-				(element as any).scale = scale; // Optionally assign as a property if needed
+				element.setAttribute('scale', scale);
+				(element as any).scale = scale;
 			}
 		});
 
