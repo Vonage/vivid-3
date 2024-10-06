@@ -40,7 +40,7 @@
 			var(#{appearance.get-appearance-token(text)})
 		);
 		font: var(#{constants.$vvd-typography-base});
-		gap: var(#{variables.$option-min-block-size});
+		gap: var(#{variables.$option-gap});
 		hyphens: auto;
 		inline-size: 100%;
 		min-block-size: var(#{variables.$option-min-block-size});

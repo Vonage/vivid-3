@@ -41,7 +41,7 @@ async function testGhostSelect({ page }: { page: Page }) {
 async function testScaleOptions({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px; block-size: 400px">
 			<vwc-select label="scale condensed" scale="condensed" open>
-			<vwc-option value="1" text="Option 1"></vwc-option>
+			<vwc-option icon="chat-line" value="1" text="Option 1"></vwc-option>
 				<vwc-option value="2" text="Option 2"></vwc-option>
 			</vwc-select>
 	</div>`;
