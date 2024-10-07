@@ -137,10 +137,10 @@ function renderFieldset(context: ElementDefinitionContext) {
 						class="control"
 						autofocus
 						autocomplete="off"
-						aria-autocomplete="${(x) => x.ariaAutoComplete}"
-						aria-disabled="${(x) => x.ariaDisabled}"
-						aria-expanded="${(x) => x.ariaExpanded}"
+						aria-autocomplete="list"
+						aria-expanded="${(x) => x.open}"
 						aria-haspopup="listbox"
+						aria-controls="listbox"
 						placeholder="${(x) =>
 							x.multiple && x.values.length ? '' : x.placeholder}"
 						role="combobox"
@@ -180,6 +180,9 @@ function renderControl(context: ElementDefinitionContext) {
 
 	return html<SearchableSelect>`
 		${when((x) => x.label, renderLabel())}
+		<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
+			${(x) => x._changeDescription}
+		</span>
 		<div>
 			${renderFieldset(context)}
 			<div class="popup-wrapper">
@@ -192,6 +195,8 @@ function renderControl(context: ElementDefinitionContext) {
 					<div
 						class="listbox"
 						role="listbox"
+						aria-multiselectable="${(x) => x.multiple}"
+						aria-required="${(x) => x.required}"
 						${ref('_listbox')}
 						@click="${(x, c) => x._onListboxClick(c.event as MouseEvent)}"
 						@mousedown="${() => false}"
