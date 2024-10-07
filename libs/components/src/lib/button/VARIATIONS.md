@@ -188,11 +188,11 @@ Custom icons can be provided using the [`icon` slot](/components/button/code/#ic
 </style>
 ```
 
-### Icon only
+### Icon Only
 
 If the `label` is omitted, the button will be displayed as an _icon-only_ button.
 
-It is best practice to provide a [tooltip](/components/tooltip) to describe the function of the button. If not, an `aria-label` is needed to ensure accessibility.
+It is best practice to provide a [tooltip](/components/tooltip) to describe the function of the button. An `aria-label` is needed to ensure accessibility.
 
 ```html preview 72px
 <vwc-tooltip text="Send Message" placement="right-start">
@@ -342,7 +342,9 @@ The `disabled` attribute disables the buttons and indicates that the action is n
 
 ## Active
 
-The `active` attribute causes the button to appear pressed. Use with the `aria-pressed` attribute to ensure accessibility.
+The `active` attribute causes the button to appear in its active state. Use it to indicate that the action was triggered by some other means.
+
+Do not use this attribute to indicate a selected or pressed state.
 
 ```html preview 72px
 <div class="container">
@@ -366,7 +368,6 @@ The `active` attribute causes the button to appear pressed. Use with the `aria-p
 When the button is used to trigger a menu / dropdown, you can set `dropdown-indicator` to add a chevron to the button.
 
 ```html preview 220px
-<!-- Feel free to edit the code below. The live preview will update as you make changes. -->
 <vwc-menu trigger="auto" auto-dismiss placement="bottom-start">
 	<vwc-button
 		slot="anchor"
