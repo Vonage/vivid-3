@@ -73,7 +73,6 @@ See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for m
 Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 
 ```html preview
-<!-- Feel free to edit the code below. The live preview will update as you make changes. -->
 <style>
 	.color-animation {
 		animation: heightChange 1.5s infinite;
