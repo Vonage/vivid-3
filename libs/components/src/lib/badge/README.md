@@ -1,4 +1,44 @@
 # Badge
+ This is a Demo for the subtle with opacity.
+
+#### Subtle badge with connotation
+
+```html preview
+<vwc-badge text="accent" appearance="subtle" connotation="accent"></vwc-badge>
+<vwc-badge text="cta" appearance="subtle" connotation="cta"></vwc-badge>
+<vwc-badge
+	text="information"
+	appearance="subtle"
+	connotation="information"
+></vwc-badge>
+<vwc-badge
+	text="announcement"
+	appearance="subtle"
+	connotation="announcement"
+></vwc-badge>
+<vwc-badge text="success" appearance="subtle" connotation="success"></vwc-badge>
+<vwc-badge text="warning" appearance="subtle" connotation="warning"></vwc-badge>
+<vwc-badge text="alert" appearance="subtle" connotation="alert"></vwc-badge>
+<div style="margin-block: 20px; background: #F2F3F9; padding-block: 20px;">
+<vwc-badge text="accent" appearance="subtle" connotation="accent"></vwc-badge>
+<vwc-badge text="cta" appearance="subtle" connotation="cta"></vwc-badge>
+<vwc-badge
+	text="information"
+	appearance="subtle"
+	connotation="information"
+></vwc-badge>
+<vwc-badge
+	text="announcement"
+	appearance="subtle"
+	connotation="announcement"
+></vwc-badge>
+<vwc-badge text="success" appearance="subtle" connotation="success"></vwc-badge>
+<vwc-badge text="warning" appearance="subtle" connotation="warning"></vwc-badge>
+<vwc-badge text="alert" appearance="subtle" connotation="alert"></vwc-badge>
+</div>
+```
+
+
 
 A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.
 
