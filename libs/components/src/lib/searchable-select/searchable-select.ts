@@ -87,6 +87,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+	/**
+	 * @internal
+	 */
+	openChanged() {
+		if (!this.open) {
+			this.#transitionHighlightedOptionTo(null);
+		}
+	}
 
 	/**
 	 * @public
@@ -277,6 +285,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				this._inputValue = this.#textForValue(this.values[0])!;
 			}
 		}
+		this._changeDescription = '';
 	}
 
 	/**
@@ -455,22 +464,28 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		const value = option.value;
 		let newValues: string[];
 
+		const isSelection = !this.values.includes(value);
+
 		if (this.multiple) {
-			if (!this.values.includes(value)) {
+			if (isSelection) {
 				newValues = [...this.values, value];
 			} else {
 				newValues = this.values.filter((option) => option !== value);
 			}
 			this._inputValue = '';
 		} else {
-			if (this.values.includes(value)) {
-				newValues = [];
-			} else {
+			if (isSelection) {
 				newValues = [value];
 				this._inputValue = option.text;
+			} else {
+				newValues = [];
 			}
 			this.open = false;
 		}
+
+		this._changeDescription = isSelection
+			? this.locale.searchableSelect.optionSelectedMessage(option.text)
+			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
 
 		this.#updateValuesThroughUserInteraction(newValues);
 	}
@@ -560,7 +575,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * Currently visually highlighted option as an index into _filteredEnabledOptions
 	 * @internal
 	 */
-	_highlightedOptionIndex: number | null = null;
+	@observable _highlightedOptionIndex: number | null = null;
 
 	#transitionHighlightedOptionTo(index: number | null) {
 		if (typeof this._highlightedOptionIndex === 'number') {
@@ -583,6 +598,12 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				this._filteredEnabledOptions[this._highlightedOptionIndex];
 			highlightedOption._highlighted = true;
 			scrollIntoView(highlightedOption, this._listbox!, 'nearest');
+			this._changeDescription =
+				this.locale.searchableSelect.optionFocusedMessage(
+					highlightedOption.text,
+					this._highlightedOptionIndex + 1,
+					this._filteredEnabledOptions.length
+				);
 		}
 	}
 
@@ -688,7 +709,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * The number of tags that are not visible due to space constraints.
 	 * @internal
 	 */
-	@observable _numEllidedTags = 0;
+	@observable _numElidedTags = 0;
 
 	/**
 	 * The visible option tags laid out in rows.
@@ -704,7 +725,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateTagLayout() {
 		if (!this.multiple) {
 			// Single select does not display tags
-			this._numEllidedTags = 0;
+			this._numElidedTags = 0;
 			this._tagRows = [];
 			this._lastTagRow = [];
 			return;
@@ -712,7 +733,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 		if (this.externalTags) {
 			// Elide all tags
-			this._numEllidedTags = this.values.length;
+			this._numElidedTags = this.values.length;
 			this._tagRows = [];
 			this._lastTagRow = [];
 			return;
@@ -777,7 +798,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			currentRowWidth += TagGapPx + tagWidth;
 		}
 
-		this._numEllidedTags = i + 1;
+		this._numElidedTags = i + 1;
 
 		// Bring rows into the correct order
 		rows.reverse();
@@ -789,10 +810,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				(rows[i].length - 1) * TagGapPx;
 
 			// Add tag counter if needed
-			if (i === 0 && this._numEllidedTags) {
+			if (i === 0 && this._numElidedTags) {
 				lineWidth +=
 					TagGapPx +
-					this.#measureTagWidth(this._numEllidedTags.toString(), false, false);
+					this.#measureTagWidth(this._numElidedTags.toString(), false, false);
 			}
 
 			// Pull up tags from the next line as long as they fit
@@ -855,7 +876,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		} else {
 			(
 				this.shadowRoot!.querySelector(`[data-index="${index}"]`) as HTMLElement
-			).focus();
+			)?.focus();
 		}
 	}
 
@@ -986,6 +1007,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 		this.#updateValuesThroughUserInteraction(this.#determineInitialValues());
 	}
+
+	// --- Accessibility ---
+
+	/**
+	 * Used to announce changes to the component's state via an aria live region.
+	 * @internal
+	 */
+	@observable _changeDescription = '';
 
 	// --- Core ---
 
