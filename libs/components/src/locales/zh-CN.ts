@@ -147,6 +147,15 @@ const zhCN: Locale = {
 		noMatchesMessage: '未找到选项',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} 删除`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
+			`选项 ${name} 已选择。`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) =>
+			`选项 ${name} 已取消选择。`,
+		optionFocusedMessage: /* istanbul ignore next */ (
+			name: string,
+			position: number,
+			total: number
+		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
 	},
 };
 
