@@ -20,6 +20,10 @@ componentsWithValueAttributes.add('VNumberField', {
 	valueAttr: 'value',
 	initialValueAttr: 'initialValue',
 });
+componentsWithValueAttributes.add('VSearchableSelect', {
+	valueAttr: 'value',
+	initialValueAttr: 'initialValue',
+});
 componentsWithValueAttributes.add('VSelect', {
 	valueAttr: 'value',
 	initialValueAttr: 'initialValue',
