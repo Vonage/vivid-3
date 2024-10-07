@@ -901,6 +901,8 @@ Use `--searchable-select-height` to set the max-height of the dropdown.
 
 ## Accessibility
 
+If `label` is not set, you must provide an accessible name with the `aria-label` attribute.
+
 ## Use Cases
 
 ### Disabled Options
