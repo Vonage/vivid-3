@@ -166,7 +166,7 @@ function renderFieldset(context: ElementDefinitionContext) {
 					:shape="${(x) => x.shape}"
 					size="super-condensed"
 					icon="close-line"
-					variant="ghost"
+					appearance="ghost-light"
 					tabindex="-1"
 				></${buttonTag}>`
 			)}
