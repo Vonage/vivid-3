@@ -9,7 +9,7 @@
 	--layout-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-#icon-div {
+.icon-div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -20,31 +20,21 @@
 	cursor: pointer;
 }
 
-#icon-div:hover {
+.icon-div:hover {
 	background-color: var(--vvd-color-neutral-100);
 }
 
-#icon-span {
+.icon-span {
 	padding: 16px;
 }
 
-#name-span {
+.name-span {
 	text-align: center;
 }
 
 .button-wrapper {
 	margin-block: 32px;
 	text-align: center;
-}
-
-#copy-alert {
-	--alert-min-inline-size: auto;
-
-	pointer-events: none;
-}
-
-article p {
-	max-inline-size: 1200px;
 }
 
 .tag-wrapper {
