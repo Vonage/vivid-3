@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.8.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.7.0...vivid-v4.8.0) (2024-10-09)
+
+
+### Features
+
+* **select:** match option scale when condensed is set (VIV-2067) ([#1938](https://github.com/Vonage/vivid-3/issues/1938)) ([6836184](https://github.com/Vonage/vivid-3/commit/6836184a8ca1dd1489fbd74eedbd2689626c4e10))
+
+
+### Bug Fixes
+
+* **avatar, button, split-button:** change outline color in appearance outlined (VIV-2009) ([#1924](https://github.com/Vonage/vivid-3/issues/1924)) ([362a592](https://github.com/Vonage/vivid-3/commit/362a5928a3f2a258b7572b4619e9366048c88e57))
+* **data-grid:** set back inline-size to cell slot unless its header with sort (VIV-2189) ([#1941](https://github.com/Vonage/vivid-3/issues/1941)) ([5e600d0](https://github.com/Vonage/vivid-3/commit/5e600d018f28d1e0ca5b0215dfc3b0b4458c621f))
+
 ## [4.7.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.6.0...vivid-v4.7.0) (2024-10-07)
 
 

@@ -108,7 +108,12 @@ Use the `scale` attribute to change the select's size.
 - Type: `'condensed'` | `'normal'`
 - Default: `'normal'`
 
-```html preview blocks
+```html preview blocks 250px
+<style>
+	vwc-select {
+		justify-self: flex-start;
+	}
+</style>
 <vwc-select icon="heart" aria-label="Options Selector" scale="condensed">
 	<vwc-option value="1" text="Option 1"></vwc-option>
 	<vwc-option value="2" text="Option 2"></vwc-option>
