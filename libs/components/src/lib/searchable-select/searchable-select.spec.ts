@@ -72,6 +72,11 @@ describe('vwc-searchable-select', () => {
 			| Button
 			| undefined;
 
+	const getAriaLiveRegionText = () =>
+		(
+			element.shadowRoot!.querySelector('[aria-live]') as HTMLElement
+		).textContent!.trim();
+
 	const setUpFixture = async (template: string) => {
 		const root = fixture(template);
 		element = (
@@ -1699,10 +1704,45 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
-	xdescribe('a11y', () => {
+	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Label';
+			await elementUpdated(element);
 			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should describe the visually highlighted option in an aria-live region', async () => {
+			focusInput();
+			await elementUpdated(element);
+
+			pressKey('ArrowDown');
+			await elementUpdated(element);
+
+			expect(getAriaLiveRegionText()).toBe('Option Apple focused, 1 of 3.');
+		});
+
+		it('should describe that an option has been selected in an aria-live region', async () => {
+			await selectOption('Apple');
+
+			expect(getAriaLiveRegionText()).toBe('Option Apple selected.');
+		});
+
+		it('should describe that an option has been deselected in an aria-live region', async () => {
+			await selectOption('Apple');
+
+			clickOnOption('Apple');
+			await elementUpdated(element);
+
+			expect(getAriaLiveRegionText()).toBe('Option Apple deselected.');
+		});
+
+		it('should clear the aria-live region on blur', async () => {
+			await selectOption('Apple');
+
+			blurInput();
+			await elementUpdated(element);
+
+			expect(getAriaLiveRegionText()).toBe('');
 		});
 	});
 });

@@ -87,6 +87,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+	/**
+	 * @internal
+	 */
+	openChanged() {
+		if (!this.open) {
+			this.#transitionHighlightedOptionTo(null);
+		}
+	}
 
 	/**
 	 * @public
@@ -277,6 +285,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				this._inputValue = this.#textForValue(this.values[0])!;
 			}
 		}
+		this._changeDescription = '';
 	}
 
 	/**
@@ -455,22 +464,28 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		const value = option.value;
 		let newValues: string[];
 
+		const isSelection = !this.values.includes(value);
+
 		if (this.multiple) {
-			if (!this.values.includes(value)) {
+			if (isSelection) {
 				newValues = [...this.values, value];
 			} else {
 				newValues = this.values.filter((option) => option !== value);
 			}
 			this._inputValue = '';
 		} else {
-			if (this.values.includes(value)) {
-				newValues = [];
-			} else {
+			if (isSelection) {
 				newValues = [value];
 				this._inputValue = option.text;
+			} else {
+				newValues = [];
 			}
 			this.open = false;
 		}
+
+		this._changeDescription = isSelection
+			? this.locale.searchableSelect.optionSelectedMessage(option.text)
+			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
 
 		this.#updateValuesThroughUserInteraction(newValues);
 	}
@@ -560,7 +575,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * Currently visually highlighted option as an index into _filteredEnabledOptions
 	 * @internal
 	 */
-	_highlightedOptionIndex: number | null = null;
+	@observable _highlightedOptionIndex: number | null = null;
 
 	#transitionHighlightedOptionTo(index: number | null) {
 		if (typeof this._highlightedOptionIndex === 'number') {
@@ -583,6 +598,12 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				this._filteredEnabledOptions[this._highlightedOptionIndex];
 			highlightedOption._highlighted = true;
 			scrollIntoView(highlightedOption, this._listbox!, 'nearest');
+			this._changeDescription =
+				this.locale.searchableSelect.optionFocusedMessage(
+					highlightedOption.text,
+					this._highlightedOptionIndex + 1,
+					this._filteredEnabledOptions.length
+				);
 		}
 	}
 
@@ -986,6 +1007,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 		this.#updateValuesThroughUserInteraction(this.#determineInitialValues());
 	}
+
+	// --- Accessibility ---
+
+	/**
+	 * Used to announce changes to the component's state via an aria live region.
+	 * @internal
+	 */
+	@observable _changeDescription = '';
 
 	// --- Core ---
 

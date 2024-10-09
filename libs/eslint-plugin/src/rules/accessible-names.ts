@@ -33,6 +33,9 @@ requiredAccessibleNames.add('VNavDisclosure', {
 });
 requiredAccessibleNames.add('VNumberField', { accessibleNameAttrs: ['label'] });
 requiredAccessibleNames.add('VRadio', { accessibleNameAttrs: ['label'] });
+requiredAccessibleNames.add('VSearchableSelect', {
+	accessibleNameAttrs: ['label'],
+});
 requiredAccessibleNames.add('VSelect', { accessibleNameAttrs: ['label'] });
 requiredAccessibleNames.add('VSlider', { accessibleNameAttrs: [] });
 requiredAccessibleNames.add('VSplitButton', { accessibleNameAttrs: ['label'] });

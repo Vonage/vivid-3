@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.7.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.6.0...vivid-v4.7.0) (2024-10-07)
+
+
+### Features
+
+* **searchable-select:** component accessibility (VIV-2127) ([#1927](https://github.com/Vonage/vivid-3/issues/1927)) ([5b85539](https://github.com/Vonage/vivid-3/commit/5b85539d7c08aa7be4fe8301c577f1946831bcee))
+* **searchable-select:** update tag appearance (VIV-2161) ([#1928](https://github.com/Vonage/vivid-3/issues/1928)) ([6bf7236](https://github.com/Vonage/vivid-3/commit/6bf7236c11e54e77166b0ee26439fac8fd7b5cba))
+
+
+### Bug Fixes
+
+* **searchable-select:** fix error when attempting to move focus to tag counter (VIV-2176) ([#1931](https://github.com/Vonage/vivid-3/issues/1931)) ([47b4580](https://github.com/Vonage/vivid-3/commit/47b45805d678caa1ca1eaf82ff8ad02140a5a79a))
+
 ## [4.6.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.5.0...vivid-v4.6.0) (2024-10-03)
 
 
