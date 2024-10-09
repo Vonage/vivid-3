@@ -85,7 +85,22 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 			expect(hasSizeClass(getControlElement(element))).toBe(false);
 		});
+
+		it('should reflect scale on slotted options', async () => {
+			element.scale = Size.Condensed;
+			element.innerHTML = `
+				<vwc-option value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+				<vwc-option value="3" text="Option 3"></vwc-option>
+				`;
+			await elementUpdated(element);
+			const options = element.querySelectorAll('vwc-option');
+			options.forEach((option) => {
+				expect(option.getAttribute('scale')).toBe('condensed');
+			});
+		});
 	});
+
 	describe('option label', function () {
 		it("should show the options's label instead of the text", async function () {
 			const label = 'label';
