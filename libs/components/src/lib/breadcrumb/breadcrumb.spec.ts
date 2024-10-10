@@ -9,19 +9,21 @@ import { breadcrumbDefinition } from './definition';
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
 describe('vwc-breadcrumb', () => {
-	const breadcrumbItemsTemplate = `
-		<vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
-		<vwc-breadcrumb-item text="..."></vwc-breadcrumb-item>
-		<vwc-breadcrumb-item href="#" text="breadcrumb"></vwc-breadcrumb-item>
-		<vwc-breadcrumb-item text="breadcrumb"></vwc-breadcrumb-item>
-	`;
-
 	let element: Breadcrumb;
 
+	function setUpFixture(template: string) {
+		element = fixture(template) as Breadcrumb;
+	}
+
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}>${breadcrumbItemsTemplate}</${COMPONENT_TAG}>`
-		)) as Breadcrumb;
+		setUpFixture(`
+			<${COMPONENT_TAG}>
+				<vwc-breadcrumb-item href='#' text='breadcrumb'></vwc-breadcrumb-item>
+				<vwc-breadcrumb-item text='...'></vwc-breadcrumb-item>
+				<vwc-breadcrumb-item href='#' text='breadcrumb'></vwc-breadcrumb-item>
+				<vwc-breadcrumb-item text='breadcrumb'></vwc-breadcrumb-item>
+			</${COMPONENT_TAG}>
+		`);
 	});
 
 	describe('basic', () => {
@@ -44,43 +46,59 @@ describe('vwc-breadcrumb', () => {
 
 	describe('a11y', () => {
 		describe('aria-current', function () {
-			/**
-			 *
-			 */
-			function removeAElementFromBreadcrumbItem() {
-				newItem.shadowRoot?.querySelector('a')?.remove();
-			}
-			let newItem: BreadcrumbItem;
-
-			beforeEach(async function () {
-				newItem = document.createElement(
-					'vwc-breadcrumb-item'
-				) as BreadcrumbItem;
-				newItem.href = '#';
-				newItem.text = 'breadcrumb';
-				element.appendChild(newItem);
+			it('should set aria-current of a child anchor element of last item', async function () {
+				setUpFixture(`
+					<${COMPONENT_TAG}>
+						<div><a href='#'></a></div>
+					</${COMPONENT_TAG}>
+				`);
 				await elementUpdated(element);
+
+				expect(element.querySelector('a')!.getAttribute('aria-current')).toBe(
+					'page'
+				);
 			});
 
-			it('should set aria-current to last node internal a element if last node is href', async function () {
-				const ariaCurrent = newItem.shadowRoot
-					?.querySelector('a')
-					?.getAttribute('aria-current');
-				expect(ariaCurrent).toEqual('page');
+			it('should not set aria-current of a child anchor element of last item if it does not have href', async function () {
+				setUpFixture(`
+					<${COMPONENT_TAG}>
+						<div><a></a></div>
+					</${COMPONENT_TAG}>
+				`);
+				await elementUpdated(element);
+
+				expect(element.querySelector('a')!.hasAttribute('aria-current')).toBe(
+					false
+				);
 			});
 
-			it('should set aria-current to last node if last node is href and doesnt have internal a element', async function () {
-				removeAElementFromBreadcrumbItem();
-				element.slottedBreadcrumbItemsChanged();
+			it('should set aria-current of anchor child element in shadowRoot of last item', async function () {
+				setUpFixture(`
+					<${COMPONENT_TAG}>
+						<vwc-breadcrumb-item href='#' text='breadcrumb'></vwc-breadcrumb-item>
+					</${COMPONENT_TAG}>
+				`);
+				await elementUpdated(element);
 
-				expect(newItem.ariaCurrent).toEqual('page');
+				expect(
+					element
+						.querySelector('vwc-breadcrumb-item')!
+						.shadowRoot!.querySelector('a')!
+						.getAttribute('aria-current')
+				).toBe('page');
 			});
 
-			it('should not set aria-current to last node if last node is not href', async function () {
-				removeAElementFromBreadcrumbItem();
-				newItem.removeAttribute('href');
-				const ariaCurrent = newItem.getAttribute('aria-current');
-				expect(ariaCurrent).toEqual(null);
+			it('should not set aria-current on a last element without children', async function () {
+				setUpFixture(`
+					<${COMPONENT_TAG}>
+						<div></div>
+					</${COMPONENT_TAG}>
+				`);
+				await elementUpdated(element);
+
+				expect(element.querySelector('div')!.hasAttribute('aria-current')).toBe(
+					false
+				);
 			});
 		});
 
