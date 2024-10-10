@@ -149,6 +149,51 @@ Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismis
 <vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
 
+### No-dismiss-on-esc
+
+Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismissed by pressing ESC.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-button
+	label="Open modal dialog"
+	onclick="document.querySelector('vwc-dialog').open = true"
+></vwc-button>
+<vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
+```
+
+### No-dismiss-button
+
+Use the `no-dismiss-button` attribute to remove the dismiss button from the dialog.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-button
+	label="Open modal dialog"
+	onclick="document.querySelector('vwc-dialog').open = true"
+></vwc-button>
+<vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
+```
+
+### Non-dismissible
+
+The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-button
+	label="Open modal dialog"
+	onclick="document.querySelector('vwc-dialog').open = true"
+></vwc-button>
+<vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
+```
+
 ### Return Value
 
 Use `returnValue` to get or set the return value. Often used to indicate which button the user pressed to close it.
