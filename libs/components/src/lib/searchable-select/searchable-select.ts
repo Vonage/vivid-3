@@ -18,6 +18,7 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
+import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
 
@@ -35,6 +36,10 @@ interface TagLayoutEntry {
 	value: string;
 	width: number;
 }
+
+const isFormAssociatedTryingToSetFormValue = (
+	value: File | string | FormData | null
+) => typeof value === 'string';
 
 /**
  * @public
@@ -82,6 +87,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * HTML Attribute: open
 	 */
 	@attr({ mode: 'boolean' }) open = false;
+	/**
+	 * @internal
+	 */
+	openChanged() {
+		if (!this.open) {
+			this.#transitionHighlightedOptionTo(null);
+		}
+	}
 
 	/**
 	 * @public
@@ -142,6 +155,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		if (this.$fastController.isConnected) {
 			this.#updateTagLayout();
 		}
+		this.#updateFormValue();
 	}
 
 	#updateValuesThroughUserInteraction(newValues: string[]) {
@@ -162,6 +176,21 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			.concat([...newValues].filter((v) => !oldSet.has(v)));
 	}
 
+	/**
+	 * The initial values. This value sets the `values` property
+	 * only when the `values` property has not been explicitly set.
+	 */
+	@observable initialValues: string[] = [];
+	/**
+	 * @internal
+	 */
+	initialValuesChanged() {
+		if (!this.dirtyValue) {
+			this.values = this.initialValues;
+			this.dirtyValue = false;
+		}
+	}
+
 	#isValidValue(value: string) {
 		return this._slottedOptions.some((option) => option.value === value);
 	}
@@ -169,7 +198,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	override valueChanged(_: string, next: string) {
+	override valueChanged(prev: string, next: string) {
+		super.valueChanged(prev, next);
+
 		if (!this._areOptionsInitialized) {
 			// Leave value in potential invalid state until options are available
 			return;
@@ -254,6 +285,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				this._inputValue = this.#textForValue(this.values[0])!;
 			}
 		}
+		this._changeDescription = '';
 	}
 
 	/**
@@ -424,6 +456,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateSelectedOnSlottedOptions() {
 		for (const option of this._slottedOptions) {
 			option.selected = this.values.includes(option.value);
+			this.#updateClonedTagIconOfOption(option);
 		}
 	}
 
@@ -431,24 +464,63 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		const value = option.value;
 		let newValues: string[];
 
+		const isSelection = !this.values.includes(value);
+
 		if (this.multiple) {
-			if (!this.values.includes(value)) {
+			if (isSelection) {
 				newValues = [...this.values, value];
 			} else {
 				newValues = this.values.filter((option) => option !== value);
 			}
 			this._inputValue = '';
 		} else {
-			if (this.values.includes(value)) {
-				newValues = [];
-			} else {
+			if (isSelection) {
 				newValues = [value];
 				this._inputValue = option.text;
+			} else {
+				newValues = [];
 			}
 			this.open = false;
 		}
 
+		this._changeDescription = isSelection
+			? this.locale.searchableSelect.optionSelectedMessage(option.text)
+			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
+
 		this.#updateValuesThroughUserInteraction(newValues);
+	}
+
+	// --- Option tag icons ---
+
+	#clonedTagIcons = new Map<ListboxOption, HTMLElement>();
+
+	#tagIconOfOption(option: ListboxOption) {
+		return option.querySelector('[slot="tag-icon"]');
+	}
+
+	/**
+	 * @internal
+	 */
+	_tagIconSlotName(value: string) {
+		return `_tag-icon-${this.values.indexOf(value)}`;
+	}
+
+	#updateClonedTagIconOfOption(option: ListboxOption) {
+		if (option.selected && this.#tagIconOfOption(option)) {
+			let clone = this.#clonedTagIcons.get(option);
+			if (!clone) {
+				clone = this.#tagIconOfOption(option)!.cloneNode(true) as HTMLElement;
+				this.#clonedTagIcons.set(option, clone);
+			}
+			clone.slot = this._tagIconSlotName(option.value);
+			this.appendChild(clone);
+		} else {
+			const clone = this.#clonedTagIcons.get(option);
+			if (clone) {
+				clone.remove();
+				this.#clonedTagIcons.delete(option);
+			}
+		}
 	}
 
 	// --- Option filtering ---
@@ -469,11 +541,21 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		const newFilteredOptions = [];
 
 		for (const option of this._slottedOptions ?? []) {
-			const matches =
-				this.#suppressFilter ||
-				option.text.toLowerCase().includes(this._inputValue.toLowerCase());
+			if (this.#suppressFilter || this._inputValue === '') {
+				option.hidden = false;
+				option._matchedRange = null;
+			} else {
+				const matchIndex = option.text
+					.toLowerCase()
+					.indexOf(this._inputValue.toLowerCase());
+				const matchedRange =
+					matchIndex === -1
+						? null
+						: { from: matchIndex, to: matchIndex + this._inputValue.length };
 
-			option.hidden = !matches;
+				option.hidden = !matchedRange;
+				option._matchedRange = matchedRange;
+			}
 
 			if (!option.hidden) {
 				newFilteredOptions.push(option);
@@ -493,7 +575,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * Currently visually highlighted option as an index into _filteredEnabledOptions
 	 * @internal
 	 */
-	_highlightedOptionIndex: number | null = null;
+	@observable _highlightedOptionIndex: number | null = null;
 
 	#transitionHighlightedOptionTo(index: number | null) {
 		if (typeof this._highlightedOptionIndex === 'number') {
@@ -512,8 +594,16 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 		this._highlightedOptionIndex = index;
 		if (typeof this._highlightedOptionIndex === 'number') {
-			this._filteredEnabledOptions[this._highlightedOptionIndex]._highlighted =
-				true;
+			const highlightedOption =
+				this._filteredEnabledOptions[this._highlightedOptionIndex];
+			highlightedOption._highlighted = true;
+			scrollIntoView(highlightedOption, this._listbox!, 'nearest');
+			this._changeDescription =
+				this.locale.searchableSelect.optionFocusedMessage(
+					highlightedOption.text,
+					this._highlightedOptionIndex + 1,
+					this._filteredEnabledOptions.length
+				);
 		}
 	}
 
@@ -598,11 +688,12 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	#measureTagWidth(label: string, removable: boolean) {
+	#measureTagWidth(label: string, removable: boolean, hasIcon: boolean) {
 		const tag = document.createElement(this._optionTagTagName) as OptionTag;
 		tag.label = label;
 		tag.removable = removable;
 		tag.style.cssText = 'position: absolute; visibility: hidden;';
+		tag.hasIconPlaceholder = hasIcon;
 		this.shadowRoot!.appendChild(tag);
 		const width = tag.getBoundingClientRect().width;
 		tag.remove();
@@ -618,7 +709,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * The number of tags that are not visible due to space constraints.
 	 * @internal
 	 */
-	@observable _numEllidedTags = 0;
+	@observable _numElidedTags = 0;
 
 	/**
 	 * The visible option tags laid out in rows.
@@ -634,7 +725,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateTagLayout() {
 		if (!this.multiple) {
 			// Single select does not display tags
-			this._numEllidedTags = 0;
+			this._numElidedTags = 0;
 			this._tagRows = [];
 			this._lastTagRow = [];
 			return;
@@ -642,7 +733,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 		if (this.externalTags) {
 			// Elide all tags
-			this._numEllidedTags = this.values.length;
+			this._numElidedTags = this.values.length;
 			this._tagRows = [];
 			this._lastTagRow = [];
 			return;
@@ -661,7 +752,8 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 
 			const tagWidth = this.#measureTagWidth(
 				this._tagLabelForValue(this.values[i])!,
-				true
+				true,
+				this.#tagIconOfOption(this.selectedOptions[i]) !== null
 			);
 			const entry: TagLayoutEntry = {
 				value: this.values[i],
@@ -674,7 +766,8 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				const numElidedTags = i;
 				if (numElidedTags) {
 					elidedTagCounterWidth =
-						TagGapPx + this.#measureTagWidth(numElidedTags.toString(), false);
+						TagGapPx +
+						this.#measureTagWidth(numElidedTags.toString(), false, false);
 				}
 			}
 
@@ -705,7 +798,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			currentRowWidth += TagGapPx + tagWidth;
 		}
 
-		this._numEllidedTags = i + 1;
+		this._numElidedTags = i + 1;
 
 		// Bring rows into the correct order
 		rows.reverse();
@@ -717,10 +810,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 				(rows[i].length - 1) * TagGapPx;
 
 			// Add tag counter if needed
-			if (i === 0 && this._numEllidedTags) {
+			if (i === 0 && this._numElidedTags) {
 				lineWidth +=
 					TagGapPx +
-					this.#measureTagWidth(this._numEllidedTags.toString(), false);
+					this.#measureTagWidth(this._numElidedTags.toString(), false, false);
 			}
 
 			// Pull up tags from the next line as long as they fit
@@ -783,7 +876,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		} else {
 			(
 				this.shadowRoot!.querySelector(`[data-index="${index}"]`) as HTMLElement
-			).focus();
+			)?.focus();
 		}
 	}
 
@@ -865,6 +958,64 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		);
 	}
 
+	// --- Form handling ---
+
+	#determineInitialValues() {
+		return this.initialValues.length
+			? this.initialValues
+			: this.initialValue
+			? [this.initialValue]
+			: [];
+	}
+
+	/**
+	 * @internal
+	 */
+	override nameChanged(previous: string, next: string) {
+		super.nameChanged!(previous, next);
+		this.#updateFormValue();
+	}
+
+	#updateFormValue() {
+		if (!this.name) {
+			this.setFormValue(null);
+		} else {
+			const formData = new FormData();
+			for (const value of this.values) {
+				formData.append(this.name, value);
+			}
+			this.setFormValue(formData);
+		}
+	}
+
+	override setFormValue = (
+		value: File | string | FormData | null,
+		state?: File | string | FormData | null
+	) => {
+		if (isFormAssociatedTryingToSetFormValue(value)) {
+			return;
+		}
+
+		super.setFormValue(value, state);
+	};
+
+	/**
+	 * @internal
+	 */
+	override formResetCallback() {
+		super.formResetCallback();
+
+		this.#updateValuesThroughUserInteraction(this.#determineInitialValues());
+	}
+
+	// --- Accessibility ---
+
+	/**
+	 * Used to announce changes to the component's state via an aria live region.
+	 * @internal
+	 */
+	@observable _changeDescription = '';
+
 	// --- Core ---
 
 	#resizeObserver = new ResizeObserver(() => {
@@ -893,6 +1044,10 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	override connectedCallback() {
 		super.connectedCallback();
 
+		if (!this.values.length) {
+			this.values = this.#determineInitialValues();
+		}
+
 		this.#resizeObserver.observe(this._contentArea);
 	}
 
@@ -900,6 +1055,13 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		super.disconnectedCallback();
 
 		this.#resizeObserver.disconnect();
+	}
+
+	/**
+	 * @internal
+	 */
+	override validate() {
+		super.validate(this._input ?? undefined);
 	}
 }
 

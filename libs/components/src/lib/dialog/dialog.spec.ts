@@ -1,10 +1,23 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import * as dialogPolyfill from 'dialog-polyfill';
+import {
+	FoundationElement,
+	FoundationElementRegistry,
+} from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
 import { dialogDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-dialog';
+
+// Polyfill dialog element which is not supported in JSDOM
+const originalConnectedCallback = FoundationElement.prototype.connectedCallback;
+FoundationElement.prototype.connectedCallback = function () {
+	originalConnectedCallback.call(this);
+	this.shadowRoot!.querySelectorAll('dialog').forEach(
+		(dialogPolyfill as any).registerDialog
+	);
+};
 
 describe('vwc-dialog', () => {
 	async function closeDialog() {

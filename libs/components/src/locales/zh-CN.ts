@@ -138,12 +138,24 @@ const zhCN: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel: '按 DELETE 键关闭此选项卡',
+	},
 	searchableSelect: {
 		clearButtonLabel: '清除',
 		noOptionsMessage: '没有选项',
 		noMatchesMessage: '未找到选项',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} 删除`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
+			`选项 ${name} 已选择。`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) =>
+			`选项 ${name} 已取消选择。`,
+		optionFocusedMessage: /* istanbul ignore next */ (
+			name: string,
+			position: number,
+			total: number
+		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
 	},
 };
 

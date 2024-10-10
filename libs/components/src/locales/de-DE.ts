@@ -138,12 +138,25 @@ const deDE: Locale = {
 		digitZeroLabel: '0',
 		digitHashtagLabel: '#',
 	},
+	tab: {
+		dismissButtonLabel:
+			'Drücken Sie die ENTF-Taste, um diese Registerkarte zu schließen',
+	},
 	searchableSelect: {
 		clearButtonLabel: 'Löschen',
 		noOptionsMessage: 'Keine Optionen',
 		noMatchesMessage: 'Keine Optionen gefunden',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} entfernen`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
+			`Option ${name} ausgewählt.`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) =>
+			`Option ${name} entfernt.`,
+		optionFocusedMessage: /* istanbul ignore next */ (
+			name: string,
+			position: number,
+			total: number
+		) => `Option ${name} fokussiert, ${position} von ${total}.`,
 	},
 };
 
