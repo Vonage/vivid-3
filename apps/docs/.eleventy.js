@@ -83,7 +83,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/VARIATIONS.md');
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/GUIDELINES.md');
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/ACCESSIBILITY.md');
-	eleventyConfig.addWatchTarget('libs/components/src/lib/*/EXAMPLES.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/USE-CASES.md');
 	eleventyConfig.addWatchTarget('libs/eslint-plugin/src/rules/*.md');
 	eleventyConfig.addWatchTarget('docs/');
 	eleventyConfig.addWatchTarget('assets/');

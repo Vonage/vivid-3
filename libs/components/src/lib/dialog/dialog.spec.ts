@@ -1,10 +1,23 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import * as dialogPolyfill from 'dialog-polyfill';
+import {
+	FoundationElement,
+	FoundationElementRegistry,
+} from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
 import { dialogDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-dialog';
+
+// Polyfill dialog element which is not supported in JSDOM
+const originalConnectedCallback = FoundationElement.prototype.connectedCallback;
+FoundationElement.prototype.connectedCallback = function () {
+	originalConnectedCallback.call(this);
+	this.shadowRoot!.querySelectorAll('dialog').forEach(
+		(dialogPolyfill as any).registerDialog
+	);
+};
 
 describe('vwc-dialog', () => {
 	async function closeDialog() {
@@ -20,6 +33,10 @@ describe('vwc-dialog', () => {
 	async function showModalDialog() {
 		element.showModal();
 		await elementUpdated(element);
+	}
+
+	function clickDismissButton() {
+		(dialogEl.querySelector('.dismiss-button') as HTMLElement).click();
 	}
 
 	let element: Dialog;
@@ -301,6 +318,33 @@ describe('vwc-dialog', () => {
 		});
 	});
 
+	describe('cancel event', function () {
+		const triggerCancelEvent = clickDismissButton;
+
+		beforeEach(async () => {
+			await showDialog();
+		});
+
+		it('should prevent dialog from closing when event default is prevented', async () => {
+			element.addEventListener('cancel', (event) => {
+				event.preventDefault();
+			});
+
+			triggerCancelEvent();
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should emit a non-bubbling event', async () => {
+			const onCancel = jest.fn();
+			element.parentElement!.addEventListener('cancel', onCancel);
+
+			triggerCancelEvent();
+
+			expect(onCancel).not.toBeCalled();
+		});
+	});
+
 	describe('scrimClick', function () {
 		function createMouseEventOutsideTheDialog(type: string) {
 			return new MouseEvent(type, {
@@ -321,6 +365,10 @@ describe('vwc-dialog', () => {
 				clientX: 75,
 			});
 		}
+
+		const clickOnScrim = () => {
+			dialogEl.dispatchEvent(createMouseEventOutsideTheDialog('mousedown'));
+		};
 
 		const dialogClientRect: DOMRect = {
 			bottom: 50,
@@ -374,18 +422,24 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should close the dialog when scrim is clicked', async function () {
-			const event = createMouseEventOutsideTheDialog('mousedown');
-			dialogEl.dispatchEvent(event);
+			clickOnScrim();
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
+		});
+
+		it('should emit a cancel event when scrim is clicked', async function () {
+			const cancelSpy = jest.fn();
+			element.addEventListener('cancel', cancelSpy);
+			clickOnScrim();
+			await elementUpdated(element);
+			expect(cancelSpy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should leave the dialog open on scrim click when no light dismiss', async function () {
 			element.noLightDismiss = true;
 			await elementUpdated(element);
 
-			const event = createMouseEventOutsideTheDialog('mousedown');
-			dialogEl.dispatchEvent(event);
+			clickOnScrim();
 			await elementUpdated(element);
 			expect(element.open).toEqual(true);
 		});
@@ -452,13 +506,21 @@ describe('vwc-dialog', () => {
 		element.addEventListener('close', spy);
 		await showDialog();
 
-		const dismissButton = dialogEl.querySelector(
-			'.dismiss-button'
-		) as HTMLElement;
-		dismissButton.click();
+		clickDismissButton();
 
 		expect(element.open).toEqual(false);
 		expect(spy).toHaveBeenCalledTimes(1);
+	});
+
+	it('should emit a cancel event when dismiss button is clicked', async function () {
+		const cancelSpy = jest.fn();
+		element.addEventListener('cancel', cancelSpy);
+		await showDialog();
+
+		clickDismissButton();
+
+		expect(element.open).toEqual(false);
+		expect(cancelSpy).toHaveBeenCalledTimes(1);
 	});
 
 	it('should preventDefault of cancel events on the dialog', async () => {
@@ -552,6 +614,14 @@ describe('vwc-dialog', () => {
 			await showModalDialog();
 			await triggerEscapeKey();
 			expect(element.open).toEqual(false);
+		});
+
+		it('should fire cancel event on escape key press', async function () {
+			const cancelSpy = jest.fn();
+			element.addEventListener('cancel', cancelSpy);
+			await showModalDialog();
+			await triggerEscapeKey();
+			expect(cancelSpy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should remain open on escape key when not modal', async function () {
