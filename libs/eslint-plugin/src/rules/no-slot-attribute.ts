@@ -27,6 +27,7 @@ componentsWithNamedSlots.add('VNavItem', null);
 componentsWithNamedSlots.add('VNote', null);
 componentsWithNamedSlots.add('VNumberField', null);
 componentsWithNamedSlots.add('VOption', null);
+componentsWithNamedSlots.add('VSearchableSelect', null);
 componentsWithNamedSlots.add('VSelect', null);
 componentsWithNamedSlots.add('VSideDrawer', null);
 componentsWithNamedSlots.add('VSplitButton', null);

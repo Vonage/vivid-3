@@ -41,7 +41,7 @@
 				"commands": [
 					"npx esbuild ./dist/libs/components/index.js --bundle --outfile=./dist/libs/components-bundle/index.js --format=esm --watch",
 					"npx nx serve styles",
-					"WATCH=true npx nx build components --watch",
+					"WATCH=true npx forever node_modules/.bin/nx build components --watch",
 					"npx eleventy --config=./apps/docs/.eleventy.js --serve"
 				]
 			},

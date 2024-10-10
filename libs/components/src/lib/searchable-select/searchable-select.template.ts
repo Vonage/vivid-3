@@ -66,7 +66,7 @@ const tagTemplateFactory = (
 	`;
 };
 
-const ellidedTagTemplateFactory = (
+const elidedTagTemplateFactory = (
 	context: ElementDefinitionContext,
 	getComponent: (x: any, c: any) => SearchableSelect
 ) => {
@@ -76,7 +76,7 @@ const ellidedTagTemplateFactory = (
 		<${optionTagTag}
 			class="tag"
 			tabindex="-1"
-			:label="${(x, c) => getComponent(x, c)._numEllidedTags.toString()}"
+			:label="${(x, c) => getComponent(x, c)._numElidedTags.toString()}"
 			:shape="${(x, c) => getComponent(x, c).shape}"
 			?disabled="${(x, c) => getComponent(x, c).disabled}"
 			@mousedown="${() => false}">
@@ -93,8 +93,8 @@ function renderFieldset(context: ElementDefinitionContext) {
 		context,
 		(c) => c.parentContext.parent
 	);
-	const ellidedTagTemplate = ellidedTagTemplateFactory(context, (x, _) => x);
-	const nestedEllidedTagTemplate = ellidedTagTemplateFactory(
+	const elidedTagTemplate = elidedTagTemplateFactory(context, (x, _) => x);
+	const nestedElidedTagTemplate = elidedTagTemplateFactory(
 		context,
 		(_, c) => c.parent
 	);
@@ -112,8 +112,8 @@ function renderFieldset(context: ElementDefinitionContext) {
 					html<string[]>`
 						<div class="tag-row">
 							${when(
-								(_, c) => c.isFirst && c.parent._numEllidedTags,
-								nestedEllidedTagTemplate
+								(_, c) => c.isFirst && c.parent._numElidedTags,
+								nestedElidedTagTemplate
 							)}
 							${repeat((x) => x, nestedTagTemplate)}
 						</div>
@@ -128,8 +128,8 @@ function renderFieldset(context: ElementDefinitionContext) {
 						])}"
 				>
 					${when(
-						(x) => x._tagRows.length === 0 && x._numEllidedTags,
-						ellidedTagTemplate
+						(x) => x._tagRows.length === 0 && x._numElidedTags,
+						elidedTagTemplate
 					)}
 					${repeat((x) => x._lastTagRow, tagTemplate)}
 					<input
@@ -137,10 +137,10 @@ function renderFieldset(context: ElementDefinitionContext) {
 						class="control"
 						autofocus
 						autocomplete="off"
-						aria-autocomplete="${(x) => x.ariaAutoComplete}"
-						aria-disabled="${(x) => x.ariaDisabled}"
-						aria-expanded="${(x) => x.ariaExpanded}"
+						aria-autocomplete="list"
+						aria-expanded="${(x) => x.open}"
 						aria-haspopup="listbox"
+						aria-controls="listbox"
 						placeholder="${(x) =>
 							x.multiple && x.values.length ? '' : x.placeholder}"
 						role="combobox"
@@ -166,7 +166,7 @@ function renderFieldset(context: ElementDefinitionContext) {
 					:shape="${(x) => x.shape}"
 					size="super-condensed"
 					icon="close-line"
-					variant="ghost"
+					appearance="ghost-light"
 					tabindex="-1"
 				></${buttonTag}>`
 			)}
@@ -180,6 +180,9 @@ function renderControl(context: ElementDefinitionContext) {
 
 	return html<SearchableSelect>`
 		${when((x) => x.label, renderLabel())}
+		<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
+			${(x) => x._changeDescription}
+		</span>
 		<div>
 			${renderFieldset(context)}
 			<div class="popup-wrapper">
@@ -192,6 +195,8 @@ function renderControl(context: ElementDefinitionContext) {
 					<div
 						class="listbox"
 						role="listbox"
+						aria-multiselectable="${(x) => x.multiple}"
+						aria-required="${(x) => x.required}"
 						${ref('_listbox')}
 						@click="${(x, c) => x._onListboxClick(c.event as MouseEvent)}"
 						@mousedown="${() => false}"

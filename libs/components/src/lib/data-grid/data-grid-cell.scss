@@ -77,6 +77,9 @@ slot {
 		#{variables.$data-grid-cell-white-space},
 		var(#{variables.$data-grid-cell-default-white-space})
 	);
+	:host(:not([cell-type='columnheader'][aria-sort])) & {
+		inline-size: 100%;
+	}
 }
 
 .header-icon {

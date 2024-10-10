@@ -1,5 +1,26 @@
 # Changelog
 
+## [4.8.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.7.0...vivid-vue-v4.8.0) (2024-10-09)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.7.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.6.0...vivid-vue-v4.7.0) (2024-10-07)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.6.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.5.0...vivid-vue-v4.6.0) (2024-10-03)
+
+
+### Features
+
+* **searchable-select:** add component (VIV-1793) ([#1882](https://github.com/Vonage/vivid-3/issues/1882)) ([c352df7](https://github.com/Vonage/vivid-3/commit/c352df7eb365071de7a4dec89d802cf2e93a4197))
+
 ## [4.5.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.4.0...vivid-vue-v4.5.0) (2024-09-04)
 
 

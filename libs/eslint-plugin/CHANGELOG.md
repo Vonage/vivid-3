@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.2.1...eslint-plugin-v1.3.0) (2024-10-07)
+
+
+### Features
+
+* **eslint-plugin:** support searchable-select (VIV-000) ([#1930](https://github.com/Vonage/vivid-3/issues/1930)) ([ceb4054](https://github.com/Vonage/vivid-3/commit/ceb405443c00b977d6112ea1328f02aadba4f7d4))
+
 ## [1.2.1](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.2.0...eslint-plugin-v1.2.1) (2024-07-08)
 
 
