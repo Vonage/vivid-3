@@ -168,6 +168,8 @@ Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismi
 
 Use the `no-dismiss-button` attribute to remove the dismiss button from the dialog.
 
+When using this attribute, ensure that the dialog can be closed by other means.
+
 - Type: `boolean`
 - Default: `false`
 
@@ -182,6 +184,8 @@ Use the `no-dismiss-button` attribute to remove the dismiss button from the dial
 ### Non-dismissible
 
 The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`.
+
+When using this attribute, ensure that the dialog can be closed by other means.
 
 - Type: `boolean`
 - Default: `false`
@@ -471,7 +475,8 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 - The dialog's role is `dialog`. When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
 - It is the consumer's concern to add `aria-label` to the dialog element.
-- The dismiss button is automatically given a localized version of the word "Close". This can be overriden using `dismiss-button-aria-label`.
+- The dismiss button is automatically given a localized version of the word "Close". This can be overridden using `dismiss-button-aria-label`.
+- If you disable the built-in dismiss methods, you must ensure that the way to close the dialog remains accessible.
 
 ## Use Cases
 
