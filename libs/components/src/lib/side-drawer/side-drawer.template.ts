@@ -2,7 +2,6 @@ import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
-import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({ modal, open, trailing }: SideDrawer) =>
@@ -30,7 +29,7 @@ export const sideDrawerTemplate: FoundationElementTemplate<
 		class="${getClasses}"
 		?inert="${(x) => !x.open}"
 		part="base ${(x) => (x.alternate ? 'vvd-theme-alternate' : '')}"
-		@keydown="${(x, c) => handleKeydown(x, c.event as KeyboardEvent)}"
+		@keydown="${(x, c) => x._onKeydown(c.event as KeyboardEvent)}"
 	>
 		<slot></slot>
 	</div>
@@ -43,15 +42,7 @@ export const sideDrawerTemplate: FoundationElementTemplate<
 		(x) => x.modal,
 		html<SideDrawer>`<div
 			class="${getScrimClasses}"
-			@click="${(x) => (x.open = false)}"
+			@click="${(x) => x._handleCloseRequest()}"
 		></div>`
 	)}
 `;
-
-const handleKeydown = (x: any, event: KeyboardEvent): boolean | void => {
-	if (handleEscapeKeyAndStopPropogation(event)) {
-		x.open = false;
-	} else {
-		return true;
-	}
-};
