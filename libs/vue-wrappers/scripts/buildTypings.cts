@@ -32,8 +32,7 @@ const addTsIgnoreToPlugin = (filePath: string) => {
  * Generate code that automatically switches between the generated vue2 and vue3 definitions based on the version of the
  * installed vue library.
  *
- * To detect the library version we try to get the type of VNode["data"], which doesn't exist in vue3.
- * We ignore the error with @ts-ignore, so that the type will evaluate to any, which we can then check with IsAny.
+ * To detect the library version we check for VNode["data"], which doesn't exist in vue3 but does in vue2.
  */
 const generateVueVersionSwitch = async () => {
 	const componentTypesPath = path.join(
@@ -59,11 +58,8 @@ const generateVueVersionSwitch = async () => {
 import ${componentName}Vue2 from './${componentName}.vue2';
 import ${componentName}Vue3 from './${componentName}.vue3';
 
-// @ts-ignore
-type VNodeData = VNode["data"];
-type IsAny<T> = 0 extends (1 & T) ? true : false;
-type VueVersion = IsAny<VNodeData> extends true ? 'v3' : 'v2';
-declare const _default: VueVersion extends 'v2' ? typeof ${componentName}Vue2 : typeof ${componentName}Vue3;
+type IsVue2 = "data" extends keyof VNode ? true : false;
+declare const _default: IsVue2 extends true ? typeof ${componentName}Vue2 : typeof ${componentName}Vue3;
 export default _default;
 `
 		);
