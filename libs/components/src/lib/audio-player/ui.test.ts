@@ -14,18 +14,19 @@ async function testMenuOpen({ page }: { page: Page }) {
 <style>
 			.wrapper {
 				width: 100%;
-				height: 700px;
+				height: 500px;
 				position: relative;
 			}
 		</style>
+		<div class="wrapper">
 <vwc-audio-player
 src="https://download.samplelib.com/mp3/sample-6s.mp3"
 playback-rates="0.5, 1, 1.5, 2"
 >
 </vwc-audio-player>
- </div></div>`;
+</div>`;
 
-	page.setViewportSize({ width: 600, height: 400 });
+	page.setViewportSize({ width: 600, height: 500 });
 
 	await loadComponents({
 		page,
