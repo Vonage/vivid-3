@@ -198,6 +198,7 @@ export class TextField extends FoundationTextfield {
 		this.#reflectToInput.attribute('size', 'size');
 		this.#reflectToInput.attribute('autoComplete', 'autocomplete');
 		this.#reflectToInput.attribute('type', 'type');
+		this.#reflectToInput.attribute('inputMode', 'inputmode');
 		this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
 		this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
 		this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
