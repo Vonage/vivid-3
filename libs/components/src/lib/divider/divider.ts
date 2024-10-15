@@ -6,7 +6,7 @@ import { Orientation } from '@microsoft/fast-web-utilities';
  * Divider roles
  * @public
  */
-export const DividerRole = {
+const DividerRole = {
 	/**
 	 * The divider semantically separates content
 	 */
