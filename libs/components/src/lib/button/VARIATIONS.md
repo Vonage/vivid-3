@@ -192,8 +192,6 @@ Custom icons can be provided using the [icon slot](/components/button/code/#icon
 
 If the `label` is omitted, the button will be displayed as an _icon-only_ button.
 
-It is best practice to provide a [tooltip](/components/tooltip) to describe the function of the button. An `aria-label` is needed to ensure accessibility.
-
 ```html preview 72px
 <vwc-tooltip text="Send Message" placement="right-start">
 	<vwc-button

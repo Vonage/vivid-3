@@ -1,4 +1,4 @@
-## Install
+## Usage
 
 <vwc-tabs>
 <vwc-tab label="Web component"></vwc-tab>
