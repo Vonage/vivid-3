@@ -1,5 +1,11 @@
 /* eslint-disable max-len */
-import { ExecutionContext, html, ref, when } from '@microsoft/fast-element';
+import {
+	ExecutionContext,
+	html,
+	ref,
+	repeat,
+	when,
+} from '@microsoft/fast-element';
 import { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type {
@@ -11,6 +17,54 @@ import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { DialPad } from './dial-pad';
+
+class DialPadButton {
+	value: string;
+	label: string | null;
+	ariaLabel: string;
+	icon: string;
+	id: string;
+	constructor(
+		value: string,
+		label: string | null,
+		ariaLabel: string,
+		icon: string,
+		id: string
+	) {
+		this.value = value;
+		this.label = label;
+		this.ariaLabel = ariaLabel;
+		this.icon = icon;
+		this.id = id;
+	}
+}
+
+const DIAL_PAD_BUTTONS = [
+	new DialPadButton('1', '&nbsp;', 'digitOneLabel', 'one-solid', 'btn1'),
+	new DialPadButton('2', 'ABC', 'digitTwoLabel', 'two-solid', 'btn2'),
+	new DialPadButton('3', 'DEF', 'digitThreeLabel', 'three-solid', 'btn3'),
+	new DialPadButton('4', 'GHI', 'digitFourLabel', 'four-solid', 'btn4'),
+	new DialPadButton('5', 'JKL', 'digitFiveLabel', 'five-solid', 'btn5'),
+	new DialPadButton('6', 'MNO', 'digitSixLabel', 'six-solid', 'btn6'),
+	new DialPadButton('7', 'PQRS', 'digitSevenLabel', 'seven-solid', 'btn7'),
+	new DialPadButton('8', 'TUV', 'digitEightLabel', 'eight-solid', 'btn8'),
+	new DialPadButton('9', 'WXYZ', 'digitNineLabel', 'nine-solid', 'btn9'),
+	new DialPadButton(
+		'*',
+		null,
+		'digitAsteriskLabel',
+		'asterisk-2-solid',
+		'btnAsterisk'
+	),
+	new DialPadButton('0', '+', 'digitZeroLabel', 'zero-solid', 'btn0'),
+	new DialPadButton(
+		'#',
+		null,
+		'digitHashtagLabel',
+		'hashtag-solid',
+		'btnHashtag'
+	),
+];
 
 const getClasses = ({ noInput }: DialPad) =>
 	classNames('base', ['no-input', Boolean(noInput)]);
@@ -27,13 +81,16 @@ function handleKeyDown(x: DialPad, e: KeyboardEvent) {
 	) {
 		x._onDial();
 	} else {
-		const key = e.key === '*' ? 'Asterisk' : e.key === '#' ? 'Hashtag' : e.key;
-		const digit: Button | null = x.shadowRoot!.querySelector(`#btn${key}`);
-		if (digit) {
-			digit.active = true;
-			setTimeout(() => {
-				digit.active = false;
-			}, 200);
+		const elementIndex = DIAL_PAD_BUTTONS.findIndex((x) => x.value === e.key);
+		if (elementIndex > -1) {
+			const digit: Button | null = x.shadowRoot!.querySelector('.digits')!
+				.children[elementIndex] as Button;
+			if (digit) {
+				digit.active = true;
+				setTimeout(() => {
+					digit.active = false;
+				}, 200);
+			}
 		}
 	}
 	return true;
@@ -75,93 +132,41 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
         </${textFieldTag}>`;
 }
 
+function onDigitClick(
+	digit: DialPadButton,
+	{ parent: dialPad, event }: { parent: DialPad; event: MouseEvent }
+) {
+	dialPad.value += digit.value;
+
+	dialPad.$emit('keypad-click', event.currentTarget);
+	dialPad.$emit('input');
+	dialPad.$emit('change');
+}
+
 function renderDigits(buttonTag: string, iconTag: string) {
 	return html<DialPad>`
-        <${buttonTag} id='btn1' value='1' stacked appearance="ghost-light" shape="pill" label="&nbsp;" size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitOneLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='one-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn2' value='2' stacked appearance="ghost-light" shape="pill" label='ABC' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitTwoLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='two-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn3' value='3' stacked appearance="ghost-light" shape="pill" label='DEF' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitThreeLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='three-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn4' value='4' stacked appearance="ghost-light" shape="pill" label='GHI' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitFourLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='four-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn5' value='5' stacked appearance="ghost-light" shape="pill" label='JKL' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitFiveLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='five-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-		<${buttonTag} id='btn6' value='6' stacked appearance="ghost-light" shape="pill" label='MNO' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitSixLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='six-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn7' value='7' stacked appearance="ghost-light" shape="pill" label='PQRS' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitSevenLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='seven-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn8' value='8' stacked appearance="ghost-light" shape="pill" label='TUV' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitEightLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='eight-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn9' value='9' stacked appearance="ghost-light" shape="pill" label='WXYZ' size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitNineLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='nine-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btnAsterisk' value='*' appearance="ghost-light" shape="pill" stacked size='condensed' class="digit-btn" aria-label="${(
-		x
-	) => x.locale.dialPad.digitAsteriskLabel}" ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='asterisk-2-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btn0' value='0' stacked appearance="ghost-light" shape="pill" label='+' size='condensed' class="digit-btn" aria-label=${(
-		x
-	) => x.locale.dialPad.digitZeroLabel} ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='zero-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-        <${buttonTag} id='btnHashtag' value='#' stacked appearance="ghost-light" shape="pill" size='condensed' class="digit-btn" aria-label=${(
-		x
-	) => x.locale.dialPad.digitHashtagLabel} ?disabled="${(x) =>
-		x.disabled}" @click="${(x, c) =>
-		x._onDigit(
-			c.event
-		)}"><${iconTag} slot='icon' name='hashtag-solid' class='digit-btn-num'></${iconTag}></${buttonTag}>
-    `;
+		${repeat(
+			(_: DialPad) => DIAL_PAD_BUTTONS,
+			html<DialPadButton>`
+			<${buttonTag} 
+					  id="${(x) => x.id}"
+					  value="${(x) => x.value}" 
+					  stacked 
+					  appearance="ghost-light" 
+					  shape="pill" 
+					  label="${(x) => (x.label === '&nbsp;' ? '\u00A0' : x.label)}"
+					  size='condensed' 
+					  class="digit-btn" 
+					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}" 
+					  ?disabled="${(_, c) => c.parent.disabled}" 
+					  @click="${onDigitClick}">
+					  	<${iconTag} slot="icon" 
+									name="${(x) => x.icon}" 
+									class="digit-btn-num"></${iconTag}>
+					</${buttonTag}>
+		`
+		)}
+	`;
 }
 
 function renderDialButton(buttonTag: string) {

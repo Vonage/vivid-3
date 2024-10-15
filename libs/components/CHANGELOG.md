@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.8.0...vivid-v4.9.0) (2024-10-10)
+
+
+### Features
+
+* **dialog, side-drawer:** add cancel event (VIV-1899) ([#1869](https://github.com/Vonage/vivid-3/issues/1869)) ([dde379c](https://github.com/Vonage/vivid-3/commit/dde379c23fd0d5473b5839d32dc04b34c19392af))
+
 ## [4.8.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.7.0...vivid-v4.8.0) (2024-10-09)
 
 
