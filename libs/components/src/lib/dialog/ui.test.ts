@@ -101,6 +101,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 			</vwc-dialog>
 		</div>
+		<div class="wrapper" style="white-space: nowrap">
+			<vwc-dialog
+				headline="Dialog without dismiss button"
+				no-dismiss-button
+				open
+				>
+			</vwc-dialog>
+		</div>
 	</div>
 	`;
 
