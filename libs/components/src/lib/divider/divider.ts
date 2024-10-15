@@ -1,7 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { Orientation } from "@microsoft/fast-web-utilities";
-
+import { Orientation } from '@microsoft/fast-web-utilities';
 
 /**
  * Divider roles
@@ -11,12 +10,12 @@ export const DividerRole = {
 	/**
 	 * The divider semantically separates content
 	 */
-	separator: "separator",
+	separator: 'separator',
 
 	/**
 	 * The divider has no semantic value and is for visual presentation only.
 	 */
-	presentation: "presentation",
+	presentation: 'presentation',
 } as const;
 
 /**
@@ -37,8 +36,8 @@ export class Divider extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: role
 	 */
-		// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
-	@attr role?: DividerRole = DividerRole.separator;
+	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	@attr override role: DividerRole = DividerRole.separator;
 
 	/**
 	 * The orientation of the divider.
@@ -47,5 +46,6 @@ export class Divider extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: orientation
 	 */
-	@attr orientation?: Orientation = Orientation.horizontal;
+	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	@attr orientation: Orientation = Orientation.horizontal;
 }
