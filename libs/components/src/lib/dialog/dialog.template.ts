@@ -78,7 +78,7 @@ export const DialogTemplate: (
 							</slot>
 							${when((x) => x.headline, headline())}
 							${when((x) => x.subtitle, subtitle())}
-							${renderDismissButton(buttonTag)}
+							${when((x) => x._showDismissButton, renderDismissButton(buttonTag))}
 					</div>
 					<div class="body ${(x) => (x.fullWidthBody ? 'full-width' : '')}" >
 						<slot name="body" ${slotted('bodySlottedContent')}></slot>
