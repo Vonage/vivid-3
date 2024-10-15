@@ -68,7 +68,9 @@ See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for m
 
 </vwc-note>
 
-## Icon Slot
+## Slots
+
+### Icon Slot
 
 Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 

@@ -127,8 +127,13 @@
 	},
 	{
 		"title": "Text Field",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/text-field/README.md"
+		"description": "The Text Field component is used to allow users to provide text input when the expected input is short. As well as plain text, Text Field supports various types of text, including passwords, email addresses and telephone numbers.",
+		"variations": "./libs/components/src/lib/text-field/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/text-field/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/text-field/README.md",
+		"accessibility": "./libs/components/src/lib/text-field/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/text-field/USE-CASES.md"
 	},
 	{
 		"title": "Number Field",

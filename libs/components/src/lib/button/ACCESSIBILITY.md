@@ -19,3 +19,8 @@ Instead, keep the button pressable, and use validation and errors to explain wha
 ### Never Put Tooltips on Disabled Buttons
 
 Tooltips can't be reached on all devices or by some assitive technologies, and they should never appear on elements that aren't interactable.
+
+## Resources
+
+- [Vivid Button: Manual accessibility test](https://docs.google.com/spreadsheets/d/1ndRrFCSNSNEOrBgTxmjUjU5URP5DGRdPzRqRJ2Q9Rew/edit?gid=1175911860#gid=1175911860)
+- [W3C Large links, buttons and controls](https://www.w3.org/WAI/perspective-videos/controls/)

@@ -1,235 +1,138 @@
-# Text Field
+## Install
 
-TextField is meant to accept text input from the user.
-All native `input` attributes of the text-field are supported as well as some enhancements.
-While `text-field` follows [the W3C specifictation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), the following are the only supported types:
-
-- `text` (default)
-- `email`
-- `password`
-- `tel`
-- `url`
-
-If you wish to use `type="number"`, refer to the [`number-field`](/components/number-field/) component.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/text-field';</script>
+import '@vonage/vivid/text-field';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Label
+```js
+import { registerTextField } from '@vonage/vivid';
 
-Add a `label` attribute to add label to the text field.  
-The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
-
-- Type: `string` | `undefined`
-- Default: `undefined`
+registerTextField('your-prefix');
+```
 
 ```html preview
-<vwc-text-field label="My Label"></vwc-text-field>
+<script type="module">
+	import { registerTextField } from '@vonage/vivid';
+	registerTextField('your-prefix');
+</script>
+
+<your-prefix-text-field label="First name" autofocus></your-prefix-text-field>
 ```
 
-### Placeholder
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-- Type: `string` | `undefined`
-- Default: `undefined`
+```html
+<script setup lang="ts">
+	import { VTextField } from '@vonage/vivid-vue';
+</script>
 
-Add a `placeholder` attribute to add placeholder text to the text field.
+<template>
+	<VTextField label="First name" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Types
+
+While Text Field follows [the W3C specifictation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), it only supports the following types:
+
+`text` (default), `email`, `password`, `search`, `tel`, `url`
+
+We support the following other types with the following components:
+
+- `button`: [Button](/components/button/)
+- `checkbox`: [Checkbox](/components/checkbox/)
+- `date`: [Date Picker](/components/date-picker/) | [Date Range Picker](/components/date-range-picker/)
+- `file`: [File Picker](/components/field-picker/)
+- `number`: [Number Field](/components/number-field/)
+- `range`: [Slider](/components/slider/) | [Range Slider](/components/range-slider/)
+- `time`: [Time Picker](/components/time-picker/)
+
+### Input modes
+
+Along with picking the correct `type` for the Text Field's purpose, it's also good for user experience to pick the correct `inputmode`.
+
+The `inputmode` attribute hints at the type of data that might be entered by the user. This allows a browser to display an appropriate virtual keyboard.
 
 ```html preview
-<vwc-text-field placeholder="My Placeholder"></vwc-text-field>
-```
+<div>
+	<vwc-text-field
+		type="tel"
+		inputmode="tel"
+		label="Telephone number"
+	></vwc-text-field>
+	<vwc-text-field
+		type="email"
+		inputmode="email"
+		label="Email address"
+	></vwc-text-field>
+</div>
 
-### Value
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-Set the `value` attribute to set the default value for the text field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
-
-```html preview
-<vwc-text-field label="With default value" value="5"></vwc-text-field>
-```
-
-### Helper text
-
-Add the `helper-text` to add some helper text below the text field. If you need to add HTML to the helper text, use the `helper-text` slot.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-text-field
-	label="Helper text below"
-	helper-text="Help text"
-></vwc-text-field>
-```
-
-### Success text
-
-Add the `success-text` to add some success text below the text field.
-If provided, `success-text` will take precedence over errors.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-text-field
-	label="Username"
-	value="Vlad"
-	success-text="Valid username"
-></vwc-text-field>
-```
-
-### Error text
-
-It is possible to force the text field's error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-text-field
-	value="some text"
-	label="Enter some text"
-	error-text="Please take this seriously"
-></vwc-text-field>
-```
-
-### Character Count
-
-- Type: `boolean`
-- Default: `false`
-
-Use the `char-count` attribute along with the `maxlength` attribute to show a character count.
-
-```html preview
-<vwc-text-field
-	label="Char count example"
-	char-count
-	maxlength="15"
-></vwc-text-field>
-```
-
-### Icon
-
-Text field input can be prefixed by a decorative icon.
-Use the `icon` attribute to add an icon.
-
-```html preview
-<vwc-text-field icon="search-line" label="Search..."></vwc-text-field>
-```
-
-### Scale
-
-Use the `scale` attribute to change the text field's size.
-
-- Type: `'condensed'` | `'normal'`
-- Default: `'normal'`
-
-```html preview blocks
-<vwc-text-field label="Condensed" scale="condensed"></vwc-text-field>
-```
-
-### Shape
-
-Use the `shape` attribute to change the text field's edges.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview blocks
-<vwc-text-field label="Pill" shape="pill"></vwc-text-field>
-<vwc-text-field label="Rounded" shape="rounded"></vwc-text-field>
-```
-
-### Appearance
-
-Set the `appearance` attribute to change the text field's appearance.
-
-- Type: `'fieldset'` | `'ghost'`
-- Default: `'fieldset'`
-
-(`'ghost'` is typically used within a composition such as action group / toolbar).
-
-```html preview blocks
-<vwc-text-field
-	placeholder="appearance"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-text-field>
-<vwc-text-field
-	placeholder="appearance"
-	label="ghost"
-	appearance="ghost"
-></vwc-text-field>
-```
-
-### Disabled
-
-Add the `disabled` attribute to disable the text field.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-text-field
-	disabled
-	icon="chat-line"
-	value="disabled"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-text-field>
-```
-
-### Readonly
-
-Add the `readonly` attribute to restrict user from changing the text field's value.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-text-field
-	readonly
-	icon="chat-line"
-	value="readonly text"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-text-field>
+<style>
+	div {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
 
 ## Slots
 
-### Action-items
+### Action Items Slot
 
-You can add action items elements using the `action-items` slot.
+Use the `action-items` slot to postfix elements to the Text Field input element.<br />
+In the example below Buttons are added to implement a custom funcationality for a search field.
 
 ```html preview
-<vwc-text-field
-	icon="search"
-	placeholder="search"
-	label="search"
-	appearance="fieldset"
-	class="text-field"
->
-	<vwc-button
-		slot="action-items"
-		size="condensed"
-		icon="close-line"
-		aria-label="clear field"
-		appearance="ghost"
-	></vwc-button>
+<vwc-text-field icon="search" type="search" inputmode="search" label="Search">
+	<div slot="action-items" class="action-items">
+		<vwc-button
+			size="condensed"
+			icon="microphone-2-line"
+			aria-label="Record search query"
+		></vwc-button>
+		<vwc-button
+			size="condensed"
+			icon="close-line"
+			aria-label="Clear field"
+		></vwc-button>
+	</div>
 </vwc-text-field>
+
+<style>
+	.action-items {
+		display: flex;
+	}
+</style>
 ```
 
-### Leading Action-items
+### Leading Action Items Slot
 
-You can add action items elements using the `leading-action-items` slot.
+Use the `leading-action-items` slot to prefix elements to the Text Field input element.<br />
+In the example below a Select is added to implement a category filtered search field.
 
-```html preview
+```html preview 220px
+<vwc-text-field label="Search groceries" type="search" inputmode="search">
+	<div slot="leading-action-items" class="leading-action-items">
+		<vwc-select aria-label="Options Selector" appearance="ghost">
+			<vwc-option value="all" text="All" selected></vwc-option>
+			<vwc-option value="fruit" text="Fruit"></vwc-option>
+			<vwc-option value="veg" text="Vegetables"></vwc-option>
+		</vwc-select>
+		<vwc-divider orientation="vertical"></vwc-divider>
+	</div>
+</vwc-text-field>
+
 <style>
 	.leading-action-items {
 		display: flex;
@@ -243,166 +146,80 @@ You can add action items elements using the `leading-action-items` slot.
 		height: 20px;
 	}
 </style>
-<vwc-text-field
-	icon="search"
-	placeholder="search"
-	label="search"
-	appearance="fieldset"
-	class="text-field"
->
-	<div slot="leading-action-items" class="leading-action-items">
-		<vwc-select aria-label="Options Selector" appearance="ghost">
-			<vwc-option value="1" text="ALL" selected></vwc-option>
-		</vwc-select>
-		<vwc-divider orientation="vertical"></vwc-divider>
-	</div>
-</vwc-text-field>
 ```
 
-### Helper-Text
+### Helper Text
 
 The `helper-text` slot allows you to use rich content as the text-field's helper text.
 
 ```html preview
+<vwc-text-field
+	label="EIN"
+	maxlength="12"
+	char-count
+	pattern="[0-9]*"
+	inputmode="numeric"
+>
+	<span slot="helper-text">
+		<a href="#">Employer Identification Number</a> should be 12 characters
+	</span>
+</vwc-text-field>
+
 <style>
 	vwc-text-field {
 		width: 400px;
 	}
 </style>
-<vwc-text-field label="EIN">
-	<span slot="helper-text"
-		>The <a href="#">Employer Identification Number</a> of your business.</span
-	>
-</vwc-text-field>
 ```
 
-## CSS Variables
+## API Reference
 
-### Inline end-Padding - **Deprecated**
-
-This css variable is not in use anymore.  
-Don't worry if it is set - the design still be the same :)  
-<br>
-~~Use `--text-field-inline-end-padding` variable to set the text-field inline-end padding when using the `action-items` slot.~~
-
-## Events
+### Properties
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                              |
-| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value has changed |
+| Name           | Type                                                                       | Description                                                                                                  |
+| -------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `appearance`   | `fieldset`, `ghost`                                                        | Sets the input element's appearance                                                                          |
+| `autocomplete` | `off`, `on`, `<token-list>`                                                | Hint for form autofill feature                                                                               |
+| `autofocus`    | `boolean`                                                                  | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
+| `char-count`   | `boolean`                                                                  | Use in combination with `maxlength` to display a character count                                             |
+| `disabled`     | `boolean`                                                                  | Whether the input element is disabled                                                                        |
+| `inputmode`    | enum: `none`, `text`, `decimal` `numeric`, `tel`, `search`, `email`, `url` | Allows a browser to display an appropriate virtual keyboard                                                  |
+| `list`         | `string`                                                                   | Value of the id attribute of the `<datalist>` of autocomplete options                                        |
+| `maxlength`    | `string`                                                                   | Maximum length (number of characters) of `value`                                                             |
+| `minlength`    | `string`                                                                   | Minimum length (number of characters) of `value`                                                             |
+| `pattern`      | `string`                                                                   | Pattern the `value` must match to be valid                                                                   |
+| `placeholder`  | `string`                                                                   | Text that appears in the input element when it has no value set                                              |
+| `readonly`     | `boolean`                                                                  | The `value` is not editable                                                                                  |
+| `required`     | `boolean`                                                                  | A value is required for the form to be submittable                                                           |
+| `size`         | `string`                                                                   | Size of the input element                                                                                    |
+| `shape`        | `rounded`, `pill`                                                          | Sets the shape of the input element                                                                          |
+| `type`         | enum: `text`, `email`, `password`, `search`, `tel`, `url`                  | Type of input element                                                                                        |
+| `value`        | `string`                                                                   | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
 
 </div>
 
-## Use Cases
+### Events
 
-```html preview
-<style>
-	.action-items {
-		display: flex;
-	}
-</style>
-<vwc-text-field
-	icon="search"
-	placeholder="search"
-	label="search our documentation"
-	appearance="fieldset"
-	class="text-field"
-	shape="pill"
->
-	<div slot="action-items" class="action-items">
-		<vwc-button
-			size="condensed"
-			icon="image-line"
-			aria-label="search images"
-			shape="pill"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			size="condensed"
-			icon="microphone-2-line"
-			aria-label="record"
-			shape="pill"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			size="condensed"
-			icon="close-line"
-			aria-label="clear field"
-			shape="pill"
-			appearance="ghost"
-		></vwc-button>
-	</div>
-</vwc-text-field>
-```
+<div class="table-wrapper">
 
-### Validation
+| Name     | Type                     | Bubbles | Composed | Description                                                                                   |
+| -------- | ------------------------ | ------- | -------- | --------------------------------------------------------------------------------------------- |
+| `blur`   | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'blur' event the input loses focus                                             |
+| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the `value` has changed and focus leaves the input element |
+| `focus`  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'focus' event when the input gains focus                                       |
+| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event immediately when the `value` has changed                         |
 
-You can validate the text field like any other native `input`.
-Here's an example using `pattern`; its required pattern is `123` but we set its value to `5`, which is not of that pattern.
-In this example we need to call `.reportValidity()` to show the error because the change was not done by a user.
+</div>
 
-```html preview
-<vwc-text-field id="field" pattern="123" value="5"></vwc-text-field>
+### Methods
 
-<script>
-	window.onload = () => {
-		document.getElementById('field').reportValidity();
-	};
-</script>
-```
+<div class="table-wrapper">
 
-### In a Form
+| Name             | Description                                                                                                                                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `checkValidity`  | Returns `true` if the element's `value` passes validity checks; otherwise, returns `false` and fires an `invalid` event at the element.                                                                 |
+| `reportValidity` | Returns `true` if the element's `value` passes validity checks; otherwise, returns `false`, fires an `invalid` event at the element, and (if the event isn't canceled) reports the problem to the user. |
 
-```html preview blocks
-<style>
-	.buttons {
-		display: flex;
-		gap: 12px;
-	}
-</style>
-<form method="post" action="">
-	<vwc-layout column-spacing="small" column-basis="block">
-		<vwc-text-field
-			required
-			label="Add email"
-			placeholder="e.g. john@doe.dev"
-			type="email"
-			name="email"
-			autocomplete="email"
-			icon="search"
-			maxlength="30"
-			char-count
-			style="justify-self: flex-start;"
-		></vwc-text-field>
-		<div class="buttons">
-			<vwc-button label="Reset" type="reset"></vwc-button>
-			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
-		</div>
-	</vwc-layout>
-</form>
-```
-
-### Numeric input
-
-When collecting input which is made up of digits, but not a number in the mathematical sense, use the text-field with `inputmode="numeric"` and `pattern="[0-9]*"`.
-
-For mathematical numbers, refer to the [`number-field`](/components/number-field/) component instead.
-
-```html preview
-<vwc-text-field
-	label="ZIP Code"
-	inputmode="numeric"
-	pattern="[0-9]*"
-	placeholder="e.g. 10001"
-></vwc-text-field>
-```
-
-## Accessibility
-
-If no label is set - it is highly recommended that `aria-label` will be added.
-
-```html
-<vwc-text-field aria-label="your name" placeholder="your name"></vwc-text-field>
-```
+</div>
