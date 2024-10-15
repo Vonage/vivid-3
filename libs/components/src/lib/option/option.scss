@@ -18,16 +18,13 @@
 @use '../listbox/partials/variables' as listbox-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use 'partials/variables' as variables;
 
 :host([disabled]) {
 	cursor: not-allowed;
 }
 
 .base {
-	$min-block-size: #{size.$vvd-size-normal};
-	$gap: 12px;
-	$gutter: 16px;
-
 	@include connotation.connotation(option);
 	@include appearance.appearance;
 
@@ -43,13 +40,24 @@
 			var(#{appearance.get-appearance-token(text)})
 		);
 		font: var(#{constants.$vvd-typography-base});
-		gap: $gap;
+		gap: var(#{variables.$option-gap});
 		hyphens: auto;
 		inline-size: 100%;
-		min-block-size: $min-block-size;
-		padding-inline: $gutter;
+		min-block-size: var(#{variables.$option-min-block-size});
+		padding-inline: var(#{variables.$option-padding-inline});
 		vertical-align: middle;
 		word-break: break-word;
+	}
+
+	& {
+		#{variables.$option-min-block-size}: #{size.$vvd-size-normal}; // 40px
+		#{variables.$option-padding-inline}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // 16px
+		#{variables.$option-gap}: calc(
+			#{size.$vvd-size-semi-condensed} / 3
+		); // 12px
+		#{variables.$option-icon-size}: calc(#{size.$vvd-size-normal} / 2); // 20px
 	}
 
 	@supports (user-select: none) {
@@ -62,6 +70,17 @@
 
 	&.disabled {
 		pointer-events: none;
+	}
+
+	:host([scale='condensed']) & {
+		#{variables.$option-min-block-size}: #{size.$vvd-size-condensed}; // 32px
+		#{variables.$option-padding-inline}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		); // 12px
+		#{variables.$option-gap}: calc(#{size.$vvd-size-normal} / 5); // 8px
+		#{variables.$option-icon-size}: calc(
+			#{size.$vvd-size-normal} / 2.5
+		); // 16px
 	}
 
 	:host([aria-checked='true']) & {
@@ -84,7 +103,7 @@
 }
 
 slot[name='icon'] {
-	font-size: 20px;
+	font-size: var(#{variables.$option-icon-size});
 	line-height: 1;
 
 	.base:not(.disabled, .selected) & {
@@ -94,5 +113,5 @@ slot[name='icon'] {
 
 .checkmark {
 	margin-left: auto;
-	font-size: 20px;
+	font-size: var(#{variables.$option-icon-size});
 }
