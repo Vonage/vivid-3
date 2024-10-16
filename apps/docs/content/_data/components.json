@@ -74,8 +74,12 @@
 	},
 	{
 		"title": "Icon",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/icon/README.md"
+		"description": "Displays icons from the Vivid Icons Library using predefined colors and sizes.",
+		"variations": "./libs/components/src/lib/icon/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/icon/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/icon/README.md",
+		"accessibility": "./libs/components/src/lib/icon/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Layout",
