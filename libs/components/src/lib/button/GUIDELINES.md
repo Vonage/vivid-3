@@ -864,3 +864,7 @@ Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive
 </vwc-note>
 
 Ensure that the user is able to understand why the action is disabled and what they need to do to enable it.
+
+## Related Components
+
+- [Split Button](/components/split-button/)

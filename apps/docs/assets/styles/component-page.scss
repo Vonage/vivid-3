@@ -3,8 +3,9 @@
 	z-index: 10;
 	top: var(--offset-top, 64px);
 	width: 100%;
+	margin: 32px -1px 24px;
 	background: var(--vvd-color-canvas);
-	margin-block: 32px 24px;
+	padding-inline: 1px;
 
 	nav {
 		border-bottom: 1px solid var(--vvd-color-neutral-200);

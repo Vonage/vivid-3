@@ -161,9 +161,9 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 
 ## Icons
 
-The `icon` attribute displays an icon from the [Vivid Icon Library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button.
+The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the button.
 
-Custom icons can be provided using the [`icon` slot](/components/button/code/#icon-slot).
+Custom icons can be provided using the [icon slot](/components/button/code/#icon-slot).
 
 ```html preview 72px
 <div class="container">
@@ -191,8 +191,6 @@ Custom icons can be provided using the [`icon` slot](/components/button/code/#ic
 ### Icon Only
 
 If the `label` is omitted, the button will be displayed as an _icon-only_ button.
-
-It is best practice to provide a [tooltip](/components/tooltip) to describe the function of the button. An `aria-label` is needed to ensure accessibility.
 
 ```html preview 72px
 <vwc-tooltip text="Send Message" placement="right-start">

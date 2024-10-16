@@ -49,9 +49,10 @@ const template = html<DocsSearch>`
 		@htmx:beforeRequest="${(x, c) => x.onBeforeRequest(c.event as CustomEvent)}"
 	>
 		<vwc-button
+			id="search-btn-icon"
 			icon="search-line"
-			label="Search..."
-			appearance="outlined"
+			aria-label="Search"
+			appearance="ghost"
 			part="vvd-theme-alternate"
 			@click="${(x) => x.openSearch()}"
 		></vwc-button>
@@ -85,7 +86,7 @@ const template = html<DocsSearch>`
 		@media (max-width: 1024px) {
 			vwc-dialog {
 				--dialog-min-inline-size: 80%;
-				--dialog-max-inline-size: 100%;
+				--dialog-max-inline-size: 95%;
 			}
 		}
 	`,
