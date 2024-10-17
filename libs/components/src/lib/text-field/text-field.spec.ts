@@ -195,11 +195,10 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('inputmode', function () {
-		const inputModeTel = 'tel';
 		it('should set inputmode attribute on the input', async function () {
-			element.type = inputModeTel;
+			element.inputMode = 'tel';
 			await elementUpdated(element);
-			expect(getInput()?.getAttribute('inputmode')).toEqual(inputModeTel);
+			expect(getInput()?.getAttribute('inputmode')).toEqual('tel');
 		});
 	});
 
