@@ -1,6 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import { Anchor } from '../../shared/patterns/anchor';
+import { Anchor } from '../../shared/foundation/anchor/anchor';
 
 /**
  * @public
