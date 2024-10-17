@@ -10,6 +10,8 @@ import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
  */
 export type IconPlacement = 'top' | 'side';
 
+type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
+
 /**
  * @public
  * @component dialog
@@ -42,7 +44,37 @@ export class Dialog extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
+
+	/**
+	 * Prevents the dialog from being dismissed when clicking outside it.
+	 * @remarks
+	 * HTML Attribute: no-light-dismiss
+	 */
 	@attr({ attribute: 'no-light-dismiss', mode: 'boolean' }) noLightDismiss =
+		false;
+
+	/**
+	 * Prevents the dialog from being dismissed when the escape key is pressed.
+	 * @remarks
+	 * HTML Attribute: no-dismiss-on-esc
+	 */
+	@attr({ attribute: 'no-dismiss-on-esc', mode: 'boolean' }) noDismissOnEsc =
+		false;
+
+	/**
+	 * Hides the dismiss button.
+	 * @remarks
+	 * HTML Attribute: no-dismiss-button
+	 */
+	@attr({ attribute: 'no-dismiss-button', mode: 'boolean' }) noDismissButton =
+		false;
+
+	/**
+	 * Disables all means of dismissal for the dialog.
+	 * @remarks
+	 * HTML Attribute: non-dismissible
+	 */
+	@attr({ attribute: 'non-dismissible', mode: 'boolean' }) nonDismissible =
 		false;
 
 	/**
@@ -115,8 +147,30 @@ export class Dialog extends FoundationElement {
 		}
 	}
 
+	get _showDismissButton() {
+		return this.#isDismissibleVia('dismiss-button');
+	}
+
+	#isDismissibleVia(method: DismissMethod) {
+		if (this.nonDismissible) {
+			return false;
+		}
+
+		switch (method) {
+			case 'escape':
+				return !this.noDismissOnEsc;
+			case 'dismiss-button':
+				return !this.noDismissButton;
+			case 'light-dismiss':
+				return !this.noLightDismiss;
+		}
+	}
+
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog || this.noLightDismiss) {
+		if (
+			event.target !== this.#dialog ||
+			!this.#isDismissibleVia('light-dismiss')
+		) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();
@@ -145,7 +199,9 @@ export class Dialog extends FoundationElement {
 	 */
 	_onKeyDown(event: KeyboardEvent) {
 		if (handleEscapeKeyAndStopPropogation(event) && this._openedAsModal) {
-			this._handleCloseRequest();
+			if (this.#isDismissibleVia('escape')) {
+				this._handleCloseRequest();
+			}
 
 			// Return false to .preventDefault() which will prevent the <dialog>'s cancel event from being fired.
 			// Otherwise, pressing ESC twice would close the <dialog> without the ability to prevent it.
