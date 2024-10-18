@@ -4,6 +4,20 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.9.0...vivid-v4.10.0) (2024-10-18)
+
+
+### Features
+
+* **dialog:** add `no-dismiss-on-esc`, `no-dismiss-button` and `non-dismissible` members (VIV-1907) ([#1871](https://github.com/Vonage/vivid-3/issues/1871)) ([af258af](https://github.com/Vonage/vivid-3/commit/af258af36f7ed8bff5112d3f462da6386024ddf5))
+
+
+### Bug Fixes
+
+* **audio-player:** change menu position-strategy to absolute (VIV-2192) ([#1945](https://github.com/Vonage/vivid-3/issues/1945)) ([3a6f054](https://github.com/Vonage/vivid-3/commit/3a6f0543795ef30ccf70287e098bb55b25b71c81))
+* **icon:** fix missing announcement in connotation type (VIV-000) ([#1951](https://github.com/Vonage/vivid-3/issues/1951)) ([436e606](https://github.com/Vonage/vivid-3/commit/436e6069fa1a2c984abd0bebbcff3c23164d3b2c))
+* **text-field:** reflects inputmode onto input element (VIV-000) ([#1947](https://github.com/Vonage/vivid-3/issues/1947)) ([99e360e](https://github.com/Vonage/vivid-3/commit/99e360eea165d7253b224525ec7f064e5f2404fd))
+
 ## [4.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.8.0...vivid-v4.9.0) (2024-10-10)
 
 
