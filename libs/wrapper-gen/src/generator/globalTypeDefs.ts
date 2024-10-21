@@ -185,5 +185,5 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 		{ text: "'false'", vuePropType: 'String' },
 		{ text: "'mixed'", vuePropType: 'String' },
 		{ text: "'undefined'", vuePropType: 'String' },
-	]
+	],
 };
