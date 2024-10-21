@@ -3,7 +3,7 @@
 Buttons may be toggled. Change icon and label to indicate the state of the button.
 
 ```html preview center 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button
 		id="mute"
 		icon="mic-mute-solid"
@@ -47,7 +47,7 @@ Buttons may be toggled. Change icon and label to indicate the state of the butto
 </script>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		align-items: center;
 		gap: 16px;
@@ -158,6 +158,7 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 		}
 	}
 </script>
+
 <style>
 	.container {
 		display: flex;

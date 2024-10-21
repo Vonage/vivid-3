@@ -106,37 +106,39 @@ To add custom icons or to postfix icons, use the [slots](/components/text-field/
 
 ## Scale
 
-The `scale` attribute controls the Text Field input element display size.<br />
-It can be `normal` (default) or `condensed`.<br />
+The `scale` attribute controls the Text Field input element display size.
 Use `condensed` in situations when space is limited, for example, inside a Data Grid cell.
 
 ```html preview
-<div>
+<div class="container">
 	<vwc-text-field scale="normal" label="Normal"></vwc-text-field>
 	<vwc-text-field scale="condensed" label="Condensed"></vwc-text-field>
 </div>
 
 <style>
-	div {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
 </style>
 ```
 
+<vwc-note connotation="information" icon="info-line" headline="Scale instead of Size">
+	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
+</vwc-note>
+
 ## Shape
 
-The `shape` attribute controls the border radius of the Text Field input element.<br />
-It can be `rounded` (default) or `pill`.
+The `shape` attribute controls the border radius of the Text Field input element.
 
 ```html preview
-<div>
+<div class="container">
 	<vwc-text-field shape="rounded" label="Rounded"></vwc-text-field>
 	<vwc-text-field shape="pill" label="Pill"></vwc-text-field>
 </div>
 
 <style>
-	div {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -146,11 +148,10 @@ It can be `rounded` (default) or `pill`.
 ## Appearance
 
 The `appearance` attribute controls the style of the Text Field input element.<br />
-It can be `fieldset` (default) or `ghost`.<br />
 Use `ghost` in combination with a containing element which provides a border, for example [Action Group](/components/action-group/).
 
 ```html preview
-<div>
+<div class="container">
 	<vwc-text-field
 		appearance="fieldset"
 		label="Fieldset"
@@ -164,7 +165,7 @@ Use `ghost` in combination with a containing element which provides a border, fo
 </div>
 
 <style>
-	div {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -184,5 +185,5 @@ The `disabled` attribute disables the Text Field input element.
 The `readonly` attribute prevents the user from changing the Text Field input element value.
 
 ```html preview
-<vwc-text-field disabled label="Username"></vwc-text-field>
+<vwc-text-field readonly label="Username"></vwc-text-field>
 ```

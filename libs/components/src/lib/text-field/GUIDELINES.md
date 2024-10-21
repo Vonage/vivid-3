@@ -38,7 +38,7 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 <docs-do dont headline="Don't use Tooltips or Toggletips for information that is vital to task completion">
 
 ```html preview example 190px
-<div>
+<div class="container">
 	<vwc-text-field label="Password" type="password"></vwc-text-field>
 	<vwc-toggletip placement="bottom">
 		<vwc-button
@@ -46,17 +46,18 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 			slot="anchor"
 			shape="pill"
 			size="condensed"
+			class="tooltip-btn"
 		></vwc-button>
 		Must be at least six chars and contain both letters and numbers
 	</vwc-toggletip>
 </div>
 
 <style>
-	div {
+	.container {
 		position: relative;
 		display: inline-block;
 	}
-	vwc-button {
+	.tooltip-btn {
 		position: absolute;
 		inset-block-start: -8px;
 		inset-inline-end: -8px;

@@ -3,7 +3,7 @@
 The `appearance` attribute controls the style of button displayed.
 
 ```html preview 72px
-<div>
+<div class="container">
 	<vwc-button appearance="filled" label="Filled"></vwc-button>
 	<vwc-button appearance="outlined" label="Outlined"></vwc-button>
 	<vwc-button appearance="outlined-light" label="Outlined Light"></vwc-button>
@@ -12,7 +12,7 @@ The `appearance` attribute controls the style of button displayed.
 </div>
 
 <style>
-	div {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -28,7 +28,7 @@ The `appearance` attribute controls the style of button displayed.
 The `connotation` attribute controls the purpose of the button, expressed in it's colours.
 
 ```html preview 300px
-<div>
+<div class="container">
 	<vwc-button
 		connotation="accent"
 		appearance="filled"
@@ -55,7 +55,7 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 		label="Accent"
 	></vwc-button>
 </div>
-<div>
+<div class="container">
 	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
 	<vwc-button
@@ -70,7 +70,7 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 		label="CTA"
 	></vwc-button>
 </div>
-<div>
+<div class="container">
 	<vwc-button
 		connotation="announcement"
 		appearance="filled"
@@ -97,7 +97,7 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 		label="Announcement"
 	></vwc-button>
 </div>
-<div>
+<div class="container">
 	<vwc-button
 		connotation="success"
 		appearance="filled"
@@ -124,7 +124,7 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 		label="Success"
 	></vwc-button>
 </div>
-<div>
+<div class="container">
 	<vwc-button
 		connotation="alert"
 		appearance="filled"
@@ -149,7 +149,7 @@ The `connotation` attribute controls the purpose of the button, expressed in it'
 </div>
 
 <style>
-	div > div {
+	.container {
 		display: flex;
 		flex-basis: 100%;
 		width: 100%;

@@ -75,25 +75,6 @@ See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for m
 Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 
 ```html preview
-<style>
-	.color-animation {
-		animation: heightChange 1.5s infinite;
-	}
-	@keyframes heightChange {
-		0% {
-			clip-path: inset(0% 0% 0% 0%);
-		}
-		25% {
-			clip-path: inset(0% 0% 45% 0%);
-		}
-		50% {
-			clip-path: inset(0% 0% 80% 0%);
-		}
-		100% {
-			clip-path: inset(0% 0% 0% 0%);
-		}
-	}
-</style>
 <vwc-button aria-label="Mute" appearance="outlined">
 	<vwc-icon slot="icon">
 		<svg
@@ -122,6 +103,26 @@ Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 		</svg>
 	</vwc-icon>
 </vwc-button>
+
+<style>
+	.color-animation {
+		animation: heightChange 1.5s infinite;
+	}
+	@keyframes heightChange {
+		0% {
+			clip-path: inset(0% 0% 0% 0%);
+		}
+		25% {
+			clip-path: inset(0% 0% 45% 0%);
+		}
+		50% {
+			clip-path: inset(0% 0% 80% 0%);
+		}
+		100% {
+			clip-path: inset(0% 0% 0% 0%);
+		}
+	}
+</style>
 ```
 
 ## API Reference
