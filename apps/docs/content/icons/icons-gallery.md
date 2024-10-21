@@ -13,7 +13,7 @@ As an example, you can use it as follows:
 <vwc-icon name="icon-name-here"></vwc-icon>
 ```
 
-<p class="icons-gallery"><vivid-icons-gallery></vivid-icons-gallery></p>
+<p class="icons-gallery"><docs-icons-gallery></docs-icons-gallery></p>
 
 <style>
   .article .icons-gallery {

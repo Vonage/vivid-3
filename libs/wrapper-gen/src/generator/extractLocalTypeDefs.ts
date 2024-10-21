@@ -8,7 +8,6 @@ import {
 	Connotation,
 	LayoutSize,
 	Position,
-	Role,
 	Shape,
 	Size,
 } from '@vonage/vivid';
@@ -35,7 +34,6 @@ export const extractLocalTypeDefs = (
 		Size,
 		LayoutSize,
 		Position,
-		Role,
 		AriaLive,
 	};
 	for (const [enumName, enumObj] of Object.entries(enums)) {
