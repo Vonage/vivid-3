@@ -179,4 +179,11 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 		{ text: "'outlined'", vuePropType: 'String' },
 		{ text: "'filled'", vuePropType: 'String' },
 	],
+
+	AriaCheckedStates: [
+		{ text: "'true'", vuePropType: 'String' },
+		{ text: "'false'", vuePropType: 'String' },
+		{ text: "'mixed'", vuePropType: 'String' },
+		{ text: "'undefined'", vuePropType: 'String' },
+	]
 };

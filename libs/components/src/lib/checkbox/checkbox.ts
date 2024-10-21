@@ -48,6 +48,13 @@ export class Checkbox extends FoundationCheckbox {
 	 */
 	@attr connotation?: CheckboxConnotation;
 
+	/**
+	 * The current checkbox state
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: aria-checked
+	 */
 	@attr({ attribute: 'aria-checked' })
 	override ariaChecked: AriaCheckedStates | null = null;
 
