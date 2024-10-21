@@ -48,7 +48,8 @@ export class Checkbox extends FoundationCheckbox {
 	 */
 	@attr connotation?: CheckboxConnotation;
 
-	@attr({attribute: 'aria-checked'}) override ariaChecked: AriaCheckedStates | null = null;
+	@attr({ attribute: 'aria-checked' })
+	override ariaChecked: AriaCheckedStates | null = null;
 
 	indeterminateChanged(_: boolean, next: boolean) {
 		this.checked = !next;

@@ -122,7 +122,9 @@ describe('vwc-checkbox', () => {
 			element.indeterminate = true;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).getAttribute('aria-checked')).toBe('mixed');
+			expect(getBaseElement(element).getAttribute('aria-checked')).toBe(
+				'mixed'
+			);
 		});
 
 		it('should set checked to false when true', async () => {
@@ -152,7 +154,9 @@ describe('vwc-checkbox', () => {
 			element.checked = false;
 			await elementUpdated(element);
 
-			expect(getBaseElement(element).getAttribute('aria-checked')).toBe('false');
+			expect(getBaseElement(element).getAttribute('aria-checked')).toBe(
+				'false'
+			);
 		});
 
 		it('should set checked to false when set to false', async () => {
