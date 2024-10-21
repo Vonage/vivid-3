@@ -57,8 +57,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should set value in text field when has value attribute', async function () {
 			const value = '123';
-			element.value = value;
-			await elementUpdated(element);
+			await setValue(value);
 			expect(getTextField().value).toEqual(value);
 		});
 
@@ -145,61 +144,70 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
+	async function setValue(value: string) {
+		element.value = value;
+		await elementUpdated(element);
+	}
+
 	describe('delete', function () {
-		it('should show delete button when text field has value', async function () {
-			element.value = '123';
+		async function clickDeleteButton() {
+			getDeleteButton().click();
 			await elementUpdated(element);
+		}
+
+		it('should show delete button when text field has value', async function () {
+			await setValue('123');
 			expect(getDeleteButton()).not.toBeNull();
 		});
 
 		it('should remove last character from text field when clicked on delete button', async function () {
-			element.value = '123';
-			await elementUpdated(element);
-			getDeleteButton().click();
-			await elementUpdated(element);
+			await setValue('123');
+
+			await clickDeleteButton();
+
 			expect(getTextField().value).toEqual('12');
 		});
 
 		it('should emit a change event', async () => {
 			const spy = jest.fn();
 			element.addEventListener('change', spy);
-			element.value = '123';
-			await elementUpdated(element);
-			getDeleteButton().click();
-			await elementUpdated(element);
+			await setValue('123');
+
+			await clickDeleteButton();
+
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should emit an input event', async () => {
 			const spy = jest.fn();
 			element.addEventListener('input', spy);
-			element.value = '123';
-			await elementUpdated(element);
-			getDeleteButton().click();
-			await elementUpdated(element);
+			await setValue('123');
+
+			await clickDeleteButton();
+
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should stop prevent blur event after deleting the last value', async () => {
+		it('should prevent blur event after deleting the last value', async () => {
 			const spy = jest.fn();
 			element.addEventListener('blur', spy);
-			element.value = '1';
-			await elementUpdated(element);
-			getDeleteButton().click();
-			await elementUpdated(element);
+			await setValue('1');
+
+			await clickDeleteButton();
 			element.dispatchEvent(
 				new InputEvent('blur', { bubbles: true, composed: true })
 			);
+
 			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
-		it('should allow blur event when not after deleting the last value', async () => {
+		it('should allow blur event that is not related to deleting a character', async () => {
 			const spy = jest.fn();
 			element.addEventListener('blur', spy);
-			element.value = '1';
-			await elementUpdated(element);
-			getDeleteButton().click();
-			await elementUpdated(element);
+			await setValue('1');
+
+			await clickDeleteButton();
+
 			element.dispatchEvent(
 				new InputEvent('blur', { bubbles: true, composed: true })
 			);
@@ -210,13 +218,13 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should focus on the dialpad after the blur was prevented', async () => {
-			element.value = '1';
-			await elementUpdated(element);
-			getDeleteButton().click();
-			await elementUpdated(element);
+			await setValue('1');
+
+			await clickDeleteButton();
 			element.dispatchEvent(
 				new InputEvent('blur', { bubbles: true, composed: true })
 			);
+
 			expect(document.activeElement === element).toBe(true);
 		});
 	});
@@ -287,8 +295,7 @@ describe('vwc-dial-pad', () => {
 		it('should fire dial event when enter is pressed on input', async function () {
 			const spy = jest.fn();
 			element.addEventListener('dial', spy);
-			element.value = '123';
-			await elementUpdated(element);
+			await setValue('123');
 			const input: HTMLInputElement = getTextField().querySelector(
 				'input'
 			) as HTMLInputElement;
@@ -305,17 +312,15 @@ describe('vwc-dial-pad', () => {
 		it('should fire dial event with value when clicked on call button', async function () {
 			const spy = jest.fn();
 			element.addEventListener('dial', spy);
-			element.value = '123';
-			await elementUpdated(element);
+			await setValue('123');
 			getCallButton().click();
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
 		it('should prevent dial event when enter is pressed on delete button', async function () {
 			const spy = jest.fn();
-			element.value = '123';
+			await setValue('123');
 			element.addEventListener('dial', spy);
-			await elementUpdated(element);
 			getDeleteButton().dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
@@ -490,8 +495,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should set delete button disabled when has disabled attribute', async function () {
 			element.disabled = true;
-			element.value = '123';
-			await elementUpdated(element);
+			await setValue('123');
 			expect(getDeleteButton().disabled).toEqual(true);
 		});
 	});
@@ -513,8 +517,7 @@ describe('vwc-dial-pad', () => {
 
 		it('should set the delete button to be disabled', async function () {
 			element.callActive = true;
-			element.value = '123';
-			await elementUpdated(element);
+			await setValue('123');
 			expect(getDeleteButton().disabled).toBe(true);
 		});
 	});
