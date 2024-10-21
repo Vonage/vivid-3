@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../utilities/apply-mixins';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { ARIAGlobalStatesAndProperties } from '../patterns/aria-global';
 
 /**
