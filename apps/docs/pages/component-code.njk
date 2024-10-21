@@ -1,0 +1,13 @@
+---
+tags: components
+pagination:
+    data: componentsNew
+    size: 1
+    alias: component
+permalink: "components/{{ component | pageSlug }}/code/"
+layout: component.njk
+---
+
+{% renderFile component.code %}
+
+{% editOnGitHub component.code %}

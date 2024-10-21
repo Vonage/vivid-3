@@ -20,6 +20,7 @@ const { componentSlug } = require('./filters/componentSlug');
 const {
 	navigationFromComponents,
 } = require('./filters/navigationFromComponents');
+const components = require('./content/_data/components.json');
 
 const DOCS_DIR = 'apps/docs';
 const INPUT_DIR = `${DOCS_DIR}/content`;
@@ -79,6 +80,10 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/VARIATIONS.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/GUIDELINES.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/ACCESSIBILITY.md');
+	eleventyConfig.addWatchTarget('libs/components/src/lib/*/USE-CASES.md');
 	eleventyConfig.addWatchTarget('libs/eslint-plugin/src/rules/*.md');
 	eleventyConfig.addWatchTarget('docs/');
 	eleventyConfig.addWatchTarget('assets/');
@@ -99,6 +104,16 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter(
 		'navigationFromComponents',
 		navigationFromComponents
+	);
+
+	eleventyConfig.addGlobalData(
+		'componentsNew',
+		components.filter((c) => c.page !== 'legacy')
+	);
+
+	eleventyConfig.addGlobalData(
+		'componentsLegacy',
+		components.filter((c) => c.page === 'legacy')
 	);
 
 	eleventyConfig.addShortcode('clientSideNavigationHint', function () {

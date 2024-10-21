@@ -101,6 +101,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				>
 			</vwc-dialog>
 		</div>
+		<div class="wrapper" style="white-space: nowrap">
+			<vwc-dialog
+				headline="Dialog without dismiss button"
+				no-dismiss-button
+				open
+				>
+			</vwc-dialog>
+		</div>
 	</div>
 	`;
 
@@ -157,4 +165,44 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/dialog-modal.png'
 	);
+});
+
+test('should leave the dialog open on pressing ESC twice when cancel event is cancelled', async ({
+	page,
+}: {
+	page: Page;
+}) => {
+	const template = `
+		<div style="height: 800px">
+			<vwc-dialog
+				icon="info"
+				headline="Headline"
+				open
+				modal
+			></vwc-dialog>
+		</div>
+	`;
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	await page.waitForLoadState('networkidle');
+
+	await page.evaluate(() => {
+		const dialog = document.querySelector('vwc-dialog');
+		dialog.addEventListener('cancel', (event) => {
+			event.preventDefault();
+		});
+	});
+
+	await page.keyboard.press('Escape');
+	await page.keyboard.press('Escape');
+
+	await expect(page.locator('dialog')).toHaveAttribute('open', '');
 });

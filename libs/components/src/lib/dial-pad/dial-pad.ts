@@ -2,7 +2,6 @@ import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
 import { TextField } from '../text-field/text-field';
-import { Button } from '../button/button';
 
 /**
  * Base class for dial-pad
@@ -136,18 +135,6 @@ export class DialPad extends FoundationElement {
 	 */
 	@attr({ attribute: 'call-button-label' }) callButtonLabel: string | null =
 		null;
-
-	/**
-	 *
-	 * @internal
-	 */
-	_onDigit = (e: Event) => {
-		this.value += (e.currentTarget as Button).value;
-
-		this.$emit('keypad-click', e.currentTarget);
-		this.$emit('input');
-		this.$emit('change');
-	};
 
 	/**
 	 *
