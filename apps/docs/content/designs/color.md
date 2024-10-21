@@ -95,6 +95,28 @@ Colors have assigned meanings and are used consistently throughout Vivid to set 
   </dd>
  </vwc-layout>
 
+<vwc-layout column-basis="block" column-spacing="small" gutters="small">
+  <dt>
+   <strong>Neutral-Tint:</strong> <samp>--vvd-color-neutral-tint-<var>{n}</var></samp>
+  </dt>
+
+  <dd>
+   <vwc-layout class="scale" column-spacing="small">
+    <div style="--color: var(--vvd-color-neutral-tint-50)"><small>50</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-100)"><small>100</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-200)"><small>200</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-300)"><small>300</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-400)"><small>400</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-500)"><small>500</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-600)"><small>600</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-700)"><small>700</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-800)"><small>800</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-900)"><small>900</small></div>
+    <div style="--color: var(--vvd-color-neutral-tint-950)"><small>950</small></div>
+   </vwc-layout>
+  </dd>
+ </vwc-layout>
+
  <vwc-layout column-basis="block" column-spacing="small" gutters="small">
   <dt>
    <strong>CTA:</strong> <samp>--vvd-color-cta-<var>{n}</var></samp>
