@@ -185,5 +185,5 @@ The `disabled` attribute disables the Text Field input element.
 The `readonly` attribute prevents the user from changing the Text Field input element value.
 
 ```html preview
-<vwc-text-field readonly label="Username"></vwc-text-field>
+<vwc-text-field readonly label="Username" value="JoeB_89"></vwc-text-field>
 ```
