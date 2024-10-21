@@ -82,14 +82,9 @@ If the component is used without a `connotation`, it will use the current text c
 
 ### Events
 
-| Name        | Event Type      | Description                                                                                                                                                |
-| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **click**   | `MouseEvent`    | Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element. |
-| **focus**   | `FocusEvent`    | Fires when the element receives focus.                                                                                                                     |
-| **blur**    | `FocusEvent`    | Fires when the element loses focus.                                                                                                                        |
-| **keydown** | `KeyboardEvent` | Fires when a key is pressed.                                                                                                                               |
-| **keyup**   | `KeyboardEvent` | Fires when a key is released.                                                                                                                              |
-| **input**   | `Event`         | Fires when the value of an element has been changed.                                                                                                       |
+| Name      | Event Type   | Description                                                                                                                                                |
+| --------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **click** | `MouseEvent` | Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element. |
 
 ### Slots
 
