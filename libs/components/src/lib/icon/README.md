@@ -41,6 +41,34 @@ registerIcon('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Custom Size
+
+If the component is used without a `size`, it will use the current `font-size` value.
+
+```html preview
+<vwc-icon name="close-line" class="small-icon" aria-hidden="true"></vwc-icon>
+30px
+
+<style>
+	.small-icon {
+		font-size: 30px;
+	}
+</style>
+```
+
+## Custom Color
+
+If the component is used without a `connotation`, it will use the current text color.
+
+```html preview
+<vwc-icon id="icon" name="heart-solid"></vwc-icon>
+<style>
+	#icon {
+		color: var(--vvd-color-announcement-400);
+	}
+</style>
+```
+
 ## API Reference
 
 ### Properties

@@ -144,21 +144,6 @@ Use the `size` attribute to select the icon's size from a set of predefined valu
 	<p>Icon size will be affected by the <code>--vvd-size-density</code> variable.</p>
 </vwc-note>
 
-### Custom Size
-
-If the component is used without a `size`, it will use the current `font-size` value.
-
-```html preview
-<vwc-icon name="close-line" class="small-icon" aria-hidden="true"></vwc-icon>
-30px
-
-<style>
-	.small-icon {
-		font-size: 30px;
-	}
-</style>
-```
-
 ## Connotation
 
 Use the `connotation` attribute to select the icon's color from a set of predefined values.
@@ -225,19 +210,6 @@ Use the `connotation` attribute to select the icon's color from a set of predefi
 <style>
 	li {
 		list-style: none;
-	}
-</style>
-```
-
-### Custom Color
-
-If the component is used without a `connotation`, it will use the current text color.
-
-```html preview
-<vwc-icon id="icon" name="heart-solid"></vwc-icon>
-<style>
-	#icon {
-		color: var(--vvd-color-announcement-400);
 	}
 </style>
 ```
