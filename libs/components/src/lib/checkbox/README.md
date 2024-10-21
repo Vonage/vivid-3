@@ -23,7 +23,7 @@ Use the `label` member to set the checkbox's label.
 
 ### Checked
 
-Toggle the `checked` member to set the checkbox's on/off state.
+Toggle the `checked` member to set the checkbox's on/off state. Also changes `aria-checked` value.
 
 - Type: `boolean`
 - Default: `false`
@@ -34,14 +34,13 @@ Toggle the `checked` member to set the checkbox's on/off state.
 
 ### Indeterminate
 
-Use the `indeterminate` member to indicate that the checkbox's is neither on nor off.
+Use the `indeterminate` member to indicate that the checkbox's is neither on nor off. It also sets `aria-checked` to "mixed". Setting `aria-checked` to "mixed" will also set `indeterminate` to true. Changing `aria-checked` from "mixed" will set indeterminate to false.
 
 - Type: `boolean`
 - Default: `false`
 
 > The indeterminate property sets or returns whether the state of a checkbox has changed.
 > Checkboxes actually has three states: true, false and indeterminate which indicates that a checkbox is neither "on" or "off".
-> A checkbox cannot be set to indeterminate state by an HTML attribute - it must be set by a JavaScript.
 > This state can be used to force the user to check or uncheck the checkbox.
 > -- <cite>[w3schools][1]</cite>
 
@@ -52,6 +51,30 @@ Use the `indeterminate` member to indicate that the checkbox's is neither on nor
 <script>
 	document.getElementById('checkbox').indeterminate = true;
 </script>
+```
+
+### AriaChecked
+
+Use the `aria-checked` attribute to set the checkbox checked state. It reflects the `checked` state as well as the `indeterminate` state with the value "mixed". "undefined" means the element does not support being checked.
+
+- Type: `'true'` | `'false'` | `'mixed'` | `'undefined'`
+- Default: `'false'`
+
+> The ariaChecked property of the Element interface reflects the value of the aria-checked attribute, which indicates the current "checked" state of checkboxes.
+> A string with one of the following values:
+> "true" The element is checked.
+> "mixed" Indicates a mixed mode value for a tri-state checkbox.
+> "false" The element supports being checked but is not currently checked.
+> "undefined" The element does not support being checked.
+> -- <cite>[mdn][2]</cite>
+
+[2]: https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaChecked#value
+
+```html preview
+<vwc-checkbox aria-checked="true"></vwc-checkbox>
+<vwc-checkbox aria-checked="false"></vwc-checkbox>
+<vwc-checkbox aria-checked="mixed"></vwc-checkbox>
+<vwc-checkbox aria-checked="undefined" disabled></vwc-checkbox>
 ```
 
 ### Connotation
