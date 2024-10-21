@@ -53,7 +53,7 @@ Use the `indeterminate` member to indicate that the checkbox's is neither on nor
 </script>
 ```
 
-### AriaChecked
+### Aria Checked
 
 Use the `aria-checked` attribute to set the checkbox checked state. It reflects the `checked` state as well as the `indeterminate` state with the value "mixed". "undefined" means the element does not support being checked.
 
