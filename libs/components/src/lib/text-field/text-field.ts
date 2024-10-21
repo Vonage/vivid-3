@@ -96,6 +96,16 @@ export class TextField extends FoundationTextfield {
 	@attr() scale?: TextFieldSize;
 
 	/**
+	 * Hints at the type of data that might be entered by the user while editing the element or its contents.
+	 * This allows a browser to display an appropriate virtual keyboard.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: inputmode
+	 */
+	@attr({ attribute: 'inputmode' }) override inputMode!: string;
+
+	/**
 	 *
 	 * Slot observer:
 	 *
@@ -198,6 +208,7 @@ export class TextField extends FoundationTextfield {
 		this.#reflectToInput.attribute('size', 'size');
 		this.#reflectToInput.attribute('autoComplete', 'autocomplete');
 		this.#reflectToInput.attribute('type', 'type');
+		this.#reflectToInput.attribute('inputMode', 'inputmode');
 		this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
 		this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
 		this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
