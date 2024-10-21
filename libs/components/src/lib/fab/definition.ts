@@ -1,4 +1,4 @@
-import type { FoundationElementDefinition } from '../../shared/foundation/foundation-element/foundation-element';
+import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { iconRegistries } from '../icon/definition';
 import styles from './fab.scss?inline';

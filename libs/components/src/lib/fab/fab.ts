@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { Button as FoundationButton } from '../../shared/foundation/button';
+import { applyMixins } from '@microsoft/fast-foundation';
+import { FoundationButton } from '../../shared/foundation/button';
 import type { Connotation, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 

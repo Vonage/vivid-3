@@ -1,13 +1,15 @@
-import { html, ref } from "@microsoft/fast-element";
-import type { SyntheticViewTemplate, ViewTemplate } from "@microsoft/fast-element";
-import type { ElementDefinitionContext } from "../design-system/registration-context";
-
+import { html, ref } from '@microsoft/fast-element';
+import type {
+	SyntheticViewTemplate,
+	ViewTemplate,
+} from '@microsoft/fast-element';
+import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 /**
  * Start configuration options
  * @public
  */
 export type StartOptions = {
-    start?: string | SyntheticViewTemplate;
+	start?: string | SyntheticViewTemplate;
 };
 
 /**
@@ -15,7 +17,7 @@ export type StartOptions = {
  * @public
  */
 export type EndOptions = {
-    end?: string | SyntheticViewTemplate;
+	end?: string | SyntheticViewTemplate;
 };
 
 /**
@@ -31,24 +33,27 @@ export type StartEndOptions = StartOptions & EndOptions;
  */
 export class StartEnd {
     /* eslint-disable @typescript-eslint/explicit-member-accessibility */
-    // @ts-expect-error Type is incorrectly non-optional
-    public start: HTMLSlotElement;
-    // @ts-expect-error Type is incorrectly non-optional
-    public startContainer: HTMLSpanElement;
-    public handleStartContentChange(): void {
-        this.startContainer.classList.toggle(
-            "start",
-            this.start.assignedNodes().length > 0
-        );
-    }
-    // @ts-expect-error Type is incorrectly non-optional
-    public end: HTMLSlotElement;
-    // @ts-expect-error Type is incorrectly non-optional
-    public endContainer: HTMLSpanElement;
-    public handleEndContentChange(): void {
-        this.endContainer.classList.toggle("end", this.end.assignedNodes().length > 0);
-    }
-    /* eslint-enable */
+	// @ts-expect-error Type is incorrectly non-optional
+	public start: HTMLSlotElement;
+	// @ts-expect-error Type is incorrectly non-optional
+	public startContainer: HTMLSpanElement;
+	public handleStartContentChange(): void {
+		this.startContainer.classList.toggle(
+			'start',
+			this.start.assignedNodes().length > 0
+		);
+	}
+	// @ts-expect-error Type is incorrectly non-optional
+	public end: HTMLSlotElement;
+	// @ts-expect-error Type is incorrectly non-optional
+	public endContainer: HTMLSpanElement;
+	public handleEndContentChange(): void {
+		this.endContainer.classList.toggle(
+			'end',
+			this.end.assignedNodes().length > 0
+		);
+	}
+	/* eslint-enable */
 }
 
 /**
@@ -59,21 +64,25 @@ export class StartEnd {
  */
 export const endSlotTemplate: (
     context: ElementDefinitionContext,
-    definition: EndOptions
+	definition: EndOptions
 ) => ViewTemplate<StartEnd> = (
-    // @ts-expect-error Type is incorrectly non-optional
-    context: ElementDefinitionContext,
-    definition: EndOptions
+	// @ts-expect-error Type is incorrectly non-optional
+	context: ElementDefinitionContext,
+	definition: EndOptions
 ) => html`
-    <span
-        part="end"
-        ${ref("endContainer")}
-        class=${() => (definition.end ? "end" : void 0)}
-    >
-        <slot name="end" ${ref("end")} @slotchange="${x => x.handleEndContentChange()}">
-            ${definition.end || ""}
-        </slot>
-    </span>
+	<span
+		part="end"
+		${ref('endContainer')}
+		class=${() => (definition.end ? 'end' : void 0)}
+	>
+		<slot
+			name="end"
+			${ref('end')}
+			@slotchange="${(x) => x.handleEndContentChange()}"
+		>
+			${definition.end || ''}
+		</slot>
+	</span>
 `;
 
 /**
@@ -83,26 +92,26 @@ export const endSlotTemplate: (
  * @public
  */
 export const startSlotTemplate: (
-    context: ElementDefinitionContext,
-    definition: StartOptions
+	context: ElementDefinitionContext,
+	definition: StartOptions
 ) => ViewTemplate<StartEnd> = (
-  // @ts-expect-error Type is incorrectly non-optional
-    context: ElementDefinitionContext,
-    definition: StartOptions
+	// @ts-expect-error Type is incorrectly non-optional
+	context: ElementDefinitionContext,
+	definition: StartOptions
 ) => html`
-    <span
-        part="start"
-        ${ref("startContainer")}
-        class="${() => (definition.start ? "start" : void 0)}"
-    >
-        <slot
-            name="start"
-            ${ref("start")}
-            @slotchange="${x => x.handleStartContentChange()}"
-        >
-            ${definition.start || ""}
-        </slot>
-    </span>
+	<span
+		part="start"
+		${ref('startContainer')}
+		class="${() => (definition.start ? 'start' : void 0)}"
+	>
+		<slot
+			name="start"
+			${ref('start')}
+			@slotchange="${(x) => x.handleStartContentChange()}"
+		>
+			${definition.start || ''}
+		</slot>
+	</span>
 `;
 
 /**

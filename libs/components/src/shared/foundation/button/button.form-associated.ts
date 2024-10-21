@@ -1,15 +1,14 @@
-import { FormAssociated } from "../form-associated/form-associated";
-import { FoundationElement } from "../foundation-element/foundation-element";
+import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
 
-class _Button extends FoundationElement {}
+class _FoundationButton extends FoundationElement {}
 /* eslint-disable-next-line @typescript-eslint/naming-convention */
-interface _Button extends FormAssociated {}
+interface _FoundationButton extends FormAssociated {}
 
 /**
  * A form-associated base class for the {@link @microsoft/fast-foundation#(Button:class)} component.
  *
  * @internal
  */
-export class FormAssociatedButton extends FormAssociated(_Button) {
-    proxy = document.createElement("input");
+export class FormAssociatedButton extends FormAssociated(_FoundationButton) {
+	proxy = document.createElement('input');
 }
