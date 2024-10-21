@@ -18,6 +18,13 @@ You must set `aria-hidden="true"` on decorative icons to prevent them from being
 You must set the `aria-label` attribute on informative icons to provide an accessible name.
 
 ```html preview
+<div class="number">
+	<vwc-icon name="telephone-line" aria-label="Telephone:"></vwc-icon> 0123 456
+	7890
+</div>
+<div class="number">
+	<vwc-icon name="fax-line" aria-label="Fax:"></vwc-icon> 0123 456 7890
+</div>
 <style>
 	.number {
 		display: flex;
@@ -26,13 +33,6 @@ You must set the `aria-label` attribute on informative icons to provide an acces
 		margin: 8px;
 	}
 </style>
-<div class="number">
-	<vwc-icon name="telephone-line" aria-label="Telephone:"></vwc-icon> 0123 456
-	7890
-</div>
-<div class="number">
-	<vwc-icon name="fax-line" aria-label="Fax:"></vwc-icon> 0123 456 7890
-</div>
 ```
 
 ## Best Practices

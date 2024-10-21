@@ -32,17 +32,6 @@ Instead of an icon from the Vivid Icon Library, you can also use a custom SVG im
 Use the `size` attribute to select the icon's size from a set of predefined values.
 
 ```html preview
-<style>
-	table {
-		border-collapse: collapse;
-	}
-	th,
-	td {
-		text-align: right;
-		padding: 8px;
-		border: 1px solid var(--vvd-color-neutral-200);
-	}
-</style>
 <table>
 	<thead>
 		<tr>
@@ -138,6 +127,17 @@ Use the `size` attribute to select the icon's size from a set of predefined valu
 		</tr>
 	</tbody>
 </table>
+<style>
+	table {
+		border-collapse: collapse;
+	}
+	th,
+	td {
+		text-align: right;
+		padding: 8px;
+		border: 1px solid var(--vvd-color-neutral-200);
+	}
+</style>
 ```
 
 <vwc-note connotation="information" icon="info-line">
@@ -149,14 +149,14 @@ Use the `size` attribute to select the icon's size from a set of predefined valu
 If the component is used without a `size`, it will use the current `font-size` value.
 
 ```html preview
+<vwc-icon name="close-line" class="small-icon" aria-hidden="true"></vwc-icon>
+30px
+
 <style>
 	.small-icon {
 		font-size: 30px;
 	}
 </style>
-
-<vwc-icon name="close-line" class="small-icon" aria-hidden="true"></vwc-icon>
-30px
 ```
 
 ## Connotation
@@ -164,11 +164,6 @@ If the component is used without a `size`, it will use the current `font-size` v
 Use the `connotation` attribute to select the icon's color from a set of predefined values.
 
 ```html preview
-<style>
-	li {
-		list-style: none;
-	}
-</style>
 <ul>
 	<li>
 		<vwc-icon
@@ -227,6 +222,11 @@ Use the `connotation` attribute to select the icon's color from a set of predefi
 		information
 	</li>
 </ul>
+<style>
+	li {
+		list-style: none;
+	}
+</style>
 ```
 
 ### Custom Color
@@ -234,10 +234,10 @@ Use the `connotation` attribute to select the icon's color from a set of predefi
 If the component is used without a `connotation`, it will use the current text color.
 
 ```html preview
+<vwc-icon id="icon" name="heart-solid"></vwc-icon>
 <style>
 	#icon {
 		color: var(--vvd-color-announcement-400);
 	}
 </style>
-<vwc-icon id="icon" name="heart-solid"></vwc-icon>
 ```
