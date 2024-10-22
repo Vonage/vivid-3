@@ -117,6 +117,63 @@ describe('vwc-checkbox', () => {
 
 			expect(element.indeterminate).toBeFalsy();
 		});
+
+		it('should set aria-checked to mixed when true', async () => {
+			element.indeterminate = true;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).getAttribute('aria-checked')).toBe(
+				'mixed'
+			);
+		});
+
+		it('should set checked to false when true', async () => {
+			element.indeterminate = true;
+			await elementUpdated(element);
+
+			expect(element.checked).toBe(false);
+		});
+	});
+
+	describe('aria-checked', () => {
+		it('should set indeterminate to true when set to "mixed"', async () => {
+			element.ariaChecked = 'mixed';
+			await elementUpdated(element);
+
+			expect(element.indeterminate).toBe(true);
+		});
+
+		it('should be true when checkbox is checked', async () => {
+			element.checked = true;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).getAttribute('aria-checked')).toBe('true');
+		});
+
+		it('should be false when checkbox is unchecked', async () => {
+			element.checked = false;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).getAttribute('aria-checked')).toBe(
+				'false'
+			);
+		});
+
+		it('should set checked to false when set to false', async () => {
+			element.checked = true;
+			element.ariaChecked = 'false';
+			await elementUpdated(element);
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should set checked to true when set to true', async () => {
+			element.checked = false;
+			element.ariaChecked = 'true';
+			await elementUpdated(element);
+
+			expect(element.checked).toBe(true);
+		});
 	});
 
 	describe('connotation', function () {
