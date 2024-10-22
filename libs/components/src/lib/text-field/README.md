@@ -148,7 +148,7 @@ In the example below a Select is added to implement a category filtered search f
 </style>
 ```
 
-### Helper Text
+### Helper Text Slot
 
 The `helper-text` slot allows you to use rich content as the text-field's helper text.
 
