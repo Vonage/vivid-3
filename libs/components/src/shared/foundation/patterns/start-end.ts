@@ -66,7 +66,7 @@ export const endSlotTemplate: (
 	context: ElementDefinitionContext,
 	definition: EndOptions
 ) => ViewTemplate<StartEnd> = (
-	context: ElementDefinitionContext,
+	_context: ElementDefinitionContext,
 	definition: EndOptions
 ) => html`
 	<span
@@ -94,7 +94,7 @@ export const startSlotTemplate: (
 	context: ElementDefinitionContext,
 	definition: StartOptions
 ) => ViewTemplate<StartEnd> = (
-	context: ElementDefinitionContext,
+	_context: ElementDefinitionContext,
 	definition: StartOptions
 ) => html`
 	<span
