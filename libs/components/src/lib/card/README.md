@@ -1,116 +1,54 @@
-# Card
+## Usage
 
-A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/card';</script>
+import '@vonage/vivid/card';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Headline
+```js
+import { registerCard } from '@vonage/vivid';
 
-Add a `headline` attribute to add card headline title.
-
-- Type: `string`
-- Default: `undefined`
+registerCard('your-prefix');
+```
 
 ```html preview
-<vwc-card headline="Vivid Card Component"></vwc-card>
+<script type="module">
+	import { registerCard } from '@vonage/vivid';  
+	registerCard('your-prefix');
+</script>
+
+<your-prefix-card headline="I'm a card"></your-prefix-text-card>
 ```
 
-### Subtitle
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Add a `subtitle` attribute to add card subtitle.
+```html
+<script setup lang="ts">
+	import { VCard } from '@vonage/vivid-vue';
+</script>
 
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
+<template>
+	<VCard label="First name" />
+</template>
 ```
 
-### Appearance
+</vwc-tab-panel>
+</vwc-tabs>
 
-Set the `appearance` attribute to change the card's appearance.
-
-- Type: `elevated` | `outlined` | `ghost`
-- Default: `elevated`
-
-```html preview
-<vwc-layout>
-	<vwc-card
-		appearance="elevated"
-		headline="Vivid Card - Appearance Elevated"
-		subtitle="this is the default appearance"
-	></vwc-card>
-	<vwc-card
-		appearance="outlined"
-		headline="Vivid Card - Appearance Outlined"
-		subtitle="set a border to the card same as elevation='0' "
-	></vwc-card>
-	<vwc-card
-		appearance="ghost"
-		headline="Vivid Card - Appearance Ghost"
-		subtitle="present the card template without background or shadow"
-	></vwc-card>
-</vwc-layout>
-```
-
-### Elevation
-
-Control the elevation depth by adding the `elevation` attribute.  
-The elevation is applied only with the default appearance (`appearance='elevated'`).
-
-- Type: `2` | `4` | `8` | `12` | `16` | `24`
-- Default: `4`
-
-```html preview
-<vwc-card
-	elevation="12"
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
-```
-
-### Icon
-
-Add the `icon` attribute to add icon on the right of the card headline.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-	icon="chat-line"
-></vwc-card>
-```
-
-### Text
-
-Add a `text` attribute to add text to the card.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-	text="The card can contain multiple lines of text."
-></vwc-card>
-```
 
 ## Slots
 
-### Graphic
+### Graphic Slot
 
-The graphic slot overrides the icon property.
+The graphic slot overrides the icon property.  
+Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview
 <vwc-card
@@ -125,7 +63,7 @@ The graphic slot overrides the icon property.
 </vwc-card>
 ```
 
-### Media
+### Media Slot
 
 The media slot can be used to display images or video content above the card header.
 
@@ -139,12 +77,12 @@ The media slot can be used to display images or video content above the card hea
 		slot="media"
 		src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
 		alt="Sitting on Floor"
-		style="width: 100%; height: 350px; object-fit: cover;"
+		style="width: 100%; height: 150px; object-fit: cover;"
 	/>
 </vwc-card>
 ```
 
-### Meta
+### Meta Slot
 
 The meta slot is for action content in the card header.
 
@@ -161,9 +99,11 @@ The meta slot is for action content in the card header.
 </vwc-card>
 ```
 
-### Footer
+### Footer Slot
 
-The footer slot is for content in the card footer.
+The footer slot is for content in the card footer.  
+Use it for adding buttons or action items.  
+By default - items inside footer slot are aligned to the end.
 
 ```html preview
 <vwc-card
@@ -180,10 +120,10 @@ The footer slot is for content in the card footer.
 </vwc-card>
 ```
 
-### Main
+### Main Slot
 
-Card is battery charged with opinionated template.
-Assign nodes to `main` slot to fully override a card's predefined template with your own.
+Card has predefined content style template.  
+Use the `main` slot to fully override a card's predefined template with your own. When using main - only appearance and elevation are applied on the card.
 
 ```html preview
 <vwc-card>

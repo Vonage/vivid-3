@@ -68,3 +68,19 @@ The `appearance` attribute to change the card's appearance.
 	></vwc-card>
 </vwc-layout>
 ```
+
+## Elevation
+
+Control the elevation depth by adding the `elevation` attribute.  
+The elevation is applied only with the default appearance (`appearance='elevated'`).  
+Card elevation default is `4`.  
+Other elevation values: `2` | `4` | `8` | `12` | `16` | `24`. 
+
+```html preview
+<vwc-card
+	elevation="12"
+	headline="Vivid Card Component"
+	subtitle="Extra text below the card headline"
+></vwc-card>
+```
+
