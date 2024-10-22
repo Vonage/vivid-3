@@ -57,7 +57,6 @@ export class FoundationButton extends FormAssociatedButton {
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
 	public formaction: string;
-	// @ts-expect-error Type is incorrectly non-optional
 	private formactionChanged(): void {
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formAction = this.formaction;
@@ -74,7 +73,6 @@ export class FoundationButton extends FormAssociatedButton {
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
 	public formenctype: string;
-	// @ts-expect-error Type is incorrectly non-optional
 	private formenctypeChanged(): void {
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formEnctype = this.formenctype;
@@ -91,7 +89,6 @@ export class FoundationButton extends FormAssociatedButton {
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
 	public formmethod: string;
-	// @ts-expect-error Type is incorrectly non-optional
 	private formmethodChanged(): void {
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formMethod = this.formmethod;
@@ -108,7 +105,6 @@ export class FoundationButton extends FormAssociatedButton {
 	@attr({ mode: 'boolean' })
 	// @ts-expect-error Type is incorrectly non-optional
 	public formnovalidate: boolean;
-	// @ts-expect-error Type is incorrectly non-optional
 	private formnovalidateChanged(): void {
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formNoValidate = this.formnovalidate;
@@ -125,7 +121,6 @@ export class FoundationButton extends FormAssociatedButton {
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
 	public formtarget: '_self' | '_blank' | '_parent' | '_top';
-	// @ts-expect-error Type is incorrectly non-optional
 	private formtargetChanged(): void {
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.formTarget = this.formtarget;
@@ -142,7 +137,6 @@ export class FoundationButton extends FormAssociatedButton {
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
 	public type: 'submit' | 'reset' | 'button';
-	// @ts-expect-error Type is incorrectly non-optional
 	private typeChanged(
 		previous: 'submit' | 'reset' | 'button' | void,
 		next: 'submit' | 'reset' | 'button'
