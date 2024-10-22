@@ -29,14 +29,16 @@ const extractSvg = (response: Response) => {
 	return response.text();
 };
 
-const loadSvg = (iconId: string) =>
-	fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION)).then(
-		extractSvg
-	);
+const loadSvg = (iconId: string, signal: AbortSignal) =>
+	fetch(baseUrlTemplate([iconId, 'svg'].join('.'), ICON_SET_VERSION), {
+		signal,
+	}).then(extractSvg);
 
-const resolveIcon = memoizeWith(identity as () => string, (iconId = '') =>
-	iconId.trim() ? loadSvg(iconId) : Promise.resolve('')
-) as (iconId?: string) => Promise<string>;
+const resolveIcon = memoizeWith(
+	identity as () => string,
+	(iconId = '', signal: AbortSignal) =>
+		iconId.trim() ? loadSvg(iconId, signal) : Promise.resolve('')
+) as (iconId: string, signal: AbortSignal) => Promise<string>;
 
 /**
  * Types of icon connotation.
@@ -103,7 +105,18 @@ export class Icon extends FoundationElement {
 			? this._svg
 			: baseUrlTemplate(`${this.name}.svg`, ICON_SET_VERSION);
 	}
+
+	#abortController: AbortController | null = null;
+
 	async nameChanged() {
+		if (this.#abortController) {
+			this.#abortController.abort();
+		}
+		this.#abortController = new AbortController();
+		// If an AbortController exists already, abort it
+		// Create a new AC for the request
+		// Send it to resolveIcon method
+		// Finally, remove the AC
 		this._svg = undefined;
 		this.iconLoaded = false;
 
@@ -116,7 +129,7 @@ export class Icon extends FoundationElement {
 			}, PLACEHOLDER_TIMEOUT);
 		}, PLACEHOLDER_DELAY);
 
-		await resolveIcon(this.name)
+		await resolveIcon(this.name ? this.name : '', this.#abortController.signal)
 			.then((svg) => {
 				this._svg = svg;
 			})
