@@ -36,7 +36,7 @@ const loadSvg = (iconId: string, signal: AbortSignal) =>
 
 const resolveIcon = memoizeWith(
 	identity as () => string,
-	(iconId = '', signal: AbortSignal) =>
+	(iconId, signal: AbortSignal) =>
 		iconId.trim() ? loadSvg(iconId, signal) : Promise.resolve('')
 ) as (iconId: string, signal: AbortSignal) => Promise<string>;
 
