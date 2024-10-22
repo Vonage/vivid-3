@@ -23,6 +23,8 @@ export type CheckboxConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
+export type AriaCheckedStates = 'false' | 'true' | 'mixed' | 'undefined';
+
 /**
  * @public
  * @component checkbox
@@ -47,11 +49,34 @@ export class Checkbox extends FoundationCheckbox {
 	@attr connotation?: CheckboxConnotation;
 
 	/**
+	 * The current checkbox state
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: aria-checked
+	 */
+	@attr({ attribute: 'aria-checked' })
+	override ariaChecked: AriaCheckedStates | null = null;
+
+	indeterminateChanged(_: boolean, next: boolean) {
+		this.checked = !next;
+	}
+
+	ariaCheckedChanged() {
+		if (this.ariaChecked === 'mixed') {
+			this.indeterminate = true;
+		} else {
+			this.indeterminate = false;
+			this.checked = this.ariaChecked === 'true' ? true : false;
+		}
+	}
+	/**
 	 * @internal
 	 */
 	override checkedChanged(prev: boolean | undefined, next: boolean): void {
 		super.checkedChanged(prev, next);
 
+		this.ariaChecked = next == true ? 'true' : 'false';
 		if (prev !== undefined) {
 			this.$emit('input');
 		}
