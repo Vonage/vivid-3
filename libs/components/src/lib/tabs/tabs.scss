@@ -85,13 +85,13 @@
 	overflow: hidden;
 
 	.base.orientation-vertical & {
-		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 		flex-direction: column;
+		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 	}
 
 	.base.orientation-horizontal & {
-		border-bottom: 1px solid var(--vvd-color-neutral-300);
 		flex-direction: row;
+		border-bottom: 1px solid var(--vvd-color-neutral-300);
 	}
 }
 
@@ -111,10 +111,6 @@
 		row-gap: var(#{variables.$tabs-tablist-gutter});
 	}
 
-	.base.has-action-items.orientation-vertical & {
-		padding-block-end: 0;
-	}
-
 	.base:not(.orientation-vertical) & {
 		justify-content: flex-start;
 		column-gap: var(#{variables.$tabs-tablist-gutter});
@@ -123,6 +119,10 @@
 		grid-template-rows: auto auto;
 		inline-size: 100%;
 		padding-inline: var(#{variables.$tabs-tablist-gutter});
+	}
+
+	.base.has-action-items.orientation-vertical & {
+		padding-block-end: 0;
 	}
 
 	.base.has-action-items:not(.orientation-vertical) & {
@@ -194,12 +194,12 @@ slot[name='action-items'] {
 	.base:not(.orientation-vertical) & {
 		position: absolute;
 		z-index: 1;
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-column: 1 / auto;
 		inline-size: calc(var(#{variables.$tabs-active-indicator-inline-size}));
 		inset-block-end: 0;
 		inset-inline-start: 8px;
-		border-radius: #{border-radius-variables.$border-radius-condensed};
 	}
 }
 
