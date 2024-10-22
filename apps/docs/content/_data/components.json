@@ -227,7 +227,8 @@
 	{
 		"title": "Slider",
 		"page": "legacy",
-		"markdown": "./libs/components/src/lib/slider/README.md"
+		"markdown": "./libs/components/src/lib/slider/README.md",
+		"children": ["Range Slider"]
 	},
 	{
 		"title": "Tabs",
@@ -327,7 +328,8 @@
 		"title": "Range Slider",
 		"page": "legacy",
 		"status": "alpha",
-		"markdown": "./libs/components/src/lib/range-slider/README.md"
+		"markdown": "./libs/components/src/lib/range-slider/README.md",
+		"parent": "Slider"
 	},
 	{
 		"title": "Split Button",
