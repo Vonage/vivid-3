@@ -9,10 +9,10 @@ import type { ButtonOptions, FoundationButton } from './button';
  * @public
  */
 export const buttonTemplate: FoundationElementTemplate<
-    ViewTemplate<FoundationButton>,
-    ButtonOptions
+	ViewTemplate<FoundationButton>,
+	ButtonOptions
 > = (context, definition) => html`
-    <button
+	<button
 		class="control"
 		part="control"
 		?autofocus="${(x) => x.autofocus}"

@@ -32,7 +32,7 @@ export type StartEndOptions = StartOptions & EndOptions;
  * @public
  */
 export class StartEnd {
-    /* eslint-disable @typescript-eslint/explicit-member-accessibility */
+	/* eslint-disable @typescript-eslint/explicit-member-accessibility */
 	// @ts-expect-error Type is incorrectly non-optional
 	public start: HTMLSlotElement;
 	// @ts-expect-error Type is incorrectly non-optional
@@ -63,7 +63,7 @@ export class StartEnd {
  * @public
  */
 export const endSlotTemplate: (
-    context: ElementDefinitionContext,
+	context: ElementDefinitionContext,
 	definition: EndOptions
 ) => ViewTemplate<StartEnd> = (
 	// @ts-expect-error Type is incorrectly non-optional
@@ -122,13 +122,13 @@ export const startSlotTemplate: (
  * @deprecated - use endSlotTemplate
  */
 export const endTemplate: ViewTemplate<StartEnd> = html`
-    <span part="end" ${ref("endContainer")}>
-        <slot
-            name="end"
-            ${ref("end")}
-            @slotchange="${x => x.handleEndContentChange()}"
-        ></slot>
-    </span>
+	<span part="end" ${ref('endContainer')}>
+		<slot
+			name="end"
+			${ref('end')}
+			@slotchange="${(x) => x.handleEndContentChange()}"
+		></slot>
+	</span>
 `;
 
 /**
@@ -139,11 +139,11 @@ export const endTemplate: ViewTemplate<StartEnd> = html`
  * @deprecated - use startSlotTemplate
  */
 export const startTemplate: ViewTemplate<StartEnd> = html`
-    <span part="start" ${ref("startContainer")}>
-        <slot
-            name="start"
-            ${ref("start")}
-            @slotchange="${x => x.handleStartContentChange()}"
-        ></slot>
-    </span>
+	<span part="start" ${ref('startContainer')}>
+		<slot
+			name="start"
+			${ref('start')}
+			@slotchange="${(x) => x.handleStartContentChange()}"
+		></slot>
+	</span>
 `;

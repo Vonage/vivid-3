@@ -16,14 +16,11 @@ As defined by the [W3C](https://w3c.github.io/aria-practices/#button):
 
 ```ts
 import {
-    provideFASTDesignSystem,
-    fastButton
-} from "@microsoft/fast-components";
+	provideFASTDesignSystem,
+	fastButton,
+} from '@microsoft/fast-components';
 
-provideFASTDesignSystem()
-    .register(
-        fastButton()
-    );
+provideFASTDesignSystem().register(fastButton());
 ```
 
 ## Usage
@@ -35,19 +32,16 @@ provideFASTDesignSystem()
 ## Create your own design
 
 ```ts
-import {
-    Button,
-    buttonTemplate as template,
-} from "@microsoft/fast-foundation";
-import { buttonStyles as styles } from "./my-button.styles";
+import { Button, buttonTemplate as template } from '@microsoft/fast-foundation';
+import { buttonStyles as styles } from './my-button.styles';
 
 export const myButton = Button.compose({
-    baseName: "button",
-    template,
-    styles,
-    shadowOptions: {
-        delegatesFocus: true,
-    },
+	baseName: 'button',
+	template,
+	styles,
+	shadowOptions: {
+		delegatesFocus: true,
+	},
 });
 ```
 
@@ -56,8 +50,6 @@ This component is built with the expectation that focus is delegated to the butt
 :::
 
 ## API
-
-
 
 ### class: `Button`
 
@@ -73,13 +65,13 @@ This component is built with the expectation that focus is delegated to the butt
 | ----------------------- | ------- | -------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
 | `autofocus`             | public  | `boolean`                                    |         | Determines if the element should receive document focus on page load.                                                                                                               |                      |
 | `formId`                | public  | `string`                                     |         | The id of a form to associate the element to.                                                                                                                                       |                      |
-| `formaction`            | public  | `string`                                     |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                       |                      |
-| `formenctype`           | public  | `string`                                     |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                       |                      |
-| `formmethod`            | public  | `string`                                     |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                       |                      |
-| `formnovalidate`        | public  | `boolean`                                    |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                       |                      |
-| `formtarget`            | public  | `"_self" or "_blank" or "_parent" or "_top"` |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                       |                      |
+| `formaction`            | public  | `string`                                     |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                                        |                      |
+| `formenctype`           | public  | `string`                                     |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                                        |                      |
+| `formmethod`            | public  | `string`                                     |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                                        |                      |
+| `formnovalidate`        | public  | `boolean`                                    |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                                        |                      |
+| `formtarget`            | public  | `"_self" or "_blank" or "_parent" or "_top"` |         | See [`<button>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) for more details.                                                                        |                      |
 | `type`                  | public  | `"submit" or "reset" or "button"`            |         | The button type.                                                                                                                                                                    |                      |
-| `defaultSlottedContent` | public  | `HTMLElement[]`                              |         |  Default slotted content                                                                                                                                                            |                      |
+| `defaultSlottedContent` | public  | `HTMLElement[]`                              |         | Default slotted content                                                                                                                                                             |                      |
 | `control`               | public  | `HTMLButtonElement`                          |         |                                                                                                                                                                                     |                      |
 | `proxy`                 |         |                                              |         |                                                                                                                                                                                     | FormAssociatedButton |
 | `$presentation`         | public  | `ComponentPresentation or null`              |         | A property which resolves the ComponentPresentation instance for the current component.                                                                                             | FoundationElement    |
@@ -128,8 +120,8 @@ This component is built with the expectation that focus is delegated to the butt
 
 #### Fields
 
-| Name           | Privacy | Type                                             | Default | Description                                                            | Inherited From |
-| -------------- | ------- | ------------------------------------------------ | ------- | ---------------------------------------------------------------------- | -------------- |
+| Name           | Privacy | Type                                             | Default | Description                                                          | Inherited From |
+| -------------- | ------- | ------------------------------------------------ | ------- | -------------------------------------------------------------------- | -------------- |
 | `ariaExpanded` | public  | `"true" or "false" or string or null`            |         | See https://www.w3.org/WAI/PF/aria/roles#button for more information |                |
 | `ariaPressed`  | public  | `"true" or "false" or "mixed" or string or null` |         | See https://www.w3.org/WAI/PF/aria/roles#button for more information |                |
 
@@ -142,10 +134,9 @@ This component is built with the expectation that focus is delegated to the butt
 
 <hr/>
 
-
 ## Additional resources
 
-* [Component explorer examples](https://explore.fast.design/components/fast-button)
-* [Component technical specification](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/button/button.spec.md)
-* [W3C Component Aria Practices](https://w3c.github.io/aria-practices/#button)
-* [Open UI Analysis](https://open-ui.org/components/button)
+- [Component explorer examples](https://explore.fast.design/components/fast-button)
+- [Component technical specification](https://github.com/microsoft/fast/blob/master/packages/web-components/fast-foundation/src/button/button.spec.md)
+- [W3C Component Aria Practices](https://w3c.github.io/aria-practices/#button)
+- [Open UI Analysis](https://open-ui.org/components/button)
