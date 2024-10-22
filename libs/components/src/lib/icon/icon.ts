@@ -113,10 +113,6 @@ export class Icon extends FoundationElement {
 			this.#abortController.abort();
 		}
 		this.#abortController = new AbortController();
-		// If an AbortController exists already, abort it
-		// Create a new AC for the request
-		// Send it to resolveIcon method
-		// Finally, remove the AC
 		this._svg = undefined;
 		this.iconLoaded = false;
 
