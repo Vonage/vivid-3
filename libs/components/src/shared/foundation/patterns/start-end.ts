@@ -66,7 +66,6 @@ export const endSlotTemplate: (
 	context: ElementDefinitionContext,
 	definition: EndOptions
 ) => ViewTemplate<StartEnd> = (
-	// @ts-expect-error Type is incorrectly non-optional
 	context: ElementDefinitionContext,
 	definition: EndOptions
 ) => html`
@@ -95,7 +94,6 @@ export const startSlotTemplate: (
 	context: ElementDefinitionContext,
 	definition: StartOptions
 ) => ViewTemplate<StartEnd> = (
-	// @ts-expect-error Type is incorrectly non-optional
 	context: ElementDefinitionContext,
 	definition: StartOptions
 ) => html`
