@@ -157,24 +157,9 @@ export class DialPad extends FoundationElement {
 
 	#refocusOnInputAfterLastCharDelete() {
 		if (this.value === '') {
-			document.addEventListener(
-				'blur',
-				this.#blurHandlerAfterDeleteButtonRemoved,
-				true
-			);
+			this._textFieldEl.focus();
 		}
 	}
-
-	#blurHandlerAfterDeleteButtonRemoved = (event: FocusEvent): any => {
-		event.stopImmediatePropagation();
-		event.preventDefault();
-		this._textFieldEl.focus();
-		document.removeEventListener(
-			'blur',
-			this.#blurHandlerAfterDeleteButtonRemoved,
-			true
-		);
-	};
 }
 
 export interface DialPad extends Localized {}

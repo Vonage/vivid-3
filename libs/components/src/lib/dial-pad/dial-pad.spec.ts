@@ -194,36 +194,14 @@ describe('vwc-dial-pad', () => {
 			await setValue('1');
 
 			await clickDeleteButton();
-			element.dispatchEvent(
-				new InputEvent('blur', { bubbles: true, composed: true })
-			);
 
 			expect(spy).toHaveBeenCalledTimes(0);
 		});
 
-		it('should allow blur event that is not related to deleting a character', async () => {
-			const spy = jest.fn();
-			element.addEventListener('blur', spy);
+		it('should focus on the dialpad after deleting the last element', async () => {
 			await setValue('1');
 
 			await clickDeleteButton();
-
-			element.dispatchEvent(
-				new InputEvent('blur', { bubbles: true, composed: true })
-			);
-			element.dispatchEvent(
-				new InputEvent('blur', { bubbles: true, composed: true })
-			);
-			expect(spy).toHaveBeenCalledTimes(1);
-		});
-
-		it('should focus on the dialpad after the blur was prevented', async () => {
-			await setValue('1');
-
-			await clickDeleteButton();
-			element.dispatchEvent(
-				new InputEvent('blur', { bubbles: true, composed: true })
-			);
 
 			expect(document.activeElement === element).toBe(true);
 		});
