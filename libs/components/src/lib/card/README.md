@@ -139,7 +139,7 @@ The media slot can be used to display images or video content above the card hea
 		slot="media"
 		src="https://doodleipsum.com/300x150/flat?bg=EB765D&amp;i=7d5ed3bc0c215d1359b2a63d03cf1540"
 		alt="Sitting on Floor"
-		style="width: 100%; height: 150px; object-fit: cover;"
+		style="width: 100%; height: 350px; object-fit: cover;"
 	/>
 </vwc-card>
 ```
