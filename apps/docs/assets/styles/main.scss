@@ -16,6 +16,7 @@ code {
 	border-radius: 4px;
 	background-color: var(--vvd-color-neutral-50);
 	tab-size: 4;
+	white-space: nowrap;
 }
 
 a {
@@ -310,7 +311,7 @@ vwc-tab-panel pre.hljs:first-child {
 	min-width: 0;
 	inline-size: 100%;
 	max-inline-size: 1000px;
-	padding-block: 24px 32px;
+	padding-block: 32px;
 	word-break: break-word;
 }
 
