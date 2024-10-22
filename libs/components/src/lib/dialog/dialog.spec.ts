@@ -1,10 +1,23 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import * as dialogPolyfill from 'dialog-polyfill';
+import {
+	FoundationElement,
+	FoundationElementRegistry,
+} from '@microsoft/fast-foundation';
 import { Dialog } from './dialog';
 import '.';
 import { dialogDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-dialog';
+
+// Polyfill dialog element which is not supported in JSDOM
+const originalConnectedCallback = FoundationElement.prototype.connectedCallback;
+FoundationElement.prototype.connectedCallback = function () {
+	originalConnectedCallback.call(this);
+	this.shadowRoot!.querySelectorAll('dialog').forEach(
+		(dialogPolyfill as any).registerDialog
+	);
+};
 
 describe('vwc-dialog', () => {
 	async function closeDialog() {
@@ -21,6 +34,9 @@ describe('vwc-dialog', () => {
 		element.showModal();
 		await elementUpdated(element);
 	}
+
+	const getDismissButton = () =>
+		dialogEl.querySelector('.dismiss-button') as HTMLElement;
 
 	let element: Dialog;
 	let dialogEl: HTMLDialogElement;
@@ -142,6 +158,24 @@ describe('vwc-dialog', () => {
 			expect(headlineElementWhenUndefined).toBeNull();
 			expect(headlineElement).toBeTruthy();
 			expect(headlineElement?.textContent?.trim()).toEqual(content);
+		});
+	});
+
+	describe('no-dismiss-button', function () {
+		it('should render a dismiss button when no-dismiss-button is not set', async function () {
+			expect(getDismissButton()).not.toBeNull();
+		});
+
+		it('should not render dismiss button when no-dismiss-button is set', async function () {
+			element.noDismissButton = true;
+			await elementUpdated(element);
+			expect(getDismissButton()).toBeNull();
+		});
+
+		it('should not render dismiss button when no-dismiss-button is implicitly set via non-dismissible', async function () {
+			element.nonDismissible = true;
+			await elementUpdated(element);
+			expect(getDismissButton()).toBeNull();
 		});
 	});
 
@@ -301,6 +335,33 @@ describe('vwc-dialog', () => {
 		});
 	});
 
+	describe('cancel event', function () {
+		const triggerCancelEvent = () => getDismissButton().click();
+
+		beforeEach(async () => {
+			await showDialog();
+		});
+
+		it('should prevent dialog from closing when event default is prevented', async () => {
+			element.addEventListener('cancel', (event) => {
+				event.preventDefault();
+			});
+
+			triggerCancelEvent();
+
+			expect(element.open).toEqual(true);
+		});
+
+		it('should emit a non-bubbling event', async () => {
+			const onCancel = jest.fn();
+			element.parentElement!.addEventListener('cancel', onCancel);
+
+			triggerCancelEvent();
+
+			expect(onCancel).not.toBeCalled();
+		});
+	});
+
 	describe('scrimClick', function () {
 		function createMouseEventOutsideTheDialog(type: string) {
 			return new MouseEvent(type, {
@@ -321,6 +382,10 @@ describe('vwc-dialog', () => {
 				clientX: 75,
 			});
 		}
+
+		const clickOnScrim = () => {
+			dialogEl.dispatchEvent(createMouseEventOutsideTheDialog('mousedown'));
+		};
 
 		const dialogClientRect: DOMRect = {
 			bottom: 50,
@@ -374,14 +439,30 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should close the dialog when scrim is clicked', async function () {
-			const event = createMouseEventOutsideTheDialog('mousedown');
-			dialogEl.dispatchEvent(event);
+			clickOnScrim();
 			await elementUpdated(element);
 			expect(element.open).toEqual(false);
 		});
 
+		it('should emit a cancel event when scrim is clicked', async function () {
+			const cancelSpy = jest.fn();
+			element.addEventListener('cancel', cancelSpy);
+			clickOnScrim();
+			await elementUpdated(element);
+			expect(cancelSpy).toHaveBeenCalledTimes(1);
+		});
+
 		it('should leave the dialog open on scrim click when no light dismiss', async function () {
 			element.noLightDismiss = true;
+			await elementUpdated(element);
+
+			clickOnScrim();
+			await elementUpdated(element);
+			expect(element.open).toEqual(true);
+		});
+
+		it('should leave the dialog open on scrim click when no light dismiss is implicitly set via non-dismissible', async function () {
+			element.nonDismissible = true;
 			await elementUpdated(element);
 
 			const event = createMouseEventOutsideTheDialog('mousedown');
@@ -452,13 +533,21 @@ describe('vwc-dialog', () => {
 		element.addEventListener('close', spy);
 		await showDialog();
 
-		const dismissButton = dialogEl.querySelector(
-			'.dismiss-button'
-		) as HTMLElement;
-		dismissButton.click();
+		getDismissButton().click();
 
 		expect(element.open).toEqual(false);
 		expect(spy).toHaveBeenCalledTimes(1);
+	});
+
+	it('should emit a cancel event when dismiss button is clicked', async function () {
+		const cancelSpy = jest.fn();
+		element.addEventListener('cancel', cancelSpy);
+		await showDialog();
+
+		getDismissButton().click();
+
+		expect(element.open).toEqual(false);
+		expect(cancelSpy).toHaveBeenCalledTimes(1);
 	});
 
 	it('should preventDefault of cancel events on the dialog', async () => {
@@ -554,6 +643,28 @@ describe('vwc-dialog', () => {
 			expect(element.open).toEqual(false);
 		});
 
+		it('should stay open on escape key press when no-dismiss-on-esc is set', async function () {
+			element.noDismissOnEsc = true;
+			await showModalDialog();
+			await triggerEscapeKey();
+			expect(element.open).toEqual(true);
+		});
+
+		it('should stay open on escape key press when no-dismiss-on-esc is implicitly set via non-dismissible', async function () {
+			element.nonDismissible = true;
+			await showModalDialog();
+			await triggerEscapeKey();
+			expect(element.open).toEqual(true);
+		});
+
+		it('should fire cancel event on escape key press', async function () {
+			const cancelSpy = jest.fn();
+			element.addEventListener('cancel', cancelSpy);
+			await showModalDialog();
+			await triggerEscapeKey();
+			expect(cancelSpy).toHaveBeenCalledTimes(1);
+		});
+
 		it('should remain open on escape key when not modal', async function () {
 			await showDialog();
 			await triggerEscapeKey();
@@ -610,16 +721,12 @@ describe('vwc-dialog', () => {
 				const labelId = 'label';
 				element.setAttribute('dismiss-button-aria-label', labelId);
 				await elementUpdated(element);
-				const dismissButton =
-					element.shadowRoot?.querySelector('.dismiss-button');
-				expect(dismissButton?.getAttribute('aria-label')).toBe(labelId);
+				expect(getDismissButton().getAttribute('aria-label')).toBe(labelId);
 			});
 		});
 
 		it('should set localised "aria-label" on the dismiss button', async () => {
-			const dismissButton =
-				element.shadowRoot?.querySelector('.dismiss-button');
-			expect(dismissButton?.getAttribute('aria-label')).toBe('Close');
+			expect(getDismissButton().getAttribute('aria-label')).toBe('Close');
 		});
 
 		it('should pass html a11y test', async () => {

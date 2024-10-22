@@ -147,6 +147,15 @@ const enGB: Locale = {
 		noMatchesMessage: 'No options found',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`Remove ${label}`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
+			`Option ${name} selected.`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) =>
+			`Option ${name} deselected.`,
+		optionFocusedMessage: /* istanbul ignore next */ (
+			name: string,
+			position: number,
+			total: number
+		) => `Option ${name} focused, ${position} of ${total}.`,
 	},
 };
 

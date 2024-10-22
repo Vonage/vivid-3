@@ -1,16 +1,15 @@
 ## Toggle
 
-Buttons may be toggled. The `active` prop represents the change in the state along with the icon and label.
+Buttons may be toggled. Change icon and label to indicate the state of the button.
 
 ```html preview center 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button
 		id="mute"
 		icon="mic-mute-solid"
 		appearance="filled"
 		label="Unmute"
 		aria-pressed="true"
-		active
 	></vwc-button>
 	<vwc-button
 		id="favorite"
@@ -26,7 +25,6 @@ Buttons may be toggled. The `active` prop represents the change in the state alo
 		e.target.ariaPressed = pressed;
 		e.target.icon = pressed ? pressedIcon : icon;
 		e.target.label = pressed ? pressedLabel : label;
-		e.target.active = pressed;
 	}
 
 	document.getElementById('mute').addEventListener('click', (e) => {
@@ -49,7 +47,7 @@ Buttons may be toggled. The `active` prop represents the change in the state alo
 </script>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		align-items: center;
 		gap: 16px;
@@ -125,7 +123,7 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 				slot="anchor"
 				icon="italic-solid"
 				size="condensed"
-				active
+				appearance="filled"
 				onclick="onClick(event)"
 			></vwc-button>
 		</vwc-tooltip>
@@ -137,7 +135,7 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 				slot="anchor"
 			></vwc-button>
 		</vwc-tooltip>
-		<vwc-tooltip text="Strike through" placement="bottom-end">
+		<vwc-tooltip text="Strikethrough" placement="bottom-end">
 			<vwc-button
 				icon="strikethrough-solid"
 				size="condensed"
@@ -151,15 +149,16 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 <script>
 	function onClick(event) {
 		const btn = event.currentTarget;
-		if (btn.hasAttribute('active')) {
-			btn.removeAttribute('active');
+		if (btn.hasAttribute('appearance')) {
+			btn.removeAttribute('appearance');
 			btn.setAttribute('aria-pressed', 'false');
 		} else {
-			btn.setAttribute('active', '');
+			btn.setAttribute('appearance', 'filled');
 			btn.setAttribute('aria-pressed', 'true');
 		}
 	}
 </script>
+
 <style>
 	.container {
 		display: flex;

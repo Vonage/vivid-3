@@ -1,22 +1,7 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
-
-// eslint-disable-next-line compat/compat
-export const isDialogSupported = Boolean(
-	window.HTMLDialogElement && window.HTMLDialogElement.prototype.showModal
-);
-
-// Make sure we support Safari 14
-let dialogPolyfill: any;
-(async () => {
-	if (!isDialogSupported) {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		delete window.HTMLDialogElement;
-		dialogPolyfill = await import('dialog-polyfill');
-	}
-})();
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 
 /**
  * Types of icon placement
@@ -24,6 +9,8 @@ let dialogPolyfill: any;
  * @public
  */
 export type IconPlacement = 'top' | 'side';
+
+type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
 
 /**
  * @public
@@ -35,6 +22,7 @@ export type IconPlacement = 'top' | 'side';
  * @slot action-items - Use the action-items slot in order to add action buttons to the bottom of the dialog.
  * @event {CustomEvent<undefined>} open - The `open` event fires when the dialog opens.
  * @event {CustomEvent<string>} close - The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property.
+ * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `(event.target as any).open`
  */
 export class Dialog extends FoundationElement {
@@ -56,7 +44,37 @@ export class Dialog extends FoundationElement {
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
+
+	/**
+	 * Prevents the dialog from being dismissed when clicking outside it.
+	 * @remarks
+	 * HTML Attribute: no-light-dismiss
+	 */
 	@attr({ attribute: 'no-light-dismiss', mode: 'boolean' }) noLightDismiss =
+		false;
+
+	/**
+	 * Prevents the dialog from being dismissed when the escape key is pressed.
+	 * @remarks
+	 * HTML Attribute: no-dismiss-on-esc
+	 */
+	@attr({ attribute: 'no-dismiss-on-esc', mode: 'boolean' }) noDismissOnEsc =
+		false;
+
+	/**
+	 * Hides the dismiss button.
+	 * @remarks
+	 * HTML Attribute: no-dismiss-button
+	 */
+	@attr({ attribute: 'no-dismiss-button', mode: 'boolean' }) noDismissButton =
+		false;
+
+	/**
+	 * Disables all means of dismissal for the dialog.
+	 * @remarks
+	 * HTML Attribute: non-dismissible
+	 */
+	@attr({ attribute: 'non-dismissible', mode: 'boolean' }) nonDismissible =
 		false;
 
 	/**
@@ -98,11 +116,6 @@ export class Dialog extends FoundationElement {
 			this.#dialogElement = this.shadowRoot!.querySelector(
 				'dialog'
 			) as HTMLDialogElement;
-			if (this.#dialogElement) {
-				if (dialogPolyfill) {
-					dialogPolyfill.registerDialog(this.#dialogElement);
-				}
-			}
 		}
 		return this.#dialogElement as HTMLDialogElement;
 	}
@@ -134,8 +147,30 @@ export class Dialog extends FoundationElement {
 		}
 	}
 
+	get _showDismissButton() {
+		return this.#isDismissibleVia('dismiss-button');
+	}
+
+	#isDismissibleVia(method: DismissMethod) {
+		if (this.nonDismissible) {
+			return false;
+		}
+
+		switch (method) {
+			case 'escape':
+				return !this.noDismissOnEsc;
+			case 'dismiss-button':
+				return !this.noDismissButton;
+			case 'light-dismiss':
+				return !this.noLightDismiss;
+		}
+	}
+
 	#handleScrimClick = (event: MouseEvent) => {
-		if (event.target !== this.#dialog || this.noLightDismiss) {
+		if (
+			event.target !== this.#dialog ||
+			!this.#isDismissibleVia('light-dismiss')
+		) {
 			return;
 		}
 		const rect = this.#dialog.getBoundingClientRect();
@@ -146,7 +181,9 @@ export class Dialog extends FoundationElement {
 			rect.left <= event.clientX &&
 			event.clientX <= rect.left + rect.width;
 
-		this.open = clickedInDialog;
+		if (!clickedInDialog) {
+			this._handleCloseRequest();
+		}
 	};
 
 	#handleInternalFormSubmit = (event: SubmitEvent) => {
@@ -156,6 +193,38 @@ export class Dialog extends FoundationElement {
 
 		this.open = false;
 	};
+
+	/**
+	 * @internal
+	 */
+	_onKeyDown(event: KeyboardEvent) {
+		if (handleEscapeKeyAndStopPropogation(event) && this._openedAsModal) {
+			if (this.#isDismissibleVia('escape')) {
+				this._handleCloseRequest();
+			}
+
+			// Return false to .preventDefault() which will prevent the <dialog>'s cancel event from being fired.
+			// Otherwise, pressing ESC twice would close the <dialog> without the ability to prevent it.
+			// This is because subsequent close requests without "intervening user action" between them are not cancelable.
+			// See: https://html.spec.whatwg.org/multipage/interaction.html#close-watcher-infrastructure
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * @internal
+	 */
+	_handleCloseRequest() {
+		if (
+			this.$emit('cancel', undefined, {
+				bubbles: false,
+				cancelable: true,
+			})
+		) {
+			this.open = false;
+		}
+	}
 
 	close() {
 		this.open = false;

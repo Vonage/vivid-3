@@ -147,6 +147,15 @@ const jaJP: Locale = {
 		noMatchesMessage: 'オプションが見つかりません',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label}を削除`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
+			`オプション ${name} が選択されました。`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) =>
+			`オプション ${name} が選択解除されました。`,
+		optionFocusedMessage: /* istanbul ignore next */ (
+			name: string,
+			position: number,
+			total: number
+		) => `オプション ${name} がフォーカスされました。${position}/${total}`,
 	},
 };
 

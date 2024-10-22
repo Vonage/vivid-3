@@ -1,5 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 
 /**
  * @public
@@ -8,6 +9,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  * @slot app-content - Sets assigned nodes to the main application content, the side drawer is opened next to.
  * @event {CustomEvent<undefined>} close - Fired when the side drawer is closed.
  * @event {CustomEvent<undefined>} open - Fired when the side drawer is opened.
+ * @event {CustomEvent<undefined>} cancel - Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event.
  */
 export class SideDrawer extends FoundationElement {
 	/**
@@ -69,5 +71,31 @@ export class SideDrawer extends FoundationElement {
 
 	#open(): void {
 		this.$emit('open', undefined, { bubbles: false });
+	}
+
+	/**
+	 * @internal
+	 */
+	_onKeydown(event: KeyboardEvent) {
+		if (handleEscapeKeyAndStopPropogation(event)) {
+			this._handleCloseRequest();
+			return undefined;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	_handleCloseRequest() {
+		if (
+			this.$emit('cancel', undefined, {
+				bubbles: false,
+				cancelable: true,
+			})
+		) {
+			this.open = false;
+		}
 	}
 }

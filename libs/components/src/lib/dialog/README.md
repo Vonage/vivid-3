@@ -149,6 +149,55 @@ Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismis
 <vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
 
+### No-dismiss-on-esc
+
+Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismissed by pressing ESC.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-button
+	label="Open modal dialog"
+	onclick="document.querySelector('vwc-dialog').open = true"
+></vwc-button>
+<vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
+```
+
+### No-dismiss-button
+
+Use the `no-dismiss-button` attribute to remove the dismiss button from the dialog.
+
+When using this attribute, ensure that the dialog can be closed by other means.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-button
+	label="Open modal dialog"
+	onclick="document.querySelector('vwc-dialog').open = true"
+></vwc-button>
+<vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
+```
+
+### Non-dismissible
+
+The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`.
+
+When using this attribute, ensure that the dialog can be closed by other means.
+
+- Type: `boolean`
+- Default: `false`
+
+```html preview 230px
+<vwc-button
+	label="Open modal dialog"
+	onclick="document.querySelector('vwc-dialog').open = true"
+></vwc-button>
+<vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
+```
+
 ### Return Value
 
 Use `returnValue` to get or set the return value. Often used to indicate which button the user pressed to close it.
@@ -402,10 +451,11 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Name    | Type                     | Bubbles | Composed | Description                                                                                                                                                   |
-| ------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `open`  | `CustomEvent<undefined>` | No      | Yes      | The `open` event fires when the dialog opens.                                                                                                                 |
-| `close` | `CustomEvent<string>`    | No      | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
+| Name     | Type                     | Bubbles | Composed | Description                                                                                                                                                   |
+| -------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`   | `CustomEvent<undefined>` | No      | Yes      | The `open` event fires when the dialog opens.                                                                                                                 |
+| `close`  | `CustomEvent<string>`    | No      | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
+| `cancel` | `CustomEvent<undefined>` | No      | Yes      | The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.     |
 
 </div>
 
@@ -425,7 +475,8 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 - The dialog's role is `dialog`. When opened as a modal (via showModal) it adds `aria-modal` to the dialog.
 - It is the consumer's concern to add `aria-label` to the dialog element.
-- The dismiss button is automatically given a localized version of the word "Close". This can be overriden using `dismiss-button-aria-label`.
+- The dismiss button is automatically given a localized version of the word "Close". This can be overridden using `dismiss-button-aria-label`.
+- If you disable the built-in dismiss methods, you must ensure that the way to close the dialog remains accessible.
 
 ## Use Cases
 
@@ -447,4 +498,79 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 		</vwc-layout>
 	</form>
 </vwc-dialog>
+```
+
+### Confirm Closing of Dialog
+
+```html preview 400px
+<style>
+	vwc-text-area {
+		width: 100%;
+	}
+</style>
+<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
+<vwc-dialog id="dialog" headline="Dialog" modal open>
+	<vwc-text-area
+		id="input"
+		slot="body"
+		label="Important Data"
+		value="Some important data"
+	></vwc-text-area>
+	<vwc-button
+		slot="action-items"
+		label="Cancel"
+		appearance="outlined"
+		onclick="closeDialog()"
+	></vwc-button>
+	<vwc-button
+		slot="action-items"
+		label="Save"
+		appearance="filled"
+		onclick="closeDialog()"
+	></vwc-button>
+</vwc-dialog>
+<vwc-dialog
+	id="confirm"
+	headline="Unsaved Changes"
+	subtitle="Are you sure you want to discard your changes?"
+	modal
+>
+	<vwc-button
+		slot="action-items"
+		label="Cancel"
+		appearance="outlined"
+		onclick="closeConfirm()"
+	></vwc-button>
+	<vwc-button
+		autofocus
+		slot="action-items"
+		label="Discard"
+		appearance="filled"
+		connotation="alert"
+		onclick="discardChanges()"
+	></vwc-button>
+</vwc-dialog>
+<script>
+	document.querySelector('#dialog').addEventListener('cancel', (e) => {
+		e.preventDefault();
+		document.querySelector('#confirm').open = true;
+	});
+
+	function openDialog() {
+		document.querySelector('#dialog').open = true;
+	}
+
+	function closeDialog() {
+		document.querySelector('#dialog').open = false;
+	}
+
+	function closeConfirm() {
+		document.querySelector('#confirm').open = false;
+	}
+
+	function discardChanges() {
+		closeConfirm();
+		closeDialog();
+	}
+</script>
 ```
