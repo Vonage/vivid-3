@@ -246,6 +246,13 @@ slot[name='icon'] {
 	.control.stacked & {
 		flex-direction: column;
 	}
+
+	:host([dropdown-indicator]) & {
+		justify-content: var(#{variables.$button-content-alignment}, flex-start);
+	}
+	:host([dropdown-indicator][stacked]) & {
+		justify-content: center;
+	}
 }
 
 :host(:not([icon])) .pending {
