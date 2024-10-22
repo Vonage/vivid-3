@@ -13,13 +13,15 @@ const getClasses = ({
 	orientation,
 	gutters,
 	scrollablePanel,
+	_actionItemsSlottedContent,
 }: Tabs) =>
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`orientation-${orientation}`, Boolean(orientation)],
 		`gutters-${gutters ?? 'small'}`,
-		['scroll', Boolean(scrollablePanel)]
+		['scroll', Boolean(scrollablePanel)],
+		['has-action-items', Boolean(_actionItemsSlottedContent.length)]
 	);
 
 function setNoScrollState(
@@ -67,21 +69,27 @@ export function TabsTemplate<T extends Tabs>() {
 	return html<T>`
 		<template>
 			<div class="${getClasses}">
-				<div class="scroll-shadow">
-					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
-						<div class="tablist" role="tablist" ${ref('tablist')}>
-							<slot name="tab" ${slotted('tabs')}></slot>
-							${when(
-								(x) => x.showActiveIndicator,
-								html<T>`
-									<div
-										${ref('activeIndicatorRef')}
-										class="active-indicator"
-									></div>
-								`
-							)}
+				<div class="tabs">
+					<div class="scroll-shadow">
+						<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
+							<div class="tablist" role="tablist" ${ref('tablist')}>
+								<slot name="tab" ${slotted('tabs')}></slot>
+								${when(
+									(x) => x.showActiveIndicator,
+									html<T>`
+										<div
+											${ref('activeIndicatorRef')}
+											class="active-indicator"
+										></div>
+									`
+								)}
+							</div>
 						</div>
 					</div>
+					<slot
+						name="action-items"
+						${slotted('_actionItemsSlottedContent')}
+					></slot>
 				</div>
 				<div class="tabpanel" part="tab-panel">
 					<slot name="tabpanel" ${slotted('tabpanels')}></slot>
