@@ -194,6 +194,14 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('inputmode', function () {
+		it('should set inputmode attribute on the input', async function () {
+			element.inputMode = 'tel';
+			await elementUpdated(element);
+			expect(getInput()?.getAttribute('inputmode')).toEqual('tel');
+		});
+	});
+
 	describe('placeholder', function () {
 		const placeholderText = 'Text';
 		it('should set placeholder attribute on the input', async function () {

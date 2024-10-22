@@ -166,7 +166,7 @@ export const AudioPlayerTemplate: (
 			${when(
 				(x) => Boolean(x.playbackRates),
 				html`
-			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss id="playback-menu">
+			<${menuTag} class="playback-rates" trigger="auto" placement="top-start" auto-dismiss id="playback-menu" position-strategy="absolute">
 				<${buttonTag} id="playback-open-button"
 							  class="playback-button"
 							  slot="anchor"

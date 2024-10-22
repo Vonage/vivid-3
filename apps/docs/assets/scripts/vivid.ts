@@ -10,3 +10,4 @@ export type Dialog = HTMLElement & {
 	showModal: () => void;
 	close: () => void;
 };
+export type Alert = HTMLElement & { open: boolean };

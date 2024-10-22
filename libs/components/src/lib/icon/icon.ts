@@ -51,6 +51,7 @@ export type IconConnotation = Extract<
 	| Connotation.Alert
 	| Connotation.Warning
 	| Connotation.Information
+	| Connotation.Announcement
 >;
 
 /**
