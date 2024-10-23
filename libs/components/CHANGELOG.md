@@ -4,6 +4,25 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.9.0...vivid-v4.10.0) (2024-10-23)
+
+
+### Features
+
+* **button:** content align to start when drop-down indicator is set (VIV-2200) ([#1962](https://github.com/Vonage/vivid-3/issues/1962)) ([b1c3a11](https://github.com/Vonage/vivid-3/commit/b1c3a11ffc4d95651601cabfde61e680e14b3d36))
+* **dialog:** add `no-dismiss-on-esc`, `no-dismiss-button` and `non-dismissible` members (VIV-1907) ([#1871](https://github.com/Vonage/vivid-3/issues/1871)) ([af258af](https://github.com/Vonage/vivid-3/commit/af258af36f7ed8bff5112d3f462da6386024ddf5))
+
+
+### Bug Fixes
+
+* **audio-player:** change menu position-strategy to absolute (VIV-2192) ([#1945](https://github.com/Vonage/vivid-3/issues/1945)) ([3a6f054](https://github.com/Vonage/vivid-3/commit/3a6f0543795ef30ccf70287e098bb55b25b71c81))
+* **checkbox:** aria-checked now properly conveys and controls checkbox state (VIV-1598) ([#1956](https://github.com/Vonage/vivid-3/issues/1956)) ([79a13b1](https://github.com/Vonage/vivid-3/commit/79a13b1bf3778a54edd983f4c156b5444d78708d))
+* **dial-pad:** prevent focus loss after removal of delete button (VIV-2126) ([#1912](https://github.com/Vonage/vivid-3/issues/1912)) ([fbc115e](https://github.com/Vonage/vivid-3/commit/fbc115e8f28c1c2da37d039593459a33301214f2))
+* **icon:** cancel outstanding fetch when changing icon name (VIV-2186) ([#1959](https://github.com/Vonage/vivid-3/issues/1959)) ([3d2900c](https://github.com/Vonage/vivid-3/commit/3d2900cfd0fe9ceec2323608645e8ec9627f09ef))
+* **icon:** fix missing announcement in connotation type (VIV-000) ([#1951](https://github.com/Vonage/vivid-3/issues/1951)) ([436e606](https://github.com/Vonage/vivid-3/commit/436e6069fa1a2c984abd0bebbcff3c23164d3b2c))
+* **menu-item:** remove border-radius from focus state (VIV-2160) ([#1957](https://github.com/Vonage/vivid-3/issues/1957)) ([570f635](https://github.com/Vonage/vivid-3/commit/570f635f73a4ba5beed8f3218bf42d13eac2696f))
+* **text-field:** reflects inputmode onto input element (VIV-000) ([#1947](https://github.com/Vonage/vivid-3/issues/1947)) ([99e360e](https://github.com/Vonage/vivid-3/commit/99e360eea165d7253b224525ec7f064e5f2404fd))
+
 ## [4.9.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.8.0...vivid-v4.9.0) (2024-10-10)
 
 
