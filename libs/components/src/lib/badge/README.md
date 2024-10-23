@@ -145,7 +145,7 @@ It accepts a subset of predefined values.
 ></vwc-badge>
 <vwc-badge
 	text="announcement"
-	appearance="subtle"
+	appearance="subtle-light"
 	connotation="announcement"
 ></vwc-badge>
 <vwc-badge
