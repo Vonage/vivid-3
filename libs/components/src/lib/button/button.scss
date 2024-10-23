@@ -251,6 +251,7 @@ slot[name='icon'] {
 		justify-content: var(#{variables.$button-content-alignment}, flex-start);
 	}
 	:host([dropdown-indicator][stacked]) & {
+		align-items: var(#{variables.$button-content-alignment}, flex-start);
 		justify-content: center;
 	}
 }

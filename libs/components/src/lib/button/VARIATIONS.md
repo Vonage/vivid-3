@@ -380,6 +380,5 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 ```
 
 <vwc-note connotation="information" icon="info-line">
-	<p>When setting <code>dropdown-indicator</code> the button alignment changes from center to start. You can change it back to start using <code>--button-content-alignment</code> css variable </p>
-	<p>Buttons with <code>stacked</code> will not be effected</p>
+	<p>When setting <code>dropdown-indicator</code> the button content alignment changes from center to start. You can change it back to center using <code>--button-content-alignment</code> css variable </p>
 </vwc-note>

@@ -126,14 +126,23 @@ Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 ```
 
 ## CSS Variables
+
 ### Button Content Alignment
-When `dropdown-indicator` is set in the button, the content alignment is set to start.  
+
+When `dropdown-indicator` is set button, the content alignment is set to start.  
 If center is needed, set `--button-content-alignment: center;`.
 
 ```html preview
-<vwc-button dropdown-indicator appearance="outlined-light" label="centered content"></vwc-button>
+<vwc-button
+	dropdown-indicator
+	appearance="outlined-light"
+	label="centered content"
+></vwc-button>
 <style>
-	vwc-button {--button-content-alignment: center; inline-size: 300px;}
+	vwc-button {
+		--button-content-alignment: center;
+		inline-size: 300px;
+	}
 </style>
 ```
 

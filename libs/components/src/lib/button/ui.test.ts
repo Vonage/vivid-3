@@ -8,7 +8,7 @@ import {
 import type { Button } from './button';
 
 const components = ['button', 'icon'];
-test.only('should show the component', async ({ page }: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 	<div style="margin: 5px;">
 		<vwc-button appearance='filled' label='A default button'></vwc-button>
@@ -257,8 +257,6 @@ test.only('should show the component', async ({ page }: { page: Page }) => {
 	await page.locator('vwc-button').nth(0).focus();
 
 	await page.waitForLoadState('networkidle');
-
-	await page.pause();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'./snapshots/button.png'
