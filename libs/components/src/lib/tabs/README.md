@@ -173,7 +173,6 @@ You can use the `action-items` slot to add action items at the end of the tabs b
 	<vwc-tab-panel>Tab two content</vwc-tab-panel>
 	<vwc-button
 		slot="action-items"
-		slot="anchor"
 		icon="plus-line"
 		shape="pill"
 		size="condensed"
