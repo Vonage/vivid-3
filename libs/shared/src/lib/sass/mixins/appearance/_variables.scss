@@ -44,6 +44,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(soft)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{connotation.get-connotation-token(contrast)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 85%
+				),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: transparent,
@@ -106,6 +116,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(faint)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{connotation.get-connotation-token(contrast)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 75%
+				),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(faint)}),
@@ -163,6 +183,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(dim)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{connotation.get-connotation-token(contrast)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(primary)}),
+					transparent 65%
+				),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
@@ -210,6 +240,11 @@ $states-mapping: (
 			fill: var(#{constants.$vvd-color-neutral-100}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{constants.$vvd-color-neutral-300}),
+			fill: var(#{constants.$vvd-color-neutral-100}),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{constants.$vvd-color-neutral-300}),
 			fill: transparent,
@@ -253,6 +288,11 @@ $states-mapping: (
 			outline: var(#{constants.$vvd-color-neutral-400}),
 		),
 		subtle: (
+			text: notset,
+			fill: notset,
+			outline: notset,
+		),
+		subtle-light: (
 			text: notset,
 			fill: notset,
 			outline: notset,
@@ -314,6 +354,11 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{constants.$vvd-color-canvas}),
+			fill: var(#{connotation.get-connotation-token(firm)}),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
@@ -371,6 +416,16 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(fierce-primary)}),
+					transparent 10%
+				),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(dim)}),
@@ -414,6 +469,11 @@ $states-mapping: (
 			outline: var(#{constants.$vvd-color-neutral-300}),
 		),
 		subtle: (
+			text: notset,
+			fill: notset,
+			outline: notset,
+		),
+		subtle-light: (
 			text: notset,
 			fill: notset,
 			outline: notset,
@@ -470,6 +530,11 @@ $states-mapping: (
 			fill: var(#{connotation.get-connotation-token(pale)}),
 			outline: transparent,
 		),
+		subtle-light: (
+			text: var(#{constants.$vvd-color-canvas}),
+			fill: var(#{connotation.get-connotation-token(firm)}),
+			outline: transparent,
+		),
 		listitem: (
 			text: var(#{connotation.get-connotation-token(firm)}),
 			fill: var(#{connotation.get-connotation-token(soft)}),
@@ -520,6 +585,16 @@ $states-mapping: (
 		subtle: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
 			fill: var(#{connotation.get-connotation-token(pale)}),
+			outline: transparent,
+		),
+		subtle-light: (
+			text: var(#{connotation.get-connotation-token(primary-text)}),
+			fill:
+				color-mix(
+					in srgb,
+					var(#{connotation.get-connotation-token(fierce-primary)}),
+					transparent 10%
+				),
 			outline: transparent,
 		),
 		listitem: (

@@ -2,13 +2,14 @@
 @use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning information announcement,
-	$shades: primary primary-text intermediate soft contrast pale fierce firm-all,
+	$shades: primary primary-text intermediate soft contrast pale fierce
+		fierce-primary firm firm-all,
 	$default: accent
 );
 @use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
 @use '../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
-	$appearances: filled duotone subtle,
+	$appearances: filled duotone subtle subtle-light,
 	$states: idle,
 	$default: filled
 );
