@@ -134,14 +134,24 @@ If center is needed, set `--button-content-alignment: center;`.
 
 ```html preview
 <vwc-button
+	class="vwc-button"
+	dropdown-indicator
+	appearance="outlined-light"
+	label="aligned to start content"
+></vwc-button>
+<vwc-button
+	class="vwc-button vwc-button-center"
 	dropdown-indicator
 	appearance="outlined-light"
 	label="centered content"
 ></vwc-button>
+
 <style>
-	vwc-button {
-		--button-content-alignment: center;
+	.vwc-button {
 		inline-size: 300px;
+	}
+	.vwc-button-center {
+		--button-content-alignment: center;
 	}
 </style>
 ```
