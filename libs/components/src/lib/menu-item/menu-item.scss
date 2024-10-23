@@ -66,8 +66,6 @@
 	:host(:not([role='presentation']):focus-visible) & {
 		@include focus.focus;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-		border-radius: #{border-radius-variables.$border-radius-normal};
 	}
 }
 
