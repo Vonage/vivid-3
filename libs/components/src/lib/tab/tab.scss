@@ -102,33 +102,6 @@ slot[name='icon'] {
 	}
 }
 
-:host(:not(.vertical)) {
-	.base::after {
-		position: absolute;
-		border-radius: #{border-radius-variables.$border-radius-condensed};
-		background: currentColor;
-		block-size: 2px;
-		content: '';
-		inline-size: 100%;
-		inset-block-end: 0;
-		inset-inline-start: 0;
-		pointer-events: none;
-		transition-property: opacity;
-	}
-
-	&:host([aria-selected='true']) {
-		.base::after {
-			transition-delay: #{tabs-variables.$tabs-active-indicator-transition-delay};
-		}
-	}
-
-	&:host(:not([aria-selected='true'])) {
-		.base::after {
-			opacity: 0;
-		}
-	}
-}
-
 .close {
 	position: absolute;
 	display: flex;

@@ -153,9 +153,44 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 </vwc-tabs>
 ```
 
-### Slots
+## Slots
 
-Each `tab panel` has an associated [vwc-tab](/components/tab/) element, that when activated, displays the `tab panel`.
+### Default
+
+The default slot holds the [Tabs](/components/tab/) and Tab Panels of the component.
+
+Tabs and Tab Panels are associated with each other by the order in which they are placed in the DOM.
+
+### Action Items
+
+You can use the `action-items` slot to add action items at the end of the tabs bar.
+
+```html preview full
+<vwc-tabs>
+	<vwc-tab label="Tab one"></vwc-tab>
+	<vwc-tab label="Tab two"></vwc-tab>
+	<vwc-tab-panel>Tab one content</vwc-tab-panel>
+	<vwc-tab-panel>Tab two content</vwc-tab-panel>
+	<vwc-button
+		slot="action-items"
+		icon="plus-line"
+		shape="pill"
+		size="condensed"
+		onclick="addTab()"
+	></vwc-button>
+</vwc-tabs>
+
+<script>
+	function addTab() {
+		const tab = document.createElement('vwc-tab');
+		tab.label = 'New tab';
+		document.querySelector('vwc-tabs').appendChild(tab);
+		const tabPanel = document.createElement('vwc-tab-panel');
+		tabPanel.textContent = 'New tab content';
+		document.querySelector('vwc-tabs').appendChild(tabPanel);
+	}
+</script>
+```
 
 ## CSS Parts
 
@@ -193,14 +228,27 @@ The tab panel part inside the tabs component.
 
 ### Removable tabs
 
-```html preview full
-<vwc-tabs orientation="vertical">
-	<vwc-tab label="Tab one" removable></vwc-tab>
-	<vwc-tab label="Tab two" removable></vwc-tab>
-	<vwc-tab label="Tab three" removable></vwc-tab>
-	<vwc-tab-panel>Tab one content</vwc-tab-panel>
-	<vwc-tab-panel>Tab two content</vwc-tab-panel>
-	<vwc-tab-panel>Tab three content</vwc-tab-panel>
+```html preview 300px
+<vwc-tabs>
+	<vwc-tab label="Task" removable></vwc-tab>
+	<vwc-tab-panel>Task content</vwc-tab-panel>
+	<vwc-tab label="Event" removable></vwc-tab>
+	<vwc-tab-panel>Event content</vwc-tab-panel>
+	<vwc-menu
+		slot="action-items"
+		trigger="auto"
+		auto-dismiss
+		placement="bottom-end"
+	>
+		<vwc-button
+			slot="anchor"
+			icon="plus-line"
+			shape="pill"
+			size="condensed"
+		></vwc-button>
+		<vwc-menu-item text="New Task" onclick="addTab('Task')"></vwc-menu-item>
+		<vwc-menu-item text="New Event" onclick="addTab('Event')"></vwc-menu-item>
+	</vwc-menu>
 </vwc-tabs>
 
 <script>
@@ -218,5 +266,15 @@ The tab panel part inside the tabs component.
 			e.srcElement.remove();
 		}
 	});
+
+	function addTab(name) {
+		const tab = document.createElement('vwc-tab');
+		tab.label = name;
+		tab.removable = true;
+		document.querySelector('vwc-tabs').appendChild(tab);
+		const tabPanel = document.createElement('vwc-tab-panel');
+		tabPanel.textContent = `${name} content`;
+		document.querySelector('vwc-tabs').appendChild(tabPanel);
+	}
 </script>
 ```
