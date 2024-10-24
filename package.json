@@ -33,7 +33,7 @@
 		"ramda": "^0.28.0",
 		"regenerator-runtime": "^0.13.11",
 		"tslib": "^2.5.0",
-		"uuid": "^9.0.1",
+		"uuid": "^10.0.0",
 		"video.js": "^8.10.0"
 	},
 	"devDependencies": {
@@ -81,7 +81,7 @@
 		"@types/node-fetch": "^2.6.11",
 		"@types/query-selector-shadow-dom": "^1.0.4",
 		"@types/ramda": "^0.30.0",
-		"@types/uuid": "^9.0.8",
+		"@types/uuid": "^10.0.0",
 		"@typescript-eslint/eslint-plugin": "7.18.0",
 		"@typescript-eslint/parser": "7.18.0",
 		"@typescript-eslint/utils": "7.18.0",
