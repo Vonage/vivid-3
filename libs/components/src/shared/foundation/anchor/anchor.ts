@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
-import { ARIAGlobalStatesAndProperties } from './aria-global';
+import { ARIAGlobalStatesAndProperties } from '../patterns/aria-global';
 
 /**
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
