@@ -99,7 +99,7 @@
 		"clean-css": "^5.3.3",
 		"element-internals-polyfill": "^1.3.11",
 		"esbuild": "0.23.0",
-		"eslint": "8.57.0",
+		"eslint": "8.57.1",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-plugin-ban": "^1.6.0",
 		"eslint-plugin-compat": "^4.0.2",
