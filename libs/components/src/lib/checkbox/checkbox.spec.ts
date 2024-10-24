@@ -73,6 +73,56 @@ describe('vwc-checkbox', () => {
 				getBaseElement(element).classList.contains('checked')
 			).toBeTruthy();
 		});
+
+		it('should toggle checked when clicked', () => {
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(true);
+
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not toggle checked when clicked while disabled', () => {
+			element.disabled = true;
+
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not toggle checked when clicked while readOnly', () => {
+			element.readOnly = true;
+
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should toggle checked when pressing Space', () => {
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keypress', { key: ' ' })
+			);
+
+			expect(element.checked).toBe(true);
+
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keypress', { key: ' ' })
+			);
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not toggle checked when pressing Space while readOnly', () => {
+			element.readOnly = true;
+
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keypress', { key: ' ' })
+			);
+
+			expect(element.checked).toBe(false);
+		});
 	});
 
 	describe('disabled', function () {
@@ -82,6 +132,17 @@ describe('vwc-checkbox', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
+
+		it('should set aria-disabled attribute when disabled is true', async () => {
+			expect(getBaseElement(element).getAttribute('aria-disabled')).toBe(
+				'false'
+			);
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-disabled')).toBe(
+				'true'
+			);
+		});
 	});
 
 	describe('readonly', function () {
@@ -90,6 +151,19 @@ describe('vwc-checkbox', () => {
 			element.toggleAttribute('readonly', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.readonly')).toBeTruthy();
+		});
+	});
+
+	describe('required', function () {
+		it('should set aria-required attribute when required is true', async () => {
+			expect(getBaseElement(element).getAttribute('aria-required')).toBe(
+				'false'
+			);
+			element.required = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-required')).toBe(
+				'true'
+			);
 		});
 	});
 
@@ -236,12 +310,8 @@ describe('vwc-checkbox', () => {
 
 			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
-			(await submitPromise).forEach(
-				(formDataValue: any, formDataKey: string) => {
-					expect(formDataKey).toEqual(fieldName);
-					expect(formDataValue).toEqual(checked);
-				}
-			);
+			const submitResult = await submitPromise;
+			expect(submitResult.get(fieldName)).toBe(checked);
 		});
 	});
 
@@ -325,6 +395,22 @@ describe('vwc-checkbox', () => {
 			const baseElement = getBaseElement(element);
 
 			expect(baseElement?.getAttribute('role')).toBe('checkbox');
+		});
+
+		it('should set aria-required attribute when required is true', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-required')).toBe(
+				'true'
+			);
+		});
+
+		it('should set aria-readonly attribute when readOnly is true', async () => {
+			element.readOnly = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-readonly')).toBe(
+				'true'
+			);
 		});
 
 		describe('aria-label', () => {
