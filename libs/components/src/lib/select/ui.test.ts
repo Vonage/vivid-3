@@ -67,8 +67,7 @@ async function testScaleOptions({ page }: { page: Page }) {
 }
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =
-		`
+	const template = `
 			<style>
 				#wrapper {
 					width: 2300px;
