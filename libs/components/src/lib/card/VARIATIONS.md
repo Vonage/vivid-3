@@ -8,7 +8,6 @@ Add a `headline` attribute to add card headline title.
 <vwc-card headline="Vivid Card Component"></vwc-card>
 ```
 
-
 ### Subtitle
 
 Add a `subtitle` attribute to add card subtitle.
@@ -35,7 +34,7 @@ Add a `text` attribute to add text to the card.
 ## Icon
 
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Text Field's input element.
-To add custom icons or to postfix icons, use the [graphic slot] (/components/card/code/#slots).
+To add custom icons or to postfix icons, use the [graphic slot](/components/card/code/#slots).
 
 ```html preview
 <vwc-card
@@ -72,15 +71,45 @@ The `appearance` attribute to change the card's appearance.
 ## Elevation
 
 Control the elevation depth by adding the `elevation` attribute.  
-The elevation is applied only with the default appearance (`appearance='elevated'`).  
-Card elevation default is `4`.  
-Other elevation values: `2` | `4` | `8` | `12` | `16` | `24`. 
+The elevation is applied only with the default appearance (`appearance='elevated'`).
 
 ```html preview
-<vwc-card
-	elevation="12"
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
-```
+<vwc-layout>
+	<vwc-card
+		elevation="2"
+		headline="Elevation 2"
+		class="card-elevated"
+	></vwc-card>
+	<vwc-card
+		elevation="4"
+		headline="Elevation 4 - default"
+		class="card-elevated"
+	></vwc-card>
+	<vwc-card
+		elevation="8"
+		headline="Elevation 8"
+		class="card-elevated"
+	></vwc-card>
+	<vwc-card
+		elevation="12"
+		headline="Elevation 12"
+		class="card-elevated"
+	></vwc-card>
+	<vwc-card
+		elevation="16"
+		headline="Elevation 16"
+		class="card-elevated"
+	></vwc-card>
+	<vwc-card
+		elevation="24"
+		headline="Elevation 24"
+		class="card-elevated"
+	></vwc-card>
+</vwc-layout>
 
+<style>
+	.card-elevated {
+		margin: 16px;
+	}
+</style>
+```

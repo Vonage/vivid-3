@@ -18,7 +18,7 @@ registerCard('your-prefix');
 
 ```html preview
 <script type="module">
-	import { registerCard } from '@vonage/vivid';  
+	import { registerCard } from '@vonage/vivid';
 	registerCard('your-prefix');
 </script>
 
@@ -35,13 +35,12 @@ registerCard('your-prefix');
 </script>
 
 <template>
-	<VCard label="First name" />
+	<VCard headline="I'm a card" />
 </template>
 ```
 
 </vwc-tab-panel>
 </vwc-tabs>
-
 
 ## Slots
 
@@ -69,7 +68,7 @@ The media slot can be used to display images or video content above the card hea
 
 ```html preview
 <vwc-card
-	headline="Card with Media"
+	headline="Card with Media Slot"
 	subtitle="Extra text below the card headline"
 	style="max-inline-size: 300px"
 >
@@ -88,7 +87,7 @@ The meta slot is for action content in the card header.
 
 ```html preview
 <vwc-card
-	headline="Vivid Card Component"
+	headline="Card with Meta Slot"
 	subtitle="Extra text below the card headline"
 >
 	<vwc-button
@@ -107,7 +106,7 @@ By default - items inside footer slot are aligned to the end.
 
 ```html preview
 <vwc-card
-	headline="Vivid Card Component"
+	headline="Card with Footer Slot"
 	subtitle="Extra text below the card headline"
 >
 	<vwc-button
@@ -141,14 +140,17 @@ The card headline can be trimmed to your preferable number of lines.
 The number of lines is controlled by the css variable `--headline-line-clamp`.
 
 ```html preview
+<vwc-card
+	class="vwc-card"
+	headline="Card with long headline that has trim into one line"
+></vwc-card>
+
 <style>
-	vwc-card {
+	.vwc-card {
 		--headline-line-clamp: 1;
 		max-inline-size: 42ch;
 	}
 </style>
-
-<vwc-card headline="Vivid Card Component with long headline to trim"></vwc-card>
 ```
 
 ### Trim subtitle
@@ -157,91 +159,32 @@ The card subtitle can be trimmed to your preferable number of lines.
 The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ```html preview
+<vwc-card
+	class="vwc-card"
+	headline="Card with Trimmed Subtitle"
+	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
+></vwc-card>
+
 <style>
-	vwc-card {
+	.vwc-card {
 		--subtitle-line-clamp: 2;
 		max-inline-size: 42ch;
 	}
 </style>
-
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
-></vwc-card>
 ```
 
-## Use case
+## API Reference
 
-```html preview
-<vwc-layout>
-	<vwc-card
-		headline="Cards in layout"
-		subtitle="Subtitle"
-		icon="chat-line"
-		text="Here is the card's text."
-	>
-		<div
-			slot="media"
-			style="height: 150px; width: 100%; background-color: rebeccapurple;"
-		></div>
-		<vwc-button
-			slot="meta"
-			icon="more-vertical-solid"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			slot="footer"
-			icon="arrow-bold-right-line"
-			shape="pill"
-			label="Action"
-			appearance="outlined"
-		></vwc-button>
-	</vwc-card>
-	<vwc-card
-		headline="Cards in layout"
-		subtitle="Subtitle"
-		icon="chat-line"
-		text="Here is the card's text."
-	>
-		<div
-			slot="media"
-			style="height: 150px; width: 100%; background-color: rebeccapurple;"
-		></div>
-		<vwc-button
-			slot="meta"
-			icon="more-vertical-solid"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			slot="footer"
-			icon="arrow-bold-right-line"
-			shape="pill"
-			label="Action"
-			appearance="outlined"
-		></vwc-button>
-	</vwc-card>
-	<vwc-card
-		headline="Cards in layout"
-		subtitle="Subtitle"
-		icon="chat-line"
-		text="Here is the card's text."
-	>
-		<div
-			slot="media"
-			style="height: 150px; width: 100%; background-color: rebeccapurple;"
-		></div>
-		<vwc-button
-			slot="meta"
-			icon="more-vertical-solid"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			slot="footer"
-			icon="arrow-bold-right-line"
-			shape="pill"
-			label="Action"
-			appearance="outlined"
-		></vwc-button>
-	</vwc-card>
-</vwc-layout>
-```
+### Slots
+
+<div class="table-wrapper">
+
+| Name        | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| **Graphic** | Add graphic element to card. Overrides the icon property     |
+| **Media**   | Use to display images or video content above the card header |
+| **Meta**    | Use for adding action content, of info in the card header    |
+| **Footer**  | Content in the card footer.                                  |
+| **Main**    | Override a card's predefined template                        |
+
+</div>
