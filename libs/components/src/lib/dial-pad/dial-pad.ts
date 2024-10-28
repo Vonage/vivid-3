@@ -143,15 +143,6 @@ export class DialPad extends FoundationElement {
 	_onDial = () => {
 		this.callActive ? this.$emit('end-call') : this.$emit('dial');
 	};
-
-	/**
-	 *
-	 * @internal
-	 */
-	_deleteLastCharacter = () => {
-		this.value = this.value.slice(0, -1);
-		this.$emit('change');
-	};
 }
 
 export interface DialPad extends Localized {}
