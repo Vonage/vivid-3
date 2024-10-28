@@ -11,7 +11,11 @@ import { Localized } from '../../shared/patterns';
  */
 export type SplitButtonConnotation = Extract<
 	Connotation,
-	Connotation.Accent | Connotation.Announcement | Connotation.CTA | Connotation.Success | Connotation.Alert
+	| Connotation.Accent
+	| Connotation.Announcement
+	| Connotation.CTA
+	| Connotation.Success
+	| Connotation.Alert
 >;
 
 /**
