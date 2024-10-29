@@ -10,5 +10,5 @@
 		"target": "ES6"
 	},
 	"exclude": ["**/*.config.spec.ts"],
-	"include": ["**/*.spec.ts", "**/*.d.ts"]
+	"include": ["**/*.spec.ts", "**/*.d.ts", "**/fixture.ts"]
 }
