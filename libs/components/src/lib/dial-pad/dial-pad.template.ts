@@ -104,6 +104,15 @@ function stopPropagation(_: DialPad, { event: e }: ExecutionContext) {
 	e.stopImmediatePropagation();
 }
 
+function deleteLastCharacter(dialPad: DialPad) {
+	dialPad.value = dialPad.value.slice(0, -1);
+	dialPad.$emit('input');
+	dialPad.$emit('change');
+	if (dialPad.value === '') {
+		dialPad._textFieldEl.focus();
+	}
+}
+
 function renderTextField(textFieldTag: string, buttonTag: string) {
 	return html<DialPad>`<${textFieldTag} ${ref(
 		'_textFieldEl'
@@ -121,12 +130,13 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
 						html`<${buttonTag}
-                slot="action-items" size='super-condensed' icon="backspace-line" aria-label="${(
-									x
-								) => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}"
-								appearance='ghost' ?disabled="${(x) => x.disabled || x.callActive}" @click="${(
-							x
-						) => x._deleteLastCharacter()}">
+                				slot="action-items" 
+								size='super-condensed' 
+								icon="backspace-line" 
+								aria-label="${(x) => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}"
+								appearance='ghost' 
+								?disabled="${(x) => x.disabled || x.callActive}" 
+								@click="${(x) => deleteLastCharacter(x)}">
             </${buttonTag}>`
 					)}
         </${textFieldTag}>`;

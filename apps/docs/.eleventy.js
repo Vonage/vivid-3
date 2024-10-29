@@ -112,6 +112,11 @@ module.exports = function (eleventyConfig) {
 	);
 
 	eleventyConfig.addGlobalData(
+		'componentUseCases',
+		components.filter((c) => c.useCases)
+	);
+
+	eleventyConfig.addGlobalData(
 		'componentsLegacy',
 		components.filter((c) => c.page === 'legacy')
 	);

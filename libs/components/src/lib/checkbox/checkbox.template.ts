@@ -48,7 +48,7 @@ export const CheckboxTemplate: FoundationElementTemplate<
 			class="${getClasses}"
 			role="checkbox"
 			aria-label="${(x) => x.ariaLabel}"
-			aria-checked="${(x) => x.checked}"
+			aria-checked="${(x) => (x.indeterminate ? 'mixed' : x.checked)}"
 			aria-required="${(x) => x.required}"
 			aria-disabled="${(x) => x.disabled}"
 			aria-readonly="${(x) => x.readOnly}"
