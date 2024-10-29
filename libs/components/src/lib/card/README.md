@@ -175,6 +175,17 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ## API Reference
 
+### Properties
+
+<div class="table-wrapper">
+
+| Name           | Type                                      | Description                   |
+| -------------- | ----------------------------------------- | ----------------------------- |
+| **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
+| **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
+
+</div>
+
 ### Slots
 
 <div class="table-wrapper">
