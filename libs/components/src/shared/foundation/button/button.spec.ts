@@ -1,563 +1,586 @@
-import { DOM } from "@microsoft/fast-element";
-import { eventClick } from "@microsoft/fast-web-utilities";
+import { DOM } from '@microsoft/fast-element';
+import { eventClick } from '@microsoft/fast-web-utilities';
 import { fixture } from '../test-utilities/fixture';
-import { FoundationButton as Button, buttonTemplate as template } from "./index";
+import {
+	FoundationButton as Button,
+	buttonTemplate as template,
+} from './index';
 
 const FASTButton = Button.compose({
-  baseName: "button",
-  template
-})
+	baseName: 'button',
+	template,
+});
 
 async function setup() {
-  const { connect, disconnect, element, parent } = await fixture(FASTButton());
+	const { connect, disconnect, element, parent } = await fixture(FASTButton());
 
-  return { connect, disconnect, element, parent };
+	return { connect, disconnect, element, parent };
 }
 
-describe("Foundation Button", () => {
-  it("should set the `autofocus` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
+describe('Foundation Button', () => {
+	it('should set the `autofocus` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
 
-      element.autofocus = true;
+		element.autofocus = true;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.hasAttribute("autofocus")
-      ).toEqual(true);
+		expect(
+			element.shadowRoot?.querySelector('button')?.hasAttribute('autofocus')
+		).toEqual(true);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `disabled` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
+	it('should set the `disabled` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
 
-      element.disabled = true;
+		element.disabled = true;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.hasAttribute("disabled")
-      ).toEqual(true);
+		expect(
+			element.shadowRoot?.querySelector('button')?.hasAttribute('disabled')
+		).toEqual(true);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `form` attribute on the internal button when `formId` is provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const formId = "testId";
+	it('should set the `form` attribute on the internal button when `formId` is provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const formId = 'testId';
 
-      element.formId = "testId";
+		element.formId = 'testId';
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("form")
-      ).toEqual(formId);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('form')
+		).toEqual(formId);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `formaction` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const formaction = "test_action.asp";
+	it('should set the `formaction` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const formaction = 'test_action.asp';
 
-      element.formaction = formaction;
+		element.formaction = formaction;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("formaction")
-      ).toEqual(formaction);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('formaction')
+		).toEqual(formaction);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `formenctype` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const formenctype = "text/plain";
+	it('should set the `formenctype` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const formenctype = 'text/plain';
 
-      element.formenctype = formenctype;
+		element.formenctype = formenctype;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("formenctype")
-      ).toEqual(formenctype);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('formenctype')
+		).toEqual(formenctype);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `formmethod` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const formmethod = "post";
+	it('should set the `formmethod` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const formmethod = 'post';
 
-      element.formmethod = formmethod;
+		element.formmethod = formmethod;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("formmethod")
-      ).toEqual(formmethod);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('formmethod')
+		).toEqual(formmethod);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `formnovalidate` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const formnovalidate = true;
+	it('should set the `formnovalidate` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const formnovalidate = true;
 
-      element.formnovalidate = formnovalidate;
+		element.formnovalidate = formnovalidate;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("formnovalidate")
-      ).toEqual(formnovalidate.toString());
+		expect(
+			element.shadowRoot
+				?.querySelector('button')
+				?.getAttribute('formnovalidate')
+		).toEqual(formnovalidate.toString());
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `formtarget` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const formtarget = "_blank";
+	it('should set the `formtarget` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const formtarget = '_blank';
 
-      element.formtarget = formtarget;
+		element.formtarget = formtarget;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("formtarget")
-      ).toEqual(formtarget);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('formtarget')
+		).toEqual(formtarget);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `name` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const name = "testName";
+	it('should set the `name` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const name = 'testName';
 
-      element.name = name;
+		element.name = name;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("name")
-      ).toEqual(name);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('name')
+		).toEqual(name);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `type` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const type = "submit";
+	it('should set the `type` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const type = 'submit';
 
-      element.type = type;
+		element.type = type;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("type")
-      ).toEqual(type);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('type')
+		).toEqual(type);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  it("should set the `value` attribute on the internal button when provided", async () => {
-      const { element, connect, disconnect } = await setup();
-      const value = "Reset";
+	it('should set the `value` attribute on the internal button when provided', async () => {
+		const { element, connect, disconnect } = await setup();
+		const value = 'Reset';
 
-      element.value = value;
+		element.value = value;
 
-      await connect();
+		await connect();
 
-      expect(
-          element.shadowRoot?.querySelector("button")?.getAttribute("value")
-      ).toEqual(value);
+		expect(
+			element.shadowRoot?.querySelector('button')?.getAttribute('value')
+		).toEqual(value);
 
-      await disconnect();
-  });
+		await disconnect();
+	});
 
-  describe("Delegates ARIA button", () => {
-      it("should set the `aria-atomic` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaAtomic = "true";
+	describe('Delegates ARIA button', () => {
+		it('should set the `aria-atomic` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaAtomic = 'true';
 
-          element.ariaAtomic = ariaAtomic;
+			element.ariaAtomic = ariaAtomic;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-atomic")
-          ).toEqual(ariaAtomic);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-atomic')
+			).toEqual(ariaAtomic);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-busy` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaBusy = "false";
+		it('should set the `aria-busy` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaBusy = 'false';
 
-          element.ariaBusy = ariaBusy;
+			element.ariaBusy = ariaBusy;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-busy")
-          ).toEqual(ariaBusy);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-busy')
+			).toEqual(ariaBusy);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-controls` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaControls = "testId";
+		it('should set the `aria-controls` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaControls = 'testId';
 
-          element.ariaControls = ariaControls;
+			element.ariaControls = ariaControls;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-controls")
-          ).toEqual(ariaControls);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-controls')
+			).toEqual(ariaControls);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-current` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaCurrent = "page";
+		it('should set the `aria-current` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaCurrent = 'page';
 
-          element.ariaCurrent = ariaCurrent;
+			element.ariaCurrent = ariaCurrent;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-current")
-          ).toEqual(ariaCurrent);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-current')
+			).toEqual(ariaCurrent);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-describedby` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaDescribedby = "testId";
+		it('should set the `aria-describedby` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaDescribedby = 'testId';
 
-          element.ariaDescribedby = ariaDescribedby;
+			element.ariaDescribedby = ariaDescribedby;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot
-                  ?.querySelector("button")
-                  ?.getAttribute("aria-describedby")
-          ).toEqual(ariaDescribedby);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-describedby')
+			).toEqual(ariaDescribedby);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-details` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaDetails = "testId";
+		it('should set the `aria-details` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaDetails = 'testId';
 
-          element.ariaDetails = ariaDetails;
+			element.ariaDetails = ariaDetails;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-details")
-          ).toEqual(ariaDetails);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-details')
+			).toEqual(ariaDetails);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-disabled` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaDisabled = "true";
+		it('should set the `aria-disabled` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaDisabled = 'true';
 
-          element.ariaDisabled = ariaDisabled;
+			element.ariaDisabled = ariaDisabled;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-disabled")
-          ).toEqual(ariaDisabled);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-disabled')
+			).toEqual(ariaDisabled);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-errormessage` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaErrormessage = "test";
+		it('should set the `aria-errormessage` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaErrormessage = 'test';
 
-          element.ariaErrormessage = ariaErrormessage;
+			element.ariaErrormessage = ariaErrormessage;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot
-                  ?.querySelector("button")
-                  ?.getAttribute("aria-errormessage")
-          ).toEqual(ariaErrormessage);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-errormessage')
+			).toEqual(ariaErrormessage);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-expanded` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaExpanded = "true";
+		it('should set the `aria-expanded` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaExpanded = 'true';
 
-          element.ariaExpanded = ariaExpanded;
+			element.ariaExpanded = ariaExpanded;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-expanded")
-          ).toEqual(ariaExpanded);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-expanded')
+			).toEqual(ariaExpanded);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-flowto` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaFlowto = "testId";
+		it('should set the `aria-flowto` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaFlowto = 'testId';
 
-          element.ariaFlowto = ariaFlowto;
+			element.ariaFlowto = ariaFlowto;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-flowto")
-          ).toEqual(ariaFlowto);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-flowto')
+			).toEqual(ariaFlowto);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-haspopup` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaHaspopup = "true";
+		it('should set the `aria-haspopup` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaHaspopup = 'true';
 
-          element.ariaHaspopup = ariaHaspopup;
+			element.ariaHaspopup = ariaHaspopup;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-haspopup")
-          ).toEqual(ariaHaspopup);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-haspopup')
+			).toEqual(ariaHaspopup);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-hidden` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaHidden = "true";
+		it('should set the `aria-hidden` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaHidden = 'true';
 
-          element.ariaHidden = ariaHidden;
+			element.ariaHidden = ariaHidden;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-hidden")
-          ).toEqual(ariaHidden);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-hidden')
+			).toEqual(ariaHidden);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-invalid` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaInvalid = "spelling";
+		it('should set the `aria-invalid` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaInvalid = 'spelling';
 
-          element.ariaInvalid = ariaInvalid;
+			element.ariaInvalid = ariaInvalid;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-invalid")
-          ).toEqual(ariaInvalid);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-invalid')
+			).toEqual(ariaInvalid);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-keyshortcuts` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaKeyshortcuts = "F4";
+		it('should set the `aria-keyshortcuts` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaKeyshortcuts = 'F4';
 
-          element.ariaKeyshortcuts = ariaKeyshortcuts;
+			element.ariaKeyshortcuts = ariaKeyshortcuts;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot
-                  ?.querySelector("button")
-                  ?.getAttribute("aria-keyshortcuts")
-          ).toEqual(ariaKeyshortcuts);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-keyshortcuts')
+			).toEqual(ariaKeyshortcuts);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-label` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaLabel = "Foo label";
+		it('should set the `aria-label` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaLabel = 'Foo label';
 
-          element.ariaLabel = ariaLabel;
+			element.ariaLabel = ariaLabel;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-label")
-          ).toEqual(ariaLabel);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-label')
+			).toEqual(ariaLabel);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-labelledby` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaLabelledby = "testId";
+		it('should set the `aria-labelledby` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaLabelledby = 'testId';
 
-          element.ariaLabelledby = ariaLabelledby;
+			element.ariaLabelledby = ariaLabelledby;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot
-                  ?.querySelector("button")
-                  ?.getAttribute("aria-labelledby")
-          ).toEqual(ariaLabelledby);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-labelledby')
+			).toEqual(ariaLabelledby);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-live` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaLive = "polite";
+		it('should set the `aria-live` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaLive = 'polite';
 
-          element.ariaLive = ariaLive;
+			element.ariaLive = ariaLive;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-live")
-          ).toEqual(ariaLive);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-live')
+			).toEqual(ariaLive);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-owns` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaOwns = "testId";
+		it('should set the `aria-owns` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaOwns = 'testId';
 
-          element.ariaOwns = ariaOwns;
+			element.ariaOwns = ariaOwns;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-owns")
-          ).toEqual(ariaOwns);
+			expect(
+				element.shadowRoot?.querySelector('button')?.getAttribute('aria-owns')
+			).toEqual(ariaOwns);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-pressed` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaPressed = "true";
+		it('should set the `aria-pressed` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaPressed = 'true';
 
-          element.ariaPressed = ariaPressed;
+			element.ariaPressed = ariaPressed;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-pressed")
-          ).toEqual(ariaPressed);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-pressed')
+			).toEqual(ariaPressed);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-relevant` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaRelevant = "removals";
+		it('should set the `aria-relevant` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaRelevant = 'removals';
 
-          element.ariaRelevant = ariaRelevant;
+			element.ariaRelevant = ariaRelevant;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot?.querySelector("button")?.getAttribute("aria-relevant")
-          ).toEqual(ariaRelevant);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-relevant')
+			).toEqual(ariaRelevant);
 
-          await disconnect();
-      });
+			await disconnect();
+		});
 
-      it("should set the `aria-roledescription` attribute on the internal button when provided", async () => {
-          const { element, connect, disconnect } = await setup();
-          const ariaRoledescription = "slide";
+		it('should set the `aria-roledescription` attribute on the internal button when provided', async () => {
+			const { element, connect, disconnect } = await setup();
+			const ariaRoledescription = 'slide';
 
-          element.ariaRoledescription = ariaRoledescription;
+			element.ariaRoledescription = ariaRoledescription;
 
-          await connect();
+			await connect();
 
-          expect(
-              element.shadowRoot
-                  ?.querySelector("button")
-                  ?.getAttribute("aria-roledescription")
-          ).toEqual(ariaRoledescription);
+			expect(
+				element.shadowRoot
+					?.querySelector('button')
+					?.getAttribute('aria-roledescription')
+			).toEqual(ariaRoledescription);
 
-          await disconnect();
-      });
-  });
+			await disconnect();
+		});
+	});
 
-  describe("of type 'reset'", () => {
-      it("should reset the parent form when clicked", async () => {
-          const { connect, disconnect, element, parent } = await setup();
-          const form = document.createElement("form");
-          element.setAttribute("type", "reset");
-          form.appendChild(element);
-          parent.appendChild(form);
+	describe("of type 'reset'", () => {
+		it('should reset the parent form when clicked', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+			const form = document.createElement('form');
+			element.setAttribute('type', 'reset');
+			form.appendChild(element);
+			parent.appendChild(form);
 
-          await connect();
+			await connect();
 
-          const wasReset = await new Promise(resolve => {
-              // Resolve true when the event listener is handled
-              form.addEventListener("reset", () => resolve(true));
+			const wasReset = await new Promise((resolve) => {
+				// Resolve true when the event listener is handled
+				form.addEventListener('reset', () => resolve(true));
 
-              element.click();
+				element.click();
 
-              // Resolve false on the next update in case reset hasn't happened
-              DOM.queueUpdate(() => resolve(false));
-          });
+				// Resolve false on the next update in case reset hasn't happened
+				DOM.queueUpdate(() => resolve(false));
+			});
 
-          expect(wasReset).toEqual(true);
+			expect(wasReset).toEqual(true);
 
-          await disconnect();
-      });
-  });
+			await disconnect();
+		});
+	});
 
-  describe("of 'disabled'", () => {
-      it("should not propagate when spans within shadowRoot are clicked", async () => {
-          const { connect, disconnect, element, parent } = await setup();
+	describe("of 'disabled'", () => {
+		it('should not propagate when spans within shadowRoot are clicked', async () => {
+			const { connect, disconnect, element, parent } = await setup();
 
-          element.disabled = true;
-          parent.appendChild(element);
+			element.disabled = true;
+			parent.appendChild(element);
 
-          let wasClicked = false;
+			let wasClicked = false;
 
-          await connect();
+			await connect();
 
-          parent.addEventListener(eventClick, () => {
-              wasClicked = true;
-          })
+			parent.addEventListener(eventClick, () => {
+				wasClicked = true;
+			});
 
-          await DOM.nextUpdate();
+			await DOM.nextUpdate();
 
-          const elements = element.shadowRoot?.querySelectorAll("span");
-          if (elements) {
-             const spans : HTMLSpanElement[] = Array.from(elements)
-             spans.forEach((span: HTMLSpanElement) => {
-                 span.click()
-                 expect(wasClicked).toEqual(false);
-             }) 
-          }
+			const elements = element.shadowRoot?.querySelectorAll('span');
+			if (elements) {
+				const spans: HTMLSpanElement[] = Array.from(elements);
+				spans.forEach((span: HTMLSpanElement) => {
+					span.click();
+					expect(wasClicked).toEqual(false);
+				});
+			}
 
-          await disconnect();
-      });
-  });
+			await disconnect();
+		});
+	});
 });
