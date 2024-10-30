@@ -48,6 +48,22 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	/**
+	 * Single file state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: single-file
+	 */
+	@attr({ attribute: 'single-file', mode: 'boolean' }) singleFile = false;
+	singleFileChanged(_: boolean, isSingleFile: boolean) {
+		if (isSingleFile) {
+			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
+		} else {
+			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
+		}
+	}
+
+	/**
 	 * The max files that can be selected.
 	 *
 	 * @public
@@ -248,8 +264,14 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#handleFilesChanged(): void {
+		if (this.singleFile && this.files.length >= 1) {
+			for (let i = 0; i < this.files.length - 1; i++) {
+				this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
+			}
+		}
 		this.$emit('change');
 		this.#updateFormValue();
+		this.singleFileChanged(true, this.singleFile);
 	}
 
 	#updateFormValue() {

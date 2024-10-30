@@ -152,6 +152,60 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('single-file', () => {
+		beforeEach(async () => {
+			element.singleFile = true;
+			await elementUpdated(element);
+		});
+
+		it('should reflect the attribute single-file', async () => {
+			expect(element.hasAttribute('single-file')).toBe(true);
+		});
+
+		it('should reflect the property to an attribute', async () => {
+			element.singleFile = false;
+			await elementUpdated(element);
+
+			element.toggleAttribute('single-file');
+			await elementUpdated(element);
+			
+			expect(element.singleFile).toBe(true);
+		});
+
+		it('should remove the hidden input multiple attribute when true', async () => {
+			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
+		});
+
+		it('should add the hidden input multiple attribute when false', async () => {
+			element.singleFile = false;
+			await elementUpdated(element);
+			expect(getHiddenInput()?.getAttribute('multiple')).toBe('multiple');
+		});
+
+		it('should keep multiple attribute removed after change event', async () => {
+			addFiles([await generateFile('london.png', 1)]);
+
+			getRemoveButton(0).click();
+			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
+		});
+
+		it('should add a file to the list when uploading a file for the first time', async () => {	
+			const file = await generateFile('london.png', 1, 'image/png');
+			addFiles([
+				file
+			]);
+			expect(element.files).toEqual([file]);
+		});
+
+		it('should replace existing file in the list when uploading a new file', async () => {
+			const file1 = await generateFile('london.png', 1, 'image/png');
+			const file2 = await generateFile('london2.png', 1, 'image/png');
+			addFiles([file1]);
+			addFiles([file2]);
+			expect(element.files).toEqual([file2]);
+		});
+
+	});
 	describe('accept', function () {
 		it('should show an error message for files added that do not match the accept attribute', async function () {
 			element.accept = 'image/*, text/html, .zip';
