@@ -14,6 +14,7 @@ import {
 } from '../../shared/patterns';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import type { Locale } from '../../shared/localization/Locale';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -27,6 +28,16 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
 	value: File | string | FormData | null
 ) => typeof value === 'string';
 
+const generateFilePreviewTemplate = (buttonTag: string, locale: Locale): string => {
+	return `<div class="dz-preview dz-file-preview">
+  <div class="dz-details">
+    <div class="dz-filename"><span data-dz-name></span></div>
+    <div class="dz-size"><span data-dz-size></span></div>
+  </div>
+  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+  <${buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${locale.filePicker.removeFileLabel}"></${buttonTag}>
+</div>`
+}
 /**
  * @public
  * @component file-picker
@@ -142,6 +153,21 @@ export class FilePicker extends FormAssociatedFilePicker {
 		Dropzone.autoDiscover = false;
 	}
 
+	#localizeErrorMessage = (file: DropzoneFile, message: string | any) => {
+		if (file.previewElement) {
+			file.previewElement.classList.add('dz-error');
+			// istanbul ignore next
+			if (typeof message !== 'string' && message.error) {
+				message = message.error;
+			}
+			for (const node of file.previewElement.querySelectorAll(
+				'[data-dz-errormessage]'
+			)) {
+				node.textContent = this.#formatNumbersInMessage(message);
+			}
+		}
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 
@@ -160,33 +186,11 @@ export class FilePicker extends FormAssociatedFilePicker {
 			addRemoveLinks: false,
 			previewsContainer: previewList,
 			createImageThumbnails: false,
-			// Updated version of default template (https://github.com/dropzone/dropzone/blob/f50d1828ab5df79a76be00d1306cc320e39a27f4/src/preview-template.html)
-			previewTemplate: `<div class="dz-preview dz-file-preview">
-  <div class="dz-details">
-    <div class="dz-filename"><span data-dz-name></span></div>
-    <div class="dz-size"><span data-dz-size></span></div>
-  </div>
-  <div class="dz-error-message"><span data-dz-errormessage></span></div>
-  <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${this.locale.filePicker.removeFileLabel}"></${this.buttonTag}>
-</div>`,
+			previewTemplate: generateFilePreviewTemplate(this.buttonTag, this.locale),
 			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
 			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
 			dictFileTooBig: this.locale.filePicker.fileTooBigError,
-			// Override the default implementation to localize the error messages
-			error: (file, message: string | any) => {
-				if (file.previewElement) {
-					file.previewElement.classList.add('dz-error');
-					// istanbul ignore next
-					if (typeof message !== 'string' && message.error) {
-						message = message.error;
-					}
-					for (const node of file.previewElement.querySelectorAll(
-						'[data-dz-errormessage]'
-					)) {
-						node.textContent = this.#formatNumbersInMessage(message);
-					}
-				}
-			},
+			error: this.#localizeErrorMessage,
 		});
 
 		(this.#dropzone as any).filesize = (size: number) => {
@@ -258,7 +262,6 @@ export class FilePicker extends FormAssociatedFilePicker {
 		this.#dropzone?.hiddenFileInput?.dispatchEvent(
 			new Event('change', { bubbles: false })
 		);
-		
 	}
 
 	#keepOnlyNewestFile() {
@@ -266,6 +269,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 			this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
 		}
 	}
+
 	#handleFilesChanged(): void {
 		if (this.singleFile && this.files.length >= 1) {
 			this.#keepOnlyNewestFile();
