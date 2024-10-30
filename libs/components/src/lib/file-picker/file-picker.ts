@@ -255,19 +255,20 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#updateHiddenFileInput(): void {
-		if (this.#dropzone!.hiddenFileInput) {
-			// Dropzone will recreate the hiddenFileInput on change event
-			this.#dropzone!.hiddenFileInput.dispatchEvent(
-				new Event('change', { bubbles: false })
-			);
-		}
+		this.#dropzone?.hiddenFileInput?.dispatchEvent(
+			new Event('change', { bubbles: false })
+		);
+		
 	}
 
+	#keepOnlyNewestFile() {
+		for (let i = 0; i < this.files.length - 1; i++) {
+			this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
+		}
+	}
 	#handleFilesChanged(): void {
 		if (this.singleFile && this.files.length >= 1) {
-			for (let i = 0; i < this.files.length - 1; i++) {
-				this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
-			}
+			this.#keepOnlyNewestFile();
 		}
 		this.$emit('change');
 		this.#updateFormValue();
