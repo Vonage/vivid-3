@@ -180,7 +180,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#addRemoveButtonToFilesPreview() {
-		this.#dropzone?.on('addedfiles', (files) => {
+		this.#dropzone!.on('addedfiles', (files) => {
 			for (const file of files) {
 				if (file.previewElement) {
 					const removeButton = file.previewElement.querySelector(
@@ -201,7 +201,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#setRemoveButtonConnotationOnError() {
-		this.#dropzone?.on('error', (file) => {
+		this.#dropzone!.on('error', (file) => {
 			if (file.previewElement) {
 				const removeButton = file.previewElement.querySelector(
 					'.remove-btn'
@@ -276,7 +276,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#updateHiddenFileInput(): void {
-		this.#dropzone?.hiddenFileInput?.dispatchEvent(
+		this.#dropzone!.hiddenFileInput!.dispatchEvent(
 			new Event('change', { bubbles: false })
 		);
 	}
