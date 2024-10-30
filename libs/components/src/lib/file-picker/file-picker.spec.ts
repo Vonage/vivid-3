@@ -158,6 +158,17 @@ describe('vwc-file-picker', () => {
 			await elementUpdated(element);
 		});
 
+		it('should initiate in single file mode', async () => {
+			element = fixture(
+				`<${COMPONENT_TAG} single-file>Drag & drop or click to upload</${COMPONENT_TAG}>`
+			) as FilePicker;
+
+			await elementUpdated(element);
+
+			expect(element.singleFile).toBe(true);
+			expect(getHiddenInput().hasAttribute('multiple')).toBe(false);
+		});
+
 		it('should reflect the attribute single-file', async () => {
 			expect(element.hasAttribute('single-file')).toBe(true);
 		});
@@ -182,10 +193,11 @@ describe('vwc-file-picker', () => {
 			expect(getHiddenInput()?.getAttribute('multiple')).toBe('multiple');
 		});
 
-		it('should keep multiple attribute removed after change event', async () => {
+		it('should remove after change event', async () => {
 			addFiles([await generateFile('london.png', 1)]);
 
-			getRemoveButton(0).click();
+			getHiddenInput().dispatchEvent(new Event('change'));
+			await elementUpdated(element);
 			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
 		});
 
@@ -438,3 +450,6 @@ describe('form associated vwc-file-picker', function () {
 		expect(new FormData(formElement).get('file')).toBeTruthy();
 	});
 });
+
+// Add docs
+// Check to see if we have a ui-test that needs update

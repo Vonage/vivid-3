@@ -58,6 +58,13 @@ export class FilePicker extends FormAssociatedFilePicker {
 		return this.#dropzone?.getAcceptedFiles() ?? [];
 	}
 
+	#syncSingleFileState() {
+		if (this.singleFile) {
+			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
+		} else {
+			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
+		}
+	}
 	/**
 	 * Single file state.
 	 *
@@ -66,12 +73,8 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 * HTML Attribute: single-file
 	 */
 	@attr({ attribute: 'single-file', mode: 'boolean' }) singleFile = false;
-	singleFileChanged(_: boolean, isSingleFile: boolean) {
-		if (isSingleFile) {
-			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
-		} else {
-			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
-		}
+	singleFileChanged() {
+		this.#syncSingleFileState();
 	}
 
 	/**
@@ -240,6 +243,8 @@ export class FilePicker extends FormAssociatedFilePicker {
 		this.#dropzone.on('removedfile', () => {
 			this.#handleFilesChanged();
 		});	
+
+		this.#syncSingleFileState();
 	}
 
 	override disconnectedCallback() {
@@ -288,7 +293,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 		}
 		this.$emit('change');
 		this.#updateFormValue();
-		this.singleFileChanged(true, this.singleFile);
+		requestAnimationFrame(() => this.#syncSingleFileState());
 	}
 
 	#updateFormValue() {

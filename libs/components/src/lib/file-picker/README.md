@@ -114,6 +114,19 @@ Use the `size` attribute to set the file picker's to one of the predefined block
 </vwc-file-picker>
 ```
 
+### Single File
+
+Use the `single-file` attribute to set the file picker to allow only a single file and subsequent file uploads will replace the current file.
+
+- Type: `'boolean'`
+- Default: `false`
+
+```html preview
+<vwc-file-picker single-file>
+	Drag & Drop or click to upload only one file
+</vwc-file-picker>
+```
+
 ## Slots
 
 ### Default
