@@ -528,6 +528,40 @@ describe('Foundation Button', () => {
 		});
 	});
 
+	describe("of type 'submit'", () => {
+		it('should submit the parent form when clicked', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+			const form = document.createElement('form');
+			element.setAttribute('type', 'submit');
+			form.appendChild(element);
+			parent.appendChild(form);
+
+			await connect();
+
+			const wasSumbitted = await new Promise((resolve) => {
+				// Resolve as true when the event listener is handled
+				form.addEventListener(
+					'submit',
+					// @ts-expect-error overload
+					(event: Event & { submitter: HTMLElement }) => {
+						event.preventDefault();
+						expect(event.submitter).toEqual(element.proxy);
+						resolve(true);
+					}
+				);
+
+				element.click();
+
+				// Resolve false on the next update in case reset hasn't happened
+				DOM.queueUpdate(() => resolve(false));
+			});
+
+			expect(wasSumbitted).toEqual(true);
+
+			await disconnect();
+		});
+	});
+
 	describe("of type 'reset'", () => {
 		it('should reset the parent form when clicked', async () => {
 			const { connect, disconnect, element, parent } = await setup();
@@ -555,6 +589,27 @@ describe('Foundation Button', () => {
 	});
 
 	describe("of 'disabled'", () => {
+		it('should not propagate when clicked', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+
+			element.disabled = true;
+			parent.appendChild(element);
+
+			let wasClicked = false;
+			await connect();
+
+			parent.addEventListener(eventClick, () => {
+				wasClicked = true;
+			});
+
+			await DOM.nextUpdate();
+			element.click();
+
+			expect(wasClicked).toEqual(false);
+
+			await disconnect();
+		});
+
 		it('should not propagate when spans within shadowRoot are clicked', async () => {
 			const { connect, disconnect, element, parent } = await setup();
 
