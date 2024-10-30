@@ -12,6 +12,10 @@
 	border-radius: inherit;
 	background: var(#{utils.get-color-token(surface-4dp)});
 	contain: layout;
+
+	&:not(.open) {
+		display: none;
+	}
 }
 
 .popup-wrapper {
