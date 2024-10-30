@@ -160,15 +160,15 @@ To add custom icons, use the `icon` [slot](/components/select/code/#icon-slot) p
 	class="country-code"
 	id="country-code"
 >
-	<vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
-	<vwc-option value="44" text="+44" icon="flag-united-kingdom"></vwc-option>
-	<vwc-option value="49" text="+49" icon="flag-germany"></vwc-option>
-	<vwc-option value="355" text="+355" icon="flag-albania"></vwc-option>
+	<vwc-option value="1" text="United States" label="+1" icon="flag-united-states"></vwc-option>
+	<vwc-option value="44" text="United Kingdom" label="+44" icon="flag-united-kingdom"></vwc-option>
+	<vwc-option value="49" text="Germany" label="+49" icon="flag-germany"></vwc-option>
+	<vwc-option value="355" text="Albania" label="+355" icon="flag-albania"></vwc-option>
 </vwc-select>
 
 <style>
 	.country-code {
-		width: 120px;
+		inline-size: 120px;
 	}
 </style>
 
@@ -250,7 +250,7 @@ The `shape` attribute controls the border radius of the Select input element.
 ## Appearance
 
 The `appearance` attribute controls the style of the select element.<br />
-Use `ghost` in combination with a containing element which provides a border, for example [Action Group](/components/action-group/).
+Use `ghost` in combination with a containing element which provides a border, for example when used inside the [leading action items slot of Text Field](/components/text-field/code/#leading-action-items-slot).
 
 ```html preview 270px
 <div class="container">

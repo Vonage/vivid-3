@@ -2,9 +2,9 @@
 
 ### In a Form
 
-When a Select is placed inside a `form` element and validation logic is set on the Text Field, the Text Field is validated when the `form` is submitted (as per a native `select` element).
+When a Select is placed inside a `form` element and validation logic is set on the Select component, the Select is validated when the `form` is submitted (as per a native `select` element).
 
-Below, all the "Title" field Select is marked as required and is validated when the `form` is submitted.
+Below, the "Title" field Select is marked as required and is validated when the `form` is submitted.
 
 ```html preview 360px
 <form method="post" action="">
@@ -37,9 +37,9 @@ Below, all the "Title" field Select is marked as required and is validated when 
 
 ### Single Field
 
-The Text Field can be validated like the native `input` element.
+The Select component can be validated like the native `select` element.
 
-Below, the Text Field is `required` but it has no `value`. The `checkedValidity()` method is called on the Text Field to validate it.
+Below, the Select is `required` but it has no selected option. The `checkedValidity()` method is called on the Select to validate it.
 
 ```html preview
 <vwc-select required label="Title" id="title" placeholder="Select an option">
@@ -61,7 +61,12 @@ Below, the Text Field is `required` but it has no `value`. The `checkedValidity(
 The Select component is used in the example below as the dialing code part of an international phone number input field.
 
 ```html preview 240px
-<vwc-action-group slot="body">
+<vwc-text-field
+	aria-label="Telephone number"
+	type="tel"
+	inputmode="tel"
+	size="12"
+>
 	<vwc-select
 		fixed-dropdown
 		aria-label="Country code"
@@ -69,20 +74,14 @@ The Select component is used in the example below as the dialing code part of an
 		appearance="ghost"
 		class="country-code"
 		id="country-code"
+		slot="leading-action-items"
 	>
-		<vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
-		<vwc-option value="44" text="+44" icon="flag-united-kingdom"></vwc-option>
-		<vwc-option value="49" text="+49" icon="flag-germany"></vwc-option>
-		<vwc-option value="355" text="+355" icon="flag-albania"></vwc-option>
+		<vwc-option value="1" text="United States" label="+1" icon="flag-united-states"></vwc-option>
+		<vwc-option value="44" text="United Kingdom" label="+44" icon="flag-united-kingdom"></vwc-option>
+		<vwc-option value="49" text="Germany" label="+49" icon="flag-germany"></vwc-option>
+		<vwc-option value="355" text="Albania" label="+355" icon="flag-albania"></vwc-option>
 	</vwc-select>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-text-field
-		aria-label="Telephone number"
-		type="tel"
-		inputmode="tel"
-		appearance="ghost"
-	></vwc-text-field>
-</vwc-action-group>
+</vwc-text-field>
 
 <script>
 	const select = document.getElementById('country-code');
@@ -90,6 +89,12 @@ The Select component is used in the example below as the dialing code part of an
 		select.icon = select.selectedOptions[0].icon;
 	});
 </script>
+
+<style>
+	.country-code {
+		inline-size: 120px;
+	}
+</style>
 ```
 
 ## Call Status

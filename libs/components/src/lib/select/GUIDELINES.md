@@ -165,7 +165,7 @@ The `condensed` Text Field is useful when used inside other components (inside [
 	}
 
 	.controls {
-		width: 5.75rem;
+		width: 92px;
 	}
 </style>
 ```

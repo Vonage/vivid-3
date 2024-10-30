@@ -78,7 +78,7 @@ You can specify the `width` of the Select using CSS.
 
 The `fixed-dropdown` attribute is useful for cases in which the dropdown is obstructed by other elements.
 
-In the example below, if `fixed-dropdown` was not set on the Select, the dropdown menu would be cut off where the Dialog ends.
+In the example below, if `fixed-dropdown` was not set on the Select, the select dropdown would be cut off where the Dialog ends.
 Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 
 ```html preview 320px
@@ -154,7 +154,7 @@ Select component is a low level element, unaware of its document context, but is
 
 This is where you place the [Option](/components/option/) components to provide the option list.
 
-```html preview 230px
+```html preview 270px
 <vwc-select label="Title" placeholder="Select an option">
 	<vwc-option value="mr" text="Mr"></vwc-option>
 	<vwc-option value="mrs" text="Mrs"></vwc-option>
@@ -264,7 +264,7 @@ Use `--select-height` to customize the `max-height` of the dropdown.
 
 | Name               | Type                            | Description                                                                                                                 |
 | ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **appearance**     | `fieldset` (default), `ghost`   | Sets the elements's appearance                                                                                              |
+| **appearance**     | `fieldset` (default), `ghost`   | Sets the element's appearance  |
 | **disabled**       | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
 | **error-text**     | `string`                        | Sets the element's error text                                                                                               |
 | **fixed-dropdown** | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
@@ -303,86 +303,3 @@ Use `--select-height` to customize the `max-height` of the dropdown.
 | **meta**        | Show meta information after the selected option label              |
 
 </div>
-
-## Accessibility
-
-### Aria Label
-
-A select requires a label to be set for screen readers to be able to describe the component.
-If label is set, it is used as the `aria-label` attribute value on the host element.
-If label is not set, please make sure to add an `aria-label` attribute to the host element.
-
-## Use Cases
-
-### Country Code
-
-```html preview 250px
-<style>
-	vwc-select {
-		width: 120px;
-	}
-</style>
-<vwc-select label="country code" icon="flag-united-states">
-	<vwc-option value="1" text="+1" icon="flag-united-states"></vwc-option>
-	<vwc-option value="+49" text="+49" icon="flag-germany"></vwc-option>
-	<vwc-option value="+355" text="+355" icon="flag-albania"></vwc-option>
-</vwc-select>
-<script>
-	const select = document.querySelector('vwc-select');
-	select?.addEventListener('change', (e) => {
-		select.icon = select.selectedOptions[0].icon;
-	});
-</script>
-```
-
-### Call Status
-
-```html preview 250px
-<style>
-	vwc-select {
-		width: 280px;
-	}
-
-	vwc-icon {
-		font-size: 12px;
-	}
-	vwc-select[current-value='ready'] > vwc-icon,
-	vwc-option[value='ready'] > vwc-icon {
-		color: var(--vvd-color-success-300);
-	}
-	vwc-select[current-value='away'] > vwc-icon,
-	vwc-option[value='away'] > vwc-icon {
-		color: var(--vvd-color-warning-300);
-	}
-	vwc-select[current-value='extended-away'] > vwc-icon,
-	vwc-option[value='extended-away'] > vwc-icon {
-		color: var(--vvd-color-announcement-500);
-	}
-	vwc-select[current-value='logged-out'] > vwc-icon,
-	vwc-option[value='logged-out'] > vwc-icon {
-		color: var(--vvd-color-neutral-300);
-	}
-
-	.duration {
-		color: var(--vvd-color-neutral-600);
-		text-align: end;
-		flex-grow: 1;
-	}
-</style>
-<vwc-select id="select" shape="pill" aria-label="Status">
-	<vwc-icon id="icon" slot="icon" name="bullet-solid"></vwc-icon>
-	<span slot="meta" class="duration">00:00:00</span>
-	<vwc-option value="ready" text="Ready">
-		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="away" text="Away">
-		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="extended-away" text="Extended away">
-		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
-	</vwc-option>
-	<vwc-option value="logged-out" text="Logged out">
-		<vwc-icon slot="icon" name="bullet-solid"></vwc-icon>
-	</vwc-option>
-</vwc-select>
-```
