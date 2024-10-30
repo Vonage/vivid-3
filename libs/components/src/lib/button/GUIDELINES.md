@@ -113,7 +113,7 @@
 <div>
 
 ```html preview example 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button
 		connotation="accent"
 		appearance="filled"
@@ -142,7 +142,7 @@
 </div>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -164,7 +164,7 @@
 <div>
 
 ```html preview example 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button connotation="cta" appearance="filled" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="outlined" label="CTA"></vwc-button>
 	<vwc-button connotation="cta" appearance="ghost" label="CTA"></vwc-button>
@@ -181,7 +181,7 @@
 </div>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -202,7 +202,7 @@
 <div>
 
 ```html preview example 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button
 		connotation="announcement"
 		appearance="filled"
@@ -231,7 +231,7 @@
 </div>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -253,7 +253,7 @@
 <div>
 
 ```html preview example 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button
 		connotation="success"
 		appearance="filled"
@@ -282,7 +282,7 @@
 </div>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -304,7 +304,7 @@
 <div>
 
 ```html preview example 72px
-<div class="wrapper">
+<div class="container">
 	<vwc-button
 		connotation="alert"
 		appearance="filled"
@@ -329,7 +329,7 @@
 </div>
 
 <style>
-	.wrapper {
+	.container {
 		display: flex;
 		gap: 16px;
 	}
@@ -523,6 +523,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 	headline="Delete appointment"
 	icon="delete-line"
 	icon-placement="side"
+	class="dialog"
 >
 	<div slot="body">Are you sure you want to delete this appointment?</div>
 	<vwc-button
@@ -539,7 +540,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 </vwc-dialog>
 
 <style>
-	vwc-dialog {
+	.dialog {
 		--dialog-max-inline-size: 330px;
 	}
 </style>
@@ -554,6 +555,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 	headline="Delete appointment"
 	icon="delete-line"
 	icon-placement="side"
+	class="dialog"
 >
 	<div slot="body">Are you sure you want to delete this appointment?</div>
 	<vwc-button
@@ -571,7 +573,7 @@ The smaller size buttons (`condensed` and `super-condensed`) are useful when use
 </vwc-dialog>
 
 <style>
-	vwc-dialog {
+	.dialog {
 		--dialog-max-inline-size: 330px;
 	}
 </style>
@@ -597,6 +599,7 @@ In general, the primary button placement should match the alignment of the butto
 	headline="Delete appointment"
 	icon="delete-line"
 	icon-placement="side"
+	class="dialog"
 >
 	<div slot="body">Are you sure you want to delete this appointment?</div>
 	<vwc-button
@@ -613,7 +616,7 @@ In general, the primary button placement should match the alignment of the butto
 </vwc-dialog>
 
 <style>
-	vwc-dialog {
+	.dialog {
 		--dialog-max-inline-size: 330px;
 	}
 </style>
@@ -864,3 +867,7 @@ Try to use [progressive disclosure](https://www.nngroup.com/articles/progressive
 </vwc-note>
 
 Ensure that the user is able to understand why the action is disabled and what they need to do to enable it.
+
+## Related Components
+
+- [Split Button](/components/split-button/)
