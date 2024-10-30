@@ -8,7 +8,7 @@ import {
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
-import { Size } from '../enums';
+import { Connotation, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -125,7 +125,7 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('max files', function () {
+	describe('maxFiles', function () {
 		it('should show an error message for files added after the maxFiles limit is reached', async function () {
 			element.maxFiles = 1;
 			addFiles([
@@ -168,7 +168,7 @@ describe('vwc-file-picker', () => {
 
 			element.toggleAttribute('single-file');
 			await elementUpdated(element);
-			
+
 			expect(element.singleFile).toBe(true);
 		});
 
@@ -269,7 +269,7 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('files property', function () {
+	describe('files', function () {
 		it('should contain added files', async function () {
 			const file = await generateFile('london.png', 2);
 			addFiles([file]);
@@ -291,6 +291,18 @@ describe('vwc-file-picker', () => {
 
 			expect(element.files.length).toEqual(0);
 		});
+
+		it('should  set error connotation on remove button when error', async () => {
+			element.maxFiles = 1;
+			addFiles([
+				await generateFile('london1.png', 1),
+				await generateFile('london2.png', 1),
+			]);
+			
+			expect(getRemoveButton(0).connotation).toBeUndefined();
+			expect(getRemoveButton(1).connotation).toBe(Connotation.Alert);
+		});
+		
 	});
 
 	describe('choose file with keyboard', function () {

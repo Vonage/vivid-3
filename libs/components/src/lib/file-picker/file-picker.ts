@@ -168,6 +168,46 @@ export class FilePicker extends FormAssociatedFilePicker {
 		}
 	}
 
+	#localizeFileSizeNumberAndUnits = () => {
+		(this.#dropzone as any).filesize = (size: number) => {
+			return this.#formatNumbersInMessage(
+				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
+			);
+		};
+	}
+
+	#addRemoveButtonToFilesPreview() {
+		this.#dropzone?.on('addedfiles', (files) => {
+			for (const file of files) {
+				if (file.previewElement) {
+					const removeButton = file.previewElement.querySelector(
+						'.remove-btn'
+					) as Button;
+					removeButton.addEventListener('click', (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						this.#dropzone!.removeFile(file as File as DropzoneFile);
+					});
+				}
+			}
+
+			this.#handleFilesChanged();
+		});
+
+		this.#setRemoveButtonConnotationOnError();
+	}
+
+	#setRemoveButtonConnotationOnError() {
+		this.#dropzone?.on('error', (file) => {
+			if (file.previewElement) {
+				const removeButton = file.previewElement.querySelector(
+					'.remove-btn'
+				) as Button;
+				removeButton.connotation = Connotation.Alert;
+			}
+		});
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 
@@ -193,41 +233,13 @@ export class FilePicker extends FormAssociatedFilePicker {
 			error: this.#localizeErrorMessage,
 		});
 
-		(this.#dropzone as any).filesize = (size: number) => {
-			return this.#formatNumbersInMessage(
-				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
-			);
-		};
+		this.#localizeFileSizeNumberAndUnits();
 
-		this.#dropzone.on('addedfiles', (files) => {
-			for (const file of files) {
-				if (file.previewElement) {
-					const removeButton = file.previewElement.querySelector(
-						'.remove-btn'
-					) as Button;
-					removeButton.addEventListener('click', (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						this.#dropzone!.removeFile(file as File as DropzoneFile);
-					});
-				}
-			}
-
-			this.#handleFilesChanged();
-		});
+		this.#addRemoveButtonToFilesPreview();
 
 		this.#dropzone.on('removedfile', () => {
 			this.#handleFilesChanged();
-		});
-
-		this.#dropzone.on('error', (file) => {
-			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector(
-					'.remove-btn'
-				) as Button;
-				removeButton.connotation = Connotation.Alert;
-			}
-		});
+		});	
 	}
 
 	override disconnectedCallback() {
