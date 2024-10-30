@@ -28,7 +28,10 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
 	value: File | string | FormData | null
 ) => typeof value === 'string';
 
-const generateFilePreviewTemplate = (buttonTag: string, locale: Locale): string => {
+const generateFilePreviewTemplate = (
+	buttonTag: string,
+	locale: Locale
+): string => {
 	return `<div class="dz-preview dz-file-preview">
   <div class="dz-details">
     <div class="dz-filename"><span data-dz-name></span></div>
@@ -36,8 +39,8 @@ const generateFilePreviewTemplate = (buttonTag: string, locale: Locale): string 
   </div>
   <div class="dz-error-message"><span data-dz-errormessage></span></div>
   <${buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${locale.filePicker.removeFileLabel}"></${buttonTag}>
-</div>`
-}
+</div>`;
+};
 /**
  * @public
  * @component file-picker
@@ -169,7 +172,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 				node.textContent = this.#formatNumbersInMessage(message);
 			}
 		}
-	}
+	};
 
 	#localizeFileSizeNumberAndUnits = () => {
 		(this.#dropzone as any).filesize = (size: number) => {
@@ -177,7 +180,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
 			);
 		};
-	}
+	};
 
 	#addRemoveButtonToFilesPreview() {
 		this.#dropzone!.on('addedfiles', (files) => {
@@ -242,7 +245,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 
 		this.#dropzone.on('removedfile', () => {
 			this.#handleFilesChanged();
-		});	
+		});
 
 		this.#syncSingleFileState();
 	}

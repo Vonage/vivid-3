@@ -201,11 +201,9 @@ describe('vwc-file-picker', () => {
 			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
 		});
 
-		it('should add a file to the list when uploading a file for the first time', async () => {	
+		it('should add a file to the list when uploading a file for the first time', async () => {
 			const file = await generateFile('london.png', 1, 'image/png');
-			addFiles([
-				file
-			]);
+			addFiles([file]);
 			expect(element.files).toEqual([file]);
 		});
 
@@ -216,7 +214,6 @@ describe('vwc-file-picker', () => {
 			addFiles([file2]);
 			expect(element.files).toEqual([file2]);
 		});
-
 	});
 	describe('accept', function () {
 		it('should show an error message for files added that do not match the accept attribute', async function () {
@@ -310,11 +307,10 @@ describe('vwc-file-picker', () => {
 				await generateFile('london1.png', 1),
 				await generateFile('london2.png', 1),
 			]);
-			
+
 			expect(getRemoveButton(0).connotation).toBeUndefined();
 			expect(getRemoveButton(1).connotation).toBe(Connotation.Alert);
 		});
-		
 	});
 
 	describe('choose file with keyboard', function () {
