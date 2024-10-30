@@ -160,10 +160,30 @@ To add custom icons, use the `icon` [slot](/components/select/code/#icon-slot) p
 	class="country-code"
 	id="country-code"
 >
-	<vwc-option value="1" text="United States" label="+1" icon="flag-united-states"></vwc-option>
-	<vwc-option value="44" text="United Kingdom" label="+44" icon="flag-united-kingdom"></vwc-option>
-	<vwc-option value="49" text="Germany" label="+49" icon="flag-germany"></vwc-option>
-	<vwc-option value="355" text="Albania" label="+355" icon="flag-albania"></vwc-option>
+	<vwc-option
+		value="1"
+		text="United States"
+		label="+1"
+		icon="flag-united-states"
+	></vwc-option>
+	<vwc-option
+		value="44"
+		text="United Kingdom"
+		label="+44"
+		icon="flag-united-kingdom"
+	></vwc-option>
+	<vwc-option
+		value="49"
+		text="Germany"
+		label="+49"
+		icon="flag-germany"
+	></vwc-option>
+	<vwc-option
+		value="355"
+		text="Albania"
+		label="+355"
+		icon="flag-albania"
+	></vwc-option>
 </vwc-select>
 
 <style>

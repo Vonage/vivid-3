@@ -76,10 +76,30 @@ The Select component is used in the example below as the dialing code part of an
 		id="country-code"
 		slot="leading-action-items"
 	>
-		<vwc-option value="1" text="United States" label="+1" icon="flag-united-states"></vwc-option>
-		<vwc-option value="44" text="United Kingdom" label="+44" icon="flag-united-kingdom"></vwc-option>
-		<vwc-option value="49" text="Germany" label="+49" icon="flag-germany"></vwc-option>
-		<vwc-option value="355" text="Albania" label="+355" icon="flag-albania"></vwc-option>
+		<vwc-option
+			value="1"
+			text="United States"
+			label="+1"
+			icon="flag-united-states"
+		></vwc-option>
+		<vwc-option
+			value="44"
+			text="United Kingdom"
+			label="+44"
+			icon="flag-united-kingdom"
+		></vwc-option>
+		<vwc-option
+			value="49"
+			text="Germany"
+			label="+49"
+			icon="flag-germany"
+		></vwc-option>
+		<vwc-option
+			value="355"
+			text="Albania"
+			label="+355"
+			icon="flag-albania"
+		></vwc-option>
 	</vwc-select>
 </vwc-text-field>
 
