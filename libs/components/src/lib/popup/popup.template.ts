@@ -33,7 +33,7 @@ export const popupTemplate: (
 
 	return html`
   <${elevationTag}>
-	  <div class="popup-wrapper ${(x) => x.strategy}" ${ref(
+	  <div popover class="popup-wrapper ${(x) => x.strategy}" ${ref(
 		'popupEl'
 	)} part="popup-base">
 			<div class="${getClasses}" aria-hidden="${(x) => (x.open ? 'false' : 'true')}"

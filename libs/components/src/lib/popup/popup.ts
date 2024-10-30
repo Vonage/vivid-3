@@ -203,6 +203,7 @@ export class Popup extends FoundationElement {
 					animationFrame: this.animationFrame,
 				}
 			);
+			this.popupEl.showPopover();
 		}
 	}
 
