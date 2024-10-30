@@ -378,3 +378,7 @@ When the button is used to trigger a menu / dropdown, you can set `dropdown-indi
 	<vwc-menu-item icon="delete-line" text="Archive"></vwc-menu-item>
 </vwc-menu>
 ```
+
+<vwc-note connotation="information" icon="info-line">
+	<p>When setting <code>dropdown-indicator</code> the Button's content alignment changes from center to start. You can change it back to center using <code>--button-content-alignment</code> CSS variable </p>
+</vwc-note>
