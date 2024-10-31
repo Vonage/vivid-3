@@ -77,7 +77,6 @@
 		"description": "Displays icons from the Vivid Icons Library using predefined colors and sizes.",
 		"variations": "./libs/components/src/lib/icon/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/icon/GUIDELINES.md",
-		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/icon/README.md",
 		"accessibility": "./libs/components/src/lib/icon/ACCESSIBILITY.md"
 	},
@@ -272,8 +271,12 @@
 	},
 	{
 		"title": "Select",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/select/README.md"
+		"description": "Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.",
+		"variations": "./libs/components/src/lib/select/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/select/GUIDELINES.md",
+		"code": "./libs/components/src/lib/select/README.md",
+		"accessibility": "./libs/components/src/lib/select/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/select/USE-CASES.md"
 	},
 	{
 		"title": "Data Grid",

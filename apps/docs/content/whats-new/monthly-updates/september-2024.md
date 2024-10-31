@@ -22,36 +22,36 @@ See the [Office Hours minutes](https://docs.google.com/document/d/1E0yvyGUzBoQFH
 - An enhancement request was made for the date /range picker to include the option for an integrate time picker. This would bring it inline with a Volta version of this component
   - It was agreed that we would add this request to the backlog for Q4
 
-## Searchable Select component released to alpha
+## Searchable Select Component Released to Alpha
 
 **Announcing the new [Searchable select](/components/searchable-select) component.**
 
 Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.
 
-## Data-grid: sort icon placement change
+## Data-grid: Sort Icon Placement Change
 
 The [sort icon in the header](/components/data-grid/#columndefinitions) of data-grid are now aligned closer to the header text.
 
-## FAB: adds condensed size
+## FAB: Adds Condensed Size
 
 We have added a [condensed size](/components/fab/#size) to the FAB component.
 
-## Icon: adds warning connotation
+## Icon: Adds Warning Connotation
 
 We have added a [warning connotation](/components/icon/#connotation) to the Icon component.
 
-## Tabs: adds shadow to tabs list when they scroll
+## Tabs: Adds Shadow to Tabs List When They Scroll
 
 We have added a shadow to the tab list container when the number/size of tab items creates a scroll. Previously, it could be hard to see that there were more items.
 
-## Tab: adds removable feature
+## Tab: Adds Removable Feature
 
 Adds a close button to the [tab component](/components/tab/#removable) to enable removable tabs.
 
-## Form components: adds a condensed variation
+## Form Components: Adds a Condensed Variation
 
 Adds condensed size to [Text field](/components/text-field/#scale), [Number field](/components/number-field/#scale) and [Select](/components/select/#scale) components.
 
-## Menu: adds position-strategy
+## Menu: Adds Position Strategy
 
 When the menu is within a container that has properties such as `transform`, `perspective`, or `container-type`, which modify its containing block, it messes with the default `fixed` position. This can be remedied by setting the `position-strategy` to `absolute`.
