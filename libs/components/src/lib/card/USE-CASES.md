@@ -150,7 +150,7 @@ When placing cards inside Layout component or inside flex parent the cards are s
 
 ### Selectable cards
 
-You can slot a card with `appearance="ghost""` inside selectable box
+You can slot a card with `appearance="ghost"` inside selectable box
 
 ```html preview
 <vwc-layout class="card-layout" role="group" aria-label="pick your ios">

@@ -1,4 +1,4 @@
-## Card Texts
+## Card Text Content
 
 ### Headline
 
