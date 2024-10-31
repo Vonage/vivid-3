@@ -215,8 +215,13 @@
 	},
 	{
 		"title": "Option",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/option/README.md"
+		"description": "Use to display an option list inside the Select, Searchable Select or Combobox components",
+		"variations": "./libs/components/src/lib/option/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/option/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true",
+		"code": "./libs/components/src/lib/option/README.md",
+		"accessibility": "./libs/components/src/lib/option/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Searchable Select",
