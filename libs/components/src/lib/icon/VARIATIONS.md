@@ -127,6 +127,7 @@ Use the `size` attribute to select the icon's size from a set of predefined valu
 		</tr>
 	</tbody>
 </table>
+
 <style>
 	table {
 		border-collapse: collapse;
@@ -207,6 +208,7 @@ Use the `connotation` attribute to select the icon's color from a set of predefi
 		information
 	</li>
 </ul>
+
 <style>
 	li {
 		list-style: none;

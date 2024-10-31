@@ -2,7 +2,7 @@
 
 ### Label Text
 
-The `label` attribute provides a short description of purpose of the Text Field.
+The `label` attribute provides a short description of the purpose of the Text Field.
 
 ```html preview
 <vwc-text-field label="First name"></vwc-text-field>
@@ -17,7 +17,7 @@ The `label` attribute provides a short description of purpose of the Text Field.
 
 The `helper-text` attribute provides additional information to help the user enter the correct informaton.
 
-To adds HTML to the helper text, use the [helper-text slot](/components/text-field/code/#helper-text-slot).
+To add HTML to the helper text, use the [helper-text slot](/components/text-field/code/#helper-text-slot).
 
 ```html preview
 <vwc-text-field
