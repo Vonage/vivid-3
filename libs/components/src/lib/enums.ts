@@ -28,6 +28,7 @@ export enum Appearance {
 	Duotone = 'duotone',
 	Fieldset = 'fieldset',
 	Subtle = 'subtle',
+	SubtleLight = 'subtle-light',
 	Ghost = 'ghost',
 	GhostLight = 'ghost-light',
 	OutlinedLight = 'outlined-light',

@@ -1,4 +1,3 @@
-import { Checkbox as FoundationCheckbox } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import {
@@ -10,6 +9,7 @@ import {
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { FormAssociatedCheckbox } from './checkbox.form-associated';
 
 export const keySpace: ' ' = ' ' as const;
 
@@ -35,7 +35,7 @@ export type AriaCheckedStates = 'false' | 'true' | 'mixed' | 'undefined';
  */
 @errorText
 @formElements
-export class Checkbox extends FoundationCheckbox {
+export class Checkbox extends FormAssociatedCheckbox {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 	@attr({ attribute: 'tabindex' }) tabindex: string | null = null;
 
@@ -57,6 +57,49 @@ export class Checkbox extends FoundationCheckbox {
 	 */
 	@attr({ attribute: 'aria-checked' })
 	override ariaChecked: AriaCheckedStates | null = null;
+
+	/**
+	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: readonly
+	 */
+	@attr({ attribute: 'readonly', mode: 'boolean' })
+	readOnly!: boolean; // Map to proxy element
+	/**
+	 * @internal
+	 */
+	readOnlyChanged() {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.readOnly = this.readOnly;
+		}
+	}
+
+	/**
+	 * The element's value to be included in form submission when checked.
+	 * Default to "on" to reach parity with input[type="checkbox"]
+	 *
+	 * @internal
+	 */
+	override initialValue = 'on';
+
+	/**
+	 * @internal
+	 */
+	@observable
+	defaultSlottedNodes: Node[] = [];
+
+	/**
+	 * The indeterminate state of the control
+	 */
+	@observable
+	indeterminate = false;
+
+	constructor() {
+		super();
+
+		this.proxy.setAttribute('type', 'checkbox');
+	}
 
 	indeterminateChanged(_: boolean, next: boolean) {
 		this.checked = !next;
@@ -83,11 +126,9 @@ export class Checkbox extends FoundationCheckbox {
 	}
 
 	/**
-	 * !remove method as will be implemented by fast-foundation in version after 2.46.9
-	 *
 	 * @internal
 	 */
-	override keypressHandler = (event: KeyboardEvent): boolean => {
+	keypressHandler = (event: KeyboardEvent): boolean => {
 		if (event.target instanceof HTMLAnchorElement) {
 			return true;
 		}
@@ -106,11 +147,9 @@ export class Checkbox extends FoundationCheckbox {
 	};
 
 	/**
-	 * !remove method as will be implemented by fast-foundation in version after 2.46.9
-	 *
 	 * @internal
 	 */
-	override clickHandler = (event: Event): boolean => {
+	clickHandler = (event: Event): boolean => {
 		if (event.target instanceof HTMLAnchorElement) {
 			return true;
 		}

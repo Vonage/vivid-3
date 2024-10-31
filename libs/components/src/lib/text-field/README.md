@@ -180,12 +180,13 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 
 | Name           | Type                                                                       | Description                                                                                                  |
 | -------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `appearance`   | `fieldset`, `ghost`                                                        | Sets the input element's appearance                                                                          |
+| `appearance`   | `fieldset` (default), `ghost`                                              | Sets the input element's appearance                                                                          |
 | `autocomplete` | `off`, `on`, `<token-list>`                                                | Hint for form autofill feature                                                                               |
 | `autofocus`    | `boolean`                                                                  | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
 | `char-count`   | `boolean`                                                                  | Use in combination with `maxlength` to display a character count                                             |
 | `disabled`     | `boolean`                                                                  | Whether the input element is disabled                                                                        |
 | `inputmode`    | enum: `none`, `text`, `decimal` `numeric`, `tel`, `search`, `email`, `url` | Allows a browser to display an appropriate virtual keyboard                                                  |
+| `label`        | `string`                                                                   | Label of the Text Field                                                                                      |
 | `list`         | `string`                                                                   | Value of the id attribute of the `<datalist>` of autocomplete options                                        |
 | `maxlength`    | `string`                                                                   | Maximum length (number of characters) of `value`                                                             |
 | `minlength`    | `string`                                                                   | Minimum length (number of characters) of `value`                                                             |
@@ -193,7 +194,8 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 | `placeholder`  | `string`                                                                   | Text that appears in the input element when it has no value set                                              |
 | `readonly`     | `boolean`                                                                  | The `value` is not editable                                                                                  |
 | `required`     | `boolean`                                                                  | A value is required for the form to be submittable                                                           |
-| `size`         | `string`                                                                   | Size of the input element                                                                                    |
+| `size`         | `string`                                                                   | Size (in chars) of the input element                                                                         |
+| `scale`        | `normal` (default), `condensed`                                            | Sets the display size of the input element                                                                   |
 | `shape`        | `rounded`, `pill`                                                          | Sets the shape of the input element                                                                          |
 | `type`         | enum: `text`, `email`, `password`, `search`, `tel`, `url`                  | Type of input element                                                                                        |
 | `value`        | `string`                                                                   | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
