@@ -51,7 +51,7 @@ Below, the Text Field is `required` but it has no `value`. The `checkedValidity(
 </script>
 ```
 
-### Numeric input
+## Numeric input
 
 When collecting input which is made up of digits, but not a number in the mathematical sense, use the Text Field with `inputmode="numeric"` and `pattern="[0-9]*"`.
 
