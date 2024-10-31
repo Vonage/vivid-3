@@ -70,7 +70,7 @@ The media slot can be used to display images or video content above the card hea
 <vwc-card
 	headline="Card with Media Slot"
 	subtitle="Extra text below the card headline"
-	style="max-inline-size: 300px"
+	class="card-media"
 >
 	<img
 		slot="media"
@@ -79,22 +79,35 @@ The media slot can be used to display images or video content above the card hea
 		style="width: 100%; height: 150px; object-fit: cover;"
 	/>
 </vwc-card>
+
+<style>
+	.card-media {
+		max-inline-size: 300px;
+	}
+</style>
 ```
 
 ### Meta Slot
 
 The meta slot is for action content in the card header.
 
-```html preview
+```html preview 220px
 <vwc-card
 	headline="Card with Meta Slot"
 	subtitle="Extra text below the card headline"
 >
-	<vwc-button
-		slot="meta"
-		icon="more-vertical-solid"
-		appearance="ghost"
-	></vwc-button>
+	<div slot="meta">
+		<vwc-menu aria-label="Card options" placement="bottom-start" trigger="auto">
+			<vwc-button
+				slot="anchor"
+				icon="more-vertical-line"
+				aria-label="Open menu"
+				appearance="outlined"
+			></vwc-button>
+			<vwc-menu-item text="save card"></vwc-menu-item>
+			<vwc-menu-item text="remove card"></vwc-menu-item>
+		</vwc-menu>
+	</div>
 </vwc-card>
 ```
 

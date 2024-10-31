@@ -33,7 +33,7 @@ Add a `text` attribute to add text to the card.
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Text Field's input element.
+The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Card's headline.  
 To add custom icons or to postfix icons, use the [graphic slot](/components/card/code/#slots).
 
 ```html preview
