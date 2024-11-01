@@ -22,6 +22,7 @@
 @import '../../shared/patterns/chevron';
 
 $low-ink-color: --_low-ink-color;
+$scrollbar-track-color: --_scrollbar-track-color;
 
 :host(:focus-visible) {
 	outline: none;
@@ -31,6 +32,34 @@ $low-ink-color: --_low-ink-color;
 	display: inline-block;
 	inline-size: 300px;
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+	--_scrollbar-thumb-color: color-mix(
+		in srgb,
+		var(#{constants.$vvd-color-neutral-950}),
+		transparent 70%
+	);
+	--_scrollbar-track-color: transparent;
+	
+	/* ===== Scrollbar CSS ===== */
+	/* Firefox */
+	* {
+		scrollbar-width: auto;
+		scrollbar-color: var(--_scrollbar-thumb-color) var(--_scrollbar-track-color);
+	}
+
+	/* Chrome, Edge, and Safari */
+	*::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	*::-webkit-scrollbar-track {
+		background: var(--_scrollbar-track-color);
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: var(--_scrollbar-thumb-color);
+		border-radius: 4px;
+		border: 0px;
+	}
 }
 
 :host([disabled]) {
