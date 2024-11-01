@@ -196,6 +196,10 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 | -------------- | ----------------------------------------- | ----------------------------- |
 | **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
 | **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
+| **headline**   | `string`                                  | Sets the element's headline   |
+| **icon**       | `string`                                  | Sets the element's icon       |
+| **subtitle**   | `string`                                  | Sets the element's subtitle   |
+| **text**       | `string`                                  | Sets the element's text       |
 
 </div>
 
