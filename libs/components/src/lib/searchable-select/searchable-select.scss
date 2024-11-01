@@ -38,17 +38,17 @@ $scrollbar-track-color: --_scrollbar-track-color;
 		transparent 70%
 	);
 	--_scrollbar-track-color: transparent;
-	
+
 	/* ===== Scrollbar CSS ===== */
 	/* Firefox */
 	* {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--_scrollbar-thumb-color) var(--_scrollbar-track-color);
 	}
 
 	/* Chrome, Edge, and Safari */
 	*::-webkit-scrollbar {
-		width: 8px;
+		width: 4px;
 	}
 
 	*::-webkit-scrollbar-track {
