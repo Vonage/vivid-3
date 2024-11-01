@@ -1,4 +1,4 @@
-## Cards inside a layout
+## Cards Inside a Layout
 
 When placing cards inside Layout component or inside flex parent the cards are stretched to fit the highest card.
 
@@ -146,7 +146,7 @@ When placing cards inside Layout component or inside flex parent the cards are s
 </style>
 ```
 
-## Selectable cards
+## Selectable Cards
 
 You can slot a card with `appearance="ghost"` inside selectable box
 

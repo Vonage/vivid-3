@@ -1,20 +1,20 @@
-## Advantages of card UI design
+## Advantages of Card UI Design
 
 Advantages of card UI design
 
-### Highly responsive
+### Highly Responsive
 
 Probably the main advantage of UI cards is that they are very adaptive. It’s the rectangular shape that makes them transformative. That is why UI cards look good on all screen sizes.
 
-### Easy-to-understand
+### Easy-To-Understand
 
 UI cards are rather minimalistic and understandable design elements. Small chunks of information they reveal are easy to consume.
 
-### Intuitive and UX friendly
+### Intuitive and UX Friendly
 
 Most users are familiar with the card interface design and can easily navigate through it. Rectangular shape and simple clickable elements make the user experience very intuitive.
 
-### Attractive and modern-looking
+### Attractive and Modern-Looking
 
 Despite the fact that card-based design has been around for a decade now it is still an up-to-date design solution. Their key visual element makes it easy to make any product attractive using this layout.
 
