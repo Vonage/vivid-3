@@ -28,7 +28,7 @@ Use the `single-file` attribute to set the file picker to allow only a single fi
 - Type: `'boolean'`
 - Default: `false`
 
-```html preview
+```html preview 230px
 <vwc-file-picker single-file>
 	Drag & Drop or click to upload only one file
 </vwc-file-picker>
@@ -70,7 +70,7 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 - Type: `number` | `string`
 - Default: `256`
 
-```html preview
+```html preview 230px
 <vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1">
 	Drag & Drop or click to upload
 </vwc-file-picker>
@@ -87,7 +87,7 @@ If you set `max-files` to `1`, consider using the `single-file` mode.
 - Type: `number` | `string`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <vwc-file-picker helper-text="Single file only" max-files="3">
 	Drag & Drop or click to upload
 </vwc-file-picker>
