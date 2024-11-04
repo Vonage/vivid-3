@@ -130,8 +130,13 @@
 	},
 	{
 		"title": "Card",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/card/README.md"
+		"description": "A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card",
+		"variations": "./libs/components/src/lib/card/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/card/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/card/README.md",
+		"accessibility": "./libs/components/src/lib/card/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/card/USE-CASES.md"
 	},
 	{
 		"title": "Text Field",
