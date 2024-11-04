@@ -1,9 +1,3 @@
-# Banner
-
-Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.
-
-It is meant to be used at the top of pages, outside the main content.
-
 ## Usage
 
 <vwc-tabs>
