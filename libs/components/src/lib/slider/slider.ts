@@ -318,6 +318,8 @@ export class Slider extends FormAssociatedSlider {
 	}
 
 	protected keypressHandler = (e: KeyboardEvent) => {
+		this._focusVisible = true;
+
 		if (this.readOnly) {
 			return;
 		}
@@ -447,7 +449,9 @@ export class Slider extends FormAssociatedSlider {
 			if (this.readOnly || this.disabled || event.defaultPrevented) {
 				return;
 			}
+			this.#isNonVisibleFocus = true;
 			(event.target as HTMLElement).focus();
+			this.#isNonVisibleFocus = false;
 		}
 		const eventAction =
 			event !== null ? 'addEventListener' : 'removeEventListener';
@@ -533,10 +537,14 @@ export class Slider extends FormAssociatedSlider {
 			if (e) {
 				e.preventDefault();
 				this.setupTrackConstraints();
+				this.#isNonVisibleFocus = true;
 				(e.target as HTMLElement).focus();
+				this.#isNonVisibleFocus = false;
 				const value = this.#calculateValueFromMouseEvent(e);
 
 				this.value = `${this.#roundToNearestStep(value)}`;
+
+				this.isDragging = true;
 			}
 		}
 	};
@@ -596,39 +604,6 @@ export class Slider extends FormAssociatedSlider {
 	}
 
 	#isNonVisibleFocus = false;
-
-	constructor() {
-		super();
-
-		const fastSliderInternals = this as any;
-
-		const originalHandleMouseDown = fastSliderInternals.handleMouseDown;
-		// Called with e=null to clean up after releasing the mouse
-		fastSliderInternals.handleMouseDown = (e: MouseEvent | null) => {
-			this.#isNonVisibleFocus = true;
-			originalHandleMouseDown(e);
-			this.#isNonVisibleFocus = false;
-
-			if (e && !this.disabled && !this.readOnly) {
-				// Fix bug in FAST: isDragging is not set on mousedown
-				this.isDragging = true;
-			}
-		};
-
-		const originalHandleThumbMouseDown =
-			fastSliderInternals.handleThumbMouseDown;
-		fastSliderInternals.handleThumbMouseDown = (e: MouseEvent) => {
-			this.#isNonVisibleFocus = true;
-			originalHandleThumbMouseDown(e);
-			this.#isNonVisibleFocus = false;
-		};
-
-		const originalKeypressHandler = fastSliderInternals.keypressHandler;
-		fastSliderInternals.keypressHandler = (e: KeyboardEvent) => {
-			this._focusVisible = true;
-			originalKeypressHandler(e);
-		};
-	}
 
 	#registerThumbListeners() {
 		this.thumb.addEventListener('mouseover', this.#onMouseOver, {
