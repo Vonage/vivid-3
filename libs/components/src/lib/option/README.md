@@ -138,3 +138,33 @@ If the option is represented as a tag in a [Searchable Select](/components/searc
 	</vwc-option>
 </vwc-searchable-select>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name         | Type                      | Description                                                                                                                 |
+| ------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **disabled** | `boolean`                 | Sets the option to be disabled                                                                                              |
+| **icon**     | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **label**    | `string`                  | Text to be displayed instead of `text` when the option is selected                                                          |
+| **selected** | `boolean`                 | Sets the option to be selected                                                                                              |
+| **text**     | `string`                  | Sets the option's text                                                                                                      |
+| **value**    | `string`                  | Value to be submited as part of the form data                                                                               |
+
+</div>
+
+### Slots
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name         | Description                                                               |
+| ------------ | ------------------------------------------------------------------------- |
+| **icon**     | Add an icon before the option's text                                      |
+| **tag-icon** | Icon to be displayed in the tag when selected inside of Searchable Select |
+
+</div>
