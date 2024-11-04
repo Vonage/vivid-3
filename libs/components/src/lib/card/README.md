@@ -1,116 +1,53 @@
-# Card
+## Usage
 
-A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/card';</script>
+import '@vonage/vivid/card';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Headline
+```js
+import { registerCard } from '@vonage/vivid';
 
-Add a `headline` attribute to add card headline title.
-
-- Type: `string`
-- Default: `undefined`
+registerCard('your-prefix');
+```
 
 ```html preview
-<vwc-card headline="Vivid Card Component"></vwc-card>
+<script type="module">
+	import { registerCard } from '@vonage/vivid';
+	registerCard('your-prefix');
+</script>
+
+<your-prefix-card headline="I'm a card"></your-prefix-text-card>
 ```
 
-### Subtitle
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Add a `subtitle` attribute to add card subtitle.
+```html
+<script setup lang="ts">
+	import { VCard } from '@vonage/vivid-vue';
+</script>
 
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
+<template>
+	<VCard headline="I'm a card" />
+</template>
 ```
 
-### Appearance
-
-Set the `appearance` attribute to change the card's appearance.
-
-- Type: `elevated` | `outlined` | `ghost`
-- Default: `elevated`
-
-```html preview
-<vwc-layout>
-	<vwc-card
-		appearance="elevated"
-		headline="Vivid Card - Appearance Elevated"
-		subtitle="this is the default appearance"
-	></vwc-card>
-	<vwc-card
-		appearance="outlined"
-		headline="Vivid Card - Appearance Outlined"
-		subtitle="set a border to the card same as elevation='0' "
-	></vwc-card>
-	<vwc-card
-		appearance="ghost"
-		headline="Vivid Card - Appearance Ghost"
-		subtitle="present the card template without background or shadow"
-	></vwc-card>
-</vwc-layout>
-```
-
-### Elevation
-
-Control the elevation depth by adding the `elevation` attribute.  
-The elevation is applied only with the default appearance (`appearance='elevated'`).
-
-- Type: `2` | `4` | `8` | `12` | `16` | `24`
-- Default: `4`
-
-```html preview
-<vwc-card
-	elevation="12"
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
-```
-
-### Icon
-
-Add the `icon` attribute to add icon on the right of the card headline.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-	icon="chat-line"
-></vwc-card>
-```
-
-### Text
-
-Add a `text` attribute to add text to the card.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-	text="The card can contain multiple lines of text."
-></vwc-card>
-```
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
-### Graphic
+### Graphic Slot
 
-The graphic slot overrides the icon property.
+The graphic slot overrides the icon property.  
+Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview
 <vwc-card
@@ -125,15 +62,15 @@ The graphic slot overrides the icon property.
 </vwc-card>
 ```
 
-### Media
+### Media Slot
 
 The media slot can be used to display images or video content above the card header.
 
 ```html preview
 <vwc-card
-	headline="Card with Media"
+	headline="Card with Media Slot"
 	subtitle="Extra text below the card headline"
-	style="max-inline-size: 300px"
+	class="card-media"
 >
 	<img
 		slot="media"
@@ -142,32 +79,47 @@ The media slot can be used to display images or video content above the card hea
 		style="width: 100%; height: 150px; object-fit: cover;"
 	/>
 </vwc-card>
+
+<style>
+	.card-media {
+		max-inline-size: 300px;
+	}
+</style>
 ```
 
-### Meta
+### Meta Slot
 
 The meta slot is for action content in the card header.
 
-```html preview
+```html preview 220px
 <vwc-card
-	headline="Vivid Card Component"
+	headline="Card with Meta Slot"
 	subtitle="Extra text below the card headline"
 >
-	<vwc-button
-		slot="meta"
-		icon="more-vertical-solid"
-		appearance="ghost"
-	></vwc-button>
+	<div slot="meta">
+		<vwc-menu aria-label="Card options" placement="bottom-start" trigger="auto">
+			<vwc-button
+				slot="anchor"
+				icon="more-vertical-line"
+				aria-label="Open menu"
+				appearance="outlined"
+			></vwc-button>
+			<vwc-menu-item text="save card"></vwc-menu-item>
+			<vwc-menu-item text="remove card"></vwc-menu-item>
+		</vwc-menu>
+	</div>
 </vwc-card>
 ```
 
-### Footer
+### Footer Slot
 
-The footer slot is for content in the card footer.
+The footer slot is for content in the card footer.  
+Use it for adding buttons or action items.  
+By default - items inside footer slot are aligned to the end.
 
 ```html preview
 <vwc-card
-	headline="Vivid Card Component"
+	headline="Card with Footer Slot"
 	subtitle="Extra text below the card headline"
 >
 	<vwc-button
@@ -180,10 +132,10 @@ The footer slot is for content in the card footer.
 </vwc-card>
 ```
 
-### Main
+### Main Slot
 
-Card is battery charged with opinionated template.
-Assign nodes to `main` slot to fully override a card's predefined template with your own.
+Card has predefined content style template.  
+Use the `main` slot to fully override a card's predefined template with your own. When using main - only appearance and elevation are applied on the card.
 
 ```html preview
 <vwc-card>
@@ -201,14 +153,17 @@ The card headline can be trimmed to your preferable number of lines.
 The number of lines is controlled by the css variable `--headline-line-clamp`.
 
 ```html preview
+<vwc-card
+	class="vwc-card"
+	headline="Card with long headline that has trim into one line"
+></vwc-card>
+
 <style>
-	vwc-card {
+	.vwc-card {
 		--headline-line-clamp: 1;
 		max-inline-size: 42ch;
 	}
 </style>
-
-<vwc-card headline="Vivid Card Component with long headline to trim"></vwc-card>
 ```
 
 ### Trim subtitle
@@ -217,91 +172,47 @@ The card subtitle can be trimmed to your preferable number of lines.
 The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ```html preview
+<vwc-card
+	class="vwc-card"
+	headline="Card with Trimmed Subtitle"
+	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
+></vwc-card>
+
 <style>
-	vwc-card {
+	.vwc-card {
 		--subtitle-line-clamp: 2;
 		max-inline-size: 42ch;
 	}
 </style>
-
-<vwc-card
-	headline="Vivid Card Component"
-	subtitle="This subtitle is extremely long and will be trimmed after 2 lines. This way you can control the size of the card."
-></vwc-card>
 ```
 
-## Use case
+## API Reference
 
-```html preview
-<vwc-layout>
-	<vwc-card
-		headline="Cards in layout"
-		subtitle="Subtitle"
-		icon="chat-line"
-		text="Here is the card's text."
-	>
-		<div
-			slot="media"
-			style="height: 150px; width: 100%; background-color: rebeccapurple;"
-		></div>
-		<vwc-button
-			slot="meta"
-			icon="more-vertical-solid"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			slot="footer"
-			icon="arrow-bold-right-line"
-			shape="pill"
-			label="Action"
-			appearance="outlined"
-		></vwc-button>
-	</vwc-card>
-	<vwc-card
-		headline="Cards in layout"
-		subtitle="Subtitle"
-		icon="chat-line"
-		text="Here is the card's text."
-	>
-		<div
-			slot="media"
-			style="height: 150px; width: 100%; background-color: rebeccapurple;"
-		></div>
-		<vwc-button
-			slot="meta"
-			icon="more-vertical-solid"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			slot="footer"
-			icon="arrow-bold-right-line"
-			shape="pill"
-			label="Action"
-			appearance="outlined"
-		></vwc-button>
-	</vwc-card>
-	<vwc-card
-		headline="Cards in layout"
-		subtitle="Subtitle"
-		icon="chat-line"
-		text="Here is the card's text."
-	>
-		<div
-			slot="media"
-			style="height: 150px; width: 100%; background-color: rebeccapurple;"
-		></div>
-		<vwc-button
-			slot="meta"
-			icon="more-vertical-solid"
-			appearance="ghost"
-		></vwc-button>
-		<vwc-button
-			slot="footer"
-			icon="arrow-bold-right-line"
-			shape="pill"
-			label="Action"
-			appearance="outlined"
-		></vwc-button>
-	</vwc-card>
-</vwc-layout>
-```
+### Properties
+
+<div class="table-wrapper">
+
+| Name           | Type                                      | Description                   |
+| -------------- | ----------------------------------------- | ----------------------------- |
+| **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
+| **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
+| **headline**   | `string`                                  | Sets the element's headline   |
+| **icon**       | `string`                                  | Sets the element's icon       |
+| **subtitle**   | `string`                                  | Sets the element's subtitle   |
+| **text**       | `string`                                  | Sets the element's text       |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name        | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| **Graphic** | Add graphic element to card. Overrides the icon property     |
+| **Media**   | Use to display images or video content above the card header |
+| **Meta**    | Use for adding action content, of info in the card header    |
+| **Footer**  | Content in the card footer.                                  |
+| **Main**    | Override a card's predefined template                        |
+
+</div>
