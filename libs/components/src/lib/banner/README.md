@@ -57,6 +57,8 @@ You can add action items using slotted content in a named slot `action-items`:
 <vwc-banner text="A banner with an action button">
 	<vwc-button
 		slot="action-items"
+		href="https://vonage.com"
+		target="_blank"
 		appearance="filled"
 		connotation="accent"
 		label="Learn More"
