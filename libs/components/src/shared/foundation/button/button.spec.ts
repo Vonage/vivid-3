@@ -538,25 +538,42 @@ describe('Foundation Button', () => {
 
 			await connect();
 
-			const wasSumbitted = await new Promise((resolve) => {
-				// Resolve as true when the event listener is handled
-				form.addEventListener(
-					'submit',
-					// @ts-expect-error overload
-					(event: Event & { submitter: HTMLElement }) => {
-						event.preventDefault();
-						expect(event.submitter).toEqual(element.proxy);
-						resolve(true);
-					}
-				);
+			form.requestSubmit = jest.fn();
 
-				element.click();
+			element.click();
 
-				// Resolve false on the next update in case reset hasn't happened
-				DOM.queueUpdate(() => resolve(false));
-			});
+			expect(form.requestSubmit).toHaveBeenCalledWith(element.proxy);
 
-			expect(wasSumbitted).toEqual(true);
+			await disconnect();
+		});
+
+		it('should no longer submit the parent form when clicked after type is changed', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+			const form = document.createElement('form');
+			element.setAttribute('type', 'submit');
+			element.setAttribute('type', '');
+			form.appendChild(element);
+			parent.appendChild(form);
+
+			await connect();
+
+			form.requestSubmit = jest.fn();
+
+			element.click();
+
+			expect(form.requestSubmit).not.toHaveBeenCalled();
+
+			await disconnect();
+		});
+
+		it('should should not throw when clicked without a form', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+			element.setAttribute('type', 'submit');
+			parent.appendChild(element);
+
+			await connect();
+
+			element.click();
 
 			await disconnect();
 		});
@@ -583,6 +600,43 @@ describe('Foundation Button', () => {
 			});
 
 			expect(wasReset).toEqual(true);
+
+			await disconnect();
+		});
+
+		it('should no longer reset the parent form when clicked after type is changed', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+			const form = document.createElement('form');
+			element.setAttribute('type', 'reset');
+			element.setAttribute('type', '');
+			form.appendChild(element);
+			parent.appendChild(form);
+
+			await connect();
+
+			const wasReset = await new Promise((resolve) => {
+				// Resolve true when the event listener is handled
+				form.addEventListener('reset', () => resolve(true));
+
+				element.click();
+
+				// Resolve false on the next update in case reset hasn't happened
+				DOM.queueUpdate(() => resolve(false));
+			});
+
+			expect(wasReset).toEqual(false);
+
+			await disconnect();
+		});
+
+		it('should should not throw when clicked without a form', async () => {
+			const { connect, disconnect, element, parent } = await setup();
+			element.setAttribute('type', 'reset');
+			parent.appendChild(element);
+
+			await connect();
+
+			element.click();
 
 			await disconnect();
 		});

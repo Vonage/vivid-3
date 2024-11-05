@@ -45,6 +45,13 @@ describe('The fixture helper', () => {
 		document.body.removeChild(element.parentElement!);
 	});
 
+	it('should not throw when connect is called multiple times', async () => {
+		const { connect } = await fixture(name);
+
+		await connect();
+		await connect();
+	});
+
 	it('can disconnect an element', async () => {
 		const { element, connect, disconnect } = await fixture(name);
 

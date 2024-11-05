@@ -168,7 +168,7 @@ export class FoundationButton extends FormAssociatedButton {
 
 		this.proxy.setAttribute('type', this.type);
 
-		const elements = Array.from(this.control?.children) as HTMLSpanElement[];
+		const elements = Array.from(this.control.children) as HTMLSpanElement[];
 		if (elements) {
 			elements.forEach((span: HTMLSpanElement) => {
 				span.addEventListener('click', this.handleClick);
@@ -182,7 +182,7 @@ export class FoundationButton extends FormAssociatedButton {
 	public override disconnectedCallback(): void {
 		super.disconnectedCallback();
 
-		const elements = Array.from(this.control?.children) as HTMLSpanElement[];
+		const elements = Array.from(this.control.children) as HTMLSpanElement[];
 		if (elements) {
 			elements.forEach((span: HTMLSpanElement) => {
 				span.removeEventListener('click', this.handleClick);
@@ -208,21 +208,11 @@ export class FoundationButton extends FormAssociatedButton {
 			return;
 		}
 
-		const attached = this.proxy.isConnected;
+		this.attachProxy();
 
-		if (!attached) {
-			this.attachProxy();
-		}
+		this.form.requestSubmit(this.proxy);
 
-		// Browser support for requestSubmit is not comprehensive
-		// so click the proxy if it isn't supported
-		typeof this.form.requestSubmit === 'function'
-			? this.form.requestSubmit(this.proxy)
-			: this.proxy.click();
-
-		if (!attached) {
-			this.detachProxy();
-		}
+		this.detachProxy();
 	};
 
 	/**
@@ -232,8 +222,7 @@ export class FoundationButton extends FormAssociatedButton {
 		this.form?.reset();
 	};
 
-	// @ts-expect-error Type is incorrectly non-optional
-	public control: HTMLButtonElement;
+	public control!: HTMLButtonElement;
 }
 
 /**
