@@ -47,6 +47,10 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 
 		@include focus.focus;
 	}
+	&:hover {
+		border-style: solid;
+		background-color: var(#{constants.$vvd-color-cta-100});
+	}
 }
 
 .main {
@@ -57,6 +61,7 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 	display: grid;
 	box-sizing: border-box;
 	padding: 8px;
+	border: 1px solid var(#{constants.$vvd-color-neutral-300});
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	background-color: var(
 		#{$file-picker-list-item-background-color},

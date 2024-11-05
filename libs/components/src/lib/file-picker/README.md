@@ -67,16 +67,20 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 
 Use the `max-files` attribute to define how many files this file picker handles. By default, the file picker handles an unlimited number of files.
 
-If the user tries to upload more files than the maximum number of files, the file picker displays an error message.
+If the user tries to upload more files than the maximum number of files, the file picker displays the extra files with an error message.
 
 - Type: `number` | `string`
 - Default: `undefined`
 
 ```html preview
-<vwc-file-picker helper-text="Single file only" max-files="1">
+<vwc-file-picker helper-text="Maximum of 2 files" max-files="2">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
+
+<vwc-note connotation="information" icon="info-line">
+	<p>Don't use this for single file uploads. Use the <a href=""><code>single-file</code> attribute</a> instead.</p>
+</vwc-note>
 
 ### Accept
 
