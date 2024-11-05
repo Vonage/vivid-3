@@ -17,7 +17,7 @@ Use the `label` member to set the file picker's label.
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <vwc-file-picker label="Label">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
@@ -87,7 +87,7 @@ If you set `max-files` to `1`, consider using the `single-file` mode.
 - Type: `number` | `string`
 - Default: `undefined`
 
-```html preview
+```html preview 330px
 <vwc-file-picker helper-text="Maximum of 2 files" max-files="2">
 	Drag & Drop or click to upload
 </vwc-file-picker>
@@ -111,7 +111,7 @@ Some examples of valid values are:
 
 If the user tries to upload a file that does not match the accepted files, the file picker displays an error message.
 
-```html preview
+```html preview 230px
 <vwc-file-picker
 	helper-text=".jpg, .jpeg, .png types only"
 	accept=".jpg, .jpeg, .png"
@@ -128,7 +128,10 @@ Use the `size` attribute to set the file picker's to one of the predefined block
 - Default: `'normal'`
 
 ```html preview
-<vwc-file-picker size="expanded">
+<vwc-file-picker size="normal" label="Normal">
+	Drag & Drop or click to upload
+</vwc-file-picker>
+<vwc-file-picker size="expanded" label="Expanded">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
@@ -191,7 +194,7 @@ If needed, the background of the item can be changed using the `--file-picker-li
 
 ### In a form
 
-```html preview
+```html preview 320px
 <style>
 	form {
 		width: 400px;
