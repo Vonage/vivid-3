@@ -2,15 +2,14 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { ARIAGlobalStatesAndProperties, StartEnd } from '../patterns/index';
-import type { StartEndOptions } from '../patterns/index';
+import { ARIAGlobalStatesAndProperties } from '../patterns/index';
 import { FormAssociatedButton } from './button.form-associated';
 
 /**
  * Button configuration options
  * @public
  */
-export type ButtonOptions = FoundationElementDefinition & StartEndOptions;
+export type ButtonOptions = FoundationElementDefinition;
 
 /**
  * A Button Custom HTML Element.
@@ -313,5 +312,5 @@ applyMixins(DelegatesARIAButton, ARIAGlobalStatesAndProperties);
  * TODO: https://github.com/microsoft/fast/issues/3317
  * @internal
  */
-export interface FoundationButton extends StartEnd, DelegatesARIAButton {}
-applyMixins(FoundationButton, StartEnd, DelegatesARIAButton);
+export interface FoundationButton extends DelegatesARIAButton {}
+applyMixins(FoundationButton, DelegatesARIAButton);

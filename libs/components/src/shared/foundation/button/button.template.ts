@@ -1,7 +1,6 @@
 import { html, ref, slotted } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
-import { endSlotTemplate, startSlotTemplate } from '../patterns/start-end';
 import type { ButtonOptions, FoundationButton } from './button';
 
 /**
@@ -11,7 +10,7 @@ import type { ButtonOptions, FoundationButton } from './button';
 export const buttonTemplate: FoundationElementTemplate<
 	ViewTemplate<FoundationButton>,
 	ButtonOptions
-> = (context, definition) => html`
+> = () => html`
 	<button
 		class="control"
 		part="control"
@@ -49,10 +48,8 @@ export const buttonTemplate: FoundationElementTemplate<
 		aria-roledescription="${(x) => x.ariaRoledescription}"
 		${ref('control')}
 	>
-		${startSlotTemplate(context, definition)}
 		<span class="content" part="content">
 			<slot ${slotted('defaultSlottedContent')}></slot>
 		</span>
-		${endSlotTemplate(context, definition)}
 	</button>
 `;
