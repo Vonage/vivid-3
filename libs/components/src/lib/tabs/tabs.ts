@@ -65,19 +65,18 @@ export class Tabs extends FoundationTabs {
 		if (this.orientation === TabsOrientation.vertical) {
 			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
 		}
-		this.#patchActiveID();
 	}
 
 	override activeidChanged(oldValue: string, newValue: string): void {
 		super.activeidChanged(oldValue, newValue);
 		this.patchIndicatorStyleTransition();
-		this.#patchActiveID();
+		this.#updateTabsConnotation();
+		this.#scrollToIndex((this as any).activeTabIndex);
 	}
 
 	override tabsChanged(): void {
 		super.tabsChanged();
 		this.patchIndicatorStyleTransition();
-		this.#patchActiveID();
 		this.#updateScrollStatus();
 	}
 
@@ -88,7 +87,6 @@ export class Tabs extends FoundationTabs {
 	override tabpanelsChanged(): void {
 		super.tabpanelsChanged();
 		this.patchIndicatorStyleTransition();
-		this.#patchActiveID();
 	}
 
 	patchIndicatorStyleTransition() {
@@ -109,6 +107,7 @@ export class Tabs extends FoundationTabs {
 		const scrollWrapper = this.tablist!.parentElement as HTMLElement;
 		this.#resizeObserver = new ResizeObserver(() => {
 			this.#updateScrollStatus();
+			this.patchIndicatorStyleTransition();
 		});
 
 		this.#resizeObserver!.observe(scrollWrapper);
@@ -138,7 +137,7 @@ export class Tabs extends FoundationTabs {
 	}
 
 	#scrollToIndex(index: number) {
-		const tab = this.tabs[index];
+		const tab = this.tabs?.[index];
 		if (!tab) return;
 		let left = 0;
 		let top = 0;
@@ -166,14 +165,68 @@ export class Tabs extends FoundationTabs {
 
 		this.#tabListWrapper.scrollTo({ top, left, behavior: 'smooth' });
 	}
-	// adapted FAST fix https://github.com/microsoft/fast/pull/6606
-	#patchActiveID() {
-		if (!this.activetab) return;
 
-		const idx = this.tabs.indexOf(this.activetab);
-		this.activeid = this['tabIds'][idx];
-		this.#updateTabsConnotation();
+	/**
+	 * @internal
+	 */
+	@observable _actionItemsSlottedContent: HTMLElement[] = [];
 
-		this.#scrollToIndex(idx);
+	constructor() {
+		super();
+
+		// Patch FAST methods
+		(this as any).handleActiveIndicatorPosition = () =>
+			this.#handleActiveIndicatorPosition();
+		(this as any).animateActiveIndicator = () => this.#animateActiveIndicator();
+	}
+
+	#getGridProperty() {
+		return (this as any).isHorizontal() ? 'gridColumn' : 'gridRow';
+	}
+
+	#getTranslateProperty() {
+		return (this as any).isHorizontal() ? 'translateX' : 'translateY';
+	}
+
+	#handleActiveIndicatorPosition() {
+		if (this.showActiveIndicator && this.activeindicator) {
+			(this as any).animateActiveIndicator();
+		}
+	}
+
+	#animateActiveIndicator() {
+		const offsetProperty = (this as any).isHorizontal()
+			? 'offsetLeft'
+			: 'offsetTop';
+
+		const currentOffset = this.activeIndicatorRef[offsetProperty];
+		const currentGridValue =
+			this.activeIndicatorRef.style[this.#getGridProperty()];
+
+		// Temporary move indicator to measure target offset
+		this.activeIndicatorRef.style[this.#getGridProperty()] = `${
+			(this as any).activeTabIndex + 1
+		}`;
+		const targetOffset = this.activeIndicatorRef[offsetProperty];
+		this.activeIndicatorRef.style[this.#getGridProperty()] = currentGridValue;
+
+		const relativeOffset = targetOffset - currentOffset;
+		this.activeIndicatorRef.style.transform = `${this.#getTranslateProperty()}(${relativeOffset}px)`;
+		this.activeIndicatorRef.classList.add('activeIndicatorTransition');
+	}
+
+	/**
+	 * @internal
+	 */
+	activeIndicatorRefChanged() {
+		this.activeIndicatorRef.addEventListener('transitionend', () => {
+			// Move indicator onto the active tab
+			this.activeIndicatorRef.style[this.#getGridProperty()] = `${
+				(this as any).activeTabIndex + 1
+			}`;
+			this.activeIndicatorRef.style.transform = `${this.#getTranslateProperty()}(0px)`;
+
+			this.activeIndicatorRef.classList.remove('activeIndicatorTransition');
+		});
 	}
 }
