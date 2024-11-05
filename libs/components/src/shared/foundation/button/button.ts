@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
-import { attr, observable } from '@microsoft/fast-element';
+import { attr } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { ARIAGlobalStatesAndProperties } from '../patterns/index';
@@ -15,9 +15,6 @@ export type ButtonOptions = FoundationElementDefinition;
  * A Button Custom HTML Element.
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button | <button> element }.
  *
- * @slot start - Content which can be provided before the button content
- * @slot end - Content which can be provided after the button content
- * @slot - The default slot for button content
  * @csspart control - The button element
  * @csspart content - The element wrapping button content
  *
@@ -158,17 +155,6 @@ export class FoundationButton extends FormAssociatedButton {
 			this.removeEventListener('click', this.handleFormReset);
 	}
 
-	/**
-	 *
-	 * Default slotted content
-	 *
-	 * @public
-	 * @remarks
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	public defaultSlottedContent: HTMLElement[];
-
 	/** {@inheritDoc (FormAssociated:interface).validate} */
 	public override validate(): void {
 		super.validate(this.control);
@@ -205,11 +191,11 @@ export class FoundationButton extends FormAssociatedButton {
 	}
 
 	/**
-	 * Prevent events to propagate if disabled and has no slotted content wrapped in HTML elements
+	 * Prevent events to propagate if disabled
 	 * @internal
 	 */
 	private handleClick = (e: Event) => {
-		if (this.disabled && this.defaultSlottedContent?.length <= 1) {
+		if (this.disabled) {
 			e.stopPropagation();
 		}
 	};

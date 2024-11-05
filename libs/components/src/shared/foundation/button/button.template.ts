@@ -1,4 +1,4 @@
-import { html, ref, slotted } from '@microsoft/fast-element';
+import { html, ref } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
 import type { ButtonOptions, FoundationButton } from './button';
@@ -49,7 +49,7 @@ export const buttonTemplate: FoundationElementTemplate<
 		${ref('control')}
 	>
 		<span class="content" part="content">
-			<slot ${slotted('defaultSlottedContent')}></slot>
+			<slot></slot>
 		</span>
 	</button>
 `;
