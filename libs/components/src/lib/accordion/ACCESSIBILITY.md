@@ -1,26 +1,23 @@
 ## Implementation
 
-### Icon-only Buttons
+### Heading Levels
 
-Use the `aria-label` attribute to provide alternative text for _icon-only_ buttons. This text is read by screen readers and lets the user know the purpose of the button.
+Headings are the backbone of the content of a page. A visitor should be able to scan the webpage using headings to get a good impression of its content.
 
-### Pending Buttons
+Heading levels have meaning, especially for screen reader users and search engines. That means one unique first level heading per page, with the other headings representing the page content similar to the index of a book: easily scannable and semantic.
 
-When using the button in a [pending](/components/button/#pending) state, provide a label or aria-label to describe what is happening. Eg. 'Loading more search results'.
+#### Accordion Item Heading Level
+
+To maintain the correct heading hierarchy of your page when using the Accordion, use the [`heading-level` attribute](/components/code/#heading-level) to adjust the level of the Accordion Item heading to fit the structure of the page.
 
 ## Best Practices
 
-### Avoid Disabling Buttons
+### Avoid Hiding Essential Information
 
-Disabled buttons don't explain why the button isn't usable, and they aren't focusable at all for people using keyboard navigation.
-
-Instead, keep the button pressable, and use validation and errors to explain what needs to be done to proceed.
-
-### Never Put Tooltips on Disabled Buttons
-
-Tooltips can't be reached on all devices or by some assitive technologies, and they should never appear on elements that aren't interactable.
+**Hiding content behind navigation diminishes people’s awareness of it.** An extra step is required to see the information. Headings and titles must be descriptive and enticing enough to motivate people to “spend” clicks on them. When content is hidden, people might ignore information.
 
 ## Resources
 
-- [Vivid Button: Manual accessibility test](https://docs.google.com/spreadsheets/d/1ndRrFCSNSNEOrBgTxmjUjU5URP5DGRdPzRqRJ2Q9Rew/edit?gid=1175911860#gid=1175911860)
-- [W3C Large links, buttons and controls](https://www.w3.org/WAI/perspective-videos/controls/)
+- [WAI: Headings](https://www.w3.org/WAI/tutorials/page-structure/headings/)
+- [Accordion: Manual accessibility test](https://docs.google.com/spreadsheets/d/1qyCSugoJUf2hWklnAeSYoSlDDiFTl6WFerEGIUHInAM/edit?gid=1175911860#gid=1175911860)
+- [Accordions Are Not Always the Answer for Complex Content on Desktops](https://www.nngroup.com/articles/accordions-complex-content/)

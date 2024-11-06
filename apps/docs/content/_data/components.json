@@ -7,13 +7,8 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/accordion/README.md",
 		"accessibility": "./libs/components/src/lib/accordion/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md"
-	},
-	{
-		"title": "Accordion Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/accordion-item/README.md",
-		"parent": "Accordion"
+		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Badge",

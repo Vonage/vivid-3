@@ -15,7 +15,7 @@ Use the `heading` attribute on **Accordion Item** to set the heading text.
 
 <vwc-note connotation="information" icon="info-line">
 
-	To ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels) use the [`heading-level` attribute](/components/accordion/code/#heading-level).
+    To ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels) use the [`heading-level` attribute](/components/accordion/code/#heading-level).
 
 </vwc-note>
 
@@ -88,7 +88,11 @@ Use the `icon-trailing` attribute to postfix the icon in place of the **Accordio
 
 ```html preview 200px
 <vwc-accordion expand-mode="multi">
-	<vwc-accordion-item icon-trailing icon="accessibility-line" heading="Accordion item 1">
+	<vwc-accordion-item
+		icon-trailing
+		icon="accessibility-line"
+		heading="Accordion item 1"
+	>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item icon-trailing icon="ai-line" heading="Accordion item 2">
