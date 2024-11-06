@@ -1,9 +1,13 @@
 [
 	{
 		"title": "Accordion",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/accordion/README.md",
-		"children": ["Accordion Item"]
+		"description": "Accordion is an interactive element that works alongside Accordion Item to organise and display content in a collapsible and expandable way.",
+		"variations": "./libs/components/src/lib/accordion/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/accordion/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/accordion/README.md",
+		"accessibility": "./libs/components/src/lib/accordion/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md"
 	},
 	{
 		"title": "Accordion Item",
