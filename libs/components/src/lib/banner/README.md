@@ -198,6 +198,17 @@ If set, the `icon` attribute is ignored.
 
 </div>
 
+### Slots
+
+<div class="table-wrapper">
+
+| Name             | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| **Action Items** | Add action items like buttons to the component. |
+| **Icon**         | Add an icon to the component.                   |
+
+</div>
+
 ### Events
 
 <div class="table-wrapper">

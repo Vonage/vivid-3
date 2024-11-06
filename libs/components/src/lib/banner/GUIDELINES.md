@@ -1,6 +1,6 @@
 ## Text
 
-<docs-do-dont no-gutters headline="avoid long sentences in the Banner">
+<docs-do-dont no-gutters headline="Avoid long sentences in the Banner">
 
 <docs-do>
 
