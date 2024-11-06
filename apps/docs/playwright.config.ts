@@ -3,6 +3,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
 	testMatch: 'assets/scripts/**/*.test.ts',
 	outputDir: '../../test-results',
+	snapshotPathTemplate: '__screenshots__/{testFilePath}/{arg}{ext}',
 	projects: [
 		{
 			name: 'Desktop Chromium',
