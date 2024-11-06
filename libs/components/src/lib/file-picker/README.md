@@ -183,6 +183,16 @@ If needed, the background of the item can be changed using the `--file-picker-li
 
 </div>
 
+## Methods
+
+<div class="table-wrapper">
+
+| Name               | Returns | Description                             |
+| ------------------ | ------- | --------------------------------------- |
+| `removeAllFiles()` | `void`  | Removes all files from the File Picker. |
+
+</div>
+
 ## Use Cases
 
 ### In a form

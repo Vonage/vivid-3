@@ -50,7 +50,10 @@ const generateFilePreviewTemplate = (
 @errorText
 @formElements
 export class FilePicker extends FormAssociatedFilePicker {
-	#dropzone?: Dropzone;
+	/**
+	 * @internal
+	 */
+	_dropzone?: Dropzone;
 
 	/**
 	 * Files that have been added to the file picker and passed validation.
@@ -58,14 +61,14 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 * @public
 	 */
 	get files(): File[] {
-		return this.#dropzone?.getAcceptedFiles() ?? [];
+		return this._dropzone?.getAcceptedFiles() ?? [];
 	}
 
 	#syncSingleFileState() {
 		if (this.singleFile) {
-			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
+			this._dropzone?.hiddenFileInput?.removeAttribute('multiple');
 		} else {
-			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
+			this._dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
 		}
 	}
 	/**
@@ -89,11 +92,11 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr({ attribute: 'max-files' }) maxFiles?: number;
 	maxFilesChanged(_oldValue: number, newValue: number): void {
-		if (!this.#dropzone) {
+		if (!this._dropzone) {
 			return;
 		}
 
-		this.#dropzone.options.maxFiles = newValue;
+		this._dropzone.options.maxFiles = newValue;
 		this.#updateHiddenFileInput();
 	}
 
@@ -107,11 +110,11 @@ export class FilePicker extends FormAssociatedFilePicker {
 	@attr({ mode: 'fromView', attribute: 'max-file-size' })
 	maxFileSize = 256;
 	maxFileSizeChanged(_oldValue: number, newValue: number): void {
-		if (!this.#dropzone) {
+		if (!this._dropzone) {
 			return;
 		}
 
-		this.#dropzone.options.maxFilesize = newValue;
+		this._dropzone.options.maxFilesize = newValue;
 	}
 
 	/**
@@ -123,11 +126,11 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr accept?: string;
 	acceptChanged(_oldValue: string, newValue: string): void {
-		if (!this.#dropzone) {
+		if (!this._dropzone) {
 			return;
 		}
 
-		this.#dropzone.options.acceptedFiles = newValue;
+		this._dropzone.options.acceptedFiles = newValue;
 	}
 
 	/**
@@ -142,6 +145,17 @@ export class FilePicker extends FormAssociatedFilePicker {
 	override nameChanged(previous: string, next: string) {
 		super.nameChanged!(previous, next);
 		this.#updateFormValue();
+	}
+
+	/**
+	 * @internal
+	 */
+	override valueChanged(previous: string, next: string) {
+		super.valueChanged(previous, next);
+		// Like input[type=file], remove files when value is set to empty string
+		if (next === '' && this.files.length) {
+			this.removeAllFiles();
+		}
 	}
 
 	/**
@@ -175,15 +189,15 @@ export class FilePicker extends FormAssociatedFilePicker {
 	};
 
 	#localizeFileSizeNumberAndUnits = () => {
-		(this.#dropzone as any).filesize = (size: number) => {
+		(this._dropzone as any).filesize = (size: number) => {
 			return this.#formatNumbersInMessage(
-				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
+				(Dropzone.prototype as any).filesize.call(this._dropzone, size)
 			);
 		};
 	};
 
 	#addRemoveButtonToFilesPreview() {
-		this.#dropzone!.on('addedfiles', (files) => {
+		this._dropzone!.on('addedfiles', (files) => {
 			for (const file of files) {
 				if (file.previewElement) {
 					const removeButton = file.previewElement.querySelector(
@@ -192,7 +206,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 					removeButton.addEventListener('click', (e) => {
 						e.preventDefault();
 						e.stopPropagation();
-						this.#dropzone!.removeFile(file as File as DropzoneFile);
+						this._dropzone!.removeFile(file as File as DropzoneFile);
 					});
 				}
 			}
@@ -204,7 +218,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#setRemoveButtonConnotationOnError() {
-		this.#dropzone!.on('error', (file) => {
+		this._dropzone!.on('error', (file) => {
 			if (file.previewElement) {
 				const removeButton = file.previewElement.querySelector(
 					'.remove-btn'
@@ -223,7 +237,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 		const previewList = this.shadowRoot!.querySelector(
 			'.preview-list'
 		) as HTMLDivElement;
-		this.#dropzone = new Dropzone(control, {
+		this._dropzone = new Dropzone(control, {
 			url: '/', // dummy url, we do not use dropzone's upload functionality
 			maxFiles: this.maxFiles ?? (null as any),
 			maxFilesize: this.maxFileSize,
@@ -243,7 +257,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 
 		this.#addRemoveButtonToFilesPreview();
 
-		this.#dropzone.on('removedfile', () => {
+		this._dropzone.on('removedfile', () => {
 			this.#handleFilesChanged();
 		});
 
@@ -252,7 +266,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.#dropzone!.destroy();
+		this._dropzone!.destroy();
 	}
 	/**
 	 * Used internally to set the button tag.
@@ -273,20 +287,20 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#chooseFile(): void {
-		if (this.#dropzone!.hiddenFileInput) {
-			this.#dropzone!.hiddenFileInput.click();
+		if (this._dropzone!.hiddenFileInput) {
+			this._dropzone!.hiddenFileInput.click();
 		}
 	}
 
 	#updateHiddenFileInput(): void {
-		this.#dropzone!.hiddenFileInput!.dispatchEvent(
+		this._dropzone!.hiddenFileInput!.dispatchEvent(
 			new Event('change', { bubbles: false })
 		);
 	}
 
 	#keepOnlyNewestFile() {
 		for (let i = 0; i < this.files.length - 1; i++) {
-			this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
+			this._dropzone!.removeFile(this.files[i] as File as DropzoneFile);
 		}
 	}
 
@@ -337,7 +351,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 
 	override formResetCallback(): void {
 		super.formResetCallback();
-		this.#dropzone!.removeAllFiles();
+		this._dropzone!.removeAllFiles();
 	}
 
 	#formatNumbersInMessage(message: string) {
@@ -345,6 +359,13 @@ export class FilePicker extends FormAssociatedFilePicker {
 			return message.replace(/(\d+)\.(\d+)/g, '$1,$2');
 		}
 		return message;
+	}
+
+	/**
+	 * Removes all files from the File Picker.
+	 */
+	removeAllFiles() {
+		this._dropzone?.removeAllFiles();
 	}
 }
 
