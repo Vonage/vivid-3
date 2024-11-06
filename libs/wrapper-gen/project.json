@@ -26,6 +26,20 @@
 				"parallel": false
 			}
 		},
+		"generateMeta": {
+			"dependsOn": ["^generateMeta"],
+			"executor": "nx:run-commands",
+			"outputs": [
+				"{workspaceRoot}/dist/libs/wrapper-gen"
+			],
+			"options": {
+				"cwd": "libs/wrapper-gen",
+				"commands": [
+					"npx tsx --tsconfig './tsconfig.lib.json' src/generateComponentMetadata.ts"
+				],
+				"parallel": false
+			}
+		},
 		"lint": {
 			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"]

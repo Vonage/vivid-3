@@ -29,6 +29,8 @@ const StorybooksTemplatesFolder = '../vue-wrappers/stories/generated';
 
 const DocsComponentsFolder = '../../apps/vue-docs/docs/components';
 
+const ComponentsMetadataFolder = '../../dist/libs/wrapper-gen';
+
 function generateComponentFor(component: ComponentDef) {
 	fs.writeFileSync(
 		path.resolve(
@@ -162,6 +164,15 @@ export default class ComponentRegister {
 				null,
 				1
 			)
+		);
+	}
+
+	static async generateComponentMetadata() {
+		const components = await this.getComponentDefs();
+		fs.mkdirSync(ComponentsMetadataFolder, { recursive: true });
+		fs.writeFileSync(
+			path.join(ComponentsMetadataFolder, 'component-metadata.json'),
+			JSON.stringify(components, null, 1)
 		);
 	}
 }

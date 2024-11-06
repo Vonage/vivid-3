@@ -188,31 +188,4 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 ## API Reference
 
-### Properties
-
-<div class="table-wrapper">
-
-| Name           | Type                                      | Description                   |
-| -------------- | ----------------------------------------- | ----------------------------- |
-| **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
-| **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
-| **headline**   | `string`                                  | Sets the element's headline   |
-| **icon**       | `string`                                  | Sets the element's icon       |
-| **subtitle**   | `string`                                  | Sets the element's subtitle   |
-| **text**       | `string`                                  | Sets the element's text       |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name        | Description                                                  |
-| ----------- | ------------------------------------------------------------ |
-| **Graphic** | Add graphic element to card. Overrides the icon property     |
-| **Media**   | Use to display images or video content above the card header |
-| **Meta**    | Use for adding action content, of info in the card header    |
-| **Footer**  | Content in the card footer.                                  |
-| **Main**    | Override a card's predefined template                        |
-
-</div>
+{% apiReference "card" %}
