@@ -18,6 +18,6 @@ To maintain the correct heading hierarchy of your page when using the Accordion,
 
 ## Resources
 
-- [WAI: Headings](https://www.w3.org/WAI/tutorials/page-structure/headings/)
 - [Accordion: Manual accessibility test](https://docs.google.com/spreadsheets/d/1qyCSugoJUf2hWklnAeSYoSlDDiFTl6WFerEGIUHInAM/edit?gid=1175911860#gid=1175911860)
+- [WAI: Headings](https://www.w3.org/WAI/tutorials/page-structure/headings/)
 - [Accordions Are Not Always the Answer for Complex Content on Desktops](https://www.nngroup.com/articles/accordions-complex-content/)
