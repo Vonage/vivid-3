@@ -394,16 +394,6 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 
 </div>
 
-#### Events
-
-<div class="table-wrapper">
-
-| Name       | Type                          | Bubbles | Composed | Description                                                |
-| ---------- | ----------------------------- | ------- | -------- | ---------------------------------------------------------- |
-| **change** | `CustomEvent<string \| null>` | Yes     | Yes      | Fires a custom 'change' event when the active item changes |
-
-</div>
-
 #### Methods
 
 <div class="table-wrapper">
@@ -430,3 +420,21 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 | **size**          | `normal` (default), `condensed`        | Sets the size                                                    |
 
 </div>
+
+#### Events
+
+<div class="table-wrapper">
+
+| Name     | Type                     | Bubbles | Composed | Description                                              |
+| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the button is invoked |
+
+</div>
+
+#### Slots
+
+<div class="table-wrapper">
+
+| Name | Description |
+| --- | --- |
+| **icon** | Add an icon to the component |
