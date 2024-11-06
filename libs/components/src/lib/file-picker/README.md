@@ -21,6 +21,19 @@ Use the `label` member to set the file picker's label.
 <vwc-file-picker label="Label">Drag & Drop or click to upload</vwc-file-picker>
 ```
 
+### Single File
+
+Use the `single-file` attribute to set the file picker to allow only a single file and subsequent file uploads will replace the current file.
+
+- Type: `'boolean'`
+- Default: `false`
+
+```html preview 230px
+<vwc-file-picker single-file>
+	Drag & Drop or click to upload only one file
+</vwc-file-picker>
+```
+
 ### Helper text
 
 Add the `helper-text` to add some helper text below the file picker. If you need to add HTML to the helper text, use the `helper-text` slot.
@@ -57,7 +70,7 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 - Type: `number` | `string`
 - Default: `256`
 
-```html preview
+```html preview 230px
 <vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1">
 	Drag & Drop or click to upload
 </vwc-file-picker>
@@ -69,11 +82,13 @@ Use the `max-files` attribute to define how many files this file picker handles.
 
 If the user tries to upload more files than the maximum number of files, the file picker displays an error message.
 
+If you set `max-files` to `1`, consider using the `single-file` mode.
+
 - Type: `number` | `string`
 - Default: `undefined`
 
-```html preview
-<vwc-file-picker helper-text="Single file only" max-files="1">
+```html preview 230px
+<vwc-file-picker helper-text="Single file only" max-files="3">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
