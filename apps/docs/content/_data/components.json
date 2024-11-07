@@ -18,8 +18,13 @@
 	},
 	{
 		"title": "Banner",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/banner/README.md"
+		"description": "Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.",
+		"variations": "./libs/components/src/lib/banner/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/banner/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/banner/README.md",
+		"accessibility": "./libs/components/src/lib/banner/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/banner/USE-CASES.md"
 	},
 	{
 		"title": "Alert",
