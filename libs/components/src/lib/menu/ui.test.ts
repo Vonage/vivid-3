@@ -85,9 +85,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/menu.png'
-	);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/menu.png');
 });
 
 test('menu with absolute strategy', testAbsolutStrategy);

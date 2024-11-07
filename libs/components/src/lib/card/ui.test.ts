@@ -388,7 +388,5 @@ font-size: 40px;
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/card.png'
-	);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/card.png');
 });
