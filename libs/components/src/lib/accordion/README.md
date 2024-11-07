@@ -421,6 +421,16 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 
 </div>
 
+#### Slots
+
+<div class="table-wrapper">
+
+| Name     | Description                  |
+| -------- | ---------------------------- |
+| **icon** | Add an icon to the component |
+
+</div>
+
 #### Events
 
 <div class="table-wrapper">
@@ -430,11 +440,3 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 | **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the button is invoked |
 
 </div>
-
-#### Slots
-
-<div class="table-wrapper">
-
-| Name     | Description                  |
-| -------- | ---------------------------- |
-| **icon** | Add an icon to the component |

@@ -23,8 +23,11 @@ Use the `heading` attribute on **Accordion Item** to set the heading text.
 
 Use the `expand-mode` attribute on **Accordion** to determine if multiple items can opened at once or single (default).
 
-```html preview 500px
-<b>Single</b>
+### Single
+
+In `single` mode only one Accordion Item can be expanded at a time. By default, the first Accordion Item will be expanded when the component is initialized.
+
+```html preview 250px
 <vwc-accordion expand-mode="single">
 	<vwc-accordion-item heading="Accordion item 1">
 		This is the first item's accordion body.
@@ -36,12 +39,18 @@ Use the `expand-mode` attribute on **Accordion** to determine if multiple items 
 		This is the third item's accordion body.
 	</vwc-accordion-item>
 </vwc-accordion>
-<br /><b>Multiple</b>
+```
+
+### Multi
+
+In `multi` mode multiple Accordion Items can be expanded.
+
+```html preview 320px
 <vwc-accordion expand-mode="multiple">
-	<vwc-accordion-item heading="Accordion item 1">
+	<vwc-accordion-item heading="Accordion item 1" expanded>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item heading="Accordion item 2">
+	<vwc-accordion-item heading="Accordion item 2" expanded>
 		This is the second item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item heading="Accordion item 3">
@@ -59,7 +68,7 @@ Use the `expanded` attribute on **Accordion Item** to set it's open state.
 	<vwc-accordion-item heading="Accordion item 1">
 		This is the first item's accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item expanded heading="Accordion item 2">
+	<vwc-accordion-item expanded heading="Accordion item 2 with expanded attribute">
 		This is the second item's accordion body.
 	</vwc-accordion-item>
 </vwc-accordion>
@@ -72,7 +81,7 @@ The `icon` attribute displays an icon from the [icon library](/icons/icons-galle
 To add custom icons, use the [icon slot](/components/accordion/code/#icon-slot).
 
 ```html preview 200px
-<vwc-accordion expand-mode="multi">
+<vwc-accordion>
 	<vwc-accordion-item icon="accessibility-line" heading="Accordion item 1">
 		This is the first item's accordion body.
 	</vwc-accordion-item>
@@ -86,19 +95,30 @@ To add custom icons, use the [icon slot](/components/accordion/code/#icon-slot).
 
 Use the `icon-trailing` attribute to postfix the icon in place of the **Accordion Item**'s chevron.
 
-```html preview 200px
-<vwc-accordion expand-mode="multi">
+```html preview 260px
+<vwc-accordion id="icon-accordion" expand-mode="multi">
 	<vwc-accordion-item
 		icon-trailing
-		icon="accessibility-line"
+		icon="minus-line"
 		heading="Accordion item 1"
+		expanded
 	>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item icon-trailing icon="ai-line" heading="Accordion item 2">
+	<vwc-accordion-item icon-trailing icon="plus-line" heading="Accordion item 2">
 		This is the second item's accordion body.
 	</vwc-accordion-item>
 </vwc-accordion>
+
+<script>
+	document.getElementById('icon-accordion').addEventListener('change', (e) => {
+		const iconName = e.target.getAttribute('icon');
+		if (iconName === null) return;
+		iconName === 'minus-line' 
+			? e.target.setAttribute('icon', 'plus-line') 
+			: e.target.setAttribute('icon', 'minus-line');
+	});
+</script>
 ```
 
 ## Meta
@@ -120,25 +140,46 @@ Use the `meta` attribute to add meta data to the **Accordion Item**'s heading.
 
 Use the `size` attribute to control the size of the **Accordion Item**.
 
-```html preview 350px
-<b>Normal</b>
-<vwc-accordion expand-mode="multi">
-	<vwc-accordion-item size="normal" heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item size="normal" heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
-</vwc-accordion>
-<br /><b>Condensed</b>
-<vwc-accordion expand-mode="multi">
-	<vwc-accordion-item size="condensed" heading="Accordion item 1">
-		This is the first item's accordion body.
-	</vwc-accordion-item>
-	<vwc-accordion-item size="condensed" heading="Accordion item 2">
-		This is the second item's accordion body.
-	</vwc-accordion-item>
-</vwc-accordion>
+```html preview 360px
+<div class="container">
+	<div class="example">
+		<b>Normal</b>
+		<vwc-accordion>
+			<vwc-accordion-item size="normal" heading="Accordion item 1" expanded>
+				This is the first item's accordion body.
+			</vwc-accordion-item>
+			<vwc-accordion-item size="normal" heading="Accordion item 2">
+				This is the second item's accordion body.
+			</vwc-accordion-item>
+		</vwc-accordion>
+	</div>
+	<div class="example">
+		<b>Condensed</b>
+		<vwc-accordion>
+			<vwc-accordion-item size="condensed" heading="Accordion item 1" expanded>
+				This is the first item's accordion body.
+			</vwc-accordion-item>
+			<vwc-accordion-item size="condensed" heading="Accordion item 2">
+				This is the second item's accordion body.
+			</vwc-accordion-item>
+		</vwc-accordion>
+	</div>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		justify-content: space-between;
+		gap: 16px;
+		inline-size: 100%;
+		flex-wrap: wrap;
+	}
+	.example {
+		flow-grow: 1;
+		inline-size: 48%;
+		min-inline-size: 250px;
+	}
+</style>
 ```
 
 ## No Indicator
