@@ -61,9 +61,10 @@ If the component is used without a `size`, it will use the current `font-size` v
 If the component is used without a `connotation`, it will use the current text color.
 
 ```html preview
-<vwc-icon id="icon" name="heart-solid"></vwc-icon>
+<vwc-icon class="icon" name="heart-solid"></vwc-icon>
+
 <style>
-	#icon {
+	.icon {
 		color: var(--vvd-color-announcement-400);
 	}
 </style>

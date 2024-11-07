@@ -71,12 +71,13 @@ Use the `icon-trailing` attribute to control whether the icon is aligned to the 
 
 Set the `appearance` attribute to change the badge's appearance.
 
-- Type: `'filled'` | `'subtle'` | `'duotone'`
+- Type: `'filled'` | `'subtle'` | `'subtle-light'` | `'duotone'`
 - Default: `'filled'`
 
 ```html preview
 <vwc-badge text="filled" appearance="filled"></vwc-badge>
 <vwc-badge text="subtle" appearance="subtle"></vwc-badge>
+<vwc-badge text="subtle-light" appearance="subtle-light"></vwc-badge>
 <vwc-badge text="duotone" appearance="duotone"></vwc-badge>
 ```
 
@@ -126,6 +127,42 @@ It accepts a subset of predefined values.
 <vwc-badge text="success" appearance="subtle" connotation="success"></vwc-badge>
 <vwc-badge text="warning" appearance="subtle" connotation="warning"></vwc-badge>
 <vwc-badge text="alert" appearance="subtle" connotation="alert"></vwc-badge>
+```
+
+#### Subtle-Light badge with connotation
+
+```html preview
+<vwc-badge
+	text="accent"
+	appearance="subtle-light"
+	connotation="accent"
+></vwc-badge>
+<vwc-badge text="cta" appearance="subtle-light" connotation="cta"></vwc-badge>
+<vwc-badge
+	text="information"
+	appearance="subtle-light"
+	connotation="information"
+></vwc-badge>
+<vwc-badge
+	text="announcement"
+	appearance="subtle-light"
+	connotation="announcement"
+></vwc-badge>
+<vwc-badge
+	text="success"
+	appearance="subtle-light"
+	connotation="success"
+></vwc-badge>
+<vwc-badge
+	text="warning"
+	appearance="subtle-light"
+	connotation="warning"
+></vwc-badge>
+<vwc-badge
+	text="alert"
+	appearance="subtle-light"
+	connotation="alert"
+></vwc-badge>
 ```
 
 #### Duotone badge with connotation

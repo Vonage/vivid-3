@@ -7,7 +7,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['tabs', 'tab', 'tab-panel'];
+const components = ['tabs', 'tab', 'tab-panel', 'button', 'menu'];
 
 async function testScroll({ page }: { page: Page }) {
 	const template = `<div style="margin-inline: 16px;"><vwc-tabs style="inline-size: 300px;">

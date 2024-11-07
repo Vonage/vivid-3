@@ -34,6 +34,13 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-badge text='success' appearance='subtle' connotation='success'></vwc-badge>
 		<vwc-badge text='warning' appearance='subtle' connotation='warning'></vwc-badge>
 		<vwc-badge text='alert' appearance='subtle' connotation='alert'></vwc-badge>
+		<vwc-badge text='accent' appearance='subtle-light' connotation='accent'></vwc-badge>
+		<vwc-badge text='cta' appearance='subtle-light' connotation='cta'></vwc-badge>
+		<vwc-badge text='information' appearance='subtle-light' connotation='information'></vwc-badge>
+		<vwc-badge text='announcement' appearance='subtle-light' connotation='announcement'></vwc-badge>
+		<vwc-badge text='success' appearance='subtle-light' connotation='success'></vwc-badge>
+		<vwc-badge text='warning' appearance='subtle-light' connotation='warning'></vwc-badge>
+		<vwc-badge text='alert' appearance='subtle-light' connotation='alert'></vwc-badge>
 		<vwc-badge text='accent' appearance='duotone' connotation='accent'></vwc-badge>
 		<vwc-badge text='cta' appearance='duotone' connotation='cta'></vwc-badge>
 		<vwc-badge text='information' appearance='duotone' connotation='information'></vwc-badge>
