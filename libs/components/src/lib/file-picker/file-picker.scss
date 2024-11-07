@@ -35,6 +35,7 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 	inline-size: 100%;
 	min-block-size: 52px;
 	outline: none;
+	transition: all 0.3s ease;
 	&:not(.size-expanded) {
 		min-block-size: 52px;
 	}
