@@ -1,9 +1,4 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
-import { defineConfig } from '@playwright/test';
-
-export default defineConfig({
-	snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
-});
 
 const config: PlaywrightTestConfig = {
 	testMatch: 'assets/scripts/**/*.test.ts',
