@@ -65,6 +65,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/tooltip.png'
+		'snapshots/tooltip.png'
 	);
 });

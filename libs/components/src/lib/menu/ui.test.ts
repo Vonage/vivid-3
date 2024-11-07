@@ -41,7 +41,7 @@ async function testAbsolutStrategy({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/absolute-menu.png',
+		'snapshots/absolute-menu.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 }
@@ -86,7 +86,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/menu.png'
+		'snapshots/menu.png'
 	);
 });
 
