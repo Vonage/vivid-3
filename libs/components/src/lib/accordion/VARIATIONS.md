@@ -68,7 +68,10 @@ Use the `expanded` attribute on **Accordion Item** to set it's open state.
 	<vwc-accordion-item heading="Accordion item 1">
 		This is the first item's accordion body.
 	</vwc-accordion-item>
-	<vwc-accordion-item expanded heading="Accordion item 2 with expanded attribute">
+	<vwc-accordion-item
+		expanded
+		heading="Accordion item 2 with expanded attribute"
+	>
 		This is the second item's accordion body.
 	</vwc-accordion-item>
 </vwc-accordion>
@@ -114,8 +117,8 @@ Use the `icon-trailing` attribute to postfix the icon in place of the **Accordio
 	document.getElementById('icon-accordion').addEventListener('change', (e) => {
 		const iconName = e.target.getAttribute('icon');
 		if (iconName === null) return;
-		iconName === 'minus-line' 
-			? e.target.setAttribute('icon', 'plus-line') 
+		iconName === 'minus-line'
+			? e.target.setAttribute('icon', 'plus-line')
 			: e.target.setAttribute('icon', 'minus-line');
 	});
 </script>
