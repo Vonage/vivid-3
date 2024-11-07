@@ -8,7 +8,7 @@ import {
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
-import { Size } from '../enums';
+import { Connotation, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -125,7 +125,7 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('max files', function () {
+	describe('maxFiles', function () {
 		it('should show an error message for files added after the maxFiles limit is reached', async function () {
 			element.maxFiles = 1;
 			addFiles([
@@ -152,6 +152,69 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('single-file', () => {
+		beforeEach(async () => {
+			element.singleFile = true;
+			await elementUpdated(element);
+		});
+
+		it('should initiate in single file mode', async () => {
+			element = fixture(
+				`<${COMPONENT_TAG} single-file>Drag & drop or click to upload</${COMPONENT_TAG}>`
+			) as FilePicker;
+
+			await elementUpdated(element);
+
+			expect(element.singleFile).toBe(true);
+			expect(getHiddenInput().hasAttribute('multiple')).toBe(false);
+		});
+
+		it('should reflect the attribute single-file', async () => {
+			expect(element.hasAttribute('single-file')).toBe(true);
+		});
+
+		it('should reflect the property to an attribute', async () => {
+			element.singleFile = false;
+			await elementUpdated(element);
+
+			element.toggleAttribute('single-file');
+			await elementUpdated(element);
+
+			expect(element.singleFile).toBe(true);
+		});
+
+		it('should remove the hidden input multiple attribute when true', async () => {
+			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
+		});
+
+		it('should add the hidden input multiple attribute when false', async () => {
+			element.singleFile = false;
+			await elementUpdated(element);
+			expect(getHiddenInput()?.getAttribute('multiple')).toBe('multiple');
+		});
+
+		it('should remove after change event', async () => {
+			addFiles([await generateFile('london.png', 1)]);
+
+			getHiddenInput().dispatchEvent(new Event('change'));
+			await elementUpdated(element);
+			expect(getHiddenInput()?.hasAttribute('multiple')).toBe(false);
+		});
+
+		it('should add a file to the list when uploading a file for the first time', async () => {
+			const file = await generateFile('london.png', 1, 'image/png');
+			addFiles([file]);
+			expect(element.files).toEqual([file]);
+		});
+
+		it('should replace existing file in the list when uploading a new file', async () => {
+			const file1 = await generateFile('london.png', 1, 'image/png');
+			const file2 = await generateFile('london2.png', 1, 'image/png');
+			addFiles([file1]);
+			addFiles([file2]);
+			expect(element.files).toEqual([file2]);
+		});
+	});
 	describe('accept', function () {
 		it('should show an error message for files added that do not match the accept attribute', async function () {
 			element.accept = 'image/*, text/html, .zip';
@@ -215,7 +278,7 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
-	describe('files property', function () {
+	describe('files', function () {
 		it('should contain added files', async function () {
 			const file = await generateFile('london.png', 2);
 			addFiles([file]);
@@ -236,6 +299,17 @@ describe('vwc-file-picker', () => {
 			getRemoveButton(0).click();
 
 			expect(element.files.length).toEqual(0);
+		});
+
+		it('should  set error connotation on remove button when error', async () => {
+			element.maxFiles = 1;
+			addFiles([
+				await generateFile('london1.png', 1),
+				await generateFile('london2.png', 1),
+			]);
+
+			expect(getRemoveButton(0).connotation).toBeUndefined();
+			expect(getRemoveButton(1).connotation).toBe(Connotation.Alert);
 		});
 	});
 
@@ -372,3 +446,6 @@ describe('form associated vwc-file-picker', function () {
 		expect(new FormData(formElement).get('file')).toBeTruthy();
 	});
 });
+
+// Add docs
+// Check to see if we have a ui-test that needs update
