@@ -1,24 +1,10 @@
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
-import type { SyntheticViewTemplate } from '@microsoft/fast-element';
 import {
 	applyMixins,
 	FoundationElement,
 } from '@microsoft/fast-foundation';
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { StartEnd } from "../../shared/foundation/patterns/start-end";
-import type { StartEndOptions } from "../../shared/foundation/patterns/start-end";
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import type { Size } from '../enums.js';
-
-/**
- * Accordion Item configuration options
- * @public
- */
-export type AccordionItemOptions = FoundationElementDefinition &
-    StartEndOptions & {
-        expandedIcon?: string | SyntheticViewTemplate;
-        collapsedIcon?: string | SyntheticViewTemplate;
-    };
 
 /**
  * Types of accordion size.
@@ -125,5 +111,5 @@ export class AccordionItem extends FoundationElement {
 	};
 }
 
-export interface AccordionItem extends AffixIconWithTrailing, StartEnd {}
-applyMixins(AccordionItem, AffixIconWithTrailing, StartEnd);
+export interface AccordionItem extends AffixIconWithTrailing {}
+applyMixins(AccordionItem, AffixIconWithTrailing);
