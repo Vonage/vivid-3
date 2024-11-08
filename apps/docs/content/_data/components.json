@@ -18,8 +18,13 @@
 	},
 	{
 		"title": "Banner",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/banner/README.md"
+		"description": "Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.",
+		"variations": "./libs/components/src/lib/banner/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/banner/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/banner/README.md",
+		"accessibility": "./libs/components/src/lib/banner/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/banner/USE-CASES.md"
 	},
 	{
 		"title": "Alert",
@@ -77,7 +82,6 @@
 		"description": "Displays icons from the Vivid Icons Library using predefined colors and sizes.",
 		"variations": "./libs/components/src/lib/icon/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/icon/GUIDELINES.md",
-		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/icon/README.md",
 		"accessibility": "./libs/components/src/lib/icon/ACCESSIBILITY.md"
 	},
@@ -126,8 +130,13 @@
 	},
 	{
 		"title": "Card",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/card/README.md"
+		"description": "A card is a UI design pattern that groups related information in a flexible-size container visually resembling a playing card",
+		"variations": "./libs/components/src/lib/card/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/card/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/card/README.md",
+		"accessibility": "./libs/components/src/lib/card/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/card/USE-CASES.md"
 	},
 	{
 		"title": "Text Field",
@@ -215,8 +224,13 @@
 	},
 	{
 		"title": "Option",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/option/README.md"
+		"description": "Use to display an option list inside the Select, Searchable Select or Combobox components",
+		"variations": "./libs/components/src/lib/option/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/option/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true",
+		"code": "./libs/components/src/lib/option/README.md",
+		"accessibility": "./libs/components/src/lib/option/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Searchable Select",
@@ -272,8 +286,12 @@
 	},
 	{
 		"title": "Select",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/select/README.md"
+		"description": "Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.",
+		"variations": "./libs/components/src/lib/select/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/select/GUIDELINES.md",
+		"code": "./libs/components/src/lib/select/README.md",
+		"accessibility": "./libs/components/src/lib/select/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/select/USE-CASES.md"
 	},
 	{
 		"title": "Data Grid",

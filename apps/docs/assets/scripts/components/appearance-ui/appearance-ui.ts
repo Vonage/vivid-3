@@ -19,6 +19,7 @@ export type AppearanceUIAppearance = Extract<
 	| Appearance.Duotone
 	| Appearance.Fieldset
 	| Appearance.Subtle
+	| Appearance.SubtleLight
 	| Appearance.Listitem
 >;
 

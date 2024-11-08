@@ -619,4 +619,64 @@ currently ghost-light appearance is being used only with `accent` connotation
 </div>
 ```
 
-## Last update: 06.2024
+## Subtle-Light
+
+### Used in
+
+`badge`,
+
+```html preview
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: 80px auto;
+		inline-size: 820px;
+		row-gap: 12px;
+		align-items: center;
+	}
+	span {
+		max-width: 80px;
+	}
+	.not-set {
+		grid-column: 1/-1;
+	}
+	.one-example {
+		grid-column: 2/-1;
+	}
+</style>
+<div class="grid">
+	<span><b>idle</b></span>
+	<docs-appearance-ui appearance="subtle-light"></docs-appearance-ui>
+
+	<span><b>hover</b></span>
+	<docs-appearance-ui hovered appearance="subtle-light"></docs-appearance-ui>
+
+	<span><b>active</b></span>
+	<docs-appearance-ui active appearance="subtle-light"></docs-appearance-ui>
+
+	<span><b>selected</b></span>
+	<docs-appearance-ui selected appearance="subtle-light"></docs-appearance-ui>
+
+	<span><b>selected & hover</b></span>
+	<docs-appearance-ui
+		selected
+		hovered
+		appearance="subtle-light"
+	></docs-appearance-ui>
+
+	<span><b>disabled</b></span>
+	<docs-appearance-ui
+		disabled
+		appearance="subtle-light"
+		class="one-example"
+	></docs-appearance-ui>
+
+	<span><b>selected & disabled</b></span>
+	<span class="one-example" class="one-example">not set</span>
+
+	<span><b>readonly</b></span>
+	<span class="one-example" class="one-example">not set</span>
+</div>
+```
+
+## Last update: 10.2024

@@ -269,17 +269,21 @@ describe('vwc-tabs', () => {
 				scrollToSpy = jest.spyOn(tablistWrapper, 'scrollTo');
 			});
 
-			it('should scrollTo with 0 if index is 0', async function () {
+			it('should scrollTo with 0 if first tab becomes active', async function () {
+				element.activeid = element.tabs[1].id;
+
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({
+				expect(scrollToSpy).toHaveBeenLastCalledWith({
 					top: 0,
 					left: 0,
 					behavior: 'smooth',
 				});
 			});
 
-			it('should scrollTo height 0 if index is 0 and orientation vertical', async function () {
+			it('should scrollTo height 0 if first tab becomes active and orientation vertical', async function () {
+				element.activeid = element.tabs[1].id;
+
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
@@ -477,6 +481,66 @@ describe('vwc-tabs', () => {
 			await elementUpdated(element);
 
 			expect(element.activetab).toEqual(tab);
+		});
+	});
+
+	describe('active tab indicator', () => {
+		let activeIndicator: HTMLElement;
+		beforeEach(() => {
+			activeIndicator = element.shadowRoot?.querySelector(
+				'.active-indicator'
+			) as HTMLElement;
+		});
+
+		it('should animate the active tab indicator when active tab changes', async () => {
+			Object.defineProperty(activeIndicator, 'offsetLeft', {
+				get: () => {
+					const gridColumn = activeIndicator.style['gridColumn'] || '1';
+					return parseInt(gridColumn) * 100;
+				},
+			});
+
+			element.activeid = 'entrees';
+
+			expect(activeIndicator.style['gridColumn']).toBe('');
+			expect(activeIndicator.style['transform']).toBe('translateX(100px)');
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(true);
+		});
+
+		it('should use vertical properties when orientation is vertical', async () => {
+			Object.defineProperty(activeIndicator, 'offsetTop', {
+				get: () => {
+					const gridRow = activeIndicator.style['gridRow'] || '1';
+					return parseInt(gridRow) * 100;
+				},
+			});
+
+			element.orientation = 'vertical';
+			element.activeid = 'entrees';
+
+			expect(activeIndicator.style['gridRow']).toBe('');
+			expect(activeIndicator.style['transform']).toBe('translateY(100px)');
+		});
+
+		it('should move to active tab on transitionend', async () => {
+			element.activeid = 'entrees';
+
+			activeIndicator.dispatchEvent(new Event('transitionend'));
+
+			expect(activeIndicator.style['gridColumn']).toBe('2');
+			expect(activeIndicator.style['transform']).toBe('translateX(0px)');
+		});
+
+		it('should remove activeIndicatorTransition class on transitionend', async () => {
+			element.activeid = 'entrees';
+
+			activeIndicator.dispatchEvent(new Event('transitionend'));
+
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(false);
 		});
 	});
 

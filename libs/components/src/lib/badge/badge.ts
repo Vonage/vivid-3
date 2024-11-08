@@ -26,7 +26,10 @@ export type BadgeConnotation = Extract<
  */
 export type BadgeAppearance = Extract<
 	Appearance,
-	Appearance.Filled | Appearance.Duotone | Appearance.Subtle
+	| Appearance.Filled
+	| Appearance.Duotone
+	| Appearance.Subtle
+	| Appearance.SubtleLight
 >;
 
 /**
