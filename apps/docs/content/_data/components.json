@@ -7,8 +7,7 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/accordion/README.md",
 		"accessibility": "./libs/components/src/lib/accordion/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md",
-		"hideUseCases": "true"
+		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md"
 	},
 	{
 		"title": "Badge",
