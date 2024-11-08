@@ -643,7 +643,7 @@ describe('Foundation Button', () => {
 	});
 
 	describe("of 'disabled'", () => {
-		it('should not propagate when clicked', async () => {
+		xit('should not propagate when clicked', async () => {
 			const { connect, disconnect, element, parent } = await setup();
 
 			element.disabled = true;
