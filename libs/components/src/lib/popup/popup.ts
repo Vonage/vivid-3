@@ -207,6 +207,10 @@ export class Popup extends FoundationElement {
 				this.popupEl.showPopover();
 			}
 		}
+		// this is needed for menu that is open and no anchor
+		// if (this.open && this.popupEl && this.strategy === 'fixed') {
+		// 	this.popupEl.showPopover();
+		// }
 	}
 
 	/**
