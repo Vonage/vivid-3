@@ -415,18 +415,36 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('popover', () => {
-		it('it should have popover attribute equal to manual', async () => {
+	describe('strategy', () => {
+		it('it should have `fixed` class on popover-wrapper default', async () => {
+			await elementUpdated(element);
 
-			element.strategy = 'fixed';
+			const popupWrapper =
+				element.shadowRoot?.querySelector('.popup-wrapper')?.classList;
+
+			expect(popupWrapper).toContain('fixed');
+		});
+
+		it('it should have popover attribute equal to manual by default. same as its positioned fixed by default', async () => {
 			await elementUpdated(element);
 
 			const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
 
-			expect(popupWrapper?.getAttribute('popover')).toBe('manual');
+			expect(popupWrapper?.getAttribute('popover')).toEqual('manual');
 		});
 
-		it('it should not have popover attribute', async () => {
+		it('it should have `absolute` class on popup-wrapper if strategy is set to absolute', async () => {
+			element.strategy = 'absolute';
+
+			await elementUpdated(element);
+
+			const popupWrapper =
+				element.shadowRoot?.querySelector('.popup-wrapper')?.classList;
+
+			expect(popupWrapper).toContain('absolute');
+		});
+
+		it('it should not have popover attribute if strategy is absolute', async () => {
 			element.strategy = 'absolute';
 			await elementUpdated(element);
 
@@ -434,7 +452,6 @@ describe('vwc-popup', () => {
 
 			expect(popupWrapper?.getAttribute('popover')).toBe(null);
 		});
-
 	});
 
 	describe('a11y', () => {

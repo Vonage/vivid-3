@@ -33,7 +33,7 @@ export const popupTemplate: (
 
 	return html`
   <${elevationTag}>
-		<div :popover=${(x) =>
+		<div popover=${(x) =>
 			x.strategy && x.strategy === 'fixed'
 				? 'manual'
 				: null} class="popup-wrapper ${(x) => x.strategy}" ${ref(
