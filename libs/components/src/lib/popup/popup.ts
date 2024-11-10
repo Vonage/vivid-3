@@ -207,10 +207,6 @@ export class Popup extends FoundationElement {
 				this.popupEl.showPopover();
 			}
 		}
-
-		if (this.open && this.popupEl && this.strategy === 'fixed') {
-			this.popupEl.showPopover();
-		}
 	}
 
 	/**
