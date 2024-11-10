@@ -73,7 +73,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.locator('#month-picker .title-action').click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/date-picker.png'
+		'snapshots/date-picker.png'
 	);
 });
 

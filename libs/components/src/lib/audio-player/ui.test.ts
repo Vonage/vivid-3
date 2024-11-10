@@ -46,7 +46,7 @@ playback-rates="0.5, 1, 1.5, 2"
 	await pressedPlayback.click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/open-playback-menu.png',
+		'snapshots/open-playback-menu.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 }
@@ -76,7 +76,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/audio-player.png'
+		'snapshots/audio-player.png'
 	);
 });
 
