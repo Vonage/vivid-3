@@ -29,6 +29,8 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
+
+		HTMLElement.prototype.showPopover = jest.fn();
 	});
 
 	afterEach(function () {
@@ -154,7 +156,6 @@ describe('vwc-popup', () => {
 			expect(element.placementStrategy).toBe(PlacementStrategy.Flip);
 			expect(element.animationFrame).toBe(false);
 			expect(element.strategy).toEqual('fixed');
-			expect(element.popover).toBeUndefined();
 		});
 	});
 
@@ -414,17 +415,27 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	// describe('popover', () => {
-	// 	it('it should have popover attribute equal to manual', async () => {
-	//
-	// 		await elementUpdated(element);
-	//
-	// 		const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
-	//
-	// 		expect(popupWrapper.getAttribute('popover')).toBe('manual');
-	// 	});
-	//
-	// });
+	describe('popover', () => {
+		it('it should have popover attribute equal to manual', async () => {
+
+			element.strategy = 'fixed';
+			await elementUpdated(element);
+
+			const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
+
+			expect(popupWrapper?.getAttribute('popover')).toBe('manual');
+		});
+
+		it('it should not have popover attribute', async () => {
+			element.strategy = 'absolute';
+			await elementUpdated(element);
+
+			const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
+
+			expect(popupWrapper?.getAttribute('popover')).toBe(null);
+		});
+
+	});
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
