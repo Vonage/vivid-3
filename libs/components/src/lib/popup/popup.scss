@@ -22,7 +22,11 @@
 	@include resets.floating-element-reset;
 
 	z-index: var(#{variables.$popup-z-index}, 10);
+	overflow: visible;
+	padding: 0;
+	border: none;
 	border-radius: #{border-radius-variables.$border-radius-normal};
+	margin: 0;
 	inline-size: max-content;
 
 	&:not(.absolute) {

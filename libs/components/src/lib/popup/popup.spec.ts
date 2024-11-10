@@ -154,6 +154,7 @@ describe('vwc-popup', () => {
 			expect(element.placementStrategy).toBe(PlacementStrategy.Flip);
 			expect(element.animationFrame).toBe(false);
 			expect(element.strategy).toEqual('fixed');
+			expect(element.popover).toBeUndefined();
 		});
 	});
 
@@ -412,6 +413,18 @@ describe('vwc-popup', () => {
 			expect(element.updatePosition).toBeCalledTimes(1);
 		});
 	});
+
+	// describe('popover', () => {
+	// 	it('it should have popover attribute equal to manual', async () => {
+	//
+	// 		await elementUpdated(element);
+	//
+	// 		const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
+	//
+	// 		expect(popupWrapper.getAttribute('popover')).toBe('manual');
+	// 	});
+	//
+	// });
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
