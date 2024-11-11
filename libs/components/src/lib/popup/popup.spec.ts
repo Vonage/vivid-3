@@ -29,8 +29,6 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
-
-		HTMLElement.prototype.showPopover = jest.fn();
 	});
 
 	afterEach(function () {
@@ -425,14 +423,6 @@ describe('vwc-popup', () => {
 			expect(popupWrapper).toContain('fixed');
 		});
 
-		it('it should have popover attribute equal to manual by default. same as its positioned fixed by default', async () => {
-			await elementUpdated(element);
-
-			const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
-
-			expect(popupWrapper?.getAttribute('popover')).toEqual('manual');
-		});
-
 		it('it should have `absolute` class on popup-wrapper if strategy is set to absolute', async () => {
 			element.strategy = 'absolute';
 
@@ -442,6 +432,16 @@ describe('vwc-popup', () => {
 				element.shadowRoot?.querySelector('.popup-wrapper')?.classList;
 
 			expect(popupWrapper).toContain('absolute');
+		});
+	});
+
+	describe('showPopover', () => {
+		it('it should have popover attribute equal to manual by default. same as its positioned fixed by default', async () => {
+			await elementUpdated(element);
+
+			const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper');
+
+			expect(popupWrapper?.getAttribute('popover')).toEqual('manual');
 		});
 
 		it('it should not have popover attribute if strategy is absolute', async () => {

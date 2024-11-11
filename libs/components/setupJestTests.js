@@ -40,4 +40,6 @@ global.console = {
 	// error: jest.fn(),
 };
 
+HTMLElement.prototype.showPopover = jest.fn();
+
 expect.extend(toHaveNoViolations);
