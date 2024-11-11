@@ -452,6 +452,17 @@ describe('vwc-popup', () => {
 
 			expect(popupWrapper?.getAttribute('popover')).toBe(null);
 		});
+
+		it('it should activate showPopover when open is true & strategy is fixed', async () => {
+			element.open = true;
+			element.strategy = 'fixed';
+			await elementUpdated(element);
+
+			const popupWrapper = element.shadowRoot?.querySelector('.popup-wrapper') as HTMLElement;
+
+			expect(popupWrapper.showPopover).toHaveBeenCalled();
+
+		});
 	});
 
 	describe('a11y', () => {
