@@ -68,6 +68,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
 		}
 	}
+
 	/**
 	 * Single file state.
 	 *
@@ -143,6 +144,16 @@ export class FilePicker extends FormAssociatedFilePicker {
 		super.nameChanged!(previous, next);
 		this.#updateFormValue();
 	}
+
+	/**
+	 * @internal
+	 */
+	override valueChanged = (previous: string, next: string) => {
+		super.valueChanged(previous, next);
+		if (next === '' && this.files.length) {
+			this.removeAllFiles();
+		}
+	};
 
 	/**
 	 * @internal
@@ -345,6 +356,13 @@ export class FilePicker extends FormAssociatedFilePicker {
 			return message.replace(/(\d+)\.(\d+)/g, '$1,$2');
 		}
 		return message;
+	}
+
+	/**
+	 * Removes all files from the File Picker.
+	 */
+	removeAllFiles() {
+		this.#dropzone?.removeAllFiles();
 	}
 }
 
