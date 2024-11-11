@@ -101,6 +101,7 @@ export class AccordionItem extends FoundationElement {
 	/**
 	 * @internal
 	 */
+	// @ts-expect-error Unused variable
 	clickHandler = (e: MouseEvent) => {
 		this.expanded = !this.expanded;
 		this.change();

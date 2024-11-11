@@ -48,7 +48,7 @@ export class Accordion extends FoundationElement {
 	 */
 	@attr({ attribute: "expand-mode" })
 	/* eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value */
-	expandmode: AccordionExpandMode = AccordionExpandMode.multi;
+	expandmode: AccordionExpandMode = AccordionExpandMode.single;
 
 	/**
      * @internal
