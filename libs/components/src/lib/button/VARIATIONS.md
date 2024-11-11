@@ -3,7 +3,7 @@
 The `label` attribute controls button's label text.
 
 ```html preview
-	<vwc-button label="Button Text"></vwc-button>
+<vwc-button label="Button Text"></vwc-button>
 ```
 
 ## Appearance
