@@ -1,3 +1,11 @@
+## Label
+
+The `label` attribute controls button's label text.
+
+```html preview
+	<vwc-button label="Button Text"></vwc-button>
+```
+
 ## Appearance
 
 The `appearance` attribute controls the style of button displayed.
