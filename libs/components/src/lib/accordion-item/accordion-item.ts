@@ -1,8 +1,5 @@
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
-import {
-	applyMixins,
-	FoundationElement,
-} from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import type { Size } from '../enums.js';
 
@@ -31,8 +28,8 @@ export class AccordionItem extends FoundationElement {
 	 * HTML attribute: heading-level
 	 */
 	@attr({
-		attribute: "heading-level",
-		mode: "fromView",
+		attribute: 'heading-level',
+		mode: 'fromView',
 		converter: nullableNumberConverter,
 	})
 	headinglevel: 1 | 2 | 3 | 4 | 5 | 6 = 2;
@@ -44,7 +41,7 @@ export class AccordionItem extends FoundationElement {
 	 * @remarks
 	 * HTML attribute: expanded
 	 */
-	@attr({ mode: "boolean" })
+	@attr({ mode: 'boolean' })
 	expanded = false;
 
 	/**
@@ -108,7 +105,7 @@ export class AccordionItem extends FoundationElement {
 	};
 
 	private change = (): void => {
-			this.$emit("change");
+		this.$emit('change');
 	};
 }
 
