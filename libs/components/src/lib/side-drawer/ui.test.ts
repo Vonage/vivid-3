@@ -43,7 +43,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/side-drawer.png'
+		'snapshots/side-drawer.png'
 	);
 });
 
@@ -85,6 +85,6 @@ test('should show the component modal', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/side-drawer-modal.png'
+		'snapshots/side-drawer-modal.png'
 	);
 });

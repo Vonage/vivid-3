@@ -59,7 +59,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.locator('#date-range-picker #calendar-button').click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/date-range-picker.png'
+		'snapshots/date-range-picker.png'
 	);
 });
 

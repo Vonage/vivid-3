@@ -103,7 +103,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	captions?.evaluate((element) => element.classList.add('vjs-hover'));
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/video-player.png',
+		'snapshots/video-player.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });

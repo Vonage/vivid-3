@@ -33,7 +33,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/listbox.png'
+		'snapshots/listbox.png'
 	);
 });
 
@@ -67,6 +67,6 @@ test('should show the component focus', async ({ page }: { page: Page }) => {
 	await element.click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/listbox-focus.png'
+		'snapshots/listbox-focus.png'
 	);
 });

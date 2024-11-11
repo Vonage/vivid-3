@@ -6,9 +6,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: drizzt99/vonage:2.2.0
+      image: drizzt99/vonage:2.3.0
     steps:
-      - run: echo "Running drizzt99/vonage:2.2.0"
+      - run: echo "Running drizzt99/vonage:2.3.0"
 
       - uses: actions/checkout@v3
 
