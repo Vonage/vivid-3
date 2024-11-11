@@ -18,16 +18,24 @@ describe('vwc-radio-group', () => {
 	let element: RadioGroup;
 	let radios: Radio[];
 
+	const setupFixture = async (html: string) => {
+		const fixtureElement = fixture(html) as HTMLElement;
+		element =
+			fixtureElement instanceof RadioGroup
+				? fixtureElement
+				: (fixtureElement.querySelector(COMPONENT_TAG) as RadioGroup);
+		await elementUpdated(element);
+		radios = Array.from(element.children) as Radio[];
+	};
+
 	beforeEach(async () => {
-		element = fixture(`
+		await setupFixture(`
 			<${COMPONENT_TAG}>
 				<vwc-radio value="0" label="one"></vwc-radio>
 				<vwc-radio value="1" label="two"></vwc-radio>
 				<vwc-radio value="2" label="three"></vwc-radio>
 			</${COMPONENT_TAG}>
-		`) as RadioGroup;
-		await elementUpdated(element);
-		radios = Array.from(element.children) as Radio[];
+		`);
 	});
 
 	describe('basic', () => {
@@ -82,9 +90,70 @@ describe('vwc-radio-group', () => {
 				radios.every((r) => r.getAttribute('disabled') === '')
 			).toBeTruthy();
 		});
+
+		it('should enable all radio buttons it contains when re-enabled', async () => {
+			element.setAttribute('disabled', '');
+			element.removeAttribute('disabled');
+			await elementUpdated(element);
+			expect(radios.every((r) => !r.hasAttribute('disabled'))).toBeTruthy();
+		});
+
+		it('should disable all radio buttons it contains if disabled is initially set', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG} disabled>
+					<vwc-radio value="0" label="one"></vwc-radio>
+					<vwc-radio value="1" label="two"></vwc-radio>
+					<vwc-radio value="2" label="three"></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+			expect(
+				radios.every((r) => r.getAttribute('disabled') === '')
+			).toBeTruthy();
+		});
+	});
+
+	describe('readonly', () => {
+		it('should set all radio buttons it contains to readonly when set to readonly', async () => {
+			element.setAttribute('readonly', '');
+			await elementUpdated(element);
+			expect(
+				radios.every((r) => r.getAttribute('readonly') === '')
+			).toBeTruthy();
+		});
+
+		it('should remove readonly from all radio buttons it contains when readonly is removed', async () => {
+			element.setAttribute('readonly', '');
+			element.removeAttribute('readonly');
+			await elementUpdated(element);
+			expect(radios.every((r) => !r.hasAttribute('readonly'))).toBeTruthy();
+		});
+
+		it('should set readonly on all radio buttons it contains if readonly is initially set', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG} readonly>
+					<vwc-radio value="0" label="one"></vwc-radio>
+					<vwc-radio value="1" label="two"></vwc-radio>
+					<vwc-radio value="2" label="three"></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+			expect(
+				radios.every((r) => r.getAttribute('readonly') === '')
+			).toBeTruthy();
+		});
 	});
 
 	describe('value', () => {
+		it('should initially take the value of the last checked radio button', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG}>
+					<vwc-radio value="0" label="one"></vwc-radio>
+					<vwc-radio value="1" label="two" checked></vwc-radio>
+					<vwc-radio value="2" label="three" checked></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+			expect(element.value).toEqual('2');
+		});
+
 		it('should select the radio button with the same value', async () => {
 			element.setAttribute('value', '1');
 			await elementUpdated(element);
@@ -101,6 +170,24 @@ describe('vwc-radio-group', () => {
 			getBaseElement(radios[1]).dispatchEvent(new MouseEvent('click'));
 			await elementUpdated(element);
 			expect(element.getAttribute('value')).toEqual('1');
+		});
+	});
+
+	describe('name', () => {
+		it('should copy initial name to all child radio button', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG} name="test">
+					<vwc-radio value="0" label="one"></vwc-radio>
+					<vwc-radio value="1" label="two"></vwc-radio>
+					<vwc-radio value="2" label="three"></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+			expect(radios.every((r) => r.name === 'test')).toBeTruthy();
+		});
+
+		it('should copy name to all child radio button when changed', async () => {
+			element.name = 'test';
+			expect(radios.every((r) => r.name === 'test')).toBeTruthy();
 		});
 	});
 
@@ -127,40 +214,200 @@ describe('vwc-radio-group', () => {
 	});
 
 	describe('keyboard', () => {
-		async function keyboardCheck(radioToCheck: number, key: string) {
-			const radio = radios[radioToCheck];
-			const radioCheckedBefore = radio.checked;
-			const radioGroupValueBefore = element.value;
-
-			radios[0].focus();
-			radios[0].dispatchEvent(
+		function pressKey(el: HTMLElement, key: string) {
+			el.dispatchEvent(
 				new KeyboardEvent('keydown', { key: key, bubbles: true })
 			);
-			await elementUpdated(element);
-
-			expect(radioCheckedBefore).toBeFalsy();
-			expect(radioGroupValueBefore).toBeUndefined();
-			expect(radio.checked).toBeTruthy();
-			expect(element.value).toBe(radioToCheck.toString());
 		}
 
-		it('should update when arrows are used', async () => {
-			await keyboardCheck(1, 'ArrowRight');
+		it('should skip over disabled radios when navigating by keyboard', async () => {
+			radios[1].disabled = true;
+			radios[0].focus();
+
+			pressKey(radios[0], 'ArrowRight');
+
+			expect(radios[0].checked).toBe(false);
+			expect(radios[2].checked).toBe(true);
+			expect(document.activeElement).toBe(radios[2]);
 		});
 
-		it('should update when Enter is pressed', async () => {
-			await keyboardCheck(0, 'Enter');
+		it('should focus but not check readonly radios when navigating to them by keyboard', async () => {
+			radios[0].checked = true;
+			radios[1].readOnly = true;
+			radios[0].focus();
+
+			pressKey(radios[0], 'ArrowRight');
+
+			expect(radios[0].checked).toBe(true);
+			expect(radios[1].checked).toBe(false);
+			expect(document.activeElement).toBe(radios[1]);
 		});
 
-		it('should loop over radio buttons', async () => {
-			getBaseElement(radios[2]).click();
-			radios[2].dispatchEvent(
-				new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true })
+		it('should check focused radio when pressing Enter', async () => {
+			radios[0].focus();
+
+			pressKey(radios[0], 'Enter');
+
+			expect(radios[0].checked).toBe(true);
+		});
+
+		it('should not check focused readonly radio when pressing Enter', async () => {
+			radios[0].readOnly = true;
+			radios[0].focus();
+
+			pressKey(radios[0], 'Enter');
+
+			expect(radios[0].checked).toBe(false);
+		});
+
+		describe('when not in toolbar', () => {
+			it.each(['ArrowRight', 'ArrowDown'])(
+				'should select and focus the next radio when pressing %s',
+				async (key) => {
+					element.value = '0';
+					radios[0].focus();
+
+					pressKey(radios[0], key);
+
+					expect(radios[0].checked).toBe(false);
+					expect(radios[1].checked).toBe(true);
+					expect(document.activeElement).toBe(radios[1]);
+				}
 			);
+
+			it.each(['ArrowLeft', 'ArrowUp'])(
+				'should select and focus the previous radio when pressing %s',
+				async (key) => {
+					element.value = '1';
+					radios[1].focus();
+
+					pressKey(radios[1], key);
+
+					expect(radios[1].checked).toBe(false);
+					expect(radios[0].checked).toBe(true);
+					expect(document.activeElement).toBe(radios[0]);
+				}
+			);
+
+			it('should loop back to first radio when navigating off the group to the right', async () => {
+				element.value = '2';
+				radios[2].focus();
+
+				pressKey(radios[2], 'ArrowRight');
+
+				expect(radios[2].checked).toBe(false);
+				expect(radios[0].checked).toBe(true);
+				expect(document.activeElement).toBe(radios[0]);
+			});
+
+			it('should loop back to last radio when navigating off the group to the left', async () => {
+				element.value = '0';
+				radios[0].focus();
+
+				pressKey(radios[0], 'ArrowLeft');
+
+				expect(radios[0].checked).toBe(false);
+				expect(radios[2].checked).toBe(true);
+				expect(document.activeElement).toBe(radios[2]);
+			});
+		});
+
+		describe('when in toolbar', () => {
+			beforeEach(async () => {
+				await setupFixture(`
+					<div role="toolbar">
+						<button id="before">before</button>
+						<${COMPONENT_TAG}>
+							<vwc-radio value="0" label="one"></vwc-radio>
+							<vwc-radio value="1" label="two"></vwc-radio>
+							<vwc-radio value="2" label="three"></vwc-radio>
+						</${COMPONENT_TAG}>
+						<button id="after">after</button>
+					</div>
+				`);
+			});
+
+			it.each(['ArrowRight', 'ArrowDown'])(
+				'should focus but not check the next radio when pressing %s',
+				async (key) => {
+					element.value = '0';
+					radios[0].focus();
+
+					pressKey(radios[0], key);
+
+					expect(radios[0].checked).toBe(true);
+					expect(radios[1].checked).toBe(false);
+					expect(document.activeElement).toBe(radios[1]);
+				}
+			);
+
+			it.each(['ArrowLeft', 'ArrowUp'])(
+				'should focus but not check the previous radio when pressing %s',
+				async (key) => {
+					element.value = '1';
+					radios[1].focus();
+
+					pressKey(radios[1], key);
+
+					expect(radios[1].checked).toBe(true);
+					expect(radios[0].checked).toBe(false);
+					expect(document.activeElement).toBe(radios[0]);
+				}
+			);
+
+			it('should focus next element when navigating off the group to the right', async () => {
+				element.value = '2';
+				radios[2].focus();
+
+				pressKey(radios[2], 'ArrowRight');
+
+				expect(radios[2].checked).toBe(true);
+				expect(document.activeElement).toBe(document.getElementById('after'));
+			});
+
+			it('should keep focus on last radio if there is no next element when navigating off the group to the right', async () => {
+				document.getElementById('after')!.remove();
+				element.value = '2';
+				radios[2].focus();
+
+				pressKey(radios[2], 'ArrowRight');
+
+				expect(radios[2].checked).toBe(true);
+				expect(document.activeElement).toBe(radios[2]);
+			});
+
+			it('should focus preceding element when navigating off the group to the left', async () => {
+				element.value = '0';
+				radios[0].focus();
+
+				pressKey(radios[0], 'ArrowLeft');
+
+				expect(radios[0].checked).toBe(true);
+				expect(document.activeElement).toBe(document.getElementById('before'));
+			});
+
+			it('should keep focus on first radio if there is no previous element when navigating off the group to the left', async () => {
+				document.getElementById('before')!.remove();
+				element.value = '0';
+				radios[0].focus();
+
+				pressKey(radios[0], 'ArrowLeft');
+
+				expect(radios[0].checked).toBe(true);
+				expect(document.activeElement).toBe(radios[0]);
+			});
+		});
+
+		it('should not prevent default of other key presses', async () => {
+			const event = new KeyboardEvent('keydown', {
+				key: 'A',
+				cancelable: true,
+				bubbles: true,
+			});
+			radios[0].dispatchEvent(event);
 			await elementUpdated(element);
 
-			expect(radios[0].checked).toBeTruthy();
-			expect(element.value).toBe('0');
+			expect(event.defaultPrevented).toBe(false);
 		});
 	});
 
