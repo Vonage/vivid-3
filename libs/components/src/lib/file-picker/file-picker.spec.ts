@@ -73,6 +73,7 @@ describe('vwc-file-picker', () => {
 			unmountedElement.maxFileSize = 256;
 			unmountedElement.maxFiles = 1;
 			unmountedElement.accept = '.jpg';
+			unmountedElement.removeAllFiles();
 
 			expect(unmountedElement.files).toEqual([]);
 			expect(() => {
@@ -110,6 +111,17 @@ describe('vwc-file-picker', () => {
 		it('should be set to a fake path when a file is added', async function () {
 			addFiles([await generateFile('london.png', 1)]);
 			expect(element.value).toBe('C:\\fakepath\\london.png');
+		});
+
+		it('should remove all files when setting value to an empty string', async function () {
+			addFiles([
+				await generateFile('london.png', 1),
+				await generateFile('london.png', 1),
+			]);
+
+			element.value = '';
+
+			expect(element.files.length).toBe(0);
 		});
 	});
 
@@ -313,6 +325,17 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('removeAllFiles()', function () {
+		it('should remove all files', async function () {
+			addFiles([
+				await generateFile('london.png', 1),
+				await generateFile('london.png', 1),
+			]);
+			element.removeAllFiles();
+			expect(element.files.length).toEqual(0);
+		});
+	});
+
 	describe('choose file with keyboard', function () {
 		it.each([
 			['Space', ' '],
@@ -446,6 +469,3 @@ describe('form associated vwc-file-picker', function () {
 		expect(new FormData(formElement).get('file')).toBeTruthy();
 	});
 });
-
-// Add docs
-// Check to see if we have a ui-test that needs update
