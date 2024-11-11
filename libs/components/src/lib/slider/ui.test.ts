@@ -60,7 +60,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/slider.png'
+		'snapshots/slider.png'
 	);
 });
 
@@ -94,7 +94,7 @@ test('should show a tooltip for horizontal slider', async ({
 	const testWrapper = await page.$('#wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/slider-tooltip-horizontal.png'
+		'snapshots/slider-tooltip-horizontal.png'
 	);
 });
 
@@ -126,6 +126,6 @@ test('should show a tooltip for vertical slider', async ({
 	const testWrapper = await page.$('#wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/slider-tooltip-vertical.png'
+		'snapshots/slider-tooltip-vertical.png'
 	);
 });

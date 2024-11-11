@@ -38,7 +38,7 @@ function runLayoutUiTest() {
 		await page.waitForLoadState('networkidle');
 
 		expect(await testWrapper?.screenshot()).toMatchSnapshot(
-			'./snapshots/layout.png',
+			'snapshots/layout.png',
 			{
 				maxDiffPixelRatio: 0.02,
 			}

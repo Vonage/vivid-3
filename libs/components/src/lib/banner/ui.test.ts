@@ -191,7 +191,7 @@ gradientUnits="userSpaceOnUse"
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/banner.png',
+		'snapshots/banner.png',
 		{
 			maxDiffPixelRatio: 0.02,
 		}

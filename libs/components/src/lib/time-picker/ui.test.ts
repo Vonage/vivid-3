@@ -79,7 +79,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.keyboard.press('Tab');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/time-picker.png'
+		'snapshots/time-picker.png'
 	);
 });
 

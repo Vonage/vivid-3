@@ -69,7 +69,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/text-field.png'
+		'snapshots/text-field.png'
 	);
 });
 
@@ -118,7 +118,7 @@ const testInvalidation = async ({
 
 	expect(
 		await testWrapper?.screenshot({ animations: 'disabled' })
-	).toMatchSnapshot('./snapshots/text-field-invalidation.png');
+	).toMatchSnapshot('snapshots/text-field-invalidation.png');
 };
 
 test('should invalidate component', testInvalidation);
