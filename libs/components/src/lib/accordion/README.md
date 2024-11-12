@@ -67,36 +67,36 @@ registerAccordionItem('your-prefix');
 Use the `heading-level` to set level of the **Accordion Item**'s headline element to ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels).
 
 ```html preview 450px
-<h3>Level 3 heading</h3>
+<h1>Level 1 heading</h1>
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item
-		heading-level="4"
+		heading-level="2"
 		heading="Accordion item 1"
-		meta="Level 4"
+		meta="Level 2"
 	>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item
 		heading-level="4"
 		heading="Accordion item 2"
-		meta="Level 4"
+		meta="Level 2"
 	>
 		This is the second item's accordion body.
 	</vwc-accordion-item>
 </vwc-accordion>
-<h4>Level 4 heading</h4>
+<h2>Level 2 heading</h2>
 <vwc-accordion expand-mode="multi">
 	<vwc-accordion-item
-		heading-level="5"
+		heading-level="3"
 		heading="Accordion item 1"
-		meta="Level 5"
+		meta="Level 3"
 	>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
 	<vwc-accordion-item
-		heading-level="5"
+		heading-level="3"
 		heading="Accordion item 2"
-		meta="Level 5"
+		meta="Level 3"
 	>
 		This is the second item's accordion body.
 	</vwc-accordion-item>

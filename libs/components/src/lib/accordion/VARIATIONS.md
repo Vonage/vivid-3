@@ -143,12 +143,12 @@ Use the `meta` attribute to add meta data to the **Accordion Item**'s heading.
 
 Use the `size` attribute to control the size of the **Accordion Item**.
 
-```html preview 360px
+```html preview 425px
 <div class="container">
 	<div class="example">
 		<b>Normal</b>
-		<vwc-accordion>
-			<vwc-accordion-item size="normal" heading="Accordion item 1" expanded>
+		<vwc-accordion class="accordion" expand-mode="multiple">
+			<vwc-accordion-item size="normal" heading="Accordion item 1">
 				This is the first item's accordion body.
 			</vwc-accordion-item>
 			<vwc-accordion-item size="normal" heading="Accordion item 2">
@@ -158,8 +158,8 @@ Use the `size` attribute to control the size of the **Accordion Item**.
 	</div>
 	<div class="example">
 		<b>Condensed</b>
-		<vwc-accordion>
-			<vwc-accordion-item size="condensed" heading="Accordion item 1" expanded>
+		<vwc-accordion class="accordion" expand-mode="multiple">
+			<vwc-accordion-item size="condensed" heading="Accordion item 1">
 				This is the first item's accordion body.
 			</vwc-accordion-item>
 			<vwc-accordion-item size="condensed" heading="Accordion item 2">
@@ -172,15 +172,17 @@ Use the `size` attribute to control the size of the **Accordion Item**.
 <style>
 	.container {
 		display: flex;
-		justify-content: space-between;
-		gap: 16px;
+		flex-direction: column;
+		gap: 48px;
 		inline-size: 100%;
-		flex-wrap: wrap;
 	}
 	.example {
-		flow-grow: 1;
-		inline-size: 48%;
-		min-inline-size: 250px;
+		flex-grow: 1;
+		inline-size: 100%;
+	}
+	.accordion {
+		margin-top: 16px; 
+		display: block;
 	}
 </style>
 ```
