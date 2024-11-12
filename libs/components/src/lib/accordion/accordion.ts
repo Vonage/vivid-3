@@ -63,7 +63,7 @@ export class Accordion extends FoundationElement {
 	 */
 	accordionItemsChanged(
 		oldValue: HTMLElement[],
-		// @ts-expect-error Unread value
+		// @ts-expect-error Variable is delcared but not used
 		newValue: HTMLElement[]
 	): void {
 		if (this.$fastController.isConnected) {
@@ -122,15 +122,13 @@ export class Accordion extends FoundationElement {
 	};
 
 	private resetItems(): void {
-		// @ts-expect-error Type is incorrectly non-optional
-		this.accordionItems.forEach((item: any, index: number) => {
+		this.accordionItems.forEach((item: any) => {
 			item.expanded = false;
 		});
 	}
 
 	private removeItemListeners = (oldValue: any): void => {
-		// @ts-expect-error Type is incorrectly non-optional
-		oldValue.forEach((item: HTMLElement, index: number) => {
+		oldValue.forEach((item: HTMLElement) => {
 			item.removeEventListener('change', this.activeItemChange);
 			item.removeEventListener('keydown', this.handleItemKeyDown);
 			item.removeEventListener('focus', this.handleItemFocus);

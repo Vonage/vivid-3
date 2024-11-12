@@ -98,8 +98,7 @@ export class AccordionItem extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	// @ts-expect-error Type is incorrectly non-optional
-	clickHandler = (e: MouseEvent) => {
+	clickHandler = () => {
 		this.expanded = !this.expanded;
 		this.change();
 	};
