@@ -96,9 +96,14 @@ export class Accordion extends FoundationElement {
 			if (item instanceof AccordionItem) {
 				item.addEventListener('change', this.activeItemChange);
 				if (this.isSingleExpandMode()) {
-					this.activeItemIndex !== index
-						? (item.expanded = false)
-						: (item.expanded = true);
+					const expandedItem = this.findExpandedItem();
+					if (expandedItem === null && index === 0) {
+						item.expanded = true;
+					} else {
+						item !== this.findExpandedItem()
+							? (item.expanded = false)
+							: (item.expanded = true);
+					}
 				}
 			}
 			const itemId: string | null = this.accordionIds[index];
@@ -163,7 +168,7 @@ export class Accordion extends FoundationElement {
 	}
 
 	private isSingleExpandMode(): boolean {
-		return this.expandmode === AccordionExpandMode.single;
+		return this.expandmode !== AccordionExpandMode.multi;
 	}
 
 	private handleItemKeyDown = (event: KeyboardEvent): void => {

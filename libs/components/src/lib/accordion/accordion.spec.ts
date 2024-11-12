@@ -93,10 +93,38 @@ describe('vwc-accordion', () => {
 			expect(accordionItem2.expanded).toBeTruthy();
 		});
 
-		it('should always open the first accordion-item::DOCUMENTED BUG SHOULD FAIL ONCE FIXED IN FAST! ', async function () {
+		it('should open the first accordion-item if none of the others are set to expanded', async function () {
 			element = (await fixture(
 				`<${COMPONENT_TAG} expand-mode="single">
 				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
+				<vwc-accordion-item heading="accordion item" id="item2"><p>content</p></vwc-accordion-item>
+			</${COMPONENT_TAG}>`
+			)) as Accordion;
+			await elementUpdated(element);
+
+			expect(element.expandmode).toBe('single');
+			expect((element.children[0] as AccordionItem).expanded).toBeTruthy();
+			expect((element.children[1] as AccordionItem).expanded).toBeFalsy();
+		});
+
+		it('should open the accordion-item with expanded set', async function () {
+			element = (await fixture(
+				`<${COMPONENT_TAG} expand-mode="single">
+				<vwc-accordion-item heading="accordion item" id="item1"><p>content</p></vwc-accordion-item>
+				<vwc-accordion-item heading="accordion item" id="item2" expanded><p>content</p></vwc-accordion-item>
+			</${COMPONENT_TAG}>`
+			)) as Accordion;
+			await elementUpdated(element);
+
+			expect(element.expandmode).toBe('single');
+			expect((element.children[0] as AccordionItem).expanded).toBeFalsy();
+			expect((element.children[1] as AccordionItem).expanded).toBeTruthy();
+		});
+
+		it('should open the first accordion-item with expanded set', async function () {
+			element = (await fixture(
+				`<${COMPONENT_TAG} expand-mode="single">
+				<vwc-accordion-item heading="accordion item" id="item1" expanded><p>content</p></vwc-accordion-item>
 				<vwc-accordion-item heading="accordion item" id="item2" expanded><p>content</p></vwc-accordion-item>
 			</${COMPONENT_TAG}>`
 			)) as Accordion;
