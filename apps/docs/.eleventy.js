@@ -7,6 +7,7 @@ const CleanCSS = require('clean-css');
 const fs = require('fs');
 const path = require('path');
 const packageInstallation = require('./shortcodes/packageInstallation');
+const apiReference = require('./shortcodes/apiReference');
 const glob = require('glob');
 const { nxViteTsPaths } = require('@nx/vite/plugins/nx-tsconfig-paths.plugin');
 const { spawnSync } = require('child_process');
@@ -131,6 +132,8 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addShortcode('packageInstallation', packageInstallation);
+
+	eleventyConfig.addShortcode('apiReference', apiReference);
 
 	eleventyConfig.on('eleventy.before', resetExampleIndex);
 

@@ -72,23 +72,4 @@ If the component is used without a `connotation`, it will use the current text c
 
 ## API Reference
 
-### Properties
-
-| Name             | Type                                                                                      | Description                                                                                                      |
-| ---------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **aria-current** | _Enum_:<br/>`page`<br/>`step`<br/>`location`<br/>`date`<br/>`time`<br/>`true`<br/>`false` | Indicates the element that represents the current item within a container or set of related elements.            |
-| **connotation**  | _Enum_:<br/>`accent`<br/>`cta`<br/>`success`<br/>`alert`<br/>`warning`<br/>`information`  | The connotation the icon should have.                                                                            |
-| **size**         | _Enum_:<br/>-6<br/>-5<br/>-4<br/>-3<br/>-2<br/>-1<br/>0<br/>1<br/>2<br/>3<br/>4<br/>5     |                                                                                                                  |
-| **name**         | _Enum_:<br/>`[icon-name]`                                                                 | Indicates which icon to resolve. See the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/ |
-
-### Events
-
-| Name      | Event Type   | Description                                                                                                                                                |
-| --------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **click** | `MouseEvent` | Fires when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element. |
-
-### Slots
-
-| Name        | Description   |
-| ----------- | ------------- |
-| **default** | Default slot. |
+{% apiReference "icon" %}

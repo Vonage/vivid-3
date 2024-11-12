@@ -4,7 +4,7 @@
 	"projectType": "application",
 	"sourceRoot": "apps/vivid-demo/src",
 	"tags": [],
-	"implicitDependencies": ["components", "styles"],
+	"implicitDependencies": ["components", "styles", "wrapper-gen"],
 	"targets": {
 		"buildMeta": {
 			"executor": "nx:run-commands",

@@ -258,48 +258,4 @@ Use `--select-height` to customize the `max-height` of the dropdown.
 
 ## API Reference
 
-### Properties
-
-<div class="table-wrapper">
-
-| Name               | Type                            | Description                                                                                                                 |
-| ------------------ | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **appearance**     | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
-| **disabled**       | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
-| **error-text**     | `string`                        | Sets the element's error text                                                                                               |
-| **fixed-dropdown** | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
-| **helper-text**    | `string`                        | Sets the element's helper text                                                                                              |
-| **icon**           | _Enum_:<br/>`[icon-name]`       | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **label**          | `string`                        | Sets the element's label                                                                                                    |
-| **multiple**       | `boolean`                       | Sets the element to allow multiple selections                                                                               |
-| **open**           | `boolean`                       | Sets the element's menu to be open                                                                                          |
-| **placeholder**    | `string`                        | Sets the text to be displayed when no option is selected                                                                    |
-| **scale**          | `normal` (default), `condensed` | Sets the display size of the input element                                                                                  |
-| **shape**          | `rounded` (default), `pill`     | Sets the shape of the select element                                                                                        |
-| **success-text**   | `string`                        | Sets the element's success text                                                                                             |
-
-</div>
-
-### Events
-
-<div class="table-wrapper">
-
-| Name       | Type                     | Bubbles | Composed | Description                                     |
-| ---------- | ------------------------ | ------- | -------- | ----------------------------------------------- |
-| **input**  | `CustomEvent<undefined>` | No      | Yes      | Fired when an option is selected or unselected. |
-| **change** | `CustomEvent<undefined>` | No      | Yes      | Fired when an option is selected or unselected. |
-
-</div>
-
-### Slots
-
-<div class="table-wrapper">
-
-| Name            | Description                                                        |
-| --------------- | ------------------------------------------------------------------ |
-| **default**     | Default slot meant for Option component to provide the option list |
-| **helper-text** | Add HTML content for helper text                                   |
-| **icon**        | Add an icon to the component.                                      |
-| **meta**        | Show meta information after the selected option label              |
-
-</div>
+{% apiReference "select" %}
