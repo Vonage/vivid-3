@@ -349,6 +349,27 @@ describe('vwc-time-picker', () => {
 				]);
 			});
 		});
+
+		it('should update the text field when the clock is changed', async () => {
+			element.clock = '12h';
+			element.value = '13:45:00';
+			await elementUpdated(element);
+
+			element.clock = '24h';
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('13:45');
+		});
+
+		it('should update the text field when the locale is changed', async () => {
+			element.value = '13:45:00';
+			await elementUpdated(element);
+
+			setLocale(enGB);
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('13:45');
+		});
 	});
 
 	describe('min', () => {
