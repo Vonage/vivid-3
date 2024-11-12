@@ -15,8 +15,6 @@ const COMPONENT_HTML = `
 	</${COMPONENT_TAG}>
 `;
 
-const EMPTY_COMPONENT_HTML = `<${COMPONENT_TAG} id="tested"></${COMPONENT_TAG}>`;
-
 describe('vwc-accordion', () => {
 	function triggerAccordionUpdate() {
 		const newItem = document.createElement(
@@ -51,16 +49,6 @@ describe('vwc-accordion', () => {
 			expect(accordionDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Accordion);
 			expect(element.expandmode).toBe('single');
-		});
-	});
-
-	describe('empty', () => {
-		it('should not contain a accordion-item', async () => {
-			element = (await fixture(EMPTY_COMPONENT_HTML)) as Accordion;
-			await elementUpdated(element);
-
-			accordionItem1 = element.querySelector('#item1') as AccordionItem;
-			expect(accordionItem1).toBe(null);
 		});
 	});
 
@@ -219,11 +207,11 @@ describe('vwc-accordion', () => {
 		it('should set aria-disabled on active item in single mode', async function () {
 			element = (await fixture(`
 				<${COMPONENT_TAG} id="tested">
-					<vwc-accordion-item heading="accordion item 1" expanded id="item1"><p>content</p></vwc-accordion-item>
-					<vwc-accordion-item heading="accordion item 2" id="item2"><p>content</p></vwc-accordion-item>
+					<vwc-accordion-item heading="accordion item 1" id="item1"><p>content</p></vwc-accordion-item>
+					<vwc-accordion-item heading="accordion item 2" expanded id="item2"><p>content</p></vwc-accordion-item>
 				</${COMPONENT_TAG}>`)) as Accordion;
 			await elementUpdated(element);
-			accordionItem1 = element.querySelector('#item1') as AccordionItem;
+			accordionItem1 = element.querySelector('#item2') as AccordionItem;
 
 			expect(accordionItem1.hasAttribute('aria-disabled')).toBe(true);
 		});

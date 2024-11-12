@@ -80,7 +80,7 @@ export class Accordion extends FoundationElement {
 
 	private findExpandedItem(): AccordionItem | null {
 		for (let item = 0; item < this.accordionItems.length; item++) {
-			if (this.accordionItems[item].getAttribute('expanded') === 'true') {
+			if (this.accordionItems[item].hasAttribute('expanded') === true) {
 				return this.accordionItems[item] as AccordionItem;
 			}
 		}
