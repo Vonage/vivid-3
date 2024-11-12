@@ -61,11 +61,7 @@ export class Accordion extends FoundationElement {
 	/**
 	 * @internal
 	 */
-	accordionItemsChanged(
-		oldValue: HTMLElement[],
-		// @ts-expect-error Variable is delcared but not used
-		newValue: HTMLElement[]
-	): void {
+	accordionItemsChanged(oldValue: HTMLElement[]): void {
 		if (this.$fastController.isConnected) {
 			this.removeItemListeners(oldValue);
 			this.setItems();
