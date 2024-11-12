@@ -28,6 +28,7 @@ export type AriaCheckedStates = 'false' | 'true' | 'mixed' | 'undefined';
 /**
  * @public
  * @component checkbox
+ * @slot - The default slot allows you to use rich content as the checkbox's label.
  * @slot helper-text - Describes how to use the checkbox. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Emitted when the checked state changes.
  * @event {CustomEvent<undefined>} input - Emitted when the checked state changes.
@@ -99,10 +100,6 @@ export class Checkbox extends FormAssociatedCheckbox {
 		super();
 
 		this.proxy.setAttribute('type', 'checkbox');
-	}
-
-	indeterminateChanged(_: boolean, next: boolean) {
-		this.checked = !next;
 	}
 
 	ariaCheckedChanged() {
