@@ -380,6 +380,34 @@ Use the `closeAll` method on **Accordion** to programatically close all open Acc
 </vwc-accordion>
 ```
 
+## CSS Variables
+
+### Meta Data Inline Size
+
+Use the `--accordion-item-meta-inline-size` to control the width of the `meta-data` slot content.
+
+- Derfault: `20%`
+
+```html preview 140px
+<vwc-accordion
+	expand-mode="multi"
+	class="accordion"
+>
+	<vwc-accordion-item
+		heading="Accordion item"
+		meta="meta-data with custom width"
+	>
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+	</vwc-accordion-item>
+</vwc-accordion>
+
+<style>
+	.accordion {
+		--accordion-item-meta-inline-size: 230px;
+	}
+</style>
+```
+
 ## API Reference
 
 ### Accordion

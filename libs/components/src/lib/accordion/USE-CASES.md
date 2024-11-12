@@ -27,3 +27,25 @@ The example below uses the `icon` and `icon-trailing` attributes to replace the 
 	});
 </script>
 ```
+
+## Single Accordion Items
+
+The example below shows how a single Accordion Item can be used inside an [Action Group component](/components/action-group/) (which provides the border) to create a stand alone expandable section of content.
+
+```html preview 160px
+<vwc-action-group class="action-group">
+	<vwc-accordion-item
+			class="accordion-item"
+			heading="Expandable Section"
+		>
+		This is the content for the expandable section.
+	</vwc-accordion-item>
+</vwc-action-group>
+
+<style>
+	.action-group, .accordion-item {
+		display: block;
+		inline-size: 100%;
+	}
+</style>
+```
