@@ -102,6 +102,10 @@ export class Checkbox extends FormAssociatedCheckbox {
 		this.proxy.setAttribute('type', 'checkbox');
 	}
 
+	indeterminateChanged(_: boolean, next: boolean) {
+		this.checked = !next;
+	}
+
 	ariaCheckedChanged() {
 		if (this.ariaChecked === 'mixed') {
 			this.indeterminate = true;
