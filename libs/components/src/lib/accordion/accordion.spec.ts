@@ -55,10 +55,10 @@ describe('vwc-accordion', () => {
 	});
 
 	describe('empty', () => {
-		it('should not set the accordion items property', async () => {
+		it('should not set the accordionIds property', async () => {
 			element = (await fixture(EMPTY_COMPONENT_HTML)) as Accordion;
 			await elementUpdated(element);
-			expect(element.accordionItems.length).toBe(0);
+			expect(element.accordionIds).toBe(undefined);
 		});
 	});
 
