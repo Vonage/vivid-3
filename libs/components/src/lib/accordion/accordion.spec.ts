@@ -15,6 +15,8 @@ const COMPONENT_HTML = `
 	</${COMPONENT_TAG}>
 `;
 
+const EMPTY_COMPONENT_HTML = `<${COMPONENT_TAG} id="tested"></${COMPONENT_TAG}>`;
+
 describe('vwc-accordion', () => {
 	function triggerAccordionUpdate() {
 		const newItem = document.createElement(
@@ -49,6 +51,14 @@ describe('vwc-accordion', () => {
 			expect(accordionDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Accordion);
 			expect(element.expandmode).toBe('single');
+		});
+	});
+
+	describe('empty', () => {
+		it('should not set the accordion items property', async () => {
+			element = (await fixture(EMPTY_COMPONENT_HTML)) as Accordion;
+			await elementUpdated(element);
+			expect(element.accordionItems.length).toBe(0);
 		});
 	});
 
