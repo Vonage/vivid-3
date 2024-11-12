@@ -34,16 +34,14 @@ The example below shows how a single Accordion Item can be used inside an [Actio
 
 ```html preview 160px
 <vwc-action-group class="action-group">
-	<vwc-accordion-item
-			class="accordion-item"
-			heading="Expandable Section"
-		>
+	<vwc-accordion-item class="accordion-item" heading="Expandable Section">
 		This is the content for the expandable section.
 	</vwc-accordion-item>
 </vwc-action-group>
 
 <style>
-	.action-group, .accordion-item {
+	.action-group,
+	.accordion-item {
 		display: block;
 		inline-size: 100%;
 	}

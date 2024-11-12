@@ -389,10 +389,7 @@ Use the `--accordion-item-meta-inline-size` to control the width of the `meta-da
 - Derfault: `20%`
 
 ```html preview 140px
-<vwc-accordion
-	expand-mode="multi"
-	class="accordion"
->
+<vwc-accordion expand-mode="multi" class="accordion">
 	<vwc-accordion-item
 		heading="Accordion item"
 		meta="meta-data with custom width"
