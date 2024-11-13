@@ -46,7 +46,7 @@ In `single` mode only one Accordion Item can be expanded at a time. By default, 
 In `multi` mode multiple Accordion Items can be expanded.
 
 ```html preview 320px
-<vwc-accordion expand-mode="multiple">
+<vwc-accordion expand-mode="multi">
 	<vwc-accordion-item heading="Accordion item 1" expanded>
 		This is the first item's accordion body.
 	</vwc-accordion-item>
