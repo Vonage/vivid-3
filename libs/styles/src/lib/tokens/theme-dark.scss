@@ -16,19 +16,27 @@
 }
 
 .new-shadow {
-	--vvd-color-surface-0dp: #191828;
-	--vvd-color-surface-2dp: #1E1D2C;
-	--vvd-color-surface-4dp: #222131;
-	--vvd-color-surface-8dp: #2B2A39;
-	--vvd-color-surface-12dp: #353442;
-	--vvd-color-surface-16dp: #0d0d0d;
-	--vvd-color-surface-24dp: #474653;
+		--vvd-color-surface-0dp: #191828;
+		--vvd-color-surface-2dp: #1E1D2C;
+		--vvd-color-surface-4dp: #222131;
+		--vvd-color-surface-8dp: #2B2A39;
+		--vvd-color-surface-12dp: #353442;
+		--vvd-color-surface-16dp: #3E3D4A;
+		--vvd-color-surface-24dp: #474653;
 
-	--vvd-shadow-surface-0dp: drop-shadow(1px 0px 0px #4D4D4D) drop-shadow(0px 1px 0px #4D4D4D) drop-shadow(0px -1px 0px #4D4D4D) drop-shadow(-1px 0px 0px #4D4D4D);
-	--vvd-shadow-surface-2dp: drop-shadow(0px 1px 4px #0000001a) drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 2px 1px #0000000d);
-	--vvd-shadow-surface-4dp: drop-shadow(0px 2px 8px #0000001a) drop-shadow(0px 2px 4px #0000000d) drop-shadow(0px 4px 2px #0000000d);
-	--vvd-shadow-surface-8dp: drop-shadow(0px 2px 16px #0000001a) drop-shadow(0px 8px 8px #0000000d) drop-shadow(0px 4px 4px #0000000d);
-	--vvd-shadow-surface-12dp: drop-shadow(0px 4px 24px #0000001a) drop-shadow(0px 12px 16px #0000000d) drop-shadow(0px 6px 8px #0000000d);
-	--vvd-shadow-surface-16dp: drop-shadow(0px 6px 32px #0000001a) drop-shadow(0px 16px 24px #0000000d) drop-shadow(0px 8px 12px #0000000d);
-	--vvd-shadow-surface-24dp: drop-shadow(0px 12px 48px #0000001a) drop-shadow(0px 24px 32px #0000000d) drop-shadow(0px 12px 16px #0000000d);
+		--vvd-shadow-surface-0dp: drop-shadow(1px 0px 0px #4D4D4D) drop-shadow(0px 1px 0px #4D4D4D) drop-shadow(0px -1px 0px #4D4D4D) drop-shadow(-1px 0px 0px #4D4D4D);
+		--vvd-shadow-surface-2dp: drop-shadow(0px 1px 4px #0000001a) drop-shadow(0px 1px 2px #0000000d) drop-shadow(0px 2px 1px #0000000d);
+		--vvd-shadow-surface-4dp: drop-shadow(0px 2px 8px #0000001a) drop-shadow(0px 2px 4px #0000000d) drop-shadow(0px 4px 2px #0000000d);
+		--vvd-shadow-surface-8dp: drop-shadow(0px 2px 16px #0000001a) drop-shadow(0px 8px 8px #0000000d) drop-shadow(0px 4px 4px #0000000d);
+		--vvd-shadow-surface-12dp: drop-shadow(0px 4px 24px #0000001a) drop-shadow(0px 12px 16px #0000000d) drop-shadow(0px 6px 8px #0000000d);
+		--vvd-shadow-surface-16dp: drop-shadow(0px 6px 32px #0000001a) drop-shadow(0px 16px 24px #0000000d) drop-shadow(0px 8px 12px #0000000d);
+		--vvd-shadow-surface-24dp: drop-shadow(0px 12px 48px #0000001a) drop-shadow(0px 24px 32px #0000000d) drop-shadow(0px 12px 16px #0000000d);
+
+
+	& > * {
+		--vvd-color-surface-4dp: linear-gradient(#ffffff14, #ffffff14), #0d0d0d;
+		--vvd-shadow-surface-4dp: drop-shadow(0px 2px 16px #00000040) drop-shadow(0px 8px 8px #00000040) drop-shadow(0px 4px 4px #00000040);
+		--vvd-color-surface-8dp: linear-gradient(#ffffff1a, #ffffff1a), #0d0d0d;
+		--vvd-shadow-surface-8dp: drop-shadow(0px 2px 16px #00000040) drop-shadow(0px 8px 8px #00000040) drop-shadow(0px 4px 4px #00000040);
+	}
 }
