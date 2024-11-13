@@ -1,5 +1,5 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { keySpace } from '@microsoft/fast-web-utilities';
+import { keySpace, keyEnter } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
 import { FormAssociatedSwitch } from './switch.form-associated';
 
@@ -167,18 +167,15 @@ export class Switch extends FormAssociatedSwitch {
 	 * @internal
 	 */
 	keypressHandler = (e: KeyboardEvent) => {
-		switch (e.key) {
-			case keySpace:
-				this.checked = !this.checked;
-				break;
+		if (e.key === keySpace || e.key === keyEnter) {
+			this.checked = !this.checked;
 		}
 	};
 
 	/**
 	 * @internal
 	 */
-	clickHandler = (e: MouseEvent) => {
-		console.log(e);
+	clickHandler = () => {
 		if (!this.disabled && !this.readOnly) {
 			this.checked = !this.checked;
 		}
