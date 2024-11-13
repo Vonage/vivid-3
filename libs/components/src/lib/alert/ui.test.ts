@@ -41,7 +41,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/alert.png'
+		'snapshots/alert.png'
 	);
 });
 
@@ -68,7 +68,7 @@ async function testResponsiveAlert({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/alert-mobile.png'
+		'snapshots/alert-mobile.png'
 	);
 }
 test('alert in mobile screens', testResponsiveAlert);
@@ -101,7 +101,7 @@ async function testConnotationAlert({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/alert-connotation.png'
+		'snapshots/alert-connotation.png'
 	);
 }
 test('alert in connotation', testConnotationAlert);
@@ -134,7 +134,7 @@ async function testMainSlotAlert({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/alert-main-slot.png'
+		'snapshots/alert-main-slot.png'
 	);
 }
 test('alert with main slot content', testMainSlotAlert);

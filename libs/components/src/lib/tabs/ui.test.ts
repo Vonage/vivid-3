@@ -49,7 +49,7 @@ async function testScroll({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/tabs-scroll.png',
+		'snapshots/tabs-scroll.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 }
@@ -75,9 +75,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/tabs.png'
-	);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/tabs.png');
 });
 
 test('should scroll only inside tabs', async ({ page }: { page: Page }) => {

@@ -38,13 +38,6 @@ Sets the description of the event.
 </vwc-calendar>
 ```
 
-### Overlap Count
-
-Sets an event display stacking context precedence and indentation where multiple events overlap.
-
-- Type: `string`
-- Default: `undefined`
-
 ### Start
 
 Sets the time of day in which the event starts.
@@ -183,6 +176,41 @@ It accepts a subset of predefined values.
 		appearance="subtle"
 		heading="announcement"
 		slot="day-6"
+	></vwc-calendar-event>
+</vwc-calendar>
+```
+
+### Overlap Count
+
+Sets an event display stacking context precedence and indentation where multiple events overlap.
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-calendar>
+	<vwc-calendar-event
+		description="Another overlapping event"
+		connotation="success"
+		slot="day-0"
+		duration="3"
+		start="9"
+		overlap-count="3"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		description="An overlapping event"
+		connotation="announcement"
+		slot="day-0"
+		duration="3"
+		start="8"
+		overlap-count="2"
+	></vwc-calendar-event>
+	<vwc-calendar-event
+		description="A party in which guests swim in a swimming pool"
+		slot="day-0"
+		duration="7"
+		start="6"
+		overlap-count="1"
 	></vwc-calendar-event>
 </vwc-calendar>
 ```
