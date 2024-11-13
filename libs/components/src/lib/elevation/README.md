@@ -1,4 +1,31 @@
 # Elevation
+## TESTING NEW TOKENS
+
+```html preview blocks
+<style>
+	.card {
+		padding: 20px;
+		text-align: center;
+		border-radius: 6px;
+	}
+</style>
+
+<vwc-elevation dp="4" class="new-shadow">
+	<div class="card">This is the content inside the elevation with DP 8
+  <vwc-card headline="Parent Has Class With New Tokens" icon="chat-line"></vwc-card></div>
+</vwc-elevation>
+
+
+<vwc-elevation dp="8">
+	<div class="card">This is the content inside the elevation with DP 8
+  <vwc-card elevation="8" headline="Vivid Card Component" icon="chat-line"></vwc-card></div>
+</vwc-elevation>
+
+```
+
+
+
+
 
 Represents underlying _elevation_ custom element.
 Applies a perceived visual elevation to a direct child element.
