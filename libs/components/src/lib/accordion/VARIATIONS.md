@@ -181,7 +181,7 @@ Use the `size` attribute to control the size of the **Accordion Item**.
 		inline-size: 100%;
 	}
 	.accordion {
-		margin-top: 16px; 
+		margin-top: 16px;
 		display: block;
 	}
 </style>
