@@ -1,17 +1,59 @@
-# Dialog
+## Usage
 
-Represents a part of an application that a user interacts with to perform a task.
-
-The dialog uses the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
-
-Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog. Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/dialog';</script>
+import '@vonage/vivid/dialog';
 ```
 
+or, if you need to use a unique prefix:
+
+```js
+import { registerDialog } from '@vonage/vivid';
+
+registerDialog('your-prefix');
+```
+
+```html preview 150px
+<script type="module">
+	import { registerDialog } from '@vonage/vivid';
+	registerDialog('your-prefix');
+</script>
+
+<your-prefix-dialog headline="I'm a dialog" open></your-prefix-text-dialog>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VDialog } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDialog headline="I'm a dialog" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+<vwc-note connotation="information" icon="info-line">
+	<p>The dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
+</vwc-note>
+
+
+
+## Modal
+
+Use the `modal` attribute to set the dialog as Modal
+
 ```html preview 300px
-<div style="display: flex; align-items: center; gap: 16px">
+<div class="buttons-wrapper">
 	<vwc-radio-group>
 		<vwc-radio label="Non-modal" value="false" checked></vwc-radio>
 		<vwc-radio label="Modal" value="true"></vwc-radio>
@@ -23,7 +65,7 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
 	></vwc-button>
 </div>
 
-<vwc-dialog icon="info" headline="Headline" subtitle="subtitle">
+<vwc-dialog id="vwc-dialog" icon="info" headline="Headline" subtitle="subtitle">
 	<vwc-checkbox slot="footer" label="Checkbox"></vwc-checkbox>
 	<vwc-button
 		slot="action-items"
@@ -40,7 +82,7 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
 </vwc-dialog>
 
 <script>
-	const dialog = document.querySelector('vwc-dialog');
+	const dialog = document.querySelector('#vwc-dialog');
 
 	function openDialog() {
 		dialog.open = true;
@@ -54,92 +96,36 @@ Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting 
 		dialog.open = false;
 	}
 </script>
+
+<style>
+.buttons-wrapper {
+display: flex; align-items: center; gap: 16px;
+}
+</style>
 ```
 
-## Members
 
-### Headline
-
-Use the `headline` attribute to set the dialog's headline.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview 230px
-<vwc-dialog headline="Headline" open></vwc-dialog>
-```
-
-### Subtitle
-
-Use the `subtitle` attribute to set the dialog's subtitle.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview 230px
-<vwc-dialog subtitle="subtitle content" open></vwc-dialog>
-```
-
-### Icon
-
-Use the `icon` attribute to set the dialog's icon.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview 230px
-<vwc-dialog icon="info" open></vwc-dialog>
-```
-
-### Icon-placement
-
-The `icon-placement` attribute specifies where the dialog's icon should appear (relative to the headline).
-
-- Type: `top` | `side`
-- Default: `top`
-
-```html preview 230px
-<vwc-dialog
-	icon-placement="side"
-	icon="info"
-	headline="Dialog Headline"
-	subtitle="subtitle content"
-	open
-></vwc-dialog>
-```
-
-### Open
+## Open
 
 Sets or returns whether a dialog should be open or not.
-
-- Type: `boolean`
-- Default: `false`
 
 ```html preview 230px
 <vwc-button
 	label="Toggle Dialog Open"
 	onclick="dialog.open = !dialog.open"
 ></vwc-button>
-<vwc-dialog id="dialog" headline="Headline" subtitle="subtitle"></vwc-dialog>
+<vwc-dialog id="dialog" headline="I'm a Dialog" subtitle="subtitle"></vwc-dialog>
 ```
 
-### Modal
 
-Controls whether the dialog is modal or not.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 230px
-<vwc-dialog headline="Modal Dialog" modal open></vwc-dialog>
-```
-
+## Dismiss
+<vwc-note connotation="warning" icon="warning-line" headline="Remove dismiss options with caution">
+<p>When using this attribute, ensure that the dialog can be closed by other means.</p>
+</vwc-note>
 ### No-light-dismiss
 
-Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside of it.
+Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside it.
 
-- Type: `boolean`
-- Default: `false`
 
 ```html preview 230px
 <vwc-button
@@ -149,12 +135,9 @@ Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismis
 <vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
 
-### No-dismiss-on-esc
+### No-Dismiss-On-Esc
 
 Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismissed by pressing ESC.
-
-- Type: `boolean`
-- Default: `false`
 
 ```html preview 230px
 <vwc-button
@@ -164,14 +147,9 @@ Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismi
 <vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
 ```
 
-### No-dismiss-button
+### No-Dismiss-Button
 
 Use the `no-dismiss-button` attribute to remove the dismiss button from the dialog.
-
-When using this attribute, ensure that the dialog can be closed by other means.
-
-- Type: `boolean`
-- Default: `false`
 
 ```html preview 230px
 <vwc-button
@@ -181,14 +159,9 @@ When using this attribute, ensure that the dialog can be closed by other means.
 <vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
 ```
 
-### Non-dismissible
+### Non-Dismissible
 
 The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`.
-
-When using this attribute, ensure that the dialog can be closed by other means.
-
-- Type: `boolean`
-- Default: `false`
 
 ```html preview 230px
 <vwc-button
@@ -198,14 +171,20 @@ When using this attribute, ensure that the dialog can be closed by other means.
 <vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
 ```
 
-### Return Value
 
-Use `returnValue` to get or set the return value. Often used to indicate which button the user pressed to close it.
+## Return Value
 
-- Type: `string`
-- Default: `""`
+Use `returnValue` to get or set the return value.  
+Often used to indicate which button the user pressed to close it.
 
 ```html preview 250px
+<div class="wrapper">
+<div>
+	Returned Value:
+	<span id="dialog-output"></span>
+</div>
+<vwc-button label="Open Dialog" appearance="outlined" onclick="openDialog()"></vwc-button>
+</div>
 <vwc-dialog open headline="Returning Dialog">
 	<vwc-button
 		slot="action-items"
@@ -218,11 +197,8 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 		label="Action"
 	></vwc-button>
 </vwc-dialog>
-<div>
-	Returned Value:
-	<span id="dialog-output"></span>
-</div>
-<vwc-button label="Open Dialog" onclick="openDialog()"></vwc-button>
+
+
 <script>
 	(function handleReturnValue() {
 		function handleClick(e) {
@@ -253,7 +229,7 @@ Use `returnValue` to get or set the return value. Often used to indicate which b
 
 ## Slots
 
-### Graphic
+### Graphic Slot
 
 Use the `graphic` slot in order to replace the icon.
 
@@ -266,7 +242,7 @@ Use the `graphic` slot in order to replace the icon.
 </vwc-dialog>
 ```
 
-### Body
+### Body Slot
 
 Use the `body` slot in order to add custom HTML to the dialog.
 
@@ -294,7 +270,7 @@ When using in combination with a `subheader`, a separator will be added between 
 </vwc-dialog>
 ```
 
-#### Full-width-body
+#### Full-Width-Body
 
 To remove the body inline padding use `full-width-body`.
 
@@ -339,7 +315,7 @@ To remove the body inline padding use `full-width-body`.
 </vwc-dialog>
 ```
 
-### Action Items
+### Action Items Slot
 
 Use the `action-items` slot to add action items to the bottom of the dialog.
 
@@ -362,7 +338,7 @@ Use the `action-items` slot to add action items to the bottom of the dialog.
 </vwc-dialog>
 ```
 
-### Footer
+### Footer Slot
 
 Use the `footer` slot in order to add additional content to the bottom of the dialog.
 
@@ -379,7 +355,7 @@ When used in combination with `action-items` slot, the `footer` content will app
 </vwc-dialog>
 ```
 
-### Main
+### Main Slot
 
 Dialog is battery charged with an opinionated template.
 Assign nodes to the `main` slot to fully override a dialog’s predefined template with your own.
@@ -574,3 +550,6 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 	}
 </script>
 ```
+
+
+
