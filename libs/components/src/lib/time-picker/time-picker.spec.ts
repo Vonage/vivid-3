@@ -8,7 +8,7 @@ import {
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { setLocale } from '@vonage/vivid';
+import { setLocale } from '../../shared/localization';
 import { Popup } from '../popup/popup.ts';
 import { Button } from '../button/button.ts';
 import { TextField } from '../text-field/text-field.ts';

@@ -6,14 +6,14 @@ import {
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import deDE from '@vonage/vivid/locales/de-DE';
+import enUS from '@vonage/vivid/locales/en-US';
+import deDE from '../../locales/de-DE';
+import { setLocale } from '../../shared/localization';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DatePicker } from './date-picker';
 import { datePickerDefinition } from './definition';
 import '.';
-import { setLocale } from '@vonage/vivid';
-import enUS from '@vonage/vivid/locales/en-US';
 
 const COMPONENT_TAG = 'vwc-date-picker';
 
