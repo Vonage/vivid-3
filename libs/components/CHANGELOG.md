@@ -4,6 +4,18 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.11.0...vivid-v4.12.0) (2024-11-14)
+
+
+### Features
+
+* **popup:** add popover attribute when strategy is fixed (VIV-2181) ([#1993](https://github.com/Vonage/vivid-3/issues/1993)) ([c54fc7a](https://github.com/Vonage/vivid-3/commit/c54fc7aeaddec7269e5db6ead84d4e9fd8c453ee))
+
+
+### Bug Fixes
+
+* **button:** fix button typings (VIV-000) ([#2001](https://github.com/Vonage/vivid-3/issues/2001)) ([2495865](https://github.com/Vonage/vivid-3/commit/24958659afe40d83cd9a6deabff8323015bb4fdf))
+
 ## [4.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.10.0...vivid-v4.11.0) (2024-11-13)
 
 
