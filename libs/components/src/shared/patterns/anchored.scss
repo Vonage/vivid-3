@@ -1,9 +1,11 @@
 @use '../../lib/popup/partials/variables' as variables;
 
-:host {
-	display: var(#{variables.$popup-display}, inline);
-}
+@mixin anchored {
+	:host {
+		display: var(#{variables.$popup-display}, inline);
+	}
 
-:host([slotted-anchor]) {
-	#{variables.$popup-display}: contents;
+	:host([slotted-anchor]) {
+		#{variables.$popup-display}: contents;
+	}
 }

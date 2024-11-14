@@ -1,8 +1,12 @@
 @use 'partials/variables' as variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@import '../../shared/patterns/anchored';
+@use '../../shared/patterns/anchored' as anchored;
 
 $padding: 16px;
+
+:host {
+	@include anchored.anchored;
+}
 
 .content-wrapper {
 	width: var(#{variables.$toggletip-inline-size}, auto);
