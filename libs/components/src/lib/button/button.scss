@@ -20,7 +20,8 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@import '../../shared/patterns/chevron';
+@use '../../shared/patterns/chevron' as chevron;
+@include chevron.chevron;
 @include connotation.variables-backwards-compatibility(
 	'button',
 	'.control:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined)'
