@@ -49,7 +49,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await clickableCells.nth(3).click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid.png',
+		'snapshots/data-grid.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });
@@ -113,7 +113,7 @@ test('should use dynamic row height in data-cells by default', async ({
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid-multiline-text.png'
+		'snapshots/data-grid-multiline-text.png'
 	);
 });
 
@@ -161,7 +161,7 @@ test('single cell selection', async function ({ page }: { page: Page }) {
 	await clickableCell.nth(3).focus();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid-single-cell-select.png',
+		'snapshots/data-grid-single-cell-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });
@@ -213,7 +213,7 @@ test('multi cell selection', async function ({ page }: { page: Page }) {
 	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid-multi-cell-select.png',
+		'snapshots/data-grid-multi-cell-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });
@@ -264,7 +264,7 @@ test('single row selection', async function ({ page }: { page: Page }) {
 	await clickableCell.nth(2).focus();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid-single-row-select.png',
+		'snapshots/data-grid-single-row-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });
@@ -316,7 +316,7 @@ test('multi row selection', async function ({ page }: { page: Page }) {
 	await clickableCell.nth(2).focus();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid-multi-row-select.png',
+		'snapshots/data-grid-multi-row-select.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });
@@ -357,7 +357,7 @@ test('sort columns', async function ({ page }: { page: Page }) {
 	await text.isVisible();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/data-grid-sortable-headers.png',
+		'snapshots/data-grid-sortable-headers.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });

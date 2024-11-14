@@ -1,15 +1,13 @@
 [
 	{
 		"title": "Accordion",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/accordion/README.md",
-		"children": ["Accordion Item"]
-	},
-	{
-		"title": "Accordion Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/accordion-item/README.md",
-		"parent": "Accordion"
+		"description": "Accordion is an interactive element that works alongside Accordion Item to organise and display content in a collapsible and expandable way.",
+		"variations": "./libs/components/src/lib/accordion/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/accordion/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/accordion/README.md",
+		"accessibility": "./libs/components/src/lib/accordion/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/accordion/USE-CASES.md"
 	},
 	{
 		"title": "Badge",
@@ -18,8 +16,13 @@
 	},
 	{
 		"title": "Banner",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/banner/README.md"
+		"description": "Banner displays a prominent message, usually on system level, and provides actions for users to address or dismiss.",
+		"variations": "./libs/components/src/lib/banner/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/banner/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/banner/README.md",
+		"accessibility": "./libs/components/src/lib/banner/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/banner/USE-CASES.md"
 	},
 	{
 		"title": "Alert",

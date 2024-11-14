@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.10.0...vivid-v4.11.0) (2024-11-13)
+
+
+### Features
+
+* **appearance, badge:** add subtle-light to badge (VIV-1992) ([#1954](https://github.com/Vonage/vivid-3/issues/1954)) ([ffcab5f](https://github.com/Vonage/vivid-3/commit/ffcab5f4e37522193d408fd1524220ee1315bb72))
+* **file-picker:** add single file mode (VIV-1988) ([#1974](https://github.com/Vonage/vivid-3/issues/1974)) ([352694f](https://github.com/Vonage/vivid-3/commit/352694f14ff2d6d499f783a8a34c5d9551a96c18))
+* **file-picker:** adjust styles for better user interaction (VIV-1997) ([#1980](https://github.com/Vonage/vivid-3/issues/1980)) ([f080334](https://github.com/Vonage/vivid-3/commit/f0803340def2ff97f1bcdc953e5afcc79c892a12))
+* **file-picker:** support clearing files (VIV-1995) ([#1983](https://github.com/Vonage/vivid-3/issues/1983)) ([94d6f49](https://github.com/Vonage/vivid-3/commit/94d6f49ed4d60d8e1c3b168bdb6608e3aceda5fb))
+* **tabs:** support action-items slot (VIV-2031) ([#1960](https://github.com/Vonage/vivid-3/issues/1960)) ([7058fd1](https://github.com/Vonage/vivid-3/commit/7058fd1b79452965c8dcabd6f03e2990f4edf433))
+
+
+### Bug Fixes
+
+* **button:** adds announcement connotation to button types (VIV-2203) ([#1970](https://github.com/Vonage/vivid-3/issues/1970)) ([b5854bf](https://github.com/Vonage/vivid-3/commit/b5854bf1848638344afb17ee31f0b417b2458581))
+* **checkbox:** fix indeterminate setting checked (VIV-000) ([#1998](https://github.com/Vonage/vivid-3/issues/1998)) ([800f1fe](https://github.com/Vonage/vivid-3/commit/800f1fe22381d314371693f60b53167ddd3305ff))
+
 ## [4.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.9.0...vivid-v4.10.0) (2024-10-23)
 
 

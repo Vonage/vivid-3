@@ -17,8 +17,21 @@ Use the `label` member to set the file picker's label.
 - Type: `string`
 - Default: `undefined`
 
-```html preview
+```html preview 230px
 <vwc-file-picker label="Label">Drag & Drop or click to upload</vwc-file-picker>
+```
+
+### Single File
+
+Use the `single-file` attribute to set the file picker to allow only a single file and subsequent file uploads will replace the current file.
+
+- Type: `'boolean'`
+- Default: `false`
+
+```html preview 230px
+<vwc-file-picker single-file>
+	Drag & Drop or click to upload only one file
+</vwc-file-picker>
 ```
 
 ### Helper text
@@ -57,7 +70,7 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 - Type: `number` | `string`
 - Default: `256`
 
-```html preview
+```html preview 230px
 <vwc-file-picker helper-text="Max file size is 0.1MB" max-file-size="0.1">
 	Drag & Drop or click to upload
 </vwc-file-picker>
@@ -67,16 +80,22 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 
 Use the `max-files` attribute to define how many files this file picker handles. By default, the file picker handles an unlimited number of files.
 
-If the user tries to upload more files than the maximum number of files, the file picker displays an error message.
+If the user tries to upload more files than the maximum number of files, the file picker displays the extra files with an error message.
+
+If you set `max-files` to `1`, consider using the `single-file` mode.
 
 - Type: `number` | `string`
 - Default: `undefined`
 
-```html preview
-<vwc-file-picker helper-text="Single file only" max-files="1">
+```html preview 330px
+<vwc-file-picker helper-text="Maximum of 2 files" max-files="2">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
+
+<vwc-note connotation="information" icon="info-line">
+	<p>Don't use this for single file uploads. Use the <a href="#single-file"><code>single-file</code> attribute</a> instead.</p>
+</vwc-note>
 
 ### Accept
 
@@ -92,7 +111,7 @@ Some examples of valid values are:
 
 If the user tries to upload a file that does not match the accepted files, the file picker displays an error message.
 
-```html preview
+```html preview 230px
 <vwc-file-picker
 	helper-text=".jpg, .jpeg, .png types only"
 	accept=".jpg, .jpeg, .png"
@@ -109,7 +128,10 @@ Use the `size` attribute to set the file picker's to one of the predefined block
 - Default: `'normal'`
 
 ```html preview
-<vwc-file-picker size="expanded">
+<vwc-file-picker size="normal" label="Normal">
+	Drag & Drop or click to upload
+</vwc-file-picker>
+<vwc-file-picker size="expanded" label="Expanded">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
@@ -168,11 +190,21 @@ If needed, the background of the item can be changed using the `--file-picker-li
 
 </div>
 
+## Methods
+
+<div class="table-wrapper">
+
+| Name               | Returns | Description                             |
+| ------------------ | ------- | --------------------------------------- |
+| `removeAllFiles()` | `void`  | Removes all files from the File Picker. |
+
+</div>
+
 ## Use Cases
 
 ### In a form
 
-```html preview
+```html preview 320px
 <style>
 	form {
 		width: 400px;

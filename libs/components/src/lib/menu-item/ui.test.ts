@@ -13,7 +13,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			#wrapper {
 				width: 250px;
 				height: 2300px;
-				position: relative;
 				box-sizing: border-box;
 			}
 		</style>
@@ -120,6 +119,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/menu-item.png'
+		'snapshots/menu-item.png'
 	);
 });

@@ -45,7 +45,7 @@ function runActionGroupTest() {
 
 		expect(
 			await testWrapper?.screenshot({ animations: 'disabled' })
-		).toMatchSnapshot('./snapshots/action-group.png');
+		).toMatchSnapshot('snapshots/action-group.png');
 	};
 }
 

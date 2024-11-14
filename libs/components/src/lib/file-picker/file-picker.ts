@@ -14,6 +14,7 @@ import {
 } from '../../shared/patterns';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import type { Locale } from '../../shared/localization/Locale';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -27,6 +28,19 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
 	value: File | string | FormData | null
 ) => typeof value === 'string';
 
+const generateFilePreviewTemplate = (
+	buttonTag: string,
+	locale: Locale
+): string => {
+	return `<div class="dz-preview dz-file-preview">
+  <div class="dz-details">
+    <div class="dz-filename"><span data-dz-name></span></div>
+    <div class="dz-size"><span data-dz-size></span></div>
+  </div>
+  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+  <${buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${locale.filePicker.removeFileLabel}"></${buttonTag}>
+</div>`;
+};
 /**
  * @public
  * @component file-picker
@@ -45,6 +59,26 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	get files(): File[] {
 		return this.#dropzone?.getAcceptedFiles() ?? [];
+	}
+
+	#syncSingleFileState() {
+		if (this.singleFile) {
+			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
+		} else {
+			this.#dropzone?.hiddenFileInput?.setAttribute('multiple', 'multiple');
+		}
+	}
+
+	/**
+	 * Single file state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: single-file
+	 */
+	@attr({ attribute: 'single-file', mode: 'boolean' }) singleFile = false;
+	singleFileChanged() {
+		this.#syncSingleFileState();
 	}
 
 	/**
@@ -114,6 +148,16 @@ export class FilePicker extends FormAssociatedFilePicker {
 	/**
 	 * @internal
 	 */
+	override valueChanged = (previous: string, next: string) => {
+		super.valueChanged(previous, next);
+		if (next === '' && this.files.length) {
+			this.removeAllFiles();
+		}
+	};
+
+	/**
+	 * @internal
+	 */
 	control!: HTMLElement;
 
 	/**
@@ -124,6 +168,61 @@ export class FilePicker extends FormAssociatedFilePicker {
 	constructor() {
 		super();
 		Dropzone.autoDiscover = false;
+	}
+
+	#localizeErrorMessage = (file: DropzoneFile, message: string | any) => {
+		if (file.previewElement) {
+			file.previewElement.classList.add('dz-error');
+			// istanbul ignore next
+			if (typeof message !== 'string' && message.error) {
+				message = message.error;
+			}
+			for (const node of file.previewElement.querySelectorAll(
+				'[data-dz-errormessage]'
+			)) {
+				node.textContent = this.#formatNumbersInMessage(message);
+			}
+		}
+	};
+
+	#localizeFileSizeNumberAndUnits = () => {
+		(this.#dropzone as any).filesize = (size: number) => {
+			return this.#formatNumbersInMessage(
+				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
+			);
+		};
+	};
+
+	#addRemoveButtonToFilesPreview() {
+		this.#dropzone!.on('addedfiles', (files) => {
+			for (const file of files) {
+				if (file.previewElement) {
+					const removeButton = file.previewElement.querySelector(
+						'.remove-btn'
+					) as Button;
+					removeButton.addEventListener('click', (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						this.#dropzone!.removeFile(file as File as DropzoneFile);
+					});
+				}
+			}
+
+			this.#handleFilesChanged();
+		});
+
+		this.#setRemoveButtonConnotationOnError();
+	}
+
+	#setRemoveButtonConnotationOnError() {
+		this.#dropzone!.on('error', (file) => {
+			if (file.previewElement) {
+				const removeButton = file.previewElement.querySelector(
+					'.remove-btn'
+				) as Button;
+				removeButton.connotation = Connotation.Alert;
+			}
+		});
 	}
 
 	override connectedCallback() {
@@ -144,70 +243,22 @@ export class FilePicker extends FormAssociatedFilePicker {
 			addRemoveLinks: false,
 			previewsContainer: previewList,
 			createImageThumbnails: false,
-			// Updated version of default template (https://github.com/dropzone/dropzone/blob/f50d1828ab5df79a76be00d1306cc320e39a27f4/src/preview-template.html)
-			previewTemplate: `<div class="dz-preview dz-file-preview">
-  <div class="dz-details">
-    <div class="dz-filename"><span data-dz-name></span></div>
-    <div class="dz-size"><span data-dz-size></span></div>
-  </div>
-  <div class="dz-error-message"><span data-dz-errormessage></span></div>
-  <${this.buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${this.locale.filePicker.removeFileLabel}"></${this.buttonTag}>
-</div>`,
+			previewTemplate: generateFilePreviewTemplate(this.buttonTag, this.locale),
 			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
 			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
 			dictFileTooBig: this.locale.filePicker.fileTooBigError,
-			// Override the default implementation to localize the error messages
-			error: (file, message: string | any) => {
-				if (file.previewElement) {
-					file.previewElement.classList.add('dz-error');
-					// istanbul ignore next
-					if (typeof message !== 'string' && message.error) {
-						message = message.error;
-					}
-					for (const node of file.previewElement.querySelectorAll(
-						'[data-dz-errormessage]'
-					)) {
-						node.textContent = this.#formatNumbersInMessage(message);
-					}
-				}
-			},
+			error: this.#localizeErrorMessage,
 		});
 
-		(this.#dropzone as any).filesize = (size: number) => {
-			return this.#formatNumbersInMessage(
-				(Dropzone.prototype as any).filesize.call(this.#dropzone, size)
-			);
-		};
+		this.#localizeFileSizeNumberAndUnits();
 
-		this.#dropzone.on('addedfiles', (files) => {
-			for (const file of files) {
-				if (file.previewElement) {
-					const removeButton = file.previewElement.querySelector(
-						'.remove-btn'
-					) as Button;
-					removeButton.addEventListener('click', (e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						this.#dropzone!.removeFile(file as File as DropzoneFile);
-					});
-				}
-			}
-
-			this.#handleFilesChanged();
-		});
+		this.#addRemoveButtonToFilesPreview();
 
 		this.#dropzone.on('removedfile', () => {
 			this.#handleFilesChanged();
 		});
 
-		this.#dropzone.on('error', (file) => {
-			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector(
-					'.remove-btn'
-				) as Button;
-				removeButton.connotation = Connotation.Alert;
-			}
-		});
+		this.#syncSingleFileState();
 	}
 
 	override disconnectedCallback() {
@@ -239,17 +290,24 @@ export class FilePicker extends FormAssociatedFilePicker {
 	}
 
 	#updateHiddenFileInput(): void {
-		if (this.#dropzone!.hiddenFileInput) {
-			// Dropzone will recreate the hiddenFileInput on change event
-			this.#dropzone!.hiddenFileInput.dispatchEvent(
-				new Event('change', { bubbles: false })
-			);
+		this.#dropzone!.hiddenFileInput!.dispatchEvent(
+			new Event('change', { bubbles: false })
+		);
+	}
+
+	#keepOnlyNewestFile() {
+		for (let i = 0; i < this.files.length - 1; i++) {
+			this.#dropzone!.removeFile(this.files[i] as File as DropzoneFile);
 		}
 	}
 
 	#handleFilesChanged(): void {
+		if (this.singleFile && this.files.length >= 1) {
+			this.#keepOnlyNewestFile();
+		}
 		this.$emit('change');
 		this.#updateFormValue();
+		requestAnimationFrame(() => this.#syncSingleFileState());
 	}
 
 	#updateFormValue() {
@@ -298,6 +356,13 @@ export class FilePicker extends FormAssociatedFilePicker {
 			return message.replace(/(\d+)\.(\d+)/g, '$1,$2');
 		}
 		return message;
+	}
+
+	/**
+	 * Removes all files from the File Picker.
+	 */
+	removeAllFiles() {
+		this.#dropzone?.removeAllFiles();
 	}
 }
 

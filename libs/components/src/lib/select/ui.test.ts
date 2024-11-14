@@ -31,7 +31,7 @@ async function testGhostSelect({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/select-ghost.png',
+		'snapshots/select-ghost.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 }
@@ -60,7 +60,7 @@ async function testScaleOptions({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/select-scale-condensed.png'
+		'snapshots/select-scale-condensed.png'
 	);
 }
 
@@ -398,7 +398,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/select.png'
+		'snapshots/select.png'
 	);
 });
 test('select ghost', testGhostSelect);
