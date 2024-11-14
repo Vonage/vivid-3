@@ -14,6 +14,7 @@ export default defineConfig({
 	themeConfig: {
 		logo: { light: '/logo/vivid-logo.svg', dark: '/logo/vivid-logo.svg' },
 
+
 		nav: [
 			{ text: 'Home', link: '/' },
 			{

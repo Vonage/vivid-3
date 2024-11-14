@@ -17,7 +17,9 @@ export default defineConfig({
 
 		viteTsConfigPaths({
 			root: '../../',
+
 		}),
+
 	],
 
 	// Uncomment this if you are using workers.
