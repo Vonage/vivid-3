@@ -14,12 +14,11 @@ const COMPONENT_TAG = 'vwc-switch';
 
 describe('vwc-switch', () => {
 	let element: Switch;
-	let form: HTMLFormElement;
+	let form: HTMLFormElement
 
 	const setupFixture = async (html: string) => {
 		const fixtureElement = fixture(html) as HTMLElement;
-		if (fixtureElement instanceof HTMLFormElement)
-			form = fixtureElement as HTMLFormElement;
+		if (fixtureElement instanceof HTMLFormElement) form = fixtureElement as HTMLFormElement;
 		element =
 			fixtureElement instanceof Switch
 				? fixtureElement
@@ -293,7 +292,7 @@ describe('vwc-switch', () => {
 			element.checked = true;
 			await elementUpdated(element);
 			form.reset();
-			console.log(element.getAttribute('checked'));
+			
 			await elementUpdated(element);
 			expect(element.checked).toBe(false);
 		});
