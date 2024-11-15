@@ -80,58 +80,6 @@ export class Switch extends FormAssociatedSwitch {
 	@observable defaultSlottedNodes: Node[];
 
 	/**
-	 * Initialized to the value of the checked attribute. Can be changed independently of the "checked" attribute,
-	 * but changing the "checked" attribute always additionally sets this value.
-	 *
-	 * @public
-	 */
-	@observable defaultChecked: boolean;
-	// @ts-expect-error Function is declared but never read
-	private defaultCheckedChanged(): void {
-		if (!this.dirtyChecked) {
-			// Setting this.checked will cause us to enter a dirty state,
-			// but if we are clean when defaultChecked is changed, we want to stay
-			// in a clean state, so reset this.dirtyChecked
-			this.checked = this.defaultChecked;
-			this.dirtyChecked = false;
-		}
-	}
-
-	/**
-	 * The checked state of the control.
-	 *
-	 * @public
-	 */
-	@observable checked: boolean;
-	// @ts-expect-error Function is declared but never read
-	private checkedChanged(): void {
-		if (!this.dirtyChecked) {
-			this.dirtyChecked = true;
-		}
-
-		this.updateForm();
-
-		if (this.proxy instanceof HTMLInputElement) {
-			this.proxy.checked = this.checked;
-		}
-
-		this.$emit('change');
-
-		this.checked
-			? this.classList.add('checked')
-			: this.classList.remove('checked');
-
-		this.validate();
-	}
-
-	/**
-	 * Tracks whether the "checked" property has been changed.
-	 * This is necessary to provide consistent behavior with
-	 * normal input checkboxes
-	 */
-	private dirtyChecked = false;
-
-	/**
 	 * @internal
 	 */
 	override connectedCallback(): void {
@@ -149,14 +97,6 @@ export class Switch extends FormAssociatedSwitch {
 		this.defaultChecked = !!this.checkedAttribute;
 		this.checked = this.defaultChecked;
 	}
-
-	/**
-	 * @internal
-	 */
-	override formResetCallback = (): void => {
-		this.checked = this.checkedAttribute;
-		this.dirtyChecked = false;
-	};
 
 	private updateForm(): void {
 		const value = this.checked ? this.value : null;
