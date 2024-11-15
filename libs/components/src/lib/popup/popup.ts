@@ -93,7 +93,10 @@ export class Popup extends FoundationElement {
 	open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
-		DOM.queueUpdate(() => this.#updateAutoUpdate());
+		DOM.queueUpdate(() => {
+			this.#updateAutoUpdate();
+			this.#togglePopover();
+		});
 	}
 
 	/**
@@ -182,6 +185,10 @@ export class Popup extends FoundationElement {
 		this.#updateAutoUpdate();
 	}
 
+	strategyChanged() {
+		this.#togglePopover();
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 		this.#updateAutoUpdate();
@@ -203,6 +210,16 @@ export class Popup extends FoundationElement {
 					animationFrame: this.animationFrame,
 				}
 			);
+		}
+	}
+
+	#togglePopover() {
+		if (this.popupEl && this.strategy === 'fixed') {
+			if (this.open) {
+				this.popupEl.showPopover();
+			} else {
+				this.popupEl.hidePopover();
+			}
 		}
 	}
 
