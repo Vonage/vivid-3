@@ -256,6 +256,15 @@ describe('vwc-accordion', () => {
 		});
 	});
 
+	it('should ignore change events bubbled up from slotted accordion item content', () => {
+		const input = document.createElement('button');
+		accordionItem2.appendChild(input);
+
+		input.dispatchEvent(new Event('change', { bubbles: true }));
+
+		expect(element.activeid).toBe('item1');
+	});
+
 	describe('a11y', () => {
 		it('should pass HTML a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
