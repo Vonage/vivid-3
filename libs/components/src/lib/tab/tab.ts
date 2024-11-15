@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins, Tab as FoundationTab } from '@microsoft/fast-foundation';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 
@@ -27,7 +27,16 @@ export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
  * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
-export class Tab extends FoundationTab {
+export class Tab extends FoundationElement {
+	/**
+	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: disabled
+	 */
+	@attr({ mode: 'boolean' })
+	disabled!: boolean;
+
 	/**
 	 * The connotation the tab should have.
 	 *
