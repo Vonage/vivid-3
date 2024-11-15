@@ -1,9 +1,9 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
+import { TabPanel } from '../tab-panel/tab-panel.ts';
 import { Tabs } from './tabs';
 import '.';
-import { TabPanel } from '../tab-panel/tab-panel.ts';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
