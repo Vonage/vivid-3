@@ -60,6 +60,13 @@ describe('vwc-accordion', () => {
 			await elementUpdated(element);
 			expect(element.accordionIds).toBe(undefined);
 		});
+
+		it('should handle all accordion items being removed without error', async () => {
+			expect(() => {
+				accordionItem1.remove();
+				accordionItem2.remove();
+			}).not.toThrow();
+		});
 	});
 
 	describe('expandmode', () => {
