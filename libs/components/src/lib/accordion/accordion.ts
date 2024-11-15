@@ -92,6 +92,7 @@ export class Accordion extends FoundationElement {
 			return;
 		}
 		this.accordionIds = this.getItemIds();
+		this.activeid = this.accordionIds[this.activeItemIndex] as string;
 		this.accordionItems.forEach((item: HTMLElement, index: number) => {
 			if (item instanceof AccordionItem) {
 				item.addEventListener('change', this.activeItemChange);
@@ -111,9 +112,7 @@ export class Accordion extends FoundationElement {
 				'id',
 				typeof itemId !== 'string' ? `accordion-${index + 1}` : itemId
 			);
-			this.activeid = this.accordionIds[this.activeItemIndex] as string;
 			item.addEventListener('keydown', this.handleItemKeyDown);
-			item.addEventListener('focus', this.handleItemFocus);
 		});
 		if (this.isSingleExpandMode()) {
 			const expandedItem: AccordionItem | null =
@@ -132,7 +131,6 @@ export class Accordion extends FoundationElement {
 		oldValue.forEach((item: HTMLElement) => {
 			item.removeEventListener('change', this.activeItemChange);
 			item.removeEventListener('keydown', this.handleItemKeyDown);
-			item.removeEventListener('focus', this.handleItemFocus);
 		});
 	};
 
@@ -181,49 +179,33 @@ export class Accordion extends FoundationElement {
 		switch (event.key) {
 			case keyArrowUp:
 				event.preventDefault();
-				this.adjust(-1);
+				this.adjust(event.target as AccordionItem, -1);
 				break;
 			case keyArrowDown:
 				event.preventDefault();
-				this.adjust(1);
+				this.adjust(event.target as AccordionItem, 1);
 				break;
 			case keyHome:
-				this.activeItemIndex = 0;
-				this.focusItem();
+				this.focusItem(0);
 				break;
 			case keyEnd:
-				this.activeItemIndex = this.accordionItems.length - 1;
-				this.focusItem();
+				this.focusItem(this.accordionItems.length - 1);
 				break;
 		}
 	};
 
-	private handleItemFocus = (event: FocusEvent): void => {
-		// update the active item index if the focus moves to an accordion item via a different method other than the up and down arrow key actions
-		// only do so if the focus is actually on the accordion item and not on any of its children
-		if (event.target === event.currentTarget) {
-			const focusedItem = event.target as HTMLElement;
-			const focusedIndex: number = (this.activeItemIndex = Array.from(
-				this.accordionItems
-			).indexOf(focusedItem));
-			if (this.activeItemIndex !== focusedIndex && focusedIndex !== -1) {
-				this.activeItemIndex = focusedIndex;
-				this.activeid = this.accordionIds[this.activeItemIndex] as string;
-			}
-		}
-	};
-
-	private adjust(adjustment: number): void {
-		this.activeItemIndex = wrapInBounds(
-			0,
-			this.accordionItems.length - 1,
-			this.activeItemIndex + adjustment
+	private adjust(item: AccordionItem, adjustment: number): void {
+		this.focusItem(
+			wrapInBounds(
+				0,
+				this.accordionItems.length - 1,
+				this.accordionItems.indexOf(item) + adjustment
+			)
 		);
-		this.focusItem();
 	}
 
-	private focusItem(): void {
-		const element: HTMLElement = this.accordionItems[this.activeItemIndex];
+	private focusItem(index: number): void {
+		const element: HTMLElement = this.accordionItems[index];
 		if (element instanceof AccordionItem) {
 			element.expandbutton.focus();
 		}
