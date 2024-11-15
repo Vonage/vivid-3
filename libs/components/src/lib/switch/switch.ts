@@ -80,7 +80,6 @@ export class Switch extends FormAssociatedSwitch {
 	constructor() {
 		super();
 
-		// @ts-expect-error Property used before it's defined
 		this.defaultChecked = !!this.checkedAttribute;
 		this.checked = this.defaultChecked;
 	}
