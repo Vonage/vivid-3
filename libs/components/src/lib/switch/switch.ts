@@ -61,19 +61,6 @@ export class Switch extends FormAssociatedSwitch {
 	override initialValue = 'on';
 
 	/**
-	 * The checked attribute value. This sets the initial checked value.
-	 *
-	 * @public
-	 * HTML Attribute: checked
-	 */
-	// @ts-expect-error Type is incorrectly non-optional
-	@attr({ attribute: 'checked', mode: 'boolean' }) checkedAttribute: boolean;
-	// @ts-expect-error Function is declared but never read
-	private checkedAttributeChanged(): void {
-		this.defaultChecked = this.checkedAttribute;
-	}
-
-	/**
 	 * @internal
 	 */
 	// @ts-expect-error Type is incorrectly non-optional
