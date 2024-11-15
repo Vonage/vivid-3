@@ -216,6 +216,18 @@ describe('vwc-accordion', () => {
 			);
 			expect(accordionItem2.contains(document.activeElement)).toBeTruthy();
 		});
+
+		it('should ignore key presses on accordion item slotted content', async () => {
+			const button = document.createElement('button');
+			accordionItem1.appendChild(button);
+			button.focus();
+
+			button.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'End', bubbles: true })
+			);
+
+			expect(document.activeElement).toBe(button);
+		});
 	});
 
 	describe('accordion-item focus', () => {
