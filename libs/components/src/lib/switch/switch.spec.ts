@@ -287,7 +287,7 @@ describe('vwc-switch', () => {
 	});
 
 	describe("who's parent form has it's reset() method invoked", () => {
-		it("should set it's checked property to false if the checked attribute is unset", async () => {
+		it("should set it's checked property to back to false", async () => {
 			await setupFixture(`<form><${COMPONENT_TAG}></${COMPONENT_TAG}></form>`);
 			element.checked = true;
 			await elementUpdated(element);
