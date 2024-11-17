@@ -2,7 +2,7 @@ import { DOM } from '@microsoft/fast-element';
 import { eventClick } from '@microsoft/fast-web-utilities';
 import { fixture } from '../test-utilities/fixture';
 import {
-	FoundationButton as Button,
+	VividFoundationButton as Button,
 	buttonTemplate as template,
 } from './index';
 

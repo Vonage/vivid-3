@@ -13,7 +13,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			#wrapper {
 				width: 250px;
 				height: 2300px;
-				position: relative;
 				box-sizing: border-box;
 			}
 		</style>

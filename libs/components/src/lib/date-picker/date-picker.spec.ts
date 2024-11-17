@@ -6,6 +6,9 @@ import {
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import enUS from '@vonage/vivid/locales/en-US';
+import deDE from '../../locales/de-DE';
+import { setLocale } from '../../shared/localization';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DatePicker } from './date-picker';
@@ -306,6 +309,31 @@ describe('vwc-date-picker', () => {
 			await elementUpdated(element);
 
 			expect(element.value).toEqual(fieldValue);
+		});
+	});
+
+	describe('localization', () => {
+		afterEach(() => {
+			setLocale(enUS);
+		});
+
+		it('should format the date according to the locale', async () => {
+			setLocale(deDE);
+
+			element.value = '2021-01-21';
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('21.01.2021');
+		});
+
+		it('should update the text field when the locale changes', async () => {
+			element.value = '2021-01-21';
+			await elementUpdated(element);
+
+			setLocale(deDE);
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('21.01.2021');
 		});
 	});
 

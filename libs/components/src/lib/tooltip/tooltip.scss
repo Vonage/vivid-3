@@ -1,6 +1,10 @@
 @use 'partials/variables' as variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@import '../../shared/patterns/anchored';
+@use '../../shared/patterns/anchored' as anchored;
+
+:host {
+	@include anchored.anchored;
+}
 
 .control {
 	pointer-events: none;

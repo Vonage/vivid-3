@@ -1,8 +1,6 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,13 +8,40 @@ import {
 const components = ['accordion', 'accordion-item'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = `
+		<div style="margin: 5px;">
+			<vwc-accordion>
+				<vwc-accordion-item heading="Accordion item 1">
+					This is the first item's accordion body.
+				</vwc-accordion-item>
+				<vwc-accordion-item heading="Accordion item 2">
+					This is the second item's accordion body.
+				</vwc-accordion-item>
+				<vwc-accordion-item heading="Accordion item 3">
+					This is the third item's accordion body.
+				</vwc-accordion-item>
+				<vwc-accordion-item heading="Accordion item 4">
+					This is the fourth item's accordion body.
+				</vwc-accordion-item>
+			</vwc-accordion>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-accordion expand-mode="multi">
+				<vwc-accordion-item heading="Accordion item 1" expanded>
+					This is the first item's accordion body.
+				</vwc-accordion-item>
+				<vwc-accordion-item heading="Accordion item 2">
+					This is the second item's accordion body.
+				</vwc-accordion-item>
+				<vwc-accordion-item heading="Accordion item 3">
+					This is the third item's accordion body.
+				</vwc-accordion-item>
+				<vwc-accordion-item heading="Accordion item 4">
+					This is the fourth item's accordion body.
+				</vwc-accordion-item>
+			</vwc-accordion>
+		</div>
+	`;
 
 	await page.setViewportSize({ width: 500, height: 720 });
 
@@ -30,7 +55,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	});
 
 	const testWrapper = await page.$('#wrapper');
-
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(

@@ -20,7 +20,7 @@ export type ButtonOptions = FoundationElementDefinition;
  *
  * @public
  */
-export class FoundationButton extends FormAssociatedButton {
+export class VividFoundationButton extends FormAssociatedButton {
 	/**
 	 * Determines if the element should receive document focus on page load.
 	 *
@@ -267,5 +267,5 @@ applyMixins(DelegatesARIAButton, ARIAGlobalStatesAndProperties);
  * TODO: https://github.com/microsoft/fast/issues/3317
  * @internal
  */
-export interface FoundationButton extends DelegatesARIAButton {}
-applyMixins(FoundationButton, DelegatesARIAButton);
+export interface VividFoundationButton extends DelegatesARIAButton {}
+applyMixins(VividFoundationButton, DelegatesARIAButton);
