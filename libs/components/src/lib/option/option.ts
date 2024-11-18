@@ -1,12 +1,15 @@
-import {
-	attr,
-	FASTElement,
-	observable,
-	Observable,
-} from '@microsoft/fast-element';
+import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import { attr, observable, Observable } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
-import { applyMixins } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns/aria-global';
+
+/**
+ * Listbox option configuration options
+ * @public
+ */
+export type ListboxOptionOptions = FoundationElementDefinition;
 
 /**
  * Determines if the element is a {@link (ListboxOption:class)}
@@ -23,11 +26,17 @@ export function isListboxOption(el: Element): el is ListboxOption {
 }
 
 /**
+ * An Option Custom HTML Element.
+ * Implements {@link https://www.w3.org/TR/wai-aria-1.1/#option | ARIA option }.
+ *
+ * @slot start - Content which can be provided before the listbox option content
+ * @slot end - Content which can be provided after the listbox option content
+ * @slot - The default slot for listbox option content
+ * @csspart content - Wraps the listbox option content
+ *
  * @public
- * @component option
- * @slot icon - Slot to add an icon to the option.
  */
-export class ListboxOption extends FASTElement {
+export class ListboxOption extends FoundationElement {
 	/**
 	 * @internal
 	 */
@@ -38,6 +47,54 @@ export class ListboxOption extends FASTElement {
 	 * @internal
 	 */
 	proxy: HTMLOptionElement;
+
+	/**
+	 * The checked state is used when the parent listbox is in multiple selection mode.
+	 * To avoid accessibility conflicts, the checked state should not be present in
+	 * single selection mode.
+	 *
+	 * @public
+	 */
+	@observable
+	checked?: boolean;
+
+	/**
+	 * Updates the ariaChecked property when the checked property changes.
+	 *
+	 * @param _ - the previous checked value
+	 * @param next - the current checked value
+	 *
+	 * @public
+	 */
+	protected checkedChanged(_: boolean | unknown, next?: boolean): void {
+		if (typeof next === 'boolean') {
+			this.ariaChecked = next ? 'true' : 'false';
+			return;
+		}
+
+		this.ariaChecked = null;
+	}
+
+	/**
+	 * The default slotted content.
+	 *
+	 * @public
+	 */
+	// @ts-expect-error Type is incorrectly non-optional
+	content: Node[];
+
+	/**
+	 * Updates the proxy's text content when the default slot changes.
+	 *
+	 * @internal
+	 */
+	protected contentChanged(): void {
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.textContent = this.textContent;
+		}
+
+		this.$emit('contentchange', null, { bubbles: true });
+	}
 
 	/**
 	 * The defaultSelected state of the option.
@@ -71,6 +128,8 @@ export class ListboxOption extends FASTElement {
 	// @ts-expect-error Type is incorrectly non-optional
 	disabled: boolean;
 	protected disabledChanged(): void {
+		this.ariaDisabled = this.disabled ? 'true' : 'false';
+
 		if (this.proxy instanceof HTMLOptionElement) {
 			this.proxy.disabled = this.disabled;
 		}
@@ -102,14 +161,14 @@ export class ListboxOption extends FASTElement {
 	@observable
 	selected: boolean = this.defaultSelected;
 	protected selectedChanged(): void {
-		if (this.$fastController.isConnected) {
-			if (!this.dirtySelected) {
-				this.dirtySelected = true;
-			}
+		this.ariaSelected = this.selected ? 'true' : 'false';
 
-			if (this.proxy instanceof HTMLOptionElement) {
-				this.proxy.selected = this.selected;
-			}
+		if (!this.dirtySelected) {
+			this.dirtySelected = true;
+		}
+
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.selected = this.selected;
 		}
 	}
 
@@ -126,6 +185,7 @@ export class ListboxOption extends FASTElement {
 	 * HTML Attribute: value
 	 */
 	@attr({ attribute: 'value', mode: 'fromView' })
+	// @ts-expect-error Type is incorrectly non-optional
 	protected initialValue: string;
 	initialValueChanged(): void {
 		// If the value is clean and the component is connected to the DOM
@@ -136,17 +196,23 @@ export class ListboxOption extends FASTElement {
 		}
 	}
 
+	/**
+	 *
+	 * @public
+	 *
+	 * HTML Attribute: text
+	 */
 	@attr({
 		attribute: 'label',
 	})
 	_label?: string;
 
-	set label(value: string) {
-		this._label = value;
-	}
-
 	get label(): string {
 		return this._label ?? this.text;
+	}
+
+	set label(value: string) {
+		this._label = value;
 	}
 
 	/**
@@ -164,17 +230,18 @@ export class ListboxOption extends FASTElement {
 		this._text = value;
 	}
 
-	get text(): string {
+	get text() {
 		return this._text ?? '';
 	}
 
 	set value(next: string) {
-		this._value = next;
+		const newValue = `${next ?? ''}`;
+		this._value = newValue;
 
 		this.dirtyValue = true;
 
-		if (this.proxy instanceof HTMLElement) {
-			this.proxy.value = next;
+		if (this.proxy instanceof HTMLOptionElement) {
+			this.proxy.value = newValue;
 		}
 
 		Observable.notify(this, 'value');
@@ -182,47 +249,11 @@ export class ListboxOption extends FASTElement {
 
 	get value(): string {
 		Observable.track(this, 'value');
-		return this._value ? this._value : this.text;
+		return this._value ?? this.text;
 	}
 
 	get form(): HTMLFormElement | null {
 		return this.proxy ? this.proxy.form : null;
-	}
-
-	constructor(
-		text?: string,
-		value?: string,
-		defaultSelected?: boolean,
-		selected?: boolean
-	) {
-		super();
-		// @ts-expect-error Property used before it's defined
-		this.initialValue = this.initialValue || '';
-
-		if (text) {
-			this.textContent = text;
-		}
-
-		if (value) {
-			this.initialValue = value;
-		}
-
-		if (defaultSelected) {
-			this.defaultSelected = defaultSelected;
-		}
-
-		if (selected) {
-			this.selected = selected;
-		}
-
-		this.proxy = new Option(
-			`${this.textContent}`,
-			this.initialValue,
-			this.defaultSelected,
-			this.selected
-		);
-		// @ts-expect-error Property used before it's defined
-		this.proxy.disabled = this.disabled;
 	}
 
 	/**
@@ -250,7 +281,109 @@ export class ListboxOption extends FASTElement {
 	get _matchedRangeSafe() {
 		return this._matchedRange ?? { from: 0, to: 0 };
 	}
+
+	constructor(
+		text?: string,
+		value?: string,
+		defaultSelected?: boolean,
+		selected?: boolean
+	) {
+		super();
+
+		if (text) {
+			this.textContent = text;
+		}
+
+		if (value) {
+			this.initialValue = value;
+		}
+
+		if (defaultSelected) {
+			this.defaultSelected = defaultSelected;
+		}
+
+		if (selected) {
+			this.selected = selected;
+		}
+
+		this.proxy = new Option(
+			`${this.textContent}`,
+			// @ts-expect-error Propery is used before it is assigned
+			this.initialValue,
+			this.defaultSelected,
+			this.selected
+		);
+		// @ts-expect-error Propery is used before it is assigned
+		this.proxy.disabled = this.disabled;
+	}
 }
 
-export interface ListboxOption extends AffixIconWithTrailing {}
-applyMixins(ListboxOption, AffixIconWithTrailing);
+/**
+ * States and properties relating to the ARIA `option` role.
+ *
+ * @public
+ */
+export class DelegatesARIAListboxOption {
+	/**
+	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: `aria-checked`
+	 */
+	@observable
+	// @ts-expect-error Type is incorrectly non-optional
+	ariaChecked: 'true' | 'false' | string | null;
+
+	/**
+	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: `aria-posinset`
+	 */
+	@observable
+	// @ts-expect-error Type is incorrectly non-optional
+	ariaPosInSet: string | null;
+
+	/**
+	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: `aria-selected`
+	 */
+	@observable
+	// @ts-expect-error Type is incorrectly non-optional
+	ariaSelected: 'true' | 'false' | string | null;
+
+	/**
+	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: `aria-setsize`
+	 */
+	@observable
+	// @ts-expect-error Type is incorrectly non-optional
+	ariaSetSize: string | null;
+}
+
+/**
+ * @internal
+ * @privateRemarks
+ * Mark internal because exporting class and interface of the same name
+ * confuses API documenter.
+ * TODO: https://github.com/microsoft/fast/issues/3317
+ */
+export interface DelegatesARIAListboxOption
+	extends ARIAGlobalStatesAndProperties {}
+applyMixins(DelegatesARIAListboxOption, ARIAGlobalStatesAndProperties);
+
+/**
+ * @internal
+ * @privateRemarks
+ * Mark internal because exporting class and interface of the same name
+ * confuses API documenter.
+ * TODO: https://github.com/microsoft/fast/issues/3317
+ */
+export interface ListboxOption
+	extends DelegatesARIAListboxOption,
+		AffixIconWithTrailing {}
+applyMixins(ListboxOption, AffixIconWithTrailing, DelegatesARIAListboxOption);
