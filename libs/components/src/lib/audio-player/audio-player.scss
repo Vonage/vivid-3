@@ -19,6 +19,10 @@
 	inline-size: 100%;
 	user-select: none;
 
+	&.disabled {
+		color: var(#{constants.$vvd-color-neutral-300});
+	}
+
 	.slider {
 		flex: 1;
 		grid-area: slider;
