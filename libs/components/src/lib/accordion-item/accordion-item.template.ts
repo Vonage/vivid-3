@@ -17,7 +17,7 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 				id="${(x) => x.id}"
 				aria-expanded="${(x) => x.expanded}"
 				aria-controls="${(x) => x.id}-panel"
-				@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+				@click="${(x) => x.clickHandler()}"
 				${ref('expandbutton')}
 			>
 
