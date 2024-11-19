@@ -1,8 +1,9 @@
-Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog. Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
+## Dialogs can be modal or non-modal
 
-## Use Cases
+- Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog.
+- Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
 
-### Dialog Form
+## Dialog Form
 
 You can use a `form` with `method=dialog` inside a dialog. This will make the dialog close when the form is submitted.
 
@@ -22,7 +23,7 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 </vwc-dialog>
 ```
 
-### Confirm Closing of Dialog
+## Confirm Closing of Dialog
 
 ```html preview 400px
 <style>

@@ -242,7 +242,7 @@ The `graphic` slot overrides the [icon](/components/dialog/#icons) property.
 Use the slot if a colored icon is needed or an icon with different dimensions.
 
 ```html preview 200px
-<vwc-dialog open>
+<vwc-dialog headline="Dialog With Grapic Slot" open icon-placement="side">
 	<img
 		slot="graphic"
 		src="https://doodleipsum.com/40x40/hand-drawn?bg=7463D9&amp;i=af462b28146d2ac91599602e083ddee5"
@@ -431,22 +431,44 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 </style>
 ```
 
-## Properties
+## API Reference
+
+### Properties
 
 <div class="table-wrapper">
 
-| Name             | Type                                    | Description                                                                                                                                |
-| ---------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `headline`       | `string`                                | Sets the element's headline                                                                                                                |
-| `icon`           | Enum\_:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| `icon-placement` | Enum\_:<br/>`[side]` (fefailt), `[top]` | Sets the element's icon placement                                                                                                          |
-| `modal`          | `boolean`                               | Sets the element's to be opened                                                                                                            |
-| `open`           | `boolean`                               | Sets the element's to be opened                                                                                                            |
-| `subtitle`       | `string`                                | Sets the element's subtitle                                                                                                                |
+| Name                | Type                                    | Description                                                                                                                                |
+| ------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `full-width-body`   | `boolean`                               | Sets the element's body to full width (no padding))                                                                                        |
+| `headline`          | `string`                                | Sets the element's headline                                                                                                                |
+| `icon`              | Enum\_:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| `icon-placement`    | Enum\_:<br/>`[side]` (fefailt), `[top]` | Sets the element's icon placement                                                                                                          |
+| `modal`             | `boolean`                               | Sets the element's to be opened                                                                                                            |
+| `no-dismiss-button` | `boolean`                               | Remove the element's dismiss button                                                                                                        |
+| `no-dismiss-on-esc` | `boolean`                               | prevent a modal dialog from being dismissed by pressing esc                                                                                |
+| `no-light-dismiss`  | `boolean`                               | prevent a modal dialog from being dismissed by clicking outside of it.                                                                     |
+| `non-dismissible`   | `boolean`                               | combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`                                                                  |
+| `open`              | `boolean`                               | Sets the element's to be opened                                                                                                            |
+| `returnValue`       | `string`                                | Sets the element's to be opened                                                                                                            |
+| `subtitle`          | `string`                                | Sets the element's return value                                                                                                            |
+
+> > > > > > > 0dae947d (new docs structure)
 
 </div>
 
-## Slots
+### Slots
+
+<div class="table-wrapper">
+
+| Name             | Description                                                |
+| ---------------- | ---------------------------------------------------------- |
+| **Action-items** | Use for adding action items to the bottom of the dialog    |
+| **Body**         | Add custom content to the dialog's body                    |
+| **Footer**       | Add additional content to the bottom of the dialog.        |
+| **Graphic**      | Add graphic element to dialog. Overrides the icon property |
+| **Main**         | Override a card's predefined template                      |
+
+</div>
 
 ## Events
 
