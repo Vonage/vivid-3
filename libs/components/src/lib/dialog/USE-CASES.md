@@ -1,6 +1,5 @@
 Dialogs can be modal or non-modal. Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog. Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.
 
-
 ## Use Cases
 
 ### Dialog Form
@@ -97,6 +96,3 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 	}
 </script>
 ```
-
-
-

@@ -37,7 +37,7 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 	subtitle="side is default"
 	open
 ></vwc-dialog>
-<br>
+<br />
 <vwc-dialog
 	icon-placement="top"
 	icon="info"
@@ -46,4 +46,3 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 	open
 ></vwc-dialog>
 ```
-

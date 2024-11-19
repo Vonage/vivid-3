@@ -46,8 +46,6 @@ registerDialog('your-prefix');
 	<p>The dialog uses the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)"><code>native dialog</code></a> element.</p>
 </vwc-note>
 
-
-
 ## Modal
 
 Use the `modal` attribute to set the dialog as Modal
@@ -98,12 +96,13 @@ Use the `modal` attribute to set the dialog as Modal
 </script>
 
 <style>
-.buttons-wrapper {
-display: flex; align-items: center; gap: 16px;
-}
+	.buttons-wrapper {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
 </style>
 ```
-
 
 ## Open
 
@@ -114,11 +113,15 @@ Sets or returns whether a dialog should be open or not.
 	label="Toggle Dialog Open"
 	onclick="dialog.open = !dialog.open"
 ></vwc-button>
-<vwc-dialog id="dialog" headline="I'm a Dialog" subtitle="subtitle"></vwc-dialog>
+<vwc-dialog
+	id="dialog"
+	headline="I'm a Dialog"
+	subtitle="subtitle"
+></vwc-dialog>
 ```
 
-
 ## Dismiss
+
 <vwc-note connotation="warning" icon="warning-line" headline="Add dismiss options with caution">
 <p>When using this attribute, ensure that the dialog can be closed by other means.</p>
 </vwc-note>
@@ -126,7 +129,6 @@ Sets or returns whether a dialog should be open or not.
 ### No-light-dismiss
 
 Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismissed by clicking outside it.
-
 
 ```html preview 230px
 <vwc-button
@@ -172,7 +174,6 @@ The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`
 <vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
 ```
 
-
 ## Return Value
 
 Use `returnValue` to get or set the return value.  
@@ -180,11 +181,15 @@ Often used to indicate which button the user pressed to close it.
 
 ```html preview 250px
 <div class="wrapper">
-<div>
-	Returned Value:
-	<span id="dialog-output"></span>
-</div>
-<vwc-button label="Open Dialog" appearance="outlined" onclick="openDialog()"></vwc-button>
+	<div>
+		Returned Value:
+		<span id="dialog-output"></span>
+	</div>
+	<vwc-button
+		label="Open Dialog"
+		appearance="outlined"
+		onclick="openDialog()"
+	></vwc-button>
 </div>
 <vwc-dialog open headline="Returning Dialog">
 	<vwc-button
@@ -198,7 +203,6 @@ Often used to indicate which button the user pressed to close it.
 		label="Action"
 	></vwc-button>
 </vwc-dialog>
-
 
 <script>
 	(function handleReturnValue() {
@@ -254,10 +258,9 @@ Use the `body` slot in order to add custom HTML to the dialog.
 <p>When using body slot with a <code>subtitle</code> in the header, a separator will be added between the two.</p>
 </vwc-note>
 
-
 ```html preview 440px
 <vwc-dialog open headline="Dialog Content" subtitle="Dialog with body content">
-	<vwc-layout slot="body"  gutters="small-block">
+	<vwc-layout slot="body" gutters="small-block">
 		<form>
 			<vwc-layout column-basis="block">
 				<vwc-text-field label="Name"></vwc-text-field>
@@ -265,7 +268,7 @@ Use the `body` slot in order to add custom HTML to the dialog.
 				<vwc-button label="Login" appearance="filled"></vwc-button>
 			</vwc-layout>
 		</form>
-		</vwc-layout>
+	</vwc-layout>
 </vwc-dialog>
 ```
 
@@ -307,9 +310,9 @@ Use `full-width-body` if Progress-Bar or Tabs are needed in the Dialog.
 
 <style>
 	.dialog-body {
-		    display: flex;
-    flex-direction: column;
-    gap: 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
 	}
 </style>
 ```
@@ -346,7 +349,6 @@ Use the `footer` slot in order to add additional content to the bottom of the di
 </p>
 </vwc-note>
 
-
 ```html preview 250px
 <vwc-dialog
 	open
@@ -382,13 +384,11 @@ Use `--dialog-z-index` for a different `z-index `value than 1.
 </p>
 </vwc-note>
 
-
 ### Inline min & max size
 
 The dialog has default `--dialog-min-inline-size` and `--dialog-max-inline-size` values, which can be changed if needed.
 
 Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-size` will set a definitive width to the dialog.
-
 
 <vwc-note connotation="information" icon="info-line" headline="Dialog in Mobile">
 <p>When setting a new value for <code>--dialog-min-inline-size</code> and <code>--dialog-max-inline-size</code> take in consideration if different values are needed for mobile.
@@ -397,7 +397,7 @@ Setting the same value for `--dialog-min-inline-size` and `--dialog-max-inline-s
 
 ```html preview 230px
 <vwc-dialog
-class="dialog"
+	class="dialog"
 	icon="info"
 	headline="Headline"
 	subtitle="Subtitle content"
@@ -417,7 +417,7 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 ```html preview 250px
 <vwc-dialog
-class="dialog"
+	class="dialog"
 	icon="info"
 	headline="Headline"
 	subtitle="Subtitle content"
@@ -432,16 +432,17 @@ class="dialog"
 ```
 
 ## Properties
+
 <div class="table-wrapper">
 
-| Name             | Type                                   | Description                                                                                                                                |
-|------------------|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `headline`       | `string`                               | Sets the element's headline                                                                                                                |
-| `icon`           | Enum_:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| `icon-placement` | Enum_:<br/>`[side]` (fefailt), `[top]` | Sets the element's icon placement                                                                                                          |
-| `modal`          | `boolean`                              | Sets the element's to be opened                                                                                                            |
-| `open`           | `boolean`                              | Sets the element's to be opened                                                                                                            |
-| `subtitle`       | `string`                               | Sets the element's subtitle                                                                                                                |
+| Name             | Type                                    | Description                                                                                                                                |
+| ---------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `headline`       | `string`                                | Sets the element's headline                                                                                                                |
+| `icon`           | Enum\_:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| `icon-placement` | Enum\_:<br/>`[side]` (fefailt), `[top]` | Sets the element's icon placement                                                                                                          |
+| `modal`          | `boolean`                               | Sets the element's to be opened                                                                                                            |
+| `open`           | `boolean`                               | Sets the element's to be opened                                                                                                            |
+| `subtitle`       | `string`                                | Sets the element's subtitle                                                                                                                |
 
 </div>
 
@@ -470,5 +471,3 @@ class="dialog"
 | `showModal` | `void`  | Shows the dialog as a modal, irregardless of the value of the modal member. |
 
 </div>
-
-
