@@ -99,10 +99,24 @@ describe('vwc-radio', () => {
 		});
 	});
 
+	it('should not prevent default of keypress other than Space', () => {
+		const event = new KeyboardEvent('keypress', { key: 'Enter' });
+		const spy = jest.spyOn(event, 'preventDefault');
+		getBaseElement(element).dispatchEvent(event);
+		expect(spy).not.toHaveBeenCalled();
+	});
+
 	describe('disabled', () => {
 		it('should set disabled class when disabled is true', async () => {
 			const classes = await setBoolAttributeOn(element, 'disabled');
 			expect(classes.contains('disabled')).toBeTruthy();
+		});
+	});
+
+	describe('readonly', function () {
+		it('should set readonly class when readonly is true', async () => {
+			const classes = await setBoolAttributeOn(element, 'readonly');
+			expect(classes.contains('readonly')).toBeTruthy();
 		});
 	});
 
