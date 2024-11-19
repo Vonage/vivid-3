@@ -201,35 +201,35 @@ export default defineComponent({
  * This is an example event
  * @type {string}
  */
-						['example-event'](event: string) { return true },
+						['example-event'](event: string & { target: ExampleComponent}) { return true },
 
 						/**
  * @type {Event}
  */
-						['input'](event: Event) { return true },
+						['input'](event: Event & { target: ExampleComponent}) { return true },
 
 						/**
  * @type {CustomEvent<{a: string | number}>}
  */
-						['input:start'](event: CustomEvent<{a: string | number}>) { return true },
+						['input:start'](event: CustomEvent<{a: string | number}> & { target: ExampleComponent}) { return true },
 
 						/**
  * Fires when the modelValue value changes
  * @type {string}
  */
-						['update:modelValue'](event: string) { return true },
+						['update:modelValue'](event: string & { target: ExampleComponent}) { return true },
 
 						/**
  * Fires when the sameEvent value changes
  * @type {string}
  */
-						['update:sameEvent'](event: string) { return true },
+						['update:sameEvent'](event: string & { target: ExampleComponent}) { return true },
 
 						/**
  * Fires when the start value changes
  * @type {string}
  */
-						['update:start'](event: string) { return true }},
+						['update:start'](event: string & { target: ExampleComponent}) { return true }},
   methods: {
   	
         /**
