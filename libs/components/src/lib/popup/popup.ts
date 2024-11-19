@@ -61,7 +61,7 @@ export class Popup extends FoundationElement {
 					Object.assign(elements.floating.style, {
 						maxWidth: `${availableWidth}px`,
 						maxHeight: `${availableHeight}px`,
-						minWidth: `1px`
+						minWidth: `1px`,
 					});
 				},
 			}),
