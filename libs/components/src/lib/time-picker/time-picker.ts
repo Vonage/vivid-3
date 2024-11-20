@@ -1,9 +1,13 @@
 import {
 	attr,
+	type BindingObserver,
+	defaultExecutionContext,
 	DOM,
 	nullableNumberConverter,
+	Observable,
 	observable,
 	type ValueConverter,
+	volatile,
 } from '@microsoft/fast-element';
 import {
 	type ErrorText,
@@ -175,11 +179,27 @@ export class TimePicker extends FormAssociatedTimePicker {
 	/**
 	 * @internal
 	 */
+	@volatile
 	get _use12hClock() {
 		return this.clock
 			? this.clock === '12h'
 			: this.locale.timePicker.defaultTo12HourClock;
 	}
+
+	// Reformat the presentation value when the clock changes
+	#clockChangeHandler = {
+		handleChange: () => {
+			if (this.value) {
+				this._presentationValue = formatPresentationTime(
+					this.value,
+					this._displaySeconds,
+					this._use12hClock
+				);
+			}
+		},
+	};
+
+	#clockChangeObserver!: BindingObserver;
 
 	#getFocusableEls = () =>
 		this.shadowRoot!.querySelectorAll(`
@@ -229,6 +249,12 @@ export class TimePicker extends FormAssociatedTimePicker {
 		document.addEventListener('click', this.#dismissOnClickOutside);
 		this.addEventListener('focusin', this.#onFocusIn);
 		this.addEventListener('focusout', this.#onFocusOut);
+
+		this.#clockChangeObserver = Observable.binding(
+			() => this._use12hClock,
+			this.#clockChangeHandler
+		);
+		this.#clockChangeObserver.observe(this, defaultExecutionContext);
 	}
 
 	override disconnectedCallback() {
@@ -237,6 +263,8 @@ export class TimePicker extends FormAssociatedTimePicker {
 		document.removeEventListener('click', this.#dismissOnClickOutside);
 		this.removeEventListener('focusin', this.#onFocusIn);
 		this.removeEventListener('focusout', this.#onFocusOut);
+
+		this.#clockChangeObserver.disconnect();
 	}
 
 	#onFocusIn = () => {
