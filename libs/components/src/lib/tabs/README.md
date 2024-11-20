@@ -153,6 +153,24 @@ Add `block-size` to `vwc-tabs` to make it scroll.
 </vwc-tabs>
 ```
 
+### Tabs Layout
+
+Add `tabs-layout` attribute to control the tabs layout. When set to `stretch`, the tabs will stretch to fill the available space. It will have no effect when the tabs are in a vertical orientation.
+
+- Type: `'align-start' | 'stretch'`
+- Default: `align-start`
+
+```html preview full
+<vwc-tabs tabs-layout="stretch">
+	<vwc-tab label="Tab one" id="one"></vwc-tab>
+	<vwc-tab label="Tab two" id="two"></vwc-tab>
+	<vwc-tab label="Tab three" id="tree"></vwc-tab>
+	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+</vwc-tabs>
+```
+
 ## Slots
 
 ### Default

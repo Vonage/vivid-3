@@ -1,3 +1,4 @@
+@use 'partials/variables' as variables;
 @use '../tabs/partials/variables' as tabs-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
@@ -47,6 +48,7 @@
 		display: flex;
 		box-sizing: border-box;
 		align-items: center;
+		justify-content: var(#{variables.$justify-content});
 		padding: var(#{tabs-variables.$tabs-tablist-gutter});
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
