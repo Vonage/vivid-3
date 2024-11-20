@@ -191,6 +191,164 @@ describe('vwc-listbox', () => {
 		});
 	});
 
+	describe('checked ranges with shift & keyboard interactions', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				`;
+			await elementUpdated(element);
+
+			element.multiple = true;
+			await elementUpdated(element);
+			element.focus();
+			await elementUpdated(element);
+		});
+
+		it('should check a range of options up to the first option when the Home key is pressed with shift when multiple is set', async () => {
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(true);
+			expect(opt3.checked).toEqual(false);
+		});
+
+		it('should clear the range if the Home key is pressed without shift', async () => {
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
+			await elementUpdated(opt1);
+			await elementUpdated(opt2);
+			await elementUpdated(opt3);
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(false);
+			expect(opt3.checked).toEqual(false);
+		});
+
+		it('should check a range of options up to the last option when the End key is pressed with shift when multiple is set', async () => {
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'End', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(true);
+			expect(opt3.checked).toEqual(true);
+		});
+
+		it('should clear the range if the End key is pressed without shift', async () => {
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
+			await elementUpdated(opt1);
+			await elementUpdated(opt2);
+			await elementUpdated(opt3);
+
+			expect(opt1.checked).toEqual(false);
+			expect(opt2.checked).toEqual(false);
+			expect(opt3.checked).toEqual(true);
+		});
+
+		it('should check a range of 2 adjacent options when the ArrowDown key is pressed with shift when multiple is set', async () => {
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowDown', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(true);
+			expect(opt3.checked).toEqual(false);
+		});
+
+		it('should clear the range if the ArrowDown key is pressed without shift', async () => {
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			await elementUpdated(opt1);
+			await elementUpdated(opt2);
+			await elementUpdated(opt3);
+
+			expect(opt1.checked).toEqual(false);
+			expect(opt2.checked).toEqual(false);
+			expect(opt3.checked).toEqual(true);
+		});
+
+		it('should check a range of 2 adjacent options when the ArrowUp key is pressed with shift when multiple is set', async () => {
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowUp', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			expect(opt1.checked).toEqual(false);
+			expect(opt2.checked).toEqual(true);
+			expect(opt3.checked).toEqual(true);
+		});
+
+		it('should clear the range if the ArrowDown key is pressed without shift', async () => {
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowUp', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+			await elementUpdated(opt1);
+			await elementUpdated(opt2);
+			await elementUpdated(opt3);
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(false);
+			expect(opt3.checked).toEqual(false);
+		});
+	});
+
 	describe('options', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
