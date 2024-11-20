@@ -1038,6 +1038,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		if (!e.defaultPrevented) {
 			// Unless something was clicked on that handled the event, e.g. tag remove button, focus the input when clicking anywhere
 			this._input.focus();
+			this.open = true;
 		}
 	}
 
