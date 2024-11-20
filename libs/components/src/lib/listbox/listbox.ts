@@ -528,7 +528,8 @@ export abstract class Listbox extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	mousedownHandler(): boolean | void {
+	// @ts-expect-error parameter is declared but never read
+	mousedownHandler(e: MouseEvent): boolean | void {
 		this.shouldSkipFocus = !this.contains(document.activeElement);
 		return true;
 	}
@@ -700,7 +701,8 @@ export abstract class Listbox extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	typeaheadBufferChanged(): void {
+	// @ts-expect-error parameter is declared but never read
+	typeaheadBufferChanged(prev: string, next: string): void {
 		if (this.$fastController.isConnected) {
 			const typeaheadMatches = this.getTypeaheadMatches();
 

@@ -1,7 +1,7 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { ListboxOption } from '../option/option';
-import { Listbox } from './listbox';
+import { ListboxElement } from './listbox.element';
 import { listboxDefinition } from './definition';
 import '../option';
 import '.';
@@ -11,7 +11,7 @@ const COMPONENT_TAG = 'vwc-listbox';
 Element.prototype.scrollIntoView = jest.fn();
 
 describe('vwc-listbox', () => {
-	let element: Listbox;
+	let element: ListboxElement;
 	let option1: ListboxOption;
 	let option2: ListboxOption;
 
@@ -21,7 +21,7 @@ describe('vwc-listbox', () => {
 				<vwc-option value="1" text="Option" role="option" id="option1"></vwc-option>
 				<vwc-option value="2" text="Option" role="option" id="option2"></vwc-option>
 			</${COMPONENT_TAG}>`
-		)) as Listbox;
+		)) as ListboxElement;
 
 		await elementUpdated(element);
 		option1 = element.querySelector('#item1') as ListboxOption;
@@ -33,7 +33,7 @@ describe('vwc-listbox', () => {
 	describe('basic', function () {
 		it('should be initialized as a vwc-listbox', async function () {
 			expect(listboxDefinition()).toBeInstanceOf(FoundationElementRegistry);
-			expect(element).toBeInstanceOf(Listbox);
+			expect(element).toBeInstanceOf(ListboxElement);
 			expect(element.disabled).toBeUndefined();
 			expect(element.multiple).toBeUndefined();
 			expect(element.appearance).toBeUndefined();

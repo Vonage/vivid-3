@@ -1,16 +1,16 @@
 import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { registerFactory } from '../../shared/design-system';
 import { listboxOptionRegistries } from '../option/definition';
-import { Listbox } from './listbox';
+import { ListboxElement } from './listbox.element';
 import { ListboxTemplate as template } from './listbox.template';
 import styles from './listbox.scss?inline';
 
 export type { LisboxAppearance } from './listbox';
 
 /**
- * The calendar-event element is a custom element that is used to display a single event in a calendar.
+ * The listbox element is a custom element that is used to display a listbox of listbox-options.
  */
-export const listboxDefinition = Listbox.compose<FoundationElementDefinition>({
+export const listboxDefinition = ListboxElement.compose<FoundationElementDefinition>({
 	baseName: 'listbox',
 	template: template as any,
 	styles,
