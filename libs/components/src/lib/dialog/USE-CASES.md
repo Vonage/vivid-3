@@ -17,7 +17,7 @@ You can use a `form` with `method=dialog` inside a dialog. This will make the di
 				icon="search-line"
 			></vwc-text-field>
 			<vwc-text-area label="Additional Note (Optional)"></vwc-text-area>
-			<vwc-button type="submit" label="Submit"></vwc-button>
+			<vwc-button type="submit" label="Submit" appearance="filled"></vwc-button>
 		</vwc-layout>
 	</form>
 </vwc-dialog>
