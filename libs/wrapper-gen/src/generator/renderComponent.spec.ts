@@ -78,4 +78,30 @@ describe('renderComponent', () => {
 			})
 		).toThrow('v-model attribute not found');
 	});
+
+	it('should throw an error if the type of an event is a union', () => {
+		expect(() =>
+			renderComponent(
+				{
+					...minimalComponent,
+					events: [
+						{
+							name: 'input',
+							type: [
+								{
+									text: 'Event',
+									vuePropType: 'Event',
+								},
+								{
+									text: 'CustomEvent',
+									vuePropType: 'CustomEvent',
+								},
+							],
+						},
+					],
+				},
+				true
+			)
+		).toThrow('Multiple event types not supported');
+	});
 });
