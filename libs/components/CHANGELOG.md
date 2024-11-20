@@ -4,6 +4,16 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.12.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.12.0...vivid-v4.12.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* **audio-player:** change color in disable state (VIV-2221) ([#2011](https://github.com/Vonage/vivid-3/issues/2011)) ([10c1f1c](https://github.com/Vonage/vivid-3/commit/10c1f1c4714e5b287e5f8eabcd517538b417e594))
+* **searchable-select:** open when clicked (VIV-2206) ([#2015](https://github.com/Vonage/vivid-3/issues/2015)) ([91fdee9](https://github.com/Vonage/vivid-3/commit/91fdee93fcd24295419cc60f7df840074e4a35bb))
+* **time-picker, date-picker, date-range-picker:** update formatted value when format changes (VIV-2209) ([#2005](https://github.com/Vonage/vivid-3/issues/2005)) ([ed94617](https://github.com/Vonage/vivid-3/commit/ed94617abaeadcc50033e55aef144875ddbcfb38))
+* **video-player:** align menu style it menu component (VIV-2222) ([#2012](https://github.com/Vonage/vivid-3/issues/2012)) ([e419e06](https://github.com/Vonage/vivid-3/commit/e419e0641676d95beef5a8018a2861c0bdf903b0))
+
 ## [4.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.11.0...vivid-v4.12.0) (2024-11-14)
 
 
