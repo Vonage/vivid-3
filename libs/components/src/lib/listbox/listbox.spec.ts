@@ -206,6 +206,13 @@ describe('vwc-listbox', () => {
 			await elementUpdated(element);
 		});
 
+		function getOptions(element: ListboxElement) {
+			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
+			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
+			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			return { opt1, opt2, opt3 };
+		}
+
 		it('should check a range of options up to the first option when the Home key is pressed with shift when multiple is set', async () => {
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 			element.dispatchEvent(
@@ -213,9 +220,7 @@ describe('vwc-listbox', () => {
 			);
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			expect(opt1.checked).toEqual(true);
 			expect(opt2.checked).toEqual(true);
@@ -229,9 +234,7 @@ describe('vwc-listbox', () => {
 			);
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
 			await elementUpdated(opt1);
@@ -249,9 +252,7 @@ describe('vwc-listbox', () => {
 			);
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			expect(opt1.checked).toEqual(true);
 			expect(opt2.checked).toEqual(true);
@@ -262,9 +263,7 @@ describe('vwc-listbox', () => {
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
 			await elementUpdated(opt1);
@@ -282,9 +281,7 @@ describe('vwc-listbox', () => {
 			);
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			expect(opt1.checked).toEqual(true);
 			expect(opt2.checked).toEqual(true);
@@ -295,9 +292,7 @@ describe('vwc-listbox', () => {
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 			await elementUpdated(opt1);
@@ -317,9 +312,7 @@ describe('vwc-listbox', () => {
 			);
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			expect(opt1.checked).toEqual(false);
 			expect(opt2.checked).toEqual(true);
@@ -334,9 +327,7 @@ describe('vwc-listbox', () => {
 			);
 			await elementUpdated(element);
 
-			const opt1 = element.querySelector('option[value="1"') as ListboxOption;
-			const opt2 = element.querySelector('option[value="2"') as ListboxOption;
-			const opt3 = element.querySelector('option[value="3"') as ListboxOption;
+			const { opt1, opt2, opt3 } = getOptions(element);
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
 			await elementUpdated(opt1);
@@ -346,6 +337,20 @@ describe('vwc-listbox', () => {
 			expect(opt1.checked).toEqual(true);
 			expect(opt2.checked).toEqual(false);
 			expect(opt3.checked).toEqual(false);
+		});
+
+		it('should not check options if not in multiple mode', async () => {
+			element.multiple = false;
+			await elementUpdated(element);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
+			await elementUpdated(element);
+
+			const { opt1, opt2, opt3 } = getOptions(element);
+
+			expect(opt1.checked).toEqual(undefined);
+			expect(opt2.checked).toEqual(undefined);
+			expect(opt3.checked).toEqual(undefined);
 		});
 	});
 
