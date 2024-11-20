@@ -20,7 +20,7 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 	}
 </style>
 <div
-	style="display: flex; gap: 50px; padding: 32px; background-color: var(--vvd-color-neutral-tint-100); "
+	style="display: flex; gap: 50px; padding: 32px; background-color: var(--vvd-color-neutral-tint-50); "
 >
 	<div style="display: flex; flex-direction: column; gap: 20px;">
 		<vwc-elevation dp="0" class="new-shadow">
@@ -82,7 +82,7 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 	}
 </style>
 <div
-	style="display: flex; flex-direction: column; gap: 32px; padding: 32px; background-color: var(--vvd-color-neutral-tint-100); "
+	style="display: flex; flex-direction: column; gap: 32px; padding: 32px; background-color: var(--vvd-color-neutral-tint-50); "
 >
 	<vwc-elevation dp="4" class="new-shadow">
 		<div class="card">
