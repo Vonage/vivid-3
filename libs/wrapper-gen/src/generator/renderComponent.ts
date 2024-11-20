@@ -282,6 +282,17 @@ export const renderComponent = (
 		})
 		.join(',\n');
 
+	const renderEventType = (type: TypeUnion): string => {
+		// Event type should be a single type like `CustomEvent<undefined>`
+		if (type.length > 1) {
+			throw new Error('Multiple event types not supported');
+		}
+
+		// The event target will always be the host component. Therefore, type target accordingly to make it easier
+		// to use for consumers.
+		return `${type[0].text} & { target: ${componentDef.className}}`;
+	};
+
 	// Declare events
 	const eventDefinitionsSrc = isVue3Stub
 		? `{
@@ -289,7 +300,7 @@ export const renderComponent = (
 				.map(
 					({ name, description, type }) => `
 						${renderJsDoc(description, type)}
-						['${name}'](event: ${type.map((t) => t.text).join(' | ')}) { return true }`
+						['${name}'](event: ${renderEventType(type)}) { return true }`
 				)
 				.join(',\n')}}`
 		: `[
