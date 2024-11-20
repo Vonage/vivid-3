@@ -50,6 +50,13 @@ registerDialog('your-prefix');
 
 Use the `modal` attribute to set the dialog as Modal
 
+<vwc-note connotation="information" icon="info-line" headline="Dialogs can be modal or non-modal">
+<ul>
+<li>Modal dialogs prevent users from interacting with the rest of the application until the dialog is closed and render a backdrop behind the dialog.</li>
+<li>Non-modal dialogs allow users to interact with the rest of the application while the dialog is open.</li>
+</ul>
+</vwc-note>
+
 ```html preview 300px
 <div class="buttons-wrapper">
 	<vwc-radio-group>
