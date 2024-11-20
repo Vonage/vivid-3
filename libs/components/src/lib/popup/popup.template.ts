@@ -39,7 +39,8 @@ export const popupTemplate: (
   <${elevationTag}>
 		<div popover="${handlePopover}" class="popup-wrapper ${(x) =>
 		x.strategy}" ${ref('popupEl')} part="popup-base">
-			<div class="${getClasses}" aria-hidden="${(x) => (x.open ? 'false' : 'true')}"
+			<div ${ref('controlEl')} class="${getClasses}" aria-hidden="${(x) =>
+		x.open ? 'false' : 'true'}"
 				part="${(x) => (x.alternate ? 'vvd-theme-alternate' : '')}">
 				<div class="popup-content">
 					<slot></slot>
