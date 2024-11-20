@@ -1,6 +1,7 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
+import { TabPanel } from '../tab-panel/tab-panel.ts';
 import { Tabs } from './tabs';
 import '.';
 
@@ -56,8 +57,14 @@ describe('vwc-tabs', () => {
 		global.ResizeObserver = originalResizeObserver;
 	});
 
-	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
-		return (await fixture(`<${COMPONENT_TAG} ${
+	let element: Tabs;
+
+	async function setupFixture(template: string) {
+		element = (await fixture(template)) as Tabs;
+	}
+
+	async function setFixtureWithActiveId(activeid: string | null = 'apps') {
+		await setupFixture(`<${COMPONENT_TAG} ${
 			activeid ? `activeid="${activeid}"` : ''
 		}>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
@@ -88,12 +95,11 @@ describe('vwc-tabs', () => {
 				<li>Limoncello and Ice Cream with Biscotti</li>
 			</ol>
 		</vwc-tab-panel>
-		</${COMPONENT_TAG}>`)) as Tabs;
+		</${COMPONENT_TAG}>`);
 	}
-	let element: Tabs;
 
 	beforeEach(async () => {
-		element = await setFixture('apps');
+		await setFixtureWithActiveId('apps');
 	});
 
 	describe('basic', () => {
@@ -247,9 +253,9 @@ describe('vwc-tabs', () => {
 		});
 
 		it('should set activeid property to first tab if activeid is not set', async () => {
-			const tmpElement = await setFixture(null);
-			await elementUpdated(tmpElement);
-			expect(tmpElement.activeid).toEqual('apps');
+			await setFixtureWithActiveId(null);
+			await elementUpdated(element);
+			expect(element.activeid).toEqual('apps');
 		});
 
 		describe('scrollToIndex', function () {
@@ -484,6 +490,40 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('adjust method', () => {
+		it('should adjust the active tab forward', async () => {
+			element.activeid = 'entrees';
+
+			element.adjust(1);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should adjust the active tab forward', async () => {
+			element.activeid = 'entrees';
+
+			element.adjust(-1);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should stay on the last tab when adjusting forward from the last tab', async () => {
+			element.activeid = 'desserts';
+
+			element.adjust(1);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should stay on the first tab when adjusting backward from the first tab', async () => {
+			element.activeid = 'apps';
+
+			element.adjust(-1);
+
+			expect(element.activeid).toBe('apps');
+		});
+	});
+
 	describe('active tab indicator', () => {
 		let activeIndicator: HTMLElement;
 		beforeEach(() => {
@@ -542,6 +582,150 @@ describe('vwc-tabs', () => {
 				activeIndicator.classList.contains('activeIndicatorTransition')
 			).toBe(false);
 		});
+	});
+
+	describe('keyboard navigation', () => {
+		describe('in horizontal orientation', () => {
+			it('should activate the next tab when right arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowRight' })
+				);
+
+				expect(element.activeid).toBe('desserts');
+			});
+
+			it('should activate the previous tab when left arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+				);
+
+				expect(element.activeid).toBe('apps');
+			});
+		});
+
+		describe('in vertical orientation', () => {
+			beforeEach(() => {
+				element.orientation = 'vertical';
+			});
+
+			it('should activate the next tab when down arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowDown' })
+				);
+
+				expect(element.activeid).toBe('desserts');
+			});
+
+			it('should activate the previous tab when up arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowUp' })
+				);
+
+				expect(element.activeid).toBe('apps');
+			});
+		});
+
+		it('should jump over disabled tabs when navigating forward', async () => {
+			await setupFixture(`<${COMPONENT_TAG}>
+				<vwc-tab label="Appetizers" id="apps"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Entrees" id="entrees" disabled></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Desserts" id="desserts"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+			</${COMPONENT_TAG}>`);
+
+			element.activeid = 'entrees';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should jump over disabled tabs when navigating backwards', async () => {
+			await setupFixture(`<${COMPONENT_TAG}>
+				<vwc-tab label="Appetizers" id="apps"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Entrees" id="entrees" disabled></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Desserts" id="desserts"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+			</${COMPONENT_TAG}>`);
+
+			element.activeid = 'desserts';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should loop around to the first tab when navigating forwards', async () => {
+			element.activeid = 'desserts';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should loop around to the last tab when navigating backwards', async () => {
+			element.activeid = 'apps';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should activate the first tab when home key is pressed', async () => {
+			element.activeid = 'entrees';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home' })
+			);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should activate the last tab when end key is pressed', async () => {
+			element.activeid = 'entrees';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'End' })
+			);
+
+			expect(element.activeid).toBe('desserts');
+		});
+	});
+
+	it("should assign random id's to tabs and panels when not provided", async () => {
+		await setupFixture(`<${COMPONENT_TAG}>
+		 	<vwc-tab label="Appetizers"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+		</${COMPONENT_TAG}>`);
+
+		expect(element.tabs[0].id).toBeTruthy();
+		expect(element.tabpanels[0].id).toBeTruthy();
+	});
+
+	it('should initialise dynamically added tabs', async () => {
+		const newPanel = document.createElement('vwc-tab-panel') as TabPanel;
+		newPanel.id = 'new-panel';
+		element.appendChild(newPanel);
+		await elementUpdated(element);
+		const newTab = document.createElement('vwc-tab') as Tab;
+		newTab.label = 'New Tab';
+		element.appendChild(newTab);
+		await elementUpdated(element);
+
+		expect(newTab.getAttribute('aria-controls')).toBe('new-panel');
 	});
 
 	describe('a11y', () => {
