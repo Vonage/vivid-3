@@ -494,9 +494,9 @@ export class ListboxElement extends Listbox {
 	 * @override
 	 * @internal
 	 */
-	override typeaheadBufferChanged(prev: string, next: string): void {
+	override typeaheadBufferChanged(): void {
 		if (!this.multiple) {
-			super.typeaheadBufferChanged(prev, next);
+			super.typeaheadBufferChanged();
 			return;
 		}
 
