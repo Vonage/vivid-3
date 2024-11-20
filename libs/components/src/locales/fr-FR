@@ -1,0 +1,115 @@
+import * as videoPlayerLocale from 'video.js/dist/lang/fr.json';
+import type { Locale } from '../shared/localization/Locale';
+
+/* eslint-disable max-len */
+const frFR: Locale = {
+	lang: 'fr-FR',
+	common: {
+		useCommaAsDecimalSeparator: true,
+	},
+	datePicker: {
+		months: {
+			name: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+			shorthand: ['Janv', 'Févr', 'Mars', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'],
+		},
+		weekdays: {
+			name: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+			shorthand: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+		},
+		firstDayOfWeek: 0,
+		dateFormat: 'dd/MM/yyyy',
+		dateFormatPlaceholder: 'DD/MM/YYYY',
+		chooseDateLabel: 'Choisir une date',
+		changeDateLabel: /* istanbul ignore next */ (date: string) => `Modifier la date, ${date}`,
+		chooseDatesLabel: 'Choisir des dates',
+		changeDatesLabel: /* istanbul ignore next */ (range: string) => `Modifier les dates, ${range}`,
+		prevYearLabel: 'Année précédente',
+		prevMonthLabel: 'Mois précédent',
+		nextMonthLabel: 'Mois suivant',
+		nextYearLabel: 'Année suivante',
+		clearLabel: 'Effacer',
+		okLabel: 'OK',
+		invalidDateError: 'Veuillez entrer une date valide.',
+		invalidDateRangeError: 'Veuillez entrer une plage de dates valide.',
+		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) => `La date de début doit être le ${minDate} ou plus tard.`,
+		endDateBeforeMaxDateError: /* istanbul ignore next */ (maxDate: string) => `La date de fin doit être le ${maxDate} ou plus tôt.`,
+	},
+	timePicker: {
+		defaultTo12HourClock: false,
+		chooseTimeLabel: 'Choisir une heure',
+		changeTimeLabel: /* istanbul ignore next */ (time: string) => `Modifier l'heure, ${time}`,
+		hoursLabel: 'heures',
+		minutesLabel: 'minutes',
+		secondsLabel: 'secondes',
+		meridiesLabel: 'AM/PM',
+		clearLabel: 'Effacer',
+		okLabel: 'OK',
+		invalidTimeError: 'Veuillez entrer une heure valide.',
+	},
+	filePicker: {
+		invalidFileTypeError: 'Vous ne pouvez pas sélectionner des fichiers de ce type.',
+		maxFilesExceededError: "Vous ne pouvez pas sélectionner d'autres fichiers.",
+		fileTooBigError: 'Le fichier est trop volumineux ({{filesize}}Mo). Taille maximale autorisée : {{maxFilesize}}Mo.',
+		removeFileLabel: 'Supprimer le fichier',
+	},
+	audioPlayer: {
+		playButtonLabel: 'Lecture',
+		pauseButtonLabel: 'Pause',
+		sliderLabel: "Barre de progression de l'audio",
+		skipForwardButton: 'Avancer',
+		skipBackwardButton: 'Reculer',
+	},
+	alert: {
+		dismissButtonLabel: 'Fermer',
+	},
+	dialog: {
+		dismissButtonLabel: 'Fermer',
+	},
+	banner: {
+		dismissButtonLabel: 'Fermer',
+	},
+	numberField: {
+		incrementButtonLabel: 'Augmenter',
+		decrementButtonLabel: 'Diminuer',
+	},
+	splitButton: {
+		showMoreActionsLabel: 'Afficher plus d’actions',
+	},
+	videoPlayer: videoPlayerLocale,
+	rangeSlider: {
+		startThumbLabel: 'min',
+		endThumbLabel: 'max',
+	},
+	dialPad: {
+		inputLabel: 'Numéro de téléphone',
+		deleteButtonLabel: 'Effacer',
+		callButtonLabel: 'Appeler',
+		endCallButtonLabel: 'Raccrocher',
+		digitOneLabel: '1',
+		digitTwoLabel: '2 ABC',
+		digitThreeLabel: '3 DEF',
+		digitFourLabel: '4 GHI',
+		digitFiveLabel: '5 JKL',
+		digitSixLabel: '6 MNO',
+		digitSevenLabel: '7 PQRS',
+		digitEightLabel: '8 TUV',
+		digitNineLabel: '9 WXYZ',
+		digitAsteriskLabel: '*',
+		digitZeroLabel: '0',
+		digitHashtagLabel: '#',
+	},
+	tab: {
+		dismissButtonLabel: 'Appuyez sur la touche SUPPR pour fermer cet onglet',
+	},
+	searchableSelect: {
+		clearButtonLabel: 'Effacer',
+		noOptionsMessage: 'Aucune option',
+		noMatchesMessage: 'Aucune option trouvée',
+		removeTagButtonLabel: /* istanbul ignore next */ (label: string) => `Supprimer ${label}`,
+		optionSelectedMessage: /* istanbul ignore next */ (name: string) => `Option ${name} sélectionnée.`,
+		optionDeselectedMessage: /* istanbul ignore next */ (name: string) => `Option ${name} désélectionnée.`,
+		optionFocusedMessage: /* istanbul ignore next */ (name: string, position: number, total: number) => `Option ${name} en surbrillance, ${position} sur ${total}.`,
+	},
+};
+
+export default frFR;
