@@ -109,7 +109,7 @@
 	color: var(#{appearance.get-appearance-token(text)});
 
 	.base.layout-stretch & {
-		#{tab-variables.$justify-content}: center;
+		#{tab-variables.$tab-justify-content}: center;
 		#{variables.$tabs-tablist-column}: 1fr;
 	}
 
