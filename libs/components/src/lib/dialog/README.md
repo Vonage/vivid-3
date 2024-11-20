@@ -119,6 +119,7 @@ Sets or returns whether a dialog should be open or not.
 <vwc-button
 	label="Toggle Dialog Open"
 	onclick="dialog.open = !dialog.open"
+	appearance="outlined"
 ></vwc-button>
 <vwc-dialog
 	id="dialog"
@@ -141,6 +142,7 @@ Use the `no-light-dismiss` attribute to prevent a modal dialog from being dismis
 <vwc-button
 	label="Open modal dialog"
 	onclick="document.querySelector('vwc-dialog').open = true"
+	appearance="outlined"
 ></vwc-button>
 <vwc-dialog no-light-dismiss headline="Headline" modal></vwc-dialog>
 ```
@@ -153,6 +155,7 @@ Use the `no-dismiss-on-esc` attribute to prevent a modal dialog from being dismi
 <vwc-button
 	label="Open modal dialog"
 	onclick="document.querySelector('vwc-dialog').open = true"
+	appearance="outlined"
 ></vwc-button>
 <vwc-dialog no-dismiss-on-esc headline="Headline" modal></vwc-dialog>
 ```
@@ -165,6 +168,7 @@ Use the `no-dismiss-button` attribute to remove the dismiss button from the dial
 <vwc-button
 	label="Open modal dialog"
 	onclick="document.querySelector('vwc-dialog').open = true"
+	appearance="outlined"
 ></vwc-button>
 <vwc-dialog no-dismiss-button headline="Headline" modal></vwc-dialog>
 ```
@@ -177,6 +181,7 @@ The `non-dismissible` attribute combines `no-light-dismiss`, `no-dismiss-on-esc`
 <vwc-button
 	label="Open modal dialog"
 	onclick="document.querySelector('vwc-dialog').open = true"
+	appearance="outlined"
 ></vwc-button>
 <vwc-dialog non-dismissible headline="Headline" modal></vwc-dialog>
 ```
