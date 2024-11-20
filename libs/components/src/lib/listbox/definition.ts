@@ -10,11 +10,12 @@ export type { LisboxAppearance } from './listbox';
 /**
  * The listbox element is a custom element that is used to display a listbox of listbox-options.
  */
-export const listboxDefinition = ListboxElement.compose<FoundationElementDefinition>({
-	baseName: 'listbox',
-	template: template as any,
-	styles,
-});
+export const listboxDefinition =
+	ListboxElement.compose<FoundationElementDefinition>({
+		baseName: 'listbox',
+		template: template as any,
+		styles,
+	});
 
 // by convention, option isn't required to be imported
 // in listbox as it is not used directly in its template rather by user's authoring.
