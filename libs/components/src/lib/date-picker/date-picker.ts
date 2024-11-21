@@ -39,11 +39,17 @@ export class DatePicker extends DatePickerBase {
 				return;
 			}
 
+			this._adjustSelectedMonthToEnsureVisibilityOf(this.value);
+		}
+		this._updatePresentationValue();
+	}
+
+	protected override _updatePresentationValue() {
+		if (this.value) {
 			this._presentationValue = formatPresentationDate(
 				this.value,
 				this.locale.datePicker
 			);
-			this._adjustSelectedMonthToEnsureVisibilityOf(this.value);
 		} else {
 			this._presentationValue = '';
 		}

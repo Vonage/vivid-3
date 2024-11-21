@@ -46,3 +46,12 @@ ComponentRegister.addComponentOverride('searchable-select', (component) => {
 		forwardTo: { type: 'property', name: 'values' },
 	});
 });
+
+ComponentRegister.addComponentOverride('option', (component) => {
+	component.attributes.push({
+		name: 'value',
+		description: 'Value to be submitted as part of the form data',
+		type: [{ text: 'string', vuePropType: 'String' }],
+		forwardTo: { type: 'property', name: 'value' },
+	});
+});

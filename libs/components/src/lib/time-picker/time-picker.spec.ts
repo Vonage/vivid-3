@@ -8,7 +8,7 @@ import {
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { setLocale } from '@vonage/vivid';
+import { setLocale } from '../../shared/localization';
 import { Popup } from '../popup/popup.ts';
 import { Button } from '../button/button.ts';
 import { TextField } from '../text-field/text-field.ts';
@@ -348,6 +348,27 @@ describe('vwc-time-picker', () => {
 					'23',
 				]);
 			});
+		});
+
+		it('should update the text field when the clock is changed', async () => {
+			element.clock = '12h';
+			element.value = '13:45:00';
+			await elementUpdated(element);
+
+			element.clock = '24h';
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('13:45');
+		});
+
+		it('should update the text field when the locale is changed', async () => {
+			element.value = '13:45:00';
+			await elementUpdated(element);
+
+			setLocale(enGB);
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('13:45');
 		});
 	});
 
