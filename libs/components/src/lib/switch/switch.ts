@@ -41,8 +41,10 @@ export class Switch extends FormAssociatedSwitch {
 	 */
 	// @ts-expect-error Type is incorrectly non-optional
 	@attr({ attribute: 'readonly', mode: 'boolean' }) readOnly: boolean; // Map to proxy element
-	// @ts-expect-error Function is declared but never read
-	private readOnlyChanged(): void {
+	/**
+	 * @internal
+	 */
+	readOnlyChanged(): void {
 		if (this.proxy instanceof HTMLInputElement) {
 			this.proxy.readOnly = this.readOnly;
 		}
