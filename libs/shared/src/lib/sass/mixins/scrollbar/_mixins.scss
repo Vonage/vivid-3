@@ -1,0 +1,37 @@
+@use 'variables' as variables;
+@use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
+@mixin scrollbar {
+
+	#{variables.$scrollbar-track-color}: transparent;
+	#{variables.$scrollbar-thumb-color}: color-mix(
+			in srgb,
+			var(#{constants.$vvd-color-neutral-950}),
+			transparent 70%
+	);
+
+	// for development
+	//#{variables.$scrollbar-thumb-color}: red;
+
+
+	// *	Firefox */
+	& {
+		scrollbar-color: var(#{variables.$scrollbar-thumb-color}) var(#{variables.$scrollbar-track-color});
+		scrollbar-width: thin;
+	}
+
+	// * Chrome, Edge, and Safari */
+	::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: var(#{variables.$scrollbar-track-color});
+	}
+
+	::-webkit-scrollbar-thumb {
+		border: 0;
+		border-radius: 4px;
+		background-color: var(#{variables.$scrollbar-thumb-color});
+	}
+}
