@@ -27,11 +27,6 @@ export type TabsConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
-export type Gutters = Extract<
-	TabsGutters,
-	TabsGutters.Small | TabsGutters.None
->;
-
 /**
  * @public
  * @component tabs
@@ -410,7 +405,7 @@ export class Tabs extends FoundationElement {
 	 *
 	 * @public
 	 */
-	@attr gutters?: Gutters;
+	@attr gutters?: TabsGutters;
 
 	/**
 	 * sets overflow to the tab-panel
