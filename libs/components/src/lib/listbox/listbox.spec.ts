@@ -354,6 +354,32 @@ describe('vwc-listbox', () => {
 			expect(opt3.checked).toEqual(true);
 		});
 
+		it('should uncheck options and check the last focused option when Escape key is pressed', async () => {
+			await elementUpdated(element);
+			element.focus();
+			await elementUpdated(element);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home', shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			const { opt1, opt2, opt3 } = getOptions(element);
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(true);
+			expect(opt3.checked).toEqual(false);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+			await elementUpdated(opt1);
+			await elementUpdated(opt2);
+			await elementUpdated(opt3);
+
+			expect(opt1.checked).toEqual(true);
+			expect(opt2.checked).toEqual(false);
+			expect(opt3.checked).toEqual(false);
+		});
+
 		it('should not check extra options when listbox is disabled & multiple is set', async () => {
 			element.disabled = true;
 			await elementUpdated(element);
