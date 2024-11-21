@@ -65,8 +65,7 @@ export class Switch extends FormAssociatedSwitch {
 	/**
 	 * @internal
 	 */
-	// @ts-expect-error Type is incorrectly non-optional
-	@observable defaultSlottedNodes: Node[];
+	@observable defaultSlottedNodes!: Node[];
 
 	/**
 	 * @internal
