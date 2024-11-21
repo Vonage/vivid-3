@@ -345,6 +345,12 @@ describe('vwc-listbox', () => {
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
 			await elementUpdated(element);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
+			await elementUpdated(element);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+			await elementUpdated(element);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+			await elementUpdated(element);
 
 			const { opt1, opt2, opt3 } = getOptions(element);
 
