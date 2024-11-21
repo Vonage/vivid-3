@@ -15,6 +15,7 @@ import {
 import type { Connotation, TabsGutters } from '../enums.js';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
+export const TABLIST_COLUMN = '--_tabs-tablist-column';
 
 /**
  * Types of tabs connotation.
@@ -206,6 +207,16 @@ export class Tabs extends FoundationElement {
 
 		this.activeTabIndex = this.getActiveIndex();
 		this.showActiveIndicator = false;
+
+		if (this.isHorizontal()) {
+			this.tablist!.style.setProperty(
+				'grid-template-columns',
+				`repeat(${this.tabs.length}, var(${TABLIST_COLUMN}))`
+			);
+		} else {
+			this.tablist!.style.removeProperty('grid-template-columns');
+		}
+
 		this.tabs.forEach((tab: HTMLElement, index: number) => {
 			if (tab.slot === 'tab') {
 				const isActiveTab =
@@ -403,6 +414,15 @@ export class Tabs extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean', attribute: 'scrollable-panel' }) scrollablePanel =
 		false;
+
+	/**
+	 * Controls the layout of the tabs.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: tabs-layout
+	 */
+	@attr({ attribute: 'tabs-layout' }) tabsLayout?: 'align-start' | 'stretch';
+
 	/**
 	 * @internal
 	 */
