@@ -1,4 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
 import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	arrow,
@@ -79,6 +79,11 @@ export class Popup extends FoundationElement {
 
 	popupEl!: HTMLElement;
 
+	/**
+	 * @internal
+	 */
+	controlEl!: HTMLElement;
+
 	arrowEl!: HTMLElement;
 
 	/**
@@ -93,10 +98,8 @@ export class Popup extends FoundationElement {
 	open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
-		DOM.queueUpdate(() => {
-			this.#updateAutoUpdate();
-			this.#togglePopover();
-		});
+		this.#togglePopover();
+		this.#updateAutoUpdate();
 	}
 
 	/**
@@ -191,6 +194,7 @@ export class Popup extends FoundationElement {
 
 	override connectedCallback() {
 		super.connectedCallback();
+		this.#togglePopover();
 		this.#updateAutoUpdate();
 	}
 
@@ -202,6 +206,10 @@ export class Popup extends FoundationElement {
 	#updateAutoUpdate() {
 		this.#cleanup?.();
 		if (this.anchorEl && this.open && this.popupEl) {
+			// Ensure open is synced with the control element so that popup can be measured
+			// Otherwise, position will not be computed correctly
+			this.controlEl!.classList.add('open');
+
 			this.#cleanup = autoUpdate(
 				this.anchorEl,
 				this.popupEl,
