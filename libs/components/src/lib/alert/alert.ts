@@ -35,13 +35,18 @@ export type AlertStrategy = 'fixed' | 'static';
 /**
  * @public
  * @component alert
- * @slot main - The main content of the alert.
- * @slot action-items - Add action items to alert using this slot.
+ * @slot main - The main content of the Alert.
+ * @slot action-items - Add action items to the Alert using this slot.
  * @slot icon - Add an icon to the component.
- * @event {CustomEvent<undefined>} open - Fired when the alert is opened
- * @event {CustomEvent<undefined>} close - Fired when the alert is closed
+ * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
+ * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
  */
 export class Alert extends FoundationElement {
+	/**
+	 * Allows setting a custom aria-label for the dismiss button.
+	 *
+	 * @public
+	 */
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
@@ -50,15 +55,14 @@ export class Alert extends FoundationElement {
 	#timeoutID?: NodeJS.Timeout;
 
 	/**
-	 * if the alert is removable
-	 * accepts boolean
+	 * Adds a close button to the Alert.
 	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) removable = false;
 
 	/**
-	 * the placement of the alert
+	 * The placement of the Alert on the screen.
 	 *
 	 * @public
 	 * HTML Attribute: placement
@@ -66,31 +70,28 @@ export class Alert extends FoundationElement {
 	@attr({ mode: 'fromView' }) placement?: AlertPlacement = 'bottom';
 
 	/**
-	 * the text of the alert heading
-	 * accepts string
+	 * Adds a headline to the Alert.
 	 *
 	 * @public
 	 */
 	@attr headline?: string;
 
 	/**
-	 * the main text of the alert
-	 * accepts string
+	 * The main text of the Alert.
 	 *
 	 * @public
 	 */
 	@attr text?: string;
 
 	/**
-	 * alert header icon
+	 * The icon to display in the Alert. Takes precedence over the connotation's icon.
 	 *
 	 * @public
 	 */
 	@attr icon?: string;
 
 	/**
-	 * the timeout ms to show the alert
-	 * accepts number
+	 * Timeout after which the Alert will close.
 	 *
 	 * @public
 	 */
@@ -101,27 +102,26 @@ export class Alert extends FoundationElement {
 	timeoutms = 0;
 
 	/**
-	 * alert connotation
+	 * Sets an appropriate icon / icon color for the connotation.
 	 *
 	 * @public
 	 */
 	@attr connotation?: AlertConnotation;
 
 	/**
-	 *
 	 * @internal
 	 */
 	controlEl?: HTMLDivElement;
 
 	/**
-	 * alert state
+	 * Controls the `position` of the Alert.
 	 *
 	 * @public
 	 */
 	@attr strategy?: AlertStrategy;
 
 	/**
-	 * indicates whether the alert is open
+	 * Open state of the Alert.
 	 *
 	 * @public
 	 * HTML Attribute: open
