@@ -245,7 +245,8 @@ export class Menu extends FoundationElement {
 	private isMenuItemElement = (el: Element): el is HTMLElement => {
 		return (
 			isHTMLElement(el) &&
-			Menu.focusableElementRoles.hasOwnProperty(
+			Object.prototype.hasOwnProperty.call(
+				Menu.focusableElementRoles,
 				el.getAttribute('role') as string
 			)
 		);
