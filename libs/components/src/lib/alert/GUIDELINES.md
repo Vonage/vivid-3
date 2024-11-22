@@ -26,3 +26,8 @@ Use Alerts to display short-lived messages in response to user actions. Alerts m
 <docs-do dont headline="Don't automatically close interactive Alerts" caption="Users with disabilities may need more time to interact with the Alert.">
 </docs-do>
 </docs-do-dont>
+
+## Related Components
+
+- [Note](/components/note/)
+- [Banner](/components/banner/)
