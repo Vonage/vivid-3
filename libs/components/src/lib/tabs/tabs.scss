@@ -188,6 +188,7 @@ slot[name='action-items'] {
 
 	.base.scroll & {
 		overflow-y: auto;
+
 		@include scrollbar.scrollbar;
 	}
 
