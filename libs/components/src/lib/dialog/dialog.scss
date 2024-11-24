@@ -7,6 +7,7 @@
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/resets' as resets;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 $dialog-space-size: 24px;
 
@@ -164,9 +165,13 @@ $dialog-space-size: 24px;
 }
 
 slot[name='main'] {
-	display: block;
-	overflow: hidden auto;
-	max-width: inherit;
-	max-height: inherit;
-	border-radius: inherit;
+	@include scrollbar.scrollbar;
+
+	& {
+		display: block;
+		overflow: hidden auto;
+		max-width: inherit;
+		max-height: inherit;
+		border-radius: inherit;
+	}
 }

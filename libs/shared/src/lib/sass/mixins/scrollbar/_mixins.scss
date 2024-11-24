@@ -2,21 +2,17 @@
 @use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 @mixin scrollbar {
-
 	#{variables.$scrollbar-track-color}: transparent;
 	#{variables.$scrollbar-thumb-color}: color-mix(
-			in srgb,
-			var(#{constants.$vvd-color-neutral-950}),
-			transparent 70%
+		in srgb,
+		var(#{constants.$vvd-color-neutral-950}),
+		transparent 70%
 	);
-
-	// for development
-	//#{variables.$scrollbar-thumb-color}: red;
-
 
 	// *	Firefox */
 	& {
-		scrollbar-color: var(#{variables.$scrollbar-thumb-color}) var(#{variables.$scrollbar-track-color});
+		scrollbar-color: var(#{variables.$scrollbar-thumb-color})
+			var(#{variables.$scrollbar-track-color});
 		scrollbar-width: thin;
 	}
 

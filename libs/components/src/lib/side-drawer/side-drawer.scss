@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use 'partials/variables' as variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 @use '../../../../shared/src/lib/sass/mixins/scrim' as scrim-mixins;
 
 :host {
@@ -14,13 +15,17 @@
 $inline-size: 280px;
 
 .control {
-	position: fixed;
-	z-index: 1;
-	background-color: var(#{constants.$vvd-color-canvas});
-	color: var(#{constants.$vvd-color-canvas-text});
-	inline-size: $inline-size;
-	inset-block: 0;
-	overflow-y: auto;
+	@include scrollbar.scrollbar;
+
+	& {
+		position: fixed;
+		z-index: 1;
+		background-color: var(#{constants.$vvd-color-canvas});
+		color: var(#{constants.$vvd-color-canvas-text});
+		inline-size: $inline-size;
+		inset-block: 0;
+		overflow-y: auto;
+	}
 
 	&[part~='vvd-theme-alternate'] {
 		background-color: var(#{constants.$vvd-color-canvas});

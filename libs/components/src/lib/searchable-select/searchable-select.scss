@@ -14,7 +14,6 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
 @use 'partials/variables' as variables;
@@ -137,8 +136,6 @@ input {
 }
 
 .listbox {
-	@include scrollbar.scrollbar;
-
 	display: flex;
 	flex-direction: column;
 	padding: 4px;
