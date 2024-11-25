@@ -99,7 +99,7 @@ export abstract class Listbox extends FoundationElement {
 	 * @public
 	 */
 	get length(): number {
-		return this.options?.length ?? 0;
+		return this.options.length;
 	}
 
 	/**
@@ -115,20 +115,6 @@ export abstract class Listbox extends FoundationElement {
 	set options(value: ListboxOption[]) {
 		this._options = value;
 		Observable.notify(this, 'options');
-	}
-
-	/**
-	 * Flag for the typeahead timeout expiration.
-	 *
-	 * @deprecated use `Listbox.typeaheadExpired`
-	 * @internal
-	 */
-	protected get typeAheadExpired(): boolean {
-		return this.typeaheadExpired;
-	}
-
-	protected set typeAheadExpired(value: boolean) {
-		this.typeaheadExpired = value;
 	}
 
 	/**
@@ -588,7 +574,7 @@ export abstract class Listbox extends FoundationElement {
 		next: ListboxOption[]
 	): void {
 		const filteredNext = next.filter(Listbox.slottedOptionFilter);
-		this.options?.forEach((o) => {
+		this.options.forEach((o) => {
 			const notifier = Observable.getNotifier(o);
 			notifier.unsubscribe(this, 'selected');
 			o.selected = filteredNext.includes(o);
@@ -603,7 +589,7 @@ export abstract class Listbox extends FoundationElement {
 	 */
 	selectFirstOption(): void {
 		if (!this.disabled) {
-			this.selectedIndex = this.options?.findIndex((o) => !o.disabled) ?? -1;
+			this.selectedIndex = this.options.findIndex((o) => !o.disabled);
 		}
 	}
 
@@ -646,8 +632,7 @@ export abstract class Listbox extends FoundationElement {
 	 * @internal
 	 */
 	protected setDefaultSelectedOption() {
-		this.selectedIndex =
-			this.options?.findIndex((el) => el.defaultSelected) ?? -1;
+		this.selectedIndex = this.options.findIndex((el) => el.defaultSelected);
 	}
 
 	/**
@@ -656,7 +641,7 @@ export abstract class Listbox extends FoundationElement {
 	 * @public
 	 */
 	protected setSelectedOptions() {
-		if (this.options?.length) {
+		if (this.options.length) {
 			this.selectedOptions = [this.options[this.selectedIndex]];
 			this.ariaActiveDescendant = this.firstSelectedOption?.id ?? '';
 			this.focusAndScrollOptionIntoView();

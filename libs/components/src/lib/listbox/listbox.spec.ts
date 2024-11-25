@@ -5,6 +5,12 @@ import { ListboxElement } from './listbox.element';
 import { listboxDefinition } from './definition';
 import '../option';
 import '.';
+import {
+	keyArrowDown,
+	keyArrowUp,
+	keyEnd,
+	keyHome,
+} from '@microsoft/fast-web-utilities';
 
 const COMPONENT_TAG = 'vwc-listbox';
 
@@ -224,6 +230,49 @@ describe('vwc-listbox', () => {
 			expect(element.selectedOptions[0]).toEqual(
 				element.querySelector('option:nth-child(2)')
 			);
+		});
+	});
+
+	describe('keyboard navigation', () => {
+		it('should ignore key pressed when disabled', async () => {
+			element.disabled = true;
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+
+			expect(element.selectedIndex).toBe(-1);
+		});
+
+		it('should select the first option when pressing home', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+
+			expect(element.selectedIndex).toBe(0);
+		});
+
+		it('should select the last option when pressing end', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it('should select the next option when pressing ArrowDown', async () => {
+			element.selectedIndex = 0;
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowDown })
+			);
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it('should select the previous option when pressing ArrowUp', async () => {
+			element.selectedIndex = 1;
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
+
+			expect(element.selectedIndex).toBe(0);
 		});
 	});
 
@@ -505,6 +554,52 @@ describe('vwc-listbox', () => {
 			await elementUpdated(listbox);
 			button?.focus();
 			expect(opt1.checked).toBe(false);
+		});
+	});
+
+	describe('typeahead', () => {
+		beforeEach(async () => {
+			element = (await fixture(`<${COMPONENT_TAG}>
+				<option value="1">Apple</option>
+				<option value="2">Ananas</option>
+				<option value="3">Nectarine</option>
+			</${COMPONENT_TAG}>`)) as ListboxElement;
+		});
+
+		afterEach(() => {
+			jest.useRealTimers();
+		});
+
+		it('should select the first option that starts with the typed character', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'b' }));
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it('should select the first option that starts with multiple typed characters', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it('should reset the typeahead after 5 seconds of no key presses', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			jest.useFakeTimers();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+
+			jest.advanceTimersByTime(5000);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+
+			expect(element.selectedIndex).toBe(2);
 		});
 	});
 

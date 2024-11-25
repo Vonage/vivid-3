@@ -49,7 +49,7 @@ export class ListboxElement extends Listbox {
 	 * @internal
 	 */
 	protected get checkedOptions(): ListboxOption[] {
-		return this.options?.filter((o) => o.checked);
+		return this.options.filter((o) => o.checked);
 	}
 
 	/**
@@ -391,7 +391,7 @@ export class ListboxElement extends Listbox {
 
 			case keySpace: {
 				e.preventDefault();
-				if (this.typeAheadExpired) {
+				if (this.typeaheadExpired) {
 					this.toggleSelectedForAllCheckedOptions();
 					return;
 				}
@@ -428,7 +428,7 @@ export class ListboxElement extends Listbox {
 	 */
 	override multipleChanged(_: boolean | undefined, next: boolean): void {
 		this.ariaMultiSelectable = next ? 'true' : null;
-		this.options?.forEach((o) => {
+		this.options.forEach((o) => {
 			o.checked = next ? false : undefined;
 		});
 
@@ -509,7 +509,7 @@ export class ListboxElement extends Listbox {
 				this.checkActiveIndex();
 			}
 
-			this.typeAheadExpired = false;
+			this.typeaheadExpired = false;
 		}
 	}
 
