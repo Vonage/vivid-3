@@ -149,11 +149,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr({ attribute: 'invalid-file-type-error' }) invalidFileTypeError?: string;
 	invalidFileTypeErrorChanged(_oldValue: string, newValue: string): void {
-		if (!this.#dropzone) {
-			return;
-		}
-
-		this.#dropzone.options.dictInvalidFileType =
+		this.#dropzone!.options.dictInvalidFileType =
 			newValue || this.locale.filePicker.invalidFileTypeError;
 	}
 
@@ -167,11 +163,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	@attr({ attribute: 'max-files-exceeded-error' })
 	maxFilesExceededError?: string;
 	maxFilesExceededErrorChanged(_oldValue: string, newValue: string): void {
-		if (!this.#dropzone) {
-			return;
-		}
-
-		this.#dropzone.options.dictMaxFilesExceeded =
+		this.#dropzone!.options.dictMaxFilesExceeded =
 			newValue || this.locale.filePicker.maxFilesExceededError;
 	}
 
@@ -184,11 +176,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr({ attribute: 'file-too-big-error' }) fileTooBigError?: string;
 	fileTooBigErrorChanged(_oldValue: string, newValue: string): void {
-		if (!this.#dropzone) {
-			return;
-		}
-
-		this.#dropzone.options.dictFileTooBig =
+		this.#dropzone!.options.dictFileTooBig =
 			newValue || this.locale.filePicker.fileTooBigError;
 	}
 
