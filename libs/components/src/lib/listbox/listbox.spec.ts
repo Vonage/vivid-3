@@ -572,9 +572,9 @@ describe('vwc-listbox', () => {
 
 		it('should select the first option that starts with the typed character', async () => {
 			element.focus();
-			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'b' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
 
-			expect(element.selectedIndex).toBe(1);
+			expect(element.selectedIndex).toBe(2);
 		});
 
 		it('should select the first option that starts with multiple typed characters', async () => {

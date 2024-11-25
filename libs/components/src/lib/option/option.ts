@@ -1,15 +1,8 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns/aria-global';
-
-/**
- * Listbox option configuration options
- * @public
- */
-export type ListboxOptionOptions = FoundationElementDefinition;
 
 /**
  * Determines if the element is a {@link (ListboxOption:class)}
@@ -73,27 +66,6 @@ export class ListboxOption extends FoundationElement {
 		}
 
 		this.ariaChecked = null;
-	}
-
-	/**
-	 * The default slotted content.
-	 *
-	 * @public
-	 */
-	// @ts-expect-error Type is incorrectly non-optional
-	content: Node[];
-
-	/**
-	 * Updates the proxy's text content when the default slot changes.
-	 *
-	 * @internal
-	 */
-	protected contentChanged(): void {
-		if (this.proxy instanceof HTMLOptionElement) {
-			this.proxy.textContent = this.textContent;
-		}
-
-		this.$emit('contentchange', null, { bubbles: true });
 	}
 
 	/**
@@ -253,7 +225,7 @@ export class ListboxOption extends FoundationElement {
 	}
 
 	get form(): HTMLFormElement | null {
-		return this.proxy ? this.proxy.form : null;
+		return null;
 	}
 
 	/**
@@ -291,7 +263,7 @@ export class ListboxOption extends FoundationElement {
 		super();
 
 		if (text) {
-			this.textContent = text;
+			this.text = text;
 		}
 
 		if (value) {
@@ -307,7 +279,7 @@ export class ListboxOption extends FoundationElement {
 		}
 
 		this.proxy = new Option(
-			`${this.textContent}`,
+			this.text,
 			// @ts-expect-error Propery is used before it is assigned
 			this.initialValue,
 			this.defaultSelected,
