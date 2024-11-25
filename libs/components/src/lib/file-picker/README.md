@@ -110,10 +110,7 @@ Some examples of valid values are:
 If the user tries to upload a file that does not match the accepted files, the file picker displays an error message.
 
 ```html preview 230px
-<vwc-file-picker
-	helper-text=".jpg, .jpeg types only"
-	accept=".jpg, .jpeg"
->
+<vwc-file-picker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
