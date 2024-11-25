@@ -150,6 +150,29 @@ describe('vwc-file-picker', () => {
 				'File size of 2MB is too big. Limit is 1MB.'
 			);
 		});
+
+		it('should revert back to the standard message when the custom message is removed', async function () {
+			element.maxFileSize = 1; // 1 MB
+			element.fileTooBigError =
+				'File size of {{filesize}}MB is too big. Limit is {{maxFilesize}}MB.';
+			const file = await generateFile('london.png', 2);
+			addFiles([file]);
+
+			expect(getErrorMessage(0)).toBe(
+				'File size of 2MB is too big. Limit is 1MB.'
+			);
+			element.fileTooBigError = undefined;
+			element.removeAllFiles();
+			await elementUpdated(element);
+
+			addFiles([file]);
+
+			await elementUpdated(element);
+
+			expect(getErrorMessage(0)).toBe(
+				'File is too big (2MiB). Max filesize: 1MiB.'
+			);
+		});
 	});
 
 	describe('maxFiles', function () {
@@ -177,6 +200,45 @@ describe('vwc-file-picker', () => {
 
 				expect(getErrorMessage(0)).toBe('');
 				expect(getErrorMessage(1)).toBe('Max files exceeded.');
+			});
+
+			it('should show an custom error message (when supplied) for files added after the maxFiles limit is reached', async function () {
+				element.maxFiles = 1;
+				element.maxFilesExceededError = 'Max files exceeded.';
+				await elementUpdated(element);
+
+				addFiles([
+					await generateFile('london.png', 1),
+					await generateFile('london.png', 1),
+				]);
+
+				expect(getErrorMessage(0)).toBe('');
+				expect(getErrorMessage(1)).toBe('Max files exceeded.');
+			});
+
+			it('reverts back to the standard message when the custom message is removed', async function () {
+				element.maxFiles = 1;
+				element.maxFilesExceededError = 'Max files exceeded.';
+				await elementUpdated(element);
+
+				addFiles([
+					await generateFile('london.png', 1),
+					await generateFile('london.png', 1),
+				]);
+
+				expect(getErrorMessage(1)).toBe('Max files exceeded.');
+
+				element.maxFilesExceededError = undefined;
+				element.removeAllFiles();
+
+				await elementUpdated(element);
+
+				addFiles([
+					await generateFile('london.png', 1),
+					await generateFile('london.png', 1),
+				]);
+
+				expect(getErrorMessage(1)).toBe("You can't select any more files.");
 			});
 		});
 
@@ -288,6 +350,34 @@ describe('vwc-file-picker', () => {
 			]);
 
 			expect(getErrorMessage(3)).toBe('File type not allowed.');
+		});
+
+		it('revert back to the standard message when the custom message is removed', async function () {
+			element.accept = 'image/*, text/html, .zip';
+			element.invalidFileTypeError = 'File type not allowed.';
+			await elementUpdated(element);
+
+			addFiles([
+				await generateFile('london.png', 1, 'image/png'),
+				await generateFile('london.html', 1, 'text/html'),
+				await generateFile('london.zip', 1, 'application/zip'),
+				await generateFile('london.txt', 1, 'text/plain'),
+			]);
+
+			expect(getErrorMessage(3)).toBe('File type not allowed.');
+
+			element.invalidFileTypeError = undefined;
+			element.removeAllFiles();
+			await elementUpdated(element);
+
+			addFiles([
+				await generateFile('london.png', 1, 'image/png'),
+				await generateFile('london.html', 1, 'text/html'),
+				await generateFile('london.zip', 1, 'application/zip'),
+				await generateFile('london.txt', 1, 'text/plain'),
+			]);
+
+			expect(getErrorMessage(3)).toBe("You can't select files of this type.");
 		});
 	});
 
