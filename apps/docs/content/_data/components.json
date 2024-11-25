@@ -192,6 +192,11 @@
 		"markdown": "./libs/components/src/lib/divider/README.md"
 	},
 	{
+		"title": "Text Editor",
+		"page": "legacy",
+		"markdown": "./libs/components/src/lib/text-editor/README.md"
+	},
+	{
 		"title": "Menu",
 		"page": "legacy",
 		"markdown": "./libs/components/src/lib/menu/README.md",
