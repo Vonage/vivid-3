@@ -33,9 +33,6 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
-
-		(getPopupWrapper().showPopover as any).mockClear();
-		(getPopupWrapper().hidePopover as any).mockClear();
 	});
 
 	afterEach(function () {
@@ -167,10 +164,12 @@ describe('vwc-popup', () => {
 	describe('open', () => {
 		beforeEach(() => {
 			jest.spyOn(floatingUI, 'autoUpdate');
+			jest.spyOn(floatingUI, 'computePosition');
 		});
 
 		afterEach(() => {
 			jest.mocked(floatingUI.autoUpdate).mockRestore();
+			jest.mocked(floatingUI.computePosition).mockRestore();
 		});
 
 		it('should hide control if not set', async () => {
@@ -184,14 +183,19 @@ describe('vwc-popup', () => {
 			expect(getControlElement(element).classList).toContain('open');
 		});
 
-		it('should begin to auto update after DOM is updated', async function () {
-			element.anchor = anchor;
-			element.open = true;
-			const updateCallsBeforeDOMUpdate = jest.mocked(floatingUI.autoUpdate).mock
-				.calls.length;
-			await elementUpdated(element);
-			expect(updateCallsBeforeDOMUpdate).toBe(0);
-			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(2);
+		it('should ensure that the popup is visible when calling computePosition', async function () {
+			let popupVisibleWhenComputePositionIsCalled = false;
+			jest
+				.mocked(floatingUI.computePosition)
+				.mockImplementationOnce((...args: [any, any, any]) => {
+					popupVisibleWhenComputePositionIsCalled =
+						getControlElement(element).classList.contains('open');
+					return floatingUI.computePosition(...args);
+				});
+
+			await setupPopupToOpenWithAnchor();
+
+			expect(popupVisibleWhenComputePositionIsCalled).toBe(true);
 		});
 	});
 
@@ -421,13 +425,13 @@ describe('vwc-popup', () => {
 	});
 
 	describe('strategy', () => {
-		it('it should have `fixed` class on popover-wrapper default', async () => {
+		it('should have `fixed` class on popover-wrapper default', async () => {
 			await elementUpdated(element);
 
 			expect(getPopupWrapper().classList).toContain('fixed');
 		});
 
-		it('it should have `absolute` class on popup-wrapper if strategy is set to absolute', async () => {
+		it('should have `absolute` class on popup-wrapper if strategy is set to absolute', async () => {
 			element.strategy = 'absolute';
 
 			await elementUpdated(element);
@@ -437,47 +441,51 @@ describe('vwc-popup', () => {
 	});
 
 	describe('showPopover', () => {
-		it('it should have popover attribute equal to manual by default. same as its positioned fixed by default', async () => {
+		it('should have popover attribute equal to manual by default. same as its positioned fixed by default', async () => {
 			await elementUpdated(element);
 
 			expect(getPopupWrapper().getAttribute('popover')).toEqual('manual');
 		});
 
-		it('it should not have popover attribute if strategy is absolute', async () => {
+		it('should not have popover attribute if strategy is absolute', async () => {
 			element.strategy = 'absolute';
 			await elementUpdated(element);
 
 			expect(getPopupWrapper().getAttribute('popover')).toBe(null);
 		});
 
-		it('it should activate showPopover when open is true & strategy is fixed', async () => {
-			element.open = true;
+		it('should activate showPopover when strategy is fixed and popup is opened', async () => {
 			element.strategy = 'fixed';
+			element.open = true;
 			await elementUpdated(element);
 
 			expect(getPopupWrapper().showPopover).toHaveBeenCalled();
 		});
 
-		it('it should not activate showPopover when open is true & strategy is absolute', async () => {
-			element.open = true;
+		it('should not activate showPopover when strategy is absolute and popup is opened', async () => {
 			element.strategy = 'absolute';
+			element.open = true;
 			await elementUpdated(element);
 
 			expect(getPopupWrapper().showPopover).not.toHaveBeenCalled();
 		});
 
-		it('it should activate hidePopover when open is false & strategy is fixed', async () => {
-			element.open = false;
+		it('should activate hidePopover when strategy is fixed and popup is closed', async () => {
 			element.strategy = 'fixed';
+			element.open = true;
+			await elementUpdated(element);
+
+			element.open = false;
 			await elementUpdated(element);
 
 			expect(getPopupWrapper().hidePopover).toHaveBeenCalled();
 		});
 
-		it('it should stay open when strategy is changed', async () => {
-			element.open = true;
+		it('should active showPopover when strategy is changed to fixed', async () => {
 			element.strategy = 'absolute';
+			element.open = true;
 			await elementUpdated(element);
+
 			element.strategy = 'fixed';
 			await elementUpdated(element);
 

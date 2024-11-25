@@ -1069,13 +1069,6 @@ describe('vwc-searchable-select', () => {
 			expect(popup.open).toBe(true);
 		});
 
-		it('should open when clicking on the fieldset', async function () {
-			fieldset.click();
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(true);
-		});
-
 		it('should not open when clicking on the clear button inside the fieldset', async function () {
 			element.values = ['apple'];
 			element.clearable = true;
@@ -1701,6 +1694,26 @@ describe('vwc-searchable-select', () => {
 			element.values = [];
 
 			expect(element.querySelectorAll(ICON_TAG).length).toBe(1);
+		});
+	});
+
+	describe('fieldset', () => {
+		it('should focus the input when clicking on the fieldset', async function () {
+			fieldset.click();
+			await elementUpdated(element);
+
+			expect(element.shadowRoot!.activeElement).toBe(input);
+		});
+
+		it('should open the popup when clicking on the fieldset when focus already has input', async function () {
+			focusInput();
+			element.open = false;
+			await elementUpdated(element);
+
+			fieldset.click();
+			await elementUpdated(element);
+
+			expect(popup.open).toBe(true);
 		});
 	});
 

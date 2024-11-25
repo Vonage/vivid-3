@@ -168,13 +168,23 @@
 	},
 	{
 		"title": "Checkbox",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/checkbox/README.md"
+		"description": "Checkboxes allow users to select one or more items from a list of options.",
+		"variations": "./libs/components/src/lib/checkbox/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/checkbox/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/checkbox/README.md",
+		"accessibility": "./libs/components/src/lib/checkbox/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/checkbox/USE-CASES.md"
 	},
 	{
 		"title": "Dialog",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/dialog/README.md"
+		"description": "Represents a part of an application that a user interacts with to perform a task.",
+		"variations": "./libs/components/src/lib/dialog/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/dialog/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/dialog/README.md",
+		"accessibility": "./libs/components/src/lib/dialog/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/dialog/USE-CASES.md"
 	},
 	{
 		"title": "Header",

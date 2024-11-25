@@ -13,10 +13,12 @@ const getClasses = ({
 	orientation,
 	gutters,
 	scrollablePanel,
+	tabsLayout,
 	_actionItemsSlottedContent,
 }: Tabs) =>
 	classNames(
 		'base',
+		`layout-${tabsLayout ?? 'align-start'}`,
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`orientation-${orientation}`, Boolean(orientation)],
 		`gutters-${gutters ?? 'small'}`,
