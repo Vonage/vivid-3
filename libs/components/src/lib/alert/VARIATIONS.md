@@ -22,7 +22,11 @@ Use the `headline` attribute to add a headline to the Alert.
 
 Use the `connotation` attribute to change the Alert's icon and icon color.
 
-Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
+<vwc-note connotation="information" icon="info-line">
+
+Each connotation comes with a default icon (that you can override with the `icon` attribute).
+
+</vwc-note>
 
 ```html preview 350px
 <vwc-alert
@@ -49,8 +53,14 @@ Note that each connotation comes with a default icon (that you can override with
 
 ### Icon
 
-Use the `icon` attribute to add an icon to the Alert. Note that setting this attribute takes precedence
-over the connotation's icon, if any.
+Use the `icon` attribute to add an icon from the [icon library](/icons/icons-gallery/) to the Alert.
+Use the [icon slot](/components/alert/code/#icon) to add custom icons.
+
+<vwc-note connotation="information" icon="info-line">
+
+Setting this attribute takes precedence over the connotation's icon, if any.
+
+</vwc-note>
 
 ```html preview 100px
 <vwc-alert

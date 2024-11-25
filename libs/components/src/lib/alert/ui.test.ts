@@ -1,8 +1,6 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,22 +8,21 @@ import {
 const components = ['alert', 'button', 'switch'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const CSS = `
-		<style>
-			#wrapper > div { height: 250px; transform: translateY(0px); }
-		</style>`;
+	const template = `
+		<div style="padding: 5px; display: flex; flex-direction: column; gap: 8px;">
+			<vwc-alert open strategy="static" headline="Headline"></vwc-alert>
+			<vwc-alert open strategy="static" text="Text"></vwc-alert>
+			<vwc-alert open strategy="static" headline="Headline" text="Text"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="error" icon="user-line" text="With icon"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="error" icon="user-line" headline="Headline" text="With icon"></vwc-alert>
+			<vwc-alert open strategy="static" headline="With action items">
+				<vwc-button slot="action-items" appearance="outlined" label="Action"></vwc-button>
+				<vwc-button slot="action-items" appearance="outlined" label="Action"></vwc-button>
+			</vwc-alert>
+		</div>
+	`;
 
-	const template =
-		CSS +
-		extractHTMLBlocksFromReadme(
-			path.join(new URL('.', import.meta.url).pathname, 'README.md')
-		).reduce(
-			(htmlString: string, block: string) =>
-				`${htmlString} <div>${block}</div>`,
-			''
-		);
-
-	page.setViewportSize({ width: 1300, height: 2750 });
+	page.setViewportSize({ width: 420, height: 2750 });
 
 	await loadComponents({
 		page,
