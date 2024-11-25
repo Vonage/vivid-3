@@ -87,6 +87,14 @@ export default defineConfig({
 		plugins: [nxViteTsPaths()],
 	},
 
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
+	},
+
 	build: {
 		emptyOutDir: true,
 		lib: {
