@@ -19,21 +19,21 @@
 .vvd-root {
 	//no need for new surface - are #fff
 
-	--new-vvd-shadow-surface-0dp: drop-shadow(1px 0px 0px #cbcbd9)
-		drop-shadow(0px 1px 0px #cbcbd9) drop-shadow(0px -1px 0px #cbcbd9)
-		drop-shadow(-1px 0px 0px #cbcbd9);
-	--new-vvd-shadow-surface-2dp: drop-shadow(0px 1px 4px #1918281a)
-		drop-shadow(0px 1px 2px #1918280d) drop-shadow(0px 2px 1px #1918280d);
-	--new-vvd-shadow-surface-4dp: drop-shadow(0px 2px 8px #1918281a)
-		drop-shadow(0px 2px 4px #1918280d) drop-shadow(0px 4px 2px #1918280d);
-	--new-vvd-shadow-surface-8dp: drop-shadow(0px 2px 16px #1918281a)
-		drop-shadow(0px 8px 8px #1918280d) drop-shadow(0px 4px 4px #1918280d);
-	--new-vvd-shadow-surface-12dp: drop-shadow(0px 4px 24px #1918281a)
-		drop-shadow(0px 12px 16px #1918280d) drop-shadow(0px 6px 8px #1918280d);
-	--new-vvd-shadow-surface-16dp: drop-shadow(0px 6px 32px #1918281a)
-		drop-shadow(0px 16px 24px #1918280d) drop-shadow(0px 8px 12px #1918280d);
-	--new-vvd-shadow-surface-24dp: drop-shadow(0px 12px 48px #1918281a)
-		drop-shadow(0px 24px 32px #1918280d) drop-shadow(0px 12px 16px #1918280d);
+	--new-vvd-shadow-surface-0dp: drop-shadow(1px 0px 0px #31304F1a)
+		drop-shadow(0px 1px 0px #31304F1a) drop-shadow(0px -1px 0px #31304F1a)
+		drop-shadow(-1px 0px 0px #31304F1a);
+	--new-vvd-shadow-surface-2dp: drop-shadow(0px 1px 4px #4f2f8a1a)
+		drop-shadow(0px 1px 2px #4f2f8a0d) drop-shadow(0px 2px 1px #4f2f8a0d);
+	--new-vvd-shadow-surface-4dp: drop-shadow(0px 2px 8px #4f2f8a1a)
+		drop-shadow(0px 2px 4px #4f2f8a0d) drop-shadow(0px 4px 2px #4f2f8a0d);
+	--new-vvd-shadow-surface-8dp: drop-shadow(0px 2px 16px #4f2f8a1a)
+		drop-shadow(0px 8px 8px #4f2f8a0d) drop-shadow(0px 4px 4px #4f2f8a0d);
+	--new-vvd-shadow-surface-12dp: drop-shadow(0px 4px 24px #4f2f8a1a)
+		drop-shadow(0px 12px 16px #4f2f8a0d) drop-shadow(0px 6px 8px #4f2f8a0d);
+	--new-vvd-shadow-surface-16dp: drop-shadow(0px 6px 32px #4f2f8a1a)
+		drop-shadow(0px 16px 24px #4f2f8a0d) drop-shadow(0px 8px 12px #4f2f8a0d);
+	--new-vvd-shadow-surface-24dp: drop-shadow(0px 12px 48px #4f2f8a1a)
+		drop-shadow(0px 24px 32px #4f2f8a0d) drop-shadow(0px 12px 16px #4f2f8a0d);
 }
 
 // added style - will not ne part of the dark-light. Will be an additional css that needs to be added
