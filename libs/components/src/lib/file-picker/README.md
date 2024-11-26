@@ -64,7 +64,19 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 
 #### File Too Big Error
 
-Use the `file-too-big-error` attribute to override the default localized message.
+Use the `file-too-big-error` attribute provide a custom error message to override the default localized message.
+
+Note: localisation will need to be handled at the application level.
+
+```html preview 230px
+<vwc-file-picker 
+	file-too-big-error="This file exceeds the max file size"
+	helper-text="Max file size is 0.1MB" 
+	max-file-size="0.1"
+>
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
 
 - Type: `string`
 
@@ -91,9 +103,21 @@ If you set `max-files` to `1`, consider using the `single-file` mode.
 
 #### Max Files Exceeded Error
 
-Use the `max-files-exceeded-error` attribute to override the default localized message.
+Use the `max-files-exceeded-error` attribute to provide a custom error message to override the default localized message.
+
+Note: localisation will need to be handled at the application level.
 
 - Type: `string`
+
+```html preview 330px
+<vwc-file-picker
+	max-files-exceeded-error="Only 2 files allowed"
+	helper-text="Maximum of 2 files" 
+	max-files="2"
+>
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
 
 ### Accept
 
@@ -117,7 +141,19 @@ If the user tries to upload a file that does not match the accepted files, the f
 
 #### Invalid File Type Error
 
-Use the `invalid-file-type-error` attribute to override the default localized message.
+Use the `invalid-file-type-error` attribute to provide a custom error message to override the default localized message.
+
+Note: localisation will need to be handled at the application level.
+
+```html preview 230px
+<vwc-file-picker
+	invalid-file-type-error="This file is not a .jpg or .jpeg"
+	helper-text=".jpg, .jpeg types only" 
+	accept=".jpg, .jpeg"
+>
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
 
 ### Error Text
 
