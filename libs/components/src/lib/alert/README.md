@@ -50,9 +50,6 @@ registerAlert('your-prefix');
 
 Use the `open` attribute to toggle the Alert open state.
 
-- Type: `boolean`
-- Default: `false`
-
 ```html preview
 <vwc-alert text="Some important information for you"></vwc-alert>
 
@@ -72,10 +69,9 @@ Use the `open` attribute to toggle the Alert open state.
 
 ### Timeoutms
 
-Use the `timeoutms` attribute to set the time after which the Alert will automatically close.
+Use the `timeoutms` attribute to set the time in milliseconds after which the Alert will automatically close.
 
-- Type: `number` (in milliseconds)
-- Default: `0` (stays open indefinitely)
+The default value is `0`, which means the Alert will not close automatically.
 
 ```html preview
 <vwc-alert
@@ -101,11 +97,9 @@ Use the `timeoutms` attribute to set the time after which the Alert will automat
 
 ### Strategy
 
-Controls the `position` of the Alert.  
-When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
+Controls the `position` of the Alert. The default is `fixed`, which will position the Alert relative to the viewport.
 
-- Type: `fixed` | `static`
-- Default: `fixed`
+When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
 
 ```html preview
 <vwc-alert
@@ -158,9 +152,7 @@ If set, the `icon` attribute is ignored.
 
 ### Minimum inline Size
 
-Use the `--alert-min-inline-size` variable to set the Alert's minimum inline size.
-
-- Default: `420px`
+Use the `--alert-min-inline-size` variable to set the Alert's minimum inline size. The default value is `420px`.
 
 ```html preview 100px
 <vwc-alert
@@ -175,7 +167,7 @@ Use the `--alert-min-inline-size` variable to set the Alert's minimum inline siz
 Use the `--alert-max-inline-size` variable to set the Alert's maximum inline size.
 This is helpful to prevent the Alert from becoming too wide when displaying a long message.
 
-- Default: `fit-content`
+The default value is `fit-content`, which allows the Alert to grow as needed.
 
 ```html preview 100px
 <vwc-alert
