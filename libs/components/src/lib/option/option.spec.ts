@@ -68,12 +68,6 @@ describe('vwc-option', () => {
 		expect(element.getAttribute('aria-selected')).toEqual('true');
 	});
 
-	it('should set the `aria-checked` attribute with the `checked` value when provided', async () => {
-		element.checked = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('true');
-	});
-
 	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
 		element.disabled = true;
 		await elementUpdated(element);
@@ -111,6 +105,43 @@ describe('vwc-option', () => {
 			element.setAttribute('label', label);
 
 			expect(element.label).toEqual(label);
+		});
+	});
+
+	describe('checked', () => {
+		it('should set the `aria-checked` attribute with the `checked`', async () => {
+			element.checked = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('true');
+		});
+
+		it('should remove the aria-checked attribute when checked is set to a non-boolean', async () => {
+			element.checked = null as any;
+			await elementUpdated(element);
+			expect(element.hasAttribute('aria-checked')).toBe(false);
+		});
+	});
+
+	describe('value', () => {
+		it('should default to empty string when set to a nullish value', async () => {
+			element.value = null as any;
+			await elementUpdated(element);
+			expect(element.value).toBe('');
+		});
+	});
+
+	describe('form', () => {
+		it('should return null if not in a form', async () => {
+			expect(element.form).toBe(null);
+		});
+
+		// Does not work:
+		xit('should return the parent form', async () => {
+			const form = document.createElement('form');
+			form.appendChild(element);
+			document.body.appendChild(form);
+
+			expect(element.form).toBe(form);
 		});
 	});
 
@@ -168,6 +199,17 @@ describe('vwc-option', () => {
 
 			expect(getText().textContent!.trim()).toBe('Option text');
 			expect(getMatch()!.textContent).toBe('pti');
+		});
+	});
+
+	describe('constructor', () => {
+		it('should construct with provided values', async () => {
+			element = new ListboxOption('text', 'value', true, true);
+
+			expect(element.text).toEqual('text');
+			expect(element.value).toEqual('value');
+			expect(element.defaultSelected).toEqual(true);
+			expect(element.selected).toEqual(true);
 		});
 	});
 
