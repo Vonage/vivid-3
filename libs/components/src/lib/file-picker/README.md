@@ -69,9 +69,9 @@ Use the `file-too-big-error` attribute provide a custom error message to overrid
 Note: localisation will need to be handled at the application level.
 
 ```html preview 230px
-<vwc-file-picker 
+<vwc-file-picker
 	file-too-big-error="This file exceeds the max file size"
-	helper-text="Max file size is 0.1MB" 
+	helper-text="Max file size is 0.1MB"
 	max-file-size="0.1"
 >
 	Drag & Drop or click to upload
@@ -112,7 +112,7 @@ Note: localisation will need to be handled at the application level.
 ```html preview 330px
 <vwc-file-picker
 	max-files-exceeded-error="Only 2 files allowed"
-	helper-text="Maximum of 2 files" 
+	helper-text="Maximum of 2 files"
 	max-files="2"
 >
 	Drag & Drop or click to upload
@@ -148,7 +148,7 @@ Note: localisation will need to be handled at the application level.
 ```html preview 230px
 <vwc-file-picker
 	invalid-file-type-error="This file is not a .jpg or .jpeg"
-	helper-text=".jpg, .jpeg types only" 
+	helper-text=".jpg, .jpeg types only"
 	accept=".jpg, .jpeg"
 >
 	Drag & Drop or click to upload
