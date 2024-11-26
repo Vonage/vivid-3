@@ -1,22 +1,7 @@
 import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
-import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns/aria-global';
-
-/**
- * Determines if the element is a {@link (ListboxOption:class)}
- *
- * @param element - the element to test.
- * @public
- */
-export function isListboxOption(el: Element): el is ListboxOption {
-	return (
-		isHTMLElement(el) &&
-		((el.getAttribute('role') as string) === 'option' ||
-			el instanceof HTMLOptionElement)
-	);
-}
 
 /**
  * An Option Custom HTML Element.
