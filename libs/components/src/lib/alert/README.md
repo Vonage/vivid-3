@@ -179,7 +179,7 @@ The default value is `fit-content`, which allows the Alert to grow as needed.
 
 ## API Reference
 
-### Props
+### Properties
 
 | Name                          | Type                                                                                              | Description                                                                     |
 | ----------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
