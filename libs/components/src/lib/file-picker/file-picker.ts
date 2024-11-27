@@ -149,7 +149,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr({ attribute: 'invalid-file-type-error' }) invalidFileTypeError?: string;
 	invalidFileTypeErrorChanged(_oldValue: string, newValue: string): void {
-		if (this.#dropzone) 
+		if (this.#dropzone)
 			this.#dropzone.options.dictInvalidFileType =
 				newValue || this.locale.filePicker.invalidFileTypeError;
 	}
