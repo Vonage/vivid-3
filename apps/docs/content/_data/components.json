@@ -26,7 +26,7 @@
 	},
 	{
 		"title": "Alert",
-		"description": "Alerts display short-lived important information to the user, usually at the top or bottom of the screen.\n\n",
+		"description": "Alerts display short-lived important information to the user, usually at the top or bottom of the screen.",
 		"variations": "./libs/components/src/lib/alert/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/alert/GUIDELINES.md",
 		"hideGuidelines": "true",
