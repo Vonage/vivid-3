@@ -126,6 +126,22 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('tabs layout', () => {
+		it('should set class "layout-align-start" on base by default', async () => {
+			expect(
+				getBaseElement(element).classList.contains('layout-align-start')
+			).toBeTruthy();
+		});
+
+		it('should set class "layout-stretch" on base when set to stretch', async () => {
+			element.tabsLayout = 'stretch';
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element).classList.contains('layout-stretch')
+			).toBeTruthy();
+		});
+	});
+
 	describe('scroll shadow', () => {
 		let scrollWrapper: HTMLElement;
 		let shadowWrapper: HTMLElement;

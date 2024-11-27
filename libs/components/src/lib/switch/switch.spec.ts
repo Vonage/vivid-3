@@ -14,11 +14,21 @@ const COMPONENT_TAG = 'vwc-switch';
 
 describe('vwc-switch', () => {
 	let element: Switch;
+	let form: HTMLFormElement;
+
+	const setupFixture = async (html: string) => {
+		const fixtureElement = fixture(html) as HTMLElement;
+		if (fixtureElement instanceof HTMLFormElement)
+			form = fixtureElement as HTMLFormElement;
+		element =
+			fixtureElement instanceof Switch
+				? fixtureElement
+				: (fixtureElement.querySelector(COMPONENT_TAG) as Switch);
+		await elementUpdated(element);
+	};
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Switch;
+		await setupFixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 	});
 
 	describe('basic', () => {
@@ -274,6 +284,18 @@ describe('vwc-switch', () => {
 			expect(appearanceFilledClassExistsAfterChecked).toEqual(true);
 			expect(appearanceFilledClassExistsAfterDisabled).toEqual(true);
 			expect(appearanceFilledClassExistsAfterReadonly).toEqual(true);
+		});
+	});
+
+	describe("who's parent form has it's reset() method invoked", () => {
+		it("should set it's checked property to back to false", async () => {
+			await setupFixture(`<form><${COMPONENT_TAG}></${COMPONENT_TAG}></form>`);
+			element.checked = true;
+			await elementUpdated(element);
+			form.reset();
+
+			await elementUpdated(element);
+			expect(element.checked).toBe(false);
 		});
 	});
 
