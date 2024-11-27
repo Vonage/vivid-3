@@ -68,6 +68,14 @@ module.exports = function (eleventyConfig) {
 					ignored: '**/frames/**',
 				},
 			},
+			css: {
+				preprocessorOptions: {
+					scss: {
+						// api: 'modern-compiler', not yet supported, instead silence warnings:
+						silenceDeprecations: ['legacy-js-api'],
+					},
+				},
+			},
 		},
 	});
 

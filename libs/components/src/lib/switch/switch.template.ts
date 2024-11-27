@@ -39,7 +39,7 @@ export const SwitchTemplate: (
 			aria-readonly="${(x) => x.readOnly}"
 			tabindex="${(x) => (x.disabled ? null : 0)}"
 			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
-			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+			@click="${(x) => x.clickHandler()}"
 		>
 			<div class="switch">
 				<span class="checked-indicator"></span>
