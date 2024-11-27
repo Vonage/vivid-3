@@ -6,12 +6,19 @@ import {
 	getBaseElement,
 } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
+import {
+	keyArrowDown,
+	keyArrowUp,
+	keyEnd,
+	keyHome,
+} from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup.ts';
+import { type MenuItem } from '../menu-item/menu-item.ts';
 import { Menu } from './menu';
 import { menuDefinition } from './definition';
 import '.';
+import '../menu-item';
 
 const COMPONENT_TAG = 'vwc-menu';
 
@@ -19,6 +26,16 @@ describe('vwc-menu', () => {
 	let element: Menu;
 	let popup: Popup;
 	let anchor: Button;
+
+	function pressKey(key: string) {
+		document.activeElement!.dispatchEvent(
+			new KeyboardEvent('keydown', {
+				key,
+				bubbles: true,
+				cancelable: true,
+			})
+		);
+	}
 
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Menu;
@@ -238,9 +255,9 @@ describe('vwc-menu', () => {
 			element.appendChild(div);
 			return div;
 		}
+
 		it('should focus the first menuitem in the menu', async () => {
 			const div = createMenuItem();
-
 			await elementUpdated(element);
 
 			element.focus();
@@ -250,7 +267,6 @@ describe('vwc-menu', () => {
 
 		it('should set menu item tabindex to 0', async () => {
 			const menuItem = createMenuItem();
-
 			await elementUpdated(element);
 
 			element.focus();
@@ -278,36 +294,85 @@ describe('vwc-menu', () => {
 			expect(document.activeElement).toEqual(div);
 		});
 
-		it('should handle menu key down events', async () => {
-			function keyMoveAndGetActiveId(arrowEvent: Event) {
-				document.activeElement?.dispatchEvent(arrowEvent);
-				return document.activeElement?.id;
-			}
-			element.innerHTML = `
-				<div role="menuitem" id="id1" text="Menu Item 1"></div>
-				<div role="menuitem" id="id2" text="Menu Item 2"></div>
-				<div role="menuitem" id="id3" text="Menu Item 3"></div>
-			`;
+		describe('keyboard navigation', () => {
+			let item1: HTMLElement;
+			let item2: HTMLElement;
+			let item3: HTMLElement;
+			beforeEach(async () => {
+				item1 = createMenuItem();
+				item2 = createMenuItem();
+				item3 = createMenuItem();
+				await elementUpdated(element);
+			});
 
-			await elementUpdated(element);
+			it('should move focus to the next menuitem when pressing arrow down', async () => {
+				item1.focus();
 
-			element.focus();
+				pressKey(keyArrowDown);
 
-			const activeIdAfterKeyDown1 = keyMoveAndGetActiveId(arrowDownEvent);
-			const activeIdAfterKeyDown2 = keyMoveAndGetActiveId(arrowDownEvent);
-			const activeIdAfterKeyUp1 = keyMoveAndGetActiveId(arrowUpEvent);
-			const activeIdAfterKeyUp2 = keyMoveAndGetActiveId(arrowUpEvent);
+				expect(document.activeElement).toBe(item2);
+			});
 
-			expect(activeIdAfterKeyDown1).toEqual('id2');
-			expect(activeIdAfterKeyDown2).toEqual('id3');
-			expect(activeIdAfterKeyUp1).toEqual('id2');
-			expect(activeIdAfterKeyUp2).toEqual('id1');
+			it('should move focus to the previous menuitem when pressing arrow up', async () => {
+				item3.focus();
+
+				pressKey(keyArrowUp);
+
+				expect(document.activeElement).toBe(item2);
+			});
+
+			it('should move focus to the last menuitem when pressing end', async () => {
+				item1.focus();
+
+				pressKey(keyEnd);
+
+				expect(document.activeElement).toBe(item3);
+			});
+
+			it('should move focus to the first menuitem when pressing home', async () => {
+				item3.focus();
+
+				pressKey(keyHome);
+
+				expect(document.activeElement).toBe(item1);
+			});
+
+			it('should not prevent default of other keydown events', () => {
+				const keydownSpy = jest.fn();
+				element.addEventListener('keydown', keydownSpy);
+				item1.focus();
+
+				pressKey('A');
+
+				expect(keydownSpy).toHaveBeenCalledWith(
+					expect.objectContaining({ defaultPrevented: false })
+				);
+			});
+
+			it('should ignore non-focusable elements', async () => {
+				element.insertBefore(document.createElement('div'), item3);
+				await elementUpdated(element);
+				item2.focus();
+
+				pressKey(keyArrowDown);
+
+				expect(document.activeElement).toBe(item3);
+			});
+
+			it('should ignore cancelled keypress events', async () => {
+				item1.addEventListener('keydown', (e) => e.preventDefault());
+				item1.focus();
+
+				pressKey(keyArrowDown);
+
+				expect(document.activeElement).toBe(item1);
+			});
 		});
 
 		it('should reset tabindex to the first element on focusout event', async () => {
 			function focusOnSecondItem() {
 				element.focus();
-				document.activeElement?.dispatchEvent(arrowDownEvent);
+				pressKey(keyArrowDown);
 			}
 
 			const menuFocusedElement = () =>
@@ -347,6 +412,12 @@ describe('vwc-menu', () => {
 
 			expect(anchor.hasAttribute('tabindex')).toBe(false);
 			expect(child1.getAttribute('tabindex')).toBe('-1');
+		});
+
+		it('should not throw when called in disconnected state', async () => {
+			element.remove();
+
+			expect(() => element.focus()).not.toThrow();
 		});
 	});
 
@@ -579,15 +650,100 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	const arrowUpEvent = new KeyboardEvent('keydown', {
-		key: keyArrowUp,
-		bubbles: true,
-	} as KeyboardEventInit);
+	describe('radio items', () => {
+		it('should uncheck other unseparated radiomenuitems when one is checked', async () => {
+			element.innerHTML = `
+				<vwc-menu-item role='menuitemradio' id='id1' checked></vwc-menu-item>
+				<div role='separator'></div>
+				<vwc-menu-item role='menuitemradio' id='id2' checked></vwc-menu-item>
+				<vwc-menu-item role='menuitemradio' id='id3'></vwc-menu-item>
+				<vwc-menu-item role='menuitemradio' id='id4' checked></vwc-menu-item>
+				<div role='separator'></div>
+				<vwc-menu-item role='menuitemradio' id='id5' checked></vwc-menu-item>
+			`;
+			await elementUpdated(element);
+			const menuItem = (id: string) =>
+				element.querySelector(`#${id}`) as MenuItem;
 
-	const arrowDownEvent = new KeyboardEvent('keydown', {
-		key: keyArrowDown,
-		bubbles: true,
-	} as KeyboardEventInit);
+			menuItem('id3').checked = true;
+
+			expect(menuItem('id1').checked).toBe(true);
+			expect(menuItem('id2').checked).toBe(false);
+			expect(menuItem('id3').checked).toBe(true);
+			expect(menuItem('id4').checked).toBe(false);
+			expect(menuItem('id5').checked).toBe(true);
+		});
+
+		it('should ignore radiomenuitems outside of default slot', async () => {
+			const headerItem = document.createElement('vwc-menu-item') as MenuItem;
+			headerItem.role = 'menuitemradio';
+			headerItem.slot = 'header';
+			element.appendChild(headerItem);
+			const item = document.createElement('vwc-menu-item') as MenuItem;
+			item.role = 'menuitemradio';
+			item.checked = true;
+			element.appendChild(item);
+			await elementUpdated(element);
+
+			headerItem.checked = true;
+
+			expect(item.checked).toBe(true);
+		});
+	});
+
+	describe('submenu', () => {
+		let item1: MenuItem;
+		let item2: MenuItem;
+		beforeEach(async () => {
+			element.innerHTML = `
+				<vwc-menu-item id="item1" text="Menu item 1">
+					<vwc-menu slot="submenu">
+						<vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
+					</vwc-menu>
+				</vwc-menu-item>
+				<vwc-menu-item id="item2" text="Menu item 2">
+					<vwc-menu slot="submenu">
+						<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
+					</vwc-menu>
+				</vwc-menu-item>
+			`;
+			item1 = element.querySelector('#item1') as MenuItem;
+			item2 = element.querySelector('#item2') as MenuItem;
+			await elementUpdated(element);
+		});
+
+		it('should collapse the expanded submenu when calling collapseExpandedItem()', async () => {
+			item1.expanded = true;
+			await elementUpdated(element);
+
+			element.collapseExpandedItem();
+
+			expect(item1.expanded).toBe(false);
+		});
+
+		it('should collapse other submenus when one expands', async () => {
+			item1.expanded = true;
+			await elementUpdated(element);
+
+			item2.expanded = true;
+			await elementUpdated(element);
+
+			expect(item1.expanded).toBe(false);
+		});
+
+		it('should not collapse other submenus when expanded-change event is cancelled', async () => {
+			item1.expanded = true;
+			await elementUpdated(element);
+			item2.addEventListener('expanded-change', (e) => e.preventDefault(), {
+				capture: true,
+			});
+
+			item2.expanded = true;
+			await elementUpdated(element);
+
+			expect(item1.expanded).toBe(true);
+		});
+	});
 
 	function focusOutOfBody() {
 		const focusOutEvent = new FocusEvent('focusout');

@@ -341,6 +341,14 @@ describe('vwc-menu-item', () => {
 			expect(changeSpy).toHaveBeenCalled();
 		});
 
+		it('should not fire "change" event on click when disabled', async () => {
+			element.disabled = true;
+
+			element.click();
+
+			expect(changeSpy).not.toHaveBeenCalled();
+		});
+
 		it('should fire "change" event on spacebar press', async () => {
 			pressKey(keySpace);
 
