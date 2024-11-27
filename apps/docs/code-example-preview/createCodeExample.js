@@ -100,7 +100,7 @@ const createiFrameContent = (code, classList, index) => {
 		numberWithPx = match ? match[0] : 'auto';
 	}
 	const document = `<!DOCTYPE html>
-		 <html class="vvd-root" lang="en-US" style="block-size: ${numberWithPx};">
+		 <html class="vvd-root vvd-scrollbar" lang="en-US" style="block-size: ${numberWithPx};">
 			<head>
 				${IFRAME_STYLE}
 				${IFRAME_INLINE_STYLE}
