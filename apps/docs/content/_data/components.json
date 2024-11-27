@@ -31,7 +31,8 @@
 		"guidelines": "./libs/components/src/lib/alert/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/alert/README.md",
-		"accessibility": "./libs/components/src/lib/alert/ACCESSIBILITY.md"
+		"accessibility": "./libs/components/src/lib/alert/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/alert/USE-CASES.md"
 	},
 	{
 		"title": "Breadcrumb",
