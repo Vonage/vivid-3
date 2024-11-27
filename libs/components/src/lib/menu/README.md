@@ -102,6 +102,10 @@ Use the `placement` attribute to control the position of the menu relative to it
 - Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
 - Default: `'bottom'`
 
+<vwc-note connotation="warning" icon="warning-line" headline="Bottom Placement at Viewport side">
+<p>When the menu anchor is placed close to the start/end of the viewport, <code>placement</code> of <code>bottom</code> or <code>top</code> will not present well due to lack of space.</p>
+<p>In such cases - prefer using bottom-start or end instead.</p></vwc-note>
+
 ```html preview 150px
 <div style="position: relative; text-align: end;">
 	<vwc-menu
