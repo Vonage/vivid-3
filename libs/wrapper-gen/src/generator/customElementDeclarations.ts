@@ -453,13 +453,14 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 	],
 	TrappedFocus: [],
 	DelegatesARIATextbox: [],
+	ARIAGlobalStatesAndProperties: [],
 };
 
 /**
  * Returns that mixins that a component uses.
  */
 export const extractVividMixins = (
-	componentName: string,
+	className: string,
 	modulePath: string
 ): string[] => {
 	const src = fs.readFileSync(getTypescriptDefinitionPath(modulePath), 'utf8');
@@ -468,9 +469,11 @@ export const extractVividMixins = (
 	for (const line of lines) {
 		// Find the line declaring the mixins looking like this:
 		// export interface ComponentName extends MixinA, MixinB {}
-		const match = line.match(/export interface (\w+) extends (.*) {/);
+		const match = line.match(
+			new RegExp(`export interface ${className} extends (.*) {`)
+		);
 		if (match) {
-			return match[2].split(',').map((m) => m.trim());
+			return match[1].split(',').map((m) => m.trim());
 		}
 	}
 
@@ -497,7 +500,7 @@ export const getVividComponentDeclaration = (
 	const declaration = resolveComponentDeclaration(vividDeclarations, className);
 
 	// Apply vivid mixins
-	const mixins = extractVividMixins(name, declaration._modulePath);
+	const mixins = extractVividMixins(className, declaration._modulePath);
 	for (const mixinName of mixins) {
 		if (!(mixinName in VividMixins)) {
 			throw new Error(`Unknown mixin ${mixinName}`);

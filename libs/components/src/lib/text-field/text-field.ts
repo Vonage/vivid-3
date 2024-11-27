@@ -1,6 +1,11 @@
-import { TextField as FoundationTextfield } from '@microsoft/fast-foundation';
-import { attr, observable } from '@microsoft/fast-element';
+import {
+	attr,
+	DOM,
+	nullableNumberConverter,
+	observable,
+} from '@microsoft/fast-element';
 import { memoizeWith } from 'ramda';
+import { applyMixins } from '@microsoft/fast-foundation';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
@@ -15,6 +20,8 @@ import {
 import { generateRandomId } from '../../shared/utils/randomId';
 import { Reflector } from '../../shared/utils/Reflector';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns';
+import { FormAssociatedTextField } from './text-field.form-associated';
 
 export type TextFieldAppearance = Extract<
 	Appearance,
@@ -23,6 +30,43 @@ export type TextFieldAppearance = Extract<
 export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 export type TextFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
+
+/**
+ * Text field sub-types
+ * @public
+ */
+export const TextFieldType = {
+	/**
+	 * An email TextField
+	 */
+	email: 'email',
+
+	/**
+	 * A password TextField
+	 */
+	password: 'password',
+
+	/**
+	 * A telephone TextField
+	 */
+	tel: 'tel',
+
+	/**
+	 * A text TextField
+	 */
+	text: 'text',
+
+	/**
+	 * A URL TextField
+	 */
+	url: 'url',
+} as const;
+
+/**
+ * Types for the text field sub-types
+ * @public
+ */
+export type TextFieldType = typeof TextFieldType[keyof typeof TextFieldType];
 
 // Safari does not support styling the `::placeholder` pseudo-element on slotted input
 // See bug: https://bugs.webkit.org/show_bug.cgi?id=223814
@@ -81,7 +125,227 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  */
 @errorText
 @formElements
-export class TextField extends FoundationTextfield {
+export class TextField extends FormAssociatedTextField {
+	/**
+	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: readonly
+	 */
+	@attr({ attribute: 'readonly', mode: 'boolean' })
+	readOnly!: boolean;
+	/**
+	 * @internal
+	 */
+	readOnlyChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.readOnly = this.readOnly;
+			this.validate();
+		}
+	}
+
+	/**
+	 * Indicates that this element should get focus after the page finishes loading. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautofocus | autofocus HTML attribute} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: autofocus
+	 */
+	@attr({ mode: 'boolean' })
+	override autofocus!: boolean;
+	/**
+	 * @internal
+	 */
+	autofocusChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.autofocus = this.autofocus;
+			this.validate();
+		}
+	}
+
+	/**
+	 * Sets the placeholder value of the element, generally used to provide a hint to the user.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: placeholder
+	 * Using this attribute does is not a valid substitute for a labeling element.
+	 */
+	@attr
+	placeholder!: string;
+	/**
+	 * @internal
+	 */
+	placeholderChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.placeholder = this.placeholder;
+		}
+	}
+
+	/**
+	 * Allows setting a type or mode of text.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: type
+	 */
+	@attr
+	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	type: TextFieldType = TextFieldType.text;
+	/**
+	 * @internal
+	 */
+	typeChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.type = this.type;
+			this.validate();
+		}
+	}
+
+	/**
+	 * Allows associating a {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist | datalist} to the element by {@link https://developer.mozilla.org/en-US/docs/Web/API/Element/id}.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: list
+	 */
+	@attr
+	list!: string;
+	/**
+	 * @internal
+	 */
+	listChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.setAttribute('list', this.list);
+			this.validate();
+		}
+	}
+
+	/**
+	 * The maximum number of characters a user can enter.
+	 * @public
+	 * @remarks
+	 * HTMLAttribute: maxlength
+	 */
+	@attr({ converter: nullableNumberConverter })
+	maxlength!: number;
+	/**
+	 * @internal
+	 */
+	maxlengthChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.maxLength = this.maxlength;
+			this.validate();
+		}
+	}
+
+	/**
+	 * The minimum number of characters a user can enter.
+	 * @public
+	 * @remarks
+	 * HTMLAttribute: minlength
+	 */
+	@attr({ converter: nullableNumberConverter })
+	minlength!: number;
+	/**
+	 * @internal
+	 */
+	minlengthChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.minLength = this.minlength;
+			this.validate();
+		}
+	}
+
+	/**
+	 * A regular expression that the value must match to pass validation.
+	 * @public
+	 * @remarks
+	 * HTMLAttribute: pattern
+	 */
+	@attr
+	pattern!: string;
+	/**
+	 * @internal
+	 */
+	patternChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.pattern = this.pattern;
+			this.validate();
+		}
+	}
+
+	/**
+	 * Sets the width of the element to a specified number of characters.
+	 * @public
+	 * @remarks
+	 * HTMLAttribute: size
+	 */
+	@attr({ converter: nullableNumberConverter })
+	size!: number;
+	/**
+	 * @internal
+	 */
+	sizeChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.size = this.size;
+		}
+	}
+
+	/**
+	 * Controls whether or not to enable spell checking for the input field, or if the default spell checking configuration should be used.
+	 * @public
+	 * @remarks
+	 * HTMLAttribute: spellcheck
+	 */
+	@attr({ mode: 'boolean' })
+	override spellcheck!: boolean;
+	/**
+	 * @internal
+	 */
+	spellcheckChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.spellcheck = this.spellcheck;
+		}
+	}
+
+	/**
+	 * A reference to the internal input element
+	 * @internal
+	 */
+	control!: HTMLInputElement;
+
+	/**
+	 * Selects all the text in the text field
+	 *
+	 * @public
+	 */
+	select() {
+		this.control.select();
+	}
+
+	/**
+	 * Handles the internal control's `input` event
+	 * @internal
+	 */
+	handleTextInput(): void {
+		this.value = this.control.value;
+	}
+
+	/**
+	 * Change event handler for inner control.
+	 * @remarks
+	 * "Change" events are not `composable` so they will not
+	 * permeate the shadow DOM boundary. This fn effectively proxies
+	 * the change event, emitting a `change` event whenever the internal
+	 * control emits a `change` event
+	 * @internal
+	 */
+	handleChange(): void {
+		this.$emit('change');
+	}
+
+	/** {@inheritDoc (FormAssociated:interface).validate} */
+	override validate() {
+		super.validate(this.control);
+	}
+
 	@attr appearance?: TextFieldAppearance;
 	@attr shape?: TextFieldShape;
 	@attr autoComplete?: string;
@@ -148,6 +412,15 @@ export class TextField extends FoundationTextfield {
 
 	override connectedCallback() {
 		super.connectedCallback();
+
+		this.proxy.setAttribute('type', this.type);
+		this.validate();
+
+		if (this.autofocus) {
+			DOM.queueUpdate(() => {
+				this.focus();
+			});
+		}
 
 		if (!this.control) {
 			// Input and label must be created outside the shadow dom to support autofill from some password managers.
@@ -304,17 +577,29 @@ export class TextField extends FoundationTextfield {
 	}
 }
 
+/**
+ * Includes ARIA states and properties relating to the ARIA textbox role
+ *
+ * @public
+ */
+export class DelegatesARIATextbox {}
+
+export interface DelegatesARIATextbox extends ARIAGlobalStatesAndProperties {}
+applyMixins(DelegatesARIATextbox, ARIAGlobalStatesAndProperties);
+
 export interface TextField
 	extends AffixIcon,
 		ErrorText,
 		FormElement,
 		FormElementCharCount,
 		FormElementHelperText,
-		FormElementSuccessText {}
+		FormElementSuccessText,
+		DelegatesARIATextbox {}
 applyMixinsWithObservables(
 	TextField,
 	AffixIcon,
 	FormElementCharCount,
 	FormElementHelperText,
-	FormElementSuccessText
+	FormElementSuccessText,
+	DelegatesARIATextbox
 );
