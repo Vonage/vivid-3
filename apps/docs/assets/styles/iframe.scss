@@ -1,10 +1,5 @@
 @forward '../../../../dist/libs/styles/core/all.css';
-@use '../../../../libs/shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 @forward 'reset';
-
-html {
-	@include scrollbar.scrollbar;
-}
 
 body::before {
 	position: fixed;

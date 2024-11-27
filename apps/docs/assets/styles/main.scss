@@ -4,16 +4,11 @@
 @forward './welcome';
 @forward './footer';
 @forward './component-page';
-@use '../../../../libs/shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 /* #region document */
 
 html {
-	@include scrollbar.scrollbar;
-
-	& {
-		scroll-padding-top: var(--vvd-header-block-size, 64px);
-	}
+	scroll-padding-top: var(--vvd-header-block-size, 64px);
 }
 
 code {
