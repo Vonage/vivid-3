@@ -148,8 +148,12 @@
 	},
 	{
 		"title": "Number Field",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/number-field/README.md"
+		"description": "Alerts display short-lived important information to the user, usually at the top or bottom of the screen.",
+		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/number-field/README.md",
+		"accessibility": "./libs/components/src/lib/number-field/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Fab",
