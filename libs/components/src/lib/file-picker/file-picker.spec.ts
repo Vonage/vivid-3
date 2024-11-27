@@ -216,7 +216,7 @@ describe('vwc-file-picker', () => {
 				expect(getErrorMessage(1)).toBe('Max files exceeded.');
 			});
 
-			it('reverts back to the standard message when the custom message is removed', async function () {
+			it('should revert back to the standard message when the custom message is removed', async function () {
 				element.maxFiles = 1;
 				element.maxFilesExceededError = 'Max files exceeded.';
 				await elementUpdated(element);
@@ -352,7 +352,7 @@ describe('vwc-file-picker', () => {
 			expect(getErrorMessage(3)).toBe('File type not allowed.');
 		});
 
-		it('revert back to the standard message when the custom message is removed', async function () {
+		it('should revert back to the standard message when the custom message is removed', async function () {
 			element.accept = 'image/*, text/html, .zip';
 			element.invalidFileTypeError = 'File type not allowed.';
 			await elementUpdated(element);

@@ -64,19 +64,23 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 
 #### File Too Big Error
 
-Use the `file-too-big-error` attribute provide a custom error message to override the default localized message.
+Use the `file-too-big-error` attribute provide a custom error message to override the default localized message. You can use the strings `{{filesize}}` and `{{maxFilesize}}` in the message to give more information.
 
 Note: localisation will need to be handled at the application level.
 
+{% raw %}
+
 ```html preview 230px
 <vwc-file-picker
-	file-too-big-error="This file exceeds the max file size"
+	file-too-big-error="File too large ({{filesize}} MiB). The maximum file size is {{maxFilesize}} MiB."
 	helper-text="Max file size is 0.1MB"
 	max-file-size="0.1"
 >
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
+
+{% endraw %}
 
 - Type: `string`
 
