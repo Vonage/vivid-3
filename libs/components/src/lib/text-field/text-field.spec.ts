@@ -192,6 +192,15 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(getInput()?.hasAttribute('autofocus')).toEqual(true);
 		});
+
+		it('should focus the input element when connected', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG_NAME} autofocus></${COMPONENT_TAG_NAME}>`
+			)) as TextField;
+			await elementUpdated(element);
+
+			expect(document.activeElement).toEqual(getInput());
+		});
 	});
 
 	describe('inputmode', function () {
@@ -235,6 +244,14 @@ describe('vwc-text-field', () => {
 			element.list = dataListID;
 			await elementUpdated(element);
 			expect(getInput()?.getAttribute('list')).toEqual(dataListID);
+		});
+	});
+
+	describe('spellcheck', function () {
+		it('should set spellcheck attribute on the input', async function () {
+			element.spellcheck = true;
+			await elementUpdated(element);
+			expect(getInput()?.hasAttribute('spellcheck')).toBe(true);
 		});
 	});
 
@@ -631,6 +648,16 @@ describe('vwc-text-field', () => {
 				COMPONENT_TAG_NAME
 			) as TextField;
 			expect(() => unconnectedElement.focus()).not.toThrow();
+		});
+	});
+
+	describe('select method', function () {
+		it('should call select on the input', async function () {
+			getInput().select = jest.fn();
+
+			element.select();
+
+			expect(getInput().select).toHaveBeenCalled();
 		});
 	});
 
