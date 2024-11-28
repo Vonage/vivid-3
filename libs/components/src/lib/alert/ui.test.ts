@@ -1,8 +1,6 @@
-import * as path from 'path';
-import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,22 +8,27 @@ import {
 const components = ['alert', 'button', 'switch'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const CSS = `
-		<style>
-			#wrapper > div { height: 250px; transform: translateY(0px); }
-		</style>`;
+	const template = `
+		<div style="padding: 5px; display: flex; flex-direction: column; gap: 8px;">
+			<vwc-alert open strategy="static" headline="Headline"></vwc-alert>
+			<vwc-alert open strategy="static" text="Text"></vwc-alert>
+			<vwc-alert open strategy="static" headline="Headline" text="Text"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="error" icon="user-line" text="With icon"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="error" icon="user-line" headline="Headline" text="With icon"></vwc-alert>
+			<vwc-alert open strategy="static" headline="With action items">
+				<vwc-button slot="action-items" appearance="outlined" label="Action"></vwc-button>
+				<vwc-button slot="action-items" appearance="outlined" label="Action"></vwc-button>
+			</vwc-alert>
+			<vwc-alert open strategy="static" connotation="accent" text="accent"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="information" text="information"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="success" text="success"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="warning" text="warning"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="alert" text="alert"></vwc-alert>
+			<vwc-alert open strategy="static" connotation="announcement" text="announcement"></vwc-alert>
+		</div>
+	`;
 
-	const template =
-		CSS +
-		extractHTMLBlocksFromReadme(
-			path.join(new URL('.', import.meta.url).pathname, 'README.md')
-		).reduce(
-			(htmlString: string, block: string) =>
-				`${htmlString} <div>${block}</div>`,
-			''
-		);
-
-	page.setViewportSize({ width: 1300, height: 2750 });
+	page.setViewportSize({ width: 420, height: 2750 });
 
 	await loadComponents({
 		page,
@@ -45,7 +48,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 
-async function testResponsiveAlert({ page }: { page: Page }) {
+test('alert in mobile screens', async function ({ page }: { page: Page }) {
 	const template = `
 			<div style="margin: 5px; height: 250px; transform: translateY(0px);">
 			<vwc-alert text="Some important information for you" removable open></vwc-alert>
@@ -70,18 +73,17 @@ async function testResponsiveAlert({ page }: { page: Page }) {
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/alert-mobile.png'
 	);
-}
-test('alert in mobile screens', testResponsiveAlert);
+});
 
-async function testConnotationAlert({ page }: { page: Page }) {
+test('alert placement', async function ({ page }: { page: Page }) {
 	const template = `
 			<div style="margin: 5px; height: 250px; transform: translateY(0px);">
-			<vwc-alert text="accent" connotation="accent" open placement="top-start"></vwc-alert>
-			<vwc-alert text="information" connotation="information" open placement="top"></vwc-alert>
-			<vwc-alert text="success" connotation="success" open placement="top-end"></vwc-alert>
-			<vwc-alert text="warning" connotation="warning" open placement="bottom-start"></vwc-alert>
-			<vwc-alert text="alert" connotation="alert" open placement="bottom"></vwc-alert>
-			<vwc-alert text="announcement" connotation="announcement" open placement="bottom-end"></vwc-alert>
+			<vwc-alert text="top-start" open placement="top-start"></vwc-alert>
+			<vwc-alert text="top" open placement="top"></vwc-alert>
+			<vwc-alert text="top-end" open placement="top-end"></vwc-alert>
+			<vwc-alert text="bottom-start" open placement="bottom-start"></vwc-alert>
+			<vwc-alert text="bottom" open placement="bottom"></vwc-alert>
+			<vwc-alert text="bottom-end" open placement="bottom-end"></vwc-alert>
 			</div>
 `;
 
@@ -101,12 +103,11 @@ async function testConnotationAlert({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'snapshots/alert-connotation.png'
+		'snapshots/alert-placement.png'
 	);
-}
-test('alert in connotation', testConnotationAlert);
+});
 
-async function testMainSlotAlert({ page }: { page: Page }) {
+test('alert with main slot content', async function ({ page }: { page: Page }) {
 	const template = `
 		<div style="margin: 5px; height: 250px; transform: translateY(0px);">
 			<vwc-alert headline="This requires your attention" open placement="top">
@@ -136,5 +137,4 @@ async function testMainSlotAlert({ page }: { page: Page }) {
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/alert-main-slot.png'
 	);
-}
-test('alert with main slot content', testMainSlotAlert);
+});
