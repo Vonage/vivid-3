@@ -148,12 +148,13 @@
 	},
 	{
 		"title": "Number Field",
-		"description": "The number-field component allows users to enter a number in a text field. It follows the native number field specification.",
+		"description": "The number-field component allows users to enter a number in a text field, and buttons to increment or decrement the value.",
 		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/number-field/README.md",
-		"accessibility": "./libs/components/src/lib/number-field/ACCESSIBILITY.md"
+		"accessibility": "./libs/components/src/lib/number-field/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/number-field/USE-CASES.md"
 	},
 	{
 		"title": "Fab",

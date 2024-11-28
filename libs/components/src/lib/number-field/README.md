@@ -1,68 +1,62 @@
-# Number Field
+## Usage
+
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
+```js
+import '@vonage/vivid/number-field';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerTextField } from '@vonage/vivid';
+
+registerTextField('your-prefix');
+```
+
+```html preview
+<script type="module">
+	import { registerTextField } from '@vonage/vivid';
+	registerTextField('your-prefix');
+</script>
+
+<your-prefix-number-field
+	label="First name"
+	autofocus
+></your-prefix-number-field>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VNumberField } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VNumberField label="First name" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## About Number Field
 
 The number-field component allows users to enter a number in a text field. It follows the [native number field](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) specification.
 
 The component is not appropriate for values that only happen to consist of numbers but aren't strictly speaking a number, e.g. phone numbers or ZIP codes.
 Use the [`text-field`](/components/text-field/) component instead.
 
-```js
-<script type="module">import '@vonage/vivid/number-field';</script>
-```
+### Known issues
 
-```html preview locale-switcher
-<vwc-number-field label="Quantity"></vwc-number-field>
-```
+- Constraint validation with `minlength` and `maxlength` is not supported.
 
-## Members
-
-
-
-### Placeholder
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-Add a `placeholder` attribute to add placeholder text to the number field.
-
-```html preview
-<vwc-number-field placeholder="My Placeholder"></vwc-number-field>
-```
-
-### Value
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-Set the `value` attribute to set the default value for the number field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
-
-Values always use the period (".") as the decimal separator, regardless of the user's locale. Only the value on the screen is localized.
-
-```html preview
-<vwc-number-field label="With default value" value="5"></vwc-number-field>
-```
-
-### Value as Number
-
-- Type: `number`
-- Default: `undefined`
-
-Use the `valueAsNumber` property to get or set the value as a number. If no valid value is entered in the field, the `valueAsNumber` is `NaN`.
-
-```html preview locale-switcher
-<vwc-number-field label="Quantity"></vwc-number-field>
-<p>valueAsNumber: <span id="value"></span></p>
-<script>
-	function update() {
-		document.getElementById('value').textContent =
-			document.querySelector('vwc-number-field').valueAsNumber;
-	}
-
-	customElements.whenDefined('vwc-number-field').then(update);
-	document.querySelector('vwc-number-field').addEventListener('input', update);
-</script>
-```
-
-### Step
+## Step
 
 - Type: `number`
 - Default: `1`
@@ -73,7 +67,7 @@ Set the `step` attribute to change the step value for the number field.
 <vwc-number-field label="With step" step="0.1" value="1.5"></vwc-number-field>
 ```
 
-### Min
+## Min
 
 - Type: `number` | `undefined`
 - Default: `undefined`
@@ -84,7 +78,7 @@ Set the `min` attribute to set the minimum value for the number field.
 <vwc-number-field label="With minimum" min="100"></vwc-number-field>
 ```
 
-### Max
+## Max
 
 - Type: `number` | `undefined`
 - Default: `undefined`
@@ -93,113 +87,6 @@ Set the `max` attribute to set the maximum value for the number field.
 
 ```html preview
 <vwc-number-field label="With maximum" max="2"></vwc-number-field>
-```
-
-### Helper text
-
-Add the `helper-text` to add some helper text below the number field. If you need to add HTML to the helper text, use the `helper-text` slot.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-number-field
-	label="Helper text below"
-	helper-text="Help text"
-></vwc-number-field>
-```
-
-### Success text
-
-Add the `success-text` to add some success text below the number field.
-If provided, `success-text` will take precedence over errors.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-number-field
-	label="Valid value"
-	success-text="Great success"
-></vwc-number-field>
-```
-
-### Scale
-
-Use the `scale` attribute to change the number field's size.
-
-- Type: `'condensed'` | `'normal'`
-- Default: `'normal'`
-
-```html preview blocks
-<vwc-number-field label="Condensed" scale="condensed"></vwc-number-field>
-<vwc-number-field label="Normal" scale="normal"></vwc-number-field>
-```
-
-### Shape
-
-Use the `shape` attribute to change the number field's edges.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview blocks
-<vwc-number-field label="Pill" shape="pill"></vwc-number-field>
-<vwc-number-field label="Rounded" shape="rounded"></vwc-number-field>
-```
-
-### Appearance
-
-Set the `appearance` attribute to change the number filed's appearance.
-
-- Type: `'fieldset'` | `'ghost'`
-- Default: `'fieldset'`
-
-(`'ghost'` is typically used within a composition such as action group / toolbar).
-
-```html preview blocks
-<vwc-number-field
-	placeholder="appearance"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-number-field>
-<vwc-number-field
-	placeholder="appearance"
-	label="ghost"
-	appearance="ghost"
-></vwc-number-field>
-```
-
-### Disabled
-
-Add the `disabled` attribute to disable the number field.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-number-field
-	disabled
-	value="disabled"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-number-field>
-```
-
-### Readonly
-
-Add the `readonly` attribute to restrict user from changing the number field's value.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-number-field
-	readonly
-	value="8"
-	label="fieldset"
-	appearance="fieldset"
-></vwc-number-field>
 ```
 
 ## Slots
@@ -217,6 +104,42 @@ Example showing a link in the helper text:
 	>
 </vwc-number-field>
 ```
+
+## Properties
+
+<div class="table-wrapper">
+
+| Name            | Type                            | Description                                                                                                  |
+| --------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `appearance`    | `fieldset` (default), `ghost`   | Sets the input element's appearance                                                                          |
+| `autofocus`     | `boolean`                       | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
+| `disabled`      | `boolean`                       | Whether the input element is disabled                                                                        |
+| `error-text`    | `string`                        | Sets error-text on element                                                                                   |
+| `label`         | `string`                        | Label of the Text Field                                                                                      |
+| `max`           | `string`                        | Maximum value of the element                                                                                 |
+| `min `          | `string`                        | Minimum value of the element                                                                                 |
+| `placeholder`   | `string`                        | Text that appears in the input element when it has no value set                                              |
+| `readonly`      | `boolean`                       | The `value` is not editable                                                                                  |
+| `required`      | `boolean`                       | A value is required for the form to be submittable                                                           |
+| `size`          | `string`                        | Size (in chars) of the input element                                                                         |
+| `scale`         | `normal` (default), `condensed` | Sets the display size of the input element                                                                   |
+| `shape`         | `rounded`, `pill`               | Sets the shape of the input element                                                                          |
+| `step`          | `number`, `undefined` (default) | Sets to change the step value for the number field.                                                          |
+| `success-text`  | `string`                        | Sets success-text on element                                                                                 |
+| `value`         | `string`                        | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
+| `valueAsNumber` | `number`, `undefined` (default) | get or set the value as a number                                                                             |
+
+</div>
+
+## Slots
+
+<div class="table-wrapper">
+
+| Name                   | Description                                        |
+| ---------------------- | -------------------------------------------------- |
+| `leading-action-items` | Add rich content as the number-field's helper text |
+
+</div>
 
 ## Events
 
@@ -239,20 +162,3 @@ Example showing a link in the helper text:
 | `stepDown` | `void`  | Decrease value by step (1 if step is not set) |
 
 </div>
-
-## Accessibility
-
-- If no label is set - it is highly recommended that `aria-label` will be added.
-- The add / subtract buttons are automatically given a localized version of the words "Increment" and "Decrement" respectively. These can be overriden using `increment-button-aria-label` and `decrement-button-aria-label`.
-
-```html
-<vwc-number-field
-	aria-label="choose a number"
-	increment-button-aria-label="Add"
-	decrement-button-aria-label="Subtract"
-></vwc-number-field>
-```
-
-## Known issues
-
-- Constraint validation with `minlength` and `maxlength` is not supported.
