@@ -1,115 +1,75 @@
-## Card Text Content
+## Labelling
 
-### Headline
+### Label Text
 
-Add a `headline` attribute to add card headline title.
+The `label` attribute provides a short description of the purpose of the Number Field.
 
 ```html preview
-<vwc-card headline="Vivid Card Component"></vwc-card>
+<vwc-number-field label="My Label"></vwc-number-field>
 ```
 
-### Subtitle
+<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
+	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
+	<p>It will be announced by screen readers so that those users will know the purpose of the Number Field.</p>
+</vwc-note>
 
-Add a `subtitle` attribute to add card subtitle.
+### Helper Text
+
+The `helper-text` attribute provides additional information to help the user enter the correct informaton.
+
+To add HTML to the helper text, use the [helper-text slot](/components/text-field/code/#helper-text-slot).
 
 ```html preview
-<vwc-card
-	subtitle="Extra text below the card headline"
-	headline="Vivid Card Component"
-></vwc-card>
+<vwc-number-field placeholder="My Placeholder"></vwc-number-field>
 ```
 
-### Text
+### Placeholder Text
 
-Add a `text` attribute to add text to the card.
+The `placeholder` attribute provides an example of the type of input the user needs to enter.
 
 ```html preview
-<vwc-card
-	text="The card can contain multiple lines of text."
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
+<vwc-text-field
+	placeholder="name@domain.com"
+	label="Email address"
+	type="email"
+></vwc-text-field>
 ```
 
-## Icon
+<vwc-note connotation="warning" icon="warning-line" headline="Placeholder text should not be used as a label">
+	<p>Using <code>placeholder</code> text to label the Text Field harms accessibility and user experience. The <code>label</code> text is visually and programmatically associated with its corresponding form control.</p>
+</vwc-note>
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Card's headline.  
-To add custom icons or to postfix icons, use the [graphic slot](/components/card/code/#slots).
+
+## Value
+
+The `value` attribute can be used the set the default value for the Text Field input element.
 
 ```html preview
-<vwc-card
-	icon="chat-line"
-	headline="Vivid Card Component"
-	subtitle="Extra text below the card headline"
-></vwc-card>
+<vwc-text-field value="Joe" label="Username"></vwc-text-field>
 ```
 
-## Appearance
+## Validation Feedback
 
-The `appearance` attribute to change the card's appearance.
+### Error Text
+
+The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
 
 ```html preview
-<vwc-layout>
-	<vwc-card
-		appearance="elevated"
-		headline="Elevated"
-		subtitle="this is the card default appearance"
-	></vwc-card>
-	<vwc-card
-		appearance="outlined"
-		headline="Outlined"
-		subtitle="this appearance set a border to the card same as elevation='0' "
-	></vwc-card>
-	<vwc-card
-		appearance="ghost"
-		headline="Ghost"
-		subtitle="present the card template without background or shadow"
-	></vwc-card>
-</vwc-layout>
+<vwc-text-field
+	error-text="Username is already taken"
+	value="Joe"
+	label="Username"
+></vwc-text-field>
 ```
 
-## Elevation
+### Success Text
 
-Control the elevation depth by adding the `elevation` attribute.  
-The elevation is applied only with the default appearance (`appearance='elevated'`).
+The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
 
 ```html preview
-<vwc-layout>
-	<vwc-card
-		elevation="2"
-		headline="Elevation 2"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="4"
-		headline="Elevation 4 - default"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="8"
-		headline="Elevation 8"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="12"
-		headline="Elevation 12"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="16"
-		headline="Elevation 16"
-		class="card-elevated"
-	></vwc-card>
-	<vwc-card
-		elevation="24"
-		headline="Elevation 24"
-		class="card-elevated"
-	></vwc-card>
-</vwc-layout>
-
-<style>
-	.card-elevated {
-		margin: 16px;
-	}
-</style>
+<vwc-text-field
+	success-text="Username is available"
+	value="JoeB_89"
+	label="Username"
+></vwc-text-field>
 ```

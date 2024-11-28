@@ -148,7 +148,7 @@
 	},
 	{
 		"title": "Number Field",
-		"description": "Alerts display short-lived important information to the user, usually at the top or bottom of the screen.",
+		"description": "The number-field component allows users to enter a number in a text field. It follows the native number field specification.",
 		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
 		"hideGuidelines": "true",

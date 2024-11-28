@@ -15,17 +15,7 @@ Use the [`text-field`](/components/text-field/) component instead.
 
 ## Members
 
-### Label
 
-Add a `label` attribute to add label to the number field.  
-The label is important to help users understand what is needed. In case you choose not to add one, mind our [accessibility notice](#accessibility).
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-number-field label="My Label"></vwc-number-field>
-```
 
 ### Placeholder
 
