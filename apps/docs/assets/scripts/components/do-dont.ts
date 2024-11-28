@@ -56,7 +56,7 @@ import {
 			}
 		}
 	`,
-	template: html<DocsDo>`
+	template: html<DocsDoDont>`
 		<div class="description">
 			<h3>${(x) => x.headline}</h3>
 			<slot name="description"></slot>
@@ -64,7 +64,7 @@ import {
 		<div class="examples"><slot></slot></div>
 	`,
 })
-export class DocsDo extends FASTElement {
+export class DocsDoDont extends FASTElement {
 	@attr headline = '';
 	@attr({
 		mode: 'boolean',

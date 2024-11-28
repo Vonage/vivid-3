@@ -1,7 +1,12 @@
 @use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 .vvd-root {
 	color-scheme: var(#{constants.$vvd-color-scheme});
 	background-color: var(#{constants.$vvd-color-canvas});
 	color: var(#{constants.$vvd-color-canvas-text});
+}
+
+.vvd-scrollbar {
+	@include scrollbar.scrollbar;
 }
