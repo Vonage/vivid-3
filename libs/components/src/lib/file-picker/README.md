@@ -47,20 +47,6 @@ Add the `helper-text` to add some helper text below the file picker. If you need
 </vwc-file-picker>
 ```
 
-### Error text
-
-It is possible to force the file picker's error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-file-picker error-text="Please provide a valid file.">
-	Drag & Drop or click to upload
-</vwc-file-picker>
-```
-
 ### Max File Size
 
 Use the `max-file-size` attribute to define the maximum file size (in megabytes) for each file.
@@ -75,6 +61,28 @@ If the user tries to upload a file that exceeds the maximum file size, the file 
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
+
+#### File Too Big Error
+
+Use the `file-too-big-error` attribute provide a custom error message to override the default localized message. You can use the strings `{{filesize}}` and `{{maxFilesize}}` in the message to give more information.
+
+Note: localisation will need to be handled at the application level.
+
+{% raw %}
+
+```html preview 230px
+<vwc-file-picker
+	file-too-big-error="File too large ({{filesize}} MiB). The maximum file size is {{maxFilesize}} MiB."
+	helper-text="Max file size is 0.1MB"
+	max-file-size="0.1"
+>
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
+
+{% endraw %}
+
+- Type: `string`
 
 ### Max Files
 
@@ -97,6 +105,24 @@ If you set `max-files` to `1`, consider using the `single-file` mode.
 	<p>Don't use this for single file uploads. Use the <a href="#single-file"><code>single-file</code> attribute</a> instead.</p>
 </vwc-note>
 
+#### Max Files Exceeded Error
+
+Use the `max-files-exceeded-error` attribute to provide a custom error message to override the default localized message.
+
+Note: localisation will need to be handled at the application level.
+
+- Type: `string`
+
+```html preview 330px
+<vwc-file-picker
+	max-files-exceeded-error="Only 2 files allowed"
+	helper-text="Maximum of 2 files"
+	max-files="2"
+>
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
+
 ### Accept
 
 Use the `accept` attribute to define a comma separated list of allowed file extensions or MIME types.
@@ -112,10 +138,37 @@ Some examples of valid values are:
 If the user tries to upload a file that does not match the accepted files, the file picker displays an error message.
 
 ```html preview 230px
+<vwc-file-picker helper-text=".jpg, .jpeg types only" accept=".jpg, .jpeg">
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
+
+#### Invalid File Type Error
+
+Use the `invalid-file-type-error` attribute to provide a custom error message to override the default localized message.
+
+Note: localisation will need to be handled at the application level.
+
+```html preview 230px
 <vwc-file-picker
-	helper-text=".jpg, .jpeg, .png types only"
-	accept=".jpg, .jpeg, .png"
+	invalid-file-type-error="This file is not a .jpg or .jpeg"
+	helper-text=".jpg, .jpeg types only"
+	accept=".jpg, .jpeg"
 >
+	Drag & Drop or click to upload
+</vwc-file-picker>
+```
+
+### Error Text
+
+It is possible to force the file picker's error state by setting the `error-text` attribute to a custom error message. This is useful for any validation that is done on the application side.
+Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
+
+- Type: `string`
+- Default: `undefined`
+
+```html preview
+<vwc-file-picker error-text="Please provide a valid file.">
 	Drag & Drop or click to upload
 </vwc-file-picker>
 ```
