@@ -383,7 +383,7 @@ export class ListboxElement extends Listbox {
 			// @ts-expect-error fallthrough case
 			case keySpace: {
 				e.preventDefault();
-				if (this.typeAheadExpired) {
+				if (this.typeaheadExpired) {
 					this.toggleSelectedForAllCheckedOptions();
 					return;
 				}
@@ -495,7 +495,7 @@ export class ListboxElement extends Listbox {
 				this.checkActiveIndex();
 			}
 
-			this.typeAheadExpired = false;
+			this.typeaheadExpired = false;
 		}
 	}
 

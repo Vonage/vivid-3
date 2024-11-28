@@ -457,7 +457,7 @@ export class Select extends FormAssociatedSelect {
 		switch (key) {
 			case keySpace: {
 				e.preventDefault();
-				if (this.collapsible && this.typeAheadExpired) {
+				if (this.collapsible && this.typeaheadExpired) {
 					this.open = !this.open;
 				}
 				break;
