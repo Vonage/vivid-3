@@ -1,194 +1,105 @@
-# Tabs
+## Usage
 
-Represents a tabs custom element.
-The vwc-tabs accepts [vwc-tab](/components/tab/) and `vwc-tab-panel` elements as children. Read more about `tabs` [here](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/tabs';</script>
+import '@vonage/vivid/tabs';
+import '@vonage/vivid/tab';
+import '@vonage/vivid/tab-panel';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Gutters
+```js
+import { registerTabs, registerTab, registerTabPanel } from '@vonage/vivid';
 
-Use the `gutters` attribute to control the tabs panel padding.
+registerTabs('your-prefix');
+registerTab('your-prefix');
+registerTabPanel('your-prefix');
+```
 
-- Type: `'small'` | `'none'`
+```html preview
+<script type="module">
+	import { registerTabs, registerTab, registerTabPanel } from '@vonage/vivid';
+	registerTabs('your-prefix');
+	registerTab('your-prefix');
+	registerTabPanel('your-prefix');
+</script>
 
-- Default: `small`
+<your-prefix-tabs>
+	<your-prefix-tab label="Tab one"></your-prefix-tab>
+	<your-prefix-tab label="Tab two"></your-prefix-tab>
+	<your-prefix-tab label="Tab three"></your-prefix-tab>
+	<your-prefix-tab-panel>Tab Panel one</your-prefix-tab-panel>
+	<your-prefix-tab-panel>Tab Panel two</your-prefix-tab-panel>
+	<your-prefix-tab-panel>Tab Panel three</your-prefix-tab-panel>
+</your-prefix-tabs>
+```
 
-```html preview full
-<vwc-tabs gutters="none">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VTabs, VTab, VTabPanel } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VTabs>
+		<VTab label="Tab one"></VTab>
+		<VTab label="Tab two"></VTab>
+		<VTab label="Tab three"></VTab>
+		<VTabPanel>Tab Panel one</VTabPanel>
+		<VTabPanel>Tab Panel two</VTabPanel>
+		<VTabPanel>Tab Panel three</VTabPanel>
+	</VTabs>
+</template>
+```
+
+</vwc-tab-panel>
 </vwc-tabs>
-```
-
-### Orientation
-
-Add a `orientation` attribute to control the orientation.
-
-- Type: `'horizontal'`, `'vertical'`
-- Default: `'horizontal'`
-
-```html preview full
-<vwc-tabs orientation="vertical">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
-
-### Connotation
-
-- Type: `'accent' | 'cta'`
-- Default: `accent`
-
-Setting a connotation will only affect the active tab
-
-```html preview full
-<vwc-tabs connotation="cta">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
-
-### Activeid
-
-Add an `activeid` attribute of the active tab.
-
-- Type: `string`
-- Default: `''`
-
-```html preview full
-<vwc-tabs activeid="two">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
-
-### Panel Scroll
-
-Add `scrollable-panel` to allow scroll.  
-Add `block-size` to `vwc-tabs` to make it scroll.
-
-#### horizontal
-
-```html preview full
-<style>
-	.tabs {
-		block-size: 200px;
-	}
-</style>
-<vwc-tabs class="tabs" scrollable-panel>
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">
-		<div class="my-panel">
-			<ol>
-				<li>Stuffed artichokes</li>
-				<li>Bruschetta</li>
-				<li>Oven-baked polenta</li>
-				<li>Salami and Fig Crostini with Ricotta</li>
-				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
-				<li>Stuffed artichokes</li>
-				<li>Bruschetta</li>
-				<li>Oven-baked polenta</li>
-				<li>Salami and Fig Crostini with Ricotta</li>
-				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
-			</ol>
-		</div>
-	</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
-
-#### Vertical
-
-```html preview full
-<style>
-	.tabs {
-		block-size: 150px;
-	}
-</style>
-<vwc-tabs class="tabs" scrollable-panel orientation="vertical">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">
-		<div class="my-panel">
-			<ol>
-				<li>Stuffed artichokes</li>
-				<li>Bruschetta</li>
-				<li>Oven-baked polenta</li>
-				<li>Salami and Fig Crostini with Ricotta</li>
-				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
-				<li>Stuffed artichokes</li>
-				<li>Bruschetta</li>
-				<li>Oven-baked polenta</li>
-				<li>Salami and Fig Crostini with Ricotta</li>
-				<li>Rosemary-Potato Focaccia with Goat Cheese</li>
-			</ol>
-		</div>
-	</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
-
-### Tabs Layout
-
-Add `tabs-layout` attribute to control the tabs layout. When set to `stretch`, the tabs will stretch to fill the available space. It will have no effect when the tabs are in a vertical orientation.
-
-- Type: `'align-start' | 'stretch'`
-- Default: `align-start`
-
-```html preview full
-<vwc-tabs tabs-layout="stretch">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
-```
 
 ## Slots
 
-### Default
+### Icon Slot
 
-The default slot holds the [Tabs](/components/tab/) and Tab Panels of the component.
+The `icon` slot on the **Tab** component can be used to display a custom icon. If set, the `icon` attribute is ignored.
 
-Tabs and Tab Panels are associated with each other by the order in which they are placed in the DOM.
+```html preview
+<vwc-tabs>
+	<vwc-tab label="Tab one">
+		<vwc-icon
+			slot="icon"
+			name="check-circle-solid"
+			connotation="success"
+		></vwc-icon>
+	</vwc-tab>
+	<vwc-tab label="Tab two">
+		<vwc-icon
+			slot="icon"
+			name="close-circle-solid"
+			connotation="alert"
+		></vwc-icon>
+	</vwc-tab>
+	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
+</vwc-tabs>
+```
 
-### Action Items
+### Action Items Slot
 
-You can use the `action-items` slot to add action items at the end of the tabs bar.
+The `action-items` slot on the **Tabs** component can be used to add action items after the last Tab in the tabs bar.
+
+In the example below, a Button is provided that adds a new Tab when clicked.
 
 ```html preview full
 <vwc-tabs>
 	<vwc-tab label="Tab one"></vwc-tab>
 	<vwc-tab label="Tab two"></vwc-tab>
-	<vwc-tab-panel>Tab one content</vwc-tab-panel>
-	<vwc-tab-panel>Tab two content</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
 	<vwc-button
 		slot="action-items"
 		icon="plus-line"
@@ -212,87 +123,110 @@ You can use the `action-items` slot to add action items at the end of the tabs b
 
 ## CSS Parts
 
-### Tab-Panel
+### Tab Panel
 
-The tab panel part inside the tabs component.
+Use the CSS part `tab-panel` to provide custom styling to the Tab Panel components.
 
 ```html preview full
+<vwc-tabs class="tabs">
+	<vwc-tab label="Tab one"></vwc-tab>
+	<vwc-tab label="Tab two"></vwc-tab>
+	<vwc-tab label="Tab three"></vwc-tab>
+	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel three</vwc-tab-panel>
+</vwc-tabs>
+
 <style>
-	.panel::part(tab-panel) {
+	.tabs::part(tab-panel) {
 		background-color: var(--vvd-color-cta-50);
 	}
 </style>
-<vwc-tabs class="panel">
-	<vwc-tab label="Tab one" id="one"></vwc-tab>
-	<vwc-tab label="Tab two" id="two"></vwc-tab>
-	<vwc-tab label="Tab three" id="tree"></vwc-tab>
-	<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
-	<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
-	<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
-</vwc-tabs>
 ```
 
-## Events
+## API Reference
+
+### Tabs
+
+#### Properties
 
 <div class="table-wrapper">
 
-| Name     | Type                       | Bubbles | Composed | Description                                                                       |
-| -------- | -------------------------- | ------- | -------- | --------------------------------------------------------------------------------- |
-| `change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fires a custom 'change' event when a tab is clicked or during keyboard navigation |
+| Name                 | Type                               | Description                                                                            |
+| -------------------- | ---------------------------------- | -------------------------------------------------------------------------------------- |
+| **activeid**         | `string`                           | Match with an `id` set on a Tab to mark it as active on initial load                   |
+| **connotation**      | `accent` (default), `cta`          | Sets the connotation color of the active tab                                           |
+| **gutters**          | `none` (default), `small`          | Sets the spacing inside the Tab Panels                                                 |
+| **orientation**      | `horizontal` (default), `vertical` | Sets axis on which the tabs are aligned                                                |
+| **scrollable-panel** | `boolean`                          | Sets whether the Tab Panel will be scrollable (if content height exceeds `block-size`) |
 
 </div>
 
-## Use cases
+#### Slots
 
-### Removable tabs
+<div class="table-wrapper">
 
-```html preview 300px
-<vwc-tabs>
-	<vwc-tab label="Task" removable></vwc-tab>
-	<vwc-tab-panel>Task content</vwc-tab-panel>
-	<vwc-tab label="Event" removable></vwc-tab>
-	<vwc-tab-panel>Event content</vwc-tab-panel>
-	<vwc-menu
-		slot="action-items"
-		trigger="auto"
-		auto-dismiss
-		placement="bottom-end"
-	>
-		<vwc-button
-			slot="anchor"
-			icon="plus-line"
-			shape="pill"
-			size="condensed"
-		></vwc-button>
-		<vwc-menu-item text="New Task" onclick="addTab('Task')"></vwc-menu-item>
-		<vwc-menu-item text="New Event" onclick="addTab('Event')"></vwc-menu-item>
-	</vwc-menu>
-</vwc-tabs>
+| Name             | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| **default**      | For **Tab** and **Tab Panel** components               |
+| **action-items** | To add action items after the last Tab in the tabs bar |
 
-<script>
-	document.querySelector('vwc-tabs').addEventListener('close', (e) => {
-		const tab = e.srcElement;
-		const tabs = tab.parentElement;
-		const tabPanelId = tab.getAttribute('aria-controls');
-		const tabPanel = document.getElementById(tabPanelId);
-		if (tabs.querySelectorAll('vwc-tab').length === 1) {
-			tabs.remove();
-			return;
-		}
-		if (tabPanel) {
-			tabPanel.remove();
-			e.srcElement.remove();
-		}
-	});
+</div>
 
-	function addTab(name) {
-		const tab = document.createElement('vwc-tab');
-		tab.label = name;
-		tab.removable = true;
-		document.querySelector('vwc-tabs').appendChild(tab);
-		const tabPanel = document.createElement('vwc-tab-panel');
-		tabPanel.textContent = `${name} content`;
-		document.querySelector('vwc-tabs').appendChild(tabPanel);
-	}
-</script>
-```
+#### Events
+
+<div class="table-wrapper">
+
+| Name     | Type                       | Bubbles | Composed | Description                                               |
+| -------- | -------------------------- | ------- | -------- | --------------------------------------------------------- |
+| `change` | `CustomEvent<HTMLElement>` | Yes     | Yes      | Fired when a tab is clicked or during keyboard navigation |
+
+</div>
+
+### Tab
+
+#### Properties
+
+<div class="table-wrapper">
+
+| Name              | Type                         | Description                          |
+| ----------------- | ---------------------------- | ------------------------------------ |
+| **disabled**      | `boolean`                    | Sets the disabled state              |
+| **icon-trailing** | `boolean`                    | Places the icon after the label text |
+| **label**         | `string`                     | Sets the label text                  |
+| **removable**     | `boolean`                    | Adds a close button                  |
+| **shape**         | `rounded` (default), `sharp` | Shape of the background when hovered |
+
+</div>
+
+#### Slots
+
+<div class="table-wrapper">
+
+| Name     | Description      |
+| -------- | ---------------- |
+| **icon** | For custom icons |
+
+</div>
+
+#### Events
+
+<div class="table-wrapper">
+
+| Name    | Type          | Bubbles | Composed | Description                                                                                    |
+| ------- | ------------- | ------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `close` | `CustomEvent` | Yes     | Yes      | When `removable` is set, fired when the close button is clicked or the `DELETE` key is pressed |
+
+</div>
+
+### Tab Panel
+
+#### Slots
+
+<div class="table-wrapper">
+
+| Name        | Description           |
+| ----------- | --------------------- |
+| **default** | For Tab Panel content |
+
+</div>
