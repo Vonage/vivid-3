@@ -453,6 +453,15 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 	],
 	TrappedFocus: [],
 	DelegatesARIATextbox: [],
+	DelegatesARIASelect: [
+		{
+			name: 'aria-controls',
+			description:
+				'See https://www.w3.org/TR/wai-aria-1.2/#combobox for more information.',
+			type: { text: 'string' },
+			fieldName: 'ariaControls',
+		},
+	],
 	ARIAGlobalStatesAndProperties: [],
 };
 

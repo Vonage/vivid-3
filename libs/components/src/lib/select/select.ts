@@ -6,6 +6,7 @@ import {
 	volatile,
 } from '@microsoft/fast-element';
 import {
+	inRange,
 	keyArrowDown,
 	keyArrowUp,
 	keyEnd,
@@ -39,21 +40,6 @@ export type SelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 export type SelectSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 /**
- * Positioning directions for the listbox when a select is open.
- * @public
- */
-export const SelectPosition = {
-	above: 'above',
-	below: 'below',
-} as const;
-
-/**
- * Types for positioning the select element listbox when open
- * @public
- */
-export type SelectPosition = typeof SelectPosition[keyof typeof SelectPosition];
-
-/**
  * @public
  * @component select
  * @slot - Default slot.
@@ -67,6 +53,314 @@ export type SelectPosition = typeof SelectPosition[keyof typeof SelectPosition];
 @errorText
 @formElements
 export class Select extends FormAssociatedSelect {
+	/**
+	 * The index of the most recently checked option.
+	 *
+	 * @internal
+	 * @remarks
+	 * Multiple-selection mode only.
+	 */
+	@observable
+	protected activeIndex = -1;
+
+	/**
+	 * Returns the last checked option.
+	 *
+	 * @internal
+	 */
+	get activeOption(): ListboxOption | null {
+		return this.options[this.activeIndex];
+	}
+
+	/**
+	 * Returns the list of checked options.
+	 *
+	 * @internal
+	 */
+	protected get checkedOptions(): ListboxOption[] {
+		return this.options.filter((o) => o.checked);
+	}
+
+	/**
+	 * Returns the index of the first selected option.
+	 *
+	 * @internal
+	 */
+	get firstSelectedOptionIndex(): number {
+		return this.options.indexOf(this.firstSelectedOption);
+	}
+
+	/**
+	 * Indicates if the listbox is in multi-selection mode.
+	 *
+	 * @remarks
+	 * HTML Attribute: `multiple`
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' })
+	// @ts-expect-error Type is incorrectly non-optional
+	multiple: boolean;
+
+	/**
+	 * The start index when checking a range of options.
+	 *
+	 * @internal
+	 */
+	protected rangeStartIndex = -1;
+
+	/**
+	 * Updates the `ariaActiveDescendant` property when the active index changes.
+	 *
+	 * @internal
+	 */
+	protected activeIndexChanged(_: number | undefined, next: number): void {
+		this.ariaActiveDescendant = this.options[next]?.id ?? '';
+		this.focusAndScrollOptionIntoView();
+	}
+
+	/**
+	 * Toggles the checked state for the currently active option.
+	 *
+	 * @remarks
+	 * Multiple-selection mode only.
+	 *
+	 * @internal
+	 */
+	protected checkActiveIndex() {
+		const activeItem = this.activeOption;
+		if (activeItem) {
+			activeItem.checked = true;
+		}
+	}
+
+	/**
+	 * Sets the active index to the first option and marks it as checked.
+	 *
+	 * @remarks
+	 * Multi-selection mode only.
+	 *
+	 * @param preserveChecked - mark all options unchecked before changing the active index
+	 *
+	 * @internal
+	 */
+	protected checkFirstOption(preserveChecked: boolean) {
+		if (preserveChecked) {
+			if (this.rangeStartIndex === -1) {
+				this.rangeStartIndex = this.activeIndex + 1;
+			}
+
+			this.options.forEach((o, i) => {
+				o.checked = inRange(i, this.rangeStartIndex);
+			});
+		} else {
+			this.uncheckAllOptions();
+		}
+
+		this.activeIndex = 0;
+		this.checkActiveIndex();
+	}
+
+	/**
+	 * Decrements the active index and sets the matching option as checked.
+	 *
+	 * @remarks
+	 * Multi-selection mode only.
+	 *
+	 * @param preserveChecked - mark all options unchecked before changing the active index
+	 *
+	 * @internal
+	 */
+	protected checkLastOption(preserveChecked: boolean) {
+		if (preserveChecked) {
+			if (this.rangeStartIndex === -1) {
+				this.rangeStartIndex = this.activeIndex;
+			}
+
+			this.options.forEach((o, i) => {
+				o.checked = inRange(i, this.rangeStartIndex, this.options.length);
+			});
+		} else {
+			this.uncheckAllOptions();
+		}
+
+		this.activeIndex = this.options.length - 1;
+		this.checkActiveIndex();
+	}
+
+	/**
+	 * Increments the active index and marks the matching option as checked.
+	 *
+	 * @remarks
+	 * Multiple-selection mode only.
+	 *
+	 * @param preserveChecked - mark all options unchecked before changing the active index
+	 *
+	 * @internal
+	 */
+	protected checkNextOption(preserveChecked: boolean) {
+		if (preserveChecked) {
+			if (this.rangeStartIndex === -1) {
+				this.rangeStartIndex = this.activeIndex;
+			}
+
+			this.options.forEach((o, i) => {
+				o.checked = inRange(i, this.rangeStartIndex, this.activeIndex + 1);
+			});
+		} else {
+			this.uncheckAllOptions();
+		}
+
+		this.activeIndex += this.activeIndex < this.options.length - 1 ? 1 : 0;
+		this.checkActiveIndex();
+	}
+
+	/**
+	 * Decrements the active index and marks the matching option as checked.
+	 *
+	 * @remarks
+	 * Multiple-selection mode only.
+	 *
+	 * @param preserveChecked - mark all options unchecked before changing the active index
+	 *
+	 * @internal
+	 */
+	protected checkPreviousOption(preserveChecked: boolean) {
+		if (preserveChecked) {
+			if (this.rangeStartIndex === -1) {
+				this.rangeStartIndex = this.activeIndex;
+			}
+
+			if (this.checkedOptions.length === 1) {
+				this.rangeStartIndex += 1;
+			}
+
+			this.options.forEach((o, i) => {
+				o.checked = inRange(i, this.activeIndex, this.rangeStartIndex);
+			});
+		} else {
+			this.uncheckAllOptions();
+		}
+
+		this.activeIndex -= this.activeIndex > 0 ? 1 : 0;
+		this.checkActiveIndex();
+	}
+
+	/**
+	 * @internal
+	 */
+	protected override focusAndScrollOptionIntoView() {
+		super.focusAndScrollOptionIntoView(this.activeOption);
+	}
+
+	/**
+	 * In multiple-selection mode:
+	 * If any options are selected, the first selected option is checked when
+	 * the listbox receives focus. If no options are selected, the first
+	 * selectable option is checked.
+	 *
+	 * @internal
+	 */
+	override focusinHandler(e: FocusEvent): boolean | void {
+		if (!this.multiple) {
+			return super.focusinHandler(e);
+		}
+
+		if (!this.shouldSkipFocus && e.target === e.currentTarget) {
+			this.uncheckAllOptions();
+
+			if (this.activeIndex === -1) {
+				this.activeIndex =
+					this.firstSelectedOptionIndex !== -1
+						? this.firstSelectedOptionIndex
+						: 0;
+			}
+
+			this.checkActiveIndex();
+			this.setSelectedOptions();
+			this.focusAndScrollOptionIntoView();
+		}
+
+		this.shouldSkipFocus = false;
+	}
+
+	/**
+	 * Sets an option as selected and gives it focus.
+	 *
+	 * @public
+	 */
+	protected override setSelectedOptions() {
+		if (!this.multiple) {
+			super.setSelectedOptions();
+			return;
+		}
+
+		if (this.$fastController.isConnected && this.options) {
+			this.selectedOptions = this.options.filter((o) => o.selected);
+			this.focusAndScrollOptionIntoView();
+		}
+	}
+
+	/**
+	 * Toggles the selected state of the provided options. If any provided items
+	 * are in an unselected state, all items are set to selected. If every
+	 * provided item is selected, they are all unselected.
+	 *
+	 * @internal
+	 */
+	toggleSelectedForAllCheckedOptions() {
+		const enabledCheckedOptions = this.checkedOptions.filter(
+			(o) => !o.disabled
+		);
+		const force = !enabledCheckedOptions.every((o) => o.selected);
+		enabledCheckedOptions.forEach((o) => (o.selected = force));
+		this.selectedIndex = this.options.indexOf(
+			enabledCheckedOptions[enabledCheckedOptions.length - 1]
+		);
+
+		this.setSelectedOptions();
+		this.updateValue(true);
+	}
+
+	/**
+	 * @internal
+	 */
+	override typeaheadBufferChanged(prev: string, next: string): void {
+		if (!this.multiple) {
+			super.typeaheadBufferChanged(prev, next);
+			return;
+		}
+
+		if (this.$fastController.isConnected) {
+			const typeaheadMatches = this.getTypeaheadMatches();
+			const activeIndex = this.options.indexOf(typeaheadMatches[0]);
+			if (activeIndex > -1) {
+				this.activeIndex = activeIndex;
+				this.uncheckAllOptions();
+				this.checkActiveIndex();
+			}
+
+			this.typeaheadExpired = false;
+		}
+	}
+
+	/**
+	 * Unchecks all options.
+	 *
+	 * @remarks
+	 * Multiple-selection mode only.
+	 *
+	 * @param preserveChecked - reset the rangeStartIndex
+	 *
+	 * @internal
+	 */
+	protected uncheckAllOptions(preserveChecked = false): void {
+		this.options.forEach((o) => (o.checked = false));
+		if (!preserveChecked) {
+			this.rangeStartIndex = -1;
+		}
+	}
+
 	/**
 	 * The open attribute.
 	 *
@@ -82,7 +376,7 @@ export class Select extends FormAssociatedSelect {
 	 *
 	 * @internal
 	 */
-	openChanged() {
+	openChanged(prev: boolean, next: boolean) {
 		if (!this.collapsible) {
 			return;
 		}
@@ -91,7 +385,6 @@ export class Select extends FormAssociatedSelect {
 			this.ariaControls = this.listboxId;
 			this.ariaExpanded = 'true';
 
-			this.setPositioning();
 			this.focusAndScrollOptionIntoView();
 			this.indexWhenOpened = this.selectedIndex;
 
@@ -99,6 +392,13 @@ export class Select extends FormAssociatedSelect {
 			DOM.queueUpdate(() => this.focus());
 
 			return;
+		}
+
+		const didClose = prev === true && next === false;
+		const selectionChangedWhileOpen =
+			this.indexWhenOpened !== this.selectedIndex;
+		if (didClose && selectionChangedWhileOpen) {
+			this.updateValue(true);
 		}
 
 		this.ariaControls = '';
@@ -120,13 +420,13 @@ export class Select extends FormAssociatedSelect {
 	private _value!: string;
 
 	/**
-	 * The component is collapsible when in single-selection mode with no size attribute.
+	 * The component is collapsible when in single-selection mode.
 	 *
 	 * @internal
 	 */
 	@volatile
 	get collapsible(): boolean {
-		return !(this.multiple || typeof this.size === 'number');
+		return !this.multiple;
 	}
 
 	/**
@@ -150,7 +450,7 @@ export class Select extends FormAssociatedSelect {
 	override set value(next: string) {
 		const prev = `${this._value}`;
 
-		if (this._options?.length) {
+		if (this._options.length) {
 			const selectedIndex = this._options.findIndex((el) => el.value === next);
 			const prevSelectedValue =
 				this._options[this.selectedIndex]?.value ?? null;
@@ -207,36 +507,6 @@ export class Select extends FormAssociatedSelect {
 	}
 
 	/**
-	 * Reflects the placement for the listbox when the select is open.
-	 *
-	 * @public
-	 */
-	@attr({ attribute: 'position' })
-	positionAttribute?: SelectPosition;
-
-	/**
-	 * Indicates the initial state of the position attribute.
-	 *
-	 * @internal
-	 */
-	private forcedPosition = false;
-
-	/**
-	 * Holds the current state for the calculated position of the listbox.
-	 *
-	 * @public
-	 */
-	@observable
-	position?: SelectPosition;
-	protected positionChanged(
-		_: SelectPosition | undefined,
-		next: SelectPosition | undefined
-	): void {
-		this.positionAttribute = next;
-		this.setPositioning();
-	}
-
-	/**
 	 * Reference to the internal listbox element.
 	 *
 	 * @internal
@@ -249,32 +519,6 @@ export class Select extends FormAssociatedSelect {
 	 * @internal
 	 */
 	listboxId = uniqueId('listbox-');
-
-	/**
-	 * Calculate and apply listbox positioning based on available viewport space.
-	 *
-	 * @public
-	 */
-	setPositioning() {
-		const currentBox = this.getBoundingClientRect();
-		const viewportHeight = window.innerHeight;
-		const availableBottom = viewportHeight - currentBox.bottom;
-
-		this.position = this.forcedPosition
-			? this.positionAttribute
-			: currentBox.top > availableBottom
-			? SelectPosition.above
-			: SelectPosition.below;
-
-		this.positionAttribute = this.forcedPosition
-			? this.positionAttribute
-			: this.position;
-
-		this.maxHeight =
-			this.position === SelectPosition.above
-				? ~~currentBox.top
-				: ~~availableBottom;
-	}
 
 	/**
 	 * The max height for the listbox when opened.
@@ -311,22 +555,25 @@ export class Select extends FormAssociatedSelect {
 			return;
 		}
 
-		if (this.open) {
-			const captured = (e.target as HTMLElement).closest(
-				`option,[role=option]`
-			) as ListboxOption;
+		const clickedOption = (e.target as HTMLElement).closest(
+			`option,[role=option]`
+		) as ListboxOption;
 
-			if (captured && captured.disabled) {
-				return;
-			}
+		if (clickedOption && clickedOption.disabled) {
+			return;
 		}
 
-		super.clickHandler(e);
+		if (this.multiple) {
+			this.uncheckAllOptions();
+			this.activeIndex = this.options.indexOf(clickedOption);
+			this.checkActiveIndex();
+			this.toggleSelectedForAllCheckedOptions();
+		} else {
+			super.clickHandler(e);
+		}
 
-		this.open = this.collapsible && !this.open;
-
-		if (!this.open && this.indexWhenOpened !== this.selectedIndex) {
-			this.updateValue(true);
+		if (this.collapsible) {
+			this.open = !this.open;
 		}
 
 		return true;
@@ -338,8 +585,10 @@ export class Select extends FormAssociatedSelect {
 	 * @param e - The focus event
 	 * @internal
 	 */
-	override focusoutHandler(e: FocusEvent): boolean | void {
-		super.focusoutHandler(e);
+	focusoutHandler(e: FocusEvent): boolean | void {
+		if (this.multiple) {
+			this.uncheckAllOptions();
+		}
 
 		if (!this.open) {
 			return true;
@@ -351,7 +600,7 @@ export class Select extends FormAssociatedSelect {
 			return;
 		}
 
-		if (!this.options?.includes(focusTarget as ListboxOption)) {
+		if (!this.options.includes(focusTarget as ListboxOption)) {
 			this.open = false;
 			if (this.indexWhenOpened !== this.selectedIndex) {
 				this.updateValue(true);
@@ -375,28 +624,27 @@ export class Select extends FormAssociatedSelect {
 	}
 
 	/**
-	 * Prevents focus when size is set and a scrollbar is clicked.
+	 * Prevents focus when a scrollbar is clicked.
 	 *
 	 * @param e - the mouse event object
 	 *
 	 * @internal
 	 */
 	override mousedownHandler(e: MouseEvent): boolean | void {
-		if (e.offsetX >= 0 && e.offsetX <= this.listbox?.scrollWidth) {
+		if (e.offsetX >= 0 && e.offsetX <= this.listbox.scrollWidth) {
 			return super.mousedownHandler(e);
 		}
 
 		return this.collapsible;
 	}
 
-	/**
-	 * Sets the multiple property on the proxy element.
-	 *
-	 * @param prev - the previous multiple value
-	 * @param next - the current multiple value
-	 */
 	override multipleChanged(prev: boolean | undefined, next: boolean) {
 		super.multipleChanged(prev, next);
+		this.options.forEach((o) => {
+			o.checked = next ? false : undefined;
+		});
+
+		this.setSelectedOptions();
 
 		if (this.proxy) {
 			this.proxy.multiple = next;
@@ -416,8 +664,8 @@ export class Select extends FormAssociatedSelect {
 		next: ListboxOption[]
 	) {
 		super.selectedOptionsChanged(prev, next);
-		this.options?.forEach((o, i) => {
-			const proxyOption = this.proxy?.options.item(i);
+		this.options.forEach((o, i) => {
+			const proxyOption = this.proxy.options.item(i);
 			if (proxyOption) {
 				proxyOption.selected = o.selected;
 			}
@@ -445,14 +693,87 @@ export class Select extends FormAssociatedSelect {
 	}
 
 	/**
+	 * Handles keydown actions when the select is in multiple selection mode.
+	 *
+	 * @internal
+	 */
+	multipleKeydownHandler(e: KeyboardEvent) {
+		if (this.disabled) {
+			return;
+		}
+
+		const { key, shiftKey } = e;
+
+		this.shouldSkipFocus = false;
+
+		switch (key) {
+			case keyHome: {
+				this.checkFirstOption(shiftKey);
+				return;
+			}
+
+			case keyArrowDown: {
+				this.checkNextOption(shiftKey);
+				return;
+			}
+
+			case keyArrowUp: {
+				this.checkPreviousOption(shiftKey);
+				return;
+			}
+
+			case keyEnd: {
+				this.checkLastOption(shiftKey);
+				return;
+			}
+
+			case keyTab: {
+				this.focusAndScrollOptionIntoView();
+				return;
+			}
+
+			case keyEscape: {
+				this.uncheckAllOptions();
+				this.checkActiveIndex();
+				return;
+			}
+
+			// @ts-expect-error fallthrough case
+			case keySpace: {
+				e.preventDefault();
+				if (this.typeaheadExpired) {
+					this.toggleSelectedForAllCheckedOptions();
+					return;
+				}
+			}
+
+			// fallthrough:
+			default: {
+				if (key.length === 1) {
+					// Send key to Typeahead handler
+					this.handleTypeAhead(`${key}`);
+				}
+				return;
+			}
+		}
+	}
+
+	/**
 	 * Handle keyboard interaction for the select.
 	 *
 	 * @param e - the keyboard event
 	 * @internal
 	 */
 	override keydownHandler(e: KeyboardEvent): boolean | void {
-		super.keydownHandler(e);
-		const key = e.key || e.key.charCodeAt(0);
+		const selectedIndexBefore = this.selectedIndex;
+
+		if (this.multiple) {
+			this.multipleKeydownHandler(e);
+		} else {
+			super.keydownHandler(e);
+		}
+
+		const key = e.key;
 
 		switch (key) {
 			case keySpace: {
@@ -493,40 +814,30 @@ export class Select extends FormAssociatedSelect {
 			}
 		}
 
-		if (!this.open && this.indexWhenOpened !== this.selectedIndex) {
+		if (
+			this.collapsible &&
+			!this.open &&
+			this.selectedIndex !== selectedIndexBefore
+		) {
+			// Selecting an option when closed should update the value immediately
 			this.updateValue(true);
-			this.indexWhenOpened = this.selectedIndex;
 		}
 
-		return !(key === keyArrowDown || key === keyArrowUp);
+		return !(e.key === keyArrowDown || e.key === keyArrowUp);
 	}
 
 	override connectedCallback() {
 		super.connectedCallback();
-		this.forcedPosition = !!this.positionAttribute;
 
+		this.addEventListener('focusout', this.focusoutHandler);
 		this.addEventListener('contentchange', this.updateDisplayValue);
 	}
 
 	override disconnectedCallback() {
+		this.removeEventListener('focusout', this.focusoutHandler);
 		this.removeEventListener('contentchange', this.updateDisplayValue);
+
 		super.disconnectedCallback();
-	}
-
-	/**
-	 * Updates the proxy's size property when the size attribute changes.
-	 *
-	 * @param prev - the previous size
-	 * @param next - the current size
-	 *
-	 * @internal
-	 */
-	protected override sizeChanged(prev: number | undefined, next: number) {
-		super.sizeChanged(prev, next);
-
-		if (this.proxy) {
-			this.proxy.size = next;
-		}
 	}
 
 	/**

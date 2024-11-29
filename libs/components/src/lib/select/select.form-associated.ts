@@ -1,7 +1,7 @@
 import { FormAssociated } from '@microsoft/fast-foundation';
-import { ListboxElement } from '../../shared/foundation/listbox/listbox.element';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 
-class _Select extends ListboxElement {}
+class _Select extends Listbox {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface _Select extends FormAssociated {}
 

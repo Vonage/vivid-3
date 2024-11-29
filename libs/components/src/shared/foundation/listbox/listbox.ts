@@ -50,7 +50,7 @@ export abstract class Listbox extends FoundationElement {
 	 * @public
 	 */
 	get length(): number {
-		return this.options?.length ?? 0;
+		return this.options.length;
 	}
 
 	/**
@@ -225,11 +225,8 @@ export abstract class Listbox extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	protected getSelectableIndex(
-		prev: number = this.selectedIndex,
-		next: number
-	) {
-		const direction = prev > next ? -1 : prev < next ? 1 : 0;
+	protected getSelectableIndex(prev: number, next: number) {
+		const direction = prev > next ? -1 : 1;
 		const potentialDirection = prev + direction;
 
 		let nextSelectableOption: ListboxOption | null = null;
@@ -304,10 +301,6 @@ export abstract class Listbox extends FoundationElement {
 			() => (this.typeaheadExpired = true),
 			Listbox.TYPE_AHEAD_TIMEOUT_MS
 		);
-
-		if (key.length > 1) {
-			return;
-		}
 
 		this.typeaheadBuffer = `${
 			this.typeaheadExpired ? '' : this.typeaheadBuffer
@@ -430,9 +423,6 @@ export abstract class Listbox extends FoundationElement {
 			const selectableIndex = this.getSelectableIndex(prev, next);
 			const newNext = selectableIndex > -1 ? selectableIndex : prev;
 			this.selectedIndex = newNext;
-			if (next === newNext) {
-				this.selectedIndexChanged(next, newNext);
-			}
 			return;
 		}
 
@@ -449,7 +439,7 @@ export abstract class Listbox extends FoundationElement {
 		next: ListboxOption[]
 	): void {
 		const filteredNext = next.filter(Listbox.slottedOptionFilter);
-		this.options?.forEach((o) => {
+		this.options.forEach((o) => {
 			const notifier = Observable.getNotifier(o);
 			notifier.unsubscribe(this, 'selected');
 			o.selected = filteredNext.includes(o);
@@ -464,7 +454,7 @@ export abstract class Listbox extends FoundationElement {
 	 */
 	selectFirstOption(): void {
 		if (!this.disabled) {
-			this.selectedIndex = this.options?.findIndex((o) => !o.disabled) ?? -1;
+			this.selectedIndex = this.options.findIndex((o) => !o.disabled);
 		}
 	}
 
@@ -507,8 +497,7 @@ export abstract class Listbox extends FoundationElement {
 	 * @internal
 	 */
 	protected setDefaultSelectedOption() {
-		this.selectedIndex =
-			this.options?.findIndex((el) => el.defaultSelected) ?? -1;
+		this.selectedIndex = this.options.findIndex((el) => el.defaultSelected);
 	}
 
 	/**
@@ -517,7 +506,7 @@ export abstract class Listbox extends FoundationElement {
 	 * @public
 	 */
 	protected setSelectedOptions() {
-		if (this.options?.length) {
+		if (this.options.length) {
 			this.selectedOptions = [this.options[this.selectedIndex]];
 			this.ariaActiveDescendant = this.firstSelectedOption?.id ?? '';
 			this.focusAndScrollOptionIntoView();
