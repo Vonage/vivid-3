@@ -140,6 +140,49 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	@attr size?: FilePickerSize;
 
+	/**
+	 * Overrides the localized error message for invalid file type
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: invalid-file-type-error
+	 */
+	@attr({ attribute: 'invalid-file-type-error' }) invalidFileTypeError?: string;
+	invalidFileTypeErrorChanged(_oldValue: string, newValue: string): void {
+		if (this.#dropzone)
+			this.#dropzone.options.dictInvalidFileType =
+				newValue || this.locale.filePicker.invalidFileTypeError;
+	}
+
+	/**
+	 * Overrides the localized error message for max file exceed
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: max-files-exceeded-error
+	 */
+	@attr({ attribute: 'max-files-exceeded-error' })
+	maxFilesExceededError?: string;
+	maxFilesExceededErrorChanged(_oldValue: string, newValue: string): void {
+		if (this.#dropzone)
+			this.#dropzone.options.dictMaxFilesExceeded =
+				newValue || this.locale.filePicker.maxFilesExceededError;
+	}
+
+	/**
+	 * Overrides the localized error message for file too big
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: file-too-big-error
+	 */
+	@attr({ attribute: 'file-too-big-error' }) fileTooBigError?: string;
+	fileTooBigErrorChanged(_oldValue: string, newValue: string): void {
+		if (this.#dropzone)
+			this.#dropzone.options.dictFileTooBig =
+				newValue || this.locale.filePicker.fileTooBigError;
+	}
+
 	override nameChanged(previous: string, next: string) {
 		super.nameChanged!(previous, next);
 		this.#updateFormValue();
@@ -244,9 +287,14 @@ export class FilePicker extends FormAssociatedFilePicker {
 			previewsContainer: previewList,
 			createImageThumbnails: false,
 			previewTemplate: generateFilePreviewTemplate(this.buttonTag, this.locale),
-			dictInvalidFileType: this.locale.filePicker.invalidFileTypeError,
-			dictMaxFilesExceeded: this.locale.filePicker.maxFilesExceededError,
-			dictFileTooBig: this.locale.filePicker.fileTooBigError,
+			dictInvalidFileType:
+				this.invalidFileTypeError ||
+				this.locale.filePicker.invalidFileTypeError,
+			dictMaxFilesExceeded:
+				this.maxFilesExceededError ||
+				this.locale.filePicker.maxFilesExceededError,
+			dictFileTooBig:
+				this.fileTooBigError || this.locale.filePicker.fileTooBigError,
 			error: this.#localizeErrorMessage,
 		});
 
