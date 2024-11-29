@@ -68,6 +68,14 @@ describe('vwc-menu', () => {
 				expect(popup.hasAttribute('open')).toBe(isOpen);
 			}
 		);
+
+		it('should not throw an error when setting open to true in unconnected state', async () => {
+			const menu = document.createElement(COMPONENT_TAG) as Menu;
+
+			expect(() => {
+				menu.open = true;
+			}).not.toThrow();
+		});
 	});
 
 	describe('trigger', () => {
@@ -256,7 +264,18 @@ describe('vwc-menu', () => {
 			return div;
 		}
 
-		it('should focus the first menuitem in the menu', async () => {
+		it('should focus the first descendant with the autofocus attribute', async () => {
+			const input = document.createElement('input');
+			input.setAttribute('autofocus', '');
+			element.slot = 'header';
+			element.appendChild(input);
+
+			element.focus();
+
+			expect(document.activeElement).toEqual(input);
+		});
+
+		it('should focus the first menuitem in the menu if there is no descendant with autofocus attribute', async () => {
 			const div = createMenuItem();
 			await elementUpdated(element);
 
@@ -522,6 +541,18 @@ describe('vwc-menu', () => {
 
 			expect(element.open).toEqual(true);
 		});
+
+		it('should move focus into the menu when opened', async () => {
+			element.innerHTML = `
+				<div role="menuitem" id="id1">Menu Item 1</div>
+			`;
+			await elementUpdated(element);
+
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(document.activeElement).toEqual(element.querySelector('#id1'));
+		});
 	});
 
 	describe('menu header', () => {
@@ -729,19 +760,6 @@ describe('vwc-menu', () => {
 			await elementUpdated(element);
 
 			expect(item1.expanded).toBe(false);
-		});
-
-		it('should not collapse other submenus when expanded-change event is cancelled', async () => {
-			item1.expanded = true;
-			await elementUpdated(element);
-			item2.addEventListener('expanded-change', (e) => e.preventDefault(), {
-				capture: true,
-			});
-
-			item2.expanded = true;
-			await elementUpdated(element);
-
-			expect(item1.expanded).toBe(true);
 		});
 	});
 

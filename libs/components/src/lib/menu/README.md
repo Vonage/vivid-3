@@ -332,10 +332,10 @@ Use the `--menu-block-size` variable to set the menu's block size.
 
 <div class="table-wrapper">
 
-| Name                   | Returns | Description                         |
-| ---------------------- | ------- | ----------------------------------- |
-| `focus`                | `void`  | Focuses the first item in the menu. |
-| `collapseExpandedItem` | `void`  | Collapses any expanded menu items.  |
+| Name                   | Returns | Description                                                                                                                                        |
+| ---------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `focus`                | `void`  | Moves focus into the Menu. If there is a child with the `autofocus` attribute, it will be focused. Otherwise, the first Menu Item will be focused. |
+| `collapseExpandedItem` | `void`  | Collapses any expanded Menu Items.                                                                                                                 |
 
 </div>
 
@@ -371,6 +371,10 @@ When the menu has focus:
 - `End` - Moves focus to the last menu item.
 - `Escape` - Closes the menu.
 
+## Focus Management
+
+When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
+
 ## Use Cases
 
 ### Dropdown menu with checkbox
@@ -387,6 +391,7 @@ When the menu has focus:
 		slot="header"
 		placeholder="Search"
 		icon="search"
+		autofocus
 	></vwc-text-field>
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
 	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>

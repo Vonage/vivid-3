@@ -26,8 +26,13 @@
 	},
 	{
 		"title": "Alert",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/alert/README.md"
+		"description": "Alerts display short-lived important information to the user, usually at the top or bottom of the screen.",
+		"variations": "./libs/components/src/lib/alert/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/alert/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/alert/README.md",
+		"accessibility": "./libs/components/src/lib/alert/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/alert/USE-CASES.md"
 	},
 	{
 		"title": "Breadcrumb",

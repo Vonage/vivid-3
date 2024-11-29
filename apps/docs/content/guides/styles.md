@@ -73,6 +73,10 @@ The tokens will be scoped to the `vvd-root` class selector.
 
 The core theme styles will apply the appropriate `color`, `background-color` and `color-scheme` for the chosen theme to the `vvd-root` class selector.
 
+#### Scrollbar
+
+Vivid component has a custom scrollbar. It can be added to the entire app/page by adding the class `vvd-scrollbar` to `:root.`
+
 ### Core Typography
 
 **Stylesheet:**

@@ -224,6 +224,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 		<div style="margin: 5px;">
 		<vwc-button dropdown-indicator icon="user-line"  appearance="filled" label="align-start" size="normal" style="width: 280px;"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line"  appearance="filled" label="Example of SuperLongButtonTitle" size="normal" style="width: 280px;"></vwc-button>
 		<vwc-button dropdown-indicator icon="user-line"  appearance="filled" label="keep align-center" size="normal" style="width: 280px; --button-content-alignment: center;"></vwc-button>
 	</div>
 	</div>
