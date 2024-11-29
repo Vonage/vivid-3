@@ -177,17 +177,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					onclick="addTab()"
 				></vwc-button>
 			</vwc-tabs>
-
-			<script>
-				function addTab() {
-					const tab = document.createElement('vwc-tab');
-					tab.label = 'New tab';
-					document.querySelector('vwc-tabs').appendChild(tab);
-					const tabPanel = document.createElement('vwc-tab-panel');
-					tabPanel.textContent = 'New tab content';
-					document.querySelector('vwc-tabs').appendChild(tabPanel);
-				}
-			</script>
 		</div>
 		<div style="margin: 5px;">
 			<style>
@@ -202,6 +191,29 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
 				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
 				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px">
+			<vwc-tabs>
+				<vwc-tab label="Task" removable></vwc-tab>
+				<vwc-tab-panel>Task content</vwc-tab-panel>
+				<vwc-tab label="Event" removable></vwc-tab>
+				<vwc-tab-panel>Event content</vwc-tab-panel>
+				<vwc-menu
+					slot="action-items"
+					trigger="auto"
+					auto-dismiss
+					placement="bottom-end"
+				>
+					<vwc-button
+						slot="anchor"
+						icon="plus-line"
+						shape="pill"
+						size="condensed"
+					></vwc-button>
+					<vwc-menu-item text="New Task" onclick="addTab('Task')"></vwc-menu-item>
+					<vwc-menu-item text="New Event" onclick="addTab('Event')"></vwc-menu-item>
+				</vwc-menu>
 			</vwc-tabs>
 		</div>
 	`;
