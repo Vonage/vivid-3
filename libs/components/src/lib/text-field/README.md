@@ -235,5 +235,6 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `checkValidity`  | Returns `true` if the element's `value` passes validity checks; otherwise, returns `false` and fires an `invalid` event at the element.                                                                 |
 | `reportValidity` | Returns `true` if the element's `value` passes validity checks; otherwise, returns `false`, fires an `invalid` event at the element, and (if the event isn't canceled) reports the problem to the user. |
+| `select`         | Selects all the text in the text field                                                                                                                                                                  |
 
 </div>
