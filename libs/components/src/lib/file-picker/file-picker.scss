@@ -17,6 +17,7 @@ $low-ink-color: --_low-ink-color;
 .base {
 	display: flex;
 	flex-direction: column;
+	max-block-size: inherit;
 }
 
 .control {
@@ -137,7 +138,6 @@ $low-ink-color: --_low-ink-color;
 		flex-direction: column;
 		gap: 12px;
 		margin-block-start: 12px;
-		max-block-size: var(variables.$file-picker-list-block-size, 408px);
 		overflow-y: auto;
 	}
 
