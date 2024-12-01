@@ -17,6 +17,7 @@ $low-ink-color: --_low-ink-color;
 .base {
 	display: flex;
 	flex-direction: column;
+	block-size: inherit;
 	max-block-size: inherit;
 }
 
