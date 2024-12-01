@@ -355,9 +355,9 @@ export class MenuItem extends FoundationElement {
 			case keyArrowLeft:
 				//close submenu
 				if (this.expanded) {
+					this.#emitSyntheticClick();
 					this.expanded = false;
 					this.focus();
-					this.#emitSyntheticClick();
 					return false;
 				}
 		}

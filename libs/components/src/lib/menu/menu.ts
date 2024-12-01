@@ -10,6 +10,7 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 import { MenuItem, MenuItemRole } from '../menu-item/menu-item';
+import type { Popup } from '../popup/popup';
 
 /**
  * @public
@@ -76,16 +77,24 @@ export class Menu extends FoundationElement {
 	}
 
 	/**
-	 * Focuses the first item in the menu.
+	 * Moves focus into the menu. If there is a child with the `autofocus` attribute, it will be focused.
+	 * Otherwise, the first focusable child will be focused.
 	 *
 	 * @public
 	 */
 	override focus(): void {
-		this.setFocus(0, 1);
+		const autoFocusElement = this.querySelector(
+			'[autofocus]:not([slot="anchor"])'
+		);
+		if (autoFocusElement instanceof HTMLElement) {
+			autoFocusElement.focus();
+		} else {
+			this.setFocus(0, 1);
+		}
 	}
 
 	/**
-	 * Collapses any expanded menu items.
+	 * Collapses any expanded Menu Items.
 	 *
 	 * @public
 	 */
@@ -165,16 +174,6 @@ export class Menu extends FoundationElement {
 	};
 
 	private handleExpandedChanged = (e: Event): void => {
-		if (
-			e.defaultPrevented ||
-			e.target === null ||
-			this.menuItems === undefined ||
-			this.menuItems.indexOf(e.target as Element) < 0
-		) {
-			return;
-		}
-
-		e.preventDefault();
 		const changedItem = e.target as MenuItem;
 
 		// closing an expanded item without opening another
@@ -184,17 +183,10 @@ export class Menu extends FoundationElement {
 			changedItem.expanded === false
 		) {
 			this.expandedItem = null;
-			return;
 		}
 
 		if (changedItem.expanded) {
-			if (this.expandedItem !== null && this.expandedItem !== changedItem) {
-				this.expandedItem.expanded = false;
-			}
-			this.menuItems[this.focusIndex].setAttribute('tabindex', '-1');
 			this.expandedItem = changedItem;
-			this.focusIndex = this.menuItems.indexOf(changedItem);
-			changedItem.setAttribute('tabindex', '0');
 		}
 	};
 
@@ -337,6 +329,15 @@ export class Menu extends FoundationElement {
 	 */
 	@attr({ mode: 'boolean' }) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
+		if (newValue) {
+			// Ensure popup is shown so that focus can be set
+			this._popupEl?.show();
+			this.focus();
+		} else {
+			// TODO: Focus should be restored to the anchor element when the menu is closed
+			// However, it cannot be implemented without triggering visible focus
+		}
+
 		newValue
 			? this.$emit('open', undefined, { bubbles: false })
 			: this.$emit('close', undefined, { bubbles: false });
@@ -450,6 +451,11 @@ export class Menu extends FoundationElement {
 	 */
 	@observable headerSlottedContent?: HTMLElement[];
 	@observable actionItemsSlottedContent?: HTMLElement[];
+
+	/**
+	 * @internal
+	 */
+	_popupEl?: Popup;
 }
 
 export interface Menu extends Anchored {}

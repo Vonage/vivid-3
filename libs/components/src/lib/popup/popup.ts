@@ -97,9 +97,9 @@ export class Popup extends FoundationElement {
 	})
 	open = false;
 	openChanged(_: boolean, newValue: boolean): void {
-		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
 		this.#togglePopover();
 		this.#updateAutoUpdate();
+		this.$emit(newValue ? 'vwc-popup:open' : 'vwc-popup:close');
 	}
 
 	/**
@@ -188,6 +188,9 @@ export class Popup extends FoundationElement {
 		this.#updateAutoUpdate();
 	}
 
+	/**
+	 * @internal
+	 */
 	strategyChanged() {
 		this.#togglePopover();
 	}
@@ -205,11 +208,14 @@ export class Popup extends FoundationElement {
 
 	#updateAutoUpdate() {
 		this.#cleanup?.();
-		if (this.anchorEl && this.open && this.popupEl) {
+
+		if (this.open && this.controlEl) {
 			// Ensure open is synced with the control element so that popup can be measured
 			// Otherwise, position will not be computed correctly
-			this.controlEl!.classList.add('open');
+			this.controlEl.classList.add('open');
+		}
 
+		if (this.anchorEl && this.open && this.popupEl) {
 			this.#cleanup = autoUpdate(
 				this.anchorEl,
 				this.popupEl,
@@ -282,8 +288,14 @@ export class Popup extends FoundationElement {
 		return this.anchor ?? null;
 	}
 
+	/**
+	 * Shows the popup.
+	 * Unlike toggling the `open` attribute, show() will ensure the popup becomes visible synchronously.
+	 */
 	show(): void {
 		this.open = true;
+		this.#togglePopover();
+		this.#updateAutoUpdate();
 	}
 
 	hide(): void {

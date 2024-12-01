@@ -12,10 +12,6 @@ import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-text-area';
 
-function getTextareaElement(element: TextArea) {
-	return element.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
-}
-
 describe('vwc-text-area', () => {
 	function setToBlurred() {
 		element.dispatchEvent(new Event('blur'));
@@ -25,6 +21,9 @@ describe('vwc-text-area', () => {
 		element.setValidity({ badInput: true }, errorMessage);
 		element.validate();
 	}
+
+	const getTextarea = () =>
+		element.shadowRoot!.querySelector('textarea') as HTMLTextAreaElement;
 
 	let element: TextArea;
 
@@ -50,6 +49,11 @@ describe('vwc-text-area', () => {
 			expect(element.readOnly).toBe(undefined);
 			expect(element.required).toBe(false);
 			expect(element.rows).toBe(undefined);
+			expect(element.resize).toBe('none');
+			expect(element.formId).toBe(undefined);
+			expect(element.list).toBe(undefined);
+			expect(element.spellcheck).toBe(undefined);
+			expect(element.autofocus).toBe(undefined);
 			expect(element.value).toBe('');
 			expect(element).toBeInstanceOf(TextArea);
 		});
@@ -136,7 +140,7 @@ describe('vwc-text-area', () => {
 		it('should set placeholder attribute on the input', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)?.getAttribute('placeholder')).toEqual(
+			expect(getTextarea().getAttribute('placeholder')).toEqual(
 				placeholderText
 			);
 		});
@@ -152,9 +156,7 @@ describe('vwc-text-area', () => {
 		it('should have no placeholder if placeholder is not set as string', async function () {
 			element.placeholder = '';
 			await elementUpdated(element);
-			expect(
-				getTextareaElement(element)?.getAttribute('placeholder')
-			).toBeNull();
+			expect(getTextarea().getAttribute('placeholder')).toBeNull();
 		});
 	});
 
@@ -166,9 +168,7 @@ describe('vwc-text-area', () => {
 		it('should set minlength attribute on the input', async function () {
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)?.getAttribute(propertyName)).toEqual(
-				value
-			);
+			expect(getTextarea().getAttribute(propertyName)).toEqual(value);
 		});
 
 		it('should set minLength on proxy input', function () {
@@ -185,14 +185,28 @@ describe('vwc-text-area', () => {
 		it('should set maxlength attribute on the input', async function () {
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)?.getAttribute(propertyName)).toEqual(
-				value
-			);
+			expect(getTextarea().getAttribute(propertyName)).toEqual(value);
 		});
 
 		it('should set maxLength on proxy input', function () {
 			(element as any)[propertyName] = value;
 			expect((element.proxy as any)[proxyPropertyName]).toEqual(Number(value));
+		});
+	});
+
+	describe('list', function () {
+		it('should set list attribute on the textarea', async function () {
+			element.list = 'data-list';
+			await elementUpdated(element);
+			expect(getTextarea().getAttribute('list')).toBe('data-list');
+		});
+	});
+
+	describe('spellcheck', function () {
+		it('should set spellcheck attribute on the textarea', async function () {
+			element.spellcheck = true;
+			await elementUpdated(element);
+			expect(getTextarea().hasAttribute('spellcheck')).toBe(true);
 		});
 	});
 
@@ -273,7 +287,7 @@ describe('vwc-text-area', () => {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('input', () => res(true))
 			);
-			const innerInput = getTextareaElement(element);
+			const innerInput = getTextarea();
 			innerInput.dispatchEvent(
 				new InputEvent('input', {
 					bubbles: true,
@@ -287,7 +301,7 @@ describe('vwc-text-area', () => {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('change', () => res(true))
 			);
-			const innerInput = getTextareaElement(element);
+			const innerInput = getTextarea();
 			innerInput.dispatchEvent(
 				new InputEvent('change', {
 					bubbles: true,
@@ -313,7 +327,7 @@ describe('vwc-text-area', () => {
 
 	describe('name', function () {
 		it('should reflect the name on the internal input', async function () {
-			const internalInput = getTextareaElement(element);
+			const internalInput = getTextarea();
 			element.name = 'text area name';
 			await elementUpdated(element);
 			expect(internalInput.getAttribute('name')).toEqual('text area name');
@@ -375,6 +389,16 @@ describe('vwc-text-area', () => {
 				getBaseElement(element).classList.contains('has-value');
 			expect(activeClassWhenEnabled).toEqual(false);
 			expect(activeClassWhenDisabled).toEqual(true);
+		});
+	});
+
+	describe('select method', function () {
+		it('should call select on the input', async function () {
+			getTextarea().select = jest.fn();
+
+			element.select();
+
+			expect(getTextarea().select).toHaveBeenCalled();
 		});
 	});
 
