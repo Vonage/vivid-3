@@ -54,7 +54,6 @@ $low-ink-color: --_low-ink-color;
 	&:hover,
 	&:active,
 	&:focus-visible {
-		border-style: solid;
 		background-color: var(#{constants.$vvd-color-cta-100});
 	}
 }
