@@ -1,6 +1,7 @@
 import {
 	type ElementViewTemplate,
 	html,
+	ref,
 	slotted,
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
@@ -56,6 +57,7 @@ export const MenuTemplate: (
 							@focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
 			${anchorSlotTemplate}
 			<${popupTag}
+				${ref('_popupEl')}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x._anchorEl}

@@ -206,6 +206,18 @@ describe('vwc-popup', () => {
 			expect(element.open).toEqual(true);
 		});
 
+		it('should show the popup synchronously', async () => {
+			const popoverEl = element.shadowRoot!.querySelector(
+				'[popover]'
+			) as HTMLElement;
+			popoverEl.showPopover = jest.fn();
+
+			element.show();
+
+			expect(getControlElement(element).classList).toContain('open');
+			expect(popoverEl.showPopover).toHaveBeenCalled();
+		});
+
 		it('should fire vwc-popup:open event', async function () {
 			const spyOpen = jest.fn();
 			element.addEventListener('vwc-popup:open', spyOpen);

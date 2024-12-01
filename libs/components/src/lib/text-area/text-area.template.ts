@@ -63,6 +63,7 @@ export const TextAreaTemplate: (
 				?autofocus="${(x) => x.autofocus}"
 				placeholder="${(x) => (x.placeholder ? x.placeholder : null)}"
 				name="${(x) => (x.name ? x.name : null)}"
+				list="${(x) => x.list}"
 				minlength="${(x) => (x.minlength ? x.minlength : null)}"
 				maxlength="${(x) => (x.maxlength ? x.maxlength : null)}"
 				rows="${(x) => (x.rows ? x.rows : null)}"
