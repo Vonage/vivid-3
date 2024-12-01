@@ -148,7 +148,7 @@
 	},
 	{
 		"title": "Number Field",
-		"description": "The number-field component allows users to enter a number in a text field, and buttons to increment or decrement the value.",
+		"description": "Allows users to enter a number in a text field or use buttons to increment or decrement the value.",
 		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
 		"hideGuidelines": "true",
