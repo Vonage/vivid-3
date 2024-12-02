@@ -159,6 +159,9 @@
 		"vue-tsc": "2.1.5",
 		"vue3": "npm:vue@3.3.7"
 	},
+	"overrides": {
+		"minimist": "1.2.6"
+	},
 	"customElements": "/dist/libs/components/custom-elements.json",
 	"nx": {
 		"includedScripts": []
