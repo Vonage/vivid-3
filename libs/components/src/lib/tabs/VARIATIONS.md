@@ -118,6 +118,10 @@ The `shape` attribute on the **Tab** component controls the style of the backgro
 </vwc-tabs>
 ```
 
+<vwc-note connotation="information" icon="info-line">
+	<p>The `shape` variations should not be used in the tab set of tabs. The example above is for demonstration purposes only.</p>
+</vwc-note>
+
 ## Orientation
 
 The `orientation` attribute on the **Tabs** component controls which axis the tabs are aligned. Below is an example of vertical alignment.
@@ -165,7 +169,7 @@ Use the `activeid` attribute on the **Tabs** component to control which tab is a
 
 ## Gutters
 
-Use the `gutters` attribute on the **Tabs** component to control the spacing inside the Tab Panels. Below it is set to `none`.
+Use the `gutters` attribute on the **Tabs** component to control the spacing inside the Tab Panels. It can be set to `small` (default) or `none` (demonstrated in the example below).
 
 ```html preview full
 <vwc-tabs gutters="none">

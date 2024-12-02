@@ -156,7 +156,7 @@ Use the CSS part `tab-panel` to provide custom styling to the Tab Panel componen
 | -------------------- | ---------------------------------- | -------------------------------------------------------------------------------------- |
 | **activeid**         | `string`                           | Match with an `id` set on a Tab to mark it as active on initial load                   |
 | **connotation**      | `accent` (default), `cta`          | Sets the connotation color of the active tab                                           |
-| **gutters**          | `none` (default), `small`          | Sets the spacing inside the Tab Panels                                                 |
+| **gutters**          | `none`, `small` (default)          | Sets the spacing inside the Tab Panels                                                 |
 | **orientation**      | `horizontal` (default), `vertical` | Sets axis on which the tabs are aligned                                                |
 | **scrollable-panel** | `boolean`                          | Sets whether the Tab Panel will be scrollable (if content height exceeds `block-size`) |
 
@@ -189,13 +189,15 @@ Use the CSS part `tab-panel` to provide custom styling to the Tab Panel componen
 
 <div class="table-wrapper">
 
-| Name              | Type                         | Description                          |
-| ----------------- | ---------------------------- | ------------------------------------ |
-| **disabled**      | `boolean`                    | Sets the disabled state              |
-| **icon-trailing** | `boolean`                    | Places the icon after the label text |
-| **label**         | `string`                     | Sets the label text                  |
-| **removable**     | `boolean`                    | Adds a close button                  |
-| **shape**         | `rounded` (default), `sharp` | Shape of the background when hovered |
+| Name              | Type                                                                                                            | Description                          |
+| ----------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **disabled**      | `boolean`                                                                                                       | Sets the disabled state              |
+| **icon**          | Enum:                                                                                                           |
+| [icon-name]       | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
+| **icon-trailing** | `boolean`                                                                                                       | Places the icon after the label text |
+| **label**         | `string`                                                                                                        | Sets the label text                  |
+| **removable**     | `boolean`                                                                                                       | Adds a close button                  |
+| **shape**         | `rounded` (default), `sharp`                                                                                    | Shape of the background when hovered |
 
 </div>
 
