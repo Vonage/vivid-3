@@ -189,15 +189,14 @@ Use the CSS part `tab-panel` to provide custom styling to the Tab Panel componen
 
 <div class="table-wrapper">
 
-| Name              | Type                                                                                                            | Description                          |
-| ----------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| **disabled**      | `boolean`                                                                                                       | Sets the disabled state              |
-| **icon**          | Enum:                                                                                                           |
-| [icon-name]       | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
-| **icon-trailing** | `boolean`                                                                                                       | Places the icon after the label text |
-| **label**         | `string`                                                                                                        | Sets the label text                  |
-| **removable**     | `boolean`                                                                                                       | Adds a close button                  |
-| **shape**         | `rounded` (default), `sharp`                                                                                    | Shape of the background when hovered |
+| Name              | Type                         | Description                                                                                                     |
+| ----------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **disabled**      | `boolean`                    | Sets the disabled state                                                                                         |
+| **icon**          | Enum: `[icon-name]`          | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons and icon-names |
+| **icon-trailing** | `boolean`                    | Places the icon after the label text                                                                            |
+| **label**         | `string`                     | Sets the label text                                                                                             |
+| **removable**     | `boolean`                    | Adds a close button                                                                                             |
+| **shape**         | `rounded` (default), `sharp` | Shape of the background when hovered                                                                            |
 
 </div>
 
