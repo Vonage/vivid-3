@@ -2,9 +2,10 @@ import 'element-internals-polyfill';
 
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
-import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import { registerFactory } from '@vonage/vivid';
 import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables.ts';
+import { FormAssociated } from '../../foundation/form-associated/form-associated.ts';
 import {
 	ErrorText,
 	errorText,
