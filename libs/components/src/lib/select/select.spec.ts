@@ -6,10 +6,6 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { Size } from '../enums';
-import { Select } from './select';
-import '.';
-import { ListboxOption } from '../option/option.ts';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -18,6 +14,10 @@ import {
 	keyHome,
 	keyTab,
 } from '@microsoft/fast-web-utilities';
+import { Size } from '../enums';
+import { ListboxOption } from '../option/option.ts';
+import { Select } from './select';
+import '.';
 
 const COMPONENT_TAG = 'vwc-select';
 const ICON_SELECTOR = 'vwc-icon';
