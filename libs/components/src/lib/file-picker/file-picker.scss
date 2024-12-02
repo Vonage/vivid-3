@@ -49,7 +49,6 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 		@include focus.focus;
 	}
 	&:hover {
-		border-style: solid;
 		background-color: var(#{constants.$vvd-color-cta-100});
 	}
 }
