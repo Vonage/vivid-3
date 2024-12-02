@@ -3,6 +3,7 @@ import {
 	formAssociatedCommonTests,
 	setup,
 	TestElement,
+	ValidateTest,
 } from './form-associated.common-tests.spec.ts';
 
 describe('FormAssociated when ElementInternals is not supported', () => {
@@ -71,6 +72,16 @@ describe('FormAssociated when ElementInternals is not supported', () => {
 			await disconnect();
 		}
 	);
+
+	describe('validate', () => {
+		it('should not call setValidity when element internals are not supported', async () => {
+			const { element } = await setup<ValidateTest>('validate-test');
+
+			element.validate();
+
+			expect(element.setValidity).not.toHaveBeenCalled();
+		});
+	});
 });
 
 describe('CheckableFormAssociated when ElementInternals is not supported', () => {

@@ -46,6 +46,32 @@ export class CustomInitialValue extends FormAssociated(
 export interface CustomInitialValue extends FormAssociated {}
 
 @customElement({
+	name: 'validate-test',
+	template,
+})
+export class ValidateTest extends FormAssociated(
+	class extends FASTElement {
+		proxy = document.createElement('input');
+		control = document.createElement('input');
+
+		constructor() {
+			super();
+
+			this.proxy.setAttribute('type', 'text');
+			(this as any).setValidity = jest.fn();
+			Object.defineProperty(this.proxy, 'validationMessage', {
+				value: 'proxy validation message',
+			});
+			Object.defineProperty(this.control, 'validationMessage', {
+				value: 'control validation message',
+			});
+		}
+	}
+) {}
+
+export interface ValidateTest extends FormAssociated {}
+
+@customElement({
 	name: 'checkable-form-associated',
 	template,
 })

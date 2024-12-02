@@ -549,12 +549,31 @@ export function FormAssociated<T extends ConstructableFormAssociated>(
 
 		/** {@inheritDoc (FormAssociated:interface).validate} */
 		validate(anchor?: HTMLElement): void {
-			if (this.proxy instanceof HTMLElement) {
-				this.setValidity(
-					this.proxy.validity,
-					this.proxy.validationMessage,
-					anchor
-				);
+			if (this.proxy instanceof HTMLElement && this.elementInternals) {
+				const isValid = this.proxy.validity.valid;
+				const control = (this as any).control;
+
+				/**
+				 * Special handling of min/maxlength validation.
+				 * HTML has the insane behaviour of min/maxlength constraints only being active after a user interacted with the
+				 * field. Our proxy is never interacted with, so the constraint never applies.
+				 * Therefore, we need to use the validity from the actual control in this case.
+				 */
+				const controlIsInvalidDueToMinOrMaxLength =
+					control &&
+					control.validity &&
+					!control.validity.valid &&
+					(control.validity.tooShort || control.validity.tooLong);
+
+				if (isValid && controlIsInvalidDueToMinOrMaxLength) {
+					this.setValidity(control.validity, control.validationMessage, anchor);
+				} else {
+					this.setValidity(
+						this.proxy.validity,
+						this.proxy.validationMessage,
+						anchor
+					);
+				}
 			}
 		}
 
