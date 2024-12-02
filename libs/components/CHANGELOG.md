@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.13.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.12.1...vivid-v4.13.0) (2024-12-02)
+
+
+### Features
+
+* **components:** add styled scrollbar (VIV-2214) ([#2028](https://github.com/Vonage/vivid-3/issues/2028)) ([de5f2ee](https://github.com/Vonage/vivid-3/commit/de5f2eeda8f9e0bd7700eb75f43b5434f72b786c))
+* **file-picker:** custom internal error messages (VIV-1998) ([#2030](https://github.com/Vonage/vivid-3/issues/2030)) ([c1ac9a2](https://github.com/Vonage/vivid-3/commit/c1ac9a2404a3d760cca18113c7ebd8db98318a02))
+* **menu:** move focus into menu on open (VIV-2196) ([#2033](https://github.com/Vonage/vivid-3/issues/2033)) ([74134fd](https://github.com/Vonage/vivid-3/commit/74134fd47d455a5e2869bde68122e8ff947c3fd2))
+* **tabs:** add tabs-layout (VIV-2197) ([#2021](https://github.com/Vonage/vivid-3/issues/2021)) ([d46cc8d](https://github.com/Vonage/vivid-3/commit/d46cc8dbc7cf837a8f46ff174d191c0b85802aa1))
+
+
+### Bug Fixes
+
+* **button:** text-align when drop-down indicator and ellipsis (VIV-2244)  ([#2034](https://github.com/Vonage/vivid-3/issues/2034)) ([6660782](https://github.com/Vonage/vivid-3/commit/66607825e9b970305998a0f28c064a1a0ee8a65d))
+* **popup:** fix miscalculated position in certain cases (VIV-000) ([#2022](https://github.com/Vonage/vivid-3/issues/2022)) ([321436b](https://github.com/Vonage/vivid-3/commit/321436b3d8907e96eb7be96a0c3b8d4cc43f98c0))
+* **vue-wrappers:** fix type of tabs gutters (VIV-000) ([#2024](https://github.com/Vonage/vivid-3/issues/2024)) ([67ddf86](https://github.com/Vonage/vivid-3/commit/67ddf866665fd6c6a73b47f919792b91316ba007))
+
 ## [4.12.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.12.0...vivid-v4.12.1) (2024-11-20)
 
 
