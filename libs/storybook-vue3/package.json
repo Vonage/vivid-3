@@ -9,12 +9,12 @@
 		"@storybook/testing-library": "^0.2.2",
 		"@storybook/vue3": "^7.6.20",
 		"@storybook/vue3-vite": "^7.6.20",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
 		"@vitejs/plugin-vue": "^4.6.2",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"storybook": "^7.6.20",
-		"vue": "^3.5.12"
+		"vue": "^3.5.13"
 	}
 }
