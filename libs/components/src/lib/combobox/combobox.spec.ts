@@ -75,6 +75,24 @@ describe('vwc-combobox', () => {
 			expect(element.open).toEqual(true);
 		});
 
+		it('should not set open when clicked while disabled', async () => {
+			element.disabled = true;
+			element.click();
+			expect(element.open).toEqual(false);
+		});
+
+		it('should not toggle open when clicking on a disabled option', async () => {
+			element.innerHTML = `
+				<vwc-option value="1" text="Option 1" disabled></vwc-option>
+			`;
+			element.open = true;
+			await elementUpdated(element);
+
+			(element.querySelector('vwc-option') as HTMLElement).click();
+
+			expect(element.open).toBe(true);
+		});
+
 		it('should set open to false when escape key is pressed', async () => {
 			element.open = true;
 			element.dispatchEvent(
