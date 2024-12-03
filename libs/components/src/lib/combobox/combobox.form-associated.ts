@@ -1,5 +1,5 @@
-import { FormAssociated } from "@microsoft/fast-foundation";
-import { Listbox } from "../listbox/listbox.js";
+import { FormAssociated } from '@microsoft/fast-foundation';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 
 class _Combobox extends Listbox {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -11,5 +11,5 @@ interface _Combobox extends FormAssociated {}
  * @internal
  */
 export class FormAssociatedCombobox extends FormAssociated(_Combobox) {
-    proxy = document.createElement("input");
+	proxy = document.createElement('input');
 }
