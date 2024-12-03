@@ -245,6 +245,44 @@ describe('vwc-combobox', () => {
 		});
 	});
 
+	describe("when the owning form's reset() function is invoked", () => {
+		it("should reset the value property to its initial value", async () => {
+			const form = (await fixture(
+				`<form><${COMPONENT_TAG} name="combobox" required value="1">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}></form>`
+			)) as HTMLFormElement;
+			element = form.children[0] as Combobox;
+			element.value = '2';
+			await elementUpdated(element);
+
+			form.reset();
+			await elementUpdated(element);
+			expect(element.value).toEqual('1');
+		});
+
+		it("should reset the value property to the first option with the `selected` attribute present", async () => {
+			const form = (await fixture(
+				`<form><${COMPONENT_TAG} name="combobox" required>
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					<option value="3">3</option>
+				</${COMPONENT_TAG}></form>`
+			)) as HTMLFormElement;
+			element = form.children[0] as Combobox;
+			await elementUpdated(element);
+			expect(element.value).toEqual('2');
+			element.value='1';
+			await elementUpdated(element);
+
+			form.reset();
+			await elementUpdated(element);
+			expect(element.value).toEqual('2');
+		});
+	});
+
 	describe('a11y', () => {
 		it('should mark the input control element with the correct a11y attributes', async () => {
 			element.label = 'Test label';

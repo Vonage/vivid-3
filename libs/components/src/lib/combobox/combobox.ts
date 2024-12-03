@@ -19,7 +19,7 @@ import { ComboboxAutocomplete } from './combobox.options';
  */
 export type PopupPlacement = 'top' | 'bottom';
 
-/**ßß
+/**
  * Types of input appearance
  *
  * @public
