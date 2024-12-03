@@ -1,8 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import {
-	applyMixins,
-	Combobox as FoundationCombobox,
-} from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import type { Popup } from '../popup/popup';
 import type { Appearance } from '../enums';
 import {
@@ -10,6 +7,7 @@ import {
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
+import { FormAssociatedCombobox } from './combobox.form-associated';
 
 /**
  * Types of popup placement
@@ -36,7 +34,7 @@ export type ComboboxAppearance = Extract<
  * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
 @formElements
-export class Combobox extends FoundationCombobox {
+export class Combobox extends FormAssociatedCombobox {
 	/**
 	 * The appearance attribute.
 	 *
