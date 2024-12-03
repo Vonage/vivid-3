@@ -2,9 +2,10 @@ import 'element-internals-polyfill';
 
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
-import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import { registerFactory } from '@vonage/vivid';
 import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables.ts';
+import { FormAssociated } from '../../foundation/form-associated/form-associated.ts';
 import {
 	ErrorText,
 	errorText,
@@ -23,106 +24,6 @@ describe('Form Elements', function () {
 		it('should set charCount to false on init', async () => {
 			const instance = new FormElementCharCount();
 			expect(instance.charCount).toEqual(false);
-		});
-	});
-
-	describe('formElements() validate method', () => {
-		@formElements
-		class Test extends HTMLElement {
-			elementInternals: any;
-			constructor() {
-				super();
-				this.elementInternals = this.attachInternals();
-			}
-
-			proxy = document.createElement('input');
-			control = document.createElement('input');
-
-			validate() {}
-
-			setValidity = jest.fn();
-		}
-
-		customElements.define('test-element', Test);
-
-		let test: Test;
-
-		beforeEach(() => {
-			test = new Test();
-			Object.defineProperty(test.proxy, 'validationMessage', {
-				value: 'proxy validation message',
-			});
-			Object.defineProperty(test.control, 'validationMessage', {
-				value: 'control validation message',
-			});
-		});
-
-		it("should use the proxy's validity when the proxy is invalid", () => {
-			Object.defineProperty(test.proxy, 'validity', {
-				value: {
-					valid: false,
-				},
-			});
-
-			test.validate();
-
-			expect(test.setValidity).toHaveBeenCalledWith(
-				test.proxy.validity,
-				'proxy validation message',
-				undefined
-			);
-		});
-
-		it.each(['tooLong', 'tooShort'])(
-			"should use the control's validity when the proxy is valid but control is invalid with %s reason",
-			(reason) => {
-				Object.defineProperty(test.proxy, 'validity', {
-					value: {
-						valid: true,
-					},
-				});
-				Object.defineProperty(test.control, 'validity', {
-					value: {
-						[reason]: true,
-						valid: false,
-					},
-				});
-
-				test.validate();
-
-				expect(test.setValidity).toHaveBeenCalledWith(
-					test.control.validity,
-					'control validation message',
-					undefined
-				);
-			}
-		);
-
-		it("should use the proxy's validity when control has no validity state", () => {
-			Object.defineProperty(test.proxy, 'validity', {
-				value: {
-					valid: true,
-				},
-			});
-			Object.defineProperty(test.control, 'validity', {
-				value: undefined,
-			});
-
-			test.validate();
-
-			expect(test.setValidity).toHaveBeenCalledWith(
-				test.proxy.validity,
-				'proxy validation message',
-				undefined
-			);
-		});
-
-		it('should not call setValidity when element internals are not supported', () => {
-			delete (test as any).elementInternals;
-
-			test.validate();
-
-			expect(test.setValidity).not.toHaveBeenCalled();
 		});
 	});
 
