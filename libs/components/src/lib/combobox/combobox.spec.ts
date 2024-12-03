@@ -68,7 +68,7 @@ describe('vwc-combobox', () => {
 	});
 
 	describe('open', function () {
-		it('should set open when clicked', async () => {
+		it('should toggle open when clicked', async () => {
 			expect(element.open).toEqual(false);
 			element.click();
 			await elementUpdated(element);
@@ -264,7 +264,7 @@ describe('vwc-combobox', () => {
 	});
 
 	describe("when the owning form's reset() function is invoked", () => {
-		it("should reset the value property to its initial value", async () => {
+		it('should reset the value property to its initial value', async () => {
 			const form = (await fixture(
 				`<form><${COMPONENT_TAG} name="combobox" required value="1">
 					<option value="1">1</option>
@@ -281,7 +281,7 @@ describe('vwc-combobox', () => {
 			expect(element.value).toEqual('1');
 		});
 
-		it("should reset the value property to the first option with the `selected` attribute present", async () => {
+		it('should reset the value property to the first option with the `selected` attribute present', async () => {
 			const form = (await fixture(
 				`<form><${COMPONENT_TAG} name="combobox" required>
 					<option value="1">1</option>
@@ -292,7 +292,7 @@ describe('vwc-combobox', () => {
 			element = form.children[0] as Combobox;
 			await elementUpdated(element);
 			expect(element.value).toEqual('2');
-			element.value='1';
+			element.value = '1';
 			await elementUpdated(element);
 
 			form.reset();
