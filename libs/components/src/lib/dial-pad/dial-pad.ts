@@ -1,6 +1,7 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { TextField } from '../text-field/text-field';
 
 /**
