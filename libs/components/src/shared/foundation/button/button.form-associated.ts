@@ -1,4 +1,5 @@
-import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
+import { FormAssociated } from '../form-associated/form-associated';
 
 class _FoundationButton extends FoundationElement {}
 /* eslint-disable-next-line @typescript-eslint/naming-convention */

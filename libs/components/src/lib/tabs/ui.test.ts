@@ -1,8 +1,6 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -54,13 +52,171 @@ async function testScroll({ page }: { page: Page }) {
 	);
 }
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = `
+		<div style="margin: 5px;">
+			<vwc-tabs gutters="none">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-tabs orientation="vertical">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-tabs connotation="cta">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-tabs activeid="two">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<style>
+				.tabs {
+					block-size: 200px;
+				}
+			</style>
+			<vwc-tabs class="tabs" scrollable-panel>
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">
+					<div class="my-panel">
+						<ol>
+							<li>Stuffed artichokes</li>
+							<li>Bruschetta</li>
+							<li>Oven-baked polenta</li>
+							<li>Salami and Fig Crostini with Ricotta</li>
+							<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+							<li>Stuffed artichokes</li>
+							<li>Bruschetta</li>
+							<li>Oven-baked polenta</li>
+							<li>Salami and Fig Crostini with Ricotta</li>
+							<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+						</ol>
+					</div>
+				</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<style>
+				.tabs {
+					block-size: 150px;
+				}
+			</style>
+			<vwc-tabs class="tabs" scrollable-panel orientation="vertical">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">
+					<div class="my-panel">
+						<ol>
+							<li>Stuffed artichokes</li>
+							<li>Bruschetta</li>
+							<li>Oven-baked polenta</li>
+							<li>Salami and Fig Crostini with Ricotta</li>
+							<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+							<li>Stuffed artichokes</li>
+							<li>Bruschetta</li>
+							<li>Oven-baked polenta</li>
+							<li>Salami and Fig Crostini with Ricotta</li>
+							<li>Rosemary-Potato Focaccia with Goat Cheese</li>
+						</ol>
+					</div>
+				</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-tabs tabs-layout="stretch">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<vwc-tabs>
+				<vwc-tab label="Tab one"></vwc-tab>
+				<vwc-tab label="Tab two"></vwc-tab>
+				<vwc-tab-panel>Tab one content</vwc-tab-panel>
+				<vwc-tab-panel>Tab two content</vwc-tab-panel>
+				<vwc-button
+					slot="action-items"
+					icon="plus-line"
+					shape="pill"
+					size="condensed"
+					onclick="addTab()"
+				></vwc-button>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px;">
+			<style>
+				.panel::part(tab-panel) {
+					background-color: var(--vvd-color-cta-50);
+				}
+			</style>
+			<vwc-tabs class="panel">
+				<vwc-tab label="Tab one" id="one"></vwc-tab>
+				<vwc-tab label="Tab two" id="two"></vwc-tab>
+				<vwc-tab label="Tab three" id="tree"></vwc-tab>
+				<vwc-tab-panel id="onePanel">Tab one content</vwc-tab-panel>
+				<vwc-tab-panel id="twoPanel">Tab two content</vwc-tab-panel>
+				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
+			</vwc-tabs>
+		</div>
+		<div style="margin: 5px">
+			<vwc-tabs>
+				<vwc-tab label="Task" removable></vwc-tab>
+				<vwc-tab-panel>Task content</vwc-tab-panel>
+				<vwc-tab label="Event" removable></vwc-tab>
+				<vwc-tab-panel>Event content</vwc-tab-panel>
+				<vwc-menu
+					slot="action-items"
+					trigger="auto"
+					auto-dismiss
+					placement="bottom-end"
+				>
+					<vwc-button
+						slot="anchor"
+						icon="plus-line"
+						shape="pill"
+						size="condensed"
+					></vwc-button>
+					<vwc-menu-item text="New Task" onclick="addTab('Task')"></vwc-menu-item>
+					<vwc-menu-item text="New Event" onclick="addTab('Event')"></vwc-menu-item>
+				</vwc-menu>
+			</vwc-tabs>
+		</div>
+	`;
 
 	await loadComponents({
 		page,

@@ -15,7 +15,7 @@ import {
 import { Reflector } from '../../shared/utils/Reflector';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesARIATextbox } from '../text-field/text-field';
-import { FormAssociatedTextArea } from './text-field.form-associated';
+import { FormAssociatedTextArea } from './text-area.form-associated';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
 
