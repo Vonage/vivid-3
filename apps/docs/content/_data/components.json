@@ -153,8 +153,13 @@
 	},
 	{
 		"title": "Number Field",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/number-field/README.md"
+		"description": "Allows users to enter a number in a text field or use buttons to increment or decrement the value.",
+		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/number-field/README.md",
+		"accessibility": "./libs/components/src/lib/number-field/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/number-field/USE-CASES.md"
 	},
 	{
 		"title": "Fab",
@@ -264,15 +269,13 @@
 	},
 	{
 		"title": "Tabs",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tabs/README.md",
-		"children": ["Tab"]
-	},
-	{
-		"title": "Tab",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tab/README.md",
-		"parent": "Tabs"
+		"description": "Tabs are interactive elements that work alongside Tab and Tab Panel to organise content into separate sections or views.",
+		"variations": "./libs/components/src/lib/tabs/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/tabs/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/tabs/README.md",
+		"accessibility": "./libs/components/src/lib/tabs/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/tabs/USE-CASES.md"
 	},
 	{
 		"title": "Combobox",
