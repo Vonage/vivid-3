@@ -21,7 +21,7 @@ export const TreeViewTemplate = () => {
 		@selected-change="${(x, c) => x.handleSelectedChange(c.event)}"
 	>
 		<div class="${getClasses}">
-			<slot ${slotted('slottedTreeItems')}></slot>
+			<slot ${slotted("slottedTreeItems")}></slot>
 		</div>
 	</template>`;
 };
