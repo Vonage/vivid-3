@@ -26,16 +26,16 @@ export class TreeView extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: render-collapsed-nodes
 	 */
-		// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
 	@attr({ attribute: "render-collapsed-nodes" })
-	renderCollapsedNodes: boolean  = false;
+		// @ts-expect-error Type is incorrectly non-optional
+	renderCollapsedNodes: boolean;
 
 	/**
 	 * The currently selected tree item
 	 * @public
 	 */
 	@observable
-// @ts-expect-error Type is incorrectly non-optional
+		// @ts-expect-error Type is incorrectly non-optional
 	currentSelected: HTMLElement | TreeItem | null;
 
 	/**
@@ -108,29 +108,17 @@ export class TreeView extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	@attr()
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
 	treeView!: HTMLElement;
 
-	@attr({ mode: 'boolean' })
-	nested = false;
+	private nested!: boolean;
 
-	private initializeTreeView(): void {
+	override connectedCallback(): void {
+		super.connectedCallback();
 		this.setAttribute("tabindex", "0");
 		DOM.queueUpdate(() => {
 			this.setItems();
 		});
 	}
-
-	constructor() {
-		super();
-		this.initializeTreeView();
-	}
-
-	public handleSlotChange(): void {
-		this.initializeTreeView();
-	}
-
 
 	/**
 	 * KeyDown handler
@@ -313,25 +301,16 @@ export class TreeView extends FoundationElement {
 	/**
 	 * checks if there are any nested tree items
 	 */
-	private getValidFocusableItem(): null | TreeItem {
-		const treeItems: HTMLElement[] | void = this.getVisibleNodes();
-
-		if (treeItems) {
-			// Narrow down the type to TreeItem using a type guard
-			const treeItemsAsTreeItem = treeItems.filter(
-				(item): item is TreeItem => isTreeItemElement(item)
-			);
-
-			// Find the index using the filtered array
-			let focusIndex = treeItemsAsTreeItem.findIndex(this.isSelectedElement);
-
-			if (focusIndex === -1) {
-				focusIndex = treeItemsAsTreeItem.findIndex(this.isFocusableElement);
-			}
-
-			if (focusIndex !== -1) {
-				return treeItemsAsTreeItem[focusIndex];
-			}
+	private getValidFocusableItem(): null | HTMLElement | TreeItem {
+		const treeItems = this.getVisibleNodes();
+		// default to selected element if there is one
+		let focusIndex = treeItems.findIndex(this.isSelectedElement);
+		if (focusIndex === -1) {
+			// otherwise first focusable tree item
+			focusIndex = treeItems.findIndex(this.isFocusableElement);
+		}
+		if (focusIndex !== -1) {
+			return treeItems[focusIndex];
 		}
 
 		return null;
@@ -353,11 +332,11 @@ export class TreeView extends FoundationElement {
 		return isTreeItemElement(el);
 	};
 
-	private isSelectedElement = (el: TreeItem): el is TreeItem => {
-		return el.selected;
+	private isSelectedElement = (el: HTMLElement): boolean => {
+		return (el as any).selected;
 	};
 
 	private getVisibleNodes(): HTMLElement[] {
 		return getDisplayedNodes(this, "[role='treeitem']") || [];
-}
+	}
 }
