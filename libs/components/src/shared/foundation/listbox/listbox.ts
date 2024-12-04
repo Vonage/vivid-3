@@ -1,4 +1,4 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
 import {
 	findLastIndex,
@@ -17,8 +17,9 @@ import {
 	type ListboxOption,
 } from '../../../lib/option/option';
 import { ARIAGlobalStatesAndProperties } from '../patterns';
+import { VividElement } from '../vivid-element/vivid-element';
 
-export abstract class Listbox extends FoundationElement {
+export abstract class Listbox extends VividElement {
 	/**
 	 * The internal unfiltered list of selectable options.
 	 *

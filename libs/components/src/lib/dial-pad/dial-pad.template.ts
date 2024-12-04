@@ -6,17 +6,12 @@ import {
 	repeat,
 	when,
 } from '@microsoft/fast-element';
-import { ViewTemplate } from '@microsoft/fast-element';
-import { classNames } from '@microsoft/fast-web-utilities';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
-import { keyEnter } from '@microsoft/fast-web-utilities';
+import { classNames, keyEnter } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
 import type { DialPad } from './dial-pad';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 class DialPadButton {
 	value: string;
@@ -122,7 +117,7 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 		x.helperText}" pattern="${(x) => x.pattern}"
             aria-label="${(x) => x.locale.dialPad.inputLabel}"
             @keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
-            @input="${syncFieldAndPadValues}" 
+            @input="${syncFieldAndPadValues}"
 			@change="${syncFieldAndPadValues}"
 			@focus="${stopPropagation}"
 			@blur="${stopPropagation}"
@@ -130,12 +125,12 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
 						html`<${buttonTag}
-                				slot="action-items" 
-								size='super-condensed' 
-								icon="backspace-line" 
+                				slot="action-items"
+								size='super-condensed'
+								icon="backspace-line"
 								aria-label="${(x) => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}"
-								appearance='ghost' 
-								?disabled="${(x) => x.disabled || x.callActive}" 
+								appearance='ghost'
+								?disabled="${(x) => x.disabled || x.callActive}"
 								@click="${(x) => deleteLastCharacter(x)}">
             </${buttonTag}>`
 					)}
@@ -158,20 +153,20 @@ function renderDigits(buttonTag: string, iconTag: string) {
 		${repeat(
 			(_: DialPad) => DIAL_PAD_BUTTONS,
 			html<DialPadButton>`
-			<${buttonTag} 
+			<${buttonTag}
 					  id="${(x) => x.id}"
-					  value="${(x) => x.value}" 
-					  stacked 
-					  appearance="ghost-light" 
-					  shape="pill" 
+					  value="${(x) => x.value}"
+					  stacked
+					  appearance="ghost-light"
+					  shape="pill"
 					  label="${(x) => (x.label === '&nbsp;' ? '\u00A0' : x.label)}"
-					  size='condensed' 
-					  class="digit-btn" 
-					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}" 
-					  ?disabled="${(_, c) => c.parent.disabled}" 
+					  size='condensed'
+					  class="digit-btn"
+					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}"
+					  ?disabled="${(_, c) => c.parent.disabled}"
 					  @click="${onDigitClick}">
-					  	<${iconTag} slot="icon" 
-									name="${(x) => x.icon}" 
+					  	<${iconTag} slot="icon"
+									name="${(x) => x.icon}"
 									class="digit-btn-num"></${iconTag}>
 					</${buttonTag}>
 		`
@@ -195,16 +190,7 @@ function renderDialButton(buttonTag: string) {
     </${buttonTag}>`;
 }
 
-/**
- * The template for the DialPad component.
- *
- * @param context - element definition context
- * @public
- */
-export const DialPadTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<DialPad> = (context: ElementDefinitionContext) => {
+export const DialPadTemplate = (context: VividElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
 	const iconTag = context.tagFor(Icon);
 	const textFieldTag = context.tagFor(TextField);

@@ -1,9 +1,10 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
@@ -32,7 +33,7 @@ function appendProgressBarToStart(videoPlayer: any) {
  * @event {CustomEvent<undefined>} pause - Fired when the video is paused
  * @event {CustomEvent<undefined>} ended - Fired when the video is ended
  */
-export class VideoPlayer extends FoundationElement {
+export class VideoPlayer extends VividElement {
 	/**
 	 * Reference to an image which is displayed before the video is played
 	 *

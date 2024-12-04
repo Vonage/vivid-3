@@ -1,15 +1,11 @@
 import { html, ref } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import type { TextAnchor } from './text-anchor';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({ text, connotation, appearance }: TextAnchor) =>
 	classNames(
@@ -19,16 +15,7 @@ const getClasses = ({ text, connotation, appearance }: TextAnchor) =>
 		[`appearance-${appearance}`, Boolean(appearance)]
 	);
 
-/**
- * The template for the (Anchor:class) component.
- *
- * @param context - element definition context
- * @public
- */
-export const textAnchorTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<TextAnchor> = (context: ElementDefinitionContext) => {
+export const textAnchorTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`<a

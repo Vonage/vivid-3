@@ -1,24 +1,12 @@
-import {
-	html,
-	ref,
-	slotted,
-	ViewTemplate,
-	when,
-} from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
 import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { Combobox } from './combobox';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
-/**
- *
- */
 function renderLabel() {
 	return html<Combobox>` <label for="control" class="label">
 		${(x) => x.label}
@@ -47,10 +35,7 @@ function setFixedDropdownVarWidth(x: Combobox) {
 		: null;
 }
 
-/**
- * @param context - element definition context
- */
-function renderInput(context: ElementDefinitionContext) {
+function renderInput(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<Combobox>` <div class="${getStateClasses}" ${ref('_anchor')}>
@@ -80,16 +65,7 @@ function renderInput(context: ElementDefinitionContext) {
 	</div>`;
 }
 
-/**
- * The template for the (Combobox:class) component.
- *
- * @param context - element definition context
- * @public
- */
-export const comboboxTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Combobox> = (context: ElementDefinitionContext) => {
+export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Combobox>`

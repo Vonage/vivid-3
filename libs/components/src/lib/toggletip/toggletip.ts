@@ -1,7 +1,7 @@
 import { attr, DOM } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import type { Placement } from '@floating-ui/dom';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @public
@@ -11,7 +11,7 @@ import { type Anchored, anchored } from '../../shared/patterns/anchored';
  * @slot action-items - The content to display in the toggletip action items.
  */
 @anchored
-export class Toggletip extends FoundationElement {
+export class Toggletip extends VividElement {
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
 	/**

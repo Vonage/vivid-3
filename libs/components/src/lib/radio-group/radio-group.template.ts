@@ -1,20 +1,10 @@
 import { elements, html, slotted, when } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-
 import { Radio } from '../radio/radio';
 import type { RadioGroup } from './radio-group';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
-/**
- * The template for the RadioGroup component.
- *
- * @param context - element definition context
- * @public
- */
-export const RadioGroupTemplate: (
-	context: ElementDefinitionContext
-) => ViewTemplate<RadioGroup> = (context: ElementDefinitionContext) => {
+export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 	return html<RadioGroup>`
 		<template
 			role="radiogroup"

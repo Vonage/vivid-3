@@ -1,9 +1,10 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 
 import type { Connotation, Shape } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of tab connotation.
@@ -27,7 +28,7 @@ export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
  * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
-export class Tab extends FoundationElement {
+export class Tab extends VividElement {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute} for more information.
 	 * @public

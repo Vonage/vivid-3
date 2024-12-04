@@ -1,11 +1,9 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation, MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 import { MenuItem } from '../menu-item/menu-item';
-import { audioPlayerDefinition } from './definition';
 import { AudioPlayer } from './audio-player';
 import '.';
 
@@ -118,7 +116,6 @@ describe('vwc-audio-player', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-audio-player', async () => {
-			expect(audioPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(AudioPlayer);
 			expect(element.src).toEqual(SOURCE);
 			expect(element.connotation).toBeUndefined();

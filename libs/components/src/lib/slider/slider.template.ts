@@ -1,12 +1,8 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { PlacementStrategy, Popup } from '../popup/popup';
 import type { Slider } from './slider';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({ disabled, connotation }: Slider) =>
 	classNames(
@@ -35,10 +31,7 @@ export const getMarkersTemplate = (
 	></div>`;
 };
 
-export const SliderTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Slider> = (context: ElementDefinitionContext) => {
+export const SliderTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
 	/* eslint-disable @typescript-eslint/indent */

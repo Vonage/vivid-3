@@ -1,15 +1,11 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import type { Fab } from './fab';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({
 	connotation,
@@ -29,16 +25,7 @@ const getClasses = ({
 		['disabled', disabled]
 	);
 
-/**
- * The template for the (Button:class) component.
- *
- * @param context - element definition context
- * @public
- */
-export const FabTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Fab> = (context: ElementDefinitionContext) => {
+export const FabTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`

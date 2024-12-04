@@ -1,9 +1,10 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type AlertConnotation =
 	| Connotation.Accent
@@ -41,7 +42,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
  * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
  */
-export class Alert extends FoundationElement {
+export class Alert extends VividElement {
 	/**
 	 * Allows setting a custom aria-label for the dismiss button.
 	 *

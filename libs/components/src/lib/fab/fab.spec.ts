@@ -4,11 +4,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Fab, FabConnotation } from './fab';
 import '.';
-import { fabDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-fab';
 const ICON_SELECTOR = 'vwc-icon';
@@ -22,7 +20,6 @@ describe('vwc-fab', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-fab', async () => {
-			expect(fabDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Fab);
 			expect(element.label).toBeUndefined();
 			expect(element.icon).toBeUndefined();

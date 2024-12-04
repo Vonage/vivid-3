@@ -1,26 +1,13 @@
 import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import type { Header } from './header';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getPartAlternate = ({ alternate }: Header) =>
 	classNames(['vvd-theme-alternate', Boolean(alternate)]);
 
-/**
- * The template for the header component.
- *
- * @param context - element definition context
- * @public
- */
-export const headerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Header> = (context) => {
+export const headerTemplate = (context: VividElementDefinitionContext) => {
 	const elevationTag = context.tagFor(Elevation);
 
 	return html<Header>`

@@ -1,7 +1,5 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { ActionGroup } from './action-group';
-import { actionGroupDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-action-group';
@@ -17,7 +15,6 @@ describe('vwc-action-group', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-action-group', async () => {
-			expect(actionGroupDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(ActionGroup);
 			expect(element.shape).toEqual(undefined);
 			expect(element.appearance).toEqual(undefined);

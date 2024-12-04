@@ -1,13 +1,9 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { Elevation } from '../elevation/elevation';
 import { Button } from '../button/button';
 import type { Popup } from './popup';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({ open, dismissible, alternate }: Popup) =>
 	classNames(
@@ -21,21 +17,11 @@ function handlePopover(x: Popup) {
 	return x.strategy && x.strategy === 'fixed' ? 'manual' : null;
 }
 
-/**
- * The template for the Popup component.
- *
- * @param context - element definition context
- * @returns ViewTemplate<Popup> A template capable of creating HTMLView instances or rendering directly to DOM.
- * @public
- */
-export const popupTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Popup> = (context: ElementDefinitionContext) => {
+export const popupTemplate = (context: VividElementDefinitionContext) => {
 	const elevationTag = context.tagFor(Elevation);
 	const buttonTag = context.tagFor(Button);
 
-	return html`
+	return html<Popup>`
   <${elevationTag}>
 		<div popover="${handlePopover}" class="popup-wrapper ${(x) =>
 		x.strategy}" ${ref('popupEl')} part="popup-base">

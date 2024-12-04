@@ -1,4 +1,3 @@
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import {
 	children,
 	elements,
@@ -10,8 +9,9 @@ import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
 import { DataGridSelectionMode } from './data-grid';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
-function createRowItemTemplate(context: ElementDefinitionContext) {
+function createRowItemTemplate(context: VividElementDefinitionContext) {
 	const rowTag = context.tagFor(DataGridRow);
 	return html`
     <${rowTag}
@@ -53,13 +53,7 @@ function handleColumnSort<T extends DataGrid>(
 	event.stopPropagation();
 }
 
-/**
- * Generates a template for the DataGrid component using
- * the provided prefix.
- *
- * @public
- */
-export const DataGridTemplate = (context: ElementDefinitionContext) => {
+export const DataGridTemplate = (context: VividElementDefinitionContext) => {
 	const rowItemTemplate = createRowItemTemplate(context);
 	const rowTag = context.tagFor(DataGridRow);
 	return html<DataGrid>`

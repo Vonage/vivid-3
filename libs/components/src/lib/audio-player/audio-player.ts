@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of audio player connotation.
@@ -53,7 +54,7 @@ const validSkipByConverter: ValueConverter = {
  * @public
  * @component audio-player
  */
-export class AudioPlayer extends FoundationElement {
+export class AudioPlayer extends VividElement {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
 		| string
 		| null = null;

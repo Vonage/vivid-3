@@ -1,32 +1,19 @@
 import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { Tooltip } from './tooltip';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({ open }: Tooltip) =>
 	classNames('control', ['open', Boolean(open)]);
 
-/**
- * The template for the Tooltip component.
- *
- * @param context - element definition context
- * @public
- */
-export const TooltipTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Tooltip> = (context: ElementDefinitionContext) => {
+export const TooltipTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
-	return html`
+	return html<Tooltip>`
 ${anchorSlotTemplate}
 <${popupTag} class="${getClasses}" arrow alternate
 	:placement=${(x) => x.placement}

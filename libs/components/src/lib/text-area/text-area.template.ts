@@ -1,12 +1,8 @@
 import { html, ref, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import type { TextArea } from './text-area';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({
 	value,
@@ -43,16 +39,7 @@ function renderCharCount() {
 	`;
 }
 
-/**
- * The template for the TextArea component.
- *
- * @param context - element definition context
- * @public
- */
-export const TextAreaTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<TextArea> = (context: ElementDefinitionContext) => {
+export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 	return html`
 		<div class="${getClasses}">
 			${when((x) => x.charCount && x.maxlength, renderCharCount())}

@@ -1,8 +1,8 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-
 import type { Appearance, Connotation, Shape } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of badge connotation.
@@ -44,7 +44,7 @@ export type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @component badge
  * @slot icon - Add an icon to the component.
  */
-export class Badge extends FoundationElement {
+export class Badge extends VividElement {
 	/**
 	 * The connotation the badge should have.
 	 *

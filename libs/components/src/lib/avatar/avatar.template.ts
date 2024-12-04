@@ -1,12 +1,8 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { Avatar } from './avatar';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({ appearance, connotation, shape, size }: Avatar) =>
 	classNames(
@@ -37,16 +33,7 @@ function renderInitials() {
 	`;
 }
 
-/**
- * The template for the Avatar component.
- *
- * @param context - element definition context
- * @public
- */
-export const AvatarTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Avatar> = (context: ElementDefinitionContext) => {
+export const AvatarTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
 	return html` <span class="${getClasses}">

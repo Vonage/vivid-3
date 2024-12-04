@@ -1,13 +1,9 @@
 import { html, slotted, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	CheckboxOptions,
-	FoundationElementTemplate,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Icon } from '../icon/icon';
 import type { Checkbox } from './checkbox';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = ({
 	connotation,
@@ -31,16 +27,7 @@ const getClasses = ({
 		['hide-label', !label && !slottedContent?.length]
 	);
 
-/**
- * The template for the Checkbox component.
- *
- * @param context - element definition context
- * @public
- */
-export const CheckboxTemplate: FoundationElementTemplate<
-	ViewTemplate<Checkbox>,
-	CheckboxOptions
-> = (context) => {
+export const CheckboxTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
 	return html`<template role="${(x) => (x.ariaLabel ? 'presentation' : null)}">

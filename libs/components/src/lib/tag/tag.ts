@@ -1,8 +1,9 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 import type { Appearance, Connotation, Shape } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of tag connotation.
@@ -38,7 +39,7 @@ export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @event {CustomEvent<undefined>} selected-change - Fires when the selected state changes
  * @event {CustomEvent<undefined>} removed - Fires when the tag is removed
  */
-export class Tag extends FoundationElement {
+export class Tag extends VividElement {
 	/**
 	 * The connotation the tag should have.
 	 *

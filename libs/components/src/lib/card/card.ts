@@ -1,7 +1,7 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 
 import type { Appearance } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of avatar appearance.
@@ -22,7 +22,7 @@ export type CardAppearance = Extract<
  * @slot footer - The footer slot is for content in the card footer.
  * @slot main - Assign nodes to main slot to fully override a card's predefined flow and style with your own.
  */
-export class Card extends FoundationElement {
+export class Card extends VividElement {
 	/**
 	 * The appearance the card should have.
 	 *

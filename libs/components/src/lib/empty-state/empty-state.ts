@@ -1,6 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation, IconDecoration } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of empty-state connotation.
@@ -36,7 +36,7 @@ export type EmptyStateIconDecoration = Extract<
  * @slot graphic - The graphic slot allows overriding the icon with a custom illustration
  * @slot action-items - Slot to add action items to the empty state
  */
-export class EmptyState extends FoundationElement {
+export class EmptyState extends VividElement {
 	/**
 	 * The connotation the empty state should have.
 	 *

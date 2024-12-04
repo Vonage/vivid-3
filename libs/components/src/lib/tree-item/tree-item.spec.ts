@@ -4,13 +4,11 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 
 import type { TreeView } from '../tree-view/tree-view';
 import '../tree-view';
 
-import { treeItemDefinition } from './definition';
 import { TreeItem } from './tree-item';
 import '.';
 
@@ -42,7 +40,6 @@ describe('vwc-tree-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tree-item', async () => {
-			expect(treeItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(treeItem1).toBeInstanceOf(TreeItem);
 			expect(treeItem1.text).toBeUndefined();
 			expect(treeItem1.icon).toBeUndefined();

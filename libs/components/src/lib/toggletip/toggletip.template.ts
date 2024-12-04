@@ -1,31 +1,18 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { Toggletip } from './toggletip';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = (_: Toggletip) => classNames('control');
 
-/**
- * The template for the Toggletip component.
- *
- * @param context - element definition context
- * @public
- */
-export const ToggletipTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Toggletip> = (context: ElementDefinitionContext) => {
+export const ToggletipTemplate = (context: VividElementDefinitionContext) => {
 	const popup = context.tagFor(Popup);
 	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
-	return html`
+	return html<Toggletip>`
 		${anchorSlotTemplate}
 		<${popup}
 			@keydown="${(x, { event }) => {

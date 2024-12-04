@@ -1,6 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import type { Appearance, Connotation } from '../enums';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of calendar event connotation.
@@ -32,7 +32,7 @@ export type CalendarEventAppearance = Extract<
  * @public
  * @component calendar-event
  */
-export class CalendarEvent extends FoundationElement {
+export class CalendarEvent extends VividElement {
 	/**
 	 * the heading of the event
 	 *

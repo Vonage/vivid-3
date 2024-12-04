@@ -1,5 +1,4 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -12,6 +11,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { EventListener } from 'video.js/dist/types/event-target';
 import type { Radio } from '../radio/radio';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @public
@@ -20,7 +20,7 @@ import type { Radio } from '../radio/radio';
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
-export class RadioGroup extends FoundationElement {
+export class RadioGroup extends VividElement {
 	/**
 	 * Indicates the group's label.
 	 *

@@ -1,9 +1,4 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, when } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
@@ -11,6 +6,7 @@ import {
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { ListboxOption } from './option';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getClasses = (x: ListboxOption) =>
 	classNames(
@@ -22,10 +18,9 @@ const getClasses = (x: ListboxOption) =>
 		['icon', Boolean(x.icon)]
 	);
 
-export const ListboxOptionTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<ListboxOption> = (context: ElementDefinitionContext) => {
+export const ListboxOptionTemplate = (
+	context: VividElementDefinitionContext
+) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
