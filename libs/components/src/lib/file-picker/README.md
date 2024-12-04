@@ -223,6 +223,12 @@ The `helper-text` slot allows you to use rich content as the file picker's helpe
 Each added file in the preview list has a default background-color of `vvd-color-canvas` (`#fff` in light theme, `#000` in dark).  
 If needed, the background of the item can be changed using the `--file-picker-list-item-background-color` CSS variable.
 
+## Dimensions
+
+### Block-Size
+
+When setting `block-size` or `max-block-size` on the file-picker the list of the added files will have auto scroll.
+
 ## Properties
 
 <div class="table-wrapper">
