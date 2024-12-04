@@ -15,7 +15,7 @@ The `label` attribute provides a short description of the purpose of the Text Fi
 
 ### Helper Text
 
-The `helper-text` attribute provides additional information to help the user enter the correct informaton.
+The `helper-text` attribute provides additional information to help the user enter the correct information.
 
 To add HTML to the helper text, use the [helper-text slot](/components/text-field/code/#helper-text-slot).
 

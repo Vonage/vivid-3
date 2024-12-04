@@ -153,8 +153,13 @@
 	},
 	{
 		"title": "Number Field",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/number-field/README.md"
+		"description": "Allows users to enter a number in a text field or use buttons to increment or decrement the value.",
+		"variations": "./libs/components/src/lib/number-field/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/number-field/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/number-field/README.md",
+		"accessibility": "./libs/components/src/lib/number-field/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/number-field/USE-CASES.md"
 	},
 	{
 		"title": "Fab",

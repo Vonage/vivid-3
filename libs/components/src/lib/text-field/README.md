@@ -202,6 +202,18 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 
 </div>
 
+### Slots
+
+<div class="table-wrapper">
+
+| Name                   | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| `action-items`         | Add postfix elements to the Text Field input element. |
+| `helper-text`          | Sets the input element's appearance                   |
+| `leading-action-items` | Add rich content as the text-field's helper text      |
+
+</div>
+
 ### Events
 
 <div class="table-wrapper">
