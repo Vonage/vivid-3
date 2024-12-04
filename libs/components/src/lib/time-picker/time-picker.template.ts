@@ -4,9 +4,9 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { TimePicker } from './time-picker';
 import type { PickerOption } from './time/picker';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 /**
  * Renders a picker for hours/minutes/etc. using a listbox pattern.

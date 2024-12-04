@@ -1,8 +1,8 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import { PlacementStrategy, Popup } from '../popup/popup';
-import type { Slider } from './slider';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Slider } from './slider';
 
 const getClasses = ({ disabled, connotation }: Slider) =>
 	classNames(

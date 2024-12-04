@@ -5,8 +5,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
-import type { ListboxOption } from './option';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { ListboxOption } from './option';
 
 const getClasses = (x: ListboxOption) =>
 	classNames(

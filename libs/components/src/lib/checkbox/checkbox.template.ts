@@ -2,8 +2,8 @@ import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Icon } from '../icon/icon';
-import type { Checkbox } from './checkbox';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Checkbox } from './checkbox';
 
 const getClasses = ({
 	connotation,

@@ -4,8 +4,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { Badge } from './badge';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Badge } from './badge';
 
 const getClasses = ({
 	connotation,

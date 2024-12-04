@@ -5,11 +5,11 @@ import {
 	html,
 	slotted,
 } from '@microsoft/fast-element';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridRow } from './data-grid-row';
 import type { DataGrid } from './data-grid';
 import { DataGridSelectionMode } from './data-grid';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 function createRowItemTemplate(context: VividElementDefinitionContext) {
 	const rowTag = context.tagFor(DataGridRow);

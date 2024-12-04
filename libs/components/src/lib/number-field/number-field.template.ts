@@ -4,8 +4,8 @@ import { Shape } from '../enums';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import { Divider } from '../divider/divider';
-import type { NumberField } from './number-field';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { NumberField } from './number-field';
 
 const getStateClasses = ({
 	errorValidationMessage,

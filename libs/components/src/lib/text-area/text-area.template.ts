@@ -1,8 +1,8 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
-import type { TextArea } from './text-area';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { TextArea } from './text-area';
 
 const getClasses = ({
 	value,

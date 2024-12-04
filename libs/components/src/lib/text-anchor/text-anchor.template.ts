@@ -4,8 +4,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { TextAnchor } from './text-anchor';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { TextAnchor } from './text-anchor';
 
 const getClasses = ({ text, connotation, appearance }: TextAnchor) =>
 	classNames(

@@ -2,8 +2,8 @@ import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import { getMarkersTemplate } from '../slider/slider.template';
 import { PlacementStrategy, Popup } from '../popup/popup';
-import type { RangeSlider, ThumbId } from './range-slider';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { RangeSlider, ThumbId } from './range-slider';
 
 const getClasses = ({ disabled, connotation }: RangeSlider) =>
 	classNames(

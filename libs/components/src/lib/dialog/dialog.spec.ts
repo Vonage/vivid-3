@@ -1,8 +1,8 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import * as dialogPolyfill from 'dialog-polyfill';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.ts';
 import { Dialog } from './dialog';
 import '.';
-import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.ts';
 
 const COMPONENT_TAG = 'vwc-dialog';
 

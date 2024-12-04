@@ -4,8 +4,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { Tab } from './tab.js';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Tab } from './tab.js';
 
 const getClasses = ({
 	connotation,

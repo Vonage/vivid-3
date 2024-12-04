@@ -10,8 +10,8 @@ import { classNames, keyEnter } from '@microsoft/fast-web-utilities';
 import { Button } from '../button/button';
 import { TextField } from '../text-field/text-field';
 import { Icon } from '../icon/icon';
-import type { DialPad } from './dial-pad';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { DialPad } from './dial-pad';
 
 class DialPadButton {
 	value: string;

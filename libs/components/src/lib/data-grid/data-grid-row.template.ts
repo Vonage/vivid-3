@@ -1,7 +1,7 @@
 import { children, elements, html, slotted } from '@microsoft/fast-element';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 function createCellItemTemplate(context: VividElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);

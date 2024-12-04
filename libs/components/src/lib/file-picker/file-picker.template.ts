@@ -2,8 +2,8 @@ import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
-import type { FilePicker } from './file-picker';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { FilePicker } from './file-picker';
 
 const getClasses = ({ size }: FilePicker) =>
 	classNames('control', 'dz-default', 'dz-message', [

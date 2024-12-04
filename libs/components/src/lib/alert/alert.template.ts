@@ -6,8 +6,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Button } from '../button/button';
-import type { Alert } from './alert';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Alert } from './alert';
 
 const getClasses = ({ connotation }: Alert) =>
 	classNames('base', [`connotation-${connotation}`, Boolean(connotation)]);

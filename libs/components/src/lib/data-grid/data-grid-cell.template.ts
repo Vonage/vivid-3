@@ -1,9 +1,9 @@
 import { html, when } from '@microsoft/fast-element';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 function shouldShowSortIcons<T extends DataGridCell>(x: T): boolean {
 	if (x.columnDefinition) {

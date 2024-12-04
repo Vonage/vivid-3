@@ -1,8 +1,8 @@
 import { elements, html, slotted, when } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Radio } from '../radio/radio';
-import type { RadioGroup } from './radio-group';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { RadioGroup } from './radio-group';
 
 export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 	return html<RadioGroup>`

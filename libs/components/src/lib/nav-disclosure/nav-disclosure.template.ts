@@ -5,8 +5,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
-import type { NavDisclosure } from './nav-disclosure';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { NavDisclosure } from './nav-disclosure';
 
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
 	return ariaCurrent && !open;

@@ -3,8 +3,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
-import { SelectableBox } from './selectable-box';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { SelectableBox } from './selectable-box';
 
 const getClasses = ({
 	connotation,

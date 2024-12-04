@@ -7,13 +7,13 @@ import { Slider } from '../slider/slider';
 import { Menu } from '../menu/menu';
 import { MenuItem } from '../menu-item/menu-item';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import {
 	AudioPlayer,
 	formatTime,
 	SKIP_DIRECTIONS,
 	type SKIP_DIRECTIONS_TYPE,
 } from './audio-player';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 function skip(audioElement: AudioPlayer, skipDirection: SKIP_DIRECTIONS_TYPE) {
 	const currentTime = audioElement.currentTime;

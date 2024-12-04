@@ -4,8 +4,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { Note } from './note';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Note } from './note';
 
 const getClasses = ({ connotation }: Note) =>
 	classNames('base', `connotation-${connotation}`);

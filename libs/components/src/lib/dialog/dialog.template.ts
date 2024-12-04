@@ -3,8 +3,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
-import type { Dialog } from './dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Dialog } from './dialog';
 
 const getClasses = ({
 	iconPlacement,

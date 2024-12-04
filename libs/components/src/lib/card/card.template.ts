@@ -3,8 +3,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Elevation } from '../elevation/elevation';
-import type { Card } from './card';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Card } from './card';
 
 const getClasses = (_: Card) =>
 	classNames(

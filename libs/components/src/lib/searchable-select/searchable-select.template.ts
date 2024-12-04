@@ -10,9 +10,9 @@ import {
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from '../select/select';
 import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { SearchableSelect } from './searchable-select';
 import { OptionTag } from './option-tag';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 
 const getStateClasses = (x: Select) =>
 	classNames(

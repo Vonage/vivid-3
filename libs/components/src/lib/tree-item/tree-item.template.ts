@@ -12,8 +12,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
-import { TreeItem } from './tree-item';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { TreeItem } from './tree-item';
 
 const getClasses = ({ disabled, selected }: TreeItem) =>
 	classNames(

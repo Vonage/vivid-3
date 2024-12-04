@@ -1,8 +1,8 @@
 import { attr, html, observable, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../../../lib/icon/icon';
-import messageStyles from './message.scss?inline';
 import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
+import messageStyles from './message.scss?inline';
 
 export interface FormElement {
 	errorValidationMessage: string;

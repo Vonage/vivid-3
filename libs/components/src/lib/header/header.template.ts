@@ -1,8 +1,8 @@
 import { html } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
-import type { Header } from './header';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Header } from './header';
 
 const getPartAlternate = ({ alternate }: Header) =>
 	classNames(['vvd-theme-alternate', Boolean(alternate)]);

@@ -4,8 +4,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { Fab } from './fab';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Fab } from './fab';
 
 const getClasses = ({
 	connotation,

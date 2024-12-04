@@ -16,8 +16,8 @@ import {
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
-import type { Select } from './select';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Select } from './select';
 
 const getStateClasses = ({
 	shape,

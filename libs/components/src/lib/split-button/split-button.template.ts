@@ -4,8 +4,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { SplitButton } from './split-button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { SplitButton } from './split-button';
 
 const getClasses = ({
 	connotation,

@@ -2,8 +2,8 @@ import { html, when } from '@microsoft/fast-element';
 
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
-import type { OptionTag } from './option-tag';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { OptionTag } from './option-tag';
 
 const getClasses = ({ shape, disabled, removable }: OptionTag) =>
 	classNames(

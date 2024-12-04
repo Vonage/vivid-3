@@ -4,6 +4,7 @@ import { Button } from '../../lib/button/button';
 import { Popup } from '../../lib/popup/popup';
 import { TextField } from '../../lib/text-field/text-field';
 import { Divider } from '../../lib/divider/divider';
+import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import type { CalendarGridDate, Weekday } from './calendar/calendarGrid';
 import { areMonthsEqual, monthToStr } from './calendar/month';
 import type { MonthPickerGridCell } from './calendar/monthPickerGrid';
@@ -13,7 +14,6 @@ import type {
 	MonthPickerSegment,
 	Segment,
 } from './calendar/segment';
-import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 
 function renderDialogHeader(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);

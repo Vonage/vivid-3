@@ -4,8 +4,8 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
 import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
-import type { Combobox } from './combobox';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Combobox } from './combobox';
 
 function renderLabel() {
 	return html<Combobox>` <label for="control" class="label">

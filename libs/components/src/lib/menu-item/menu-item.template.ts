@@ -9,8 +9,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { menuName } from '../menu/definition';
-import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
 
 const getIndicatorIcon = (x: MenuItem) => {
 	if (x.checkedAppearance === CheckAppearance.TickOnly) {

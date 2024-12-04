@@ -8,8 +8,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
-import type { Button, ButtonAppearance, ButtonSize } from './button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 const getAppearanceClassName = (
 	appearance: ButtonAppearance,

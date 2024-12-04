@@ -3,8 +3,8 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import type { AccordionItem } from './accordion-item.js';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { AccordionItem } from './accordion-item.js';
 
 const header = (context: VividElementDefinitionContext, hTag: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);

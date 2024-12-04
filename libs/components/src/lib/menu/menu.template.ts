@@ -3,8 +3,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
-import type { Menu } from './menu';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Menu } from './menu';
 
 const getClasses = ({
 	headerSlottedContent,

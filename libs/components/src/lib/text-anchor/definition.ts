@@ -1,4 +1,4 @@
-import { iconDefinition } from '@vonage/vivid';
+import { iconDefinition } from '../icon/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { TextAnchor } from './text-anchor';

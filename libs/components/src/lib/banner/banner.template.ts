@@ -5,8 +5,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Button } from '../button/button';
-import type { Banner } from './banner';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Banner } from './banner';
 
 const getClasses = (_: Banner) =>
 	classNames('control', [`connotation-${_.connotation}`, !!_.connotation]);

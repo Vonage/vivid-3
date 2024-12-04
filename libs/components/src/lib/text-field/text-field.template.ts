@@ -2,8 +2,8 @@ import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
-import type { TextField } from './text-field';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { TextField } from './text-field';
 
 const getStateClasses = ({
 	errorValidationMessage,

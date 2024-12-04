@@ -1,8 +1,8 @@
 import { html, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
-import type { EmptyState } from './empty-state';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { EmptyState } from './empty-state';
 
 const getClasses = ({
 	connotation,

@@ -9,8 +9,8 @@ import {
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Shape, Size } from '../enums';
 import { Button } from '../button/button';
-import type { Pagination } from './pagination';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { Pagination } from './pagination';
 
 const ALLOWED_SIZES = [Size.SuperCondensed, Size.Condensed, Size.Normal];
 const ALLOWED_SHAPES = [Shape.Rounded, Shape.Pill];

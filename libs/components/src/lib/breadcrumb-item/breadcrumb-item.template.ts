@@ -2,8 +2,8 @@ import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
 import { Icon } from '../icon/icon';
-import type { BreadcrumbItem } from './breadcrumb-item';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { BreadcrumbItem } from './breadcrumb-item';
 
 const getClasses = (_: BreadcrumbItem) => classNames('base');
 
