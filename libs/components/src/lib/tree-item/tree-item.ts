@@ -86,7 +86,7 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	@observable
-	public focusable: boolean = false;
+	focusable: boolean = false;
 
 	/**
 	 *
@@ -95,7 +95,7 @@ export class TreeItem extends FoundationElement {
 	 */
 	@observable
 	// @ts-expect-error Type is incorrectly non-optional
-	public childItems: HTMLElement[];
+	childItems: HTMLElement[];
 
 	/**
 	 * The slotted child tree items
@@ -140,7 +140,7 @@ export class TreeItem extends FoundationElement {
 	 * @public
 	 * @param el - the element to focus
 	 */
-	public static focusItem(el: HTMLElement) {
+	static focusItem(el: HTMLElement) {
 		(el as TreeItem).focusable = true;
 		el.focus();
 	}

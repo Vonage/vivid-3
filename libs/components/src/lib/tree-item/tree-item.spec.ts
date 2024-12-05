@@ -46,9 +46,9 @@ describe('vwc-tree-item', () => {
 			expect(treeItem1).toBeInstanceOf(TreeItem);
 			expect(treeItem1.text).toBeUndefined();
 			expect(treeItem1.icon).toBeUndefined();
-			expect(treeItem1.selected).toBeUndefined();
+			expect(treeItem1.selected).toBeFalsy();
 			expect(treeItem1.expanded).toEqual(false);
-			expect(treeItem1.disabled).toBeUndefined();
+			expect(treeItem1.disabled).toBeFalsy();
 		});
 	});
 
@@ -80,6 +80,11 @@ describe('vwc-tree-item', () => {
 
 			expect(getControlElement(treeItem1)?.textContent?.trim()).toEqual(text);
 		});
+	});
+
+	it('should include a role of `treeitem', async () => {
+		await elementUpdated(treeItem1);
+		expect(treeItem1.getAttribute('role')).toEqual('treeitem');
 	});
 
 	it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
