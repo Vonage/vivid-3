@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { attr, observable } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**
