@@ -1,5 +1,5 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, DOM, observable } from "@microsoft/fast-element";
+import { attr, DOM, observable } from '@microsoft/fast-element';
 import {
 	getDisplayedNodes,
 	isHTMLElement,
@@ -10,8 +10,8 @@ import {
 	keyEnd,
 	keyEnter,
 	keyHome,
-} from "@microsoft/fast-web-utilities";
-import { isTreeItemElement, TreeItem } from "../tree-item/tree-item.js";
+} from '@microsoft/fast-web-utilities';
+import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
 
 /**
  * @public
@@ -26,8 +26,8 @@ export class TreeView extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: render-collapsed-nodes
 	 */
-	@attr({ attribute: "render-collapsed-nodes" })
-		// @ts-expect-error Type is incorrectly non-optional
+	@attr({ attribute: 'render-collapsed-nodes' })
+	// @ts-expect-error Type is incorrectly non-optional
 	renderCollapsedNodes: boolean;
 
 	/**
@@ -35,7 +35,7 @@ export class TreeView extends FoundationElement {
 	 * @public
 	 */
 	@observable
-		// @ts-expect-error Type is incorrectly non-optional
+	// @ts-expect-error Type is incorrectly non-optional
 	currentSelected: HTMLElement | TreeItem | null;
 
 	/**
@@ -44,7 +44,7 @@ export class TreeView extends FoundationElement {
 	 * @internal
 	 */
 	@observable
-		// @ts-expect-error Type is incorrectly non-optional
+	// @ts-expect-error Type is incorrectly non-optional
 	slottedTreeItems: HTMLElement[];
 	slottedTreeItemsChanged(): void {
 		if (this.$fastController.isConnected) {
@@ -84,7 +84,7 @@ export class TreeView extends FoundationElement {
 		}
 
 		if (this.contains(e.target as Node)) {
-			this.setAttribute("tabindex", "-1");
+			this.setAttribute('tabindex', '-1');
 			this.currentFocused = e.target as HTMLElement;
 		}
 	};
@@ -99,7 +99,7 @@ export class TreeView extends FoundationElement {
 			e.target instanceof HTMLElement &&
 			(e.relatedTarget === null || !this.contains(e.relatedTarget as Node))
 		) {
-			this.setAttribute("tabindex", "0");
+			this.setAttribute('tabindex', '0');
 		}
 	};
 
@@ -114,7 +114,7 @@ export class TreeView extends FoundationElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.setAttribute("tabindex", "0");
+		this.setAttribute('tabindex', '0');
 		DOM.queueUpdate(() => {
 			this.setItems();
 		});
@@ -211,7 +211,10 @@ export class TreeView extends FoundationElement {
 			return;
 		}
 
-		if (!(e.target instanceof Element) || !isTreeItemElement(e.target as Element)) {
+		if (
+			!(e.target instanceof Element) ||
+			!isTreeItemElement(e.target as Element)
+		) {
 			// not a tree item, ignore
 			return true;
 		}
@@ -236,7 +239,10 @@ export class TreeView extends FoundationElement {
 			return;
 		}
 
-		if (!(e.target instanceof Element) || !isTreeItemElement(e.target as Element)) {
+		if (
+			!(e.target instanceof Element) ||
+			!isTreeItemElement(e.target as Element)
+		) {
 			return true;
 		}
 
@@ -291,7 +297,7 @@ export class TreeView extends FoundationElement {
 		this.nested = this.checkForNestedItems();
 
 		const treeItems: HTMLElement[] | void = this.getVisibleNodes();
-		treeItems.forEach(node => {
+		treeItems.forEach((node) => {
 			if (isTreeItemElement(node)) {
 				(node as TreeItem).nested = this.nested;
 			}

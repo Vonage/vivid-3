@@ -56,7 +56,7 @@ describe('vwc-tree-view', () => {
 			expect(element.contains(document.activeElement)).toBeTruthy();
 		});
 
-		it('should move focus out if theres no slotted items' , async () => {
+		it('should move focus out if theres no slotted items', async () => {
 			const emptyTreeView = (await fixture(
 				`<${COMPONENT_TAG}>
 			</${COMPONENT_TAG}>`
@@ -65,7 +65,6 @@ describe('vwc-tree-view', () => {
 			const slot = emptyTreeView.shadowRoot?.querySelector('slot');
 			expect(slot?.childNodes.length).toBe(0);
 			expect(element.contains(document.activeElement)).toBeFalsy();
-
 		});
 	});
 
@@ -108,33 +107,32 @@ describe('vwc-tree-view', () => {
 			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
 		});
 
-		it("should only allow one tree item to be selected at a time", async () => {
+		it('should only allow one tree item to be selected at a time', async () => {
 			treeItem1.click();
 			await elementUpdated(treeItem1);
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute("aria-selected")).toEqual('true');
+			expect(treeItem1.getAttribute('aria-selected')).toEqual('true');
 
 			treeItem2.click();
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute("aria-selected")).toEqual('false');
-			expect(treeItem2.getAttribute("aria-selected")).toEqual('true');
+			expect(treeItem1.getAttribute('aria-selected')).toEqual('false');
+			expect(treeItem2.getAttribute('aria-selected')).toEqual('true');
 		});
 
-		it("should deselect a selected item when clicked", async () => {
+		it('should deselect a selected item when clicked', async () => {
 			treeItem1.click();
 			await elementUpdated(treeItem1);
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute("aria-selected")).toEqual('true');
+			expect(treeItem1.getAttribute('aria-selected')).toEqual('true');
 
 			treeItem1.click();
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute("aria-selected")).toEqual('false');
+			expect(treeItem1.getAttribute('aria-selected')).toEqual('false');
 		});
-
 
 		it('should dispatch selected-changed', async () => {
 			const spy = jest.fn();

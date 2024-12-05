@@ -1,9 +1,8 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
-import { isHTMLElement } from "@microsoft/fast-web-utilities";
+import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { attr, observable } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
 import { AffixIcon } from '../../shared/patterns/affix';
-
 
 /**
  * check if the item is a tree item
@@ -12,9 +11,10 @@ import { AffixIcon } from '../../shared/patterns/affix';
  * determines if element is an HTMLElement and if it has the role treeitem
  */
 export function isTreeItemElement(el: Element): el is HTMLElement {
-	return isHTMLElement(el) && (el.getAttribute("role") as string) === "treeitem";
+	return (
+		isHTMLElement(el) && (el.getAttribute('role') as string) === 'treeitem'
+	);
 }
-
 
 /**
  * @public
@@ -40,10 +40,10 @@ export class TreeItem extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: expanded
 	 */
-	@attr({ mode: "boolean" }) expanded: boolean = false;
+	@attr({ mode: 'boolean' }) expanded: boolean = false;
 	expandedChanged(): void {
 		if (this.$fastController.isConnected) {
-			this.$emit("expanded-change", this);
+			this.$emit('expanded-change', this);
 		}
 	}
 
@@ -54,12 +54,12 @@ export class TreeItem extends FoundationElement {
 	 * HTML Attribute: selected
 	 */
 	@attr({
-		mode: "boolean"
+		mode: 'boolean',
 	})
 	selected = false;
 	selectedChanged(): void {
 		if (this.$fastController.isConnected) {
-			this.$emit("selected-change", this);
+			this.$emit('selected-change', this);
 		}
 	}
 
@@ -69,7 +69,7 @@ export class TreeItem extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: disabled
 	 */
-	@attr({ mode: "boolean" })
+	@attr({ mode: 'boolean' })
 	disabled = false;
 
 	/**
@@ -77,7 +77,7 @@ export class TreeItem extends FoundationElement {
 	 *
 	 * @internal
 	 */
-		// @ts-expect-error Type is incorrectly non-optional
+	// @ts-expect-error Type is incorrectly non-optional
 	public expandCollapseButton: HTMLDivElement;
 
 	/**
@@ -103,7 +103,6 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	@observable
-
 	items!: HTMLElement[];
 	itemsChanged(): void {
 		if (this.$fastController.isConnected) {
@@ -131,7 +130,7 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	@observable
-		// @ts-expect-error Type is incorrectly non-optional
+	// @ts-expect-error Type is incorrectly non-optional
 	renderCollapsedChildren: boolean;
 
 	/**
@@ -171,7 +170,7 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	public handleFocus = (_e: FocusEvent): void => {
-		this.setAttribute("tabindex", "0");
+		this.setAttribute('tabindex', '0');
 	};
 
 	/**
@@ -180,7 +179,7 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	public handleBlur = (_e: FocusEvent): void => {
-		this.setAttribute("tabindex", "-1");
+		this.setAttribute('tabindex', '-1');
 	};
 
 	/**
