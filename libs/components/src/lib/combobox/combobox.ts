@@ -336,17 +336,11 @@ export class Combobox extends FormAssociatedCombobox {
 			this.filter = '';
 		}
 
-		const filter = this.filter.toLowerCase();
-
 		this.filteredOptions = this._options.filter((o) =>
 			o.text.toLowerCase().startsWith(this.filter.toLowerCase())
 		);
 
 		if (this.isAutocompleteList) {
-			if (!this.filteredOptions.length && !filter) {
-				this.filteredOptions = this._options;
-			}
-
 			this._options.forEach((o) => {
 				o.hidden = !this.filteredOptions.includes(o);
 			});
@@ -363,9 +357,10 @@ export class Combobox extends FormAssociatedCombobox {
 	protected override focusAndScrollOptionIntoView(): void {
 		if (this.contains(document.activeElement)) {
 			this.control.focus();
-			if (this.firstSelectedOption) {
+			const firstSelectedOption = this.firstSelectedOption;
+			if (firstSelectedOption) {
 				requestAnimationFrame(() => {
-					this.firstSelectedOption?.scrollIntoView({ block: 'nearest' });
+					firstSelectedOption.scrollIntoView({ block: 'nearest' });
 				});
 			}
 		}
@@ -390,9 +385,7 @@ export class Combobox extends FormAssociatedCombobox {
 			return;
 		}
 
-		if (!this.options || !this.options.includes(focusTarget as ListboxOption)) {
-			this.open = false;
-		}
+		this.open = false;
 	}
 
 	/**
@@ -512,30 +505,6 @@ export class Combobox extends FormAssociatedCombobox {
 	}
 
 	/**
-	 * Handle keyup actions for value input and text field manipulations.
-	 *
-	 * @param e - the keyboard event
-	 * @internal
-	 */
-	keyupHandler(e: KeyboardEvent): boolean | void {
-		const key = e.key;
-
-		switch (key) {
-			case 'ArrowLeft':
-			case 'ArrowRight':
-			case 'Backspace':
-			case 'Delete':
-			case 'Home':
-			case 'End': {
-				this.filter = this.control.value;
-				this.selectedIndex = -1;
-				this.filterOptions();
-				break;
-			}
-		}
-	}
-
-	/**
 	 * Ensure that the selectedIndex is within the current allowable filtered range.
 	 *
 	 * @param prev - the previous selected index value
@@ -625,10 +594,7 @@ export class Combobox extends FormAssociatedCombobox {
 	 * @internal
 	 */
 	private syncValue(): void {
-		const newValue =
-			this.selectedIndex > -1
-				? this.firstSelectedOption?.text
-				: this.control.value;
+		const newValue = this.firstSelectedOption?.text ?? this.control.value;
 		this.updateValue(this.value !== newValue);
 	}
 

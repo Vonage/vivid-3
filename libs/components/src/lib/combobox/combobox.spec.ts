@@ -6,7 +6,9 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Popup } from '../popup/popup.ts';
+import { ListboxOption } from '../option/option.ts';
 import { Combobox } from './combobox';
+import { ComboboxAutocomplete } from './combobox.options.ts';
 import '.';
 
 const COMPONENT_TAG = 'vwc-combobox';
@@ -21,6 +23,27 @@ describe('vwc-combobox', () => {
 	function getListbox(): HTMLDivElement {
 		return element.shadowRoot!.querySelector('.listbox') as HTMLDivElement;
 	}
+
+	const getOption = (text: string) => {
+		return element.querySelector(`vwc-option[text="${text}"]`) as ListboxOption;
+	};
+
+	function getControl(): HTMLInputElement {
+		return element.shadowRoot!.querySelector('.control') as HTMLInputElement;
+	}
+
+	const typeInput = (value: string) => {
+		getControl().value = value;
+		getControl().dispatchEvent(new InputEvent('input', { bubbles: true }));
+	};
+
+	const getVisibleOptions = () => {
+		return Array.from(element.querySelectorAll('vwc-option:not([hidden])'));
+	};
+
+	beforeAll(() => {
+		HTMLElement.prototype.scrollIntoView = jest.fn();
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -198,6 +221,12 @@ describe('vwc-combobox', () => {
 				element.querySelector('option:nth-child(3)'),
 			]);
 		});
+
+		it('should keep selectedIndex in valid range', async () => {
+			element.selectedIndex = 5;
+
+			expect(element.selectedIndex).toEqual(2);
+		});
 	});
 
 	describe('options', () => {
@@ -263,6 +292,106 @@ describe('vwc-combobox', () => {
 		});
 	});
 
+	describe('autocomplete', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<vwc-option value='1' text='Apple'></vwc-option>
+			<vwc-option value='2' text='Ananas'></vwc-option>
+			<vwc-option value='3' text='Nectarine'></vwc-option>
+		`;
+			await elementUpdated(element);
+		});
+
+		describe.each([ComboboxAutocomplete.list, ComboboxAutocomplete.both])(
+			'when autocomplete is list [%s]',
+			(autocomplete) => {
+				beforeEach(() => {
+					element.autocomplete = autocomplete;
+				});
+
+				it('should filter options by input text', async () => {
+					element.open = true;
+
+					typeInput('ana');
+
+					expect(element.options).toEqual([getOption('Ananas')]);
+					expect(getVisibleOptions()).toEqual([getOption('Ananas')]);
+				});
+
+				it('should open when entering text', async () => {
+					typeInput('ana');
+
+					expect(element.open).toBe(true);
+				});
+			}
+		);
+
+		describe.each([ComboboxAutocomplete.inline, ComboboxAutocomplete.both])(
+			'when autocomplete is inline [%s]',
+			(autocomplete) => {
+				beforeEach(() => {
+					element.autocomplete = autocomplete;
+				});
+
+				it('should autocomplete matched option and select autocompleted range', async () => {
+					element.open = true;
+
+					typeInput('ana');
+
+					expect(getControl().value).toBe('Ananas');
+					expect(getControl().selectionStart).toBe(3);
+					expect(getControl().selectionEnd).toBe(6);
+					expect(getControl().selectionDirection).toBe('backward');
+				});
+
+				it('should clear selected option if nothing matches the search term', async () => {
+					element.selectedIndex = 0;
+					element.open = true;
+
+					typeInput('banana');
+
+					expect(element.selectedIndex).toBe(-1);
+				});
+
+				it('should close and select the first matching option when pressing Enter when autocomplete is %s', async () => {
+					element.open = true;
+					await elementUpdated(element);
+					const spy = jest.fn();
+					element.addEventListener('change', spy);
+
+					typeInput('ana');
+					await elementUpdated(element);
+					element.dispatchEvent(
+						new KeyboardEvent('keydown', {
+							key: 'Enter',
+						})
+					);
+					await elementUpdated(element);
+
+					expect(element.value).toBe('Ananas');
+					expect(element.open).toBe(false);
+					expect(spy).toHaveBeenCalledTimes(1);
+				});
+
+				it('should set control value and select text in control when navigating between options', async () => {
+					element.open = true;
+					await elementUpdated(element);
+
+					element.dispatchEvent(
+						new KeyboardEvent('keydown', {
+							key: 'ArrowDown',
+						})
+					);
+					await elementUpdated(element);
+
+					expect(getControl().value).toBe('Apple');
+					expect(getControl().selectionStart).toBe(0);
+					expect(getControl().selectionEnd).toBe(5);
+				});
+			}
+		);
+	});
+
 	describe("when the owning form's reset() function is invoked", () => {
 		it('should reset the value property to its initial value', async () => {
 			const form = (await fixture(
@@ -298,6 +427,178 @@ describe('vwc-combobox', () => {
 			form.reset();
 			await elementUpdated(element);
 			expect(element.value).toEqual('2');
+		});
+	});
+
+	describe('when an option is selected', () => {
+		let changeSpy: jest.Mock;
+
+		beforeEach(async () => {
+			element.innerHTML = `
+				<vwc-option value="1" text="Apple"></vwc-option>
+			`;
+			element.open = true;
+			await elementUpdated(element);
+			changeSpy = jest.fn();
+			element.addEventListener('change', changeSpy);
+			getOption('Apple').click();
+		});
+
+		it("should set value to the option's text", async () => {
+			expect(element.value).toBe('Apple');
+		});
+
+		it('should emit a change event', async () => {
+			expect(changeSpy).toHaveBeenCalledTimes(1);
+		});
+
+		it("should update the control's value with the option's text", async () => {
+			expect(getControl().value).toBe('Apple');
+		});
+
+		it("should reset the control's selection range", async () => {
+			expect(getControl().selectionStart).toBe(5);
+			expect(getControl().selectionEnd).toBe(5);
+		});
+	});
+
+	describe('keyboard navigation', () => {
+		beforeEach(async () => {
+			element.innerHTML = `
+			<vwc-option value='1' text='Apple'></vwc-option>
+			<vwc-option value='2' text='Ananas'></vwc-option>
+			<vwc-option value='3' text='Nectarine'></vwc-option>
+		`;
+			await elementUpdated(element);
+		});
+
+		it('should select the next option when pressing ArrowDown', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'ArrowDown',
+				})
+			);
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(0);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'ArrowDown',
+				})
+			);
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it('should select the previous option when pressing ArrowUp', async () => {
+			element.open = true;
+			await elementUpdated(element);
+			element.selectedIndex = 2;
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'ArrowUp',
+				})
+			);
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it.each(['ArrowUp', 'ArrowDown'])(
+			'should open when pressing %s',
+			async (key) => {
+				element.dispatchEvent(
+					new KeyboardEvent('keydown', {
+						key,
+					})
+				);
+
+				expect(element.open).toBe(true);
+			}
+		);
+
+		it('should ignore key presses when ctrl is held down', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'ArrowDown',
+					ctrlKey: true,
+				})
+			);
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(-1);
+		});
+
+		it('should ignore key presses when shift is held down', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key: 'ArrowDown',
+					shiftKey: true,
+				})
+			);
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(-1);
+		});
+
+		it('should set control value to the selected option when pressing tab', async () => {
+			element.selectedIndex = 0;
+			getControl().value = 'A';
+
+			const tabEvent = new KeyboardEvent('keydown', {
+				key: 'Tab',
+			});
+			element.dispatchEvent(tabEvent);
+
+			expect(getControl().value).toBe('Apple');
+		});
+
+		it('should close and prevent focus move when pressing Tab while open', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			const tabEvent = new KeyboardEvent('keydown', {
+				key: 'Tab',
+				cancelable: true,
+			});
+
+			element.dispatchEvent(tabEvent);
+
+			expect(tabEvent.defaultPrevented).toBe(true);
+			expect(element.open).toBe(false);
+		});
+	});
+
+	describe('on focusout', () => {
+		it('should close', async () => {
+			element.open = true;
+
+			element.dispatchEvent(new FocusEvent('focusout'));
+
+			expect(element.open).toBe(false);
+		});
+
+		it('should not close if focus moves to the host', async () => {
+			element.open = true;
+			element.dispatchEvent(
+				new FocusEvent('focusout', {
+					relatedTarget: element,
+				})
+			);
+
+			expect(element.open).toBe(true);
 		});
 	});
 
