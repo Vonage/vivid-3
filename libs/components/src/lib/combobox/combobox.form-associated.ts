@@ -1,5 +1,5 @@
-import { FormAssociated } from '@microsoft/fast-foundation';
 import { Listbox } from '../../shared/foundation/listbox/listbox';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 
 class _Combobox extends Listbox {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
