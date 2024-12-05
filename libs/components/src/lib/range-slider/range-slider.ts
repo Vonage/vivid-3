@@ -3,7 +3,6 @@ import {
 	nullableNumberConverter,
 	observable,
 } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -16,6 +15,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Connotation } from '../enums';
 import {
 	type FormElement,

@@ -5,7 +5,7 @@ import {
 	observable,
 } from '@microsoft/fast-element';
 import { memoizeWith } from 'ramda';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
