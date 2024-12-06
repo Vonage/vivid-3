@@ -66,26 +66,23 @@ export class TreeView extends FoundationElement {
 	 * @internal
 	 */
 	handleFocus = (e: FocusEvent): void => {
-		if (this.slottedTreeItems.length < 1) {
-			// no child items, nothing to do
-			return;
-		}
+		if (this.slottedTreeItems.length > 0) {
+			if (e.target === this) {
+				if (this.currentFocused === null) {
+					this.currentFocused = this.getValidFocusableItem();
+				}
 
-		if (e.target === this) {
-			if (this.currentFocused === null) {
-				this.currentFocused = this.getValidFocusableItem();
+				if (this.currentFocused !== null) {
+					TreeItem.focusItem(this.currentFocused);
+				}
+
+				return;
 			}
 
-			if (this.currentFocused !== null) {
-				TreeItem.focusItem(this.currentFocused);
+			if (this.contains(e.target as Node)) {
+				this.setAttribute('tabindex', '-1');
+				this.currentFocused = e.target as HTMLElement;
 			}
-
-			return;
-		}
-
-		if (this.contains(e.target as Node)) {
-			this.setAttribute('tabindex', '-1');
-			this.currentFocused = e.target as HTMLElement;
 		}
 	};
 
