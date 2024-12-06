@@ -24,7 +24,12 @@ registerTooltip('your-prefix');
 </script>
 
 <your-prefix-tooltip text="I'm a tooltip" placement="right">
-	<your-prefix-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></your-prefix-button>
+	<your-prefix-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></your-prefix-button>
 </your-prefix-tooltip>
 ```
 
@@ -52,10 +57,20 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 
 ```html preview center 150px
 <div class="wrapper">
-	<vwc-button id="button" icon="help-line" appearance="filled" shape="pill"></vwc-button>
+	<vwc-button
+		id="button"
+		icon="help-line"
+		appearance="filled"
+		shape="pill"
+	></vwc-button>
 	<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 
-	<vwc-button id="button2" icon="help-line" appearance="filled" shape="pill"></vwc-button>
+	<vwc-button
+		id="button2"
+		icon="help-line"
+		appearance="filled"
+		shape="pill"
+	></vwc-button>
 	<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
 </div>
 
@@ -86,7 +101,12 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the Too
 
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 </vwc-tooltip>
 ```
 
@@ -103,7 +123,12 @@ The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.
 	text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device."
 	class="tooltip"
 >
-	<vwc-button slot="anchor" icon="info-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="info-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 </vwc-tooltip>
 ```
 
@@ -113,11 +138,11 @@ The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| --- | --- | --- |
-| **anchor** | `string` or `HTMLElement` | ID of, or HTML elemnent itself, to anchor the Tooltip to. Prefer using the `anchor` slot |
-| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the Tooltip in relation to the anchor element |
-| **text** | `string` | Text content of the Tooltip |
+| Name          | Type                                                                                                                                         | Description                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **anchor**    | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML elemnent itself, to anchor the Tooltip to. Prefer using the `anchor` slot |
+| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the Tooltip in relation to the anchor element                      |
+| **text**      | `string`                                                                                                                                     | Text content of the Tooltip                                                              |
 
 </div>
 
@@ -125,8 +150,8 @@ The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.
 
 <div class="table-wrapper">
 
-| Name     | Description                   |
-| -------- | ----------------------------- |
+| Name       | Description             |
+| ---------- | ----------------------- |
 | **anchor** | For the anchor element. |
 
 </div>

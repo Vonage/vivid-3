@@ -24,7 +24,12 @@ registerToggletip('your-prefix');
 </script>
 
 <your-prefix-toggletip placement="right">
-	<your-prefix-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></your-prefix-button>
+	<your-prefix-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></your-prefix-button>
 	I'm a Toggletip
 </your-prefix-toggletip>
 ```
@@ -54,7 +59,12 @@ The `open` attribute controls the open state of the Toggletip.
 
 ```html preview center 100px
 <vwc-toggletip open>
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 	I'm open by default
 </vwc-toggletip>
 ```
@@ -65,10 +75,22 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 
 ```html preview center 150px
 <div class="wrapper">
-	<vwc-button id="button" icon="help-line" appearance="filled" shape="pill"></vwc-button>
-	<vwc-toggletip anchor="button" placement="left">I'm a Toggletip</vwc-toggletip>
+	<vwc-button
+		id="button"
+		icon="help-line"
+		appearance="filled"
+		shape="pill"
+	></vwc-button>
+	<vwc-toggletip anchor="button" placement="left"
+		>I'm a Toggletip</vwc-toggletip
+	>
 
-	<vwc-button id="button2" icon="help-line" appearance="filled" shape="pill"></vwc-button>
+	<vwc-button
+		id="button2"
+		icon="help-line"
+		appearance="filled"
+		shape="pill"
+	></vwc-button>
 	<vwc-toggletip id="toggletip2">My anchor is an HTMLElement</vwc-toggletip>
 </div>
 
@@ -103,7 +125,12 @@ The anchor element must be clickable and in most cases, will be a button display
 
 ```html preview center 150px
 <vwc-toggletip>
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 	I'm a Toggletip
 </vwc-toggletip>
 ```
@@ -114,7 +141,12 @@ You can add action items elements (Buttons) using the `action-items` slot. They 
 
 ```html preview 150px
 <vwc-toggletip open placement="right-start">
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 	This is a Toggletip with action items
 	<vwc-button
 		appearance="outlined"
@@ -141,7 +173,12 @@ The `--toggletip-max-inline-size` variable sets the toggletip's max inline size.
 
 ```html preview center 250px
 <vwc-toggletip class="toggletip" placement="top">
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 	Turn on to receive notifications for important updates and alerts directly to
 	your email or mobile device.
 </vwc-toggletip>
@@ -159,13 +196,13 @@ The `--toggletip-max-inline-size` variable sets the toggletip's max inline size.
 
 <div class="table-wrapper">
 
-| Name | Type | Description |
-| --- | --- | --- |
-| **alternate** | `boolean` | Inverted color scheme |
-| **anchor** | `string` or `HTMLElement` | ID of, or HTML elemnent itself, to anchor the Toggletip to. Prefer using the `anchor` slot |
-| **headline** | `string` | Headline text for the Toggletip |
-| **open** | `boolean` | Sets the open state of the Toggletip |
-| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the toggletip in relation to the anchor element |
+| Name          | Type                                                                                                                                         | Description                                                                                |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **alternate** | `boolean`                                                                                                                                    | Inverted color scheme                                                                      |
+| **anchor**    | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML elemnent itself, to anchor the Toggletip to. Prefer using the `anchor` slot |
+| **headline**  | `string`                                                                                                                                     | Headline text for the Toggletip                                                            |
+| **open**      | `boolean`                                                                                                                                    | Sets the open state of the Toggletip                                                       |
+| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the toggletip in relation to the anchor element                      |
 
 </div>
 
@@ -173,10 +210,10 @@ The `--toggletip-max-inline-size` variable sets the toggletip's max inline size.
 
 <div class="table-wrapper">
 
-| Name     | Description                   |
-| -------- | ----------------------------- |
-| **default** | For the default content of the Toggletip. |
-| **anchor** | For the anchor element. |
-| **action-items** | For action buttons inside the Toggletip |
+| Name             | Description                               |
+| ---------------- | ----------------------------------------- |
+| **default**      | For the default content of the Toggletip. |
+| **anchor**       | For the anchor element.                   |
+| **action-items** | For action buttons inside the Toggletip   |
 
 </div>

@@ -6,7 +6,12 @@ The `headline` attributes sets the Toggletip headline.
 
 ```html preview center 100px
 <vwc-toggletip headline="This is the headline">
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 	This is the content
 </vwc-toggletip>
 ```
@@ -19,66 +24,126 @@ The `placement` attribute sets the default placement of the Toggletip around its
 <div class="grid">
 	<div></div>
 	<vwc-toggletip placement="top-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		top-start
 	</vwc-toggletip>
 	<vwc-toggletip placement="top">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		top
 	</vwc-toggletip>
 	<vwc-toggletip placement="top-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		top-end
 	</vwc-toggletip>
 	<div></div>
 
 	<vwc-toggletip placement="left-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		left-start
 	</vwc-toggletip>
 	<div></div>
 	<div></div>
 	<div></div>
 	<vwc-toggletip placement="right-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		right-start
 	</vwc-toggletip>
 
 	<vwc-toggletip placement="left">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		left
 	</vwc-toggletip>
 	<div></div>
 	<div></div>
 	<div></div>
 	<vwc-toggletip placement="right">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		right
 	</vwc-toggletip>
 
 	<vwc-toggletip placement="left-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		left-end
 	</vwc-toggletip>
 	<div></div>
 	<div></div>
 	<div></div>
 	<vwc-toggletip placement="right-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		right-end
 	</vwc-toggletip>
 
 	<div></div>
 	<vwc-toggletip placement="bottom-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		bottom-start
 	</vwc-toggletip>
 	<vwc-toggletip placement="bottom">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		bottom
 	</vwc-toggletip>
 	<vwc-toggletip placement="bottom-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+		<vwc-button
+			slot="anchor"
+			icon="help-line"
+			shape="pill"
+			appearance="filled"
+		></vwc-button>
 		bottom-end
 	</vwc-toggletip>
 	<div></div>
@@ -103,7 +168,12 @@ The `alternate` attribute changes the Toggletip's color scheme to the opposite o
 
 ```html preview center 100px
 <vwc-toggletip alternate>
-	<vwc-button slot="anchor" icon="help-line" shape="pill" appearance="filled"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 	An alternate toggletip
 </vwc-toggletip>
 ```
