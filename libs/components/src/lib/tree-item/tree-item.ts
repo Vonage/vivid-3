@@ -40,7 +40,7 @@ export class TreeItem extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: expanded
 	 */
-	@attr({ mode: 'boolean' }) expanded: boolean = false;
+	@attr({ mode: 'boolean' }) expanded = false;
 	expandedChanged(): void {
 		if (this.$fastController.isConnected) {
 			this.$emit('expanded-change', this);
@@ -78,7 +78,7 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	// @ts-expect-error Type is incorrectly non-optional
-	public expandCollapseButton: HTMLDivElement;
+	expandCollapseButton: HTMLDivElement;
 
 	/**
 	 * Whether the item is focusable
@@ -86,7 +86,7 @@ export class TreeItem extends FoundationElement {
 	 * @internal
 	 */
 	@observable
-	focusable: boolean = false;
+	focusable = false;
 
 	/**
 	 *
@@ -122,7 +122,7 @@ export class TreeItem extends FoundationElement {
 	 */
 	@observable
 	// @ts-expect-error Type is incorrectly non-optional
-	public nested: boolean;
+	nested: boolean;
 
 	/**
 	 *
@@ -149,7 +149,7 @@ export class TreeItem extends FoundationElement {
 	 *
 	 * @public
 	 */
-	public readonly isNestedItem = (): boolean => {
+	readonly isNestedItem = (): boolean => {
 		return isTreeItemElement(this.parentElement as Element);
 	};
 
@@ -158,7 +158,7 @@ export class TreeItem extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	public handleExpandCollapseButtonClick = (e: MouseEvent): void => {
+	handleExpandCollapseButtonClick = (e: MouseEvent): void => {
 		if (!this.disabled && !e.defaultPrevented) {
 			this.expanded = !this.expanded;
 		}
@@ -169,7 +169,7 @@ export class TreeItem extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	public handleFocus = (_e: FocusEvent): void => {
+	handleFocus = (_e: FocusEvent): void => {
 		this.setAttribute('tabindex', '0');
 	};
 
@@ -178,7 +178,7 @@ export class TreeItem extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	public handleBlur = (_e: FocusEvent): void => {
+	handleBlur = (_e: FocusEvent): void => {
 		this.setAttribute('tabindex', '-1');
 	};
 
@@ -187,7 +187,7 @@ export class TreeItem extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	public childItemLength(): number {
+	childItemLength(): number {
 		const treeChildren: HTMLElement[] = this.childItems.filter(
 			(item: HTMLElement) => {
 				return isTreeItemElement(item);

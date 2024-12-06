@@ -58,14 +58,14 @@ export class TreeView extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	public currentFocused: HTMLElement | TreeItem | null = null;
+	currentFocused: HTMLElement | TreeItem | null = null;
 
 	/**
 	 * Handle focus events
 	 *
 	 * @internal
 	 */
-	public handleFocus = (e: FocusEvent): void => {
+	handleFocus = (e: FocusEvent): void => {
 		if (this.slottedTreeItems.length < 1) {
 			// no child items, nothing to do
 			return;
@@ -94,7 +94,7 @@ export class TreeView extends FoundationElement {
 	 *
 	 * @internal
 	 */
-	public handleBlur = (e: FocusEvent): void => {
+	handleBlur = (e: FocusEvent): void => {
 		if (
 			e.target instanceof HTMLElement &&
 			(e.relatedTarget === null || !this.contains(e.relatedTarget as Node))
@@ -125,7 +125,7 @@ export class TreeView extends FoundationElement {
 	 *
 	 *  @internal
 	 */
-	public handleKeyDown = (e: KeyboardEvent): boolean | void => {
+	handleKeyDown = (e: KeyboardEvent): boolean | void => {
 		if (e.defaultPrevented) {
 			return;
 		}
@@ -205,7 +205,7 @@ export class TreeView extends FoundationElement {
 	 *
 	 *  @internal
 	 */
-	public handleClick(e: Event): boolean | void {
+	handleClick(e: Event): boolean | void {
 		if (e.defaultPrevented) {
 			// handled, do nothing
 			return;
@@ -234,7 +234,7 @@ export class TreeView extends FoundationElement {
 	 *
 	 *  @internal
 	 */
-	public handleSelectedChange = (e: Event): boolean | void => {
+	handleSelectedChange = (e: Event): boolean | void => {
 		if (e.defaultPrevented) {
 			return;
 		}
