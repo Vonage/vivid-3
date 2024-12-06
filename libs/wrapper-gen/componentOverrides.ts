@@ -38,6 +38,15 @@ ComponentRegister.addComponentOverride('data-grid', (component) => {
 	});
 });
 
+ComponentRegister.addComponentOverride('data-grid-cell', (component) => {
+	component.attributes.push({
+		name: 'columnDefinition',
+		description: 'Object representing the column definition.',
+		type: [{ text: 'object', vuePropType: 'Object' }],
+		forwardTo: { type: 'property', name: 'columnDefinition' },
+	});
+});
+
 ComponentRegister.addComponentOverride('searchable-select', (component) => {
 	component.attributes.push({
 		name: 'values',
