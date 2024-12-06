@@ -1,6 +1,6 @@
-import { BaseProgress } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
+import { BaseProgress } from '../../shared/foundation/progress/base-progress';
 
 export type ProgressRingConnotation =
 	| Connotation.Accent
