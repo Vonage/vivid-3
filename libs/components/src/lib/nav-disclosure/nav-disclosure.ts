@@ -1,5 +1,5 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';

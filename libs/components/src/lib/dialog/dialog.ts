@@ -1,5 +1,5 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';

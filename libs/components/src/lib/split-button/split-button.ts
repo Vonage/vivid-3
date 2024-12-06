@@ -1,5 +1,5 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';

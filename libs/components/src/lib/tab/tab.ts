@@ -1,8 +1,7 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
-
 import type { Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
