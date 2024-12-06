@@ -5,10 +5,8 @@ import {
 	getControlElement,
 	setProperty,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextAnchor, TextAnchorConnotation } from './text-anchor';
 import '.';
-import { textAnchorDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-text-anchor';
 
@@ -23,7 +21,6 @@ describe('vwc-text-anchor', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-anchor', async () => {
-			expect(textAnchorDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TextAnchor);
 			expect(element.text).toEqual(undefined);
 		});

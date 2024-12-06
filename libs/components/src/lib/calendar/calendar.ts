@@ -1,5 +1,5 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { CalendarEvent } from './../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
@@ -25,7 +25,7 @@ import { getEventContext } from './helpers/calendar.event-context';
  * @slot day-5 - Assign elements to corresponding day column using this slot.
  * @slot day-6 - Assign elements to corresponding day column using this slot.
  */
-export class Calendar extends FoundationElement {
+export class Calendar extends VividElement {
 	/**
 	 * The date within a week of choice.
 	 * Accepts any parameter acceptable by the `Date()` constructor.

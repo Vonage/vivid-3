@@ -1,16 +1,8 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html, ViewTemplate } from '@microsoft/fast-element';
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { designSystem } from '../../shared/design-system';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
-import { DataGridTemplate } from './data-grid.template';
-
-const dataGrid = DataGrid.compose<FoundationElementDefinition>({
-	baseName: 'data-grid',
-	template: DataGridTemplate as any,
-});
-
-designSystem.withPrefix('vwc').register(dataGrid());
+import '.';
+import { DataGridRow } from './data-grid-row.ts';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
@@ -44,7 +36,7 @@ describe('vwc-data-grid', () => {
 			expect(element.headerCellItemTemplate).toBeUndefined();
 			expect(element.focusRowIndex).toEqual(0);
 			expect(element.focusColumnIndex).toEqual(0);
-			expect(element.rowElementTag).toBeUndefined();
+			expect(element.rowElementTag).toBe('vwc-data-grid-row');
 			expect(element.selectionMode).toBeUndefined();
 		});
 	});
@@ -115,47 +107,48 @@ describe('vwc-data-grid', () => {
 		});
 	});
 	describe('generateHeader', () => {
-		const rowElementTag = 'vwc-data-grid-row';
-		let generatedHeader: any;
+		const getGeneratedHeader = () =>
+			element.querySelector('[row-type$="header"]') as DataGridRow | null;
 
 		beforeEach(async () => {
-			element.rowElementTag = rowElementTag;
+			element.gridTemplateColumns = '1fr 25px';
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			generatedHeader = element.querySelector(rowElementTag) as any;
 		});
 		it('should generate the header row with columnDefinition', async () => {
-			expect(generatedHeader.columnDefinitions).toEqual(
+			expect(getGeneratedHeader()!.columnDefinitions).toEqual(
 				element.columnDefinitions
 			);
 		});
 
 		it('should generate the header row with gridTemplateColumns', async () => {
-			expect(generatedHeader.gridTemplateColumns).toEqual(
+			expect(getGeneratedHeader()!.gridTemplateColumns).toBe(
 				element.gridTemplateColumns
 			);
 		});
 
 		it('should generate the header row with sticky', async () => {
-			const generatedHeaderRowTypeBeforeSticky = generatedHeader.rowType;
+			const generatedHeaderRowTypeBeforeSticky = getGeneratedHeader()!.rowType;
 			element.generateHeader = 'sticky';
-			generatedHeader = element.querySelector(rowElementTag) as any;
+			await elementUpdated(element);
 			expect(generatedHeaderRowTypeBeforeSticky).toEqual('header');
-			expect(generatedHeader.rowType).toEqual('sticky-header');
+			expect(getGeneratedHeader()!.rowType).toEqual('sticky-header');
 		});
 
 		it('should replace existing header if already rendered', async () => {
+			const generatedHeader = getGeneratedHeader();
 			element.generateHeader = 'sticky';
+			await elementUpdated(element);
 			expect(document.body.contains(generatedHeader)).toBeFalsy();
-			expect(element.querySelector(rowElementTag)).toBeTruthy();
+			expect(getGeneratedHeader()).toBeTruthy();
 		});
 
 		it('should remove the header row completely if generateHeader is none', async () => {
 			element.generateHeader = 'none';
-			expect(element.querySelector(rowElementTag)).toBeNull();
+			expect(getGeneratedHeader()).toBeNull();
 		});
 	});
 
@@ -369,6 +362,7 @@ describe('vwc-data-grid', () => {
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
 			];
+			await elementUpdated(element);
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

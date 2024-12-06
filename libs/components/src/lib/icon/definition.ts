@@ -1,25 +1,21 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './icon.scss?inline';
 import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
 
 export type { IconConnotation } from './icon';
 
-export const iconDefinition = Icon.compose<FoundationElementDefinition>({
-	baseName: 'icon',
-	template: template as any,
-	styles,
-});
-
 /**
  * @internal
  */
-export const iconRegistries = [iconDefinition()];
+export const iconDefinition = defineVividComponent('icon', Icon, template, [], {
+	styles,
+});
 
 /**
  * Registers the icon component & its prerequisite components with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerIcon = registerFactory(iconRegistries);
+export const registerIcon = createRegisterFunction(iconDefinition);

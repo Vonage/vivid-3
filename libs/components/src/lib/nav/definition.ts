@@ -1,27 +1,19 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './nav.scss?inline';
-
 import { Nav } from './nav';
 import { NavTemplate as template } from './nav.template';
 
 /**
- * The nav element.
- */
-export const navDefinition = Nav.compose<FoundationElementDefinition>({
-	baseName: 'nav',
-	template: template as any,
-	styles,
-});
-
-/**
  * @internal
  */
-export const navRegistries = [navDefinition()];
+export const navDefinition = defineVividComponent('nav', Nav, template, [], {
+	styles,
+});
 
 /**
  * Registers the nav elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerNav = registerFactory(navRegistries);
+export const registerNav = createRegisterFunction(navDefinition);

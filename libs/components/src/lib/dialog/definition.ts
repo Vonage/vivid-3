@@ -1,8 +1,8 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
-import { buttonRegistries } from '../button/definition';
-import { elevationRegistries } from '../elevation/definition';
+import { iconDefinition } from '../icon/definition';
+import { buttonDefinition } from '../button/definition';
+import { elevationDefinition } from '../elevation/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './dialog.scss?inline';
 import { Dialog } from './dialog';
 import { DialogTemplate as template } from './dialog.template';
@@ -10,30 +10,21 @@ import { DialogTemplate as template } from './dialog.template';
 export type { IconPlacement } from './dialog';
 
 /**
- * The dialog element.
- *
  * @internal
  */
-/* istanbul ignore next */
-export const dialogDefinition = Dialog.compose<FoundationElementDefinition>({
-	baseName: 'dialog',
-	template: template as any,
-	styles,
-});
-
-/**
- * @internal
- */
-export const dialogRegistries = [
-	dialogDefinition(),
-	...iconRegistries,
-	...buttonRegistries,
-	...elevationRegistries,
-];
+export const dialogDefinition = defineVividComponent(
+	'dialog',
+	Dialog,
+	template,
+	[iconDefinition, buttonDefinition, elevationDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the dialog elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDialog = registerFactory(dialogRegistries);
+export const registerDialog = createRegisterFunction(dialogDefinition);

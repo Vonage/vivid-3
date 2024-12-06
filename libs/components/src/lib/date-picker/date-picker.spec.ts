@@ -5,14 +5,12 @@ import {
 	fixture,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import enUS from '@vonage/vivid/locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DatePicker } from './date-picker';
-import { datePickerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-date-picker';
@@ -82,7 +80,6 @@ describe('vwc-date-picker', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-date-picker', async () => {
-			expect(datePickerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(DatePicker);
 		});
 	});

@@ -1,14 +1,10 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref, when } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Shape } from '../enums';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import { Divider } from '../divider/divider';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { NumberField } from './number-field';
 
 const getStateClasses = ({
@@ -53,7 +49,7 @@ function getTabIndex(numberField: NumberField) {
 /**
  * @param context - element definition context
  */
-function numberControlButtons(context: ElementDefinitionContext) {
+function numberControlButtons(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 	const dividerTag = context.tagFor(Divider);
 
@@ -91,16 +87,7 @@ function numberControlButtons(context: ElementDefinitionContext) {
 	`;
 }
 
-/**
- * The template for the NumberField component.
- *
- * @param context - element definition context
- * @public
- */
-export const NumberFieldTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<NumberField> = (context) => {
+export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 	return html<NumberField>`
 		<div class="base ${getStateClasses}">
 			${when((x) => x.label, renderLabel())}

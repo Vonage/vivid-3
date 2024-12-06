@@ -1,5 +1,5 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { FoundationElement, TabsOrientation } from '@microsoft/fast-foundation';
+import { TabsOrientation } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -13,6 +13,7 @@ import {
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Connotation, TabsGutters } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 export const TABLIST_COLUMN = '--_tabs-tablist-column';
@@ -33,7 +34,7 @@ export type TabsConnotation = Extract<
  * @slot - Default slot.
  * @event {CustomEvent<HTMLElement>} change - Fires a custom 'change' event when a tab is clicked or during keyboard navigation
  */
-export class Tabs extends FoundationElement {
+export class Tabs extends VividElement {
 	/**
 	 * The orientation
 	 * @public

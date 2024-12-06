@@ -1,10 +1,10 @@
 import { html } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Tab } from './tab.js';
 
 const getClasses = ({
@@ -28,7 +28,7 @@ const getClasses = ({
 		['removable', removable]
 	);
 
-function renderDismissButton(context: ElementDefinitionContext) {
+function renderDismissButton(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<Tab>` <span
@@ -41,16 +41,10 @@ function renderDismissButton(context: ElementDefinitionContext) {
 	</span>`;
 }
 
-/**
- * The template for the (Tab:class) component.
- *
- * @param context - element definition context
- * @public
- */
-export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
+export const TabTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html<T>`
+	return html<Tab>`
 		<template
 			slot="tab"
 			role="tab"
@@ -64,4 +58,4 @@ export function TabTemplate<T extends Tab>(context: ElementDefinitionContext) {
 			</div>
 		</template>
 	`;
-}
+};

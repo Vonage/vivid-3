@@ -1,31 +1,29 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './action-group.scss?inline';
-
 import { ActionGroup } from './action-group';
 import { ActionGroupTemplate as template } from './action-group.template';
 
 export type { ActionGroupShape, ActionGroupAppearance } from './action-group';
 
 /**
- *
  * @internal
  */
-export const actionGroupDefinition =
-	ActionGroup.compose<FoundationElementDefinition>({
-		baseName: 'action-group',
-		template: template as any,
+export const actionGroupDefinition = defineVividComponent(
+	'action-group',
+	ActionGroup,
+	template,
+	[],
+	{
 		styles,
-	});
-
-/**
- * @internal
- */
-export const actionGroupRegistries = [actionGroupDefinition()];
+	}
+);
 
 /**
  * Registers the action-group elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerActionGroup = registerFactory(actionGroupRegistries);
+export const registerActionGroup = createRegisterFunction(
+	actionGroupDefinition
+);

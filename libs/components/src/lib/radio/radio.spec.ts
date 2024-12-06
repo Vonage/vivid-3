@@ -6,11 +6,9 @@ import {
 	getBaseElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { Radio } from './radio';
 import '.';
-import { radioDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-radio';
 
@@ -32,7 +30,6 @@ describe('vwc-radio', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-radio', async () => {
-			expect(radioDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Radio);
 			expect(element.checked).toBeFalsy();
 			expect(element.disabled).toBeFalsy();

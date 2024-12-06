@@ -1,29 +1,25 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './divider.scss?inline';
-
 import { Divider } from './divider';
 import { DividerTemplate as template } from './divider.template';
 
 /**
- * The Divider element.
- *
  * @internal
  */
-export const dividerDefinition = Divider.compose<FoundationElementDefinition>({
-	baseName: 'divider',
-	template: template as any,
-	styles,
-});
-
-/**
- * @internal
- */
-export const dividerRegistries = [dividerDefinition()];
+export const dividerDefinition = defineVividComponent(
+	'divider',
+	Divider,
+	template,
+	[],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the divider elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDivider = registerFactory(dividerRegistries);
+export const registerDivider = createRegisterFunction(dividerDefinition);

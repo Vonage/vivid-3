@@ -1,11 +1,7 @@
 import { html, slotted, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { EmptyState } from './empty-state';
 
 const getClasses = ({
@@ -20,16 +16,7 @@ const getClasses = ({
 		['no-actions', slottedActionItems?.length === 0]
 	);
 
-/**
- * The template for the EmptyState component.
- *
- * @param context - element definition context
- * @public
- */
-export const EmptyStateTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<EmptyState> = (context: ElementDefinitionContext) => {
+export const EmptyStateTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
 	return html<EmptyState>` <div class="${getClasses}">

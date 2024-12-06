@@ -6,14 +6,12 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Connotation, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
 import { FilePicker } from './file-picker';
-import { filePickerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-file-picker';
@@ -55,7 +53,6 @@ describe('vwc-file-picker', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-file-picker', async () => {
-			expect(filePickerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(FilePicker);
 			expect(element.label).toBeUndefined();
 			expect(element.helperText).toBeUndefined();

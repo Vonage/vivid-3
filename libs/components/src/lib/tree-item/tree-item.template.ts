@@ -6,13 +6,13 @@ import {
 	slotted,
 	when,
 } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { TreeItem } from './tree-item';
 
 const getClasses = ({ disabled, selected }: TreeItem) =>
@@ -22,7 +22,9 @@ const getClasses = ({ disabled, selected }: TreeItem) =>
 		['selected', Boolean(selected)]
 	);
 
-export const expandCollapseButton = (context: ElementDefinitionContext) => {
+export const expandCollapseButton = (
+	context: VividElementDefinitionContext
+) => {
 	const iconTag = context.tagFor(Icon);
 
 	return html<TreeItem>`
@@ -36,13 +38,7 @@ export const expandCollapseButton = (context: ElementDefinitionContext) => {
 	</div>`;
 };
 
-/**
- * The template for the TreeItem component.
- *
- * @param context - element definition context
- * @public
- */
-export const TreeItemTemplate = (context: ElementDefinitionContext) => {
+export const TreeItemTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TreeItem>` <template

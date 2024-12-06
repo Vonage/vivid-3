@@ -7,7 +7,6 @@ import {
 	listenToFormSubmission,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { setLocale } from '../../shared/localization';
 import { Popup } from '../popup/popup.ts';
 import { Button } from '../button/button.ts';
@@ -15,7 +14,6 @@ import { TextField } from '../text-field/text-field.ts';
 import enGB from '../../locales/en-GB.ts';
 import enUS from '../../locales/en-US.ts';
 import { TimePicker } from './time-picker';
-import { timePickerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-time-picker';
@@ -105,7 +103,6 @@ describe('vwc-time-picker', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-time-picker', async () => {
-			expect(timePickerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TimePicker);
 		});
 	});

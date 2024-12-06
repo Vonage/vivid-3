@@ -4,10 +4,8 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
-import { splitButtonDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-split-button';
@@ -25,7 +23,6 @@ describe('vwc-split-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-split-button', async () => {
-			expect(splitButtonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(SplitButton);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();

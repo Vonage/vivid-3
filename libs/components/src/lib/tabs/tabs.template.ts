@@ -62,41 +62,34 @@ function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	addEndShadow(scrollShadow, scrollWrapper);
 }
 
-/**
- * The template for the (Tabs:class) component.
- *
- * @public
- */
-export function TabsTemplate<T extends Tabs>() {
-	return html<T>`
-		<template>
-			<div class="${getClasses}">
-				<div class="tabs">
-					<div class="scroll-shadow">
-						<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
-							<div class="tablist" role="tablist" ${ref('tablist')}>
-								<slot name="tab" ${slotted('tabs')}></slot>
-								${when(
-									(x) => x.showActiveIndicator,
-									html<T>`
-										<div
-											${ref('activeIndicatorRef')}
-											class="active-indicator"
-										></div>
-									`
-								)}
-							</div>
+export const TabsTemplate = html<Tabs>`
+	<template>
+		<div class="${getClasses}">
+			<div class="tabs">
+				<div class="scroll-shadow">
+					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
+						<div class="tablist" role="tablist" ${ref('tablist')}>
+							<slot name="tab" ${slotted('tabs')}></slot>
+							${when(
+								(x) => x.showActiveIndicator,
+								html<Tabs>`
+									<div
+										${ref('activeIndicatorRef')}
+										class="active-indicator"
+									></div>
+								`
+							)}
 						</div>
 					</div>
-					<slot
-						name="action-items"
-						${slotted('_actionItemsSlottedContent')}
-					></slot>
 				</div>
-				<div class="tabpanel" part="tab-panel">
-					<slot name="tabpanel" ${slotted('tabpanels')}></slot>
-				</div>
+				<slot
+					name="action-items"
+					${slotted('_actionItemsSlottedContent')}
+				></slot>
 			</div>
-		</template>
-	`;
-}
+			<div class="tabpanel" part="tab-panel">
+				<slot name="tabpanel" ${slotted('tabpanels')}></slot>
+			</div>
+		</div>
+	</template>
+`;

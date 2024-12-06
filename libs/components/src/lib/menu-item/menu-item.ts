@@ -3,7 +3,6 @@ import {
 	AnchoredRegion,
 	applyMixins,
 	MenuItemRole as FastMenuItemRole,
-	FoundationElement,
 	getDirection,
 } from '@microsoft/fast-foundation';
 import { Direction, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
@@ -14,6 +13,7 @@ import {
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 import { Connotation } from '../enums';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const MenuItemRole = {
 	...FastMenuItemRole,
@@ -47,7 +47,7 @@ export type MenuItemConnotation = Extract<
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
  * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
-export class MenuItem extends FoundationElement {
+export class MenuItem extends VividElement {
 	/**
 	 * The disabled state of the element.
 	 *

@@ -1,40 +1,34 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-
-import { buttonRegistries } from '../button/definition';
-import { popupRegistries } from '../popup/definition';
-import { textFieldRegistries } from '../text-field/definition';
-import { dividerRegistries } from '../divider/definition';
+import { buttonDefinition } from '../button/definition';
+import { popupDefinition } from '../popup/definition';
+import { textFieldDefinition } from '../text-field/definition';
+import { dividerDefinition } from '../divider/definition';
 import styles from '../../shared/date-picker/date-picker-base.scss?inline';
 import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { DateRangePicker } from './date-range-picker';
-
-export const dateRangePickerDefinition =
-	DateRangePicker.compose<FoundationElementDefinition>({
-		baseName: 'date-range-picker',
-		template: template as any,
-		styles,
-		shadowOptions: {
-			delegatesFocus: true,
-		},
-	});
 
 /**
  * @internal
  */
-export const dateRangePickerRegistries = [
-	dateRangePickerDefinition(),
-	...buttonRegistries,
-	...popupRegistries,
-	...textFieldRegistries,
-	...dividerRegistries,
-];
+export const dateRangePickerDefinition = defineVividComponent(
+	'date-range-picker',
+	DateRangePicker,
+	template,
+	[buttonDefinition, popupDefinition, textFieldDefinition, dividerDefinition],
+	{
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	}
+);
 
 /**
  * Registers the date-range-picker element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDateRangePicker = registerFactory(
-	dateRangePickerRegistries
+export const registerDateRangePicker = createRegisterFunction(
+	dateRangePickerDefinition
 );

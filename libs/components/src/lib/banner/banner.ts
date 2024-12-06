@@ -1,9 +1,9 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type BannerConnotation =
 	| Connotation.Information
@@ -30,7 +30,7 @@ const defaultConnotation = (
  * @slot action-items - Add action items to banner using this slot.
  * @slot icon - Add an icon to the component.
  */
-export class Banner extends FoundationElement {
+export class Banner extends VividElement {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;

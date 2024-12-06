@@ -1,13 +1,9 @@
 import { html, slotted, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Dialog } from './dialog';
 
 const getClasses = ({
@@ -54,10 +50,7 @@ function renderDismissButton(buttonTag: string) {
 	></${buttonTag}>`;
 }
 
-export const DialogTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Dialog> = (context: ElementDefinitionContext) => {
+export const DialogTemplate = (context: VividElementDefinitionContext) => {
 	const elevationTag = context.tagFor(Elevation);
 	const iconTag = context.tagFor(Icon);
 	const buttonTag = context.tagFor(Button);

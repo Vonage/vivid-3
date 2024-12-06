@@ -6,8 +6,8 @@ import {
 	keyHome,
 	wrapInBounds,
 } from '@microsoft/fast-web-utilities';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { AccordionItem } from '../accordion-item/accordion-item';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Expand mode for {@link Accordion}
@@ -38,7 +38,7 @@ export type AccordionExpandMode =
  * @event {CustomEvent<string | null>} change - Fires a custom 'change' event when the active item changes
  * @slot - Default slot.
  */
-export class Accordion extends FoundationElement {
+export class Accordion extends VividElement {
 	/**
 	 * Controls the expand mode of the Accordion, either allowing
 	 * single or multiple item expansion.

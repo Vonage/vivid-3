@@ -1,7 +1,7 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { FormAssociated } from '../form-associated/form-associated';
+import { VividElement } from '../vivid-element/vivid-element';
 
-class _FoundationButton extends FoundationElement {}
+class _FoundationButton extends VividElement {}
 /* eslint-disable-next-line @typescript-eslint/naming-convention */
 interface _FoundationButton extends FormAssociated {}
 

@@ -1,29 +1,25 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { Elevation } from './elevation';
 import styles from './elevation.scss?inline';
 import { elevationTemplate as template } from './elevation.template';
 
 /**
- * Represents an elevation custom element.
- *
  * @internal
  */
-export const elevationDefinition =
-	Elevation.compose<FoundationElementDefinition>({
-		baseName: 'elevation',
-		template: template as any,
+export const elevationDefinition = defineVividComponent(
+	'elevation',
+	Elevation,
+	template,
+	[],
+	{
 		styles,
-	});
-
-/**
- * @internal
- */
-export const elevationRegistries = [elevationDefinition()];
+	}
+);
 
 /**
  * Registers the elevation elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerElevation = registerFactory(elevationRegistries);
+export const registerElevation = createRegisterFunction(elevationDefinition);

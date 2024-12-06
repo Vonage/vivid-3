@@ -1,12 +1,12 @@
-import { html, ref, ViewTemplate, when } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+import { html, ref, when } from '@microsoft/fast-element';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { AccordionItem } from './accordion-item.js';
 
-const header = (context: ElementDefinitionContext, hTag: string) => {
+const header = (context: VividElementDefinitionContext, hTag: string) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	/* eslint-disable @typescript-eslint/indent */
@@ -40,10 +40,8 @@ const header = (context: ElementDefinitionContext, hTag: string) => {
 	`;
 };
 
-export const AccordionItemTemplate: (
-	context: ElementDefinitionContext
-) => ViewTemplate<AccordionItem> = (
-	context: ElementDefinitionContext
+export const AccordionItemTemplate = (
+	context: VividElementDefinitionContext
 ) => html<AccordionItem>`
 	${(x) => header(context, 'h' + x.headinglevel)}
 	<div

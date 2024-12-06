@@ -5,12 +5,10 @@ import {
 	getBaseElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
-import { radioGroupDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
@@ -40,7 +38,6 @@ describe('vwc-radio-group', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-radio-group with proper default values', async () => {
-			expect(radioGroupDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(RadioGroup);
 			expect(element.readOnly).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
