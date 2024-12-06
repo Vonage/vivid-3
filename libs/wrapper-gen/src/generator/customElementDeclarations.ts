@@ -348,15 +348,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	DataGridCellExtension: [
-		{
-			name: 'columnDefinition',
-			description:
-				'Extends the data grid cell definition to hold more options.',
-			type: { text: 'object' },
-			fieldName: 'columnDefinition',
-		},
-	],
 	Localized: [],
 	Anchored: [
 		{

@@ -182,32 +182,45 @@ describe('vwc-data-grid-cell', () => {
 				expect(hasActiveClassBeforeFocus).toBeFalsy();
 				expect(baseElement?.classList.contains('active')).toBeTruthy();
 			});
+
+			it('should ignore additional focusin events', async () => {
+				const spy = jest.fn();
+				element.addEventListener('cell-focused', spy);
+
+				element.dispatchEvent(new Event('focusin'));
+				element.dispatchEvent(new Event('focusin'));
+
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
 		});
 
 		describe('handleKeydown', () => {
-			it('should focus on target element with enter key', async () => {
-				element.cellType = 'default';
+			it.each(['Enter', 'F2'])(
+				'should focus on target element with %s key',
+				async (key) => {
+					element.cellType = 'default';
+					element.columnDefinition = {
+						columnDataKey: 'name',
+						cellFocusTargetCallback: () => {
+							return elementToFocus;
+						},
+						cellInternalFocusQueue: true,
+					};
+					element.dispatchEvent(new KeyboardEvent('keydown', { key }));
+					expect(document.activeElement).toEqual(elementToFocus);
+				}
+			);
+
+			it('should focus on header target element when cellType is columnheader', async () => {
+				element.cellType = 'columnheader';
 				element.columnDefinition = {
 					columnDataKey: 'name',
-					cellFocusTargetCallback: () => {
+					headerCellFocusTargetCallback: () => {
 						return elementToFocus;
 					},
-					cellInternalFocusQueue: true,
+					headerCellInternalFocusQueue: true,
 				};
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-				expect(document.activeElement).toEqual(elementToFocus);
-			});
-
-			it('should focus on target element with F2 key', async () => {
-				element.cellType = 'default';
-				element.columnDefinition = {
-					columnDataKey: 'name',
-					cellFocusTargetCallback: () => {
-						return elementToFocus;
-					},
-					cellInternalFocusQueue: true,
-				};
-				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'F2' }));
 				expect(document.activeElement).toEqual(elementToFocus);
 			});
 
@@ -221,6 +234,22 @@ describe('vwc-data-grid-cell', () => {
 				childNode.focus();
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 				expect(document.activeElement).toEqual(element);
+			});
+
+			it('should not move focus if a child is already focused', async () => {
+				element.cellType = 'default';
+				element.columnDefinition = {
+					columnDataKey: 'name',
+					cellFocusTargetCallback: () => {
+						return elementToFocus;
+					},
+					cellInternalFocusQueue: true,
+				};
+				const focusedChild = document.createElement('input');
+				element.appendChild(focusedChild);
+				focusedChild.focus();
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+				expect(document.activeElement).toBe(focusedChild);
 			});
 		});
 	});
