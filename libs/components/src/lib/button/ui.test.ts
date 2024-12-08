@@ -202,6 +202,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button style="width: 100px" appearance="filled" dropdown-indicator label="too small for label"></vwc-button>
 		<vwc-button appearance="filled" dropdown-indicator icon="user-line"></vwc-button>
 	</div>
+		<div style="margin: 5px;">
+		<vwc-button style="width: 200px" appearance="filled" dropdown-indicator shape="pill" label="wide"></vwc-button>
+		<vwc-button style="width: 100px" appearance="filled" dropdown-indicator shape="pill" label="too small for label"></vwc-button>
+		<vwc-button appearance="filled" dropdown-indicator shape="pill" icon="user-line"></vwc-button>
+	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance="filled" dropdown-indicator label="expanded" aria-expanded="true"></vwc-button>
 	</div>
