@@ -34,7 +34,7 @@ registerRangeSlider('your-prefix');
 	import { VRangeSlider } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VRangeSlider appearance="filled" label="Click me" />
+	<VRangeSlider />
 </template>
 ```
 
@@ -168,6 +168,7 @@ Use this to configure the [`pin`](/variation/#pin) string.
 | **aria-start-label** | `string`                                | Aria label for the start thumb                                       |
 | **aria-end-label**   | `string`                                | Aria label for the end thumb                                         |
 | **connotation**      | _Enum_:<br/>`accent`<br/>`cta`          | The connotation of the component                                     |
+| **disabled**         | `boolean`                               | Sets the element's disabled state                                    |
 | **end**              | `string`                                | The current end value of the element.                                |
 | **markers**          | `boolean`                               | Display markers on/off                                               |
 | **max**              | `number`                                | The maximum value of the range.                                      |

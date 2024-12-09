@@ -263,8 +263,14 @@
 	},
 	{
 		"title": "Slider",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/slider/README.md"
+		"description": "Allows users to choose from a range of values along a horizontal or vertical line",
+		"variations": "./libs/components/src/lib/slider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/slider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/slider/README.md",
+		"accessibility": "./libs/components/src/lib/slider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/slider/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Tabs",
@@ -370,7 +376,8 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/range-slider/README.md",
 		"accessibility": "./libs/components/src/lib/range-slider/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md"
+		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md",
+		"status": "alpha"
 	},
 	{
 		"title": "Split Button",
