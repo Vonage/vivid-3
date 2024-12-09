@@ -23,8 +23,7 @@ The `placement` attribute sets the default placement of the Tooltip around its a
 
 ```html preview center 400px
 <div class="grid">
-	<div></div>
-	<vwc-tooltip text="top-start" placement="top-start">
+	<vwc-tooltip text="top-start" placement="top-start" class="grid-col-2">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -48,76 +47,55 @@ The `placement` attribute sets the default placement of the Tooltip around its a
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-	<div></div>
-
-	<vwc-tooltip text="left-start" placement="left-start">
+	<vwc-tooltip text="left-start" placement="left-start" class="grid-col-1">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
 			shape="pill"
-			size="expanded"
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right-start" placement="right-start">
+	<vwc-tooltip text="right-start" placement="right-start" class="grid-col-5">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
 			shape="pill"
-			size="expanded"
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-
-	<vwc-tooltip text="left" placement="left">
+	<vwc-tooltip text="left" placement="left" class="grid-col-1">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
 			shape="pill"
-			size="expanded"
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right" placement="right">
+	<vwc-tooltip text="right" placement="right" class="grid-col-5">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
 			shape="pill"
-			size="expanded"
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-
-	<vwc-tooltip text="left-end" placement="left-end">
+	<vwc-tooltip text="left-end" placement="left-end" class="grid-col-1">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
 			shape="pill"
-			size="expanded"
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right-end" placement="right-end">
+	<vwc-tooltip text="right-end" placement="right-end" class="grid-col-5">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
 			shape="pill"
-			size="expanded"
 			appearance="filled"
 		></vwc-button>
 	</vwc-tooltip>
-
-	<div></div>
-	<vwc-tooltip text="bottom-start" placement="bottom-start">
+	<vwc-tooltip text="bottom-start" placement="bottom-start" class="grid-col-2">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -148,11 +126,21 @@ The `placement` attribute sets the default placement of the Tooltip around its a
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(5, auto);
+		grid-template-rows: repeat(5, 40px);
 		gap: 4px;
+	}
+	.grid-col-1 {
+		grid-column: 1;
+	}
+	.grid-col-2 {
+		grid-column: 2;
+	}
+	.grid-col-5 {
+		grid-column: 5;
 	}
 </style>
 ```
 
 <vwc-note connotation="information" icon="info-line">
-	<p>The Tooltip will attempt to position itself where the <code>placement</code> attribute dictates. If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
+	<p>The Tooltip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
 </vwc-note>

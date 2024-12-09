@@ -5,7 +5,7 @@ Toggletip works differently to [Tooltip](/components/tooltip/) in that it requir
 The `headline` attributes sets the Toggletip headline.
 
 ```html preview center 100px
-<vwc-toggletip headline="This is the headline">
+<vwc-toggletip headline="This is the headline" open>
 	<vwc-button
 		slot="anchor"
 		icon="help-line"
@@ -22,8 +22,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 
 ```html preview center 400px
 <div class="grid">
-	<div></div>
-	<vwc-toggletip placement="top-start">
+	<vwc-toggletip placement="top-start" class="grid-col-2">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -50,9 +49,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		top-end
 	</vwc-toggletip>
-	<div></div>
-
-	<vwc-toggletip placement="left-start">
+	<vwc-toggletip placement="left-start" class="grid-col-1">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -61,10 +58,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		left-start
 	</vwc-toggletip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-toggletip placement="right-start">
+	<vwc-toggletip placement="right-start" class="grid-col-5">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -73,8 +67,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		right-start
 	</vwc-toggletip>
-
-	<vwc-toggletip placement="left">
+	<vwc-toggletip placement="left" class="grid-col-1">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -83,10 +76,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		left
 	</vwc-toggletip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-toggletip placement="right">
+	<vwc-toggletip placement="right" class="grid-col-5">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -95,8 +85,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		right
 	</vwc-toggletip>
-
-	<vwc-toggletip placement="left-end">
+	<vwc-toggletip placement="left-end" class="grid-col-1">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -105,10 +94,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		left-end
 	</vwc-toggletip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-toggletip placement="right-end">
+	<vwc-toggletip placement="right-end" class="grid-col-5">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -117,9 +103,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		right-end
 	</vwc-toggletip>
-
-	<div></div>
-	<vwc-toggletip placement="bottom-start">
+	<vwc-toggletip placement="bottom-start" class="grid-col-2">
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -128,7 +112,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		bottom-start
 	</vwc-toggletip>
-	<vwc-toggletip placement="bottom">
+	<vwc-toggletip placement="bottom" open>
 		<vwc-button
 			slot="anchor"
 			icon="help-line"
@@ -146,20 +130,29 @@ The `placement` attribute sets the default placement of the Toggletip around its
 		></vwc-button>
 		bottom-end
 	</vwc-toggletip>
-	<div></div>
 </div>
 
 <style>
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(5, auto);
+		grid-template-rows: repeat(5, 40px);
 		gap: 4px;
+	}
+	.grid-col-1 {
+		grid-column: 1;
+	}
+	.grid-col-2 {
+		grid-column: 2;
+	}
+	.grid-col-5 {
+		grid-column: 5;
 	}
 </style>
 ```
 
 <vwc-note connotation="information" icon="info-line">
-	<p>The Tooggletip will attempt to position itself where the <code>placement</code> attribute dictates. If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
+	<p>The Tooggletip will attempt to position itself where the <code>placement</code> attribute dictates (or the default of <code>bottom</code> if not set). If it is unable to do so, because of lack of available space on the screen, it will reposition itself to the most appropriate alternative placement.</p>
 </vwc-note>
 
 ## Alternate
@@ -167,7 +160,7 @@ The `placement` attribute sets the default placement of the Toggletip around its
 The `alternate` attribute changes the Toggletip's color scheme to the opposite of the currently select one (eg. from light to dark).
 
 ```html preview center 100px
-<vwc-toggletip alternate>
+<vwc-toggletip alternate open>
 	<vwc-button
 		slot="anchor"
 		icon="help-line"
