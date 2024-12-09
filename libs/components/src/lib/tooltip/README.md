@@ -51,7 +51,7 @@ registerTooltip('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
-### Anchor
+## Anchor
 
 It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you can also use the `anchor` attribute. Either set it to the `id` of the anchor element or pass the anchor element itself.
 
