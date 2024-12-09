@@ -1,6 +1,6 @@
 import { TreeItem as FastTreeItem } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIcon } from '../../shared/patterns/affix';
 
 /**

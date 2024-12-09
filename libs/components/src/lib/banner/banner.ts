@@ -1,5 +1,6 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
