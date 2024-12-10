@@ -193,7 +193,7 @@ export class TreeItem extends FoundationElement {
 				return isTreeItemElement(item);
 			}
 		);
-		return treeChildren ? treeChildren.length : 0;
+		return treeChildren.length;
 	}
 }
 

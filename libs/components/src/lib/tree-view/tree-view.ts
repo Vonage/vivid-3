@@ -16,7 +16,7 @@ import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
 export function getDisplayedNodes(
 	rootNode: HTMLElement,
 	selector: string
-): HTMLElement[] | void {
+): HTMLElement[] {
 	if (isHTMLElement(rootNode)) {
 		// get all tree-items
 		const nodes: HTMLElement[] = Array.from(
@@ -35,6 +35,7 @@ export function getDisplayedNodes(
 		});
 		return visibleNodes;
 	}
+	return [];
 }
 
 /**
@@ -351,6 +352,6 @@ export class TreeView extends FoundationElement {
 	};
 
 	private getVisibleNodes(): HTMLElement[] {
-		return getDisplayedNodes(this, "[role='treeitem']") || [];
+		return getDisplayedNodes(this, "[role='treeitem']");
 	}
 }
