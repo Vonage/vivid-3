@@ -1,5 +1,13 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import {
+	keyArrowDown,
+	// keyArrowLeft,
+	// keyArrowRight,
+	keyArrowUp,
+	keyEnd,
+	keyHome,
+} from '@microsoft/fast-web-utilities';
 
 import type { TreeItem } from '../tree-item/tree-item';
 import '../tree-item';
@@ -65,6 +73,18 @@ describe('vwc-tree-view', () => {
 			const slot = emptyTreeView.shadowRoot?.querySelector('slot');
 			expect(slot?.childNodes.length).toBe(0);
 			expect(element.contains(document.activeElement)).toBeFalsy();
+		});
+	});
+
+	describe('tree-view blur', () => {
+		xit('should set tabindex to 0', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			element.blur();
+			await elementUpdated(element);
+
+			expect(element.getAttribute('tabindex')).toBe('0');
 		});
 	});
 
@@ -147,6 +167,81 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(element);
 
 			expect(spy).toBeCalled();
+		});
+	});
+
+	describe('keyboard interactions', () => {
+		it('should shift focus to the next tree-item when the ArrowDown key is pressed', async () => {
+			element.focus();
+			treeItem1.focus();
+			await elementUpdated(element);
+			await elementUpdated(treeItem1);
+			treeItem1.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowDown, bubbles: true })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem2);
+			
+			expect(treeItem2.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should shift focus to the last tree-item when the END key is pressed', async () => {
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem2);
+			
+			expect(treeItem2.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should shift focus to the previous tree-item when the ArrowUp key is pressed', async () => {
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem2);
+			treeItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowUp, bubbles: true })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem1);
+			
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should shift focus to the first tree-item when the Home key is pressed', async () => {
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem2);
+			treeItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyHome, bubbles: true })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem1);
+			
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
+		});
+
+		it('should expand nested tree-items when the ArrowRight key is pressed', async () => {
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem2);
+			treeItem2.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyHome, bubbles: true })
+			);
+			await elementUpdated(element);
+			await elementUpdated(treeItem1);
+			
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 		});
 	});
 

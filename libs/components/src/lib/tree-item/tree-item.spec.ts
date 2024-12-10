@@ -152,6 +152,16 @@ describe('vwc-tree-item', () => {
 		});
 	});
 
+	describe('focus-item', () => {
+		it('should focus on the element', async () => {
+			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+			TreeItem.focusItem(treeItem1);
+			await elementUpdated(treeItem1);
+
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
+		});
+	})
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			treeItem1.text = 'Tree item 1';

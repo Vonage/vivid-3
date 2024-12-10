@@ -1,7 +1,7 @@
 import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, DOM, observable } from '@microsoft/fast-element';
 import {
-	getDisplayedNodes,
+	// getDisplayedNodes,
 	isHTMLElement,
 	keyArrowDown,
 	keyArrowLeft,
@@ -12,6 +12,30 @@ import {
 	keyHome,
 } from '@microsoft/fast-web-utilities';
 import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
+
+function getDisplayedNodes(
+    rootNode: HTMLElement,
+    selector: string
+): HTMLElement[] | void {
+    if (!isHTMLElement(rootNode)) {
+        return;
+    }
+
+    const nodes: HTMLElement[] = Array.from(rootNode.querySelectorAll(selector));
+		// return nodes;
+
+    // only include nested items if their parents are expanded
+  	const visibleNodes: HTMLElement[] = nodes.filter((node: HTMLElement) => {
+			if (node.parentElement instanceof TreeItem) {
+				if (node.parentElement.ariaExpanded === 'true') return true;
+			} else {
+				return true;
+			}
+			return false;
+		});
+		return visibleNodes;
+}
+
 
 /**
  * @public
@@ -75,7 +99,7 @@ export class TreeView extends FoundationElement {
 				if (this.currentFocused !== null) {
 					TreeItem.focusItem(this.currentFocused);
 				}
-
+				
 				return;
 			}
 
