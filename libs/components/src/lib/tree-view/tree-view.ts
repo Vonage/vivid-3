@@ -13,27 +13,25 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
 
-function getDisplayedNodes(
+export function getDisplayedNodes(
     rootNode: HTMLElement,
     selector: string
 ): HTMLElement[] | void {
-    if (!isHTMLElement(rootNode)) {
-        return;
-    }
-
-    const nodes: HTMLElement[] = Array.from(rootNode.querySelectorAll(selector));
-		// return nodes;
-
-    // only include nested items if their parents are expanded
-  	const visibleNodes: HTMLElement[] = nodes.filter((node: HTMLElement) => {
-			if (node.parentElement instanceof TreeItem) {
-				if (node.parentElement.ariaExpanded === 'true') return true;
-			} else {
-				return true;
-			}
-			return false;
-		});
-		return visibleNodes;
+    if (isHTMLElement(rootNode)) {
+      // get all tree-items
+			const nodes: HTMLElement[] = Array.from(rootNode.querySelectorAll(selector));
+			
+			// only include nested items if their parents are expanded
+			const visibleNodes: HTMLElement[] = nodes.filter((node: HTMLElement) => {
+				if (node.parentElement instanceof TreeItem) {
+					if (node.parentElement.getAttribute('aria-expanded') === 'true') return true;
+				} else {
+					return true;
+				}
+				return false;
+			});
+			return visibleNodes;
+		}
 }
 
 
@@ -92,10 +90,6 @@ export class TreeView extends FoundationElement {
 	handleFocus = (e: FocusEvent): void => {
 		if (this.slottedTreeItems.length > 0) {
 			if (e.target === this) {
-				if (this.currentFocused === null) {
-					this.currentFocused = this.getValidFocusableItem();
-				}
-
 				if (this.currentFocused !== null) {
 					TreeItem.focusItem(this.currentFocused);
 				}
@@ -147,74 +141,72 @@ export class TreeView extends FoundationElement {
 	 *  @internal
 	 */
 	handleKeyDown = (e: KeyboardEvent): boolean | void => {
-		if (e.defaultPrevented) {
-			return;
-		}
-
 		if (this.slottedTreeItems.length < 1) {
 			return true;
 		}
 
-		const treeItems: HTMLElement[] | void = this.getVisibleNodes();
+		if(!e.defaultPrevented) {
+			const treeItems: HTMLElement[] | void = this.getVisibleNodes();
 
-		switch (e.key) {
-			case keyHome:
-				if (treeItems.length) {
-					TreeItem.focusItem(treeItems[0]);
-				}
-				return;
-			case keyEnd:
-				if (treeItems.length) {
-					TreeItem.focusItem(treeItems[treeItems.length - 1]);
-				}
-				return;
-			case keyArrowLeft:
-				if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
-					const item = e.target as HTMLElement;
-
-					if (
-						item instanceof TreeItem &&
-						item.childItemLength() > 0 &&
-						item.expanded
-					) {
-						item.expanded = false;
-					} else if (
-						item instanceof TreeItem &&
-						item.parentElement instanceof TreeItem
-					) {
-						TreeItem.focusItem(item.parentElement);
+			switch (e.key) {
+				case keyHome:
+					if (treeItems.length) {
+						TreeItem.focusItem(treeItems[0]);
 					}
-				}
-				return false;
-			case keyArrowRight:
-				if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
-					const item = e.target as HTMLElement;
-					if (
-						item instanceof TreeItem &&
-						item.childItemLength() > 0 &&
-						!item.expanded
-					) {
-						item.expanded = true;
-					} else if (item instanceof TreeItem && item.childItemLength() > 0) {
+					return;
+				case keyEnd:
+					if (treeItems.length) {
+						TreeItem.focusItem(treeItems[treeItems.length - 1]);
+					}
+					return;
+				case keyArrowLeft:
+					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
+						const item = e.target as HTMLElement;
+
+						if (
+							item instanceof TreeItem &&
+							item.childItemLength() > 0 &&
+							item.expanded
+						) {
+							item.expanded = false;
+						} else if (
+							item instanceof TreeItem &&
+							item.parentElement instanceof TreeItem
+						) {
+							TreeItem.focusItem(item.parentElement);
+						}
+					}
+					return false;
+				case keyArrowRight:
+					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
+						const item = e.target as HTMLElement;
+						if (
+							item instanceof TreeItem &&
+							item.childItemLength() > 0 &&
+							!item.expanded
+						) {
+							item.expanded = true;
+						} else if (item instanceof TreeItem && item.childItemLength() > 0) {
+							this.focusNextNode(1, e.target as TreeItem);
+						}
+					}
+					return;
+				case keyArrowDown:
+					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
 						this.focusNextNode(1, e.target as TreeItem);
 					}
-				}
-				return;
-			case keyArrowDown:
-				if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
-					this.focusNextNode(1, e.target as TreeItem);
-				}
-				return;
-			case keyArrowUp:
-				if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
-					this.focusNextNode(-1, e.target as TreeItem);
-				}
-				return;
-			case keyEnter:
-				// In single-select trees where selection does not follow focus (see note below),
-				// the default action is typically to select the focused node.
-				this.handleClick(e as Event);
-				return;
+					return;
+				case keyArrowUp:
+					if (e.target && this.isFocusableElement(e.target as HTMLElement)) {
+						this.focusNextNode(-1, e.target as TreeItem);
+					}
+					return;
+				case keyEnter:
+					// In single-select trees where selection does not follow focus (see note below),
+					// the default action is typically to select the focused node.
+					this.handleClick(e as Event);
+					return;
+			}
 		}
 
 		// don't prevent default if we took no action
@@ -227,26 +219,23 @@ export class TreeView extends FoundationElement {
 	 *  @internal
 	 */
 	handleClick(e: Event): boolean | void {
-		if (e.defaultPrevented) {
-			// handled, do nothing
+		if (!e.defaultPrevented) {
+			if (
+				!(e.target instanceof Element) ||
+				!isTreeItemElement(e.target as Element)
+			) {
+				// not a tree item, ignore
+				return true;
+			}
+
+			const item: TreeItem = e.target as TreeItem;
+
+			if (!item.disabled) {
+				item.selected = !item.selected;
+			}
+
 			return;
 		}
-
-		if (
-			!(e.target instanceof Element) ||
-			!isTreeItemElement(e.target as Element)
-		) {
-			// not a tree item, ignore
-			return true;
-		}
-
-		const item: TreeItem = e.target as TreeItem;
-
-		if (!item.disabled) {
-			item.selected = !item.selected;
-		}
-
-		return;
 	}
 
 	/**
@@ -256,31 +245,29 @@ export class TreeView extends FoundationElement {
 	 *  @internal
 	 */
 	handleSelectedChange = (e: Event): boolean | void => {
-		if (e.defaultPrevented) {
+		if (!e.defaultPrevented) {
+			if (
+				!(e.target instanceof Element) ||
+				!isTreeItemElement(e.target as Element)
+			) {
+				return true;
+			}
+
+			const item: TreeItem = e.target as TreeItem;
+
+			if (item.selected) {
+				if (this.currentSelected && this.currentSelected !== item) {
+					(this.currentSelected as TreeItem).selected = false;
+				}
+				// new selected item
+				this.currentSelected = item;
+			} else if (!item.selected && this.currentSelected === item) {
+				// selected item deselected
+				this.currentSelected = null;
+			}
+
 			return;
 		}
-
-		if (
-			!(e.target instanceof Element) ||
-			!isTreeItemElement(e.target as Element)
-		) {
-			return true;
-		}
-
-		const item: TreeItem = e.target as TreeItem;
-
-		if (item.selected) {
-			if (this.currentSelected && this.currentSelected !== item) {
-				(this.currentSelected as TreeItem).selected = false;
-			}
-			// new selected item
-			this.currentSelected = item;
-		} else if (!item.selected && this.currentSelected === item) {
-			// selected item deselected
-			this.currentSelected = null;
-		}
-
-		return;
 	};
 
 	/**
@@ -288,13 +275,11 @@ export class TreeView extends FoundationElement {
 	 */
 	private focusNextNode(delta: number, item: TreeItem): void {
 		const visibleNodes: HTMLElement[] | void = this.getVisibleNodes();
-		if (!visibleNodes) {
-			return;
-		}
-
-		const focusItem = visibleNodes[visibleNodes.indexOf(item) + delta];
-		if (isHTMLElement(focusItem)) {
-			TreeItem.focusItem(focusItem);
+		if (visibleNodes) {
+			const focusItem = visibleNodes[visibleNodes.indexOf(item) + delta];
+			if (isHTMLElement(focusItem)) {
+				TreeItem.focusItem(focusItem);
+			}
 		}
 	}
 
