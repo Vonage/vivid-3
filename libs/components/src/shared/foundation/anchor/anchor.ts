@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import { ARIAGlobalStatesAndProperties } from '../patterns/aria-global';
+import { applyMixins } from '../utilities/apply-mixins';
 
 /**
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
@@ -85,6 +85,11 @@ export class Anchor {
 	@attr
 	// @ts-expect-error Type is incorrectly non-optional
 	type: string;
+
+	/**
+	 * References the root element
+	 */
+	control: HTMLAnchorElement | undefined;
 }
 
 /**
