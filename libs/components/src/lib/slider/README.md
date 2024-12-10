@@ -43,11 +43,16 @@ registerSlider('your-prefix');
 
 ## Value
 
-Set the `value` attribute to set the value of the slider.
+Set the `value` attribute to set the value of the Slider.
 
 ```html preview blocks
 <vwc-slider value="3"></vwc-slider>
 ```
+
+### Value Text Formatter
+
+Use the `valueTextFormatter` to generates a string for the Slider's "aria-valuetext" attribute based on the current value.  
+Use this to configure the [`pin`](/variation/#pin) string.
 
 ## Min
 
@@ -114,11 +119,6 @@ The default value `step` of is `1`.
 	);
 </script>
 ```
-
-## Value Text Formatter
-
-Use the `valueTextFormatter` to generates a string for the Slider's "aria-valuetext" attribute based on the current value.  
-Use this to configure the [`pin`](/variation/#pin) string.
 
 ## API Reference
 
