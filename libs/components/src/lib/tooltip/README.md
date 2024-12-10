@@ -1,133 +1,112 @@
-# Tooltip
+## Usage
 
-A tooltip displays additional, non-essential, informative message, description or explanation to a focusable element upon hover or focus. It disappears when the element loses focus, is hovered off, or when the `Escape` key is pressed
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/tooltip';</script>
+import '@vonage/vivid/tooltip';
 ```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerTooltip } from '@vonage/vivid';
+
+registerTooltip('your-prefix');
+```
+
+```html preview
+<script type="module">
+	import { registerTooltip, registerButton } from '@vonage/vivid';
+	registerTooltip('your-prefix');
+	registerButton('your-prefix');
+</script>
+
+<your-prefix-tooltip text="I'm a tooltip" placement="right">
+	<your-prefix-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></your-prefix-button>
+</your-prefix-tooltip>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VTooltip, VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VTooltip text="I'm a tooltip">
+		<VButton slot="anchor" appearance="filled" shape="pill" icon="help-line" />
+	</VTooltip>
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Anchor
+
+It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you can also use the `anchor` attribute. Either set it to the `id` of the anchor element or pass the anchor element itself.
 
 ```html preview center 150px
-<vwc-tooltip text="I'm a tooltip">
-	<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-</vwc-tooltip>
-```
+<div class="wrapper">
+	<vwc-button
+		id="button"
+		icon="help-line"
+		appearance="filled"
+		shape="pill"
+	></vwc-button>
+	<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
 
-## Members
-
-### Text
-
-Use the `text` attribute to set the text content to the tooltip.
-
-Because the tooltip itself never receives focus and is not in the tabbing order, a tooltip can not contain interactive elements like links, inputs, or buttons.
-
-- Type: `string`
-- Default: `undefined`
-
-### Placement
-
-Use the `placement` attribute to set the placement of the tooltip around the anchor.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'left'`
-
-```html preview center 400px
-<style>
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(5, auto);
-		gap: 4px;
-	}
-</style>
-<div class="grid">
-	<div></div>
-	<vwc-tooltip text="top-start" placement="top-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<vwc-tooltip text="top" placement="top">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<vwc-tooltip text="top-end" placement="top-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<div></div>
-
-	<vwc-tooltip text="left-start" placement="left-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right-start" placement="right-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-
-	<vwc-tooltip text="left" placement="left">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right" placement="right">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-
-	<vwc-tooltip text="left-end" placement="left-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<div></div>
-	<div></div>
-	<div></div>
-	<vwc-tooltip text="right-end" placement="right-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-
-	<div></div>
-	<vwc-tooltip text="bottom-start" placement="bottom-start">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<vwc-tooltip text="bottom" placement="bottom">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<vwc-tooltip text="bottom-end" placement="bottom-end">
-		<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
-	</vwc-tooltip>
-	<div></div>
+	<vwc-button
+		id="button2"
+		icon="help-line"
+		appearance="filled"
+		shape="pill"
+	></vwc-button>
+	<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
 </div>
-```
-
-### Anchor
-
-It's best to use the [`anchor` slot](#anchor-1) to set the anchor, but you can also use the `anchor` member.
-
-Either set it to the `id` of the anchor element or pass the anchor element itself.
-
-- Type: `string | HTMLElement`
-- Default: `undefined`
-
-```html preview center 150px
-<vwc-button id="button" icon="help-line" shape="pill"></vwc-button>
-<vwc-tooltip anchor="button" text="I'm a tooltip"></vwc-tooltip>
-
-<vwc-button id="button2" icon="help-line" shape="pill"></vwc-button>
-<vwc-tooltip id="tooltip2" text="My anchor is an HTMLElement"></vwc-tooltip>
 
 <script>
 	document.querySelector('#tooltip2').anchor =
-		document.querySelector('#button2');
+		document.querySelector('#button2').id;
 </script>
+
+<style>
+	.wrapper {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
 
 ## Slots
 
-### Anchor
+### Anchor Slot
 
 Tooltips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the tooltip.
 
-Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the tooltip will not be accessible to keyboard or screen reader users.
+<vwc-note connotation="warning" icon="warning-line">
+
+Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the Tooltip will not be accessible to keyboard or screen reader users.
+
+</vwc-note>
 
 ```html preview center 150px
 <vwc-tooltip text="I'm a tooltip">
-	<vwc-button slot="anchor" icon="help-line" shape="pill"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="help-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 </vwc-tooltip>
 ```
 
@@ -135,30 +114,44 @@ Do not use a non-interactive element (`div`, `p`, etc.) as an anchor, as the too
 
 ### Max Inline Size
 
-Use the `--tooltip-max-inline-size` variable to set the tooltip's max inline size.
+The `--tooltip-max-inline-size` variable sets the Tooltip's max inline size.
 
 - Default: `30ch`
 
 ```html preview center 300px
-<style>
-	.tooltip {
-		--tooltip-max-inline-size: 40ch;
-	}
-</style>
-
 <vwc-tooltip
 	text="Turn on to receive notifications for important updates and alerts directly to your email or mobile device."
 	class="tooltip"
 >
-	<vwc-button slot="anchor" icon="info-line" shape="pill"></vwc-button>
+	<vwc-button
+		slot="anchor"
+		icon="info-line"
+		shape="pill"
+		appearance="filled"
+	></vwc-button>
 </vwc-tooltip>
 ```
 
-## Caveat
+## API Reference
 
-Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
-Tooltip component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+### Properties
 
-A common practice used in apps / frameworks to promote a tooltip component to top other elements z-axis, is to utilise a service that dynamically appends a tooltip component to the end of the body element, when called for.
+<div class="table-wrapper">
 
-This helps ensure elements don't render over top a tooltip undesirebly.
+| Name          | Type                                                                                                                                         | Description                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **anchor**    | `string` or `HTMLElement`                                                                                                                    | ID of, or HTML elemnent itself, to anchor the Tooltip to. Prefer using the `anchor` slot |
+| **placement** | `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` | Prefered placement of the Tooltip in relation to the anchor element                      |
+| **text**      | `string`                                                                                                                                     | Text content of the Tooltip                                                              |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name       | Description             |
+| ---------- | ----------------------- |
+| **anchor** | For the anchor element. |
+
+</div>
