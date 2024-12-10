@@ -14,26 +14,28 @@ import {
 import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
 
 export function getDisplayedNodes(
-    rootNode: HTMLElement,
-    selector: string
+	rootNode: HTMLElement,
+	selector: string
 ): HTMLElement[] | void {
-    if (isHTMLElement(rootNode)) {
-      // get all tree-items
-			const nodes: HTMLElement[] = Array.from(rootNode.querySelectorAll(selector));
-			
-			// only include nested items if their parents are expanded
-			const visibleNodes: HTMLElement[] = nodes.filter((node: HTMLElement) => {
-				if (node.parentElement instanceof TreeItem) {
-					if (node.parentElement.getAttribute('aria-expanded') === 'true') return true;
-				} else {
-					return true;
-				}
-				return false;
-			});
-			return visibleNodes;
-		}
-}
+	if (isHTMLElement(rootNode)) {
+		// get all tree-items
+		const nodes: HTMLElement[] = Array.from(
+			rootNode.querySelectorAll(selector)
+		);
 
+		// only include nested items if their parents are expanded
+		const visibleNodes: HTMLElement[] = nodes.filter((node: HTMLElement) => {
+			if (node.parentElement instanceof TreeItem) {
+				if (node.parentElement.getAttribute('aria-expanded') === 'true')
+					return true;
+			} else {
+				return true;
+			}
+			return false;
+		});
+		return visibleNodes;
+	}
+}
 
 /**
  * @public
@@ -93,7 +95,7 @@ export class TreeView extends FoundationElement {
 				if (this.currentFocused !== null) {
 					TreeItem.focusItem(this.currentFocused);
 				}
-				
+
 				return;
 			}
 
@@ -145,7 +147,7 @@ export class TreeView extends FoundationElement {
 			return true;
 		}
 
-		if(!e.defaultPrevented) {
+		if (!e.defaultPrevented) {
 			const treeItems: HTMLElement[] | void = this.getVisibleNodes();
 
 			switch (e.key) {

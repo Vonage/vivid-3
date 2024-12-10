@@ -90,7 +90,7 @@ describe('vwc-tree-view', () => {
 				</div>`
 			)) as HTMLDivElement;
 			element = divEle.querySelector(COMPONENT_TAG) as TreeView;
-			const button =  divEle.querySelector('button') as HTMLButtonElement;
+			const button = divEle.querySelector('button') as HTMLButtonElement;
 			await elementUpdated(element);
 
 			element.focus();
@@ -185,7 +185,7 @@ describe('vwc-tree-view', () => {
 		});
 
 		it('should return true if the click comes from a element that is not a tree-item', async () => {
-			expect(element.handleClick({ target: {}} as Event)).toBe(true);
+			expect(element.handleClick({ target: {} } as Event)).toBe(true);
 		});
 	});
 
@@ -223,24 +223,20 @@ describe('vwc-tree-view', () => {
 			);
 			await elementUpdated(element);
 			await elementUpdated(treeItem2);
-			
+
 			expect(treeItem2.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should shift focus to the last tree-item when the END key is pressed', async () => {
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyEnd })
-			);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
 			await elementUpdated(element);
 			await elementUpdated(treeItem2);
-			
+
 			expect(treeItem2.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should shift focus to the previous tree-item when the ArrowUp key is pressed', async () => {
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyEnd })
-			);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
 			await elementUpdated(element);
 			await elementUpdated(treeItem2);
 			treeItem2.dispatchEvent(
@@ -248,14 +244,12 @@ describe('vwc-tree-view', () => {
 			);
 			await elementUpdated(element);
 			await elementUpdated(treeItem1);
-			
+
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 		});
 
 		it('should shift focus to the first tree-item when the Home key is pressed', async () => {
-			element.dispatchEvent(
-				new KeyboardEvent('keydown', { key: keyEnd })
-			);
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
 			await elementUpdated(element);
 			await elementUpdated(treeItem2);
 			treeItem2.dispatchEvent(
@@ -263,7 +257,7 @@ describe('vwc-tree-view', () => {
 			);
 			await elementUpdated(element);
 			await elementUpdated(treeItem1);
-			
+
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 		});
 
@@ -272,7 +266,7 @@ describe('vwc-tree-view', () => {
 				new KeyboardEvent('keydown', { key: keyArrowRight, bubbles: true })
 			);
 			await elementUpdated(treeItem1);
-			
+
 			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
 		});
 
@@ -286,7 +280,7 @@ describe('vwc-tree-view', () => {
 				new KeyboardEvent('keydown', { key: keyArrowRight, bubbles: true })
 			);
 			await elementUpdated(treeItem1_1);
-			
+
 			expect(treeItem1_1.contains(document.activeElement)).toBeTruthy();
 		});
 
@@ -295,7 +289,7 @@ describe('vwc-tree-view', () => {
 				new KeyboardEvent('keydown', { key: keyArrowRight, bubbles: true })
 			);
 			await elementUpdated(treeItem1);
-			
+
 			expect(treeItem1.getAttribute('aria-expanded')).toEqual('true');
 
 			treeItem1.dispatchEvent(
@@ -335,7 +329,12 @@ describe('vwc-tree-view', () => {
 		});
 
 		it('should return true if the key press is not one the trigger an action', async () => {
-			expect(element.handleKeyDown({ key: keyBackspace, bubbles: true } as KeyboardEvent)).toBeTruthy();
+			expect(
+				element.handleKeyDown({
+					key: keyBackspace,
+					bubbles: true,
+				} as KeyboardEvent)
+			).toBeTruthy();
 		});
 
 		it('shouold return true if there are no tree-item supplied', async () => {
@@ -346,7 +345,12 @@ describe('vwc-tree-view', () => {
 			element.focus();
 			await elementUpdated(element);
 
-			expect(element.handleKeyDown({ key: keyArrowDown, bubbles: true } as KeyboardEvent)).toBeTruthy();
+			expect(
+				element.handleKeyDown({
+					key: keyArrowDown,
+					bubbles: true,
+				} as KeyboardEvent)
+			).toBeTruthy();
 		});
 	});
 

@@ -160,7 +160,7 @@ describe('vwc-tree-item', () => {
 
 			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 		});
-	})
+	});
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
