@@ -1,9 +1,4 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { ProgressRing } from './progress-ring';
 
@@ -16,18 +11,9 @@ const getClasses = ({ connotation, size, paused }: ProgressRing) =>
 	);
 const progressSegments = 44;
 
-/**
- * The template for the ProgressRing component.
- *
- * @param context - element definition context
- * @public
- */
-export const ProgressRingTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<ProgressRing> = (
-	_: ElementDefinitionContext
-) => html`<template role="${(x) => (x.ariaLabel ? 'presentation' : null)}">
+export const ProgressRingTemplate = html<ProgressRing>`<template
+	role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
+>
 	<div
 		role="progressbar"
 		aria-label="${(x) => x.ariaLabel}"

@@ -4,11 +4,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Shape, Size } from '../enums';
 import '.';
-import { paginationDefinition } from './definition';
 import { Pagination, PaginationShape, PaginationSize } from './pagination';
 
 const COMPONENT_TAG = 'vwc-pagination';
@@ -30,7 +28,7 @@ describe('vwc-pagination', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-pagination', async () => {
 			expect(element).toBeInstanceOf(Pagination);
-			expect(paginationDefinition()).toBeInstanceOf(FoundationElementRegistry);
+
 			expect(element.navIcons).toBeFalsy();
 			expect(element.total).toEqual(0);
 			expect(element.selectedIndex).toBeFalsy();

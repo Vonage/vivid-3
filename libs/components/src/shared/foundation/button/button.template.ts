@@ -1,16 +1,7 @@
 import { html, ref } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
-import type { ButtonOptions, VividFoundationButton } from './button';
+import type { VividFoundationButton } from './button';
 
-/**
- * The template for the {@link @microsoft/fast-foundation#(Button:class)} component.
- * @public
- */
-export const buttonTemplate: FoundationElementTemplate<
-	ViewTemplate<VividFoundationButton>,
-	ButtonOptions
-> = () => html`
+export const buttonTemplate = html<VividFoundationButton>`
 	<button
 		class="control"
 		part="control"

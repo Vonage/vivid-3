@@ -1,13 +1,10 @@
 import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { TimePicker } from './time-picker';
 import type { PickerOption } from './time/picker';
 
@@ -62,18 +59,12 @@ const renderPicker = (
 	`;
 };
 
-export const TimePickerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<TimePicker> = (
-	context: ElementDefinitionContext,
-	_: FoundationElementDefinition
-) => {
+export const TimePickerTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
 
-	return html`<div class="base" @keydown="${(x, { event }) =>
+	return html<TimePicker>`<div class="base" @keydown="${(x, { event }) =>
 		x._onBaseKeyDown(event as KeyboardEvent)}">
 		<${textFieldTag} id="text-field"
 										 ${ref('_textFieldEl')}

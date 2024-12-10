@@ -1,20 +1,21 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
+import { iconDefinition } from '../icon/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './text-area.scss?inline';
-
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';
 
 export type { TextAreaWrap } from './text-area';
 
 /**
- * The text-area element.
+ * @internal
  */
-export const textAreaDefinition = TextArea.compose<FoundationElementDefinition>(
+export const textAreaDefinition = defineVividComponent(
+	'text-area',
+	TextArea,
+	template,
+	[iconDefinition],
 	{
-		baseName: 'text-area',
-		template: template as any,
 		styles,
 		shadowOptions: {
 			delegatesFocus: true,
@@ -23,13 +24,8 @@ export const textAreaDefinition = TextArea.compose<FoundationElementDefinition>(
 );
 
 /**
- * @internal
- */
-export const textAreaRegistries = [textAreaDefinition(), ...iconRegistries];
-
-/**
  * Registers the text-field elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTextArea = registerFactory(textAreaRegistries);
+export const registerTextArea = createRegisterFunction(textAreaDefinition);

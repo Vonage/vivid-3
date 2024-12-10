@@ -1,4 +1,3 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable, volatile } from '@microsoft/fast-element';
 import { identity, memoizeWith } from 'ramda';
 import {
@@ -7,6 +6,7 @@ import {
 } from '@vonage/vwc-consts';
 import type { Connotation } from '../enums';
 import { numberConverter } from '../../shared/utils/numberConverter';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 // Start displaying placeholder if waiting more than this period of time
@@ -61,7 +61,7 @@ export type IconConnotation = Extract<
  * @component icon
  * @slot - Default slot.
  */
-export class Icon extends FoundationElement {
+export class Icon extends VividElement {
 	/**
 	 * The connotation the icon should have.
 	 *

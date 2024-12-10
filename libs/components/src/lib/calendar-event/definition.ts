@@ -1,7 +1,6 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './calendar-event.scss?inline';
-
 import { CalendarEvent } from './calendar-event';
 import { CalendarEventTemplate as template } from './calendar-event.template';
 
@@ -11,28 +10,26 @@ export type {
 } from './calendar-event';
 
 /**
- * The calendar-event element is a custom element that is used to display a single event in a calendar.
- *
  * @internal
  */
-export const calendarEventDefinition =
-	CalendarEvent.compose<FoundationElementDefinition>({
-		baseName: 'calendar-event',
-		template: template as any,
+export const calendarEventDefinition = defineVividComponent(
+	'calendar-event',
+	CalendarEvent,
+	template,
+	[],
+	{
 		styles,
 		shadowOptions: {
 			delegatesFocus: true,
 		},
-	});
-
-/**
- * @internal
- */
-export const calendarEventRegistries = [calendarEventDefinition()];
+	}
+);
 
 /**
  * Registers the calendar-event elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCalendarEvent = registerFactory(calendarEventRegistries);
+export const registerCalendarEvent = createRegisterFunction(
+	calendarEventDefinition
+);

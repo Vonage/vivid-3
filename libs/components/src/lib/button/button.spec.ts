@@ -5,13 +5,11 @@ import {
 	getControlElement,
 	setProperty,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { Button } from './button';
 import '.';
-import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -32,7 +30,6 @@ describe('vwc-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
-			expect(buttonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Button);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();

@@ -1,13 +1,9 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { SelectableBox } from './selectable-box';
 
 const getClasses = ({
@@ -30,7 +26,7 @@ function handleControlChange(x: SelectableBox) {
 	if (!x.clickableBox) x._handleCheckedChange();
 }
 
-function checkbox(context: ElementDefinitionContext) {
+function checkbox(context: VividElementDefinitionContext) {
 	const checkboxTag = context.tagFor(Checkbox);
 
 	return html<SelectableBox>`${when(
@@ -49,7 +45,7 @@ function checkbox(context: ElementDefinitionContext) {
 	)} `;
 }
 
-function radio(context: ElementDefinitionContext) {
+function radio(context: VividElementDefinitionContext) {
 	const radioTag = context.tagFor(Radio);
 
 	return html<SelectableBox>`${when(
@@ -68,16 +64,9 @@ function radio(context: ElementDefinitionContext) {
 	)} `;
 }
 
-/**
- * The template for the SelectableBox component.
- *
- * @param context - element definition context
- * @public
- */
-export const SelectableBoxTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<SelectableBox> = (context: ElementDefinitionContext) => {
+export const SelectableBoxTemplate = (
+	context: VividElementDefinitionContext
+) => {
 	return html<SelectableBox>`<template role="presentation">
 		<div
 			class="${getClasses}"

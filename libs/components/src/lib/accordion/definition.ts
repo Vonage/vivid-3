@@ -1,35 +1,28 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { accordionItemRegistries } from '../accordion-item/definition'; // cf https://github.com/Vonage/vivid-3/discussions/929
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { accordionItemDefinition } from '../accordion-item/definition';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './accordion.scss?inline';
-
 import { Accordion } from './accordion';
 import { AccordionTemplate as template } from './accordion.template';
 
 export type { AccordionExpandMode } from '@microsoft/fast-foundation';
 
 /**
- *
  * @internal
  */
-export const accordionDefinition =
-	Accordion.compose<FoundationElementDefinition>({
-		baseName: 'accordion',
-		template: template as any,
+export const accordionDefinition = defineVividComponent(
+	'accordion',
+	Accordion,
+	template,
+	[accordionItemDefinition],
+	{
 		styles,
-	});
-
-/**
- * @internal
- */
-export const accordionRegistries = [
-	accordionDefinition(),
-	...accordionItemRegistries,
-];
+	}
+);
 
 /**
  * Registers the accordion elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAccordion = registerFactory(accordionRegistries);
+export const registerAccordion = createRegisterFunction(accordionDefinition);

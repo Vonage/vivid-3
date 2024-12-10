@@ -1,16 +1,7 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html } from '@microsoft/fast-element';
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { designSystem } from '../../shared/design-system';
 import { DataGridRow } from './data-grid-row';
-import { DataGridRowTemplate } from './data-grid-row.template';
-
-const dataGridRow = DataGridRow.compose<FoundationElementDefinition>({
-	baseName: 'data-grid-row',
-	template: DataGridRowTemplate as any,
-});
-
-designSystem.withPrefix('vwc').register(dataGridRow());
+import '.';
 
 const COMPONENT_TAG = 'vwc-data-grid-row';
 
@@ -91,13 +82,13 @@ describe('vwc-data-grid-row', () => {
 	});
 
 	describe('columnDefinitions', () => {
-		it('should render undefined cells if cells template undefined', async () => {
+		it('should render a cell for each column', async () => {
 			element.columnDefinitions = [
 				{ columnDataKey: 'name' },
 				{ columnDataKey: 'age' },
 			];
 			await elementUpdated(element);
-			expect(element.querySelectorAll('undefined').length).toEqual(2);
+			expect(element.querySelectorAll('vwc-data-grid-cell').length).toEqual(2);
 		});
 	});
 

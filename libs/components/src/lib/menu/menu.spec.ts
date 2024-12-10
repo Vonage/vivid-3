@@ -5,7 +5,6 @@ import {
 	fixture,
 	getBaseElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -16,7 +15,6 @@ import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup.ts';
 import { type MenuItem } from '../menu-item/menu-item.ts';
 import { Menu } from './menu';
-import { menuDefinition } from './definition';
 import '.';
 import '../menu-item';
 
@@ -49,7 +47,6 @@ describe('vwc-menu', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-menu', async () => {
-			expect(menuDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Menu);
 			expect(element.open).toEqual(false);
 			expect(element.anchor).toEqual(undefined);

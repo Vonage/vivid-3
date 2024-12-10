@@ -1,7 +1,7 @@
-import { html, ViewTemplate, when } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
+import { html, when } from '@microsoft/fast-element';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
 
@@ -27,7 +27,9 @@ function getSortIcon<T extends DataGridCell>(x: T): string {
 		? 'sort-desc-solid'
 		: 'sort-solid';
 }
-function renderSortIcons<T extends DataGridCell>(c: ElementDefinitionContext) {
+function renderSortIcons<T extends DataGridCell>(
+	c: VividElementDefinitionContext
+) {
 	const iconTag = c.tagFor(Icon);
 	return html<T>`
 		${when(
@@ -46,10 +48,10 @@ function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 	return true;
 }
 
-export function DataGridCellTemplate<T extends DataGridCell>(
-	context: ElementDefinitionContext
-): ViewTemplate<T> {
-	return html<T>`
+export const DataGridCellTemplate = (
+	context: VividElementDefinitionContext
+) => {
+	return html<DataGridCell>`
 		<template
 			tabindex="-1"
 			role="${(x) => DataGridCellRole[x.cellType] ?? DataGridCellRole.default}"
@@ -62,4 +64,4 @@ export function DataGridCellTemplate<T extends DataGridCell>(
 			</div>
 		</template>
 	`;
-}
+};

@@ -1,37 +1,29 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
-import { elevationRegistries } from '../elevation/definition';
+import { iconDefinition } from '../icon/definition';
+import { elevationDefinition } from '../elevation/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './card.scss?inline';
-
 import { Card } from './card';
 import { CardTemplate as template } from './card.template';
 
 export type { CardAppearance } from './card';
 
 /**
- * The Card component is a container for content and actions.
- *
  * @internal
  */
-export const cardDefinition = Card.compose<FoundationElementDefinition>({
-	baseName: 'card',
-	template: template as any,
-	styles,
-});
-
-/**
- * @internal
- */
-export const cardRegistries = [
-	cardDefinition(),
-	...iconRegistries,
-	...elevationRegistries,
-];
+export const cardDefinition = defineVividComponent(
+	'card',
+	Card,
+	template,
+	[iconDefinition, elevationDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the card elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCard = registerFactory(cardRegistries);
+export const registerCard = createRegisterFunction(cardDefinition);

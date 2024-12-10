@@ -1,5 +1,5 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @public
@@ -8,7 +8,7 @@ import { attr } from '@microsoft/fast-element';
  * @slot action-items - Nodes assigned to action-items slot will be set at the end of the header.
  * @slot app-content - Content vertically aligned with header.
  */
-export class Header extends FoundationElement {
+export class Header extends VividElement {
 	/**
 	 * header elevation shadow
 	 *

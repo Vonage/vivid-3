@@ -1,6 +1,5 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Connotation } from '@vonage/vivid';
@@ -10,7 +9,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { Icon } from '../icon/icon';
 import { CheckAppearance, MenuItem } from './menu-item';
-import { menuItemDefinition, MenuItemRole } from './definition';
+import { MenuItemRole } from './definition';
 
 const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';
@@ -44,7 +43,6 @@ describe('vwc-menu-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-menu-item', async () => {
-			expect(menuItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(MenuItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.textSecondary).toEqual(undefined);

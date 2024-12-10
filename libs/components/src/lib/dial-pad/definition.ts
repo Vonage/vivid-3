@@ -1,30 +1,28 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { buttonRegistries } from '../button/definition';
-import { textFieldRegistries } from '../text-field/definition';
+import { buttonDefinition } from '../button/definition';
+import { textFieldDefinition } from '../text-field/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { iconDefinition } from '../icon/definition';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './dial-pad.scss?inline';
-
 import { DialPad } from './dial-pad';
 import { DialPadTemplate as template } from './dial-pad.template';
-
-export const dialPadDefinition = DialPad.compose<FoundationElementDefinition>({
-	baseName: 'dial-pad',
-	template: template as any,
-	styles,
-});
 
 /**
  * @internal
  */
-export const dialPadRegistries = [
-	dialPadDefinition(),
-	...buttonRegistries,
-	...textFieldRegistries,
-];
+export const dialPadDefinition = defineVividComponent(
+	'dial-pad',
+	DialPad,
+	template,
+	[buttonDefinition, textFieldDefinition, iconDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the dial-pad element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerDialPad = registerFactory(dialPadRegistries);
+export const registerDialPad = createRegisterFunction(dialPadDefinition);

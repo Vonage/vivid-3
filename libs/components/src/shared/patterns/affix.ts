@@ -1,7 +1,7 @@
 import { attr, html, slotted } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { Icon } from '../../lib/icon/icon';
+import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 
 /**
  * A mixin class implementing prefix elements.
@@ -58,7 +58,7 @@ export const IconAriaHidden = {
 };
 
 type affixIconTemplateFactoryReturnType = (
-	context: ElementDefinitionContext
+	context: VividElementDefinitionContext
 ) => (
 	icon?: string,
 	slottedState?: boolean,
@@ -72,7 +72,7 @@ type affixIconTemplateFactoryReturnType = (
  * @public
  */
 export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (
-	context: ElementDefinitionContext
+	context: VividElementDefinitionContext
 ) => {
 	const iconTag = context.tagFor(Icon);
 	return (

@@ -1,18 +1,8 @@
 import { html } from '@microsoft/fast-element';
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import '../icon/index.ts';
-import { designSystem } from '../../shared/design-system';
 import { DataGridCell } from './data-grid-cell';
-import { DataGridCellTemplate } from './data-grid-cell.template';
 import { DataGridCellSortStates } from './data-grid.options';
-
-const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
-	baseName: 'data-grid-cell',
-	template: DataGridCellTemplate as any,
-});
-
-designSystem.withPrefix('vwc').register(dataGridCell());
+import '.';
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
 const ICON_TAG = 'vwc-icon';

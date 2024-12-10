@@ -1,11 +1,11 @@
 import { attr } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @component elevation
  * @slot - Default slot.
  */
-export class Elevation extends FoundationElement {
+export class Elevation extends VividElement {
 	/**
 	 * Indicates the elevation's dp.
 	 *

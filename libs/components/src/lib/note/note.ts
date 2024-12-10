@@ -1,7 +1,8 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
+import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type NoteConnotation =
 	| Connotation.Accent
@@ -16,7 +17,7 @@ export type NoteConnotation =
  * @slot - Any slotted content will appear below the headline.
  * @slot icon - Add an icon to the component.
  */
-export class Note extends FoundationElement {
+export class Note extends VividElement {
 	/**
 	 * Indicates the note's headline text
 	 *

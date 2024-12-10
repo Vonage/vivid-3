@@ -10,6 +10,7 @@ export type ProgressConnotation =
 	| ConnotationDecorative.Pacific;
 
 export type ProgressShape = Shape.Rounded | Shape.Sharp;
+
 /**
  * @public
  * @component progress

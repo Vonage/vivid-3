@@ -1,7 +1,7 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
-class _Slider extends FoundationElement {}
+class _Slider extends VividElement {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface _Slider extends FormAssociated {}
 

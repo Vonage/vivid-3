@@ -1,8 +1,7 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
+import { iconDefinition } from '../icon/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './empty-state.scss?inline';
-
 import { EmptyState } from './empty-state';
 import { EmptyStateTemplate as template } from './empty-state.template';
 
@@ -11,21 +10,22 @@ export type {
 	EmptyStateIconDecoration,
 } from './empty-state';
 
-export const emptyStateDefinition =
-	EmptyState.compose<FoundationElementDefinition>({
-		baseName: 'empty-state',
-		template: template as any,
-		styles,
-	});
-
 /**
  * @internal
  */
-export const emptyStateRegistries = [emptyStateDefinition(), ...iconRegistries];
+export const emptyStateDefinition = defineVividComponent(
+	'empty-state',
+	EmptyState,
+	template,
+	[iconDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the empty-state element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerEmptyState = registerFactory(emptyStateRegistries);
+export const registerEmptyState = createRegisterFunction(emptyStateDefinition);

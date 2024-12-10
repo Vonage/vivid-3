@@ -1,36 +1,29 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { buttonRegistries } from '../button/definition';
-import { iconRegistries } from '../icon/definition';
+import { buttonDefinition } from '../button/definition';
+import { iconDefinition } from '../icon/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './banner.scss?inline';
-
 import { Banner } from './banner';
 import { BannerTemplate as template } from './banner.template';
 
 export type { BannerConnotation } from './banner';
 
 /**
- *
  * @internal
  */
-export const bannerDefinition = Banner.compose<FoundationElementDefinition>({
-	baseName: 'banner',
-	template: template as any,
-	styles,
-});
-
-/**
- * @internal
- */
-export const bannerRegistries = [
-	bannerDefinition(),
-	...iconRegistries,
-	...buttonRegistries,
-];
+export const bannerDefinition = defineVividComponent(
+	'banner',
+	Banner,
+	template,
+	[iconDefinition, buttonDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the banner elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerBanner = registerFactory(bannerRegistries);
+export const registerBanner = createRegisterFunction(bannerDefinition);

@@ -4,7 +4,6 @@ import {
 	fixture,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -12,7 +11,6 @@ import { TextField } from '../text-field/text-field';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
 import { DateRangePicker } from './date-range-picker';
-import { dateRangePickerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
@@ -88,9 +86,6 @@ describe('vwc-date-range-picker', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-range-date-picker', async () => {
-			expect(dateRangePickerDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(DateRangePicker);
 		});
 	});

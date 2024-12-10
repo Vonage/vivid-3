@@ -1,7 +1,7 @@
 import { attr, html, observable, slotted, when } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../../../lib/icon/icon';
+import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
 import messageStyles from './message.scss?inline';
 
 export interface FormElement {
@@ -163,7 +163,7 @@ const isFeedbackAvailable = (config: FeedbackConfig, x: SomeFormElement) =>
 			(config.slot && x[config.slot.slottedContentProperty]?.length)
 	);
 
-export function getFeedbackTemplate(context: ElementDefinitionContext) {
+export function getFeedbackTemplate(context: VividElementDefinitionContext) {
 	return html<SomeFormElement>`
 		<style>
 			${messageStyles}
@@ -190,7 +190,7 @@ export function getFeedbackTemplate(context: ElementDefinitionContext) {
 }
 
 function getFeedbackTypeTemplate(
-	context: ElementDefinitionContext,
+	context: VividElementDefinitionContext,
 	config: FeedbackConfig,
 	shouldShow: (x: SomeFormElement) => boolean
 ) {

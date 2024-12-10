@@ -1,8 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { MediaSkipBy } from '../enums';
 import { DEFAULT_PLAYBACK_RATES, VideoPlayer } from './video-player';
-import { videoPlayerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-video-player';
@@ -64,7 +62,6 @@ describe('vwc-video-player', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-video-player', async () => {
-			expect(videoPlayerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(VideoPlayer);
 		});
 

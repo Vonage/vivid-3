@@ -1,5 +1,4 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	arrow,
 	autoPlacement,
@@ -12,6 +11,7 @@ import {
 	size,
 } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const PlacementStrategy = {
 	Flip: 'flip',
@@ -50,7 +50,7 @@ const placementStrategyMiddlewares = {
  * @slot - Default slot.
  * @internal
  */
-export class Popup extends FoundationElement {
+export class Popup extends VividElement {
 	get #middleware(): Array<any> {
 		let middleware = [
 			inline(),
