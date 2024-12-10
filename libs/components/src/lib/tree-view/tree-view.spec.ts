@@ -15,7 +15,7 @@ import type { TreeItem } from '../tree-item/tree-item';
 import '../tree-item';
 
 import { treeViewDefinition } from './definition';
-import { TreeView } from './tree-view';
+import { getDisplayedNodes, TreeView } from './tree-view';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tree-view';
@@ -351,6 +351,14 @@ describe('vwc-tree-view', () => {
 					bubbles: true,
 				} as KeyboardEvent)
 			).toBeTruthy();
+		});
+	});
+
+	describe('getDisplayedNodes', () => {
+		it('should return an empty array when supplied with an node that is not a HTML element', () => {
+			expect(getDisplayedNodes({} as any, '[selector="something"]')).toEqual(
+				[]
+			);
 		});
 	});
 
