@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';

@@ -1,6 +1,6 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';

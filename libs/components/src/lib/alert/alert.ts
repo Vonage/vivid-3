@@ -1,8 +1,8 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 

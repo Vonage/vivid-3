@@ -1,6 +1,6 @@
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 

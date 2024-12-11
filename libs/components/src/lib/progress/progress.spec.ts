@@ -116,8 +116,15 @@ describe('vwc-progress', () => {
 			await elementUpdated(element);
 			const percentWithSmallRange = element.percentComplete;
 
+			element.min = 0;
+			element.max = 0;
+			element.value = 0;
+			await elementUpdated(element);
+			const percentWithEmptyRange = element.percentComplete;
+
 			expect(percentWithBigRange).toEqual(25);
 			expect(percentWithSmallRange).toEqual(50);
+			expect(percentWithEmptyRange).toEqual(0);
 		});
 
 		it('should set the determinate div width to percentComplete', async function () {

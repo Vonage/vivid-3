@@ -283,6 +283,21 @@ const resolveComponentDeclaration = (
 				...declaration._localTypeDefs,
 			};
 		}
+
+		// Apply vivid mixins
+		if (declaration.vividComponent) {
+			const mixins = extractVividMixins(className, declaration._modulePath);
+			for (const mixinName of mixins) {
+				if (!(mixinName in VividMixins)) {
+					throw new Error(`Unknown mixin ${mixinName}`);
+				}
+				declaration.attributes = inheritItems(
+					getAttributeName,
+					VividMixins[mixinName],
+					declaration.attributes
+				);
+			}
+		}
 	}
 
 	return declaration;
@@ -496,24 +511,7 @@ export const getClassNameOfVividComponent = (name: string): string => {
 export const getVividComponentDeclaration = (
 	name: string,
 	className: string
-): Declaration => {
-	const declaration = resolveComponentDeclaration(vividDeclarations, className);
-
-	// Apply vivid mixins
-	const mixins = extractVividMixins(className, declaration._modulePath);
-	for (const mixinName of mixins) {
-		if (!(mixinName in VividMixins)) {
-			throw new Error(`Unknown mixin ${mixinName}`);
-		}
-		declaration.attributes = inheritItems(
-			getAttributeName,
-			VividMixins[mixinName],
-			declaration.attributes
-		);
-	}
-
-	return declaration;
-};
+): Declaration => resolveComponentDeclaration(vividDeclarations, className);
 
 /**
  * Lists all public components from Vivid. E.g. 'accordion-item'.

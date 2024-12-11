@@ -33,6 +33,7 @@ const getClasses = ({
 	iconSlottedContent,
 	ariaExpanded,
 	active,
+	dropdownIndicator,
 }: Button) =>
 	classNames(
 		'control',
@@ -43,7 +44,10 @@ const getClasses = ({
 		],
 		[`shape-${shape}`, Boolean(shape)],
 		[`size-${size}`, Boolean(size)],
-		['icon-only', !label && !!(icon || iconSlottedContent?.length)],
+		[
+			'icon-only',
+			!label && !!(icon || iconSlottedContent?.length) && !dropdownIndicator,
+		],
 		['icon-trailing', iconTrailing],
 		['stacked', Boolean(stacked)],
 		['active', ariaExpanded === 'true' || active]

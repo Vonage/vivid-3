@@ -4,7 +4,7 @@ import {
 	observable,
 	volatile,
 } from '@microsoft/fast-element';
-import { applyMixins, getDirection } from '@microsoft/fast-foundation';
+import { getDirection } from '@microsoft/fast-foundation';
 import {
 	Direction,
 	keyArrowDown,
@@ -18,6 +18,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { roundToStepValue } from '../range-slider/utils/roundToStepValue';

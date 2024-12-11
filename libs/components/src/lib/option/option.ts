@@ -1,6 +1,6 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns/aria-global';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';

@@ -1,6 +1,6 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
