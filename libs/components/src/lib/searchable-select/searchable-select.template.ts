@@ -1,20 +1,7 @@
-import {
-	html,
-	ref,
-	repeat,
-	slotted,
-	ViewTemplate,
-	when,
-} from '@microsoft/fast-element';
-import {
-	Button,
-	type ElementDefinitionContext,
-	type FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
-
 import {
 	affixIconTemplateFactory,
 	getFeedbackTemplate,
@@ -22,6 +9,8 @@ import {
 } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from '../select/select';
+import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { SearchableSelect } from './searchable-select';
 import { OptionTag } from './option-tag';
 
@@ -41,7 +30,7 @@ function renderLabel() {
 }
 
 const tagTemplateFactory = (
-	context: ElementDefinitionContext,
+	context: VividElementDefinitionContext,
 	getComponent: (c: any) => SearchableSelect
 ) => {
 	const optionTagTag = context.tagFor(OptionTag);
@@ -67,7 +56,7 @@ const tagTemplateFactory = (
 };
 
 const elidedTagTemplateFactory = (
-	context: ElementDefinitionContext,
+	context: VividElementDefinitionContext,
 	getComponent: (x: any, c: any) => SearchableSelect
 ) => {
 	const optionTagTag = context.tagFor(OptionTag);
@@ -84,7 +73,7 @@ const elidedTagTemplateFactory = (
 	`;
 };
 
-function renderFieldset(context: ElementDefinitionContext) {
+function renderFieldset(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const chevronTemplate = chevronTemplateFactory(context);
@@ -175,7 +164,7 @@ function renderFieldset(context: ElementDefinitionContext) {
 	`;
 }
 
-function renderControl(context: ElementDefinitionContext) {
+function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
@@ -232,10 +221,9 @@ function renderControl(context: ElementDefinitionContext) {
 	`;
 }
 
-export const SearchableSelectTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<SearchableSelect> = (context: ElementDefinitionContext) => {
+export const SearchableSelectTemplate = (
+	context: VividElementDefinitionContext
+) => {
 	const optionTagTag = context.tagFor(OptionTag);
 
 	return html<SearchableSelect>`

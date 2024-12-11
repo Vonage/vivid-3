@@ -1,15 +1,11 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Tag } from './tag';
 
 const getClasses = ({
@@ -42,20 +38,11 @@ function renderDismissButton(iconTag: string) {
 	</span>`;
 }
 
-/**
- * The template for the Tag component.
- *
- * @param context - element definition context
- * @public
- */
-export const tagTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Tag> = (context: ElementDefinitionContext) => {
+export const tagTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html` <span
+	return html<Tag>` <span
 		class="${getClasses}"
 		role="option"
 		aria-disabled="${(x) => x.disabled}"

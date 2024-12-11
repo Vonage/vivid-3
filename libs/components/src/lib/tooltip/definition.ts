@@ -1,28 +1,26 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { popupRegistries } from '../popup/definition';
+import { popupDefinition } from '../popup/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './tooltip.scss?inline';
-
 import { Tooltip } from './tooltip';
 import { TooltipTemplate as template } from './tooltip.template';
 
 /**
- * The tooltip element.
- */
-export const tooltipDefinition = Tooltip.compose<FoundationElementDefinition>({
-	baseName: 'tooltip',
-	template: template as any,
-	styles,
-});
-
-/**
  * @internal
  */
-export const tooltipRegistries = [tooltipDefinition(), ...popupRegistries];
+export const tooltipDefinition = defineVividComponent(
+	'tooltip',
+	Tooltip,
+	template,
+	[popupDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the tooltip elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTooltip = registerFactory(tooltipRegistries);
+export const registerTooltip = createRegisterFunction(tooltipDefinition);

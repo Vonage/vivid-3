@@ -1,27 +1,26 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
+import { iconDefinition } from '../icon/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './tree-item.scss?inline';
-
 import { TreeItem } from './tree-item';
 import { TreeItemTemplate as template } from './tree-item.template';
-
-export const treeItemDefinition = TreeItem.compose<FoundationElementDefinition>(
-	{
-		baseName: 'tree-item',
-		template: template as any,
-		styles,
-	}
-);
 
 /**
  * @internal
  */
-export const treeItemRegistries = [treeItemDefinition(), ...iconRegistries];
+export const treeItemDefinition = defineVividComponent(
+	'tree-item',
+	TreeItem,
+	template,
+	[iconDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the tree-item element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTreeItem = registerFactory(treeItemRegistries);
+export const registerTreeItem = createRegisterFunction(treeItemDefinition);

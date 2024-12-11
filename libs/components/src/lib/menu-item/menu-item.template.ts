@@ -3,17 +3,13 @@ import {
 	ExecutionContext,
 	html,
 	slotted,
-	ViewTemplate,
 	when,
 } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	MenuItemOptions,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
-import { Menu } from '../menu/menu';
+import { menuName } from '../menu/definition';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
 
 const getIndicatorIcon = (x: MenuItem) => {
@@ -63,7 +59,7 @@ function handleClick(x: MenuItem, { event }: ExecutionContext<MenuItem>) {
 	return (x as any).role === MenuItemRole.presentation;
 }
 
-function checkIndicator(context: ElementDefinitionContext) {
+function checkIndicator(context: VividElementDefinitionContext) {
 	const iconTag = context.tagFor(Icon);
 
 	return html<MenuItem>`${when(
@@ -91,17 +87,7 @@ function text() {
 	)}`;
 }
 
-/**
- * Generates a template for the (MenuItem:class) component using
- * the provided prefix.
- *
- * @param context - element definition context
- * @public
- */
-export const MenuItemTemplate: (
-	context: ElementDefinitionContext,
-	definition: MenuItemOptions
-) => ViewTemplate<MenuItem> = (context: ElementDefinitionContext) => {
+export const MenuItemTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
@@ -141,7 +127,7 @@ export const MenuItemTemplate: (
 				name="submenu"
 				${slotted({
 					property: 'slottedSubmenu',
-					filter: elements(context.tagFor(Menu)),
+					filter: elements(context.tagForNonDependency(menuName)),
 				})}
 			></slot>
 		</template>

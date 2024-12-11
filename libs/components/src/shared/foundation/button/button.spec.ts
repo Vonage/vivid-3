@@ -1,18 +1,26 @@
 import { DOM } from '@microsoft/fast-element';
 import { eventClick } from '@microsoft/fast-web-utilities';
 import { fixture } from '../test-utilities/fixture';
+import { createRegisterFunction } from '../../design-system/createRegisterFunction.ts';
+import { defineVividComponent } from '../../design-system/defineVividComponent.ts';
 import {
 	VividFoundationButton as Button,
 	buttonTemplate as template,
+	VividFoundationButton,
 } from './index';
 
-const FASTButton = Button.compose({
-	baseName: 'button',
+const buttonDefinition = defineVividComponent(
+	'button',
+	Button,
 	template,
-});
+	[],
+	{}
+);
+createRegisterFunction(buttonDefinition)();
 
 async function setup() {
-	const { connect, disconnect, element, parent } = await fixture(FASTButton());
+	const { connect, disconnect, element, parent } =
+		await fixture<VividFoundationButton>('vwc-button');
 
 	return { connect, disconnect, element, parent };
 }

@@ -1,38 +1,30 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { buttonRegistries } from '../button/definition';
-import { elevationRegistries } from '../elevation/definition';
-import { iconRegistries } from '../icon/definition';
+import { buttonDefinition } from '../button/definition';
+import { elevationDefinition } from '../elevation/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { iconDefinition } from '../icon/definition';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './alert.scss?inline';
-
 import { Alert } from './alert';
 import { AlertTemplate as template } from './alert.template';
 
 export type { AlertConnotation } from './alert';
 
 /**
- *
  * @internal
  */
-export const alertDefinition = Alert.compose<FoundationElementDefinition>({
-	baseName: 'alert',
-	template: template as any,
-	styles,
-});
-
-/**
- * @internal
- */
-export const alertRegistries = [
-	alertDefinition(),
-	...iconRegistries,
-	...buttonRegistries,
-	...elevationRegistries,
-];
+export const alertDefinition = defineVividComponent(
+	'alert',
+	Alert,
+	template,
+	[iconDefinition, buttonDefinition, elevationDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the alert elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerAlert = registerFactory(alertRegistries);
+export const registerAlert = createRegisterFunction(alertDefinition);

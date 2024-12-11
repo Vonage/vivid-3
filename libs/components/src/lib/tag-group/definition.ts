@@ -1,26 +1,25 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './tag-group.scss?inline';
-
 import { TagGroup } from './tag-group';
 import { TagGroupTemplate as template } from './tag-group.template';
-
-export const tagGroupDefinition = TagGroup.compose<FoundationElementDefinition>(
-	{
-		baseName: 'tag-group',
-		template: template as any,
-		styles,
-	}
-);
 
 /**
  * @internal
  */
-export const tagGroupRegistries = [tagGroupDefinition()];
+export const tagGroupDefinition = defineVividComponent(
+	'tag-group',
+	TagGroup,
+	template,
+	[],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the tag-group element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTagGroup = registerFactory(tagGroupRegistries);
+export const registerTagGroup = createRegisterFunction(tagGroupDefinition);

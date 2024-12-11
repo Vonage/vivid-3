@@ -1,10 +1,5 @@
 import { html } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import type { Layout } from './layout';
 
 const getClasses = ({
@@ -26,15 +21,6 @@ const getClasses = ({
 		[`auto-sizing-${autoSizing}`, Boolean(autoSizing)]
 	);
 
-/**
- * The template for the Layout component.
- *
- * @returns ViewTemplate<Layout> A template capable of creating HTMLView instances or rendering directly to DOM.
- * @public
- */
-export const layoutTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Layout> = () => html` <div class="${getClasses}">
+export const layoutTemplate = html<Layout>` <div class="${getClasses}">
 	<slot></slot>
 </div>`;

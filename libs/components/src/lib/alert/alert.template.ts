@@ -1,16 +1,12 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import {
-	Button,
-	type ElementDefinitionContext,
-	type FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Elevation } from '../elevation/elevation';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Alert } from './alert';
 
 const getClasses = ({ connotation }: Alert) =>
@@ -24,7 +20,7 @@ const getControlClasses = ({ open, placement, strategy }: Alert) =>
 		[`strategy-${strategy}`, Boolean(strategy)]
 	);
 
-function renderIcon(context: ElementDefinitionContext) {
+function renderIcon(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html`${(x) => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}`;
@@ -42,16 +38,7 @@ function renderDismissButton(buttonTag: string) {
 		</${buttonTag}>`;
 }
 
-/**
- * The template for the Alert component.
- *
- * @param context - element definition context
- * @public
- */
-export const AlertTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Alert> = (context: ElementDefinitionContext) => {
+export const AlertTemplate = (context: VividElementDefinitionContext) => {
 	const elevationTag = context.tagFor(Elevation);
 	const buttonTag = context.tagFor(Button);
 

@@ -1,9 +1,5 @@
-import { ViewTemplate, when } from '@microsoft/fast-element';
+import { when } from '@microsoft/fast-element';
 import { html, ref } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
@@ -12,6 +8,7 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 const getAppearanceClassName = (
@@ -57,7 +54,7 @@ const getClasses = ({
 	);
 
 function renderIconOrPending(
-	context: ElementDefinitionContext,
+	context: VividElementDefinitionContext,
 	icon: string | undefined,
 	pending: boolean,
 	size: ButtonSize | undefined = Size.Normal
@@ -76,7 +73,7 @@ function renderIconOrPending(
 	}
 }
 
-const buttonContent = (context: ElementDefinitionContext) => {
+const buttonContent = (context: VividElementDefinitionContext) => {
 	const chevronTemplate = chevronTemplateFactory(context);
 	return html<Button>`<span class="content">
 			${(x) => renderIconOrPending(context, x.icon, x.pending, x.size)}
@@ -88,7 +85,7 @@ const buttonContent = (context: ElementDefinitionContext) => {
 		${when((x) => x.dropdownIndicator, chevronTemplate)}`;
 };
 
-function renderButtonContent(context: ElementDefinitionContext) {
+function renderButtonContent(context: VividElementDefinitionContext) {
 	return html` <button
 		class="${getClasses}"
 		?autofocus="${(x) => x.autofocus}"
@@ -124,7 +121,7 @@ function renderButtonContent(context: ElementDefinitionContext) {
 	</button>`;
 }
 
-function renderAnchorContent(context: ElementDefinitionContext) {
+function renderAnchorContent(context: VividElementDefinitionContext) {
 	return html`<a
 		class="${getClasses}"
 		download="${(x) => x.download}"
@@ -156,16 +153,7 @@ function renderAnchorContent(context: ElementDefinitionContext) {
 	</a>`;
 }
 
-/**
- * The template for the (Button:class) component.
- *
- * @param context - element definition context
- * @public
- */
-export const buttonTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Button> = (context: ElementDefinitionContext) => {
+export const buttonTemplate = (context: VividElementDefinitionContext) => {
 	return html` <template role="presentation">
 		${when((x) => !x.href, html<Button>`${renderButtonContent(context)}`)}
 		${when((x) => x.href, html<Button>`${renderAnchorContent(context)}`)}

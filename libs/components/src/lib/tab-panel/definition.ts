@@ -1,27 +1,22 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { TabPanel } from './tab-panel';
 import { TabPanelTemplate as template } from './tab-panel.template';
 
 /**
- * The tab panel element.
- */
-export const tabPanelDefinition = TabPanel.compose<FoundationElementDefinition>(
-	{
-		baseName: 'tab-panel',
-		template: template as any,
-	}
-);
-
-/**
  * @internal
  */
-export const tabPanelRegistries = [tabPanelDefinition()];
+export const tabPanelDefinition = defineVividComponent(
+	'tab-panel',
+	TabPanel,
+	template,
+	[],
+	{}
+);
 
 /**
  * Registers the tab-panel elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTabPanel = registerFactory(tabPanelRegistries);
+export const registerTabPanel = createRegisterFunction(tabPanelDefinition);
