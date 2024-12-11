@@ -1,9 +1,5 @@
 import { html, repeat } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+
 import type { Calendar } from './calendar';
 import {
 	getFirstDateOfTheWeek,
@@ -87,16 +83,8 @@ const ColumnTemplate = html<string>`
 		<slot name="day-${(_, c) => c.index}"></slot>
 	</div>
 `;
-/**
- * The template for the Calendar component.
- *
- * @param context - element definition context
- * @public
- */
-export const CalendarTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Calendar> = () => html`
+
+export const CalendarTemplate = html<Calendar>`
 	<div role="grid" @keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}>
 		${DaysTemplate}
 		<div class="calendar-row" role="rowgroup">

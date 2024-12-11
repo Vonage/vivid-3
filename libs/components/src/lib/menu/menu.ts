@@ -1,5 +1,5 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
-import { FoundationElement, roleForMenuItem } from '@microsoft/fast-foundation';
+import { roleForMenuItem } from '@microsoft/fast-foundation';
 import type { Placement, Strategy } from '@floating-ui/dom';
 import {
 	isHTMLElement,
@@ -11,6 +11,7 @@ import {
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
 import { MenuItem, MenuItemRole } from '../menu-item/menu-item';
 import type { Popup } from '../popup/popup';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @public
@@ -23,7 +24,7 @@ import type { Popup } from '../popup/popup';
  * @event {CustomEvent<undefined>} close - Fired when the menu is closed
  */
 @anchored
-export class Menu extends FoundationElement {
+export class Menu extends VividElement {
 	/**
 	 * @internal
 	 */

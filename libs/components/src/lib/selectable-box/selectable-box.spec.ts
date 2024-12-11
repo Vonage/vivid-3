@@ -5,10 +5,8 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { SelectableBox } from './selectable-box';
-import { selectableBoxDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-selectable-box';
@@ -26,9 +24,6 @@ describe('vwc-selectable-box', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-selectable-box', async () => {
-			expect(selectableBoxDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(SelectableBox);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);

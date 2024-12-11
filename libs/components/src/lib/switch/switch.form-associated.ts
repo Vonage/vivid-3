@@ -1,7 +1,7 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { CheckableFormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
-class _Switch extends FoundationElement {}
+class _Switch extends VividElement {}
 /* eslint-disable-next-line @typescript-eslint/naming-convention */
 interface _Switch extends CheckableFormAssociated {}
 

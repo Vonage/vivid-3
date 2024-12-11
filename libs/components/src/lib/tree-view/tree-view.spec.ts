@@ -1,5 +1,4 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowLeft,
@@ -14,7 +13,6 @@ import {
 import type { TreeItem } from '../tree-item/tree-item';
 import '../tree-item';
 
-import { treeViewDefinition } from './definition';
 import { getDisplayedNodes, TreeView } from './tree-view';
 import '.';
 
@@ -43,7 +41,6 @@ describe('vwc-tree-view', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tree-view', async () => {
-			expect(treeViewDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TreeView);
 		});
 	});

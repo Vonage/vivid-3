@@ -4,7 +4,6 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
@@ -12,7 +11,6 @@ import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { Popup } from '../popup/popup.ts';
 import { RangeSlider } from './range-slider';
-import { rangeSliderDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-range-slider';
@@ -54,7 +52,6 @@ describe('vwc-range-slider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-range-slider', async () => {
-			expect(rangeSliderDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(RangeSlider);
 		});
 

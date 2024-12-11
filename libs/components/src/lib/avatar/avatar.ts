@@ -1,7 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
-
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of avatar connotation.
@@ -53,7 +52,7 @@ export type AvatarSize = Extract<
  * @component avatar
  * @slot graphic - Assign nodes to the graphic slot to set a graphic media of any kind (e.g. image, illustration etc).
  */
-export class Avatar extends FoundationElement {
+export class Avatar extends VividElement {
 	/**
 	 * The connotation the avatar should have.
 	 *

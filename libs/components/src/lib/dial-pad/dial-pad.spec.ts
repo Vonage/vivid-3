@@ -1,9 +1,7 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DialPad } from './dial-pad';
-import { dialPadDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-dial-pad';
@@ -37,7 +35,6 @@ describe('vwc-dial-pad', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-dial-pad', async () => {
-			expect(dialPadDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(DialPad);
 			expect(element.pattern).toEqual('^[0-9#*]*$');
 			expect(element.value).toEqual('');

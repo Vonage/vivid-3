@@ -1,11 +1,8 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
+
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { OptionTag } from './option-tag';
 
 const getClasses = ({ shape, disabled, removable }: OptionTag) =>
@@ -30,10 +27,7 @@ function renderRemoveButton(iconTag: string) {
 	`;
 }
 
-export const optionTagTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<OptionTag> = (context: ElementDefinitionContext) => {
+export const optionTagTemplate = (context: VividElementDefinitionContext) => {
 	const iconTag = context.tagFor(Icon);
 
 	return html`<span class="${getClasses}" aria-disabled="${(x) => x.disabled}">

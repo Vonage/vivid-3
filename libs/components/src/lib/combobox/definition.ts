@@ -1,40 +1,34 @@
-import type { ComboboxOptions } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
-import { popupRegistries } from '../popup/definition';
-import { listboxOptionRegistries } from '../option/definition';
+import { iconDefinition } from '../icon/definition';
+import { popupDefinition } from '../popup/definition';
+import { listboxOptionDefinition } from '../option/definition';
 import textFieldStyles from '../text-field/text-field.scss?inline';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './combobox.scss?inline';
-
 import { Combobox } from './combobox';
 import { comboboxTemplate as template } from './combobox.template';
 
 export type { PopupPlacement, ComboboxAppearance } from './combobox';
 
 /**
- * The combobox element.
- *
  * @internal
  */
-export const combobox = Combobox.compose<ComboboxOptions>({
-	baseName: 'combobox',
-	template: template as any,
-	styles: [textFieldStyles, styles],
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-})();
-
-export const comboboxRegistries = [
-	combobox,
-	...iconRegistries,
-	...popupRegistries,
-	...listboxOptionRegistries,
-];
+export const comboboxDefinition = defineVividComponent(
+	'combobox',
+	Combobox,
+	template,
+	[iconDefinition, popupDefinition, listboxOptionDefinition],
+	{
+		styles: [textFieldStyles, styles],
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	}
+);
 
 /**
  * Registers the combobox elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerCombobox = registerFactory(comboboxRegistries);
+export const registerCombobox = createRegisterFunction(comboboxDefinition);

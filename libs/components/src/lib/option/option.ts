@@ -1,9 +1,9 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns/aria-global';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Determines if the element is a {@link (ListboxOption:class)}
@@ -26,7 +26,7 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @component option
  * @slot icon - Slot to add an icon to the option.
  */
-export class ListboxOption extends FoundationElement {
+export class ListboxOption extends VividElement {
 	/**
 	 * @internal
 	 */

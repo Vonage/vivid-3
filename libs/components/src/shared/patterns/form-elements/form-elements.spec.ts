@@ -2,10 +2,12 @@ import 'element-internals-polyfill';
 
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { registerFactory } from '@vonage/vivid';
 import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables.ts';
 import { FormAssociated } from '../../foundation/form-associated/form-associated.ts';
+import { VividElement } from '../../foundation/vivid-element/vivid-element.ts';
+import { createRegisterFunction } from '../../design-system/createRegisterFunction.ts';
+import { iconDefinition } from '../../../lib/icon/definition.ts';
+import { defineVividComponent } from '../../design-system/defineVividComponent.ts';
 import {
 	ErrorText,
 	errorText,
@@ -38,6 +40,7 @@ describe('Form Elements', function () {
 		}
 
 		class _FormElementsClass extends FASTElement {}
+
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		interface _FormElementsClass extends FormAssociated {}
 
@@ -52,6 +55,7 @@ describe('Form Elements', function () {
 				return VALIDATION_MESSAGE;
 			}
 		}
+
 		interface FormElementsClass extends FormElement {}
 
 		let instance: FormElementsClass;
@@ -136,6 +140,7 @@ describe('Form Elements', function () {
 		const baseValidate = jest.fn().mockReturnValue(5);
 
 		class _ErrorTextClass extends FASTElement {}
+
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		interface _ErrorTextClass extends FormAssociated {}
 
@@ -157,6 +162,7 @@ describe('Form Elements', function () {
 
 			override setValidity = jest.fn();
 		}
+
 		interface ErrorTextClass extends ErrorText, FormElement {}
 
 		let instance: ErrorTextClass;
@@ -165,7 +171,7 @@ describe('Form Elements', function () {
 			instance = fixture(
 				'<error-text-class></error-text-class>'
 			) as ErrorTextClass;
-			jest.resetAllMocks();
+			jest.clearAllMocks();
 		});
 
 		afterEach(function () {
@@ -216,26 +222,31 @@ describe('Form Elements', function () {
 describe('getFeedbackTemplate', () => {
 	@errorText
 	@formElements
-	class Feedback extends FormAssociated(FoundationElement) {
+	class Feedback extends FormAssociated(VividElement) {
 		proxy = document.createElement('input');
 	}
+
 	interface Feedback
 		extends FormElementHelperText,
 			FormElementSuccessText,
 			FormElement,
 			ErrorText,
 			FormAssociated {}
+
 	applyMixinsWithObservables(
 		Feedback,
 		FormElementHelperText,
 		FormElementSuccessText
 	);
 
-	const feedbackDef = Feedback.compose({
-		baseName: 'feedback',
-		template: getFeedbackTemplate,
-	});
-	registerFactory([feedbackDef()])('test');
+	const feedbackDef = defineVividComponent(
+		'feedback',
+		Feedback,
+		getFeedbackTemplate,
+		[iconDefinition],
+		{}
+	);
+	createRegisterFunction(feedbackDef)('test');
 
 	let element: Feedback;
 	beforeEach(async () => {

@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @public
@@ -11,7 +11,7 @@ import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
  * @event {CustomEvent<undefined>} open - Fired when the side drawer is opened.
  * @event {CustomEvent<undefined>} cancel - Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event.
  */
-export class SideDrawer extends FoundationElement {
+export class SideDrawer extends VividElement {
 	/**
 	 * applies scheme alternate region
 	 *

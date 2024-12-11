@@ -1,8 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Icon } from '../icon/icon';
 import { EmptyState } from './empty-state';
-import { emptyStateDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-empty-state';
@@ -18,7 +16,6 @@ describe('vwc-empty-state', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-empty-state', async () => {
-			expect(emptyStateDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(EmptyState);
 		});
 	});
