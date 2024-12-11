@@ -5,7 +5,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
 
-function shouldShowSortIcons<T extends DataGridCell>(x: T): boolean {
+function shouldShowSortIcons(x: DataGridCell): boolean {
 	if (x.columnDefinition) {
 		x.ariaSort = !x.columnDefinition.sortable
 			? null
