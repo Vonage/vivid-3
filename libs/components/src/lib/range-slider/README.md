@@ -75,7 +75,7 @@ The default value of `min` is `0`.
 ## Max
 
 Use the `max` attribute to set the highest value allowed for the Range Slider.  
-The default value `max` of is `0`.
+The default value `max` of is `10`.
 
 ```html preview blocks
 <div>

@@ -9,7 +9,7 @@ Below is an example of cta connotation.
 
 ## Markers
 
-Use `markers` attribute to add tick marks on the slider.  
+Use the `markers` attribute to add tick marks on the slider.  
 The markers are set by the value of [`step`](./code/#step).
 
 ```html preview blocks

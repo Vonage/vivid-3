@@ -79,7 +79,7 @@ The default value of `min` is `0`.
 ## Max
 
 Use the `max` attribute to set the highest value allowed for the Slider.  
-The default value `max` of is `0`.
+The default value `max` of is `10`.
 
 ```html preview blocks
 <div>
@@ -101,7 +101,7 @@ The default value `max` of is `0`.
 ## Step
 
 Use the `step` attribute sets the granularity with which values can be incremented/decremented.  
-The default value `step` of is `1`.
+The default value of `step` is `1`.
 
 ```html preview blocks
 <div>
@@ -129,7 +129,7 @@ The default value `step` of is `1`.
 | Name            | Type                                    | Description                                                          |
 | --------------- | --------------------------------------- | -------------------------------------------------------------------- |
 | **connotation** | _Enum_:<br/>`accent`<br/>`cta`          | The connotation of the component                                     |
-| **disabled**    | \_`boolean`                             | Sets the element's disabled state                                    |
+| **disabled**    | `boolean`                             | Sets the element's disabled state                                    |
 | **markers**     | `boolean`                               | Display markers on/off                                               |
 | **max**         | `number`                                | The maximum value of the range.                                      |
 | **min**         | `number`                                | The minimum value of the range.                                      |
