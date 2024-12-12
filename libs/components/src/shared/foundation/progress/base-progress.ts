@@ -3,7 +3,7 @@ import {
 	nullableNumberConverter,
 	observable,
 } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { VividElement } from '../vivid-element/vivid-element';
 
 /**
  * An Progress HTML Element.
@@ -11,7 +11,7 @@ import { FoundationElement } from '@microsoft/fast-foundation';
  *
  * @public
  */
-export class BaseProgress extends FoundationElement {
+export class BaseProgress extends VividElement {
 	/**
 	 * The value of the progress
 	 * @public
