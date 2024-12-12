@@ -1,16 +1,16 @@
 ## Connotation
 
-Use the `connotation` attribute on Range Slider to control the color of the selected range.  
-Below is an example of cta connotation.
+Use the `connotation` attribute on Range Slider to control the color of the selected range.
 
 ```html preview blocks>
+<vwc-range-slider connotation="accent"></vwc-range-slider>
 <vwc-range-slider connotation="cta"></vwc-range-slider>
 ```
 
 ## Markers
 
 Use the `markers` attribute to add tick marks on the slider.  
-The markers are set by the value of [`step`](./code/#step).
+The markers are set by the value of [`step`](/components/range-slider/code/#step).
 
 ```html preview blocks
 <vwc-range-slider markers></vwc-range-slider>
@@ -32,7 +32,7 @@ Below is an example of vertical alignment.
 ## Pin
 
 Use `pin` attribute to display a tooltip at the start and end values.  
-Use the [`valueTextFormatter`](/code/#value-text-formatter) member to customize the format of the values.
+Use the [`valueTextFormatter`](/components/range-slider/code/#value-text-formatter) member to customize the format of the values.
 
 ```html preview
 <vwc-range-slider pin id="slider"></vwc-range-slider>

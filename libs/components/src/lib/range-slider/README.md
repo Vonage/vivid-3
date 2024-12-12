@@ -137,7 +137,7 @@ The default value `step` of is `1`.
 ## Start
 
 Use the `start` attribute to set the lower position of the range indicator.  
-The default value of `start` is [`min`](/#min).
+The default value of `start` is [`min`](/components/range-slider/code/#min).
 
 ```html preview blocks
 <vwc-range-slider start="5" markers></vwc-range-slider>
@@ -146,7 +146,7 @@ The default value of `start` is [`min`](/#min).
 ## End
 
 Use the `end` attribute to set the upper position of the range indicator.  
-The default value of `end` is [`max`](/#max).
+The default value of `end` is [`max`](/components/range-slider/code/#max).
 
 ```html preview blocks
 <vwc-range-slider end="5" markers></vwc-range-slider>
@@ -155,7 +155,7 @@ The default value of `end` is [`max`](/#max).
 ## Value Text Formatter
 
 Use the `valueTextFormatter` to generates a string for the Range Slider's "aria-valuetext" attribute based on the current value.  
-Use this to configure the [`pin`](/variation/#pin) string.
+Use this to configure the [`pin`](/components/range-slider/#pin) string.
 
 ## API Reference
 

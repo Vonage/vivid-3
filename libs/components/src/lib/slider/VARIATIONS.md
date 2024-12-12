@@ -1,16 +1,16 @@
 ## Connotation
 
-Use the `connotation` attribute on Slider to control the Slider track.  
-Below is an example of cta connotation.
+Use the `connotation` attribute on Slider to control the Slider track.
 
 ```html preview blocks>
+<vwc-slider connotation="accent"></vwc-slider>
 <vwc-slider connotation="cta"></vwc-slider>
 ```
 
 ## Markers
 
 Use the `markers` attribute to add tick marks on the slider.  
-The markers are set by the value of [`step`](./code/#step).
+The markers are set by the value of [`step`](/components/slider/code/#step).
 
 ```html preview blocks
 <vwc-slider markers></vwc-slider>

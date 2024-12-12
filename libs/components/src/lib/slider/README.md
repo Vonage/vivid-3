@@ -52,7 +52,7 @@ Set the `value` attribute to set the value of the Slider.
 ### Value Text Formatter
 
 Use the `valueTextFormatter` to generates a string for the Slider's "aria-valuetext" attribute based on the current value.  
-Use this to configure the [`pin`](/variation/#pin) string.
+Use this to configure the [`pin`](/components/slider/#pin) string.
 
 ## Min
 
@@ -129,7 +129,7 @@ The default value of `step` is `1`.
 | Name            | Type                                    | Description                                                          |
 | --------------- | --------------------------------------- | -------------------------------------------------------------------- |
 | **connotation** | _Enum_:<br/>`accent`<br/>`cta`          | The connotation of the component                                     |
-| **disabled**    | `boolean`                             | Sets the element's disabled state                                    |
+| **disabled**    | `boolean`                               | Sets the element's disabled state                                    |
 | **markers**     | `boolean`                               | Display markers on/off                                               |
 | **max**         | `number`                                | The maximum value of the range.                                      |
 | **min**         | `number`                                | The minimum value of the range.                                      |
