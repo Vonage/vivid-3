@@ -96,7 +96,7 @@ Use the CSS part `base` to provide custom styling to the Side-Drawer.
 ### Application Content Offset
 
 Use `--side-drawer-app-content-offset` to set a value different from `280px` to the offset of side drawer's application content.  
-This is needed if a custom width is set on the side-drawer, or if side-drawer needs to overlap content [see use-case]()
+This is needed if a custom width is set on the side-drawer, or if side-drawer needs to overlap content [see use-case](/components/side-drawer/use-cases/#side-drawer-overlap-content)
 
 ```html preview full 150px
 <vwc-side-drawer class="side-drawer" open>
