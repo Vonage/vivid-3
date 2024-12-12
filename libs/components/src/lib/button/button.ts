@@ -1,6 +1,3 @@
-// import {
-// 	Button as FoundationButton,
-// } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
