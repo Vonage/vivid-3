@@ -1,3 +1,4 @@
+import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr, DOM, observable } from '@microsoft/fast-element';
 import {
 	// getDisplayedNodes,
@@ -10,7 +11,6 @@ import {
 	keyEnter,
 	keyHome,
 } from '@microsoft/fast-web-utilities';
-import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.js';
 import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
 
 export function getDisplayedNodes(
@@ -43,7 +43,7 @@ export function getDisplayedNodes(
  * @component tree-view
  * @slot - Default slot.
  */
-export class TreeView extends VividElement {
+export class TreeView extends FoundationElement {
 	/**
    /**
 	 * When true, the control will be appear expanded by user interaction.

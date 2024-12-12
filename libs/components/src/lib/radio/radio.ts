@@ -3,8 +3,8 @@ import {
 	observable,
 	type SyntheticViewTemplate,
 } from '@microsoft/fast-element';
+import { type FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { keySpace } from '@microsoft/fast-web-utilities';
-import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent';
 import type { Connotation } from '../enums.js';
 import { FormAssociatedRadio } from './radio.form-associated';
 
@@ -36,7 +36,7 @@ export type RadioControl = Pick<
  * Radio configuration options
  * @public
  */
-export type RadioOptions = VividComponentDefinition & {
+export type RadioOptions = FoundationElementDefinition & {
 	checkedIndicator?: string | SyntheticViewTemplate;
 };
 
