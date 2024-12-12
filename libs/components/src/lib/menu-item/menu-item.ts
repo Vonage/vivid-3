@@ -1,10 +1,5 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
-import {
-	AnchoredRegion,
-	applyMixins,
-	MenuItemRole as FastMenuItemRole,
-	getDirection,
-} from '@microsoft/fast-foundation';
+import { AnchoredRegion } from '@microsoft/fast-foundation';
 import { Direction, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
@@ -13,14 +8,34 @@ import {
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 import { Connotation } from '../enums';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
+import { getDirection } from '../../shared/foundation/utilities/direction';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const MenuItemRole = {
-	...FastMenuItemRole,
+	menuitem: 'menuitem',
+	menuitemcheckbox: 'menuitemcheckbox',
+	menuitemradio: 'menuitemradio',
 	presentation: 'presentation',
 } as const;
 
+/**
+ * The types for menu item roles
+ * @public
+ */
 export type MenuItemRole = typeof MenuItemRole[keyof typeof MenuItemRole];
+
+/**
+ * @internal
+ */
+export const roleForMenuItem: {
+	[value in keyof typeof MenuItemRole]: typeof MenuItemRole[value];
+} = {
+	[MenuItemRole.menuitem]: 'menuitem',
+	[MenuItemRole.menuitemcheckbox]: 'menuitemcheckbox',
+	[MenuItemRole.menuitemradio]: 'menuitemradio',
+	[MenuItemRole.presentation]: 'presentation',
+};
 
 export enum CheckAppearance {
 	Normal = 'normal',

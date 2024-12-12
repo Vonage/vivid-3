@@ -1,5 +1,4 @@
 import { attr, DOM, Observable, observable } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
 import type { Popup } from '../popup/popup';
 import type { Appearance } from '../enums';
@@ -9,6 +8,7 @@ import {
 	formElements,
 } from '../../shared/patterns';
 import type { ListboxOption } from '../option/option';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
