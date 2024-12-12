@@ -234,17 +234,17 @@ export class VividFoundationButton extends FormAssociatedButton {
 		// Check to see if delegatesFocus is supported
 		if (this.$fastController.definition.shadowOptions) {
 			if (
-					window.ShadowRoot &&
-					/* eslint-disable-next-line */
-					!window.ShadowRoot.prototype.hasOwnProperty("delegatesFocus") &&
-					this.$fastController.definition.shadowOptions.delegatesFocus
+				window.ShadowRoot &&
+				/* eslint-disable-next-line */
+				!window.ShadowRoot.prototype.hasOwnProperty('delegatesFocus') &&
+				this.$fastController.definition.shadowOptions.delegatesFocus
 			) {
-					this.focus = () => {
-							this.control.focus();
-					};
+				this.focus = () => {
+					this.control.focus();
+				};
 			}
 		}
-}	;
+	};
 }
 
 /**
