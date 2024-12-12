@@ -441,6 +441,7 @@ describe('vwc-pagination', () => {
 				composed: true,
 			});
 			button.dispatchEvent(event);
+			await elementUpdated(prevButton);
 			expect((element.shadowRoot?.activeElement as any).label).toEqual(
 				prevButton?.label
 			);

@@ -1,7 +1,7 @@
 import { attr, ViewTemplate } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Anchor } from '../../shared/foundation/anchor/anchor';
 
@@ -29,7 +29,7 @@ export type TextAnchorAppearance = Extract<
  * @component text-anchor
  * @slot icon - Add an icon to the component.
  */
-export class TextAnchor extends FoundationElement {
+export class TextAnchor extends VividElement {
 	/**
 	 * Indicates the text anchor's text.
 	 *

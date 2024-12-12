@@ -110,6 +110,7 @@ export class Pagination extends VividElement {
 			const newIndex = index + focusDirection;
 			if (newIndex < 0) {
 				return this.prevButton!.focus();
+				
 			}
 			if (newIndex > this.paginationButtons!.length - 1) {
 				return this.nextButton!.focus();
