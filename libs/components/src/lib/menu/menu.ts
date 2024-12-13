@@ -8,10 +8,18 @@ import {
 	keyHome,
 } from '@microsoft/fast-web-utilities';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
-import { roleForMenuItem } from '../menu-item/menu-item';
 import { MenuItem, MenuItemRole } from '../menu-item/menu-item';
 import type { Popup } from '../popup/popup';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+
+const roleForMenuItem: {
+	[value in keyof typeof MenuItemRole]: typeof MenuItemRole[value];
+} = {
+	[MenuItemRole.menuitem]: 'menuitem',
+	[MenuItemRole.menuitemcheckbox]: 'menuitemcheckbox',
+	[MenuItemRole.menuitemradio]: 'menuitemradio',
+	[MenuItemRole.presentation]: 'presentation',
+};
 
 /**
  * @public
