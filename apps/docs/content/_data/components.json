@@ -123,8 +123,14 @@
 	},
 	{
 		"title": "Tooltip",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tooltip/README.md"
+		"description": "A Tooltips provides a short description of a page element or control that become visible when the target is hovered over or focussed on.",
+		"variations": "./libs/components/src/lib/tooltip/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/tooltip/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/tooltip/README.md",
+		"accessibility": "./libs/components/src/lib/tooltip/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/tooltip/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Progress",
@@ -321,8 +327,14 @@
 	},
 	{
 		"title": "Toggletip",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/toggletip/README.md"
+		"description": "A Toggletip is a type of Tooltip that is opened when clicking or tapping on the trigger button.",
+		"variations": "./libs/components/src/lib/toggletip/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/toggletip/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/toggletip/README.md",
+		"accessibility": "./libs/components/src/lib/toggletip/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/toggletip/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Time Picker",

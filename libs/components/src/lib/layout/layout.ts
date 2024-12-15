@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import type { LayoutSize } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export enum AUTO_SIZING {
 	Fit = 'fit',
@@ -30,7 +30,7 @@ export type ColumnBasis =
  * @component layout
  * @slot - Default slot.
  */
-export class Layout extends FoundationElement {
+export class Layout extends VividElement {
 	/**
 	 * sets the initial preferred margin from predefined available options
 	 *

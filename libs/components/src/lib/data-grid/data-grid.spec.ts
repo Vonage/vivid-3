@@ -1,18 +1,12 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { html, ViewTemplate } from '@microsoft/fast-element';
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { designSystem } from '../../shared/design-system';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
-import { DataGridTemplate } from './data-grid.template';
-
-const dataGrid = DataGrid.compose<FoundationElementDefinition>({
-	baseName: 'data-grid',
-	template: DataGridTemplate as any,
-});
-
-designSystem.withPrefix('vwc').register(dataGrid());
+import '.';
+import { DataGridRow } from './data-grid-row.ts';
 
 const COMPONENT_TAG = 'vwc-data-grid';
+
+Element.prototype.scrollIntoView = jest.fn();
 
 function setMockRows(element: DataGrid) {
 	element.rowElementTag = 'div';
@@ -44,7 +38,7 @@ describe('vwc-data-grid', () => {
 			expect(element.headerCellItemTemplate).toBeUndefined();
 			expect(element.focusRowIndex).toEqual(0);
 			expect(element.focusColumnIndex).toEqual(0);
-			expect(element.rowElementTag).toBeUndefined();
+			expect(element.rowElementTag).toBe('vwc-data-grid-row');
 			expect(element.selectionMode).toBeUndefined();
 		});
 	});
@@ -60,6 +54,32 @@ describe('vwc-data-grid', () => {
 			element.toggleAttribute('no-tabbing', true);
 
 			expect(element.getAttribute('tabindex')).toEqual('-1');
+		});
+
+		it('should set tabindex to -1 if noTabbing is changed to false while element has focus', async () => {
+			element.noTabbing = true;
+			element.focus();
+
+			element.noTabbing = false;
+
+			expect(element.getAttribute('tabindex')).toEqual('-1');
+		});
+
+		it('should set the tabindex to -1 if noTabbing is true on focusout', async () => {
+			element.noTabbing = true;
+			element.focus();
+
+			element.blur();
+
+			expect(element.getAttribute('tabindex')).toEqual('-1');
+		});
+
+		it('should set the tabindex to 0 if noTabbing is false on focusout', async () => {
+			element.focus();
+
+			element.blur();
+
+			expect(element.getAttribute('tabindex')).toEqual('0');
 		});
 	});
 
@@ -115,47 +135,56 @@ describe('vwc-data-grid', () => {
 		});
 	});
 	describe('generateHeader', () => {
-		const rowElementTag = 'vwc-data-grid-row';
-		let generatedHeader: any;
+		const getGeneratedHeader = () =>
+			element.querySelector('[row-type$="header"]') as DataGridRow | null;
 
 		beforeEach(async () => {
-			element.rowElementTag = rowElementTag;
+			element.gridTemplateColumns = '1fr 25px';
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
 			];
 			await elementUpdated(element);
-			generatedHeader = element.querySelector(rowElementTag) as any;
 		});
 		it('should generate the header row with columnDefinition', async () => {
-			expect(generatedHeader.columnDefinitions).toEqual(
+			expect(getGeneratedHeader()!.columnDefinitions).toEqual(
 				element.columnDefinitions
 			);
 		});
 
 		it('should generate the header row with gridTemplateColumns', async () => {
-			expect(generatedHeader.gridTemplateColumns).toEqual(
+			expect(getGeneratedHeader()!.gridTemplateColumns).toBe(
 				element.gridTemplateColumns
 			);
 		});
 
 		it('should generate the header row with sticky', async () => {
-			const generatedHeaderRowTypeBeforeSticky = generatedHeader.rowType;
+			const generatedHeaderRowTypeBeforeSticky = getGeneratedHeader()!.rowType;
 			element.generateHeader = 'sticky';
-			generatedHeader = element.querySelector(rowElementTag) as any;
+			await elementUpdated(element);
 			expect(generatedHeaderRowTypeBeforeSticky).toEqual('header');
-			expect(generatedHeader.rowType).toEqual('sticky-header');
+			expect(getGeneratedHeader()!.rowType).toEqual('sticky-header');
 		});
 
 		it('should replace existing header if already rendered', async () => {
+			const generatedHeader = getGeneratedHeader();
 			element.generateHeader = 'sticky';
+			await elementUpdated(element);
 			expect(document.body.contains(generatedHeader)).toBeFalsy();
-			expect(element.querySelector(rowElementTag)).toBeTruthy();
+			expect(getGeneratedHeader()).toBeTruthy();
 		});
 
 		it('should remove the header row completely if generateHeader is none', async () => {
 			element.generateHeader = 'none';
-			expect(element.querySelector(rowElementTag)).toBeNull();
+			expect(getGeneratedHeader()).toBeNull();
+		});
+
+		it('should use headerCellItemTemplate for header cells', async () => {
+			element.headerCellItemTemplate = html`<span>Custom</span>`;
+			await elementUpdated(element);
+
+			expect(getGeneratedHeader()!.children[0].textContent).toBe('Custom');
+			expect(getGeneratedHeader()!.children[0].textContent).toBe('Custom');
 		});
 	});
 
@@ -363,12 +392,145 @@ describe('vwc-data-grid', () => {
 		});
 	});
 
+	describe('keyboard navigation', () => {
+		const setupData = async () => {
+			element.rowsData = [
+				{ id: '1', name: 'Person 1', age: '20' },
+				{ id: '2', name: 'Person 2', age: '30' },
+				{ id: '3', name: 'Person 3', age: '40' },
+				{ id: '4', name: 'Person 4', age: '50' },
+				{ id: '5', name: 'Person 5', age: '60' },
+			];
+			await elementUpdated(element);
+			await elementUpdated(element);
+
+			const rows = Array.from(element.querySelectorAll('[role="row"]'));
+			const cells = rows.map(
+				(row) =>
+					Array.from(
+						row.querySelectorAll('[role="columnheader"],[role="gridcell"]')
+					) as HTMLElement[]
+			);
+
+			for (let i = 0; i < rows.length; i++) {
+				Object.defineProperty(rows[i], 'offsetTop', {
+					value: i * 100,
+				});
+				Object.defineProperty(rows[i], 'offsetHeight', {
+					value: 100,
+				});
+			}
+
+			Object.defineProperty(element, 'scrollHeight', {
+				value: rows.length * 600,
+			});
+			Object.defineProperty(element, 'clientHeight', {
+				value: 200,
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				value: 200,
+			});
+
+			return { rows, cells };
+		};
+
+		const pressKey = (key: string, options?: KeyboardEventInit) => {
+			document.activeElement!.dispatchEvent(
+				new KeyboardEvent('keydown', {
+					key,
+					cancelable: true,
+					bubbles: true,
+					...options,
+				})
+			);
+		};
+
+		it('should allow navigating between cells with arrow keys', async () => {
+			const { cells } = await setupData();
+			cells[0][0].focus();
+
+			pressKey('ArrowRight');
+			expect(document.activeElement).toBe(cells[0][1]);
+
+			pressKey('ArrowDown');
+			expect(document.activeElement).toBe(cells[1][1]);
+
+			pressKey('ArrowLeft');
+			expect(document.activeElement).toBe(cells[1][0]);
+
+			pressKey('ArrowUp');
+			expect(document.activeElement).toBe(cells[0][0]);
+		});
+
+		it('should move to the first/last cell when pressing ctrl + Home/End', async () => {
+			const { cells } = await setupData();
+			cells[1][1].focus();
+
+			pressKey('End', { ctrlKey: true });
+			expect(document.activeElement).toBe(cells[5][2]);
+
+			pressKey('Home', { ctrlKey: true });
+			expect(document.activeElement).toBe(cells[0][0]);
+		});
+
+		it('should move up/down one page when pressing PageUp/PageDown', async () => {
+			const { cells } = await setupData();
+			cells[0][0].focus();
+
+			pressKey('PageDown');
+			expect(document.activeElement === cells[2][0]).toBe(true);
+
+			pressKey('PageDown');
+			expect(document.activeElement === cells[4][0]).toBe(true);
+
+			pressKey('PageDown');
+			expect(document.activeElement === cells[5][0]).toBe(true);
+
+			pressKey('PageDown');
+			expect(document.activeElement === cells[5][0]).toBe(true);
+
+			pressKey('PageUp');
+			expect(document.activeElement === cells[3][0]).toBe(true);
+
+			pressKey('PageUp');
+			expect(document.activeElement === cells[0][0]).toBe(true);
+
+			pressKey('PageUp');
+			expect(document.activeElement === cells[0][0]).toBe(true);
+		});
+
+		it('should update scrollTop to consider sticky header height', async () => {
+			element.generateHeader = 'sticky';
+			const { rows, cells } = await setupData();
+			Object.defineProperty(rows[0], 'clientHeight', {
+				value: 50,
+			});
+
+			cells[0][0].focus();
+			pressKey('PageDown');
+			expect(element.scrollTop).toBe(150);
+		});
+
+		it('should not throw an error when there are now rows', async () => {
+			element.generateHeader = 'none';
+			element.rowsData = [];
+			await elementUpdated(element);
+			element.focus();
+
+			expect(() => pressKey('ArrowDown')).not.toThrow();
+			expect(() => pressKey('ArrowUp')).not.toThrow();
+			expect(() => pressKey('PageUp')).not.toThrow();
+			expect(() => pressKey('PageDown')).not.toThrow();
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.rowsData = [
 				{ id: '1', name: 'Person 1' },
 				{ id: '2', name: 'Person 2' },
 			];
+			await elementUpdated(element);
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

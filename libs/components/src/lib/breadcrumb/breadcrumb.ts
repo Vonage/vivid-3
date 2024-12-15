@@ -1,13 +1,13 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { observable } from '@microsoft/fast-element';
 import { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * @public
  * @component breadcrumb
  * @slot - Default slot.
  */
-export class Breadcrumb extends FoundationElement {
+export class Breadcrumb extends VividElement {
 	/**
 	 * @internal
 	 */

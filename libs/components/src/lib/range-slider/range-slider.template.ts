@@ -1,10 +1,8 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-
 import { getMarkersTemplate } from '../slider/slider.template';
 import { PlacementStrategy, Popup } from '../popup/popup';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { RangeSlider, ThumbId } from './range-slider';
 
 const getClasses = ({ disabled, connotation }: RangeSlider) =>
@@ -22,15 +20,7 @@ const getThumbClassesFor =
 			_visiblyFocusedThumb === thumb,
 		]);
 
-/**
- * The template for the RangeSlider component.
- *
- * @param context - element definition context
- * @public
- */
-export const RangeSliderTemplate: (
-	context: ElementDefinitionContext
-) => ViewTemplate<RangeSlider> = (context) => {
+export const RangeSliderTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 
 	return html<RangeSlider>` <template

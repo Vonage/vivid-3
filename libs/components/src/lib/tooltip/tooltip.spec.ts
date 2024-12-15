@@ -6,12 +6,10 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import { fireEvent } from '@testing-library/dom';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Popup } from '../popup/popup.ts';
 import { Tooltip } from './tooltip';
 import '.';
-import { tooltipDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-tooltip';
 
@@ -33,7 +31,6 @@ describe('vwc-tooltip', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tooltip', async () => {
-			expect(tooltipDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Tooltip);
 			expect(element.open).toBeFalsy();
 			expect(element.anchor).toBeUndefined();

@@ -1,9 +1,9 @@
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { children, elements, html, slotted } from '@microsoft/fast-element';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridCell } from './data-grid-cell';
 import type { DataGridRow } from './data-grid-row';
 
-function createCellItemTemplate(context: ElementDefinitionContext) {
+function createCellItemTemplate(context: VividElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);
 	return html`
     <${cellTag}
@@ -16,7 +16,7 @@ function createCellItemTemplate(context: ElementDefinitionContext) {
 `;
 }
 
-function createHeaderCellItemTemplate(context: ElementDefinitionContext) {
+function createHeaderCellItemTemplate(context: VividElementDefinitionContext) {
 	const cellTag = context.tagFor(DataGridCell);
 	return html`
     <${cellTag}
@@ -27,13 +27,7 @@ function createHeaderCellItemTemplate(context: ElementDefinitionContext) {
 `;
 }
 
-/**
- * Generates a template for the DataGridRow component using
- * the provided prefix.
- *
- * @public
- */
-export const DataGridRowTemplate = (context: ElementDefinitionContext) => {
+export const DataGridRowTemplate = (context: VividElementDefinitionContext) => {
 	const cellItemTemplate = createCellItemTemplate(context);
 	const headerCellItemTemplate = createHeaderCellItemTemplate(context);
 	return html<DataGridRow>`

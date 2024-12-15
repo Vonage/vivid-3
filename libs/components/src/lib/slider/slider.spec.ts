@@ -5,14 +5,12 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
 import { PlacementStrategy, Popup } from '../popup/popup.ts';
 import { Slider } from './slider';
-import { sliderDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-slider';
@@ -40,7 +38,6 @@ describe('vwc-slider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-slider with proper default values', async () => {
-			expect(sliderDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Slider);
 
 			expect(element.valueAsNumber).toBe(5);

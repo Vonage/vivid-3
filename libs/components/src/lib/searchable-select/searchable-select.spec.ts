@@ -1,5 +1,4 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import '.';
 import '../option';
 import { Popup } from '../popup/popup';
@@ -8,7 +7,6 @@ import { Button } from '../button/button';
 import { Icon } from '../icon/icon.ts';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
-import { searchableSelectDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-searchable-select';
 const OPTION_TAG = 'vwc-option';
@@ -116,9 +114,6 @@ describe('vwc-searchable-select', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-searchable-select', async () => {
-			expect(searchableSelectDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(SearchableSelect);
 		});
 	});

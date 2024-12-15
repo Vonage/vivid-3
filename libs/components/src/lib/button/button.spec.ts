@@ -5,13 +5,11 @@ import {
 	getControlElement,
 	setProperty,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { Button } from './button';
 import '.';
-import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -32,7 +30,6 @@ describe('vwc-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
-			expect(buttonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Button);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -205,17 +202,35 @@ describe('vwc-button', () => {
 	});
 
 	describe('icon-only', () => {
-		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () =>
-				element.shadowRoot?.querySelector('.control.icon-only');
-			const controlIconOnlyBefore = getControlIconOnly();
+		it('should sets correct internal icon-only style when icon is set and label is undefined', async () => {
+			const control = element.shadowRoot?.querySelector(`.control`);
 
 			element.icon = 'home';
+			element.label = undefined;
 			await elementUpdated(element);
 
-			const controlIconOnlyAfter = getControlIconOnly();
-			expect(controlIconOnlyBefore).toBeNull();
-			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
+			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+
+			element.label = 'button';
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+		});
+
+		it('should remove icon-only when drop-down-indicator is added, icon is set and label is undefined', async () => {
+			const control = element.shadowRoot?.querySelector(`.control`);
+
+			element.icon = 'home';
+			element.label = undefined;
+			element.dropdownIndicator = true;
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+
+			element.dropdownIndicator = false;
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
 		});
 
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
@@ -230,6 +245,24 @@ describe('vwc-button', () => {
 			expect(
 				getControlElement(element).classList.contains('icon-only')
 			).toEqual(true);
+		});
+
+		it('should add icon-only when drop-down-indicator is added, slotted icon is set and label is undefined', async () => {
+			const control = element.shadowRoot?.querySelector(`.control`);
+
+			const slottedElement = document.createElement('span');
+			slottedElement.slot = 'icon';
+			element.appendChild(slottedElement);
+			element.label = undefined;
+			element.dropdownIndicator = true;
+
+			await elementUpdated(element);
+			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+
+			element.dropdownIndicator = false;
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
 		});
 	});
 

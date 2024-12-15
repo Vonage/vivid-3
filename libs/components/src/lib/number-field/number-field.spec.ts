@@ -9,13 +9,11 @@ import {
 	getControlElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Shape, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { NumberField } from './number-field';
-import { numberFieldDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG_NAME = 'vwc-number-field';
@@ -42,7 +40,6 @@ describe('vwc-number-field', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-number-field', async () => {
-			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
 			expect(control.getAttribute('type')).toEqual('text');
 		});

@@ -1,14 +1,10 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Button } from '../../lib/button/button';
 import { Popup } from '../../lib/popup/popup';
 import { TextField } from '../../lib/text-field/text-field';
 import { Divider } from '../../lib/divider/divider';
+import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import type { CalendarGridDate, Weekday } from './calendar/calendarGrid';
 import { areMonthsEqual, monthToStr } from './calendar/month';
 import type { MonthPickerGridCell } from './calendar/monthPickerGrid';
@@ -19,7 +15,7 @@ import type {
 	Segment,
 } from './calendar/segment';
 
-function renderDialogHeader(context: ElementDefinitionContext) {
+function renderDialogHeader(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<Segment, DatePickerBase>`<div class="header">
@@ -117,7 +113,7 @@ function renderDialogHeader(context: ElementDefinitionContext) {
 	</div>`;
 }
 
-function renderCalendarGrid(context: ElementDefinitionContext) {
+function renderCalendarGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
 	return html<CalendarSegment, DatePickerBase>`<div
@@ -223,7 +219,7 @@ function renderCalendarGrid(context: ElementDefinitionContext) {
 			</div>`
 		)}`;
 }
-function renderMonthPickerGrid(context: ElementDefinitionContext) {
+function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
 	return html<MonthPickerSegment, DatePickerBase>`
@@ -308,18 +304,14 @@ function renderMonthPickerGrid(context: ElementDefinitionContext) {
 	</div>`;
 }
 
-export const DatePickerBaseTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<DatePickerBase> = (
-	context: ElementDefinitionContext,
-	_: FoundationElementDefinition
+export const DatePickerBaseTemplate = (
+	context: VividElementDefinitionContext
 ) => {
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
 
-	return html`<div class="base" @keydown="${(x, { event }) =>
+	return html<DatePickerBase>`<div class="base" @keydown="${(x, { event }) =>
 		x._onBaseKeyDown(event as KeyboardEvent)}">
 		<${textFieldTag} id="text-field"
 										 ${ref('_textFieldEl')}

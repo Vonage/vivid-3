@@ -1,4 +1,3 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import {
 	attr,
 	observable,
@@ -7,6 +6,7 @@ import {
 } from '@microsoft/fast-element';
 import type { Shape, Size } from '../enums';
 import type { Button } from '../button/button';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type PaginationSize = Extract<
 	Size,
@@ -26,7 +26,7 @@ const totalConverter: ValueConverter = {
  * @component pagination
  * @event {CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>} pagination-change - Fires when the page changes.
  */
-export class Pagination extends FoundationElement {
+export class Pagination extends VividElement {
 	/**
 	 * The size the pagination should have.
 	 *

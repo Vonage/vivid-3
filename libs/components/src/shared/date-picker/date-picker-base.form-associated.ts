@@ -1,7 +1,7 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { FormAssociated } from '../foundation/form-associated/form-associated';
+import { VividElement } from '../foundation/vivid-element/vivid-element';
 
-class _DatePickerBase extends FoundationElement {}
+class _DatePickerBase extends VividElement {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface _DatePickerBase extends FormAssociated {}
 

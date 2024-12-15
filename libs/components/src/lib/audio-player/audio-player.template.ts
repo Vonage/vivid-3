@@ -1,9 +1,5 @@
-import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
+import type { ExecutionContext } from '@microsoft/fast-element';
 import { html, repeat, when } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
@@ -11,6 +7,7 @@ import { Slider } from '../slider/slider';
 import { Menu } from '../menu/menu';
 import { MenuItem } from '../menu-item/menu-item';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import {
 	AudioPlayer,
 	formatTime,
@@ -52,7 +49,7 @@ const isMenuItemChekced = (
 	return playbackRate === parent.playbackRate;
 };
 
-function renderButton(context: ElementDefinitionContext) {
+function renderButton(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`<${buttonTag} class="pause" @click="${(x) =>
@@ -68,7 +65,7 @@ function renderButton(context: ElementDefinitionContext) {
   ></${buttonTag}>`;
 }
 
-function renderBackwardSkipButtons(context: ElementDefinitionContext) {
+function renderBackwardSkipButtons(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
@@ -89,7 +86,7 @@ function renderBackwardSkipButtons(context: ElementDefinitionContext) {
 	`;
 }
 
-function renderForwardSkipButtons(context: ElementDefinitionContext) {
+function renderForwardSkipButtons(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
 	return html<AudioPlayer>`
@@ -110,7 +107,7 @@ function renderForwardSkipButtons(context: ElementDefinitionContext) {
 	`;
 }
 
-function renderSlider(context: ElementDefinitionContext) {
+function renderSlider(context: VividElementDefinitionContext) {
 	const sliderTag = context.tagFor(Slider);
 
 	return html<AudioPlayer>`
@@ -141,10 +138,7 @@ function handlePlaybackRateClick(
 	return true;
 }
 
-export const AudioPlayerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<AudioPlayer> = (context: ElementDefinitionContext) => {
+export const AudioPlayerTemplate = (context: VividElementDefinitionContext) => {
 	const menuTag = context.tagFor(Menu);
 	const buttonTag = context.tagFor(Button);
 	const menuItemTag = context.tagFor(MenuItem);
