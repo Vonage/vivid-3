@@ -1,8 +1,6 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Badge } from './badge';
-import { badgeDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-badge';
@@ -21,7 +19,6 @@ describe('vwc-badge', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
-			expect(badgeDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Badge);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();

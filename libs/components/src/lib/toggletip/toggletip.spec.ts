@@ -5,11 +5,9 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { type Popup } from '../popup/popup.ts';
 import { Toggletip } from './toggletip';
-import { toggletipDefinition } from './definition';
 import '../button';
 import '.';
 
@@ -33,7 +31,6 @@ describe('vwc-toggletip', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-toggletip', async () => {
-			expect(toggletipDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Toggletip);
 
 			expect(element.open).toBe(false);

@@ -1,13 +1,9 @@
 import { html, slotted, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Elevation } from '../elevation/elevation';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Card } from './card';
 
 const getClasses = (_: Card) =>
@@ -69,7 +65,7 @@ function text() {
 	return html` <div class="text">${(x) => x.text}</div> `;
 }
 
-function renderCardContent(context: ElementDefinitionContext) {
+function renderCardContent(context: VividElementDefinitionContext) {
 	const iconTag = context.tagFor(Icon);
 
 	return html`
@@ -94,17 +90,7 @@ function renderCardContent(context: ElementDefinitionContext) {
 	`;
 }
 
-/**
- * The template for the Card component.
- *
- * @param context - element definition context
- * @public
- */
-export const CardTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition,
-	elevationTag: string
-) => ViewTemplate<Card> = (context: ElementDefinitionContext) => {
+export const CardTemplate = (context: VividElementDefinitionContext) => {
 	const elevationTag = context.tagFor(Elevation);
 
 	return html<Card>`

@@ -1,25 +1,26 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { treeItemDefinition } from '../tree-item/definition';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './tree-view.scss?inline';
 import { TreeView } from './tree-view';
 import { TreeViewTemplate as template } from './tree-view.template';
 
-export const treeViewDefinition = TreeView.compose<FoundationElementDefinition>(
-	{
-		baseName: 'tree-view',
-		template: template as any,
-		styles,
-	}
-);
-
 /**
  * @internal
  */
-export const treeViewRegistries = [treeViewDefinition()];
+export const treeViewDefinition = defineVividComponent(
+	'tree-view',
+	TreeView,
+	template,
+	[treeItemDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the tree-view element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTreeView = registerFactory(treeViewRegistries);
+export const registerTreeView = createRegisterFunction(treeViewDefinition);

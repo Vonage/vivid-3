@@ -1,8 +1,6 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Tag } from './tag';
-import { tagDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tag';
@@ -27,7 +25,6 @@ describe('vwc-tag', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-tag', async () => {
-			expect(tagDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Tag);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();

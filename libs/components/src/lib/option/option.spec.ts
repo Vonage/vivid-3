@@ -1,9 +1,7 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
 import '.';
-import { listboxOptionDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-option';
 const ICON_SELECTOR = 'vwc-icon';
@@ -19,9 +17,6 @@ describe('vwc-option', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-option', async () => {
-			expect(listboxOptionDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.text).toEqual('');
 			expect(element.value).toEqual('');

@@ -1,6 +1,6 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
+import { iconDefinition } from '../icon/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { Tag } from './tag';
 import styles from './tag.scss?inline';
 import { tagTemplate as template } from './tag.template';
@@ -8,23 +8,24 @@ import { tagTemplate as template } from './tag.template';
 export type { TagConnotation, TagAppearance, TagShape } from './tag';
 
 /**
- * Represents a tag custom element.
- * tag is a label that holds small amounts of information.
- * A tag can be used to display unread notifications, or to label a block of text.
+ * @internal
  */
-export const tagDefinition = Tag.compose<FoundationElementDefinition>({
-	baseName: 'tag',
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-});
+export const tagDefinition = defineVividComponent(
+	'tag',
+	Tag,
+	template,
+	[iconDefinition],
+	{
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	}
+);
 
-export const tagRegistries = [tagDefinition(), ...iconRegistries];
 /**
  * Registers the tag elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerTag = registerFactory(tagRegistries);
+export const registerTag = createRegisterFunction(tagDefinition);

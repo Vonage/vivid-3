@@ -1,10 +1,8 @@
 import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
-import { breadcrumbDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
@@ -28,7 +26,6 @@ describe('vwc-breadcrumb', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-breadcrumb', async () => {
-			expect(breadcrumbDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Breadcrumb);
 		});
 	});

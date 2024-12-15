@@ -4,13 +4,11 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 
 import type { TreeView } from '../tree-view/tree-view';
 import '../tree-view';
 
-import { treeItemDefinition } from './definition';
 import { TreeItem } from './tree-item';
 import '.';
 
@@ -42,13 +40,12 @@ describe('vwc-tree-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tree-item', async () => {
-			expect(treeItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(treeItem1).toBeInstanceOf(TreeItem);
 			expect(treeItem1.text).toBeUndefined();
 			expect(treeItem1.icon).toBeUndefined();
-			expect(treeItem1.selected).toBeUndefined();
+			expect(treeItem1.selected).toBeFalsy();
 			expect(treeItem1.expanded).toEqual(false);
-			expect(treeItem1.disabled).toBeUndefined();
+			expect(treeItem1.disabled).toBeFalsy();
 		});
 	});
 
@@ -80,6 +77,11 @@ describe('vwc-tree-item', () => {
 
 			expect(getControlElement(treeItem1)?.textContent?.trim()).toEqual(text);
 		});
+	});
+
+	it('should include a role of `treeitem', async () => {
+		await elementUpdated(treeItem1);
+		expect(treeItem1.getAttribute('role')).toEqual('treeitem');
 	});
 
 	it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
@@ -144,6 +146,16 @@ describe('vwc-tree-item', () => {
 
 			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
 			expect(treeItem2.contains(document.activeElement)).toBeTruthy();
+		});
+	});
+
+	describe('focus-item', () => {
+		it('should focus on the element', async () => {
+			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+			TreeItem.focusItem(treeItem1);
+			await elementUpdated(treeItem1);
+
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 		});
 	});
 

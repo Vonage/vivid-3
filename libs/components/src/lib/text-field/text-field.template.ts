@@ -1,12 +1,8 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
 import { html, slotted, when } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { getFeedbackTemplate } from '../../shared/patterns';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { TextField } from './text-field';
 
 const getStateClasses = ({
@@ -52,16 +48,7 @@ function renderCharCount() {
 	`;
 }
 
-/**
- * The template for the TextField component.
- *
- * @param context - element definition context
- * @public
- */
-export const TextfieldTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<TextField> = (context: ElementDefinitionContext) => {
+export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TextField>` <div class="base ${getStateClasses}">
