@@ -95,8 +95,13 @@
 	},
 	{
 		"title": "Side Drawer",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/side-drawer/README.md"
+		"description": "",
+		"variations": "./libs/components/src/lib/side-drawer/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/side-drawer/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/side-drawer/README.md",
+		"accessibility": "./libs/components/src/lib/side-drawer/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/side-drawer/USE-CASES.md"
 	},
 	{
 		"title": "Nav",
