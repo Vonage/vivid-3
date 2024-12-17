@@ -11,20 +11,7 @@ Use the `name` attribute to give a name to your value.
 
 ## Members
 
-### Label
 
-Use the `label` member to set the group's label.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-radio-group label="Pick a number" name="number">
-	<vwc-radio label="1" value="1"></vwc-radio>
-	<vwc-radio label="2" value="2"></vwc-radio>
-	<vwc-radio label="3" value="3"></vwc-radio>
-</vwc-radio-group>
-```
 
 ### Disabled
 
@@ -57,20 +44,20 @@ A read-only radio-group cannot be modified but can be focused and tabbed into.
 </vwc-radio-group>
 ```
 
-### Orientation
 
-Set the `orientation` member to set the orientation (`horizontal` or `vertical`) of the radio-group.
 
-- Type: `horizontal` | `vertical`
-- Default: `horizontal`
+### Value
+
+Use the `value` member to set the radio's value.
+
+- Type: `string`
+- Default: `"on"`
 
 ```html preview
-<vwc-radio-group label="Pick a number" name="number" orientation="vertical">
-	<vwc-radio label="1" value="1"></vwc-radio>
-	<vwc-radio label="2" value="2"></vwc-radio>
-	<vwc-radio label="3" value="3"></vwc-radio>
-</vwc-radio-group>
+<vwc-radio value="my-value"></vwc-radio>
 ```
+
+
 
 ## Events
 
@@ -81,24 +68,3 @@ Set the `orientation` member to set the orientation (`horizontal` or `vertical`)
 | `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
 
 </div>
-
-## Use Cases
-
-### Inside Toolbar
-
-If the Radio Group is a child of an element with a `role` of `toolbar`, it's keyboard navigation behaviour will change to align with the [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/):
-
-- When pressing Left/Right arrow keys on the first/last radio button, the focus will move to the previous/next element in the toolbar.
-- Moving the focus with arrow keys will not automatically select the radio buttons.
-
-```html preview
-<div role="toolbar" style="display: flex;">
-	<vwc-button label="Before"></vwc-button>
-	<vwc-radio-group>
-		<vwc-radio label="1" value="1"></vwc-radio>
-		<vwc-radio label="2" value="2"></vwc-radio>
-		<vwc-radio label="3" value="3"></vwc-radio>
-	</vwc-radio-group>
-	<vwc-button label="After"></vwc-button>
-</div>
-```
