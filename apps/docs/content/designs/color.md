@@ -288,3 +288,67 @@ Add the class `vvd-theme-alternate` to the component.
 <vwc-note connotation="information">
   <p>If the component has <code>part</code>, add <code>part='vvd-theme-alternate'</code></p>
 </vwc-note>
+
+## Neutral Tint Color
+
+Neutral-Tint color comes with elevation custom colors. In order to use them the class `.vvd-neutral-tint-elevation` should be added to the component.
+
+```html preview blocks
+<style>
+	.card {
+		padding: 20px;
+		text-align: center;
+		border-radius: 6px;
+	}
+</style>
+<div
+	style="display: flex; gap: 50px; padding: 32px; background-color: var(--vvd-color-neutral-tint-50); "
+>
+	<div style="display: flex; flex-direction: column; gap: 40px;">
+		<vwc-elevation dp="0" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 0</div>
+		</vwc-elevation>
+		<vwc-elevation dp="2" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 2</div>
+		</vwc-elevation>
+		<vwc-elevation dp="4" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 4</div>
+		</vwc-elevation>
+		<vwc-elevation dp="8" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 8</div>
+		</vwc-elevation>
+		<vwc-elevation dp="12" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 12</div>
+		</vwc-elevation>
+		<vwc-elevation dp="16" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 16</div>
+		</vwc-elevation>
+		<vwc-elevation dp="24" class="vvd-neutral-tint-elevation">
+			<div class="card">Neutral-Tint elevation with DP 24</div>
+		</vwc-elevation>
+	</div>
+	<div style="display: flex; flex-direction: column; gap: 40px;">
+		<vwc-elevation dp="0">
+			<div class="card">Vivid elevation with DP 0</div>
+		</vwc-elevation>
+		<vwc-elevation dp="2">
+			<div class="card">Vivid elevation with DP 2</div>
+		</vwc-elevation>
+		<vwc-elevation dp="4">
+			<div class="card">Vivid elevation with DP 4</div>
+		</vwc-elevation>
+		<vwc-elevation dp="8">
+			<div class="card">Vivid elevation with DP 8</div>
+		</vwc-elevation>
+		<vwc-elevation dp="12">
+			<div class="card">Vivid elevation with DP 12</div>
+		</vwc-elevation>
+		<vwc-elevation dp="16">
+			<div class="card">Vivid elevation with DP 16</div>
+		</vwc-elevation>
+		<vwc-elevation dp="24">
+			<div class="card">Vivid elevation with DP 24</div>
+		</vwc-elevation>
+	</div>
+</div>
+```
