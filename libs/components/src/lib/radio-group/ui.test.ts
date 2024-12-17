@@ -1,5 +1,5 @@
-import {expect, test} from '@playwright/test';
-import type {Page} from '@playwright/test';
+import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 import {
 	loadComponents,
 	loadTemplate,
@@ -7,7 +7,7 @@ import {
 
 const components = ['radio-group', 'radio'];
 
-test('should show the component', async ({page}: { page: Page }) => {
+test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 			<style>
 				#wrapper {
@@ -55,9 +55,9 @@ test('should show the component', async ({page}: { page: Page }) => {
 </vwc-radio-group>
 <vwc-button label="After"></vwc-button>
 </div>
-</div>`
+</div>`;
 
-	page.setViewportSize({width: 200, height: 350});
+	page.setViewportSize({ width: 200, height: 350 });
 
 	await loadComponents({
 		page,

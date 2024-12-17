@@ -1,3 +1,3 @@
 ## Implementation
 
-- If you do not provide a visible label with the `label` attribute, you must provide an accessible name using `aria-label`.
+If a `label` can not be used, always provide an `aria-label` as an alternative. This will allow screen reader users to know the purpose of the Radio Group and the Radio button.

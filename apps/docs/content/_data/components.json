@@ -245,14 +245,9 @@
 		"variations": "./libs/components/src/lib/radio-group/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/radio-group/GUIDELINES.md",
 		"hideGuidelines": "true",
-		"hideAccessibility": "true",
 		"code": "./libs/components/src/lib/radio-group/README.md",
-		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md"
-	},
-	{
-		"title": "Radio",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio/README.md"
+		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/radio-group/USE-CASES.md"
 	},
 	{
 		"title": "Option",

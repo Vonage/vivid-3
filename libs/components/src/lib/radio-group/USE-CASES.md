@@ -6,7 +6,7 @@ If the Radio Group is a child of an element with a `role` of `toolbar`, it's key
 - Moving the focus with arrow keys will not automatically select the radio buttons.
 
 ```html preview
-<div role="toolbar" style="display: flex;">
+<vwc-action-group role="toolbar" style="display: flex;">
 	<vwc-button label="Before"></vwc-button>
 	<vwc-radio-group>
 		<vwc-radio label="1" value="1"></vwc-radio>
@@ -14,5 +14,5 @@ If the Radio Group is a child of an element with a `role` of `toolbar`, it's key
 		<vwc-radio label="3" value="3"></vwc-radio>
 	</vwc-radio-group>
 	<vwc-button label="After"></vwc-button>
-</div>
+</vwc-action-group>
 ```
