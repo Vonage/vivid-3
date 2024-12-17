@@ -25,7 +25,7 @@ registerTextArea('your-prefix');
 </script>
 
 <your-prefix-text-area
-	label="First name"
+	label="Description"
 	value="This is the text we want to see!"
 ></your-prefix-text-area>
 ```
@@ -84,9 +84,9 @@ Set the `resize` attribute to control how the text area can be resized by the us
 
 ## Slots
 
-### Helper-Text
+### Helper Text Slot
 
-The `helper-text` slot allows you to use rich content as the text area's helper text.
+The `helper-text` slot allows you to use rich content as the Text Area's helper text.
 
 ```html preview
 <vwc-text-area label="Description">

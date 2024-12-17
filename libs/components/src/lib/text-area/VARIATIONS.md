@@ -88,7 +88,7 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 ## Rows
 
-Use the `rows` attribute to set the number of visible rows of text in the text area.
+Use the `rows` attribute to set the number of visible rows of text in the Text Area.
 
 <vwc-note icon="info-line" connotation="information">Each addition line added 20px - the font size + line height.
 </vwc-note>
