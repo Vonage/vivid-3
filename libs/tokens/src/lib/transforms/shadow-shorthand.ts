@@ -27,7 +27,7 @@ export default {
 	name: 'shadow/shorthand',
 	transitive: true,
 	matcher: ({ type, attributes: { category } }) =>
-		category.includes('shadow') && type == 'boxShadow',
+		category?.includes('shadow') && type == 'boxShadow',
 	transformer: ({ value }) =>
 		Array.isArray(value) ? parseShadowEffects(value) : value,
 } as Named<Transform>;
