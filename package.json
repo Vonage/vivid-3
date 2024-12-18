@@ -20,7 +20,7 @@
 		"@microsoft/fast-element": "^1.14.0",
 		"@microsoft/fast-foundation": "^2.50.0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
-		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.2.0",
+		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.4.0",
 		"codemirror": "^6.0.1",
 		"core-js": "3.36.1",
 		"date-fns": "^3.0.0",
