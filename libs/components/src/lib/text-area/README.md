@@ -102,23 +102,23 @@ The `helper-text` slot allows you to use rich content as the Text Area's helper 
 
 <div class="table-wrapper">
 
-| Name           | Type                                               | Description                                                                                                  |
-| -------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `autofocus`    | `boolean`                                          | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
-| `char-count`   | `boolean`                                          | Use in combination with `maxlength` to display a character count                                             |
-| `disabled`     | `boolean`                                          | Whether the input element is disabled                                                                        |
-| `error-text`   | `string`                                           | The error text for the form element.                                                                         |
-| `helper-text`  | `string`                                           | The helper text for the form element.                                                                        |
-| `label`        | `string`                                           | Label of the Text Field                                                                                      |
-| `maxlength`    | `string`                                           | Maximum length (number of characters) of `value`                                                             |
-| `minlength`    | `string`                                           | Minimum length (number of characters) of `value`                                                             |
-| `placeholder`  | `string`                                           | Text that appears in the input element when it has no value set                                              |
-| `readonly`     | `boolean`                                          | The `value` is not editable                                                                                  |
-| `resize`       | `none` (default), `vertical`, `horizontal`, `both` | Sets the resize options of the element.                                                                      |
-| `required`     | `boolean`                                          | A value is required for the form to be submittable                                                           |
-| `row`          | `number`                                           | Size (in row) of the input element                                                                           |
-| `success-text` | `string`                                           | The success text for the form element.                                                                       |
-| `value`        | `string`                                           | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
+| Name             | Type                                               | Description                                                                                                  |
+| ---------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **autofocus**    | `boolean`                                          | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
+| **char-count**   | `boolean`                                          | Use in combination with `maxlength` to display a character count                                             |
+| **disabled**     | `boolean`                                          | Whether the input element is disabled                                                                        |
+| **error-text**   | `string`                                           | The error text for the form element.                                                                         |
+| **helper-text**  | `string`                                           | The helper text for the form element.                                                                        |
+| **label**        | `string`                                           | Label of the Text Field                                                                                      |
+| **maxlength**    | `string`                                           | Maximum length (number of characters) of `value`                                                             |
+| **minlength**    | `string`                                           | Minimum length (number of characters) of `value`                                                             |
+| **placeholder**  | `string`                                           | Text that appears in the input element when it has no value set                                              |
+| **readonly**     | `boolean`                                          | The `value` is not editable                                                                                  |
+| **resize**       | `none` (default), `vertical`, `horizontal`, `both` | Sets the resize options of the element.                                                                      |
+| **required**     | `boolean`                                          | A value is required for the form to be submittable                                                           |
+| **row**          | `number`                                           | Size (in row) of the input element                                                                           |
+| **success-text** | `string`                                           | The success text for the form element.                                                                       |
+| **value**        | `string`                                           | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
 
 </div>
 
@@ -136,8 +136,8 @@ The `helper-text` slot allows you to use rich content as the Text Area's helper 
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                          |
-| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom 'change' event when the textarea emits a change event |
+| Name       | Type                     | Bubbles | Composed | Description                                                          |
+| ---------- | ------------------------ | ------- | -------- | -------------------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom 'change' event when the textarea emits a change event |
 
 </div>
