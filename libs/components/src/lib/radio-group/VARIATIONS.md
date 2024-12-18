@@ -10,7 +10,7 @@ Use the `label` attribute to provide a visible label for the [**Radio**](/compon
 <vwc-radio label="A default radio"></vwc-radio>
 ```
 
-### Radio Group Text
+### Radio Group Label Text
 
 Use the `label` to set the **Radio Group** label.
 

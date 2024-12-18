@@ -66,12 +66,12 @@ Use the `value` attribute to set the radio's value.
 
 <div class="table-wrapper">
 
-| Name          | Type                               | Description                             |
-| ------------- | ---------------------------------- | --------------------------------------- |
-| `disabled`    | `boolean`                          | Whether the input element is disabled   |
-| `label`       | `string`                           | Label of the the Radio Group            |
-| `orientation` | `horizontal` (default), `vertical` | Sets axis on which the tabs are aligned |
-| `readonly`    | `boolean`                          | The value is not editable               |
+| Name            | Type                               | Description                             |
+| --------------- | ---------------------------------- | --------------------------------------- |
+| **disabled**    | `boolean`                          | Whether the input element is disabled   |
+| **label**       | `string`                           | Label of the the Radio Group            |
+| **orientation** | `horizontal` (default), `vertical` | Sets axis on which the tabs are aligned |
+| **readonly**    | `boolean`                          | The value is not editable               |
 
 </div>
 
@@ -79,9 +79,9 @@ Use the `value` attribute to set the radio's value.
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                          |
-| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
+| Name       | Type                     | Bubbles | Composed | Description                                          |
+| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
 
 </div>
 
@@ -91,13 +91,13 @@ Use the `value` attribute to set the radio's value.
 
 <div class="table-wrapper">
 
-| Name          | Type                            | Description                           |
-| ------------- | ------------------------------- | ------------------------------------- |
-| `checked`     | `boolean`                       | Sets the radio to be checked          |
-| `connotation` | Enum: `accent` (default), `cta` | Whether the input element is disabled |
-| `disabled`    | `boolean`                       | Whether the input element is disabled |
-| `label`       | `string`                        | Label of the the Radio                |
-| `value`       | `string`                        | Set the radio's value.                |
+| Name            | Type                            | Description                           |
+| --------------- | ------------------------------- | ------------------------------------- |
+| **checked**     | `boolean`                       | Sets the radio to be checked          |
+| **connotation** | Enum: `accent` (default), `cta` | Whether the input element is disabled |
+| **disabled**    | `boolean`                       | Whether the input element is disabled |
+| **label**       | `string`                        | Label of the the Radio                |
+| **value**       | `string`                        | Set the radio's value.                |
 
 </div>
 
@@ -105,8 +105,8 @@ Use the `value` attribute to set the radio's value.
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                |
-| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
+| Name       | Type                     | Bubbles | Composed | Description                                                |
+| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
 
 </div>
