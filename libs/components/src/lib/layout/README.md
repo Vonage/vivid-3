@@ -141,7 +141,7 @@ Use `block` to get full-width elements stacking one after the other.
 
 <vwc-note connotation="information">
 
-- **In mobile** both <code>small</code> and <code>medium</code> will get a <code>min-width</code> of <code>100%</code> to avoid horizontal scrolling.
+- **In mobile** both <code>medium</code> and <code>large</code> will get a <code>min-width</code> of <code>100%</code> to avoid horizontal scrolling.
 - To change the column-basis use the css variable [<code>--layout-grid-template-columns</code>](/components/layout/#grid-template-columns)
 
 </vwc-note>
