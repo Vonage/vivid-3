@@ -1,189 +1,92 @@
-# Text-area
+## Usage
 
-Represents a text-area custom element.
 All native attributes of the `textarea` are supported as well as some enhancements.
 
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
+
 ```js
-<script type="module">import '@vonage/vivid/text-area';</script>
+import '@vonage/vivid/text-area';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerTextArea } from '@vonage/vivid';
+
+registerTextArea('your-prefix');
 ```
 
 ```html preview
-<vwc-text-area
-	label="Label"
-	rows="2"
+<script type="module">
+	import { registerTextArea } from '@vonage/vivid';
+	registerTextArea('your-prefix');
+</script>
+
+<your-prefix-text-area
+	label="Description"
 	value="This is the text we want to see!"
-></vwc-text-area>
+></your-prefix-text-area>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Label
+```html
+<script setup lang="ts">
+	import { VTextArea } from '@vonage/vivid-vue';
+</script>
 
-Add a `label` attribute to add label to the text area.  
-The label is important to help users understand what is needed. I case you choose not to add mind our [accessibility notice](#accessibility)
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-text-area label="My Label"></vwc-text-area>
+<template>
+	<VTextArea label="Your comment" />
+</template>
 ```
 
-### Placeholder
+</vwc-tab-panel>
+</vwc-tabs>
 
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-Add a `placeholder` attribute to add placeholder text to the text area.
-
-```html preview
-<vwc-text-area placeholder="My Placeholder"></vwc-text-area>
-```
-
-### Value
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-Set the `value` attribute to set the default value for the text area. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
-
-```html preview
-<vwc-text-area value="Default Value"></vwc-text-area>
-```
-
-### Resize
-
-- Type: `none` | `vertical` | `horizontal` | `both`
-- Default: `none`
+## Resize
 
 Set the `resize` attribute to control how the text area can be resized by the user.
 
-```html preview
-<vwc-text-area value="You can't resize me by default"></vwc-text-area>
-<vwc-text-area
-	value="You can resize me vertically"
-	resize="vertical"
-></vwc-text-area>
-<vwc-text-area
-	value="You can resize me horizontally"
-	resize="horizontal"
-></vwc-text-area>
-<vwc-text-area
-	value="You can resize me in both directions"
-	resize="both"
-></vwc-text-area>
-```
+```html preview 300px
+<div class="wrapper">
+	<vwc-select label="Resize Options" id="vwc-select">
+		<vwc-option value="none" text="none (default)"></vwc-option>
+		<vwc-option value="vertical" text="vertical"></vwc-option>
+		<vwc-option value="horizontal" text="horizontal"></vwc-option>
+		<vwc-option value="both" text="both"></vwc-option>
+	</vwc-select>
+	<vwc-text-area
+		value="default"
+		id="vwc-text-area"
+		label="text-area"
+	></vwc-text-area>
+</div>
 
-### Helper text
-
-Add the `helper-text` to add some helper text below the text area. If you need to add HTML to the helper text, use the `helper-text` slot.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-text-area
-	label="Helper text below"
-	helper-text="Help text"
-></vwc-text-area>
-```
-
-### Success text
-
-Add the `success-text` to add some success text below the text area.
-If provided, `success-text` will take precedence over errors.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-text-area
-	label="Success text below"
-	success-text="Success text"
-></vwc-text-area>
-```
-
-### Error text
-
-It is possible to force the text area's error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-text-area
-	value="some text"
-	label="Enter some text"
-	error-text="Please take this seriously"
-></vwc-text-area>
-```
-
-### Character Count
-
-Use the `char-count` attribute along with the `maxlength` attribute to show a character count.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-text-area
-	label="Char count example"
-	char-count
-	maxlength="15"
-></vwc-text-area>
-```
-
-### Disabled
-
-Add the `disabled` attribute to disable the text area.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-text-area disabled value="disabled" label="fieldset"></vwc-text-area>
-```
-
-### Readonly
-
-Add the `readonly` attribute to restrict user from changing the text area's value.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-text-area readonly value="readonly text" label="fieldset"></vwc-text-area>
-```
-
-### Rows
-
-Use the `rows` attribute to set the number of rows in the text area.
-
-- Type: `number`
-- Default: `2`
-
-Note that the text area has padding-block of 4 pixels and minimum height of 40 pixels.
-
-That means that:
-
-`rows="1"` will have a height of 40 pixels (which is the minimum height in vivid for elements).
-
-`rows="2"` will have a height of 56 pixels.
-
-3 `rows` and on will add 20 pixels each (addition of the line-height value).
-
-```html preview
-<vwc-text-area rows="1" value="1 row text area"></vwc-text-area>
-<vwc-text-area rows="2" value="2 rows text area"></vwc-text-area>
-<vwc-text-area rows="3" value="3 rows text area"></vwc-text-area>
+<script>
+	document.querySelector('vwc-select').addEventListener('change', (e) => {
+		document.querySelector('#vwc-text-area').value = e.target.value;
+		document.querySelector('#vwc-text-area').resize = e.target.value;
+	});
+</script>
+<style>
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		row-gap: 16px;
+		inline-size: 240px;
+	}
+</style>
 ```
 
 ## Slots
 
-### Helper-Text
+### Helper Text Slot
 
-The `helper-text` slot allows you to use rich content as the text area's helper text.
+The `helper-text` slot allows you to use rich content as the Text Area's helper text.
 
 ```html preview
 <vwc-text-area label="Description">
@@ -193,24 +96,48 @@ The `helper-text` slot allows you to use rich content as the text area's helper 
 </vwc-text-area>
 ```
 
-## Events
+## API Reference
+
+### Properties
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                          |
-| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom 'change' event when the textarea emits a change event |
+| Name             | Type                                               | Description                                                                                                  |
+| ---------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **autofocus**    | `boolean`                                          | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
+| **char-count**   | `boolean`                                          | Use in combination with `maxlength` to display a character count                                             |
+| **disabled**     | `boolean`                                          | Whether the input element is disabled                                                                        |
+| **error-text**   | `string`                                           | The error text for the form element.                                                                         |
+| **helper-text**  | `string`                                           | The helper text for the form element.                                                                        |
+| **label**        | `string`                                           | Label of the Text Field                                                                                      |
+| **maxlength**    | `string`                                           | Maximum length (number of characters) of `value`                                                             |
+| **minlength**    | `string`                                           | Minimum length (number of characters) of `value`                                                             |
+| **placeholder**  | `string`                                           | Text that appears in the input element when it has no value set                                              |
+| **readonly**     | `boolean`                                          | The `value` is not editable                                                                                  |
+| **resize**       | `none` (default), `vertical`, `horizontal`, `both` | Sets the resize options of the element.                                                                      |
+| **required**     | `boolean`                                          | A value is required for the form to be submittable                                                           |
+| **row**          | `number`                                           | Size (in row) of the input element                                                                           |
+| **success-text** | `string`                                           | The success text for the form element.                                                                       |
+| **value**        | `string`                                           | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
 
 </div>
 
-## Accessibility
+### Slots
 
-If no label is set - it is highly recommended that `aria-label` will be added.
+<div class="table-wrapper">
 
-```html
-<vwc-text-area
-	aria-label="your comment"
-	rows="2"
-	placeholder="your comment"
-></vwc-text-area>
-```
+| Name            | Description                         |
+| --------------- | ----------------------------------- |
+| **helper-text** | Sets the input element's appearance |
+
+</div>
+
+### Events
+
+<div class="table-wrapper">
+
+| Name       | Type                     | Bubbles | Composed | Description                                                          |
+| ---------- | ------------------------ | ------- | -------- | -------------------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom 'change' event when the textarea emits a change event |
+
+</div>
