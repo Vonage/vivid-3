@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
+import type { VividComponentDefinition } from '../../design-system/defineVividComponent';
 import { ARIAGlobalStatesAndProperties } from '../patterns/index';
+import { applyMixins } from '../utilities/apply-mixins';
 import { FormAssociatedButton } from './button.form-associated';
 
 /**
  * Button configuration options
  * @public
  */
-export type ButtonOptions = FoundationElementDefinition;
+export type ButtonOptions = VividComponentDefinition;
 
 /**
  * A Button Custom HTML Element.
@@ -167,6 +167,7 @@ export class VividFoundationButton extends FormAssociatedButton {
 		super.connectedCallback();
 
 		this.proxy.setAttribute('type', this.type);
+		this.handleUnsupportedDelegatesFocus();
 
 		const elements = Array.from(this.control.children) as HTMLSpanElement[];
 		if (elements) {
@@ -223,6 +224,27 @@ export class VividFoundationButton extends FormAssociatedButton {
 	};
 
 	public control!: HTMLButtonElement;
+
+	/**
+	 * Overrides the focus call for where delegatesFocus is unsupported.
+	 * This check works for Chrome, Edge Chromium, FireFox, and Safari
+	 * Relevant PR on the Firefox browser: https://phabricator.services.mozilla.com/D123858
+	 */
+	private handleUnsupportedDelegatesFocus = () => {
+		// Check to see if delegatesFocus is supported
+		if (this.$fastController.definition.shadowOptions) {
+			if (
+				window.ShadowRoot &&
+				/* eslint-disable-next-line */
+				!window.ShadowRoot.prototype.hasOwnProperty('delegatesFocus') &&
+				this.$fastController.definition.shadowOptions.delegatesFocus
+			) {
+				this.focus = () => {
+					this.control.focus();
+				};
+			}
+		}
+	};
 }
 
 /**

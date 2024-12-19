@@ -1,104 +1,112 @@
-# Radio-group
+## Usage
 
-Represents a radio-group custom element.
-
-The radio-group should be used to group related `radio` elements in a form.
-Use the `name` attribute to give a name to your value.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/radio-group';</script>
+import '@vonage/vivid/radio';
+import '@vonage/vivid/radio-group';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Label
+```js
+import { registerRadio, registerRadioGroup } from '@vonage/vivid';
 
-Use the `label` member to set the group's label.
-
-- Type: `string`
-- Default: `undefined`
+registerRadio('your-prefix');
+registerRadioGroup('your-prefix');
+```
 
 ```html preview
-<vwc-radio-group label="Pick a number" name="number">
-	<vwc-radio label="1" value="1"></vwc-radio>
-	<vwc-radio label="2" value="2"></vwc-radio>
-	<vwc-radio label="3" value="3"></vwc-radio>
-</vwc-radio-group>
+<script type="module">
+	import { registerRadio, registerRadioGroup } from '@vonage/vivid';
+	registerRadio('your-prefix');
+	registerRadioGroup('your-prefix');
+</script>
+
+<your-prefix-radio-group>
+	<your-prefix-radio label="1" value="1"></your-prefix-radio>
+	<your-prefix-radio label="2" value="2"></your-prefix-radio>
+	<your-prefix-radio label="3" value="3"></your-prefix-radio>
+</your-prefix-radio-group>
 ```
 
-### Disabled
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Toggle the `disabled` member to disable/enable all radio buttons in the radio-group.
+```html
+<script setup lang="ts">
+	import { VRadio, VRadioGroup } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VRadioGroup>
+		<VRadio label="1" value="1"></VRadio>
+	</VRadioGroup>
+</template>
+```
 
-- Type: `boolean`
-- Default: `false`
+</vwc-tab-panel>
+</vwc-tabs>
+
+### Value
+
+Use the `value` attribute to set the radio's value.
 
 ```html preview
-<vwc-radio-group label="Pick a number" name="number" disabled>
-	<vwc-radio label="1" value="1" checked></vwc-radio>
-	<vwc-radio label="2" value="2"></vwc-radio>
-	<vwc-radio label="3" value="3"></vwc-radio>
-</vwc-radio-group>
+<vwc-radio value="my-value" label="one"></vwc-radio>
 ```
 
-### Readonly
+## API Reference
 
-Set the `readonly` member to specify that the radio-group is read-only.
-A read-only radio-group cannot be modified but can be focused and tabbed into.
+### Radio Group
 
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-radio-group label="Pick a number" name="number" readonly>
-	<vwc-radio label="1" value="1" checked></vwc-radio>
-	<vwc-radio label="2" value="2"></vwc-radio>
-	<vwc-radio label="3" value="3"></vwc-radio>
-</vwc-radio-group>
-```
-
-### Orientation
-
-Set the `orientation` member to set the orientation (`horizontal` or `vertical`) of the radio-group.
-
-- Type: `horizontal` | `vertical`
-- Default: `horizontal`
-
-```html preview
-<vwc-radio-group label="Pick a number" name="number" orientation="vertical">
-	<vwc-radio label="1" value="1"></vwc-radio>
-	<vwc-radio label="2" value="2"></vwc-radio>
-	<vwc-radio label="3" value="3"></vwc-radio>
-</vwc-radio-group>
-```
-
-## Events
+#### Properties
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                          |
-| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
+| Name            | Type                               | Description                             |
+| --------------- | ---------------------------------- | --------------------------------------- |
+| **disabled**    | `boolean`                          | Whether the input element is disabled   |
+| **label**       | `string`                           | Label of the the Radio Group            |
+| **orientation** | `horizontal` (default), `vertical` | Sets axis on which the tabs are aligned |
+| **readonly**    | `boolean`                          | The value is not editable               |
 
 </div>
 
-## Use Cases
+#### Events
 
-### Inside Toolbar
+<div class="table-wrapper">
 
-If the Radio Group is a child of an element with a `role` of `toolbar`, it's keyboard navigation behaviour will change to align with the [toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/):
+| Name       | Type                     | Bubbles | Composed | Description                                          |
+| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
 
-- When pressing Left/Right arrow keys on the first/last radio button, the focus will move to the previous/next element in the toolbar.
-- Moving the focus with arrow keys will not automatically select the radio buttons.
-
-```html preview
-<div role="toolbar" style="display: flex;">
-	<vwc-button label="Before"></vwc-button>
-	<vwc-radio-group>
-		<vwc-radio label="1" value="1"></vwc-radio>
-		<vwc-radio label="2" value="2"></vwc-radio>
-		<vwc-radio label="3" value="3"></vwc-radio>
-	</vwc-radio-group>
-	<vwc-button label="After"></vwc-button>
 </div>
-```
+
+### Radio
+
+#### Properties
+
+<div class="table-wrapper">
+
+| Name            | Type                            | Description                           |
+| --------------- | ------------------------------- | ------------------------------------- |
+| **checked**     | `boolean`                       | Sets the radio to be checked          |
+| **connotation** | Enum: `accent` (default), `cta` | Whether the input element is disabled |
+| **disabled**    | `boolean`                       | Whether the input element is disabled |
+| **label**       | `string`                        | Label of the the Radio                |
+| **value**       | `string`                        | Set the radio's value.                |
+
+</div>
+
+#### Events
+
+<div class="table-wrapper">
+
+| Name       | Type                     | Bubbles | Composed | Description                                                |
+| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
+
+</div>

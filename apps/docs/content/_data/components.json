@@ -95,8 +95,13 @@
 	},
 	{
 		"title": "Side Drawer",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/side-drawer/README.md"
+		"description": "",
+		"variations": "./libs/components/src/lib/side-drawer/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/side-drawer/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/side-drawer/README.md",
+		"accessibility": "./libs/components/src/lib/side-drawer/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/side-drawer/USE-CASES.md"
 	},
 	{
 		"title": "Nav",
@@ -242,15 +247,13 @@
 	},
 	{
 		"title": "Radio Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio-group/README.md",
-		"children": ["Radio"]
-	},
-	{
-		"title": "Radio",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio/README.md",
-		"parent": "Radio Group"
+		"description": "A radio group is a collection of Radio buttons where only one choice can be selected.",
+		"variations": "./libs/components/src/lib/radio-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/radio-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/radio-group/README.md",
+		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/radio-group/USE-CASES.md"
 	},
 	{
 		"title": "Option",
@@ -275,9 +278,14 @@
 	},
 	{
 		"title": "Slider",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/slider/README.md",
-		"children": ["Range Slider"]
+		"description": "Allows users to choose from a range of values along a horizontal or vertical line",
+		"variations": "./libs/components/src/lib/slider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/slider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/slider/README.md",
+		"accessibility": "./libs/components/src/lib/slider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/slider/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Tabs",
@@ -383,10 +391,14 @@
 	},
 	{
 		"title": "Range Slider",
-		"page": "legacy",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/range-slider/README.md",
-		"parent": "Slider"
+		"description": "Allows users to select a range. It includes two thumb controls that can be dragged to set the start and end values.",
+		"variations": "./libs/components/src/lib/range-slider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/range-slider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/range-slider/README.md",
+		"accessibility": "./libs/components/src/lib/range-slider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md",
+		"status": "alpha"
 	},
 	{
 		"title": "Split Button",

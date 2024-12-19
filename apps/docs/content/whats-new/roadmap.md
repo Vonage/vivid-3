@@ -46,6 +46,18 @@ order: 2
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
+      Text Editor
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="In Progress" icon="more-horizontal-line" connotation="warning"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell></vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      Expected Q1 2025
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
       <a href="/components/searchable-select">Searchable Select</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
