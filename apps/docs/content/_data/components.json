@@ -241,15 +241,13 @@
 	},
 	{
 		"title": "Radio Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio-group/README.md",
-		"children": ["Radio"]
-	},
-	{
-		"title": "Radio",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio/README.md",
-		"parent": "Radio Group"
+		"description": "A radio group is a collection of Radio buttons where only one choice can be selected.",
+		"variations": "./libs/components/src/lib/radio-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/radio-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/radio-group/README.md",
+		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/radio-group/USE-CASES.md"
 	},
 	{
 		"title": "Option",
