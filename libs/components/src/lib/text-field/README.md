@@ -185,6 +185,8 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 | `autofocus`    | `boolean`                                                                  | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
 | `char-count`   | `boolean`                                                                  | Use in combination with `maxlength` to display a character count                                             |
 | `disabled`     | `boolean`                                                                  | Whether the input element is disabled                                                                        |
+| `error-text`   | `string`                                                                   | The error text for the form element.                                                                         |
+| `helper-text`  | `string`                                                                   | The helper text for the form element.                                                                        |
 | `inputmode`    | enum: `none`, `text`, `decimal` `numeric`, `tel`, `search`, `email`, `url` | Allows a browser to display an appropriate virtual keyboard                                                  |
 | `label`        | `string`                                                                   | Label of the Text Field                                                                                      |
 | `list`         | `string`                                                                   | Value of the id attribute of the `<datalist>` of autocomplete options                                        |
@@ -197,6 +199,7 @@ The `helper-text` slot allows you to use rich content as the text-field's helper
 | `size`         | `string`                                                                   | Size (in chars) of the input element                                                                         |
 | `scale`        | `normal` (default), `condensed`                                            | Sets the display size of the input element                                                                   |
 | `shape`        | `rounded`, `pill`                                                          | Sets the shape of the input element                                                                          |
+| `success-text` | `string`                                                                   | The success text for the form element.                                                                       |
 | `type`         | enum: `text`, `email`, `password`, `search`, `tel`, `url`                  | Type of input element                                                                                        |
 | `value`        | `string`                                                                   | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
 
