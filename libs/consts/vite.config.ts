@@ -19,25 +19,13 @@ export default defineConfig({
 			root: '../../',
 		}),
 	],
-
-	// Uncomment this if you are using workers.
-	// worker: {
-	//  plugins: [
-	//    viteTsConfigPaths({
-	//      root: '../../',
-	//    }),
-	//  ],
-	// },
-
-	// Configuration for building your library.
-	// See: https://vitejs.dev/guide/build.html#library-mode
 	build: {
 		outDir: '../../dist/libs/consts',
 		reportCompressedSize: true,
 		commonjsOptions: { transformMixedEsModules: true },
 		lib: {
 			// Could also be a dictionary or array of multiple entry points.
-			entry: 'src/index.ts',
+			entry: path.resolve(__dirname, 'src/index.ts'),
 			name: 'consts',
 			fileName: 'index',
 			// Change this to the formats you want to support.
@@ -48,5 +36,6 @@ export default defineConfig({
 			// External packages that should not be bundled into your library.
 			external: [],
 		},
+		emptyOutDir: true,
 	},
 });

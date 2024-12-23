@@ -22,7 +22,7 @@
 		"build": {
 			"executor": "nx:run-commands",
 			"options": {
-				"commands": ["ts-node build.ts"],
+				"commands": ["tsx build.ts"],
 				"cwd": "libs/tokens/src/lib"
 			}
 		}
