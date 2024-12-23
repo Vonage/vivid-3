@@ -5,7 +5,7 @@
 	"projectType": "library",
 	"targets": {
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": ["libs/tokens/**/*.ts"]
@@ -22,7 +22,7 @@
 		"build": {
 			"executor": "nx:run-commands",
 			"options": {
-				"commands": ["ts-node build.ts"],
+				"commands": ["tsx build.ts"],
 				"cwd": "libs/tokens/src/lib"
 			}
 		}
