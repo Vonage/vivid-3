@@ -1,5 +1,4 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
-import { roleForMenuItem } from '@microsoft/fast-foundation';
 import type { Placement, Strategy } from '@floating-ui/dom';
 import {
 	isHTMLElement,
@@ -54,7 +53,7 @@ export class Menu extends VividElement {
 	private focusIndex = -1;
 
 	private static focusableElementRoles: { [key: string]: string } =
-		roleForMenuItem;
+		MenuItemRole;
 
 	/**
 	 * @internal

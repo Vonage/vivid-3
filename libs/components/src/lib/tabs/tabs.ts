@@ -1,5 +1,4 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { TabsOrientation } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -27,6 +26,14 @@ export type TabsConnotation = Extract<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
+
+export const TabsOrientation = {
+	vertical: 'vertical',
+	horizontal: 'horizontal',
+} as const;
+
+export type TabsOrientation =
+	typeof TabsOrientation[keyof typeof TabsOrientation];
 
 /**
  * @public
