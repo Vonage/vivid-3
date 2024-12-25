@@ -76,3 +76,12 @@ Use the `dp` attribute to change the elevation's level in Density-Independent Pi
 	<div class="card">This is the content inside the elevation with DP 24</div>
 </vwc-elevation>
 ```
+
+### No Shadow
+
+Use the no-shadow attribute to toggle off the elevation's drop shadow.
+
+### No Position
+
+When there's no need for `position:relative` set on the slotted content. Used in Dialog - caused issues with positioning and scroll to top.  
+This is for use only if the slotted content contain position absolute or fixed. Otherwise, the `:before` element will be mispositioned.
