@@ -143,6 +143,36 @@ describe('vwc-radio', () => {
 		});
 	});
 
+	describe('required', () => {
+		it('should reflect required attribute', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			expect(element.hasAttribute('required')).toBe(true);
+		});
+
+		it('should invalidate the element when required and not selected', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			element.checkValidity();
+			expect(element.validity.valueMissing).toBe(true);
+		});
+
+		it('should set the name attribute on the proxy element so that elementals validation works', async () => {
+			element.name = 'test';
+			await elementUpdated(element);
+			expect(element.proxy.name).toBe('test');
+		});
+
+		it('should remove the proxy name attribute if removed from the element', async () => {
+			element.name = 'test';
+			await elementUpdated(element);
+
+			element.removeAttribute('name');
+			await elementUpdated(element);
+
+			expect(element.proxy.getAttribute('name')).toBeNull();
+		});
+	});
 	describe('change', () => {
 		it('should be fired when a user toggles the radio', async () => {
 			const spy = jest.fn();

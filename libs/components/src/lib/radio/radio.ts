@@ -86,7 +86,7 @@ export class Radio extends FormAssociatedRadio {
 	/**
 	 * The name of the radio. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname | name attribute} for more info.
 	 */
-	@observable
+	@attr
 	override name!: string;
 
 	/**
@@ -121,8 +121,17 @@ export class Radio extends FormAssociatedRadio {
 	constructor() {
 		super();
 		this.proxy.setAttribute('type', 'radio');
+		this.proxy.setAttribute('name', this.name);
 	}
 
+
+	/**
+	 * @internal
+	 */
+	override nameChanged(previous: string, next: string): void {
+		super.nameChanged ? super.nameChanged(previous, next) : null;
+		next !== null ? this.proxy.setAttribute('name', this.name) : this.proxy.removeAttribute('name');
+	}
 	/**
 	 * @internal
 	 */
