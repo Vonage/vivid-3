@@ -124,13 +124,16 @@ export class Radio extends FormAssociatedRadio {
 		this.proxy.setAttribute('name', this.name);
 	}
 
-
 	/**
 	 * @internal
 	 */
 	override nameChanged(previous: string, next: string): void {
-		super.nameChanged ? super.nameChanged(previous, next) : null;
-		next !== null ? this.proxy.setAttribute('name', this.name) : this.proxy.removeAttribute('name');
+		if (super.nameChanged) {
+			super.nameChanged(previous, next);
+		}
+		next !== null
+			? this.proxy.setAttribute('name', this.name)
+			: this.proxy.removeAttribute('name');
 	}
 	/**
 	 * @internal
@@ -159,6 +162,8 @@ export class Radio extends FormAssociatedRadio {
 				}
 			}
 		}
+
+		this.#validateValueMissingWithSiblings();
 	}
 
 	private isInsideRadioGroup(): boolean {
@@ -191,4 +196,43 @@ export class Radio extends FormAssociatedRadio {
 			this.checked = true;
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	override checkedChanged = (previous: boolean, next: boolean): void => {
+		super.checkedChanged(previous, next);
+		this.#syncSiblingsRequiredValidationStatus();
+	};
+
+	get #radioSiblings(): Radio[] {
+		const siblings = this.parentElement?.querySelectorAll(
+			`${this.tagName.toLocaleLowerCase()}[name="${this.name}"]`
+		);
+		if (siblings) {
+			return Array.from(siblings) as unknown as Radio[];
+		}
+		return [];
+	}
+
+	#syncSiblingsRequiredValidationStatus = (force = false): void => {
+		if (this.elementInternals && (!this.validity.valueMissing || force)) {
+			const siblings = this.#radioSiblings;
+			if (siblings && siblings.length > 1) {
+				siblings.forEach((x: Radio) => {
+					x.elementInternals!.setValidity({ valueMissing: false });
+				});
+			}
+		}
+	};
+
+	#validateValueMissingWithSiblings = (): void => {
+		const siblings = this.#radioSiblings;
+		if (siblings && siblings.length > 1) {
+			const isSiblingChecked = siblings.some((x: Radio) => x.checked);
+			if (isSiblingChecked) {
+				this.#syncSiblingsRequiredValidationStatus(true);
+			}
+		}
+	};
 }
