@@ -56,7 +56,7 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
 
 	return html<Dialog>`
-	<${elevationTag} dp="8" no-position>
+	<${elevationTag} dp="8" not-relative>
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"

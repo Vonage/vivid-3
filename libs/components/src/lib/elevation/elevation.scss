@@ -37,7 +37,7 @@ $dps: 0 2 4 8 12 16 24;
 		}
 	}
 
-	&:not(.no-position) {
+	&:not(.not-relative) {
 		::slotted(*) {
 			position: relative;
 		}

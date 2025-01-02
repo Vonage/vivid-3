@@ -65,10 +65,10 @@ describe('vwc-elevation', () => {
 	});
 
 	describe('no position', () => {
-		it('should add class .no-position to .base if no-position attribute is added o host', async () => {
+		it('should add class .not-relative to .base if no-position attribute is added o host', async () => {
 			element.noPosition = true;
 			await elementUpdated(element);
-			expect(getControlElement(element).classList.contains('.no-position'));
+			expect(getControlElement(element).classList.contains('.not-relative'));
 		});
 	});
 
