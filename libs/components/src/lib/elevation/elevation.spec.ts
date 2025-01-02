@@ -66,7 +66,7 @@ describe('vwc-elevation', () => {
 
 	describe('no position', () => {
 		it('should add class .not-relative to .base if no-position attribute is added o host', async () => {
-			element.noPosition = true;
+			element.notRelative = true;
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains('.not-relative'));
 		});
@@ -74,7 +74,7 @@ describe('vwc-elevation', () => {
 
 	describe('no shadow', () => {
 		it('should add class .no-shadow to .base if no-shadow attribute is added o host', async () => {
-			element.noPosition = true;
+			element.notRelative = true;
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains('.no-shadow'));
 		});
