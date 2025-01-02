@@ -143,7 +143,7 @@ export class Radio extends FormAssociatedRadio {
 	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.validate();
+		DOM.queueUpdate(this.validate);
 
 		if (
 			this.parentElement!.getAttribute('role') !== 'radiogroup' &&
@@ -165,8 +165,6 @@ export class Radio extends FormAssociatedRadio {
 				}
 			}
 		}
-
-		// this.#validateValueMissingWithSiblings();
 	}
 
 	private isInsideRadioGroup(): boolean {

@@ -182,126 +182,152 @@ describe('vwc-radio', () => {
 			expect(element.proxy.getAttribute('name')).toBeNull();
 		});
 
-		function mockElementInternals() {
-			function addElementInternals(this: Radio) {
-				let internals = InternalsMap.get(this);
+		describe('with internals', () => {
+			function mockElementInternals() {
+				function addElementInternals(this: Radio) {
+					let internals = InternalsMap.get(this);
 
-				if (!internals) {
-					internals = (this as any).attachInternals();
-					InternalsMap.set(this, internals);
+					if (!internals) {
+						internals = (this as any).attachInternals();
+						InternalsMap.set(this, internals);
+					}
+
+					return internals;
 				}
 
-				return internals;
+				return (internalsMock = jest
+					.spyOn(Radio.prototype, 'elementInternals', 'get')
+					.mockImplementation(addElementInternals));
 			}
 
-			return (internalsMock = jest
-				.spyOn(Radio.prototype, 'elementInternals', 'get')
-				.mockImplementation(addElementInternals));
-		}
+			function mockFormAssociated() {
+				return (formAssociatedMock = jest
+					.spyOn(Radio as any, 'formAssociated', 'get')
+					.mockReturnValue(true));
+			}
 
-		function mockFormAssociated() {
-			return (formAssociatedMock = jest
-				.spyOn(Radio as any, 'formAssociated', 'get')
-				.mockReturnValue(true));
-		}
+			const InternalsMap = new WeakMap();
 
-		const InternalsMap = new WeakMap();
-		it('should sync validity from siblings in same group and name when all unchecked', async () => {
-			await import('element-internals-polyfill');
+			beforeEach(async () => {
+				await import('element-internals-polyfill');
+				mockFormAssociated();
+				mockElementInternals();
+			});
 
-			mockFormAssociated();
-			mockElementInternals();
+			it('should sync validity from siblings in same group and name when all unchecked', async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = element.name = 'test';
+				sibling.required = element.required = true;
 
-			const sibling = document.createElement(COMPONENT_TAG) as Radio;
-			sibling.name = element.name = 'test';
-			sibling.required = element.required = true;
+				element.parentElement?.appendChild(sibling);
+				await elementUpdated(element);
 
-			element.parentElement?.appendChild(sibling);
-			await elementUpdated(element);
+				expect(element.validity.valueMissing).toBe(true);
+			});
 
-			expect(element.validity.valueMissing).toBe(true);
-		});
+			it('should sync validity with siblings in same group and name when checked', async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = element.name = 'test';
+				sibling.required = element.required = true;
 
-		it('should sync validity with siblings in same group and name when checked', async () => {
-			await import('element-internals-polyfill');
+				element.parentElement?.appendChild(sibling);
+				await elementUpdated(element);
+				sibling.checked = true;
+				await elementUpdated(element);
 
-			mockFormAssociated();
-			mockElementInternals();
+				expect(element.validity.valueMissing).toBe(false);
+			});
 
-			const sibling = document.createElement(COMPONENT_TAG) as Radio;
-			sibling.name = element.name = 'test';
-			sibling.required = element.required = true;
+			it('should set the correct valueMissing validity when added to the DOM with valid group', async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = element.name = 'test';
+				sibling.required = element.required = true;
+				element.checked = true;
 
-			element.parentElement?.appendChild(sibling);
-			await elementUpdated(element);
-			sibling.checked = true;
-			await elementUpdated(element);
+				await elementUpdated(element);
+				element.parentElement?.appendChild(sibling);
 
-			expect(element.validity.valueMissing).toBe(false);
-		});
+				await elementUpdated(element);
 
-		it('should set the correct valueMissing validity when added to the DOM with valid group', async () => {
-			await import('element-internals-polyfill');
+				expect(sibling.validity.valueMissing).toBe(false);
+			});
 
-			mockFormAssociated();
-			mockElementInternals();
+			it("should sync siblings' validity.valueMissing when added as checked", async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = element.name = 'test';
+				sibling.required = element.required = true;
+				sibling.checked = true;
 
-			const sibling = document.createElement(COMPONENT_TAG) as Radio;
-			sibling.name = element.name = 'test';
-			sibling.required = element.required = true;
-			element.checked = true;
+				await elementUpdated(element);
+				element.parentElement?.appendChild(sibling);
 
-			await elementUpdated(element);
-			element.parentElement?.appendChild(sibling);
+				await elementUpdated(element);
 
-			await elementUpdated(element);
+				expect(element.validity.valueMissing).toBe(false);
+			});
 
-			expect(sibling.validity.valueMissing).toBe(false);
-		});
+			it('should sync values when name changes to that of siblings', async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = 'not-test';
+				element.name = 'test';
+				sibling.required = element.required = true;
+				sibling.checked = true;
 
-		it("should sync siblings' validity.valueMissing when added as checked", async () => {
-			await import('element-internals-polyfill');
+				await elementUpdated(element);
+				element.parentElement?.appendChild(sibling);
 
-			mockFormAssociated();
-			mockElementInternals();
+				await elementUpdated(element);
 
-			const sibling = document.createElement(COMPONENT_TAG) as Radio;
-			sibling.name = element.name = 'test';
-			sibling.required = element.required = true;
-			sibling.checked = true;
+				const valueWhenNameIsDifferent = element.validity.valueMissing;
 
-			await elementUpdated(element);
-			element.parentElement?.appendChild(sibling);
+				element.name = sibling.name;
+				await elementUpdated(element);
 
-			await elementUpdated(element);
+				expect(valueWhenNameIsDifferent).toBe(true);
+				expect(element.validity.valueMissing).toBe(false);
+			});
 
-			expect(element.validity.valueMissing).toBe(false);
-		});
+			it('should validate valueMissing on a single radio only when required is set', async () => {
+				element.name = 'test';
+				element.required = false;
 
-		it('should sync values when name changes to that of siblings', async () => {
-			await import('element-internals-polyfill');
+				await elementUpdated(element);
 
-			mockFormAssociated();
-			mockElementInternals();
+				expect(element.validity.valueMissing).toBe(false);
+			});
 
-			const sibling = document.createElement(COMPONENT_TAG) as Radio;
-			sibling.name = 'not-test';
-			element.name = 'test';
-			sibling.required = element.required = true;
-			sibling.checked = true;
+			it('should validate valueMissing on radio-group only when required is set', async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = 'test';
+				element.name = 'test';
+				sibling.required = element.required = false;
 
-			await elementUpdated(element);
-			element.parentElement?.appendChild(sibling);
+				await elementUpdated(element);
+				element.parentElement?.appendChild(sibling);
 
-			await elementUpdated(element);
+				await elementUpdated(element);
 
-			const valueWhenNameIsDifferent = element.validity.valueMissing;
+				expect(element.validity.valueMissing).toBe(false);
+				expect(sibling.validity.valueMissing).toBe(false);
+			});
 
-			element.name = sibling.name;
-			await elementUpdated(element);
+			it('should validate valueMissing when required is set on at least one sibling', async () => {
+				const sibling = document.createElement(COMPONENT_TAG) as Radio;
+				sibling.name = element.name = 'test';
 
-			expect(valueWhenNameIsDifferent).toBe(true);
-			expect(element.validity.valueMissing).toBe(false);
+				sibling.required = false;
+				element.required = true;
+				await elementUpdated(element);
+
+				element.parentElement?.appendChild(sibling);
+				await elementUpdated(element);
+
+				sibling.checked = true;
+				await elementUpdated(element);
+
+				expect(element.validity.valueMissing).toBe(false);
+				expect(sibling.validity.valueMissing).toBe(false);
+			});
 		});
 	});
 

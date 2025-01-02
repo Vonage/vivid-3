@@ -29,7 +29,7 @@ export class FormAssociatedRadio extends CheckableFormAssociated(_Radio) {
 	};
 
 	#syncSiblingsRequiredValidationStatus = (): void => {
-		if (this.elementInternals && (!this.validity.valueMissing)) {
+		if (this.elementInternals && !this.validity.valueMissing) {
 			const siblings = this.#radioSiblings;
 			if (siblings && siblings.length > 1) {
 				siblings.forEach((x: _Radio) => {
