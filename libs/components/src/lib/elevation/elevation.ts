@@ -21,4 +21,5 @@ export class Elevation extends VividElement {
 	 * HTML Attribute: boolean
 	 */
 	@attr({ attribute: 'no-shadow', mode: 'boolean' }) noShadow?: boolean;
+	@attr({ attribute: 'not-relative', mode: 'boolean' }) notRelative?: boolean;
 }
