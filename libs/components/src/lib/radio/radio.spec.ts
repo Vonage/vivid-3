@@ -277,7 +277,34 @@ describe('vwc-radio', () => {
 
 			expect(element.validity.valueMissing).toBe(false);
 		});
+
+		it('should sync values when name changes to that of siblings', async () => {
+			await import('element-internals-polyfill');
+
+			mockFormAssociated();
+			mockElementInternals();
+
+			const sibling = document.createElement(COMPONENT_TAG) as Radio;
+			sibling.name = 'not-test';
+			element.name = 'test';
+			sibling.required = element.required = true;
+			sibling.checked = true;
+
+			await elementUpdated(element);
+			element.parentElement?.appendChild(sibling);
+
+			await elementUpdated(element);
+
+			const valueWhenNameIsDifferent = element.validity.valueMissing;
+
+			element.name = sibling.name;
+			await elementUpdated(element);
+			
+			expect(valueWhenNameIsDifferent).toBe(true);
+			expect(element.validity.valueMissing).toBe(false);
+		}); 
 	});
+	
 	describe('change', () => {
 		it('should be fired when a user toggles the radio', async () => {
 			const spy = jest.fn();

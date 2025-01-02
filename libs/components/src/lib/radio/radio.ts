@@ -1,5 +1,6 @@
 import {
 	attr,
+	DOM,
 	observable,
 	type SyntheticViewTemplate,
 } from '@microsoft/fast-element';
@@ -134,7 +135,11 @@ export class Radio extends FormAssociatedRadio {
 		next !== null
 			? this.proxy.setAttribute('name', this.name)
 			: this.proxy.removeAttribute('name');
-	}
+		DOM.queueUpdate(this.validate);
+		// DOM.queueUpdate(() => {
+		// 	this.#validateValueMissingWithSiblings();
+		// }); 
+	} 
 	/**
 	 * @internal
 	 */
@@ -163,7 +168,7 @@ export class Radio extends FormAssociatedRadio {
 			}
 		}
 
-		this.#validateValueMissingWithSiblings();
+		// this.#validateValueMissingWithSiblings();
 	}
 
 	private isInsideRadioGroup(): boolean {
@@ -197,42 +202,42 @@ export class Radio extends FormAssociatedRadio {
 		}
 	}
 
-	/**
-	 * @internal
-	 */
-	override checkedChanged = (previous: boolean, next: boolean): void => {
-		super.checkedChanged(previous, next);
-		this.#syncSiblingsRequiredValidationStatus();
-	};
+	// /**
+	//  * @internal
+	//  */
+	// override checkedChanged = (previous: boolean, next: boolean): void => {
+	// 	super.checkedChanged(previous, next);
+	// 	this.#syncSiblingsRequiredValidationStatus();
+	// };
 
-	get #radioSiblings(): Radio[] {
-		const siblings = this.parentElement?.querySelectorAll(
-			`${this.tagName.toLocaleLowerCase()}[name="${this.name}"]`
-		);
-		if (siblings) {
-			return Array.from(siblings) as unknown as Radio[];
-		}
-		return [];
-	}
+	// get #radioSiblings(): Radio[] {
+	// 	const siblings = this.parentElement?.querySelectorAll(
+	// 		`${this.tagName.toLocaleLowerCase()}[name="${this.name}"]`
+	// 	);
+	// 	if (siblings) {
+	// 		return Array.from(siblings) as unknown as Radio[];
+	// 	}
+	// 	return []; 
+	// }
 
-	#syncSiblingsRequiredValidationStatus = (force = false): void => {
-		if (this.elementInternals && (!this.validity.valueMissing || force)) {
-			const siblings = this.#radioSiblings;
-			if (siblings && siblings.length > 1) {
-				siblings.forEach((x: Radio) => {
-					x.elementInternals!.setValidity({ valueMissing: false });
-				});
-			}
-		}
-	};
+	// #syncSiblingsRequiredValidationStatus = (force = false): void => {
+	// 	if (this.elementInternals && (!this.validity.valueMissing || force)) {
+	// 		const siblings = this.#radioSiblings;
+	// 		if (siblings && siblings.length > 1) {
+	// 			siblings.forEach((x: Radio) => {
+	// 				x.elementInternals!.setValidity({ valueMissing: false });
+	// 			});
+	// 		}
+	// 	}
+	// };
 
-	#validateValueMissingWithSiblings = (): void => {
-		const siblings = this.#radioSiblings;
-		if (siblings && siblings.length > 1) {
-			const isSiblingChecked = siblings.some((x: Radio) => x.checked);
-			if (isSiblingChecked) {
-				this.#syncSiblingsRequiredValidationStatus(true);
-			}
-		}
-	};
+	// #validateValueMissingWithSiblings = (): void => {
+	// 	const siblings = this.#radioSiblings;
+	// 	if (siblings && siblings.length > 1) {
+	// 		const isSiblingChecked = siblings.some((x: Radio) => x.checked);
+	// 		if (isSiblingChecked) {
+	// 			this.#syncSiblingsRequiredValidationStatus(true);
+	// 		}
+	// 	}
+	// };
 }
