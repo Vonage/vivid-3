@@ -21,9 +21,9 @@ Every component is now precisely synchronized with our Vivid API web components.
 
 We've fully embraced the latest Figma token features, providing:
 
-1. Seamless dark and light mode implementations
-2. Consistent color management across design states
-3. Enhanced design flexibility
+- Seamless dark and light mode implementations
+- Consistent color management across design states
+- Enhanced design flexibility
 
 ### Improved Organization and Usability
 
@@ -53,17 +53,17 @@ Pre-built, interconnected component setups
 
 ## Key Improvements
 
-1. **Complete API Synchronization:** 100% alignment with Vivid API components
-2. **Thoroughly Tested:** We've gone the extra mile to make sure everything works perfectly ([Components QA](https://docs.google.com/spreadsheets/d/1-R6p9tJa6agJRDUkpfDNZ8kS4bXjfm7YcVZY4KoZAqg/edit?gid=0#gid=0))
-3. **Expanded Component Set:** New components and enhanced features like:
+- **Complete API Synchronization:** 100% alignment with Vivid API components
+- **Thoroughly Tested:** We've gone the extra mile to make sure everything works perfectly ([Components QA](https://docs.google.com/spreadsheets/d/1-R6p9tJa6agJRDUkpfDNZ8kS4bXjfm7YcVZY4KoZAqg/edit?gid=0#gid=0))
+- **Expanded Component Set:** New components and enhanced features like:
 
-- Searchable select
-- Video-player
-- Side-Drawer
-- Tabs - vertical tabs, removable tab
+  - Searchable select
+  - Video-player
+  - Side-Drawer
+  - Tabs - vertical tabs, removable tab
 
-4. **Flexible Color Systems:** Full support for dark and light modes
-5. **Unparalleled Customization:** Granular control over component design
+- **Flexible Color Systems:** Full support for dark and light modes
+- **Unparalleled Customization:** Granular control over component design
 
 ## How to use Vivid-Live
 
@@ -73,7 +73,8 @@ Vivid Live comes with 2 additional assets:
 
 - [Vivid Live Tokens](<(https://www.figma.com/design/l7PH4EhGm3SXH9FJQBBPZG/Vivid-Live-Tokens?node-id=33646-138859&t=AZY0LVVL7Qe15zCI-1)>)
 - [Vivid Live Icons](<(https://www.figma.com/design/isdKI406usLCxZ2U8ljDrn/Vivid-Live-Icons?node-id=274-7267&t=YWWxn3L71PA9Hfuf-1)>)
-  Make sure you are adding all 3 of them :)
+
+Make sure you are adding all 3 of them :)
 
 ![adding vivid-live, live-tokens and live-icons](../../../../assets/images/blog-images/add-components.png)
 
@@ -119,10 +120,14 @@ From size to appearance to stats and text customization.
 Vivid-Live is synced to the API, which means, like the actual components, it uses Slots.
 For each slot you can either show / hide the slot and swap the default slot with your content.
 
+![slot swap](../../../../assets/images/blog-images/slot-swap.png)
+
 ### #6 - Composition
 
 Components like select, menu, tabs and more have a component that is built with composition.
 You can configure the composition when entering the layer in the layers panel, you’ll see its options in the right panel.
+
+![composition-inside-components](../../../../assets/images/blog-images/composition-inside-components.png)
 
 ## We're Listening
 
