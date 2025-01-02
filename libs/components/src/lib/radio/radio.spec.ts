@@ -299,12 +299,12 @@ describe('vwc-radio', () => {
 
 			element.name = sibling.name;
 			await elementUpdated(element);
-			
+
 			expect(valueWhenNameIsDifferent).toBe(true);
 			expect(element.validity.valueMissing).toBe(false);
-		}); 
+		});
 	});
-	
+
 	describe('change', () => {
 		it('should be fired when a user toggles the radio', async () => {
 			const spy = jest.fn();

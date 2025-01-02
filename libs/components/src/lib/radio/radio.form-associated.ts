@@ -15,7 +15,7 @@ export class FormAssociatedRadio extends CheckableFormAssociated(_Radio) {
 		if (siblings) {
 			return Array.from(siblings) as unknown as _Radio[];
 		}
-		return []; 
+		return [];
 	}
 
 	#validateValueMissingWithSiblings = (): void => {
@@ -28,8 +28,8 @@ export class FormAssociatedRadio extends CheckableFormAssociated(_Radio) {
 		}
 	};
 
-	#syncSiblingsRequiredValidationStatus = (force = false): void => {
-		if (this.elementInternals && (!this.validity.valueMissing || force)) {
+	#syncSiblingsRequiredValidationStatus = (): void => {
+		if (this.elementInternals && (!this.validity.valueMissing)) {
 			const siblings = this.#radioSiblings;
 			if (siblings && siblings.length > 1) {
 				siblings.forEach((x: _Radio) => {
@@ -39,12 +39,12 @@ export class FormAssociatedRadio extends CheckableFormAssociated(_Radio) {
 		}
 	};
 
-	override validate = (anchor?: HTMLElement): void => {		
+	override validate = (anchor?: HTMLElement): void => {
 		super.validate(anchor);
 		if (this.validity.valueMissing) {
 			this.#validateValueMissingWithSiblings();
 		} else {
-			this.#syncSiblingsRequiredValidationStatus(true);
-		} 
-	}
+			this.#syncSiblingsRequiredValidationStatus();
+		}
+	};
 }
