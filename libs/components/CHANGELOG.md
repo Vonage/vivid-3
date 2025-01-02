@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.14.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.0...vivid-v4.14.1) (2025-01-02)
+
+
+### Bug Fixes
+
+* **dialog:** prevent scroll to top when opened as Modal (VIV-2248) ([#2069](https://github.com/Vonage/vivid-3/issues/2069)) ([8543e65](https://github.com/Vonage/vivid-3/commit/8543e658958ee4ecfc4c573dab938603295b4285))
+* **radio:** radio required validation sync with spec (VIV-2265) ([#2070](https://github.com/Vonage/vivid-3/issues/2070)) ([5fb9b52](https://github.com/Vonage/vivid-3/commit/5fb9b5294dc6d4bd4f6586daece53cbde5f2df07))
+
 ## [4.14.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.13.0...vivid-v4.14.0) (2024-12-18)
 
 
