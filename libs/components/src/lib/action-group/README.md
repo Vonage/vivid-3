@@ -45,3 +45,17 @@ registerActionGroup('your-prefix');
 
 </vwc-tab-panel>
 </vwc-tabs>
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name           | Type                                 | Description                      |
+| -------------- | ------------------------------------ | -------------------------------- |
+| **appearance** | _Enum_:`fieldset` (default), `ghost` | Sets the element's appearance    |
+| **shape**      | _Enum_:`rounded`(default), `pill`    | Sets the element's border-radius |
+| **tight**      | `boolean`                            | Remove padding and gaps          |
+
+</div>

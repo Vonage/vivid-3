@@ -1,34 +1,12 @@
 ## Separator
 
-Use `<vwc-divider>` for adding separator between the action elements
+Use [Divider](/components/divider/) for adding separator between the action elements
 
 ```html preview
 <vwc-action-group appearance="fieldset">
 	<vwc-button icon="reply-line"></vwc-button>
 	<vwc-divider orientation="vertical"></vwc-divider>
 	<vwc-button icon="compose-line"></vwc-button>
-</vwc-action-group>
-```
-
-## Composed Search
-
-```html preview
-<vwc-action-group shape="pill">
-	<vwc-button
-		label="Action"
-		appearance="ghost"
-		icon="chevron-down-solid"
-		icon-trailing
-		shape="pill"
-	></vwc-button>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-text-field
-		icon="search-line"
-		placeholder="Search..."
-		appearance="ghost"
-		shape="pill"
-		style="min-width: 160px;"
-	></vwc-text-field>
 </vwc-action-group>
 ```
 
@@ -66,27 +44,24 @@ Use `<vwc-divider>` for adding separator between the action elements
 </script>
 ```
 
-<!-- TODO: Update the example when will be a dropdown component / the popup will not be underlying -->
+## Composed Search
 
-<!-- ### More Actions
-
-```html preview center
-<vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
-
-<vwc-popup id="popup" anchor="anchor" arrow open placement="top">
-  <vwc-action-group appearance="ghost">
-    <vwc-button icon="reply-line"></vwc-button>
-    <vwc-button icon="transfer-line"></vwc-button>
-    <vwc-divider orientation="vertical"></vwc-divider>
-    <vwc-button icon="compose-line"></vwc-button>
-    <vwc-button icon="crop-line"></vwc-button>
-    <vwc-divider orientation="vertical"></vwc-divider>
-    <vwc-button icon="copy-2-line"></vwc-button>
-    <vwc-button icon="save-line"></vwc-button>
-  </vwc-action-group>
-</vwc-popup>
-
-<script>
-  anchor.addEventListener('click', () => popup.open = !popup.open);
-</script>
-``` -->
+```html preview
+<vwc-action-group shape="pill">
+	<vwc-button
+		label="Action"
+		appearance="ghost"
+		icon="chevron-down-solid"
+		icon-trailing
+		shape="pill"
+	></vwc-button>
+	<vwc-divider orientation="vertical"></vwc-divider>
+	<vwc-text-field
+		icon="search-line"
+		placeholder="Search..."
+		appearance="ghost"
+		shape="pill"
+		style="min-width: 160px;"
+	></vwc-text-field>
+</vwc-action-group>
+```

@@ -2,18 +2,15 @@
 
 Set the `appearance` attribute to change the action-group's appearance.
 
-- Type: `'fieldset'` | `'ghost'`
-- Default: `'fieldset'`
-
 ```html preview
-<p>appearance fieldset</p>
+<p>fieldset appearance (default)</p>
 <vwc-action-group appearance="fieldset">
 	<vwc-button label="edit"></vwc-button>
 	<vwc-button label="copy"></vwc-button>
 	<vwc-button label="paste"></vwc-button>
 	<vwc-button label="submit"></vwc-button>
 </vwc-action-group>
-<p>appearance ghost</p>
+<p>ghost appearance</p>
 <vwc-action-group appearance="ghost">
 	<vwc-button label="edit" appearance="filled"></vwc-button>
 	<vwc-button label="copy" appearance="filled"></vwc-button>
@@ -38,35 +35,29 @@ When using shape, remember to also set it on any slotted elements.
 
 ## Tight
 
-By default, action group is styled in a spacious manner which visually extends the baseline row size and includes an inline gap.
-Enabling the `tight` member will result in a dense style that fits the "normal" baseline.
+Set `tight` attribute if no outer padding or gaps between slotted item are needed
 
 ```html preview
-<style>
-	vwc-layout {
-		--layout-grid-template-columns: 250px;
-	}
+<vwc-action-group tight appearance="fieldset">
+	<vwc-audio-player
+		class="audio"
+		src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	>
+	</vwc-audio-player>
+	<vwc-button
+		size="condensed"
+		icon="delete-solid"
+		aria-label="delete"
+		class="delete"
+	></vwc-button>
+</vwc-action-group>
 
-	vwc-action-group > vwc-text-field {
-		flex-grow: 1;
+<style>
+	.audio {
+		min-inline-size: 250px;
+	}
+	.delete {
+		margin-inline-end: 8px;
 	}
 </style>
-
-<vwc-layout column-basis="block" column-spacing="small">
-	<vwc-text-field
-		name="username"
-		aria-label="Username"
-		placeholder="Username"
-	></vwc-text-field>
-	<vwc-action-group appearance="fieldset" tight>
-		<vwc-button icon="flag-uruguay"></vwc-button>
-		<vwc-text-field
-			appearance="ghost"
-			aria-label="Phone number"
-			placeholder="Phone number"
-			name="phone"
-			autocomplete=""
-		></vwc-text-field>
-	</vwc-action-group>
-</vwc-layout>
 ```
