@@ -77,7 +77,7 @@ Use `href` to set the URL that the **Nav Item** links to.
 
 ## Aria Current
 
-### Aria Current Page
+### Aria Current (Page)
 
 Use the `aria-current` attribute on **Nav Item** to indicate the currently active link.  
 When setting `aria-current` the value of it is `aria-current="page"`.
@@ -89,7 +89,7 @@ When setting `aria-current` the value of it is `aria-current="page"`.
 </vwc-nav>
 ```
 
-### Aria Current True
+### Aria Current (True)
 
 Use the `aria-current` attribute on **Nav Disclosure** to indicate the currently active disclosure.  
 Only when the **Nav Disclosure** is closed the `aria-current` will be set.
@@ -184,7 +184,7 @@ If set, the `icon` attribute is ignored.
 
 | Name        | Description                                                                                                                      |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| **default** | Nav accepts [Nav Item](/components/code/#nav-item/) and [Nav Disclosure](/components/code/#nav-disclosure/) as slotted elements. |
+| **default** | Nav accepts [Nav Item](#nav-item/) and [Nav Disclosure](#nav-disclosure/) as slotted elements. |
 
 </div>
 
@@ -197,7 +197,7 @@ If set, the `icon` attribute is ignored.
 | Name             | Type                                                      | Description                                                  |
 | ---------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
 | **appearance**   | _Enum_: `ghost` (default) `ghost-light`                   | Sets the nav item's appearance                               |
-| **aria-current** | `boolean`                                                 | Sets `aria-current="page"` to indicate the selected nav item |
+| **aria-current** | `string`                                                 | Sets `aria-current="page"` to indicate the selected nav item |
 | **connotation**  | _Enum_: `accent` (default), `cta`                         | Sets the connotation color of the selected nav item          |
 | **icon**         | _Enum_: `[icon-name]`                                     | Sets the element's icon                                      |
 | **href**         | `string`                                                  | The URL the hyperlink references                             |

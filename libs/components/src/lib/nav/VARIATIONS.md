@@ -1,4 +1,4 @@
-**Nav** component goes along with slotted **[Nav Item](/components/nav-item)** and **[Nav Disclosure](/components/nav-disclosure)** components.
+**Nav** component goes along with slotted **[Nav Item](/components/navigation/code/#nav-item)** and **[Nav Disclosure](/components/navigation/code/#nav-disclosure)** components.
 
 ## Labeling
 
@@ -29,7 +29,7 @@ The `label` attribute on the **Nav Disclosure** component provides the nav discl
 
 The `icon` attribute can be set on the **Nav Item** component and on the **Nav Disclosure** component, displays an icon from the [icon library](/icons/icons-gallery/) on the component.
 
-Custom icons can be provided using the [icon slot](/components/nav/code/#icon-slot).
+Custom icons can be provided using the [icon slot](/components/navigation/code/#icon-slot).
 
 ```html preview 250px
 <vwc-nav>
@@ -65,7 +65,7 @@ If the `text` is omitted, the **`Nav Item`** will be displayed as an icon-only N
 ## Appearance
 
 The `appearance` attribute controls the **Nav Item** and the **Nav Disclosure** components style.  
-The default connotation is `ghost-light`. Below it is set to `ghost-light`.
+The default appearance is `ghost`. Below it is set to `ghost-light`.
 
 ```html preview
 <vwc-nav>
