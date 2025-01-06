@@ -1,3 +1,4 @@
+@use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
@@ -11,18 +12,15 @@
 
 .vjs-theme-vivid {
 	$control-size: 40px;
-	$control-background-color: color-mix(
-		in srgb,
-		var(#{constants.$vvd-color-canvas-text}),
-		transparent 40%
-	);
-	$control-background-color-hover: var(#{constants.$vvd-color-neutral-900});
-	$control-background-color-active: var(#{constants.$vvd-color-neutral-800});
+	$control-background-color: variables.$video-player-canvas-opacity;
+	$control-background-color-hover: variables.$video-player-neutral-900;
+	$control-background-color-active: variables.$video-player-neutral-800;
+	$control-menu-background-color: variables.$video-player-color-surface-4dp;
 
 	position: relative;
 	overflow: hidden;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	color: var(#{constants.$vvd-color-canvas});
+	color: variables.$video-player-canvas-text;
 	container-type: inline-size;
 	font: var(#{constants.$vvd-typography-base});
 
@@ -94,7 +92,7 @@
 		$border: #{border-radius-variables.$border-radius-normal};
 
 		flex-wrap: wrap;
-		padding: 4px 4px 8px 4px;
+		padding: 4px 4px 8px;
 		border-radius: 0 0 $border $border;
 		margin: 8px;
 		background-color: $control-background-color;
@@ -138,9 +136,9 @@
 		}
 
 		> .vjs-svg-icon {
-			block-size: 18px;
+			block-size: 16px;
 			filter: none;
-			inline-size: 18px;
+			inline-size: 16px;
 		}
 	}
 
@@ -157,7 +155,7 @@
 			align-items: center;
 			justify-content: start;
 			padding: 4px 8px;
-			color: var(#{constants.$vvd-color-canvas-text});
+			color: variables.$video-player-canvas-text;
 			font: var(#{constants.$vvd-typography-base});
 			min-block-size: 40px;
 			text-align: left;
@@ -168,13 +166,13 @@
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
-			background: var(#{constants.$vvd-color-neutral-900});
+			background: variables.$video-player-neutral-900;
 		}
 
 		li.vjs-selected {
-			background: var(#{constants.$vvd-color-neutral-800});
+			background: variables.$video-player-neutral-800;
 			&:hover {
-				color: var(#{constants.$vvd-color-canvas});
+				color: variables.$video-player-canvas-text;
 			}
 		}
 	}
@@ -257,9 +255,7 @@
 		.vjs-menu-content {
 			display: flex;
 			flex-direction: column;
-			background: var(#{constants.$vvd-color-surface-2dp});
-			background: linear-gradient(#ffffff0f, #ffffff0f), #0d0d0d;
-			filter: var(#{constants.$vvd-shadow-surface-2dp});
+			background: $control-menu-background-color;
 			gap: 1px;
 			inset-block-end: 20px;
 			padding-block: 8px;
@@ -273,8 +269,7 @@
 
 		.vjs-volume-control {
 			border-radius: #{border-radius-variables.$border-radius-normal};
-			background-color: $control-background-color;
-
+			background-color: $control-menu-background-color;
 			inset-block-end: calc(8em + 4px);
 
 			&.vjs-volume-vertical {
@@ -289,8 +284,6 @@
 			left: -31px;
 		}
 	}
-
-
 
 	.vjs-text-track-display {
 		inline-size: 100%;
