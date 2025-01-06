@@ -18,7 +18,6 @@ $dps: 0 2 4 8 12 16 24;
 	}
 
 	::slotted(*) {
-		position: relative;
 		isolation: isolate;
 
 		&::before {
@@ -35,6 +34,12 @@ $dps: 0 2 4 8 12 16 24;
 			inset-block-start: 0;
 			inset-inline-start: 0;
 			transition: background-color 0.15s linear, filter 0.15s linear;
+		}
+	}
+
+	&:not(.not-relative) {
+		::slotted(*) {
+			position: relative;
 		}
 	}
 
