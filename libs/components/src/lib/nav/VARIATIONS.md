@@ -75,6 +75,7 @@ The default appearance is `ghost`. Below it is set to `ghost-light`.
 		href="#"
 		icon="gear-line"
 		label="Settings"
+		aria-current="true"
 	>
 		<vwc-nav-item
 			appearance="ghost-light"
@@ -99,7 +100,7 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 
 ```html preview
 <div class="wrapper">
-	<vwc-nav>
+	<vwc-nav class="navigation">
 		<vwc-nav-disclosure
 			connotation="accent"
 			appearance="ghost-light"
@@ -107,6 +108,7 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			href="#"
 			icon="gear-line"
 			label="Settings"
+			aria-current="true"
 		>
 			<vwc-nav-item
 				connotation="accent"
@@ -125,7 +127,7 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			text="Account"
 		></vwc-nav-item>
 	</vwc-nav>
-	<vwc-nav>
+	<vwc-nav class="navigation">
 		<vwc-nav-disclosure
 			connotation="cta"
 			appearance="ghost-light"
@@ -133,6 +135,7 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 			href="#"
 			icon="gear-line"
 			label="Settings"
+			aria-current="true"
 		>
 			<vwc-nav-item
 				connotation="cta"
@@ -159,6 +162,9 @@ The `connotation` attribute controls the **Nav Item** and the **Nav Disclosure**
 		row-gap: 48px;
 		column-gap: 16px;
 		flex-wrap: wrap;
+	}
+	.navigation {
+		min-inline-size: 240px;
 	}
 </style>
 ```

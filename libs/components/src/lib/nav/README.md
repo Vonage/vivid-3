@@ -24,7 +24,7 @@ registerNavItem('your-prefix');
 registerNavDisclosure('your-prefix');
 ```
 
-```html preview
+```html preview 160px
 <script type="module">
 	import {
 		registerNav,
@@ -182,8 +182,8 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name        | Description                                                                                                                      |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Name        | Description                                                                                    |
+| ----------- | ---------------------------------------------------------------------------------------------- |
 | **default** | Nav accepts [Nav Item](#nav-item/) and [Nav Disclosure](#nav-disclosure/) as slotted elements. |
 
 </div>
@@ -197,7 +197,7 @@ If set, the `icon` attribute is ignored.
 | Name             | Type                                                      | Description                                                  |
 | ---------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
 | **appearance**   | _Enum_: `ghost` (default) `ghost-light`                   | Sets the nav item's appearance                               |
-| **aria-current** | `string`                                                 | Sets `aria-current="page"` to indicate the selected nav item |
+| **aria-current** | `string`                                                  | Sets `aria-current="page"` to indicate the selected nav item |
 | **connotation**  | _Enum_: `accent` (default), `cta`                         | Sets the connotation color of the selected nav item          |
 | **icon**         | _Enum_: `[icon-name]`                                     | Sets the element's icon                                      |
 | **href**         | `string`                                                  | The URL the hyperlink references                             |
