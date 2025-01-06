@@ -540,6 +540,12 @@ Sets or gets selected values.
 - Type: `Array<string>`
 - Default: `[]`
 
+<vwc-note connotation="information" icon="info-line">
+
+web components (as with all HTML elements) can only accept strings as their attributes. <code>Values</code> requires an array, so it has to be set programmatically.
+
+</vwc-note>
+
 ```html preview 230px
 <vwc-searchable-select multiple label="Countries">
 	<vwc-option

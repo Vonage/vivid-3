@@ -236,20 +236,24 @@
 	},
 	{
 		"title": "Text Area",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/text-area/README.md"
+		"description": "The Text Area component enables users to input longer, multi-line text when more extensive text entry is required.",
+		"variations": "./libs/components/src/lib/text-area/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/text-area/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/text-area/README.md",
+		"accessibility": "./libs/components/src/lib/text-area/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/text-area/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Radio Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio-group/README.md",
-		"children": ["Radio"]
-	},
-	{
-		"title": "Radio",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio/README.md",
-		"parent": "Radio Group"
+		"description": "A radio group is a collection of Radio buttons where only one choice can be selected.",
+		"variations": "./libs/components/src/lib/radio-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/radio-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/radio-group/README.md",
+		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/radio-group/USE-CASES.md"
 	},
 	{
 		"title": "Option",
