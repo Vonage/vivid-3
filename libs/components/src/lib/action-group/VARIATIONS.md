@@ -35,7 +35,7 @@ When using shape, remember to also set it on any slotted elements.
 
 ## Tight
 
-Set `tight` attribute if no outer padding or gaps between slotted item are needed
+Set the `tight` attribute if no outer padding or gaps between slotted item are needed
 
 ```html preview
 <vwc-action-group tight appearance="fieldset">
