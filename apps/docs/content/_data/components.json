@@ -104,22 +104,14 @@
 		"useCases": "./libs/components/src/lib/side-drawer/USE-CASES.md"
 	},
 	{
-		"title": "Nav",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav/README.md",
-		"children": ["Nav Item", "Nav Disclosure"]
-	},
-	{
-		"title": "Nav Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav-item/README.md",
-		"parent": "Nav"
-	},
-	{
-		"title": "Nav Disclosure",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav-disclosure/README.md",
-		"parent": "Nav"
+		"title": "Navigation",
+		"description": "A navigation component makes it easy for users to navigate through your application. Nav accepts Nav Item and Nav Disclosure elements as children.",
+		"variations": "./libs/components/src/lib/nav/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/nav/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/nav/README.md",
+		"accessibility": "./libs/components/src/lib/nav/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/nav/USE-CASES.md"
 	},
 	{
 		"title": "Tooltip",
@@ -179,8 +171,13 @@
 	},
 	{
 		"title": "Action Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/action-group/README.md"
+		"description": "The action group component should be used when you have a set of related actions or options that need to be grouped together within a limited space.",
+		"variations": "./libs/components/src/lib/action-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/action-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/action-group/README.md",
+		"accessibility": "./libs/components/src/lib/action-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/action-group/USE-CASES.md"
 	},
 	{
 		"title": "Note",
