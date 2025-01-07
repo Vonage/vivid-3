@@ -7,15 +7,27 @@
 	display: grid;
 	grid-auto-rows: var(#{variables.$layout-grid-template-rows}, min-content);
 
-	@include mixins.measurement(map.keys(variables.$bases)...) using ($basis) {
-		#{functions.get-selector-with-default('.column-basis', $basis, 'medium', map.keys(variables.$bases))} {
+	@media not all and (width >= 600px) {
+		&.column-basis-medium,
+		&.column-basis-large {
 			grid-template-columns: var(
 				#{variables.$layout-grid-template-columns},
-				repeat(
-					var(#{variables.$auto-sizing}),
-					minmax(map.get(variables.$bases, $basis), 1fr)
-				)
+				repeat(var(#{variables.$auto-sizing}), minmax(100%, 1fr))
 			);
+		}
+	}
+
+	@media (width >= 600px) {
+		@include mixins.measurement(map.keys(variables.$bases)...) using ($basis) {
+			#{functions.get-selector-with-default('.column-basis', $basis, 'medium', map.keys(variables.$bases))} {
+				grid-template-columns: var(
+					#{variables.$layout-grid-template-columns},
+					repeat(
+						var(#{variables.$auto-sizing}),
+						minmax(map.get(variables.$bases, $basis), 1fr)
+					)
+				);
+			}
 		}
 	}
 

@@ -139,24 +139,31 @@ Use `block` to get full-width elements stacking one after the other.
 - Type: `'small'` | `'medium'` | `'large'` | `'block'`
 - Default: `'medium'`
 
+<vwc-note connotation="information">
+
+- **In mobile** both <code>medium</code> and <code>large</code> will get a <code>min-width</code> of <code>100%</code> to avoid horizontal scrolling.
+- To change the column-basis use the css variable [<code>--layout-grid-template-columns</code>](/components/layout/#grid-template-columns)
+
+</vwc-note>
+
 ```html preview full
 <vwc-layout gutters="small" column-basis="small">
-	<vwc-card elevation="2" text="small"></vwc-card>
-	<vwc-card elevation="2" text="small"></vwc-card>
-	<vwc-card elevation="2" text="small"></vwc-card>
-	<vwc-card elevation="2" text="small"></vwc-card>
+	<vwc-card elevation="2" text="small (160px)"></vwc-card>
+	<vwc-card elevation="2" text="small (160px)"></vwc-card>
+	<vwc-card elevation="2" text="small (160px)"></vwc-card>
+	<vwc-card elevation="2" text="small (160px)"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="small" column-basis="medium">
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (320px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (320px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (320px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (320px)"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="small" column-basis="large">
-	<vwc-card elevation="2" text="large"></vwc-card>
-	<vwc-card elevation="2" text="large"></vwc-card>
-	<vwc-card elevation="2" text="large"></vwc-card>
-	<vwc-card elevation="2" text="large"></vwc-card>
+	<vwc-card elevation="2" text="large (380px)"></vwc-card>
+	<vwc-card elevation="2" text="large (380px)"></vwc-card>
+	<vwc-card elevation="2" text="large (380px)"></vwc-card>
+	<vwc-card elevation="2" text="large (380px)"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="small" column-basis="block">
 	<vwc-card elevation="2" text="block"></vwc-card>
