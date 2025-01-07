@@ -4,6 +4,7 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 @import '../../../../../node_modules/video.js/dist/video-js.css';
 
 :host {
@@ -144,6 +145,9 @@
 
 	/* playback rates */
 	.vjs-menu {
+		@include scrollbar.scrollbar;
+		#{variables.$video-player-neutral-950}: #fff;
+
 		&-button {
 			border-radius: #{border-radius-variables.$border-radius-normal};
 		}
