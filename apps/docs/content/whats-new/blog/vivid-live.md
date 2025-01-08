@@ -136,4 +136,4 @@ You can configure the composition when entering the layer in the layers panel, y
 This library is a living, breathing resource. We're committed to continuous improvement and value your feedback.  
 Spot something that could be even better?  
 We want to [hear from you](https://vonage.enterprise.slack.com/archives/G0169E0RF6K)!
-❤  
+❤
