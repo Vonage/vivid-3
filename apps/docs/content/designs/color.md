@@ -289,7 +289,7 @@ Add the class `vvd-theme-alternate` to the component.
   <p>If the component has <code>part</code>, add <code>part='vvd-theme-alternate'</code></p>
 </vwc-note>
 
-## Neutral Tint Color
+## Neutral Tint Color Drop-Shadow
 
 Neutral-Tint color comes with elevation custom colors. In order to use them the class `.vvd-neutral-tint-elevation` should be added to the component.
 
