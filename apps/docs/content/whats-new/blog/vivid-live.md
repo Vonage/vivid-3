@@ -1,7 +1,9 @@
 ---
 title: Figma - Vivid Live
-order: 1
+month: 2025-01
 ---
+
+13th January 2025
 
 # Introducing Vivid-Live: Figma Component Library
 
@@ -135,4 +137,3 @@ This library is a living, breathing resource. We're committed to continuous impr
 Spot something that could be even better?  
 We want to [hear from you](https://vonage.enterprise.slack.com/archives/G0169E0RF6K)!
 ❤  
-The Vivid Design Team

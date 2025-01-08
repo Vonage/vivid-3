@@ -1,5 +1,5 @@
 ---
 permalink: false
-title: Our Blog
-order: 8
+title: Blog
+parent: What's New
 ---
