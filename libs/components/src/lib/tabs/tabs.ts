@@ -562,7 +562,7 @@ export class Tabs extends VividElement {
 		}
 	}
 
-	#animateActiveIndicator(animate: Boolean) {
+	#animateActiveIndicator(animate: boolean) {
 		const offsetProperty = this.#isHorizontal() ? 'offsetLeft' : 'offsetTop';
 
 		const currentOffset = this.activeIndicatorRef[offsetProperty];
