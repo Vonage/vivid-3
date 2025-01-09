@@ -8,6 +8,12 @@ import '.';
 const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
+	function getActiveIndicator() {
+		return element.shadowRoot?.querySelector(
+			'.active-indicator'
+		) as HTMLElement;
+	}
+
 	const originalResizeObserver = global.ResizeObserver;
 	let resizeObserver: any;
 
@@ -154,6 +160,11 @@ describe('vwc-tabs', () => {
 			jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(value);
 		}
 
+		async function dispatchScrollEvent() {
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await elementUpdated(element);
+		}
+
 		beforeEach(function () {
 			scrollWrapper = getBaseElement(element).querySelector(
 				'.tablist-wrapper'
@@ -169,32 +180,32 @@ describe('vwc-tabs', () => {
 		it('should remove class "start-scroll" if scroll position is 0', async () => {
 			shadowWrapper.classList.add('start-scroll');
 			scrollWrapper.scrollLeft = 0;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
 		});
 
 		it('should add class "start-scroll" if scroll position is bigger then 0', async () => {
 			scrollWrapper.scrollLeft = 2;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
 		});
 
 		it('should remove class "end-scroll" if scroll position is scroll-width', async () => {
 			scrollWrapper.scrollLeft = scrollWrapper.scrollWidth;
 			shadowWrapper.classList.add('end-scroll');
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
 		});
 
 		it('should add class "end-scroll" if scroll position is less then scroll-width', async () => {
 			scrollWrapper.scrollLeft = 20;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 		});
 
 		it('should add class "end-scroll + start-scroll" if scroll position is less then scroll-width and bigger then 0', async () => {
 			scrollWrapper.scrollLeft = 20;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 		});
@@ -203,7 +214,7 @@ describe('vwc-tabs', () => {
 			setScrollWidth(100);
 			setClientWidth(150);
 
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
 		});
@@ -241,8 +252,7 @@ describe('vwc-tabs', () => {
 
 		it('should add class "end-scroll" if client width reduces below scroll width', async () => {
 			setClientWidth(350);
-			scrollWrapper.dispatchEvent(new Event('scroll'));
-			await elementUpdated(element);
+			await dispatchScrollEvent();
 			setClientWidth(50);
 			resizeObserver.triggerResize();
 			await elementUpdated(element);
@@ -252,6 +262,34 @@ describe('vwc-tabs', () => {
 		it('should disconnect resize observer on disconnected callback', async () => {
 			element.disconnectedCallback();
 			expect(resizeObserver.disconnect).toHaveBeenCalled();
+		});
+
+		it('should prevent animation when last tab is selected and a tab is removed', async () => {
+			element.activeid = 'desserts';
+			element.showActiveIndicator = true;
+			await elementUpdated(element);
+			const activeIndicator = getActiveIndicator();
+
+			element.children[0].remove();
+			await elementUpdated(element);
+
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(false);
+		});
+
+		it('should prevent animation when last tab is selected and a its tab panel is removed', async () => {
+			element.activeid = 'desserts';
+			element.showActiveIndicator = true;
+			await elementUpdated(element);
+			const activeIndicator = getActiveIndicator();
+
+			element.querySelector('#dessertsPanel')?.remove();
+			await elementUpdated(element);
+
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(false);
 		});
 	});
 
@@ -543,9 +581,7 @@ describe('vwc-tabs', () => {
 	describe('active tab indicator', () => {
 		let activeIndicator: HTMLElement;
 		beforeEach(() => {
-			activeIndicator = element.shadowRoot?.querySelector(
-				'.active-indicator'
-			) as HTMLElement;
+			activeIndicator = getActiveIndicator();
 		});
 
 		it('should animate the active tab indicator when active tab changes', async () => {
