@@ -182,6 +182,21 @@ Use the `gutters` attribute on the **Tabs** component to control the spacing ins
 </vwc-tabs>
 ```
 
+## Tabs Layout
+
+The `tabs-layout` attribute on the **Tabs** component controls the tabs layout. When set to `stretch`, the tabs will stretch to fill the available space. It will have no effect when the tabs are in a vertical orientation.
+
+```html preview full
+<vwc-tabs tabs-layout="stretch">
+	<vwc-tab label="Tab one"></vwc-tab>
+	<vwc-tab label="Tab two"></vwc-tab>
+	<vwc-tab label="Tab three"></vwc-tab>
+	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
+	<vwc-tab-panel>Tab Panel three</vwc-tab-panel>
+</vwc-tabs>
+```
+
 ## Scrollable Panel
 
 Use the `scrollable-panel` attribute combined with setting a `block-size` style to the **Tabs** component to make the content scrollable.
@@ -248,19 +263,4 @@ Use the `scrollable-panel` attribute combined with setting a `block-size` style 
 		block-size: 150px;
 	}
 </style>
-```
-
-## Tabs Layout
-
-The `tabs-layout` attribute on the **Tabs** component controls the tabs layout. When set to `stretch`, the tabs will stretch to fill the available space. It will have no effect when the tabs are in a vertical orientation.
-
-```html preview full
-<vwc-tabs tabs-layout="stretch">
-	<vwc-tab label="Tab one"></vwc-tab>
-	<vwc-tab label="Tab two"></vwc-tab>
-	<vwc-tab label="Tab three"></vwc-tab>
-	<vwc-tab-panel>Tab Panel one</vwc-tab-panel>
-	<vwc-tab-panel>Tab Panel two</vwc-tab-panel>
-	<vwc-tab-panel>Tab Panel three</vwc-tab-panel>
-</vwc-tabs>
 ```
