@@ -51,10 +51,10 @@ export class Tabs extends VividElement {
 		if (this.$fastController.isConnected) {
 			this.setTabs();
 			this.setTabPanels();
-			this.handleActiveIndicatorPosition();
+			this.#handleActiveIndicatorPosition();
 		}
 
-		this.patchIndicatorStyleTransition();
+		this.#patchIndicatorStyleTransition();
 		if (!this.activeIndicatorRef) return;
 		if (this.orientation === TabsOrientation.vertical) {
 			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
@@ -82,13 +82,27 @@ export class Tabs extends VividElement {
 			);
 			this.setTabs();
 			this.setTabPanels();
-			this.handleActiveIndicatorPosition();
+			this.#handleActiveIndicatorPosition();
 		}
 
-		this.patchIndicatorStyleTransition();
+		this.#patchIndicatorStyleTransition();
 		this.#updateTabsConnotation();
 		this.#scrollToIndex(this.activeTabIndex);
 	}
+
+	#isLastTabSelectedAfterRemove = (
+		oldValue: HTMLElement[],
+		newValue: HTMLElement[],
+		isTab = true
+	) => {
+		return (
+			oldValue.length > newValue.length &&
+			this.activetab.id ===
+				oldValue[oldValue.length - 1].getAttribute(
+					isTab ? 'id' : 'aria-labelledby'
+				)
+		);
+	};
 
 	/**
 	 * @internal
@@ -98,7 +112,7 @@ export class Tabs extends VividElement {
 	/**
 	 * @internal
 	 */
-	tabsChanged(): void {
+	tabsChanged(oldValue: HTMLElement[], newValue: HTMLElement[]): void {
 		if (
 			this.$fastController.isConnected &&
 			this.tabs.length <= this.tabpanels.length
@@ -108,10 +122,12 @@ export class Tabs extends VividElement {
 
 			this.setTabs();
 			this.setTabPanels();
-			this.handleActiveIndicatorPosition();
+			this.#handleActiveIndicatorPosition(
+				!this.#isLastTabSelectedAfterRemove(oldValue, newValue)
+			);
 		}
 
-		this.patchIndicatorStyleTransition();
+		this.#patchIndicatorStyleTransition();
 		this.#updateScrollStatus();
 	}
 
@@ -120,10 +136,11 @@ export class Tabs extends VividElement {
 	 */
 	@observable
 	tabpanels!: HTMLElement[];
+
 	/**
 	 * @internal
 	 */
-	tabpanelsChanged(): void {
+	tabpanelsChanged(oldValue: HTMLElement[], newValue: HTMLElement[]): void {
 		if (
 			this.$fastController.isConnected &&
 			this.tabpanels.length <= this.tabs.length
@@ -133,10 +150,12 @@ export class Tabs extends VividElement {
 
 			this.setTabs();
 			this.setTabPanels();
-			this.handleActiveIndicatorPosition();
+			this.#handleActiveIndicatorPosition(
+				!this.#isLastTabSelectedAfterRemove(oldValue, newValue, false)
+			);
 		}
 
-		this.patchIndicatorStyleTransition();
+		this.#patchIndicatorStyleTransition();
 	}
 
 	/**
@@ -202,14 +221,14 @@ export class Tabs extends VividElement {
 	private setTabs = (): void => {
 		const gridHorizontalProperty = 'gridColumn';
 		const gridVerticalProperty = 'gridRow';
-		const gridProperty = this.isHorizontal()
+		const gridProperty = this.#isHorizontal()
 			? gridHorizontalProperty
 			: gridVerticalProperty;
 
 		this.activeTabIndex = this.getActiveIndex();
 		this.showActiveIndicator = false;
 
-		if (this.isHorizontal()) {
+		if (this.#isHorizontal()) {
 			this.tablist!.style.setProperty(
 				'grid-template-columns',
 				`repeat(${this.tabs.length}, var(${TABLIST_COLUMN}))`
@@ -231,7 +250,7 @@ export class Tabs extends VividElement {
 				tab.setAttribute('aria-selected', isActiveTab ? 'true' : 'false');
 				tab.setAttribute('aria-controls', tabpanelId);
 				tab.addEventListener('click', this.handleTabClick);
-				tab.addEventListener('keydown', this.handleTabKeyDown);
+				tab.addEventListener('keydown', this.#handleTabKeyDown);
 				tab.setAttribute('tabindex', isActiveTab ? '0' : '-1');
 				if (isActiveTab) {
 					this.activetab = tab;
@@ -244,7 +263,7 @@ export class Tabs extends VividElement {
 			tab.style[gridHorizontalProperty] = '';
 			tab.style[gridVerticalProperty] = '';
 			tab.style[gridProperty] = `${index + 1}`;
-			!this.isHorizontal()
+			!this.#isHorizontal()
 				? tab.classList.add('vertical')
 				: tab.classList.remove('vertical');
 		});
@@ -291,12 +310,12 @@ export class Tabs extends VividElement {
 		}
 	};
 
-	private isHorizontal(): boolean {
+	#isHorizontal = (): boolean => {
 		return this.orientation === TabsOrientation.horizontal;
-	}
+	};
 
-	private handleTabKeyDown = (event: KeyboardEvent): void => {
-		if (this.isHorizontal()) {
+	#handleTabKeyDown = (event: KeyboardEvent): void => {
+		if (this.#isHorizontal()) {
 			switch (event.key) {
 				case keyArrowLeft:
 					event.preventDefault();
@@ -351,7 +370,7 @@ export class Tabs extends VividElement {
 		const nextIndex = this.tabs.indexOf(focusableTabs[nextTabIndex]);
 
 		if (nextIndex > -1) {
-			this.moveToTabByIndex(this.tabs, nextIndex);
+			this.#moveToTabByIndex(this.tabs, nextIndex);
 		}
 	}
 
@@ -372,13 +391,13 @@ export class Tabs extends VividElement {
 				this.tabs.length;
 
 			if (this.isFocusableElement(this.tabs[index])) {
-				this.moveToTabByIndex(this.tabs, index);
+				this.#moveToTabByIndex(this.tabs, index);
 				break;
 			}
 		}
 	}
 
-	private moveToTabByIndex = (group: HTMLElement[], index: number) => {
+	#moveToTabByIndex = (group: HTMLElement[], index: number) => {
 		const tab: HTMLElement = group[index] as HTMLElement;
 		this.activetab = tab;
 		this.prevActiveTabIndex = this.activeTabIndex;
@@ -435,16 +454,20 @@ export class Tabs extends VividElement {
 		this.tablist!.parentElement!.dispatchEvent!(new Event('scroll'));
 	}
 
-	/**
-	 * @internal
-	 */
-	patchIndicatorStyleTransition() {
-		if (!this.activetab || !this.activeIndicatorRef) return;
-		if (
+	get #shouldMoveIndicator() {
+		return !(
+			!this.activetab ||
+			!this.activeIndicatorRef ||
 			this.orientation === TabsOrientation.vertical ||
 			!this.showActiveIndicator
-		)
+		);
+	}
+
+	#patchIndicatorStyleTransition() {
+		if (!this.#shouldMoveIndicator) {
 			return;
+		}
+
 		const width = this.activetab.getBoundingClientRect().width;
 		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
 	}
@@ -461,7 +484,7 @@ export class Tabs extends VividElement {
 		const scrollWrapper = this.tablist!.parentElement as HTMLElement;
 		this.#resizeObserver = new ResizeObserver(() => {
 			this.#updateScrollStatus();
-			this.patchIndicatorStyleTransition();
+			this.#patchIndicatorStyleTransition();
 		});
 
 		this.#resizeObserver!.observe(scrollWrapper);
@@ -526,21 +549,21 @@ export class Tabs extends VividElement {
 	@observable _actionItemsSlottedContent: HTMLElement[] = [];
 
 	#getGridProperty() {
-		return this.isHorizontal() ? 'gridColumn' : 'gridRow';
+		return this.#isHorizontal() ? 'gridColumn' : 'gridRow';
 	}
 
 	#getTranslateProperty() {
-		return this.isHorizontal() ? 'translateX' : 'translateY';
+		return this.#isHorizontal() ? 'translateX' : 'translateY';
 	}
 
-	private handleActiveIndicatorPosition() {
+	#handleActiveIndicatorPosition(animate = true) {
 		if (this.showActiveIndicator && this.activeindicator) {
-			this.animateActiveIndicator();
+			this.#animateActiveIndicator(animate);
 		}
 	}
 
-	private animateActiveIndicator() {
-		const offsetProperty = this.isHorizontal() ? 'offsetLeft' : 'offsetTop';
+	#animateActiveIndicator(animate: boolean) {
+		const offsetProperty = this.#isHorizontal() ? 'offsetLeft' : 'offsetTop';
 
 		const currentOffset = this.activeIndicatorRef[offsetProperty];
 		const currentGridValue =
@@ -555,7 +578,11 @@ export class Tabs extends VividElement {
 
 		const relativeOffset = targetOffset - currentOffset;
 		this.activeIndicatorRef.style.transform = `${this.#getTranslateProperty()}(${relativeOffset}px)`;
-		this.activeIndicatorRef.classList.add('activeIndicatorTransition');
+		if (animate) {
+			this.activeIndicatorRef.classList.add('activeIndicatorTransition');
+		} else {
+			this.activeIndicatorRef.classList.remove('activeIndicatorTransition');
+		}
 	}
 
 	/**

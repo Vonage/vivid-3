@@ -1,8 +1,6 @@
-import * as path from 'path';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import {
-	extractHTMLBlocksFromReadme,
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
@@ -10,15 +8,56 @@ import {
 const components = ['radio-group', 'radio'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = extractHTMLBlocksFromReadme(
-		path.join(new URL('.', import.meta.url).pathname, 'README.md')
-	).reduce(
-		(htmlString: string, block: string) =>
-			`${htmlString} <div style="margin: 5px;">${block}</div>`,
-		''
-	);
+	const template = `
+			<style>
+				#wrapper {
+					width: 200px;
+					height: 350px;
+					padding: 12px;
+				}
+				.wrapper-div {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 16px;
+				}
+				</style>
+<div class="wrapper-div">
+<vwc-radio-group label="Pick a number" name="number">
+<vwc-radio label="1" value="1"></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
 
-	page.setViewportSize({ width: 200, height: 800 });
+<vwc-radio-group label="Pick a number" name="number" disabled>
+<vwc-radio label="1" value="1" checked></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
+
+<vwc-radio-group label="Pick a number" name="number" readonly>
+<vwc-radio label="1" value="1" checked></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
+
+<vwc-radio-group label="Pick a number" name="number" orientation="vertical">
+<vwc-radio label="1" value="1"></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
+
+<div role="toolbar" style="display: flex;">
+<vwc-button label="Before"></vwc-button>
+<vwc-radio-group>
+<vwc-radio label="1" value="1"></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
+<vwc-button label="After"></vwc-button>
+</div>
+</div>`;
+
+	page.setViewportSize({ width: 200, height: 350 });
 
 	await loadComponents({
 		page,
