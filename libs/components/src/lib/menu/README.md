@@ -271,7 +271,7 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
 <vwc-note connotation="information" icon="info-solid">
 <p>When setting a value to the <code>max-inline-size</code> - make sure the menu is OK in small resolutions as well. </p>
-<p>In mobile, the <code>max-inline-size</code> is <code>280px</code> by default, but can be changed with the css-variable. </p>
+<p>In mobile, the <code>max-inline-size</code> is <code>300px</code> by default, but can be changed with the css-variable. </p>
 </vwc-note>
 
 ```html preview 150px
