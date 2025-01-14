@@ -15,9 +15,16 @@
 	gap: 8px;
 	inline-size: max-content;
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
-	max-inline-size: var(#{variables.$menu-max-inline-size});
 	min-inline-size: var(#{variables.$menu-min-inline-size});
 	padding-block: 8px;
+
+	@media not all and (width >= 600px) {
+		max-inline-size: var(#{variables.$menu-max-inline-size}, 300px);
+	}
+
+	@media (width >= 600px) {
+		max-inline-size: var(#{variables.$menu-max-inline-size});
+	}
 }
 
 ::slotted(a) {
