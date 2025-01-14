@@ -46,6 +46,44 @@ async function testAbsolutStrategy({ page }: { page: Page }) {
 	);
 }
 
+async function testMobileInlineSize({ page }: { page: Page }) {
+	const template = `
+<style>
+			.wrapper {
+				width: 360px;
+				height: 400px;
+			}
+		</style>
+<div class="wrapper">
+ <vwc-menu open placement="bottom-start" >
+	<vwc-button slot="anchor" label="Menu" appearance="outlined"></vwc-button>
+  <vwc-menu-item text="Menu item 1 with long text that gets ellipsis"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2 with long text that gets ellipsis"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 3 with long text that gets ellipsis"></vwc-menu-item>
+ </vwc-menu>
+</div>`;
+
+	page.setViewportSize({ width: 360, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'snapshots/mobile-menu.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
@@ -89,3 +127,4 @@ test('should show the component', async ({ page }: { page: Page }) => {
 });
 
 test('menu with absolute strategy', testAbsolutStrategy);
+test('menu with max-inline-size in mobile', testMobileInlineSize);
