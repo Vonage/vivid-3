@@ -205,14 +205,14 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 
 <div class="table-wrapper">
 
-| Name            | Type                                                        | Description                      |
-| --------------- | ----------------------------------------------------------- | -------------------------------- |
-| **appearance**  | Enum\_: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance    |
-| **connotation** | Enum\_: `accent` (default), `cta`                           | Sets the element's connotation   |
-| **icon**        | `string`                                                    | Sets the element's icon          |
-| **initials**    | `string`                                                    | Sets the initials on the Avatar  |
-| **shape**       | Enum\_: `rounded` (default), `pill`                         | Sets the element's border-radius |
-| **size**        | Enum\_: `condensed`, `normal` (default), `expanded`         | Sets the element's text          |
+| Name          | Type                                                      | Description                      |
+| ------------- | --------------------------------------------------------- | -------------------------------- |
+| `appearance`  | Enum: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance    |
+| `connotation` | Enum: `accent` (default), `cta`                           | Sets the element's connotation   |
+| `icon`        | `string`                                                  | Sets the element's icon          |
+| `initials`    | `string`                                                  | Sets the initials on the Avatar  |
+| `shape`       | Enum: `rounded` (default), `pill`                         | Sets the element's border-radius |
+| `size`        | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's text          |
 
 </div>
 
