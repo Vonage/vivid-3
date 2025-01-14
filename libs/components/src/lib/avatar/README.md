@@ -205,14 +205,14 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 
 <div class="table-wrapper">
 
-| Name           | Type                                      | Description                   |
-| -------------- | ----------------------------------------- | ----------------------------- |
-| **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
-| **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
-| **headline**   | `string`                                  | Sets the element's headline   |
-| **icon**       | `string`                                  | Sets the element's icon       |
-| **subtitle**   | `string`                                  | Sets the element's subtitle   |
-| **text**       | `string`                                  | Sets the element's text       |
+| Name            | Type                                                        | Description                      |
+| --------------- | ----------------------------------------------------------- | -------------------------------- |
+| **appearance**  | Enum\_: `filled` (default), `duotone`, `outlined`, `subtle` | Sets the element's appearance    |
+| **connotation** | Enum\_: `accent` (default), `cta`                           | Sets the element's connotation   |
+| **icon**        | `string`                                                    | Sets the element's icon          |
+| **initials**    | `string`                                                    | Sets the initials on the Avatar  |
+| **shape**       | Enum\_: `rounded` (default), `pill`                         | Sets the element's border-radius |
+| **size**        | Enum\_: `condensed`, `normal` (default), `expanded`         | Sets the element's text          |
 
 </div>
 
@@ -220,12 +220,8 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 
 <div class="table-wrapper">
 
-| Name        | Description                                                  |
-| ----------- | ------------------------------------------------------------ |
-| **Graphic** | Add graphic element to card. Overrides the icon property     |
-| **Media**   | Use to display images or video content above the card header |
-| **Meta**    | Use for adding action content, of info in the card header    |
-| **Footer**  | Content in the card footer.                                  |
-| **Main**    | Override a card's predefined template                        |
+| Name        | Description                                              |
+| ----------- | -------------------------------------------------------- |
+| **Graphic** | Add graphic element to card. Overrides the icon property |
 
 </div>
