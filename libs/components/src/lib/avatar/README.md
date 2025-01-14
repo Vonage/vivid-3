@@ -48,7 +48,6 @@ registerAvatar('your-prefix');
 
 Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustration etc.) on the Avatar.
 
-
 ```html preview
 <vwc-avatar shape="pill" connotation="cta">
 	<img
@@ -199,7 +198,6 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 	</svg>
 </vwc-avatar>
 ```
-
 
 ## API Reference
 
