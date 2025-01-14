@@ -409,8 +409,13 @@
 	},
 	{
 		"title": "Audio Player",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/audio-player/README.md"
+		"description": "Audio Player is a component used to play audio files. It is based on the HTML5 audio element.",
+		"variations": "./libs/components/src/lib/audio-player/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/audio-player/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/audio-player/README.md",
+		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/audio-player/USE-CASES.md"
 	},
 	{
 		"title": "Dial Pad",

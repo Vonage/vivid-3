@@ -17,7 +17,7 @@ Use the `src` attribute to add source to the audio-player.
 
 ```html preview
 <vwc-audio-player
-	src="https://download.samplelib.com/mp3/sample-6s.mp3"
+	src="https://www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
 ></vwc-audio-player>
 ```
 
