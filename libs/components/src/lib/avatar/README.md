@@ -1,106 +1,53 @@
-# Avatar
+## Usage
 
-Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/avatar';</script>
+import '@vonage/vivid/avatar';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerAvatar } from '@vonage/vivid';
+
+registerAvatar('your-prefix');
 ```
 
 ```html preview
-<vwc-avatar aria-label="avatar"></vwc-avatar>
+<script type="module">
+	import { registerAvatar } from '@vonage/vivid';
+	registerAvatar('your-prefix');
+</script>
+
+<your-prefix-avatar></your-prefix-text-avatar>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Icon
+```html
+<script setup lang="ts">
+	import { VAvatar } from '@vonage/vivid-vue';
+</script>
 
-Use `icon` to set an icon to the avatar.
-View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
-
-Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the avatar.
-
-- Type: `string`
-- Default: `user-line`
-
-```html preview
-<vwc-avatar icon="group-2-solid"></vwc-avatar>
+<template>
+	<VAvatar />
+</template>
 ```
 
-### Initials
-
-Set the `initials` attribute to set avatar's initials. This will cause the avatar to present the initials as its content instead of an icon.
-
-- Type: `string`
-- Default: `none`
-
-```html preview
-<vwc-avatar initials="JD"></vwc-avatar>
-```
-
-### Appearance
-
-Set the `appearance` attribute to change the avatar's appearance.
-
-- Type: `'filled'` | `'duotone'` | `'outlined'`| `'subtle'`
-- Default: `'filled'`
-
-```html preview
-<vwc-avatar appearance="filled"></vwc-avatar>
-<vwc-avatar appearance="duotone"></vwc-avatar>
-<vwc-avatar appearance="outlined"></vwc-avatar>
-<vwc-avatar appearance="subtle"></vwc-avatar>
-```
-
-### Connotation
-
-Use the `connotation` attribute to set the avatar's color.
-
-- Type: `'accent'` | `'cta'`
-- Default: `'accent'`
-
-```html preview
-<vwc-avatar connotation="accent"></vwc-avatar>
-<vwc-avatar connotation="cta"></vwc-avatar>
-<vwc-avatar connotation="accent" appearance="duotone"></vwc-avatar>
-<vwc-avatar connotation="cta" appearance="duotone"></vwc-avatar>
-<vwc-avatar connotation="accent" appearance="outlined"></vwc-avatar>
-<vwc-avatar connotation="cta" appearance="outlined"></vwc-avatar>
-<vwc-avatar connotation="accent" appearance="subtle"></vwc-avatar>
-<vwc-avatar connotation="cta" appearance="subtle"></vwc-avatar>
-```
-
-### Shape
-
-Use the `shape` attribute to change the avatar's edges.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview
-<vwc-avatar shape="rounded"></vwc-avatar> <vwc-avatar shape="pill"></vwc-avatar>
-```
-
-### Size
-
-Use the `size` attribute/property to set the avatar's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'normal'`
-
-```html preview
-<vwc-avatar size="condensed" initials="JD"></vwc-avatar>
-<vwc-avatar size="normal" initials="JD"></vwc-avatar>
-<vwc-avatar size="expanded" initials="JD"></vwc-avatar>
-<vwc-avatar size="condensed" shape="pill"></vwc-avatar>
-<vwc-avatar size="normal" shape="pill"></vwc-avatar>
-<vwc-avatar size="expanded" shape="pill"></vwc-avatar>
-```
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
 ### Graphic
 
-Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. image, illustration etc).
+Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustration etc.) on the Avatar.
+
 
 ```html preview
 <vwc-avatar shape="pill" connotation="cta">
@@ -253,9 +200,34 @@ Assign nodes to the `graphic` slot to set a graphic media of any kind (e.g. imag
 </vwc-avatar>
 ```
 
-## Accessibility
 
-It's generally a good idea to include an `aria-label` attribute on elements that are important for a user to be able to interact with or understand its purpose.
-You could use an aria-label attribute like "Profile avatar" or "User profile picture" to describe the purpose of the avatar.
+## API Reference
 
-If your avatar is purely decorative and is not interactive, then you can use the `role="presentation"` attribute to indicate that the element is purely decorative, and should be ignored by assistive technologies such as screen readers.
+### Properties
+
+<div class="table-wrapper">
+
+| Name           | Type                                      | Description                   |
+| -------------- | ----------------------------------------- | ----------------------------- |
+| **appearance** | `elevated` (default), `outlined`, `ghost` | Sets the element's appearance |
+| **elevation**  | `2`, `4` (default), `8`, `12`, `16`, `24` | Sets the element's elevation  |
+| **headline**   | `string`                                  | Sets the element's headline   |
+| **icon**       | `string`                                  | Sets the element's icon       |
+| **subtitle**   | `string`                                  | Sets the element's subtitle   |
+| **text**       | `string`                                  | Sets the element's text       |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name        | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| **Graphic** | Add graphic element to card. Overrides the icon property     |
+| **Media**   | Use to display images or video content above the card header |
+| **Meta**    | Use for adding action content, of info in the card header    |
+| **Footer**  | Content in the card footer.                                  |
+| **Main**    | Override a card's predefined template                        |
+
+</div>
