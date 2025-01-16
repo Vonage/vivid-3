@@ -169,9 +169,9 @@ The audio can be played and paused programatically using the `play()` and `pause
 </script>
 ```
 
-## CSS Variables
+## Styles
 
-### Max-Inline-Size
+### Inline Size (Width)
 
 By default, Audio Player's `max-inline-size` is`100%`.
 You can specify a different value with setting `max-inline-size` on the `vwc-audio-player.`
