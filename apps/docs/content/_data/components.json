@@ -414,8 +414,7 @@
 		"guidelines": "./libs/components/src/lib/audio-player/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/audio-player/README.md",
-		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/audio-player/USE-CASES.md"
+		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Dial Pad",
