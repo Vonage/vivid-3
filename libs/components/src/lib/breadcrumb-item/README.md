@@ -35,3 +35,16 @@ Use the `text` attribute to set the breadcrumb-item's text.
 	<vwc-breadcrumb-item text="Breadcrumb"></vwc-breadcrumb-item>
 </vwc-breadcrumb>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name   | Type     | Description                      |
+| ------ | -------- | -------------------------------- |
+| `text` | `string` | Sets the **bradcrumn-item** text |
+| `href` | `string` | Sets the **bradcrumn-item** href |
+
+</div>
