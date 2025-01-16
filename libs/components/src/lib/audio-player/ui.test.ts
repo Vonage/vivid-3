@@ -124,7 +124,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			class="audio-player"
 			src="https://download.samplelib.com/mp3/sample-6s.mp3"
 		></vwc-audio-player>
-	</div>`
+	</div>`;
 
 	page.setViewportSize({ width: 800, height: 1000 });
 
