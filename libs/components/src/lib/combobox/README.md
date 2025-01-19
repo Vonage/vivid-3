@@ -60,14 +60,14 @@ By default, the Combobox's `width` is `fit-content` and the same goes for the li
 You can specify the `width` of the Combobox using CSS.
 
 ```html preview 230px
-<vwc-combobox label="Choose one option">
+<vwc-combobox class="vwc-combobox" label="Choose one option">
 	<vwc-option value="1" text="Option 1: dogs"></vwc-option>
 	<vwc-option value="2" text="Option 2: cats"></vwc-option>
 	<vwc-option value="3" text="Option 3: dogs and cats"></vwc-option>
 </vwc-combobox>
 
 <style>
-	vwc-combobox {
+	.vwc-combobox {
 		width: 140px;
 	}
 </style>
@@ -103,10 +103,8 @@ The `open` attribute allows the Combobox to be opened programmatically.
 
 ## Value
 
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-Set the `value` attribute to set the default value for the input field. Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
+Set the `value` attribute to set the default value for the input field.  
+Setting the property on the element will not change the default value, but will change the value shown in the view as well as the submitted value in a form (imitating the native behavior).
 
 ```html preview 200px
 <vwc-combobox value="First Option">
@@ -117,8 +115,8 @@ Set the `value` attribute to set the default value for the input field. Setting 
 
 ## Autocomplete
 
-- Type: `'inline'` | `'list'` | `'both'` | `'none'`
-- Default: `undefined`
+Setting `autocomplete` will add `aria-autocomplete` to the control.  
+Autocomplete types: `'inline'`, `'list'`, `'both'`, `'none'`.
 
 See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) for more information.
 
@@ -166,26 +164,17 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name               | Type                          | Description                                                                                        |
-| ------------------ | ----------------------------- | -------------------------------------------------------------------------------------------------- |
-| **appearance**     | `fieldset` (default), `ghost` | Sets the element's appearance                                                                      |
-| **disabled**       | `boolean`                     | Sets the element's disabled state. A disabled element will not be included during form submission. |
-| **fixed-dropdown** | `boolean`                     | Sets the position strategy of the dropdown to fixed                                                |
-| **label**          | `string`                      | Sets the element's label                                                                           |
-| **open**           | `boolean`                     | Sets the element's menu to be open                                                                 |
-| **placeholder**    | `string`                      | Sets the text to be displayed when no option is selected                                           |
-
-</div>
-
-## NOT SURE WHAT THEY ARE :) - TBD
-
-<div class="table-wrapper">
-
-| Name              | Type       | Default     | Description                                                      |
-| ----------------- | ---------- | ----------- | ---------------------------------------------------------------- |
-| `options`         | `Option[]` | `[]`        | A read-only list of options.                                     |
-| `selectedOptions` | `Option[]` | `[]`        | A read-only collection of the selected options.                  |
-| `selectedIndex`   | `number`   | `undefined` | The index of the selected option or -1 if no option is selected. |
+| Name              | Type                          | Description                                                                                        |
+| ----------------- | ----------------------------- | -------------------------------------------------------------------------------------------------- |
+| `appearance`      | `fieldset` (default), `ghost` | Sets the element's appearance                                                                      |
+| `disabled`        | `boolean`                     | Sets the element's disabled state. A disabled element will not be included during form submission. |
+| `fixed-dropdown`  | `boolean`                     | Sets the position strategy of the dropdown to fixed                                                |
+| `label`           | `string`                      | Sets the element's label                                                                           |
+| `open`            | `boolean`                     | Sets the element's menu to be open                                                                 |
+| `options`         | `Option[]`                    | A read-only list of options.                                                                       |
+| `placeholder`     | `string`                      | Sets the text to be displayed when no option is selected                                           |
+| `selectedOptions` | `Option[]`                    | A read-only collection of the selected options.                                                    |
+| `selectedIndex`   | `number`                      | The index of the selected option or -1 if no option is selected.                                   |
 
 </div>
 
