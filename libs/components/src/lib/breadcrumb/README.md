@@ -58,3 +58,16 @@ registerBreadcrumbItem('your-prefix');
 
 </vwc-tab-panel>
 </vwc-tabs>
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name   | Type     | Description                      |
+| ------ | -------- | -------------------------------- |
+| `text` | `string` | Sets the **bradcrumn-item** text |
+| `href` | `string` | Sets the **bradcrumn-item** href |
+
+</div>
