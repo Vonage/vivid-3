@@ -2,7 +2,7 @@
 
 ```html preview
 <vwc-audio-player
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 ```
 
@@ -13,7 +13,7 @@ The `notime` attributes removes the time stamp from the rendered component.
 ```html preview
 <vwc-audio-player
 	notime
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 ```
 
@@ -24,17 +24,17 @@ Use the `skip-by` attribute to add skip buttons to the Audio Player. The attribu
 ```html preview
 <vwc-audio-player
 	skip-by="5"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <vwc-audio-player
 	skip-by="10"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <vwc-audio-player
 	skip-by="30"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 ```
 
@@ -45,7 +45,7 @@ Playback rates can be modified by passing a comma separated string of numbers to
 ```html preview 270px
 <vwc-audio-player
 	playback-rates="0.5, 1, 1.5, 2"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 >
 </vwc-audio-player>
 ```
@@ -57,7 +57,7 @@ The `connotation` attribute sets the audio-player's color. In the example below 
 ```html preview
 <vwc-audio-player
 	connotation="cta"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 ```
 
@@ -68,6 +68,6 @@ The `disabled` attribute disables the audio-player.
 ```html preview
 <vwc-audio-player
 	disabled
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3ßß"
 ></vwc-audio-player>
 ```

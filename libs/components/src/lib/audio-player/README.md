@@ -23,7 +23,7 @@ registerAudioPlayer('your-prefix');
 </script>
 
 <your-prefix-audio-player
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></your-prefix-audio-player>
 ```
 
@@ -49,7 +49,7 @@ Use the `src` attribute to add an audio track to the Audio Player.
 
 ```html preview
 <vwc-audio-player
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 ```
 
@@ -60,7 +60,7 @@ Use the `currentTime` property change or get the Audio Player's current time. Th
 ```html preview
 <vwc-audio-player
 	id="audio"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <vwc-button
@@ -94,7 +94,7 @@ The `duration` property indicates the duration of the loaded audio. The property
 <vwc-audio-player
 	notime
 	id="audio"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <vwc-button
@@ -121,7 +121,7 @@ The `paused` property indicates if the player is currently paused or not. The pr
 ```html preview
 <vwc-audio-player
 	id="audio"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <vwc-button
@@ -148,7 +148,7 @@ The audio can be played and paused programatically using the `play()` and `pause
 ```html preview
 <vwc-audio-player
 	id="audio"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <vwc-button id="control" label="Play" appearance="outlined"></vwc-button>
@@ -181,7 +181,7 @@ You can specify a different value with setting `max-inline-size` on the `vwc-aud
 	playback-rates="0.75, 1, 1.5"
 	skip-by="5"
 	class="audio-player"
-	src="//www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 
 <style>
@@ -190,3 +190,25 @@ You can specify a different value with setting `max-inline-size` on the `vwc-aud
 	}
 </style>
 ```
+
+## API Reference
+
+### Properties
+
+| Name               | Type                           | Description                                                 |
+| ------------------ | ------------------------------ | ----------------------------------------------------------- |
+| **connotation**    | `accent` (default), `cta`      | Sets the color of the audio player                          |
+| **currentTime**    | `number`                       | Get and set the current time                                |
+| **disabled**       | `boolean`                      | Sets the disabled state of the audio player                 |
+| **duration**       | `number`                       | Get the duration (in seconds) of the audio                  |
+| **notime**         | `boolean`                      | Hides the time stamp                                        |
+| **paused**         | `boolean`                      | Returns the paused state of the audio                       |
+| **playback-rates** | `string`                       | Comma separated string of numbers to define playback speeds |
+| **skip-by**        | `0` (default), `5`, `10`, `30` | Sets the amount of seconds to skip the audio by             |
+
+### Methods
+
+| Name      | Description      |
+| --------- | ---------------- |
+| **play**  | Plays the audio  |
+| **pause** | Pauses the audio |
