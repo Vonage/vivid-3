@@ -29,9 +29,6 @@ const parseManifest = (fileName: string): schema.Declaration[] => {
 const vividDeclarations = parseManifest(
 	'../../dist/libs/components/custom-elements.json'
 );
-const fastDeclarations = parseManifest(
-	'../../node_modules/@microsoft/fast-foundation/dist/custom-elements.json'
-);
 
 const findClassDeclaration = (
 	declarations: schema.Declaration[],
