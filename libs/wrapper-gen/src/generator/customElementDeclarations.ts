@@ -146,7 +146,7 @@ and don't support IDL attribute binding.`,
 			},
 		],
 		superclass: {
-			name: 'FoundationElement',
+			name: 'VividElement',
 		},
 		customElement: true,
 	};
@@ -210,7 +210,7 @@ const resolveComponentDeclaration = (
 	if (className.startsWith('FormAssociated')) {
 		// Form associated classes (FormAssociatedButton etc.) are not exported in the manifest
 		declaration = getFastFormAssociatedDeclaration(className);
-	} else if (className === 'FoundationElement') {
+	} else if (className === 'VividElement') {
 		// This is the base class for all elements
 		declaration = BaseElementDeclaration;
 	} else {
@@ -236,23 +236,7 @@ const resolveComponentDeclaration = (
 	if (declaration.superclass) {
 		let superclassDeclaration: Declaration;
 
-		if (declaration.superclass.package === '@microsoft/fast-foundation') {
-			// Inherits from FAST
-
-			// Remove prefixes added by Vivid
-			let fastClassName = declaration.superclass.name
-				.replace('Foundation', '')
-				.replace('Fast', '')
-				.replace('FAST', '');
-			// Fix inconsistent names:
-			if (fastClassName === 'Textfield') fastClassName = 'TextField';
-			if (fastClassName === 'Element') fastClassName = 'FoundationElement';
-
-			superclassDeclaration = resolveComponentDeclaration(
-				fastDeclarations,
-				fastClassName
-			);
-		} else if (!declaration.superclass.package) {
+		if (!declaration.superclass.package) {
 			// Inherit within the same package
 			superclassDeclaration = resolveComponentDeclaration(
 				packageDeclarations,
