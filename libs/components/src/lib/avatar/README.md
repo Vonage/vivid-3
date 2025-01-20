@@ -211,8 +211,8 @@ Use the `graphic` slot to set a graphic media of any kind (e.g. image, illustrat
 | `connotation` | Enum: `accent` (default), `cta`                           | Sets the element's connotation   |
 | `icon`        | `string`                                                  | Sets the element's icon          |
 | `initials`    | `string`                                                  | Sets the initials on the Avatar  |
-| `shape`       | Enum: `rounded` (default), `pill`                         | Sets the element's border-radius |
-| `size`        | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's text          |
+| `shape`       | Enum: `rounded` (default), `pill`                         | Sets the element's shape |
+| `size`        | Enum: `condensed`, `normal` (default), `expanded`         | Sets the element's size         |
 
 </div>
 
