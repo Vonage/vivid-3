@@ -90,6 +90,12 @@ describe('vwc-combobox', () => {
 		});
 	});
 
+	describe('input', () => {
+		it('should have autocomplete attribute set of "off"', async () => {
+			expect(getControl().getAttribute('autocomplete')).toBe('off');
+		});
+	});
+
 	describe('open', function () {
 		it('should toggle open when clicked', async () => {
 			expect(element.open).toEqual(false);

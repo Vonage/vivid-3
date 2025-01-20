@@ -43,6 +43,7 @@ function renderInput(context: VividElementDefinitionContext) {
 		<div class="fieldset">
 			<input
 				id="control"
+				autocomplete="off"
 				class="control"
 				aria-activedescendant="${(x) =>
 					x.open ? x.ariaActiveDescendant : null}"
