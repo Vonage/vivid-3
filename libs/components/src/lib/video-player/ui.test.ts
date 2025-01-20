@@ -11,7 +11,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
 			.layout {
-				max-width: 800px;
+				max-width: 760px;
 				padding: 8px;
 			}
 			.spacer {

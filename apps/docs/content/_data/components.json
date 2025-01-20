@@ -302,8 +302,14 @@
 	},
 	{
 		"title": "Combobox",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/combobox/README.md"
+		"description": "Combobox contains a free text input for filtering options along with a similar behavior to a Select.",
+		"variations": "./libs/components/src/lib/combobox/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/combobox/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/combobox/README.md",
+		"accessibility": "./libs/components/src/lib/combobox/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/combobox/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Elevation",
