@@ -318,12 +318,6 @@
 		"markdown": "./libs/components/src/lib/popup/README.md"
 	},
 	{
-		"title": "Listbox",
-		"page": "legacy",
-		"status": "underlying",
-		"markdown": "./libs/components/src/lib/listbox/README.md"
-	},
-	{
 		"title": "Select",
 		"description": "Select lets users choose one option from an options menu. Consider using select when you have 4 or more options to choose from.",
 		"variations": "./libs/components/src/lib/select/VARIATIONS.md",
