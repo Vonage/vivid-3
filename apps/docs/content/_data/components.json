@@ -234,8 +234,7 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/avatar/README.md",
 		"accessibility": "./libs/components/src/lib/avatar/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/avatar/USE-CASES.md",
-		"hideUseCases": "true"
+		"useCases": "./libs/components/src/lib/avatar/USE-CASES.md"
 	},
 	{
 		"title": "Text Area",
