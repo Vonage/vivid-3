@@ -36,15 +36,13 @@
 	},
 	{
 		"title": "Breadcrumb",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": ["Breadcrumb Item"]
-	},
-	{
-		"title": "Breadcrumb Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-		"parent": "Breadcrumb"
+		"description": "Links showing the position of the current page within the navigational hierarchy.",
+		"variations": "./libs/components/src/lib/breadcrumb/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/breadcrumb/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/breadcrumb/README.md",
+		"accessibility": "./libs/components/src/lib/breadcrumb/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/breadcrumb/USE-CASES.md"
 	},
 	{
 		"title": "Button",
