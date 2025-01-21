@@ -11,31 +11,7 @@ import { Connotation } from '../enums';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { getDirection } from '../../shared/foundation/utilities/direction';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-
-export const MenuItemRole = {
-	menuitem: 'menuitem',
-	menuitemcheckbox: 'menuitemcheckbox',
-	menuitemradio: 'menuitemradio',
-	presentation: 'presentation',
-} as const;
-
-/**
- * The types for menu item roles
- * @public
- */
-export type MenuItemRole = typeof MenuItemRole[keyof typeof MenuItemRole];
-
-/**
- * @internal
- */
-export const roleForMenuItem: {
-	[value in keyof typeof MenuItemRole]: typeof MenuItemRole[value];
-} = {
-	[MenuItemRole.menuitem]: 'menuitem',
-	[MenuItemRole.menuitemcheckbox]: 'menuitemcheckbox',
-	[MenuItemRole.menuitemradio]: 'menuitemradio',
-	[MenuItemRole.presentation]: 'presentation',
-};
+import { MenuItemRole } from './menu-item-role';
 
 export enum CheckAppearance {
 	Normal = 'normal',

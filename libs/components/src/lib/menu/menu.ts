@@ -8,10 +8,10 @@ import {
 	keyHome,
 } from '@microsoft/fast-web-utilities';
 import { type Anchored, anchored } from '../../shared/patterns/anchored';
-import { roleForMenuItem } from '../menu-item/menu-item';
-import { MenuItem, MenuItemRole } from '../menu-item/menu-item';
+import { MenuItem } from '../menu-item/menu-item';
 import type { Popup } from '../popup/popup';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { MenuItemRole, roleForMenuItem } from '../menu-item/menu-item-role';
 
 /**
  * @public
