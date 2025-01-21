@@ -148,7 +148,10 @@
 		@include scrollbar.scrollbar;
 
 		& {
-			#{variables.$video-player-neutral-950}: #fff;
+			#{variables.$video-player-neutral-950}: light-dark(
+				var(--vvd-color-canvas),
+				var(--vvd-color-canvas-text)
+			);
 		}
 
 		&-button {
