@@ -11,8 +11,13 @@
 	},
 	{
 		"title": "Badge",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/badge/README.md"
+		"description": "A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.",
+		"variations": "./libs/components/src/lib/badge/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/badge/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/badge/README.md",
+		"accessibility": "./libs/components/src/lib/badge/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/badge/USE-CASES.md"
 	},
 	{
 		"title": "Banner",
@@ -36,15 +41,13 @@
 	},
 	{
 		"title": "Breadcrumb",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": ["Breadcrumb Item"]
-	},
-	{
-		"title": "Breadcrumb Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-		"parent": "Breadcrumb"
+		"description": "Links showing the position of the current page within the navigational hierarchy.",
+		"variations": "./libs/components/src/lib/breadcrumb/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/breadcrumb/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/breadcrumb/README.md",
+		"accessibility": "./libs/components/src/lib/breadcrumb/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/breadcrumb/USE-CASES.md"
 	},
 	{
 		"title": "Button",
@@ -95,26 +98,23 @@
 	},
 	{
 		"title": "Side Drawer",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/side-drawer/README.md"
+		"description": "",
+		"variations": "./libs/components/src/lib/side-drawer/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/side-drawer/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/side-drawer/README.md",
+		"accessibility": "./libs/components/src/lib/side-drawer/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/side-drawer/USE-CASES.md"
 	},
 	{
-		"title": "Nav",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav/README.md",
-		"children": ["Nav Item", "Nav Disclosure"]
-	},
-	{
-		"title": "Nav Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav-item/README.md",
-		"parent": "Nav"
-	},
-	{
-		"title": "Nav Disclosure",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav-disclosure/README.md",
-		"parent": "Nav"
+		"title": "Navigation",
+		"description": "A navigation component makes it easy for users to navigate through your application. Nav accepts Nav Item and Nav Disclosure elements as children.",
+		"variations": "./libs/components/src/lib/nav/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/nav/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/nav/README.md",
+		"accessibility": "./libs/components/src/lib/nav/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/nav/USE-CASES.md"
 	},
 	{
 		"title": "Tooltip",
@@ -174,8 +174,13 @@
 	},
 	{
 		"title": "Action Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/action-group/README.md"
+		"description": "The action group component should be used when you have a set of related actions or options that need to be grouped together within a limited space.",
+		"variations": "./libs/components/src/lib/action-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/action-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/action-group/README.md",
+		"accessibility": "./libs/components/src/lib/action-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/action-group/USE-CASES.md"
 	},
 	{
 		"title": "Note",
@@ -231,20 +236,24 @@
 	},
 	{
 		"title": "Text Area",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/text-area/README.md"
+		"description": "The Text Area component enables users to input longer, multi-line text when more extensive text entry is required.",
+		"variations": "./libs/components/src/lib/text-area/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/text-area/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/text-area/README.md",
+		"accessibility": "./libs/components/src/lib/text-area/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/text-area/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Radio Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio-group/README.md",
-		"children": ["Radio"]
-	},
-	{
-		"title": "Radio",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/radio/README.md",
-		"parent": "Radio Group"
+		"description": "A radio group is a collection of Radio buttons where only one choice can be selected.",
+		"variations": "./libs/components/src/lib/radio-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/radio-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/radio-group/README.md",
+		"accessibility": "./libs/components/src/lib/radio-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/radio-group/USE-CASES.md"
 	},
 	{
 		"title": "Option",
@@ -269,9 +278,14 @@
 	},
 	{
 		"title": "Slider",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/slider/README.md",
-		"children": ["Range Slider"]
+		"description": "Allows users to choose from a range of values along a horizontal or vertical line",
+		"variations": "./libs/components/src/lib/slider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/slider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/slider/README.md",
+		"accessibility": "./libs/components/src/lib/slider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/slider/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Tabs",
@@ -285,8 +299,14 @@
 	},
 	{
 		"title": "Combobox",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/combobox/README.md"
+		"description": "Combobox contains a free text input for filtering options along with a similar behavior to a Select.",
+		"variations": "./libs/components/src/lib/combobox/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/combobox/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/combobox/README.md",
+		"accessibility": "./libs/components/src/lib/combobox/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/combobox/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Elevation",
@@ -377,10 +397,14 @@
 	},
 	{
 		"title": "Range Slider",
-		"page": "legacy",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/range-slider/README.md",
-		"parent": "Slider"
+		"description": "Allows users to select a range. It includes two thumb controls that can be dragged to set the start and end values.",
+		"variations": "./libs/components/src/lib/range-slider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/range-slider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/range-slider/README.md",
+		"accessibility": "./libs/components/src/lib/range-slider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md",
+		"status": "alpha"
 	},
 	{
 		"title": "Split Button",

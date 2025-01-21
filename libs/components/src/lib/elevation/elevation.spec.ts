@@ -64,6 +64,22 @@ describe('vwc-elevation', () => {
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
 	});
 
+	describe('no position', () => {
+		it('should add class .not-relative to .base if no-position attribute is added o host', async () => {
+			element.notRelative = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('.not-relative'));
+		});
+	});
+
+	describe('no shadow', () => {
+		it('should add class .no-shadow to .base if no-shadow attribute is added o host', async () => {
+			element.notRelative = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('.no-shadow'));
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
