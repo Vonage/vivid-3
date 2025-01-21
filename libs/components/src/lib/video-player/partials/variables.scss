@@ -1,4 +1,3 @@
-// setting variables with hard-coded color, since design required both dark & light be the same
 $video-player-neutral-900: light-dark(
 	var(--vvd-color-neutral-900),
 	var(--vvd-color-neutral-50)
@@ -12,6 +11,7 @@ $video-player-canvas-text: light-dark(
 	var(--vvd-color-canvas),
 	var(--vvd-color-canvas-text)
 );
+// setting variables with hard-coded color, since design required both dark & light be the same, and #0d0d0d is not set in both themes.
 $video-player-canvas: #0d0d0d;
 $video-player-canvas-opacity: #0d0d0dcc;
 $video-player-color-surface-4dp: linear-gradient(#ffffff14, #ffffff14), #0d0d0d;
