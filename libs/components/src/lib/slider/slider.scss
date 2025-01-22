@@ -120,6 +120,7 @@ $track-thickness: 2px;
 				(var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) /
 					2
 			);
+			overflow: hidden;
 			block-size: 100%;
 			inline-size: $track-thickness;
 
@@ -256,8 +257,8 @@ $track-thickness: 2px;
 	font: var(#{constants.$vvd-typography-base-bold});
 }
 
-
 /* Customize for Audio-Player */
+/* stylelint-disable */
 :host([internal-part]) {
 	.thumb-container {
 		opacity: 0;
@@ -266,9 +267,9 @@ $track-thickness: 2px;
 	.control {
 		&.horizontal {
 			.track {
+				top: 16px;
 				block-size: 4px;
 			}
-
 		}
 
 		&:hover,
@@ -279,3 +280,4 @@ $track-thickness: 2px;
 		}
 	}
 }
+/* stylelint-enable */

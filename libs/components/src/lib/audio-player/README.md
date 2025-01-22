@@ -5,15 +5,22 @@ The `vwc-audio-player` component is used to play audio files. It is based on the
 ```js
 <script type="module">import '@vonage/vivid/audio-player';</script>
 ```
+
 ## Knob Opacity
 
 ```html preview
-<vwc-audio-player style="max-inline-size: 500px;"
+<p>Native Audio Player</p>
+<audio
+	style="width: 90%;"
+	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
+	controls
+></audio>
+<p>Vivid Audio Player</p>
+<vwc-audio-player
+	style="max-inline-size: 500px;"
 	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
-<audio style="width: 90%;" src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3" controls></audio>
 ```
-
 
 ## Members
 
