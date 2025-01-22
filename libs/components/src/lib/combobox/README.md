@@ -53,6 +53,32 @@ registerCombobox('your-prefix');
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Autocomplete
+
+The `autocomplete` attribute controls the auto-complete behaviour.
+
+- `inline` means the auto-complete takes place by string matching in the input element
+- `list` means the auto-complete takes place by filtering the list in drop down
+- `both` means both of the above behaviours take place
+- `none` disables the auto-complete behaviour
+
+See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) for more information.
+
+```html preview 200px
+<vwc-combobox label="Inline" autocomplete="inline">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+<vwc-combobox label="List" autocomplete="list">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+<vwc-combobox label="Both" autocomplete="both">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+```
+
 ## Custom Width
 
 By default, the Combobox's `width` is `fit-content` and the same goes for the listbox containing the options.
@@ -108,20 +134,6 @@ Setting the property on the element will not change the default value, but will 
 
 ```html preview 200px
 <vwc-combobox value="First Option">
-	<vwc-option text="First Option"></vwc-option>
-	<vwc-option text="Second Option"></vwc-option>
-</vwc-combobox>
-```
-
-## Autocomplete
-
-Setting `autocomplete` will add `aria-autocomplete` to the control.  
-Autocomplete types: `'inline'`, `'list'`, `'both'`, `'none'`.
-
-See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) for more information.
-
-```html preview 200px
-<vwc-combobox autocomplete="both">
 	<vwc-option text="First Option"></vwc-option>
 	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
