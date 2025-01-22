@@ -11,8 +11,13 @@
 	},
 	{
 		"title": "Badge",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/badge/README.md"
+		"description": "A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.",
+		"variations": "./libs/components/src/lib/badge/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/badge/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/badge/README.md",
+		"accessibility": "./libs/components/src/lib/badge/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/badge/USE-CASES.md"
 	},
 	{
 		"title": "Banner",
@@ -36,15 +41,13 @@
 	},
 	{
 		"title": "Breadcrumb",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": ["Breadcrumb Item"]
-	},
-	{
-		"title": "Breadcrumb Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-		"parent": "Breadcrumb"
+		"description": "Links showing the position of the current page within the navigational hierarchy.",
+		"variations": "./libs/components/src/lib/breadcrumb/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/breadcrumb/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/breadcrumb/README.md",
+		"accessibility": "./libs/components/src/lib/breadcrumb/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/breadcrumb/USE-CASES.md"
 	},
 	{
 		"title": "Button",
@@ -296,8 +299,14 @@
 	},
 	{
 		"title": "Combobox",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/combobox/README.md"
+		"description": "Combobox contains a free text input for filtering options along with a similar behavior to a Select.",
+		"variations": "./libs/components/src/lib/combobox/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/combobox/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/combobox/README.md",
+		"accessibility": "./libs/components/src/lib/combobox/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/combobox/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Elevation",
