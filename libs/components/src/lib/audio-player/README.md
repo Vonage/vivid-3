@@ -47,13 +47,13 @@ registerAudioPlayer('your-prefix');
 ```html preview
 <p>Native Audio Player</p>
 <audio
-	style="width: 90%;"
+	style="width: 100%;"
 	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 	controls
 ></audio>
 <p>Vivid Audio Player</p>
 <vwc-audio-player
-	style="max-inline-size: 500px;"
+	style="max-inline-size: 650px;"
 	src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3"
 ></vwc-audio-player>
 ```
