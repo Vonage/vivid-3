@@ -25,7 +25,7 @@ export default defineConfig({
 		},
 		target: 'esnext',
 		rollupOptions: {
-			external: ['eslint-plugin-vue/lib/utils'],
+			external: ['eslint-plugin-vue/lib/utils/index.js'],
 		},
 	},
 });
