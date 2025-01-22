@@ -55,9 +55,6 @@ registerCombobox('your-prefix');
 
 ## Autocomplete
 
-- Type: `'inline'` | `'list'` | `'both'` | `'none'`
-- Default: `undefined`
-
 The `autocomplete` attribute controls the auto-complete behaviour.
 
 - `inline` means the auto-complete takes place by string matching in the input element
