@@ -10,7 +10,8 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { menuName } from '../menu/definition';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { CheckAppearance, MenuItem, MenuItemRole } from './menu-item';
+import { CheckAppearance, MenuItem } from './menu-item';
+import { MenuItemRole } from './menu-item-role';
 
 const getIndicatorIcon = (x: MenuItem) => {
 	if (x.checkedAppearance === CheckAppearance.TickOnly) {
