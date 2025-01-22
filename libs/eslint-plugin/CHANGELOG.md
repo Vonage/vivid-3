@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.3.0...eslint-plugin-v1.4.0) (2025-01-22)
+
+
+### Features
+
+* **eslint-plugin:** add flat config (VIV-2241) ([#2091](https://github.com/Vonage/vivid-3/issues/2091)) ([e527fe4](https://github.com/Vonage/vivid-3/commit/e527fe44dba407b43f6ae6c2ab1eb40a026a26a7))
+
 ## [1.3.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.2.1...eslint-plugin-v1.3.0) (2024-10-07)
 
 
