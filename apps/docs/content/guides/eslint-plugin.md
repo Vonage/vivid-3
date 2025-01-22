@@ -31,7 +31,11 @@ Add the NPM package to your repository:
 
 {% packageInstallation "@vonage/eslint-plugin-vivid" true %}
 
-Use the `vue` preset by adding the following configuration to your `.eslintrc` file:
+Use the `vue` preset by adding the following configuration to your ESLint configuration file:
+
+<vwc-tabs gutters="none">
+<vwc-tab label=".eslintrc"></vwc-tab>
+<vwc-tab-panel>
 
 ```diff
 {
@@ -43,9 +47,31 @@ Use the `vue` preset by adding the following configuration to your `.eslintrc` f
 }
 ```
 
+</vwc-tab-panel>
+<vwc-tab label="eslint.config.js"></vwc-tab>
+<vwc-tab-panel>
+
+```diff
+// ...
++ import pluginVivid from '@vonage/eslint-plugin-vivid';
+
+export default [
+  // ...
++ ...pluginVivid.configs['flat/vue'],
+];
+
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
 ### Customizing Rules
 
-The plugin provides a set of rules that can be extended or overridden. To customize the rules, add them to the `rules` key of your `.eslintrc` file:
+The plugin provides a set of rules that can be extended or overridden. To customize the rules, add them to the `rules` key of your ESLint configuration file:
+
+<vwc-tabs gutters="none">
+<vwc-tab label=".eslintrc"></vwc-tab>
+<vwc-tab-panel>
 
 ```diff
 {
@@ -55,6 +81,25 @@ The plugin provides a set of rules that can be extended or overridden. To custom
 	}
 }
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="eslint.config.js"></vwc-tab>
+<vwc-tab-panel>
+
+```diff
+// ...
+export default [
+	// ...,
++	{
++		rules: {
++			'@vonage/vivid/no-deprecated-apis': 'warn',
++		},
++	},
+]
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Rules
 
