@@ -311,8 +311,9 @@ describe('vwc-combobox', () => {
 		describe.each([ComboboxAutocomplete.list, ComboboxAutocomplete.both])(
 			'when autocomplete is list [%s]',
 			(autocomplete) => {
-				beforeEach(() => {
+				beforeEach(async () => {
 					element.autocomplete = autocomplete;
+					await elementUpdated(element);
 				});
 
 				it('should filter options by input text', async () => {
@@ -341,8 +342,9 @@ describe('vwc-combobox', () => {
 		describe.each([ComboboxAutocomplete.inline, ComboboxAutocomplete.both])(
 			'when autocomplete is inline [%s]',
 			(autocomplete) => {
-				beforeEach(() => {
+				beforeEach(async () => {
 					element.autocomplete = autocomplete;
+					await elementUpdated(element);
 				});
 
 				it('should autocomplete matched option and select autocompleted range', async () => {
