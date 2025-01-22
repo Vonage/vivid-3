@@ -55,7 +55,7 @@ Add a `placeholder` attribute to add placeholder text to the input.
 - Type: `'inline'` | `'list'` | `'both'` | `'none'`
 - Default: `undefined`
 
-The `autocomplete` attribute controls the auto-complete behaviour. 
+The `autocomplete` attribute controls the auto-complete behaviour.
 
 - `inline` means the auto-complete takes place by string matching in the input element
 - `list` means the auto-complete takes place by filtering the list in drop down

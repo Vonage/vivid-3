@@ -331,7 +331,9 @@ describe('vwc-combobox', () => {
 				});
 
 				it(`should set aria-autocomplete on the input to "${autocomplete}"`, async () => {
-					expect(getControl().getAttribute('aria-autocomplete')).toBe(autocomplete);
+					expect(getControl().getAttribute('aria-autocomplete')).toBe(
+						autocomplete
+					);
 				});
 			}
 		);
@@ -400,7 +402,9 @@ describe('vwc-combobox', () => {
 				});
 
 				it(`should set aria-autocomplete on the input to "${autocomplete}"`, async () => {
-					expect(getControl().getAttribute('aria-autocomplete')).toBe(autocomplete);
+					expect(getControl().getAttribute('aria-autocomplete')).toBe(
+						autocomplete
+					);
 				});
 			}
 		);
