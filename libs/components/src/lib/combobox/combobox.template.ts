@@ -47,7 +47,7 @@ function renderInput(context: VividElementDefinitionContext) {
 				class="control"
 				aria-activedescendant="${(x) =>
 					x.open ? x.ariaActiveDescendant : null}"
-				aria-autocomplete="${(x) => x.ariaAutoComplete}"
+				aria-autocomplete="${(x) => x.autocomplete}"
 				aria-controls="${(x) => x.listboxId}"
 				aria-disabled="${(x) => x.ariaDisabled}"
 				aria-expanded="${(x) => x.open}"

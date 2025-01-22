@@ -329,6 +329,10 @@ describe('vwc-combobox', () => {
 
 					expect(element.open).toBe(true);
 				});
+
+				it(`should set aria-autocomplete on the input to "${autocomplete}"`, async () => {
+					expect(getControl().getAttribute('aria-autocomplete')).toBe(autocomplete);
+				});
 			}
 		);
 
@@ -393,6 +397,10 @@ describe('vwc-combobox', () => {
 					expect(getControl().value).toBe('Apple');
 					expect(getControl().selectionStart).toBe(0);
 					expect(getControl().selectionEnd).toBe(5);
+				});
+
+				it(`should set aria-autocomplete on the input to "${autocomplete}"`, async () => {
+					expect(getControl().getAttribute('aria-autocomplete')).toBe(autocomplete);
 				});
 			}
 		);

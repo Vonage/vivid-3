@@ -55,10 +55,25 @@ Add a `placeholder` attribute to add placeholder text to the input.
 - Type: `'inline'` | `'list'` | `'both'` | `'none'`
 - Default: `undefined`
 
+The `autocomplete` attribute controls the auto-complete behaviour. 
+
+- `inline` means the auto-complete takes place by string matching in the input element
+- `list` means the auto-complete takes place by filtering the list in drop down
+- `both` means both of the above behaviours take place
+- `none` disables the auto-complete behaviour
+
 See [aria-autocomplete](https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete) for more information.
 
 ```html preview 200px
-<vwc-combobox autocomplete="both">
+<vwc-combobox label="Inline" autocomplete="inline">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+<vwc-combobox label="List" autocomplete="list">
+	<vwc-option text="First Option"></vwc-option>
+	<vwc-option text="Second Option"></vwc-option>
+</vwc-combobox>
+<vwc-combobox label="Both" autocomplete="both">
 	<vwc-option text="First Option"></vwc-option>
 	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
