@@ -5,12 +5,13 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
+import { Size } from '../enums';
 import type { Popup } from '../popup/popup.ts';
 import { ListboxOption } from '../option/option.ts';
 import { Combobox } from './combobox';
 import { ComboboxAutocomplete } from './combobox.options.ts';
 import '.';
-import { Size } from '@vonage/vivid';
+
 
 const COMPONENT_TAG = 'vwc-combobox';
 
