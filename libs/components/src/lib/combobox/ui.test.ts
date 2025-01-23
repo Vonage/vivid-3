@@ -25,6 +25,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			</style>
 			<vwc-combobox></vwc-combobox>
 			<vwc-combobox appearance="ghost" placeholder="ghost appearance"></vwc-combobox>
+			<vwc-combobox shape="pill" placeholder="ghost appearance"></vwc-combobox>
+			<vwc-combobox scale="condensed" placeholder="ghost appearance"></vwc-combobox>
 			<vwc-combobox label="Label"></vwc-combobox>
 			<vwc-combobox placeholder="Placeholder"></vwc-combobox>
 			<vwc-combobox value="Value"></vwc-combobox>
