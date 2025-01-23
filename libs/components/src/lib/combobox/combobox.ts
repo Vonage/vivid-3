@@ -2,7 +2,7 @@ import { attr, DOM, Observable, observable } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
 import type { Popup } from '../popup/popup';
-import type { Appearance, Shape } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	type FormElement,
@@ -29,6 +29,7 @@ export type ComboboxAppearance = Extract<
 	Appearance.Fieldset | Appearance.Ghost
 >;
 export type ComboboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 /**
  * @public
@@ -101,6 +102,15 @@ export class Combobox extends FormAssociatedCombobox {
 	 * HTML Attribute: shape
 	 */
 	@attr shape?: ComboboxShape;
+
+	/**
+	 * The size the combobox should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr() scale?: ComboboxSize;
 
 	/**
 	 * the placement of the combobox
@@ -642,6 +652,14 @@ export class Combobox extends FormAssociatedCombobox {
 	): void {
 		super.slottedOptionsChanged(prev, next);
 		this.updateValue();
+
+		const scale = this.getAttribute('scale') || this.scale;
+		next.forEach((element) => {
+			if (scale) {
+				element.setAttribute('scale', scale);
+				(element as any).scale = scale;
+			}
+		});
 	}
 
 	/**

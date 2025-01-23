@@ -38,9 +38,45 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 ### Success Text
 
 ## Icon
+-->
+
 ## Scale
 
--->
+The `scale` attribute controls the combobox element display size.  
+Use `condensed` in situations when space is limited, for example, inside a Data Grid cell.
+
+```html preview 270px
+<div class="container">
+	<vwc-combobox scale="normal" label="Normal" placeholder="Select an option">
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+
+	<vwc-combobox
+		scale="condensed"
+		label="Condensed"
+		placeholder="Select an option"
+	>
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+<vwc-note connotation="information" icon="info-line" headline="Scale instead of Size">
+	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
+</vwc-note>
 
 ## Shape
 

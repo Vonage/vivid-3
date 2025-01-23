@@ -9,6 +9,7 @@ import type { Combobox } from './combobox';
 
 const getStateClasses = ({
 	shape,
+	scale,
 	disabled,
 	placeholder,
 	label,
@@ -18,6 +19,7 @@ const getStateClasses = ({
 		'base',
 		['disabled', disabled],
 		[`shape-${shape}`, Boolean(shape)],
+		[`size-${scale}`, Boolean(scale)],
 		['placeholder', Boolean(placeholder)],
 		[`appearance-${appearance}`, Boolean(appearance)],
 		['no-label', !label]
