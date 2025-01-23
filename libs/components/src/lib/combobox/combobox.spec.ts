@@ -61,6 +61,7 @@ describe('vwc-combobox', () => {
 			expect(element.placeholder).toBeUndefined();
 			expect(element.autocomplete).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.shape).toEqual(undefined);
 			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
@@ -201,6 +202,18 @@ describe('vwc-combobox', () => {
 
 			expect(
 				getBaseElement(element).classList.contains('appearance-ghost')
+			).toEqual(true);
+		});
+	});
+
+	describe('shape', function () {
+		it('should set the shape class on the base', async function () {
+			const shape = 'pill';
+			element.setAttribute('shape', shape);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
 			).toEqual(true);
 		});
 	});

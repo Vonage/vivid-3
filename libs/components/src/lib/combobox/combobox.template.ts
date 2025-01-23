@@ -7,13 +7,8 @@ import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Combobox } from './combobox';
 
-function renderLabel() {
-	return html<Combobox>` <label for="control" class="label">
-		${(x) => x.label}
-	</label>`;
-}
-
 const getStateClasses = ({
+	shape,
 	disabled,
 	placeholder,
 	label,
@@ -22,10 +17,17 @@ const getStateClasses = ({
 	classNames(
 		'base',
 		['disabled', disabled],
+		[`shape-${shape}`, Boolean(shape)],
 		['placeholder', Boolean(placeholder)],
 		[`appearance-${appearance}`, Boolean(appearance)],
 		['no-label', !label]
 	);
+
+function renderLabel() {
+	return html<Combobox>` <label for="control" class="label">
+		${(x) => x.label}
+	</label>`;
+}
 
 function setFixedDropdownVarWidth(x: Combobox) {
 	return x.open && x.fixedDropdown

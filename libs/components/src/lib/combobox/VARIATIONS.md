@@ -39,8 +39,37 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 
 ## Icon
 ## Scale
-## Shape
+
 -->
+
+## Shape
+
+The `shape` attribute controls the border radius of the Combobox input element.
+
+```html preview 270px
+<div class="container">
+	<vwc-combobox shape="rounded" label="Rounded" placeholder="Select an option">
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+
+	<vwc-combobox shape="pill" label="Pill" placeholder="Select an option">
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
 
 ## Appearance
 

@@ -2,7 +2,7 @@ import { attr, DOM, Observable, observable } from '@microsoft/fast-element';
 import { applyMixins } from '@microsoft/fast-foundation';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
 import type { Popup } from '../popup/popup';
-import type { Appearance } from '../enums';
+import type { Appearance, Shape } from '../enums';
 import {
 	AffixIcon,
 	type FormElement,
@@ -28,6 +28,7 @@ export type ComboboxAppearance = Extract<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
+export type ComboboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * @public
@@ -92,6 +93,14 @@ export class Combobox extends FormAssociatedCombobox {
 	 * HTML Attribute: appearance
 	 */
 	@attr appearance?: ComboboxAppearance;
+
+	/**
+	 * The shape attribute.
+	 *
+	 * @public
+	 * HTML Attribute: shape
+	 */
+	@attr shape?: ComboboxShape;
 
 	/**
 	 * the placement of the combobox
