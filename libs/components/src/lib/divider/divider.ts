@@ -6,7 +6,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * Divider roles
  * @public
  */
-export const DividerRole = {
+const DividerRole = {
 	/**
 	 * The divider semantically separates content
 	 */
