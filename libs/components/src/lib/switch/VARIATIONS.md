@@ -6,6 +6,11 @@ The `label` attribute adds a label to the Switch.
 <vwc-switch label="Email notifications"></vwc-switch>
 ```
 
+<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
+	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
+	<p>It will be announced by screen readers so that those users will know the purpose of the Switch.</p>
+</vwc-note>
+
 ## Checked
 
 The `checked` attribute controls the checked state of the Switch.
