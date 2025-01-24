@@ -11,7 +11,7 @@
 ## Horizontal Divider
 
 ```html preview
-<vwc-card>
+<vwc-card class="card">
 	<vwc-layout column-basis="block" gutters="small" slot="main">
 		Choose the button you like best in this card :)
 
@@ -25,10 +25,9 @@
 </vwc-card>
 
 <style>
-	vwc-card {
+	.card {
 		width: 400px;
 	}
-
 	.demo-footer {
 		display: flex;
 		column-gap: 8px;
@@ -40,18 +39,18 @@
 ## Decorative Divider
 
 ```html preview
-<vwc-layout>
-	<vwc-divider role="presentation"></vwc-divider>
+<vwc-layout class="layout">
+	<vwc-divider role="presentation" class="divider"></vwc-divider>
 	More Info
-	<vwc-divider role="presentation"></vwc-divider>
+	<vwc-divider role="presentation" class="divider"></vwc-divider>
 </vwc-layout>
 
 <style>
-	vwc-layout {
+	.layout {
 		--layout-grid-template-columns: 1fr auto 1fr;
 	}
 
-	vwc-divider {
+	.divider {
 		display: flex;
 		align-items: center;
 	}
