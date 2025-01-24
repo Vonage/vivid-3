@@ -123,7 +123,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				</vwc-selectable-box>
 			</vwc-layout>
 		</div>
-		<div>
+		<div style="margin:5px">
 			<vwc-layout role="group">
 				<vwc-selectable-box
 					aria-label="Bright ideas"
