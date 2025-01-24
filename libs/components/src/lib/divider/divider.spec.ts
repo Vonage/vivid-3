@@ -28,6 +28,26 @@ describe('vwc-divider', () => {
 
 			expect(base?.classList.contains(`${orientation}`)).toBeTruthy();
 		});
+
+		it('should set the aria-orientation class if role is separator', async () => {
+			const base = element.shadowRoot?.querySelector('.base');
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			element.role = 'separator';
+			await elementUpdated(element);
+
+			expect(base?.getAttribute('aria-orientation')).toBe('vertical');
+		});
+
+		it('should NOT set the aria-orientation class if role is presentation', async () => {
+			const base = element.shadowRoot?.querySelector('.base');
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			element.role = 'presentation';
+			await elementUpdated(element);
+
+			expect(base?.getAttribute('aria-orientation')).toBe(null);
+		});
 	});
 
 	describe('role', function () {
