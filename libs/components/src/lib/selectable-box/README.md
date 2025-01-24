@@ -49,10 +49,7 @@ registerSelectableBox('your-prefix');
 Use the `--selectable-box-spacing` variable to set the amount of spacing applied to the Selectable Box.
 
 ```html preview
-<vwc-selectable-box
-	style="--selectable-box-spacing: 8px;"
-	class="box"
->
+<vwc-selectable-box style="--selectable-box-spacing: 8px;" class="box">
 	Custom spaced box (8px)
 </vwc-selectable-box>
 

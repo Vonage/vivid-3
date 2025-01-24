@@ -23,11 +23,7 @@ In the example below, we are using the Card component as the content for the Sel
 			subtitle="My IOS is Apple"
 			appearance="ghost"
 		>
-			<vwc-icon
-				slot="graphic"
-				name="apple-color"
-				class="icon icon2"
-			></vwc-icon>
+			<vwc-icon slot="graphic" name="apple-color" class="icon icon2"></vwc-icon>
 		</vwc-card>
 	</vwc-selectable-box>
 	<vwc-selectable-box tight clickable-box class="box">
@@ -36,25 +32,21 @@ In the example below, we are using the Card component as the content for the Sel
 			subtitle="My IOS is Windows"
 			appearance="ghost"
 		>
-			<vwc-icon
-				slot="graphic"
-				name="windows-color"
-				class="icon"
-			></vwc-icon>
+			<vwc-icon slot="graphic" name="windows-color" class="icon"></vwc-icon>
 		</vwc-card>
 	</vwc-selectable-box>
 </vwc-layout>
 
 <style>
 	.box {
-		max-inline-size: 450px
+		max-inline-size: 450px;
 	}
-	
+
 	.icon {
 		font-size: 44px;
 	}
 	.icon1 {
-		color: #A4C439;
+		color: #a4c439;
 	}
 	.icon2 {
 		color: #555555;
@@ -66,12 +58,7 @@ In the example below, we are using the Card component as the content for the Sel
 
 ```html preview
 <vwc-layout role="group">
-	<vwc-selectable-box
-		aria-label="Bright ideas"
-		tight
-		class="box"
-		clickable-box
-	>
+	<vwc-selectable-box aria-label="Bright ideas" tight class="box" clickable-box>
 		<img
 			class="img"
 			src="https://doodleipsum.com/350x200?bg=C863D9&i=0b3f4112a9c5e358c439c4be74380e54"
@@ -90,12 +77,7 @@ In the example below, we are using the Card component as the content for the Sel
 			alt="Sitting on Floor"
 		/>
 	</vwc-selectable-box>
-	<vwc-selectable-box
-		aria-label="Get located"
-		tight
-		class="box"
-		clickable-box
-	>
+	<vwc-selectable-box aria-label="Get located" tight class="box" clickable-box>
 		<img
 			class="img"
 			src="https://doodleipsum.com/350x200?bg=7463D9&i=6af2fcb146f3b99cfa1371242b2eee55"

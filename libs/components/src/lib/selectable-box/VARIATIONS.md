@@ -53,11 +53,7 @@ Setting the `clickable-box` attribute makes the whole box clickable, just make s
 	<vwc-selectable-box clickable-box class="box">
 		Clickable accent box
 	</vwc-selectable-box>
-	<vwc-selectable-box
-		clickable-box
-		connotation="cta"
-		class="box"
-	>
+	<vwc-selectable-box clickable-box connotation="cta" class="box">
 		Clickable CTA box
 	</vwc-selectable-box>
 </vwc-layout>
@@ -88,11 +84,7 @@ Set the `checked` attribute to indicate the checked state of the box.
 	>
 		Checked checkbox box
 	</vwc-selectable-box>
-	<vwc-selectable-box
-		control-type="radio"
-		checked
-		class="box"
-	>
+	<vwc-selectable-box control-type="radio" checked class="box">
 		Checked radio box
 	</vwc-selectable-box>
 </vwc-layout>
