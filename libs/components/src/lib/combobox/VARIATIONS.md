@@ -37,8 +37,54 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 ### Error Text
 ### Success Text
 
-## Icon
 -->
+
+## Icon
+
+The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Combobox element.
+
+To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot) provided.
+
+```html preview 270px
+<vwc-combobox
+	label="Country code"
+	icon="flag-united-states"
+	class="country-code"
+	id="country-code"
+>
+	<vwc-option
+		value="1"
+		text="United States"
+		label="+1"
+		icon="flag-united-states"
+	></vwc-option>
+	<vwc-option
+		value="44"
+		text="United Kingdom"
+		label="+44"
+		icon="flag-united-kingdom"
+	></vwc-option>
+	<vwc-option
+		value="49"
+		text="Germany"
+		label="+49"
+		icon="flag-germany"
+	></vwc-option>
+	<vwc-option
+		value="355"
+		text="Albania"
+		label="+355"
+		icon="flag-albania"
+	></vwc-option>
+</vwc-combobox>
+
+<script>
+	const combobox = document.getElementById('country-code');
+	combobox?.addEventListener('change', (e) => {
+		combobox.icon = combobox.selectedOptions[0].icon;
+	});
+</script>
+```
 
 ## Scale
 
