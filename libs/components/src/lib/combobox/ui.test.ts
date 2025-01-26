@@ -7,6 +7,34 @@ import {
 
 const components = ['combobox', 'option'];
 
+async function testScaleOptions({ page }: { page: Page }) {
+	const template = `<div style="margin: 5px; block-size: 400px">
+			<vwc-combobox label="scale condensed" scale="condensed" open>
+			<vwc-option icon="chat-line" value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+			</vwc-combobox>
+	</div>`;
+
+	await page.setViewportSize({ width: 300, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'snapshots/combobox-scale-condensed.png'
+	);
+}
+
 test('should show the component', async ({ page }: { page: Page }) => {
 	await loadComponents({
 		page,
@@ -46,3 +74,5 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'snapshots/combobox.png'
 	);
 });
+
+test('combobox scale', testScaleOptions);

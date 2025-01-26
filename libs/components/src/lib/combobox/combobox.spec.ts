@@ -12,7 +12,6 @@ import { Combobox } from './combobox';
 import { ComboboxAutocomplete } from './combobox.options.ts';
 import '.';
 
-
 const COMPONENT_TAG = 'vwc-combobox';
 
 describe('vwc-combobox', () => {
