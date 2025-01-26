@@ -21,6 +21,15 @@
 	#{text-field-variables.$text-field-gutter-end}: 44px;
 
 	@include appearance.appearance;
+
+	/* Shape */
+	.base:not(.shape-pill) & {
+		border-radius: var(#{text-field-variables.$text-field-border-radius});
+	}
+
+	.base.shape-pill & {
+		border-radius: var(#{text-field-variables.$text-field-pill-border-radius});
+	}
 }
 
 .icon {
