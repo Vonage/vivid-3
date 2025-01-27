@@ -146,6 +146,50 @@ Setting the property on the element will not change the default value, but will 
 ### Helper Text Slot
 -->
 
+## Slots
+
+### Default Slot
+
+This is where you place the [Option](/components/option/) components to provide the option list.
+
+```html preview 270px
+<vwc-combobox label="Title" placeholder="Select an option">
+	<vwc-option value="mr" text="Mr"></vwc-option>
+	<vwc-option value="mrs" text="Mrs"></vwc-option>
+	<vwc-option value="miss" text="Miss"></vwc-option>
+	<vwc-option value="ms" text="Ms"></vwc-option>
+</vwc-combobox>
+```
+
+### Icon Slot
+
+Set the `icon` slot to show an icon before the Combobox text.
+If set, the `icon` attribute is ignored.
+
+```html preview 180px
+<vwc-combobox label="Combobox with custom icon" placeholder="placeholder">
+	<vwc-icon
+		slot="icon"
+		name="check-circle-solid"
+		connotation="success"
+	></vwc-icon>
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+</vwc-combobox>
+```
+
+### Meta Slot
+
+Set the `meta` slot to show meta information after the Combobox text.
+
+```html preview 180px
+<vwc-combobox label="Combobox with meta slot" placeholder="placeholder">
+	<vwc-badge slot="meta" connotation="success" text="Beta"></vwc-badge>
+	<vwc-option value="1" text="Option 1"></vwc-option>
+	<vwc-option value="2" text="Option 2"></vwc-option>
+</vwc-combobox>
+```
+
 ## CSS Variables
 
 ### Dropdown Height
@@ -176,17 +220,20 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name              | Type                          | Description                                                                                        |
-| ----------------- | ----------------------------- | -------------------------------------------------------------------------------------------------- |
-| `appearance`      | `fieldset` (default), `ghost` | Sets the element's appearance                                                                      |
-| `disabled`        | `boolean`                     | Sets the element's disabled state. A disabled element will not be included during form submission. |
-| `fixed-dropdown`  | `boolean`                     | Sets the position strategy of the dropdown to fixed                                                |
-| `label`           | `string`                      | Sets the element's label                                                                           |
-| `open`            | `boolean`                     | Sets the element's menu to be open                                                                 |
-| `options`         | `Option[]`                    | A read-only list of options.                                                                       |
-| `placeholder`     | `string`                      | Sets the text to be displayed when no option is selected                                           |
-| `selectedOptions` | `Option[]`                    | A read-only collection of the selected options.                                                    |
-| `selectedIndex`   | `number`                      | The index of the selected option or -1 if no option is selected.                                   |
+| Name              | Type                            | Description                                                                                                                 |
+| ----------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `appearance`      | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
+| `disabled`        | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
+| `fixed-dropdown`  | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
+| `icon`            | _Enum_:<br/>`[icon-name]`       | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| `label`           | `string`                        | Sets the element's label                                                                                                    |
+| `open`            | `boolean`                       | Sets the element's menu to be open                                                                                          |
+| `options`         | `Option[]`                      | A read-only list of options.                                                                                                |
+| `placeholder`     | `string`                        | Sets the text to be displayed when no option is selected                                                                    |
+| `scale`           | `normal` (default), `condensed` | Sets the display size of the input element                                                                                  |
+| `shape`           | `rounded` (default), `pill`     | Sets the shape of the combobox element                                                                                      |
+| `selectedOptions` | `Option[]`                      | A read-only collection of the selected options.                                                                             |
+| `selectedIndex`   | `number`                        | The index of the selected option or -1 if no option is selected.                                                            |
 
 </div>
 
@@ -200,17 +247,17 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 </div>
 
-<!-- ## Validation Feedback - VIV-2268
 ### Slots
 
 <div class="table-wrapper">
 
-| Name            | Description                                                        |
-| --------------- | ------------------------------------------------------------------ |
-| **default**     | Default slot meant for Option component to provide the option list |
-| **helper-text** | Add HTML content for helper text                                   |
-| **icon**        | Add an icon to the component.                                      |
-| **meta**        | Show meta information after the selected option label              |
+| Name        | Description                                                        |
+| ----------- | ------------------------------------------------------------------ |
+| **default** | Default slot meant for Option component to provide the option list |
+| **icon**    | Add an icon to the component.                                      |
+| **meta**    | Show meta information after the selected option label              |
 
-</div>
+<!--
+| **helper-text** | Add HTML content for helper text                                   |
 -->
+</div>

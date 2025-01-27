@@ -12,26 +12,70 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
+@use '../../shared/patterns/chevron' as chevron;
+@include chevron.chevron;
+
+$low-ink-color: --_low-ink-color;
 
 :host {
 	position: relative;
 }
 
 .base {
-	#{text-field-variables.$text-field-gutter-end}: 44px;
+	#{text-field-variables.$text-field-gutter-end}: 8px;
 
 	@include appearance.appearance;
+
+	/* Shape */
+	&:not(.shape-pill) & {
+		border-radius: var(#{text-field-variables.$text-field-border-radius});
+	}
+
+	&.shape-pill & {
+		border-radius: var(#{text-field-variables.$text-field-pill-border-radius});
+	}
+
+	slot[name='icon'] {
+		position: absolute;
+		z-index: 1;
+		display: inline-block;
+		color: var(#{$low-ink-color});
+		font-size: var(#{text-field-variables.$text-field-icon-size});
+		inset-block-start: 50%;
+		inset-inline-start: var(#{text-field-variables.$text-field-gutter-start});
+		line-height: 1;
+		pointer-events: none;
+		transform: translateY(-50%);
+	}
+
+	&.has-meta {
+		padding-inline-end: 16px;
+	}
 }
 
-.icon {
-	inset-inline-end: 16px;
-	inset-inline-start: unset;
+.control {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 
+.fieldset {
+	.leading-items-wrapper {
+		position: relative;
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		gap: 8px;
+		padding-inline-end: 16px;
+	}
+}
+
+.chevron {
 	:not(.disabled) & {
 		cursor: pointer;
 	}
 
 	.disabled & {
+		color: var(#{$low-ink-color});
 		cursor: not-allowed;
 	}
 }
