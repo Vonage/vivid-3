@@ -300,8 +300,8 @@ describe('vwc-switch', () => {
 		it('should set aria-label on control element', async () => {
 			element.setAttribute('aria-label', 'Label');
 			await elementUpdated(element);
-			const control = await getControlElement(element)
-			
+			const control = await getControlElement(element);
+
 			expect(control.getAttribute('aria-label')).toBe('Label');
 			expect(element.getAttribute('role')).toBe('presentation');
 		});
