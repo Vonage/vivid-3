@@ -88,7 +88,6 @@ Set the `checked` attribute to indicate the checked state of the box.
 		Checked radio box
 	</vwc-selectable-box>
 </vwc-layout>
-ß
 <style>
 	.box {
 		max-inline-size: 450px;
