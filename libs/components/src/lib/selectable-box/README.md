@@ -5,7 +5,7 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/select';
+import '@vonage/vivid/selectable-box';
 ```
 
 or, if you need to use a unique prefix:
