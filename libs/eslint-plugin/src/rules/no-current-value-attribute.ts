@@ -1,4 +1,4 @@
-import * as utils from 'eslint-plugin-vue/lib/utils';
+import * as utils from 'eslint-plugin-vue/lib/utils/index.js';
 import type { Rule } from 'eslint';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';

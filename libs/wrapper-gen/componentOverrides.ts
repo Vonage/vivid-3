@@ -29,6 +29,21 @@ ComponentRegister.addGlobalDefinitionOverride(
 	}
 );
 
+ComponentRegister.addComponentOverride('button', (component) => {
+	const titleAttribute = component.attributes.find((a) => a.name === 'title');
+	if (titleAttribute!.type[0].text === 'boolean') {
+		// Workaround for an issue with the CEM analyzer, which will incorrectly mark the title attribute as boolean
+		titleAttribute!.type = [{ text: 'string', vuePropType: 'String' }];
+		titleAttribute!.forwardTo = {
+			type: 'attribute',
+			name: 'title',
+			boolean: false,
+		};
+	} else {
+		throw new Error('Title attribute not found or has incorrect type');
+	}
+});
+
 ComponentRegister.addComponentOverride('data-grid', (component) => {
 	component.attributes.push({
 		name: 'rowsData',
