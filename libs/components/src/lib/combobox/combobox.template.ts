@@ -8,8 +8,8 @@ import { Popup } from '../popup/popup';
 import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import type { Combobox } from './combobox';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
+import type { Combobox } from './combobox';
 
 const getStateClasses = ({
 	icon,
