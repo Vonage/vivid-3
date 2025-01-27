@@ -13,6 +13,7 @@ import { ComboboxAutocomplete } from './combobox.options.ts';
 import '.';
 
 const COMPONENT_TAG = 'vwc-combobox';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-combobox', () => {
 	let element: Combobox;
@@ -63,6 +64,7 @@ describe('vwc-combobox', () => {
 			expect(element.autocomplete).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 			expect(element.shape).toEqual(undefined);
+			expect(element.icon).toEqual(undefined);
 			expect(element.selectedIndex).toEqual(-1);
 		});
 	});
@@ -204,6 +206,42 @@ describe('vwc-combobox', () => {
 			expect(
 				getBaseElement(element).classList.contains('appearance-ghost')
 			).toEqual(true);
+		});
+	});
+
+	describe('icon', () => {
+		it('should have a icon slot', async () => {
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async function () {
+			const icon = 'info';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')
+			).toEqual(icon);
+		});
+	});
+
+	describe('slot', () => {
+		it('should have a meta slot', async function () {
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))
+			).toEqual(true);
+		});
+
+		it('should add class .has-meta if the meta slot is occupied', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'meta';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains('has-meta')
+			).toBeTruthy();
 		});
 	});
 
