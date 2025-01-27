@@ -118,7 +118,8 @@ function renderSlider(context: VividElementDefinitionContext) {
 		max="100"
 		ariaValuetext="${(x) => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
-		?disabled="${(x) => x.disabled || !x.duration}">
+		?disabled="${(x) => x.disabled || !x.duration}"
+		internal-part>
 	</${sliderTag}>`;
 }
 
