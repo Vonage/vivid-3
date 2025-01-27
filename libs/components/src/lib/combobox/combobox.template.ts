@@ -2,9 +2,9 @@ import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
-import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { Combobox } from './combobox';
 
 function renderLabel() {
@@ -43,10 +43,11 @@ function renderInput(context: VividElementDefinitionContext) {
 		<div class="fieldset">
 			<input
 				id="control"
+				autocomplete="off"
 				class="control"
 				aria-activedescendant="${(x) =>
 					x.open ? x.ariaActiveDescendant : null}"
-				aria-autocomplete="${(x) => x.ariaAutoComplete}"
+				aria-autocomplete="${(x) => x.autocomplete}"
 				aria-controls="${(x) => x.listboxId}"
 				aria-disabled="${(x) => x.ariaDisabled}"
 				aria-expanded="${(x) => x.open}"
