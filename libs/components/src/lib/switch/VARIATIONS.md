@@ -54,7 +54,7 @@ The `readonly` attribute sets the readonly state of the Switch.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-switch readonly label="Email notifications"></vwc-switch>
-	<vwc-switch readonly checked label="Email notifications"></vwc-switch>
+	<vwc-switch readonly label="Email notifications off"></vwc-switch>
+	<vwc-switch readonly checked label="Email notifications on"></vwc-switch>
 </vwc-layout>
 ```
