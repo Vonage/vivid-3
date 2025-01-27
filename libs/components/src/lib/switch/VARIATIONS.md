@@ -43,8 +43,8 @@ The `disabled` attribute sets the disabled state of the Switch.
 
 ```html preview
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-switch disabled label="Email notifications"></vwc-switch>
-	<vwc-switch disabled checked label="Email notifications"></vwc-switch>
+	<vwc-switch disabled label="Email notifications off"></vwc-switch>
+	<vwc-switch disabled checked label="Email notifications on"></vwc-switch>
 </vwc-layout>
 ```
 
