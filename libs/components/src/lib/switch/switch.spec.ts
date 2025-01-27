@@ -297,8 +297,27 @@ describe('vwc-switch', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+		it('should set aria-label on control element', async () => {
+			element.setAttribute('aria-label', 'Label');
+			await elementUpdated(element);
+			const control = await getControlElement(element)
+			
+			expect(control.getAttribute('aria-label')).toBe('Label');
+			expect(element.getAttribute('role')).toBe('presentation');
+		});
+
+		it('should pass html a11y test with a standard label', async () => {
 			element.label = 'Label';
+			element.checked = true;
+			element.value = 'test';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+			expect(element.getAttribute('role')).toBe(null);
+		});
+
+		it('should pass html a11y test with an aria-label', async () => {
+			element.ariaLabel = 'Label';
 			element.checked = true;
 			element.value = 'test';
 			await elementUpdated(element);
