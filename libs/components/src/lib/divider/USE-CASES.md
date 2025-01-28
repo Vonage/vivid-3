@@ -17,7 +17,7 @@
 
 		<vwc-divider></vwc-divider>
 
-		<div class="demo-footer">
+		<div class="demo-footer" slot="footer">
 			<vwc-button label="Cancel" appearance="outlined"></vwc-button>
 			<vwc-button label="Submit" appearance="filled"></vwc-button>
 		</div>

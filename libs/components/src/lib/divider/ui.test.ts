@@ -25,25 +25,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				vwc-card {
 					width: 400px;
 				}
-
-				.demo-footer {
-					display: flex;
-					column-gap: 8px;
-					justify-content: flex-end;
+				.content {
+					padding-block-end: 16px;
 				}
 			</style>
-
 			<vwc-card>
-				<vwc-layout column-basis="block" gutters="small" slot="main">
-					Choose the button you like best in this card :)
-
-					<vwc-divider></vwc-divider>
-
-					<div class="demo-footer">
-						<vwc-button label="Cancel" appearance="outlined"></vwc-button>
-						<vwc-button label="Submit" appearance="filled"></vwc-button>
-					</div>
-				</vwc-layout>
+				<div class="content" slot="main">
+					<p>Choose the button you like best in this card :)</p>
+					<vwc-divider"></vwc-divider>
+				</div>
+				<vwc-button label="Submit" appearance="filled" slot="footer"></vwc-button>
 			</vwc-card>
 		</div>
 		<div style="margin: 5px;">
@@ -51,13 +42,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				vwc-layout {
 					--layout-grid-template-columns: 1fr auto 1fr;
 				}
-
 				vwc-divider {
 					display: flex;
 					align-items: center;
 				}
 			</style>
-
 			<vwc-layout>
 				<vwc-divider role="presentation"></vwc-divider>
 				More Info
