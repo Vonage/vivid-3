@@ -81,7 +81,7 @@ It defaults to `^[0-9#*]*$` (key pad buttons).
 
 </div>
 
-## Events
+### Events
 
 <div class="table-wrapper">
 
