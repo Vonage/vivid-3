@@ -39,7 +39,7 @@ describe('vwc-divider', () => {
 			expect(base?.getAttribute('aria-orientation')).toBe('vertical');
 		});
 
-		it('should NOT set the aria-orientation class if role is presentation', async () => {
+		it('should NOT set the aria-orientation attribute if role is presentation', async () => {
 			const base = element.shadowRoot?.querySelector('.base');
 			const orientation = 'vertical';
 			element.orientation = orientation;
