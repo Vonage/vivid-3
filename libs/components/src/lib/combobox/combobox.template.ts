@@ -2,9 +2,9 @@ import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
-import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { Combobox } from './combobox';
 
 const getStateClasses = ({

@@ -4,6 +4,14 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.14.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.1...vivid-v4.14.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **data-grid:** fix error on createElement (VIV-2289) ([#2094](https://github.com/Vonage/vivid-3/issues/2094)) ([4b17c6c](https://github.com/Vonage/vivid-3/commit/4b17c6c65ccb9ef1d53fd5aeec6569dc52b5466a))
+* **divider:** orientation attribute issue (VIV-2290) ([#2098](https://github.com/Vonage/vivid-3/issues/2098)) ([32a3df2](https://github.com/Vonage/vivid-3/commit/32a3df23b276d18eed3beb0134ae7e324d6f4c83))
+
 ## [4.14.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.0...vivid-v4.14.1) (2025-01-22)
 
 
