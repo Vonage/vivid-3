@@ -16,6 +16,7 @@ export type SwitchConnotation =
  * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
 export class Switch extends FormAssociatedSwitch {
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 	/**
 	 * Indicates the switch's label.
 	 *
