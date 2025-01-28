@@ -231,8 +231,13 @@
 	},
 	{
 		"title": "Avatar",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/avatar/README.md"
+		"description": "Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.",
+		"variations": "./libs/components/src/lib/avatar/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/avatar/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/avatar/README.md",
+		"accessibility": "./libs/components/src/lib/avatar/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/avatar/USE-CASES.md"
 	},
 	{
 		"title": "Text Area",
@@ -325,12 +330,6 @@
 		"page": "legacy",
 		"status": "underlying",
 		"markdown": "./libs/components/src/lib/popup/README.md"
-	},
-	{
-		"title": "Listbox",
-		"page": "legacy",
-		"status": "underlying",
-		"markdown": "./libs/components/src/lib/listbox/README.md"
 	},
 	{
 		"title": "Select",
