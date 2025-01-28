@@ -31,7 +31,7 @@ The `disabled` attribute controls the disabled state of the keypad, input and Ca
 <vwc-dial-pad disabled></vwc-dial-pad>
 ```
 
-### Call Active
+## Call Active
 
 The `call-active` attribute enables the "end call button" and hides the "dial button".
 
