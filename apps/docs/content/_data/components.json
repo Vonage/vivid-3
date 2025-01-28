@@ -273,8 +273,13 @@
 	{
 		"title": "Searchable Select",
 		"status": "alpha",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/searchable-select/README.md"
+		"description": "Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.",
+		"variations": "./libs/components/src/lib/searchable-select/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/searchable-select/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/searchable-select/README.md",
+		"accessibility": "./libs/components/src/lib/searchable-select/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/searchable-select/USE-CASES.md"
 	},
 	{
 		"title": "Switch",
