@@ -214,8 +214,13 @@
 	},
 	{
 		"title": "Divider",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/divider/README.md"
+		"description": "Use as a separator between content.",
+		"variations": "./libs/components/src/lib/divider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/divider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/divider/README.md",
+		"accessibility": "./libs/components/src/lib/divider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/divider/USE-CASES.md"
 	},
 	{
 		"title": "Menu",
