@@ -278,8 +278,14 @@
 	},
 	{
 		"title": "Switch",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/switch/README.md"
+		"description": "Use a Switch when you want a user to easily toggle between two mutually exclusive options, like 'on' and 'off' typically for settings or preferences within an application.",
+		"variations": "./libs/components/src/lib/switch/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/switch/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideUseCases": "true",
+		"code": "./libs/components/src/lib/switch/README.md",
+		"accessibility": "./libs/components/src/lib/switch/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/switch/USE-CASES.md"
 	},
 	{
 		"title": "Slider",
