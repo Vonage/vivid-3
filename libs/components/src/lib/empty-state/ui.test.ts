@@ -159,7 +159,6 @@ No results
 		</div>
 `;
 
-
 	await loadComponents({
 		page,
 		components,
