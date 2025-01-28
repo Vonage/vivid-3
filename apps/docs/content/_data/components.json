@@ -418,8 +418,13 @@
 	},
 	{
 		"title": "Selectable Box",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/selectable-box/README.md"
+		"description": "Represents a content box to used in a group where one or more can be selected.",
+		"variations": "./libs/components/src/lib/selectable-box/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/selectable-box/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/selectable-box/README.md",
+		"accessibility": "./libs/components/src/lib/selectable-box/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/selectable-box/USE-CASES.md"
 	},
 	{
 		"title": "Audio Player",
