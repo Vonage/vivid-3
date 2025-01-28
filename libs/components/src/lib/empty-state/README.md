@@ -52,12 +52,15 @@ registerEmptyState('your-prefix');
 Use the `default` slot to set the content of the Empty State.
 
 ```html preview
-<vwc-empty-state>No results match your search criteria.</vwc-empty-state>
+<vwc-empty-state icon="check-solid"
+	>No results match your search criteria.</vwc-empty-state
+>
 ```
 
 ### Graphic Slot
 
-Use the `graphic` slot to override the icon of the Empty State.
+Use the `graphic` slot to set a graphic element to the Empty State.  
+`graphic` slot override the icon of the Empty State.
 
 ```html preview
 <vwc-empty-state headline="No results found">

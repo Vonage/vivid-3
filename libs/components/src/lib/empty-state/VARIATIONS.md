@@ -71,7 +71,7 @@ Set the `connotation` attribute to change the Empty State's connotation.
 </style>
 ```
 
-### Icon-decoration
+## Icon-decoration
 
 Use `icon-decoration` to change the design of the icon circle from `filled` (default) to `outlined`.
 

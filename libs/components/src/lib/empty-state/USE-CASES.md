@@ -55,10 +55,10 @@
 <vwc-empty-state
 	class="empty-state"
 	icon-decoration="outlined"
-	icon="phone-number-line"
-	headline="No numbers"
+	icon="search-line"
+	headline="No Data"
 >
-	You do not have any numbers yet.
+	There's no data here yet
 </vwc-empty-state>
 
 <style>
