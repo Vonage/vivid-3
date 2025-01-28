@@ -6,7 +6,6 @@ import {
 	when,
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import {
@@ -17,6 +16,7 @@ import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { Select } from './select';
 
 const getStateClasses = ({
