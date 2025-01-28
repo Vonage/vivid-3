@@ -310,6 +310,71 @@ describe('vwc-combobox', () => {
 		});
 	});
 
+	describe('scale', () => {
+		function hasSizeClass(baseElement: HTMLElement) {
+			return Array.from(baseElement.classList).some((className) => {
+				return className.includes('size-');
+			});
+		}
+
+		it('should reflect the property as an attribute', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(element.getAttribute('scale')).toBe(Size.Condensed);
+		});
+
+		it('should reflect the attribute as a property', async () => {
+			element.setAttribute('scale', Size.Condensed);
+			await elementUpdated(element);
+			expect(element.scale).toBe(Size.Condensed);
+		});
+
+		it('should init without a size class on base element', async () => {
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+		it('should set size class on base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(
+				true
+			);
+		});
+
+		it('should remove size class from base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			element.scale = undefined;
+			await elementUpdated(element);
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+
+		it('should reflect scale on slotted options', async () => {
+			element.scale = Size.Condensed;
+			element.innerHTML = `
+				<vwc-option value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+				<vwc-option value="3" text="Option 3"></vwc-option>
+				`;
+			await elementUpdated(element);
+			const options = element.querySelectorAll('vwc-option');
+			options.forEach((option) => {
+				expect(option.getAttribute('scale')).toBe('condensed');
+			});
+		});
+	});
+
+	describe('shape', function () {
+		it('should set the shape class on the base', async function () {
+			const shape = 'pill';
+			element.setAttribute('shape', shape);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
+			).toEqual(true);
+		});
+	});
+
 	describe('selectedIndex', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
