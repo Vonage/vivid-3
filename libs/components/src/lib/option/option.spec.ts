@@ -63,10 +63,18 @@ describe('vwc-option', () => {
 		expect(element.getAttribute('aria-selected')).toEqual('true');
 	});
 
-	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
-		element.disabled = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-disabled')).toEqual('true');
+	describe('disabled', () => {
+		it('should set the `aria-disabled` attribute to `true` when true', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('true');
+		});
+
+		it('should set the `aria-disabled` attribute to `false` when false', async () => {
+			element.disabled = false;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('false');
+		});
 	});
 
 	describe('label', function () {
