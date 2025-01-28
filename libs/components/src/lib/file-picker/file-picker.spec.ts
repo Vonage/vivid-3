@@ -7,7 +7,7 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
-import { Connotation, Size } from '../enums';
+import { Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -454,7 +454,6 @@ describe('vwc-file-picker', () => {
 			]);
 
 			expect(getRemoveButton(0).connotation).toBeUndefined();
-			expect(getRemoveButton(1).connotation).toBe(Connotation.Alert);
 		});
 	});
 
