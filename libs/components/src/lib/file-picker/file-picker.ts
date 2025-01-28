@@ -261,20 +261,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 
 			this.#handleFilesChanged();
 		});
-
-		//this.#setRemoveButtonConnotationOnError();
 	}
-
-	// #setRemoveButtonConnotationOnError() {
-	// 	this.#dropzone!.on('error', (file) => {
-	// 		if (file.previewElement) {
-	// 			const removeButton = file.previewElement.querySelector(
-	// 				'.remove-btn'
-	// 			) as Button;
-	// 			removeButton.connotation = Connotation.Alert;
-	// 		}
-	// 	});
-	// }
 
 	override connectedCallback() {
 		super.connectedCallback();
