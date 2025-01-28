@@ -3,7 +3,6 @@ import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
 import type { Size } from '../enums';
-import { Connotation } from '../enums';
 import {
 	type ErrorText,
 	errorText,
@@ -30,6 +29,7 @@ const isFormAssociatedTryingToSetFormValueToFakePath = (
 
 const generateFilePreviewTemplate = (
 	buttonTag: string,
+	iconTag: string,
 	locale: Locale
 ): string => {
 	return `<div class="dz-preview dz-file-preview">
@@ -37,8 +37,11 @@ const generateFilePreviewTemplate = (
     <div class="dz-filename"><span data-dz-name></span></div>
     <div class="dz-size"><span data-dz-size></span></div>
   </div>
-  <div class="dz-error-message"><span data-dz-errormessage></span></div>
-  <${buttonTag} class="remove-btn" icon="delete-line" appearance="ghost" size="condensed" aria-label="${locale.filePicker.removeFileLabel}"></${buttonTag}>
+  <div class="dz-error-message">
+  <${iconTag} name="info-line" size="-6"></${iconTag}>
+  <span data-dz-errormessage></span>
+  </div>
+  <${buttonTag} class="remove-btn" icon="delete-line" appearance="ghost-light" size="condensed" aria-label="${locale.filePicker.removeFileLabel}"></${buttonTag}>
 </div>`;
 };
 /**
@@ -208,6 +211,11 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	private buttonTag = 'vwc-button';
 
+	/**
+	 * Used internally to hold the tag that icon is registered at.
+	 */
+	private iconTag = 'vwc-icon';
+
 	constructor() {
 		super();
 		Dropzone.autoDiscover = false;
@@ -254,19 +262,19 @@ export class FilePicker extends FormAssociatedFilePicker {
 			this.#handleFilesChanged();
 		});
 
-		this.#setRemoveButtonConnotationOnError();
+		//this.#setRemoveButtonConnotationOnError();
 	}
 
-	#setRemoveButtonConnotationOnError() {
-		this.#dropzone!.on('error', (file) => {
-			if (file.previewElement) {
-				const removeButton = file.previewElement.querySelector(
-					'.remove-btn'
-				) as Button;
-				removeButton.connotation = Connotation.Alert;
-			}
-		});
-	}
+	// #setRemoveButtonConnotationOnError() {
+	// 	this.#dropzone!.on('error', (file) => {
+	// 		if (file.previewElement) {
+	// 			const removeButton = file.previewElement.querySelector(
+	// 				'.remove-btn'
+	// 			) as Button;
+	// 			removeButton.connotation = Connotation.Alert;
+	// 		}
+	// 	});
+	// }
 
 	override connectedCallback() {
 		super.connectedCallback();
@@ -286,7 +294,11 @@ export class FilePicker extends FormAssociatedFilePicker {
 			addRemoveLinks: false,
 			previewsContainer: previewList,
 			createImageThumbnails: false,
-			previewTemplate: generateFilePreviewTemplate(this.buttonTag, this.locale),
+			previewTemplate: generateFilePreviewTemplate(
+				this.buttonTag,
+				this.iconTag,
+				this.locale
+			),
 			dictInvalidFileType:
 				this.invalidFileTypeError ||
 				this.locale.filePicker.invalidFileTypeError,
@@ -319,6 +331,14 @@ export class FilePicker extends FormAssociatedFilePicker {
 	 */
 	setButtonTag(tag: string) {
 		this.buttonTag = tag;
+	}
+
+	/**
+	 * Used internally to set the icon tag.
+	 * @internal
+	 */
+	setIconTag(tag: string) {
+		this.iconTag = tag;
 	}
 
 	/**
