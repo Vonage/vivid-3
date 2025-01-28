@@ -1,174 +1,63 @@
-# Empty State
+## Usage
 
-The Empty State component is used to display a message when there is no data to show.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/empty-state';</script>
+import '@vonage/vivid/empty-state';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerEmptyState } from '@vonage/vivid';
+
+registerEmptyState('your-prefix');
 ```
 
 ```html preview
-<vwc-empty-state icon="search-line" headline="No results found">
+<script type="module">
+	import { registerEmptyState } from '@vonage/vivid';
+	registerEmptyState('your-prefix');
+</script>
+
+<your-prefix-empty-state icon="search-line" headline="No results found">
 	No results match your search criteria.
-	<vwc-button
-		slot="action-items"
-		shape="pill"
-		label="Reset filters"
-		appearance="outlined"
-	></vwc-button>
-</vwc-empty-state>
+</your-prefix-empty-state>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Headline
-
-Use the `headline` attribute add a headline to the empty state.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-empty-state headline="No results found"></vwc-empty-state>
+```html
+<script setup lang="ts">
+	import { VEmptyState } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VEmptyState icon="phone-number-line" headline="No numbers">
+		You do not have any numbers yet.
+	</VEmptyState>
+</template>
 ```
 
-### Icon
-
-Use the `icon` attribute to set the icon of the empty state.
-
-- Type: `string`
-- Default: `inbox-line`
-
-```html preview
-<vwc-empty-state icon="search-line"></vwc-empty-state>
-```
-
-### Connotation
-
-Set the `connotation` attribute to change the empty-state's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'success'` | `'alert'` | `'cta'` | `'information'` | `'warning'`
-- Default: `'accent'`
-
-```html preview 300px
-<div
-	style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start"
->
-	<vwc-empty-state icon="search-line" headline="Accent connotation">
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="check-solid"
-		headline="Success connotation"
-		connotation="success"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="error-solid"
-		headline="Alert connotation"
-		connotation="alert"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="sparkles-solid"
-		headline="Cta connotation"
-		connotation="cta"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="envelope-solid"
-		headline="Information connotation"
-		connotation="information"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon="warning-solid"
-		headline="Warning connotation"
-		connotation="warning"
-	>
-		No results
-	</vwc-empty-state>
-</div>
-```
-
-### Icon-decoration
-
-Use icon-decoration to change the design of the icon circle.
-
-- Type: `filled` | `outlined`
-- Default: `filled`
-
-```html preview 300px
-<div
-	style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: flex-start"
->
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="search-line"
-		headline="Accent connotation"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="check-solid"
-		headline="Success connotation"
-		connotation="success"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="error-solid"
-		headline="Alert connotation"
-		connotation="alert"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="sparkles-solid"
-		headline="Cta connotation"
-		connotation="cta"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="envelope-solid"
-		headline="Information connotation"
-		connotation="information"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="warning-solid"
-		headline="Warning connotation"
-		connotation="warning"
-	>
-		No results
-	</vwc-empty-state>
-</div>
-```
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
-### Default
+### Default Slot
 
-Use the default slot to set the content of the empty state.
+Use the `default` slot to set the content of the Empty State.
 
 ```html preview
 <vwc-empty-state>No results match your search criteria.</vwc-empty-state>
 ```
 
-### Graphic
+### Graphic Slot
 
-Use the `graphic` slot to override the graphic of the empty state.
+Use the `graphic` slot to override the icon of the Empty State.
 
 ```html preview
 <vwc-empty-state headline="No results found">
@@ -212,9 +101,9 @@ Use the `graphic` slot to override the graphic of the empty state.
 </vwc-empty-state>
 ```
 
-### Action Items
+### Action Items Slot
 
-Use the `action-items` slot to add action items to the empty state.
+Use the `action-items` slot to add action items to the Empty State.
 
 ```html preview
 <vwc-empty-state icon="phone-number-line" headline="No numbers">
@@ -233,3 +122,30 @@ Use the `action-items` slot to add action items to the empty state.
 	></vwc-button>
 </vwc-empty-state>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name              | Type                                                                          | Description                                                                                                                             |
+| ----------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `icon`            | Enum: `[icon-name]`                                                           | A decorative icon the Empty State should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| `icon-decoration` | Enum:`filled` (default), `outlined`                                           | option to a new design for the icon circle                                                                                              |
+| `headline`        | `string`                                                                      | An optional headline for the empty state.                                                                                               |
+| `connotation`     | Enum: `accent` (default), `cta`, `success`, `alert`, `information`, `warning` | The connotation the button should have.                                                                                                 |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name             | Description                                                            |
+| ---------------- | ---------------------------------------------------------------------- |
+| **default**      | The default slot controls the body text of the empty state             |
+| **graphic**      | The graphic slot allows overriding the icon with a custom illustration |
+| **action-items** | Slot to add action items to the empty state                            |
+
+</div>

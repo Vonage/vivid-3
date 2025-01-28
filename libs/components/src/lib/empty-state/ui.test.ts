@@ -7,9 +7,8 @@ import {
 
 const components = ['empty-state', 'button'];
 
-test.only('should show the component', async ({ page }: { page: Page }) => {
-	const template =
-		`<style>
+test('should show the component', async ({ page }: { page: Page }) => {
+	const template = `<style>
 			#wrapper {
 				width: 850px;
 				padding: 12px;
