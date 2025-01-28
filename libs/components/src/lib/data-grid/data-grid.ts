@@ -147,14 +147,16 @@ export class DataGrid extends VividElement {
 	 * @internal
 	 */
 	noTabbingChanged(): void {
-		if (this.noTabbing) {
-			this.setAttribute('tabIndex', '-1');
-		} else {
-			this.setAttribute(
-				'tabIndex',
-				this.contains(document.activeElement) ? '-1' : '0'
-			);
+		if (this.$fastController.isConnected) {
+			this.#setTabIndex();
 		}
+	}
+
+	#setTabIndex() {
+		this.setAttribute(
+			'tabIndex',
+			this.noTabbing || this.contains(document.activeElement) ? '-1' : '0'
+		);
 	}
 
 	/**
@@ -383,6 +385,8 @@ export class DataGrid extends VividElement {
 		this.observer.observe(this, { childList: true });
 
 		DOM.queueUpdate(this.queueRowIndexUpdate);
+
+		this.#setTabIndex();
 
 		Observable.getNotifier(this).subscribe(
 			this.#changeHandler,
