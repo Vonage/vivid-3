@@ -3,6 +3,7 @@ import { attr, observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * check if the item is a tree item

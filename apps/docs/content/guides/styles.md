@@ -69,7 +69,7 @@ The core theme styles will apply the appropriate `color`, `background-color` and
 
 ### Scrollbar
 
-Vivid component has a custom scrollbar. It can be added to the entire app/page by adding the class `vvd-scrollbar` to `:root.`
+Vivid components have scrollbars with custom styles to make them more consistent across browsers and operating systems. These styles can be added to the entire app/page by adding the class `vvd-scrollbar` to the `html` (`:root`) element.
 
 ## Core Typography Stylesheet
 
