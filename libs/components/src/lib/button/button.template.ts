@@ -97,7 +97,7 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		formnovalidate="${(x) => x.formnovalidate}"
 		formtarget="${(x) => x.formtarget}"
 		name="${(x) => x.name}"
-		type="${(x) => x.type}"
+		type= "${(x) => x.type ?? "submit"}"
 		value="${(x) => x.value}"
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
