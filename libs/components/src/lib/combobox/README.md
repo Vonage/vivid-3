@@ -220,9 +220,8 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-
-| Name              | Type                            | Description                                                                                                                 |
-| ----------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Name                | Type                            | Description                                                                                                                 |
+| ------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **appearance**      | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
 | **disabled**        | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
 | **fixed-dropdown**  | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
