@@ -59,6 +59,13 @@ describe('vwc-text-field', () => {
 		it('should be initialized as a vwc-text-field', async () => {
 			expect(element).toBeInstanceOf(TextField);
 		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG_NAME)).not.toThrow();
+		});
 	});
 
 	describe('scale', () => {
