@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 

@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -454,21 +454,21 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Name                        | Type                                  | Description                                                                                                                                 |
-| --------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dismiss-button-aria-label` | `string`                              | Sets a custom aria-label to the close button                                                                                                |
-| `full-width-body`           | `boolean`                             | Sets the element's body to full width (no padding))                                                                                         |
-| `headline`                  | `string`                              | Sets the element's headline                                                                                                                 |
-| `icon`                      | Enum:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`'s |
-| `icon-placement`            | Enum:<br/>`[side]` (default), `[top]` | Sets the element's icon placement                                                                                                           |
-| `modal`                     | `boolean`                             | Sets the element's to be opened                                                                                                             |
-| `no-dismiss-button`         | `boolean`                             | Remove the element's dismiss button                                                                                                         |
-| `no-dismiss-on-esc`         | `boolean`                             | prevent a modal dialog from being dismissed by pressing esc                                                                                 |
-| `no-light-dismiss`          | `boolean`                             | prevent a modal dialog from being dismissed by clicking outside of it.                                                                      |
-| `non-dismissible`           | `boolean`                             | combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`                                                                   |
-| `open`                      | `boolean`                             | Sets the element's to be opened                                                                                                             |
-| `returnValue`               | `string`                              | Sets the element's to be opened                                                                                                             |
-| `subtitle`                  | `string`                              | Sets the element's return value                                                                                                             |
+| Name                          | Type                                  | Description                                                                                                                                 |
+| ----------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **dismiss-button-aria-label** | `string`                              | Sets a custom aria-label to the close button                                                                                                |
+| **full-width-body**           | `boolean`                             | Sets the element's body to full width (no padding))                                                                                         |
+| **headline**                  | `string`                              | Sets the element's headline                                                                                                                 |
+| **icon**                      | Enum:<br/>`[icon-name]`               | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`'s |
+| **icon-placement**            | Enum:<br/>`[side]` (default), `[top]` | Sets the element's icon placement                                                                                                           |
+| **modal**                     | `boolean`                             | Sets the element's to be opened                                                                                                             |
+| **no-dismiss-button**         | `boolean`                             | Remove the element's dismiss button                                                                                                         |
+| **no-dismiss-on-esc**         | `boolean`                             | prevent a modal dialog from being dismissed by pressing esc                                                                                 |
+| **no-light-dismiss**          | `boolean`                             | prevent a modal dialog from being dismissed by clicking outside of it.                                                                      |
+| **non-dismissible**           | `boolean`                             | combines `no-light-dismiss`, `no-dismiss-on-esc`, and `no-dismiss-button`                                                                   |
+| **open**                      | `boolean`                             | Sets the element's to be opened                                                                                                             |
+| **returnValue**               | `string`                              | Sets the element's to be opened                                                                                                             |
+| **subtitle**                  | `string`                              | Sets the element's return value                                                                                                             |
 
 </div>
 
@@ -490,11 +490,11 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                                                                                                                   |
-| -------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `open`   | `CustomEvent<undefined>` | No      | Yes      | The `open` event fires when the dialog opens.                                                                                                                 |
-| `close`  | `CustomEvent<string>`    | No      | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
-| `cancel` | `CustomEvent<undefined>` | No      | Yes      | The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.     |
+| Name       | Type                     | Bubbles | Composed | Description                                                                                                                                                   |
+| ---------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **open**   | `CustomEvent<undefined>` | No      | Yes      | The `open` event fires when the dialog opens.                                                                                                                 |
+| **close**  | `CustomEvent<string>`    | No      | Yes      | The `close` event fires when the dialog closes (either via user interaction or via the API). It returns the return value inside the event's details property. |
+| **cancel** | `CustomEvent<undefined>` | No      | Yes      | The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.     |
 
 </div>
 
@@ -502,10 +502,10 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 <div class="table-wrapper">
 
-| Namen       | Returns | Description                                                                 |
-| ----------- | ------- | --------------------------------------------------------------------------- |
-| `show`      | `void`  | Shows the dialog.                                                           |
-| `close`     | `void`  | Closes the dialog.                                                          |
-| `showModal` | `void`  | Shows the dialog as a modal, irregardless of the value of the modal member. |
+| Namen         | Returns | Description                                                                 |
+| ------------- | ------- | --------------------------------------------------------------------------- |
+| **show**      | `void`  | Shows the dialog.                                                           |
+| **close**     | `void`  | Closes the dialog.                                                          |
+| **showModal** | `void`  | Shows the dialog as a modal, irregardless of the value of the modal member. |
 
 </div>
