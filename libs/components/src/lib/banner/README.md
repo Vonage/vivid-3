@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -189,12 +189,12 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name          | Description                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `text`        | `string`                                                                                         |
-| `connotation` | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
-| `icon`        | Enum\_:<br/>`[icon-name]`                                                                        |
-| `removable`   | `boolean`                                                                                        |
+| Name            | Description                                                                                      |
+| --------------- | ------------------------------------------------------------------------------------------------ |
+| **text**        | `string`                                                                                         |
+| **connotation** | Enum\_:<br/>`information` (default) <br/>`announcement`<br/>`success`<br/>`warning` <br/>`alert` |
+| **icon**        | Enum\_:<br/>`[icon-name]`                                                                        |
+| **removable**   | `boolean`                                                                                        |
 
 </div>
 
@@ -213,10 +213,10 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name       | Description                                                              |
-| ---------- | ------------------------------------------------------------------------ |
-| `removing` | Fires `removing` whenever the banner has started its removing animation. |
-| `removed`  | Fires `removed` when the removing animation is done.                     |
+| Name         | Description                                                              |
+| ------------ | ------------------------------------------------------------------------ |
+| **removing** | Fires `removing` whenever the banner has started its removing animation. |
+| **removed**  | Fires `removed` when the removing animation is done.                     |
 
 </div>
 
@@ -224,8 +224,8 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name     | Returns | Description                                                                                                                                                                                                                                                                                                                   |
-| -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `remove` | `void`  | Removes the banner from the DOM. Fires the `removing` event and starts the remove animation. When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely. If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak. |
+| Name       | Returns | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **remove** | `void`  | Removes the banner from the DOM. Fires the `removing` event and starts the remove animation. When the animation finishes, it emits the `removed` event and removes the banner from the DOM completely. If you have a variable that refers to the banner element make sure to clear it otherwise it might cause a memory leak. |
 
 </div>
