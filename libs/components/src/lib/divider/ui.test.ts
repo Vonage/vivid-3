@@ -32,7 +32,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-card>
 				<div class="content" slot="main">
 					<p>Choose the button you like best in this card :)</p>
-					<vwc-divider"></vwc-divider>
+					<vwc-divider></vwc-divider>
 				</div>
 				<vwc-button label="Submit" appearance="filled" slot="footer"></vwc-button>
 			</vwc-card>
