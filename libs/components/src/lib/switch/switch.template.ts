@@ -16,22 +16,25 @@ const getClasses = (_: Switch) =>
 	);
 
 export const SwitchTemplate = html<Switch>`
-	<div
-		class="${getClasses}"
-		role="switch"
-		aria-checked="${(x) => x.checked}"
-		aria-disabled="${(x) => x.disabled}"
-		aria-readonly="${(x) => x.readOnly}"
-		tabindex="${(x) => (x.disabled ? null : 0)}"
-		@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
-		@click="${(x) => x.clickHandler()}"
-	>
-		<div class="switch">
-			<span class="checked-indicator"></span>
+	<template role="${(x) => (x.ariaLabel ? 'presentation' : null)}">
+		<div
+			class="${getClasses}"
+			role="switch"
+			aria-label="${(x) => x.ariaLabel}"
+			aria-checked="${(x) => x.checked}"
+			aria-disabled="${(x) => x.disabled}"
+			aria-readonly="${(x) => x.readOnly}"
+			tabindex="${(x) => (x.disabled ? null : 0)}"
+			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
+			@click="${(x) => x.clickHandler()}"
+		>
+			<div class="switch">
+				<span class="checked-indicator"></span>
+			</div>
+			${when(
+				(x) => x.label,
+				html<Switch>`<div class="label">${(x) => x.label}</div>`
+			)}
 		</div>
-		${when(
-			(x) => x.label,
-			html<Switch>`<div class="label">${(x) => x.label}</div>`
-		)}
-	</div>
+	</template>
 `;
