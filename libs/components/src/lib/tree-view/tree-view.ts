@@ -12,7 +12,6 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.js';
 import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
-import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export function getDisplayedNodes(
 	rootNode: HTMLElement,
