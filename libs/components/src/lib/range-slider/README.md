@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -184,11 +184,11 @@ Use this to configure the [`pin`](/components/range-slider/#pin) string.
 
 <div class="table-wrapper">
 
-| Name          | Type                     | Bubbles | Composed | Description                                               |
-| ------------- | ------------------------ | ------- | -------- | --------------------------------------------------------- |
-| `input:start` | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the start value changes                |
-| `input:end`   | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the end value changes                  |
-| `input`       | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
-| `change`      | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
+| Name            | Type                     | Bubbles | Composed | Description                                               |
+| --------------- | ------------------------ | ------- | -------- | --------------------------------------------------------- |
+| **input:start** | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the start value changes                |
+| **input:end**   | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the end value changes                  |
+| **input**       | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
+| **change**      | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when either the start or end value changes. |
 
 </div>

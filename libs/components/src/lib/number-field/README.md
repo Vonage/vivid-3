@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -145,10 +145,10 @@ Example showing a link in the helper text:
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                              |
-| -------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
-| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the value has changed  |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value has changed |
+| Name       | Type                     | Bubbles | Composed | Description                                              |
+| ---------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| **input**  | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the value has changed  |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value has changed |
 
 </div>
 
@@ -156,9 +156,9 @@ Example showing a link in the helper text:
 
 <div class="table-wrapper">
 
-| Name       | Returns | Description                                   |
-| ---------- | ------- | --------------------------------------------- |
-| `stepUp`   | `void`  | Increase value by step (1 if step is not set) |
-| `stepDown` | `void`  | Decrease value by step (1 if step is not set) |
+| Name         | Returns | Description                                   |
+| ------------ | ------- | --------------------------------------------- |
+| **stepUp**   | `void`  | Increase value by step (1 if step is not set) |
+| **stepDown** | `void`  | Decrease value by step (1 if step is not set) |
 
 </div>
