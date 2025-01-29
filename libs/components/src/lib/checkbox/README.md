@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -123,10 +123,10 @@ The `helper-text` slot allows you to use rich content as the Checkbox's helper t
 
 ### Events
 
-| Name     | Type                     | Bubbles | Composed | Description                             |
-| -------- | ------------------------ | ------- | -------- | --------------------------------------- |
-| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
+| Name       | Type                     | Bubbles | Composed | Description                             |
+| ---------- | ------------------------ | ------- | -------- | --------------------------------------- |
+| **input**  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
 
 ### Slots
 
