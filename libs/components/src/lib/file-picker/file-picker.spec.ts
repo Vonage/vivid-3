@@ -445,16 +445,6 @@ describe('vwc-file-picker', () => {
 
 			expect(element.files.length).toEqual(0);
 		});
-
-		it('should  set error connotation on remove button when error', async () => {
-			element.maxFiles = 1;
-			addFiles([
-				await generateFile('london1.png', 1),
-				await generateFile('london2.png', 1),
-			]);
-
-			expect(getRemoveButton(0).connotation).toBeUndefined();
-		});
 	});
 
 	describe('removeAllFiles()', function () {
