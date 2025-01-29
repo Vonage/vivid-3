@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -90,15 +90,15 @@ Use the `name` and `value` attribute when including the Switch as part of a form
 
 <div class="table-wrapper">
 
-| Name          | Type                                                           | Description                                                 |
-| ------------- | -------------------------------------------------------------- | ----------------------------------------------------------- |
-| `checked`     | `boolean`                                                      | Controls the checked state                                  |
-| `connotation` | `primary` (default), `cta`, `announcement`, `success`, `alert` | Controls the color of the Switch                            |
-| `disabled`    | `boolean`                                                      | Controls the disabled state                                 |
-| `label`       | `string`                                                       | Provides the label for the Switch                           |
-| `name`        | `string`                                                       | Provides a identifier when used inside of a form            |
-| `readonly`    | `boolean`                                                      | Controls the read only state                                |
-| `value`       | `string`                                                       | Provides a value to be submitted when used inside of a form |
+| Name            | Type                                                           | Description                                                 |
+| --------------- | -------------------------------------------------------------- | ----------------------------------------------------------- |
+| **checked**     | `boolean`                                                      | Controls the checked state                                  |
+| **connotation** | `primary` (default), `cta`, `announcement`, `success`, `alert` | Controls the color of the Switch                            |
+| **disabled**    | `boolean`                                                      | Controls the disabled state                                 |
+| **label**       | `string`                                                       | Provides the label for the Switch                           |
+| **name**        | `string`                                                       | Provides a identifier when used inside of a form            |
+| **readonly**    | `boolean`                                                      | Controls the read only state                                |
+| **value**       | `string`                                                       | Provides a value to be submitted when used inside of a form |
 
 </div>
 
@@ -106,8 +106,8 @@ Use the `name` and `value` attribute when including the Switch as part of a form
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                |
-| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
+| Name       | Type                     | Bubbles | Composed | Description                                                |
+| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emits a custom change event when the checked state changes |
 
 </div>

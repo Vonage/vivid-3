@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -66,13 +66,13 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 <div class="table-wrapper">
 
-| Name            | Type                          | Description                                     |
-| --------------- | ----------------------------- | ----------------------------------------------- |
-| `checked`       | `boolean`                     | Controls the checked state                      |
-| `clickable-box` | `boolean`                     | Sets the whole box to be clickable              |
-| `connotation`   | `accent` (default), `cta`     | Controls the color of the box and its control   |
-| `control-type`  | `checkbox` (default), `radio` | Controls the type of control in the box         |
-| `tight`         | `boolean`                     | Removes the padding from the boxes content area |
+| Name              | Type                          | Description                                     |
+| ----------------- | ----------------------------- | ----------------------------------------------- |
+| **checked**       | `boolean`                     | Controls the checked state                      |
+| **clickable-box** | `boolean`                     | Sets the whole box to be clickable              |
+| **connotation**   | `accent` (default), `cta`     | Controls the color of the box and its control   |
+| **control-type**  | `checkbox` (default), `radio` | Controls the type of control in the box         |
+| **tight**         | `boolean`                     | Removes the padding from the boxes content area |
 
 </div>
 
@@ -80,9 +80,9 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 <div class="table-wrapper">
 
-| Name      | Description                         |
-| --------- | ----------------------------------- |
-| `default` | Content area for the Selectable Box |
+| Name        | Description                         |
+| ----------- | ----------------------------------- |
+| **default** | Content area for the Selectable Box |
 
 </div>
 
@@ -90,8 +90,8 @@ Use the `--selectable-box-spacing` variable to set the amount of spacing applied
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                          |
-| -------- | ------------------------ | ------- | -------- | ------------------------------------ |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the checked state changes |
+| Name       | Type                     | Bubbles | Composed | Description                          |
+| ---------- | ------------------------ | ------- | -------- | ------------------------------------ |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the checked state changes |
 
 </div>

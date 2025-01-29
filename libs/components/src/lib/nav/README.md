@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -249,8 +249,8 @@ If set, the `icon` attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                       |
-| -------- | ------------------------ | ------- | -------- | ------------------------------------------------- |
-| `toggle` | `CustomEvent<undefined>` | No      | Yes      | Event emitted when the nav disclosure is toggled. |
+| Name       | Type                     | Bubbles | Composed | Description                                       |
+| ---------- | ------------------------ | ------- | -------- | ------------------------------------------------- |
+| **toggle** | `CustomEvent<undefined>` | No      | Yes      | Event emitted when the nav disclosure is toggled. |
 
 </div>
