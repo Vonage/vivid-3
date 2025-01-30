@@ -120,7 +120,6 @@ $track-thickness: 2px;
 				(var(#{variables.$thumb-interaction-indicator-size}) - $track-thickness) /
 					2
 			);
-			overflow: hidden;
 			block-size: 100%;
 			inline-size: $track-thickness;
 
@@ -269,6 +268,7 @@ $track-thickness: 2px;
 			.track {
 				top: 16px;
 				block-size: 4px;
+				overflow: hidden;
 			}
 		}
 
