@@ -4,6 +4,11 @@ import { InlineTimePicker } from './inline-time-picker.ts';
 
 const COMPONENT_TAG = 'vwc-inline-time-picker';
 
+const labelsFrom = (from: number, to: number, step = 1) =>
+	Array.from({ length: (to - from) / step + 1 }, (_, i) => from + i * step).map(
+		(n) => n.toString().padStart(2, '0')
+	);
+
 describe('vwc-inline-time-picker', () => {
 	let element: InlineTimePicker;
 
@@ -66,12 +71,8 @@ describe('vwc-inline-time-picker', () => {
 	});
 
 	describe('initialization', () => {
-		it('should display the list of minute options', () => {
-			const labels = getLabels('minutes');
-			expect(labels.length).toBe(60);
-			expect(labels[0]).toBe('00');
-			expect(labels[1]).toBe('01');
-			expect(labels[59]).toBe('59');
+		it('should display the list of minutes', () => {
+			expect(getLabels('minutes')).toEqual(labelsFrom(0, 59));
 		});
 	});
 
@@ -100,8 +101,7 @@ describe('vwc-inline-time-picker', () => {
 			element.min = '12:00:00';
 			await elementUpdated(element);
 
-			expect(getPickerItem('hours', '11')).toBe(null);
-			expect(getPickerItem('hours', '12')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('hours')).toEqual(labelsFrom(12, 23));
 		});
 
 		it('should hide minutes before the min time if the hour is the min hour', async () => {
@@ -109,17 +109,15 @@ describe('vwc-inline-time-picker', () => {
 			element.value = '12:30:00';
 			await elementUpdated(element);
 
-			expect(getPickerItem('minutes', '14')).toBe(null);
-			expect(getPickerItem('minutes', '15')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('minutes')).toEqual(labelsFrom(15, 59));
 		});
 
-		it('should not hide minutes if the selected hour is not the min hour', async () => {
+		it('should show all minutes if the hour is not the min hour', async () => {
 			element.min = '12:15:00';
 			element.value = '13:30:00';
 			await elementUpdated(element);
 
-			expect(getPickerItem('minutes', '14')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('minutes', '15')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('minutes')).toEqual(labelsFrom(0, 59));
 		});
 
 		it('should hide seconds before the min time if hour and minute are the min time', async () => {
@@ -128,18 +126,16 @@ describe('vwc-inline-time-picker', () => {
 			element.secondsStep = 1;
 			await elementUpdated(element);
 
-			expect(getPickerItem('seconds', '14')).toBe(null);
-			expect(getPickerItem('seconds', '15')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('seconds')).toEqual(labelsFrom(15, 59));
 		});
 
-		it('should not hide seconds before the min time if hour and minute are not the min time', async () => {
+		it('should show all seconds if hour and minute are not the min time', async () => {
 			element.min = '12:15:15';
 			element.value = '12:30:30';
 			element.secondsStep = 1;
 			await elementUpdated(element);
 
-			expect(getPickerItem('seconds', '14')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('seconds', '15')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('seconds')).toEqual(labelsFrom(0, 59));
 		});
 
 		it('should hide AM option if min is in PM', async () => {
@@ -161,8 +157,7 @@ describe('vwc-inline-time-picker', () => {
 			element.max = '12:00:00';
 			await elementUpdated(element);
 
-			expect(getPickerItem('hours', '12')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('hours', '13')).toBe(null);
+			expect(getLabels('hours')).toEqual(labelsFrom(0, 12));
 		});
 
 		it('should hide minutes after the max time if the hour is the max hour', async () => {
@@ -170,17 +165,15 @@ describe('vwc-inline-time-picker', () => {
 			element.value = '12:30:00';
 			await elementUpdated(element);
 
-			expect(getPickerItem('minutes', '45')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('minutes', '46')).toBe(null);
+			expect(getLabels('minutes')).toEqual(labelsFrom(0, 45));
 		});
 
-		it('should not hide minutes if the selected hour is not the max hour', async () => {
+		it('should show all minutes if hour is not the max hour', async () => {
 			element.max = '12:45:00';
 			element.value = '11:30:00';
 			await elementUpdated(element);
 
-			expect(getPickerItem('minutes', '45')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('minutes', '46')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('minutes')).toEqual(labelsFrom(0, 59));
 		});
 
 		it('should hide seconds after the max time if hour and minute are the max time', async () => {
@@ -189,18 +182,16 @@ describe('vwc-inline-time-picker', () => {
 			element.secondsStep = 1;
 			await elementUpdated(element);
 
-			expect(getPickerItem('seconds', '45')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('seconds', '46')).toBe(null);
+			expect(getLabels('seconds')).toEqual(labelsFrom(0, 45));
 		});
 
-		it('should not hide seconds after the max time if hour and minute are not the max time', async () => {
+		it('should show all seconds if hour and minute are not the max time', async () => {
 			element.max = '12:45:45';
 			element.value = '11:45:30';
 			element.secondsStep = 1;
 			await elementUpdated(element);
 
-			expect(getPickerItem('seconds', '45')).toBeInstanceOf(HTMLElement);
-			expect(getPickerItem('seconds', '46')).toBeInstanceOf(HTMLElement);
+			expect(getLabels('seconds')).toEqual(labelsFrom(0, 59));
 		});
 
 		it('should hide PM option if max is in AM', async () => {
@@ -214,7 +205,7 @@ describe('vwc-inline-time-picker', () => {
 	});
 
 	describe('clock', () => {
-		it('defaults to 24h', () => {
+		it('should default to 24h', () => {
 			expect(element.clock).toBe('24h');
 		});
 
@@ -231,20 +222,7 @@ describe('vwc-inline-time-picker', () => {
 			});
 
 			it('should show the hours options from 12-11', async () => {
-				expect(getLabels('hours')).toEqual([
-					'12',
-					'01',
-					'02',
-					'03',
-					'04',
-					'05',
-					'06',
-					'07',
-					'08',
-					'09',
-					'10',
-					'11',
-				]);
+				expect(getLabels('hours')).toEqual(['12', ...labelsFrom(1, 11)]);
 			});
 		});
 
@@ -259,32 +237,7 @@ describe('vwc-inline-time-picker', () => {
 			});
 
 			it('should show the hours options from 0-23', async () => {
-				expect(getLabels('hours')).toEqual([
-					'00',
-					'01',
-					'02',
-					'03',
-					'04',
-					'05',
-					'06',
-					'07',
-					'08',
-					'09',
-					'10',
-					'11',
-					'12',
-					'13',
-					'14',
-					'15',
-					'16',
-					'17',
-					'18',
-					'19',
-					'20',
-					'21',
-					'22',
-					'23',
-				]);
+				expect(getLabels('hours')).toEqual(labelsFrom(0, 23));
 			});
 		});
 	});
@@ -298,16 +251,14 @@ describe('vwc-inline-time-picker', () => {
 			element.minutesStep = 15;
 			await elementUpdated(element);
 
-			expect(
-				getAllPickerItems('minutes').map((item) => item.innerHTML.trim())
-			).toEqual(['00', '15', '30', '45']);
+			expect(getLabels('minutes')).toEqual(labelsFrom(0, 45, 15));
 		});
 
 		it('should ignore minutesStep of less than 1', async () => {
 			element.minutesStep = 0;
 			await elementUpdated(element);
 
-			expect(getAllPickerItems('minutes').length).toBe(60);
+			expect(getLabels('minutes')).toEqual(labelsFrom(0, 59));
 		});
 	});
 
@@ -320,30 +271,25 @@ describe('vwc-inline-time-picker', () => {
 			expect(element.shadowRoot!.querySelector('#seconds')).toBe(null);
 		});
 
-		it('should display the list of second options when provided', async () => {
+		it('should display the list of seconds when provided', async () => {
 			element.secondsStep = 1;
 			await elementUpdated(element);
 
-			expect(getLabels('seconds').length).toBe(60);
-			expect(getLabels('seconds')[0]).toBe('00');
-			expect(getLabels('seconds')[1]).toBe('01');
-			expect(getLabels('seconds')[59]).toBe('59');
+			expect(getLabels('seconds')).toEqual(labelsFrom(0, 59));
 		});
 
 		it('should hide seconds that are not a multiple of secondsStep', async () => {
 			element.secondsStep = 15;
 			await elementUpdated(element);
 
-			expect(
-				getAllPickerItems('seconds').map((item) => item.innerHTML.trim())
-			).toEqual(['00', '15', '30', '45']);
+			expect(getLabels('seconds')).toEqual(labelsFrom(0, 45, 15));
 		});
 
 		it('should ignore secondsStep of less than 1', async () => {
 			element.secondsStep = 0;
 			await elementUpdated(element);
 
-			expect(getAllPickerItems('seconds').length).toBe(60);
+			expect(getLabels('seconds')).toEqual(labelsFrom(0, 59));
 		});
 	});
 
@@ -373,7 +319,7 @@ describe('vwc-inline-time-picker', () => {
 			);
 		});
 
-		it('should not bubble', () => {
+		it('should be prevented from bubbling', () => {
 			const spy = jest.fn();
 			element.addEventListener('change', spy);
 
@@ -386,7 +332,7 @@ describe('vwc-inline-time-picker', () => {
 	});
 
 	describe('last-column-selected event', () => {
-		it('should close the popup when clicking on an item in the last picker', async () => {
+		it('should be fired when clicking on an item in the last picker', async () => {
 			const spy = jest.fn();
 			element.addEventListener('last-column-selected', spy);
 
@@ -395,7 +341,7 @@ describe('vwc-inline-time-picker', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
-		it('should not bubble', () => {
+		it('should be prevented from bubbling', () => {
 			const spy = jest.fn();
 			element.addEventListener('last-column-selected', spy);
 
