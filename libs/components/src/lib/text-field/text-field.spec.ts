@@ -6,10 +6,9 @@ import {
 	getBaseElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { TextFieldType } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
-import { TextField } from './text-field';
+import { TextField, TextFieldType } from './text-field';
 import '.';
 
 // Polyfill innerText for JSDOM
