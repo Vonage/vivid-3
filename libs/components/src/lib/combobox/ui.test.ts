@@ -5,7 +5,7 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['combobox', 'option'];
+const components = ['combobox', 'option', 'badge'];
 
 async function testScaleOptions({ page }: { page: Page }) {
 	const template = `<div style="margin: 5px; block-size: 400px">
@@ -55,14 +55,29 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<vwc-combobox appearance="ghost" placeholder="ghost appearance"></vwc-combobox>
 			<vwc-combobox shape="pill" placeholder="ghost appearance"></vwc-combobox>
 			<vwc-combobox scale="condensed" placeholder="ghost appearance"></vwc-combobox>
+			<vwc-combobox label="Country code" icon="warning-line"></vwc-combobox>
+			<vwc-combobox label="Country code" icon="warning-line" disabled value="Value"></vwc-combobox>
+			<vwc-combobox scale="condensed" label="Country code" icon="warning-line"></vwc-combobox>
 			<vwc-combobox label="Label"></vwc-combobox>
 			<vwc-combobox placeholder="Placeholder"></vwc-combobox>
 			<vwc-combobox value="Value"></vwc-combobox>
 			<vwc-combobox disabled></vwc-combobox>
+			<vwc-combobox label="Combobox with custom icon" placeholder="placeholder">
+				<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+			</vwc-combobox>
+			<vwc-combobox label="Combobox with meta slot" placeholder="placeholder">
+				<vwc-badge slot="meta" connotation="success" text="Beta"></vwc-badge>
+			</vwc-combobox>
+			<vwc-combobox label="Combobox with meta slot + icon slot" placeholder="placeholder with very long text to check ellipsis">
+				<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
+				<vwc-badge slot="meta" connotation="success" text="Beta"></vwc-badge>
+			</vwc-combobox>
+			<vwc-combobox value="Value with very long text to check ellipsis"></vwc-combobox>
 			<vwc-combobox open style="margin-bottom: 100px">
 				<vwc-option text="Option 1"></vwc-option>
 				<vwc-option text="Option 2"></vwc-option>
 			</vwc-combobox>
+
 		`,
 	});
 
