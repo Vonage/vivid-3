@@ -1,7 +1,7 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type NoteConnotation =

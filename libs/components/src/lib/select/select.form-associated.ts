@@ -1,4 +1,4 @@
-import { FormAssociated } from '@microsoft/fast-foundation';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
 import { Listbox } from '../../shared/foundation/listbox/listbox';
 
 class _Select extends Listbox {}

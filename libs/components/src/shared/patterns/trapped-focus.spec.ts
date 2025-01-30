@@ -1,6 +1,6 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { customElement, FASTElement, html } from '@microsoft/fast-element';
 import { fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
+import { applyMixins } from '../foundation/utilities/apply-mixins';
 import { TrappedFocus } from './trapped-focus.ts';
 
 describe('TrappedFocus', () => {
