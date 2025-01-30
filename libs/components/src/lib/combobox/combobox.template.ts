@@ -2,18 +2,14 @@ import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
-import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { Combobox } from './combobox';
 
-function renderLabel() {
-	return html<Combobox>` <label for="control" class="label">
-		${(x) => x.label}
-	</label>`;
-}
-
 const getStateClasses = ({
+	shape,
+	scale,
 	disabled,
 	placeholder,
 	label,
@@ -22,10 +18,18 @@ const getStateClasses = ({
 	classNames(
 		'base',
 		['disabled', disabled],
+		[`shape-${shape}`, Boolean(shape)],
+		[`size-${scale}`, Boolean(scale)],
 		['placeholder', Boolean(placeholder)],
 		[`appearance-${appearance}`, Boolean(appearance)],
 		['no-label', !label]
 	);
+
+function renderLabel() {
+	return html<Combobox>` <label for="control" class="label">
+		${(x) => x.label}
+	</label>`;
+}
 
 function setFixedDropdownVarWidth(x: Combobox) {
 	return x.open && x.fixedDropdown

@@ -1,6 +1,5 @@
 import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import {
 	affixIconTemplateFactory,
@@ -11,6 +10,7 @@ import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from '../select/select';
 import { Button } from '../button/button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { SearchableSelect } from './searchable-select';
 import { OptionTag } from './option-tag';
 

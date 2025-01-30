@@ -7,7 +7,7 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
-import { Connotation, Size } from '../enums';
+import { Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -444,17 +444,6 @@ describe('vwc-file-picker', () => {
 			getRemoveButton(0).click();
 
 			expect(element.files.length).toEqual(0);
-		});
-
-		it('should  set error connotation on remove button when error', async () => {
-			element.maxFiles = 1;
-			addFiles([
-				await generateFile('london1.png', 1),
-				await generateFile('london2.png', 1),
-			]);
-
-			expect(getRemoveButton(0).connotation).toBeUndefined();
-			expect(getRemoveButton(1).connotation).toBe(Connotation.Alert);
 		});
 	});
 

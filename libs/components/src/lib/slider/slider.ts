@@ -4,7 +4,6 @@ import {
 	observable,
 	volatile,
 } from '@microsoft/fast-element';
-import { getDirection } from '@microsoft/fast-foundation';
 import {
 	Direction,
 	keyArrowDown,
@@ -18,6 +17,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
+import { getDirection } from '../../shared/foundation/utilities/direction';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
