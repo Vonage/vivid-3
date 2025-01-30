@@ -66,6 +66,13 @@ describe('vwc-file-picker', () => {
 			expect(element.fileTooBigError).toBeUndefined();
 		});
 
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
+
 		it('should allow accessing the component in unmounted state and mounting later without error', async () => {
 			const unmountedElement = document.createElement(
 				COMPONENT_TAG
