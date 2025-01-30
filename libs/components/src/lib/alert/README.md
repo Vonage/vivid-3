@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -204,7 +204,7 @@ The default value is `fit-content`, which allows the Alert to grow as needed.
 
 ### Events
 
-| Name    | Type                     | Bubbles | Composed | Description                    |
-| ------- | ------------------------ | ------- | -------- | ------------------------------ |
-| `open`  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is opened |
-| `close` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is closed |
+| Name      | Type                     | Bubbles | Composed | Description                    |
+| --------- | ------------------------ | ------- | -------- | ------------------------------ |
+| **open**  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is opened |
+| **close** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is closed |
