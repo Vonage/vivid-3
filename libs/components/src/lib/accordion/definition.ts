@@ -5,7 +5,13 @@ import styles from './accordion.scss?inline';
 import { Accordion } from './accordion';
 import { AccordionTemplate as template } from './accordion.template';
 
-export type { AccordionExpandMode } from '@microsoft/fast-foundation';
+export const AccordionExpandMode = {
+	single: 'single',
+	multi: 'multi',
+} as const;
+
+export type AccordionExpandMode =
+	typeof AccordionExpandMode[keyof typeof AccordionExpandMode];
 
 /**
  * @internal

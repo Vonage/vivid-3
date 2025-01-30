@@ -1,9 +1,9 @@
 import { attr, ViewTemplate } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Anchor } from '../../shared/foundation/anchor/anchor';
-import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of text anchor connotation.

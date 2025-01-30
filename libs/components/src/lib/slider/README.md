@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -144,8 +144,8 @@ The default value of `step` is `1`.
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                 |
-| -------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
+| Name       | Type                     | Bubbles | Composed | Description                                                 |
+| ---------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
 
 </div>

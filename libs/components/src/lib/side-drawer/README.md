@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -145,10 +145,10 @@ This is needed if a custom width is set on the side-drawer, or if side-drawer ne
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                                                                                                      |
-| -------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `open`   | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is opened.                                                                                                            |
-| `close`  | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is closed.                                                                                                            |
-| `cancel` | `CustomEvent<undefined>` | No      | Yes      | Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event. |
+| Name       | Type                     | Bubbles | Composed | Description                                                                                                                                      |
+| ---------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **open**   | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is opened.                                                                                                            |
+| **close**  | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is closed.                                                                                                            |
+| **cancel** | `CustomEvent<undefined>` | No      | Yes      | Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event. |
 
 </div>
