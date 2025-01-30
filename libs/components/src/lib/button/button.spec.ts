@@ -266,6 +266,24 @@ describe('vwc-button', () => {
 		});
 	});
 
+	describe('type', () => {
+		it('should have type="submit" on button by default', async () => {
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('submit');
+		});
+
+		it('should set the type attribute if was set in host', async () => {
+			const type = 'button';
+			element.type = type;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('button');
+		});
+	});
+
 	describe.each([
 		'href',
 		'hreflang',

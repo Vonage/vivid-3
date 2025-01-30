@@ -5,8 +5,8 @@ import {
 	observable,
 } from '@microsoft/fast-element';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
-import { DelegatesARIATextbox } from '@microsoft/fast-foundation';
 import type { Appearance, Shape, Size } from '../enums';
+import { DelegatesARIATextbox } from '../text-field/text-field';
 import {
 	AffixIcon,
 	errorText,

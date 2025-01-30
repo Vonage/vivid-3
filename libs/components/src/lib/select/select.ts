@@ -28,8 +28,8 @@ import {
 } from '../../shared/patterns';
 import type { Appearance, Shape, Size } from '../enums';
 import type { ListboxOption } from '../option/option';
-import { Listbox } from '../listbox/listbox';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import { FormAssociatedSelect } from './select.form-associated';
 
 export type SelectAppearance = Extract<

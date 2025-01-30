@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -65,9 +65,9 @@ registerBreadcrumbItem('your-prefix');
 
 <div class="table-wrapper">
 
-| Name   | Type     | Description                      |
-| ------ | -------- | -------------------------------- |
-| `text` | `string` | Sets the **bradcrumn-item** text |
-| `href` | `string` | Sets the **bradcrumn-item** href |
+| Name     | Type     | Description                      |
+| -------- | -------- | -------------------------------- |
+| **text** | `string` | Sets the **bradcrumn-item** text |
+| **href** | `string` | Sets the **bradcrumn-item** href |
 
 </div>

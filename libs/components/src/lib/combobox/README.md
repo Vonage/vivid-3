@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -176,17 +176,17 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name              | Type                          | Description                                                                                        |
-| ----------------- | ----------------------------- | -------------------------------------------------------------------------------------------------- |
-| `appearance`      | `fieldset` (default), `ghost` | Sets the element's appearance                                                                      |
-| `disabled`        | `boolean`                     | Sets the element's disabled state. A disabled element will not be included during form submission. |
-| `fixed-dropdown`  | `boolean`                     | Sets the position strategy of the dropdown to fixed                                                |
-| `label`           | `string`                      | Sets the element's label                                                                           |
-| `open`            | `boolean`                     | Sets the element's menu to be open                                                                 |
-| `options`         | `Option[]`                    | A read-only list of options.                                                                       |
-| `placeholder`     | `string`                      | Sets the text to be displayed when no option is selected                                           |
-| `selectedOptions` | `Option[]`                    | A read-only collection of the selected options.                                                    |
-| `selectedIndex`   | `number`                      | The index of the selected option or -1 if no option is selected.                                   |
+| Name                | Type                          | Description                                                                                        |
+| ------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------- |
+| **appearance**      | `fieldset` (default), `ghost` | Sets the element's appearance                                                                      |
+| **disabled**        | `boolean`                     | Sets the element's disabled state. A disabled element will not be included during form submission. |
+| **fixed-dropdown**  | `boolean`                     | Sets the position strategy of the dropdown to fixed                                                |
+| **label**           | `string`                      | Sets the element's label                                                                           |
+| **open**            | `boolean`                     | Sets the element's menu to be open                                                                 |
+| **options**         | `Option[]`                    | A read-only list of options.                                                                       |
+| **placeholder**     | `string`                      | Sets the text to be displayed when no option is selected                                           |
+| **selectedOptions** | `Option[]`                    | A read-only collection of the selected options.                                                    |
+| **selectedIndex**   | `number`                      | The index of the selected option or -1 if no option is selected.                                   |
 
 </div>
 
@@ -194,9 +194,9 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                          |
-| -------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value updates |
+| Name       | Type                     | Bubbles | Composed | Description                                          |
+| ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value updates |
 
 </div>
 

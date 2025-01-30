@@ -214,8 +214,13 @@
 	},
 	{
 		"title": "Divider",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/divider/README.md"
+		"description": "Use as a separator between content.",
+		"variations": "./libs/components/src/lib/divider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/divider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/divider/README.md",
+		"accessibility": "./libs/components/src/lib/divider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/divider/USE-CASES.md"
 	},
 	{
 		"title": "Menu",
@@ -231,8 +236,13 @@
 	},
 	{
 		"title": "Avatar",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/avatar/README.md"
+		"description": "Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.",
+		"variations": "./libs/components/src/lib/avatar/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/avatar/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/avatar/README.md",
+		"accessibility": "./libs/components/src/lib/avatar/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/avatar/USE-CASES.md"
 	},
 	{
 		"title": "Text Area",
@@ -268,13 +278,24 @@
 	{
 		"title": "Searchable Select",
 		"status": "alpha",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/searchable-select/README.md"
+		"description": "Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.",
+		"variations": "./libs/components/src/lib/searchable-select/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/searchable-select/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/searchable-select/README.md",
+		"accessibility": "./libs/components/src/lib/searchable-select/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/searchable-select/USE-CASES.md"
 	},
 	{
 		"title": "Switch",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/switch/README.md"
+		"description": "Use a Switch when you want a user to easily toggle between two mutually exclusive options, like 'on' and 'off' typically for settings or preferences within an application.",
+		"variations": "./libs/components/src/lib/switch/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/switch/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideUseCases": "true",
+		"code": "./libs/components/src/lib/switch/README.md",
+		"accessibility": "./libs/components/src/lib/switch/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/switch/USE-CASES.md"
 	},
 	{
 		"title": "Slider",
@@ -319,12 +340,6 @@
 		"page": "legacy",
 		"status": "underlying",
 		"markdown": "./libs/components/src/lib/popup/README.md"
-	},
-	{
-		"title": "Listbox",
-		"page": "legacy",
-		"status": "underlying",
-		"markdown": "./libs/components/src/lib/listbox/README.md"
 	},
 	{
 		"title": "Select",
@@ -413,8 +428,13 @@
 	},
 	{
 		"title": "Selectable Box",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/selectable-box/README.md"
+		"description": "Represents a content box to used in a group where one or more can be selected.",
+		"variations": "./libs/components/src/lib/selectable-box/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/selectable-box/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/selectable-box/README.md",
+		"accessibility": "./libs/components/src/lib/selectable-box/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/selectable-box/USE-CASES.md"
 	},
 	{
 		"title": "Audio Player",

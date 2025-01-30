@@ -51,12 +51,12 @@ async function testMobileInlineSize({ page }: { page: Page }) {
 <style>
 			.wrapper {
 				width: 360px;
-				height: 400px;
+				height: 405px;
+				position: relative;
 			}
 		</style>
 <div class="wrapper">
- <vwc-menu open placement="bottom-start" >
-	<vwc-button slot="anchor" label="Menu" appearance="outlined"></vwc-button>
+ <vwc-menu open placement="bottom-start" position-strategy="absolute">
   <vwc-menu-item text="Menu item 1 with long text that gets ellipsis"></vwc-menu-item>
   <vwc-menu-item text="Menu item 2 with long text that gets ellipsis"></vwc-menu-item>
   <vwc-menu-item text="Menu item 3 with long text that gets ellipsis"></vwc-menu-item>
