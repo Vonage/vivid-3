@@ -255,3 +255,29 @@ $track-thickness: 2px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base-bold});
 }
+
+/* Customize for Audio-Player */
+/* stylelint-disable */
+:host([internal-part]) {
+	.thumb-container {
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+	.control {
+		&.horizontal {
+			.track {
+				top: 16px;
+				block-size: 4px;
+				overflow: hidden;
+			}
+		}
+
+		&:hover,
+		&:focus {
+			.thumb-container {
+				opacity: 1;
+			}
+		}
+	}
+}
+/* stylelint-enable */
