@@ -6,7 +6,7 @@ class _FoundationButton extends VividElement {}
 interface _FoundationButton extends FormAssociated {}
 
 /**
- * A form-associated base class for the {@link @microsoft/fast-foundation#(Button:class)} component.
+ * A form-associated base class for the Button component.
  *
  * @internal
  */

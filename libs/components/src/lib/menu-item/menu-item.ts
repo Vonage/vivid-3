@@ -1,5 +1,4 @@
 import { attr, DOM, observable } from '@microsoft/fast-element';
-import { AnchoredRegion } from '@microsoft/fast-foundation';
 import { Direction, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
@@ -105,14 +104,6 @@ export class MenuItem extends VividElement {
 			this.$emit('change');
 		}
 	}
-
-	/**
-	 * reference to the anchored region
-	 *
-	 * @internal
-	 */
-	@observable
-	submenuRegion!: AnchoredRegion;
 
 	/**
 	 * @internal

@@ -15,12 +15,12 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  */
 export const AccordionExpandMode = {
 	/**
-	 * Designates only a single {@link @microsoft/fast-foundation#(AccordionItem:class) } can be open a time.
+	 * Designates only a single AccordionItem can be open a time.
 	 */
 	single: 'single',
 
 	/**
-	 * Designates multiple {@link @microsoft/fast-foundation#(AccordionItem:class) | AccordionItems} can be open simultaneously.
+	 * Designates multiple AccordionItems can be open simultaneously.
 	 */
 	multi: 'multi',
 } as const;

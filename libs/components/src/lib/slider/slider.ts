@@ -28,7 +28,7 @@ import { FormAssociatedSlider } from './slider.form-associated';
 export type SliderConnotation = Connotation.Accent | Connotation.CTA;
 
 /**
- * The selection modes of a {@link @microsoft/fast-foundation#(Slider:class)}.
+ * The selection modes of a Slider.
  * @public
  */
 export const SliderMode = {
