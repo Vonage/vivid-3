@@ -1,213 +1,63 @@
-# Split Button
+## Usage
 
-A split button is a button with two components: a label and an arrow; clicking on the label selects a default action, and clicking on the arrow opens up a list of other possible actions.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/split-button';</script>
+import '@vonage/vivid/split-button';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Label
+```js
+import { registerSplitButton } from '@vonage/vivid';
 
-- Type: `string`
-- Default: `undefined`
-
-Add a `label` attribute to add text to the split button.
+registerSplitButton('your-prefix');
+```
 
 ```html preview
-<vwc-split-button
-	appearance="filled"
-	label="A default split button"
-></vwc-split-button>
+<script type="module">
+	import { registerSplitButton } from '@vonage/vivid';
+	registerSplitButton('your-prefix');
+</script>
+
+<your-prefix-split-button
+	label="My Button"
+	indicator-aria-label="More actions"
+></your-prefix-split-button>
 ```
 
-### Appearance
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Set the `appearance` attribute to change the split button's appearance.
-
-- Type: `'ghost'` | `'filled'` | `'outlined'`
-- Default: `'ghost'`
-
-```html preview
-<vwc-split-button label="ghost" appearance="ghost"></vwc-split-button>
-<vwc-split-button label="filled" appearance="filled"></vwc-split-button>
-<vwc-split-button label="outlined" appearance="outlined"></vwc-split-button>
+```html
+<script setup lang="ts">
+	import { VSplitButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VSplitButton
+		appearance="filled"
+		label="My Button"
+		indicator-aria-label="More actions"
+	/>
+</template>
 ```
 
-### Icon
+</vwc-tab-panel>
+</vwc-tabs>
 
-Use `icon` to set an icon to the split button.
-View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
+## Slots
 
-Note: Icon, by its own, doesn't make a discernible text. If there's no label on the button, an `aria-label` must be provided to ensure that the user can understand the split button's purpose.
+### Default Slot
 
-- Type: `string`
-- Default: `undefined`
+Use the default slot to add content to be openned when clicking the secondary action.
 
-```html preview
-<vwc-split-button
-	appearance="filled"
-	icon="compose-line"
-	aria-label="Send Message"
-></vwc-split-button>
-```
-
-### Split Indicator
-
-Use `split-indicator` to set an indicator icon to the split button.
-View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
-
-See the [Accessibility notes](#accessibility) if you would like to customize the split indicator's default aria-label.
-
-- Type: `string`
-- Default: `chevron-down-line`
-
-```html preview
-<vwc-split-button
-	appearance="filled"
-	label="Split Indicator"
-	split-indicator="more-vertical-solid"
-></vwc-split-button>
-```
-
-### Shape
-
-Use the `shape` attribute to set the split button's edges.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview
-<vwc-split-button
-	appearance="filled"
-	label="rounded"
-	shape="rounded"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="pill"
-	shape="pill"
-></vwc-split-button>
-```
-
-### Size
-
-Use the `size` attribute to set the split button's to one of the predefined block size extent.
-
-- Type: `'super-condensed'` | `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'normal'`
-
-```html preview
-<vwc-split-button
-	appearance="filled"
-	label="super-condensed"
-	size="super-condensed"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="condensed"
-	size="condensed"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="normal"
-	size="normal"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="expanded"
-	size="expanded"
-></vwc-split-button>
-```
-
-### Connotation
-
-Set the `connotation` attribute to change the split button's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'accent'`
-
-```html preview
-<vwc-split-button
-	appearance="filled"
-	label="accent"
-	connotation="accent"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="cta"
-	connotation="cta"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="announcement"
-	connotation="announcement"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="success"
-	connotation="success"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="alert"
-	connotation="alert"
-></vwc-split-button>
-```
-
-### Disabled
-
-Add the `disabled` attribute to disable the split button.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-split-button appearance="ghost" label="ghost" disabled></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="filled"
-	disabled
-></vwc-split-button>
-<vwc-split-button
-	appearance="outlined"
-	label="outlined"
-	disabled
-></vwc-split-button>
-```
-
-## Properties
-
-<div class="table-wrapper">
-
-| Name        | Type                | Description                                                       |
-| ----------- | ------------------- | ----------------------------------------------------------------- |
-| `action`    | `HTMLButtonElement` | A read-only HTML button element that represents the left button.  |
-| `indicator` | `HTMLButtonElement` | A read-only HTML button element that represents the right button. |
-
-</div>
-
-## Events
-
-<div class="table-wrapper">
-
-| Name              | Type                     | Bubbles | Composed | Description                                        |
-| ----------------- | ------------------------ | ------- | -------- | -------------------------------------------------- |
-| `action-click`    | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the action button is clicked    |
-| `indicator-click` | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the indicator button is clicked |
-
-</div>
-
-## Use Cases
-
-### Split Button with anchored Menu
-
-```html preview 200px
+```html preview 180px
 <vwc-split-button
 	id="splitButton"
-	appearance="filled"
+	appearance="outlined"
 	label="A default split button"
 >
 	<vwc-menu id="menu" placement="bottom-end" open>
@@ -229,36 +79,9 @@ Add the `disabled` attribute to disable the split button.
 </script>
 ```
 
-### Split Button with Tooltip
+### Icon Slot
 
-```html preview 100px
-<style>
-	html {
-		text-align: center;
-	}
-</style>
-
-<vwc-split-button
-	id="splitButton"
-	appearance="filled"
-	icon="compose-line"
-	aria-label="Write a new message"
->
-	<vwc-tooltip id="tooltip" text="Write a new message"></vwc-tooltip>
-</vwc-split-button>
-
-<script>
-	window.onload = function () {
-		tooltip.anchor = splitButton.action;
-	};
-</script>
-```
-
-### Icon
-
-Set the `icon` slot to show an icon.  
-If set, the `icon` attribute is ignored.  
-Note: Icon, by its own, doesn't make a discernible text. If there's no label on the button, an `aria-label` must be provided to ensure that the user can understand the split button's purpose.
+Use the `icon` slot add custom icons. If set, the icon attribute is ignored.
 
 ```html preview
 <vwc-split-button appearance="outlined" label="submit">
@@ -270,8 +93,46 @@ Note: Icon, by its own, doesn't make a discernible text. If there's no label on 
 </vwc-split-button>
 ```
 
-## Accessibility
+## API Reference
 
-- `aria-label` - When icon-only button is used, an [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) should be provided to ensure that the user can understand the button's purpose.
+### Properties
 
-- `indicator-aria-label` - The indicator has a default `aria-label`, which will be a localised version of "Show more actions". You can override this by setting the `indicator-aria-label` attribute.
+<div class="table-wrapper">
+
+| Name                     | Type                                                           | Description                                                       |
+| ------------------------ | -------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **appearance**           | `ghost` (default), `filled`, `outlined`                        | Sets the appearance                                               |
+| **action**               | `HTMLButtonElement`                                            | A read-only HTML button element that represents the left button.  |
+| **connotation**          | `accent` (default), `cta`, `announcement`, `success`, `alert`  | Sets the connotation                                              |
+| **disabled**             | `boolean`                                                      | Sets the disabled state                                           |
+| **icon**                 | `string`                                                       | Icon for the primary action                                       |
+| **indicator**            | `HTMLButtonElement`                                            | A read-only HTML button element that represents the right button. |
+| **indicator-aria-label** | `string`                                                       | Accessible label for the secondary action                         |
+| **icon**                 | `string`                                                       | Icon for the primary action                                       |
+| **shape**                | `rounded` (default), `pill`                                    | Sets the shape                                                    |
+| **size**                 | `normal` (default), `super-condensed`, `condensed`, `expanded` | Sets the size                                                     |
+| **split-indicator**      | `string`                                                       | Icon for the secondary action                                     |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name        | Description                                             |
+| ----------- | ------------------------------------------------------- |
+| **default** | Content to be openned by the secondary action (eg Menu) |
+| **icon**    | For custom icons                                        |
+
+</div>
+
+### Events
+
+<div class="table-wrapper">
+
+| Name                | Type                     | Bubbles | Composed | Description                                        |
+| ------------------- | ------------------------ | ------- | -------- | -------------------------------------------------- |
+| **action-click**    | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the action button is clicked    |
+| **indicator-click** | `CustomEvent<undefined>` | Yes     | Yes      | Event emitted when the indicator button is clicked |
+
+</div>
