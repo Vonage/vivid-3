@@ -447,8 +447,12 @@
 	},
 	{
 		"title": "Dial Pad",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/dial-pad/README.md"
+		"description": "Use when you need to allow users to enter / dial telephone numbers.",
+		"variations": "./libs/components/src/lib/dial-pad/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/dial-pad/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/dial-pad/README.md",
+		"accessibility": "./libs/components/src/lib/dial-pad/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Video Player",
