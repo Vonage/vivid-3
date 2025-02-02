@@ -131,6 +131,14 @@ export class Combobox extends FormAssociatedCombobox {
 	_anchor!: HTMLElement;
 
 	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable metaSlottedContent?: Node[];
+
+	/**
 	 * Reset the element to its first selectable option when its parent form is reset.
 	 *
 	 * @internal

@@ -33,6 +33,13 @@ describe('vwc-selectable-box', () => {
 			expect(element.checked).toBe(false);
 		});
 
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
+
 		it('should render the role attribute set to "presentation"', async () => {
 			expect(element.getAttribute('role')).toBe('presentation');
 		});
