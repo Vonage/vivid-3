@@ -17,6 +17,13 @@ describe('vwc-divider', () => {
 		it('should be initialized as a vwc-divider', async () => {
 			expect(element).toBeInstanceOf(Divider);
 		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
 	});
 
 	describe('orientation', function () {
@@ -27,6 +34,26 @@ describe('vwc-divider', () => {
 			await elementUpdated(element);
 
 			expect(base?.classList.contains(`${orientation}`)).toBeTruthy();
+		});
+
+		it('should set the aria-orientation attribute if role is separator', async () => {
+			const base = element.shadowRoot?.querySelector('.base');
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			element.role = 'separator';
+			await elementUpdated(element);
+
+			expect(base?.getAttribute('aria-orientation')).toBe('vertical');
+		});
+
+		it('should NOT set the aria-orientation attribute if role is presentation', async () => {
+			const base = element.shadowRoot?.querySelector('.base');
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			element.role = 'presentation';
+			await elementUpdated(element);
+
+			expect(base?.getAttribute('aria-orientation')).toBe(null);
 		});
 	});
 

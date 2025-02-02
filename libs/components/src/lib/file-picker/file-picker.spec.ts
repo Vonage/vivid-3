@@ -7,7 +7,7 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
-import { Connotation, Size } from '../enums';
+import { Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
@@ -64,6 +64,13 @@ describe('vwc-file-picker', () => {
 			expect(element.invalidFileTypeError).toBeUndefined();
 			expect(element.maxFilesExceededError).toBeUndefined();
 			expect(element.fileTooBigError).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
 		it('should allow accessing the component in unmounted state and mounting later without error', async () => {
@@ -444,17 +451,6 @@ describe('vwc-file-picker', () => {
 			getRemoveButton(0).click();
 
 			expect(element.files.length).toEqual(0);
-		});
-
-		it('should  set error connotation on remove button when error', async () => {
-			element.maxFiles = 1;
-			addFiles([
-				await generateFile('london1.png', 1),
-				await generateFile('london2.png', 1),
-			]);
-
-			expect(getRemoveButton(0).connotation).toBeUndefined();
-			expect(getRemoveButton(1).connotation).toBe(Connotation.Alert);
 		});
 	});
 

@@ -55,6 +55,9 @@ export type ButtonSize = Extract<
  * @slot icon - Add an icon to the component.
  */
 export class Button extends VividFoundationButton {
+	/**
+	 * Specifies extra information about the button. This information is typically used by browsers to display a tooltip.
+	 */
 	@attr({
 		converter: {
 			fromView: (value) => value || null,
@@ -62,6 +65,7 @@ export class Button extends VividFoundationButton {
 		},
 	})
 	override title: string;
+
 	/**
 	 * The connotation the button should have.
 	 *

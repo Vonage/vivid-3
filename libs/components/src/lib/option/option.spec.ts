@@ -26,6 +26,13 @@ describe('vwc-option', () => {
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
 		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
 	});
 
 	describe('icon', () => {
@@ -63,10 +70,18 @@ describe('vwc-option', () => {
 		expect(element.getAttribute('aria-selected')).toEqual('true');
 	});
 
-	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
-		element.disabled = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-disabled')).toEqual('true');
+	describe('disabled', () => {
+		it('should set the `aria-disabled` attribute to `true` when true', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('true');
+		});
+
+		it('should set the `aria-disabled` attribute to `false` when false', async () => {
+			element.disabled = false;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('false');
+		});
 	});
 
 	describe('label', function () {

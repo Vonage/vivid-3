@@ -37,10 +37,121 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 ### Error Text
 ### Success Text
 
-## Icon
-## Scale
-## Shape
 -->
+
+## Icon
+
+The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Combobox element.
+
+To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot) provided.
+
+```html preview 270px
+<vwc-combobox
+	label="Country code"
+	icon="flag-united-states"
+	class="country-code"
+	id="country-code"
+>
+	<vwc-option
+		value="1"
+		text="United States"
+		label="+1"
+		icon="flag-united-states"
+	></vwc-option>
+	<vwc-option
+		value="44"
+		text="United Kingdom"
+		label="+44"
+		icon="flag-united-kingdom"
+	></vwc-option>
+	<vwc-option
+		value="49"
+		text="Germany"
+		label="+49"
+		icon="flag-germany"
+	></vwc-option>
+	<vwc-option
+		value="355"
+		text="Albania"
+		label="+355"
+		icon="flag-albania"
+	></vwc-option>
+</vwc-combobox>
+
+<script>
+	const combobox = document.getElementById('country-code');
+	combobox?.addEventListener('change', (e) => {
+		combobox.icon = combobox.selectedOptions[0].icon;
+	});
+</script>
+```
+
+## Scale
+
+The `scale` attribute controls the combobox element display size.  
+Use `condensed` in situations when space is limited, for example, inside a Data Grid cell.
+
+```html preview 270px
+<div class="container">
+	<vwc-combobox scale="normal" label="Normal" placeholder="Select an option">
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+
+	<vwc-combobox
+		scale="condensed"
+		label="Condensed"
+		placeholder="Select an option"
+	>
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
+
+<vwc-note connotation="information" icon="info-line" headline="Scale instead of Size">
+	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
+</vwc-note>
+
+## Shape
+
+The `shape` attribute controls the border radius of the Combobox input element.
+
+```html preview 270px
+<div class="container">
+	<vwc-combobox shape="rounded" label="Rounded" placeholder="Select an option">
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+
+	<vwc-combobox shape="pill" label="Pill" placeholder="Select an option">
+		<vwc-option value="mr" text="Mr"></vwc-option>
+		<vwc-option value="mrs" text="Mrs"></vwc-option>
+		<vwc-option value="miss" text="Miss"></vwc-option>
+		<vwc-option value="ms" text="Ms"></vwc-option>
+	</vwc-combobox>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
+```
 
 ## Appearance
 

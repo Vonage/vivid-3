@@ -1,14 +1,14 @@
 import { attr, DOM, Observable, observable } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
 import type { Popup } from '../popup/popup';
-import type { Appearance } from '../enums';
+import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
 import type { ListboxOption } from '../option/option';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
@@ -28,6 +28,8 @@ export type ComboboxAppearance = Extract<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
+export type ComboboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
 
 /**
  * @public
@@ -94,6 +96,23 @@ export class Combobox extends FormAssociatedCombobox {
 	@attr appearance?: ComboboxAppearance;
 
 	/**
+	 * The shape attribute.
+	 *
+	 * @public
+	 * HTML Attribute: shape
+	 */
+	@attr shape?: ComboboxShape;
+
+	/**
+	 * The size the combobox should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: size
+	 */
+	@attr() scale?: ComboboxSize;
+
+	/**
 	 * the placement of the combobox
 	 *
 	 * HTML Attribute: string
@@ -110,6 +129,14 @@ export class Combobox extends FormAssociatedCombobox {
 
 	_popup!: Popup;
 	_anchor!: HTMLElement;
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+	@observable metaSlottedContent?: Node[];
 
 	/**
 	 * Reset the element to its first selectable option when its parent form is reset.
@@ -633,6 +660,14 @@ export class Combobox extends FormAssociatedCombobox {
 	): void {
 		super.slottedOptionsChanged(prev, next);
 		this.updateValue();
+
+		const scale = this.getAttribute('scale') || this.scale;
+		next.forEach((element) => {
+			if (scale) {
+				element.setAttribute('scale', scale);
+				(element as any).scale = scale;
+			}
+		});
 	}
 
 	/**

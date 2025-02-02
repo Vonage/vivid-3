@@ -5,6 +5,7 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
+import { Size } from '../enums';
 import type { Popup } from '../popup/popup.ts';
 import { ListboxOption } from '../option/option.ts';
 import { Combobox } from './combobox';
@@ -12,6 +13,7 @@ import { ComboboxAutocomplete } from './combobox.options.ts';
 import '.';
 
 const COMPONENT_TAG = 'vwc-combobox';
+const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-combobox', () => {
 	let element: Combobox;
@@ -61,7 +63,16 @@ describe('vwc-combobox', () => {
 			expect(element.placeholder).toBeUndefined();
 			expect(element.autocomplete).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.shape).toEqual(undefined);
+			expect(element.icon).toEqual(undefined);
 			expect(element.selectedIndex).toEqual(-1);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -87,6 +98,12 @@ describe('vwc-combobox', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
+		});
+	});
+
+	describe('input', () => {
+		it('should have autocomplete attribute set of "off"', async () => {
+			expect(getControl().getAttribute('autocomplete')).toBe('off');
 		});
 	});
 
@@ -199,6 +216,172 @@ describe('vwc-combobox', () => {
 		});
 	});
 
+	describe('icon', () => {
+		it('should have a icon slot', async () => {
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="icon"]'))
+			).toEqual(true);
+		});
+
+		it('should have an icon when icon is set without slotted icon', async function () {
+			const icon = 'info';
+			element.icon = icon;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(ICON_SELECTOR)?.getAttribute('name')
+			).toEqual(icon);
+		});
+	});
+
+	describe('slot', () => {
+		it('should have a meta slot', async function () {
+			expect(
+				Boolean(element.shadowRoot?.querySelector('slot[name="meta"]'))
+			).toEqual(true);
+		});
+
+		it('should add class .has-meta if the meta slot is occupied', async function () {
+			const slottedElement = document.createElement('div');
+			slottedElement.slot = 'meta';
+			element.appendChild(slottedElement);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains('has-meta')
+			).toBeTruthy();
+		});
+	});
+
+	describe('scale', () => {
+		function hasSizeClass(baseElement: HTMLElement) {
+			return Array.from(baseElement.classList).some((className) => {
+				return className.includes('size-');
+			});
+		}
+
+		it('should reflect the property as an attribute', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(element.getAttribute('scale')).toBe(Size.Condensed);
+		});
+
+		it('should reflect the attribute as a property', async () => {
+			element.setAttribute('scale', Size.Condensed);
+			await elementUpdated(element);
+			expect(element.scale).toBe(Size.Condensed);
+		});
+
+		it('should init without a size class on base element', async () => {
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+		it('should set size class on base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(
+				true
+			);
+		});
+
+		it('should remove size class from base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			element.scale = undefined;
+			await elementUpdated(element);
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+
+		it('should reflect scale on slotted options', async () => {
+			element.scale = Size.Condensed;
+			element.innerHTML = `
+				<vwc-option value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+				<vwc-option value="3" text="Option 3"></vwc-option>
+				`;
+			await elementUpdated(element);
+			const options = element.querySelectorAll('vwc-option');
+			options.forEach((option) => {
+				expect(option.getAttribute('scale')).toBe('condensed');
+			});
+		});
+	});
+
+	describe('shape', function () {
+		it('should set the shape class on the base', async function () {
+			const shape = 'pill';
+			element.setAttribute('shape', shape);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
+			).toEqual(true);
+		});
+	});
+
+	describe('scale', () => {
+		function hasSizeClass(baseElement: HTMLElement) {
+			return Array.from(baseElement.classList).some((className) => {
+				return className.includes('size-');
+			});
+		}
+
+		it('should reflect the property as an attribute', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(element.getAttribute('scale')).toBe(Size.Condensed);
+		});
+
+		it('should reflect the attribute as a property', async () => {
+			element.setAttribute('scale', Size.Condensed);
+			await elementUpdated(element);
+			expect(element.scale).toBe(Size.Condensed);
+		});
+
+		it('should init without a size class on base element', async () => {
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+		it('should set size class on base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('size-condensed')).toBe(
+				true
+			);
+		});
+
+		it('should remove size class from base element', async () => {
+			element.scale = Size.Condensed;
+			await elementUpdated(element);
+			element.scale = undefined;
+			await elementUpdated(element);
+			expect(hasSizeClass(getControlElement(element))).toBe(false);
+		});
+
+		it('should reflect scale on slotted options', async () => {
+			element.scale = Size.Condensed;
+			element.innerHTML = `
+				<vwc-option value="1" text="Option 1"></vwc-option>
+				<vwc-option value="2" text="Option 2"></vwc-option>
+				<vwc-option value="3" text="Option 3"></vwc-option>
+				`;
+			await elementUpdated(element);
+			const options = element.querySelectorAll('vwc-option');
+			options.forEach((option) => {
+				expect(option.getAttribute('scale')).toBe('condensed');
+			});
+		});
+	});
+
+	describe('shape', function () {
+		it('should set the shape class on the base', async function () {
+			const shape = 'pill';
+			element.setAttribute('shape', shape);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element).classList.contains(`shape-${shape}`)
+			).toEqual(true);
+		});
+	});
+
 	describe('selectedIndex', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
@@ -305,8 +488,9 @@ describe('vwc-combobox', () => {
 		describe.each([ComboboxAutocomplete.list, ComboboxAutocomplete.both])(
 			'when autocomplete is list [%s]',
 			(autocomplete) => {
-				beforeEach(() => {
+				beforeEach(async () => {
 					element.autocomplete = autocomplete;
+					await elementUpdated(element);
 				});
 
 				it('should filter options by input text', async () => {
@@ -323,14 +507,21 @@ describe('vwc-combobox', () => {
 
 					expect(element.open).toBe(true);
 				});
+
+				it(`should set aria-autocomplete on the input to "${autocomplete}"`, async () => {
+					expect(getControl().getAttribute('aria-autocomplete')).toBe(
+						autocomplete
+					);
+				});
 			}
 		);
 
 		describe.each([ComboboxAutocomplete.inline, ComboboxAutocomplete.both])(
 			'when autocomplete is inline [%s]',
 			(autocomplete) => {
-				beforeEach(() => {
+				beforeEach(async () => {
 					element.autocomplete = autocomplete;
+					await elementUpdated(element);
 				});
 
 				it('should autocomplete matched option and select autocompleted range', async () => {
@@ -387,6 +578,12 @@ describe('vwc-combobox', () => {
 					expect(getControl().value).toBe('Apple');
 					expect(getControl().selectionStart).toBe(0);
 					expect(getControl().selectionEnd).toBe(5);
+				});
+
+				it(`should set aria-autocomplete on the input to "${autocomplete}"`, async () => {
+					expect(getControl().getAttribute('aria-autocomplete')).toBe(
+						autocomplete
+					);
 				});
 			}
 		);

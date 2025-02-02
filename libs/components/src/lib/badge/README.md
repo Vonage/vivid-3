@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -64,14 +64,14 @@ If set, the icon attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name            | Description                                                                                        | Description                  |
-| --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- |
-| `text`          | `string`                                                                                           | Sets a text on the badge     |
-| `connotation`   | Enum\_:<br/>`accent` (default), `announcement`,`alert`, `cta`, `success`, `warning`, `information` | Sets the badge connotation   |
-| `icon`          | Enum\_:<br/>`[icon-name]`                                                                          | Sets the element's icon      |
-| `icon-trailing` | `string`                                                                                           | Sets icon as trailing        |
-| `appearance`    | Enum\_:<br/>`filled` (default), `duotone`, `subtle`, `subtle-light`                                | Sets the badge appearance    |
-| `shape`         | Enum\_:<br/>`rounded` (default), `pill`                                                            | Sets the badge border-radius |
+| Name              | Description                                                                                        | Description                  |
+| ----------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **text**          | `string`                                                                                           | Sets a text on the badge     |
+| **connotation**   | Enum\_:<br/>`accent` (default), `announcement`,`alert`, `cta`, `success`, `warning`, `information` | Sets the badge connotation   |
+| **icon**          | Enum\_:<br/>`[icon-name]`                                                                          | Sets the element's icon      |
+| **icon-trailing** | `string`                                                                                           | Sets icon as trailing        |
+| **appearance**    | Enum\_:<br/>`filled` (default), `duotone`, `subtle`, `subtle-light`                                | Sets the badge appearance    |
+| **shape**         | Enum\_:<br/>`rounded` (default), `pill`                                                            | Sets the badge border-radius |
 
 </div>
 

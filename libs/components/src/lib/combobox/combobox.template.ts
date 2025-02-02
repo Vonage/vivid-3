@@ -1,19 +1,22 @@
 import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { affixIconTemplateFactory } from '../../shared/patterns/affix';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import { Popup } from '../popup/popup';
-import { Listbox } from '../listbox/listbox';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { chevronTemplateFactory } from '../../shared/patterns/chevron';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { Combobox } from './combobox';
 
-function renderLabel() {
-	return html<Combobox>` <label for="control" class="label">
-		${(x) => x.label}
-	</label>`;
-}
-
 const getStateClasses = ({
+	icon,
+	iconSlottedContent,
+	metaSlottedContent,
+	shape,
+	scale,
 	disabled,
 	placeholder,
 	label,
@@ -22,10 +25,20 @@ const getStateClasses = ({
 	classNames(
 		'base',
 		['disabled', disabled],
+		[`shape-${shape}`, Boolean(shape)],
+		[`size-${scale}`, Boolean(scale)],
 		['placeholder', Boolean(placeholder)],
 		[`appearance-${appearance}`, Boolean(appearance)],
-		['no-label', !label]
+		['no-label', !label],
+		['has-icon', !!icon || Boolean(iconSlottedContent?.length)],
+		['has-meta', Boolean(metaSlottedContent?.length)]
 	);
+
+function renderLabel() {
+	return html<Combobox>` <label for="control" class="label">
+		${(x) => x.label}
+	</label>`;
+}
 
 function setFixedDropdownVarWidth(x: Combobox) {
 	return x.open && x.fixedDropdown
@@ -37,29 +50,37 @@ function setFixedDropdownVarWidth(x: Combobox) {
 
 function renderInput(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
+	const chevronTemplate = chevronTemplateFactory(context);
 
 	return html<Combobox>` <div class="${getStateClasses}" ${ref('_anchor')}>
 		${when((x) => x.label, renderLabel())}
 		<div class="fieldset">
-			<input
-				id="control"
-				class="control"
-				aria-activedescendant="${(x) =>
-					x.open ? x.ariaActiveDescendant : null}"
-				aria-autocomplete="${(x) => x.ariaAutoComplete}"
-				aria-controls="${(x) => x.listboxId}"
-				aria-disabled="${(x) => x.ariaDisabled}"
-				aria-expanded="${(x) => x.open}"
-				aria-haspopup="listbox"
-				placeholder="${(x) => x.placeholder}"
-				role="combobox"
-				type="text"
-				?disabled="${(x) => x.disabled}"
-				:value="${(x) => x.value}"
-				@input="${(x, c) => x.inputHandler(c.event as InputEvent)}"
-				${ref('control')}
-			/>
-			${() => affixIconTemplate('chevron-down-line')}
+			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+			<div class="wrapper">
+				<input
+					id="control"
+					autocomplete="off"
+					class="control"
+					aria-activedescendant="${(x) =>
+						x.open ? x.ariaActiveDescendant : null}"
+					aria-autocomplete="${(x) => x.autocomplete}"
+					aria-controls="${(x) => x.listboxId}"
+					aria-disabled="${(x) => x.ariaDisabled}"
+					aria-expanded="${(x) => x.open}"
+					aria-haspopup="listbox"
+					placeholder="${(x) => x.placeholder}"
+					role="combobox"
+					type="text"
+					?disabled="${(x) => x.disabled}"
+					:value="${(x) => x.value}"
+					@input="${(x, c) => x.inputHandler(c.event as InputEvent)}"
+					${ref('control')}
+				/>
+			</div>
+			<div class="leading-items-wrapper">
+				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
+				${chevronTemplate}
+			</div>
 		</div>
 	</div>`;
 }

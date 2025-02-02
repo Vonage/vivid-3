@@ -1,6 +1,6 @@
 {
 	"name": "@vonage/vivid-vue",
-	"version": "4.14.0",
+	"version": "4.14.2",
 	"description": "A Vue wrapper library for Vivid components.",
 	"author": "Vonage",
 	"license": "ISC",

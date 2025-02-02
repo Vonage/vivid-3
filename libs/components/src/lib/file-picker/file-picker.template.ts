@@ -2,6 +2,7 @@ import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
+import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { FilePicker } from './file-picker';
 
@@ -15,6 +16,7 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 	return html<FilePicker>`
 		${(x) => {
 			x.setButtonTag(context.tagFor(Button));
+			x.setIconTag(context.tagFor(Icon));
 		}}
 		<div class="base" aria-label="${(x) => x.label}">
 			${when(

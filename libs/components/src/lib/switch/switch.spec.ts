@@ -41,6 +41,13 @@ describe('vwc-switch', () => {
 			expect(element.label).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
 		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
 	});
 
 	describe('value', () => {
@@ -297,13 +304,54 @@ describe('vwc-switch', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			element.checked = true;
-			element.value = 'test';
-			await elementUpdated(element);
+		let control: HTMLElement | null;
 
-			expect(await axe(element)).toHaveNoViolations();
+		describe('label', () => {
+			beforeEach(async () => {
+				element.label = 'Label';
+				await elementUpdated(element);
+				control = await getControlElement(element);
+			});
+
+			it('should set role to null on the host element', async () => {
+				expect(element.getAttribute('role')).toBe(null);
+			});
+
+			it('should set role to switch on the control element', async () => {
+				expect(control?.getAttribute('role')).toBe('switch');
+			});
+
+			it('should pass html a11y test', async () => {
+				element.checked = true;
+				element.value = 'test';
+				await elementUpdated(element);
+
+				expect(await axe(element)).toHaveNoViolations();
+			});
+		});
+
+		describe('aria-label', () => {
+			beforeEach(async () => {
+				element.ariaLabel = 'Label';
+				await elementUpdated(element);
+				control = await getControlElement(element);
+			});
+
+			it('should set aria-label on control element', async () => {
+				expect(control!.getAttribute('aria-label')).toBe('Label');
+			});
+
+			it('should set role to presentation on the host', async () => {
+				expect(element.getAttribute('role')).toBe('presentation');
+			});
+
+			it('should pass html a11y test', async () => {
+				element.checked = true;
+				element.value = 'test';
+				await elementUpdated(element);
+
+				expect(await axe(element)).toHaveNoViolations();
+			});
 		});
 	});
 });
