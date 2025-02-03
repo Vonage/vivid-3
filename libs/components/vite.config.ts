@@ -22,7 +22,7 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 }
 
 const components = getFoldersInAFolder();
-const input = components.reduce((inputObject, componentName) => {
+const input = components.reduce<Record<string, string>>((inputObject, componentName) => {
 	inputObject[`${componentName}/index`] = path.join(
 		process.cwd(),
 		`libs/components/src/lib/${componentName}/index.ts`
@@ -43,8 +43,6 @@ input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 const isWatchMode = process.env.WATCH === 'true';
 
 export default defineConfig({
-	cacheDir: '../../../node_modules/.vite/components',
-
 	plugins: [
 		viteStaticCopy({
 			targets: [
@@ -79,22 +77,9 @@ export default defineConfig({
 			tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
 			skipDiagnostics: true,
 		}),
-
 		nxViteTsPaths(),
 	],
-
-	worker: {
-		plugins: [nxViteTsPaths()],
-	},
-
-	css: {
-		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-			},
-		},
-	},
-
+	cacheDir: '../../../node_modules/.vite/components',
 	build: {
 		emptyOutDir: true,
 		lib: {
@@ -123,5 +108,15 @@ export default defineConfig({
 					exclude: ['**/*.md'],
 			  }
 			: null,
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
+	},
+	worker: {
+		plugins: () => [nxViteTsPaths()],
 	},
 });
