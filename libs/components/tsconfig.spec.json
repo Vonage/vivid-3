@@ -1,14 +1,27 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"outDir": "../../dist/out-tsc",
-		"types": ["jest", "node"],
-		"allowJs": true,
-		"allowImportingTsExtensions": true,
-		"noEmit": false,
-		"verbatimModuleSyntax": false,
-		"target": "ES6"
-	},
-	"exclude": ["**/*.config.spec.ts"],
-	"include": ["**/*.spec.ts", "**/*.d.ts", "**/fixture.ts"]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "declaration": true,
+    "types": [
+      "vitest/globals",
+      "vitest/importMeta",
+      "vite/client",
+      "node",
+      "vitest"
+    ]
+  },
+  "include": [
+    "vite.config.ts",
+    "vitest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "src/**/*.d.ts"
+  ]
 }

@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -43,6 +43,18 @@ input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 const isWatchMode = process.env.WATCH === 'true';
 
 export default defineConfig({
+	test: {
+		watch: false,
+		globals: true,
+		environment: 'jsdom',
+		include: ['src/**/*.spec.ts'],
+		setupFiles: ['vitest.setup.ts'],
+		reporters: ['default'],
+		coverage: {
+			reportsDirectory: '../../coverage/libs/components',
+			provider: 'v8',
+		},
+	},
 	plugins: [
 		viteStaticCopy({
 			targets: [
@@ -105,8 +117,8 @@ export default defineConfig({
 		},
 		watch: isWatchMode
 			? {
-					exclude: ['**/*.md'],
-			  }
+				exclude: ['**/*.md'],
+			}
 			: null,
 	},
 	css: {
@@ -117,6 +129,6 @@ export default defineConfig({
 		},
 	},
 	worker: {
-		plugins: () => [nxViteTsPaths()],
-	},
-});
+		plugins: () => [nxViteTsPaths()]
+	}
+});	
