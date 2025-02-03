@@ -38,9 +38,8 @@ describe('vwc-time-picker', () => {
 	}
 
 	const getButtonByLabel = (label: string) =>
-		element.shadowRoot!.querySelector(
-			`[aria-label="${label}"],[label="${label}"]`
-		) as Button;
+		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
+			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
 
 	const getPickerItem = (
 		type: 'hours' | 'minutes' | 'seconds' | 'meridies',
