@@ -410,9 +410,9 @@ describe('vwc-dialog', () => {
 		beforeEach(async function () {
 			element.headline = 'headline';
 			await showModalDialog();
-			vi
-				.spyOn(dialogEl, 'getBoundingClientRect')
-				.mockImplementation(() => dialogClientRect);
+			vi.spyOn(dialogEl, 'getBoundingClientRect').mockImplementation(
+				() => dialogClientRect
+			);
 		});
 
 		it('should leave the dialog open when mouseup or click', async function () {

@@ -327,12 +327,12 @@ describe('vwc-tabs', () => {
 				const tablistWrapper = element.shadowRoot?.querySelector(
 					'.tablist-wrapper'
 				) as HTMLElement;
-				vi
-					.spyOn(tablistWrapper, 'scrollWidth', 'get')
-					.mockImplementation(() => scrollWidth);
-				vi
-					.spyOn(tablistWrapper, 'scrollHeight', 'get')
-					.mockImplementation(() => scrollHeight);
+				vi.spyOn(tablistWrapper, 'scrollWidth', 'get').mockImplementation(
+					() => scrollWidth
+				);
+				vi.spyOn(tablistWrapper, 'scrollHeight', 'get').mockImplementation(
+					() => scrollHeight
+				);
 				scrollToSpy = vi.spyOn(tablistWrapper, 'scrollTo');
 			});
 
@@ -390,18 +390,18 @@ describe('vwc-tabs', () => {
 					const tablistWrapper = element.shadowRoot?.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
-					vi
-						.spyOn(tablistWrapper, 'offsetWidth', 'get')
-						.mockImplementation(() => scrollWidth);
+					vi.spyOn(tablistWrapper, 'offsetWidth', 'get').mockImplementation(
+						() => scrollWidth
+					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
 					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-					vi
-						.spyOn(midTab, 'offsetLeft', 'get')
-						.mockImplementation(() => offsetLeft);
-					vi
-						.spyOn(midTab, 'offsetWidth', 'get')
-						.mockImplementation(() => offsetWidth);
+					vi.spyOn(midTab, 'offsetLeft', 'get').mockImplementation(
+						() => offsetLeft
+					);
+					vi.spyOn(midTab, 'offsetWidth', 'get').mockImplementation(
+						() => offsetWidth
+					);
 					return midTab;
 				}
 
@@ -425,18 +425,18 @@ describe('vwc-tabs', () => {
 					const tablistWrapper = element.shadowRoot?.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
-					vi
-						.spyOn(tablistWrapper, 'offsetHeight', 'get')
-						.mockImplementation(() => scrollHeight);
+					vi.spyOn(tablistWrapper, 'offsetHeight', 'get').mockImplementation(
+						() => scrollHeight
+					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
 					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-					vi
-						.spyOn(midTab, 'offsetTop', 'get')
-						.mockImplementation(() => offsetLeft);
-					vi
-						.spyOn(midTab, 'offsetHeight', 'get')
-						.mockImplementation(() => offsetWidth);
+					vi.spyOn(midTab, 'offsetTop', 'get').mockImplementation(
+						() => offsetLeft
+					);
+					vi.spyOn(midTab, 'offsetHeight', 'get').mockImplementation(
+						() => offsetWidth
+					);
 					return midTab;
 				}
 

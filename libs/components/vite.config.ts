@@ -1,4 +1,3 @@
-
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -22,13 +21,16 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 }
 
 const components = getFoldersInAFolder();
-const input = components.reduce<Record<string, string>>((inputObject, componentName) => {
-	inputObject[`${componentName}/index`] = path.join(
-		process.cwd(),
-		`libs/components/src/lib/${componentName}/index.ts`
-	);
-	return inputObject;
-}, {});
+const input = components.reduce<Record<string, string>>(
+	(inputObject, componentName) => {
+		inputObject[`${componentName}/index`] = path.join(
+			process.cwd(),
+			`libs/components/src/lib/${componentName}/index.ts`
+		);
+		return inputObject;
+	},
+	{}
+);
 
 const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
 locales.forEach((locale) => {
@@ -117,8 +119,8 @@ export default defineConfig({
 		},
 		watch: isWatchMode
 			? {
-				exclude: ['**/*.md'],
-			}
+					exclude: ['**/*.md'],
+			  }
 			: null,
 	},
 	css: {
@@ -129,6 +131,6 @@ export default defineConfig({
 		},
 	},
 	worker: {
-		plugins: () => [nxViteTsPaths()]
-	}
-});	
+		plugins: () => [nxViteTsPaths()],
+	},
+});

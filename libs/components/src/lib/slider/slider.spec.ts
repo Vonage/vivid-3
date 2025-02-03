@@ -22,9 +22,7 @@ describe('vwc-slider', () => {
 		element.shadowRoot!.querySelector('.popup') as Popup | null;
 
 	beforeEach(async () => {
-		vi
-			.spyOn(HTMLElement.prototype, 'clientWidth', 'get')
-			.mockReturnValue(1000);
+		vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
 		vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
 			bottom: 1000,
 			top: 0,

@@ -1,99 +1,83 @@
 {
-  "name": "components",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/components/src",
-  "projectType": "library",
-  "tags": [],
-  "implicitDependencies": [
-    "styles"
-  ],
-  "targets": {
-    "generateMeta": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "cem analyze --config ./libs/components/cem.config.mjs",
-          "api-extractor run -c ./dist/libs/components/api-extractor.json"
-        ],
-        "parallel": true
-      },
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "e2e": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "npx nx run components:build",
-          {
-            "command": "./scripts/visual-tests/run.tests.in.container.sh . ./libs/components/playwright.config.ts",
-            "forwardAllArgs": true
-          }
-        ],
-        "parallel": false
-      },
-      "configurations": {
-        "watch": {
-          "commands": [
-            {
-              "forwardAllArgs": false,
-              "command": "WATCH=true npx nx build components --watch"
-            },
-            {
-              "forwardAllArgs": false,
-              "command": "npx nx run styles:serve"
-            },
-            {
-              "command": "npx http-server -s"
-            },
-            {
-              "command": "npx -y nodemon --watch dist/libs/components/ --watch dist/libs/styles/ --watch 'libs/components/**/*.test.ts' -e js,css,ts --signal SIGHUP --exec 'npx playwright test -c ./libs/components/playwright.config.dev.ts'"
-            }
-          ],
-          "parallel": true
-        }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/components/**/*.ts"
-        ]
-      }
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": [
-        "{workspaceRoot}/coverage/libs/components"
-      ],
-      "options": {
-        "passWithNoTests": true
-      }
-    },
-    "build": {
-      "executor": "@nx/vite:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "outputPath": "dist/libs/components"
-      }
-    },
-    "stylelint": {
-      "executor": "nx-stylelint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/components/**/*.scss"
-        ]
-      }
-    }
-  }
+	"name": "components",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/components/src",
+	"projectType": "library",
+	"tags": [],
+	"implicitDependencies": ["styles"],
+	"targets": {
+		"generateMeta": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					"cem analyze --config ./libs/components/cem.config.mjs",
+					"api-extractor run -c ./dist/libs/components/api-extractor.json"
+				],
+				"parallel": true
+			},
+			"dependsOn": ["build"]
+		},
+		"e2e": {
+			"executor": "nx:run-commands",
+			"options": {
+				"commands": [
+					"npx nx run components:build",
+					{
+						"command": "./scripts/visual-tests/run.tests.in.container.sh . ./libs/components/playwright.config.ts",
+						"forwardAllArgs": true
+					}
+				],
+				"parallel": false
+			},
+			"configurations": {
+				"watch": {
+					"commands": [
+						{
+							"forwardAllArgs": false,
+							"command": "WATCH=true npx nx build components --watch"
+						},
+						{
+							"forwardAllArgs": false,
+							"command": "npx nx run styles:serve"
+						},
+						{
+							"command": "npx http-server -s"
+						},
+						{
+							"command": "npx -y nodemon --watch dist/libs/components/ --watch dist/libs/styles/ --watch 'libs/components/**/*.test.ts' -e js,css,ts --signal SIGHUP --exec 'npx playwright test -c ./libs/components/playwright.config.dev.ts'"
+						}
+					],
+					"parallel": true
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/components/**/*.ts"]
+			}
+		},
+		"test": {
+			"executor": "@nx/vite:test",
+			"outputs": ["{workspaceRoot}/coverage/libs/components"],
+			"options": {
+				"passWithNoTests": true
+			}
+		},
+		"build": {
+			"executor": "@nx/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/components"
+			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/components/**/*.scss"]
+			}
+		}
+	}
 }
