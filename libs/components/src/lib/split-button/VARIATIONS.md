@@ -4,14 +4,21 @@
 
 The `label` attribute adds the label text for the default action.
 
+```html preview
+<vwc-split-button
+	label="A default split button"
+	appearance="filled"
+></vwc-split-button>
+```
+
 ### Secondary Action Label
 
 By default, the secondard action is given a locallized `aria-label` of "Show more actions", this can be overriden using the `indicator-aria-label` attribute. This will be read by screen-readers to clarify the purpose of the action.
 
 ```html preview
 <vwc-split-button
-	label="A default split button"
 	indicator-aria-label="Secondary action"
+	label="A default split button"
 	appearance="filled"
 ></vwc-split-button>
 ```
@@ -52,9 +59,18 @@ View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 The `appearance` sets the Split Button's appearance.
 
 ```html preview
-<vwc-split-button label="ghost" appearance="ghost"></vwc-split-button>
-<vwc-split-button label="filled" appearance="filled"></vwc-split-button>
-<vwc-split-button label="outlined" appearance="outlined"></vwc-split-button>
+<div class="container">
+	<vwc-split-button label="ghost" appearance="ghost"></vwc-split-button>
+	<vwc-split-button label="filled" appearance="filled"></vwc-split-button>
+	<vwc-split-button label="outlined" appearance="outlined"></vwc-split-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
 
 ## Connotation
@@ -62,31 +78,40 @@ The `appearance` sets the Split Button's appearance.
 The `connotation` attribute sets the Split Button's connotation.
 
 ```html preview
-<vwc-split-button
-	appearance="filled"
-	label="accent"
-	connotation="accent"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="cta"
-	connotation="cta"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="announcement"
-	connotation="announcement"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="success"
-	connotation="success"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="alert"
-	connotation="alert"
-></vwc-split-button>
+<div class="container">
+	<vwc-split-button
+		appearance="filled"
+		label="accent"
+		connotation="accent"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="cta"
+		connotation="cta"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="announcement"
+		connotation="announcement"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="success"
+		connotation="success"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="alert"
+		connotation="alert"
+	></vwc-split-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
 
 ## Shape
@@ -94,16 +119,25 @@ The `connotation` attribute sets the Split Button's connotation.
 The `shape` attribute sets the style of the Split Button's edges.
 
 ```html preview
-<vwc-split-button
-	appearance="filled"
-	label="rounded"
-	shape="rounded"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="pill"
-	shape="pill"
-></vwc-split-button>
+<div class="container">
+	<vwc-split-button
+		appearance="filled"
+		label="rounded"
+		shape="rounded"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="pill"
+		shape="pill"
+	></vwc-split-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
 
 ## Size
@@ -111,26 +145,35 @@ The `shape` attribute sets the style of the Split Button's edges.
 The `size` attribute sets the Split Button to one of the predefined block sizes.
 
 ```html preview
-<vwc-split-button
-	appearance="filled"
-	label="super-condensed"
-	size="super-condensed"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="condensed"
-	size="condensed"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="normal"
-	size="normal"
-></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="expanded"
-	size="expanded"
-></vwc-split-button>
+<div class="container">
+	<vwc-split-button
+		appearance="filled"
+		label="super-condensed"
+		size="super-condensed"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="condensed"
+		size="condensed"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="normal"
+		size="normal"
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="expanded"
+		size="expanded"
+	></vwc-split-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
 
 ## Disabled
@@ -138,15 +181,28 @@ The `size` attribute sets the Split Button to one of the predefined block sizes.
 The `disabled` attribute sets the disabled state of the Split Button.
 
 ```html preview
-<vwc-split-button appearance="ghost" label="ghost" disabled></vwc-split-button>
-<vwc-split-button
-	appearance="filled"
-	label="filled"
-	disabled
-></vwc-split-button>
-<vwc-split-button
-	appearance="outlined"
-	label="outlined"
-	disabled
-></vwc-split-button>
+<div class="container">
+	<vwc-split-button
+		appearance="ghost"
+		label="ghost"
+		disabled
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="filled"
+		label="filled"
+		disabled
+	></vwc-split-button>
+	<vwc-split-button
+		appearance="outlined"
+		label="outlined"
+		disabled
+	></vwc-split-button>
+</div>
+
+<style>
+	.container {
+		display: flex;
+		gap: 16px;
+	}
+</style>
 ```
