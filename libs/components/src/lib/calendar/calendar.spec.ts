@@ -122,7 +122,7 @@ describe('vwc-calendar', () => {
 		it('should return correct day and hour from mouse clicking inside one of the columns cells', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
 			e.composedPath = vi.fn().mockReturnValue([gridCell]);
-			gridCell.getBoundingClientRect = jest
+			gridCell.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
 
@@ -136,7 +136,7 @@ describe('vwc-calendar', () => {
 			const rowHeader = element.shadowRoot?.querySelector(
 				'[role="rowheader"]:nth-child(3)'
 			) as HTMLElement;
-			rowHeader.getBoundingClientRect = jest
+			rowHeader.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 49, y: 85 });
 
@@ -187,7 +187,7 @@ describe('vwc-calendar', () => {
 
 		it('should throw if event is missing a target', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
-			gridCell.getBoundingClientRect = jest
+			gridCell.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
 
