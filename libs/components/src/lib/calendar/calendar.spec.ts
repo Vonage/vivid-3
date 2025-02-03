@@ -364,7 +364,7 @@ describe('vwc-calendar', () => {
 
 	/* skipped because "Certain ARIA roles must contain particular children (aria-required-children)" */
 	describe('a11y', () => {
-		xit('should pass html a11y test', async () => {
+		it.skip('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
