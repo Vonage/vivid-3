@@ -187,7 +187,6 @@ describe('vwc-tab', () => {
 				`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
 			)) as Tab;
 			element.label = 'Label';
-			element.ariaSelected = 'true';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

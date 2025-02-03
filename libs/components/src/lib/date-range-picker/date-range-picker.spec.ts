@@ -17,13 +17,13 @@ const COMPONENT_TAG = 'vwc-date-range-picker';
 
 // Mock current date to be 2023-08-10 for the tests
 
-vi.mock('../../shared/date-picker/calendar/month.ts', () => ({
-	...vi.requireActual('../../shared/date-picker/calendar/month.ts'),
+vi.mock('../../shared/date-picker/calendar/month.ts', async () => ({
+	...(await vi.importActual('../../shared/date-picker/calendar/month.ts')),
 	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
 }));
 
-vi.mock('../../shared/date-picker/calendar/dateStr.ts', () => ({
-	...vi.requireActual('../../shared/date-picker/calendar/dateStr.ts'),
+vi.mock('../../shared/date-picker/calendar/dateStr.ts', async () => ({
+	...(await vi.importActual('../../shared/date-picker/calendar/dateStr.ts')),
 	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
 }));
 
@@ -45,9 +45,8 @@ describe('vwc-date-range-picker', () => {
 		) as HTMLButtonElement[];
 
 	const getButtonByLabel = (label: string) =>
-		element.shadowRoot!.querySelector(
-			`[aria-label="${label}"],[label="${label}"]`
-		) as Button;
+		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
+			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
 
 	const getDialogTitle = () => titleAction.textContent!.trim();
 
