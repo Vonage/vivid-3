@@ -12,6 +12,13 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-popup';
 
+vi.mock('@floating-ui/dom', async (getModule) => {
+	return {
+		// Allow spying on exported functions
+		...(await getModule()),
+	};
+});
+
 describe('vwc-popup', () => {
 	let element: Popup;
 	let anchor: Button;
@@ -36,7 +43,11 @@ describe('vwc-popup', () => {
 	});
 
 	afterEach(function () {
-		vi.clearAllMocks();
+		// Ensure floating-ui is cleaned up and will make no more callbacks
+		element.remove();
+		vi.clearAllTimers();
+
+		vi.restoreAllMocks();
 	});
 
 	it('should allow being created via createElement', () => {
@@ -47,25 +58,25 @@ describe('vwc-popup', () => {
 	});
 
 	describe('cleanup autoUpdate', () => {
-		it('should cleanup autoUpdate when element is removed', async function () {
-			const cleanupMock = vi.fn();
+		let cleanupMock: vi.Mock;
+		beforeEach(() => {
+			cleanupMock = vi.fn();
 			vi.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
+		});
+
+		it('should cleanup autoUpdate when element is removed', async function () {
 			await setupPopupToOpenWithAnchor();
 			element.remove();
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 
 		it('should cleanup autoUpdate when popup is closed', async function () {
-			const cleanupMock = vi.fn();
-			vi.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
 			element.open = false;
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 
 		it('should cleanup autoUpdate when anchor is removed', async function () {
-			const cleanupMock = vi.fn();
-			vi.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
 			element.anchor = undefined;
 			expect(cleanupMock).toHaveBeenCalled();
@@ -105,10 +116,6 @@ describe('vwc-popup', () => {
 			vi.spyOn(floatingUI, 'computePosition');
 		});
 
-		afterEach(function () {
-			(floatingUI.computePosition as vi.MockedFunction<any>).mockRestore();
-		});
-
 		function resetPosition(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
 			(floatingUI.computePosition as vi.MockedFunction<any>).mockReturnValue(
@@ -134,6 +141,8 @@ describe('vwc-popup', () => {
 
 		it('should set the arrow in a position according to middleware', async function () {
 			element.arrow = true;
+			// FIXME: when removing the elementUpdate, breaks because arrowEl not available
+			await elementUpdated(element);
 			await setupPopupToOpenWithAnchor();
 			(computePositionResult.middlewareData.arrow as any) = { x: 5, y: 10 };
 			await resetPosition(false);
@@ -174,11 +183,6 @@ describe('vwc-popup', () => {
 			vi.spyOn(floatingUI, 'computePosition');
 		});
 
-		afterEach(() => {
-			vi.mocked(floatingUI.autoUpdate).mockRestore();
-			vi.mocked(floatingUI.computePosition).mockRestore();
-		});
-
 		it('should hide control if not set', async () => {
 			expect(getControlElement(element).classList).not.toContain('open');
 		});
@@ -192,13 +196,13 @@ describe('vwc-popup', () => {
 
 		it('should ensure that the popup is visible when calling computePosition', async function () {
 			let popupVisibleWhenComputePositionIsCalled = false;
-			vi
-				.mocked(floatingUI.computePosition)
-				.mockImplementationOnce((...args: [any, any, any]) => {
+			vi.mocked(floatingUI.computePosition).mockImplementationOnce(
+				(...args: [any, any, any]) => {
 					popupVisibleWhenComputePositionIsCalled =
 						getControlElement(element).classList.contains('open');
 					return floatingUI.computePosition(...args);
-				});
+				}
+			);
 
 			await setupPopupToOpenWithAnchor();
 
@@ -317,10 +321,6 @@ describe('vwc-popup', () => {
 			vi.spyOn(floatingUI, 'computePosition');
 		});
 
-		afterEach(() => {
-			vi.mocked(floatingUI.computePosition).mockRestore();
-		});
-
 		it('should use placementStrategy to compute position', async () => {
 			element.placementStrategy = PlacementStrategy.AutoPlacementHorizontal;
 
@@ -370,21 +370,18 @@ describe('vwc-popup', () => {
 				bottom: 1,
 				left: 1,
 			} as DOMRect;
-			vi
-				.spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-				.mockReturnValue({ ...clientRect, ...overrides });
+			vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+				...clientRect,
+				...overrides,
+			});
 		}
 
-		let rAFStub: any;
+		let rAFStub: vi.MockInstance;
 
 		beforeEach(async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
 			rAFStub = vi.spyOn(window, 'requestAnimationFrame');
-		});
-
-		afterEach(() => {
-			vi.mocked(window.requestAnimationFrame).mockRestore();
 		});
 
 		it('should disable recursive calls to requestAnimationFrame when false', async () => {
