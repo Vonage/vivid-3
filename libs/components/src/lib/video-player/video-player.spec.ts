@@ -7,15 +7,6 @@ const COMPONENT_TAG = 'vwc-video-player';
 
 const VIDEO_SRC = 'video.mp4';
 
-vi.mock('video.js', () => {
-	const actualVideoJS = vi.requireActual('video.js');
-
-	return {
-		__esModule: true,
-		default: actualVideoJS,
-	};
-});
-
 describe('vwc-video-player', () => {
 	let element: VideoPlayer;
 
@@ -373,9 +364,9 @@ describe('vwc-video-player', () => {
 	});
 
 	function setVideoPauseState(pauseState = true) {
-		vi
-			.spyOn(element._player, 'paused')
-			.mockImplementationOnce(() => pauseState);
+		vi.spyOn(element._player, 'paused').mockImplementationOnce(
+			() => pauseState
+		);
 	}
 
 	describe('events', () => {
@@ -388,16 +379,16 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			jest
-				.spyOn(element._player, 'play')
-				.mockImplementation(function (this: any) {
-					this.trigger('play');
-				});
-			jest
-				.spyOn(element._player, 'pause')
-				.mockImplementation(function (this: any) {
-					return this.handleTechPause_();
-				});
+			vi.spyOn(element._player, 'play').mockImplementation(function (
+				this: any
+			) {
+				this.trigger('play');
+			});
+			vi.spyOn(element._player, 'pause').mockImplementation(function (
+				this: any
+			) {
+				return this.handleTechPause_();
+			});
 		});
 
 		afterEach(() => {
