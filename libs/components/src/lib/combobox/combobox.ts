@@ -4,13 +4,19 @@ import type { Popup } from '../popup/popup';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
+	errorText,
+	type ErrorText,
 	type FormElement,
+	FormElementHelperText,
 	formElements,
+	FormElementSuccessText,
 } from '../../shared/patterns';
 import type { ListboxOption } from '../option/option';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
+import {applyMixinsWithObservables} from "../../shared/utils/applyMixinsWithObservables";
+import {DelegatesARIASelect} from "../select/select";
 
 /**
  * Types of popup placement
@@ -697,5 +703,17 @@ export class Combobox extends FormAssociatedCombobox {
 	}
 }
 
-export interface Combobox extends AffixIcon, FormElement {}
-applyMixins(Combobox, AffixIcon);
+export interface Combobox
+	extends AffixIcon,
+		FormElement,
+		FormElementHelperText,
+		ErrorText,
+		FormElementSuccessText,
+		FormElement {}
+applyMixinsWithObservables(
+	Combobox,
+	AffixIcon,
+	FormElementHelperText,
+	FormElementSuccessText,
+	DelegatesARIASelect
+);

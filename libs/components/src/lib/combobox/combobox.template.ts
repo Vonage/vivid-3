@@ -4,6 +4,7 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import { Popup } from '../popup/popup';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -121,6 +122,9 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 					</slot>
 				</div>
 			</${popupTag}>
+					<div class="feedback-wrapper">
+						${getFeedbackTemplate(context)}
+					</div>
         </template>
 		`;
 };
