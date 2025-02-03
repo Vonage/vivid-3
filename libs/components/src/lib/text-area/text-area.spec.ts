@@ -401,7 +401,7 @@ describe('vwc-text-area', () => {
 
 	describe('select method', function () {
 		it('should call select on the input', async function () {
-			getTextarea().select = jest.fn();
+			getTextarea().select = vi.fn();
 
 			element.select();
 

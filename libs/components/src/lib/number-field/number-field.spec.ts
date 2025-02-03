@@ -128,7 +128,7 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should focus itself when connected if set', async function () {
-			element.focus = jest.fn();
+			element.focus = vi.fn();
 			element.autofocus = true;
 			await elementUpdated(element);
 			element.remove();
@@ -529,9 +529,9 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('select', function () {
-		const onSelect = jest.fn();
+		const onSelect = vi.fn();
 		beforeEach(() => {
-			control.select = jest.fn();
+			control.select = vi.fn();
 			element.addEventListener('select', onSelect);
 		});
 
@@ -569,7 +569,7 @@ describe('vwc-number-field', () => {
 			'should prevent default of %s key presses',
 			async () => {
 				const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-				event.preventDefault = jest.fn();
+				event.preventDefault = vi.fn();
 
 				control.dispatchEvent(event);
 
@@ -579,7 +579,7 @@ describe('vwc-number-field', () => {
 
 		it('should not prevent default of other key presses', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'A' });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 
 			control.dispatchEvent(event);
 

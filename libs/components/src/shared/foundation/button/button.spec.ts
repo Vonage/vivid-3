@@ -546,7 +546,7 @@ describe('Foundation Button', () => {
 
 			await connect();
 
-			form.requestSubmit = jest.fn();
+			form.requestSubmit = vi.fn();
 
 			element.click();
 
@@ -565,7 +565,7 @@ describe('Foundation Button', () => {
 
 			await connect();
 
-			form.requestSubmit = jest.fn();
+			form.requestSubmit = vi.fn();
 
 			element.click();
 

@@ -619,7 +619,7 @@ describe('vwc-text-field', () => {
 	describe('focus event', function () {
 		it('should emit a non-bubbling focus event when the input receives focus', async function () {
 			const internalInput = getInput();
-			const focusSpy = jest.fn();
+			const focusSpy = vi.fn();
 			element.addEventListener('focus', focusSpy);
 			internalInput.focus();
 			expect(focusSpy).toHaveBeenCalledTimes(1);
@@ -632,7 +632,7 @@ describe('vwc-text-field', () => {
 	describe('blur event', function () {
 		it('should emit a non-bubbling blur event when the input is blurred', async function () {
 			const internalInput = getInput();
-			const blurSpy = jest.fn();
+			const blurSpy = vi.fn();
 			element.addEventListener('blur', blurSpy);
 			internalInput.focus();
 			internalInput.blur();
@@ -659,7 +659,7 @@ describe('vwc-text-field', () => {
 
 	describe('select method', function () {
 		it('should call select on the input', async function () {
-			getInput().select = jest.fn();
+			getInput().select = vi.fn();
 
 			element.select();
 

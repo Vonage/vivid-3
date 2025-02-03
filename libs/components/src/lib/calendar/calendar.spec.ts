@@ -121,7 +121,7 @@ describe('vwc-calendar', () => {
 
 		it('should return correct day and hour from mouse clicking inside one of the columns cells', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+			e.composedPath = vi.fn().mockReturnValue([gridCell]);
 			gridCell.getBoundingClientRect = jest
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
@@ -149,7 +149,7 @@ describe('vwc-calendar', () => {
 				clientX: 25,
 				clientY: 174,
 			});
-			e.composedPath = jest.fn().mockReturnValue([rowHeaderTimeElement]);
+			e.composedPath = vi.fn().mockReturnValue([rowHeaderTimeElement]);
 
 			context = element.getEventContext(e);
 
@@ -167,7 +167,7 @@ describe('vwc-calendar', () => {
 				clientX: 0,
 				clientY: 0,
 			});
-			e.composedPath = jest.fn().mockReturnValue([grid]);
+			e.composedPath = vi.fn().mockReturnValue([grid]);
 
 			context = element.getEventContext(e);
 
@@ -176,7 +176,7 @@ describe('vwc-calendar', () => {
 
 		it('should throw if unsupported event passed', async () => {
 			const e = new FocusEvent('focus');
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+			e.composedPath = vi.fn().mockReturnValue([gridCell]);
 
 			const getEventContext = () => element.getEventContext(e as MouseEvent);
 

@@ -89,7 +89,7 @@ describe('Form Elements', function () {
 
 		describe('blur event', function () {
 			it('should call validate', function () {
-				instance.validate = jest.fn();
+				instance.validate = vi.fn();
 				dispatchBlurEvent();
 				expect(instance.validate).toHaveBeenCalledTimes(1);
 			});
@@ -112,7 +112,7 @@ describe('Form Elements', function () {
 			});
 
 			it('should call validate', function () {
-				instance.validate = jest.fn();
+				instance.validate = vi.fn();
 				instance.dispatchEvent(new Event('invalid'));
 				expect(instance.validate).toHaveBeenCalledTimes(1);
 			});
@@ -137,7 +137,7 @@ describe('Form Elements', function () {
 			instance.dirtyValue = true;
 		}
 
-		const baseValidate = jest.fn().mockReturnValue(5);
+		const baseValidate = vi.fn().mockReturnValue(5);
 
 		class _ErrorTextClass extends FASTElement {}
 
@@ -160,7 +160,7 @@ describe('Form Elements', function () {
 				return baseValidate();
 			}
 
-			override setValidity = jest.fn();
+			override setValidity = vi.fn();
 		}
 
 		interface ErrorTextClass extends ErrorText, FormElement {}
@@ -171,7 +171,7 @@ describe('Form Elements', function () {
 			instance = fixture(
 				'<error-text-class></error-text-class>'
 			) as ErrorTextClass;
-			jest.clearAllMocks();
+			vi.clearAllMocks();
 		});
 
 		afterEach(function () {

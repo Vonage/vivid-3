@@ -82,15 +82,15 @@ describe('vwc-dial-pad', () => {
 		it('should activate number buttons when input event is fired a number for 200ms', async function () {
 			const digitButton = getDigitButtons()[3];
 			const activeStateBeforeTyping = digitButton.active;
-			jest.useFakeTimers();
+			vi.useFakeTimers();
 
 			getTextField().dispatchEvent(
 				new KeyboardEvent('keydown', { key: digitButton.value })
 			);
 			const activeStateAfterTyping = digitButton.active;
 
-			jest.advanceTimersByTime(200);
-			jest.useRealTimers();
+			vi.advanceTimersByTime(200);
+			vi.useRealTimers();
 
 			expect(activeStateBeforeTyping).toBe(false);
 			expect(activeStateAfterTyping).toBe(true);
@@ -100,15 +100,15 @@ describe('vwc-dial-pad', () => {
 		it('should activate * buttons when input event is fired a * for 200ms', async function () {
 			const digitButton = getDigitButtons()[9];
 			const activeStateBeforeTyping = digitButton.active;
-			jest.useFakeTimers();
+			vi.useFakeTimers();
 
 			getTextField().dispatchEvent(
 				new KeyboardEvent('keydown', { key: digitButton.value })
 			);
 			const activeStateAfterTyping = digitButton.active;
 
-			jest.advanceTimersByTime(200);
-			jest.useRealTimers();
+			vi.advanceTimersByTime(200);
+			vi.useRealTimers();
 
 			expect(activeStateBeforeTyping).toBe(false);
 			expect(activeStateAfterTyping).toBe(true);
@@ -118,15 +118,15 @@ describe('vwc-dial-pad', () => {
 		it('should activate # buttons when input event is fired a # for 200ms', async function () {
 			const digitButton = getDigitButtons()[11];
 			const activeStateBeforeTyping = digitButton.active;
-			jest.useFakeTimers();
+			vi.useFakeTimers();
 
 			getTextField().dispatchEvent(
 				new KeyboardEvent('keydown', { key: digitButton.value })
 			);
 			const activeStateAfterTyping = digitButton.active;
 
-			jest.advanceTimersByTime(200);
-			jest.useRealTimers();
+			vi.advanceTimersByTime(200);
+			vi.useRealTimers();
 
 			expect(activeStateBeforeTyping).toBe(false);
 			expect(activeStateAfterTyping).toBe(true);
@@ -173,7 +173,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should emit a change event', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 			await setValue('123');
 
@@ -183,7 +183,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should emit an input event', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input', spy);
 			await setValue('123');
 
@@ -193,7 +193,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should prevent blur event after deleting the last value', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('blur', spy);
 			await setValue('1');
 
@@ -213,7 +213,7 @@ describe('vwc-dial-pad', () => {
 
 	describe('dial', function () {
 		it('should fire dial event when clicked on call button', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			await elementUpdated(element);
 			getCallButton().click();
@@ -221,7 +221,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should not fire dial event when enter is pressed on text field and pending', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.pending = true;
 			await elementUpdated(element);
@@ -232,7 +232,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should not fire dial event when enter is pressed on text field and disabled', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.disabled = true;
 			await elementUpdated(element);
@@ -243,7 +243,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should not fire dial event when enter is pressed on text field and callActive', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.callActive = true;
 			await elementUpdated(element);
@@ -254,7 +254,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should not fire dial event when enter is pressed on text field and noCall', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.noCall = true;
 			await elementUpdated(element);
@@ -265,7 +265,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should not fire dial event when enter is pressed on text field and value is empty', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			await elementUpdated(element);
 			getTextField().dispatchEvent(
@@ -275,7 +275,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should fire dial event when enter is pressed on input', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			await setValue('123');
 			const input: HTMLInputElement = getTextField().querySelector(
@@ -292,7 +292,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should fire dial event with value when clicked on call button', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			await setValue('123');
 			getCallButton().click();
@@ -300,7 +300,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should prevent dial event when enter is pressed on delete button', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			await setValue('123');
 			element.addEventListener('dial', spy);
 			getDeleteButton().dispatchEvent(
@@ -310,7 +310,7 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should fire end-call event when clicked on call button when active', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('end-call', spy);
 			element.callActive = true;
 			await elementUpdated(element);
@@ -328,7 +328,7 @@ describe('vwc-dial-pad', () => {
 
 		function shouldFireEventOnceFromTextField(eventName: string) {
 			it('should fire only once on the dial pad element', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
 
 				element.value = '123';
@@ -341,7 +341,7 @@ describe('vwc-dial-pad', () => {
 
 		function shouldFireOnDialPadButtonClick(eventName: string) {
 			it('should fire when user clicks the dial pad buttons', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
 				getDigitButtons().forEach((button) => {
 					button.click();
@@ -354,7 +354,7 @@ describe('vwc-dial-pad', () => {
 
 		function shouldSetElementValueAfterEvent(eventName: string) {
 			it('should set element value after event', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
 
 				element.value = '123';
@@ -368,7 +368,7 @@ describe('vwc-dial-pad', () => {
 
 		describe('keypad-click', function () {
 			it('should fire keypad-click event when a keypad button is clicked', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('keypad-click', spy);
 				await elementUpdated(element);
 				getDigitButtons().forEach((button) => {
@@ -378,7 +378,7 @@ describe('vwc-dial-pad', () => {
 			});
 
 			it('should fire keypad-click event with the button which was clicked', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('keypad-click', spy);
 				await elementUpdated(element);
 				getDigitButtons().forEach((button) => {
@@ -399,7 +399,7 @@ describe('vwc-dial-pad', () => {
 			});
 
 			it('should prevent focus and blur events on subsequent keypad buttons', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('focus', spy);
 				element.addEventListener('blur', spy);
 				getDigitButtons().forEach((button) => {
@@ -414,7 +414,7 @@ describe('vwc-dial-pad', () => {
 		describe('focus event', () => {
 			const eventName = 'focus';
 			it('should prevent propagation of focus event from textfield', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
 
 				element.value = '123';
@@ -428,7 +428,7 @@ describe('vwc-dial-pad', () => {
 		describe('blur event', () => {
 			const eventName = 'blur';
 			it('should prevent propagation of blur event from textfield', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
 
 				element.value = '123';

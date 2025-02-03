@@ -23,8 +23,8 @@ async function setBoolAttributeOn(
 
 describe('vwc-radio', () => {
 	let element: Radio;
-	let internalsMock: jest.SpyInstance | null = null;
-	let formAssociatedMock: jest.SpyInstance | null = null;
+	let internalsMock: vi.SpyInstance | null = null;
+	let formAssociatedMock: vi.SpyInstance | null = null;
 
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Radio;
@@ -114,7 +114,7 @@ describe('vwc-radio', () => {
 
 	it('should not prevent default of keypress other than Space', () => {
 		const event = new KeyboardEvent('keypress', { key: 'Enter' });
-		const spy = jest.spyOn(event, 'preventDefault');
+		const spy = vi.spyOn(event, 'preventDefault');
 		getBaseElement(element).dispatchEvent(event);
 		expect(spy).not.toHaveBeenCalled();
 	});
@@ -202,13 +202,13 @@ describe('vwc-radio', () => {
 					return internals;
 				}
 
-				return (internalsMock = jest
+				return (internalsMock = vi
 					.spyOn(Radio.prototype, 'elementInternals', 'get')
 					.mockImplementation(addElementInternals));
 			}
 
 			function mockFormAssociated() {
-				return (formAssociatedMock = jest
+				return (formAssociatedMock = vi
 					.spyOn(Radio as any, 'formAssociated', 'get')
 					.mockReturnValue(true));
 			}
@@ -340,7 +340,7 @@ describe('vwc-radio', () => {
 
 	describe('change', () => {
 		it('should be fired when a user toggles the radio', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
 			getBaseElement(element).click();

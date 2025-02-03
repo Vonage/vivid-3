@@ -17,14 +17,14 @@ const COMPONENT_TAG = 'vwc-date-range-picker';
 
 // Mock current date to be 2023-08-10 for the tests
 
-jest.mock('../../shared/date-picker/calendar/month.ts', () => ({
-	...jest.requireActual('../../shared/date-picker/calendar/month.ts'),
-	getCurrentMonth: jest.fn().mockReturnValue({ month: 7, year: 2023 }),
+vi.mock('../../shared/date-picker/calendar/month.ts', () => ({
+	...vi.requireActual('../../shared/date-picker/calendar/month.ts'),
+	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
 }));
 
-jest.mock('../../shared/date-picker/calendar/dateStr.ts', () => ({
-	...jest.requireActual('../../shared/date-picker/calendar/dateStr.ts'),
-	currentDateStr: jest.fn().mockReturnValue('2023-08-10'),
+vi.mock('../../shared/date-picker/calendar/dateStr.ts', () => ({
+	...vi.requireActual('../../shared/date-picker/calendar/dateStr.ts'),
+	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
 }));
 
 describe('vwc-date-range-picker', () => {
@@ -234,7 +234,7 @@ describe('vwc-date-range-picker', () => {
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when a user enters a valid date range into the text field', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			typeIntoTextField('01/21/2021 – 01/22/2021');
@@ -244,7 +244,7 @@ describe('vwc-date-range-picker', () => {
 		});
 
 		it('should be fired when a user selects a start date in the calendar', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 			await openPopup();
 
@@ -256,7 +256,7 @@ describe('vwc-date-range-picker', () => {
 		it('should be fired when a user selects an end date in the calendar', async () => {
 			await openPopup();
 			getDateButton('2023-08-01').click();
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			getDateButton('2023-08-10').click();
@@ -267,7 +267,7 @@ describe('vwc-date-range-picker', () => {
 
 	describe('input:start event', () => {
 		it('should be fired when a user enters a valid date range into the text field', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input:start', spy);
 
 			typeIntoTextField('01/21/2021 – 01/22/2021');
@@ -277,7 +277,7 @@ describe('vwc-date-range-picker', () => {
 		});
 
 		it('should be fired when a user select a start date in the calendar', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input:start', spy);
 			await openPopup();
 
@@ -289,7 +289,7 @@ describe('vwc-date-range-picker', () => {
 
 	describe('input:end event', () => {
 		it('should be fired when a user enters a valid date range into the text field', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input:end', spy);
 
 			typeIntoTextField('01/21/2021 – 01/22/2021');
@@ -299,7 +299,7 @@ describe('vwc-date-range-picker', () => {
 		});
 
 		it('should be fired when a user select an end date in the calendar', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input:end', spy);
 			await openPopup();
 			getDateButton('2023-08-01').click();
@@ -350,7 +350,7 @@ describe('vwc-date-range-picker', () => {
 
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable date', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 			element.min = '2023-12-31';
 			element.start = '2023-01-01';
 			await openPopup();
@@ -362,7 +362,7 @@ describe('vwc-date-range-picker', () => {
 
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable month', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 			element.min = '2024-01-01';
 			element.start = '2023-01-01';
 			await openPopup();
@@ -582,10 +582,10 @@ describe('vwc-date-range-picker', () => {
 		// Cannot properly end-to-end test form value because jsdom does not support ElementInternals
 		// Instead we mock the setFormValue method and test that it is called with the correct value
 		const getFormValue = () =>
-			jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
+			vi.mocked(element.setFormValue).mock.lastCall![0] as FormData;
 
 		beforeEach(() => {
-			element.setFormValue = jest.fn();
+			element.setFormValue = vi.fn();
 		});
 
 		it('should set the form value when name, start and end date are set', () => {

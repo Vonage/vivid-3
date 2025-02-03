@@ -586,7 +586,7 @@ describe('vwc-time-picker', () => {
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when a user enters a valid date into the text field', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			typeIntoTextField('01:45 PM');
@@ -596,7 +596,7 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should be fired when a user clicks on an item in the picker', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 			await openPopup();
 
@@ -606,7 +606,7 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should be fired if a user select a value from the picker via keyboard', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 			await openPopup();
 
@@ -621,7 +621,7 @@ describe('vwc-time-picker', () => {
 		['blur', 'focusout'],
 	])('%s event', (eventName, sourceEventName) => {
 		it(`should emit a '${eventName}' event on '${sourceEventName}'`, async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			element.dispatchEvent(new Event(sourceEventName));
@@ -960,9 +960,9 @@ describe('vwc-time-picker', () => {
 		let spy: any;
 
 		beforeEach(() => {
-			spy = jest.fn();
+			spy = vi.fn();
 			getBaseElement(element).addEventListener('keydown', spy);
-			eventSpy = jest.spyOn(KeyboardEvent.prototype, 'preventDefault');
+			eventSpy = vi.spyOn(KeyboardEvent.prototype, 'preventDefault');
 		});
 
 		afterEach(() => {
@@ -978,7 +978,7 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should allow propgation on escape key if closed', async () => {
-			const parentSpy = jest.fn();
+			const parentSpy = vi.fn();
 			element.addEventListener('keydown', parentSpy);
 			pressKey('Escape', {}, true);
 			await elementUpdated(element);
@@ -988,7 +988,7 @@ describe('vwc-time-picker', () => {
 		it('should stop propgation on escape key', async () => {
 			await openPopup();
 
-			const parentSpy = jest.fn();
+			const parentSpy = vi.fn();
 			element.addEventListener('keydown', parentSpy);
 			pressKey('Escape');
 			await elementUpdated(element);
@@ -1056,7 +1056,7 @@ describe('vwc-time-picker', () => {
 			firstFocusable.focus();
 
 			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 			element.shadowRoot!.activeElement?.dispatchEvent(event);
 
 			expect(event.preventDefault).not.toHaveBeenCalled();

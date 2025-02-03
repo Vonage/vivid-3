@@ -7,8 +7,8 @@ const COMPONENT_TAG = 'vwc-video-player';
 
 const VIDEO_SRC = 'video.mp4';
 
-jest.mock('video.js', () => {
-	const actualVideoJS = jest.requireActual('video.js');
+vi.mock('video.js', () => {
+	const actualVideoJS = vi.requireActual('video.js');
 
 	return {
 		__esModule: true,
@@ -373,7 +373,7 @@ describe('vwc-video-player', () => {
 	});
 
 	function setVideoPauseState(pauseState = true) {
-		jest
+		vi
 			.spyOn(element._player, 'paused')
 			.mockImplementationOnce(() => pauseState);
 	}
@@ -406,7 +406,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should emit the play event when the play button is pressed', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('play', spy);
 
 			const playBtn = getBigPlayButton();
@@ -419,7 +419,7 @@ describe('vwc-video-player', () => {
 			const pauseBtn = element.shadowRoot?.querySelector(
 				'.vjs-play-control'
 			) as HTMLButtonElement;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('pause', spy);
 			setVideoPauseState(false);
 
@@ -429,7 +429,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should emit the ended event when the video ended', () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('ended', spy);
 			endVideo(element);
 			expect(spy).toHaveBeenCalledTimes(1);

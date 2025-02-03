@@ -287,7 +287,7 @@ describe('vwc-checkbox', () => {
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when a user toggles the checkbox', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			getBaseElement(element).click();

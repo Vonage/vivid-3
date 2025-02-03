@@ -138,7 +138,7 @@ describe('vwc-data-grid-row', () => {
 
 	describe('row-focused event', () => {
 		it('should fire the focused event when one of the cells is focused', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('row-focused', spy);
 			element.dispatchEvent(new FocusEvent('cell-focused'));
 			expect(spy).toHaveBeenCalled();

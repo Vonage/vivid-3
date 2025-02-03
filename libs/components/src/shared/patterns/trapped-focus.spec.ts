@@ -51,7 +51,7 @@ describe('TrappedFocus', () => {
 	it('should move focus to first element and prevent default when pressing tab on last element', () => {
 		lastButton.focus();
 		const event = new KeyboardEvent('keydown', { key: 'Tab' });
-		event.preventDefault = jest.fn();
+		event.preventDefault = vi.fn();
 
 		element.dispatchEvent(event);
 
@@ -62,7 +62,7 @@ describe('TrappedFocus', () => {
 	it('should move focus to last element and prevent default when pressing shift + tab on first element', () => {
 		firstButton.focus();
 		const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true });
-		event.preventDefault = jest.fn();
+		event.preventDefault = vi.fn();
 
 		element.dispatchEvent(event);
 
@@ -73,7 +73,7 @@ describe('TrappedFocus', () => {
 	it('should not move focus or prevent default when pressing tab on another element', () => {
 		secondButton.focus();
 		const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true });
-		event.preventDefault = jest.fn();
+		event.preventDefault = vi.fn();
 
 		element.dispatchEvent(event);
 

@@ -7,7 +7,7 @@ import {
 } from './anchored.ts';
 
 describe('anchored', () => {
-	const _anchorElChanged = jest.fn();
+	const _anchorElChanged = vi.fn();
 
 	@customElement({
 		name: 'anchored-element',
@@ -135,17 +135,17 @@ describe('anchored', () => {
 	});
 
 	describe('observer cleanup', function () {
-		let disconnectionFunc: jest.Mock;
-		let mutationObserverSpy: jest.SpyInstance;
+		let disconnectionFunc: vi.Mock;
+		let mutationObserverSpy: vi.SpyInstance;
 		let capturedCallback: () => void;
 		beforeEach(function () {
-			const mockMutationObserver = jest.fn(function (this: any, callback) {
-				this.observe = jest.fn();
-				disconnectionFunc = this.disconnect = jest.fn();
+			const mockMutationObserver = vi.fn(function (this: any, callback) {
+				this.observe = vi.fn();
+				disconnectionFunc = this.disconnect = vi.fn();
 				capturedCallback = callback;
 				callback();
 			});
-			mutationObserverSpy = jest
+			mutationObserverSpy = vi
 				.spyOn(window, 'MutationObserver')
 				.mockImplementation(mockMutationObserver as any);
 		});

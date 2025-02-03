@@ -1,4 +1,111 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildMonthPickerGrid > should return the correct 4 by 4 grid for the year 2023 and en-US locale 1`] = `
+[
+  [
+    {
+      "label": "Jan",
+      "month": {
+        "month": 0,
+        "year": 2023,
+      },
+      "monthName": "January",
+    },
+    {
+      "label": "Feb",
+      "month": {
+        "month": 1,
+        "year": 2023,
+      },
+      "monthName": "February",
+    },
+    {
+      "label": "Mar",
+      "month": {
+        "month": 2,
+        "year": 2023,
+      },
+      "monthName": "March",
+    },
+    {
+      "label": "Apr",
+      "month": {
+        "month": 3,
+        "year": 2023,
+      },
+      "monthName": "April",
+    },
+  ],
+  [
+    {
+      "label": "May",
+      "month": {
+        "month": 4,
+        "year": 2023,
+      },
+      "monthName": "May",
+    },
+    {
+      "label": "Jun",
+      "month": {
+        "month": 5,
+        "year": 2023,
+      },
+      "monthName": "June",
+    },
+    {
+      "label": "Jul",
+      "month": {
+        "month": 6,
+        "year": 2023,
+      },
+      "monthName": "July",
+    },
+    {
+      "label": "Aug",
+      "month": {
+        "month": 7,
+        "year": 2023,
+      },
+      "monthName": "August",
+    },
+  ],
+  [
+    {
+      "label": "Sep",
+      "month": {
+        "month": 8,
+        "year": 2023,
+      },
+      "monthName": "September",
+    },
+    {
+      "label": "Okt",
+      "month": {
+        "month": 9,
+        "year": 2023,
+      },
+      "monthName": "Oktober",
+    },
+    {
+      "label": "Nov",
+      "month": {
+        "month": 10,
+        "year": 2023,
+      },
+      "monthName": "November",
+    },
+    {
+      "label": "Dec",
+      "month": {
+        "month": 11,
+        "year": 2023,
+      },
+      "monthName": "December",
+    },
+  ],
+]
+`;
 
 exports[`buildMonthPickerGrid should return the correct 4 by 4 grid for the year 2023 and en-US locale 1`] = `
 Array [

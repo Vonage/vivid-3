@@ -404,7 +404,7 @@ describe('vwc-file-picker', () => {
 	describe('change', function () {
 		it('should fire "change" event after a file is added', async () => {
 			let filesLengthInChangeHandler = -1;
-			const onChange = jest.fn().mockImplementation(() => {
+			const onChange = vi.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
 			});
 			element.addEventListener('change', onChange);
@@ -418,7 +418,7 @@ describe('vwc-file-picker', () => {
 		it('should fire "change" event after a file is removed', async () => {
 			addFiles([await generateFile('london.png', 1)]);
 			let filesLengthInChangeHandler = -1;
-			const onChange = jest.fn().mockImplementation(() => {
+			const onChange = vi.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
 			});
 			element.addEventListener('change', onChange);
@@ -472,7 +472,7 @@ describe('vwc-file-picker', () => {
 		])(
 			'should click on the hidden file input when pressing %s key',
 			async function (_, key) {
-				const hiddenInputClick = jest.fn();
+				const hiddenInputClick = vi.fn();
 				const hiddenInput = getHiddenInput();
 				hiddenInput.click = hiddenInputClick;
 

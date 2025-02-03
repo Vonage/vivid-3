@@ -175,7 +175,7 @@ describe('vwc-data-grid-cell', () => {
 			});
 
 			it('should fire "cell-focused" event', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('cell-focused', spy);
 				element.focus();
 				expect(spy).toHaveBeenCalledTimes(1);
@@ -191,7 +191,7 @@ describe('vwc-data-grid-cell', () => {
 			});
 
 			it('should ignore additional focusin events', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('cell-focused', spy);
 
 				element.dispatchEvent(new Event('focusin'));
@@ -369,12 +369,12 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('sort event', () => {
-		let onSortSpy: jest.Mock;
+		let onSortSpy: vi.Mock;
 		beforeEach(async () => {
 			element.cellType = 'columnheader';
 			element.innerHTML = 'Name';
 			await elementUpdated(element);
-			onSortSpy = jest.fn();
+			onSortSpy = vi.fn();
 			element.addEventListener('sort', onSortSpy);
 		});
 
@@ -445,13 +445,13 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('cell-click event', () => {
-		let onCellClickSpy: jest.Mock;
+		let onCellClickSpy: vi.Mock;
 		let expectedDetail: object;
 		beforeEach(async () => {
 			element.cellType = 'default';
 			element.innerHTML = 'Name';
 			await elementUpdated(element);
-			onCellClickSpy = jest.fn();
+			onCellClickSpy = vi.fn();
 			element.addEventListener('cell-click', onCellClickSpy);
 			expectedDetail = {
 				cell: element,

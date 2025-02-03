@@ -58,7 +58,7 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it('should fire open event', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('open', spy);
 			element.open = true;
 			await elementUpdated(element);
@@ -66,7 +66,7 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it("should not bubble 'open' event", async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement?.addEventListener('open', spy);
 			element.open = true;
 			await elementUpdated(element);
@@ -93,7 +93,7 @@ describe('vwc-side-drawer', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('close', spy);
 			element.open = false;
 			await elementUpdated(element);
@@ -104,7 +104,7 @@ describe('vwc-side-drawer', () => {
 		it("should not bubble 'close' event", async () => {
 			element.modal = true;
 			element.open = true;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement?.addEventListener('close', spy);
 			element.open = false;
 
@@ -211,7 +211,7 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it('should emit a non-bubbling event', async () => {
-			const onCancel = jest.fn();
+			const onCancel = vi.fn();
 			element.parentElement!.addEventListener('cancel', onCancel);
 
 			triggerCancelEvent();
@@ -230,7 +230,7 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it('should emit cancel event after clicking on scrim', async () => {
-			const cancelSpy = jest.fn();
+			const cancelSpy = vi.fn();
 			element.addEventListener('cancel', cancelSpy);
 			element.modal = true;
 			element.open = true;
@@ -256,7 +256,7 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it('should emit cancel after keydown on Escape', async () => {
-			const cancelSpy = jest.fn();
+			const cancelSpy = vi.fn();
 			element.addEventListener('cancel', cancelSpy);
 			control.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(cancelSpy).toHaveBeenCalledTimes(1);
@@ -268,7 +268,7 @@ describe('vwc-side-drawer', () => {
 		});
 
 		it('should stop propgation on escape key', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			control.dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -283,7 +283,7 @@ describe('vwc-side-drawer', () => {
 
 		it('should preventDefaut if Escape was pressed', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'Escape' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			control.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(1);
@@ -291,7 +291,7 @@ describe('vwc-side-drawer', () => {
 
 		it('should enable default if key is not Escape', async () => {
 			const event = new KeyboardEvent('keydown', { key: ' ' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			control.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);

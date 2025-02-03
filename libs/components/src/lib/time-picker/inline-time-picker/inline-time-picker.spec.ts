@@ -295,7 +295,7 @@ describe('vwc-inline-time-picker', () => {
 
 	describe('change event', () => {
 		it('should be fired with the updated time when a user clicks on an item in the picker', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
 			getPickerItem('hours', '03').click();
@@ -307,7 +307,7 @@ describe('vwc-inline-time-picker', () => {
 		});
 
 		it('should be fired if a user select a value from the picker via keyboard', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 			(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
 
@@ -320,7 +320,7 @@ describe('vwc-inline-time-picker', () => {
 		});
 
 		it('should be prevented from bubbling', () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
 			getPickerItem('hours', '03').click();
@@ -333,7 +333,7 @@ describe('vwc-inline-time-picker', () => {
 
 	describe('last-column-selected event', () => {
 		it('should be fired when clicking on an item in the last picker', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('last-column-selected', spy);
 
 			getPickerItem('minutes', '30').click();
@@ -342,7 +342,7 @@ describe('vwc-inline-time-picker', () => {
 		});
 
 		it('should be prevented from bubbling', () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('last-column-selected', spy);
 
 			getPickerItem('minutes', '30').click();

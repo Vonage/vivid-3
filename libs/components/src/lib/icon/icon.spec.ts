@@ -7,7 +7,7 @@ const COMPONENT_TAG = 'vwc-icon';
 
 describe('icon', function () {
 	function fakeFetch(requestTime = 4000) {
-		(global.fetch as any) = jest.fn((_, { signal }) => {
+		(global.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
 			return new Promise((res) => {
 				setTimeout(() => res(response), requestTime);
@@ -17,17 +17,17 @@ describe('icon', function () {
 
 	function setIconNameAndTriggerFirstTimer() {
 		element.name = 'none';
-		jest.advanceTimersToNextTimer();
+		vi.advanceTimersToNextTimer();
 	}
 
 	function setIconNameAndAdvanceTime(timeInMs: number, name = 'none') {
 		element.name = name;
-		jest.advanceTimersByTime(timeInMs);
+		vi.advanceTimersByTime(timeInMs);
 	}
 
 	function setIconNameAndRunAllTimers(iconName: string | undefined) {
 		element.name = iconName;
-		jest.runAllTimers();
+		vi.runAllTimers();
 	}
 
 	const svg = 'svg';
@@ -49,11 +49,11 @@ describe('icon', function () {
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Icon;
 		global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
-		jest.useFakeTimers({ legacyFakeTimers: true });
+		vi.useFakeTimers({ legacyFakeTimers: true });
 	});
 
 	afterEach(function () {
-		jest.useRealTimers();
+		vi.useRealTimers();
 		global.fetch = originalFetch;
 		global.Promise = originalPromise;
 	});
@@ -122,7 +122,7 @@ describe('icon', function () {
 		it('should set an image with src when iconLoaded is false', async function () {
 			setIconNameAndRunAllTimers('home');
 			element.iconLoaded = false;
-			jest.runAllTimers();
+			vi.runAllTimers();
 			const imgElement = getControlElement(element).querySelector('img');
 			expect(imgElement?.src).toEqual(
 				`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/home.svg`
@@ -132,7 +132,7 @@ describe('icon', function () {
 		it('should set aria-busy on the figure element when iconLoaded is false', async function () {
 			setIconNameAndRunAllTimers('home');
 			element.iconLoaded = false;
-			jest.runAllTimers();
+			vi.runAllTimers();
 			const figureElement = getControlElement(element);
 			expect(figureElement.hasAttribute('aria-busy')).toBe(true);
 		});
@@ -155,7 +155,7 @@ describe('icon', function () {
 			'should set size class accordingly when size is %s',
 			async function (size) {
 				element.size = size;
-				jest.runAllTimers();
+				vi.runAllTimers();
 				expect(getControlElement(element).classList).toContain(`size-${size}`);
 			}
 		);
@@ -163,8 +163,8 @@ describe('icon', function () {
 
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
-			jest.clearAllTimers();
-			jest.useRealTimers();
+			vi.clearAllTimers();
+			vi.useRealTimers();
 			element = (await fixture(
 				`<${COMPONENT_TAG} name="home"></${COMPONENT_TAG}>`
 			)) as Icon;

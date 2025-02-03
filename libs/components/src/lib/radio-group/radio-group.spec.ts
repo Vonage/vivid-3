@@ -197,7 +197,7 @@ describe('vwc-radio-group', () => {
 
 	describe('change', () => {
 		it('should be fired when a user toggles the radio-group', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
 			getBaseElement(radios[2]).click();

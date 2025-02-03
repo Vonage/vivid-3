@@ -55,7 +55,7 @@ describe('vwc-select', () => {
 
 	beforeAll(() => {
 		originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
-		HTMLElement.prototype.scrollIntoView = jest.fn();
+		HTMLElement.prototype.scrollIntoView = vi.fn();
 	});
 
 	afterAll(() => {
@@ -439,7 +439,7 @@ describe('vwc-select', () => {
 				<option value="2">2</option>
 				<option value="3">3</option>
 			`;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input', spy);
 			element.open = true;
 			await elementUpdated(element);
@@ -490,7 +490,7 @@ describe('vwc-select', () => {
 		});
 
 		it('should allow propgation on escape key if not open', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
 			element.dispatchEvent(
@@ -506,7 +506,7 @@ describe('vwc-select', () => {
 
 		it('should stop propgation on escape key if open', async () => {
 			element.open = true;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
 			element.dispatchEvent(
@@ -533,8 +533,8 @@ describe('vwc-select', () => {
 				<option value="2">2</option>
 				<option value="3">3</option>
 			`;
-			const inputSpy = jest.fn();
-			const changeSpy = jest.fn();
+			const inputSpy = vi.fn();
+			const changeSpy = vi.fn();
 			element.addEventListener('input', inputSpy);
 			element.addEventListener('change', changeSpy);
 			element.open = true;
@@ -589,7 +589,7 @@ describe('vwc-select', () => {
 
 	describe('fixed-dropdown', () => {
 		function setBoundingClientRect(width: number) {
-			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
+			element.getBoundingClientRect = vi.fn().mockReturnValue({ width });
 		}
 
 		async function toggleOpenState(open = true) {
@@ -882,7 +882,7 @@ describe('vwc-select', () => {
 			it.each(['input', 'change'])(
 				`should emit %s event when selecting an option with the keyboard`,
 				async (eventName) => {
-					const eventSpy = jest.fn();
+					const eventSpy = vi.fn();
 					element.addEventListener(eventName, eventSpy);
 
 					element.focus();
@@ -902,7 +902,7 @@ describe('vwc-select', () => {
 			it.each(['input', 'change'])(
 				`should emit %s event only once the select closes`,
 				async (eventName) => {
-					const eventSpy = jest.fn();
+					const eventSpy = vi.fn();
 					element.addEventListener(eventName, eventSpy);
 
 					element.focus();
@@ -931,7 +931,7 @@ describe('vwc-select', () => {
 			it.each(['input', 'change'])(
 				`should emit %s event when selecting an option by clicking on it`,
 				async (eventName) => {
-					const eventSpy = jest.fn();
+					const eventSpy = vi.fn();
 					element.addEventListener(eventName, eventSpy);
 
 					getOption('3').click();
@@ -1096,7 +1096,7 @@ describe('vwc-select', () => {
 		it.each(['input', 'change'])(
 			'should emit %s event when toggling an option with the keyboard',
 			async (eventName) => {
-				const eventSpy = jest.fn();
+				const eventSpy = vi.fn();
 				element.addEventListener(eventName, eventSpy);
 
 				element.focus();
@@ -1120,7 +1120,7 @@ describe('vwc-select', () => {
 		it.each(['input', 'change'])(
 			'should emit %s event when toggling an option by clicking',
 			(eventName) => {
-				const eventSpy = jest.fn();
+				const eventSpy = vi.fn();
 				element.addEventListener(eventName, eventSpy);
 
 				getOption('1').click();
@@ -1186,7 +1186,7 @@ describe('vwc-select', () => {
 			getOption('1').click();
 			element.focus();
 			await elementUpdated(element);
-			getOption('1').scrollIntoView = jest.fn();
+			getOption('1').scrollIntoView = vi.fn();
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyTab }));
 			await elementUpdated(element);
@@ -1255,11 +1255,11 @@ describe('vwc-select', () => {
 			element.focus();
 			await elementUpdated(element);
 
-			jest.useFakeTimers();
+			vi.useFakeTimers();
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
 
-			jest.advanceTimersByTime(5000);
-			jest.useRealTimers();
+			vi.advanceTimersByTime(5000);
+			vi.useRealTimers();
 
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
 

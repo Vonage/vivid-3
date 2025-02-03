@@ -17,14 +17,14 @@ const COMPONENT_TAG = 'vwc-date-picker';
 
 // Mock current date to be 2023-08-10 for the tests
 
-jest.mock('../../shared/date-picker/calendar/month.ts', () => ({
-	...jest.requireActual('../../shared/date-picker/calendar/month.ts'),
-	getCurrentMonth: jest.fn().mockReturnValue({ month: 7, year: 2023 }),
+vi.mock('../../shared/date-picker/calendar/month.ts', () => ({
+	...vi.requireActual('../../shared/date-picker/calendar/month.ts'),
+	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
 }));
 
-jest.mock('../../shared/date-picker/calendar/dateStr.ts', () => ({
-	...jest.requireActual('../../shared/date-picker/calendar/dateStr.ts'),
-	currentDateStr: jest.fn().mockReturnValue('2023-08-10'),
+vi.mock('../../shared/date-picker/calendar/dateStr.ts', () => ({
+	...vi.requireActual('../../shared/date-picker/calendar/dateStr.ts'),
+	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
 }));
 
 describe('vwc-date-picker', () => {
@@ -151,7 +151,7 @@ describe('vwc-date-picker', () => {
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when a user enters a valid date into the text field', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			typeIntoTextField('01/21/2021');
@@ -161,7 +161,7 @@ describe('vwc-date-picker', () => {
 		});
 
 		it('should be fired when a user clicks on a date in the calendar', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 			await openPopup();
 
@@ -203,7 +203,7 @@ describe('vwc-date-picker', () => {
 
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable date', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 			element.min = '2023-12-31';
 			element.value = '2023-01-01';
 			await openPopup();
@@ -215,7 +215,7 @@ describe('vwc-date-picker', () => {
 
 		it('should keep default behaviour when pressing tab in the text-field without a tabbable month', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 			element.min = '2024-01-01';
 			element.value = '2023-01-01';
 			await openPopup();

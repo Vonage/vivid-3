@@ -34,7 +34,7 @@ describe(`test-utils`, function () {
 
 	describe(`listenToFormSubmission`, function () {
 		it('should return a promise that resolves on form submit', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			const form = document.createElement('form');
 			form.onsubmit = () => false;
 			const submissionPromise = listenToFormSubmission(form);
