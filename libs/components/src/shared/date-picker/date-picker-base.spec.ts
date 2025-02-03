@@ -14,12 +14,12 @@ import '../../lib/date-picker';
 import '../../lib/date-range-picker';
 
 // Mock current date to be 2023-08-10 for the tests
-vi.mock('./calendar/month.ts', () => ({
-	...vi.requireActual('./calendar/month.ts'),
+vi.mock('./calendar/month.ts', async () => ({
+	...(await vi.importActual('./calendar/month.ts')),
 	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
 }));
-vi.mock('./calendar/dateStr.ts', () => ({
-	...vi.requireActual('./calendar/dateStr.ts'),
+vi.mock('./calendar/dateStr.ts', async () => ({
+	...(await vi.importActual('./calendar/dateStr.ts')),
 	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
 }));
 
@@ -71,9 +71,8 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 		};
 
 		const getButtonByLabel = (label: string) =>
-			element.shadowRoot!.querySelector(
-				`[aria-label="${label}"],[label="${label}"]`
-			) as Button;
+			(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
+				element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
 
 		const getDialogTitle = () => getTitleAction().textContent!.trim();
 
