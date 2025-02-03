@@ -556,7 +556,11 @@ describe('vwc-select', () => {
 				<option value="3">3</option>
 			`;
 			await elementUpdated(element);
-			(MouseEvent as any).prototype.offsetX = 0;
+			Object.defineProperty(MouseEvent.prototype, 'offsetX', {
+				get() {
+					return 0;
+				},
+			});
 
 			element.dispatchEvent(new MouseEvent('mousedown'));
 			const shouldSkipFocusAfterOneMouseDown = (element as any).shouldSkipFocus;
