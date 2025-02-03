@@ -5,6 +5,7 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
+import { waitFor } from '@testing-library/dom';
 import * as floatingUI from '@floating-ui/dom';
 import type { Button } from '../button/button';
 import { PlacementStrategy, Popup } from './popup';
@@ -33,6 +34,13 @@ describe('vwc-popup', () => {
 			'<vwc-button id="anchor"></vwc-button>',
 			ADD_TEMPLATE_TO_FIXTURE
 		)) as Button;
+		vi.mock('@floating-ui/dom', async () => {
+			const actual = await vi.importActual('@floating-ui/dom');
+			return {
+				...actual,
+				autoUpdate: vi.fn(() => vi.clearAllMocks()),
+			};
+		});
 	});
 
 	afterEach(function () {
@@ -191,18 +199,16 @@ describe('vwc-popup', () => {
 		});
 
 		it('should ensure that the popup is visible when calling computePosition', async function () {
-			let popupVisibleWhenComputePositionIsCalled = false;
-			vi
-				.mocked(floatingUI.computePosition)
-				.mockImplementationOnce((...args: [any, any, any]) => {
-					popupVisibleWhenComputePositionIsCalled =
-						getControlElement(element).classList.contains('open');
-					return floatingUI.computePosition(...args);
-				});
-
+			vi.spyOn(floatingUI, 'computePosition').mockImplementationOnce((...args) => {
+				return floatingUI.computePosition(...args);
+			});
+			
 			await setupPopupToOpenWithAnchor();
-
-			expect(popupVisibleWhenComputePositionIsCalled).toBe(true);
+			await waitFor(() =>
+				expect(getControlElement(element).classList.contains('open')).toBe(true)
+			);
+			
+			expect(getControlElement(element).classList.contains('open')).toBe(true);
 		});
 	});
 
@@ -397,10 +403,12 @@ describe('vwc-popup', () => {
 		});
 
 		it('should call rAF recursively when true', async () => {
+			element.anchor = anchor;
+			await elementUpdated(element);
+			rAFStub = vi.spyOn(window, 'requestAnimationFrame');
 			element.animationFrame = true;
 			await openPopup();
 			const cb = getLastFrameCallback();
-			rAFStub.mockReset();
 			cb();
 			cb();
 			expect(rAFStub).toHaveBeenCalledTimes(2);
