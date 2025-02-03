@@ -23,6 +23,13 @@ describe('vwc-elevation', () => {
 			expect(element).toBeInstanceOf(Elevation);
 			expect(element.dp).toBeUndefined();
 		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
 	});
 
 	describe('dp', () => {
@@ -62,6 +69,22 @@ describe('vwc-elevation', () => {
 	it('should have a slot', async () => {
 		await elementUpdated(element);
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
+	});
+
+	describe('no position', () => {
+		it('should add class .not-relative to .base if no-position attribute is added o host', async () => {
+			element.notRelative = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('.not-relative'));
+		});
+	});
+
+	describe('no shadow', () => {
+		it('should add class .no-shadow to .base if no-shadow attribute is added o host', async () => {
+			element.notRelative = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('.no-shadow'));
+		});
 	});
 
 	describe('a11y', () => {

@@ -1,198 +1,61 @@
-# Action Group
+## Usage
 
-The action group component should be used when you have a set of related actions or
-options that need to be grouped together within a limited space.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/action-group';</script>
+import '@vonage/vivid/action-group';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerActionGroup } from '@vonage/vivid';
+
+registerActionGroup('your-prefix');
 ```
 
 ```html preview
-<vwc-action-group>
-	<vwc-button icon="reply-line"></vwc-button>
+<script type="module">
+	import { registerActionGroup } from '@vonage/vivid';
+	registerActionGroup('your-prefix');
+</script>
+
+<your-prefix-action-group>
 	<vwc-button label="copy"></vwc-button>
 	<vwc-button label="paste"></vwc-button>
-	<vwc-button label="submit"></vwc-button>
-</vwc-action-group>
+</your-prefix-action-group>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Appearance
-
-Set the `appearance` attribute to change the action-group's appearance.
-
-- Type: `'fieldset'` | `'ghost'`
-- Default: `'fieldset'`
-
-```html preview
-<vwc-action-group appearance="fieldset">
-	<vwc-button label="edit"></vwc-button>
-	<vwc-button label="copy"></vwc-button>
-	<vwc-button label="paste"></vwc-button>
-	<vwc-button label="submit"></vwc-button>
-</vwc-action-group>
-
-<vwc-action-group appearance="ghost">
-	<vwc-button label="edit" appearance="filled"></vwc-button>
-	<vwc-button label="copy" appearance="filled"></vwc-button>
-	<vwc-button label="paste" appearance="filled"></vwc-button>
-	<vwc-button label="submit" appearance="filled"></vwc-button>
-</vwc-action-group>
-```
-
-### Shape
-
-Use the `shape` attribute to set the action-group's edges.  
-When using shape, remember to also set it on any slotted elements.
-
-- Type: `'rounded'` | `'pill'`
-- Default: `'rounded'`
-
-```html preview
-<vwc-action-group shape="pill">
-	<vwc-button label="edit" shape="pill"></vwc-button>
-	<vwc-button label="copy" shape="pill"></vwc-button>
-	<vwc-button label="paste" shape="pill"></vwc-button>
-	<vwc-button label="submit" shape="pill"></vwc-button>
-</vwc-action-group>
-```
-
-### Tight
-
-By default, action group is styled in a spacious manner which visually extends the baseline row size and includes an inline gap.
-Enabling the `tight` member will result in a dense style that fits the "normal" baseline.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<style>
-	vwc-layout {
-		--layout-grid-template-columns: 250px;
-	}
-
-	vwc-action-group > vwc-text-field {
-		flex-grow: 1;
-	}
-</style>
-
-<vwc-layout column-basis="block" column-spacing="small">
-	<vwc-text-field
-		name="username"
-		aria-label="Username"
-		placeholder="Username"
-	></vwc-text-field>
-	<vwc-action-group appearance="fieldset" tight>
-		<vwc-button icon="flag-uruguay"></vwc-button>
-		<vwc-text-field
-			appearance="ghost"
-			aria-label="Phone number"
-			placeholder="Phone number"
-			name="phone"
-			autocomplete=""
-		></vwc-text-field>
-	</vwc-action-group>
-</vwc-layout>
-```
-
-## Use Cases
-
-### Separator
-
-Use `<vwc-divider>` for adding separator between the action elements
-
-```html preview
-<vwc-action-group appearance="fieldset">
-	<vwc-button icon="reply-line"></vwc-button>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-button icon="compose-line"></vwc-button>
-</vwc-action-group>
-```
-
-### Composed Search
-
-```html preview
-<vwc-action-group shape="pill">
-	<vwc-button
-		label="Action"
-		appearance="ghost"
-		icon="chevron-down-solid"
-		icon-trailing
-		shape="pill"
-	></vwc-button>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-text-field
-		icon="search-line"
-		placeholder="Search..."
-		appearance="ghost"
-		shape="pill"
-		style="min-width: 160px;"
-	></vwc-text-field>
-</vwc-action-group>
-```
-
-### Toggle buttons
-
-```html preview
-<vwc-action-group role="region" aria-label="Text Alignment">
-	<vwc-button
-		icon="align-left-line"
-		aria-label="Text Align Left"
-		onclick="onClick(event)"
-	></vwc-button>
-	<vwc-button
-		aria-pressed="true"
-		icon="align-center-line"
-		aria-label="Text Align Center"
-		appearance="filled"
-		onclick="onClick(event)"
-	></vwc-button>
-	<vwc-button
-		icon="align-right-line"
-		aria-label="Text Align Right"
-		onclick="onClick(event)"
-	></vwc-button>
-</vwc-action-group>
-
-<script>
-	function onClick(event) {
-		currentPressed = document.querySelector('vwc-button[aria-pressed="true"]');
-		currentPressed?.removeAttribute('aria-pressed');
-		currentPressed?.removeAttribute('appearance');
-		event.currentTarget.setAttribute('aria-pressed', 'true');
-		event.currentTarget.setAttribute('appearance', 'filled');
-	}
+```html
+<script setup lang="ts">
+	import { VActionGroup } from '@vonage/vivid-vue';
 </script>
+<template>
+	<VActionGroup>
+		<VButton appearance="filled" label="Click me" />
+	</VActionGroup>
+</template>
 ```
 
-<!-- TODO: Update the example when will be a dropdown component / the popup will not be underlying -->
+</vwc-tab-panel>
+</vwc-tabs>
 
-<!-- ### More Actions
+## API Reference
 
-```html preview center
-<vwc-button id="anchor" icon="more-horizontal-solid" aria-label="open actions menu"></vwc-button>
+### Properties
 
-<vwc-popup id="popup" anchor="anchor" arrow open placement="top">
-  <vwc-action-group appearance="ghost">
-    <vwc-button icon="reply-line"></vwc-button>
-    <vwc-button icon="transfer-line"></vwc-button>
-    <vwc-divider orientation="vertical"></vwc-divider>
-    <vwc-button icon="compose-line"></vwc-button>
-    <vwc-button icon="crop-line"></vwc-button>
-    <vwc-divider orientation="vertical"></vwc-divider>
-    <vwc-button icon="copy-2-line"></vwc-button>
-    <vwc-button icon="save-line"></vwc-button>
-  </vwc-action-group>
-</vwc-popup>
+<div class="table-wrapper">
 
-<script>
-  anchor.addEventListener('click', () => popup.open = !popup.open);
-</script>
-``` -->
+| Name           | Type                                 | Description                      |
+| -------------- | ------------------------------------ | -------------------------------- |
+| **appearance** | _Enum_:`fieldset` (default), `ghost` | Sets the element's appearance    |
+| **shape**      | _Enum_:`rounded`(default), `pill`    | Sets the element's border-radius |
+| **tight**      | `boolean`                            | Remove padding and gaps          |
 
-## Accessibility
-
-The `action-group` defaults its role to 'group'.
-However - if this role does not suit the use-case, you can change it.
-[For further reading about group role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/group_role).
+</div>

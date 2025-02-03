@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -214,9 +214,9 @@ Use the CSS part `tab-panel` to provide custom styling to the Tab Panel componen
 
 <div class="table-wrapper">
 
-| Name    | Type          | Bubbles | Composed | Description                                                                                    |
-| ------- | ------------- | ------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `close` | `CustomEvent` | Yes     | Yes      | When `removable` is set, fired when the close button is clicked or the `DELETE` key is pressed |
+| Name      | Type          | Bubbles | Composed | Description                                                                                    |
+| --------- | ------------- | ------- | -------- | ---------------------------------------------------------------------------------------------- |
+| **close** | `CustomEvent` | Yes     | Yes      | When `removable` is set, fired when the close button is clicked or the `DELETE` key is pressed |
 
 </div>
 

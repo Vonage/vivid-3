@@ -4,6 +4,28 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.14.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.1...vivid-v4.14.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **data-grid:** fix error on createElement (VIV-2289) ([#2094](https://github.com/Vonage/vivid-3/issues/2094)) ([4b17c6c](https://github.com/Vonage/vivid-3/commit/4b17c6c65ccb9ef1d53fd5aeec6569dc52b5466a))
+* **divider:** orientation attribute issue (VIV-2290) ([#2098](https://github.com/Vonage/vivid-3/issues/2098)) ([32a3df2](https://github.com/Vonage/vivid-3/commit/32a3df23b276d18eed3beb0134ae7e324d6f4c83))
+
+## [4.14.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.0...vivid-v4.14.1) (2025-01-22)
+
+
+### Bug Fixes
+
+* **combobox:** suppresses browser generated autocomplete on input (VIV-2273) ([#2086](https://github.com/Vonage/vivid-3/issues/2086)) ([6eda008](https://github.com/Vonage/vivid-3/commit/6eda008d3f158650ee39cb9364baa25fb1dd9282))
+* **dialog:** prevent scroll to top when opened as Modal (VIV-2248) ([#2069](https://github.com/Vonage/vivid-3/issues/2069)) ([8543e65](https://github.com/Vonage/vivid-3/commit/8543e658958ee4ecfc4c573dab938603295b4285))
+* **layout:** column basis medium and large in mobile (VIV-2049) ([#2065](https://github.com/Vonage/vivid-3/issues/2065)) ([55801dc](https://github.com/Vonage/vivid-3/commit/55801dcc2e5d5ed029aa5bde35c13974b0c2dfb8))
+* **menu:** add default value to inline-size in small screens (VIV-2006) ([#2078](https://github.com/Vonage/vivid-3/issues/2078)) ([a9e8481](https://github.com/Vonage/vivid-3/commit/a9e84814498db5c75f644d0c5086275145cbba64))
+* **radio:** radio required validation sync with spec (VIV-2265) ([#2070](https://github.com/Vonage/vivid-3/issues/2070)) ([5fb9b52](https://github.com/Vonage/vivid-3/commit/5fb9b5294dc6d4bd4f6586daece53cbde5f2df07))
+* **tabs:** shadow does not appear when removing tabs and last tab is active (VIV-2278) ([#2075](https://github.com/Vonage/vivid-3/issues/2075)) ([8b7e27c](https://github.com/Vonage/vivid-3/commit/8b7e27cb6d34ac90e4d2cd95f9a3fd94a81c7f90))
+* **video-player:** control panel design fixes (VIV-2246, VIV-2275) ([#2074](https://github.com/Vonage/vivid-3/issues/2074)) ([f031ef4](https://github.com/Vonage/vivid-3/commit/f031ef46f0083a689c8d55be35985dc1c3a2dd1c))
+* **vue-wrappers:** fix type definitions (VIV-2274) ([#2088](https://github.com/Vonage/vivid-3/issues/2088)) ([538f16c](https://github.com/Vonage/vivid-3/commit/538f16cae1ee9da65198605729dcf283ea35fe23))
+
 ## [4.14.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.13.0...vivid-v4.14.0) (2024-12-18)
 
 

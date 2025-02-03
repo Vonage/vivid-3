@@ -1,10 +1,11 @@
 import {
 	attr,
+	DOM,
 	observable,
 	type SyntheticViewTemplate,
 } from '@microsoft/fast-element';
-import { type FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { keySpace } from '@microsoft/fast-web-utilities';
+import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent.js';
 import type { Connotation } from '../enums.js';
 import { FormAssociatedRadio } from './radio.form-associated';
 
@@ -36,7 +37,7 @@ export type RadioControl = Pick<
  * Radio configuration options
  * @public
  */
-export type RadioOptions = FoundationElementDefinition & {
+export type RadioOptions = VividComponentDefinition & {
 	checkedIndicator?: string | SyntheticViewTemplate;
 };
 
@@ -86,7 +87,7 @@ export class Radio extends FormAssociatedRadio {
 	/**
 	 * The name of the radio. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname | name attribute} for more info.
 	 */
-	@observable
+	@attr
 	override name!: string;
 
 	/**
@@ -121,14 +122,28 @@ export class Radio extends FormAssociatedRadio {
 	constructor() {
 		super();
 		this.proxy.setAttribute('type', 'radio');
+		this.proxy.setAttribute('name', this.name);
 	}
 
 	/**
 	 * @internal
 	 */
+	override nameChanged(previous: string, next: string): void {
+		if (super.nameChanged) {
+			super.nameChanged(previous, next);
+		}
+		next !== null
+			? this.proxy.setAttribute('name', this.name)
+			: this.proxy.removeAttribute('name');
+
+		DOM.queueUpdate(this.validate);
+	}
+	/**
+	 * @internal
+	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
-		this.validate();
+		DOM.queueUpdate(this.validate);
 
 		if (
 			this.parentElement!.getAttribute('role') !== 'radiogroup' &&

@@ -1,6 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { attr, observable } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIcon } from '../../shared/patterns/affix';
 
@@ -24,7 +24,7 @@ export function isTreeItemElement(el: Element): el is HTMLElement {
  * @event {CustomEvent<HTMLElement>} expanded-change - Fires a custom 'expanded-change' event when the expanded state changes
  * @event {CustomEvent<HTMLElement>} selected-change - Fires a custom 'selected-change' event when the selected state changes
  */
-export class TreeItem extends FoundationElement {
+export class TreeItem extends VividElement {
 	/**
 	 * Indicates the text's text.
 	 *

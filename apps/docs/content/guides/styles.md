@@ -28,19 +28,17 @@ Which stylesheets you should load will depend on your project's needs.
 - [Spezia Font Kit](#spezia-font-kit)
 - [Vivid 2.x Compatibility](#vivid-2x-compatibility)
 
-## Loading Styles
+<vwc-note headline="Loading Styles" connotation="information" icon="info-line">
 
-How to load styles will depend on your project's setup. You can find more guidance in the Getting Started guides.
+How to load styles will depend on your project's setup. You can find more guidance in the [Getting Started guides](/getting-started/web-components/#importing-the-styles-and-fonts).
 
-## List of Stylesheets
+</vwc-note>
 
-### Design Tokens
+## Design Tokens Stylesheet
 
 <vwc-tabs gutters="none">
 <vwc-tab id="light" label="Light Theme"></vwc-tab>
 <vwc-tab-panel>
-
-**Stylesheet:**
 
 ```js
 '@vonage/vivid/styles/tokens/theme-light.css';
@@ -49,8 +47,6 @@ How to load styles will depend on your project's setup. You can find more guidan
 </vwc-tab-panel>
 <vwc-tab id="dark" label="Dark Theme"></vwc-tab>
 <vwc-tab-panel>
-
-**Stylesheet:**
 
 ```js
 '@vonage/vivid/styles/tokens/theme-dark.css';
@@ -63,9 +59,7 @@ This stylesheet contains all the **design tokens** used by Vivid components. It 
 
 The tokens will be scoped to the `vvd-root` class selector.
 
-### Core Theme
-
-**Stylesheet:**
+## Core Theme Stylesheet
 
 ```js
 '@vonage/vivid/styles/core/theme.css';
@@ -73,13 +67,11 @@ The tokens will be scoped to the `vvd-root` class selector.
 
 The core theme styles will apply the appropriate `color`, `background-color` and `color-scheme` for the chosen theme to the `vvd-root` class selector.
 
-#### Scrollbar
+### Scrollbar
 
-Vivid component has a custom scrollbar. It can be added to the entire app/page by adding the class `vvd-scrollbar` to `:root.`
+Vivid components have scrollbars with custom styles to make them more consistent across browsers and operating systems. These styles can be added to the entire app/page by adding the class `vvd-scrollbar` to the `html` (`:root`) element.
 
-### Core Typography
-
-**Stylesheet:**
+## Core Typography Stylesheet
 
 ```js
 '@vonage/vivid/styles/core/typography.css';
@@ -93,9 +85,7 @@ Additionally, if the `vvd-root` class is applied to the `<html>` element, it wil
 
 The styles are scoped to the `vvd-root` class selector.
 
-### Core All
-
-**Stylesheet:**
+## Core All Stylesheet
 
 ```js
 '@vonage/vivid/styles/core/all.css';
@@ -103,9 +93,7 @@ The styles are scoped to the `vvd-root` class selector.
 
 This stylesheet contains both the [core theme](#core-theme) and [core typography](#core-typography) stylesheets.
 
-### Spezia Font Kit
-
-**Stylesheet:**
+### Spezia Font Kit Stylesheet
 
 ```js
 '@vonage/styles/fonts/spezia-variable.css';
@@ -136,9 +124,7 @@ To avoid FOIT (Flash Of Invisible Text), you can also preload the fonts in your 
 </head>
 ```
 
-### Vivid 2.x Compatibility
-
-**Stylesheet:**
+## Vivid 2.x Compatibility Stylesheet
 
 ```js
 '@vonage/vivid/styles/tokens/vivid-2-compat.css';

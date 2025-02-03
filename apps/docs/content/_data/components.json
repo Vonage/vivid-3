@@ -11,8 +11,13 @@
 	},
 	{
 		"title": "Badge",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/badge/README.md"
+		"description": "A small label, generally appearing inside or in proximity to another larger interface component, representing a status, property, or some other metadata.",
+		"variations": "./libs/components/src/lib/badge/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/badge/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/badge/README.md",
+		"accessibility": "./libs/components/src/lib/badge/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/badge/USE-CASES.md"
 	},
 	{
 		"title": "Banner",
@@ -36,15 +41,13 @@
 	},
 	{
 		"title": "Breadcrumb",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb/README.md",
-		"children": ["Breadcrumb Item"]
-	},
-	{
-		"title": "Breadcrumb Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/breadcrumb-item/README.md",
-		"parent": "Breadcrumb"
+		"description": "Links showing the position of the current page within the navigational hierarchy.",
+		"variations": "./libs/components/src/lib/breadcrumb/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/breadcrumb/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/breadcrumb/README.md",
+		"accessibility": "./libs/components/src/lib/breadcrumb/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/breadcrumb/USE-CASES.md"
 	},
 	{
 		"title": "Button",
@@ -104,22 +107,14 @@
 		"useCases": "./libs/components/src/lib/side-drawer/USE-CASES.md"
 	},
 	{
-		"title": "Nav",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav/README.md",
-		"children": ["Nav Item", "Nav Disclosure"]
-	},
-	{
-		"title": "Nav Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav-item/README.md",
-		"parent": "Nav"
-	},
-	{
-		"title": "Nav Disclosure",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/nav-disclosure/README.md",
-		"parent": "Nav"
+		"title": "Navigation",
+		"description": "A navigation component makes it easy for users to navigate through your application. Nav accepts Nav Item and Nav Disclosure elements as children.",
+		"variations": "./libs/components/src/lib/nav/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/nav/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/nav/README.md",
+		"accessibility": "./libs/components/src/lib/nav/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/nav/USE-CASES.md"
 	},
 	{
 		"title": "Tooltip",
@@ -179,8 +174,13 @@
 	},
 	{
 		"title": "Action Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/action-group/README.md"
+		"description": "The action group component should be used when you have a set of related actions or options that need to be grouped together within a limited space.",
+		"variations": "./libs/components/src/lib/action-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/action-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/action-group/README.md",
+		"accessibility": "./libs/components/src/lib/action-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/action-group/USE-CASES.md"
 	},
 	{
 		"title": "Note",
@@ -214,8 +214,13 @@
 	},
 	{
 		"title": "Divider",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/divider/README.md"
+		"description": "Use as a separator between content.",
+		"variations": "./libs/components/src/lib/divider/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/divider/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/divider/README.md",
+		"accessibility": "./libs/components/src/lib/divider/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/divider/USE-CASES.md"
 	},
 	{
 		"title": "Menu",
@@ -231,8 +236,13 @@
 	},
 	{
 		"title": "Avatar",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/avatar/README.md"
+		"description": "Avatars are used to represent a user or a system entity. They can be used to represent a person, a group of people, or an object.",
+		"variations": "./libs/components/src/lib/avatar/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/avatar/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/avatar/README.md",
+		"accessibility": "./libs/components/src/lib/avatar/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/avatar/USE-CASES.md"
 	},
 	{
 		"title": "Text Area",
@@ -268,13 +278,24 @@
 	{
 		"title": "Searchable Select",
 		"status": "alpha",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/searchable-select/README.md"
+		"description": "Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.",
+		"variations": "./libs/components/src/lib/searchable-select/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/searchable-select/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/searchable-select/README.md",
+		"accessibility": "./libs/components/src/lib/searchable-select/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/searchable-select/USE-CASES.md"
 	},
 	{
 		"title": "Switch",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/switch/README.md"
+		"description": "Use a Switch when you want a user to easily toggle between two mutually exclusive options, like 'on' and 'off' typically for settings or preferences within an application.",
+		"variations": "./libs/components/src/lib/switch/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/switch/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideUseCases": "true",
+		"code": "./libs/components/src/lib/switch/README.md",
+		"accessibility": "./libs/components/src/lib/switch/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/switch/USE-CASES.md"
 	},
 	{
 		"title": "Slider",
@@ -299,8 +320,14 @@
 	},
 	{
 		"title": "Combobox",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/combobox/README.md"
+		"description": "Combobox contains a free text input for filtering options along with a similar behavior to a Select.",
+		"variations": "./libs/components/src/lib/combobox/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/combobox/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/combobox/README.md",
+		"accessibility": "./libs/components/src/lib/combobox/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/combobox/USE-CASES.md",
+		"hideUseCases": "true"
 	},
 	{
 		"title": "Elevation",
@@ -313,12 +340,6 @@
 		"page": "legacy",
 		"status": "underlying",
 		"markdown": "./libs/components/src/lib/popup/README.md"
-	},
-	{
-		"title": "Listbox",
-		"page": "legacy",
-		"status": "underlying",
-		"markdown": "./libs/components/src/lib/listbox/README.md"
 	},
 	{
 		"title": "Select",
@@ -381,8 +402,14 @@
 	},
 	{
 		"title": "Empty State",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/empty-state/README.md"
+		"description": "The Empty State component is used to display a message when there is no data to show.",
+		"variations": "./libs/components/src/lib/empty-state/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/empty-state/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/empty-state/README.md",
+		"accessibility": "./libs/components/src/lib/empty-state/ACCESSIBILITY.md",
+		"hideAccessibility": "true",
+		"useCases": "./libs/components/src/lib/empty-state/USE-CASES.md"
 	},
 	{
 		"title": "File Picker",
@@ -407,18 +434,31 @@
 	},
 	{
 		"title": "Selectable Box",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/selectable-box/README.md"
+		"description": "Represents a content box to used in a group where one or more can be selected.",
+		"variations": "./libs/components/src/lib/selectable-box/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/selectable-box/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/selectable-box/README.md",
+		"accessibility": "./libs/components/src/lib/selectable-box/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/selectable-box/USE-CASES.md"
 	},
 	{
 		"title": "Audio Player",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/audio-player/README.md"
+		"description": "Audio Player is a component used to play audio files. It is based on the HTML5 audio element.",
+		"variations": "./libs/components/src/lib/audio-player/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/audio-player/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/audio-player/README.md",
+		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Dial Pad",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/dial-pad/README.md"
+		"description": "Use when you need to allow users to enter / dial telephone numbers.",
+		"variations": "./libs/components/src/lib/dial-pad/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/dial-pad/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/dial-pad/README.md",
+		"accessibility": "./libs/components/src/lib/dial-pad/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Video Player",

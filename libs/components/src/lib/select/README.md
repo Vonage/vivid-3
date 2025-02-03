@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -127,7 +127,7 @@ Also, see [the Grid Select example](/components/data-grid/#select-in-a-grid)).
 
 ## Open
 
-The `open` attribute allows the Select to be openned programmatically.
+The `open` attribute allows the Select to be opened programmatically.
 
 ```html preview 270px
 <vwc-select open label="Title" placeholder="Select an option">

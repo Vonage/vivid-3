@@ -41,6 +41,13 @@ describe('vwc-button', () => {
 			expect(element.ariaLabel).toBeUndefined();
 			expect(element.title).toBeNull();
 		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
 	});
 
 	describe('icon', () => {
@@ -263,6 +270,24 @@ describe('vwc-button', () => {
 			await elementUpdated(element);
 
 			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+		});
+	});
+
+	describe('type', () => {
+		it('should have type="submit" on button by default', async () => {
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('submit');
+		});
+
+		it('should set the type attribute if was set in host', async () => {
+			const type = 'button';
+			element.type = type;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('button');
 		});
 	});
 
