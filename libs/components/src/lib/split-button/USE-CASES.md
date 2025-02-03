@@ -27,7 +27,7 @@
 
 ## Tooltip
 
-```html preview 100px
+```html preview 140px
 <vwc-split-button
 	id="splitButton"
 	appearance="filled"
