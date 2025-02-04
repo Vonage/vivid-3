@@ -236,7 +236,7 @@ describe('vwc-data-grid', () => {
 			];
 
 			const generatedHeader = element.querySelector(rowElementTag) as any;
-			expect(generatedHeader.rowType).toBe('header'); 
+			expect(generatedHeader.rowType).toBe('header');
 		});
 
 		it('should set index, gridTemplateColumns and column definition on the row elements', async () => {

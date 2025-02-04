@@ -643,12 +643,9 @@ export class DataGrid extends VividElement {
 				this.generateHeader === GenerateHeaderOptions.sticky
 					? DataGridRowTypes.stickyHeader
 					: DataGridRowTypes.header;
-			
+
 			if (this.firstChild !== null) {
-				this.insertBefore(
-					generatedHeaderElement,
-					this.firstChild
-				);
+				this.insertBefore(generatedHeaderElement, this.firstChild);
 			}
 			return;
 		}

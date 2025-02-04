@@ -359,7 +359,7 @@ describe('vwc-file-picker', () => {
 
 			expect(getErrorMessage(3)).toBe('error from object');
 		});
-		
+
 		it('should show an custom error message (when supplied) for files added that do not match the accept attribute', async function () {
 			element.accept = 'image/*, text/html, .zip';
 			element.invalidFileTypeError = 'File type not allowed.';

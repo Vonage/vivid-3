@@ -29,7 +29,7 @@ describe('icon', function () {
 	const svg = 'svg';
 	let response: any;
 	let responseFileType: string = 'image/svg+xml';
-	
+
 	const originalFetch = global.fetch;
 
 	let currentFetchSignal: AbortSignal;
@@ -72,7 +72,7 @@ describe('icon', function () {
 
 			// Advance the timers to ensure the fetch call is made
 			await vi.advanceTimersByTimeAsync(100);
-			
+
 			expect(element._svg).toEqual(undefined);
 		});
 
