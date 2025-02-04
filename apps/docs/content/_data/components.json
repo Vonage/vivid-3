@@ -402,8 +402,14 @@
 	},
 	{
 		"title": "Empty State",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/empty-state/README.md"
+		"description": "The Empty State component is used to display a message when there is no data to show.",
+		"variations": "./libs/components/src/lib/empty-state/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/empty-state/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/empty-state/README.md",
+		"accessibility": "./libs/components/src/lib/empty-state/ACCESSIBILITY.md",
+		"hideAccessibility": "true",
+		"useCases": "./libs/components/src/lib/empty-state/USE-CASES.md"
 	},
 	{
 		"title": "File Picker",
@@ -452,8 +458,12 @@
 	},
 	{
 		"title": "Dial Pad",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/dial-pad/README.md"
+		"description": "Use when you need to allow users to enter / dial telephone numbers.",
+		"variations": "./libs/components/src/lib/dial-pad/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/dial-pad/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/dial-pad/README.md",
+		"accessibility": "./libs/components/src/lib/dial-pad/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Video Player",
