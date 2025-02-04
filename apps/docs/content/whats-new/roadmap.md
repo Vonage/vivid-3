@@ -49,9 +49,23 @@ order: 2
       Text Editor
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In Progress" icon="more-horizontal-line" connotation="warning"></vwc-button>
+      <vwc-button label="In Progress" icon="more-horizontal-line" connotation="warning" href="https://docs.google.com/document/d/18Y2-LNwyOzTQ8a2FqYmPx3w-ofWjRstVyMx_9e7Z6vg/edit?tab=t.0#heading=h.8z0p4ep2y9ul"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      Expected Q1 2025 (Phase 1)
+    </vwc-data-grid-cell>
+  </vwc-data-grid-row>
+  <vwc-data-grid-row>
+    <vwc-data-grid-cell>
+      <a href="/components/date-picker/">Date Picker</a> (add time selection)
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="Done" icon="check" connotation="success" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
+    </vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="In Progress" icon="more-horizontal-line" connotation="warning" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
+    </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       Expected Q1 2025
     </vwc-data-grid-cell>

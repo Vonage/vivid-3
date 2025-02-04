@@ -13,6 +13,9 @@ layout: standalone.njk
 		<div class="welcome__buttons">
 			<vwc-button label="Vue.js" href="/getting-started/vue/" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
 			<vwc-button label="Web Components" href="/getting-started/web-components/" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
+			<vwc-button href="/resources/change-process/" appearance="outlined" label="Request a new feature" size="expanded">
+				<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 24px" slot="icon" />
+			</vwc-button>
 		</div>
 	</div>
 </div>
