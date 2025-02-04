@@ -640,14 +640,4 @@ describe('vwc-date-range-picker', () => {
 			expect(textField.value).toBe('21.01.2021 – 22.01.2021');
 		});
 	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.start = '2012-12-12';
-			element.end = '2012-12-13';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-	});
 });

@@ -224,7 +224,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 	#localizeErrorMessage = (file: DropzoneFile, message: string | any) => {
 		if (file.previewElement) {
 			file.previewElement.classList.add('dz-error');
-			// istanbul ignore next
+			
 			if (typeof message !== 'string' && message.error) {
 				message = message.error;
 			}

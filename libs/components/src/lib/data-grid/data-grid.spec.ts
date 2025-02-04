@@ -23,6 +23,12 @@ describe('vwc-data-grid', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DataGrid;
+		console.log('first Child ', element.firstChild);
+		console.log((element as any).rowsPlaceholder);
+
+		await elementUpdated(element);
+		console.log('first Child ', element.firstChild);
+		console.log((element as any).rowsPlaceholder);
 	});
 
 	describe('basic', () => {
@@ -230,7 +236,7 @@ describe('vwc-data-grid', () => {
 			];
 
 			const generatedHeader = element.querySelector(rowElementTag) as any;
-			expect(generatedHeader.rowType).toBe('header');
+			expect(generatedHeader.rowType).toBe('header'); 
 		});
 
 		it('should set index, gridTemplateColumns and column definition on the row elements', async () => {

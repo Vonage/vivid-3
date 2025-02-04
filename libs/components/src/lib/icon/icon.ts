@@ -18,7 +18,7 @@ const PLACEHOLDER_TIMEOUT = 2000;
 const baseUrlTemplate = (resource: string, version: string) =>
 	[BASE_URL, `v${version}`, resource].join('/');
 
-const assertIsValidResponse = ({ ok, headers }: Response) => {
+const assertIsValidResponse = ({ ok, headers }: Response) => {	
 	if (!ok || headers.get('content-type') !== 'image/svg+xml') {
 		throw new Error('Something went wrong');
 	}

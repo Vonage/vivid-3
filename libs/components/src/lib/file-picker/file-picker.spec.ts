@@ -324,6 +324,7 @@ describe('vwc-file-picker', () => {
 			expect(element.files).toEqual([file2]);
 		});
 	});
+
 	describe('accept', function () {
 		it('should show an error message for files added that do not match the accept attribute', async function () {
 			element.accept = 'image/*, text/html, .zip';
@@ -341,6 +342,24 @@ describe('vwc-file-picker', () => {
 			expect(getErrorMessage(3)).toBe("You can't select files of this type.");
 		});
 
+		it('should display message from error property if error message is an object', async () => {
+			element.accept = 'image/*, text/html, .zip';
+			(element.invalidFileTypeError as any) = {
+				error: 'error from object',
+			};
+
+			await elementUpdated(element);
+
+			addFiles([
+				await generateFile('london.png', 1, 'image/png'),
+				await generateFile('london.html', 1, 'text/html'),
+				await generateFile('london.zip', 1, 'application/zip'),
+				await generateFile('london.txt', 1, 'text/plain'),
+			]);
+
+			expect(getErrorMessage(3)).toBe('error from object');
+		});
+		
 		it('should show an custom error message (when supplied) for files added that do not match the accept attribute', async function () {
 			element.accept = 'image/*, text/html, .zip';
 			element.invalidFileTypeError = 'File type not allowed.';

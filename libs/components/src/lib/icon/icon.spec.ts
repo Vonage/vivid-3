@@ -15,7 +15,9 @@ describe('icon', function () {
 		(global.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
 			return new Promise((res) => {
-				setTimeout(() => res(response), requestTime);
+				setTimeout(() => {
+					res(response);
+				}, requestTime);
 			});
 		});
 	}
@@ -25,15 +27,9 @@ describe('icon', function () {
 	const uniqueId = () => `icon-${nextUniqueId++}`;
 
 	const svg = 'svg';
-	const response = {
-		ok: true,
-		headers: {
-			get: () => {
-				return 'image/svg+xml';
-			},
-		},
-		text: () => svg,
-	};
+	let response: any;
+	let responseFileType: string = 'image/svg+xml';
+	
 	const originalFetch = global.fetch;
 
 	let currentFetchSignal: AbortSignal;
@@ -42,6 +38,16 @@ describe('icon', function () {
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Icon;
 		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+		responseFileType = 'image/svg+xml';
+		response = {
+			ok: true,
+			headers: {
+				get: () => {
+					return responseFileType;
+				},
+			},
+			text: () => svg,
+		};
 	});
 
 	afterEach(function () {
@@ -57,6 +63,32 @@ describe('icon', function () {
 	});
 
 	describe('name', function () {
+		it('should leave svg undefined if fetch fails', async function () {
+			response.ok = false;
+			fakeFetch(100);
+
+			// Set the name property to trigger the fetch call
+			element.name = uniqueId();
+
+			// Advance the timers to ensure the fetch call is made
+			await vi.advanceTimersByTimeAsync(100);
+			
+			expect(element._svg).toEqual(undefined);
+		});
+
+		it('should leave svg undefined if fetch returns non svg content-type', async function () {
+			responseFileType = 'text/plain';
+			fakeFetch(100);
+
+			// Set the name property to trigger the fetch call
+			element.name = uniqueId();
+
+			// Advance the timers to ensure the fetch call is made
+			await vi.advanceTimersByTimeAsync(100);
+
+			expect(element._svg).toEqual(undefined);
+		});
+
 		it('should show nothing when first changing the icon', async function () {
 			fakeFetch(4000);
 			element.name = uniqueId();

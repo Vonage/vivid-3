@@ -97,13 +97,6 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
 	const root = forElement.getRootNode() as ShadowRoot | Document;
 	const workaroundStyleSheet = getSafariWorkaroundStyleSheet();
 
-	// Prevent error in environments that do not support `adoptedStyleSheets` like JSDOM
-	const supportsAdoptedStyleSheets = 'adoptedStyleSheets' in root;
-	// istanbul ignore if
-	if (!supportsAdoptedStyleSheets) {
-		return;
-	}
-
 	if (!root.adoptedStyleSheets.includes(workaroundStyleSheet)) {
 		root.adoptedStyleSheets = [
 			...root.adoptedStyleSheets,

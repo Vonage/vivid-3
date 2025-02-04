@@ -55,7 +55,9 @@ export default defineConfig({
 		coverage: {
 			reportsDirectory: '../../coverage/libs/components',
 			provider: 'v8',
-			include: ['src/**/*.spec.ts'],
+			include: ['src/**/*.ts'],
+			exclude: ['src/**/*.spec.ts','src/**/*test*.ts', 'src/locales/**.*' ],
+			reporter: ['text', 'html', 'clover', 'json', 'lcov'],
 		},
 		pool: 'threads',
 		poolOptions: {

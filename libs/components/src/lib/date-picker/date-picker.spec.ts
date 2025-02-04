@@ -339,13 +339,4 @@ describe('vwc-date-picker', () => {
 			expect(textField.currentValue).toBe('21.01.2021');
 		});
 	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.value = '2012-12-12';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-	});
 });

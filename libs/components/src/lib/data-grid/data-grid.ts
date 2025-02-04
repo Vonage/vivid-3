@@ -643,11 +643,11 @@ export class DataGrid extends VividElement {
 				this.generateHeader === GenerateHeaderOptions.sticky
 					? DataGridRowTypes.stickyHeader
 					: DataGridRowTypes.header;
-			/* istanbul ignore next */
-			if (this.firstChild !== null || this.rowsPlaceholder !== null) {
+			
+			if (this.firstChild !== null) {
 				this.insertBefore(
 					generatedHeaderElement,
-					this.firstChild !== null ? this.firstChild : this.rowsPlaceholder
+					this.firstChild
 				);
 			}
 			return;
