@@ -10,7 +10,7 @@ import {
 import { TextArea } from './text-area';
 import '.';
 
-const COMPONENT_TAG_NAME = 'vwc-text-area';
+const COMPONENT_TAG = 'vwc-text-area';
 
 describe('vwc-text-area', () => {
 	function setToBlurred() {
@@ -29,7 +29,7 @@ describe('vwc-text-area', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TextArea;
 	});
 
@@ -62,7 +62,7 @@ describe('vwc-text-area', () => {
 			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
-			expect(() => document.createElement(COMPONENT_TAG_NAME)).not.toThrow();
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -237,7 +237,7 @@ describe('vwc-text-area', () => {
 
 		it('should attach to closest form', async function () {
 			const { form: formElement } = createFormHTML<TextArea>({
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				fieldName,
 				fieldValue,
 				formId,
@@ -259,7 +259,7 @@ describe('vwc-text-area', () => {
 				fieldValue,
 				formId,
 				otherFormId: 'otherFormId',
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -277,7 +277,7 @@ describe('vwc-text-area', () => {
 				fieldName,
 				fieldValue,
 				formId,
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 

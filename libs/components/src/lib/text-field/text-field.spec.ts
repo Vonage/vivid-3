@@ -26,7 +26,7 @@ if (
 	});
 }
 
-const COMPONENT_TAG_NAME = 'vwc-text-field';
+const COMPONENT_TAG = 'vwc-text-field';
 
 describe('vwc-text-field', () => {
 	function setToBlurred() {
@@ -50,7 +50,7 @@ describe('vwc-text-field', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TextField;
 	});
 
@@ -63,7 +63,7 @@ describe('vwc-text-field', () => {
 			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
-			expect(() => document.createElement(COMPONENT_TAG_NAME)).not.toThrow();
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -201,7 +201,7 @@ describe('vwc-text-field', () => {
 
 		it('should focus the input element when connected', async () => {
 			element = (await fixture(
-				`<${COMPONENT_TAG_NAME} autofocus></${COMPONENT_TAG_NAME}>`
+				`<${COMPONENT_TAG} autofocus></${COMPONENT_TAG}>`
 			)) as TextField;
 			await elementUpdated(element);
 
@@ -315,7 +315,7 @@ describe('vwc-text-field', () => {
 
 		it('should attach to closest form', async function () {
 			const { form: formElement } = createFormHTML<TextField>({
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				fieldName,
 				fieldValue,
 				formId,
@@ -337,7 +337,7 @@ describe('vwc-text-field', () => {
 				fieldValue,
 				formId,
 				otherFormId: 'otherFormId',
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -355,7 +355,7 @@ describe('vwc-text-field', () => {
 				fieldName,
 				fieldValue,
 				formId,
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -651,7 +651,7 @@ describe('vwc-text-field', () => {
 
 		it('should do nothing when element is unconnected', async function () {
 			const unconnectedElement = document.createElement(
-				COMPONENT_TAG_NAME
+				COMPONENT_TAG
 			) as TextField;
 			expect(() => unconnectedElement.focus()).not.toThrow();
 		});
@@ -714,7 +714,7 @@ describe('vwc-text-field', () => {
 
 		it('should handle setting helper text while unconnected', () => {
 			const unconnectedElement = document.createElement(
-				COMPONENT_TAG_NAME
+				COMPONENT_TAG
 			) as TextField;
 
 			expect(
