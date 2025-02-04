@@ -183,10 +183,11 @@ describe('vwc-tab', () => {
 
 	describe('a11y', () => {
 		it('should pass html a11y tests', async () => {
-			element = (await fixture(
+			const element = (await fixture(
 				`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			)) as Tab;
-			element.label = 'Label';
+			)) as HTMLDivElement;
+			const tab = element.querySelector(COMPONENT_TAG) as Tab;
+			tab.label = 'Label';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
