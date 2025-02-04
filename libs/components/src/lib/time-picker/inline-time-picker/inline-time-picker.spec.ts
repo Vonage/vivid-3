@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { InlineTimePicker } from './inline-time-picker.ts';
 import '.';
 

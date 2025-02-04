@@ -23,12 +23,8 @@ describe('vwc-data-grid', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DataGrid;
-		console.log('first Child ', element.firstChild);
-		console.log((element as any).rowsPlaceholder);
 
 		await elementUpdated(element);
-		console.log('first Child ', element.firstChild);
-		console.log((element as any).rowsPlaceholder);
 	});
 
 	describe('basic', () => {

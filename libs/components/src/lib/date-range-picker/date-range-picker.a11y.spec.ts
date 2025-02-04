@@ -4,12 +4,6 @@ import {
 	fixture,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
-import { setLocale } from '../../shared/localization';
-import deDE from '../../locales/de-DE';
-import enUS from '../../locales/en-US';
-import { TextField } from '../text-field/text-field';
-import { Popup } from '../popup/popup';
-import { Button } from '../button/button';
 import { DateRangePicker } from './date-range-picker';
 import '.';
 

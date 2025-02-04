@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	setupDelegatesFocusPolyfill,

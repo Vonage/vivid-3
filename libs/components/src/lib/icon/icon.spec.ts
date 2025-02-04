@@ -28,7 +28,7 @@ describe('icon', function () {
 
 	const svg = 'svg';
 	let response: any;
-	let responseFileType: string = 'image/svg+xml';
+	let responseFileType = 'image/svg+xml';
 
 	const originalFetch = global.fetch;
 
