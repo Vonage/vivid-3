@@ -1,92 +1,51 @@
-# FAB
+## Usage
 
-A floating action button (FAB) is a circled icon that floats above the user interface. You should use it for actions that strongly define your app, so that it stands out among the rest of the UI.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/fab';</script>
+import '@vonage/vivid/fab';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Label
+```js
+import { registerFab } from '@vonage/vivid';
 
-Use the `label` attribute to add text to the FAB.
-
-- Type: `string`
-- Default: `undefined`
+registerFab('your-prefix');
+```
 
 ```html preview
-<vwc-fab icon="cart-line" label="Add to cart"></vwc-fab>
+<script type="module">
+	import { registerFab } from '@vonage/vivid';
+	registerFab('your-prefix');
+</script>
+
+<your-prefix-fab aria-label="More Actions" icon="plus-line"></your-prefix-fab>
 ```
 
-### Icon
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Use `icon` to set an icon to the FAB.
-View the list of available icons at the [vivid icons gallery](/icons/icons-gallery/).
-
-Note: An icon on its own doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the FAB's purpose.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-fab icon="cart-line" aria-label="Shopping Cart"></vwc-fab>
+```html
+<script setup lang="ts">
+	import { VFab } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VFab label="Click me" icon="plus-line" />
+</template>
 ```
 
-### Icon with Label
-
-FAB text can be affixed by a decorative icon, either by its start or end.
-Toggle `icon-trailing` to set the icon's horizontal alignment.
-
-```html preview
-<vwc-fab icon="check-line" label="icon"></vwc-fab>
-<vwc-fab icon="check-line" label="icon-trailing" icon-trailing></vwc-fab>
-```
-
-### Connotation
-
-Set the `connotation` attribute to change the FAB's connotation.
-It accepts a subset of predefined values.
-
-- Type: `undefined`, `'accent'`, `'cta'`, `'announcement'`
-- Default: `undefined`
-
-```html preview
-<vwc-fab icon="plus-line" connotation="accent"></vwc-fab>
-<vwc-fab icon="plus-line" connotation="cta"></vwc-fab>
-<vwc-fab icon="plus-line" connotation="announcement"></vwc-fab>
-```
-
-### Size
-
-Use the `size` attribute to set the FAB's to one of the predefined block size extent.
-
-- Type: `'condensed'` | `'normal'` | `'expanded'`
-- Default: `'normal'`
-
-```html preview
-<vwc-fab icon="thumbs-up-line" label="condensed" size="condensed"></vwc-fab>
-<vwc-fab icon="thumbs-up-line" label="normal" size="normal"></vwc-fab>
-<vwc-fab icon="thumbs-up-line" label="expanded" size="expanded"></vwc-fab>
-```
-
-### Disabled
-
-To disable the FAB, use the `disabled` attribute.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-fab icon="store-line" disabled></vwc-fab>
-```
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
-### Icon
+### Icon Slot
 
-Set the `icon` slot to show a decorative icon.  
-If set, the `icon` attribute is ignored.
+Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 
 ```html preview
 <vwc-fab icon="thumbs-up-line" size="normal" label="ask-vivid">
@@ -226,3 +185,30 @@ If set, the `icon` attribute is ignored.
 	</vwc-icon>
 </vwc-fab>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name              | Type                                                       | Description                                                                                                                                |
+| ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **icon**          | _Enum_:<br/>`[icon-name]`                                  | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **icon-trailing** | `boolean`                                                  | Indicates the icon affix alignment.                                                                                                        |
+| **disabled**      | `boolean`                                                  | Sets the element's disabled state. A disabled element will not be included during form submission.                                         |
+| **connotation**   | Enum:`undefined` (default), `accent`, `cta`, `announcment` | The connotation the Fab should have.                                                                                                       |
+| **size**          | Enum: `condensed`, `normal` (default), `expanded`          | The size the Fab should have.                                                                                                              |
+| **label**         | `string`                                                   | Indicates the Fab's label.                                                                                                                 |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name     | Description                   |
+| -------- | ----------------------------- |
+| **icon** | Add an icon to the component. |
+
+</div>
