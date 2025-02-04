@@ -384,7 +384,7 @@
 		"parent": "Tree View"
 	},
 	{
-		"title": "Tag & Tag Group",
+		"title": "Tags",
 		"description": "Tags are small, interactive labels used to visually group, classify, or filter criteria. Tags are wrapped with Tag Group",
 		"variations": "./libs/components/src/lib/tag-group/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/tag-group/GUIDELINES.md",

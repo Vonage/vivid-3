@@ -48,18 +48,13 @@ The `appearance` attribute sets the Tag's appearance.
 The `connotation` attribute sets the Tag's connotation.
 It accepts a subset of predefined values.
 
-### Subtle Tag With Connotation
-
 ```html preview
+<p>Subtle tag with connotation</p>
 <vwc-tag-group>
 	<vwc-tag label="Accent" appearance="subtle" connotation="accent"></vwc-tag>
 	<vwc-tag label="CTA" appearance="subtle" connotation="cta"></vwc-tag>
 </vwc-tag-group>
-```
-
-### Duotone Tag With Connotation
-
-```html preview
+<p>Duotone Tag with connotation</p>
 <vwc-tag-group>
 	<vwc-tag label="Accent" appearance="duotone" connotation="accent"></vwc-tag>
 	<vwc-tag label="CTA" appearance="duotone" connotation="cta"></vwc-tag>
