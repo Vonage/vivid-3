@@ -10,12 +10,12 @@ const components = ['fab'];
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 <style>
-.wrapper {
-display: flex;
-flex-direction: column;
-gap: 16px;
-margin: 10px;
-}
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin: 10px;
+	}
 </style>
 <div class="wrapper">
 	<vwc-fab icon="cart-line" label="Add to cart"></vwc-fab>
