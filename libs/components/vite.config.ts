@@ -60,7 +60,7 @@ export default defineConfig({
 		pool: 'threads',
 		poolOptions: {
 			useAtomics: true,
-		}
+		},
 	},
 	plugins: [
 		viteStaticCopy({
