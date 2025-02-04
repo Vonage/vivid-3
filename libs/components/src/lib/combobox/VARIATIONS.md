@@ -60,7 +60,6 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 
 ## Validation Feedback
 
-
 ### Success Text
 
 The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
@@ -108,7 +107,6 @@ The `error-text` attribute provides a custom error message. Any current error st
 	}
 </style>
 ```
-
 
 ## Icon
 

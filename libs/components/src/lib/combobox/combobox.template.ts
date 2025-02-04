@@ -16,6 +16,8 @@ const getStateClasses = ({
 	icon,
 	iconSlottedContent,
 	metaSlottedContent,
+	errorValidationMessage,
+	successText,
 	shape,
 	scale,
 	disabled,
@@ -32,7 +34,9 @@ const getStateClasses = ({
 		[`appearance-${appearance}`, Boolean(appearance)],
 		['no-label', !label],
 		['has-icon', !!icon || Boolean(iconSlottedContent?.length)],
-		['has-meta', Boolean(metaSlottedContent?.length)]
+		['has-meta', Boolean(metaSlottedContent?.length)],
+		['error', Boolean(errorValidationMessage)],
+		['success', !!successText]
 	);
 
 function renderLabel() {
