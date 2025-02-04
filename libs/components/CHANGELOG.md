@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.14.4](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.3...vivid-v4.14.4) (2025-02-04)
+
+
+### Bug Fixes
+
+* **icon:** fix missing icon type (VIV-2303) ([#2119](https://github.com/Vonage/vivid-3/issues/2119)) ([f54a197](https://github.com/Vonage/vivid-3/commit/f54a197ce4c186fb27bb990e722d9d450010e675))
+
 ## [4.14.3](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.2...vivid-v4.14.3) (2025-02-04)
 
 
