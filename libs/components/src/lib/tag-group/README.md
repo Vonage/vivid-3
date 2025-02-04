@@ -54,7 +54,7 @@ registerTagGroup('your-prefix');
 
 ### Icon Slot
 
-Use the `icon` slot in thr **Tag** component to customise icons. If set, the `icon` attribute is ignored.
+Use the `icon` slot in the **Tag** component to customise icons. If set, the `icon` attribute is ignored.
 
 ```html preview
 <vwc-tag-group>
