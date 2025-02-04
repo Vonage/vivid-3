@@ -400,8 +400,14 @@
 	},
 	{
 		"title": "Empty State",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/empty-state/README.md"
+		"description": "The Empty State component is used to display a message when there is no data to show.",
+		"variations": "./libs/components/src/lib/empty-state/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/empty-state/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/empty-state/README.md",
+		"accessibility": "./libs/components/src/lib/empty-state/ACCESSIBILITY.md",
+		"hideAccessibility": "true",
+		"useCases": "./libs/components/src/lib/empty-state/USE-CASES.md"
 	},
 	{
 		"title": "File Picker",
@@ -421,8 +427,13 @@
 	},
 	{
 		"title": "Split Button",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/split-button/README.md"
+		"description": "A button with two parts: a label and an arrow; clicking on the label selects a default action, and clicking on the arrow opens up a list of other possible actions.",
+		"variations": "./libs/components/src/lib/split-button/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/split-button/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/split-button/README.md",
+		"accessibility": "./libs/components/src/lib/split-button/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/split-button/USE-CASES.md"
 	},
 	{
 		"title": "Selectable Box",
