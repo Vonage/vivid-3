@@ -18,7 +18,7 @@ Vivid uses a phased process to manage changes and enhancements to the design sys
         <li>Demonstration of shared value</li>
       </ul>
     </p>
-    <p>* Additional icon requests will be accepted and scheduled at this stage and do not need to go any further in the process.</p>
+    <p>* <a href="https://confluence.vonage.com/display/VIVID/Submitting+new+icons+to+vivid-icons">Additional icon requests</a> will be accepted and scheduled at this stage and do not need to go any further in the process.</p>
   </vwc-accordion-item>
   <vwc-accordion-item heading="2. Add an item to the next Office Hours meeting agenda">
     <p><a href="https://docs.google.com/document/d/1E0yvyGUzBoQFH5l_W6ElBoZaxqZ3HWmDLDqOl0lc8a0">Office Hours meeting Agenda</a><br />Add a link to the JIRA ticket to provide more information.<br />Add your name to the item.</p>
