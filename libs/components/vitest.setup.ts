@@ -23,6 +23,7 @@ Object.defineProperty(window, 'matchMedia', {
 
 Object.defineProperty(document, 'adoptedStyleSheets', {
 	writable: true,
+	configurable: true,
 	value: [],
 });
 Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
