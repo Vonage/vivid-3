@@ -55,7 +55,12 @@ export default defineConfig({
 		coverage: {
 			reportsDirectory: '../../coverage/libs/components',
 			provider: 'v8',
+			include: ['src/**/*.spec.ts'],
 		},
+		pool: 'threads',
+		poolOptions: {
+			useAtomics: true,
+		}
 	},
 	plugins: [
 		viteStaticCopy({
