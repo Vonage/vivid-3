@@ -46,3 +46,12 @@ global.console = {
 
 HTMLElement.prototype.showPopover = vi.fn();
 HTMLElement.prototype.hidePopover = vi.fn();
+
+function preventPopupCodeRunningAfterWindowClose() {
+	afterAll(async () => {
+		document.body.innerHTML = '';
+		await new Promise((resolve) => setTimeout(resolve, 0));
+	});
+}
+
+preventPopupCodeRunningAfterWindowClose();
