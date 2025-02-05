@@ -229,7 +229,7 @@ describe('vwc-menu', () => {
 
 		it('should allow propgation on escape key and menu is closed', async () => {
 			element.open = false;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getBaseElement(element).dispatchEvent(event);
 			await elementUpdated(element);
@@ -238,7 +238,7 @@ describe('vwc-menu', () => {
 
 		it('should stop propgation on escape key and menu is open', async () => {
 			element.open = true;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getBaseElement(element).dispatchEvent(event);
 			await elementUpdated(element);
@@ -246,14 +246,14 @@ describe('vwc-menu', () => {
 		});
 
 		it('should allow default if Escape was pressed', async () => {
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			getBaseElement(element).dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
 		});
 
 		it('should enable default if key is not Escape', async () => {
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			getBaseElement(element).dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
@@ -361,7 +361,7 @@ describe('vwc-menu', () => {
 			});
 
 			it('should not prevent default of other keydown events', () => {
-				const keydownSpy = jest.fn();
+				const keydownSpy = vi.fn();
 				element.addEventListener('keydown', keydownSpy);
 				item1.focus();
 
@@ -632,7 +632,7 @@ describe('vwc-menu', () => {
 
 	describe('open event', () => {
 		it('should dispatch a non-bubbling open event when the menu is opened', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('open', spy);
 
 			element.open = true;
@@ -646,7 +646,7 @@ describe('vwc-menu', () => {
 
 	describe('close event', () => {
 		it('should dispatch a non-bubbling close event when the menu is close', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('close', spy);
 			element.open = true;
 			await elementUpdated(element);

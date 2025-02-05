@@ -99,7 +99,6 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
 
 	// Prevent error in environments that do not support `adoptedStyleSheets` like JSDOM
 	const supportsAdoptedStyleSheets = 'adoptedStyleSheets' in root;
-	// istanbul ignore if
 	if (!supportsAdoptedStyleSheets) {
 		return;
 	}

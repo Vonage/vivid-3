@@ -324,6 +324,7 @@ describe('vwc-file-picker', () => {
 			expect(element.files).toEqual([file2]);
 		});
 	});
+
 	describe('accept', function () {
 		it('should show an error message for files added that do not match the accept attribute', async function () {
 			element.accept = 'image/*, text/html, .zip';
@@ -339,6 +340,24 @@ describe('vwc-file-picker', () => {
 			expect(getErrorMessage(1)).toBe('');
 			expect(getErrorMessage(2)).toBe('');
 			expect(getErrorMessage(3)).toBe("You can't select files of this type.");
+		});
+
+		it('should display message from error property if error message is an object', async () => {
+			element.accept = 'image/*, text/html, .zip';
+			(element.invalidFileTypeError as any) = {
+				error: 'error from object',
+			};
+
+			await elementUpdated(element);
+
+			addFiles([
+				await generateFile('london.png', 1, 'image/png'),
+				await generateFile('london.html', 1, 'text/html'),
+				await generateFile('london.zip', 1, 'application/zip'),
+				await generateFile('london.txt', 1, 'text/plain'),
+			]);
+
+			expect(getErrorMessage(3)).toBe('error from object');
 		});
 
 		it('should show an custom error message (when supplied) for files added that do not match the accept attribute', async function () {
@@ -404,7 +423,7 @@ describe('vwc-file-picker', () => {
 	describe('change', function () {
 		it('should fire "change" event after a file is added', async () => {
 			let filesLengthInChangeHandler = -1;
-			const onChange = jest.fn().mockImplementation(() => {
+			const onChange = vi.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
 			});
 			element.addEventListener('change', onChange);
@@ -418,7 +437,7 @@ describe('vwc-file-picker', () => {
 		it('should fire "change" event after a file is removed', async () => {
 			addFiles([await generateFile('london.png', 1)]);
 			let filesLengthInChangeHandler = -1;
-			const onChange = jest.fn().mockImplementation(() => {
+			const onChange = vi.fn().mockImplementation(() => {
 				filesLengthInChangeHandler = element.files.length;
 			});
 			element.addEventListener('change', onChange);
@@ -472,7 +491,7 @@ describe('vwc-file-picker', () => {
 		])(
 			'should click on the hidden file input when pressing %s key',
 			async function (_, key) {
-				const hiddenInputClick = jest.fn();
+				const hiddenInputClick = vi.fn();
 				const hiddenInput = getHiddenInput();
 				hiddenInput.click = hiddenInputClick;
 

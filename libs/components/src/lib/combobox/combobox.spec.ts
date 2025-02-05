@@ -44,7 +44,7 @@ describe('vwc-combobox', () => {
 	};
 
 	beforeAll(() => {
-		HTMLElement.prototype.scrollIntoView = jest.fn();
+		HTMLElement.prototype.scrollIntoView = vi.fn();
 	});
 
 	beforeEach(async () => {
@@ -146,7 +146,7 @@ describe('vwc-combobox', () => {
 		});
 
 		it('should allow propgation on escape key if not open', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
 			element.dispatchEvent(
@@ -162,7 +162,7 @@ describe('vwc-combobox', () => {
 
 		it('should stop propgation on escape key if open', async () => {
 			element.open = true;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
 			element.dispatchEvent(
@@ -547,7 +547,7 @@ describe('vwc-combobox', () => {
 				it('should close and select the first matching option when pressing Enter when autocomplete is %s', async () => {
 					element.open = true;
 					await elementUpdated(element);
-					const spy = jest.fn();
+					const spy = vi.fn();
 					element.addEventListener('change', spy);
 
 					typeInput('ana');
@@ -628,7 +628,7 @@ describe('vwc-combobox', () => {
 	});
 
 	describe('when an option is selected', () => {
-		let changeSpy: jest.Mock;
+		let changeSpy: vi.Mock;
 
 		beforeEach(async () => {
 			element.innerHTML = `
@@ -636,7 +636,7 @@ describe('vwc-combobox', () => {
 			`;
 			element.open = true;
 			await elementUpdated(element);
-			changeSpy = jest.fn();
+			changeSpy = vi.fn();
 			element.addEventListener('change', changeSpy);
 			getOption('Apple').click();
 		});

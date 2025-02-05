@@ -62,7 +62,7 @@ describe('FormAssociated when ElementInternals is not supported', () => {
 			await connect();
 
 			const event = new Event(eventName);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			element.proxy.dispatchEvent(event);

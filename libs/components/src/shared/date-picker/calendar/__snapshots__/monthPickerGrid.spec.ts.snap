@@ -1,103 +1,103 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`buildMonthPickerGrid should return the correct 4 by 4 grid for the year 2023 and en-US locale 1`] = `
-Array [
-  Array [
-    Object {
+exports[`buildMonthPickerGrid > should return the correct 4 by 4 grid for the year 2023 and en-US locale 1`] = `
+[
+  [
+    {
       "label": "Jan",
-      "month": Object {
+      "month": {
         "month": 0,
         "year": 2023,
       },
       "monthName": "January",
     },
-    Object {
+    {
       "label": "Feb",
-      "month": Object {
+      "month": {
         "month": 1,
         "year": 2023,
       },
       "monthName": "February",
     },
-    Object {
+    {
       "label": "Mar",
-      "month": Object {
+      "month": {
         "month": 2,
         "year": 2023,
       },
       "monthName": "March",
     },
-    Object {
+    {
       "label": "Apr",
-      "month": Object {
+      "month": {
         "month": 3,
         "year": 2023,
       },
       "monthName": "April",
     },
   ],
-  Array [
-    Object {
+  [
+    {
       "label": "May",
-      "month": Object {
+      "month": {
         "month": 4,
         "year": 2023,
       },
       "monthName": "May",
     },
-    Object {
+    {
       "label": "Jun",
-      "month": Object {
+      "month": {
         "month": 5,
         "year": 2023,
       },
       "monthName": "June",
     },
-    Object {
+    {
       "label": "Jul",
-      "month": Object {
+      "month": {
         "month": 6,
         "year": 2023,
       },
       "monthName": "July",
     },
-    Object {
+    {
       "label": "Aug",
-      "month": Object {
+      "month": {
         "month": 7,
         "year": 2023,
       },
       "monthName": "August",
     },
   ],
-  Array [
-    Object {
+  [
+    {
       "label": "Sep",
-      "month": Object {
+      "month": {
         "month": 8,
         "year": 2023,
       },
       "monthName": "September",
     },
-    Object {
+    {
       "label": "Okt",
-      "month": Object {
+      "month": {
         "month": 9,
         "year": 2023,
       },
       "monthName": "Oktober",
     },
-    Object {
+    {
       "label": "Nov",
-      "month": Object {
+      "month": {
         "month": 10,
         "year": 2023,
       },
       "monthName": "November",
     },
-    Object {
+    {
       "label": "Dec",
-      "month": Object {
+      "month": {
         "month": 11,
         "year": 2023,
       },

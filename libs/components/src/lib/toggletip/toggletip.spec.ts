@@ -114,7 +114,7 @@ describe('vwc-toggletip', () => {
 		it('should allow propgation on escape key if closed', async () => {
 			element.open = false;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -130,7 +130,7 @@ describe('vwc-toggletip', () => {
 		it('should stop propgation on escape key', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
