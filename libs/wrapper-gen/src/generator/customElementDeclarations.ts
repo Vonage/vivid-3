@@ -449,6 +449,7 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			fieldName: 'ariaControls',
 		},
 	],
+	DelegatesARIAListboxOption: [],
 	ARIAGlobalStatesAndProperties: [],
 };
 
