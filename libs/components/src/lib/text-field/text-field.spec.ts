@@ -723,6 +723,28 @@ describe('vwc-text-field', () => {
 		});
 	});
 
+	describe('in environments without adoptedStyleSheets', () => {
+		const adoptedStyleSheetsDescriptor = Object.getOwnPropertyDescriptor(
+			document,
+			'adoptedStyleSheets'
+		)!;
+		beforeAll(() => {
+			delete (document as any).adoptedStyleSheets;
+		});
+		afterAll(() => {
+			Object.defineProperty(
+				document,
+				'adoptedStyleSheets',
+				adoptedStyleSheetsDescriptor
+			);
+		});
+
+		it('should handle being connected without error', () => {
+			element = document.createElement(COMPONENT_TAG) as TextField;
+			expect(() => element.connectedCallback()).not.toThrow();
+		});
+	});
+
 	describe('a11y', () => {
 		it('should pass html a11y test', async () => {
 			element.label = 'Label';
