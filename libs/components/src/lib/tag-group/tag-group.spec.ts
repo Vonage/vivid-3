@@ -1,4 +1,4 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { fixture } from '@vivid-nx/shared';
 import { TagGroup } from './tag-group';
 import '.';
 

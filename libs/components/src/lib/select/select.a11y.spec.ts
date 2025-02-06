@@ -1,4 +1,3 @@
-import 'element-internals-polyfill';
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { Select } from './select';
 import '.';

@@ -1,4 +1,3 @@
-import { html } from '@microsoft/fast-element';
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { DataGrid } from './data-grid';
 import '.';

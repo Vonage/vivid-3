@@ -1,9 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { SideDrawer } from './side-drawer';
 import '.';
 

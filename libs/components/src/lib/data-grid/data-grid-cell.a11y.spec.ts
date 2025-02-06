@@ -1,4 +1,3 @@
-import { html } from '@microsoft/fast-element';
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';

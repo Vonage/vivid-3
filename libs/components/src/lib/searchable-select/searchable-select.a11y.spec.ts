@@ -5,7 +5,6 @@ import { SearchableSelect } from './searchable-select';
 
 const COMPONENT_TAG = 'vwc-searchable-select';
 const OPTION_TAG = 'vwc-option';
-const ICON_TAG = 'vwc-icon';
 
 describe('a11y: vwc-searchable-select', () => {
 	let element: SearchableSelect;
