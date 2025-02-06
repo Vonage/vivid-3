@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { AccordionItem } from './accordion-item';
 import '.';
 
@@ -155,15 +155,7 @@ describe('vwc-accordion-item', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.id = 'test1';
-			element.heading = 'Accordion item heading';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should link the header button and content region using aria', async () => {
 			const TEST_ID = 'test';
 			element.id = TEST_ID;

@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -848,7 +847,7 @@ describe('vwc-slider', () => {
 		expect(element.value).toBe('0.3');
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
 			element.min = 3;
@@ -896,10 +895,6 @@ describe('vwc-slider', () => {
 					expect(element.valueTextFormatter('1.1')).toBe('1,1');
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

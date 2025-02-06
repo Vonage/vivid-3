@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -303,7 +302,7 @@ describe('vwc-switch', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		let control: HTMLElement | null;
 
 		describe('label', () => {
@@ -320,14 +319,6 @@ describe('vwc-switch', () => {
 			it('should set role to switch on the control element', async () => {
 				expect(control?.getAttribute('role')).toBe('switch');
 			});
-
-			it('should pass html a11y test', async () => {
-				element.checked = true;
-				element.value = 'test';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
-			});
 		});
 
 		describe('aria-label', () => {
@@ -343,14 +334,6 @@ describe('vwc-switch', () => {
 
 			it('should set role to presentation on the host', async () => {
 				expect(element.getAttribute('role')).toBe('presentation');
-			});
-
-			it('should pass html a11y test', async () => {
-				element.checked = true;
-				element.value = 'test';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

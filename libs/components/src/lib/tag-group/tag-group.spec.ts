@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { TagGroup } from './tag-group';
 import '.';
 
@@ -23,22 +23,6 @@ describe('vwc-tag-group', () => {
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(
-				`<${COMPONENT_TAG} aria-label="Tag group">
-					<vwc-tag label="Label 1"></vwc-tag>
-					<vwc-tag label="Label 2"></vwc-tag>
-					<vwc-tag label="Label 3"></vwc-tag>
-				</${COMPONENT_TAG}>`
-			)) as TagGroup;
-			element.ariaLabel = 'Tag group';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

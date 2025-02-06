@@ -9,23 +9,26 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
 
-describe('vwc-date-range-picker', () => {
+describe('a11y: vwc-date-range-picker', () => {
 	let element: DateRangePicker;
+
+	beforeAll(async () => {
+    await customElements.whenDefined(COMPONENT_TAG);
+  });
 
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DateRangePicker;
+
 		setupDelegatesFocusPolyfill(element);
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.start = '2012-12-12';
-			element.end = '2012-12-13';
-			await elementUpdated(element);
+	it('should pass html a11y test', async () => {
+		element.start = '2012-12-12';
+		element.end = '2012-12-13';
+		await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
-		}, 10000);
-	});
+		expect(await axe(element)).toHaveNoViolations();
+	}, 10000);
 });

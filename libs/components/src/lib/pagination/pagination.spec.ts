@@ -600,33 +600,23 @@ describe('vwc-pagination', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('a11y attributes', () => {
+		it('should set aria-current false by default', async function () {
 			element.total = 20;
-			element.selectedIndex = 10;
 			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('aria', function () {
-			it('should set aria-current false by default', async function () {
-				element.total = 20;
-				await elementUpdated(element);
-				const buttons = Array.from(
-					element.shadowRoot?.querySelectorAll(
-						'.vwc-pagination-button'
-					) as unknown as Button[]
-				);
-				const allButtonsAriaSelectedFalse = buttons?.reduce(
-					(correct, button, index) => {
-						if (element.selectedIndex === index) return correct;
-						return correct && button.getAttribute('aria-current') === 'false';
-					},
-					true
-				);
-				expect(allButtonsAriaSelectedFalse).toEqual(true);
-			});
+			const buttons = Array.from(
+				element.shadowRoot?.querySelectorAll(
+					'.vwc-pagination-button'
+				) as unknown as Button[]
+			);
+			const allButtonsAriaSelectedFalse = buttons?.reduce(
+				(correct, button, index) => {
+					if (element.selectedIndex === index) return correct;
+					return correct && button.getAttribute('aria-current') === 'false';
+				},
+				true
+			);
+			expect(allButtonsAriaSelectedFalse).toEqual(true);
 		});
 	});
 });

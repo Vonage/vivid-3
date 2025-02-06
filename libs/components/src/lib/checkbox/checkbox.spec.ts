@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -376,14 +375,7 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Checkbox label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should not render a role attribute on the component element', async () => {
 			expect(element.getAttribute('role')).toBe(null);
 		});
@@ -432,10 +424,6 @@ describe('vwc-checkbox', () => {
 
 				expect(baseElement?.getAttribute('role')).toBe('checkbox');
 				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			});
-
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

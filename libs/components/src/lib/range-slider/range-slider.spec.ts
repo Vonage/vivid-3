@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -760,7 +759,7 @@ describe('vwc-range-slider', () => {
 		expect(element.start).toBe('0.3');
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		describe('aria-start-label', () => {
 			it('should set aria-label on start thumb', async () => {
 				element.ariaStartLabel = 'start';
@@ -799,11 +798,6 @@ describe('vwc-range-slider', () => {
 					expect(element.valueTextFormatter('1.1')).toBe('1,1');
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

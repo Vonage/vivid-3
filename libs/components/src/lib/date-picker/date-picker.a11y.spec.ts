@@ -9,8 +9,12 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-date-picker';
 
-describe('vwc-date-picker', () => {
+describe('a11y: vwc-date-picker', () => {
 	let element: DatePicker;
+
+	beforeAll(async () => {
+    await customElements.whenDefined(COMPONENT_TAG);
+  });
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -20,12 +24,10 @@ describe('vwc-date-picker', () => {
 		setupDelegatesFocusPolyfill(element);
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.value = '2012-12-12';
-			await elementUpdated(element);
+	it('should pass html a11y test', async () => {
+		element.value = '2012-12-12';
+		await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
-		}, 10000);
-	});
+		expect(await axe(element)).toHaveNoViolations();
+	}, 10000);
 });

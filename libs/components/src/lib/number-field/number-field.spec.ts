@@ -1,7 +1,6 @@
 import 'element-internals-polyfill';
 
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -925,10 +924,6 @@ describe('vwc-number-field', () => {
 					);
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

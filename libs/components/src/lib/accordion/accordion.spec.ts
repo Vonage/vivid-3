@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { AccordionItem } from '../accordion-item/accordion-item';
 import { Accordion } from './accordion';
 import '../accordion-item';
@@ -269,11 +269,7 @@ describe('vwc-accordion', () => {
 		expect(element.activeid).toBe('item1');
 	});
 
-	describe('a11y', () => {
-		it('should pass HTML a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should set aria-disabled on active item in single mode', async function () {
 			element = (await fixture(`
 				<${COMPONENT_TAG} id="tested">

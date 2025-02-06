@@ -509,14 +509,7 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.open = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should set aria-hidden', async () => {
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual(
 				'true'

@@ -1,6 +1,5 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -210,18 +209,6 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 
 			expect(element.shadowRoot?.querySelector('header.headline')).toBeNull();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.anchor = 'anchorButton';
-			element.open = true;
-			element.innerHTML = 'Test content';
-			element.headline = 'Headline';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
