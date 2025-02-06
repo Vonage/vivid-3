@@ -73,6 +73,12 @@ function renderIconOrPending(
 	}
 }
 
+const getButtonType = (type: string): string => {
+	const types = ['submit', 'button', 'reset'];
+	if (types.indexOf(type) > -1) return type;
+	return 'submit';
+};
+
 const buttonContent = (context: VividElementDefinitionContext) => {
 	const chevronTemplate = chevronTemplateFactory(context);
 	return html<Button>`<span class="content">
@@ -97,7 +103,7 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		formnovalidate="${(x) => x.formnovalidate}"
 		formtarget="${(x) => x.formtarget}"
 		name="${(x) => x.name}"
-		type="${(x) => x.type ?? 'submit'}"
+		type="${(x) => getButtonType(x.type)}"
 		value="${(x) => x.value}"
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
