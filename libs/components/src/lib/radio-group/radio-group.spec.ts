@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -441,15 +440,6 @@ describe('vwc-radio-group', () => {
 			const result = await submitPromise;
 
 			expect(result.get(element.name)).toEqual('2');
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

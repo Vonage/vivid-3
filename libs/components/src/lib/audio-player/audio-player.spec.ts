@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, MediaSkipBy } from '../enums';
 import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
@@ -778,11 +778,5 @@ describe('vwc-audio-player', () => {
 				expect(getSkipForwardButton()!.icon).toEqual(icon);
 			}
 		);
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
 	});
 });

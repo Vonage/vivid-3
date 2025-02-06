@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { Avatar } from './avatar';
 import '.';
@@ -121,21 +121,6 @@ describe('vwc-avatar', () => {
 			await elementUpdated(element);
 			const text = baseElement.textContent?.trim();
 			expect(text).toEqual('Jo');
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('initials', () => {
-			it('should pass html a11y', async () => {
-				element.initials = 'ab';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
-			});
 		});
 	});
 });

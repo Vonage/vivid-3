@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DialPad } from './dial-pad';
@@ -542,12 +542,6 @@ describe('vwc-dial-pad', () => {
 			element.endCallButtonLabel = label;
 			await elementUpdated(element);
 			expect(getCallButton().label).toEqual(label);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

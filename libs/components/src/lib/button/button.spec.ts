@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -346,36 +345,12 @@ describe('vwc-button', () => {
 			expect(getControlElement(element).hasAttribute('title')).toEqual(false);
 		});
 	});
-	describe('a11y', function () {
+	describe('a11y attributes', function () {
 		it('should set aria-label on the button if set', async () => {
 			const ariaLabel = 'close';
 			element.ariaLabel = ariaLabel;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
-		});
-
-		it('should pass html a11y test', async () => {
-			element.label = 'Home';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		it('should pass html a11y test when anchor', async () => {
-			element.label = 'Link text';
-			element.href = '/somewhere';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('icon-only', () => {
-			it('should pass html a11y test', async () => {
-				element.icon = 'home';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
-			});
 		});
 	});
 });

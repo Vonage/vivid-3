@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, Shape } from '../enums';
 import { Progress } from './progress';
 import '.';
@@ -178,7 +178,7 @@ describe('vwc-progress', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
 			element.min = 10;
@@ -198,10 +198,6 @@ describe('vwc-progress', () => {
 			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
 			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
 			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

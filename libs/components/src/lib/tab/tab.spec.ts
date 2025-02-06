@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { Icon } from '../icon/icon';
 import { Tab } from './tab';
@@ -178,19 +178,6 @@ describe('vwc-tab', () => {
 			expect(
 				getBaseElement(element).classList.contains(`shape-${shape}`)
 			).toBeTruthy();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y tests', async () => {
-			const element = (await fixture(
-				`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			)) as HTMLDivElement;
-			const tab = element.querySelector(COMPONENT_TAG) as Tab;
-			tab.label = 'Label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

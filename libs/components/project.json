@@ -62,7 +62,16 @@
 			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/libs/components"],
 			"options": {
-				"passWithNoTests": true
+				"passWithNoTests": true,
+				"mode": "test"
+			}
+		},
+		"a11y": {
+			"executor": "@nx/vite:test",
+			"outputs": ["{workspaceRoot}/coverage/libs/components"],
+			"options": {
+				"passWithNoTests": true,
+				"mode": "a11y"
 			}
 		},
 		"build": {

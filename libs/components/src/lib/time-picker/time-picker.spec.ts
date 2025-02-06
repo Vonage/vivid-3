@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -1135,12 +1134,6 @@ describe('vwc-time-picker', () => {
 				expect(formDataKey).toEqual(fieldName);
 				expect(formDataValue).toEqual(fieldValue);
 			});
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

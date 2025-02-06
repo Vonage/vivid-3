@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import '../option';
 import { Popup } from '../popup/popup';
@@ -1719,13 +1719,7 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should describe the visually highlighted option in an aria-live region', async () => {
 			focusInput();
 			await elementUpdated(element);

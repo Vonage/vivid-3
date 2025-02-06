@@ -1,9 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Elevation } from './elevation';
 import '.';
 
@@ -84,12 +79,6 @@ describe('vwc-elevation', () => {
 			element.notRelative = true;
 			await elementUpdated(element);
 			expect(getControlElement(element).classList.contains('.no-shadow'));
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

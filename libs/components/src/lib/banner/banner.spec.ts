@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';
@@ -311,34 +311,11 @@ describe('vwc-banner', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.removable = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('role', function () {
 			it('should be set to "status" on init', function () {
 				const role = getBannerMessageAttribute(element, 'role');
 				expect(role).toEqual('status');
-			});
-
-			it('should change role to role text', async function () {
-				element.role = 'alert';
-				await elementUpdated(element);
-				const role = getBannerMessageAttribute(element, 'role');
-				expect(role).toEqual('alert');
-				expect(await axe(element)).toHaveNoViolations();
-			});
-
-			it('should change role when role attribute is set', async function () {
-				element.setAttribute('role', 'alert');
-				await elementUpdated(element);
-				const role = getBannerMessageAttribute(element, 'role');
-				expect(role).toEqual('alert');
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 

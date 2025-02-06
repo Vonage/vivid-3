@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
@@ -359,13 +359,6 @@ describe('vwc-calendar', () => {
 			expect(shadowRoot.activeElement).toEqual(
 				shadowRoot.querySelector('[role="gridcell"i]:nth-child(6)')
 			);
-		});
-	});
-
-	/* skipped because "Certain ARIA roles must contain particular children (aria-required-children)" */
-	describe('a11y', () => {
-		it.skip('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

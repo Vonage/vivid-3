@@ -1,6 +1,5 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -660,7 +659,7 @@ describe('vwc-menu', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.open = true;
 			element.ariaLabel = 'A11y label';
@@ -669,10 +668,6 @@ describe('vwc-menu', () => {
 				<div role="menuitem" id="id2">Menu Item 2</div>
 			`;
 			await elementUpdated(element);
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should render the aria-label on the menu element', async () => {

@@ -1,9 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';
@@ -123,15 +118,6 @@ describe('vwc-layout', () => {
 			expect(getControlElement(element).classList.toString()).toEqual(
 				`control auto-sizing-${autoSizing}`
 			);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.gutters = LayoutSize.Large;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
