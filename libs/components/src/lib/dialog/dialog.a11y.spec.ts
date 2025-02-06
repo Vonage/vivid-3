@@ -5,21 +5,21 @@ import '.';
 const COMPONENT_TAG = 'vwc-dialog';
 
 describe('a11y: vwc-dialog', () => {
-  let element: Dialog;
+	let element: Dialog;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
-  
-  beforeEach(async () => {
-    element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Dialog;
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  it('should pass html a11y test', async () => {
-    element.open = true;
-    element.setAttribute('aria-label', 'Test dialog');
-    await elementUpdated(element);
+	beforeEach(async () => {
+		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Dialog;
+	});
 
-    expect(await axe(element)).toHaveNoViolations();
-  });
+	it('should pass html a11y test', async () => {
+		element.open = true;
+		element.setAttribute('aria-label', 'Test dialog');
+		await elementUpdated(element);
+
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

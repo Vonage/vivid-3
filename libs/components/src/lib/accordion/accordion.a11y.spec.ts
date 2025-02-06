@@ -14,22 +14,22 @@ const COMPONENT_HTML = `
 `;
 
 describe('a11y: vwc-accordion', () => {
-  let element: Accordion;
-  
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	let element: Accordion;
 
-  beforeEach(async () => {
-    element = (await fixture(COMPONENT_HTML)) as Accordion;
-    await elementUpdated(element);
-    const accordionItem1 = element.querySelector('#item1') as AccordionItem;
-    const accordionItem2 = element.querySelector('#item2') as AccordionItem;
-    await elementUpdated(accordionItem1);
-    await elementUpdated(accordionItem2);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  it('should pass HTML a11y test', async () => {
-    expect(await axe(element)).toHaveNoViolations();
-  });
+	beforeEach(async () => {
+		element = (await fixture(COMPONENT_HTML)) as Accordion;
+		await elementUpdated(element);
+		const accordionItem1 = element.querySelector('#item1') as AccordionItem;
+		const accordionItem2 = element.querySelector('#item2') as AccordionItem;
+		await elementUpdated(accordionItem1);
+		await elementUpdated(accordionItem2);
+	});
+
+	it('should pass HTML a11y test', async () => {
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

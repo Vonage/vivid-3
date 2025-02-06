@@ -13,8 +13,8 @@ describe('a11y: vwc-date-range-picker', () => {
 	let element: DateRangePicker;
 
 	beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(

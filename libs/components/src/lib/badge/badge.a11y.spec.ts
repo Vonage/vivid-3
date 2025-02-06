@@ -5,29 +5,29 @@ import '.';
 const COMPONENT_TAG = 'vwc-badge';
 
 describe('a11y: vwc-badge', () => {
-  let element: Badge;
+	let element: Badge;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  beforeEach(async () => {
-    element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Badge;
-  });
+	beforeEach(async () => {
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Badge;
+	});
 
-  it('should pass html a11y test', async () => {
-    element.text = 'Test badge';
-    await elementUpdated(element);
+	it('should pass html a11y test', async () => {
+		element.text = 'Test badge';
+		await elementUpdated(element);
 
-    expect(await axe(element)).toHaveNoViolations();
-  });
+		expect(await axe(element)).toHaveNoViolations();
+	});
 
-  describe('icon-only', () => {
-    it('should pass html a11y test', async () => {
-      element.icon = 'home';
-      await elementUpdated(element);
+	describe('icon-only', () => {
+		it('should pass html a11y test', async () => {
+			element.icon = 'home';
+			await elementUpdated(element);
 
-      expect(await axe(element)).toHaveNoViolations();
-    });
-  });
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

@@ -1,8 +1,4 @@
-import {
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { Switch } from './switch';
 import '.';

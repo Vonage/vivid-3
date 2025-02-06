@@ -50,7 +50,8 @@ export default defineConfig(({ mode }) => {
 			watch: false,
 			globals: true,
 			environment: 'jsdom',
-			include: mode === 'a11y' ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
+			include:
+				mode === 'a11y' ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
 			exclude: mode === 'a11y' ? [] : ['src/**/*.a11y.spec.ts'],
 			setupFiles: ['vitest.setup.ts'],
 			reporters: ['default'],
@@ -129,7 +130,7 @@ export default defineConfig(({ mode }) => {
 			watch: isWatchMode
 				? {
 						exclude: ['**/*.md'],
-					}
+				  }
 				: null,
 		},
 		css: {
@@ -142,5 +143,5 @@ export default defineConfig(({ mode }) => {
 		worker: {
 			plugins: () => [nxViteTsPaths()],
 		},
-	}
+	};
 });

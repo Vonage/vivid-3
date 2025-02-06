@@ -5,20 +5,20 @@ import '.';
 const COMPONENT_TAG = 'vwc-note';
 
 describe('a11y: vwc-note', () => {
-  let element: Note;
+	let element: Note;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  beforeEach(async () => {
-    element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Note;
-  });
+	beforeEach(async () => {
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Note;
+	});
 
-  it('should pass html a11y test', async () => {
-    element.headline = 'Headline';
-    await elementUpdated(element);
+	it('should pass html a11y test', async () => {
+		element.headline = 'Headline';
+		await elementUpdated(element);
 
-    expect(await axe(element)).toHaveNoViolations();
-  });
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

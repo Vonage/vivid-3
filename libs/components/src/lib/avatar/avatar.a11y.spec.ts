@@ -5,28 +5,28 @@ import '.';
 const COMPONENT_TAG = 'vwc-avatar';
 
 describe('a11y: vwc-avatar', () => {
-  let element: Avatar;
+	let element: Avatar;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-    )) as Avatar;
-  });
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as Avatar;
+	});
 
-  it('should pass html a11y test', async () => {
-    expect(await axe(element)).toHaveNoViolations();
-  });
+	it('should pass html a11y test', async () => {
+		expect(await axe(element)).toHaveNoViolations();
+	});
 
-  describe('initials', () => {
-    it('should pass html a11y', async () => {
-      element.initials = 'ab';
-      await elementUpdated(element);
+	describe('initials', () => {
+		it('should pass html a11y', async () => {
+			element.initials = 'ab';
+			await elementUpdated(element);
 
-      expect(await axe(element)).toHaveNoViolations();
-    });
-  });
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

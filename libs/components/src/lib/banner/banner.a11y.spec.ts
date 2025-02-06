@@ -5,22 +5,22 @@ import '.';
 const COMPONENT_TAG = 'vwc-banner';
 
 describe('a11y: vwc-banner', () => {
-  let element: Banner;
+	let element: Banner;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-    )) as Banner;
-  });
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
+		)) as Banner;
+	});
 
-  it('should pass html a11y test', async () => {
-    element.removable = true;
-    await elementUpdated(element);
+	it('should pass html a11y test', async () => {
+		element.removable = true;
+		await elementUpdated(element);
 
-    expect(await axe(element)).toHaveNoViolations();
-  });
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

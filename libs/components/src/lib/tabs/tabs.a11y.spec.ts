@@ -5,14 +5,14 @@ import '.';
 const COMPONENT_TAG = 'vwc-tabs';
 
 describe('a11y: vwc-tabs', () => {
-  let element: Tabs;
-  
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	let element: Tabs;
 
-  beforeEach(async () => {
-      element = (await fixture(`
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
+
+	beforeEach(async () => {
+		element = (await fixture(`
         <${COMPONENT_TAG} activeid="entrees">
           <vwc-tab label="Appetizers" id="apps"></vwc-tab>
           <vwc-tab label="Entrees" id="entrees"></vwc-tab>
@@ -42,11 +42,10 @@ describe('a11y: vwc-tabs', () => {
               <li>Limoncello and Ice Cream with Biscotti</li>
             </ol>
           </vwc-tab-panel>
-        </${COMPONENT_TAG}>`
-      )) as Tabs;
-    });
+        </${COMPONENT_TAG}>`)) as Tabs;
+	});
 
-  it('should pass html a11y test', async () => {
-    expect(await axe(element)).toHaveNoViolations();
-  });
+	it('should pass html a11y test', async () => {
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

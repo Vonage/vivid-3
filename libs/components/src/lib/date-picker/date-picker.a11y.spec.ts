@@ -13,8 +13,8 @@ describe('a11y: vwc-date-picker', () => {
 	let element: DatePicker;
 
 	beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(

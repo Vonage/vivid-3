@@ -41,9 +41,9 @@ function addFiles(files: File[]) {
 describe('a11y: vwc-file-picker', () => {
 	let element: FilePicker;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = fixture(
@@ -52,10 +52,10 @@ describe('a11y: vwc-file-picker', () => {
 	});
 
 	it('should pass html a11y test', async () => {
-    element.label = 'Test label';
-    element.helperText = 'Helper text';
-    await elementUpdated(element);
+		element.label = 'Test label';
+		element.helperText = 'Helper text';
+		await elementUpdated(element);
 
-    expect(await axe(element)).toHaveNoViolations();
-  });
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

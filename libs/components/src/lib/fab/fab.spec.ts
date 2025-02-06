@@ -1,8 +1,4 @@
-import {
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Fab, FabConnotation } from './fab';
 import '.';

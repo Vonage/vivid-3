@@ -7,9 +7,9 @@ const COMPONENT_TAG = 'vwc-option';
 describe('a11y: vwc-option', () => {
 	let element: ListboxOption;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
 	beforeEach(async () => {
 		element = (await fixture(
@@ -18,13 +18,13 @@ describe('a11y: vwc-option', () => {
 	});
 
 	it('should pass html a11y test', async () => {
-			element = (await fixture(
-				`<div role="listbox" aria-label="Dummy listbox">
+		element = (await fixture(
+			`<div role="listbox" aria-label="Dummy listbox">
 					<${COMPONENT_TAG} text="text" value="value"></${COMPONENT_TAG}>
 				</div>`
-			)) as ListboxOption;
-			await elementUpdated(element);
+		)) as ListboxOption;
+		await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
-		});
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });

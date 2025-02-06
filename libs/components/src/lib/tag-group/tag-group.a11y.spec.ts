@@ -5,26 +5,26 @@ import '.';
 const COMPONENT_TAG = 'vwc-tag-group';
 
 describe('a11y: vwc-tag-group', () => {
-  let element: TagGroup;
+	let element: TagGroup;
 
-  beforeAll(async () => {
-    await customElements.whenDefined(COMPONENT_TAG);
-  });
+	beforeAll(async () => {
+		await customElements.whenDefined(COMPONENT_TAG);
+	});
 
-  beforeEach(async () => {
-    element = (await fixture(
-      `<${COMPONENT_TAG} aria-label="Tag group">
+	beforeEach(async () => {
+		element = (await fixture(
+			`<${COMPONENT_TAG} aria-label="Tag group">
         <vwc-tag label="Label 1"></vwc-tag>
         <vwc-tag label="Label 2"></vwc-tag>
         <vwc-tag label="Label 3"></vwc-tag>
       </${COMPONENT_TAG}>`
-    )) as TagGroup;
-  });
+		)) as TagGroup;
+	});
 
-  it('should pass html a11y test', async () => {
-    element.ariaLabel = 'Tag group';
-    await elementUpdated(element);
+	it('should pass html a11y test', async () => {
+		element.ariaLabel = 'Tag group';
+		await elementUpdated(element);
 
-    expect(await axe(element)).toHaveNoViolations();
-  });
+		expect(await axe(element)).toHaveNoViolations();
+	});
 });
