@@ -45,14 +45,14 @@ input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 const isWatchMode = process.env.WATCH === 'true';
 
 export default defineConfig(({ mode }) => {
+	const isA11y = mode === 'a11y';
 	return {
 		test: {
 			watch: false,
 			globals: true,
 			environment: 'jsdom',
-			include:
-				mode === 'a11y' ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
-			exclude: mode === 'a11y' ? [] : ['src/**/*.a11y.spec.ts'],
+			include: isA11y ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
+			exclude: isA11y ? [] : ['src/**/*.a11y.spec.ts'],
 			setupFiles: ['vitest.setup.ts'],
 			reporters: ['default'],
 			coverage: {
