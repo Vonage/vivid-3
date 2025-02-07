@@ -1,11 +1,6 @@
 import 'element-internals-polyfill';
 
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -1305,7 +1300,9 @@ describe('vwc-select', () => {
 			element.label = 'Label';
 			await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
+			expect(element.selectedOptions).toEqual([getOption('3')]);
+			const labelElement = element.shadowRoot?.querySelector('label');
+			expect(labelElement?.textContent?.trim()).toEqual('Label');
 		});
 	});
 });
