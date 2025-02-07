@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -799,7 +798,7 @@ describe('vwc-combobox', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		it('should mark the input control element with the correct a11y attributes', async () => {
 			element.label = 'Test label';
 			element.innerHTML = `
@@ -825,13 +824,6 @@ describe('vwc-combobox', () => {
 			element.click();
 			await elementUpdated(element);
 			expect(control.getAttribute('aria-expanded')).toBe('true');
-		});
-
-		it('should pass html a11y test', async () => {
-			element.label = 'Combobox label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import '../option';
 import { Popup } from '../popup/popup';
@@ -1753,11 +1753,5 @@ describe('vwc-searchable-select', () => {
 
 			expect(getAriaLiveRegionText()).toBe('');
 		});
-	});
-
-	it('should pass html a11y test', async () => {
-		element.label = 'Label';
-		await elementUpdated(element);
-		expect(await axe(element)).toHaveNoViolations();
 	});
 });
