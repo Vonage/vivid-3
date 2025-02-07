@@ -1719,7 +1719,7 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
-	describe('a11y attributes', () => {
+	describe('a11y', () => {
 		it('should describe the visually highlighted option in an aria-live region', async () => {
 			focusInput();
 			await elementUpdated(element);
