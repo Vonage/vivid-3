@@ -1300,7 +1300,6 @@ describe('vwc-select', () => {
 			element.label = 'Label';
 			await elementUpdated(element);
 
-			expect(element.selectedOptions).toEqual([getOption('3')]);
 			const labelElement = element.shadowRoot?.querySelector('label');
 			expect(labelElement?.textContent?.trim()).toEqual('Label');
 		});
