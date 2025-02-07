@@ -23,4 +23,20 @@ describe('a11y: vwc-banner', () => {
 
 		expect(await axe(element)).toHaveNoViolations();
 	});
+
+	describe('role', function () {
+		it('should change role to role text', async function () {
+			element.role = 'alert';
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+
+		it('should change role when role attribute is set', async function () {
+			element.setAttribute('role', 'alert');
+			await elementUpdated(element);
+
+			expect(await axe(element)).toHaveNoViolations();
+		});
+	});
 });

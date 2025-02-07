@@ -317,6 +317,20 @@ describe('vwc-banner', () => {
 				const role = getBannerMessageAttribute(element, 'role');
 				expect(role).toEqual('status');
 			});
+
+			it('should change role to role text', async function () {
+				element.role = 'alert';
+				await elementUpdated(element);
+				const role = getBannerMessageAttribute(element, 'role');
+				expect(role).toEqual('alert');
+			});
+
+			it('should change role when role attribute is set', async function () {
+				element.setAttribute('role', 'alert');
+				await elementUpdated(element);
+				const role = getBannerMessageAttribute(element, 'role');
+				expect(role).toEqual('alert');
+			});
 		});
 
 		describe('aria live', function () {
