@@ -11,11 +11,10 @@ import {
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import { DelegatesARIASelect } from '../select/select';
 
 /**
  * Types of popup placement
@@ -717,6 +716,5 @@ applyMixinsWithObservables(
 	Combobox,
 	AffixIcon,
 	FormElementHelperText,
-	FormElementSuccessText,
-	DelegatesARIASelect
+	FormElementSuccessText
 );
