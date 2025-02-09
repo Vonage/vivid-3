@@ -73,6 +73,10 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-badge slot="meta" connotation="success" text="Beta"></vwc-badge>
 			</vwc-combobox>
 			<vwc-combobox value="Value with very long text to check ellipsis"></vwc-combobox>
+			<vwc-combobox helper-text="We use this information in to help inform our marketing strategy"
+				label="Where did you hear about us?" placeholder="Select an option"></vwc-combobox>
+				<vwc-combobox success-text="Rome is the correct answer" placeholder="Select an option" label="Success Text"></vwc-combobox>
+				<vwc-combobox error-text="Rome is the correct answer" placeholder="Select an option" label="Error Text"></vwc-combobox>
 			<vwc-combobox open style="margin-bottom: 100px">
 				<vwc-option text="Option 1"></vwc-option>
 				<vwc-option text="Option 2"></vwc-option>
