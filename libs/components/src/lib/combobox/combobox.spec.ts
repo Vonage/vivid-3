@@ -204,6 +204,24 @@ describe('vwc-combobox', () => {
 		});
 	});
 
+	describe('success text', () => {
+		it('should add success class to base when successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element).classList.contains('success')
+			).toBeTruthy();
+		});
+	});
+
+	describe('error text', () => {
+		it('should add error class to base when errorText is set', async function () {
+			element.errorText = 'error';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('error')).toBeTruthy();
+		});
+	});
+
 	describe('appearance', function () {
 		it('should set the appearance class on the control', async function () {
 			const appearance = 'ghost';
