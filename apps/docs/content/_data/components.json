@@ -413,7 +413,7 @@
 	},
 	{
 		"title": "File Picker",
-		"description": "",
+		"description": "The file picker component enables users to select files either by opening a file selection dialog or by using drag-and-drop functionality.",
 		"variations": "./libs/components/src/lib/file-picker/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/file-picker/GUIDELINES.md",
 		"hideGuidelines": "true",
