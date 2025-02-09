@@ -413,8 +413,13 @@
 	},
 	{
 		"title": "File Picker",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/file-picker/README.md"
+		"description": "",
+		"variations": "./libs/components/src/lib/file-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/file-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/file-picker/README.md",
+		"accessibility": "./libs/components/src/lib/file-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/file-picker/USE-CASES.md"
 	},
 	{
 		"title": "Range Slider",
