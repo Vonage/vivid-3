@@ -4,6 +4,25 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.14.4](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.3...vivid-v4.14.4) (2025-02-04)
+
+
+### Bug Fixes
+
+* **icon:** fix missing icon type (VIV-2303) ([#2119](https://github.com/Vonage/vivid-3/issues/2119)) ([f54a197](https://github.com/Vonage/vivid-3/commit/f54a197ce4c186fb27bb990e722d9d450010e675))
+
+## [4.14.3](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.2...vivid-v4.14.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* **audio-player:** change slider knob design- visible on hover/focus only (VIV-1990) ([#2090](https://github.com/Vonage/vivid-3/issues/2090)) ([b1b19c4](https://github.com/Vonage/vivid-3/commit/b1b19c4395c8a4190919cbe1328bd43fb2fb4258))
+* **button:** add default type - submit, same as native (VIV-2281) ([#2111](https://github.com/Vonage/vivid-3/issues/2111)) ([7a15709](https://github.com/Vonage/vivid-3/commit/7a1570953bec1d5ca9f028e738145fe8e4ae3145))
+* **combobox:** icon attr, icon slot and meta slot (VIV-2268) ([#2099](https://github.com/Vonage/vivid-3/issues/2099)) ([642ed59](https://github.com/Vonage/vivid-3/commit/642ed599881f621786010fd9bab02c6f1aa7310d))
+* **combobox:** shape and scale (VIV-2268) ([#2095](https://github.com/Vonage/vivid-3/issues/2095)) ([de9c900](https://github.com/Vonage/vivid-3/commit/de9c9003543661a0f4cd71488516d29d0d45a88c))
+* **file-picker:** change uploaded file error message (VIV-2284) ([#2106](https://github.com/Vonage/vivid-3/issues/2106)) ([551659b](https://github.com/Vonage/vivid-3/commit/551659b0bbdfaa335326372b3776f4f853a66cb5))
+* **switch:** aria-label is correctly handled (VIV-2292) ([#2101](https://github.com/Vonage/vivid-3/issues/2101)) ([9062387](https://github.com/Vonage/vivid-3/commit/90623878ecc767249034b94abd407760d84b2dc6))
+
 ## [4.14.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.1...vivid-v4.14.2) (2025-01-28)
 
 

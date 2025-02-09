@@ -36,7 +36,7 @@ describe('registerFactory', () => {
 		});
 
 		it('should first define dependencies and then the component with the prefix', () => {
-			jest.spyOn(customElements, 'define');
+			vi.spyOn(customElements, 'define');
 
 			registerComponent('prefix');
 

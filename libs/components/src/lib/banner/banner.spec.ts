@@ -93,14 +93,14 @@ describe('vwc-banner', () => {
 
 	describe('remove', function () {
 		it('should fire removing event', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removing', spy);
 			element.remove();
 			expect(spy).toHaveBeenCalled();
 		});
 
 		it('should fire removed after animation end', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
 
@@ -111,7 +111,7 @@ describe('vwc-banner', () => {
 		});
 
 		it('should disable removed and removing events after disconnected callback', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.addEventListener('removing', spy);
 			element.disconnectedCallback();
@@ -280,7 +280,7 @@ describe('vwc-banner', () => {
 		it('should remove the button on escape key', async function () {
 			element.removable = true;
 			element.focus();
-			jest.spyOn(element, 'remove');
+			vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(element.remove).toHaveBeenCalled();
 		});
@@ -288,7 +288,7 @@ describe('vwc-banner', () => {
 		it('should remove the banner only on escape key', async function () {
 			element.removable = true;
 			element.focus();
-			const spy = jest.spyOn(element, 'remove');
+			const spy = vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
@@ -297,7 +297,7 @@ describe('vwc-banner', () => {
 			element.removable = true;
 			element.focus();
 			element.disconnectedCallback();
-			const spy = jest.spyOn(element, 'remove');
+			const spy = vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
@@ -305,7 +305,7 @@ describe('vwc-banner', () => {
 		it('should remove the banner only if "removable" is true', async function () {
 			element.removable = false;
 			element.focus();
-			const spy = jest.spyOn(element, 'remove');
+			const spy = vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});

@@ -7,15 +7,6 @@ const COMPONENT_TAG = 'vwc-video-player';
 
 const VIDEO_SRC = 'video.mp4';
 
-jest.mock('video.js', () => {
-	const actualVideoJS = jest.requireActual('video.js');
-
-	return {
-		__esModule: true,
-		default: actualVideoJS,
-	};
-});
-
 describe('vwc-video-player', () => {
 	let element: VideoPlayer;
 
@@ -373,9 +364,9 @@ describe('vwc-video-player', () => {
 	});
 
 	function setVideoPauseState(pauseState = true) {
-		jest
-			.spyOn(element._player, 'paused')
-			.mockImplementationOnce(() => pauseState);
+		vi.spyOn(element._player, 'paused').mockImplementationOnce(
+			() => pauseState
+		);
 	}
 
 	describe('events', () => {
@@ -388,16 +379,16 @@ describe('vwc-video-player', () => {
 					<source src="${VIDEO_SRC}" type="video/mp4">
 				</${COMPONENT_TAG}>`
 			)) as VideoPlayer;
-			jest
-				.spyOn(element._player, 'play')
-				.mockImplementation(function (this: any) {
-					this.trigger('play');
-				});
-			jest
-				.spyOn(element._player, 'pause')
-				.mockImplementation(function (this: any) {
-					return this.handleTechPause_();
-				});
+			vi.spyOn(element._player, 'play').mockImplementation(function (
+				this: any
+			) {
+				this.trigger('play');
+			});
+			vi.spyOn(element._player, 'pause').mockImplementation(function (
+				this: any
+			) {
+				return this.handleTechPause_();
+			});
 		});
 
 		afterEach(() => {
@@ -406,7 +397,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should emit the play event when the play button is pressed', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('play', spy);
 
 			const playBtn = getBigPlayButton();
@@ -419,7 +410,7 @@ describe('vwc-video-player', () => {
 			const pauseBtn = element.shadowRoot?.querySelector(
 				'.vjs-play-control'
 			) as HTMLButtonElement;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('pause', spy);
 			setVideoPauseState(false);
 
@@ -429,7 +420,7 @@ describe('vwc-video-player', () => {
 		});
 
 		it('should emit the ended event when the video ended', () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('ended', spy);
 			endVideo(element);
 			expect(spy).toHaveBeenCalledTimes(1);

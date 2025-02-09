@@ -1,5 +1,5 @@
 {
-	"libs/components": "4.14.2",
-	"libs/vue-wrappers": "4.14.2",
+	"libs/components": "4.14.4",
+	"libs/vue-wrappers": "4.14.4",
 	"libs/eslint-plugin": "1.4.0"
 }

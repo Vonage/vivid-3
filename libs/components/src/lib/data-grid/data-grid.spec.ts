@@ -6,7 +6,7 @@ import { DataGridRow } from './data-grid-row.ts';
 
 const COMPONENT_TAG = 'vwc-data-grid';
 
-Element.prototype.scrollIntoView = jest.fn();
+Element.prototype.scrollIntoView = vi.fn();
 
 function setMockRows(element: DataGrid) {
 	element.rowElementTag = 'div';
@@ -23,6 +23,8 @@ describe('vwc-data-grid', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DataGrid;
+
+		await elementUpdated(element);
 	});
 
 	describe('basic', () => {

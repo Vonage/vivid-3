@@ -32,10 +32,10 @@ describe('vwc-tabs', () => {
 			observe(target: HTMLElement) {
 				this.observer = target;
 			}
-			disconnect = jest.fn(() => {
+			disconnect = vi.fn(() => {
 				this.observer = null;
 			});
-			unobserve = jest.fn();
+			unobserve = vi.fn();
 			// Simulate resize event
 			triggerResize() {
 				if (this.observer) {
@@ -55,8 +55,8 @@ describe('vwc-tabs', () => {
 				left: 146,
 			} as DOMRect;
 		};
-		window.HTMLElement.prototype.scrollIntoView = jest.fn();
-		window.HTMLElement.prototype.scrollTo = jest.fn();
+		window.HTMLElement.prototype.scrollIntoView = vi.fn();
+		window.HTMLElement.prototype.scrollTo = vi.fn();
 	});
 
 	afterAll(() => {
@@ -160,11 +160,11 @@ describe('vwc-tabs', () => {
 		let shadowWrapper: HTMLElement;
 
 		function setScrollWidth(value: number) {
-			jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(value);
+			vi.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(value);
 		}
 
 		function setClientWidth(value: number) {
-			jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(value);
+			vi.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(value);
 		}
 
 		async function dispatchScrollEvent() {
@@ -320,20 +320,20 @@ describe('vwc-tabs', () => {
 		});
 
 		describe('scrollToIndex', function () {
-			let scrollToSpy: jest.SpyInstance<void, [x: number, y: number]>;
+			let scrollToSpy: vi.SpyInstance<void, [x: number, y: number]>;
 			const scrollWidth = 1320;
 			const scrollHeight = 660;
 			beforeEach(function () {
 				const tablistWrapper = element.shadowRoot?.querySelector(
 					'.tablist-wrapper'
 				) as HTMLElement;
-				jest
-					.spyOn(tablistWrapper, 'scrollWidth', 'get')
-					.mockImplementation(() => scrollWidth);
-				jest
-					.spyOn(tablistWrapper, 'scrollHeight', 'get')
-					.mockImplementation(() => scrollHeight);
-				scrollToSpy = jest.spyOn(tablistWrapper, 'scrollTo');
+				vi.spyOn(tablistWrapper, 'scrollWidth', 'get').mockImplementation(
+					() => scrollWidth
+				);
+				vi.spyOn(tablistWrapper, 'scrollHeight', 'get').mockImplementation(
+					() => scrollHeight
+				);
+				scrollToSpy = vi.spyOn(tablistWrapper, 'scrollTo');
 			});
 
 			it('should scrollTo with 0 if first tab becomes active', async function () {
@@ -390,18 +390,18 @@ describe('vwc-tabs', () => {
 					const tablistWrapper = element.shadowRoot?.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
-					jest
-						.spyOn(tablistWrapper, 'offsetWidth', 'get')
-						.mockImplementation(() => scrollWidth);
+					vi.spyOn(tablistWrapper, 'offsetWidth', 'get').mockImplementation(
+						() => scrollWidth
+					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
 					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-					jest
-						.spyOn(midTab, 'offsetLeft', 'get')
-						.mockImplementation(() => offsetLeft);
-					jest
-						.spyOn(midTab, 'offsetWidth', 'get')
-						.mockImplementation(() => offsetWidth);
+					vi.spyOn(midTab, 'offsetLeft', 'get').mockImplementation(
+						() => offsetLeft
+					);
+					vi.spyOn(midTab, 'offsetWidth', 'get').mockImplementation(
+						() => offsetWidth
+					);
 					return midTab;
 				}
 
@@ -425,18 +425,18 @@ describe('vwc-tabs', () => {
 					const tablistWrapper = element.shadowRoot?.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
-					jest
-						.spyOn(tablistWrapper, 'offsetHeight', 'get')
-						.mockImplementation(() => scrollHeight);
+					vi.spyOn(tablistWrapper, 'offsetHeight', 'get').mockImplementation(
+						() => scrollHeight
+					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
 					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-					jest
-						.spyOn(midTab, 'offsetTop', 'get')
-						.mockImplementation(() => offsetLeft);
-					jest
-						.spyOn(midTab, 'offsetHeight', 'get')
-						.mockImplementation(() => offsetWidth);
+					vi.spyOn(midTab, 'offsetTop', 'get').mockImplementation(
+						() => offsetLeft
+					);
+					vi.spyOn(midTab, 'offsetHeight', 'get').mockImplementation(
+						() => offsetWidth
+					);
 					return midTab;
 				}
 

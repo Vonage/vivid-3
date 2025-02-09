@@ -108,7 +108,7 @@ describe('vwc-tab', () => {
 				const closeBtn = element.shadowRoot?.querySelector(
 					'#close-btn'
 				) as HTMLButtonElement;
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('close', spy);
 				closeBtn?.click();
 				await elementUpdated(element);
@@ -116,7 +116,7 @@ describe('vwc-tab', () => {
 			});
 
 			it('should emit the close event when the delete key is pressed', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('close', spy);
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 				await elementUpdated(element);
@@ -124,7 +124,7 @@ describe('vwc-tab', () => {
 			});
 
 			it('should not emit the close event when another key is pressed', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('close', spy);
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
 				await elementUpdated(element);
@@ -183,11 +183,11 @@ describe('vwc-tab', () => {
 
 	describe('a11y', () => {
 		it('should pass html a11y tests', async () => {
-			element = (await fixture(
+			const element = (await fixture(
 				`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			)) as Tab;
-			element.label = 'Label';
-			element.ariaSelected = 'true';
+			)) as HTMLDivElement;
+			const tab = element.querySelector(COMPONENT_TAG) as Tab;
+			tab.label = 'Label';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();

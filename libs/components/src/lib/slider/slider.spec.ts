@@ -22,10 +22,8 @@ describe('vwc-slider', () => {
 		element.shadowRoot!.querySelector('.popup') as Popup | null;
 
 	beforeEach(async () => {
-		jest
-			.spyOn(HTMLElement.prototype, 'clientWidth', 'get')
-			.mockReturnValue(1000);
-		jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+		vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
+		vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
 			bottom: 1000,
 			top: 0,
 			left: 0,
@@ -719,7 +717,7 @@ describe('vwc-slider', () => {
 			});
 
 			it('should emit change event only when the value changes', async () => {
-				const eventSpy = jest.fn();
+				const eventSpy = vi.fn();
 				element.addEventListener('change', eventSpy);
 
 				mouseDown(thumb, 500);
@@ -793,7 +791,7 @@ describe('vwc-slider', () => {
 
 	describe('change event', () => {
 		it('should fire a change event when value changes', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 			element.value = '0';
 

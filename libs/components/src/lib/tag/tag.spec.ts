@@ -181,7 +181,7 @@ describe('vwc-tag', () => {
 		});
 
 		it('should dispatch selected-changed', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 
 			element.selected = true;
 			await elementUpdated(element);
@@ -300,7 +300,7 @@ describe('vwc-tag', () => {
 		});
 
 		it('should fire removed event', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			await toggleRemovable(element, true);
 			element.addEventListener('removed', spy);
 			element.remove();
@@ -308,14 +308,14 @@ describe('vwc-tag', () => {
 		});
 
 		it('should still show tag', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
 			expect(spy).not.toHaveBeenCalled();
 		});
 
 		it('should disable removed events after disconnected callback', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.disconnectedCallback();
 
