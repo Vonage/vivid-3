@@ -25,7 +25,7 @@ export default defineConfig({
 		reporters: ['default'],
 		coverage: {
 			reporter: isCI
-				? ['lcov', 'text']
+				? ['text']
 				: ['text', 'html', 'clover', 'json', 'lcov'],
 			reportsDirectory: '../../coverage/libs/wrapper-gen',
 			provider: 'v8',
