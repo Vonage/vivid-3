@@ -1,8 +1,8 @@
 import eslintPluginVivid from '.';
 
 describe('eslint-plugin', () => {
-    it('should generate the config', async () => {
-        expect(eslintPluginVivid).toMatchInlineSnapshot(`
+	it('should generate the config', async () => {
+		expect(eslintPluginVivid).toMatchInlineSnapshot(`
           {
             "configs": {
               "flat/vue": [
@@ -114,5 +114,5 @@ describe('eslint-plugin', () => {
             },
           }
         `);
-    });
+	});
 });
