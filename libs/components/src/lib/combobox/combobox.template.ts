@@ -126,7 +126,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 					</slot>
 				</div>
 			</${popupTag}>
-					<div class="feedback-wrapper">
+					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
 						${getFeedbackTemplate(context)}
 					</div>
         </template>
