@@ -3,7 +3,6 @@ import {
 	createFormHTML,
 	elementUpdated,
 	fixture,
-	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
