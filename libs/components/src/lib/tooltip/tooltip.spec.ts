@@ -81,7 +81,7 @@ describe('vwc-tooltip', () => {
 		it('should allow propgation on escape key if closed', async () => {
 			element.open = false;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -97,7 +97,7 @@ describe('vwc-tooltip', () => {
 		it('should stop propgation on escape key', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -114,7 +114,7 @@ describe('vwc-tooltip', () => {
 			element.open = true;
 			await elementUpdated(element);
 			const event = new KeyboardEvent('keydown', { key: 'Escape' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
@@ -124,7 +124,7 @@ describe('vwc-tooltip', () => {
 			element.open = true;
 			await elementUpdated(element);
 			const event = new KeyboardEvent('keydown', { key: ' ' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);

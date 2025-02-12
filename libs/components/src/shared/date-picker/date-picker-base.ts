@@ -416,10 +416,13 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 			DOM.processUpdates();
 
-			const tabbableDate = this.shadowRoot!.querySelector(
-				`[data-date="${this._tabbableDate}"]`
-			) as HTMLButtonElement;
-			tabbableDate.focus();
+			const tabbableDate = this._tabbableDate;
+			if (tabbableDate)
+				(
+					this.shadowRoot!.querySelector(
+						`[data-date="${tabbableDate}"]`
+					) as HTMLButtonElement
+				).focus();
 		}
 	}
 

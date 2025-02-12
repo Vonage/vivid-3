@@ -90,7 +90,7 @@ describe('data grid integration tests', () => {
 
 	describe('events', function () {
 		it('should fire cell-focused event', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 
 			element.addEventListener('cell-focused', spy);
 			element.rowsData = [
@@ -103,7 +103,7 @@ describe('data grid integration tests', () => {
 		});
 
 		it('should fire row-focused event', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 
 			element.addEventListener('row-focused', spy);
 			element.rowsData = [
@@ -131,7 +131,7 @@ describe('data grid integration tests', () => {
 			}
 			it('should fire sort event', async function () {
 				await addSortableHeader();
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('sort', spy);
 
 				(element.rowElements[0].children[1] as HTMLElement).click();
@@ -145,8 +145,8 @@ describe('data grid integration tests', () => {
 
 			it('should stop sort event propagation', async function () {
 				await addSortableHeader();
-				const elementSpy = jest.fn();
-				const parentSpy = jest.fn();
+				const elementSpy = vi.fn();
+				const parentSpy = vi.fn();
 				element.addEventListener('sort', elementSpy);
 				element.parentElement!.addEventListener('sort', parentSpy);
 

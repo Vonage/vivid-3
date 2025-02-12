@@ -97,7 +97,7 @@ describe('vwc-alert', () => {
 
 	describe('focus', () => {
 		it('should focus when opened', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			const alertText: HTMLElement = element.shadowRoot?.querySelector(
 				'.alert-text'
 			) as HTMLElement;
@@ -145,17 +145,17 @@ describe('vwc-alert', () => {
 
 	describe('timeoutms', function () {
 		it('should fire close event after timeoutms milliseconds', async function () {
-			jest.useFakeTimers();
-			const spy = jest.fn();
+			vi.useFakeTimers();
+			const spy = vi.fn();
 
 			element.timeoutms = 100;
 			element.open = true;
 			element.addEventListener('close', spy);
 
-			jest.advanceTimersByTime(100);
+			vi.advanceTimersByTime(100);
 
 			expect(spy).toHaveBeenCalled();
-			jest.useRealTimers();
+			vi.useRealTimers();
 		});
 	});
 
@@ -312,7 +312,7 @@ describe('vwc-alert', () => {
 			beforeEach(() => (element.open = true));
 
 			it('should remove the alert when esc and removable is true', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = true;
 				element.addEventListener('close', spy);
 
@@ -324,7 +324,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should remove the alert only on escape key', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = true;
 				element.addEventListener('close', spy);
 
@@ -336,7 +336,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should remove keydown listener after disconnection', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = true;
 				element.addEventListener('close', spy);
 
@@ -348,7 +348,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should not fire close event when removable is false', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = false;
 				element.addEventListener('close', spy);
 
@@ -359,7 +359,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should stop propgation on escape key', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.parentElement!.addEventListener('keydown', spy);
 				getBaseElement(element).dispatchEvent(
 					new KeyboardEvent('keydown', { key: 'Escape' })
@@ -370,7 +370,7 @@ describe('vwc-alert', () => {
 
 			it('should enable default if Escape was pressed', async () => {
 				const event = new KeyboardEvent('keydown', { key: 'Escape' });
-				jest.spyOn(event, 'preventDefault');
+				vi.spyOn(event, 'preventDefault');
 				getBaseElement(element).dispatchEvent(event);
 				await elementUpdated(element);
 				expect(event.preventDefault).toBeCalledTimes(0);
@@ -378,7 +378,7 @@ describe('vwc-alert', () => {
 
 			it('should enable default if key is not Escape', async () => {
 				const event = new KeyboardEvent('keydown', { key: ' ' });
-				jest.spyOn(event, 'preventDefault');
+				vi.spyOn(event, 'preventDefault');
 				getBaseElement(element).dispatchEvent(event);
 				await elementUpdated(element);
 				expect(event.preventDefault).toBeCalledTimes(0);

@@ -82,7 +82,7 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('toggle event', () => {
 		it('should emit a toggle event that does not bubble when open/closed state is toggled', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('toggle', spy);
 
 			element.details.dispatchEvent(new Event('toggle'));

@@ -182,7 +182,7 @@ describe('vwc-split-button', () => {
 
 	describe('action-click', () => {
 		it('should fire a non-bubbling action-click event when action button is clicked', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('action-click', spy);
 			element.action.click();
 
@@ -195,7 +195,7 @@ describe('vwc-split-button', () => {
 
 	describe('indicator-click', () => {
 		it('should fire a non-bubbling indicator-click event when indicator button is clicked', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('indicator-click', spy);
 			element.indicator.click();
 

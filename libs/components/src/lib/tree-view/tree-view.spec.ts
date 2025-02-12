@@ -174,7 +174,7 @@ describe('vwc-tree-view', () => {
 		});
 
 		it('should dispatch selected-changed', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 
 			treeItem1.selected = true;
 			await elementUpdated(element);

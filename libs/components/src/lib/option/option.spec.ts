@@ -146,7 +146,7 @@ describe('vwc-option', () => {
 		});
 
 		// Does not work:
-		xit('should return the parent form', async () => {
+		it.skip('should return the parent form', async () => {
 			const form = document.createElement('form');
 			form.appendChild(element);
 			document.body.appendChild(form);

@@ -4,6 +4,7 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import { Popup } from '../popup/popup';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -15,6 +16,8 @@ const getStateClasses = ({
 	icon,
 	iconSlottedContent,
 	metaSlottedContent,
+	errorValidationMessage,
+	successText,
 	shape,
 	scale,
 	disabled,
@@ -31,7 +34,9 @@ const getStateClasses = ({
 		[`appearance-${appearance}`, Boolean(appearance)],
 		['no-label', !label],
 		['has-icon', !!icon || Boolean(iconSlottedContent?.length)],
-		['has-meta', Boolean(metaSlottedContent?.length)]
+		['has-meta', Boolean(metaSlottedContent?.length)],
+		['error', Boolean(errorValidationMessage)],
+		['success', !!successText]
 	);
 
 function renderLabel() {
@@ -121,6 +126,9 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 					</slot>
 				</div>
 			</${popupTag}>
+					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
+						${getFeedbackTemplate(context)}
+					</div>
         </template>
 		`;
 };

@@ -816,7 +816,7 @@ describe('vwc-searchable-select', () => {
 			});
 
 			it('should ignore elided option tags when pressing ArrowLeft', async () => {
-				HTMLElement.prototype.getBoundingClientRect = jest.fn(
+				HTMLElement.prototype.getBoundingClientRect = vi.fn(
 					() =>
 						({
 							width: 100,
@@ -880,7 +880,7 @@ describe('vwc-searchable-select', () => {
 					resizeObserverDisconnected = true;
 				}
 			} as any;
-			HTMLElement.prototype.getBoundingClientRect = jest.fn(function () {
+			HTMLElement.prototype.getBoundingClientRect = vi.fn(function () {
 				if (this.tagName === 'DIV') {
 					return {
 						width: currentWrapperWidth,
@@ -992,9 +992,9 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
-		let eventSpy: jest.Mock;
+		let eventSpy: vi.Mock;
 		beforeEach(async () => {
-			eventSpy = jest.fn();
+			eventSpy = vi.fn();
 			element.addEventListener(eventName, eventSpy);
 			focusInput();
 			await elementUpdated(element);

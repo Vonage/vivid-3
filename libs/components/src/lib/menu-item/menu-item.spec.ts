@@ -129,7 +129,7 @@ describe('vwc-menu-item', () => {
 		);
 
 		it('should enable default of click event if role is presentation', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('click', spy);
 			(element as any).role = MenuItemRole.presentation;
 			await elementUpdated(element);
@@ -139,7 +139,7 @@ describe('vwc-menu-item', () => {
 		});
 
 		it('should prevent default of click event if role is not presentation', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('click', spy);
 			(element as any).role = MenuItemRole.menuitem;
 			await elementUpdated(element);
@@ -334,9 +334,9 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('change event', () => {
-		let changeSpy: jest.Mock;
+		let changeSpy: vi.Mock;
 		beforeEach(async () => {
-			changeSpy = jest.fn();
+			changeSpy = vi.fn();
 			element.addEventListener('change', changeSpy);
 		});
 
@@ -374,9 +374,9 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('click event', () => {
-		let clickSpy: jest.Mock;
+		let clickSpy: vi.Mock;
 		beforeEach(async () => {
-			clickSpy = jest.fn();
+			clickSpy = vi.fn();
 			element.addEventListener('click', clickSpy);
 		});
 
@@ -431,7 +431,7 @@ describe('vwc-menu-item', () => {
 
 	describe('expanded-change event', () => {
 		it('should fire "expanded-change" event when submenu exists and expanded changes', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('expanded-change', spy);
 			addSubmenu();
 			await elementUpdated(element);

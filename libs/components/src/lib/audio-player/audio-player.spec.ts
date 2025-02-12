@@ -27,7 +27,7 @@ describe('vwc-audio-player', () => {
 	}
 
 	function setAudioElementDuration(duration: number) {
-		jest.spyOn(nativeAudioElement, 'duration', 'get').mockReturnValue(duration);
+		vi.spyOn(nativeAudioElement, 'duration', 'get').mockReturnValue(duration);
 	}
 
 	function setAudioElementCurrentTime(time: number) {
@@ -101,14 +101,14 @@ describe('vwc-audio-player', () => {
 			`<${COMPONENT_TAG} timestamp src="${SOURCE}"></${COMPONENT_TAG}>`
 		)) as AudioPlayer;
 
-		jest.spyOn(nativeAudioElement, 'play').mockImplementation(() => {
+		vi.spyOn(nativeAudioElement, 'play').mockImplementation(() => {
 			return new Promise((res) => {
-				jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(false);
+				vi.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(false);
 				res();
 			});
 		});
-		jest.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
-			jest.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
+		vi.spyOn(nativeAudioElement, 'pause').mockImplementation(async () => {
+			vi.spyOn(nativeAudioElement, 'paused', 'get').mockReturnValue(true);
 		});
 
 		pauseButton = getPauseButtonElement();
@@ -365,7 +365,7 @@ describe('vwc-audio-player', () => {
 			dragSliderTo(25);
 			await elementUpdated(element);
 
-			const playSpy = jest.spyOn(element, 'play');
+			const playSpy = vi.spyOn(element, 'play');
 			stopSliderDrag();
 			getSliderElement().value = '20';
 			await elementUpdated(element);
@@ -410,7 +410,7 @@ describe('vwc-audio-player', () => {
 			setCurrentTimeAndDuration(10, duration);
 			await elementUpdated(element);
 
-			const pauseSpy = jest.spyOn(element, 'pause');
+			const pauseSpy = vi.spyOn(element, 'pause');
 			dragSliderTo(20);
 			await elementUpdated(element);
 
