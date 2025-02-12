@@ -169,8 +169,13 @@
 	},
 	{
 		"title": "Fab",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/fab/README.md"
+		"description": "Floating Action Button (FAB) is an action button that floats above the user interface and should be used for actions that stands out among the rest of the UI.",
+		"variations": "./libs/components/src/lib/fab/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/fab/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/fab/README.md",
+		"accessibility": "./libs/components/src/lib/fab/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/fab/USE-CASES.md"
 	},
 	{
 		"title": "Action Group",
