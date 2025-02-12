@@ -16,7 +16,32 @@ The `label` attribute provides a short description of the purpose of the Combobo
 	<p>It will be announced by screen readers so that those users will know the purpose of the Combobox.</p>
 </vwc-note>
 
-<!-- ### Helper-text will be added in VIV-2268 -->
+### Helper Text
+
+The `helper-text` attribute provides additional information about the purpose of the Combobox.
+
+To add HTML to the helper text, use the [helper-text slot](/components/combobox/code/#helper-text-slot).
+
+```html preview 320px
+<vwc-combobox
+	helper-text="We use this information in to help inform our marketing strategy"
+	label="Where did you hear about us?"
+	placeholder="Select an option"
+	class="marketing"
+>
+	<vwc-option value="friend" text="A friend"></vwc-option>
+	<vwc-option value="net" text="Internet search"></vwc-option>
+	<vwc-option value="online-ad" text="Online advert"></vwc-option>
+	<vwc-option value="radio-ad" text="Radio advert"></vwc-option>
+	<vwc-option value="other" text="Other"></vwc-option>
+</vwc-combobox>
+
+<style>
+	.marketing {
+		min-inline-size: 250px;
+	}
+</style>
+```
 
 ### Placeholder Text
 
@@ -33,11 +58,55 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 	<p>Using <code>placeholder</code> text to label the Combobox harms accessibility and user experience. The <code>label</code> text is visually and programmatically associated with its corresponding form control.</p>
 </vwc-note>
 
-<!-- ## Validation Feedback - VIV-2268
-### Error Text
+## Validation Feedback
+
 ### Success Text
 
--->
+The `success-text` attribute provides a custom success message. Any current error state will be overridden by `success-text`.
+
+```html preview 270px
+<vwc-combobox
+	success-text="Rome is the correct answer"
+	placeholder="Select an option"
+	label="What is the capital of Italy?"
+	class="question"
+>
+	<vwc-option value="madrid" text="Madrid"></vwc-option>
+	<vwc-option value="paris" text="Paris"></vwc-option>
+	<vwc-option value="london" text="London"></vwc-option>
+	<vwc-option value="rome" text="Rome" selected></vwc-option>
+</vwc-combobox>
+
+<style>
+	.question {
+		min-inline-size: 250px;
+	}
+</style>
+```
+
+### Error Text
+
+The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
+
+```html preview 270px
+<vwc-combobox
+	error-text="Madrid is incorrect"
+	placeholder="Select an option"
+	label="What is the capital of Italy?"
+	class="question"
+>
+	<vwc-option value="madrid" text="Madrid" selected></vwc-option>
+	<vwc-option value="paris" text="Paris"></vwc-option>
+	<vwc-option value="london" text="London"></vwc-option>
+	<vwc-option value="rome" text="Rome"></vwc-option>
+</vwc-combobox>
+
+<style>
+	.question {
+		min-inline-size: 250px;
+	}
+</style>
+```
 
 ## Icon
 
