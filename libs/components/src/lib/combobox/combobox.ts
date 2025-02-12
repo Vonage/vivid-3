@@ -4,11 +4,15 @@ import type { Popup } from '../popup/popup';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
+	errorText,
+	type ErrorText,
 	type FormElement,
+	FormElementHelperText,
 	formElements,
+	FormElementSuccessText,
 } from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
@@ -35,9 +39,13 @@ export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
  * @public
  * @component combobox
  * @slot - Default slot.
+ * @slot icon - Slot to add an icon to the combobox control.
+ * @slot meta - Slot to add meta content to the combobox control.
+ * @slot helper-text - Describes how to use the combobox. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value updates
  * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
+@errorText
 @formElements
 export class Combobox extends FormAssociatedCombobox {
 	/**
@@ -697,5 +705,16 @@ export class Combobox extends FormAssociatedCombobox {
 	}
 }
 
-export interface Combobox extends AffixIcon, FormElement {}
-applyMixins(Combobox, AffixIcon);
+export interface Combobox
+	extends AffixIcon,
+		FormElement,
+		FormElementHelperText,
+		ErrorText,
+		FormElementSuccessText,
+		FormElement {}
+applyMixinsWithObservables(
+	Combobox,
+	AffixIcon,
+	FormElementHelperText,
+	FormElementSuccessText
+);

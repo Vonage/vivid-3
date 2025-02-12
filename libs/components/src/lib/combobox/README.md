@@ -139,13 +139,6 @@ Setting the property on the element will not change the default value, but will 
 </vwc-combobox>
 ```
 
-<!-- ## Validation Feedback - VIV-2268
-## Slots
-### Meta Slot
-### Icon Slot
-### Helper Text Slot
--->
-
 ## Slots
 
 ### Default Slot
@@ -188,6 +181,21 @@ Set the `meta` slot to show meta information after the Combobox text.
 	<vwc-option value="1" text="Option 1"></vwc-option>
 	<vwc-option value="2" text="Option 2"></vwc-option>
 </vwc-combobox>
+```
+
+### Helper Text Slot
+
+The `helper-text` slot allows you to use rich content as the select's helper text.
+
+```html preview 230px
+<vwc-select label="Business Type">
+	<span slot="helper-text">
+		Please select the <a href="#">type of your business</a>.
+	</span>
+	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
+	<vwc-option value="gov" text="Governmental Organization"></vwc-option>
+	<vwc-option value="edu" text="Educational Institution"></vwc-option>
+</vwc-select>
 ```
 
 ## CSS Variables
