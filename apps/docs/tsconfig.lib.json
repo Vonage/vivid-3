@@ -6,5 +6,5 @@
 		"types": ["node", "vite/client"]
 	},
 	"include": ["assets/**/*.ts"],
-	"exclude": ["jest.config.ts", "assets/**/*.spec.ts", "assets/**/*.test.ts"]
+	"exclude": ["assets/**/*.spec.ts", "assets/**/*.test.ts"]
 }
