@@ -45,6 +45,21 @@
 </template>
 </code-tab>
 
+## Connotation
+
+<code-tab>
+<template #example>
+<ConnotationExample />
+</template>
+<template #code>
+
+```vue
+<!--@include: ./components/tabs/ConnotationExample.vue -->
+```
+
+</template>
+</code-tab>
+
 <script setup lang="ts">
 import CodeTab from '../custom/CodeTab.vue';
 import { defineClientComponent } from 'vitepress';
@@ -52,4 +67,5 @@ import { defineClientComponent } from 'vitepress';
 const TabsExample = defineClientComponent(() =>  import('./components/tabs/TabsExample.vue'));
 const OrientationExample = defineClientComponent(() =>  import('./components/tabs/OrientationExample.vue'));
 const ActiveidExample = defineClientComponent(() =>  import('./components/tabs/ActiveidExample.vue'));
+const ConnotationExample = defineClientComponent(() =>  import('./components/tabs/ConnotationExample.vue'));
 </script>
