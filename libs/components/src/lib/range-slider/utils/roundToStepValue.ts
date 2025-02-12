@@ -18,3 +18,15 @@ export const roundToStepValue = (value: number, step: number) => {
 	const roundedValue = Math.round(value / step) * step;
 	return Math.round(roundedValue * factor) / factor;
 };
+
+export const handleStepValue = (step: number) => (step > 0 ? step : 1);
+
+export const defaultToOneConverter = {
+	fromView(value: string | number): number {
+		const num = Number(value);
+		return handleStepValue(num);
+	},
+	toView(value: number): string {
+		return value.toString();
+	},
+};
