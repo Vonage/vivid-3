@@ -47,7 +47,6 @@
 		"@nrwl/eslint-plugin-nx": "19.6.4",
 		"@nrwl/js": "19.6.4",
 		"@nrwl/linter": "19.6.4",
-		"@nrwl/nx-plugin": "19.6.4",
 		"@nrwl/rollup": "19.6.4",
 		"@nrwl/web": "19.6.4",
 		"@nrwl/workspace": "19.6.4",
