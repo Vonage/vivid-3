@@ -2,7 +2,7 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import './icons-gallery';
 import { DocsIconsGallery } from './icons-gallery';
 
-jest.mocked(window.fetch).mockResolvedValue({
+vi.spyOn(window, 'fetch').mockResolvedValue({
 	json: async () => [
 		{
 			id: 'apple-line',
@@ -30,7 +30,8 @@ jest.mocked(window.fetch).mockResolvedValue({
 			keyword: ['automobile'],
 		},
 	],
-} as any);
+} as any);;
+
 describe('docs-icons-gallery', () => {
 	let element: DocsIconsGallery;
 	let textField: any;
@@ -88,7 +89,7 @@ describe('docs-icons-gallery', () => {
 	};
 
 	beforeEach(() => {
-		(window.navigator.clipboard as any) = { writeText: jest.fn() };
+		(window.navigator.clipboard as any) = { writeText: vi.fn() };
 	});
 
 	it('should initially display the first 21 icons', async () => {
