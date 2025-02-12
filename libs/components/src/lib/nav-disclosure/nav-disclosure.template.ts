@@ -29,7 +29,7 @@ export const NavDisclosureTemplate = (
 		x
 	) => x.open}>
         <summary class="${getClasses}"
-			aria-label=${(x) => x.label ? x.label : 'Toggle'}
+			aria-label=${(x) => (x.label ? x.label : 'Toggle')}
             role="button"
             aria-controls="disclosure-content"
 			aria-expanded="${(x) => x.open}"

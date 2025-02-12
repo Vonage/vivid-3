@@ -30,7 +30,7 @@ vi.spyOn(window, 'fetch').mockResolvedValue({
 			keyword: ['automobile'],
 		},
 	],
-} as any);;
+} as any);
 
 describe('docs-icons-gallery', () => {
 	let element: DocsIconsGallery;
