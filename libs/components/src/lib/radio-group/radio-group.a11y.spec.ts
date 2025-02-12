@@ -5,7 +5,7 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
-describe('vwc-radio-group', () => {
+describe('vwc-radio-group a11y', () => {
 	let element: RadioGroup;
 
 	beforeAll(async () => {
