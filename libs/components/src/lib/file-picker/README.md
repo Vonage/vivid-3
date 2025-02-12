@@ -231,6 +231,6 @@ If needed, the background of the item can be changed using the `--file-picker-li
 
 | Name               | Returns | Description                             |
 | ------------------ | ------- | --------------------------------------- |
-| `removeAllFiles()` | `void`  | Removes all files from the File Picker. |
+| **removeAllFiles()** | `void`  | Removes all files from the File Picker. |
 
 </div>
