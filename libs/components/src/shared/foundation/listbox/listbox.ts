@@ -1,4 +1,3 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { attr, observable, Observable } from '@microsoft/fast-element';
 import {
 	findLastIndex,
@@ -18,6 +17,7 @@ import {
 } from '../../../lib/option/option';
 import { ARIAGlobalStatesAndProperties } from '../patterns';
 import { VividElement } from '../vivid-element/vivid-element';
+import { applyMixins } from '../utilities/apply-mixins';
 
 export abstract class Listbox extends VividElement {
 	/**

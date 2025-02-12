@@ -188,7 +188,7 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('change event', () => {
-		const spy = jest.fn();
+		const spy = vi.fn();
 		let controlElement: any;
 
 		beforeEach(async () => {
@@ -198,7 +198,7 @@ describe('vwc-selectable-box', () => {
 		});
 
 		afterEach(() => {
-			jest.clearAllMocks();
+			vi.clearAllMocks();
 		});
 
 		describe('checkbox', () => {

@@ -20,7 +20,7 @@ export type RadioConnotation = Extract<
 >;
 
 /**
- * A structure representing a {@link @microsoft/fast-foundation#(Radio:class)} element
+ * A structure representing a Radio element
  * @public
  */
 export type RadioControl = Pick<

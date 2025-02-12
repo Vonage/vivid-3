@@ -334,24 +334,10 @@ export class DelegatesARIAListboxOption {
 	ariaSetSize: string | null;
 }
 
-/**
- * @internal
- * @privateRemarks
- * Mark internal because exporting class and interface of the same name
- * confuses API documenter.
- * TODO: https://github.com/microsoft/fast/issues/3317
- */
 export interface DelegatesARIAListboxOption
 	extends ARIAGlobalStatesAndProperties {}
 applyMixins(DelegatesARIAListboxOption, ARIAGlobalStatesAndProperties);
 
-/**
- * @internal
- * @privateRemarks
- * Mark internal because exporting class and interface of the same name
- * confuses API documenter.
- * TODO: https://github.com/microsoft/fast/issues/3317
- */
 export interface ListboxOption
 	extends DelegatesARIAListboxOption,
 		AffixIconWithTrailing {}

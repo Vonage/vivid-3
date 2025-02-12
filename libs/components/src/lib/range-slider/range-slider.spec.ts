@@ -30,10 +30,8 @@ describe('vwc-range-slider', () => {
 	}
 
 	beforeEach(async () => {
-		jest
-			.spyOn(HTMLElement.prototype, 'clientWidth', 'get')
-			.mockReturnValue(1000);
-		jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+		vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
+		vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
 			bottom: 1000,
 			top: 0,
 			left: 0,
@@ -661,7 +659,7 @@ describe('vwc-range-slider', () => {
 			it.each(['input', 'change', 'input:start'])(
 				'should emit %s event only when the value changes',
 				async (eventName) => {
-					const eventSpy = jest.fn();
+					const eventSpy = vi.fn();
 					element.addEventListener(eventName, eventSpy);
 
 					mouseDown(thumbs.start, 0);
@@ -730,10 +728,10 @@ describe('vwc-range-slider', () => {
 		// Cannot properly end-to-end test form value because jsdom does not support ElementInternals
 		// Instead we mock the setFormValue method and test that it is called with the correct value
 		const getFormValue = () =>
-			jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
+			vi.mocked(element.setFormValue).mock.lastCall![0] as FormData;
 
 		beforeEach(() => {
-			element.setFormValue = jest.fn();
+			element.setFormValue = vi.fn();
 		});
 
 		it('should set the form value with name, start and end', () => {

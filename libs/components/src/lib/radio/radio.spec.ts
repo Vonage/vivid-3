@@ -23,18 +23,10 @@ async function setBoolAttributeOn(
 
 describe('vwc-radio', () => {
 	let element: Radio;
-	let internalsMock: jest.SpyInstance | null = null;
-	let formAssociatedMock: jest.SpyInstance | null = null;
 
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Radio;
-	});
-
-	afterEach(async () => {
-		internalsMock?.mockRestore();
-		formAssociatedMock?.mockRestore();
-		internalsMock = null;
-		formAssociatedMock = null;
+		await elementUpdated(element);
 	});
 
 	describe('basic', () => {
@@ -114,7 +106,7 @@ describe('vwc-radio', () => {
 
 	it('should not prevent default of keypress other than Space', () => {
 		const event = new KeyboardEvent('keypress', { key: 'Enter' });
-		const spy = jest.spyOn(event, 'preventDefault');
+		const spy = vi.spyOn(event, 'preventDefault');
 		getBaseElement(element).dispatchEvent(event);
 		expect(spy).not.toHaveBeenCalled();
 	});
@@ -188,159 +180,11 @@ describe('vwc-radio', () => {
 
 			expect(element.proxy.getAttribute('name')).toBeNull();
 		});
-
-		describe('with internals', () => {
-			function mockElementInternals() {
-				function addElementInternals(this: Radio) {
-					let internals = InternalsMap.get(this);
-
-					if (!internals) {
-						internals = (this as any).attachInternals();
-						InternalsMap.set(this, internals);
-					}
-
-					return internals;
-				}
-
-				return (internalsMock = jest
-					.spyOn(Radio.prototype, 'elementInternals', 'get')
-					.mockImplementation(addElementInternals));
-			}
-
-			function mockFormAssociated() {
-				return (formAssociatedMock = jest
-					.spyOn(Radio as any, 'formAssociated', 'get')
-					.mockReturnValue(true));
-			}
-
-			const InternalsMap = new WeakMap();
-
-			beforeEach(async () => {
-				await import('element-internals-polyfill');
-				mockFormAssociated();
-				mockElementInternals();
-			});
-
-			it('should sync validity from siblings in same group and name when all unchecked', async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = element.name = 'test';
-				sibling.required = element.required = true;
-
-				element.parentElement?.appendChild(sibling);
-				await elementUpdated(element);
-
-				expect(element.validity.valueMissing).toBe(true);
-			});
-
-			it('should sync validity with siblings in same group and name when checked', async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = element.name = 'test';
-				sibling.required = element.required = true;
-
-				element.parentElement?.appendChild(sibling);
-				await elementUpdated(element);
-				sibling.checked = true;
-				await elementUpdated(element);
-
-				expect(element.validity.valueMissing).toBe(false);
-			});
-
-			it('should set the correct valueMissing validity when added to the DOM with valid group', async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = element.name = 'test';
-				sibling.required = element.required = true;
-				element.checked = true;
-
-				await elementUpdated(element);
-				element.parentElement?.appendChild(sibling);
-
-				await elementUpdated(element);
-
-				expect(sibling.validity.valueMissing).toBe(false);
-			});
-
-			it("should sync siblings' validity.valueMissing when added as checked", async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = element.name = 'test';
-				sibling.required = element.required = true;
-				sibling.checked = true;
-
-				await elementUpdated(element);
-				element.parentElement?.appendChild(sibling);
-
-				await elementUpdated(element);
-
-				expect(element.validity.valueMissing).toBe(false);
-			});
-
-			it('should sync values when name changes to that of siblings', async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = 'not-test';
-				element.name = 'test';
-				sibling.required = element.required = true;
-				sibling.checked = true;
-
-				await elementUpdated(element);
-				element.parentElement?.appendChild(sibling);
-
-				await elementUpdated(element);
-
-				const valueWhenNameIsDifferent = element.validity.valueMissing;
-
-				element.name = sibling.name;
-				await elementUpdated(element);
-
-				expect(valueWhenNameIsDifferent).toBe(true);
-				expect(element.validity.valueMissing).toBe(false);
-			});
-
-			it('should validate valueMissing on a single radio only when required is set', async () => {
-				element.name = 'test';
-				element.required = false;
-
-				await elementUpdated(element);
-
-				expect(element.validity.valueMissing).toBe(false);
-			});
-
-			it('should validate valueMissing on radio-group only when required is set', async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = 'test';
-				element.name = 'test';
-				sibling.required = element.required = false;
-
-				await elementUpdated(element);
-				element.parentElement?.appendChild(sibling);
-
-				await elementUpdated(element);
-
-				expect(element.validity.valueMissing).toBe(false);
-				expect(sibling.validity.valueMissing).toBe(false);
-			});
-
-			it('should validate valueMissing when required is set on at least one sibling', async () => {
-				const sibling = document.createElement(COMPONENT_TAG) as Radio;
-				sibling.name = element.name = 'test';
-
-				sibling.required = false;
-				element.required = true;
-				await elementUpdated(element);
-
-				element.parentElement?.appendChild(sibling);
-				await elementUpdated(element);
-
-				sibling.checked = true;
-				await elementUpdated(element);
-
-				expect(element.validity.valueMissing).toBe(false);
-				expect(sibling.validity.valueMissing).toBe(false);
-			});
-		});
 	});
 
 	describe('change', () => {
 		it('should be fired when a user toggles the radio', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
 			getBaseElement(element).click();

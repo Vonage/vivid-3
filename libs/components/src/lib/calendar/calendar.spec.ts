@@ -121,8 +121,8 @@ describe('vwc-calendar', () => {
 
 		it('should return correct day and hour from mouse clicking inside one of the columns cells', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
-			gridCell.getBoundingClientRect = jest
+			e.composedPath = vi.fn().mockReturnValue([gridCell]);
+			gridCell.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
 
@@ -136,7 +136,7 @@ describe('vwc-calendar', () => {
 			const rowHeader = element.shadowRoot?.querySelector(
 				'[role="rowheader"]:nth-child(3)'
 			) as HTMLElement;
-			rowHeader.getBoundingClientRect = jest
+			rowHeader.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 49, y: 85 });
 
@@ -149,7 +149,7 @@ describe('vwc-calendar', () => {
 				clientX: 25,
 				clientY: 174,
 			});
-			e.composedPath = jest.fn().mockReturnValue([rowHeaderTimeElement]);
+			e.composedPath = vi.fn().mockReturnValue([rowHeaderTimeElement]);
 
 			context = element.getEventContext(e);
 
@@ -167,7 +167,7 @@ describe('vwc-calendar', () => {
 				clientX: 0,
 				clientY: 0,
 			});
-			e.composedPath = jest.fn().mockReturnValue([grid]);
+			e.composedPath = vi.fn().mockReturnValue([grid]);
 
 			context = element.getEventContext(e);
 
@@ -176,7 +176,7 @@ describe('vwc-calendar', () => {
 
 		it('should throw if unsupported event passed', async () => {
 			const e = new FocusEvent('focus');
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+			e.composedPath = vi.fn().mockReturnValue([gridCell]);
 
 			const getEventContext = () => element.getEventContext(e as MouseEvent);
 
@@ -187,7 +187,7 @@ describe('vwc-calendar', () => {
 
 		it('should throw if event is missing a target', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
-			gridCell.getBoundingClientRect = jest
+			gridCell.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
 
@@ -364,7 +364,7 @@ describe('vwc-calendar', () => {
 
 	/* skipped because "Certain ARIA roles must contain particular children (aria-required-children)" */
 	describe('a11y', () => {
-		xit('should pass html a11y test', async () => {
+		it.skip('should pass html a11y test', async () => {
 			expect(await axe(element)).toHaveNoViolations();
 		});
 	});

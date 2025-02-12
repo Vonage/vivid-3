@@ -58,7 +58,7 @@ export class ValidateTest extends FormAssociated(
 			super();
 
 			this.proxy.setAttribute('type', 'text');
-			(this as any).setValidity = jest.fn();
+			(this as any).setValidity = vi.fn();
 			Object.defineProperty(this.proxy, 'validationMessage', {
 				value: 'proxy validation message',
 			});
@@ -434,7 +434,7 @@ export const formAssociatedCommonTests = () => {
 
 		const submitButton = document.createElement('button');
 		submitButton.type = 'submit';
-		submitButton.click = jest.fn();
+		submitButton.click = vi.fn();
 		form.appendChild(submitButton);
 
 		await connect();

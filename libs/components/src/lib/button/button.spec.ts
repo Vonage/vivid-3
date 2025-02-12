@@ -289,6 +289,15 @@ describe('vwc-button', () => {
 				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
 			).toBe('button');
 		});
+
+		it('should have type="submit" on the button if anything other than "reset", "button" or "submit" is provided', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} type="wrongtype" label="Button"></${COMPONENT_TAG}>`
+			)) as Button;
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('submit');
+		});
 	});
 
 	describe.each([

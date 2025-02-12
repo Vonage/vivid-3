@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -22,13 +21,16 @@ function getFoldersInAFolder(workingFolder = './src/lib/') {
 }
 
 const components = getFoldersInAFolder();
-const input = components.reduce((inputObject, componentName) => {
-	inputObject[`${componentName}/index`] = path.join(
-		process.cwd(),
-		`libs/components/src/lib/${componentName}/index.ts`
-	);
-	return inputObject;
-}, {});
+const input = components.reduce<Record<string, string>>(
+	(inputObject, componentName) => {
+		inputObject[`${componentName}/index`] = path.join(
+			process.cwd(),
+			`libs/components/src/lib/${componentName}/index.ts`
+		);
+		return inputObject;
+	},
+	{}
+);
 
 const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
 locales.forEach((locale) => {
@@ -43,8 +45,25 @@ input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
 const isWatchMode = process.env.WATCH === 'true';
 
 export default defineConfig({
-	cacheDir: '../../../node_modules/.vite/components',
-
+	test: {
+		watch: false,
+		globals: true,
+		environment: 'jsdom',
+		include: ['src/**/*.spec.ts'],
+		setupFiles: ['vitest.setup.ts'],
+		reporters: ['default'],
+		coverage: {
+			reportsDirectory: '../../coverage/libs/components',
+			provider: 'v8',
+			include: ['src/**/*.ts'],
+			exclude: ['src/**/*.spec.ts', 'src/**/*test*.ts', 'src/locales/**.*'],
+			reporter: ['text', 'html', 'clover', 'json', 'lcov'],
+		},
+		pool: 'threads',
+		poolOptions: {
+			useAtomics: true,
+		},
+	},
 	plugins: [
 		viteStaticCopy({
 			targets: [
@@ -79,22 +98,9 @@ export default defineConfig({
 			tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
 			skipDiagnostics: true,
 		}),
-
 		nxViteTsPaths(),
 	],
-
-	worker: {
-		plugins: [nxViteTsPaths()],
-	},
-
-	css: {
-		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-			},
-		},
-	},
-
+	cacheDir: '../../../node_modules/.vite/components',
 	build: {
 		emptyOutDir: true,
 		lib: {
@@ -123,5 +129,15 @@ export default defineConfig({
 					exclude: ['**/*.md'],
 			  }
 			: null,
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
+	},
+	worker: {
+		plugins: () => [nxViteTsPaths()],
 	},
 });
