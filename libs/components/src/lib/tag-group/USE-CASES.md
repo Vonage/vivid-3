@@ -22,7 +22,7 @@
 
 When set, the selected Tags are displayed outside of Searchable Select components.
 
-```html preview
+```html preview 250px
 <vwc-searchable-select external-tags multiple label="Countries" clearable>
 	<vwc-option
 		icon="flag-afghanistan"
