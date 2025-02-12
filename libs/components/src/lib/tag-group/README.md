@@ -41,8 +41,8 @@ registerTagGroup('your-prefix');
 </script>
 <template>
 	<VTagGroup>
-		<VTag label="Tab one" />
-		<VTag label="Tab two" />
+		<VTag label="Tag one" />
+		<VTag label="Tag two" />
 	</VTagGroup>
 </template>
 ```
