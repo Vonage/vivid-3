@@ -175,6 +175,17 @@ describe('vwc-combobox', () => {
 
 			expect(spy.mock.calls.length).toBe(0);
 		});
+
+		it('should shoulf leave open unchanged when feedback messages is clicked', async () => {
+			element.helperText = 'helper text';
+			await elementUpdated(element);
+
+			element
+				.shadowRoot!.querySelector('.helper-message')!
+				.dispatchEvent(new Event('click', { bubbles: true, composed: true }));
+
+			expect(element.open).toBe(false);
+		});
 	});
 
 	describe('placeholder', function () {
@@ -201,6 +212,39 @@ describe('vwc-combobox', () => {
 			expect(getBaseElement(element).classList.contains('placeholder')).toEqual(
 				true
 			);
+		});
+	});
+
+	describe('success text', () => {
+		it('should add success class to base when successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element).classList.contains('success')
+			).toBeTruthy();
+		});
+		it('should add the success text to feedback element when successText is set', async function () {
+			element.successText = 'success';
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot.querySelector('.feedback-wrapper').textContent.trim()
+			).toBe('success');
+		});
+	});
+
+	describe('error text', () => {
+		it('should add error class to base when errorText is set', async function () {
+			element.errorText = 'error';
+			await elementUpdated(element);
+			expect(getBaseElement(element).classList.contains('error')).toBeTruthy();
+		});
+
+		it('should add the error text to feedback element when errorText is set', async function () {
+			element.successText = 'error';
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot.querySelector('.feedback-wrapper').textContent.trim()
+			).toBe('error');
 		});
 	});
 
