@@ -19,7 +19,7 @@ export const roundToStepValue = (value: number, step: number) => {
 	return Math.round(roundedValue * factor) / factor;
 };
 
-export const handleStepValue = (step: number) => (step > 0 ? step : 1);
+const handleStepValue = (step: number) => (step > 0 ? step : 1);
 
 export const defaultToOneConverter = {
 	fromView(value: string | number): number {
