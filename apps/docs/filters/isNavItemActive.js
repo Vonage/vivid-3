@@ -1,5 +1,5 @@
 function isNavItemActive(item) {
-	if (item.url === this.page.url) {
+	if (item.url && this.page.url.includes(item.url)) {
 		return true;
 	}
 	if (item.children) {
