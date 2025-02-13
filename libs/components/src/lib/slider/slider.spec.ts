@@ -787,6 +787,18 @@ describe('vwc-slider', () => {
 			element.value = '6';
 			expect(element.valueAsNumber).toBe(7);
 		});
+
+		it('should default to 1 when set to 0', async () => {
+			element.step = 0;
+			element.value = '5';
+			expect(element.valueAsNumber).toBe(5);
+		});
+
+		it('should default to 1 when set to less than 0', async () => {
+			element.step = -10;
+			element.value = '5';
+			expect(element.valueAsNumber).toBe(5);
+		});
 	});
 
 	describe('change event', () => {
