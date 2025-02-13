@@ -20,6 +20,7 @@ export function handleVue3Props(
 	// one of the expressions has been statically replaced.
 	// Note: Do not move or modify the expression without validating tree shaking
 	if (
+		/* v8 ignore next 8 */
 		// @ts-ignore
 		__IMPORT_META_ENV_PLACEHOLDER__.SSR !== false &&
 		// @ts-ignore
