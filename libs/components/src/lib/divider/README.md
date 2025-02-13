@@ -56,7 +56,11 @@ See the [Decorative Divider](/components/divider/use-cases/#decorative-divider) 
 
 ### Properties
 
-| Name          | Type                                  | Description                |
-| ------------- | ------------------------------------- | -------------------------- |
-| `orientation` | `horizontal` (default), `vertical`    | Controls the orientation   |
-| `role`        | `separator` (default), `presentation` | Controls the semantic role |
+<div class="table-wrapper">
+
+| Name            | Type                                  | Description                |
+| --------------- | ------------------------------------- | -------------------------- |
+| **orientation** | `horizontal` (default), `vertical`    | Controls the orientation   |
+| **role**        | `separator` (default), `presentation` | Controls the semantic role |
+
+</div>
