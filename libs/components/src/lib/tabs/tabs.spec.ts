@@ -511,20 +511,20 @@ describe('vwc-tabs', () => {
 			checkConnotationDoesntExistOnNonActiveTabs();
 		});
 
-		it('should reflect connotation on active tab after tabs changed', async function () {
+		it('should reflect connotation on new active tab when activeid is already set', async function () {
+			element.innerHTML = '';
+			await elementUpdated(element);
+			element.activeid = 'new-tab';
+
 			const newTab = document.createElement('vwc-tab');
+			newTab.id = 'new-tab';
 			newTab.slot = 'tab';
 			element.appendChild(newTab);
-			await elementUpdated(element);
-			checkConnotationOnActiveTab();
-			checkConnotationDoesntExistOnNonActiveTabs();
-		});
-
-		it('should reflect connotation on active tab after tab panels changed', async function () {
 			const newTabPanel = document.createElement('vwc-tab-panel');
 			newTabPanel.slot = 'tabpanel';
 			element.appendChild(newTabPanel);
 			await elementUpdated(element);
+
 			checkConnotationOnActiveTab();
 			checkConnotationDoesntExistOnNonActiveTabs();
 		});

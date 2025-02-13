@@ -8,7 +8,7 @@ This package features a blueprint practice where an interface-like file is used 
 
 ## Running unit tests
 
-Run `npx nx run tokens:test` to execute the unit tests via [Jest](https://jestjs.io).
+Run `npx nx run tokens:test` to execute the unit tests via [Vitest](https://vitest.dev).
 
 ## Generate tokens
 

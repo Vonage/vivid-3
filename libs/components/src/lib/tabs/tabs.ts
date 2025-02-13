@@ -93,7 +93,6 @@ export class Tabs extends VividElement {
 		}
 
 		this.#patchIndicatorStyleTransition();
-		this.#updateTabsConnotation();
 		this.#scrollToIndex(this.activeTabIndex);
 	}
 
@@ -274,6 +273,8 @@ export class Tabs extends VividElement {
 				? tab.classList.add('vertical')
 				: tab.classList.remove('vertical');
 		});
+
+		this.#updateTabsConnotation();
 	};
 
 	private setTabPanels = (): void => {

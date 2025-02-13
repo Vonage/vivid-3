@@ -19,23 +19,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
 const handleLocationChange = () => {
 	for (const el of document.querySelectorAll(
-		'vwc-nav-item[aria-current="page"], vwc-nav-disclosure[aria-current="page"]'
+		'vwc-nav-item[aria-current="page"], vwc-nav-disclosure[aria-current="true"]'
 	)) {
 		el.removeAttribute('aria-current');
 	}
 
 	let current =
 		Array.from(document.querySelectorAll('vwc-nav-item')).find((el) =>
-			location.pathname.includes(
-				(el.getAttribute('href') ?? '').replace(/\/$/, '')
-			)
+			location.pathname.includes(el.getAttribute('href') ?? '')
 		) ?? null;
 	while (current) {
-		if (
-			current.tagName === 'VWC-NAV-ITEM' ||
-			current.tagName === 'VWC-NAV-DISCLOSURE'
-		) {
+		if (current.tagName === 'VWC-NAV-ITEM') {
 			current.setAttribute('aria-current', 'page');
+		}
+		if (current.tagName === 'VWC-NAV-DISCLOSURE') {
+			current.setAttribute('aria-current', 'true');
 		}
 		current = current.parentElement;
 	}
