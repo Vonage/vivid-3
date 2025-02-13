@@ -3,6 +3,7 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/nx-vivid/src",
 	"projectType": "library",
+	"tags": [],
 	"targets": {
 		"build": {
 			"executor": "@nrwl/js:tsc",
@@ -45,13 +46,11 @@
 			}
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/libs/nx-vivid"],
 			"options": {
-				"jestConfig": "libs/nx-vivid/jest.config.ts",
 				"passWithNoTests": true
 			}
 		}
-	},
-	"tags": []
+	}
 }
