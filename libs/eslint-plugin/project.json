@@ -3,6 +3,7 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/eslint-plugin/src",
 	"projectType": "library",
+	"tags": [],
 	"targets": {
 		"build": {
 			"executor": "@nx/vite:build",
@@ -22,10 +23,9 @@
 			}
 		},
 		"test": {
-			"executor": "@nx/jest:jest",
+			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "libs/eslint-plugin/jest.config.ts",
 				"passWithNoTests": true
 			},
 			"configurations": {
@@ -35,6 +35,5 @@
 				}
 			}
 		}
-	},
-	"tags": []
+	}
 }

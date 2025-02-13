@@ -3,15 +3,9 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/styles/src",
 	"projectType": "library",
+	"tags": [],
+	"implicitDependencies": ["tokens"],
 	"targets": {
-		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": ["{workspaceRoot}/coverage/libs/styles"],
-			"options": {
-				"jestConfig": "libs/styles/jest.config.ts",
-				"passWithNoTests": true
-			}
-		},
 		"build": {
 			"executor": "nx:run-commands",
 			"options": {
@@ -52,7 +46,5 @@
 				"lintFilePatterns": ["libs/styles/**/*.css"]
 			}
 		}
-	},
-	"tags": [],
-	"implicitDependencies": ["tokens"]
+	}
 }
