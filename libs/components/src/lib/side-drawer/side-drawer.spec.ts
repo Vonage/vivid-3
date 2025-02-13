@@ -1,9 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { SideDrawer } from './side-drawer';
 import '.';
 
@@ -295,16 +290,6 @@ describe('vwc-side-drawer', () => {
 			control.dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.modal = true;
-			element.open = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

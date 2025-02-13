@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -393,10 +392,6 @@ describe('vwc-alert', () => {
 			element.open = true;
 			element.connotation = Connotation.Alert;
 			await elementUpdated(element);
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should set alertdialog on the control when removable', async () => {

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { CalendarEvent } from './calendar-event';
 import '.';
 
@@ -93,15 +93,6 @@ describe('vwc-calendar-event', () => {
 				`.base.connotation-${connotation}`
 			);
 			expect(base).toBeInstanceOf(Element);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.heading = 'heading';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

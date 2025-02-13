@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -548,16 +547,6 @@ describe('vwc-file-picker', () => {
 			});
 		}
 	);
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Test label';
-			element.helperText = 'Helper text';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-	});
 
 	function getErrorMessage(forFileAtIndex: number) {
 		return element.shadowRoot

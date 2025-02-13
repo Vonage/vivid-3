@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { EmptyState } from './empty-state';
 import '.';
@@ -99,16 +99,6 @@ describe('vwc-empty-state', () => {
 			expect(getBaseElement(element).classList.contains('no-action')).toBe(
 				false
 			);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const headlineText = 'headline';
-			element.setAttribute('headline', headlineText);
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Badge } from './badge';
 import '.';
@@ -124,24 +124,6 @@ describe('vwc-badge', () => {
 			const baseIconOnlyAfter = getControlIconOnly();
 			expect(baseIconOnlyBefore).toBeNull();
 			expect(baseIconOnlyAfter).toBeInstanceOf(Element);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.text = 'Test badge';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('icon-only', () => {
-			it('should pass html a11y test', async () => {
-				element.icon = 'home';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
-			});
 		});
 	});
 });

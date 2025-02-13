@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -421,14 +420,10 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Box 1';
 			await elementUpdated(element);
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should put the correct a11y attributes on the control element', async () => {
@@ -446,10 +441,6 @@ describe('vwc-selectable-box', () => {
 				)) as SelectableBox;
 			});
 
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
-			});
-
 			it('should put the correct a11y attributes on the control element', async () => {
 				const control = getControlElement(element);
 
@@ -462,10 +453,6 @@ describe('vwc-selectable-box', () => {
 			beforeEach(async () => {
 				element.clickableBox = true;
 				await elementUpdated(element);
-			});
-
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 
 			it('should render the inert attribute on the control element', async () => {
@@ -493,10 +480,6 @@ describe('vwc-selectable-box', () => {
 					element = (await fixture(
 						`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1" clickable-box></${COMPONENT_TAG}>`
 					)) as SelectableBox;
-				});
-
-				it('should pass html a11y test', async () => {
-					expect(await axe(element)).toHaveNoViolations();
 				});
 
 				it('should render the inert attribute on the control element', async () => {

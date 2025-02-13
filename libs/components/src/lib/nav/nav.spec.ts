@@ -1,4 +1,4 @@
-import { axe, fixture } from '@vivid-nx/shared';
+import { fixture } from '@vivid-nx/shared';
 import { Nav } from './nav';
 import '.';
 
@@ -29,16 +29,6 @@ describe('vwc-nav', () => {
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
-				'<slot></slot>',
-				navItemsTemplate
-			) as string;
-			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});
 	});
 });

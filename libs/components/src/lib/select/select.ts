@@ -178,13 +178,13 @@ export class Select extends FormAssociatedSelect {
 			}
 
 			this.options.forEach((o, i) => {
-				o.checked = inRange(i, this.rangeStartIndex, this.options.length);
+				o.checked = inRange(i, this.rangeStartIndex, this.length);
 			});
 		} else {
 			this.uncheckAllOptions();
 		}
 
-		this.activeIndex = this.options.length - 1;
+		this.activeIndex = this.length - 1;
 		this.checkActiveIndex();
 	}
 
@@ -211,7 +211,7 @@ export class Select extends FormAssociatedSelect {
 			this.uncheckAllOptions();
 		}
 
-		this.activeIndex += this.activeIndex < this.options.length - 1 ? 1 : 0;
+		this.activeIndex += this.activeIndex < this.length - 1 ? 1 : 0;
 		this.checkActiveIndex();
 	}
 
@@ -450,7 +450,7 @@ export class Select extends FormAssociatedSelect {
 	override set value(next: string) {
 		const prev = `${this._value}`;
 
-		if (this._options.length) {
+		if (this.length) {
 			const selectedIndex = this._options.findIndex((el) => el.value === next);
 			const prevSelectedValue =
 				this._options[this.selectedIndex]?.value ?? null;
@@ -679,7 +679,7 @@ export class Select extends FormAssociatedSelect {
 	 */
 	private setProxyOptions(): void {
 		if (this.proxy instanceof HTMLSelectElement && this.options) {
-			this.proxy.options.length = 0;
+			this.proxy.length = 0;
 			this.options.forEach((option) => {
 				const proxyOption =
 					option.proxy ||

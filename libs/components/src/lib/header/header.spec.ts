@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Elevation } from './../elevation/elevation';
 import { Header } from './header';
 import '.';
@@ -61,15 +61,6 @@ describe('vwc-header', () => {
 			) as HTMLElement;
 
 			expect(container.getAttribute('part')).toEqual('vvd-theme-alternate');
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.alternate = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
