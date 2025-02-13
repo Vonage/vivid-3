@@ -5,7 +5,7 @@ describe('ComponentMetadata', function () {
 		const metadata = new ComponentMetadata<{ foo: string }>();
 		metadata.add('VComponent', { foo: 'bar' });
 
-		const callback = jest.fn();
+		const callback = vi.fn();
 		metadata.forTag('vcomponent', callback);
 
 		expect(callback).toHaveBeenCalledTimes(1);
@@ -15,7 +15,7 @@ describe('ComponentMetadata', function () {
 	it('should not invoke callback if no data added for component', function () {
 		const metadata = new ComponentMetadata<{ foo: string }>();
 
-		const callback = jest.fn();
+		const callback = vi.fn();
 		metadata.forTag('vcomponent', callback);
 
 		expect(callback).toHaveBeenCalledTimes(0);

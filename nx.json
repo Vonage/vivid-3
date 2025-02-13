@@ -3,13 +3,13 @@
 		"@nrwl/web:application": {
 			"style": "scss",
 			"linter": "eslint",
-			"unitTestRunner": "jest",
-			"e2eTestRunner": "cypress"
+			"unitTestRunner": "vitest",
+			"e2eTestRunner": "playwright"
 		},
 		"@nrwl/web:library": {
 			"style": "scss",
 			"linter": "eslint",
-			"unitTestRunner": "jest"
+			"unitTestRunner": "vitest"
 		}
 	},
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -20,7 +20,7 @@
 			"cache": true
 		},
 		"test": {
-			"inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+			"inputs": ["default", "^production"],
 			"cache": true
 		},
 		"lint": {
@@ -32,19 +32,6 @@
 		},
 		"stylelint": {
 			"cache": true
-		},
-		"@nx/jest:jest": {
-			"inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
-			"cache": true,
-			"options": {
-				"passWithNoTests": true
-			},
-			"configurations": {
-				"ci": {
-					"ci": true,
-					"codeCoverage": true
-				}
-			}
 		},
 		"@nx/eslint:lint": {
 			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
@@ -66,7 +53,6 @@
 			"default",
 			"!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
 			"!{projectRoot}/tsconfig.spec.json",
-			"!{projectRoot}/jest.config.[jt]s",
 			"!{projectRoot}/.eslintrc.json",
 			"!{projectRoot}/src/test-setup.[jt]s"
 		]

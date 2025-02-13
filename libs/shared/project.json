@@ -3,6 +3,7 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/shared/src",
 	"projectType": "library",
+	"tags": [],
 	"targets": {
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
@@ -12,13 +13,11 @@
 			}
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/libs/shared"],
 			"options": {
-				"jestConfig": "libs/shared/jest.config.ts",
 				"passWithNoTests": true
 			}
 		}
-	},
-	"tags": []
+	}
 }
