@@ -1,7 +1,6 @@
 import 'element-internals-polyfill';
 
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
