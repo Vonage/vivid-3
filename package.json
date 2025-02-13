@@ -8,7 +8,7 @@
 		"lint": "npm run nx run-many -- --target=stylelint --all & npm run nx run-many -- --target=lint --all --fix",
 		"nx": "nx",
 		"test": "npx nx run components:test",
-		"test:a11y": "npx nx run components:a11y",
+		"test:a11y": "npx nx run components:test:a11y",
 		"test:ui": "npx nx run components:e2e",
 		"test:tools": "jest --projects tools"
 	},
