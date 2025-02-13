@@ -39,7 +39,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
+      - run: npm run nx run-many -- --target=test --target=a11y --all --coverage --coverageReporters=lcov --parallel
         id: test
 
       - run: node ./tools/coverageMerger.js

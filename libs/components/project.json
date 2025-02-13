@@ -66,7 +66,7 @@
 				"mode": "test"
 			}
 		},
-		"a11y:test": {
+		"a11y": {
 			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/libs/components"],
 			"options": {
