@@ -1,4 +1,4 @@
-import { configureAxe } from 'jest-axe';
+import { configureAxe } from 'vitest-axe';
 
 export const elementUpdated = async (element: Element | HTMLElement) => {
 	return new Promise((resolve) =>
