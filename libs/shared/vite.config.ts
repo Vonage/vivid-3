@@ -14,7 +14,7 @@ export default defineConfig({
 		include: ['src/**/*.spec.ts'],
 		reporters: ['default'],
 		coverage: {
-			reportsDirectory: '../../coverage/libs/components',
+			reportsDirectory: '../../coverage/libs/shared',
 			provider: 'v8',
 			include: ['src/**/*.ts'],
 			exclude: ['src/**/*.spec.ts', 'src/**/*test*.ts', 'src/locales/**.*'],
