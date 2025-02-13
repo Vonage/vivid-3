@@ -41,6 +41,8 @@ jobs:
 
       - run: npm run nx run-many -- --target=test --target=a11y --all --coverage --coverageReporters=lcov --parallel
         id: test
+        env:
+          CI: true
 
       - run: node ./tools/coverageMerger.js
 

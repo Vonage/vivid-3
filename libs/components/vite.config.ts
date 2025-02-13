@@ -7,42 +7,57 @@ import { defineConfig } from 'vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import dts from 'vite-plugin-dts';
 
-function getFoldersInAFolder(workingFolder = './src/lib/') {
-	const folders = [];
-	const testsFolder = path.join(__dirname, workingFolder);
-	fs.readdirSync(testsFolder).forEach((testFolder) => {
-		if (testFolder === 'common') return;
-		const absolutePath = path.join(testsFolder, testFolder);
-		if (fs.statSync(absolutePath).isDirectory()) {
-			folders.push(testFolder);
-		}
+function generateRollupInput() {
+	function getListOfComponents() {
+		return getFoldersInAFolder('./src/lib/');
+	}
+
+	function convertComponentsToRollupInput(components: string[]) {
+		return components.reduce<Record<string, string>>(
+			(inputObject, componentName) => {
+				inputObject[`${componentName}/index`] = path.join(
+					process.cwd(),
+					`libs/components/src/lib/${componentName}/index.ts`
+				);
+				return inputObject;
+			},
+			{}
+		);
+	}
+
+	function getFoldersInAFolder(workingFolder = './src/lib/') {
+		const folders = [];
+		const fullWorkingFolderPath = path.join(__dirname, workingFolder);
+		fs.readdirSync(fullWorkingFolderPath).forEach((testFolder) => {
+			if (testFolder === 'common') return;
+			const absolutePath = path.join(fullWorkingFolderPath, testFolder);
+			if (fs.statSync(absolutePath).isDirectory()) {
+				folders.push(testFolder);
+			}
+		});
+		return folders;
+	}
+
+	const components = getListOfComponents();
+	const input = convertComponentsToRollupInput(components);
+
+	const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
+	locales.forEach((locale) => {
+		input[`locales/${path.parse(locale).name}`] = path.join(
+			process.cwd(),
+			`libs/components/src/locales/${locale}`
+		);
 	});
-	return folders;
+
+	input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
+
+	return input;
 }
 
-const components = getFoldersInAFolder();
-const input = components.reduce<Record<string, string>>(
-	(inputObject, componentName) => {
-		inputObject[`${componentName}/index`] = path.join(
-			process.cwd(),
-			`libs/components/src/lib/${componentName}/index.ts`
-		);
-		return inputObject;
-	},
-	{}
-);
-
-const locales = fs.readdirSync(path.join(__dirname, './src/locales'));
-locales.forEach((locale) => {
-	input[`locales/${path.parse(locale).name}`] = path.join(
-		process.cwd(),
-		`libs/components/src/locales/${locale}`
-	);
-});
-
-input.index = path.join(process.cwd(), 'libs/components/src/index.ts');
+const input = generateRollupInput();
 
 const isWatchMode = process.env.WATCH === 'true';
+const isCI = process.env['CI'] === 'true';
 
 export default defineConfig(({ mode }) => {
 	const isA11y = mode === 'a11y';
@@ -60,7 +75,9 @@ export default defineConfig(({ mode }) => {
 				provider: 'v8',
 				include: ['src/**/*.ts'],
 				exclude: ['src/**/*.spec.ts', 'src/**/*test*.ts', 'src/locales/**.*'],
-				reporter: ['text', 'html', 'clover', 'json', 'lcov'],
+				reporter: isCI
+					? ['lcov', 'text']
+					: ['text', 'html', 'clover', 'json', 'lcov'],
 			},
 			pool: 'threads',
 			poolOptions: {

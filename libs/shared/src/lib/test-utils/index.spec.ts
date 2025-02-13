@@ -19,22 +19,19 @@ customElements.define('dummy-element', DummyElement);
 
 describe(`test-utils`, function () {
 	describe(`elementUpdated`, function () {
-		it(`should resolve the element after rAF`, function (done) {
+		it(`should resolve the element after rAF`, async function () {
 			const mockElement = document.createElement('div');
 			const element = elementUpdated(mockElement);
-			requestAnimationFrame(() => {
-				element.then((el) => {
-					expect(element instanceof Promise).toEqual(true);
-					expect(el).toEqual(mockElement);
-					done();
-				});
-			});
+			await new Promise((resolve) => requestAnimationFrame(resolve));
+			const el = await element;
+			expect(element instanceof Promise).toEqual(true);
+			expect(el).toEqual(mockElement);
 		});
 	});
 
 	describe(`listenToFormSubmission`, function () {
 		it('should return a promise that resolves on form submit', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			const form = document.createElement('form');
 			form.onsubmit = () => false;
 			const submissionPromise = listenToFormSubmission(form);
@@ -158,15 +155,11 @@ describe(`test-utils`, function () {
 			expect(ele.className).toEqual('test');
 		});
 
-		it(`should resolve after rAF`, function (done) {
+		it(`should resolve after rAF`, async function () {
 			const mockElement = document.createElement('div');
 			const element = setProperty(mockElement, 'className', 'test');
-			requestAnimationFrame(() => {
-				element.then(() => {
-					expect(element instanceof Promise).toEqual(true);
-					done();
-				});
-			});
+			await new Promise((resolve) => requestAnimationFrame(resolve));
+			expect(element instanceof Promise).toEqual(true);
 		});
 	});
 });
