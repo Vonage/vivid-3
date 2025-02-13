@@ -169,8 +169,13 @@
 	},
 	{
 		"title": "Fab",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/fab/README.md"
+		"description": "Floating Action Button (FAB) is an action button that floats above the user interface and should be used for actions that stands out among the rest of the UI.",
+		"variations": "./libs/components/src/lib/fab/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/fab/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/fab/README.md",
+		"accessibility": "./libs/components/src/lib/fab/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/fab/USE-CASES.md"
 	},
 	{
 		"title": "Action Group",
@@ -384,16 +389,14 @@
 		"parent": "Tree View"
 	},
 	{
-		"title": "Tag Group",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tag-group/README.md",
-		"children": ["Tag"]
-	},
-	{
-		"title": "Tag",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/tag/README.md",
-		"parent": "Tag Group"
+		"title": "Tags",
+		"description": "Tags are small, interactive labels used to visually group, classify, or filter criteria. Tags are wrapped with Tag Group",
+		"variations": "./libs/components/src/lib/tag-group/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/tag-group/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/tag-group/README.md",
+		"accessibility": "./libs/components/src/lib/tag-group/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/tag-group/USE-CASES.md"
 	},
 	{
 		"title": "Pagination",
@@ -413,8 +416,13 @@
 	},
 	{
 		"title": "File Picker",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/file-picker/README.md"
+		"description": "The file picker component enables users to select files either by opening a file selection dialog or by using drag-and-drop functionality.",
+		"variations": "./libs/components/src/lib/file-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/file-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/file-picker/README.md",
+		"accessibility": "./libs/components/src/lib/file-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/file-picker/USE-CASES.md"
 	},
 	{
 		"title": "Range Slider",
@@ -458,12 +466,8 @@
 	},
 	{
 		"title": "Dial Pad",
-		"description": "Use when you need to allow users to enter / dial telephone numbers.",
-		"variations": "./libs/components/src/lib/dial-pad/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/dial-pad/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/dial-pad/README.md",
-		"accessibility": "./libs/components/src/lib/dial-pad/ACCESSIBILITY.md"
+		"page": "legacy",
+		"markdown": "./libs/components/src/lib/dial-pad/README.md"
 	},
 	{
 		"title": "Video Player",
