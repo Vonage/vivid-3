@@ -1,5 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { InlineTimePicker } from './inline-time-picker.ts';
+import { beforeEach } from 'vitest';
+import { TrappedFocus } from '../../../shared/patterns';
+import { InlineTimePicker } from './inline-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-inline-time-picker';
@@ -24,17 +26,15 @@ describe('vwc-inline-time-picker', () => {
 	const getLabels = (type: 'hours' | 'minutes' | 'seconds' | 'meridies') =>
 		getAllPickerItems(type).map((item) => item.innerHTML.trim());
 
-	const pressKey = (
-		key: string,
-		options: KeyboardEventInit = {},
-		triggerElement = false
-	) => {
-		const triggeredElement = triggerElement
-			? element
-			: element.shadowRoot!.activeElement;
-		triggeredElement!.dispatchEvent(
-			new KeyboardEvent('keydown', { key, bubbles: true, ...options })
-		);
+	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
+		const event = new KeyboardEvent('keydown', {
+			key,
+			bubbles: true,
+			composed: true,
+			...options,
+		});
+		element.shadowRoot!.activeElement!.dispatchEvent(event);
+		return event;
 	};
 
 	const isScrolledToTop = (element: HTMLElement) =>
@@ -594,6 +594,34 @@ describe('vwc-inline-time-picker', () => {
 				await elementUpdated(element);
 
 				expect(isScrolledIntoView(getPickerItem('hours', '00'))).toBe(true);
+			});
+		});
+
+		describe('focus trap support', () => {
+			const originalIgnoreEvent = TrappedFocus.ignoreEvent;
+			beforeEach(() => {
+				TrappedFocus.ignoreEvent = vi.fn();
+			});
+			afterEach(() => {
+				TrappedFocus.ignoreEvent = originalIgnoreEvent;
+			});
+
+			it('should submit Tab keydown events that move focus internally to be ignored by focus traps', () => {
+				(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
+
+				const event = pressKey('Tab');
+
+				expect(TrappedFocus.ignoreEvent).toHaveBeenCalledTimes(1);
+				expect(TrappedFocus.ignoreEvent).toHaveBeenCalledWith(event);
+			});
+
+			it('should not submit Tab keydown events that move focus out', () => {
+				(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
+				pressKey('Tab', { shiftKey: true });
+				(element.shadowRoot!.querySelector('#minutes') as HTMLElement).focus();
+				pressKey('Tab');
+
+				expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
 			});
 		});
 	});
