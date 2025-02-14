@@ -19,6 +19,18 @@ Nothing to discuss
 
 [Watch the recording](https://drive.google.com/file/d/1CR1A6eWwI_uRi6G-3LWmde5LI-TM2_2J/view)
 
+## Vivid-Live Figma File
+
+We have launched the Vivid Live figma component library. It is a major upgrade from our previous version. New features include:
+
+- Perfect alignment with our Vivid web components API
+- Advanced figma token support
+- Improved organization
+- Advanced customization
+- Smart compositions
+
+Read more about it in the new [blog post on the subject](/whats-new/figma-vivid-live/).
+
 ## Combobox Alignment With Select
 
 Combobox has been updated to align with the feature of the Select component. This involved adding suuport for:
