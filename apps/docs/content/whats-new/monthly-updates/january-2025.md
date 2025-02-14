@@ -15,7 +15,7 @@ Nothing to discuss
 
 **21/01/2025**
 
-- A question was raised over the proposed icon size change.  It was agreed that designers will go over the mapping in Figma, respond in the ticket and Ayala will initiate a meeting to finalize the design.
+- A question was raised over the proposed icon size change. It was agreed that designers will go over the mapping in Figma, respond in the ticket and Ayala will initiate a meeting to finalize the design.
 
 [Watch the recording](https://drive.google.com/file/d/1CR1A6eWwI_uRi6G-3LWmde5LI-TM2_2J/view)
 
