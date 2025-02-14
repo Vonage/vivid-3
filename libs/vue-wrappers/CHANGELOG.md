@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.16.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.15.0...vivid-vue-v4.16.0) (2025-02-14)
+
+
+### Features
+
+* **vue-wrappers:** support SSR (VIV-2333) ([#2141](https://github.com/Vonage/vivid-3/issues/2141)) ([ac9a301](https://github.com/Vonage/vivid-3/commit/ac9a30124b3553cae4d19e0d90ea89f9907e9144))
+
 ## [4.15.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.14.4...vivid-vue-v4.15.0) (2025-02-13)
 
 
