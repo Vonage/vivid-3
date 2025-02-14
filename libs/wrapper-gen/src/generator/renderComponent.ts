@@ -55,6 +55,7 @@ export const renderComponent = (
 		{ name: 'ref', fromModule: vueModule },
 		{ name: 'h', fromModule: vueModule },
 		{ name: 'isVue2', fromModule: '../../utils/vue' },
+		{ name: 'handleVue3Props', fromModule: '../../utils/ssr' },
 		{ name: 'VNodeData', fromModule: vueModule },
 		{ name: componentDef.registerFunctionName, fromModule: '@vonage/vivid' },
 		{ name: 'registerComponent', fromModule: '../../utils/register' },
@@ -134,8 +135,8 @@ export const renderComponent = (
 	const renderProps = (
 		attributes: ComponentDef['attributes'],
 		syntax: 'vue2' | 'vue3'
-	) =>
-		attributes
+	) => {
+		const propsSrc = attributes
 			.map(({ name, forwardTo }) => {
 				const vueModel = componentDef.vueModels.find(
 					(model) => model.attributeName === name
@@ -169,6 +170,11 @@ export const renderComponent = (
 				return `...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`;
 			})
 			.join(',');
+		if (syntax === 'vue3') {
+			return `...handleVue3Props({${propsSrc}})`;
+		}
+		return propsSrc;
+	};
 
 	const propsV3Src = renderProps(attributes, 'vue3');
 
