@@ -11,15 +11,15 @@ import '@vonage/vivid/number-field';
 or, if you need to use a unique prefix:
 
 ```js
-import { registerTextField } from '@vonage/vivid';
+import { registerNumberField } from '@vonage/vivid';
 
-registerTextField('your-prefix');
+registerNumberField('your-prefix');
 ```
 
 ```html preview
 <script type="module">
-	import { registerTextField } from '@vonage/vivid';
-	registerTextField('your-prefix');
+	import { registerNumberField } from '@vonage/vivid';
+	registerNumberField('your-prefix');
 </script>
 
 <your-prefix-number-field
@@ -109,25 +109,25 @@ Example showing a link in the helper text:
 
 <div class="table-wrapper">
 
-| Name            | Type                            | Description                                                                                                  |
-| --------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `appearance`    | `fieldset` (default), `ghost`   | Sets the input element's appearance                                                                          |
-| `autofocus`     | `boolean`                       | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
-| `disabled`      | `boolean`                       | Whether the input element is disabled                                                                        |
-| `error-text`    | `string`                        | Sets error-text on element                                                                                   |
-| `label`         | `string`                        | Label of the Text Field                                                                                      |
-| `max`           | `string`                        | Maximum value of the element                                                                                 |
-| `min `          | `string`                        | Minimum value of the element                                                                                 |
-| `placeholder`   | `string`                        | Text that appears in the input element when it has no value set                                              |
-| `readonly`      | `boolean`                       | The `value` is not editable                                                                                  |
-| `required`      | `boolean`                       | A value is required for the form to be submittable                                                           |
-| `size`          | `string`                        | Size (in chars) of the input element                                                                         |
-| `scale`         | `normal` (default), `condensed` | Sets the display size of the input element                                                                   |
-| `shape`         | `rounded`, `pill`               | Sets the shape of the input element                                                                          |
-| `step`          | `number`, `undefined` (default) | Sets to change the step value for the number field.                                                          |
-| `success-text`  | `string`                        | Sets success-text on element                                                                                 |
-| `value`         | `string`                        | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
-| `valueAsNumber` | `number`, `undefined` (default) | get or set the value as a number                                                                             |
+| Name              | Type                            | Description                                                                                                  |
+| ----------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **appearance**    | `fieldset` (default), `ghost`   | Sets the input element's appearance                                                                          |
+| **autofocus**     | `boolean`                       | Indicates that an element should be focused on page load, or when the Dialog that it is part of is displayed |
+| **disabled**      | `boolean`                       | Whether the input element is disabled                                                                        |
+| **error-text**    | `string`                        | Sets error-text on element                                                                                   |
+| **label**         | `string`                        | Label of the Text Field                                                                                      |
+| **max**           | `string`                        | Maximum value of the element                                                                                 |
+| **min**           | `string`                        | Minimum value of the element                                                                                 |
+| **placeholder**   | `string`                        | Text that appears in the input element when it has no value set                                              |
+| **readonly**      | `boolean`                       | The `value` is not editable                                                                                  |
+| **required**      | `boolean`                       | A value is required for the form to be submittable                                                           |
+| **size**          | `string`                        | Size (in chars) of the input element                                                                         |
+| **scale**         | `normal` (default), `condensed` | Sets the display size of the input element                                                                   |
+| **shape**         | `rounded`, `pill`               | Sets the shape of the input element                                                                          |
+| **step**          | `number`, `undefined` (default) | Sets to change the step value for the number field.                                                          |
+| **success-text**  | `string`                        | Sets success-text on element                                                                                 |
+| **value**         | `string`                        | The value of the input element. When specified in the HTML, corresponds to the initial value                 |
+| **valueAsNumber** | `number`, `undefined` (default) | get or set the value as a number                                                                             |
 
 </div>
 
@@ -135,9 +135,9 @@ Example showing a link in the helper text:
 
 <div class="table-wrapper">
 
-| Name                   | Description                                        |
-| ---------------------- | -------------------------------------------------- |
-| `leading-action-items` | Add rich content as the number-field's helper text |
+| Name                     | Description                                        |
+| ------------------------ | -------------------------------------------------- |
+| **leading-action-items** | Add rich content as the number-field's helper text |
 
 </div>
 

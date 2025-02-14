@@ -219,8 +219,8 @@ If center is needed, set `--button-content-alignment: center;`.
 
 <div class="table-wrapper">
 
-| Name     | Description                   |
-| -------- | ----------------------------- |
-| **icon** | Add an icon to the component. |
+| Name     | Description                  |
+| -------- | ---------------------------- |
+| **icon** | Add an icon to the component |
 
 </div>
