@@ -1,89 +1,56 @@
-# Note
+## Usage
 
-The note component is used to display a short message to the user.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/note';</script>
+import '@vonage/vivid/note';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerNote } from '@vonage/vivid';
+
+registerNote('your-prefix');
 ```
 
 ```html preview
-<vwc-note
-	connotation="success"
+<script type="module">
+	import { registerNote } from '@vonage/vivid';
+	registerNote('your-prefix');
+</script>
+
+<your-prefix-note
+	headline="Changes Saved Successfully"
 	icon="check-circle"
-	headline="Changes saved successfully"
+	connotation="success"
 >
 	Your changes have been saved successfully. You can now continue working.
-</vwc-note>
+</your-prefix-note>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Headline
+```html
+<script setup lang="ts">
+	import { VNote } from '@vonage/vivid-vue';
+</script>
 
-Add the `headline` attribute in order to set a headline text.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-note headline="Headline Text"></vwc-note>
+<template>
+	<VNote label="First name" />
+</template>
 ```
 
-### Icon
-
-Add a `icon='icon-name'` attribute to set a decorative icon.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-note icon="home" headline="Note With Icon"></vwc-note>
-```
-
-### Connotation
-
-Set the `connotation` attribute to change the note's connotation.
-It accepts a subset of predefined values.
-
-- Type: `'accent'` | `'success'` | `'alert'` | `'warning'` | `'information'` | `'announcement'`
-- Default: `'accent'`
-
-```html preview blocks
-<vwc-note
-	connotation="alert"
-	icon="error-solid"
-	headline="alert note"
-></vwc-note>
-<vwc-note
-	connotation="success"
-	icon="check-circle-solid"
-	headline="success note"
-></vwc-note>
-<vwc-note
-	connotation="warning"
-	icon="warning-solid"
-	headline="warning note"
-></vwc-note>
-<vwc-note
-	connotation="information"
-	icon="info-solid"
-	headline="information note"
-></vwc-note>
-<vwc-note
-	connotation="announcement"
-	icon="sparkles-solid"
-	headline="announcement note"
-></vwc-note>
-<vwc-note
-	connotation="accent"
-	icon="megaphone-solid"
-	headline="accent note"
-></vwc-note>
-```
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
-### Default
+### Default Slot
 
 Any slotted content will appear below the headline.
 
@@ -93,7 +60,7 @@ Any slotted content will appear below the headline.
 </vwc-note>
 ```
 
-### Icon
+### Icon Slot
 
 Set the `icon` slot to show an icon before the note's headline.
 If set, the `icon` attribute is ignored.
@@ -107,3 +74,28 @@ If set, the `icon` attribute is ignored.
 	></vwc-icon>
 </vwc-note>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name            | Type                                                                             | Description                                                                                                                              |
+| --------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **connotation** | `accent` (default), `alert`, `success`, `warning`, `information`, `announcement` | Sets the connotation                                                                                                                     |
+| **icon**        | _Enum_:<br/>`[icon-name]`                                                        | Decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **headline**    | `string`                                                                         | Sets the headline text                                                                                                                   |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name        | Description                  |
+| ----------- | ---------------------------- |
+| **default** | Main content of the Note     |
+| **icon**    | Add an icon to the component |
+
+</div>
