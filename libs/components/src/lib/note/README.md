@@ -84,8 +84,8 @@ If set, the `icon` attribute is ignored.
 | Name            | Type                                                                             | Description                                                                                                                              |
 | --------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | **connotation** | `accent` (default), `alert`, `success`, `warning`, `information`, `announcement` | Sets the connotation                                                                                                                     |
-| **icon**        | _Enum_:<br/>`[icon-name]`                                                        | Decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
 | **headline**    | `string`                                                                         | Sets the headline text                                                                                                                   |
+| **icon**        | _Enum_:<br/>`[icon-name]`                                                        | Decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
 
 </div>
 
