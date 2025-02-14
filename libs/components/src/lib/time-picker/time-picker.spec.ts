@@ -525,7 +525,7 @@ describe('vwc-time-picker', () => {
 			expect(popup.open).toBe(false);
 		});
 
-		it('should close when selecting and item in the last picker', async () => {
+		it('should close when an option in the last picker column is selected', async () => {
 			inlineTimePicker.dispatchEvent(new CustomEvent('last-column-selected'));
 			await elementUpdated(element);
 
