@@ -760,6 +760,16 @@ describe('vwc-range-slider', () => {
 		expect(element.start).toBe('0.3');
 	});
 
+	it('should default to 1 when step is set to 0', async () => {
+		element.step = 0;
+		expect(element.step).toBe(1);
+	});
+
+	it('should default to 1 when step is set to less than 0', async () => {
+		element.step = -10;
+		expect(element.step).toBe(1);
+	});
+
 	describe('a11y', () => {
 		describe('aria-start-label', () => {
 			it('should set aria-label on start thumb', async () => {
