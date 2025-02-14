@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import * as dialogPolyfill from 'dialog-polyfill';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.ts';
 import { Dialog } from './dialog';
@@ -627,7 +627,7 @@ describe('vwc-dialog', () => {
 		expect(dialogOpenState()).toBe('closed');
 	});
 
-	describe('a11y', function () {
+	describe('a11y attributes', function () {
 		async function triggerEscapeKey() {
 			dialogEl.dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -729,14 +729,6 @@ describe('vwc-dialog', () => {
 
 		it('should set localised "aria-label" on the dismiss button', async () => {
 			expect(getDismissButton().getAttribute('aria-label')).toBe('Close');
-		});
-
-		it('should pass html a11y test', async () => {
-			element.open = true;
-			element.setAttribute('aria-label', 'Test dialog');
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

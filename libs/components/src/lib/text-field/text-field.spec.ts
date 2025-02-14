@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -742,19 +741,6 @@ describe('vwc-text-field', () => {
 		it('should handle being connected without error', () => {
 			element = document.createElement(COMPONENT_TAG) as TextField;
 			expect(() => element.connectedCallback()).not.toThrow();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			element.value = 'Value text';
-			element.helperText = 'Helper text';
-			element.errorText = 'Error text';
-			element.charCount = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

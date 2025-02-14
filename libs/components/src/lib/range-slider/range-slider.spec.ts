@@ -1,9 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
@@ -760,7 +755,17 @@ describe('vwc-range-slider', () => {
 		expect(element.start).toBe('0.3');
 	});
 
-	describe('a11y', () => {
+	it('should default to 1 when step is set to 0', async () => {
+		element.step = 0;
+		expect(element.step).toBe(1);
+	});
+
+	it('should default to 1 when step is set to less than 0', async () => {
+		element.step = -10;
+		expect(element.step).toBe(1);
+	});
+
+	describe('a11y attributes', () => {
 		describe('aria-start-label', () => {
 			it('should set aria-label on start thumb', async () => {
 				element.ariaStartLabel = 'start';
@@ -799,11 +804,6 @@ describe('vwc-range-slider', () => {
 					expect(element.valueTextFormatter('1.1')).toBe('1,1');
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

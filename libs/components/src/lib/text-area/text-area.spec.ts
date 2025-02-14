@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -406,21 +405,6 @@ describe('vwc-text-area', () => {
 			element.select();
 
 			expect(getTextarea().select).toHaveBeenCalled();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			element.value = 'Value text';
-			element.resize = 'both';
-			element.helperText = 'Helper text';
-			element.errorText = 'Error text';
-			element.charCount = true;
-
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

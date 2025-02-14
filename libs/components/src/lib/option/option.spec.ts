@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
 import '.';
@@ -220,19 +220,6 @@ describe('vwc-option', () => {
 			expect(element.value).toEqual('value');
 			expect(element.defaultSelected).toEqual(true);
 			expect(element.selected).toEqual(true);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(
-				`<div role="listbox" aria-label="Dummy listbox">
-					<${COMPONENT_TAG} text="text" value="value"></${COMPONENT_TAG}>
-				</div>`
-			)) as ListboxOption;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

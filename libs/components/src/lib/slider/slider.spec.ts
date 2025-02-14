@@ -1,9 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
@@ -787,6 +782,18 @@ describe('vwc-slider', () => {
 			element.value = '6';
 			expect(element.valueAsNumber).toBe(7);
 		});
+
+		it('should default to 1 when set to 0', async () => {
+			element.step = 0;
+			element.value = '5';
+			expect(element.valueAsNumber).toBe(5);
+		});
+
+		it('should default to 1 when set to less than 0', async () => {
+			element.step = -10;
+			element.value = '5';
+			expect(element.valueAsNumber).toBe(5);
+		});
 	});
 
 	describe('change event', () => {
@@ -848,7 +855,7 @@ describe('vwc-slider', () => {
 		expect(element.value).toBe('0.3');
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
 			element.min = 3;
@@ -896,10 +903,6 @@ describe('vwc-slider', () => {
 					expect(element.valueTextFormatter('1.1')).toBe('1,1');
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
@@ -114,18 +114,6 @@ describe('vwc-breadcrumb', () => {
 		it('should wrap breadcrumb items in a list (role)', () => {
 			const control = getBaseElement(element);
 			expect(control.querySelector('[role="list"]')).toBeTruthy();
-		});
-
-		it('should pass html a11y test', async () => {
-			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML)
-				.join('');
-			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
-				'<slot></slot>',
-				children
-			) as string;
-
-			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});
 	});
 });

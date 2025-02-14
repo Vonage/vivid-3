@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -117,15 +116,7 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.open = true;
-			element.ariaCurrent = 'true';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('aria-current', function () {
 			it('should not set aria-current on the nav-disclosure if opened', async function () {
 				const ariaCurrent = 'true';

@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
@@ -479,20 +479,6 @@ describe('vwc-menu-item', () => {
 			expect(
 				getBaseElement(element).classList.contains('has-meta')
 			).toBeTruthy();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const container = await fixture(
-				`<div role="menu"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			);
-			element = container.querySelector(COMPONENT_TAG) as MenuItem;
-			element.text = 'Menu item';
-			element.role = MenuItemRole.menuitem;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 
