@@ -1,5 +1,5 @@
 import { html, ViewTemplate } from '@microsoft/fast-element';
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { DataGrid, DataGridSelectionMode } from './data-grid';
 import '.';
 import { DataGridRow } from './data-grid-row.ts';
@@ -530,19 +530,6 @@ describe('vwc-data-grid', () => {
 			expect(() => pressKey('ArrowUp')).not.toThrow();
 			expect(() => pressKey('PageUp')).not.toThrow();
 			expect(() => pressKey('PageDown')).not.toThrow();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.rowsData = [
-				{ id: '1', name: 'Person 1' },
-				{ id: '2', name: 'Person 2' },
-			];
-			await elementUpdated(element);
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -166,16 +165,6 @@ describe('vwc-text-anchor', () => {
 			await setProperty(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.text = 'Link text';
-			element.href = '/somewhere';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 

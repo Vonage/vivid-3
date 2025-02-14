@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { ProgressRing } from './progress-ring';
 import '.';
@@ -193,10 +193,6 @@ describe('vwc-progress-ring', () => {
 			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
 			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
 			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

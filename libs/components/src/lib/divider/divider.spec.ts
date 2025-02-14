@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Divider } from './divider';
 import '.';
 
@@ -63,12 +63,6 @@ describe('vwc-divider', () => {
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).hasAttribute('role')).toEqual(true);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

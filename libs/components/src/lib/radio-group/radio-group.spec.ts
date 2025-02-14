@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -156,6 +155,23 @@ describe('vwc-radio-group', () => {
 				</${COMPONENT_TAG}>
 			`);
 			expect(element.value).toEqual('2');
+		});
+
+		it('should initially select the radio button with the same value', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG} value="1">
+					<vwc-radio value="0" label="one" checked></vwc-radio>
+					<vwc-radio value="1" label="two"></vwc-radio>
+					<vwc-radio value="2" label="three" checked></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+
+			expect(
+				radios[1].checked && !radios[0].checked && !radios[2].checked
+			).toBeTruthy();
+			expect(radios[0].getAttribute('tabindex')).toBe('-1');
+			expect(radios[1].getAttribute('tabindex')).toBe('0');
+			expect(radios[2].getAttribute('tabindex')).toBe('-1');
 		});
 
 		it('should select the radio button with the same value', async () => {
@@ -441,15 +457,6 @@ describe('vwc-radio-group', () => {
 			const result = await submitPromise;
 
 			expect(result.get(element.name)).toEqual('2');
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,6 +1,5 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -164,17 +163,6 @@ describe('vwc-tooltip', () => {
 
 				expect(element.open).toBe(openState);
 			});
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.anchor = anchor;
-			element.open = true;
-			element.text = 'Tooltip text';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

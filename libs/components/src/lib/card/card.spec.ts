@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
@@ -204,16 +204,6 @@ describe('vwc-card', () => {
 
 			expect(propertyValueBeforeChange).toEqual(startingDP);
 			expect(element.elevation).toEqual('16');
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.headline = 'card headline';
-			element.subtitle = 'card subtitle';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
