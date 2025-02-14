@@ -70,6 +70,14 @@ export class InlineTimePicker extends VividElement {
 			);
 		}
 	}
+
+	override focus(options?: FocusOptions) {
+		// Override focus instead of relying on default behavior to prevent visible focus
+		const firstFocusableElement = this.shadowRoot!.querySelector(
+			'.picker'
+		) as HTMLElement;
+		firstFocusableElement.focus(options);
+	}
 }
 
 export interface InlineTimePicker extends Localized {}
