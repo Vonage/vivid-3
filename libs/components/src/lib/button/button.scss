@@ -241,7 +241,7 @@ slot[name='icon'] {
 	overflow: hidden;
 	flex: 1;
 	align-items: center;
-	justify-content: var(#{variables.$button-content-alignment}, center);
+	justify-content: center;
 	gap: var(#{variables.$icon-gap});
 
 	.control.stacked & {
