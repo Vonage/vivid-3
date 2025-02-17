@@ -34,7 +34,7 @@ registerHeader('your-prefix');
 	import { VHeader } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VHeader> You do not have any numbers yet. </VHeader>
+	<VHeader>Header content</VHeader>
 </template>
 ```
 

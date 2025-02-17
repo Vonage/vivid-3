@@ -6,7 +6,7 @@
 
 ## Alternate Color Scheme
 
-The `alternate` attribute applies an alternate color-scheme, which is in contrast with the current global theme. It will also apply to any slotted vivid components.
+The `alternate` attribute applies an alternate color scheme, which is in contrast with the current global theme. It will also apply to any slotted Vivid components.
 
 ```html preview full
 <vwc-header alternate>Header content</vwc-header>

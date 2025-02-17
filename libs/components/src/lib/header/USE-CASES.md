@@ -1,6 +1,6 @@
 ## Fixed Header with Side Drawer
 
-A _fixed_ header as primary element containing a [side drawer](/components/side-drawer/) component. containing application content.
+A _fixed_ header as primary element containing a [side drawer](/components/side-drawer/) component containing application content.
 
 ```html preview full 300px
 <vwc-header>
