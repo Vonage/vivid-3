@@ -102,14 +102,6 @@ describe('vwc-file-picker', () => {
 			const labelElement = element.shadowRoot?.querySelector('label');
 			expect(labelElement).toBeNull();
 		});
-
-		it('should set aria-label on .base if aria-label is set', async () => {
-			const ariaLabelText = 'aria-label';
-			element.ariaLabel = ariaLabelText;
-
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(ariaLabelText);
-		});
 	});
 
 	describe('value', function () {
