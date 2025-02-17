@@ -22,7 +22,7 @@ export function handleVue3Props(
 	if (
 		/* v8 ignore next 8 */
 		// @ts-ignore
-		__IMPORT_META_ENV_PLACEHOLDER__.SSR !== false &&
+		__IMPORT_META_ENV_PLACEHOLDER__?.SSR !== false &&
 		// @ts-ignore
 		(globalThis.process && process.server) !== false &&
 		// @ts-ignore
