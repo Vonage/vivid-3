@@ -26,10 +26,12 @@ Object.defineProperty(document, 'adoptedStyleSheets', {
 	configurable: true,
 	value: [],
 });
+
 Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
 	writable: true,
 	value: [],
 });
+
 CSSStyleSheet.prototype.replaceSync = vi.fn();
 
 global.ResizeObserver = class {

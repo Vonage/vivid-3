@@ -21,7 +21,10 @@ import { getDirection } from '../../shared/foundation/utilities/direction';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
-import { roundToStepValue } from '../range-slider/utils/roundToStepValue';
+import {
+	defaultToOneConverter,
+	roundToStepValue,
+} from '../range-slider/utils/roundToStepValue';
 import { inverseLerp, lerp } from '../range-slider/utils/lerp';
 import { FormAssociatedSlider } from './slider.form-associated';
 
@@ -220,7 +223,7 @@ export class Slider extends FormAssociatedSlider {
 	 * @remarks
 	 * HTML Attribute: step
 	 */
-	@attr({ converter: nullableNumberConverter })
+	@attr({ converter: defaultToOneConverter })
 	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
 	step = 1; // Map to proxy element.
 	/**

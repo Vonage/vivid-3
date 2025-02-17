@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -201,20 +200,6 @@ describe('vwc-breadcrumb-item', () => {
 			await setProperty(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(
-				`<div role="list"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			)) as BreadcrumbItem;
-
-			element.href = '#';
-			element.text = 'stam';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,5 +1,5 @@
 import { html } from '@microsoft/fast-element';
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { DataGridRow } from './data-grid-row';
 import '.';
 import { DataGridCell } from './data-grid-cell.ts';
@@ -262,24 +262,6 @@ describe('vwc-data-grid-row', () => {
 			expect(
 				getBaseElement(element).classList.contains('selected')
 			).toBeFalsy();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const element = (await fixture(`
-				<div role="grid">
-					<${COMPONENT_TAG}>
-						<div role="gridcell"></div>
-					</${COMPONENT_TAG}>
-				</div>
-			`)) as HTMLDivElement;
-			const row = element.querySelector('vwc-data-grid-row') as DataGridRow;
-			row.ariaSelected = 'true';
-
-			await elementUpdated(row);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

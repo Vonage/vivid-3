@@ -4,6 +4,27 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.15.0...vivid-v4.16.0) (2025-02-14)
+
+
+### Bug Fixes
+
+* **slider, range-slider:** handle zero step (VIV-2271) ([#2134](https://github.com/Vonage/vivid-3/issues/2134)) ([6650690](https://github.com/Vonage/vivid-3/commit/6650690b09bea10567ccfcb58c84948f7d7f69a4))
+
+## [4.15.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.4...vivid-v4.15.0) (2025-02-13)
+
+
+### Features
+
+* **combobox:** helper, success & error text (VIV-2268) ([#2127](https://github.com/Vonage/vivid-3/issues/2127)) ([faa0c13](https://github.com/Vonage/vivid-3/commit/faa0c13a71d96098abf8fda554313cc69ae06e93))
+
+
+### Bug Fixes
+
+* button type defaults to submit when a wrong type is passed ([4e890b5](https://github.com/Vonage/vivid-3/commit/4e890b5468a3d2b49c1323524af2d9b5af3ffa70))
+* **button:** type defaults to submit when invalid type is passed (VIV-2297) ([#2126](https://github.com/Vonage/vivid-3/issues/2126)) ([4e890b5](https://github.com/Vonage/vivid-3/commit/4e890b5468a3d2b49c1323524af2d9b5af3ffa70))
+* **tabs:** fix connotation not updating when tab is added (VIV-2334) ([#2136](https://github.com/Vonage/vivid-3/issues/2136)) ([df47e5f](https://github.com/Vonage/vivid-3/commit/df47e5f61dbfc95da1eaf859ee799ca69c88e420))
+
 ## [4.14.4](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.3...vivid-v4.14.4) (2025-02-04)
 
 

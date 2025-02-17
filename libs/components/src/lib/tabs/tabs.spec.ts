@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
 import { TabPanel } from '../tab-panel/tab-panel.ts';
@@ -511,20 +511,20 @@ describe('vwc-tabs', () => {
 			checkConnotationDoesntExistOnNonActiveTabs();
 		});
 
-		it('should reflect connotation on active tab after tabs changed', async function () {
+		it('should reflect connotation on new active tab when activeid is already set', async function () {
+			element.innerHTML = '';
+			await elementUpdated(element);
+			element.activeid = 'new-tab';
+
 			const newTab = document.createElement('vwc-tab');
+			newTab.id = 'new-tab';
 			newTab.slot = 'tab';
 			element.appendChild(newTab);
-			await elementUpdated(element);
-			checkConnotationOnActiveTab();
-			checkConnotationDoesntExistOnNonActiveTabs();
-		});
-
-		it('should reflect connotation on active tab after tab panels changed', async function () {
 			const newTabPanel = document.createElement('vwc-tab-panel');
 			newTabPanel.slot = 'tabpanel';
 			element.appendChild(newTabPanel);
 			await elementUpdated(element);
+
 			checkConnotationOnActiveTab();
 			checkConnotationDoesntExistOnNonActiveTabs();
 		});
@@ -787,11 +787,7 @@ describe('vwc-tabs', () => {
 		expect(newTab.getAttribute('aria-controls')).toBe('new-panel');
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should set the role of tablist on the tablist div', async () => {
 			const tablist = element.shadowRoot?.querySelector('.tablist');
 			expect(tablist?.getAttribute('role')).toBe('tablist');

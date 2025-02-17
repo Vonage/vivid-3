@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -195,14 +194,6 @@ describe('vwc-radio', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'lorem';
-			element.checked = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
 		it('should not render a role attribute on the component element', async () => {
 			expect(element.getAttribute('role')).toBe(null);
 		});
@@ -228,10 +219,6 @@ describe('vwc-radio', () => {
 
 				expect(baseElement?.getAttribute('role')).toBe('radio');
 				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			});
-
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

@@ -1,48 +1,59 @@
-# Header
+## Usage
 
-The header component can be used to display a header at the top of a page or section.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/header';</script>
+import '@vonage/vivid/header';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Elevation Shadow
+```js
+import { registerHeader } from '@vonage/vivid';
 
-Set `elevation-shadow` to apply a shadow to the header.
-
-- Type: `boolean`
-- Default: `false`
+registerHeader('your-prefix');
+```
 
 ```html preview full
-<vwc-header elevation-shadow>Header content</vwc-header>
+<script type="module">
+	import { registerHeader } from '@vonage/vivid';
+	registerHeader('your-prefix');
+</script>
+
+<your-prefix-header>Header content</your-prefix-header>
 ```
 
-### Alternate
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme. It will also apply to any slotted vivid components.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<vwc-header alternate>Header content</vwc-header>
+```html
+<script setup lang="ts">
+	import { VHeader } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VHeader>Header content</VHeader>
+</template>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
-### Default
+### Default Slot
 
-The default slot sets assigned nodes to the start of the header.
+The default slot sets assigned nodes to the start of the Header.
 
 ```html preview full
 <vwc-header>Header content</vwc-header>
 ```
 
-### Action Items
+### Action Items Slot
 
-Nodes assigned to `action-items` slot will be set at the end of the header.
+Nodes assigned to `action-items` slot will be set at the end of the Header.
 
 ```html preview full
 <vwc-header>
@@ -52,9 +63,9 @@ Nodes assigned to `action-items` slot will be set at the end of the header.
 </vwc-header>
 ```
 
-### App Content
+### App Content Slot
 
-It is also possible to assign application content directly to the header's `app-content` slot, which will allow content to follow, vertically, the header.
+It is also possible to assign application content directly to the Header's `app-content` slot, which will allow content to follow, vertically.
 
 ```html preview full
 <vwc-header>
@@ -69,10 +80,7 @@ It is also possible to assign application content directly to the header's `app-
 
 ### Block Size
 
-The header has a fixed height. It cannot be modified, but is available as the `--vvd-header-block-size` CSS variable to slotted content.
-
-- Value: `64px`
-- Accessibility: `read-only`
+The Header has a fixed height (`64px` default). It cannot be modified, but is available as the `--vvd-header-block-size` CSS variable to slotted content.
 
 ```html preview full
 <style>
@@ -162,167 +170,27 @@ The component's internal _header_ element.
 </vwc-header>
 ```
 
-## Use Cases
+## API Reference
 
-### Fixed Header with Side Drawer
+### Properties
 
-A _fixed_ header as primary element containing a [side drawer](/components/side-drawer/) component. containing application content.
+<div class="table-wrapper">
 
-```html preview full 300px
-<style>
-	vwc-header::part(base) {
-		position: fixed;
-		top: 0;
-		z-index: 2;
-	}
+| Name                 | Type      | Description                                |
+| -------------------- | --------- | ------------------------------------------ |
+| **alternate**        | `boolean` | Applies an alternate inverted color scheme |
+| **elevation-shadow** | `boolean` | Applies a shadow to the header             |
 
-	vwc-side-drawer::part(base) {
-		block-size: calc(100vh - var(--vvd-header-block-size));
-		bottom: 0;
-		top: auto;
-	}
+</div>
 
-	vwc-side-drawer > main {
-		padding-block-start: var(--vvd-header-block-size);
-	}
-</style>
+### Slots
 
-<vwc-header>
-	Header content
+<div class="table-wrapper">
 
-	<!-- side drawer custom element assigned to header's 'app-content' slot -->
-	<vwc-side-drawer open slot="app-content">
-		<vwc-layout gutters="small">Side Drawer content</vwc-layout>
+| Name             | Description                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| **action-items** | Add adding action items to the end of the header            |
+| **app-content**  | Add application content to apply consistant vertical rhythm |
+| **default**      | Main content for the header, typically a heading            |
 
-		<!-- main element assigned to side-drawer's 'app-content' slot -->
-		<main slot="app-content">
-			<vwc-layout gutters="small" column-basis="block">
-				<h2>Scroll this window</h2>
-
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
-
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
-			</vwc-layout>
-		</main>
-	</vwc-side-drawer>
-</vwc-header>
-```
-
-### Side Drawer with Header
-
-A [side drawer](/components/side-drawer/) as primary element containing a header containing application content.
-
-```html preview full
-<style>
-	vwc-side-drawer::part(base) {
-		border-right: 1px solid var(--vvd-color-neutral-100);
-	}
-</style>
-
-<vwc-side-drawer open>
-	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-
-	<!-- header custom element assigned to side drawer's 'app-content' slot -->
-	<vwc-header slot="app-content">
-		<vwc-layout gutters="small">Header content</vwc-layout>
-
-		<!-- main element assigned to header's 'app-content' slot -->
-		<main slot="app-content">
-			<vwc-layout gutters="small" column-basis="block">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
-
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis
-					ante est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est
-					erat, gravida sed velit id, tempus tempus metus. Proin mollis auctor
-					orci. Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel
-					nisi auctor sodales. Vestibulum vel rutrum leo, a convallis tellus.
-					Aliquam vel ultricies elit, eget malesuada orci. Praesent ut blandit
-					nisl. Morbi ut ligula faucibus ante pellentesque condimentum sit amet
-					ac dui. Suspendisse potenti. Ut et massa arcu. Pellentesque
-					pellentesque id tortor at ornare.
-				</p>
-			</vwc-layout>
-		</main>
-	</vwc-header>
-</vwc-side-drawer>
-```
-
-### Header with Banner
-
-[Banners](/components/banner/) are placed at the top of the screen below the header.
-In this example, the banner sticks to the top of the window.
-
-```html preview full 200px
-<style>
-	vwc-banner {
-		position: sticky;
-		top: 0;
-	}
-</style>
-
-<vwc-header>
-	Header with Banner
-
-	<vwc-banner
-		slot="app-content"
-		text="Here's some information that you may find important!"
-	></vwc-banner>
-
-	<vwc-layout slot="app-content" column-basis="block" gutters="medium">
-		<h1>Page Header</h1>
-
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante
-			est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat,
-			gravida sed velit id, tempus tempus metus. Proin mollis auctor orci.
-			Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor
-			sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel
-			ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut
-			ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse
-			potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-		</p>
-
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis ante
-			est, ac porta sapien rutrum in. Fusce id pulvinar massa. In est erat,
-			gravida sed velit id, tempus tempus metus. Proin mollis auctor orci.
-			Curabitur vestibulum elementum imperdiet. Mauris ac nisl vel nisi auctor
-			sodales. Vestibulum vel rutrum leo, a convallis tellus. Aliquam vel
-			ultricies elit, eget malesuada orci. Praesent ut blandit nisl. Morbi ut
-			ligula faucibus ante pellentesque condimentum sit amet ac dui. Suspendisse
-			potenti. Ut et massa arcu. Pellentesque pellentesque id tortor at ornare.
-		</p>
-	</vwc-layout>
-</vwc-header>
-```
+</div>

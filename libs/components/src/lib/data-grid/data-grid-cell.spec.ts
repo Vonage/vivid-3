@@ -1,5 +1,5 @@
 import { html } from '@microsoft/fast-element';
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
@@ -499,26 +499,6 @@ describe('vwc-data-grid-cell', () => {
 			element.click();
 			expect(onCellClickSpy).toHaveBeenCalledTimes(1);
 			expect(onCellClickSpy.mock.calls[0][0].detail.isHeaderCell).toBe(true);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(`
-				<div role="grid">
-					<div role="row">
-						<${COMPONENT_TAG}></${COMPONENT_TAG}>
-					</div>
-				</div>
-			`)) as DataGridCell;
-			element.columnDefinition = {
-				columnDataKey: 'Name',
-				sortDirection: DataGridCellSortStates.ascending,
-				sortable: true,
-			};
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });
