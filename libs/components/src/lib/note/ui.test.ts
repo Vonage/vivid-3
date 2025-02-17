@@ -70,7 +70,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				></vwc-icon>
 			</vwc-note>
 		</div>
-	`
+	`;
 
 	page.setViewportSize({ width: 900, height: 720 });
 
