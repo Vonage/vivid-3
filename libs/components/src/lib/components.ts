@@ -14,7 +14,6 @@ export * from './calendar/definition';
 export * from './card/definition';
 export * from './checkbox/definition';
 export * from './combobox/definition';
-export * from './data-grid/definition';
 export * from './date-picker/definition';
 export * from './date-range-picker/definition';
 export * from './dial-pad/definition';

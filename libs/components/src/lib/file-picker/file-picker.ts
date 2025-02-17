@@ -244,6 +244,8 @@ export class FilePicker extends FormAssociatedFilePicker {
 		};
 	};
 
+	`<div class="dz-preview dz-file-preview">  <div class="dz-details">    <div class="dz-filename"><span data-dz-name="">london.png</span></div>    <div class="dz-size"><span data-dz-size=""><strong>1</strong> MB</span></div>  </div>  <div class="dz-error-message">  &lt;[object Object] name="info-line" size="-6"&gt;<!--[object Object]-->  <span data-dz-errormessage=""></span>  </div>  &lt;[object Object] class="remove-btn" icon="delete-line" appearance="ghost-light" size="condensed" aria-label="Remove file"&gt;<!--[object Object]--></div>`
+
 	#addRemoveButtonToFilesPreview() {
 		this.#dropzone!.on('addedfiles', (files) => {
 			for (const file of files) {

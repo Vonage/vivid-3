@@ -106,7 +106,7 @@ export const PaginationTemplate = (context: VividElementDefinitionContext) => {
 		></${buttonTag}>
 		<div id="buttons-wrapper" class="buttons-wrapper" ${children({
 			property: 'paginationButtons',
-			filter: elements(buttonTag),
+			filter: elements(context.tagForNonDependency('button')),
 		})}>
 			${repeat((x) => x.pagesList, paginationButtonTemplate, { positioning: true })}
 		</div>

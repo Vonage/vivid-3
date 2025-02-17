@@ -18,7 +18,7 @@ export const iconTemplate = html<Icon>`
 			)}
 			${when(
 				(x) => x.iconLoaded && x._svg,
-				(x) => html<Icon>`${x._svg as string}`
+				(x) => html`${html.partial(x._svg!)}`
 			)}
 		</slot>
 	</figure>

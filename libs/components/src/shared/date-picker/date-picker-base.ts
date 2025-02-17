@@ -1,9 +1,9 @@
 import {
 	attr,
-	type BindingObserver,
-	defaultExecutionContext,
-	Observable,
+	ExecutionContext,
+	type ExpressionNotifier,
 	observable,
+	Observable,
 	Updates,
 	type ValueConverter,
 	volatile,
@@ -240,7 +240,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 			() => this.locale,
 			this.#localeChangeHandler
 		);
-		this.#localeChangeObserver.observe(this, defaultExecutionContext);
+		this.#localeChangeObserver.observe(this, ExecutionContext.default);
 	}
 
 	override disconnectedCallback() {
@@ -250,7 +250,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		this.removeEventListener('focusin', this.#onFocusIn);
 		this.removeEventListener('focusout', this.#onFocusOut);
 
-		this.#localeChangeObserver.disconnect();
+		this.#localeChangeObserver.dispose();
 	}
 
 	#onFocusIn = () => {
@@ -290,7 +290,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		},
 	};
 
-	#localeChangeObserver!: BindingObserver;
+	#localeChangeObserver!: ExpressionNotifier;
 
 	// --- Popup ---
 

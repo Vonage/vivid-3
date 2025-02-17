@@ -53,7 +53,7 @@ export const TreeItemTemplate = (context: VividElementDefinitionContext) => {
 		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
 		${children({
 			property: 'childItems',
-			filter: elements(context.tagFor(TreeItem)),
+			filter: elements(context.tagForNonDependency('tree-item')),
 		})}
 	>
 		<div class="${getClasses}">

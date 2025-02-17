@@ -128,7 +128,6 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
                 				slot="action-items"
 								size='super-condensed'
 								icon="backspace-line"
-								aria-label="${(x) => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}"
 								appearance='ghost'
 								?disabled="${(x) => x.disabled || x.callActive}"
 								@click="${(x) => deleteLastCharacter(x)}">

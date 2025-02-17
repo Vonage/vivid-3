@@ -1,6 +1,6 @@
 import {
 	type Constructable,
-	FASTElementDefinition,
+	html,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
 import type {
@@ -76,21 +76,21 @@ export const createRegisterFunction =
 							`Could not get tag for ${type.name} as it is not a dependency of ${componentDefinition.name}.`
 						);
 					}
-					return tagByDependencyType.get(type)!;
+					return html.partial(tagByDependencyType.get(type)!);
 				},
 				tagForNonDependency(name: string) {
 					return prefixed(name);
 				},
 			};
 
-			new FASTElementDefinition(type, {
+			type.define({
 				...componentDefinition.options,
 				template: resolve(
 					componentDefinition.template,
 					elementDefinitionContext
 				),
 				name: `${prefix}-${componentDefinition.name}`,
-			}).define();
+			});
 		};
 
 		registerComponent(definition);

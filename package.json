@@ -18,7 +18,7 @@
 		"@codemirror/lang-html": "^6.4.1",
 		"@codemirror/theme-one-dark": "^6.1.0",
 		"@floating-ui/dom": "^1.6.13",
-		"@microsoft/fast-element": "^1.14.0",
+		"@microsoft/fast-element": "^2.0.0",
 		"@microsoft/fast-foundation": "^2.50.0",
 		"@microsoft/fast-web-utilities": "^6.0.0",
 		"@vonage/vivid-figma-tokens": "github:vonage/vivid-figma-tokens#v1.4.0",

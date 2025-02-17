@@ -362,11 +362,6 @@
 		"useCases": "./libs/components/src/lib/select/USE-CASES.md"
 	},
 	{
-		"title": "Data Grid",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/data-grid/README.md"
-	},
-	{
 		"title": "Toggletip",
 		"description": "A Toggletip is a type of Tooltip that is opened when clicking or tapping on the trigger button.",
 		"variations": "./libs/components/src/lib/toggletip/VARIATIONS.md",

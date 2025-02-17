@@ -1,6 +1,5 @@
 import { elements, html, slotted, when } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
-import { Radio } from '../radio/radio';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { RadioGroup } from './radio-group';
 
@@ -26,7 +25,7 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 				<slot
 					${slotted({
 						property: 'slottedRadioButtons',
-						filter: elements(context.tagFor(Radio)),
+						filter: elements(context.tagForNonDependency('radio')),
 					})}
 				></slot>
 			</div>

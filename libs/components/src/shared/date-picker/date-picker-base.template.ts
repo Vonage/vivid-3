@@ -361,11 +361,11 @@ export const DatePickerBaseTemplate = (
 							${renderDialogHeader(context)}
 							${when(
 								(x) => x.type === 'month-picker',
-								html<DatePickerBase>`${renderMonthPickerGrid(context)}`
+								html`${renderMonthPickerGrid(context)}`
 							)}
 							${when(
 								(x) => x.type === 'calendar',
-								html<DatePickerBase>`${renderCalendarGrid(context)}`
+								html`${renderCalendarGrid(context)}`
 							)}
 						</div>`
 					)}

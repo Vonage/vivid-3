@@ -1,10 +1,10 @@
 import {
 	attr,
-	type BindingObserver,
-	defaultExecutionContext,
+	ExecutionContext,
+	type ExpressionNotifier,
 	nullableNumberConverter,
-	Observable,
 	observable,
+	Observable,
 	Updates,
 	type ValueConverter,
 	volatile,
@@ -199,7 +199,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 		},
 	};
 
-	#clockChangeObserver!: BindingObserver;
+	#clockChangeObserver!: ExpressionNotifier;
 
 	#getFocusableEls = () =>
 		this.shadowRoot!.querySelectorAll(`
@@ -254,7 +254,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 			() => this._use12hClock,
 			this.#clockChangeHandler
 		);
-		this.#clockChangeObserver.observe(this, defaultExecutionContext);
+		this.#clockChangeObserver.observe(this, ExecutionContext.default);
 	}
 
 	override disconnectedCallback() {
@@ -264,7 +264,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 		this.removeEventListener('focusin', this.#onFocusIn);
 		this.removeEventListener('focusout', this.#onFocusOut);
 
-		this.#clockChangeObserver.disconnect();
+		this.#clockChangeObserver.dispose();
 	}
 
 	#onFocusIn = () => {

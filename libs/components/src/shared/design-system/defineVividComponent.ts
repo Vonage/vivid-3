@@ -1,8 +1,10 @@
-import type {
-	Constructable,
-	PartialFASTElementDefinition,
-	ViewTemplate,
+import {
+	type Constructable,
+	InlineTemplateDirective,
+	type PartialFASTElementDefinition,
+	type ViewTemplate,
 } from '@microsoft/fast-element';
+import type { VividElement } from '../foundation/vivid-element/vivid-element';
 
 export type TemplateOrResolveFn =
 	| ViewTemplate
@@ -12,7 +14,7 @@ export type VividElementDefinitionContext = {
 	/**
 	 * Gets the prefixed tag name for a dependency.
 	 */
-	tagFor(type: Constructable): string;
+	tagFor(type: Constructable): InlineTemplateDirective;
 	/**
 	 * Gets the prefixed tag name without creating a dependency on the other element.
 	 */
@@ -26,7 +28,7 @@ export type Options = Pick<
 
 export type VividComponentDefinition = {
 	name: string;
-	type: Constructable;
+	type: typeof VividElement;
 	template: TemplateOrResolveFn;
 	dependencies: VividComponentDefinition[];
 	options: Options;
@@ -34,7 +36,7 @@ export type VividComponentDefinition = {
 
 export const defineVividComponent = (
 	name: string,
-	type: Constructable,
+	type: typeof VividElement,
 	template: TemplateOrResolveFn,
 	dependencies: VividComponentDefinition[],
 	options: Options
