@@ -57,10 +57,10 @@ export const TimePickerTemplate = (context: VividElementDefinitionContext) => {
 				<${inlineTimePickerTag}
 					id="inline-time-picker"
 					${ref('_inlineTimePickerEl')}
-					:value="${(x) => x.value ?? undefined}"
+					:value="${(x) => x.value || undefined}"
 					:clock="${(x) => (x._use12hClock ? '12h' : '24h')}"
-					:min="${(x) => x.min ?? undefined}"
-					:max="${(x) => x.max ?? undefined}"
+					:min="${(x) => x.min || undefined}"
+					:max="${(x) => x.max || undefined}"
 					:minutesStep="${(x) => x.minutesStep ?? 1}"
 					:secondsStep="${(x) => x.secondsStep ?? undefined}"
 					@change="${(x, c) =>

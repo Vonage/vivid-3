@@ -165,7 +165,7 @@ describe('vwc-time-picker', () => {
 			typeIntoTextField('x');
 			await elementUpdated(element);
 
-			expect(element.value).toBeFalsy();
+			expect(element.value).toBe('');
 		});
 
 		it('should clear the text field when value is set to empty string', async () => {
@@ -176,6 +176,18 @@ describe('vwc-time-picker', () => {
 			await elementUpdated(element);
 
 			expect(textField.currentValue).toBe('');
+		});
+
+		it('should reflect on the inline-time-picker', async () => {
+			element.value = '12:34:56';
+			await elementUpdated(element);
+			expect(inlineTimePicker.value).toBe('12:34:56');
+		});
+
+		it('should reflect as undefined on the inline-time-picker when empty', async () => {
+			element.value = '';
+			await elementUpdated(element);
+			expect(inlineTimePicker.value).toBe(undefined);
 		});
 	});
 
@@ -279,10 +291,16 @@ describe('vwc-time-picker', () => {
 	});
 
 	describe('min', () => {
-		it('should reflect min on the inline-time-picker', async () => {
+		it('should reflect on the inline-time-picker', async () => {
 			element.min = '12:00:00';
 			await elementUpdated(element);
 			expect(inlineTimePicker.min).toBe('12:00:00');
+		});
+
+		it('should reflect as undefined on the inline-time-picker when not set', async () => {
+			element.min = '';
+			await elementUpdated(element);
+			expect(inlineTimePicker.min).toBe(undefined);
 		});
 	});
 
@@ -292,13 +310,25 @@ describe('vwc-time-picker', () => {
 			await elementUpdated(element);
 			expect(inlineTimePicker.min).toBe('12:00:00');
 		});
+
+		it('should reflect as undefined on the inline-time-picker when not set', async () => {
+			element.min = '';
+			await elementUpdated(element);
+			expect(inlineTimePicker.min).toBe(undefined);
+		});
 	});
 
 	describe('minutesStep', () => {
-		it('should reflect minutesStep on the inline-time-picker', async () => {
+		it('should reflect on the inline-time-picker', async () => {
 			element.minutesStep = 15;
 			await elementUpdated(element);
 			expect(inlineTimePicker.minutesStep).toBe(15);
+		});
+
+		it('should default to 1 on the inline-time-picker when not set', async () => {
+			element.minutesStep = null;
+			await elementUpdated(element);
+			expect(inlineTimePicker.minutesStep).toBe(1);
 		});
 	});
 
@@ -307,6 +337,12 @@ describe('vwc-time-picker', () => {
 			element.secondsStep = 15;
 			await elementUpdated(element);
 			expect(inlineTimePicker.secondsStep).toBe(15);
+		});
+
+		it('should reflect as undefined on the inline-time-picker when not set', async () => {
+			element.secondsStep = null;
+			await elementUpdated(element);
+			expect(inlineTimePicker.secondsStep).toBe(undefined);
 		});
 	});
 
