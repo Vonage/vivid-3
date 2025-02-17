@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
 	observable,
 	type SyntheticViewTemplate,
+	Updates,
 } from '@microsoft/fast-element';
 import { keySpace } from '@microsoft/fast-web-utilities';
 import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent.js';
@@ -136,14 +136,14 @@ export class Radio extends FormAssociatedRadio {
 			? this.proxy.setAttribute('name', this.name)
 			: this.proxy.removeAttribute('name');
 
-		DOM.queueUpdate(this.validate);
+		Updates.enqueue(this.validate);
 	}
 	/**
 	 * @internal
 	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
-		DOM.queueUpdate(this.validate);
+		Updates.enqueue(this.validate);
 
 		if (
 			this.parentElement!.getAttribute('role') !== 'radiogroup' &&

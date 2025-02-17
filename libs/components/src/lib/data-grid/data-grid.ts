@@ -1,10 +1,10 @@
 import {
 	attr,
-	DOM,
-	observable,
 	Observable,
+	observable,
 	RepeatBehavior,
 	RepeatDirective,
+	Updates,
 	type ViewTemplate,
 } from '@microsoft/fast-element';
 import {
@@ -384,7 +384,7 @@ export class DataGrid extends VividElement {
 		// only observe if nodes are added or removed
 		this.observer.observe(this, { childList: true });
 
-		DOM.queueUpdate(this.queueRowIndexUpdate);
+		Updates.enqueue(this.queueRowIndexUpdate);
 
 		this.#setTabIndex();
 
@@ -614,7 +614,7 @@ export class DataGrid extends VividElement {
 		}
 		if (this.pendingFocusUpdate === false) {
 			this.pendingFocusUpdate = true;
-			DOM.queueUpdate(() => this.updateFocus());
+			Updates.enqueue(() => this.updateFocus());
 		}
 	}
 
@@ -675,7 +675,7 @@ export class DataGrid extends VividElement {
 	private queueRowIndexUpdate = (): void => {
 		if (!this.rowindexUpdateQueued) {
 			this.rowindexUpdateQueued = true;
-			DOM.queueUpdate(this.updateRowIndexes);
+			Updates.enqueue(this.updateRowIndexes);
 		}
 	};
 
@@ -759,7 +759,7 @@ export class DataGrid extends VividElement {
 
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
-			DOM.queueUpdate(this.#initSelections);
+			Updates.enqueue(this.#initSelections);
 			return;
 		}
 		this.#resetSelection();

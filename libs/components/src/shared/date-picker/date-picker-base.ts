@@ -2,9 +2,9 @@ import {
 	attr,
 	type BindingObserver,
 	defaultExecutionContext,
-	DOM,
 	Observable,
 	observable,
+	Updates,
 	type ValueConverter,
 	volatile,
 } from '@microsoft/fast-element';
@@ -414,7 +414,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		} else {
 			this.#openPopupIfPossible();
 
-			DOM.processUpdates();
+			Updates.process();
 
 			const tabbableDate = this._tabbableDate;
 			if (tabbableDate)
@@ -655,7 +655,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		if (newDate && this._isDateInValidRange(newDate)) {
 			if (this._adjustSelectedMonthToEnsureVisibilityOf(newDate)) {
 				// Update DOM immediately so that we can focus the new date
-				DOM.processUpdates();
+				Updates.process();
 			}
 
 			// Move focus to new date
@@ -769,7 +769,7 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 			if (newMonth.year !== this._monthPickerYear) {
 				this._monthPickerYear = newMonth.year;
 				// Update DOM immediately so that we can focus the new month
-				DOM.processUpdates();
+				Updates.process();
 			}
 
 			// Move focus to new month

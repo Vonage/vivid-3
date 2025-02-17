@@ -1,4 +1,4 @@
-import { attr, DOM, Observable, observable } from '@microsoft/fast-element';
+import { attr, observable, Observable, Updates } from '@microsoft/fast-element';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
 import type { Popup } from '../popup/popup';
 import type { Appearance, Shape, Size } from '../enums';
@@ -220,7 +220,7 @@ export class Combobox extends FormAssociatedCombobox {
 			this.focusAndScrollOptionIntoView();
 
 			// focus is directed to the element when `open` is changed programmatically
-			DOM.queueUpdate(() => this.focus());
+			Updates.enqueue(() => this.focus());
 
 			return;
 		}

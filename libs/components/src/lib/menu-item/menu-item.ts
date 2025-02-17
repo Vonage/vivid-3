@@ -1,4 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import { attr, observable, Updates } from '@microsoft/fast-element';
 import { Direction, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
@@ -132,7 +132,7 @@ export class MenuItem extends VividElement {
 	 */
 	override connectedCallback(): void {
 		super.connectedCallback();
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			this.updateSubmenu();
 		});
 

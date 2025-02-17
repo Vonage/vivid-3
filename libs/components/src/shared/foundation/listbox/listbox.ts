@@ -177,9 +177,9 @@ export abstract class Listbox extends VividElement {
 	): void {
 		// To ensure that the browser handles both `focus()` and `scrollIntoView()`, the
 		// timing here needs to guarantee that they happen on different frames. Since this
-		// function is typically called from the `openChanged` observer, `DOM.queueUpdate`
+		// function is typically called from the `openChanged` observer, `Updates.enqueue`
 		// causes the calls to be grouped into the same frame. To prevent this,
-		// `requestAnimationFrame` is used instead of `DOM.queueUpdate`.
+		// `requestAnimationFrame` is used instead of `Updates.enqueue`.
 		if (this.contains(document.activeElement) && optionToFocus !== null) {
 			optionToFocus.focus();
 			requestAnimationFrame(() => {

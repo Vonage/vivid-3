@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
 	nullableNumberConverter,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import { memoizeWith } from 'ramda';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
@@ -416,7 +416,7 @@ export class TextField extends FormAssociatedTextField {
 		this.validate();
 
 		if (this.autofocus) {
-			DOM.queueUpdate(() => {
+			Updates.enqueue(() => {
 				this.focus();
 			});
 		}

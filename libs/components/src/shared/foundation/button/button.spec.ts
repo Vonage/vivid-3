@@ -1,4 +1,4 @@
-import { DOM } from '@microsoft/fast-element';
+import { Updates } from '@microsoft/fast-element';
 import { eventClick } from '@microsoft/fast-web-utilities';
 import { fixture } from '../test-utilities/fixture';
 import { createRegisterFunction } from '../../design-system/createRegisterFunction.ts';
@@ -604,7 +604,7 @@ describe('Foundation Button', () => {
 				element.click();
 
 				// Resolve false on the next update in case reset hasn't happened
-				DOM.queueUpdate(() => resolve(false));
+				Updates.enqueue(() => resolve(false));
 			});
 
 			expect(wasReset).toEqual(true);
@@ -629,7 +629,7 @@ describe('Foundation Button', () => {
 				element.click();
 
 				// Resolve false on the next update in case reset hasn't happened
-				DOM.queueUpdate(() => resolve(false));
+				Updates.enqueue(() => resolve(false));
 			});
 
 			expect(wasReset).toEqual(false);
@@ -664,7 +664,7 @@ describe('Foundation Button', () => {
 				wasClicked = true;
 			});
 
-			await DOM.nextUpdate();
+			await Updates.next();
 			element.click();
 
 			expect(wasClicked).toEqual(false);
@@ -686,7 +686,7 @@ describe('Foundation Button', () => {
 				wasClicked = true;
 			});
 
-			await DOM.nextUpdate();
+			await Updates.next();
 
 			const elements = element.shadowRoot?.querySelectorAll('span');
 			if (elements) {

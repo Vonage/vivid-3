@@ -2,10 +2,10 @@ import {
 	attr,
 	type BindingObserver,
 	defaultExecutionContext,
-	DOM,
 	nullableNumberConverter,
 	Observable,
 	observable,
+	Updates,
 	type ValueConverter,
 	volatile,
 } from '@microsoft/fast-element';
@@ -413,7 +413,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 		} else {
 			this.#openPopupIfPossible();
 
-			DOM.processUpdates();
+			Updates.process();
 
 			if (this._selectedHour) {
 				this.#scrollToItem('hours', this._selectedHour, 'start');

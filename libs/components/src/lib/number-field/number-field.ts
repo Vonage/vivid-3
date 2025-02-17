@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
 	nullableNumberConverter,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import { keyArrowDown, keyArrowUp } from '@microsoft/fast-web-utilities';
 import type { Appearance, Shape, Size } from '../enums';
@@ -328,7 +328,7 @@ export class NumberField extends FormAssociatedNumberField {
 		this._presentationValue = this.#valueToPresentationValue(this.value);
 
 		if (this.autofocus) {
-			DOM.queueUpdate(() => {
+			Updates.enqueue(() => {
 				this.focus();
 			});
 		}

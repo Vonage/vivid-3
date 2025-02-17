@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
-	observable,
 	Observable,
+	observable,
+	Updates,
 	volatile,
 } from '@microsoft/fast-element';
 import {
@@ -389,7 +389,7 @@ export class Select extends FormAssociatedSelect {
 			this.indexWhenOpened = this.selectedIndex;
 
 			// focus is directed to the element when `open` is changed programmatically
-			DOM.queueUpdate(() => this.focus());
+			Updates.enqueue(() => this.focus());
 
 			return;
 		}
