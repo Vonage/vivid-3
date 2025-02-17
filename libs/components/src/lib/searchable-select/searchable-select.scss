@@ -155,7 +155,7 @@ input {
 
 ::part(popup-base) {
 	inline-size: max-content;
-	min-inline-size: 100%;
+	min-inline-size: var(#{variables.$searchable-select-fixed-width}, 100%);
 }
 
 slot[name='icon'] {

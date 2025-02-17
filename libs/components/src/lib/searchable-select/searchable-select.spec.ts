@@ -956,6 +956,15 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('fixedDropdown', () => {
+		function setBoundingClientRect(width: number) {
+			element.getBoundingClientRect = vi.fn().mockReturnValue({ width });
+		}
+
+		async function toggleOpenState(open = true) {
+			element.open = open;
+			await elementUpdated(element);
+		}
+
 		it('should use absolute strategy when fixedDropdown is not set', () => {
 			expect(popup.strategy).toBe('absolute');
 		});
@@ -965,6 +974,49 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			expect(popup.strategy).toBe('fixed');
+		});
+
+		it('should set --_searchable-select-fixed-width to the width of the select on open', async function () {
+			const width = 50;
+			element.fixedDropdown = true;
+			setBoundingClientRect(width);
+			await toggleOpenState(true);
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+
+			expect(popup.getAttribute('style')).toEqual(
+				`--_searchable-select-fixed-width: ${width}px`
+			);
+		});
+
+		it('should round the width set to --_searchable-select-fixed-width', async function () {
+			const width = 50.5;
+			const expectedWidth = Math.round(width);
+			element.fixedDropdown = true;
+			setBoundingClientRect(width);
+			await toggleOpenState(true);
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+
+			expect(popup.getAttribute('style')).toEqual(
+				`--_searchable-select-fixed-width: ${expectedWidth}px`
+			);
+		});
+
+		it('should update the width on each opening', async function () {
+			const width = 50;
+			element.fixedDropdown = true;
+
+			setBoundingClientRect(30);
+			await toggleOpenState(true);
+
+			setBoundingClientRect(width);
+			await toggleOpenState(false);
+			await toggleOpenState(true);
+
+			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
+
+			expect(popup.getAttribute('style')).toEqual(
+				`--_searchable-select-fixed-width: ${width}px`
+			);
 		});
 	});
 
