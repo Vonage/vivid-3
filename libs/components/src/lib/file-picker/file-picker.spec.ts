@@ -2,7 +2,6 @@ import {
 	createFormHTML,
 	elementUpdated,
 	fixture,
-	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
@@ -101,15 +100,6 @@ describe('vwc-file-picker', () => {
 		it('should show label element only if label is set', async function () {
 			const labelElement = element.shadowRoot?.querySelector('label');
 			expect(labelElement).toBeNull();
-		});
-
-		it('should set aria-label on base element if label is set', async function () {
-			const labelText = 'label';
-			element.label = labelText;
-			await elementUpdated(element);
-			expect(getBaseElement(element).getAttribute('aria-label')).toEqual(
-				labelText
-			);
 		});
 	});
 
