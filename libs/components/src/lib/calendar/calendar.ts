@@ -1,5 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Sticky } from '../enums';
 import { CalendarEvent } from './../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
@@ -64,6 +65,16 @@ export class Calendar extends VividElement {
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) hour12 = false;
+
+	/**
+	 * Sticky header and sticky column options
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: sticky-mode
+	 */
+	@attr({ attribute: 'sticky-mode', mode: 'fromView' })
+	stickyMode: Sticky = Sticky.None;
 
 	/**
 	 * @internal

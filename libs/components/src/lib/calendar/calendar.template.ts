@@ -1,11 +1,14 @@
 import { html, repeat } from '@microsoft/fast-element';
-
-import type { Calendar } from './calendar';
+import { classNames } from '@microsoft/fast-web-utilities';
 import {
 	getFirstDateOfTheWeek,
 	getValidDateString,
 } from './helpers/calendar.date-functions';
 
+import type { Calendar } from './calendar';
+
+const getClasses = ({ stickyMode }: Calendar) =>
+	classNames([`sticky-${stickyMode}`, Boolean(stickyMode)]);
 /**
  * the html days markup
  *
@@ -85,7 +88,11 @@ const ColumnTemplate = html<string>`
 `;
 
 export const CalendarTemplate = html<Calendar>`
-	<div role="grid" @keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}>
+	<div
+		role="grid"
+		class="${getClasses}"
+		@keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}
+	>
 		${DaysTemplate}
 		<div class="calendar-row" role="rowgroup">
 			${HoursTemplate}

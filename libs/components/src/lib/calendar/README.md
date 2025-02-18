@@ -5,7 +5,7 @@
 ```
 
 ```html preview
-<vwc-calendar></vwc-calendar>
+<vwc-calendar sticky-mode="header"></vwc-calendar>
 ```
 
 ## Members
@@ -57,6 +57,31 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 
 ```html preview
 <vwc-calendar hour12></vwc-calendar>
+```
+
+### Sticky Mode
+
+Set the `sticky-mode` attribute to make the header or the time or both sticky.
+
+- Type: `'none'` | `'header'` | `'column'` | `'all'`
+
+```html preview
+<vwc-layout class="wrapper">
+	<vwc-calendar sticky-mode="none"></vwc-calendar>
+	<vwc-calendar sticky-mode="header"></vwc-calendar>
+	<vwc-calendar sticky-mode="column"></vwc-calendar>
+	<vwc-calendar sticky-mode="all"></vwc-calendar>
+</vwc-layout>
+
+<style>
+	.wrapper {
+		display: block;
+		max-inline-size: 720px;
+	}
+	vwc-calendar {
+		max-block-size: 500px;
+	}
+</style>
 ```
 
 ## Slots

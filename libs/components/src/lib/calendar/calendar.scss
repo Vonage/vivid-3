@@ -4,6 +4,11 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 
+:host {
+	display: block;
+	overflow: auto;
+}
+
 ol {
 	padding: 0;
 	margin: 0;
@@ -39,6 +44,17 @@ ol {
 			text-transform: uppercase;
 			white-space: nowrap;
 		}
+	}
+
+	.sticky-column &,
+	.sticky-all & {
+		position: sticky;
+		background-color: var(
+			#{variables.$calendar-column-background-color},
+			var(#{constants.$vvd-color-canvas})
+		);
+		left: 0;
+		z-index: 1;
 	}
 }
 
@@ -157,5 +173,16 @@ ol {
 				text-transform: uppercase;
 			}
 		}
+	}
+
+	.sticky-header &,
+	.sticky-all & {
+		position: sticky;
+		background-color: var(
+			#{variables.$calendar-header-background-color},
+			var(#{constants.$vvd-color-canvas})
+		);
+		top: 0;
+		z-index: 1;
 	}
 }
