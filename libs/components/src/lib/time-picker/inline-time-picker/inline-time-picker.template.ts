@@ -81,10 +81,10 @@ export const scrollToOption = (
 
 const onBaseKeyDown = (x: InlineTimePicker, event: KeyboardEvent) => {
 	if (event.key === 'Tab') {
-		const focusableEls = x.shadowRoot!.querySelectorAll('.picker');
+		const focusableElements = x.shadowRoot!.querySelectorAll('.picker');
 		const terminalElement = event.shiftKey
-			? focusableEls[0]
-			: focusableEls[focusableEls.length - 1];
+			? focusableElements[0]
+			: focusableElements[focusableElements.length - 1];
 
 		if (x.shadowRoot!.activeElement !== terminalElement) {
 			// TrappedFocus needs to ignore events that will not move focus out of
