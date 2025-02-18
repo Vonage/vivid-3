@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.16.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.0...vivid-v4.16.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **file-picker:** set aria-label on base (VIV-2326) ([#2132](https://github.com/Vonage/vivid-3/issues/2132)) ([21e923a](https://github.com/Vonage/vivid-3/commit/21e923a61ab297df63270f237c883277c27be7a4))
+
 ## [4.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.15.0...vivid-v4.16.0) (2025-02-14)
 
 
