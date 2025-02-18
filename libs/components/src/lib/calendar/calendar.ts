@@ -67,9 +67,11 @@ export class Calendar extends VividElement {
 	@attr({ mode: 'boolean' }) hour12 = false;
 
 	/**
-	 * Sticky header and sticky time options
+	 * Sticky header and sticky column options
 	 *
 	 * @public
+	 * @remarks
+	 * HTML Attribute: sticky-mode
 	 */
 	@attr({ attribute: 'sticky-mode', mode: 'fromView' })
 	stickyMode: Sticky = Sticky.None;
