@@ -478,11 +478,11 @@ The dialog has a default `--dialog-max-block-size`. If the content is larger, th
 
 | Name             | Description                                                |
 | ---------------- | ---------------------------------------------------------- |
-| **Action-items** | Use for adding action items to the bottom of the dialog    |
-| **Body**         | Add custom content to the dialog's body                    |
-| **Footer**       | Add additional content to the bottom of the dialog.        |
-| **Graphic**      | Add graphic element to dialog. Overrides the icon property |
-| **Main**         | Override a card's predefined template                      |
+| **action-items** | Use for adding action items to the bottom of the dialog    |
+| **body**         | Add custom content to the dialog's body                    |
+| **footer**       | Add additional content to the bottom of the dialog.        |
+| **graphic**      | Add graphic element to dialog. Overrides the icon property |
+| **main**         | Override a card's predefined template                      |
 
 </div>
 

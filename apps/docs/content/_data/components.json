@@ -214,8 +214,14 @@
 	},
 	{
 		"title": "Header",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/header/README.md"
+		"description": "The header component can be used to display a header at the top of a page or section.",
+		"variations": "./libs/components/src/lib/header/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/header/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true",
+		"code": "./libs/components/src/lib/header/README.md",
+		"useCases": "./libs/components/src/lib/header/USE-CASES.md",
+		"accessibility": "./libs/components/src/lib/header/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Divider",

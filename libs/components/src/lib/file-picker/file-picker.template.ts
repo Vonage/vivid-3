@@ -18,7 +18,7 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 			x.setButtonTag(context.tagFor(Button));
 			x.setIconTag(context.tagFor(Icon));
 		}}
-		<div class="base" aria-label="${(x) => x.label}">
+		<div class="base">
 			${when(
 				(x) => x.label,
 				html<FilePicker>`<label>${(x) => x.label}</label>`
