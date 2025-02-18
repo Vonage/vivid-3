@@ -993,7 +993,6 @@ describe('vwc-searchable-select', () => {
 			element.fixedDropdown = true;
 			setBoundingClientRect(width);
 			await toggleOpenState(true);
-			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
 
 			expect(popup.getAttribute('style')).toEqual(
 				`--_searchable-select-fixed-width: ${expectedWidth}px`
