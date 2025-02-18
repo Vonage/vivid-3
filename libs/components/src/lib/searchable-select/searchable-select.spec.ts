@@ -1010,7 +1010,6 @@ describe('vwc-searchable-select', () => {
 			await toggleOpenState(false);
 			await toggleOpenState(true);
 
-
 			expect(popup.getAttribute('style')).toEqual(
 				`--_searchable-select-fixed-width: ${width}px`
 			);
