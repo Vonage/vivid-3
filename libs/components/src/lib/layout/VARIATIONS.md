@@ -1,87 +1,9 @@
-import { expect, test } from '@playwright/test';
-import type { Page } from '@playwright/test';
-import {
-	loadComponents,
-	loadTemplate,
-} from '../../visual-tests/visual-tests-utils.js';
+## Column Spacing
 
-const components = ['layout', 'card', 'divider'];
+Use the `column-spacing` attribute to choose a predefined value for the [column-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap).
 
-function runLayoutUiTest() {
-	return async ({ page }: { page: Page }) => {
-		const template = `
-			<div style="margin: 5px;">
-				<vwc-layout>
-					<vwc-card
-						headline="Lorem ipsum"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					>
-						<img
-							slot="media"
-							src="https://picsum.photos/id/1015/300/200"
-							alt="landscape"
-							style="width: 100%; height: 150px; object-fit: cover;"
-						/>
-					</vwc-card>
-					<vwc-card
-						headline="Lorem ipsum"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					>
-						<img
-							slot="media"
-							src="https://picsum.photos/id/1016/300/200"
-							alt="landscape"
-							style="width: 100%; height: 150px; object-fit: cover;"
-						/>
-					</vwc-card>
-					<vwc-card
-						headline="Lorem ipsum"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					>
-						<img
-							slot="media"
-							src="https://picsum.photos/id/1018/300/200"
-							alt="landscape"
-							style="width: 100%; height: 150px; object-fit: cover;"
-						/>
-					</vwc-card>
-					<vwc-card
-						headline="Lorem ipsum"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					>
-						<img
-							slot="media"
-							src="https://picsum.photos/id/1019/300/200"
-							alt="landscape"
-							style="width: 100%; height: 150px; object-fit: cover;"
-						/>
-					</vwc-card>
-					<vwc-card
-						headline="Lorem ipsum"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					>
-						<img
-							slot="media"
-							src="https://picsum.photos/id/1055/300/200"
-							alt="landscape"
-							style="width: 100%; height: 150px; object-fit: cover;"
-						/>
-					</vwc-card>
-					<vwc-card
-						headline="Lorem ipsum"
-						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-					>
-						<img
-							slot="media"
-							src="https://picsum.photos/id/1050/300/200"
-							alt="landscape"
-							style="width: 100%; height: 150px; object-fit: cover;"
-						/>
-					</vwc-card>
-				</vwc-layout>
-			</div>
-			<div style="margin: 5px;">
-				<vwc-layout gutters="small" column-spacing="small">
+```html preview full
+<vwc-layout gutters="small" column-spacing="small">
 	<vwc-card elevation="2" text="small"></vwc-card>
 	<vwc-card elevation="2" text="small"></vwc-card>
 	<vwc-card elevation="2" text="small"></vwc-card>
@@ -96,8 +18,13 @@ function runLayoutUiTest() {
 	<vwc-card elevation="2" text="large"></vwc-card>
 	<vwc-card elevation="2" text="large"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
+```
+
+## Row Spacing
+
+Use the `row-spacing` attribute to choose a predefined value for the [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap).
+
+```html preview full
 <vwc-layout gutters="small" row-spacing="small" column-basis="block">
 	<vwc-card elevation="2" text="small"></vwc-card>
 	<vwc-card elevation="2" text="small"></vwc-card>
@@ -113,8 +40,21 @@ function runLayoutUiTest() {
 	<vwc-card elevation="2" text="large"></vwc-card>
 	<vwc-card elevation="2" text="large"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
+```
+
+## Column Basis
+
+Use the `column-basis` attribute to control the `min-width` of columns.
+Use `block` to get full-width elements stacking one after the other.
+
+<vwc-note connotation="information">
+
+- **In mobile** both <code>medium</code> and <code>large</code> will get a <code>min-width</code> of <code>100%</code> to avoid horizontal scrolling.
+- To change the column-basis use the css variable [<code>--layout-grid-template-columns</code>](/components/layout/#grid-template-columns)
+
+</vwc-note>
+
+```html preview full
 <vwc-layout gutters="small" column-basis="small">
 	<vwc-card elevation="2" text="small (160px)"></vwc-card>
 	<vwc-card elevation="2" text="small (160px)"></vwc-card>
@@ -139,8 +79,21 @@ function runLayoutUiTest() {
 	<vwc-card elevation="2" text="block"></vwc-card>
 	<vwc-card elevation="2" text="block"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
+```
+
+## Auto Sizing
+
+The `auto-sizing` attribute controls how the grid's behaves with empty column tracks.
+
+The grid container creates as many column tracks as possible without overflowing the container.
+
+With `fit`, when there are not enough grid items to fill the number of tracks created, those empty tracks are collapsed.
+
+With `fill`, the empty tracks remain and take up space in the layout.
+
+With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
+
+```html preview full
 <vwc-layout auto-sizing="fit">
 	<vwc-card elevation="2" text="fit"></vwc-card>
 	<vwc-card elevation="2" text="fit"></vwc-card>
@@ -149,8 +102,13 @@ function runLayoutUiTest() {
 	<vwc-card elevation="2" text="fill"></vwc-card>
 	<vwc-card elevation="2" text="fill"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
+```
+
+## Gutters
+
+Use the `gutters` attribute to add a margin to the component.
+
+```html preview full
 <vwc-layout>
 	<vwc-card elevation="2" text="none"></vwc-card>
 </vwc-layout>
@@ -166,8 +124,7 @@ function runLayoutUiTest() {
 <vwc-layout gutters="large">
 	<vwc-card elevation="2" text="large"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
+<vwc-divider></vwc-divider>
 <vwc-layout gutters="small-inline">
 	<vwc-card elevation="2" text="small-inline"></vwc-card>
 </vwc-layout>
@@ -179,8 +136,7 @@ function runLayoutUiTest() {
 <vwc-layout gutters="large-inline">
 	<vwc-card elevation="2" text="large-inline"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
+<vwc-divider></vwc-divider>
 <vwc-layout gutters="small-block">
 	<vwc-card elevation="2" text="small-block"></vwc-card>
 </vwc-layout>
@@ -192,59 +148,4 @@ function runLayoutUiTest() {
 <vwc-layout gutters="large-block">
 	<vwc-card elevation="2" text="large-block"></vwc-card>
 </vwc-layout>
-			</div>
-			<div style="margin: 5px;">
-<vwc-layout style="--layout-grid-template-columns: 1fr 1fr;">
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-</vwc-layout>
-			</div>
-			<div style="margin: 5px;">
-<vwc-layout style="--layout-grid-template-rows: 80px 40px auto;">
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-</vwc-layout>
-			</div>
-<div style="margin: 5px;">
-			<vwc-layout style="--layout-column-gap: 0; --layout-row-gap: 0;">
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-	<vwc-card elevation="2"></vwc-card>
-</vwc-layout></div>
-		`;
-
-		page.setViewportSize({
-			width: 1100,
-			height: 720,
-		});
-
-		await loadComponents({
-			page,
-			components,
-		});
-		await loadTemplate({
-			page,
-			template,
-		});
-
-		const testWrapper = await page.$('#wrapper');
-
-		await page.waitForLoadState('networkidle');
-
-		expect(await testWrapper?.screenshot()).toMatchSnapshot(
-			'snapshots/layout.png',
-			{
-				maxDiffPixelRatio: 0.02,
-			}
-		);
-	};
-}
-
-test('should show the component', runLayoutUiTest());
+```
