@@ -1,3 +1,5 @@
+## Implementation
+
 - If no label is set - it is highly recommended that `aria-label` will be added.
 - The add / subtract buttons are automatically given a localized version of the words "Increment" and "Decrement" respectively. These can be overriden using `increment-button-aria-label` and `decrement-button-aria-label`.
 

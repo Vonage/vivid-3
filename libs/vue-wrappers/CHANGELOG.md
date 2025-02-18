@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.16.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.16.0...vivid-vue-v4.16.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **vue-wrappers:** fix SSR detection (VIV-000) ([#2147](https://github.com/Vonage/vivid-3/issues/2147)) ([8e2b7ce](https://github.com/Vonage/vivid-3/commit/8e2b7ce2aeb3a7c8bbb9d3f188c26c116f743fb3))
+
 ## [4.16.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.15.0...vivid-vue-v4.16.0) (2025-02-14)
 
 
