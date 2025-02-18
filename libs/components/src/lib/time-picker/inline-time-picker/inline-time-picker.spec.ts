@@ -625,4 +625,19 @@ describe('vwc-inline-time-picker', () => {
 			});
 		});
 	});
+
+	describe('focus method', () => {
+		it('should focus the first picker programmatically to avoid visual focus', async () => {
+			const firstPicker = element.shadowRoot!.querySelector(
+				'#hours'
+			) as HTMLElement;
+			const focusSpy = vi.spyOn(firstPicker, 'focus');
+			const options = {};
+
+			element.focus(options);
+
+			expect(element.shadowRoot!.activeElement).toBe(firstPicker);
+			expect(focusSpy).toHaveBeenCalledWith(options);
+		});
+	});
 });
