@@ -41,8 +41,8 @@ registerNote('your-prefix');
 </script>
 
 <template>
-	<VNote 
-		headline="Changes Saved Successfully" 
+	<VNote
+		headline="Changes Saved Successfully"
 		icon="check-circle"
 		connotation="success"
 	/>
