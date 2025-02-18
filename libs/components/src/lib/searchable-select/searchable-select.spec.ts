@@ -1011,7 +1011,6 @@ describe('vwc-searchable-select', () => {
 			await toggleOpenState(false);
 			await toggleOpenState(true);
 
-			const popup = element.shadowRoot?.querySelector('.popup') as HTMLElement;
 
 			expect(popup.getAttribute('style')).toEqual(
 				`--_searchable-select-fixed-width: ${width}px`
