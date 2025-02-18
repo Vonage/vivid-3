@@ -22,25 +22,13 @@ import type { TextField } from '../text-field/text-field';
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
-import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import { FormAssociatedTimePicker } from './time-picker.form-associated';
 import {
 	formatPresentationTime,
 	parsePresentationTime,
 } from './time/presentationTime';
-import {
-	formatTimePart,
-	isValidTimeStr,
-	parseTimeStr,
-	type TimeStr,
-} from './time/time';
-import type { PickerOption } from './time/picker';
-import {
-	getHoursOptions,
-	getMeridiesOptions,
-	getMinutesOptions,
-	getSecondsOptions,
-} from './time/picker';
+import { isValidTimeStr, type TimeStr } from './time/time';
+import type { InlineTimePicker } from './inline-time-picker/inline-time-picker';
 
 /// Converter ensures that the value is always a valid time string or empty string
 const ValidTimeFilter: ValueConverter = {
@@ -166,6 +154,10 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 * @internal
 	 */
 	_clockButtonEl!: Button;
+	/**
+	 * @internal
+	 */
+	_inlineTimePickerEl!: InlineTimePicker;
 
 	// --- Core ---
 
@@ -203,7 +195,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 
 	#getFocusableEls = () =>
 		this.shadowRoot!.querySelectorAll(`
-			.dialog [tabindex="0"],
+			#inline-time-picker,
 			.dialog .vwc-button:not(:disabled)
 		`) as NodeListOf<HTMLElement>;
 
@@ -318,7 +310,7 @@ export class TimePicker extends FormAssociatedTimePicker {
 	 */
 	_onBaseKeyDown(event: KeyboardEvent) {
 		// Close dialog on Escape
-		if (handleEscapeKeyAndStopPropogation(event)) {
+		if (this._popupOpen && handleEscapeKeyAndStopPropogation(event)) {
 			this._closePopup();
 			return false;
 		}
@@ -415,209 +407,26 @@ export class TimePicker extends FormAssociatedTimePicker {
 
 			DOM.processUpdates();
 
-			if (this._selectedHour) {
-				this.#scrollToItem('hours', this._selectedHour, 'start');
-			}
-			if (this._selectedMinute) {
-				this.#scrollToItem('minutes', this._selectedMinute, 'start');
-			}
-			if (this._displaySeconds && this._selectedSecond) {
-				this.#scrollToItem('seconds', this._selectedSecond, 'start');
-			}
-			if (this._use12hClock && this._selectedMeridiem) {
-				this.#scrollToItem('meridies', this._selectedMeridiem, 'start');
-			}
+			this._inlineTimePickerEl.scrollSelectedOptionsToTop();
 
 			this.#getFocusableEls()[0].focus();
 		}
 	}
 
-	// --- Pickers ---
+	// --- Inline time picker ---
 
 	/**
 	 * @internal
 	 */
-	get _hours(): PickerOption[] {
-		return getHoursOptions(
-			this.min,
-			this.max,
-			this._use12hClock
-				? this._selectedMeridiem ?? this._meridies[0].value
-				: undefined
-		);
+	_onInlineTimePickerChange(event: CustomEvent<string>) {
+		this.#updateValueDueToUserInteraction(event.detail);
 	}
 
 	/**
 	 * @internal
 	 */
-	get _selectedHour(): string | undefined {
-		return this.value ? parseTimeStr(this.value).hourStr : undefined;
-	}
-
-	/**
-	 * @internal
-	 */
-	set _selectedHour(value: string) {
-		if (this.value) {
-			const { minuteStr, secondStr } = parseTimeStr(this.value);
-			this.value = `${value}:${minuteStr}:${secondStr}`;
-		} else {
-			this.value = `${value}:00:00`;
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	get _minutes(): PickerOption[] {
-		return getMinutesOptions(this.minutesStep, this.value, this.min, this.max);
-	}
-
-	/**
-	 * @internal
-	 */
-	get _selectedMinute(): string | undefined {
-		return this.value ? parseTimeStr(this.value).minuteStr : undefined;
-	}
-
-	/**
-	 * @internal
-	 */
-	set _selectedMinute(value: string) {
-		if (this.value) {
-			const { hourStr, secondStr } = parseTimeStr(this.value);
-			this.value = `${hourStr}:${value}:${secondStr}`;
-		} else {
-			this.value = `00:${value}:00`;
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	get _seconds(): PickerOption[] {
-		return getSecondsOptions(this.secondsStep!, this.value, this.min, this.max);
-	}
-
-	/**
-	 * @internal
-	 */
-	get _selectedSecond(): string | undefined {
-		return this.value ? parseTimeStr(this.value).secondStr : undefined;
-	}
-
-	/**
-	 * @internal
-	 */
-	set _selectedSecond(value: string) {
-		if (this.value) {
-			const { hourStr, minuteStr } = parseTimeStr(this.value);
-			this.value = `${hourStr}:${minuteStr}:${value}`;
-		} else {
-			this.value = `00:00:${value}`;
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	get _meridies(): PickerOption[] {
-		return getMeridiesOptions(this.min, this.max);
-	}
-
-	/**
-	 * @internal
-	 */
-	get _selectedMeridiem(): string | undefined {
-		return this.value ? parseTimeStr(this.value).meridiem : undefined;
-	}
-
-	/**
-	 * @internal
-	 */
-	set _selectedMeridiem(value: string) {
-		if (this.value) {
-			const { hours, minuteStr, secondStr } = parseTimeStr(this.value);
-			let adjustedHours = hours;
-			if (value === 'AM' && hours >= 12) {
-				adjustedHours -= 12;
-			} else if (value === 'PM' && hours < 12) {
-				adjustedHours += 12;
-			}
-			this.value = `${formatTimePart(adjustedHours)}:${minuteStr}:${secondStr}`;
-		} else {
-			if (value === 'AM') {
-				this.value = '00:00:00';
-			} else {
-				this.value = '12:00:00';
-			}
-		}
-	}
-
-	/**
-	 * @internal
-	 */
-	_onPickerKeyDown(
-		picker: string,
-		options: PickerOption[],
-		selectedValue: string | undefined,
-		setSelectedValue: (value: string) => void,
-		event: KeyboardEvent
-	) {
-		const offset = {
-			ArrowUp: -1,
-			ArrowDown: 1,
-		}[event.key];
-
-		if (offset) {
-			event.preventDefault();
-			const index = options.findIndex((h) => h.value === selectedValue);
-			const newRawIndex = index === -1 ? 0 : index + offset;
-			const newIndex = (newRawIndex + options.length) % options.length;
-			const newValue = options[newIndex].value;
-			setSelectedValue(newValue);
-			this.#scrollToItem(picker, newValue, 'nearest');
-			this.#updateValueDueToUserInteraction(this.value);
-		}
-
-		return true;
-	}
-
-	#scrollToItem(
-		picker: string,
-		selectedValue: string,
-		position: 'nearest' | 'start'
-	) {
-		const element = this.shadowRoot!.querySelector(
-			`#${picker}-${selectedValue}`
-		) as HTMLElement | null;
-		if (!element) {
-			return;
-		}
-
-		scrollIntoView(element, element.parentElement!, position);
-	}
-
-	/**
-	 * @internal
-	 */
-	_onPickerItemClick(
-		picker: string,
-		setSelectedValue: (value: string) => void,
-		value: string
-	) {
-		setSelectedValue(value);
-		this.#scrollToItem(picker, value, 'start');
-		this.#updateValueDueToUserInteraction(this.value);
-
-		const nextPickerEl = this.shadowRoot!.querySelector(
-			`#${picker} + .picker`
-		) as HTMLElement | null;
-		if (nextPickerEl) {
-			nextPickerEl.focus();
-		} else {
-			this._closePopup();
-		}
+	_onInlineTimePickerLastColumnSelected() {
+		this._closePopup();
 	}
 
 	// --- Dialog footer ---
