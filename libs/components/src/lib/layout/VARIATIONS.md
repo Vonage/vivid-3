@@ -25,20 +25,24 @@ Use the `column-spacing` attribute to choose a predefined value for the [column-
 Use the `row-spacing` attribute to choose a predefined value for the [row-gap](https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap).
 
 ```html preview full
-<vwc-layout gutters="small" row-spacing="small" column-basis="block">
-	<vwc-card elevation="2" text="small"></vwc-card>
-	<vwc-card elevation="2" text="small"></vwc-card>
-	<vwc-card elevation="2" text="small"></vwc-card>
+<vwc-layout gutters="small" row-spacing="small (16px)" column-basis="block">
+	<vwc-card elevation="2" text="small (16px)"></vwc-card>
+	<vwc-card elevation="2" text="small (16px)"></vwc-card>
+	<vwc-card elevation="2" text="small (16px)"></vwc-card>
 </vwc-layout>
-<vwc-layout gutters="small" row-spacing="medium" column-basis="block">
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
+<vwc-layout
+	gutters="small"
+	row-spacing="medium - default (24px)"
+	column-basis="block"
+>
+	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="small" row-spacing="large" column-basis="block">
-	<vwc-card elevation="2" text="large"></vwc-card>
-	<vwc-card elevation="2" text="large"></vwc-card>
-	<vwc-card elevation="2" text="large"></vwc-card>
+	<vwc-card elevation="2" text="large (32px)"></vwc-card>
+	<vwc-card elevation="2" text="large (32px)"></vwc-card>
+	<vwc-card elevation="2" text="large (32px)"></vwc-card>
 </vwc-layout>
 ```
 
@@ -114,38 +118,38 @@ Use the `gutters` attribute to add a margin to the component.
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="small">
-	<vwc-card elevation="2" text="small"></vwc-card>
+	<vwc-card elevation="2" text="small (16px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="medium">
-	<vwc-card elevation="2" text="medium"></vwc-card>
+	<vwc-card elevation="2" text="medium (24px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="large">
-	<vwc-card elevation="2" text="large"></vwc-card>
+	<vwc-card elevation="2" text="large (32px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="small-inline">
-	<vwc-card elevation="2" text="small-inline"></vwc-card>
+	<vwc-card elevation="2" text="small-inline (16px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="medium-inline">
-	<vwc-card elevation="2" text="medium-inline"></vwc-card>
+	<vwc-card elevation="2" text="medium-inline (24px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="large-inline">
-	<vwc-card elevation="2" text="large-inline"></vwc-card>
+	<vwc-card elevation="2" text="large-inline (32px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="small-block">
-	<vwc-card elevation="2" text="small-block"></vwc-card>
+	<vwc-card elevation="2" text="small-block (16px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="medium-block">
-	<vwc-card elevation="2" text="medium-block"></vwc-card>
+	<vwc-card elevation="2" text="medium-block (24px)"></vwc-card>
 </vwc-layout>
 <vwc-divider></vwc-divider>
 <vwc-layout gutters="large-block">
-	<vwc-card elevation="2" text="large-block"></vwc-card>
+	<vwc-card elevation="2" text="large-block (32px)"></vwc-card>
 </vwc-layout>
 ```
