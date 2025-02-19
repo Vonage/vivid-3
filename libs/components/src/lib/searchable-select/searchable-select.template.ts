@@ -164,6 +164,14 @@ function renderFieldset(context: VividElementDefinitionContext) {
 	`;
 }
 
+function setFixedDropdownVarWidth(x: Select) {
+	return x.open && x.fixedDropdown
+		? `--_searchable-select-fixed-width: ${Math.round(
+				x.getBoundingClientRect().width
+		  )}px`
+		: null;
+}
+
 function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
@@ -180,6 +188,7 @@ function renderControl(context: VividElementDefinitionContext) {
 					:open="${(x) => x.open}"
 					class="popup"
 					placement="bottom-start"
+					style="${setFixedDropdownVarWidth}"
 					strategy="${(x) => (x.fixedDropdown ? 'fixed' : 'absolute')}">
 					<div
 						class="listbox"

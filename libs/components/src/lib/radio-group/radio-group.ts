@@ -9,7 +9,6 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
-import type { EventListener } from 'video.js/dist/types/event-target';
 import type { Radio } from '../radio/radio';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 

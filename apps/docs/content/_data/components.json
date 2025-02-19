@@ -194,8 +194,12 @@
 	},
 	{
 		"title": "Note",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/note/README.md"
+		"description": "Callout information that would be relevant to the user.",
+		"variations": "./libs/components/src/lib/note/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/note/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/note/README.md",
+		"accessibility": "./libs/components/src/lib/note/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Checkbox",

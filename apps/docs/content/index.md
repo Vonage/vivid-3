@@ -4,7 +4,7 @@ layout: standalone.njk
 
 <div class="welcome">
 	<div class="welcome__image">
-		<img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration" />
+		<img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration" width="720" height="339" />
 	</div>
 	<div class="welcome__hero">
 		<h1 class="tight">Welcome to Vivid</h1>
