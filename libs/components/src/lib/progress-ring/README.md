@@ -1,113 +1,58 @@
-# Progress Ring
+## Usage
 
-Progress-ring is used to display the length of time a process will take or to visualize percentage value (referred to as a determinate state) and to represent an unspecified wait time (referred to as an indeterminate state).
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/progress-ring';</script>
+import '@vonage/vivid/progress-ring';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerProgressRing } from '@vonage/vivid';
+
+registerProgressRing('your-prefix');
 ```
 
 ```html preview
-<vwc-progress-ring></vwc-progress-ring>
+<script type="module">
+	import { registerProgressRing } from '@vonage/vivid';
+	registerProgressRing('your-prefix');
+</script>
+
+<your-prefix-progress-ring></your-prefix-progress-ring>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Min/Max
-
-Use `min`, `max` in order to determine the range of the progress.
-
-- Type: `number`
-- Default: `undefined`
-
-```html preview blocks
-<vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="100" value="50"></vwc-progress-ring>
+```html
+<script setup lang="ts">
+	import { VProgressRing } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VProgressRing />
+</template>
 ```
 
-### Value
+</vwc-tab-panel>
+</vwc-tabs>
 
-Use `value` in order to set the state of the progress. Omitting the attribute or setting it for a non-number value will set the state to `indetermintate`.
+## API Reference
 
-- Type: `number` | `string`
-- Default: `undefined`
+### Properties
 
-```html preview blocks
-<vwc-progress-ring value="12.5"></vwc-progress-ring>
-<vwc-progress-ring value="45"></vwc-progress-ring>
-<vwc-progress-ring value="73"></vwc-progress-ring>
-<vwc-progress-ring value="100"></vwc-progress-ring>
-```
+<div class="table-wrapper">
 
-### Connotation
+| Name            | Type                                          | Description                         |
+| --------------- | --------------------------------------------- | ----------------------------------- |
+| **connotation** | `accent` (default), `cta`, `success`, `alert` | Sets the connotation                |
+| **max**         | `number`                                      | Sets the maximum value of the range |
+| **min**         | `number`                                      | Sets the minimum value of the range |
+| **paused**      | `boolean`                                     | Sets the paused state               |
+| **value**       | `number` or `string`                          | Sets the current value of progress  |
 
-Use `connotation` in order to set the color the progress.
-
-- Type: `'accent'` | `'cta'` | `'success'` | `'alert'`
-- Default: `'accent'`
-
-```html preview blocks
-<vwc-progress-ring connotation="accent"></vwc-progress-ring>
-<vwc-progress-ring connotation="cta"></vwc-progress-ring>
-<vwc-progress-ring connotation="success"></vwc-progress-ring>
-<vwc-progress-ring connotation="alert"></vwc-progress-ring>
-```
-
-### Paused
-
-Use the `paused` attribute to indicate the progress is paused.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-progress-ring min="0" max="50" value="25" paused></vwc-progress-ring>
-```
-
-### Size
-
-Use the `size` attribute/property to set the progress ring's size.
-
-- Type: `-6` | `-5` | `-4` | `-3` | `-2` | `-1` | `0` | `1` | `2` | `3` | `4` | `5`
-- Default: `0`
-
-```html preview blocks
-<vwc-progress-ring min="0" max="50" value="50" size="-6"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="-5"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="-4"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="-3"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="-2"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="-1"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="0"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="1"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="2"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="3"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="4"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
-```
-
-## Accessibility
-
-- The progress ring's `role` is `progressbar` which means it needs an accessible label.
-- It is the consumer's concern to add `aria-label` to the `progress-ring` element.
-
-## Use Cases
-
-### Determinate State
-
-Set the `min`, `max` and `value` in order to show the determinate state.
-
-In the example below, we set the value to `12.5` while the range is `0` to `50`. This means, 25% of the progress bar will be filled.
-
-```html preview
-<vwc-progress-ring min="0" max="50" value="12.5"></vwc-progress-ring>
-```
-
-### Indeterminate
-
-Remove `value` or set it to be a non-number value (e.g. `indeterminate`) to show an indeterminate state.
-
-```html preview blocks
-<vwc-progress-ring min="0" max="50"></vwc-progress-ring>
-<vwc-progress-ring min="0" max="50" value="indeterminate"></vwc-progress-ring>
-```
+</div>
