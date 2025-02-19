@@ -98,7 +98,7 @@ With `fill`, everything is the same as `fit`, except empty tracks are not collap
 	<vwc-card elevation="2" text="fit"></vwc-card>
 	<vwc-card elevation="2" text="fit"></vwc-card>
 </vwc-layout>
-<vwc-layout auto-sizing="fill">
+<vwc-layout auto-sizing="fill" column-basis="small">
 	<vwc-card elevation="2" text="fill"></vwc-card>
 	<vwc-card elevation="2" text="fill"></vwc-card>
 </vwc-layout>
