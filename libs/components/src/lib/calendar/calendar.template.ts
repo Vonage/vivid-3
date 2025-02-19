@@ -93,6 +93,7 @@ export const CalendarTemplate = html<Calendar>`
 		class="${getClasses}"
 		@keydown=${(x, c) => x.onKeydown(c.event as KeyboardEvent)}
 	>
+		<div class="filler"></div>
 		${DaysTemplate}
 		<div class="calendar-row" role="rowgroup">
 			${HoursTemplate}

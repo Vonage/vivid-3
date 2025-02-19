@@ -5,7 +5,7 @@
 ```
 
 ```html preview
-<vwc-calendar sticky-mode="header"></vwc-calendar>
+<vwc-calendar></vwc-calendar>
 ```
 
 ## Members
@@ -61,7 +61,8 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 
 ### Sticky Mode
 
-Set the `sticky-mode` attribute to make the header or the time or both sticky.
+Set the `sticky-mode` attribute to make the header or the time or both sticky.  
+If no width or height is set on the calendar there will be no scroll, and no sticky elements.
 
 - Type: `'none'` | `'header'` | `'column'` | `'all'`
 
@@ -80,6 +81,11 @@ Set the `sticky-mode` attribute to make the header or the time or both sticky.
 	}
 </style>
 ```
+
+<vwc-note connotation="warning" icon="warning-line" headline="Setting Sticky-Mode to all">
+	<p>By default, sticky-mode is set to <code>none</code>. In the next breaking change it will be set to <code>all</code></p>
+	<p></p>
+</vwc-note>
 
 ## CSS Variables
 

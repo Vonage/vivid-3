@@ -23,7 +23,7 @@ ol {
 	display: grid;
 	margin: auto;
 	grid-template-areas:
-		'. column-headers'
+		'filler column-headers'
 		'row-headers calendar';
 	grid-template-columns: min-content auto;
 	inline-size: max(100%, 500px);
@@ -182,6 +182,23 @@ ol {
 	.sticky-all & {
 		position: sticky;
 		z-index: 1;
+		background-color: var(
+			#{variables.$calendar-header-background-color},
+			var(#{constants.$vvd-color-canvas})
+		);
+		inset-block-start: 0;
+		margin-block-end: 3px;
+	}
+}
+
+.filler {
+	background-color: transparent;
+	grid-area: filler;
+
+	.sticky-header &,
+	.sticky-all & {
+		position: sticky;
+		z-index: 2;
 		background-color: var(
 			#{variables.$calendar-header-background-color},
 			var(#{constants.$vvd-color-canvas})
