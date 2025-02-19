@@ -11,6 +11,21 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
     <vwc-calendar datetime="2022-01-01"></vwc-calendar>
     <vwc-calendar datetime="2022-01-01" hour12 locales="he-IL" start-day="sunday" style="direction: rtl"></vwc-calendar>
+    <div class="wrapper">
+			<vwc-calendar sticky-mode="all"></vwc-calendar>
+			<style>
+				.wrapper {
+				--calendar-header-background-color: var(--vvd-color-neutral-100);
+				--calendar-column-background-color: var(--vvd-color-neutral-100);
+
+				display: block;
+				max-inline-size: 550px;
+				max-block-size: 550px;
+				background-color: var(--vvd-color-neutral-100);
+				padding: 32px;
+				}
+				</style>
+    </div>
 	`;
 
 	page.setViewportSize({ width: 900, height: 720 });

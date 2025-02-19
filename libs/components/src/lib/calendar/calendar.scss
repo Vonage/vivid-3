@@ -7,6 +7,8 @@
 :host {
 	display: block;
 	overflow: auto;
+	block-size: inherit;
+	max-block-size: inherit;
 }
 
 ol {
@@ -49,12 +51,13 @@ ol {
 	.sticky-column &,
 	.sticky-all & {
 		position: sticky;
+		z-index: 1;
 		background-color: var(
 			#{variables.$calendar-column-background-color},
 			var(#{constants.$vvd-color-canvas})
 		);
-		left: 0;
-		z-index: 1;
+		inset-inline-start: 0;
+		margin-inline-end: 3px;
 	}
 }
 
@@ -178,11 +181,12 @@ ol {
 	.sticky-header &,
 	.sticky-all & {
 		position: sticky;
+		z-index: 1;
 		background-color: var(
 			#{variables.$calendar-header-background-color},
 			var(#{constants.$vvd-color-canvas})
 		);
-		top: 0;
-		z-index: 1;
+		inset-block-start: 0;
+		margin-block-end: 3px;
 	}
 }
