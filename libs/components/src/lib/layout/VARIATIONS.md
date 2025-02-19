@@ -9,9 +9,9 @@ Use the `column-spacing` attribute to choose a predefined value for the [column-
 	<vwc-card elevation="2" text="small (16px)"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="small" column-spacing="medium">
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
-	<vwc-card elevation="2" text="medium"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
+	<vwc-card elevation="2" text="medium - default (24px)"></vwc-card>
 </vwc-layout>
 <vwc-layout gutters="small" column-spacing="large">
 	<vwc-card elevation="2" text="large (32px)"></vwc-card>
