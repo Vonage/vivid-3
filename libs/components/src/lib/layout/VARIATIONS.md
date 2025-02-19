@@ -94,7 +94,7 @@ With `fill`, the empty tracks remain and take up space in the layout.
 With `fill`, everything is the same as `fit`, except empty tracks are not collapsed.
 
 ```html preview full
-<vwc-layout auto-sizing="fit">
+<vwc-layout auto-sizing="fit" column-basis="small">
 	<vwc-card elevation="2" text="fit"></vwc-card>
 	<vwc-card elevation="2" text="fit"></vwc-card>
 </vwc-layout>
