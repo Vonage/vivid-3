@@ -9,7 +9,8 @@ The `connotation` attribute controls the color of the Progress Ring component.
 <vwc-progress-ring connotation="cta"></vwc-progress-ring>
 <p>success</p>
 <vwc-progress-ring connotation="success"></vwc-progress-ring>
-<p>alert</p> <vwc-progress-ring connotation="alert"></vwc-progress-ring>
+<p>alert</p>
+<vwc-progress-ring connotation="alert"></vwc-progress-ring>
 ```
 
 ## Size
@@ -30,84 +31,144 @@ Use the `size` attribute to set the progress ring's size. Set a numeric value fr
 			<td>-6</td>
 			<td>16px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="-6"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="-6"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>-5</td>
 			<td>20px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="-5"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="-5"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>-4</td>
 			<td>24px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="-4"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="-4"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>-3</td>
 			<td>28px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="-3"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="-3"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>-2</td>
 			<td>32px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="-2"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="-2"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>-1</td>
 			<td>36px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="-1"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="-1"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>0</td>
 			<td>40px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="0"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="0"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>1</td>
 			<td>44px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="1"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="1"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>2</td>
 			<td>48px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="2"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="2"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>3</td>
 			<td>52px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="3"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="3"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>4</td>
 			<td>56px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="4"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="4"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 		<tr>
 			<td>5</td>
 			<td>60px</td>
 			<td>
-				<vwc-progress-ring min="0" max="50" value="50" size="5"></vwc-progress-ring>
+				<vwc-progress-ring
+					min="0"
+					max="50"
+					value="50"
+					size="5"
+				></vwc-progress-ring>
 			</td>
 		</tr>
 	</tbody>
