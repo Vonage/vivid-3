@@ -481,8 +481,12 @@
 	},
 	{
 		"title": "Video Player",
-		"page": "legacy",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/video-player/README.md"
+		"description": "Video Player is a component used to play and control video content.",
+		"variations": "./libs/components/src/lib/video-player/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/video-player/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/video-player/README.md",
+		"accessibility": "./libs/components/src/lib/video-player/ACCESSIBILITY.md",
+		"status": "alpha"
 	}
 ]
