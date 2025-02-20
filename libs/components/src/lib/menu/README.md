@@ -136,10 +136,11 @@ Add the `position-strategy` attribute to set the menu to be positioned `absolute
 - Type: `fixed` | `absolute`
 - Default: `fixed`
 
-<vwc-note connotation="information" icon="info-solid" headline="when to use position-strategy=absolute">
-When the menu is within a container that has properties such as `transform`, `perspective`, or `container-type`, which modify its containing block, it's best to use `position-strategy=absolute`.
+<vwc-note connotation="information" icon="info-solid" headline="Prefer using the default position strategy (fixed)">
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">read more about Layout and the containing block</a>
+In vivid version 4.12.0, popover attribute was added to menu, using the power of <a href="https://developer.mozilla.org/en-US/docs/Glossary/Top_layer">top-layer</a>, eliminating the effect of change in the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">containing block</a>.
+
+<p style="padding-block-start: 16px">We will remove the <code>position-strategy</code> in a future major version of Vivid to make this the default behaviour.</p>
 
 </vwc-note>
 
