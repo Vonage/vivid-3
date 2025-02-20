@@ -93,8 +93,13 @@
 	},
 	{
 		"title": "Layout",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/layout/README.md"
+		"description": "Easily arrange elements in a grid using CSS grid layout and predefined sizes and spaces.",
+		"variations": "./libs/components/src/lib/layout/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/layout/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true",
+		"code": "./libs/components/src/lib/layout/README.md",
+		"accessibility": "./libs/components/src/lib/layout/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Side Drawer",
