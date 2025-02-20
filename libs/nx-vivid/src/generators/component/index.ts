@@ -43,6 +43,15 @@ function normalizeOptions(
 	};
 }
 
+function toPascalCase(string: string): string {
+	return string
+		.replace(/([a-z])([A-Z])/g, '$1 $2') // Splits camelCase words into separate words
+		.replace(/[-_]+|[^\p{L}\p{N}]/gu, ' ') // Replaces dashes, underscores, and special characters with spaces
+		.toLowerCase() // Converts the entire string to lowercase
+		.replace(/(?:^|\s)(\p{L})/gu, (_, letter) => letter.toUpperCase()) // Capitalizes the first letter of each word
+		.replace(/\s+/g, ''); // Removes all spaces
+}
+
 function createFiles(tree: Tree, options: NormalizedSchema) {
 	const { className, name, propertyName } = names(options.name);
 
@@ -54,9 +63,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
 		name,
 		propertyName,
 		camelCasedName: className[0].toLowerCase() + className.substr(1),
-		pascalCasedName: className[0].replace(/\w+/g, function (w) {
-			return w[0].toUpperCase() + w.slice(1).toLowerCase();
-		}),
+		pascalCasedName: toPascalCase(className),
 		cliCommand: 'nx',
 		strict: undefined,
 		tmpl: '',

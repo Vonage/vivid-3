@@ -64,9 +64,9 @@ register<%= pascalCasedName %>('your-prefix');
 
 <div class="table-wrapper">
 
-| Name           | Description      |
-| -------------- | ---------------- |
-| **slot-name ** | Slot description |
+| Name          | Description      |
+| ------------- | ---------------- |
+| **slot-name** | Slot description |
 
 </div>
 
