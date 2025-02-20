@@ -13,7 +13,6 @@ describe( 'vwc-<%= name %>', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-<%= name %>', async () => {
-			expect(<%= camelCasedName %>Definition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(<%= className %>);
 		});
 
