@@ -43,12 +43,6 @@ function normalizeOptions(
 	};
 }
 
-function toPascalCase(str) {
-	return str
-			.toLowerCase() // Convert entire string to lowercase
-			.replace(/(?:^|\s|[_-])(\w)/g, (_, c) => c.toUpperCase()); // Capitalize letters after spaces, underscores, or hyphens
-}
-
 function createFiles(tree: Tree, options: NormalizedSchema) {
 	const { className, name, propertyName } = names(options.name);
 
@@ -60,8 +54,9 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
 		name,
 		propertyName,
 		camelCasedName: className[0].toLowerCase() + className.substr(1),
-		pascalCasedName: className[0].replace(/\w+/g,
-			function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();}),
+		pascalCasedName: className[0].replace(/\w+/g, function (w) {
+			return w[0].toUpperCase() + w.slice(1).toLowerCase();
+		}),
 		cliCommand: 'nx',
 		strict: undefined,
 		tmpl: '',
