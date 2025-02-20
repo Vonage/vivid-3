@@ -23,4 +23,6 @@ export const richTextEditorDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerRichTextEditor = createRegisterFunction(richTextEditorDefinition);
+export const registerRichTextEditor = createRegisterFunction(
+	richTextEditorDefinition
+);

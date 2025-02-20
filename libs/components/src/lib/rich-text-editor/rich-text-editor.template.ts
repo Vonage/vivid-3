@@ -14,6 +14,5 @@ const getClasses = (_: RichTextEditor) => classNames('control');
  */
 export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
-) => ViewTemplate<RichTextEditor> = (
-	context: VividElementDefinitionContext
-) => html` <span class="${getClasses}">${context.tagFor(RichTextEditor)} </span>`;
+) => ViewTemplate<RichTextEditor> = (context: VividElementDefinitionContext) =>
+	html` <span class="${getClasses}">${context.tagFor(RichTextEditor)} </span>`;
