@@ -1,8 +1,8 @@
 import { html } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext, FoundationElementDefinition } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { <%= className %> } from './<%= fileName %>';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { <%= className %> } from './<%= fileName %>';
 
 const getClasses = (_: <%= className %>) =>
 	classNames(
@@ -16,9 +16,8 @@ const getClasses = (_: <%= className %>) =>
  * @public
  */
 export const <%= className %>Template: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<<%= className %>> = (context: ElementDefinitionContext) => html` <span
+	context: VividElementDefinitionContext
+) => ViewTemplate<<%= className %>> = (context: VividElementDefinitionContext) => html` <span
   class="${getClasses}"
->${context.name}
+>${context.tagFor(<%= className %>)}
 </span>`;
