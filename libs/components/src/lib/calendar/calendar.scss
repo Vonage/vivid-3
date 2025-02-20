@@ -196,14 +196,24 @@ ol {
 	grid-area: filler;
 
 	.sticky-header &,
-	.sticky-all & {
+	.sticky-all &,
+	.sticky-column & {
 		position: sticky;
 		z-index: 2;
 		background-color: var(
 			#{variables.$calendar-header-background-color},
 			var(#{constants.$vvd-color-canvas})
 		);
-		inset-block-start: 0;
 		margin-block-end: 3px;
+	}
+	.sticky-column & {
+		inset-inline-start: 0;
+	}
+	.sticky-header & {
+		inset-block-start: 0;
+	}
+	.sticky-all & {
+		inset-block-start: 0;
+		inset-inline-start: 0;
 	}
 }
