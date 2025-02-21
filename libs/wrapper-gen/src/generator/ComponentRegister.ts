@@ -76,6 +76,8 @@ function generateDocsFor(component: ComponentDef) {
 	return [component.wrappedClassName, `/components/${component.name}.md`];
 }
 
+console.log(getPublicComponents());
+
 export default class ComponentRegister {
 	static componentsSpecs: ComponentSpecs[] = getPublicComponents().map(
 		// eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -117,6 +119,13 @@ export default class ComponentRegister {
 		fs.writeFileSync(
 			path.join(LibraryGeneratedFolder, 'icons.ts'),
 			renderIcons(await loadedIcons)
+		);
+
+		const componentMetadata = await this.getComponentDefs();
+
+		fs.writeFileSync(
+			'componentMetadata.json',
+			JSON.stringify(componentMetadata, null, 2)
 		);
 
 		// auto-generate components

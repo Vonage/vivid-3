@@ -66,7 +66,7 @@ const vuePropNameForAttribute = (attribute: Attribute): string => {
 export const parseComponent = (name: string): ComponentDef => {
 	const className = getClassNameOfVividComponent(name);
 
-	const declaration = getVividComponentDeclaration(name, className);
+	const declaration = getVividComponentDeclaration(className);
 
 	const localTypeDefs = declaration._localTypeDefs;
 	const localTypeResolver = makeTypeResolver({
