@@ -23,6 +23,7 @@ describe('vwc-calendar', () => {
 			expect(element.startDay).toBeUndefined();
 			expect(element.locales).toBeUndefined();
 			expect(element.hour12).toBeFalsy();
+			expect(element.stickyMode).toEqual('none');
 		});
 
 		it('should allow being created via createElement', () => {
@@ -224,6 +225,19 @@ describe('vwc-calendar', () => {
 
 			expect(context?.day).toEqual(2);
 			expect(context?.hour).toEqual(undefined);
+		});
+	});
+
+	describe('Stick Mode', () => {
+		it(`should add class "sticky-*stick-mode*" [role="grid"]]`, async () => {
+			const stickyMode = 'all';
+			(element as any).stickyMode = stickyMode;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(
+				`.sticky-${stickyMode}`
+			);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
