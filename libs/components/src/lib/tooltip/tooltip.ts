@@ -1,6 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
-import { type Anchored, anchored } from '../../shared/patterns/anchored';
+import { Anchored } from '../../shared/patterns/anchored';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
@@ -8,8 +8,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @component tooltip
  * @slot anchor - Used to set the anchor element for the tooltip.
  */
-@anchored
-export class Tooltip extends VividElement {
+export class Tooltip extends Anchored(VividElement) {
 	/**
 	 * the text of the tooltip
 	 * accepts string
@@ -82,5 +81,3 @@ export class Tooltip extends VividElement {
 		this.#updateListeners();
 	}
 }
-
-export interface Tooltip extends Anchored {}
