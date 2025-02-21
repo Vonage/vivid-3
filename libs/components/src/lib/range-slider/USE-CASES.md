@@ -1,3 +1,5 @@
+## Duration Selector
+
 ```html preview
 <div>
 	<vwc-range-slider
