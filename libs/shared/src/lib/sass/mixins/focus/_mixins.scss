@@ -8,7 +8,7 @@
 	outline: $outline-width solid
 		var(
 			#{variables.$focus-stroke-color},
-			var(#{constants.$vvd-color-canvas-text})
+			var(#{constants.$vvd-color-cta-500})
 		);
 	outline-offset: calc(
 		#{-$outline-width} - var(#{variables.$focus-inset}, 0px)
