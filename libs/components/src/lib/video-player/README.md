@@ -1,34 +1,73 @@
-# Video Player
+## Usage
 
-The video player component allows a user to play and control video content.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/video-player';</script>
+import '@vonage/vivid/video-player';
 ```
 
-## Members
+<!--
+	* NOTE: registerVideoPlayer is not currently working
+	* It will be fixed in a separate task
+-->
+<!--
+or, if you need to use a unique prefix:
 
-### Src
+```js
+import { registerVideoPlayer } from '@vonage/vivid';
 
-A video source can be provided to the component using the `src` attribute.
-
-- Type: `string`
-- Default: `undefined`
+registerVideoPlayer('your-prefix');
+```
 
 ```html preview
-<style>
-	html {
-		max-inline-size: 800px;
-	}
-</style>
+<script type="module">
+	import { registerVideoPlayer } from '@vonage/vivid';
+	registerVideoPlayer('your-prefix');
+</script>
+
+<your-prefix-video-player
+	poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png"
+	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
+>
+</your-prefix-prefix-video-player>
+```
+-->
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VVideoPlayer } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VVideoPlayer
+		src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
+	/>
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Src
+
+The `src` attribute provides a video source to the component.
+
+```html preview
 <vwc-video-player
 	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
 ></vwc-video-player>
 ```
 
-#### Supported video formats
+### Supported Video Formats
 
 Video player supports the most common video formats:
+
+<div class="table-wrapper">
 
 | Video format | Description                                                                                                                                |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -38,7 +77,9 @@ Video player supports the most common video formats:
 | **WebM**     | open media file format designed for the web and widely supported by modern browsers.                                                       |
 | **Ogg**      | a container format that can contain video streams compressed with Theora video codec and audio streams compressed with Vorbis audio codec. |
 
-#### Source element
+</div>
+
+### Source element
 
 A video source can alternatively be provided to the component using the `source` element.
 
@@ -56,27 +97,7 @@ Multiple formats can be provided for greater browser compatibility by defining m
 </vwc-video-player>
 ```
 
-### Poster
-
-The poster image is displayed before the video has been interacted with. The `poster` attribute accepts a url string (absolute or relative) to an image.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<style>
-	html {
-		max-inline-size: 800px;
-	}
-</style>
-<vwc-video-player
-	poster="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/bbb.png"
-	src="https://d2zihajmogu5jn.cloudfront.net/big-buck-bunny/master.m3u8"
->
-</vwc-video-player>
-```
-
-### Text tracks
+## Text tracks
 
 Text tracks are a feature of HTML5 for displaying time-triggered text to the end-user. They can come in the form of Captions, Subtitles, Audio descriptions and Chapters.
 
@@ -94,31 +115,7 @@ Text tracks can be provided using the `track` element.
 />
 ```
 
-#### Track element API
-
-| Attribute | Description                                                                                                                   |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `src`     | url string (relative or absolute) that points to the captions file                                                            |
-| `kind`    | denotes the type of track file, in this case `captions`, but it could be `subtitles`, `description` or `chapters` (see below) |
-| `srclang` | indicates what language each subtitle files' contents are in                                                                  |
-| `label`   | to be shown in the menu when selecting the captions                                                                           |
-| `default` | when set, the captions will be active when the video plays                                                                    |
-
-#### Types of text track
-
-| Track type            | Description                                                                                                                                                                                   |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Captions**          | For accessibility, it is recommended to provide captions to accompany any spoken word video. This is to help deaf and hard-of-hearing audiences and users who want to play the video on mute. |
-| **Subtitles**         | Provide translation of content that cannot be understood by the viewer. For example speech or text that is not English in an English language film.                                           |
-| **Audio description** | To cater for blind and partially sighted users, a description track can be provided for screen readers. They are a textual description of the video content.                                  |
-| **Chapters**          | Chapters are intended to be used when the user is navigating the media resource.                                                                                                              |
-
 ```html preview
-<style>
-	html {
-		max-inline-size: 800px;
-	}
-</style>
 <vwc-video-player
 	poster="https://files.fosswire.com/2010/10/sintel-shot_600.jpg"
 >
@@ -149,69 +146,40 @@ Text tracks can be provided using the `track` element.
 </vwc-video-player>
 ```
 
-### Playback rates
+### Track element API
 
-Playback rates can be modified by passing a comma separated string of numbers to the `playback-rates` attribute.
-The playback rates option can be removed by passing an empty string.
+<div class="table-wrapper">
 
-- Type: `string`
-- Default: `'0.5, 1, 1.5, 2'`
+| Attribute   | Description                                                                                                                   |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **src**     | url string (relative or absolute) that points to the captions file                                                            |
+| **kind**    | denotes the type of track file, in this case `captions`, but it could be `subtitles`, `description` or `chapters` (see below) |
+| **srclang** | indicates what language each subtitle files' contents are in                                                                  |
+| **label**   | to be shown in the menu when selecting the captions                                                                           |
+| **default** | when set, the captions will be active when the video plays                                                                    |
 
-```html preview
-<style>
-	html {
-		max-inline-size: 800px;
-	}
-</style>
-<vwc-video-player
-	playback-rates="0.5, 0.75, 1, 1.25, 1.5 1.75, 2, 2.5"
-	poster="/assets/images/steel_hi.jpg"
->
-	<source
-		src="https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8"
-		type="application/x-mpegURL"
-	/>
-</vwc-video-player>
-```
+</div>
 
-### Skip by button
+### Types of text track
 
-By default, the skip backward/forward buttons are enabled and they skip by `10` seconds.
-They can be set to skip by `0`, `5`, `10` and `30` seconds using the `skip-by` attribute.
-Setting them to `0` removes the buttons.
+<div class="table-wrapper">
 
-- Type: `'0' | '5' | '10' | '30'`
-- Default: `'10'`
+| Track type            | Description                                                                                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Captions**          | For accessibility, it is recommended to provide captions to accompany any spoken word video. This is to help deaf and hard-of-hearing audiences and users who want to play the video on mute. |
+| **Subtitles**         | Provide translation of content that cannot be understood by the viewer. For example speech or text that is not English in an English language film.                                           |
+| **Audio description** | To cater for blind and partially sighted users, a description track can be provided for screen readers. They are a textual description of the video content.                                  |
+| **Chapters**          | Chapters are intended to be used when the user is navigating the media resource.                                                                                                              |
 
-```html preview
-<style>
-	html {
-		max-inline-size: 800px;
-	}
-</style>
-<vwc-video-player skip-by="30" poster="/assets/images/steel_hi.jpg">
-	<source
-		src="https://d2zihajmogu5jn.cloudfront.net/tears-of-steel/playlist.m3u8"
-		type="application/x-mpegURL"
-	/>
-</vwc-video-player>
-```
+</div>
 
-### Auto play / loop
+## Auto play / loop
 
 Both `autoplay` and `loop` attributes are boolean. When `autoplay` is set, the video will play automatically as soon as it loads, the sound will be muted.
 
 When `loop` is set, the video will restart automatically when it reaches the end.
 
-- Type: `boolean`
-- Default: `false`
-
 ```html preview
-<style>
-	html {
-		max-inline-size: 800px;
-	}
-</style>
 <vwc-video-player autoplay loop>
 	<source
 		src="https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8"
@@ -220,14 +188,31 @@ When `loop` is set, the video will restart automatically when it reaches the end
 </vwc-video-player>
 ```
 
-## Events
+## API Reference
+
+### Properties
 
 <div class="table-wrapper">
 
-| Name    | Type                     | Bubbles | Composed | Description                    |
-| ------- | ------------------------ | ------- | -------- | ------------------------------ |
-| `play`  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is played |
-| `pause` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is paused |
-| `ended` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is ended  |
+| Name               | Type                                                                   | Description                                                 |
+| ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **autoplay**       | `boolean`                                                              | Sets the video to start playing automatically after loading |
+| **loop**           | `boolean`                                                              | Sets the video to loop                                      |
+| **playback-rates** | comma separated `string` of numeric values. `0.5, 1, 1.5, 2` (default) | Sets the possible playback rates                            |
+| **poster**         | `string`                                                               | Reference to poster image's source                          |
+| **skip-by**        | `0`, `5`, `10` (default), `30`                                         | Sets the amount to skip                                     |
+| **src**            | `string`                                                               | Reference to the video's source                             |
+
+</div>
+
+### Events
+
+<div class="table-wrapper">
+
+| Name      | Type                     | Bubbles | Composed | Description                    |
+| --------- | ------------------------ | ------- | -------- | ------------------------------ |
+| **play**  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is played |
+| **pause** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is paused |
+| **ended** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the video is ended  |
 
 </div>
