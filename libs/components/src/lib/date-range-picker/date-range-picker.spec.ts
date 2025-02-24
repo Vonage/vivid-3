@@ -9,8 +9,11 @@ import enUS from '../../locales/en-US';
 import { TextField } from '../text-field/text-field';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
-import { DateRangePicker } from './date-range-picker';
 import '.';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
+import { DatePicker } from '../date-picker/date-picker';
+import { DateRangePicker } from './date-range-picker';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
 
@@ -89,6 +92,14 @@ describe('vwc-date-range-picker', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(COMPONENT_TAG);
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec<DatePicker>(COMPONENT_TAG);
 	});
 
 	describe('start', () => {
