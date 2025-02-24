@@ -595,33 +595,35 @@ describe('vwc-inline-time-picker', () => {
 
 				expect(isScrolledIntoView(getPickerItem('hours', '00'))).toBe(true);
 			});
-		});
 
-		describe('focus trap support', () => {
-			const originalIgnoreEvent = TrappedFocus.ignoreEvent;
-			beforeEach(() => {
-				TrappedFocus.ignoreEvent = vi.fn();
-			});
-			afterEach(() => {
-				TrappedFocus.ignoreEvent = originalIgnoreEvent;
-			});
+			describe('focus trap support', () => {
+				const originalIgnoreEvent = TrappedFocus.ignoreEvent;
+				beforeEach(() => {
+					TrappedFocus.ignoreEvent = vi.fn();
+				});
+				afterEach(() => {
+					TrappedFocus.ignoreEvent = originalIgnoreEvent;
+				});
 
-			it('should submit Tab keydown events that move focus internally to be ignored by focus traps', () => {
-				(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
+				it('should call focus trap ignoreEvent on tab keydown when focused on non-terminal picker element', () => {
+					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
 
-				const event = pressKey('Tab');
+					const event = pressKey('Tab');
 
-				expect(TrappedFocus.ignoreEvent).toHaveBeenCalledTimes(1);
-				expect(TrappedFocus.ignoreEvent).toHaveBeenCalledWith(event);
-			});
+					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledTimes(1);
+					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledWith(event);
+				});
 
-			it('should not submit Tab keydown events that move focus out', () => {
-				(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
-				pressKey('Tab', { shiftKey: true });
-				(element.shadowRoot!.querySelector('#minutes') as HTMLElement).focus();
-				pressKey('Tab');
+				it('should not call focus trap ignoreEvent on tab keydown when focused on terminal picker element', () => {
+					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
+					pressKey('Tab', { shiftKey: true });
+					(
+						element.shadowRoot!.querySelector('#minutes') as HTMLElement
+					).focus();
+					pressKey('Tab');
 
-				expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
+					expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
+				});
 			});
 		});
 	});
