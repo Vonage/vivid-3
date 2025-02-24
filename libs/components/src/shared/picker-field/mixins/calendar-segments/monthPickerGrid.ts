@@ -1,5 +1,5 @@
-import type { DatePickerLocale } from '../locale';
-import { type Month } from './month';
+import type { CalendarPickerLocale } from '../calendar-picker.locale';
+import { type Month } from '../../../datetime/month';
 
 export interface MonthPickerGridCell {
 	month: Month;
@@ -13,7 +13,7 @@ export const MonthsPerRow = 4;
 
 export const buildMonthPickerGrid = (
 	year: number,
-	locale: DatePickerLocale
+	locale: CalendarPickerLocale
 ): MonthPickerGrid => {
 	const grid: MonthPickerGridCell[][] = [];
 

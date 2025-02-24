@@ -7,7 +7,11 @@ const deDE: Locale = {
 	common: {
 		useCommaAsDecimalSeparator: true,
 	},
-	datePicker: {
+	pickerField: {
+		clearLabel: 'Löschen',
+		okLabel: 'OK',
+	},
+	calendarPicker: {
 		months: {
 			name: [
 				'Januar',
@@ -63,8 +67,6 @@ const deDE: Locale = {
 		prevMonthLabel: 'Vorheriger Monat',
 		nextMonthLabel: 'Nächster Monat',
 		nextYearLabel: 'Nächstes Jahr',
-		clearLabel: 'Löschen',
-		okLabel: 'OK',
 		invalidDateError: 'Bitte geben Sie ein gültiges Datum ein.',
 		invalidDateRangeError: 'Bitte geben Sie einen gültigen Datumsbereich ein.',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
@@ -81,8 +83,6 @@ const deDE: Locale = {
 		minutesLabel: 'Minuten',
 		secondsLabel: 'Sekunden',
 		meridiesLabel: 'AM/PM',
-		clearLabel: 'Löschen',
-		okLabel: 'OK',
 		invalidTimeError: 'Bitte geben Sie eine gültige Zeit ein.',
 	},
 	filePicker: {

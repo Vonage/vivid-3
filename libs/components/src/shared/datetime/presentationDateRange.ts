@@ -1,4 +1,4 @@
-import type { DatePickerLocale } from '../locale';
+import type { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale';
 import type { DateRange } from './dateRange';
 import {
 	formatPresentationDate,
@@ -11,7 +11,7 @@ export const formatRange = (from: string, to: string): string => {
 
 export const formatPresentationDateRange = (
 	dateRange: DateRange,
-	locale: DatePickerLocale
+	locale: CalendarPickerLocale
 ): string => {
 	return formatRange(
 		formatPresentationDate(dateRange.start, locale),
@@ -25,7 +25,7 @@ export const formatPresentationDateRange = (
  */
 export const parsePresentationDateRange = (
 	presentationDateRange: string,
-	locale: DatePickerLocale
+	locale: CalendarPickerLocale
 ): DateRange => {
 	const fragments = presentationDateRange.trim().split(/[\s—–-]+/);
 	if (fragments.length !== 2) {

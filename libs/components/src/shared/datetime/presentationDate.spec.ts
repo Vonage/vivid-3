@@ -1,4 +1,4 @@
-import { DatePickerLocale } from '../locale.ts';
+import { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale.ts';
 import {
 	formatPresentationDate,
 	parsePresentationDate,
@@ -6,15 +6,15 @@ import {
 
 const enUsLocale = {
 	dateFormat: 'MM/dd/yyyy',
-} as DatePickerLocale;
+} as CalendarPickerLocale;
 
 const enGbLocale = {
 	dateFormat: 'dd/MM/yyyy',
-} as DatePickerLocale;
+} as CalendarPickerLocale;
 
 const zhCnLocale = {
 	dateFormat: 'yyyy年MM月dd日',
-} as DatePickerLocale;
+} as CalendarPickerLocale;
 
 describe('formatPresentationDate', () => {
 	it('should format the date in the date format of the given locale', () => {
