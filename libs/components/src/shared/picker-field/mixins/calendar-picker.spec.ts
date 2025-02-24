@@ -10,12 +10,12 @@ import type { CalendarPickerElement } from './calendar-picker';
 /**
  * Common tests for calendar pickers.
  */
-export const calendarPickerSpec = <
-	ComponentType extends CalendarPickerElement & { min: string; max: string }
->(
-	COMPONENT_TAG: string
+export const calendarPickerSpec = <T extends CalendarPickerElement>(
+	COMPONENT_TAG: string,
+	setMinDate: (element: T, min: string) => void,
+	setMaxDate: (element: T, max: string) => void
 ) => {
-	let element: ComponentType;
+	let element: T;
 	let pickerButton: Button;
 
 	const getTitleAction = () =>
@@ -79,21 +79,19 @@ export const calendarPickerSpec = <
 	});
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as ComponentType;
+		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as T;
 		pickerButton = element.shadowRoot!.querySelector(
 			'#picker-button'
 		) as Button;
 		setupDelegatesFocusPolyfill(element);
 	});
 
-	describe('min', () => {
+	describe('min date', () => {
 		const MIN_DATE = '2023-08-05';
 		const MIN_MONTH = '2023-08';
 
 		beforeEach(async () => {
-			element.min = MIN_DATE;
+			setMinDate(element, MIN_DATE);
 			await elementUpdated(element);
 			await openPopup();
 		});
@@ -163,12 +161,12 @@ export const calendarPickerSpec = <
 		});
 	});
 
-	describe('max', () => {
+	describe('max date', () => {
 		const MAX_DATE = '2023-08-15';
 		const MAX_MONTH = '2023-08';
 
 		beforeEach(async () => {
-			element.max = MAX_DATE;
+			setMaxDate(element, MAX_DATE);
 			await elementUpdated(element);
 			await openPopup();
 		});
@@ -341,7 +339,7 @@ export const calendarPickerSpec = <
 		});
 
 		it('should remain on the current date when attempting to move into a date outside valid range', async () => {
-			element.max = '2023-08-01';
+			setMaxDate(element, '2023-08-01');
 			await elementUpdated(element);
 			const focusedDate = getDateButton('2023-08-01');
 			focusedDate.focus();
@@ -448,7 +446,7 @@ export const calendarPickerSpec = <
 		});
 
 		it('should remain on the current month when attempting to move into a month outside valid range', async () => {
-			element.max = '2023-08-01';
+			setMaxDate(element, '2023-08-01');
 			await elementUpdated(element);
 			getMonthButton('2023-08').focus();
 

@@ -12,7 +12,6 @@ import { Button } from '../button/button';
 import '.';
 import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
 import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
-import { DatePicker } from '../date-picker/date-picker';
 import { DateRangePicker } from './date-range-picker';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
@@ -107,7 +106,15 @@ describe('vwc-date-range-picker', () => {
 	});
 
 	describe('calendar picker', () => {
-		calendarPickerSpec<DatePicker>(COMPONENT_TAG);
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DateRangePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DateRangePicker, max: string) => {
+				element.max = max;
+			}
+		);
 	});
 
 	describe('start', () => {
