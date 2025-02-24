@@ -378,12 +378,6 @@ vwc-tab-panel pre.hljs:first-child {
 	display: none;
 }
 
-.banner {
-	position: sticky;
-	z-index: 1;
-	top: var(--vvd-header-block-size);
-}
-
 vwc-note ~ vwc-note {
 	display: block;
 	margin-block-start: 16px;
