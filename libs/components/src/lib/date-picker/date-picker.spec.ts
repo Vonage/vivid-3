@@ -100,7 +100,15 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('calendar picker', () => {
-		calendarPickerSpec<DatePicker>(COMPONENT_TAG);
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DatePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DatePicker, max: string) => {
+				element.max = max;
+			}
+		);
 	});
 
 	describe('value', () => {
