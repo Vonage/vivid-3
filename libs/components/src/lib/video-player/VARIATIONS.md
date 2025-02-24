@@ -21,6 +21,8 @@ The poster image is displayed before the video has been interacted with. The `po
 ## Playback Rates
 
 Playback rates can be modified by passing a comma separated string of numbers to the `playback-rates` attribute.
+It defaults to `0.5, 1, 1.5, 2`.
+
 The playback rates option can be removed by passing an empty string.
 
 ```html preview

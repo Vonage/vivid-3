@@ -8,11 +8,6 @@
 import '@vonage/vivid/video-player';
 ```
 
-<!--
-	* NOTE: registerVideoPlayer is not currently working
-	* It will be fixed in a separate task
--->
-<!--
 or, if you need to use a unique prefix:
 
 ```js
@@ -33,7 +28,6 @@ registerVideoPlayer('your-prefix');
 >
 </your-prefix-prefix-video-player>
 ```
--->
 
 </vwc-tab-panel>
 <vwc-tab label="Vue"></vwc-tab>

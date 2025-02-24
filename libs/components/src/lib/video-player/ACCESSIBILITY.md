@@ -4,6 +4,7 @@
 
 - Providing a [**caption track**](/components/video-player/code/#types-of-text-track) not only helps people with hearing disabilities, but allows any user to watch a video when muted.
 - Providing an [**audio description track**](/components/video-player/code/#types-of-text-track) allows assistive technologies to describe to the user what is happenning in the video.
+- Although we have the option, [autoplaying videos](https://www.boia.org/blog/why-autoplay-is-an-accessibility-no-no) can be disruptive and annoying for users, and can negatively impact user experience.
 
 ## Resources
 
