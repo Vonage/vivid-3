@@ -5,7 +5,7 @@ import {
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
-import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
+import { CalendarPicker } from '../../shared/picker-field/mixins/calendar-picker';
 import {
 	type DateStr,
 	isValidDateStr,
@@ -27,7 +27,7 @@ import {
  */
 @errorText
 @formElements
-export class DatePicker extends DatePickerBase {
+export class DatePicker extends CalendarPicker {
 	/**
 	 * @internal
 	 */

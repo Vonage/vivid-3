@@ -9,7 +9,7 @@ import {
 import { TextField } from '../../lib/text-field/text-field';
 import { Popup } from '../../lib/popup/popup';
 import { Button } from '../../lib/button/button';
-import { DatePickerBase } from './date-picker-base';
+import { CalendarPicker } from '../picker-field/mixins/calendar-picker';
 import '../../lib/date-picker';
 import '../../lib/date-range-picker';
 
@@ -29,7 +29,7 @@ vi.mock('./calendar/dateStr.ts', async () => ({
 describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 	'%s',
 	(COMPONENT_TAG) => {
-		let element: DatePickerBase;
+		let element: CalendarPicker;
 		let textField: TextField;
 		let calendarButton: Button;
 		let popup: Popup;
@@ -89,7 +89,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 		beforeEach(async () => {
 			element = (await fixture(
 				`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-			)) as DatePickerBase;
+			)) as CalendarPicker;
 			textField = element.shadowRoot!.querySelector('.control') as TextField;
 			calendarButton = element.shadowRoot!.querySelector(
 				'#calendar-button'
@@ -716,7 +716,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			});
 
 			it('should attach to closest form', async () => {
-				const { form: formElement } = createFormHTML<DatePickerBase>({
+				const { form: formElement } = createFormHTML<CalendarPicker>({
 					componentTagName: COMPONENT_TAG,
 					fieldName,
 					fieldValue,
