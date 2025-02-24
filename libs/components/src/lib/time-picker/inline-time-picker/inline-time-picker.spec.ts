@@ -329,6 +329,17 @@ describe('vwc-inline-time-picker', () => {
 				expect.objectContaining({ bubbles: false })
 			);
 		});
+
+		it('should not be composed', () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			getPickerItem('hours', '03').click();
+
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ composed: false })
+			);
+		});
 	});
 
 	describe('last-column-selected event', () => {
