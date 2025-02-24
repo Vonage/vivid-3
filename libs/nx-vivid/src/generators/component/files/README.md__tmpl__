@@ -22,7 +22,7 @@ register<%= pascalCasedName %>('your-prefix');
 	register<%= pascalCasedName %>('your-prefix');
 </script>
 
-<your-prefix-<%= name %>><%= title %></your-prefix-<%= name %>>
+<your-prefix-<%= name %>></your-prefix-<%= name %>>
 ```
 
 </vwc-tab-panel>
