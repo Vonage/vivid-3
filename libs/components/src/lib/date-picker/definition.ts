@@ -2,11 +2,12 @@ import { popupDefinition } from '../popup/definition';
 import { buttonDefinition } from '../button/definition';
 import { textFieldDefinition } from '../text-field/definition';
 import { dividerDefinition } from '../divider/definition';
-import styles from '../../shared/date-picker/date-picker-base.scss?inline';
-import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
+import pickerFieldStyles from '../../shared/picker-field/picker-field.scss?inline';
+import calendarStyles from '../../shared/picker-field/mixins/calendar-picker.scss?inline';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { DatePicker } from './date-picker';
+import { DatePickerTemplate as template } from './date-picker.template';
 
 /**
  * @internal
@@ -17,7 +18,7 @@ export const datePickerDefinition = defineVividComponent(
 	template,
 	[buttonDefinition, popupDefinition, textFieldDefinition, dividerDefinition],
 	{
-		styles,
+		styles: [pickerFieldStyles, calendarStyles],
 		shadowOptions: {
 			delegatesFocus: true,
 		},

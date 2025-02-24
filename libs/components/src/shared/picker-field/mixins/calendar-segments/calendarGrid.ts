@@ -1,15 +1,15 @@
 import { addDays } from 'date-fns';
-import type { DatePickerLocale } from '../locale';
-import { type DateStr, formatDateStr } from './dateStr';
+import type { CalendarPickerLocale } from '../calendar-picker.locale';
+import { type DateStr, formatDateStr } from '../../../datetime/dateStr';
 
-import { type Month } from './month';
+import { type Month } from '../../../datetime/month';
 
 export interface Weekday {
 	name: string;
 	shortName: string;
 }
 
-const getWeekdays = (locale: DatePickerLocale) => {
+const getWeekdays = (locale: CalendarPickerLocale) => {
 	const firstDayOfWeek = locale.firstDayOfWeek;
 	const localeWeekdayToNative = (day: number): number =>
 		(day + firstDayOfWeek) % 7;
@@ -79,7 +79,7 @@ const buildDateGrid = (
 
 export const buildCalendarGrid = (
 	month: Month,
-	locale: DatePickerLocale
+	locale: CalendarPickerLocale
 ): CalendarGrid => {
 	// Shift week days to start from firstDayOfWeek
 	const { firstDayOfWeek } = locale;

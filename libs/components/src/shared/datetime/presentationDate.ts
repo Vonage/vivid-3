@@ -1,11 +1,11 @@
 import { format, parse } from 'date-fns';
-import type { DatePickerLocale } from '../locale';
+import type { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale';
 import { type DateStr, formatDateStr, parseDateStr } from './dateStr';
 
 /// Format to presentation date, which is the locale specific format (e.g. DD/MM/YYYY for en-GB)
 export const formatPresentationDate = (
 	dateStr: DateStr,
-	locale: DatePickerLocale
+	locale: CalendarPickerLocale
 ): string => {
 	const date = parseDateStr(dateStr);
 	return format(date, locale.dateFormat);
@@ -18,7 +18,7 @@ export const formatPresentationDate = (
  */
 export const parsePresentationDate = (
 	presentationDate: string,
-	locale: DatePickerLocale
+	locale: CalendarPickerLocale
 ): DateStr => {
 	const date = parse(presentationDate, locale.dateFormat, new Date());
 	return formatDateStr(date);

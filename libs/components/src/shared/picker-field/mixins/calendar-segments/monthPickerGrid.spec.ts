@@ -1,4 +1,4 @@
-import { type DatePickerLocale } from '../locale.ts';
+import { type CalendarPickerLocale } from '../calendar-picker.locale.ts';
 import { buildMonthPickerGrid } from './monthPickerGrid.ts';
 
 const enUsLocale = {
@@ -32,7 +32,7 @@ const enUsLocale = {
 			'Dec',
 		],
 	},
-} as DatePickerLocale;
+} as CalendarPickerLocale;
 describe('buildMonthPickerGrid', () => {
 	it('should return the correct 4 by 4 grid for the year 2023 and en-US locale', () => {
 		expect(buildMonthPickerGrid(2023, enUsLocale)).toMatchSnapshot();

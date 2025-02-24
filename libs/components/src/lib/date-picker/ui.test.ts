@@ -60,7 +60,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.locator('#date-picker #calendar-button').click();
+	await page.locator('#date-picker #picker-button').click();
 
 	// Prevent clicking the month picker from closing the date picker
 	await page.evaluate(() => {
@@ -68,7 +68,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		datePicker.addEventListener('click', (e) => e.stopPropagation());
 	});
 
-	await page.locator('#month-picker #calendar-button').click();
+	await page.locator('#month-picker #picker-button').click();
 
 	await page.locator('#month-picker .title-action').click();
 
@@ -95,7 +95,7 @@ test('selecting a date', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.locator('vwc-date-picker #calendar-button').click();
+	await page.locator('vwc-date-picker #picker-button').click();
 
 	await page.getByRole('gridcell', { name: '15' }).click();
 

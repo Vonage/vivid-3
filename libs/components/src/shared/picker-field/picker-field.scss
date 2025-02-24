@@ -1,0 +1,27 @@
+:host {
+	display: inline-block;
+}
+
+.base {
+	display: inline-block;
+	inline-size: 100%;
+}
+
+.control {
+	inline-size: 100%;
+}
+
+.dialog {
+	display: inline-flex;
+	flex-direction: column;
+	padding: 12px;
+	gap: 12px;
+
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 8px;
+		gap: 8px;
+	}
+}
