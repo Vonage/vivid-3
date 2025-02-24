@@ -88,14 +88,18 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('picker field', () => {
-		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
-			return {
-				firstFocusable: shadowRoot.querySelector(
-					'vwc-button[aria-label="Previous year"]'
-				)!,
-				lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
-			};
-		});
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				return {
+					firstFocusable: shadowRoot.querySelector(
+						'vwc-button[aria-label="Previous year"]'
+					)!,
+					lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+				};
+			},
+			'2020-02-02'
+		);
 	});
 
 	describe('calendar picker', () => {

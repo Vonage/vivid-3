@@ -3,5 +3,8 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import { PickerFieldTemplate } from '../../shared/picker-field/picker-field.template';
 
 export const DatePickerTemplate = (context: VividElementDefinitionContext) => {
-	return PickerFieldTemplate(context, CalendarPickerTemplate(context));
+	return PickerFieldTemplate(context, CalendarPickerTemplate(context), {
+		withSeparator: false,
+		padded: true,
+	});
 };
