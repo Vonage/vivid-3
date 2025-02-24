@@ -1,5 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { InlineTimePicker } from './inline-time-picker.ts';
+import { beforeEach } from 'vitest';
+import { TrappedFocus } from '../../../shared/patterns';
+import { InlineTimePicker } from './inline-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-inline-time-picker';
@@ -24,17 +26,15 @@ describe('vwc-inline-time-picker', () => {
 	const getLabels = (type: 'hours' | 'minutes' | 'seconds' | 'meridies') =>
 		getAllPickerItems(type).map((item) => item.innerHTML.trim());
 
-	const pressKey = (
-		key: string,
-		options: KeyboardEventInit = {},
-		triggerElement = false
-	) => {
-		const triggeredElement = triggerElement
-			? element
-			: element.shadowRoot!.activeElement;
-		triggeredElement!.dispatchEvent(
-			new KeyboardEvent('keydown', { key, bubbles: true, ...options })
-		);
+	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
+		const event = new KeyboardEvent('keydown', {
+			key,
+			bubbles: true,
+			composed: true,
+			...options,
+		});
+		element.shadowRoot!.activeElement!.dispatchEvent(event);
+		return event;
 	};
 
 	const isScrolledToTop = (element: HTMLElement) =>
@@ -329,6 +329,17 @@ describe('vwc-inline-time-picker', () => {
 				expect.objectContaining({ bubbles: false })
 			);
 		});
+
+		it('should not be composed', () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			getPickerItem('hours', '03').click();
+
+			expect(spy).toHaveBeenCalledWith(
+				expect.objectContaining({ composed: false })
+			);
+		});
 	});
 
 	describe('last-column-selected event', () => {
@@ -595,6 +606,51 @@ describe('vwc-inline-time-picker', () => {
 
 				expect(isScrolledIntoView(getPickerItem('hours', '00'))).toBe(true);
 			});
+
+			describe('focus trap support', () => {
+				const originalIgnoreEvent = TrappedFocus.ignoreEvent;
+				beforeEach(() => {
+					TrappedFocus.ignoreEvent = vi.fn();
+				});
+				afterEach(() => {
+					TrappedFocus.ignoreEvent = originalIgnoreEvent;
+				});
+
+				it('should call focus trap ignoreEvent on tab keydown when focused on non-terminal picker element', () => {
+					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
+
+					const event = pressKey('Tab');
+
+					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledTimes(1);
+					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledWith(event);
+				});
+
+				it('should not call focus trap ignoreEvent on tab keydown when focused on terminal picker element', () => {
+					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
+					pressKey('Tab', { shiftKey: true });
+					(
+						element.shadowRoot!.querySelector('#minutes') as HTMLElement
+					).focus();
+					pressKey('Tab');
+
+					expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
+				});
+			});
+		});
+	});
+
+	describe('focus method', () => {
+		it('should focus the first picker programmatically to avoid visual focus', async () => {
+			const firstPicker = element.shadowRoot!.querySelector(
+				'#hours'
+			) as HTMLElement;
+			const focusSpy = vi.spyOn(firstPicker, 'focus');
+			const options = {};
+
+			element.focus(options);
+
+			expect(element.shadowRoot!.activeElement).toBe(firstPicker);
+			expect(focusSpy).toHaveBeenCalledWith(options);
 		});
 	});
 });
