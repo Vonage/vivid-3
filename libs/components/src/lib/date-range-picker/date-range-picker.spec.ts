@@ -94,15 +94,19 @@ describe('vwc-date-range-picker', () => {
 	});
 
 	describe('picker field', () => {
-		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
-			const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
-				'.dialog button, .dialog vwc-button'
-			);
-			return {
-				firstFocusable: buttons[0],
-				lastFocusable: buttons[buttons.length - 1],
-			};
-		});
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
+					'.dialog button, .dialog vwc-button'
+				);
+				return {
+					firstFocusable: buttons[0],
+					lastFocusable: buttons[buttons.length - 1],
+				};
+			},
+			'01/01/2021 – 01/02/2021'
+		);
 	});
 
 	describe('calendar picker', () => {

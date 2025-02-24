@@ -88,15 +88,19 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('picker field', () => {
-		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
-			const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
-				'.dialog button, .dialog vwc-button'
-			);
-			return {
-				firstFocusable: buttons[0],
-				lastFocusable: buttons[buttons.length - 1],
-			};
-		});
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
+					'.dialog button, .dialog vwc-button'
+				);
+				return {
+					firstFocusable: buttons[0],
+					lastFocusable: buttons[buttons.length - 1],
+				};
+			},
+			'2020-02-02'
+		);
 	});
 
 	describe('calendar picker', () => {
