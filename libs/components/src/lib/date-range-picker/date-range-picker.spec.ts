@@ -95,12 +95,11 @@ describe('vwc-date-range-picker', () => {
 
 	describe('picker field', () => {
 		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
-			const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
-				'.dialog button, .dialog vwc-button'
-			);
 			return {
-				firstFocusable: buttons[0],
-				lastFocusable: buttons[buttons.length - 1],
+				firstFocusable: shadowRoot.querySelector(
+					'vwc-button[aria-label="Previous Month"]'
+				)!,
+				lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
 			};
 		});
 	});
