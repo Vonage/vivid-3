@@ -1,4 +1,4 @@
-import { DatePickerLocale } from '../locale.ts';
+import { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale.ts';
 import {
 	formatPresentationDateRange,
 	formatRange,
@@ -7,7 +7,7 @@ import {
 
 const enUsLocale = {
 	dateFormat: 'MM/dd/yyyy',
-} as DatePickerLocale;
+} as CalendarPickerLocale;
 
 describe('formatRange', () => {
 	it('should format a range', () => {

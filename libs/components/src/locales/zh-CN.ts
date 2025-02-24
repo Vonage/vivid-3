@@ -7,7 +7,11 @@ const zhCN: Locale = {
 	common: {
 		useCommaAsDecimalSeparator: false,
 	},
-	datePicker: {
+	pickerField: {
+		clearLabel: '清除',
+		okLabel: '确定',
+	},
+	calendarPicker: {
 		months: {
 			name: [
 				'一月',
@@ -63,8 +67,6 @@ const zhCN: Locale = {
 		prevMonthLabel: '上个月',
 		nextMonthLabel: '下个月',
 		nextYearLabel: '下一年',
-		clearLabel: '清除',
-		okLabel: '确定',
 		invalidDateError: '请输入有效的日期。',
 		invalidDateRangeError: '请输入有效的日期范围。',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
@@ -81,8 +83,6 @@ const zhCN: Locale = {
 		minutesLabel: '分钟',
 		secondsLabel: '秒',
 		meridiesLabel: '上午/下午',
-		clearLabel: '清除',
-		okLabel: '确定',
 		invalidTimeError: '请输入有效的时间。',
 	},
 	filePicker: {
