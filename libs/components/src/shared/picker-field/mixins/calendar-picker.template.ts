@@ -1,27 +1,30 @@
 import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Button } from '../../lib/button/button';
-import { Popup } from '../../lib/popup/popup';
-import { TextField } from '../../lib/text-field/text-field';
-import { Divider } from '../../lib/divider/divider';
-import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
-import type { CalendarGridDate, Weekday } from './calendar/calendarGrid';
-import { areMonthsEqual, monthToStr } from './calendar/month';
-import type { MonthPickerGridCell } from './calendar/monthPickerGrid';
-import type { DatePickerBase } from './date-picker-base';
+import { Button } from '../../../lib/button/button';
+import { Popup } from '../../../lib/popup/popup';
+import { TextField } from '../../../lib/text-field/text-field';
+import { Divider } from '../../../lib/divider/divider';
+import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
+import type {
+	CalendarGridDate,
+	Weekday,
+} from '../../date-picker/calendar/calendarGrid';
+import { areMonthsEqual, monthToStr } from '../../date-picker/calendar/month';
+import type { MonthPickerGridCell } from '../../date-picker/calendar/monthPickerGrid';
 import type {
 	CalendarSegment,
 	MonthPickerSegment,
 	Segment,
-} from './calendar/segment';
+} from '../../date-picker/calendar/segment';
+import type { CalendarPicker } from './calendar-picker';
 
 function renderDialogHeader(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
 
-	return html<Segment, DatePickerBase>`<div class="header">
+	return html<Segment, CalendarPicker>`<div class="header">
 		${when(
 			(x) => x.prevYearButton,
-			html<Segment, DatePickerBase>`
+			html<Segment, CalendarPicker>`
 					<${buttonTag}
 						tabindex="1"
 						class="vwc-button"
@@ -38,7 +41,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 		)}
 		${when(
 			(x) => x.prevMonthButton,
-			html<Segment, DatePickerBase>`
+			html<Segment, CalendarPicker>`
 					<${buttonTag}
 						tabindex="1"
 						class="vwc-button"
@@ -53,7 +56,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 		<div class="title">
 			${when(
 				(x) => x.titleClickable,
-				html<Segment, DatePickerBase>`
+				html<Segment, CalendarPicker>`
 					<button
 						tabindex="1"
 						id="${(x) => `grid-label-${x.id}`}"
@@ -67,7 +70,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 			)}
 			${when(
 				(x) => !x.titleClickable,
-				html<Segment, DatePickerBase>`
+				html<Segment, CalendarPicker>`
 					<div
 						id="${(x) => `grid-label-${x.id}`}"
 						class="title-action"
@@ -81,7 +84,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 
 		${when(
 			(x) => x.nextMonthButton,
-			html<Segment, DatePickerBase>`
+			html<Segment, CalendarPicker>`
 				<${buttonTag}
 					tabindex="1"
 					class="vwc-button"
@@ -95,7 +98,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 		)}
 		${when(
 			(x) => x.nextYearButton,
-			html<Segment, DatePickerBase>`
+			html<Segment, CalendarPicker>`
 				<${buttonTag}
 					tabindex="1"
 					class="vwc-button"
@@ -116,7 +119,7 @@ function renderDialogHeader(context: VividElementDefinitionContext) {
 function renderCalendarGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
-	return html<CalendarSegment, DatePickerBase>`<div
+	return html<CalendarSegment, CalendarPicker>`<div
 		class="calendar"
 		role="grid"
 		aria-labelledby="${(x) => `grid-label-${x.id}`}"
@@ -222,7 +225,7 @@ function renderCalendarGrid(context: VividElementDefinitionContext) {
 function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 	const dividerTag = context.tagFor(Divider);
 
-	return html<MonthPickerSegment, DatePickerBase>`
+	return html<MonthPickerSegment, CalendarPicker>`
 		<${dividerTag}
 			class="months-separator"
 			role="presentation"
@@ -304,14 +307,14 @@ function renderMonthPickerGrid(context: VividElementDefinitionContext) {
 	</div>`;
 }
 
-export const DatePickerBaseTemplate = (
+export const CalendarPickerTemplate = (
 	context: VividElementDefinitionContext
 ) => {
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
 
-	return html<DatePickerBase>`<div class="base" @keydown="${(x, { event }) =>
+	return html<CalendarPicker>`<div class="base" @keydown="${(x, { event }) =>
 		x._onBaseKeyDown(event as KeyboardEvent)}">
 		<${textFieldTag} id="text-field"
 										 ${ref('_textFieldEl')}
@@ -361,11 +364,11 @@ export const DatePickerBaseTemplate = (
 							${renderDialogHeader(context)}
 							${when(
 								(x) => x.type === 'month-picker',
-								html<DatePickerBase>`${renderMonthPickerGrid(context)}`
+								html<CalendarPicker>`${renderMonthPickerGrid(context)}`
 							)}
 							${when(
 								(x) => x.type === 'calendar',
-								html<DatePickerBase>`${renderCalendarGrid(context)}`
+								html<CalendarPicker>`${renderCalendarGrid(context)}`
 							)}
 						</div>`
 					)}

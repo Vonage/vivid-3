@@ -3,7 +3,7 @@ import { popupDefinition } from '../popup/definition';
 import { textFieldDefinition } from '../text-field/definition';
 import { dividerDefinition } from '../divider/definition';
 import styles from '../../shared/date-picker/date-picker-base.scss?inline';
-import { DatePickerBaseTemplate as template } from '../../shared/date-picker/date-picker-base.template';
+import { CalendarPickerTemplate as template } from '../../shared/picker-field/mixins/calendar-picker.template';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { DateRangePicker } from './date-range-picker';

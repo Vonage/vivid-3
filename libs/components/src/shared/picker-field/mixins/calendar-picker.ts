@@ -8,18 +8,18 @@ import {
 	type ValueConverter,
 	volatile,
 } from '@microsoft/fast-element';
-import type { TextField } from '../../lib/text-field/text-field';
-import type { Button } from '../../lib/button/button';
-import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
-import { applyMixinsWithObservables } from '../utils/applyMixinsWithObservables';
-import { handleEscapeKeyAndStopPropogation } from '../dialog/index';
+import type { TextField } from '../../../lib/text-field/text-field';
+import type { Button } from '../../../lib/button/button';
+import { FormElementHelperText, Localized, TrappedFocus } from '../../patterns';
+import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables';
+import { handleEscapeKeyAndStopPropogation } from '../../dialog';
 import {
 	addDays,
 	compareDateStr,
 	currentDateStr,
 	type DateStr,
 	isValidDateStr,
-} from './calendar/dateStr';
+} from '../../date-picker/calendar/dateStr';
 import {
 	addMonths,
 	compareMonths,
@@ -27,16 +27,19 @@ import {
 	type Month,
 	monthOfDate,
 	monthToStr,
-} from './calendar/month';
-import { buildCalendarGrid } from './calendar/calendarGrid';
-import { buildMonthPickerGrid, MonthsPerRow } from './calendar/monthPickerGrid';
-import { yearOfDate } from './calendar/year';
-import { FormAssociatedDatePickerBase } from './date-picker-base.form-associated';
+} from '../../date-picker/calendar/month';
+import { buildCalendarGrid } from '../../date-picker/calendar/calendarGrid';
+import {
+	buildMonthPickerGrid,
+	MonthsPerRow,
+} from '../../date-picker/calendar/monthPickerGrid';
+import { yearOfDate } from '../../date-picker/calendar/year';
+import { FormAssociatedDatePickerBase } from '../../date-picker/date-picker-base.form-associated';
 import type {
 	CalendarSegment,
 	MonthPickerSegment,
 	Segment,
-} from './calendar/segment';
+} from '../../date-picker/calendar/segment';
 
 /// Converter ensures that the value is always a valid date string or empty string
 const ValidDateFilter: ValueConverter = {
@@ -58,7 +61,7 @@ const ValidDateFilter: ValueConverter = {
  *
  * @public
  */
-export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
+export abstract class CalendarPicker extends FormAssociatedDatePickerBase {
 	// --- Attributes ---
 	abstract label: string;
 
@@ -845,7 +848,7 @@ export interface DatePickerBase
 		FormElementHelperText,
 		TrappedFocus {}
 applyMixinsWithObservables(
-	DatePickerBase,
+	CalendarPicker,
 	Localized,
 	FormElementHelperText,
 	TrappedFocus

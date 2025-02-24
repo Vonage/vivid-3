@@ -15,7 +15,7 @@ import {
 	formatRange,
 	parsePresentationDateRange,
 } from '../../shared/date-picker/calendar/presentationDateRange';
-import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
+import { CalendarPicker } from '../../shared/picker-field/mixins/calendar-picker';
 import { formatPresentationDate } from '../../shared/date-picker/calendar/presentationDate';
 import type { DateRange } from '../../shared/date-picker/calendar/dateRange';
 
@@ -40,7 +40,7 @@ function isDefined<T>(value: T | null | undefined): value is T {
  */
 @errorText
 @formElements
-export class DateRangePicker extends DatePickerBase {
+export class DateRangePicker extends CalendarPicker {
 	/**
 	 * The initial start value. This value sets the `start` property
 	 * only when the `start` property has not been explicitly set.
