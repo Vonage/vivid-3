@@ -14,7 +14,13 @@ import type { PickerField } from './picker-field';
 /**
  * Common tests for picker fields components.
  */
-export const pickerFieldSpec = (COMPONENT_TAG: string) => {
+export const pickerFieldSpec = (
+	COMPONENT_TAG: string,
+	getFocusableElements: (shadowRoot: ShadowRoot) => {
+		firstFocusable: HTMLElement;
+		lastFocusable: HTMLElement;
+	}
+) => {
 	let element: PickerField;
 	let textField: TextField;
 	let pickerButton: Button;
@@ -227,12 +233,9 @@ export const pickerFieldSpec = (COMPONENT_TAG: string) => {
 
 		beforeEach(async () => {
 			await openPopup();
-			const buttons: NodeListOf<HTMLElement> =
-				element.shadowRoot!.querySelectorAll(
-					'.dialog button, .dialog vwc-button'
-				);
-			firstFocusable = buttons[0];
-			lastFocusable = buttons[buttons.length - 1];
+			({ firstFocusable, lastFocusable } = getFocusableElements(
+				element.shadowRoot!
+			));
 		});
 
 		it('should move focus to first focusable element when pressing tab on the last focusable element', async () => {

@@ -88,7 +88,15 @@ describe('vwc-date-picker', () => {
 	});
 
 	describe('picker field', () => {
-		pickerFieldSpec(COMPONENT_TAG);
+		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
+			const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
+				'.dialog button, .dialog vwc-button'
+			);
+			return {
+				firstFocusable: buttons[0],
+				lastFocusable: buttons[buttons.length - 1],
+			};
+		});
 	});
 
 	describe('calendar picker', () => {
