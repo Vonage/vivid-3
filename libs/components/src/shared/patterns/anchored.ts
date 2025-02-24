@@ -1,22 +1,16 @@
 import { attr, DOM, html, observable, slotted } from '@microsoft/fast-element';
+import { VividElement } from '../foundation/vivid-element/vivid-element';
+import type { Constructor, MixinType } from '../utils/mixins';
 
 type AnchorType = string | HTMLElement;
-
-export interface Anchored {
-	anchor?: AnchorType;
-	_slottedAnchor?: HTMLElement | null;
-	_anchorEl?: HTMLElement | null;
-}
 
 /**
  * Mixin for elements that are anchored to another element.
  * The anchor can be specified either through the anchor slot or by using the anchor prop with an ID or direct reference.
  * The resolved anchor element is available as `_anchorEl` while the element is connected.
  */
-export function anchored<
-	T extends { new (...args: any[]): Record<string, any> }
->(constructor: T) {
-	class Decorated extends constructor {
+export const Anchored = <T extends Constructor<VividElement>>(Base: T) => {
+	class AnchoredElement extends Base {
 		/**
 		 * ID or direct reference to the component's anchor element.
 		 *
@@ -96,20 +90,25 @@ export function anchored<
 			this.#observer = undefined;
 		};
 
-		connectedCallback() {
+		override connectedCallback() {
 			super.connectedCallback();
 			this.#updateAnchorEl();
 		}
 
-		disconnectedCallback() {
+		override disconnectedCallback() {
 			super.disconnectedCallback();
 			this.#cleanupObserverIfNeeded();
 			this._anchorEl = undefined;
 		}
 	}
 
-	return Decorated;
-}
+	return AnchoredElement;
+};
+
+export type AnchoredElement = MixinType<typeof Anchored>;
 
 export const anchorSlotTemplateFactory = () =>
-	html<Anchored>`<slot name="anchor" ${slotted('_slottedAnchor')}></slot>`;
+	html<AnchoredElement>`<slot
+		name="anchor"
+		${slotted('_slottedAnchor')}
+	></slot>`;
