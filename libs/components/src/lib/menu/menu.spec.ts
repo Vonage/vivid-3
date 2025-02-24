@@ -720,7 +720,7 @@ describe('vwc-menu', () => {
 			expect(item.checked).toBe(true);
 		});
 
-		it('should handle menu items being synchronously checked after being connected', async () => {
+		it('should gracefully fail when a menu item is checked synchronously after connecting the menu', async () => {
 			const menu = document.createElement(COMPONENT_TAG) as Menu;
 			const menuItem1 = document.createElement('vwc-menu-item') as MenuItem;
 			const menuItem2 = document.createElement('vwc-menu-item') as MenuItem;
