@@ -11,8 +11,8 @@ import { TimeSelectionPicker } from '../../shared/picker-field/mixins/time-selec
 import {
 	formatPresentationTime,
 	parsePresentationTime,
-} from './time/presentationTime';
-import { isValidTimeStr, type TimeStr } from './time/time';
+} from '../../shared/datetime/presentationTime';
+import { isValidTimeStr, type TimeStr } from '../../shared/datetime/time';
 
 /// Converter ensures that the value is always a valid time string or empty string
 const ValidTimeFilter: ValueConverter = {

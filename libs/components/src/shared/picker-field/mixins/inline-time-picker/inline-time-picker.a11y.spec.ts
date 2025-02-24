@@ -1,6 +1,6 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { InlineTimePicker } from './inline-time-picker';
-import '.';
+import './index';
 
 const COMPONENT_TAG = 'vwc-inline-time-picker';
 

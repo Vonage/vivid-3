@@ -1,6 +1,6 @@
 import { html, ref } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
-import { InlineTimePicker } from '../../../lib/time-picker/inline-time-picker/inline-time-picker';
+import { InlineTimePicker } from './inline-time-picker/inline-time-picker';
 import type { TimeSelectionPickerElement } from './time-selection-picker';
 
 export const TimeSelectionPickerTemplate = (

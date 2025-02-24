@@ -3,7 +3,7 @@ import {
 	hoursAs12hClock,
 	parseTimeStr,
 	type TimeStr,
-} from './time';
+} from '../../../datetime/time';
 
 export interface PickerOption {
 	value: string; // e.g. '13'

@@ -1,8 +1,8 @@
 import { observable } from '@microsoft/fast-element';
-import { VividElement } from '../../../shared/foundation/vivid-element/vivid-element';
-import { isValidTimeStr } from '../time/time';
-import { Localized } from '../../../shared/patterns';
-import { applyMixinsWithObservables } from '../../../shared/utils/applyMixinsWithObservables';
+import { VividElement } from '../../../foundation/vivid-element/vivid-element';
+import { isValidTimeStr } from '../../../datetime/time';
+import { Localized } from '../../../patterns';
+import { applyMixinsWithObservables } from '../../../utils/applyMixinsWithObservables';
 import {
 	scrollToOption,
 	shouldDisplay12hClock,

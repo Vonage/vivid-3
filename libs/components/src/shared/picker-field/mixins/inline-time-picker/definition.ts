@@ -1,5 +1,5 @@
-import { defineVividComponent } from '../../../shared/design-system/defineVividComponent';
-import { createRegisterFunction } from '../../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../../design-system/defineVividComponent';
+import { createRegisterFunction } from '../../../design-system/createRegisterFunction';
 import { InlineTimePicker } from './inline-time-picker';
 import { InlineTimePickerTemplate as template } from './inline-time-picker.template';
 import styles from './inline-time-picker.scss?inline';

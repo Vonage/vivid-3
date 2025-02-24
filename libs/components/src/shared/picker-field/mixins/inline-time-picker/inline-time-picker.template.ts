@@ -1,8 +1,8 @@
 import { html, repeat, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { type PickerOption } from '../time/picker';
-import { scrollIntoView } from '../../../shared/utils/scrollIntoView';
-import { TrappedFocus } from '../../../shared/patterns';
+import { scrollIntoView } from '../../../utils/scrollIntoView';
+import { TrappedFocus } from '../../../patterns';
+import { type PickerOption } from './picker-option';
 import type { InlineTimePicker } from './inline-time-picker';
 import {
 	type Column,

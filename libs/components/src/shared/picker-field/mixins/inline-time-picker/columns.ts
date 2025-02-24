@@ -1,11 +1,11 @@
+import { formatTimePart, parseTimeStr } from '../../../datetime/time';
 import {
 	getHoursOptions,
 	getMeridiesOptions,
 	getMinutesOptions,
 	getSecondsOptions,
 	type PickerOption,
-} from '../time/picker';
-import { formatTimePart, parseTimeStr } from '../time/time';
+} from './picker-option';
 import type { InlineTimePicker } from './inline-time-picker';
 
 export type Column = {

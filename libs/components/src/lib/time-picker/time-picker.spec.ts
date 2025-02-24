@@ -6,8 +6,8 @@ import { TextField } from '../text-field/text-field.ts';
 import enGB from '../../locales/en-GB.ts';
 import enUS from '../../locales/en-US.ts';
 import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import type { InlineTimePicker } from '../../shared/picker-field/mixins/inline-time-picker/inline-time-picker';
 import { TimePicker } from './time-picker';
-import type { InlineTimePicker } from './inline-time-picker/inline-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-time-picker';
