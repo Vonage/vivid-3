@@ -9,8 +9,10 @@ import enUS from '../../locales/en-US';
 import { TextField } from '../text-field/text-field';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
-import { DateRangePicker } from './date-range-picker';
 import '.';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
+import { DateRangePicker } from './date-range-picker';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
 
@@ -89,6 +91,30 @@ describe('vwc-date-range-picker', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
+			const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
+				'.dialog button, .dialog vwc-button'
+			);
+			return {
+				firstFocusable: buttons[0],
+				lastFocusable: buttons[buttons.length - 1],
+			};
+		});
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DateRangePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DateRangePicker, max: string) => {
+				element.max = max;
+			}
+		);
 	});
 
 	describe('start', () => {

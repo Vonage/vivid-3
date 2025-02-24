@@ -9,6 +9,8 @@ import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
 import { DatePicker } from './date-picker';
 import '.';
 
@@ -83,6 +85,30 @@ describe('vwc-date-picker', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
+			const buttons: NodeListOf<HTMLElement> = shadowRoot!.querySelectorAll(
+				'.dialog button, .dialog vwc-button'
+			);
+			return {
+				firstFocusable: buttons[0],
+				lastFocusable: buttons[buttons.length - 1],
+			};
+		});
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DatePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DatePicker, max: string) => {
+				element.max = max;
+			}
+		);
 	});
 
 	describe('value', () => {
