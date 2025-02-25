@@ -400,6 +400,10 @@ export class Menu extends Anchored(VividElement) {
 	 * @internal
 	 */
 	_onChange(e: Event) {
+		if (this.menuItems === undefined) {
+			return;
+		}
+
 		const clickedOnNonCheckboxMenuItem =
 			e.target instanceof HTMLElement &&
 			(e.target.role === 'menuitem' || e.target.role === 'menuitemradio');
