@@ -103,8 +103,7 @@ function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 		const title = `		"title": "${toTitleCase(className)}",`
 		const lines = tree.read(componentsPath, 'utf8').split('\n');
 		if (lines.indexOf(title) === -1) {
-			const toAdd = `,
-	{
+			const toAdd = `	{
 ${title}
 		"description": "",
 		"variations": "./libs/components/src/lib/${name}/VARIATIONS.md",
@@ -114,8 +113,9 @@ ${title}
 		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
 		"underlying": "true"
 	}`
-			lines.push(toAdd);
-			tree.write(componentsPath, lines.join('\n'));
+			console.log(lines[lines.length - 2]);
+			// lines.push(toAdd);
+			// tree.write(componentsPath, lines.join('\n'));
 		}
 	}
 }
