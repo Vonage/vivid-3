@@ -1,45 +1,91 @@
-# <%= title %>
+## Usage
 
-Represents a <%= name %> custom element.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type='module'>
-  import '@vonage/vivid/<%= name %>';
-</script>
+import '@vonage/vivid/<%= name %>';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { register<%= pascalCasedName %>' } from '@vonage/vivid';
+
+register<%= pascalCasedName %>('your-prefix');
 ```
 
 ```html preview
-<vwc-<%= name %>></vwc-<%= name %>>
+<script type="module">
+	import { register<%= pascalCasedName %> } from '@vonage/vivid';
+	register<%= pascalCasedName %>('your-prefix');
+</script>
+
+<your-prefix-<%= name %>></your-prefix-<%= name %>>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { V<%= pascalCasedName %> } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<V<%= pascalCasedName %>><%= title %></<V<%= pascalCasedName %>>
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
+
 ## CSS Variables
 
-## Events
+
+## API Reference
+
+### Properties
 
 <div class="table-wrapper">
 
-| Name    | Description                                                                                                                                                   |
-| ------- | ----------- |
-|         |             |
+| Name              | Type      | Description             |
+| ----------------- | --------- | ----------------------- |
+| **property-name** | `boolean` | Description of property |
 
 </div>
 
-## Methods
+### Slots
 
 <div class="table-wrapper">
 
-| Name        | Returns | Description                                                                                          |
-| ----------- | ------- | ------------ |
-|             |         |              |
+| Name          | Description      |
+| ------------- | ---------------- |
+| **slot-name** | Slot description |
 
 </div>
 
-## Properties
+### Events
 
-## Accessibility
+<div class="table-wrapper">
 
-## Use Cases
+| Name           | Event Type   | Description           |
+| -------------- | ------------ | --------------------- |
+| **event-name** | `MouseEvent` | Description of event. |
+
+</div>
+
+### Methods
+
+<div class="table-wrapper">
+
+| Name            | Returns | Description           |
+| --------------- | ------- | --------------------- |
+| **method-name** | `void`  | Description of method |
+
+</div>
