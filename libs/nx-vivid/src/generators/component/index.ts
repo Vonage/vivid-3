@@ -121,6 +121,7 @@ ${title}
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/${name}/README.md",
 		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/${name}/USE-CASES.md",
 		"status": "underlying"
 	}`
 			if (lines[lines.length - 3] === '	}') lines[lines.length - 3] = '	},';
