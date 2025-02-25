@@ -4,7 +4,7 @@ import type { AbstractConstructor } from '../../utils/mixins';
 import type { CalendarPickerElement } from './calendar-picker';
 
 /// Converter ensures that the value is always a valid time string or empty string
-const ValidDateFilter: ValueConverter = {
+export const ValidDateFilter: ValueConverter = {
 	fromView: (value: string) => {
 		if (value && isValidDateStr(value)) {
 			return value;
@@ -48,7 +48,7 @@ export const MinMaxCalendarPicker = <
 		/**
 		 * @internal
 		 */
-		get _minDate(): DateStr | '' {
+		get _resolvedMinDate(): DateStr | '' {
 			return this.min;
 		}
 
@@ -76,7 +76,7 @@ export const MinMaxCalendarPicker = <
 		 * The latest accepted date.
 		 * @internal
 		 */
-		get _maxDate(): DateStr | '' {
+		get _resolvedMaxDate(): DateStr | '' {
 			return this.max;
 		}
 
