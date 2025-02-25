@@ -55,6 +55,8 @@ function toPascalCase(string: string): string {
 function createFiles(tree: Tree, options: NormalizedSchema) {
 	const { className, name, propertyName } = names(options.name);
 
+	console.log('createFiles', tree);
+
 	generateFiles(tree, join(__dirname, './files'), options.projectRoot, {
 		...options,
 		dot: '.',
