@@ -37,8 +37,7 @@ function normalizeOptions(
 
 	const docsRoot = joinPathFragments(
 		appsDir,
-		'docs/content/_data',
-		projectDirectory
+		'docs/content/_data'
 	);
 
 	return {
