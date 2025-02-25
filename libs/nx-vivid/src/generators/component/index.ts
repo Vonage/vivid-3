@@ -20,7 +20,7 @@ function toPascalCase(string: string): string {
 }
 
 function toTitleCase(string: string): string {
-	return string.replace(/([A-Z])/g, ' $1').trim()
+	return string.replace(/([A-Z])/g, ' $1').trim();
 }
 
 export interface NormalizedSchema extends VividComponentGeneratorOptions {
@@ -44,7 +44,7 @@ function normalizeOptions(
 	const fileName = names(projectDirectory).fileName;
 	const titleCasedName = toTitleCase(className);
 	const pascalCasedName = toPascalCase(className);
-	const camelCasedName = className[0].toLowerCase() + className.substr(1)
+	const camelCasedName = className[0].toLowerCase() + className.substr(1);
 
 	const { libsDir, appsDir } = getWorkspaceLayout(tree);
 
@@ -54,10 +54,7 @@ function normalizeOptions(
 		projectDirectory
 	);
 
-	const docsRoot = joinPathFragments(
-		appsDir,
-		'docs/content/_data'
-	);
+	const docsRoot = joinPathFragments(appsDir, 'docs/content/_data');
 
 	return {
 		...options,
@@ -109,7 +106,7 @@ function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 	const componentsPath = `apps/docs/content/_data/components.json`;
 	const { name, addToDocs, titleCasedName } = options;
 	if (addToDocs && tree.exists(componentsPath)) {
-		const title = `		"title": "${titleCasedName}",`
+		const title = `		"title": "${titleCasedName}",`;
 		const lines = tree.read(componentsPath, 'utf8').split('\n');
 
 		if (lines.indexOf(title) === -1) {
@@ -123,7 +120,7 @@ ${title}
 		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/${name}/USE-CASES.md",
 		"status": "underlying"
-	}`
+	}`;
 			if (lines[lines.length - 3] === '	}') lines[lines.length - 3] = '	},';
 			lines.splice(lines.length - 2, 0, toAdd);
 			tree.write(componentsPath, lines.join('\n'));
