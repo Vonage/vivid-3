@@ -14,6 +14,7 @@ export interface NormalizedSchema extends VividComponentGeneratorOptions {
 	fileName: string;
 	className: string;
 	projectRoot: string;
+	docsRoot: string;
 }
 
 function normalizeOptions(
@@ -26,11 +27,17 @@ function normalizeOptions(
 	const name = projectDirectory.replace(new RegExp('/', 'g'), '-');
 	const fileName = names(projectDirectory).fileName;
 
-	const { libsDir } = getWorkspaceLayout(tree);
+	const { libsDir, appsDir } = getWorkspaceLayout(tree);
 
 	const projectRoot = joinPathFragments(
 		libsDir,
 		'components/src/lib',
+		projectDirectory
+	);
+
+	const docsRoot = joinPathFragments(
+		appsDir,
+		'docs/content/_data',
 		projectDirectory
 	);
 
@@ -40,6 +47,7 @@ function normalizeOptions(
 		name,
 		className,
 		projectRoot,
+		docsRoot,
 	};
 }
 
@@ -54,8 +62,6 @@ function toPascalCase(string: string): string {
 
 function createFiles(tree: Tree, options: NormalizedSchema) {
 	const { className, name, propertyName } = names(options.name);
-
-	console.log('createFiles', tree);
 
 	generateFiles(tree, join(__dirname, './files'), options.projectRoot, {
 		...options,
@@ -86,6 +92,13 @@ function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
 	}
 }
 
+function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
+	const componentsPath = `apps/docs/content/_data/components.json`;
+	if (options.addToDocs && tree.exists(componentsPath)) {
+		console.log('addToDocs', options);
+	}
+}
+
 export default async function vividComponentGenerator(
 	tree: Tree,
 	schema: VividComponentGeneratorOptions
@@ -93,6 +106,7 @@ export default async function vividComponentGenerator(
 	const options = normalizeOptions(tree, schema);
 	createFiles(tree, options);
 	updateComponentsExports(tree, options);
+	updateDocsComponentList(tree, options);
 
 	await formatFiles(tree);
 }
