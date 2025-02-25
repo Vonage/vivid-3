@@ -85,6 +85,20 @@ const jaJP: Locale = {
 		meridiesLabel: '午前/午後',
 		invalidTimeError: '有効な時間を入力してください。',
 	},
+	dateTimePicker: {
+		chooseDateTimeLabel: '日付と時刻を選択',
+		changeDateTimeLabel: /* istanbul ignore next */ (dateTime: string) =>
+			`日付と時刻を変更, ${dateTime}`,
+		invalidDateTimeError: '有効な日付と時刻を入力してください。',
+		dateBeforeMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`日付は${minDate}以降である必要があります。`,
+		dateAfterMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`日付は${maxDate}以前である必要があります。`,
+		timeBeforeMinTimeError: /* istanbul ignore next */ (minTime: string) =>
+			`時刻は${minTime}以降である必要があります。`,
+		timeAfterMaxTimeError: /* istanbul ignore next */ (maxTime: string) =>
+			`時刻は${maxTime}以前である必要があります。`,
+	},
 	filePicker: {
 		invalidFileTypeError: 'この種類のファイルは選択できません。',
 		maxFilesExceededError: 'これ以上ファイルを選択できません。',

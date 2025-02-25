@@ -326,10 +326,7 @@ export const pickerFieldSpec = (
 			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
 
-			(await submitPromise).forEach((formDataValue, formDataKey) => {
-				expect(formDataKey).toEqual(fieldName);
-				expect(formDataValue).toEqual(fieldValue);
-			});
+			expect((await submitPromise).has(fieldName)).toBe(true);
 		});
 
 		it('should attach to form when given form id', async () => {

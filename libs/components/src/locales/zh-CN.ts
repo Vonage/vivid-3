@@ -85,6 +85,20 @@ const zhCN: Locale = {
 		meridiesLabel: '上午/下午',
 		invalidTimeError: '请输入有效的时间。',
 	},
+	dateTimePicker: {
+		chooseDateTimeLabel: '选择日期和时间',
+		changeDateTimeLabel: /* istanbul ignore next */ (dateTime: string) =>
+			`更改日期和时间, ${dateTime}`,
+		invalidDateTimeError: '请输入有效的日期和时间。',
+		dateBeforeMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`日期必须是${minDate}或之后。`,
+		dateAfterMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`日期必须是${maxDate}或��前。`,
+		timeBeforeMinTimeError: /* istanbul ignore next */ (minTime: string) =>
+			`时间必须是${minTime}或之后。`,
+		timeAfterMaxTimeError: /* istanbul ignore next */ (maxTime: string) =>
+			`时间必须是${maxTime}或之前。`,
+	},
 	filePicker: {
 		invalidFileTypeError: '您不能选择此类型的文件。',
 		maxFilesExceededError: '您不能再选择任何文件。',

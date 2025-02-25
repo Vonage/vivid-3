@@ -85,6 +85,20 @@ const enUS: Locale = {
 		meridiesLabel: 'AM/PM',
 		invalidTimeError: 'Please enter a valid time.',
 	},
+	dateTimePicker: {
+		chooseDateTimeLabel: 'Choose date and time',
+		changeDateTimeLabel: /* istanbul ignore next */ (dateTime: string) =>
+			`Change date and time, ${dateTime}`,
+		invalidDateTimeError: 'Please enter a valid date and time.',
+		dateBeforeMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`Date must be ${minDate} or later.`,
+		dateAfterMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`Date must be ${maxDate} or earlier.`,
+		timeBeforeMinTimeError: /* istanbul ignore next */ (minTime: string) =>
+			`Time must be ${minTime} or later.`,
+		timeAfterMaxTimeError: /* istanbul ignore next */ (maxTime: string) =>
+			`Time must be ${maxTime} or earlier.`,
+	},
 	filePicker: {
 		invalidFileTypeError: "You can't select files of this type.",
 		maxFilesExceededError: "You can't select any more files.",
