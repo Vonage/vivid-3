@@ -10,6 +10,19 @@ import {
 import { VividComponentGeneratorOptions } from './schema';
 import { join } from 'path';
 
+function toPascalCase(string: string): string {
+	return string
+		.replace(/([a-z])([A-Z])/g, '$1 $2') // Splits camelCase words into separate words
+		.replace(/[-_]+|[^\p{L}\p{N}]/gu, ' ') // Replaces dashes, underscores, and special characters with spaces
+		.toLowerCase() // Converts the entire string to lowercase
+		.replace(/(?:^|\s)(\p{L})/gu, (_, letter) => letter.toUpperCase()) // Capitalizes the first letter of each word
+		.replace(/\s+/g, ''); // Removes all spaces
+}
+
+function toTitleCase(string: string): string {
+	return string.replace(/([A-Z])/g, ' $1').trim()
+}
+
 export interface NormalizedSchema extends VividComponentGeneratorOptions {
 	fileName: string;
 	className: string;
@@ -50,15 +63,6 @@ function normalizeOptions(
 	};
 }
 
-function toPascalCase(string: string): string {
-	return string
-		.replace(/([a-z])([A-Z])/g, '$1 $2') // Splits camelCase words into separate words
-		.replace(/[-_]+|[^\p{L}\p{N}]/gu, ' ') // Replaces dashes, underscores, and special characters with spaces
-		.toLowerCase() // Converts the entire string to lowercase
-		.replace(/(?:^|\s)(\p{L})/gu, (_, letter) => letter.toUpperCase()) // Capitalizes the first letter of each word
-		.replace(/\s+/g, ''); // Removes all spaces
-}
-
 function createFiles(tree: Tree, options: NormalizedSchema) {
 	const { className, name, propertyName } = names(options.name);
 
@@ -66,7 +70,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
 		...options,
 		dot: '.',
 		className,
-		title: className.replace(/([A-Z])/g, ' $1').trim(),
+		title: toTitle(className),
 		name,
 		propertyName,
 		camelCasedName: className[0].toLowerCase() + className.substr(1),
@@ -91,10 +95,39 @@ function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
 	}
 }
 
+`
+	{
+		"title": "Audio Player",
+		"description": "Audio Player is a component used to play audio files. It is based on the HTML5 audio element.",
+		"variations": "./libs/components/src/lib/audio-player/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/audio-player/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/audio-player/README.md",
+		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md"
+	},
+`
+
 function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 	const componentsPath = `apps/docs/content/_data/components.json`;
 	if (options.addToDocs && tree.exists(componentsPath)) {
 		console.log('addToDocs', options);
+		const title = `		"title": "${toTitleCase(options.className)}",`
+		const lines = tree.read(componentsPath, 'utf8').split('\n');
+		if (lines.indexOf(title) === -1) {
+			const toAdd = `,
+	{
+${title}
+		"description": "",
+		"variations": "./libs/components/src/lib/${name}/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/${name}/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/${name}/README.md",
+		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
+		"underlying": "true"
+	}`
+			lines.push(toAdd);
+			tree.write(componentsPath, lines.join('\n'));
+		}
 	}
 }
 
