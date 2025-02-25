@@ -1,0 +1,136 @@
+{
+	"schemaVersion": "1.0.0",
+	"readme": "",
+	"modules": [
+		{
+			"kind": "javascript-module",
+			"path": "libs/components/src/lib/accordion.ts",
+			"declarations": [
+				{
+					"kind": "class",
+					"description": "",
+					"name": "Accordion",
+					"slots": [],
+					"members": [
+						{
+							"kind": "field",
+							"name": "accordionAttribute",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"type": {
+								"text": "CustomEvent<string>"
+							},
+							"name": "accordion-event"
+						}
+					],
+					"attributes": [
+						{
+							"name": "accordion-attribute",
+							"type": {
+								"text": "string"
+							},
+							"fieldName": "accordionAttribute"
+						}
+					],
+					"mixins": [
+						{
+							"name": "Mixin",
+							"module": "/libs/components/src/lib/accordion/mixin.ts"
+						}
+					],
+					"superclass": {
+						"name": "Parent",
+						"module": "/libs/components/src/lib/accordion/parent.ts"
+					},
+					"vividComponent": {
+						"public": true,
+						"name": "accordion"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "libs/components/src/lib/parent.ts",
+			"declarations": [
+				{
+					"kind": "class",
+					"description": "",
+					"name": "Parent",
+					"slots": [],
+					"members": [
+						{
+							"kind": "field",
+							"name": "parentAttribute",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"type": {
+								"text": "CustomEvent<string>"
+							},
+							"name": "parent-event"
+						}
+					],
+					"attributes": [
+						{
+							"name": "parent-attribute",
+							"type": {
+								"text": "string"
+							},
+							"fieldName": "parentAttribute"
+						}
+					],
+					"superclass": {
+						"name": "VividElement",
+						"module": "/libs/components/src/shared/foundation/vivid-element/vivid-element"
+					}
+				}
+			]
+		},
+		{
+			"kind": "javascript-module",
+			"path": "libs/components/src/lib/mixin.ts",
+			"declarations": [
+				{
+					"kind": "mixin",
+					"name": "Mixin",
+					"members": [
+						{
+							"kind": "field",
+							"name": "mixinAttribute",
+							"type": {
+								"text": "string"
+							}
+						}
+					],
+					"events": [
+						{
+							"type": {
+								"text": "CustomEvent<string>"
+							},
+							"name": "mixin-event"
+						}
+					],
+					"attributes": [
+						{
+							"name": "mixin-attribute",
+							"type": {
+								"text": "string"
+							},
+							"fieldName": "mixinAttribute"
+						}
+					]
+				}
+			]
+		}
+	]
+}
