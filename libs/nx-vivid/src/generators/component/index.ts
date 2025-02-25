@@ -113,10 +113,9 @@ ${title}
 		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
 		"underlying": "true"
 	}`
-			console.log('last component end', lines[lines.length - 3]);
 			if (lines[lines.length - 3] === '	}') lines[lines.length - 3] = '	},';
-			// lines.push(toAdd);
-			// tree.write(componentsPath, lines.join('\n'));
+			lines.splice(lines.length - 3, 0, toAdd);
+			tree.write(componentsPath, lines.join('\n'));
 		}
 	}
 }
