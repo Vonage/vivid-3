@@ -625,9 +625,14 @@ describe('vwc-inline-time-picker', () => {
 					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledWith(event);
 				});
 
-				it('should not call focus trap ignoreEvent on tab keydown when focused on terminal picker element', () => {
+				it('should prevent call to focus trap ignoreEvent on shift + tab keydown when focused on first picker element', () => {
 					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
 					pressKey('Tab', { shiftKey: true });
+
+					expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
+				});
+
+				it('should prevent call to focus trap ignoreEvent on tab keydown when focused on last picker element', () => {
 					(
 						element.shadowRoot!.querySelector('#minutes') as HTMLElement
 					).focus();
