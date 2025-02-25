@@ -540,9 +540,15 @@ describe('vwc-date-range-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose dates"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose dates');
 		});
 
 		it('should clear start and end date when clicking the clear button', async () => {

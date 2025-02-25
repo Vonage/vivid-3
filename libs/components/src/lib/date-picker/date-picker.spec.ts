@@ -292,9 +292,15 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose date"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose date');
 		});
 
 		it('should clear the date when clicking the clear button', async () => {
