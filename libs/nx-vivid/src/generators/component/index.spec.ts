@@ -27,6 +27,18 @@ describe(`vivid component generator`, function () {
 			tree.exists(`libs/components/src/lib/${options.name}/README.md`)
 		).toBeTruthy();
 		expect(
+			tree.exists(`libs/components/src/lib/${options.name}/ACCESSIBILTY.md`)
+		).toBeTruthy();
+		expect(
+			tree.exists(`libs/components/src/lib/${options.name}/USE-CASES.md`)
+		).toBeTruthy();
+		expect(
+			tree.exists(`libs/components/src/lib/${options.name}/GUIDELINES.md`)
+		).toBeTruthy();
+		expect(
+			tree.exists(`libs/components/src/lib/${options.name}/VARIATIONS.md`)
+		).toBeTruthy();
+		expect(
 			tree.exists(`libs/components/src/lib/${options.name}/ui.test.ts`)
 		).toBeTruthy();
 		expect(
@@ -71,5 +83,51 @@ describe(`vivid component generator`, function () {
 		await vividComponentGenerator(tree, options);
 		const result = tree.read(filePath, 'utf8').trim();
 		expect(result).toBe('');
+	});
+
+	it('should add the component to the docs components.json when addToDocs is true', async function () {
+		const filePath = 'apps/docs/content/_data/components.json';
+		options.addToExports = true;
+		options.addToDocs = true;
+		const initialContents = `[
+	{
+		"title": "First Component"
+	}
+]`;
+		const expectedContents = `[
+	{
+		"title": "First Component"
+	},
+	{
+		"title": "Test Component",
+		"description": "Short description of the component.",
+		"variations": "./libs/components/src/lib/${options.name}/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/${options.name}/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/${options.name}/README.md",
+		"accessibility": "./libs/components/src/lib/${options.name}/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/${options.name}/USE-CASES.md",
+		"status": "underlying"
+	}
+]`;
+		tree.write(filePath, initialContents);
+		await vividComponentGenerator(tree, options);
+		const result = tree.read(filePath, 'utf8').trim();
+		expect(result).toBe(expectedContents);
+	});
+
+	it('should omit the component to the docs components.json when addToDocs is false', async function () {
+		const filePath = 'apps/docs/content/_data/components.json';
+		options.addToExports = true;
+		options.addToDocs = true;
+		const initialContents = `[
+	{
+		"title": "First Component"
+	}
+]`;
+		tree.write(filePath, initialContents);
+		await vividComponentGenerator(tree, options);
+		const result = tree.read(filePath, 'utf8').trim();
+		expect(result).toBe(initialContents);
 	});
 });
