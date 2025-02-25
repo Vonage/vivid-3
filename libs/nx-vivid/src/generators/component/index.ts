@@ -99,13 +99,12 @@ function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 	const componentsPath = `apps/docs/content/_data/components.json`;
 	const { name, className, addToDocs } = options;
 	if (addToDocs && tree.exists(componentsPath)) {
-		console.log('addToDocs', options);
 		const title = `		"title": "${toTitleCase(className)}",`
 		const lines = tree.read(componentsPath, 'utf8').split('\n');
 		if (lines.indexOf(title) === -1) {
 			const toAdd = `	{
 ${title}
-		"description": "",
+		"description": "Short description of the component.",
 		"variations": "./libs/components/src/lib/${name}/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/${name}/GUIDELINES.md",
 		"hideGuidelines": "true",
