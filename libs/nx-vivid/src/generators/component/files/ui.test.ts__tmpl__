@@ -8,7 +8,11 @@ import {
 const components = ['<%= name %>'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<<%= name %>></<%= name %>>`;
+	const template = `
+		<div style="margin: 5px">
+			<<%= name %>></<%= name %>>
+		</div>
+	`;
 
 	await loadComponents({
 		page,
