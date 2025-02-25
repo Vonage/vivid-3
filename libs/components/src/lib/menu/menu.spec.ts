@@ -12,7 +12,7 @@ import {
 } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup.ts';
-import { type MenuItem } from '../menu-item/menu-item.ts';
+import { MenuItem } from '../menu-item/menu-item.ts';
 import { Menu } from './menu';
 import '.';
 import '../menu-item';
@@ -718,6 +718,18 @@ describe('vwc-menu', () => {
 			headerItem.checked = true;
 
 			expect(item.checked).toBe(true);
+		});
+
+		it('should gracefully fail when a menu item is checked synchronously after connecting the menu', async () => {
+			const menu = document.createElement(COMPONENT_TAG) as Menu;
+			const menuItem1 = document.createElement('vwc-menu-item') as MenuItem;
+			const menuItem2 = document.createElement('vwc-menu-item') as MenuItem;
+			menu.appendChild(menuItem1);
+			menu.appendChild(menuItem2);
+
+			element.replaceWith(menu);
+
+			expect(() => (menuItem1.checked = true)).not.toThrow();
 		});
 	});
 

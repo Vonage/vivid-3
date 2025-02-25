@@ -93,8 +93,13 @@
 	},
 	{
 		"title": "Layout",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/layout/README.md"
+		"description": "Easily arrange elements in a grid using CSS grid layout and predefined sizes and spaces.",
+		"variations": "./libs/components/src/lib/layout/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/layout/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true",
+		"code": "./libs/components/src/lib/layout/README.md",
+		"accessibility": "./libs/components/src/lib/layout/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Side Drawer",
@@ -129,13 +134,23 @@
 	},
 	{
 		"title": "Progress",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/progress/README.md"
+		"description": "Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).",
+		"variations": "./libs/components/src/lib/progress/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/progress/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/progress/README.md",
+		"accessibility": "./libs/components/src/lib/progress/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/progress/USE-CASES.md"
 	},
 	{
 		"title": "Progress Ring",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/progress-ring/README.md"
+		"description": "Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).",
+		"variations": "./libs/components/src/lib/progress-ring/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/progress-ring/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/progress-ring/README.md",
+		"accessibility": "./libs/components/src/lib/progress-ring/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/progress-ring/USE-CASES.md"
 	},
 	{
 		"title": "Card",
