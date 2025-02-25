@@ -111,7 +111,7 @@ function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 	if (addToDocs && tree.exists(componentsPath)) {
 		const title = `		"title": "${titleCasedName}",`
 		const lines = tree.read(componentsPath, 'utf8').split('\n');
-		
+
 		if (lines.indexOf(title) === -1) {
 			const toAdd = `	{
 ${title}
@@ -121,7 +121,7 @@ ${title}
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/${name}/README.md",
 		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
-		"underlying": "true"
+		"status": "underlying"
 	}`
 			if (lines[lines.length - 3] === '	}') lines[lines.length - 3] = '	},';
 			lines.splice(lines.length - 2, 0, toAdd);
