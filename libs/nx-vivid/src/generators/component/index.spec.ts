@@ -67,74 +67,73 @@ describe(`vivid component generator`, function () {
 		expect(packageJson.exports[`./${fileName}`]).toBeUndefined();
 	});
 
-	it('should add the component to components.ts exports when addToExports is true', async function () {
+	describe('addToExports', () => {
 		const filePath = 'libs/components/src/lib/components.ts';
-		options.addToExports = true;
-		tree.write(filePath, '');
-		await vividComponentGenerator(tree, options);
-		const result = tree.read(filePath, 'utf8').trim();
-		expect(result).toBe(`export * from './${options.name}/definition';`);
+
+		it('should add the component to components.ts exports when addToExports is true', async function () {
+			options.addToExports = true;
+			tree.write(filePath, '');
+			await vividComponentGenerator(tree, options);
+			const result = tree.read(filePath, 'utf8').trim();
+			expect(result).toBe(`export * from './${options.name}/definition';`);
+		});
+
+		it('should omit the component to components.ts exports when addToExports is false', async function () {
+			options.addToExports = false;
+			tree.write(filePath, '');
+			await vividComponentGenerator(tree, options);
+			const result = tree.read(filePath, 'utf8').trim();
+			expect(result).toBe('');
+		});
 	});
 
-	it('should omit the component to components.ts exports when addToExports is false', async function () {
-		const filePath = 'libs/components/src/lib/components.ts';
-		options.addToExports = false;
-		tree.write(filePath, '');
-		await vividComponentGenerator(tree, options);
-		const result = tree.read(filePath, 'utf8').trim();
-		expect(result).toBe('');
-	});
-
-	it('should add the component to the docs components.json when addToDocs is true', async function () {
+	describe('addToDocs', () => {
 		const filePath = 'apps/docs/content/_data/components.json';
-		options.addToExports = true;
-		options.addToDocs = true;
 		const initialContents = `[
 	{
 		"title": "First Component"
 	}
 ]
 `;
-		const expectedContents = `[
-	{
-		"title": "First Component"
-	},
-	{
-		"title": "Test Component",
-		"description": "Short description of the component.",
-		"variations": "./libs/components/src/lib/${options.name}/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/${options.name}/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/${options.name}/README.md",
-		"accessibility": "./libs/components/src/lib/${options.name}/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/${options.name}/USE-CASES.md",
-		"status": "underlying"
-	}
-]
-`;
-		tree.write(filePath, initialContents);
-		await vividComponentGenerator(tree, options);
-		const result = tree.read(filePath, 'utf8');
-		const resultJson = JSON.parse(result);
-		const expectedJson = JSON.parse(expectedContents);
-		expect(resultJson).toEqual(expectedJson);
-	});
 
-	it('should omit the component to the docs components.json when addToDocs is false', async function () {
-		const filePath = 'apps/docs/content/_data/components.json';
-		options.addToExports = true;
-		options.addToDocs = false;
-		const initialContents = `[
-	{
-		"title": "First Component"
-	}
-]
-`;
-		tree.write(filePath, initialContents);
-		await vividComponentGenerator(tree, options);
-		const result = tree.read(filePath, 'utf8');
-		const resultJson = JSON.parse(result);
-		const expectedJson = JSON.parse(initialContents);
-		expect(resultJson).toEqual(expectedJson);
+		it('should add the component to the docs components.json when addToDocs is true', async function () {
+			options.addToExports = true;
+			options.addToDocs = true;
+
+			const expectedContents = `[
+				{
+					"title": "First Component"
+				},
+				{
+					"title": "Test Component",
+					"description": "Short description of the component.",
+					"variations": "./libs/components/src/lib/${options.name}/VARIATIONS.md",
+					"guidelines": "./libs/components/src/lib/${options.name}/GUIDELINES.md",
+					"hideGuidelines": "true",
+					"code": "./libs/components/src/lib/${options.name}/README.md",
+					"accessibility": "./libs/components/src/lib/${options.name}/ACCESSIBILITY.md",
+					"useCases": "./libs/components/src/lib/${options.name}/USE-CASES.md",
+					"status": "underlying"
+				}
+			]`;
+			tree.write(filePath, initialContents);
+			await vividComponentGenerator(tree, options);
+			const result = tree.read(filePath, 'utf8');
+			const resultJson = JSON.parse(result);
+			const expectedJson = JSON.parse(expectedContents);
+			expect(resultJson).toEqual(expectedJson);
+		});
+
+		it('should omit the component to the docs components.json when addToDocs is false', async function () {
+			options.addToExports = true;
+			options.addToDocs = false;
+
+			tree.write(filePath, initialContents);
+			await vividComponentGenerator(tree, options);
+			const result = tree.read(filePath, 'utf8');
+			const resultJson = JSON.parse(result);
+			const expectedJson = JSON.parse(initialContents);
+			expect(resultJson).toEqual(expectedJson);
+		});
 	});
 });
