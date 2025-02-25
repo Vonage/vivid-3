@@ -9,8 +9,8 @@ const components = ['<%= name %>'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
-		<div style="margin: 5px;">
-			<vwc-<%= name %>></vwc-<%= name %>>
+		<div style="margin: 5px">
+			<<%= name %>></<%= name %>>
 		</div>
 	`;
 
@@ -28,6 +28,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/<%= name %>.png',
+		'snapshots/<%= name %>.png',
 	);
 });
