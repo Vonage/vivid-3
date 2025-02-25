@@ -114,7 +114,7 @@ ${title}
 		"underlying": "true"
 	}`
 			if (lines[lines.length - 3] === '	}') lines[lines.length - 3] = '	},';
-			lines.splice(lines.length - 3, 0, toAdd);
+			lines.splice(lines.length - 2, 0, toAdd);
 			tree.write(componentsPath, lines.join('\n'));
 		}
 	}
