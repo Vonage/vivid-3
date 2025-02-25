@@ -134,13 +134,23 @@
 	},
 	{
 		"title": "Progress",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/progress/README.md"
+		"description": "Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).",
+		"variations": "./libs/components/src/lib/progress/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/progress/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/progress/README.md",
+		"accessibility": "./libs/components/src/lib/progress/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/progress/USE-CASES.md"
 	},
 	{
 		"title": "Progress Ring",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/progress-ring/README.md"
+		"description": "Use to display the length of time a process will take, visualize a percentage value (determinate) or to represent an unspecified wait time (indeterminate).",
+		"variations": "./libs/components/src/lib/progress-ring/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/progress-ring/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/progress-ring/README.md",
+		"accessibility": "./libs/components/src/lib/progress-ring/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/progress-ring/USE-CASES.md"
 	},
 	{
 		"title": "Card",
@@ -486,8 +496,12 @@
 	},
 	{
 		"title": "Video Player",
-		"page": "legacy",
-		"status": "alpha",
-		"markdown": "./libs/components/src/lib/video-player/README.md"
+		"description": "Video Player is a component used to play and control video content.",
+		"variations": "./libs/components/src/lib/video-player/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/video-player/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/video-player/README.md",
+		"accessibility": "./libs/components/src/lib/video-player/ACCESSIBILITY.md",
+		"status": "alpha"
 	}
 ]

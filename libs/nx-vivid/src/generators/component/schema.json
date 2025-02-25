@@ -18,6 +18,12 @@
 			"description": "Add to component.ts?",
 			"x-prompt": "Add to component.ts?",
 			"default": true
+		},
+		"addToDocs": {
+			"type": "boolean",
+			"description": "Add to docs? (component.json)",
+			"x-prompt": "Add to docs? (component.json)",
+			"default": true
 		}
 	},
 	"required": ["name"]
