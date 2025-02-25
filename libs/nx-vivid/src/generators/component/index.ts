@@ -26,6 +26,9 @@ function toTitleCase(string: string): string {
 export interface NormalizedSchema extends VividComponentGeneratorOptions {
 	fileName: string;
 	className: string;
+	titleCasedName: string;
+	camelCasedName: string;
+	pascalCasedName: string;
 	projectRoot: string;
 	docsRoot: string;
 }
@@ -39,6 +42,9 @@ function normalizeOptions(
 
 	const name = projectDirectory.replace(new RegExp('/', 'g'), '-');
 	const fileName = names(projectDirectory).fileName;
+	const titleCasedName = toTitleCase(className);
+	const pascalCasedName = toPascalCase(className);
+	const camelCasedName = className[0].toLowerCase() + className.substr(1)
 
 	const { libsDir, appsDir } = getWorkspaceLayout(tree);
 
@@ -58,23 +64,27 @@ function normalizeOptions(
 		fileName,
 		name,
 		className,
+		titleCasedName,
+		camelCasedName,
+		pascalCasedName,
 		projectRoot,
 		docsRoot,
 	};
 }
 
 function createFiles(tree: Tree, options: NormalizedSchema) {
+	const { titleCasedName, camelCasedName, pascalCasedName } = options;
 	const { className, name, propertyName } = names(options.name);
 
 	generateFiles(tree, join(__dirname, './files'), options.projectRoot, {
 		...options,
 		dot: '.',
 		className,
-		title: toTitleCase(className),
+		title: titleCasedName,
 		name,
 		propertyName,
-		camelCasedName: className[0].toLowerCase() + className.substr(1),
-		pascalCasedName: toPascalCase(className),
+		camelCasedName,
+		pascalCasedName,
 		cliCommand: 'nx',
 		strict: undefined,
 		tmpl: '',
@@ -97,10 +107,11 @@ function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
 
 function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 	const componentsPath = `apps/docs/content/_data/components.json`;
-	const { name, className, addToDocs } = options;
+	const { name, addToDocs, titleCasedName } = options;
 	if (addToDocs && tree.exists(componentsPath)) {
-		const title = `		"title": "${toTitleCase(className)}",`
+		const title = `		"title": "${titleCasedName}",`
 		const lines = tree.read(componentsPath, 'utf8').split('\n');
+		
 		if (lines.indexOf(title) === -1) {
 			const toAdd = `	{
 ${title}
