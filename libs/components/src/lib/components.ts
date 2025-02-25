@@ -28,7 +28,6 @@ export * from './icon/definition';
 export * from './layout/definition';
 export * from './menu-item/definition';
 export * from './menu/definition';
-export * from './my-component/definition';
 export * from './nav-disclosure/definition';
 export * from './nav-item/definition';
 export * from './nav/definition';
