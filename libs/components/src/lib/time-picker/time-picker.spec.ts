@@ -109,14 +109,14 @@ describe('vwc-time-picker', () => {
 			expect(textField.value).toBe('');
 		});
 
-		it('should update value when a user enters a valid date into the text field', async () => {
+		it('should update value when a user enters a valid time into the text field', async () => {
 			typeIntoTextField('01:45 PM');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('13:45:00');
 		});
 
-		it('should have an empty value when a user enters a invalid date into the text field', async () => {
+		it('should have an empty value when a user enters a invalid time into the text field', async () => {
 			typeIntoTextField('x');
 			await elementUpdated(element);
 
@@ -285,7 +285,7 @@ describe('vwc-time-picker', () => {
 	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
-		it('should be fired when a user enters a valid date into the text field', async () => {
+		it('should be fired when a user enters a valid time into the text field', async () => {
 			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
@@ -326,7 +326,7 @@ describe('vwc-time-picker', () => {
 			}
 		);
 
-		it('should show an invalid date error when an invalid time is entered', async () => {
+		it('should show an invalid time error when an invalid time is entered', async () => {
 			typeIntoTextField('invalid time');
 			textField.dispatchEvent(new Event('blur'));
 			await elementUpdated(element);
@@ -334,7 +334,7 @@ describe('vwc-time-picker', () => {
 			expect(textField.errorText).toBe('Please enter a valid time.');
 		});
 
-		it('should clear the invalid date error when a valid time is entered', async () => {
+		it('should clear the invalid time error when a valid time is entered', async () => {
 			typeIntoTextField('invalid time');
 			textField.dispatchEvent(new Event('blur'));
 			await elementUpdated(element);
@@ -400,9 +400,15 @@ describe('vwc-time-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose time"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose time');
 		});
 
 		it('should clear the time and close popup when clicking the clear button', async () => {

@@ -15,7 +15,7 @@ import {
 import { isValidTimeStr, type TimeStr } from '../../shared/datetime/time';
 
 /// Converter ensures that the value is always a valid time string or empty string
-const ValidTimeFilter: ValueConverter = {
+export const ValidTimeFilter: ValueConverter = {
 	fromView: (value: string) => {
 		if (value && isValidTimeStr(value)) {
 			return value;
@@ -80,14 +80,14 @@ export class TimePicker extends TimeSelectionPicker(
 	/**
 	 * @internal
 	 */
-	override get _minTime(): TimeStr | null {
+	override get _resolvedMinTime(): TimeStr | null {
 		return this.min || null;
 	}
 
 	/**
 	 * @internal
 	 */
-	override get _maxTime(): TimeStr | null {
+	override get _resolvedMaxTime(): TimeStr | null {
 		return this.max || null;
 	}
 
@@ -149,14 +149,7 @@ export class TimePicker extends TimeSelectionPicker(
 	 * @internal
 	 */
 	override get _textFieldPlaceholder() {
-		let format = 'hh:mm';
-		if (this._displaySeconds) {
-			format += ':ss';
-		}
-		if (this._use12hClock) {
-			format += ' aa';
-		}
-		return format;
+		return this._timePlaceholder;
 	}
 
 	// --- Picker button ---

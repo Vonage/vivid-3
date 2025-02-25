@@ -33,11 +33,11 @@ export const TimeSelectionPicker = <
 		/**
 		 * @internal
 		 */
-		abstract get _minTime(): TimeStr | null;
+		abstract get _resolvedMinTime(): TimeStr | null;
 		/**
 		 * @internal
 		 */
-		abstract get _maxTime(): TimeStr | null;
+		abstract get _resolvedMaxTime(): TimeStr | null;
 
 		// --- Attributes ---
 
@@ -89,6 +89,20 @@ export const TimeSelectionPicker = <
 			return this.clock
 				? this.clock === '12h'
 				: this.locale.timePicker.defaultTo12HourClock;
+		}
+
+		/**
+		 * @internal
+		 */
+		get _timePlaceholder() {
+			let format = 'hh:mm';
+			if (this._displaySeconds) {
+				format += ':ss';
+			}
+			if (this._use12hClock) {
+				format += ' aa';
+			}
+			return format;
 		}
 
 		// Reformat the presentation value when the clock changes

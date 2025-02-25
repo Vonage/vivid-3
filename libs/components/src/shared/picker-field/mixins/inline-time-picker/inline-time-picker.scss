@@ -18,6 +18,8 @@
 	border-radius-variables;
 @use '../../../../../../shared/src/lib/sass/mixins/focus/index' as focus;
 
+$num-options-visible: --_inline-time-picker-num-options-visible;
+
 :host {
 	display: inline-block;
 }
@@ -26,11 +28,11 @@
 	$option-inline-size: 50px;
 	$option-block-size: 28px;
 	$option-gap: 4px;
-	$num-options-visible: 6;
-	$num-options-to-reserve-space-for: ($num-options-visible - 1);
+	$num-options-visible: var(#{$num-options-visible});
+	$num-options-to-reserve-space-for: calc($num-options-visible - 1);
 
 	@function space-for-options($n) {
-		@return $option-block-size * $n + $option-gap * ($n - 1);
+		@return calc($option-block-size * $n + $option-gap * ($n - 1));
 	}
 
 	display: flex;
