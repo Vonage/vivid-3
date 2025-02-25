@@ -70,7 +70,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
 		...options,
 		dot: '.',
 		className,
-		title: toTitle(className),
+		title: toTitleCase(className),
 		name,
 		propertyName,
 		camelCasedName: className[0].toLowerCase() + className.substr(1),
@@ -95,23 +95,12 @@ function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
 	}
 }
 
-`
-	{
-		"title": "Audio Player",
-		"description": "Audio Player is a component used to play audio files. It is based on the HTML5 audio element.",
-		"variations": "./libs/components/src/lib/audio-player/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/audio-player/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/audio-player/README.md",
-		"accessibility": "./libs/components/src/lib/audio-player/ACCESSIBILITY.md"
-	},
-`
-
 function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
 	const componentsPath = `apps/docs/content/_data/components.json`;
-	if (options.addToDocs && tree.exists(componentsPath)) {
+	const { name, className, addToDocs } = options;
+	if (addToDocs && tree.exists(componentsPath)) {
 		console.log('addToDocs', options);
-		const title = `		"title": "${toTitleCase(options.className)}",`
+		const title = `		"title": "${toTitleCase(className)}",`
 		const lines = tree.read(componentsPath, 'utf8').split('\n');
 		if (lines.indexOf(title) === -1) {
 			const toAdd = `,
