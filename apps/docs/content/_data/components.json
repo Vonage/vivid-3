@@ -489,15 +489,5 @@
 		"page": "legacy",
 		"status": "alpha",
 		"markdown": "./libs/components/src/lib/video-player/README.md"
-	},
-	{
-		"title": "My Component",
-		"description": "",
-		"variations": "./libs/components/src/lib/my-component/VARIATIONS.md",
-		"guidelines": "./libs/components/src/lib/my-component/GUIDELINES.md",
-		"hideGuidelines": "true",
-		"code": "./libs/components/src/lib/my-component/README.md",
-		"accessibility": "./libs/components/src/lib/my-component/ACCESSIBILITY.md",
-		"underlying": "true"
 	}
 ]
