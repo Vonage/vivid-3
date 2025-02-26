@@ -58,16 +58,15 @@ const input = generateRollupInput();
 
 const isWatchMode = process.env.WATCH === 'true';
 const isCI = process.env['CI'] === 'true';
+const isA11y = process.env['A11Y'] === 'true';
 
-export default defineConfig(({ mode }) => {
-	const isA11y = mode === 'a11y';
+export default defineConfig(() => {
 	return {
 		test: {
 			watch: false,
 			globals: true,
 			environment: 'jsdom',
 			include: isA11y ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
-			exclude: isA11y ? [] : ['src/**/*.a11y.spec.ts'],
 			setupFiles: ['vitest.setup.ts'],
 			reporters: ['default'],
 			coverage: {
