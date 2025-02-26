@@ -37,6 +37,7 @@ describe('a11y: vwc-selectable-box', () => {
 	describe('clickableBox', () => {
 		it('should pass html a11y test', async () => {
 			element.clickableBox = true;
+			element.setAttribute('aria-label', 'Box 1');
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
