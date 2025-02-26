@@ -2,39 +2,33 @@ import { getVividComponentDeclaration } from './customElementDeclarations';
 import { CustomElement } from 'custom-elements-manifest';
 import type * as FileSystem from 'fs';
 
-const makeMember = (name: string) => ({
-	kind: 'field',
-	name,
-	type: {
-		text: 'string',
-	},
-});
-const makeEvent = (name: string) => ({
-	type: {
-		text: 'CustomEvent<string>',
-	},
-	name,
-});
-const makeAttribute = (name: string, fieldName: string) => ({
-	name,
-	type: {
-		text: 'string',
-	},
-	fieldName,
-});
+function makeMember(name: string) {
+	return {
+		kind: 'field',
+		name,
+		type: {
+			text: 'string',
+		},
+	};
+}
+function makeEvent(name: string) {
+	return {
+		type: {
+			text: 'CustomEvent<string>',
+		},
+		name,
+	};
+}
+function makeAttribute(name: string, fieldName: string) {
+	return {
+		name,
+		type: {
+			text: 'string',
+		},
+		fieldName,
+	};
+}
 
-const accordionMember = makeMember('accordionMember');
-const accordionEvent = makeEvent('accordion-event');
-const accordionAttribute = makeAttribute(
-	'accordion-attribute',
-	'accordionAttribute'
-);
-const parentMember = makeMember('parentMember');
-const parentEvent = makeEvent('parent-event');
-const parentAttribute = makeAttribute('parent-attribute', 'parentAttribute');
-const mixinMember = makeMember('mixinMember');
-const mixinEvent = makeEvent('mixin-event');
-const mixinAttribute = makeAttribute('mixin-attribute', 'mixinAttribute');
 const localType = [
 	{
 		text: "'rounded'",
@@ -46,82 +40,86 @@ const localType = [
 	},
 ];
 
-const accordionManifest = {
-	schemaVersion: '1.0.0',
-	readme: '',
-	modules: [
-		{
-			kind: 'javascript-module',
-			path: 'libs/components/src/lib/accordion.ts',
-			declarations: [
-				{
-					kind: 'class',
-					description: '',
-					name: 'Accordion',
-					slots: [],
-					members: [accordionMember],
-					events: [accordionEvent],
-					attributes: [accordionAttribute],
-					mixins: [
-						{
-							name: 'Mixin',
-							module: '/libs/components/src/lib/accordion/mixin.ts',
+function makeManifest() {
+	return {
+		schemaVersion: '1.0.0',
+		readme: '',
+		modules: [
+			{
+				kind: 'javascript-module',
+				path: 'libs/components/src/lib/accordion.ts',
+				declarations: [
+					{
+						kind: 'class',
+						description: '',
+						name: 'Accordion',
+						slots: [],
+						members: [makeMember('accordionMember')],
+						events: [makeEvent('accordion-event')],
+						attributes: [
+							makeAttribute('accordion-attribute', 'accordionAttribute'),
+						],
+						mixins: [
+							{
+								name: 'Mixin',
+								module: '/libs/components/src/lib/accordion/mixin.ts',
+							},
+						],
+						superclass: {
+							name: 'Parent',
+							module: '/libs/components/src/lib/accordion/parent.ts',
 						},
-					],
-					superclass: {
+						vividComponent: {
+							public: true,
+							name: 'accordion',
+						},
+					},
+				],
+			},
+			{
+				kind: 'javascript-module',
+				path: 'libs/components/src/lib/parent.ts',
+				declarations: [
+					{
+						kind: 'class',
+						description: '',
 						name: 'Parent',
-						module: '/libs/components/src/lib/accordion/parent.ts',
+						slots: [],
+						members: [makeMember('parentMember')],
+						events: [makeEvent('parent-event')],
+						attributes: [makeAttribute('parent-attribute', 'parentAttribute')],
+						superclass: {
+							name: 'VividElement',
+							module:
+								'/libs/components/src/shared/foundation/vivid-element/vivid-element',
+						},
 					},
-					vividComponent: {
-						public: true,
-						name: 'accordion',
+				],
+			},
+			{
+				kind: 'javascript-module',
+				path: 'libs/components/src/lib/mixin.ts',
+				declarations: [
+					{
+						kind: 'mixin',
+						name: 'Mixin',
+						members: [makeMember('mixinMember')],
+						events: [makeEvent('mixin-event')],
+						attributes: [makeAttribute('mixin-attribute', 'mixinAttribute')],
 					},
-				},
-			],
-		},
-		{
-			kind: 'javascript-module',
-			path: 'libs/components/src/lib/parent.ts',
-			declarations: [
-				{
-					kind: 'class',
-					description: '',
-					name: 'Parent',
-					slots: [],
-					members: [parentMember],
-					events: [parentEvent],
-					attributes: [parentAttribute],
-					superclass: {
-						name: 'VividElement',
-						module:
-							'/libs/components/src/shared/foundation/vivid-element/vivid-element',
-					},
-				},
-			],
-		},
-		{
-			kind: 'javascript-module',
-			path: 'libs/components/src/lib/mixin.ts',
-			declarations: [
-				{
-					kind: 'mixin',
-					name: 'Mixin',
-					members: [mixinMember],
-					events: [mixinEvent],
-					attributes: [mixinAttribute],
-				},
-			],
-		},
-	],
-};
+				],
+			},
+		],
+	};
+}
 
 vi.mock('fs', async () => {
 	const fs = (await vi.importActual('fs')) as typeof FileSystem;
 	return {
 		...fs,
 		readFileSync: vi.fn((filePath: string, ...rest: any[]) => {
-			if (filePath.endsWith('custom-element.json')) {
-				return JSON.stringify(accordionManifest);
+			if (filePath.endsWith('custom-elements.json')) {
+				return JSON.stringify(makeManifest());
 			}
 			return fs.readFileSync(
 				filePath.replace(
@@ -147,13 +145,13 @@ describe('getVividComponentDeclaration', () => {
 				declaration.attributes.find(
 					(a: any) => a.name === 'accordion-attribute'
 				)
-			).toEqual(accordionAttribute);
+			).toEqual(makeAttribute('accordion-attribute', 'accordionAttribute'));
 		});
 
 		it('should include events of the component', () => {
 			expect(
 				declaration.events.find((e: any) => e.name === 'accordion-event')
-			).toEqual(accordionEvent);
+			).toEqual(makeEvent('accordion-event'));
 		});
 
 		it('should include local type definitions of the component', () => {
@@ -165,13 +163,13 @@ describe('getVividComponentDeclaration', () => {
 		it('should include attributes inherited from a superclass', () => {
 			expect(
 				declaration.attributes.find((a: any) => a.name === 'parent-attribute')
-			).toEqual(parentAttribute);
+			).toEqual(makeAttribute('parent-attribute', 'parentAttribute'));
 		});
 
 		it('should include events inherited from a superclass', () => {
 			expect(
 				declaration.events.find((e: any) => e.name === 'parent-event')
-			).toEqual(parentEvent);
+			).toEqual(makeEvent('parent-event'));
 		});
 
 		it('should include local type definitions inherited from a superclass', () => {
@@ -183,13 +181,13 @@ describe('getVividComponentDeclaration', () => {
 		it('should include attributes inherited from a mixin', () => {
 			expect(
 				declaration.attributes.find((a: any) => a.name === 'mixin-attribute')
-			).toEqual(mixinAttribute);
+			).toEqual(makeAttribute('mixin-attribute', 'mixinAttribute'));
 		});
 
 		it('should include events inherited from a mixin', () => {
 			expect(
 				declaration.events.find((e: any) => e.name === 'mixin-event')
-			).toEqual(mixinEvent);
+			).toEqual(makeEvent('mixin-event'));
 		});
 
 		it('should include local type definitions inherited from a mixin', () => {
