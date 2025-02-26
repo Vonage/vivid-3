@@ -61,7 +61,7 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 
 ### Sticky Mode
 
-Set the `sticky-mode` attribute to make the header or the time or both sticky.  
+Set the `sticky-mode` attribute to make the days (`header`) or the time (`column`) or `both` sticky.  
 If no width or height is set on the calendar there will be no scroll, and no sticky elements.
 
 - Type: `'none'` | `'header'` | `'column'` | `'all'`
