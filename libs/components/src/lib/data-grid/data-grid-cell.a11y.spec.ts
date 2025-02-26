@@ -24,11 +24,21 @@ describe('a11y: vwc-data-grid-cell', () => {
 	});
 
 	it('should pass html a11y test', async () => {
+		const setParentsRoles = (element: HTMLElement) => {
+			element.parentElement.setAttribute('role', 'row');
+			element.parentElement.parentElement.setAttribute('role', 'grid');
+		};
+
 		element.columnDefinition = {
 			columnDataKey: 'Name',
 			sortDirection: DataGridCellSortStates.ascending,
 			sortable: true,
+			isRowHeader: true,
 		};
+		setParentsRoles(element);
+		element.setAttribute('role', 'columnheader');
+		element.rowData = { Name: 'Person 1' };
+
 		await elementUpdated(element);
 
 		expect(await axe(element)).toHaveNoViolations();

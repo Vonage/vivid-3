@@ -25,6 +25,7 @@ describe('a11y: vwc-data-grid', () => {
 			{ id: '2', name: 'Person 2' },
 		];
 		await elementUpdated(element);
+		await elementUpdated(element);
 
 		expect(await axe(element)).toHaveNoViolations();
 	});

@@ -6,15 +6,18 @@ import '.';
 
 const COMPONENT_TAG = 'vwc-dialog';
 
-// Polyfill dialog element which is not supported in JSDOM
-const originalConnectedCallback = VividElement.prototype.connectedCallback;
-VividElement.prototype.connectedCallback = function () {
-	originalConnectedCallback.call(this);
-	this.shadowRoot!.querySelectorAll('dialog').forEach(
-		(dialogPolyfill as any).registerDialog
-	);
-};
+export function setDialogPolyfill() {
+	// Polyfill dialog element which is not supported in JSDOM
+	const originalConnectedCallback = VividElement.prototype.connectedCallback;
+	VividElement.prototype.connectedCallback = function () {
+		originalConnectedCallback.call(this);
+		this.shadowRoot!.querySelectorAll('dialog').forEach(
+			(dialogPolyfill as any).registerDialog
+		);
+	};
+}
 
+setDialogPolyfill();
 describe('vwc-dialog', () => {
 	async function closeDialog() {
 		element.close();

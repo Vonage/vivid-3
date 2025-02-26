@@ -1,9 +1,10 @@
 import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { Dialog } from './dialog';
+import { setDialogPolyfill } from './dialog.spec';
 import '.';
 
 const COMPONENT_TAG = 'vwc-dialog';
-
+setDialogPolyfill();
 describe('a11y: vwc-dialog', () => {
 	let element: Dialog;
 
