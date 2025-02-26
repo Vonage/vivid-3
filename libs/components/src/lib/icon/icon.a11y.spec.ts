@@ -5,7 +5,7 @@ import '.';
 const COMPONENT_TAG = 'vwc-icon';
 
 describe('a11y: icon', function () {
-	const originalFetch = global.fetch;
+	const originalFetch = window.fetch;
 
 	let element: Icon;
 
@@ -20,7 +20,7 @@ describe('a11y: icon', function () {
 
 	afterEach(function () {
 		vi.useRealTimers();
-		global.fetch = originalFetch;
+		window.fetch = originalFetch;
 	});
 
 	it('should pass html a11y test', async () => {

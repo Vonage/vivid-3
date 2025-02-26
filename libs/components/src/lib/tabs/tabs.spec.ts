@@ -14,11 +14,11 @@ describe('vwc-tabs', () => {
 		) as HTMLElement;
 	}
 
-	const originalResizeObserver = global.ResizeObserver;
+	const originalResizeObserver = window.ResizeObserver;
 	let resizeObserver: any;
 
 	beforeEach(function () {
-		(global.ResizeObserver as any) = class implements ResizeObserver {
+		(window.ResizeObserver as any) = class implements ResizeObserver {
 			callback(_: any) {}
 
 			observer: HTMLElement | null = null;
@@ -60,7 +60,7 @@ describe('vwc-tabs', () => {
 	});
 
 	afterAll(() => {
-		global.ResizeObserver = originalResizeObserver;
+		window.ResizeObserver = originalResizeObserver;
 	});
 
 	let element: Tabs;

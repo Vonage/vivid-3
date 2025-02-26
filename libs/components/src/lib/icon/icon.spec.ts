@@ -7,7 +7,7 @@ const COMPONENT_TAG = 'vwc-icon';
 
 describe('icon', function () {
 	function fakeFetch(requestTime = 4000) {
-		(global.fetch as any) = vi.fn((_, { signal }) => {
+		(window.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
 			return new Promise((res) => {
 				setTimeout(() => {
@@ -25,7 +25,7 @@ describe('icon', function () {
 	let response: any;
 	let responseFileType = 'image/svg+xml';
 
-	const originalFetch = global.fetch;
+	const originalFetch = window.fetch;
 
 	let currentFetchSignal: AbortSignal;
 	let element: Icon;
@@ -47,7 +47,7 @@ describe('icon', function () {
 
 	afterEach(function () {
 		vi.useRealTimers();
-		global.fetch = originalFetch;
+		window.fetch = originalFetch;
 	});
 
 	it('should allow being created via createElement', () => {
