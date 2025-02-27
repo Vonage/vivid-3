@@ -3,8 +3,8 @@ import { fixture } from '@vivid-nx/shared';
 import { createRegisterFunction } from './createRegisterFunction.ts';
 import {
 	defineVividComponent,
-	VividComponentDefinition,
-	VividElementDefinitionContext,
+	type VividComponentDefinition,
+	type VividElementDefinitionContext,
 } from './defineVividComponent.ts';
 
 const template = html`<div></div>`;

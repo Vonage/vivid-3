@@ -1,6 +1,6 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
-import { Fab, FabConnotation } from './fab';
+import { Fab, type FabConnotation } from './fab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-fab';
@@ -13,7 +13,7 @@ describe('vwc-fab', () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Fab;
 	});
 
-	describe('basic', () => {
+	describe('basic', () => { 
 		it('should be initialized as a vwc-fab', async () => {
 			expect(element).toBeInstanceOf(Fab);
 			expect(element.label).toBeUndefined();
