@@ -12,7 +12,7 @@ In this section you’ll find useful information about accessibility and why it 
 ## Why is Accessibility Important?
 
 **Inclusivity**<br />
-An accessible design system ensure that everyone, including individuals with disabilities, can access and use digital products and services. This promotes inclusivity and equity in user experiences.
+An accessible design system ensures that everyone, including individuals with disabilities, can access and use digital products and services. This promotes inclusivity and equity in user experiences.
 
 **User Experience**<br />
 Accessibility improvements often enhance the overall user experience for all users, not just those with disabilities. Features such as clear navigation, readable text, and intuitive interactions benefit everyone.
