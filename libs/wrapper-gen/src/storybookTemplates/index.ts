@@ -16,7 +16,7 @@ function generateStorybookTemplateFor(component: ComponentDef) {
 	);
 }
 
-export async function generateStorybookTemplates(metadata: Metadata) {
+export async function index(metadata: Metadata) {
 	for (const component of metadata.componentDefs) {
 		generateStorybookTemplateFor(component);
 	}
