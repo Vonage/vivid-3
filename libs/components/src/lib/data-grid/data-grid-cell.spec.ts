@@ -82,7 +82,7 @@ describe('vwc-data-grid-cell', () => {
 			element.cellType = 'invalid' as any;
 			await elementUpdated(element);
 			expect(element.querySelector('#cell')).toBeNull();
-			expect(element.innerText).toBeUndefined();
+			expect(element.innerText).toBe('');
 		});
 	});
 
