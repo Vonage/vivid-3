@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { renderComponent } from './renderComponent';
-import { Metadata } from '../metadata/buildMetadata';
+import { Metadata } from '../metadata';
 import { renderIcons } from './renderIcons';
 import renderIndex from './renderIndex';
 import { formatFiles } from '../utils/formatFiles';

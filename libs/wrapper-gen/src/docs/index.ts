@@ -1,4 +1,4 @@
-import { Metadata } from '../metadata/buildMetadata';
+import { Metadata } from '../metadata';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ComponentDef } from '../metadata/ComponentDef';

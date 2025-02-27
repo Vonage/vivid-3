@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { renderWebTypes } from './renderWebTypes';
-import { Metadata } from '../metadata/buildMetadata';
+import { Metadata } from '../metadata';
 
 const LibraryDistFolder = '../vue-wrappers';
 

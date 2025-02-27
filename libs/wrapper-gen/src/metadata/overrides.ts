@@ -1,9 +1,4 @@
 import { ComponentDef } from './ComponentDef';
-import { getPublicComponents } from './customElementDeclarations';
-import { parseComponent } from './parseComponent';
-import { loadedIcons } from './icons';
-
-export type Metadata = { componentDefs: ComponentDef[]; icons: string[] };
 
 type DefinitionOverride = (
 	def: ComponentDef,
@@ -11,7 +6,7 @@ type DefinitionOverride = (
 ) => void;
 type ComponentSpecs = [string, DefinitionOverride];
 
-const globalDefinitionOverrides: DefinitionOverride[] = [
+export const globalDefinitionOverrides: DefinitionOverride[] = [
 	(component: ComponentDef, { icons }) => {
 		const vividIconType = [
 			{
@@ -38,7 +33,7 @@ const globalDefinitionOverrides: DefinitionOverride[] = [
 	},
 ];
 
-const componentOverrides: ComponentSpecs[] = [
+export const componentOverrides: ComponentSpecs[] = [
 	[
 		'button',
 		(component) => {
@@ -107,22 +102,3 @@ const componentOverrides: ComponentSpecs[] = [
 		},
 	],
 ];
-
-export async function buildMetadata(): Promise<Metadata> {
-	const publicComponents = getPublicComponents();
-	const icons = await loadedIcons;
-
-	const componentDefs = publicComponents.map((name) => parseComponent(name));
-	for (const componentDef of componentDefs) {
-		for (const override of [...globalDefinitionOverrides]) {
-			override(componentDef, { icons });
-		}
-		for (const [componentName, componentOverride] of componentOverrides) {
-			if (componentDef.name === componentName) {
-				componentOverride(componentDef, { icons });
-			}
-		}
-	}
-
-	return { componentDefs, icons };
-}
