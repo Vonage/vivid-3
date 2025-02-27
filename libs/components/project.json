@@ -7,7 +7,12 @@
 	"implicitDependencies": ["styles"],
 	"targets": {
 		"generateMeta": {
+			"cache": true,
 			"executor": "nx:run-commands",
+			"outputs": [
+				"{workspaceRoot}/dist/libs/{projectName}/custom-elements.json",
+				"{workspaceRoot}/dist/libs/{projectName}/vivid.api.json"
+			],
 			"options": {
 				"commands": [
 					"cem analyze --config ./libs/components/cem.config.mjs",

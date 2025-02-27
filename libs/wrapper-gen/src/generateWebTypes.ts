@@ -1,9 +1,4 @@
-import { buildMetadata } from './metadata/buildMetadata';
 import { generateWebTypes } from './webTypes/generateWebTypes';
+import { loadMetadata } from './utils/metadata';
 
-async function test() {
-	const metadata = await buildMetadata();
-	await generateWebTypes(metadata);
-}
-
-test();
+generateWebTypes(loadMetadata());

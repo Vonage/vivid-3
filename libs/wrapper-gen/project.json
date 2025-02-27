@@ -6,8 +6,18 @@
 	"tags": [],
 	"implicitDependencies": ["components"],
 	"targets": {
-		"build": {
+		"buildMetadata": {
+			"cache": true,
 			"dependsOn": ["^generateMeta"],
+			"executor": "nx:run-commands",
+			"outputs": ["{workspaceRoot}/dist/libs/{projectName}"],
+			"options": {
+				"cwd": "libs/wrapper-gen",
+				"commands": ["npx tsx --tsconfig './tsconfig.lib.json' src/buildMetadata.ts"]
+			}
+		},
+		"build": {
+			"dependsOn": ["buildMetadata"],
 			"executor": "nx:run-commands",
 			"outputs": [
 				"{workspaceRoot}/libs/vue-wrappers/src/generated",

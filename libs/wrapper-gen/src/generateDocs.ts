@@ -1,9 +1,4 @@
-import { buildMetadata } from './metadata/buildMetadata';
 import { generateDocs } from './docs/generateDocs';
+import { loadMetadata } from './utils/metadata';
 
-async function test() {
-	const metadata = await buildMetadata();
-	await generateDocs(metadata);
-}
-
-test();
+generateDocs(loadMetadata());

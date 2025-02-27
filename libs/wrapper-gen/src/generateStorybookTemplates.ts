@@ -1,9 +1,4 @@
-import { buildMetadata } from './metadata/buildMetadata';
 import { generateStorybookTemplates } from './storybookTemplates/generateStorybookTemplates';
+import { loadMetadata } from './utils/metadata';
 
-async function test() {
-	const metadata = await buildMetadata();
-	await generateStorybookTemplates(metadata);
-}
-
-test();
+generateStorybookTemplates(loadMetadata());
