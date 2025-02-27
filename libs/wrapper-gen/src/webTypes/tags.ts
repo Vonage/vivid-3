@@ -1,6 +1,6 @@
-import { ComponentDef } from '../generator/ComponentDef';
-import { kebabToCamel } from '../generator/utils/casing';
-import { withImportsResolved } from '../generator/types';
+import { ComponentDef } from '../metadata/ComponentDef';
+import { kebabToCamel } from '../utils/casing';
+import { withImportsResolved } from '../metadata/types';
 
 export interface WebTypesCommon {
 	name: string;

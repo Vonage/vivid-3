@@ -1,5 +1,5 @@
-import ComponentRegister from './src/generator/ComponentRegister';
-import { ComponentDef } from './src/generator/ComponentDef';
+import ComponentRegister from './src/metadata/ComponentRegister';
+import { ComponentDef } from './src/metadata/ComponentDef';
 
 // Update icon attributes
 ComponentRegister.addGlobalDefinitionOverride(

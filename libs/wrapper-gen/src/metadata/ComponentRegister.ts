@@ -3,13 +3,13 @@ import { execSync } from 'child_process';
 import * as path from 'path';
 import { ComponentDef } from './ComponentDef';
 import { parseComponent } from './parseComponent';
-import { renderComponent } from './renderComponent';
-import renderIndex from './renderIndex';
+import { renderComponent } from '../vueWrappers/renderComponent';
+import renderIndex from '../vueWrappers/renderIndex';
 import { generateWebTypesWithTags } from '../webTypes';
 import { getTagFromComponentDefinition } from '../webTypes/tags';
-import { renderStorybookTemplate } from './renderStorybookTemplate';
+import { renderStorybookTemplate } from '../storybookTemplates/renderStorybookTemplate';
 import { generateDocPageForComponent } from '../docs';
-import { renderIcons } from './renderIcons';
+import { renderIcons } from '../vueWrappers/renderIcons';
 import { loadedIcons } from './icons';
 import { getPublicComponents } from './customElementDeclarations';
 

@@ -1,5 +1,5 @@
 // Importing from '@microsoft/fast-foundation' requires a DOM
-import './polyfill/dom';
+import '../polyfill/dom';
 
 import {
 	AccordionExpandMode,

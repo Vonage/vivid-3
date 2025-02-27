@@ -1,6 +1,6 @@
 import markdownTable from 'markdown-table';
-import { ComponentDef } from '../generator/ComponentDef';
-import { TypeRef, withImportsResolved } from '../generator/types';
+import { ComponentDef } from '../metadata/ComponentDef';
+import { TypeRef, withImportsResolved } from '../metadata/types';
 
 const escapeMarkdown = (text = '') => text.replace(/([<>{}])/gm, '\\$1');
 

@@ -1,6 +1,6 @@
 import { ClassMember, ClassMethod, Attribute } from 'custom-elements-manifest';
 import { ComponentDef } from './ComponentDef';
-import { camelToKebab, kebabToPascal } from './utils/casing';
+import { camelToKebab, kebabToPascal } from '../utils/casing';
 import {
 	getClassNameOfVividComponent,
 	getVividComponentDeclaration,
