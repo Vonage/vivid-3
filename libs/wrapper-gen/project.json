@@ -44,6 +44,14 @@
 			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {}
+		},
+		"typecheck": {
+			"executor": "nx:run-commands",
+			"options": {
+				"cwd": "libs/wrapper-gen",
+				"commands": ["tsc -p tsconfig.lib.json --noEmit"],
+				"forwardAllArgs": false
+			}
 		}
 	}
 }
