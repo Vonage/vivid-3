@@ -13,7 +13,9 @@
 			"outputs": ["{workspaceRoot}/dist/libs/{projectName}"],
 			"options": {
 				"cwd": "libs/wrapper-gen",
-				"commands": ["npx tsx --tsconfig './tsconfig.lib.json' src/buildMetadata.ts"]
+				"commands": [
+					"npx tsx --tsconfig './tsconfig.lib.json' src/buildMetadata.ts"
+				]
 			}
 		},
 		"build": {
