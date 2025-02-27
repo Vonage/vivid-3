@@ -330,7 +330,7 @@ describe('vwc-inline-time-picker', () => {
 			);
 		});
 
-		it('should not be composed', () => {
+		it('should be emitted with composed set to false', () => {
 			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
