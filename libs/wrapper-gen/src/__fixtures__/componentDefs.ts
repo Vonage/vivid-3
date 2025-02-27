@@ -1,4 +1,4 @@
-import { ComponentDef } from '../../metadata/ComponentDef';
+import { ComponentDef } from '../metadata/ComponentDef';
 
 export const minimalComponent: ComponentDef = {
 	name: 'example-component',
