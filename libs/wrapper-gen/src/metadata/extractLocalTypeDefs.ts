@@ -1,5 +1,5 @@
 // Importing from '@vonage/vivid' requires a DOM
-import '../polyfill/dom';
+import './polyfill/dom';
 
 import * as fs from 'fs';
 import {
