@@ -47,6 +47,7 @@
 		},
 		"typecheck": {
 			"executor": "nx:run-commands",
+			"dependsOn": ["^build"],
 			"options": {
 				"cwd": "libs/wrapper-gen",
 				"commands": ["tsc -p tsconfig.lib.json --noEmit"],
