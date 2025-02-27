@@ -1,4 +1,4 @@
 import { generateWebTypes } from './webTypes';
-import { loadMetadata } from './utils/metadata';
+import { loadMetadata } from './metadataStore';
 
 generateWebTypes(loadMetadata());

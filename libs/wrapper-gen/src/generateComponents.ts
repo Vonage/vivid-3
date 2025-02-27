@@ -1,4 +1,4 @@
 import { generateVueWrappers } from './vueWrappers';
-import { loadMetadata } from './utils/metadata';
+import { loadMetadata } from './metadataStore';
 
 generateVueWrappers(loadMetadata());
