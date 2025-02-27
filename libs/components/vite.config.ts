@@ -57,27 +57,12 @@ function generateRollupInput() {
 const input = generateRollupInput();
 
 const isWatchMode = process.env.WATCH === 'true';
-const isCI = process.env['CI'] === 'true';
-const isA11y = process.env['A11Y'] === 'true';
 
-export default defineConfig(() => {
-	return {
+export default defineConfig(
+	{
 		test: {
 			watch: false,
-			globals: true,
-			environment: 'jsdom',
-			include: isA11y ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
-			setupFiles: ['vitest.setup.ts'],
 			reporters: ['default'],
-			coverage: {
-				reportsDirectory: '../../coverage/libs/components',
-				provider: 'v8',
-				include: ['src/**/*.ts'],
-				exclude: ['src/**/*.spec.ts', 'src/**/*test*.ts', 'src/locales/**.*'],
-				reporter: isCI
-					? ['lcov', 'text']
-					: ['text', 'html', 'clover', 'json', 'lcov'],
-			},
 			pool: 'threads',
 			poolOptions: {
 				useAtomics: true,
@@ -145,8 +130,8 @@ export default defineConfig(() => {
 			},
 			watch: isWatchMode
 				? {
-						exclude: ['**/*.md'],
-				  }
+					exclude: ['**/*.md'],
+				}
 				: null,
 		},
 		css: {
@@ -159,5 +144,5 @@ export default defineConfig(() => {
 		worker: {
 			plugins: () => [nxViteTsPaths()],
 		},
-	};
-});
+	}
+);
