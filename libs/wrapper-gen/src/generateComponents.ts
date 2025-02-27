@@ -1,4 +1,9 @@
-import ComponentRegister from './metadata/ComponentRegister';
-import '../componentOverrides';
+import { buildMetadata } from './metadata/buildMetadata';
+import { generateVueWrappers } from './vueWrappers/generateVueWrappers';
 
-ComponentRegister.generateComponents();
+async function test() {
+	const metadata = await buildMetadata();
+	await generateVueWrappers(metadata);
+}
+
+test();

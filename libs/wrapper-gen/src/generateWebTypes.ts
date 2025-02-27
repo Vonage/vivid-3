@@ -1,4 +1,9 @@
-import ComponentRegister from './metadata/ComponentRegister';
-import '../componentOverrides';
+import { buildMetadata } from './metadata/buildMetadata';
+import { generateWebTypes } from './webTypes/generateWebTypes';
 
-ComponentRegister.generateWebTypes();
+async function test() {
+	const metadata = await buildMetadata();
+	await generateWebTypes(metadata);
+}
+
+test();
