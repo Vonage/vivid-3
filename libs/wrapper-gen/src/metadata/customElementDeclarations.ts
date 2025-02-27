@@ -9,20 +9,33 @@ import {
 	isVividComponentPath,
 } from './vividPackage';
 import { extractLocalTypeDefs } from './extractLocalTypeDefs';
+import { TypeUnion } from './types';
+import { ComponentDef } from './ComponentDef';
 
 type Declaration = CustomElementDeclaration &
-	ClassDeclaration & { _modulePath?: string };
+	ClassDeclaration & {
+		_modulePath?: string;
+		_localTypeDefs?: Record<string, TypeUnion>;
+		vividComponent?: {
+			name: string;
+			vueModels?: ComponentDef['vueModels'];
+			public?: true;
+		};
+	};
 
-const parseManifest = (fileName: string): schema.Declaration[] => {
+const parseManifest = (fileName: string): Declaration[] => {
 	const manifest: schema.Package = JSON.parse(
 		fs.readFileSync(fileName, 'utf-8')
 	);
 	return manifest.modules.flatMap(
 		(m) =>
-			m.declarations?.map((d) => ({
-				...d,
-				_modulePath: m.path,
-			})) ?? []
+			m.declarations?.map(
+				(d) =>
+					({
+						...d,
+						_modulePath: m.path,
+					} as Declaration)
+			) ?? []
 	);
 };
 
@@ -154,7 +167,7 @@ and don't support IDL attribute binding.`,
 		className === 'FormAssociatedRadio' ||
 		className === 'FormAssociatedSwitch'
 	) {
-		declaration.attributes.push(
+		declaration.attributes!.push(
 			{
 				name: 'checked',
 				description: `Provides the default checkedness of the input element`,
@@ -231,7 +244,7 @@ const resolveComponentDeclaration = (
 
 	// Inherit from superclass
 	if (declaration.superclass) {
-		let superclassDeclaration: Declaration;
+		let superclassDeclaration: Declaration | undefined;
 
 		if (!declaration.superclass.package) {
 			// Inherit within the same package
@@ -504,6 +517,6 @@ export const getPublicComponents = (): string[] => {
 		.filter(
 			(d) => d.kind === 'class' && d.vividComponent && d.vividComponent.public
 		)
-		.map((d) => d.vividComponent.name)
+		.map((d) => d.vividComponent!.name)
 		.sort();
 };

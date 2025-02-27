@@ -47,8 +47,8 @@ const isFormValueAttribute = (attribute: Attribute): boolean =>
 
 const vuePropNameForAttribute = (attribute: Attribute): string => {
 	let name = isFormValueAttribute(attribute)
-		? camelToKebab(attribute.fieldName) // Use the field name for value attributes, e.g. 'value' instead of 'current-value'
-		: attribute.name || camelToKebab(attribute.fieldName); // Otherwise, prefer the attribute name even when different. E.g. 'heading-level' instead of 'headinglevel'
+		? camelToKebab(attribute.fieldName ?? '') // Use the field name for value attributes, e.g. 'value' instead of 'current-value'
+		: attribute.name || camelToKebab(attribute.fieldName ?? ''); // Otherwise, prefer the attribute name even when different. E.g. 'heading-level' instead of 'headinglevel'
 
 	if (!name) {
 		throw new Error('Attribute must have a name or a fieldName');
@@ -68,7 +68,7 @@ export const parseComponent = (name: string): ComponentDef => {
 
 	const declaration = getVividComponentDeclaration(name, className);
 
-	const localTypeDefs = declaration._localTypeDefs;
+	const localTypeDefs = declaration._localTypeDefs!;
 	const localTypeResolver = makeTypeResolver({
 		...globalTypeDefs,
 		...localTypeDefs,
@@ -109,7 +109,7 @@ export const parseComponent = (name: string): ComponentDef => {
 				type,
 				forwardTo: {
 					type: 'attribute',
-					name: attribute.name || attribute.fieldName,
+					name: (attribute.name || attribute.fieldName)!,
 					boolean: type.some((t) => t.text === 'boolean'),
 				},
 			};
@@ -158,7 +158,7 @@ export const parseComponent = (name: string): ComponentDef => {
 			}),
 			returnType: resolveLocalType(
 				`return type of "${m.name}"`,
-				m.return?.type.text ?? 'unknown'
+				m.return?.type?.text ?? 'unknown'
 			),
 		}));
 
@@ -177,19 +177,19 @@ export const parseComponent = (name: string): ComponentDef => {
 
 	// Assume that the register function is named after the component directory
 	// e.g. libs/components/src/lib/data-grid/data-grid-cell.ts is registered by registerDataGrid
-	const componentDirName = declaration._modulePath.split('/').slice(-2)[0];
+	const componentDirName = declaration._modulePath!.split('/').slice(-2)[0];
 	const registerFunctionName = `register${kebabToPascal(componentDirName)}`;
 
 	return {
 		name,
 		className,
 		wrappedClassName: `V${kebabToPascal(name)}`,
-		vividModulePath: declaration._modulePath,
+		vividModulePath: declaration._modulePath!,
 		registerFunctionName,
 		description: declaration.description,
 		attributes,
 		events,
-		vueModels: declaration.vividComponent.vueModels ?? [],
+		vueModels: declaration.vividComponent!.vueModels ?? [],
 		methods,
 		slots,
 		localTypeDefs,

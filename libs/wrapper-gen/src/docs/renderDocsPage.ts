@@ -31,7 +31,7 @@ function renderTableWithType(
 					? `\`${resolvedType[0].text}\``
 					: `*Enum*:<br/>${renderEnumType(resolvedType)}`
 				).replace(/\|/g, '\\|'),
-				escapeDescription(description),
+				escapeDescription(description ?? ''),
 			];
 		}),
 	]);
@@ -42,7 +42,7 @@ function renderTable(slots: ComponentDef['slots']) {
 		['Name', 'Description'],
 		...slots.map(({ name, description }) => [
 			`**${name}**`,
-			escapeDescription(description),
+			escapeDescription(description ?? ''),
 		]),
 	]);
 }
@@ -59,7 +59,7 @@ function renderMethodsTable(methods: ComponentDef['methods']) {
 			`\`(${args.map(
 				({ name: argName, type }) => `${argName}: ${getTypeString(type)}`
 			)}) => ${getTypeString(returnType)}\``,
-			escapeDescription(description),
+			escapeDescription(description ?? ''),
 		]),
 	]);
 }

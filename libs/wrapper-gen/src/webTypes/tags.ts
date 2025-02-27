@@ -31,6 +31,7 @@ export function getTagFromComponentDefinition({
 	attributes,
 	events,
 	slots,
+	// @ts-expect-error: FIXME: vueModel does not exist, code does not work correctly
 	vueModel,
 }: ComponentDef): WebTypesTag {
 	return {
