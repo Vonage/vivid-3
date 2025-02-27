@@ -1,4 +1,4 @@
-import { DatePickerLocale } from '../locale.ts';
+import { type DatePickerLocale } from '../locale.ts';
 import {
 	formatPresentationDateRange,
 	formatRange,
