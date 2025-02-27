@@ -28,7 +28,7 @@
 			"options": {
 				"cwd": "libs/wrapper-gen",
 				"commands": [
-					"npx tsx --tsconfig './tsconfig.lib.json' src/generateComponents.ts",
+					"npx tsx --tsconfig './tsconfig.lib.json' src/generateVueWrappers.ts",
 					"npx tsx --tsconfig './tsconfig.lib.json' src/generateDocs.ts",
 					"npx tsx --tsconfig './tsconfig.lib.json' src/generateStorybookTemplates.ts",
 					"npx tsx --tsconfig './tsconfig.lib.json' src/generateWebTypes.ts"
