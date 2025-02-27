@@ -1,4 +1,4 @@
-import { index } from './storybookTemplates';
+import { generateStorybookTemplates } from './storybookTemplates';
 import { loadMetadata } from './metadataStore';
 
-index(loadMetadata());
+generateStorybookTemplates(loadMetadata());
