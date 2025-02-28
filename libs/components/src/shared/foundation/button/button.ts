@@ -167,7 +167,6 @@ export class VividFoundationButton extends FormAssociatedButton {
 		super.connectedCallback();
 
 		this.proxy.setAttribute('type', this.type);
-		this.handleUnsupportedDelegatesFocus();
 
 		const elements = Array.from(this.control.children) as HTMLSpanElement[];
 		if (elements) {
@@ -224,27 +223,6 @@ export class VividFoundationButton extends FormAssociatedButton {
 	};
 
 	public control!: HTMLButtonElement;
-
-	/**
-	 * Overrides the focus call for where delegatesFocus is unsupported.
-	 * This check works for Chrome, Edge Chromium, FireFox, and Safari
-	 * Relevant PR on the Firefox browser: https://phabricator.services.mozilla.com/D123858
-	 */
-	private handleUnsupportedDelegatesFocus = () => {
-		// Check to see if delegatesFocus is supported
-		if (this.$fastController.definition.shadowOptions) {
-			if (
-				window.ShadowRoot &&
-				/* eslint-disable-next-line */
-				!window.ShadowRoot.prototype.hasOwnProperty('delegatesFocus') &&
-				this.$fastController.definition.shadowOptions.delegatesFocus
-			) {
-				this.focus = () => {
-					this.control.focus();
-				};
-			}
-		}
-	};
 }
 
 /**
