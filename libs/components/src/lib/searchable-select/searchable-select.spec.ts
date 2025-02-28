@@ -1,6 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import '../option';
+import userEvent, { type UserEvent } from '@testing-library/user-event';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { Button } from '../button/button';
@@ -25,12 +26,16 @@ describe('vwc-searchable-select', () => {
 		input.value = value;
 		input.dispatchEvent(new Event('input', { bubbles: true }));
 	};
+	const isInputFocused = () => element.shadowRoot!.activeElement === input;
 
 	const pressKey = (key: string, opts?: any) => {
 		const event = new KeyboardEvent('keydown', { key, ...opts });
 		element.shadowRoot!.activeElement!.dispatchEvent(event);
 		return event;
 	};
+
+	let user: UserEvent;
+	const simulateClick = (target: HTMLElement) => user.click(target);
 
 	const getOption = (text: string) =>
 		element.querySelector(`vwc-option[text="${text}"]`) as ListboxOption;
@@ -97,6 +102,7 @@ describe('vwc-searchable-select', () => {
 	};
 
 	beforeEach(async () => {
+		user = userEvent.setup();
 		await setUpFixture(`
 			<${COMPONENT_TAG}>
 				<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
@@ -1113,6 +1119,24 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
+	describe('focus method', () => {
+		it('should focus the input', async () => {
+			// Add a tag which would receive focus if we were using delegatesFocus
+			element.multiple = true;
+			element.values = ['apple'];
+			await elementUpdated(element);
+
+			element.focus();
+
+			expect(input).toBe(element.shadowRoot!.activeElement);
+		});
+
+		it('should not throw when component is unconnected', async () => {
+			const element = document.createElement(COMPONENT_TAG) as SearchableSelect;
+			expect(() => element.focus()).not.toThrow();
+		});
+	});
+
 	describe('popup', () => {
 		it('should open when input is focused', async function () {
 			focusInput();
@@ -1522,59 +1546,103 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
-	describe('keeping focus on input', () => {
-		it('should prevent default of mousedown on listbox', async () => {
-			const event = new MouseEvent('mousedown', {
-				bubbles: true,
-				cancelable: true,
-			});
-			const option = getOption('Apple');
-			option.dispatchEvent(event);
-
-			expect(event.defaultPrevented).toBe(true);
-		});
-
-		it('should prevent default of mousedown on option tag', async () => {
-			element.multiple = true;
-			element.values = ['apple'];
-			await elementUpdated(element);
-
-			const event = new MouseEvent('mousedown', {
-				bubbles: true,
-				cancelable: true,
-			});
-			getTag('Apple').dispatchEvent(event);
-
-			expect(event.defaultPrevented).toBe(true);
-		});
-
-		it('should prevent default of mousedown on elided tag counter', async () => {
-			element.multiple = true;
+	describe('focus management of input', () => {
+		it('should focus input when clicking on elided options counter tag', async () => {
 			element.externalTags = true;
+			element.multiple = true;
 			element.values = ['apple'];
 			await elementUpdated(element);
 
-			const event = new MouseEvent('mousedown', {
-				bubbles: true,
-				cancelable: true,
-			});
-			getElidedOptionsCounterTag().dispatchEvent(event);
+			await simulateClick(getElidedOptionsCounterTag());
 
-			expect(event.defaultPrevented).toBe(true);
+			expect(isInputFocused()).toBe(true);
 		});
 
-		it('should prevent default of mousedown on clear button', async () => {
+		it('should focus input when clicking on option tag', async () => {
+			element.multiple = true;
+			element.values = ['apple'];
+			await elementUpdated(element);
+
+			await simulateClick(getTag('Apple'));
+
+			expect(isInputFocused()).toBe(true);
+		});
+
+		it('should focus input when clicking on a non-interactive part of the component', async () => {
+			element.helperText = 'Helper text';
+			// Add a tag which would receive focus if we were using delegatesFocus
+			element.multiple = true;
+			element.values = ['apple'];
+			await elementUpdated(element);
+
+			await simulateClick(
+				element.shadowRoot!.querySelector('.helper-message')!
+			);
+
+			expect(isInputFocused()).toBe(true);
+		});
+
+		it('should not focus input when clicking on the clear button', async () => {
+			element.clearable = true;
+			element.multiple = true;
+			element.values = ['apple'];
+			await elementUpdated(element);
+
+			await user.click(getClearButton()!);
+
+			expect(isInputFocused()).toBe(false);
+		});
+
+		it('should not focus input when clicking on the button part of a tag', async () => {
+			element.multiple = true;
+			element.values = ['apple'];
+			await elementUpdated(element);
+
+			await user.click(getTag('apple').shadowRoot!.querySelector('button')!);
+
+			expect(isInputFocused()).toBe(false);
+		});
+
+		it('should not focus input when clicking on listbox', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			await simulateClick(getOption('Apple'));
+
+			expect(isInputFocused()).toBe(false);
+		});
+
+		it('should keep focus on input when clicking on the button part of a tag', async () => {
+			focusInput();
+			element.multiple = true;
+			element.values = ['apple'];
+			await elementUpdated(element);
+
+			await user.click(
+				getTag('apple').shadowRoot!.querySelector('[role="button"]')!
+			);
+
+			expect(isInputFocused()).toBe(true);
+		});
+
+		it('should keep focus on input when clicking on clear button', async () => {
+			focusInput();
 			element.clearable = true;
 			element.values = ['apple'];
 			await elementUpdated(element);
 
-			const event = new MouseEvent('mousedown', {
-				bubbles: true,
-				cancelable: true,
-			});
-			getClearButton()!.dispatchEvent(event);
+			await simulateClick(getClearButton()!);
 
-			expect(event.defaultPrevented).toBe(true);
+			expect(isInputFocused()).toBe(true);
+		});
+
+		it('should keep focus on input when clicking on listbox', async () => {
+			focusInput();
+			await elementUpdated(element);
+
+			await simulateClick(getOption('Apple'));
+
+			expect(isInputFocused()).toBe(true);
 		});
 	});
 
@@ -1750,14 +1818,7 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('fieldset', () => {
-		it('should focus the input when clicking on the fieldset', async function () {
-			fieldset.click();
-			await elementUpdated(element);
-
-			expect(element.shadowRoot!.activeElement).toBe(input);
-		});
-
-		it('should open the popup when clicking on the fieldset when focus already has input', async function () {
+		it('should open the popup when clicking on the fieldset when input already has focus', async function () {
 			focusInput();
 			element.open = false;
 			await elementUpdated(element);

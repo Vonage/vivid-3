@@ -86,10 +86,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.setViewportSize({ width: 350, height: 2000 });
 
-	await page.evaluate(() => {
-		(document.querySelector('vwc-searchable-select') as HTMLElement).blur();
-	});
-
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
@@ -127,4 +123,60 @@ test('should contribute values to form data', async ({
 	}, form);
 
 	expect(formDataValues).toEqual(['1', '2']);
+});
+
+test.describe('focus management', () => {
+	const setupWithAllFocusableElements = async (page: Page) => {
+		await loadComponents({
+			page,
+			components,
+		});
+		await loadTemplate({
+			page,
+			template: `
+			<button>before</button>
+			<vwc-searchable-select helper-text='helper-text' multiple crearable>
+				<vwc-option value='1' text='Option 1' selected></vwc-option>
+			</vwc-searchable-select>
+			<button>after</button>
+		`,
+		});
+	};
+
+	test('should not autofocus component when inserted into page', async ({
+		page,
+	}) => {
+		await setupWithAllFocusableElements(page);
+
+		await expect(page.locator('body')).toBeFocused();
+	});
+
+	test('should always focus the input when the tabbing into the component', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
+		await setupWithAllFocusableElements(page);
+
+		await page.getByRole('button', { name: 'before' }).focus();
+		await page.keyboard.press('Tab');
+
+		await expect(page.locator('vwc-searchable-select input')).toBeFocused();
+
+		await page.getByRole('button', { name: 'after' }).focus();
+		await page.keyboard.press('Shift+Tab');
+
+		await expect(page.locator('vwc-searchable-select input')).toBeFocused();
+	});
+
+	test('should focus the input when a non-interactive part of the component is clicked', async ({
+		page,
+	}: {
+		page: Page;
+	}) => {
+		await page.getByRole('button', { name: 'before' }).focus();
+		await page.getByText('helper-text').click();
+
+		await expect(page.locator('vwc-searchable-select input')).toBeFocused();
+	});
 });

@@ -66,6 +66,7 @@
 		"@swc/core": "~1.5.7",
 		"@swc/helpers": "~0.5.15",
 		"@testing-library/dom": "^8.18.1",
+		"@testing-library/user-event": "^14.6.1",
 		"@types/dropzone": "^5.7.9",
 		"@types/eslint": "^8.56.11",
 		"@types/jasmine": "~3.10.0",
