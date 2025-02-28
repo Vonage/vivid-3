@@ -1597,7 +1597,6 @@ describe('vwc-searchable-select', () => {
 
 		it('should not focus input when clicking on the clear button', async () => {
 			element.clearable = true;
-			element.multiple = true;
 			element.values = ['apple'];
 			await elementUpdated(element);
 
