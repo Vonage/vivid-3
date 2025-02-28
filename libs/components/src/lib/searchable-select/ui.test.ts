@@ -174,6 +174,8 @@ test.describe('focus management', () => {
 	}: {
 		page: Page;
 	}) => {
+		await setupWithAllFocusableElements(page);
+
 		await page.getByRole('button', { name: 'before' }).focus();
 		await page.getByText('helper-text').click();
 

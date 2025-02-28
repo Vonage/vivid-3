@@ -6,8 +6,21 @@ import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { Button } from '../button/button';
 import { Icon } from '../icon/icon.ts';
+import { VividFoundationButton } from '../../shared/foundation/button';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
+
+// Workaround: Remove handleUnsupportedDelegatesFocus (which we don't need) because it breaks when used with user-event
+Object.defineProperty(
+	VividFoundationButton.prototype,
+	'handleUnsupportedDelegatesFocus',
+	{
+		set() {},
+		get() {
+			return () => undefined;
+		},
+	}
+);
 
 const COMPONENT_TAG = 'vwc-searchable-select';
 const OPTION_TAG = 'vwc-option';
