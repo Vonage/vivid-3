@@ -880,7 +880,9 @@ describe('vwc-searchable-select', () => {
 					resizeObserverDisconnected = true;
 				}
 			} as any;
-			HTMLElement.prototype.getBoundingClientRect = vi.fn(function () {
+			HTMLElement.prototype.getBoundingClientRect = vi.fn(function (
+				this: SearchableSelect
+			) {
 				if (this.tagName === 'DIV') {
 					return {
 						width: currentWrapperWidth,
