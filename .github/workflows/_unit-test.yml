@@ -17,6 +17,8 @@ jobs:
   test:
     name: 'Unit Tests'
     runs-on: ${{ inputs.os }}
+    container:
+      image: drizzt99/vonage:2.3.0
     steps:
       - uses: actions/checkout@v3
 
