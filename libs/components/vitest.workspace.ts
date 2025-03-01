@@ -72,7 +72,6 @@ const BROWSER_MODE_READY_COMPONENTS = [
 ].map((component) => `libs/components/src/**/${component}.spec.ts`);
 
 const isCI = process.env['CI'] === 'true';
-const isA11y = process.env['A11Y'] === 'true';
 
 export default defineWorkspace([
 	{

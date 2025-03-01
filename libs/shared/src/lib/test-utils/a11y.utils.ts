@@ -1,6 +1,6 @@
 export const axe = async function (element: any) {
 	const { configureAxe } = await import('vitest-axe');
-	let axeInstance = configureAxe({
+	const axeInstance = configureAxe({
 		rules: {
 			// color contrast doesn't work in this env
 			'color-contrast': { enabled: false },
