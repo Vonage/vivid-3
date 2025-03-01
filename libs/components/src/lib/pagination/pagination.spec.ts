@@ -2,7 +2,11 @@ import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
 import { Shape, Size } from '../enums';
 import '.';
-import { Pagination, type PaginationShape, type PaginationSize } from './pagination';
+import {
+	Pagination,
+	type PaginationShape,
+	type PaginationSize,
+} from './pagination';
 
 const COMPONENT_TAG = 'vwc-pagination';
 

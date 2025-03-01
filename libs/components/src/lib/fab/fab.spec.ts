@@ -13,7 +13,7 @@ describe('vwc-fab', () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Fab;
 	});
 
-	describe('basic', () => { 
+	describe('basic', () => {
 		it('should be initialized as a vwc-fab', async () => {
 			expect(element).toBeInstanceOf(Fab);
 			expect(element.label).toBeUndefined();
