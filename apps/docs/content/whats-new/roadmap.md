@@ -49,9 +49,11 @@ order: 2
       Text Editor
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In Progress" icon="more-horizontal-line" appearance="ghost-light" connotation="warning" href="https://docs.google.com/document/d/18Y2-LNwyOzTQ8a2FqYmPx3w-ofWjRstVyMx_9e7Z6vg/edit?tab=t.0#heading=h.8z0p4ep2y9ul"></vwc-button>
+      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://docs.google.com/document/d/18Y2-LNwyOzTQ8a2FqYmPx3w-ofWjRstVyMx_9e7Z6vg/edit?tab=t.0#heading=h.8z0p4ep2y9ul"></vwc-button>
     </vwc-data-grid-cell>
-    <vwc-data-grid-cell></vwc-data-grid-cell>
+    <vwc-data-grid-cell>
+      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://www.figma.com/design/MecZdrBIj3v6JabIwvBkYX/Rich-text-editor?node-id=6-13392&p=f&t=UaZrrH1kCQbzKgID-0"></vwc-button>
+    </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       Expected Q1 2025 (Phase 1)
     </vwc-data-grid-cell>
@@ -64,7 +66,7 @@ order: 2
       <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="In Progress" icon="more-horizontal-line" appearance="ghost-light" connotation="warning" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
+      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       Expected Q1 2025

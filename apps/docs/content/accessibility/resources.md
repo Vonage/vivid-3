@@ -20,7 +20,7 @@ The Web Content Accessibility Guidelines (WCAG) are the internationally recognis
 
 A list of internal resources and communities which can provide more information and guidance on multiple accessibility topics.
 
-- [#vonage-a11y-i18n](https://vonage.enterprise.slack.com/archives/C05NJLMC99U) Accessibility and internationalisation slack channel
+- [#empowered-accessibility](https://vonage.enterprise.slack.com/archives/C08265YPCH4) A hub for sharing knowledge, tools, and tips, discussing accessibility best practices etc.
 - [Frontend guild accessibility page](https://confluence.vonage.com/display/CCARCH/Accessibility)
 - [Vivid accessibility strategy](https://confluence.vonage.com/display/VIVID/Accessibility+strategy)
 - [Vivid Manual Accessibility Test](https://docs.google.com/spreadsheets/d/1UKyHg9DBqP8szAEbksoyfZab6G7lf98D0QWF9451aoU/edit#gid=1175911860) speadsheet
