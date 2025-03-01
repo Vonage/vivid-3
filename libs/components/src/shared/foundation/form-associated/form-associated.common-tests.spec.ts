@@ -649,6 +649,3 @@ export const checkableFormAssociatedCommonTests = () => {
 		});
 	});
 };
-
-// Workaround as one test is required per test suite
-it('dummy test', () => undefined);

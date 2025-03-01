@@ -67,6 +67,9 @@ export default defineConfig(
 			poolOptions: {
 				useAtomics: true,
 			},
+			sequence: {
+				shuffle: true,
+			}
 		},
 		plugins: [
 			viteStaticCopy({
