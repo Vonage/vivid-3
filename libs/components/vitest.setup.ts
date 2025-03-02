@@ -1,8 +1,3 @@
-import 'vitest-axe/extend-expect';
-import * as matchers from 'vitest-axe/matchers';
-import { expect } from 'vitest';
-expect.extend(matchers);
-
 export default async () => {
 	process.env.TZ = 'UTC';
 };
@@ -34,13 +29,13 @@ Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
 
 CSSStyleSheet.prototype.replaceSync = vi.fn();
 
-global.ResizeObserver = class {
+window.ResizeObserver = class {
 	observe = vi.fn();
 	unobserve = vi.fn();
 	disconnect = vi.fn();
 };
 
-global.console = {
+window.console = {
 	...console,
 	info: vi.fn(),
 	warn: vi.fn(),

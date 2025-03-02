@@ -1,5 +1,3 @@
-import { configureAxe } from 'vitest-axe';
-
 export const elementUpdated = async (element: Element | HTMLElement) => {
 	return new Promise((resolve) =>
 		requestAnimationFrame(() => resolve(element))
@@ -40,15 +38,6 @@ export async function setProperty<T extends Element, P extends keyof T>(
 	element[property] = value;
 	await elementUpdated(element);
 }
-
-export const axe = configureAxe({
-	rules: {
-		// color contrast doesn't work in this env
-		'color-contrast': { enabled: false },
-		// stops the HTML provided from being treated as a whole page
-		region: { enabled: false },
-	},
-});
 
 export * from './form-association';
 export * from './delegatesFocusPolyfill';

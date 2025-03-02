@@ -9,9 +9,9 @@ import { createRegisterFunction } from '../../design-system/createRegisterFuncti
 import { iconDefinition } from '../../../lib/icon/definition.ts';
 import { defineVividComponent } from '../../design-system/defineVividComponent.ts';
 import {
-	ErrorText,
+	type ErrorText,
 	errorText,
-	FormElement,
+	type FormElement,
 	FormElementCharCount,
 	FormElementHelperText,
 	formElements,

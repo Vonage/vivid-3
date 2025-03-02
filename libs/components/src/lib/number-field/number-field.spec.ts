@@ -192,13 +192,13 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('form association', function () {
-		let fieldValue: number,
+		let fieldValue: string,
 			formId: string,
 			fieldName: string,
 			formWrapper: HTMLElement;
 
 		beforeEach(function () {
-			fieldValue = 5;
+			fieldValue = '5';
 			fieldName = 'test-field';
 			formId = 'test-form-id';
 			formWrapper = document.createElement('div');

@@ -12,8 +12,8 @@ for (const key of Object.getOwnPropertyNames(dom.window)) {
 	}
 }
 
-global.matchMedia =
-	global.matchMedia ??
+window.matchMedia =
+	window.matchMedia ??
 	(() =>
 		({
 			matches: false,
@@ -24,12 +24,12 @@ global.matchMedia =
 		} as unknown as MediaQueryList));
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-global.addEventListener = () => {};
+window.addEventListener = () => {};
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-global.removeEventListener = () => {};
+window.removeEventListener = () => {};
 
-Object.defineProperty(global.document, 'readyState', {
+Object.defineProperty(window.document, 'readyState', {
 	value: 'complete',
 });
 

@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
+import { type NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';

@@ -17,6 +17,8 @@ jobs:
   test:
     name: 'Unit Tests'
     runs-on: ${{ inputs.os }}
+    container:
+      image: drizzt99/vonage:2.3.0
     steps:
       - uses: actions/checkout@v3
 
@@ -38,6 +40,9 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
+
+      - name: build
+        run: npx nx run components:build
 
       - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
         id: test
