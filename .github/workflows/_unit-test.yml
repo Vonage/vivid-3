@@ -41,6 +41,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: build
+        run: npx nx run components:build
+
       - run: npm run nx run-many -- --target=test --all --coverage --coverageReporters=lcov
         id: test
         env:
