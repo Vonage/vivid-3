@@ -1,5 +1,4 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { beforeEach } from 'vitest';
 import { TrappedFocus } from '../../../shared/patterns';
 import { InlineTimePicker } from './inline-time-picker';
 import '.';
