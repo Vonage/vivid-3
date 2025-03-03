@@ -6,7 +6,7 @@
 	"env": {
 		"browser": true
 	},
-	"plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc"],
+	"plugins": ["@typescript-eslint", "import", "eslint-plugin-tsdoc", "@nx"],
 	"extends": [
 		"@microsoft/eslint-config-fast-dna",
 		"plugin:compat/recommended",
@@ -30,6 +30,16 @@
 			"rules": {
 				"@nrwl/nx/enforce-module-boundaries": "off"
 			}
+		},
+		{
+			"files": ["package.json"],
+			"parser": "jsonc-eslint-parser",
+			"rules": {
+				"@nx/dependency-checks": ["error", {
+					"checkMissingDependencies": false
+				}],
+				"@typescript-eslint/naming-convention": "off"
+			}
 		}
-	]
+  ]
 }
