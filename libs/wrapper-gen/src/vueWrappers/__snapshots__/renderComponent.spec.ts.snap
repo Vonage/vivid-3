@@ -7,7 +7,7 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { Imported } from 'module';
+import { IconId } from '../icons';
 import { handleNamedSlot } from '../../utils/slots';
 import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
 
@@ -34,7 +34,7 @@ export default defineComponent({
 
         typeUnion: {type: [String, Number] as PropType<string | number>, default: undefined},
 
-        importedType: {type: Object as PropType<Imported>, default: undefined},
+        iconType: {type: String as PropType<IconId>, default: undefined},
 
         value: {type: String as PropType<string>, default: undefined},
 
@@ -103,7 +103,7 @@ export default defineComponent({
             ref: 'element',
             attrs: { ...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.modelValue ?? this.value) !== undefined ? {'value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanAttribute) !== undefined ? {'boolean-attribute': this.booleanAttribute } : {}) },
             class: 'vvd-component',
-            domProps: { ...((this.importedType) !== undefined ? {'importedType': this.importedType } : {}),...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
+            domProps: { ...((this.iconType) !== undefined ? {'iconType': this.iconType } : {}),...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
             on: { 'example-event': (event: Event) => {
           
           this.$emit('example-event', event);
@@ -126,7 +126,7 @@ this.$emit('update:sameEvent', (event.target as any).exampleAttribute);
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          ...handleVue3Props({...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'^example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.importedType) !== undefined ? {'.importedType': this.importedType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanAttribute) !== undefined && (this.booleanAttribute) !== false ? {'^boolean-attribute': this.booleanAttribute } : {})}),'onExampleEvent': (event: Event) => {
+          ...handleVue3Props({...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'^example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'.iconType': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanAttribute) !== undefined && (this.booleanAttribute) !== false ? {'^boolean-attribute': this.booleanAttribute } : {})}),'onExampleEvent': (event: Event) => {
 					 
           this.$emit('example-event', event);
         },'onInput': (event: Event) => {
@@ -157,7 +157,7 @@ import { isVue2 } from '../../utils/vue';
 import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
-import { Imported } from 'module';
+import { IconId } from '../icons';
 import { handleNamedSlot } from '../../utils/slots';
 import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
 import type { SlotsType } from 'vue3';
@@ -185,7 +185,7 @@ export default defineComponent({
 
         typeUnion: {type: [String, Number] as PropType<string | number>, default: undefined},
 
-        importedType: {type: Object as PropType<Imported>, default: undefined},
+        iconType: {type: String as PropType<IconId>, default: undefined},
 
         value: {type: String as PropType<string>, default: undefined},
 
