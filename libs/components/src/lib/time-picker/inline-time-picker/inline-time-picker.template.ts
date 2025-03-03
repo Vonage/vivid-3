@@ -2,6 +2,7 @@ import { html, repeat, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { type PickerOption } from '../time/picker';
 import { scrollIntoView } from '../../../shared/utils/scrollIntoView';
+import { TrappedFocus } from '../../../shared/patterns';
 import type { InlineTimePicker } from './inline-time-picker';
 import {
 	type Column,
@@ -20,9 +21,7 @@ const onPickerOptionClick = (
 	column: Column,
 	optionValue: string
 ) => {
-	x.$emit('change', column.updatedValue(x, optionValue), {
-		bubbles: false,
-	});
+	emitChange(x, column.updatedValue(x, optionValue));
 
 	scrollToOption(x, column.id, optionValue, 'start');
 
@@ -57,9 +56,7 @@ const onPickerKeyDown = (
 		const newRawIndex = index === -1 ? 0 : index + offset;
 		const newIndex = (newRawIndex + options.length) % options.length;
 		const newValue = options[newIndex].value;
-		x.$emit('change', column.updatedValue(x, newValue), {
-			bubbles: false,
-		});
+		emitChange(x, column.updatedValue(x, newValue));
 		scrollToOption(x, column.id, newValue, 'nearest');
 	}
 
@@ -80,6 +77,26 @@ export const scrollToOption = (
 	}
 
 	scrollIntoView(element, element.parentElement!, position);
+};
+
+const onBaseKeyDown = (x: InlineTimePicker, event: KeyboardEvent) => {
+	if (event.key === 'Tab') {
+		const focusableElements = x.shadowRoot!.querySelectorAll('.picker');
+		const terminalElement = event.shiftKey
+			? focusableElements[0]
+			: focusableElements[focusableElements.length - 1];
+
+		if (x.shadowRoot!.activeElement !== terminalElement) {
+			// TrappedFocus needs to ignore events that will not move focus out of
+			// the inline time picker
+			TrappedFocus.ignoreEvent(event);
+		}
+	}
+	return true;
+};
+
+const emitChange = (x: InlineTimePicker, time: string) => {
+	x.$emit('change', time, { bubbles: false, composed: false });
 };
 
 /**
@@ -119,7 +136,10 @@ const renderPicker = (column: Column) => {
 };
 
 export const InlineTimePickerTemplate = () => {
-	return html<InlineTimePicker>`<div class="time-pickers">
+	return html<InlineTimePicker>`<div
+		class="time-pickers"
+		@keydown="${(x, { event }) => onBaseKeyDown(x, event as KeyboardEvent)}"
+	>
 		${renderPicker(HoursColumn)} ${renderPicker(MinutesColumn)}
 		${when(shouldDisplaySecondsPicker, renderPicker(SecondsColumn))}
 		${when(shouldDisplay12hClock, renderPicker(MeridiesColumn))}

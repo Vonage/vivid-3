@@ -80,4 +80,18 @@ describe('TrappedFocus', () => {
 		expect(event.preventDefault).not.toHaveBeenCalled();
 		expect(element.shadowRoot!.activeElement).toBe(secondButton);
 	});
+
+	describe('ignoreEvent', () => {
+		it('should cause the event to be ignored', () => {
+			lastButton.focus();
+			const event = new KeyboardEvent('keydown', { key: 'Tab' });
+			event.preventDefault = vi.fn();
+
+			TrappedFocus.ignoreEvent(event);
+			element.dispatchEvent(event);
+
+			expect(event.preventDefault).not.toHaveBeenCalled();
+			expect(element.shadowRoot!.activeElement).toBe(lastButton);
+		});
+	});
 });
