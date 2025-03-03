@@ -8,7 +8,7 @@ import {
 const components = ['rich-text-editor'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<vwc-rich-text-editor></vwc-rich-text-editor>`;
+	const template = `<vwc-rich-text-editor></vwc-rich-text-editor>Tmp Text`;
 	await loadComponents({
 		page,
 		components,
