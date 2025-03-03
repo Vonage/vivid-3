@@ -6,7 +6,7 @@ exports[`renderStorybookTemplate > should render a storybook template 1`] = `
 export const argTypes = {
   sameEvent: { type: { name: 'string', required: false }, control: 'text' },
 typeUnion: { type: { name: 'object', required: false } },
-importedType: { type: { name: 'object', required: false } },
+iconType: { type: { name: 'string', required: false }, control: 'select', options: ['1-icon-1', 'icon-2']},
 modelValue: { type: { name: 'string', required: false }, control: 'text' },
 start: { type: { name: 'string', required: false }, control: 'text' },
 forcedDomProp: { type: { name: 'string', required: false }, control: 'text' },

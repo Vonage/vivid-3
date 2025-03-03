@@ -7,15 +7,15 @@ This is an example component
 
 ## Props
 
-| Name                  | Type                          | Description                  |
-| --------------------- | ----------------------------- | ---------------------------- |
-| **example-attribute** | \`string\`                      | This is an example attribute |
-| **type-union**        | *Enum*:<br/>string<br/>number |                              |
-| **imported-type**     | \`Imported\`                    |                              |
-| **value**             | \`string\`                      |                              |
-| **start**             | \`string\`                      |                              |
-| **forced-dom-prop**   | \`string\`                      |                              |
-| **boolean-attribute** | \`boolean\`                     |                              |
+| Name                  | Type                                | Description                  |
+| --------------------- | ----------------------------------- | ---------------------------- |
+| **example-attribute** | \`string\`                            | This is an example attribute |
+| **type-union**        | *Enum*:<br/>string<br/>number       |                              |
+| **icon-type**         | *Enum*:<br/>\`1-icon-1\`<br/>\`icon-2\` |                              |
+| **value**             | \`string\`                            |                              |
+| **start**             | \`string\`                            |                              |
+| **forced-dom-prop**   | \`string\`                            |                              |
+| **boolean-attribute** | \`boolean\`                           |                              |
 
 ## Events
 

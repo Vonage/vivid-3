@@ -50,16 +50,26 @@ export const exampleComponent: ComponentDef = {
 			],
 		},
 		{
-			name: 'imported-type',
+			name: 'icon-type',
 			forwardTo: {
 				type: 'property',
-				name: 'importedType',
+				name: 'iconType',
 			},
 			type: [
 				{
-					text: 'Imported',
-					vuePropType: 'Object',
-					importFromModule: 'module',
+					text: 'IconId',
+					vuePropType: 'String',
+					importFromModule: '../icons',
+					resolvedType: [
+						{
+							text: "'1-icon-1'",
+							vuePropType: 'String',
+						},
+						{
+							text: "'icon-2'",
+							vuePropType: 'String',
+						},
+					],
 				},
 			],
 		},
