@@ -10,7 +10,11 @@ The `total` attribute sets the total amount of pages. If set to `0` (it's defaul
 
 The `selected-index` attribute sets the currently selected page.
 
-Note that the value is zero-indexed. It is set to `-1` if total pages is `0`.
+<vwc-note connotation="information" icon="info-line">
+
+The value is zero-indexed. It is set to `-1` if total pages is `0`.
+
+</vwc-note>
 
 ```html preview
 <vwc-pagination total="20" selected-index="5"></vwc-pagination>
