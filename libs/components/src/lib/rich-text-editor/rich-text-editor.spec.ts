@@ -1,6 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { RichTextEditor } from './rich-text-editor';
-import type { MockInstance } from 'vitest';
 import '.';
 
 const COMPONENT_TAG = 'vwc-rich-text-editor';
@@ -17,8 +16,6 @@ describe('vwc-rich-text-editor', () => {
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as RichTextEditor;
 	});
-
-	afterEach(() => {});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-rich-text-editor', async () => {

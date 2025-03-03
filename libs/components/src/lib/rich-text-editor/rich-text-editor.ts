@@ -13,5 +13,10 @@ export class RichTextEditor extends FoundationElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr value = '';
+	@attr value?: string;
+
+	constructor() {
+		super();
+		this.value = '';
+	}
 }
