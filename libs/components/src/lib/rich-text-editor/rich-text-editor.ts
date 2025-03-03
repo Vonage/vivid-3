@@ -14,6 +14,4 @@ export class RichTextEditor extends FoundationElement {
 	 * HTML Attribute: value
 	 */
 	@attr value = '';
-
-
 }
