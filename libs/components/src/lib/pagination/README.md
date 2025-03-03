@@ -1,87 +1,65 @@
-# Pagination
+## Usage
 
-The pagination component is used to navigate through a series of pages.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/pagination';</script>
+import '@vonage/vivid/pagination';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerPagination } from '@vonage/vivid';
+
+registerPagination('your-prefix');
 ```
 
 ```html preview
-<vwc-pagination total="10"></vwc-pagination>
+<script type="module">
+	import { registerPagination } from '@vonage/vivid';
+	registerPagination('your-prefix');
+</script>
+
+<your-prefix-pagination total="10"></your-prefix-pagination>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Total
+```html
+<script setup lang="ts">
+	import { VPagination } from '@vonage/vivid-vue';
+</script>
 
-Set the `total` attribute to change the pagination's view total pages.
-
-- Type: `number`
-- Default: `0`
-
-```html preview
-<vwc-pagination total="20"></vwc-pagination>
+<template>
+	<VPagination total="10" />
+</template>
 ```
 
-### Size
+</vwc-tab-panel>
+</vwc-tabs>
 
-Set the `size` attribute to change the pagination's buttons sizes.
+## API Reference
 
-- Type: `super-condensed` | `condensed` | `normal`
-- Default: `super-condensed`
-
-```html preview blocks
-<vwc-pagination size="super-condensed" total="20"></vwc-pagination>
-<vwc-pagination size="condensed" total="20"></vwc-pagination>
-<vwc-pagination size="normal" total="20"></vwc-pagination>
-```
-
-### Shape
-
-Set the `shape` attribute to change the pagination's buttons shapes.
-
-- Type: `rounded` | `pill`
-- Default: `rounded`
-
-```html preview blocks
-<vwc-pagination shape="rounded" total="20"></vwc-pagination>
-<vwc-pagination shape="pill" total="20"></vwc-pagination>
-```
-
-### Selected Index
-
-Set the `selected-index` attribute to change the pagination's currently selected index. Note that the value is zero-indexed. It is set to -1 if total pages is 0.
-
-- Type: `number`
-- Default: `0`
-
-```html preview
-<vwc-pagination total="20" selected-index="5"></vwc-pagination>
-```
-
-### Nav Icons
-
-Set the `nav-icons` attribute to change the pagination's navigation buttons type.
-
-- Type: `Boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-pagination total="20"></vwc-pagination>
-<vwc-pagination total="20" nav-icons></vwc-pagination>
-```
-
-## Properties
+### Properties
 
 <div class="table-wrapper">
 
-| Name        | Type       | Default | Description                                                        |
-| ----------- | ---------- | ------- | ------------------------------------------------------------------ |
-| `pagesList` | `number[]` | `[]`    | An immutable array that represents the current pagination's state. |
+| Name             | Type                                               | Description                                                       |
+| ---------------- | -------------------------------------------------- | ----------------------------------------------------------------- |
+| `nav-icons`      | `boolean`                                          | Changes the Previous and Next buttons to chevron icons            |
+| `pagesList`      | `number[]`                                         | An immutable array that represents the current pagination's state |
+| `selected-index` | `number`                                           | Index of the currently selected page                              |
+| `shape`          | `rounded` (default), `pill`                        | Sets the shapes of the navigation buttons                         |
+| `size`           | `super-condensed` (default), `condensed`, `normal` | Sets the size of the navigation buttons                           |
+| `total`          | `number`                                           | Total number of pages to navigate                                 |
 
 </div>
 
-## Events
+### Events
 
 <div class="table-wrapper">
 
@@ -90,20 +68,3 @@ Set the `nav-icons` attribute to change the pagination's navigation buttons type
 | `pagination-change` | `CustomEvent<{selectedIndex: number, total: number, oldIndex: number}>` | Yes     | Yes      | Fires when the page changes. |
 
 </div>
-
-## Use Cases
-
-### With border
-
-```html preview
-<style>
-	vwc-pagination#outlined {
-		border: 1px solid var(--vvd-color-neutral-400);
-		padding: 6px;
-		border-radius: 24px;
-		display: inline-block;
-	}
-</style>
-
-<vwc-pagination id="outlined" total="10" shape="pill"></vwc-pagination>
-```
