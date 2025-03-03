@@ -35,11 +35,14 @@
 			"files": ["package.json"],
 			"parser": "jsonc-eslint-parser",
 			"rules": {
-				"@nx/dependency-checks": ["error", {
-					"checkMissingDependencies": false
-				}],
+				"@nx/dependency-checks": [
+					"error",
+					{
+						"checkMissingDependencies": false
+					}
+				],
 				"@typescript-eslint/naming-convention": "off"
 			}
 		}
-  ]
+	]
 }
