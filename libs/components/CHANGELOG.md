@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.16.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.1...vivid-v4.16.2) (2025-02-20)
+
+
+### Bug Fixes
+
+* **searchable-select:** fixed-dropdown menu layout issue (VIV-2291) ([#2149](https://github.com/Vonage/vivid-3/issues/2149)) ([2f85b87](https://github.com/Vonage/vivid-3/commit/2f85b87aa191a71df5d761a6338cd58263672d3f))
+
 ## [4.16.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.0...vivid-v4.16.1) (2025-02-18)
 
 

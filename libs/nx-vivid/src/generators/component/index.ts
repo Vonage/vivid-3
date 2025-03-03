@@ -10,10 +10,27 @@ import {
 import { VividComponentGeneratorOptions } from './schema';
 import { join } from 'path';
 
+function toPascalCase(string: string): string {
+	return string
+		.replace(/([a-z])([A-Z])/g, '$1 $2') // Splits camelCase words into separate words
+		.replace(/[-_]+|[^\p{L}\p{N}]/gu, ' ') // Replaces dashes, underscores, and special characters with spaces
+		.toLowerCase() // Converts the entire string to lowercase
+		.replace(/(?:^|\s)(\p{L})/gu, (_, letter) => letter.toUpperCase()) // Capitalizes the first letter of each word
+		.replace(/\s+/g, ''); // Removes all spaces
+}
+
+function toTitleCase(string: string): string {
+	return string.replace(/([A-Z])/g, ' $1').trim();
+}
+
 export interface NormalizedSchema extends VividComponentGeneratorOptions {
 	fileName: string;
 	className: string;
+	titleCasedName: string;
+	camelCasedName: string;
+	pascalCasedName: string;
 	projectRoot: string;
+	docsRoot: string;
 }
 
 function normalizeOptions(
@@ -25,8 +42,11 @@ function normalizeOptions(
 
 	const name = projectDirectory.replace(new RegExp('/', 'g'), '-');
 	const fileName = names(projectDirectory).fileName;
+	const titleCasedName = toTitleCase(className);
+	const pascalCasedName = toPascalCase(className);
+	const camelCasedName = className[0].toLowerCase() + className.substr(1);
 
-	const { libsDir } = getWorkspaceLayout(tree);
+	const { libsDir, appsDir } = getWorkspaceLayout(tree);
 
 	const projectRoot = joinPathFragments(
 		libsDir,
@@ -34,26 +54,34 @@ function normalizeOptions(
 		projectDirectory
 	);
 
+	const docsRoot = joinPathFragments(appsDir, 'docs/content/_data');
+
 	return {
 		...options,
 		fileName,
 		name,
 		className,
+		titleCasedName,
+		camelCasedName,
+		pascalCasedName,
 		projectRoot,
+		docsRoot,
 	};
 }
 
 function createFiles(tree: Tree, options: NormalizedSchema) {
+	const { titleCasedName, camelCasedName, pascalCasedName } = options;
 	const { className, name, propertyName } = names(options.name);
 
 	generateFiles(tree, join(__dirname, './files'), options.projectRoot, {
 		...options,
 		dot: '.',
 		className,
-		title: className.replace(/([A-Z])/g, ' $1').trim(),
+		title: titleCasedName,
 		name,
 		propertyName,
-		camelCasedName: className[0].toLowerCase() + className.substr(1),
+		camelCasedName,
+		pascalCasedName,
 		cliCommand: 'nx',
 		strict: undefined,
 		tmpl: '',
@@ -74,6 +102,33 @@ function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
 	}
 }
 
+function updateDocsComponentList(tree: Tree, options: NormalizedSchema) {
+	const componentsPath = `apps/docs/content/_data/components.json`;
+	const { name, addToDocs, titleCasedName } = options;
+	if (addToDocs && tree.exists(componentsPath)) {
+		const title = `		"title": "${titleCasedName}",`;
+		const lines = tree.read(componentsPath, 'utf8').split('\n');
+
+		if (lines.indexOf(title) === -1) {
+			const toAdd = `	{
+${title}
+		"description": "Short description of the component.",
+		"variations": "./libs/components/src/lib/${name}/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/${name}/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/${name}/README.md",
+		"accessibility": "./libs/components/src/lib/${name}/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/${name}/USE-CASES.md",
+		"status": "underlying"
+	}`;
+			const lastComponentLine = lines[lines.length - 3];
+			if (lastComponentLine.indexOf('}') > 0) lines[lines.length - 3] = '	},';
+			lines.splice(lines.length - 2, 0, toAdd);
+			tree.write(componentsPath, lines.join('\n'));
+		}
+	}
+}
+
 export default async function vividComponentGenerator(
 	tree: Tree,
 	schema: VividComponentGeneratorOptions
@@ -81,6 +136,7 @@ export default async function vividComponentGenerator(
 	const options = normalizeOptions(tree, schema);
 	createFiles(tree, options);
 	updateComponentsExports(tree, options);
+	updateDocsComponentList(tree, options);
 
 	await formatFiles(tree);
 }
