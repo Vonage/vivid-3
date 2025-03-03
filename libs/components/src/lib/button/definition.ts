@@ -35,3 +35,5 @@ export const buttonDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerButton = createRegisterFunction(buttonDefinition);
+
+export { Button as VwcButtonElement };

@@ -23,3 +23,5 @@ export const breadcrumbDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerBreadcrumb = createRegisterFunction(breadcrumbDefinition);
+
+export { Breadcrumb as VwcBreadcrumbElement };

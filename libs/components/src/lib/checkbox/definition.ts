@@ -27,3 +27,5 @@ export const checkboxDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerCheckbox = createRegisterFunction(checkboxDefinition);
+
+export { Checkbox as VwcCheckboxElement };

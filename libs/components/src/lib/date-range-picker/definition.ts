@@ -32,3 +32,5 @@ export const dateRangePickerDefinition = defineVividComponent(
 export const registerDateRangePicker = createRegisterFunction(
 	dateRangePickerDefinition
 );
+
+export { DateRangePicker as VwcDateRangePickerElement };

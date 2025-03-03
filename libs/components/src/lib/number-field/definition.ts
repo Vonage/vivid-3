@@ -33,3 +33,5 @@ export const numberFieldDefinition = defineVividComponent(
 export const registerNumberField = createRegisterFunction(
 	numberFieldDefinition
 );
+
+export { NumberField as VwcNumberFieldElement };

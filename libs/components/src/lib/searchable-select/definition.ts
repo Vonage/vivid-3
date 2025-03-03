@@ -47,3 +47,5 @@ const searchableSelectDefinition = defineVividComponent(
 export const registerSearchableSelect = createRegisterFunction(
 	searchableSelectDefinition
 );
+
+export { SearchableSelect as VwcSearchableSelectElement };

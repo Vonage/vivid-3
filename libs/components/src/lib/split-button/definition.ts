@@ -36,3 +36,5 @@ export const splitButtonDefinition = defineVividComponent(
 export const registerSplitButton = createRegisterFunction(
 	splitButtonDefinition
 );
+
+export { SplitButton as VwcSplitButtonElement };
