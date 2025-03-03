@@ -7,11 +7,13 @@ import { attr } from '@microsoft/fast-element';
  */
 export class RichTextEditor extends FoundationElement {
 	/**
-	 * Indicates the text's text.
+	 * Indicates the rich text editor's value.
 	 *
 	 * @public
 	 * @remarks
-	 * HTML Attribute: text
+	 * HTML Attribute: value
 	 */
-	@attr text?: string;
+	@attr value = '';
+
+
 }
