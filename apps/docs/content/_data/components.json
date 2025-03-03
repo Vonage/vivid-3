@@ -254,15 +254,13 @@
 	},
 	{
 		"title": "Menu",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/menu/README.md",
-		"children": ["Menu Item"]
-	},
-	{
-		"title": "Menu Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/menu-item/README.md",
-		"parent": "Menu"
+		"description": "The Menu is an interactive element that appears in response to user actions. It typically presents a list of Menu Items (actions) relevant to the current context.",
+		"variations": "./libs/components/src/lib/menu/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/menu/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/menu/README.md",
+		"accessibility": "./libs/components/src/lib/menu/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/menu/USE-CASES.md"
 	},
 	{
 		"title": "Avatar",
