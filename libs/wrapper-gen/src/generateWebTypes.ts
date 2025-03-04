@@ -1,4 +1,4 @@
-import ComponentRegister from './generator/ComponentRegister';
-import '../componentOverrides';
+import { generateWebTypes } from './webTypes';
+import { loadMetadata } from './metadataStore';
 
-ComponentRegister.generateWebTypes();
+generateWebTypes(loadMetadata());

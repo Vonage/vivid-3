@@ -1,4 +1,4 @@
-import ComponentRegister from './generator/ComponentRegister';
-import '../componentOverrides';
+import { generateDocs } from './docs';
+import { loadMetadata } from './metadataStore';
 
-ComponentRegister.generateDocs();
+generateDocs(loadMetadata());

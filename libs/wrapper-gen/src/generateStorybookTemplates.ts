@@ -1,4 +1,4 @@
-import ComponentRegister from './generator/ComponentRegister';
-import '../componentOverrides';
+import { generateStorybookTemplates } from './storybookTemplates';
+import { loadMetadata } from './metadataStore';
 
-ComponentRegister.generateStorybookTemplates();
+generateStorybookTemplates(loadMetadata());

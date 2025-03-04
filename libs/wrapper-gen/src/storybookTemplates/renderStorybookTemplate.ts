@@ -1,11 +1,11 @@
-import { ComponentDef } from './ComponentDef';
-import { kebabToCamel, kebabToPascal } from './utils/casing';
+import { ComponentDef } from '../metadata/ComponentDef';
+import { kebabToCamel, kebabToPascal } from '../utils/casing';
 import {
 	isNumberLiteral,
 	isStringLiteral,
 	TypeUnion,
 	withImportsResolved,
-} from './types';
+} from '../metadata/types';
 
 const isBasicString = (type: TypeUnion) =>
 	type.length === 1 && type[0].text === 'string';
