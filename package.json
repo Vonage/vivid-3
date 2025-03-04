@@ -133,7 +133,7 @@
 		"rollup-plugin-delete": "^2.2.0",
 		"sass": "^1.85.1",
 		"slugify": "^1.6.5",
-		"style-dictionary": "^3.9.2",
+		"style-dictionary": "^4.0.0",
 		"stylelint": "^15.11.0",
 		"stylelint-config-idiomatic-order": "^10.0.0",
 		"stylelint-config-standard-scss": "^11.1.0",
