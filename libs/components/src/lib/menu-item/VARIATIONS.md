@@ -39,12 +39,6 @@ View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 </vwc-menu>
 ```
 
-<vwc-note connotation="warning" icon="warning-line" headline="Accessibility note">
-
-Icon only Menu Items need an accessible label. An `aria-label` or `title` must be provided to ensure that the user can understand the Menu Item's purpose.
-
-</vwc-note>
-
 ## Role
 
 The `role` attribute sets the role.
