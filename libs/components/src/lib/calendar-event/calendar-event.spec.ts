@@ -1,8 +1,6 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { CalendarEvent } from './calendar-event';
 import '.';
-import { calendarEventDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-calendar-event';
 
@@ -24,9 +22,6 @@ describe('vwc-calendar-event', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-calendar-event', async () => {
-			expect(calendarEventDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(CalendarEvent);
 			expect(element.heading).toBeUndefined();
 			expect(element.description).toBeUndefined();
@@ -34,6 +29,13 @@ describe('vwc-calendar-event', () => {
 			expect(element.overlapCount).toBeUndefined();
 			expect(element.start).toBeUndefined();
 			expect(element.duration).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -91,15 +93,6 @@ describe('vwc-calendar-event', () => {
 				`.base.connotation-${connotation}`
 			);
 			expect(base).toBeInstanceOf(Element);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.heading = 'heading';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

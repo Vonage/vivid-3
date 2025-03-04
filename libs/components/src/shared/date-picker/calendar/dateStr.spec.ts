@@ -17,12 +17,12 @@ describe('currentDateStr', () => {
 	beforeAll(() => {
 		const mockedDate = new Date(2021, 0, 21);
 
-		jest.useFakeTimers();
-		jest.setSystemTime(mockedDate);
+		vi.useFakeTimers();
+		vi.setSystemTime(mockedDate);
 	});
 
 	afterAll(() => {
-		jest.useRealTimers();
+		vi.useRealTimers();
 	});
 
 	it('should return the current date', () => {

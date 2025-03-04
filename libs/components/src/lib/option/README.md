@@ -1,124 +1,116 @@
-# Option
+## Usage
 
-The option component is generally used inside select or combobox.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/option';</script>
+import '@vonage/vivid/option';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Text
+```js
+import { registerOption } from '@vonage/vivid';
 
-Use the `text` attribute to set the option's text.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<style>
-	div[role='listbox'] {
-		width: 150px;
-	}
-</style>
-<div role="listbox">
-	<vwc-option text="Option"></vwc-option>
-</div>
+registerOption('your-prefix');
 ```
 
-### Label
-
-Add the `label` attribute to add a label to the option to replace the text shown in `vwc-select` when selected.
-`label` will return the `label` attribute's value. If not set, it will revert to the `text`.
-Note that you cannot set `label` programmatically like this: `option.label = 'new label'`. You can only set it via the attribute.
-
-### Icon
-
-Add the `icon` attribute to add an icon to the option.
-Check out the [vivid icons gallery](/icons/icons-gallery/) to see what icons are available.
-
-- Type: `string`
-- Default: `''`
-
 ```html preview
+<script type="module">
+	import { registerOption } from '@vonage/vivid';
+	registerOption('your-prefix');
+</script>
+
+<div class="container">
+	<your-prefix-option text="Option text"></your-prefix-option>
+</div>
+
 <style>
-	div[role='listbox'] {
-		width: 150px;
+	.container {
+		width: 250px;
 	}
 </style>
-<div role="listbox">
-	<vwc-option text="Option" icon="chat-line"></vwc-option>
-</div>
 ```
 
-### Selected
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Add the `selected` attribute to select the option.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<style>
-	div[role='listbox'] {
-		width: 150px;
-	}
-</style>
-<div role="listbox">
-	<vwc-option text="Option" selected></vwc-option>
-</div>
+```html
+<script setup lang="ts">
+	import { VOption } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VOption text="Option text" />
+</template>
 ```
 
-### Disabled
+</vwc-tab-panel>
+</vwc-tabs>
 
-Add the `disabled` attribute to disable the option.
+## Label
 
-- Type: `boolean`
-- Default: `false`
+The `label` attribute can be used xsto display different text in the parent element when selected.
 
-```html preview
+In the example below, the international dialing code (`label`) is displayed when selected, but the country name (`text`) is used in the option list.
+
+```html preview 270px
+<vwc-select
+	label="Country code"
+	icon="flag-united-states"
+	class="country-code"
+	id="country-code"
+>
+	<vwc-option
+		label="+1"
+		value="1"
+		text="United States"
+		icon="flag-united-states"
+	></vwc-option>
+	<vwc-option
+		label="+44"
+		value="44"
+		text="United Kingdom"
+		icon="flag-united-kingdom"
+	></vwc-option>
+	<vwc-option
+		label="+49"
+		value="49"
+		text="Germany"
+		icon="flag-germany"
+	></vwc-option>
+	<vwc-option
+		label="+355"
+		value="355"
+		text="Albania"
+		icon="flag-albania"
+	></vwc-option>
+</vwc-select>
+
+<script>
+	const select = document.getElementById('country-code');
+	select?.addEventListener('change', (e) => {
+		select.icon = select.selectedOptions[0].icon;
+	});
+</script>
+
 <style>
-	div[role='listbox'] {
-		width: 150px;
+	.country-code {
+		inline-size: 120px;
 	}
 </style>
-<div role="listbox">
-	<vwc-option text="Option" disabled></vwc-option>
-</div>
-```
-
-### Value
-
-Use the `value` attribute to set the option's value.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<style>
-	div[role='listbox'] {
-		width: 150px;
-	}
-</style>
-<div role="listbox">
-	<vwc-option text="Option" value="my-value"></vwc-option>
-</div>
 ```
 
 ## Slots
 
-### Icon
+### Icon Slot
 
 Set the `icon` slot to show an icon before the option's text.
 If set, the `icon` attribute is ignored.
 
 ```html preview
-<style>
-	div[role='listbox'] {
-		width: 150px;
-	}
-</style>
-<div role="listbox">
+<div class="container">
 	<vwc-option text="Option" value="my-value">
 		<vwc-icon
 			slot="icon"
@@ -127,16 +119,52 @@ If set, the `icon` attribute is ignored.
 		></vwc-icon>
 	</vwc-option>
 </div>
+
+<style>
+	.container {
+		width: 250px;
+	}
+</style>
 ```
 
-### Tag Icon
+### Tag Icon Slot
 
-If the option is represented as a tag in a [`searchable-select`](/components/searchable-select/) component, you can use `tag-icon` slot to show an icon in the tag.
+If the option is represented as a tag in a [Searchable Select](/components/searchable-select/) component, you can use `tag-icon` slot to show an icon in the tag.
 
-```html preview 230px
+```html preview 180px
 <vwc-searchable-select multiple>
 	<vwc-option value="afghanistan" text="Afghanistan" selected>
 		<vwc-icon slot="tag-icon" name="flag-afghanistan"></vwc-icon>
 	</vwc-option>
 </vwc-searchable-select>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name         | Type                      | Description                                                                                                                 |
+| ------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **disabled** | `boolean`                 | Sets the option to be disabled                                                                                              |
+| **icon**     | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **label**    | `string`                  | Text to be displayed instead of `text` when the option is selected                                                          |
+| **selected** | `boolean`                 | Sets the option to be selected                                                                                              |
+| **text**     | `string`                  | Sets the option's text                                                                                                      |
+| **value**    | `string`                  | Value to be submited as part of the form data                                                                               |
+
+</div>
+
+### Slots
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name         | Description                                                               |
+| ------------ | ------------------------------------------------------------------------- |
+| **icon**     | Add an icon before the option's text                                      |
+| **tag-icon** | Icon to be displayed in the tag when selected inside of Searchable Select |
+
+</div>

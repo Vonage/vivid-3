@@ -1,30 +1,26 @@
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-
-import { registerFactory } from '../../shared/design-system';
-import { popupRegistries } from '../popup/definition';
-
+import { popupDefinition } from '../popup/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './toggletip.scss?inline';
 import { Toggletip } from './toggletip';
 import { ToggletipTemplate as template } from './toggletip.template';
 
 /**
- * The toggletip element.
- */
-export const toggletipDefinition =
-	Toggletip.compose<FoundationElementDefinition>({
-		baseName: 'toggletip',
-		template: template as any,
-		styles,
-	});
-
-/**
  * @internal
  */
-export const toggletipRegistries = [toggletipDefinition(), ...popupRegistries];
+export const toggletipDefinition = defineVividComponent(
+	'toggletip',
+	Toggletip,
+	template,
+	[popupDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the toggletip element with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerToggletip = registerFactory(toggletipRegistries);
+export const registerToggletip = createRegisterFunction(toggletipDefinition);

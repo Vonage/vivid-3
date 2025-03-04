@@ -1,5 +1,4 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
-import { attr, customElement } from '@microsoft/fast-element';
+import { attr, customElement, FASTElement } from '@microsoft/fast-element';
 import type { Appearance } from 'vivid-bundle';
 import { AppearanceUiTemplate } from './appearance-ui.template';
 import styles from './appearance-ui.scss?inline';
@@ -19,6 +18,7 @@ export type AppearanceUIAppearance = Extract<
 	| Appearance.Duotone
 	| Appearance.Fieldset
 	| Appearance.Subtle
+	| Appearance.SubtleLight
 	| Appearance.Listitem
 >;
 
@@ -27,7 +27,7 @@ export type AppearanceUIAppearance = Extract<
 	template: AppearanceUiTemplate,
 	styles,
 })
-export class AppearanceUi extends FoundationElement {
+export class AppearanceUi extends FASTElement {
 	/**
 	 * The appearance.
 	 *

@@ -1,7 +1,7 @@
 import { attr, html, observable, slotted, when } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Icon } from '../../../lib/icon/icon';
+import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
 import messageStyles from './message.scss?inline';
 
 export interface FormElement {
@@ -52,51 +52,6 @@ export class FormElementCharCount {
 export function formElements<
 	T extends { new (...args: any[]): Record<string, any> }
 >(constructor: T) {
-	/**
-	 * Fix support for min/maxlength validation.
-	 * HTML has the insane behaviour of min/maxlength constraints only being active after a user interacted with the
-	 * field. Our proxy is never interacted with, so the constraint never applies.
-	 * Therefore, we need to use the validity from the actual control in this case.
-	 *
-	 * Additionally, we need to avoid calling setValidity when elementInternals is not available, otherwise the proxy gets
-	 * stuck in an invalid state.
-	 *
-	 * This needs to be done in the original validate method from the FAST FormAssociated mixin.
-	 * We walk up the prototype chain until we find the original method and replace it.
-	 */
-	let currentPrototype = constructor.prototype;
-	while (currentPrototype) {
-		const parentPrototype = Object.getPrototypeOf(currentPrototype);
-		if (currentPrototype.validate && !parentPrototype.validate) {
-			currentPrototype.validate = function (anchor?: HTMLElement) {
-				if (this.proxy instanceof HTMLElement && this.elementInternals) {
-					const isValid = this.proxy.validity.valid;
-					const controlIsInvalidDueToMinOrMaxLength =
-						this.control &&
-						this.control.validity &&
-						!this.control.validity.valid &&
-						(this.control.validity.tooShort || this.control.validity.tooLong);
-
-					if (isValid && controlIsInvalidDueToMinOrMaxLength) {
-						this.setValidity(
-							this.control.validity,
-							this.control.validationMessage,
-							anchor
-						);
-					} else {
-						this.setValidity(
-							this.proxy.validity,
-							this.proxy.validationMessage,
-							anchor
-						);
-					}
-				}
-			};
-			break;
-		}
-		currentPrototype = parentPrototype;
-	}
-
 	class Decorated extends constructor {
 		@attr label?: string;
 
@@ -208,7 +163,7 @@ const isFeedbackAvailable = (config: FeedbackConfig, x: SomeFormElement) =>
 			(config.slot && x[config.slot.slottedContentProperty]?.length)
 	);
 
-export function getFeedbackTemplate(context: ElementDefinitionContext) {
+export function getFeedbackTemplate(context: VividElementDefinitionContext) {
 	return html<SomeFormElement>`
 		<style>
 			${messageStyles}
@@ -235,7 +190,7 @@ export function getFeedbackTemplate(context: ElementDefinitionContext) {
 }
 
 function getFeedbackTypeTemplate(
-	context: ElementDefinitionContext,
+	context: VividElementDefinitionContext,
 	config: FeedbackConfig,
 	shouldShow: (x: SomeFormElement) => boolean
 ) {

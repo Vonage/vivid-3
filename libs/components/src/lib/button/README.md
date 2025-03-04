@@ -1,6 +1,6 @@
 ## Usage
 
-<vwc-tabs>
+<vwc-tabs gutters="none">
 <vwc-tab label="Web component"></vwc-tab>
 <vwc-tab-panel>
 
@@ -134,23 +134,23 @@ If center is needed, set `--button-content-alignment: center;`.
 
 ```html preview
 <vwc-button
-	class="vwc-button"
+	class="button"
 	dropdown-indicator
 	appearance="outlined-light"
-	label="aligned to start content"
+	label="Aligned to start content"
 ></vwc-button>
 <vwc-button
-	class="vwc-button vwc-button-center"
+	class="button button-center"
 	dropdown-indicator
 	appearance="outlined-light"
-	label="centered content"
+	label="Centered content"
 ></vwc-button>
 
 <style>
-	.vwc-button {
+	.button {
 		inline-size: 300px;
 	}
-	.vwc-button-center {
+	.button-center {
 		--button-content-alignment: center;
 	}
 </style>
@@ -219,8 +219,8 @@ If center is needed, set `--button-content-alignment: center;`.
 
 <div class="table-wrapper">
 
-| Name     | Description                   |
-| -------- | ----------------------------- |
-| **icon** | Add an icon to the component. |
+| Name     | Description                  |
+| -------- | ---------------------------- |
+| **icon** | Add an icon to the component |
 
 </div>

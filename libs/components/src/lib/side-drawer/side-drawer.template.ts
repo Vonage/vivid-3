@@ -1,7 +1,5 @@
 import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type { FoundationElementTemplate } from '@microsoft/fast-foundation';
 import type { SideDrawer } from './side-drawer';
 
 const getClasses = ({ modal, open, trailing }: SideDrawer) =>
@@ -15,16 +13,7 @@ const getClasses = ({ modal, open, trailing }: SideDrawer) =>
 const getScrimClasses = ({ open }: SideDrawer) =>
 	classNames('scrim', ['open', open]);
 
-/**
- * The template for the side-drawer component.
- *
- * @param context - element definition context
- * @returns ViewTemplate<side-drawer> A template capable of creating HTMLView instances or rendering directly to DOM.
- * @public
- */
-export const sideDrawerTemplate: FoundationElementTemplate<
-	ViewTemplate<SideDrawer>
-> = () => html`
+export const sideDrawerTemplate = html<SideDrawer>`
 	<div
 		class="${getClasses}"
 		?inert="${(x) => !x.open}"

@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -10,11 +9,7 @@ import {
 import { TextArea } from './text-area';
 import '.';
 
-const COMPONENT_TAG_NAME = 'vwc-text-area';
-
-function getTextareaElement(element: TextArea) {
-	return element.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
-}
+const COMPONENT_TAG = 'vwc-text-area';
 
 describe('vwc-text-area', () => {
 	function setToBlurred() {
@@ -26,11 +21,14 @@ describe('vwc-text-area', () => {
 		element.validate();
 	}
 
+	const getTextarea = () =>
+		element.shadowRoot!.querySelector('textarea') as HTMLTextAreaElement;
+
 	let element: TextArea;
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TextArea;
 	});
 
@@ -50,8 +48,20 @@ describe('vwc-text-area', () => {
 			expect(element.readOnly).toBe(undefined);
 			expect(element.required).toBe(false);
 			expect(element.rows).toBe(undefined);
+			expect(element.resize).toBe('none');
+			expect(element.formId).toBe(undefined);
+			expect(element.list).toBe(undefined);
+			expect(element.spellcheck).toBe(undefined);
+			expect(element.autofocus).toBe(undefined);
 			expect(element.value).toBe('');
 			expect(element).toBeInstanceOf(TextArea);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -136,7 +146,7 @@ describe('vwc-text-area', () => {
 		it('should set placeholder attribute on the input', async function () {
 			element.placeholder = placeholderText;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)?.getAttribute('placeholder')).toEqual(
+			expect(getTextarea().getAttribute('placeholder')).toEqual(
 				placeholderText
 			);
 		});
@@ -152,9 +162,7 @@ describe('vwc-text-area', () => {
 		it('should have no placeholder if placeholder is not set as string', async function () {
 			element.placeholder = '';
 			await elementUpdated(element);
-			expect(
-				getTextareaElement(element)?.getAttribute('placeholder')
-			).toBeNull();
+			expect(getTextarea().getAttribute('placeholder')).toBeNull();
 		});
 	});
 
@@ -166,9 +174,7 @@ describe('vwc-text-area', () => {
 		it('should set minlength attribute on the input', async function () {
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)?.getAttribute(propertyName)).toEqual(
-				value
-			);
+			expect(getTextarea().getAttribute(propertyName)).toEqual(value);
 		});
 
 		it('should set minLength on proxy input', function () {
@@ -185,14 +191,28 @@ describe('vwc-text-area', () => {
 		it('should set maxlength attribute on the input', async function () {
 			(element as any)[propertyName] = value;
 			await elementUpdated(element);
-			expect(getTextareaElement(element)?.getAttribute(propertyName)).toEqual(
-				value
-			);
+			expect(getTextarea().getAttribute(propertyName)).toEqual(value);
 		});
 
 		it('should set maxLength on proxy input', function () {
 			(element as any)[propertyName] = value;
 			expect((element.proxy as any)[proxyPropertyName]).toEqual(Number(value));
+		});
+	});
+
+	describe('list', function () {
+		it('should set list attribute on the textarea', async function () {
+			element.list = 'data-list';
+			await elementUpdated(element);
+			expect(getTextarea().getAttribute('list')).toBe('data-list');
+		});
+	});
+
+	describe('spellcheck', function () {
+		it('should set spellcheck attribute on the textarea', async function () {
+			element.spellcheck = true;
+			await elementUpdated(element);
+			expect(getTextarea().hasAttribute('spellcheck')).toBe(true);
 		});
 	});
 
@@ -216,7 +236,7 @@ describe('vwc-text-area', () => {
 
 		it('should attach to closest form', async function () {
 			const { form: formElement } = createFormHTML<TextArea>({
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				fieldName,
 				fieldValue,
 				formId,
@@ -238,7 +258,7 @@ describe('vwc-text-area', () => {
 				fieldValue,
 				formId,
 				otherFormId: 'otherFormId',
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -256,7 +276,7 @@ describe('vwc-text-area', () => {
 				fieldName,
 				fieldValue,
 				formId,
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -273,7 +293,7 @@ describe('vwc-text-area', () => {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('input', () => res(true))
 			);
-			const innerInput = getTextareaElement(element);
+			const innerInput = getTextarea();
 			innerInput.dispatchEvent(
 				new InputEvent('input', {
 					bubbles: true,
@@ -287,7 +307,7 @@ describe('vwc-text-area', () => {
 			const inputPromise = new Promise((res) =>
 				element.addEventListener('change', () => res(true))
 			);
-			const innerInput = getTextareaElement(element);
+			const innerInput = getTextarea();
 			innerInput.dispatchEvent(
 				new InputEvent('change', {
 					bubbles: true,
@@ -313,7 +333,7 @@ describe('vwc-text-area', () => {
 
 	describe('name', function () {
 		it('should reflect the name on the internal input', async function () {
-			const internalInput = getTextareaElement(element);
+			const internalInput = getTextarea();
 			element.name = 'text area name';
 			await elementUpdated(element);
 			expect(internalInput.getAttribute('name')).toEqual('text area name');
@@ -378,18 +398,13 @@ describe('vwc-text-area', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			element.value = 'Value text';
-			element.resize = 'both';
-			element.helperText = 'Helper text';
-			element.errorText = 'Error text';
-			element.charCount = true;
+	describe('select method', function () {
+		it('should call select on the input', async function () {
+			getTextarea().select = vi.fn();
 
-			await elementUpdated(element);
+			element.select();
 
-			expect(await axe(element)).toHaveNoViolations();
+			expect(getTextarea().select).toHaveBeenCalled();
 		});
 	});
 });

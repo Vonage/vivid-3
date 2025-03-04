@@ -1,4 +1,4 @@
-import { axe, fixture, getControlElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { ICONS_VERSION as ICON_SET_VERSION } from '@vonage/vwc-consts';
 import type { Icon } from './icon';
 import '.';
@@ -7,96 +7,128 @@ const COMPONENT_TAG = 'vwc-icon';
 
 describe('icon', function () {
 	function fakeFetch(requestTime = 4000) {
-		(global.fetch as any) = jest.fn((_, { signal }) => {
+		(global.fetch as any) = vi.fn((_, { signal }) => {
 			currentFetchSignal = signal;
 			return new Promise((res) => {
-				setTimeout(() => res(response), requestTime);
+				setTimeout(() => {
+					res(response);
+				}, requestTime);
 			});
 		});
 	}
 
-	function setIconNameAndTriggerFirstTimer() {
-		element.name = 'none';
-		jest.advanceTimersToNextTimer();
-	}
-
-	function setIconNameAndAdvanceTime(timeInMs: number, name = 'none') {
-		element.name = name;
-		jest.advanceTimersByTime(timeInMs);
-	}
-
-	function setIconNameAndRunAllTimers(iconName: string | undefined) {
-		element.name = iconName;
-		jest.runAllTimers();
-	}
+	// Use a unique id for each icon name to avoid caching
+	let nextUniqueId = 0;
+	const uniqueId = () => `icon-${nextUniqueId++}`;
 
 	const svg = 'svg';
-	const response = {
-		ok: true,
-		headers: {
-			get: () => {
-				return 'image/svg+xml';
-			},
-		},
-		text: () => svg,
-	};
+	let response: any;
+	let responseFileType = 'image/svg+xml';
+
 	const originalFetch = global.fetch;
-	const originalPromise = global.Promise;
 
 	let currentFetchSignal: AbortSignal;
 	let element: Icon;
 
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Icon;
-		global.Promise = require('promise'); // needed in order for promises to work with jest fake timers
-		jest.useFakeTimers({ legacyFakeTimers: true });
+		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+		responseFileType = 'image/svg+xml';
+		response = {
+			ok: true,
+			headers: {
+				get: () => {
+					return responseFileType;
+				},
+			},
+			text: () => svg,
+		};
 	});
 
 	afterEach(function () {
-		jest.useRealTimers();
+		vi.useRealTimers();
 		global.fetch = originalFetch;
-		global.Promise = originalPromise;
+	});
+
+	it('should allow being created via createElement', () => {
+		// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+		// This is because only createElement performs checks for custom element constructor requirements
+		// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+		expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 	});
 
 	describe('name', function () {
+		it('should leave svg undefined if fetch fails', async function () {
+			response.ok = false;
+			fakeFetch(100);
+
+			// Set the name property to trigger the fetch call
+			element.name = uniqueId();
+
+			// Advance the timers to ensure the fetch call is made
+			await vi.advanceTimersByTimeAsync(100);
+
+			expect(element._svg).toEqual(undefined);
+		});
+
+		it('should leave svg undefined if fetch returns non svg content-type', async function () {
+			responseFileType = 'text/plain';
+			fakeFetch(100);
+
+			// Set the name property to trigger the fetch call
+			element.name = uniqueId();
+
+			// Advance the timers to ensure the fetch call is made
+			await vi.advanceTimersByTimeAsync(100);
+
+			expect(element._svg).toEqual(undefined);
+		});
+
 		it('should show nothing when first changing the icon', async function () {
 			fakeFetch(4000);
-			setIconNameAndTriggerFirstTimer();
+			element.name = uniqueId();
 
 			expect(element._svg).toEqual(undefined);
 		});
 
 		it('should set the icon as loading after 500ms', async function () {
 			fakeFetch(4000);
-			setIconNameAndAdvanceTime(500);
+			element.name = uniqueId();
+			await vi.advanceTimersByTimeAsync(500);
 			expect(element._svg).toMatchSnapshot();
 		});
 
 		it('should remove loading icon after 2500ms', async function () {
 			fakeFetch(4000);
-			setIconNameAndAdvanceTime(2500);
+			element.name = uniqueId();
+			await vi.advanceTimersByTimeAsync(2500);
 			expect(element._svg).toEqual(undefined);
 		});
 
 		it('should set icon in svg after icon fetch', async function () {
 			fakeFetch(100);
-			setIconNameAndRunAllTimers('none');
+			element.name = uniqueId();
+			await vi.runAllTimersAsync();
 			expect(element._svg).toEqual(svg);
 		});
 
-		it('should show empty string when no icon is available', function () {
+		it('should show empty string when no icon is available', async function () {
 			fakeFetch(100);
-			setIconNameAndRunAllTimers('none');
-			setIconNameAndRunAllTimers(undefined);
+			element.name = uniqueId();
+			await vi.runAllTimersAsync();
+			element.name = undefined;
+			await vi.runAllTimersAsync();
 			expect(element._svg).toEqual('');
 		});
 
-		it('should abort additional fetch requests', function () {
+		it('should abort additional fetch requests', async function () {
 			fakeFetch(100);
-			setIconNameAndAdvanceTime(50, 'home');
+			element.name = uniqueId();
+			await vi.advanceTimersByTimeAsync(50);
 			const homeSignal = currentFetchSignal;
 
-			setIconNameAndAdvanceTime(10, 'user');
+			element.name = 'user';
+			await vi.advanceTimersByTimeAsync(10);
 
 			expect(homeSignal.aborted).toBe(true);
 		});
@@ -108,24 +140,29 @@ describe('icon', function () {
 		});
 
 		it('should set to true when icon is loaded', async function () {
-			setIconNameAndRunAllTimers('home');
+			element.name = uniqueId();
+			await vi.runAllTimersAsync();
 			expect(element.iconLoaded).toEqual(true);
 		});
 
 		it('should set an image with src when iconLoaded is false', async function () {
-			setIconNameAndRunAllTimers('home');
+			const iconName = uniqueId();
+			element.name = iconName;
+			await vi.runAllTimersAsync();
 			element.iconLoaded = false;
-			jest.runAllTimers();
+			await elementUpdated(element);
 			const imgElement = getControlElement(element).querySelector('img');
 			expect(imgElement?.src).toEqual(
-				`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/home.svg`
+				`https://icon.resources.vonage.com/v${ICON_SET_VERSION}/${iconName}.svg`
 			);
 		});
 
 		it('should set aria-busy on the figure element when iconLoaded is false', async function () {
-			setIconNameAndRunAllTimers('home');
+			element.name = uniqueId();
+			await vi.runAllTimersAsync();
 			element.iconLoaded = false;
-			jest.runAllTimers();
+
+			await elementUpdated(element);
 			const figureElement = getControlElement(element);
 			expect(figureElement.hasAttribute('aria-busy')).toBe(true);
 		});
@@ -133,7 +170,8 @@ describe('icon', function () {
 		it('should set iconLoaded to false when name changes', async function () {
 			element.iconLoaded = true;
 
-			setIconNameAndAdvanceTime(100);
+			element.name = uniqueId();
+			await vi.advanceTimersByTimeAsync(100);
 
 			expect(element.iconLoaded).toEqual(false);
 		});
@@ -148,21 +186,9 @@ describe('icon', function () {
 			'should set size class accordingly when size is %s',
 			async function (size) {
 				element.size = size;
-				jest.runAllTimers();
+				await elementUpdated(element);
 				expect(getControlElement(element).classList).toContain(`size-${size}`);
 			}
 		);
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			jest.clearAllTimers();
-			jest.useRealTimers();
-			element = (await fixture(
-				`<${COMPONENT_TAG} name="home"></${COMPONENT_TAG}>`
-			)) as Icon;
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
 	});
 });

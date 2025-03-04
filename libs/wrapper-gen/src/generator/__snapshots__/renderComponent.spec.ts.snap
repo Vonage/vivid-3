@@ -1,9 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`renderComponent should render a component 1`] = `
+exports[`renderComponent > should render a component 1`] = `
 "
 import { defineComponent, ref, h, VNodeData, PropType } from 'vue';
 import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { Imported } from 'module';
@@ -125,7 +126,7 @@ this.$emit('update:sameEvent', (event.target as any).exampleAttribute);
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          ...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'^example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.importedType) !== undefined ? {'.importedType': this.importedType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanAttribute) !== undefined && (this.booleanAttribute) !== false ? {'^boolean-attribute': this.booleanAttribute } : {}),'onExampleEvent': (event: Event) => {
+          ...handleVue3Props({...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'^example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.importedType) !== undefined ? {'.importedType': this.importedType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanAttribute) !== undefined && (this.booleanAttribute) !== false ? {'^boolean-attribute': this.booleanAttribute } : {})}),'onExampleEvent': (event: Event) => {
 					 
           this.$emit('example-event', event);
         },'onInput': (event: Event) => {
@@ -149,10 +150,11 @@ this.$emit('update:sameEvent', (event.target as any).exampleAttribute);
 "
 `;
 
-exports[`renderComponent should render a component as a Vue 3 stub 1`] = `
+exports[`renderComponent > should render a component as a Vue 3 stub 1`] = `
 "
 import { defineComponent, ref, h, VNodeData, PropType } from 'vue3';
 import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { Imported } from 'module';
@@ -201,35 +203,35 @@ export default defineComponent({
  * This is an example event
  * @type {string}
  */
-						['example-event'](event: string) { return true },
+						['example-event'](event: string & { target: ExampleComponent}) { return true },
 
 						/**
  * @type {Event}
  */
-						['input'](event: Event) { return true },
+						['input'](event: Event & { target: ExampleComponent}) { return true },
 
 						/**
  * @type {CustomEvent<{a: string | number}>}
  */
-						['input:start'](event: CustomEvent<{a: string | number}>) { return true },
+						['input:start'](event: CustomEvent<{a: string | number}> & { target: ExampleComponent}) { return true },
 
 						/**
  * Fires when the modelValue value changes
  * @type {string}
  */
-						['update:modelValue'](event: string) { return true },
+						['update:modelValue'](event: string & { target: ExampleComponent}) { return true },
 
 						/**
  * Fires when the sameEvent value changes
  * @type {string}
  */
-						['update:sameEvent'](event: string) { return true },
+						['update:sameEvent'](event: string & { target: ExampleComponent}) { return true },
 
 						/**
  * Fires when the start value changes
  * @type {string}
  */
-						['update:start'](event: string) { return true }},
+						['update:start'](event: string & { target: ExampleComponent}) { return true }},
   methods: {
   	
         /**
@@ -242,10 +244,10 @@ export default defineComponent({
 		/**
  * This is an example slot
  */
-		\\"example-slot\\": Record<string, never>
+		"example-slot": Record<string, never>
 
 		
-		\\"no-description\\": Record<string, never>
+		"no-description": Record<string, never>
 	}>,
   setup(props, ctx) {
     const componentName = registerComponent('example-component', registerExampleComponent);
@@ -261,10 +263,11 @@ export default defineComponent({
 "
 `;
 
-exports[`renderComponent should render a minimal component 1`] = `
+exports[`renderComponent > should render a minimal component 1`] = `
 "
 import { defineComponent, ref, h, VNodeData } from 'vue';
 import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
@@ -308,7 +311,7 @@ export default defineComponent({
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          
+          ...handleVue3Props({})
       } as unknown as VNodeData, [
           // @ts-ignore
           this.$slots.default && this.$slots.default(),
@@ -320,10 +323,11 @@ export default defineComponent({
 "
 `;
 
-exports[`renderComponent should render minimal component as a Vue 3 stub 1`] = `
+exports[`renderComponent > should render minimal component as a Vue 3 stub 1`] = `
 "
 import { defineComponent, ref, h, VNodeData } from 'vue3';
 import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';

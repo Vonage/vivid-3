@@ -1,12 +1,13 @@
+@use 'partials/variables' as variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 $low-ink-color: --_low-ink-color;
-$file-picker-list-item-background-color: --file-picker-list-item-background-color;
 
 :host {
 	display: block;
@@ -16,6 +17,8 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 .base {
 	display: flex;
 	flex-direction: column;
+	block-size: inherit;
+	max-block-size: inherit;
 }
 
 .control {
@@ -35,6 +38,7 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 	inline-size: 100%;
 	min-block-size: 52px;
 	outline: none;
+	transition: all 0.3s ease;
 	&:not(.size-expanded) {
 		min-block-size: 52px;
 	}
@@ -47,6 +51,11 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 
 		@include focus.focus;
 	}
+	&:hover,
+	&:active,
+	&:focus-visible {
+		background-color: var(#{constants.$vvd-color-cta-100});
+	}
 }
 
 .main {
@@ -57,9 +66,10 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 	display: grid;
 	box-sizing: border-box;
 	padding: 8px;
+	border: 1px solid var(#{constants.$vvd-color-neutral-300});
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	background-color: var(
-		#{$file-picker-list-item-background-color},
+		#{variables.$file-picker-list-item-background-color},
 		var(#{constants.$vvd-color-canvas})
 	);
 	grid-template-columns: 1fr auto;
@@ -87,8 +97,11 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 	}
 
 	.dz-error-message {
-		color: var(#{constants.$vvd-color-alert-500});
-		font: var(#{constants.$vvd-typography-base-condensed});
+		display: flex;
+		align-items: center;
+		color: var(#{constants.$vvd-color-alert-600});
+		font: var(#{constants.$vvd-typography-base-condensed-bold});
+		gap: 4px;
 		margin-block-start: 4px;
 	}
 
@@ -100,6 +113,7 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 
 	&.dz-error {
 		border: 1px solid var(#{constants.$vvd-color-alert-500});
+		background-color: var(#{constants.$vvd-color-alert-50});
 
 		.dz-details .dz-size,
 		.dz-progress {
@@ -121,11 +135,15 @@ $file-picker-list-item-background-color: --file-picker-list-item-background-colo
 }
 
 .preview-list {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	margin-block-start: 12px;
-	overflow-y: auto;
+	@include scrollbar.scrollbar;
+
+	& {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-block-start: 12px;
+		overflow-y: auto;
+	}
 
 	&:empty {
 		display: none;

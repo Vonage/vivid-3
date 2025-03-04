@@ -1,18 +1,8 @@
 import { html } from '@microsoft/fast-element';
-import type { FoundationElementDefinition } from '@microsoft/fast-foundation';
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import '../icon/index.ts';
-import { designSystem } from '../../shared/design-system';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { DataGridCell } from './data-grid-cell';
-import { DataGridCellTemplate } from './data-grid-cell.template';
 import { DataGridCellSortStates } from './data-grid.options';
-
-const dataGridCell = DataGridCell.compose<FoundationElementDefinition>({
-	baseName: 'data-grid-cell',
-	template: DataGridCellTemplate as any,
-});
-
-designSystem.withPrefix('vwc').register(dataGridCell());
+import '.';
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
 const ICON_TAG = 'vwc-icon';
@@ -35,6 +25,13 @@ describe('vwc-data-grid-cell', () => {
 			expect(element.getAttribute('grid-column')).toBeNull();
 			expect(element.rowData).toBeNull();
 			expect(element.columnDefinition).toBeNull();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -178,7 +175,7 @@ describe('vwc-data-grid-cell', () => {
 			});
 
 			it('should fire "cell-focused" event', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('cell-focused', spy);
 				element.focus();
 				expect(spy).toHaveBeenCalledTimes(1);
@@ -192,32 +189,45 @@ describe('vwc-data-grid-cell', () => {
 				expect(hasActiveClassBeforeFocus).toBeFalsy();
 				expect(baseElement?.classList.contains('active')).toBeTruthy();
 			});
+
+			it('should ignore additional focusin events', async () => {
+				const spy = vi.fn();
+				element.addEventListener('cell-focused', spy);
+
+				element.dispatchEvent(new Event('focusin'));
+				element.dispatchEvent(new Event('focusin'));
+
+				expect(spy).toHaveBeenCalledTimes(1);
+			});
 		});
 
 		describe('handleKeydown', () => {
-			it('should focus on target element with enter key', async () => {
-				element.cellType = 'default';
+			it.each(['Enter', 'F2'])(
+				'should focus on target element with %s key',
+				async (key) => {
+					element.cellType = 'default';
+					element.columnDefinition = {
+						columnDataKey: 'name',
+						cellFocusTargetCallback: () => {
+							return elementToFocus;
+						},
+						cellInternalFocusQueue: true,
+					};
+					element.dispatchEvent(new KeyboardEvent('keydown', { key }));
+					expect(document.activeElement).toEqual(elementToFocus);
+				}
+			);
+
+			it('should focus on header target element when cellType is columnheader', async () => {
+				element.cellType = 'columnheader';
 				element.columnDefinition = {
 					columnDataKey: 'name',
-					cellFocusTargetCallback: () => {
+					headerCellFocusTargetCallback: () => {
 						return elementToFocus;
 					},
-					cellInternalFocusQueue: true,
+					headerCellInternalFocusQueue: true,
 				};
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-				expect(document.activeElement).toEqual(elementToFocus);
-			});
-
-			it('should focus on target element with F2 key', async () => {
-				element.cellType = 'default';
-				element.columnDefinition = {
-					columnDataKey: 'name',
-					cellFocusTargetCallback: () => {
-						return elementToFocus;
-					},
-					cellInternalFocusQueue: true,
-				};
-				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'F2' }));
 				expect(document.activeElement).toEqual(elementToFocus);
 			});
 
@@ -231,6 +241,22 @@ describe('vwc-data-grid-cell', () => {
 				childNode.focus();
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 				expect(document.activeElement).toEqual(element);
+			});
+
+			it('should not move focus if a child is already focused', async () => {
+				element.cellType = 'default';
+				element.columnDefinition = {
+					columnDataKey: 'name',
+					cellFocusTargetCallback: () => {
+						return elementToFocus;
+					},
+					cellInternalFocusQueue: true,
+				};
+				const focusedChild = document.createElement('input');
+				element.appendChild(focusedChild);
+				focusedChild.focus();
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+				expect(document.activeElement).toBe(focusedChild);
 			});
 		});
 	});
@@ -343,12 +369,12 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('sort event', () => {
-		let onSortSpy: jest.Mock;
+		let onSortSpy: vi.Mock;
 		beforeEach(async () => {
 			element.cellType = 'columnheader';
 			element.innerHTML = 'Name';
 			await elementUpdated(element);
-			onSortSpy = jest.fn();
+			onSortSpy = vi.fn();
 			element.addEventListener('sort', onSortSpy);
 		});
 
@@ -419,13 +445,13 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('cell-click event', () => {
-		let onCellClickSpy: jest.Mock;
+		let onCellClickSpy: vi.Mock;
 		let expectedDetail: object;
 		beforeEach(async () => {
 			element.cellType = 'default';
 			element.innerHTML = 'Name';
 			await elementUpdated(element);
-			onCellClickSpy = jest.fn();
+			onCellClickSpy = vi.fn();
 			element.addEventListener('cell-click', onCellClickSpy);
 			expectedDetail = {
 				cell: element,
@@ -473,26 +499,6 @@ describe('vwc-data-grid-cell', () => {
 			element.click();
 			expect(onCellClickSpy).toHaveBeenCalledTimes(1);
 			expect(onCellClickSpy.mock.calls[0][0].detail.isHeaderCell).toBe(true);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(`
-				<div role="grid">
-					<div role="row">
-						<${COMPONENT_TAG}></${COMPONENT_TAG}>
-					</div>
-				</div>
-			`)) as DataGridCell;
-			element.columnDefinition = {
-				columnDataKey: 'Name',
-				sortDirection: DataGridCellSortStates.ascending,
-				sortable: true,
-			};
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

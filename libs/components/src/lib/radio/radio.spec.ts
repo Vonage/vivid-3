@@ -1,16 +1,13 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { Radio } from './radio';
 import '.';
-import { radioDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-radio';
 
@@ -28,17 +25,24 @@ describe('vwc-radio', () => {
 
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Radio;
+		await elementUpdated(element);
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-radio', async () => {
-			expect(radioDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Radio);
 			expect(element.checked).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 			expect(element.value).toEqual('on');
 			expect(element.label).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -99,10 +103,24 @@ describe('vwc-radio', () => {
 		});
 	});
 
+	it('should not prevent default of keypress other than Space', () => {
+		const event = new KeyboardEvent('keypress', { key: 'Enter' });
+		const spy = vi.spyOn(event, 'preventDefault');
+		getBaseElement(element).dispatchEvent(event);
+		expect(spy).not.toHaveBeenCalled();
+	});
+
 	describe('disabled', () => {
 		it('should set disabled class when disabled is true', async () => {
 			const classes = await setBoolAttributeOn(element, 'disabled');
 			expect(classes.contains('disabled')).toBeTruthy();
+		});
+	});
+
+	describe('readonly', function () {
+		it('should set readonly class when readonly is true', async () => {
+			const classes = await setBoolAttributeOn(element, 'readonly');
+			expect(classes.contains('readonly')).toBeTruthy();
 		});
 	});
 
@@ -132,9 +150,40 @@ describe('vwc-radio', () => {
 		});
 	});
 
+	describe('required', () => {
+		it('should reflect required attribute', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			expect(element.hasAttribute('required')).toBe(true);
+		});
+
+		it('should invalidate the element when required and not selected', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			element.checkValidity();
+			expect(element.validity.valueMissing).toBe(true);
+		});
+
+		it('should set the name attribute on the proxy element so that elementals validation works', async () => {
+			element.name = 'test';
+			await elementUpdated(element);
+			expect(element.proxy.name).toBe('test');
+		});
+
+		it('should remove the proxy name attribute if removed from the element', async () => {
+			element.name = 'test';
+			await elementUpdated(element);
+
+			element.removeAttribute('name');
+			await elementUpdated(element);
+
+			expect(element.proxy.getAttribute('name')).toBeNull();
+		});
+	});
+
 	describe('change', () => {
 		it('should be fired when a user toggles the radio', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('change', spy);
 
 			getBaseElement(element).click();
@@ -145,14 +194,6 @@ describe('vwc-radio', () => {
 	});
 
 	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'lorem';
-			element.checked = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
 		it('should not render a role attribute on the component element', async () => {
 			expect(element.getAttribute('role')).toBe(null);
 		});
@@ -178,10 +219,6 @@ describe('vwc-radio', () => {
 
 				expect(baseElement?.getAttribute('role')).toBe('radio');
 				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			});
-
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

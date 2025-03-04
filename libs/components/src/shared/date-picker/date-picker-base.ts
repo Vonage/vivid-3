@@ -1,6 +1,9 @@
 import {
 	attr,
+	type BindingObserver,
+	defaultExecutionContext,
 	DOM,
+	Observable,
 	observable,
 	type ValueConverter,
 	volatile,
@@ -232,6 +235,12 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		document.addEventListener('click', this.#dismissOnClickOutside);
 		this.addEventListener('focusin', this.#onFocusIn);
 		this.addEventListener('focusout', this.#onFocusOut);
+
+		this.#localeChangeObserver = Observable.binding(
+			() => this.locale,
+			this.#localeChangeHandler
+		);
+		this.#localeChangeObserver.observe(this, defaultExecutionContext);
 	}
 
 	override disconnectedCallback() {
@@ -240,6 +249,8 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		document.removeEventListener('click', this.#dismissOnClickOutside);
 		this.removeEventListener('focusin', this.#onFocusIn);
 		this.removeEventListener('focusout', this.#onFocusOut);
+
+		this.#localeChangeObserver.disconnect();
 	}
 
 	#onFocusIn = () => {
@@ -271,6 +282,15 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 	}
 
 	protected abstract _getCustomValidationError(): string | null;
+
+	// Reformat the presentation value when the locale changes
+	#localeChangeHandler = {
+		handleChange: () => {
+			this._updatePresentationValue();
+		},
+	};
+
+	#localeChangeObserver!: BindingObserver;
 
 	// --- Popup ---
 
@@ -353,6 +373,8 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 		this.validate();
 	}
 
+	protected abstract _updatePresentationValue(): void;
+
 	/**
 	 * @internal
 	 */
@@ -394,10 +416,13 @@ export abstract class DatePickerBase extends FormAssociatedDatePickerBase {
 
 			DOM.processUpdates();
 
-			const tabbableDate = this.shadowRoot!.querySelector(
-				`[data-date="${this._tabbableDate}"]`
-			) as HTMLButtonElement;
-			tabbableDate.focus();
+			const tabbableDate = this._tabbableDate;
+			if (tabbableDate)
+				(
+					this.shadowRoot!.querySelector(
+						`[data-date="${tabbableDate}"]`
+					) as HTMLButtonElement
+				).focus();
 		}
 	}
 

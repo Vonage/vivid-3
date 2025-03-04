@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { ProgressRing } from './progress-ring';
 import '.';
@@ -17,6 +17,13 @@ describe('vwc-progress-ring', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-progress-ring', async () => {
 			expect(element).toBeInstanceOf(ProgressRing);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
 		it('should reflect min and max', async function () {
@@ -48,8 +55,15 @@ describe('vwc-progress-ring', () => {
 			await elementUpdated(element);
 			const percentWithSmallRange = element.percentComplete;
 
+			element.min = 0;
+			element.max = 0;
+			element.value = 0;
+			await elementUpdated(element);
+			const percentWithEmptyRange = element.percentComplete;
+
 			expect(percentWithBigRange).toEqual(25);
 			expect(percentWithSmallRange).toEqual(50);
+			expect(percentWithEmptyRange).toEqual(0);
 		});
 
 		it('should set the determinate div width to percentComplete', async function () {
@@ -179,10 +193,6 @@ describe('vwc-progress-ring', () => {
 			expect(baseElement?.getAttribute('aria-valuemin')).toBe('10');
 			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
 			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

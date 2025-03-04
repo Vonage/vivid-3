@@ -1,5 +1,4 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
@@ -33,6 +32,13 @@ describe('vwc-alert', () => {
 			expect(element.timeoutms).toBe(0);
 			expect(element.placement).toEqual('bottom');
 			expect(element.strategy).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -90,7 +96,7 @@ describe('vwc-alert', () => {
 
 	describe('focus', () => {
 		it('should focus when opened', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			const alertText: HTMLElement = element.shadowRoot?.querySelector(
 				'.alert-text'
 			) as HTMLElement;
@@ -138,17 +144,17 @@ describe('vwc-alert', () => {
 
 	describe('timeoutms', function () {
 		it('should fire close event after timeoutms milliseconds', async function () {
-			jest.useFakeTimers();
-			const spy = jest.fn();
+			vi.useFakeTimers();
+			const spy = vi.fn();
 
 			element.timeoutms = 100;
 			element.open = true;
 			element.addEventListener('close', spy);
 
-			jest.advanceTimersByTime(100);
+			vi.advanceTimersByTime(100);
 
 			expect(spy).toHaveBeenCalled();
-			jest.useRealTimers();
+			vi.useRealTimers();
 		});
 	});
 
@@ -305,7 +311,7 @@ describe('vwc-alert', () => {
 			beforeEach(() => (element.open = true));
 
 			it('should remove the alert when esc and removable is true', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = true;
 				element.addEventListener('close', spy);
 
@@ -317,7 +323,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should remove the alert only on escape key', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = true;
 				element.addEventListener('close', spy);
 
@@ -329,7 +335,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should remove keydown listener after disconnection', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = true;
 				element.addEventListener('close', spy);
 
@@ -341,7 +347,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should not fire close event when removable is false', async function () {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.removable = false;
 				element.addEventListener('close', spy);
 
@@ -352,7 +358,7 @@ describe('vwc-alert', () => {
 			});
 
 			it('should stop propgation on escape key', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.parentElement!.addEventListener('keydown', spy);
 				getBaseElement(element).dispatchEvent(
 					new KeyboardEvent('keydown', { key: 'Escape' })
@@ -363,7 +369,7 @@ describe('vwc-alert', () => {
 
 			it('should enable default if Escape was pressed', async () => {
 				const event = new KeyboardEvent('keydown', { key: 'Escape' });
-				jest.spyOn(event, 'preventDefault');
+				vi.spyOn(event, 'preventDefault');
 				getBaseElement(element).dispatchEvent(event);
 				await elementUpdated(element);
 				expect(event.preventDefault).toBeCalledTimes(0);
@@ -371,7 +377,7 @@ describe('vwc-alert', () => {
 
 			it('should enable default if key is not Escape', async () => {
 				const event = new KeyboardEvent('keydown', { key: ' ' });
-				jest.spyOn(event, 'preventDefault');
+				vi.spyOn(event, 'preventDefault');
 				getBaseElement(element).dispatchEvent(event);
 				await elementUpdated(element);
 				expect(event.preventDefault).toBeCalledTimes(0);
@@ -386,10 +392,6 @@ describe('vwc-alert', () => {
 			element.open = true;
 			element.connotation = Connotation.Alert;
 			await elementUpdated(element);
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should set alertdialog on the control when removable', async () => {

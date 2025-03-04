@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { Icon } from '../icon/icon';
 import { Tab } from './tab';
@@ -24,6 +24,13 @@ describe('vwc-tab', () => {
 			expect(element.connotation).toBeFalsy();
 			expect(element.shape).toBeFalsy();
 			expect(element.ariaSelected).toBeNull();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -101,7 +108,7 @@ describe('vwc-tab', () => {
 				const closeBtn = element.shadowRoot?.querySelector(
 					'#close-btn'
 				) as HTMLButtonElement;
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('close', spy);
 				closeBtn?.click();
 				await elementUpdated(element);
@@ -109,7 +116,7 @@ describe('vwc-tab', () => {
 			});
 
 			it('should emit the close event when the delete key is pressed', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('close', spy);
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete' }));
 				await elementUpdated(element);
@@ -117,7 +124,7 @@ describe('vwc-tab', () => {
 			});
 
 			it('should not emit the close event when another key is pressed', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('close', spy);
 				element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Space' }));
 				await elementUpdated(element);
@@ -171,19 +178,6 @@ describe('vwc-tab', () => {
 			expect(
 				getBaseElement(element).classList.contains(`shape-${shape}`)
 			).toBeTruthy();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y tests', async () => {
-			element = (await fixture(
-				`<div role="tablist"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			)) as Tab;
-			element.label = 'Label';
-			element.ariaSelected = 'true';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

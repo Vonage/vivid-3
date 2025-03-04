@@ -1,10 +1,4 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
@@ -12,7 +6,6 @@ import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { Popup } from '../popup/popup.ts';
 import { RangeSlider } from './range-slider';
-import { rangeSliderDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-range-slider';
@@ -32,10 +25,8 @@ describe('vwc-range-slider', () => {
 	}
 
 	beforeEach(async () => {
-		jest
-			.spyOn(HTMLElement.prototype, 'clientWidth', 'get')
-			.mockReturnValue(1000);
-		jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+		vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1000);
+		vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
 			bottom: 1000,
 			top: 0,
 			left: 0,
@@ -54,8 +45,14 @@ describe('vwc-range-slider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-range-slider', async () => {
-			expect(rangeSliderDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(RangeSlider);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
 		it('should be initialized with default values', async () => {
@@ -657,7 +654,7 @@ describe('vwc-range-slider', () => {
 			it.each(['input', 'change', 'input:start'])(
 				'should emit %s event only when the value changes',
 				async (eventName) => {
-					const eventSpy = jest.fn();
+					const eventSpy = vi.fn();
 					element.addEventListener(eventName, eventSpy);
 
 					mouseDown(thumbs.start, 0);
@@ -726,10 +723,10 @@ describe('vwc-range-slider', () => {
 		// Cannot properly end-to-end test form value because jsdom does not support ElementInternals
 		// Instead we mock the setFormValue method and test that it is called with the correct value
 		const getFormValue = () =>
-			jest.mocked(element.setFormValue).mock.lastCall![0] as FormData;
+			vi.mocked(element.setFormValue).mock.lastCall![0] as FormData;
 
 		beforeEach(() => {
-			element.setFormValue = jest.fn();
+			element.setFormValue = vi.fn();
 		});
 
 		it('should set the form value with name, start and end', () => {
@@ -758,7 +755,17 @@ describe('vwc-range-slider', () => {
 		expect(element.start).toBe('0.3');
 	});
 
-	describe('a11y', () => {
+	it('should default to 1 when step is set to 0', async () => {
+		element.step = 0;
+		expect(element.step).toBe(1);
+	});
+
+	it('should default to 1 when step is set to less than 0', async () => {
+		element.step = -10;
+		expect(element.step).toBe(1);
+	});
+
+	describe('a11y attributes', () => {
 		describe('aria-start-label', () => {
 			it('should set aria-label on start thumb', async () => {
 				element.ariaStartLabel = 'start';
@@ -797,11 +804,6 @@ describe('vwc-range-slider', () => {
 					expect(element.valueTextFormatter('1.1')).toBe('1,1');
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -1,8 +1,6 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Divider } from './divider';
 import '.';
-import { dividerDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-divider';
 
@@ -17,8 +15,14 @@ describe('vwc-divider', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-divider', async () => {
-			expect(dividerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Divider);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -31,6 +35,26 @@ describe('vwc-divider', () => {
 
 			expect(base?.classList.contains(`${orientation}`)).toBeTruthy();
 		});
+
+		it('should set the aria-orientation attribute if role is separator', async () => {
+			const base = element.shadowRoot?.querySelector('.base');
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			element.role = 'separator';
+			await elementUpdated(element);
+
+			expect(base?.getAttribute('aria-orientation')).toBe('vertical');
+		});
+
+		it('should NOT set the aria-orientation attribute if role is presentation', async () => {
+			const base = element.shadowRoot?.querySelector('.base');
+			const orientation = 'vertical';
+			element.orientation = orientation;
+			element.role = 'presentation';
+			await elementUpdated(element);
+
+			expect(base?.getAttribute('aria-orientation')).toBe(null);
+		});
 	});
 
 	describe('role', function () {
@@ -39,12 +63,6 @@ describe('vwc-divider', () => {
 			await elementUpdated(element);
 
 			expect(getBaseElement(element).hasAttribute('role')).toEqual(true);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

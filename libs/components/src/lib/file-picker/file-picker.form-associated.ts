@@ -1,6 +1,7 @@
-import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
-class _FilePicker extends FoundationElement {}
+class _FilePicker extends VividElement {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface _FilePicker extends FormAssociated {}
 

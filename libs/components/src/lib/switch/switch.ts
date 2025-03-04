@@ -1,6 +1,7 @@
-import { Switch as FoundationSwitch } from '@microsoft/fast-foundation';
-import { attr } from '@microsoft/fast-element';
+import { attr, observable } from '@microsoft/fast-element';
+import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
+import { FormAssociatedSwitch } from './switch.form-associated';
 
 export type SwitchConnotation =
 	| Connotation.Accent
@@ -14,7 +15,8 @@ export type SwitchConnotation =
  * @event {CustomEvent<undefined>} change - Emits a custom change event when the checked state changes
  * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
-export class Switch extends FoundationSwitch {
+export class Switch extends FormAssociatedSwitch {
+	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 	/**
 	 * Indicates the switch's label.
 	 *
@@ -31,4 +33,79 @@ export class Switch extends FoundationSwitch {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: SwitchConnotation;
+
+	/**
+	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: readonly
+	 */
+	// @ts-expect-error Type is incorrectly non-optional
+	@attr({ attribute: 'readonly', mode: 'boolean' }) readOnly: boolean; // Map to proxy element
+	/**
+	 * @internal
+	 */
+	readOnlyChanged(): void {
+		if (this.proxy instanceof HTMLInputElement) {
+			this.proxy.readOnly = this.readOnly;
+		}
+
+		this.readOnly
+			? this.classList.add('readonly')
+			: this.classList.remove('readonly');
+	}
+
+	/**
+	 * The element's value to be included in form submission when checked.
+	 * Default to "on" to reach parity with input[type="checkbox"]
+	 *
+	 * @internal
+	 */
+	override initialValue = 'on';
+
+	/**
+	 * @internal
+	 */
+	@observable defaultSlottedNodes!: Node[];
+
+	/**
+	 * @internal
+	 */
+	override connectedCallback(): void {
+		super.connectedCallback();
+
+		this.proxy.setAttribute('type', 'checkbox');
+
+		this.updateForm();
+	}
+
+	constructor() {
+		super();
+
+		this.defaultChecked = !!this.checkedAttribute;
+		this.checked = this.defaultChecked;
+	}
+
+	private updateForm(): void {
+		const value = this.checked ? this.value : null;
+		this.setFormValue(value, value);
+	}
+
+	/**
+	 * @internal
+	 */
+	keypressHandler = (e: KeyboardEvent) => {
+		if (e.key === keySpace || e.key === keyEnter) {
+			this.checked = !this.checked;
+		}
+	};
+
+	/**
+	 * @internal
+	 */
+	clickHandler = () => {
+		if (!this.disabled && !this.readOnly) {
+			this.checked = !this.checked;
+		}
+	};
 }

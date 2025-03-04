@@ -20,7 +20,8 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@import '../../shared/patterns/chevron';
+@use '../../shared/patterns/chevron' as chevron;
+@include chevron.chevron;
 @include connotation.variables-backwards-compatibility(
 	'button',
 	'.control:not(.appearance-ghost-light, .appearance-filled, .appearance-outlined)'
@@ -249,6 +250,7 @@ slot[name='icon'] {
 
 	:host([dropdown-indicator]) & {
 		justify-content: var(#{variables.$button-content-alignment}, flex-start);
+		text-align: start;
 	}
 	:host([dropdown-indicator][stacked]) & {
 		align-items: var(#{variables.$button-content-alignment}, flex-start);

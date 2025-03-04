@@ -1,7 +1,8 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of icon placement
@@ -25,7 +26,7 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `(event.target as any).open`
  */
-export class Dialog extends FoundationElement {
+export class Dialog extends VividElement {
 	/**
 	 * Indicates dialog's state
 	 *

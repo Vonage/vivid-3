@@ -1,9 +1,4 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Switch } from './switch';
 
@@ -20,26 +15,18 @@ const getClasses = (_: Switch) =>
 		]
 	);
 
-/**
- * The template for the Switch component.
- *
- * @param context - element definition context
- * @public
- */
-export const SwitchTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Switch> = () => {
-	return html<Switch>`
+export const SwitchTemplate = html<Switch>`
+	<template role="${(x) => (x.ariaLabel ? 'presentation' : null)}">
 		<div
 			class="${getClasses}"
 			role="switch"
+			aria-label="${(x) => x.ariaLabel}"
 			aria-checked="${(x) => x.checked}"
 			aria-disabled="${(x) => x.disabled}"
 			aria-readonly="${(x) => x.readOnly}"
 			tabindex="${(x) => (x.disabled ? null : 0)}"
 			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
-			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+			@click="${(x) => x.clickHandler()}"
 		>
 			<div class="switch">
 				<span class="checked-indicator"></span>
@@ -49,5 +36,5 @@ export const SwitchTemplate: (
 				html<Switch>`<div class="label">${(x) => x.label}</div>`
 			)}
 		</div>
-	`;
-};
+	</template>
+`;

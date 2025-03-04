@@ -1,3 +1,4 @@
+@use 'partials/variables' as variables;
 @use '../tabs/partials/variables' as tabs-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
@@ -47,6 +48,7 @@
 		display: flex;
 		box-sizing: border-box;
 		align-items: center;
+		justify-content: var(#{variables.$tab-justify-content});
 		padding: var(#{tabs-variables.$tabs-tablist-gutter});
 		background-color: var(#{appearance.get-appearance-token(fill)});
 		box-shadow: inset 0 0 0 1px var(#{appearance.get-appearance-token(outline)});
@@ -99,33 +101,6 @@ slot[name='icon'] {
 		display: inline-block;
 		order: 1;
 		margin-inline-start: auto;
-	}
-}
-
-:host(:not(.vertical)) {
-	.base::after {
-		position: absolute;
-		border-radius: #{border-radius-variables.$border-radius-condensed};
-		background: currentColor;
-		block-size: 2px;
-		content: '';
-		inline-size: 100%;
-		inset-block-end: 0;
-		inset-inline-start: 0;
-		pointer-events: none;
-		transition-property: opacity;
-	}
-
-	&:host([aria-selected='true']) {
-		.base::after {
-			transition-delay: #{tabs-variables.$tabs-active-indicator-transition-delay};
-		}
-	}
-
-	&:host(:not([aria-selected='true'])) {
-		.base::after {
-			opacity: 0;
-		}
 	}
 }
 

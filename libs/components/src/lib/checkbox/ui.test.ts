@@ -7,23 +7,24 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['checkbox', 'button'];
+const components = ['checkbox', 'button', 'divider', 'layout'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template =
-		extractHTMLBlocksFromReadme(
+	const template = [
+		...extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'VARIATIONS.md')
+		),
+		...extractHTMLBlocksFromReadme(
 			path.join(new URL('.', import.meta.url).pathname, 'README.md')
-		).reduce(
-			(htmlString: string, block: string) =>
-				`${htmlString} <div style="margin: 5px;">${block}</div>`,
-			''
-		) +
-		`<form method="post" action="">
-				<vwc-checkbox error-text="You need to accept the Terms of service">
-				<a href="https://www.vonage.com/legal/" target="_blank">Vonage Terms of Service</a>
-				</vwc-checkbox>
-				<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
-			</form>`;
+		),
+		...extractHTMLBlocksFromReadme(
+			path.join(new URL('.', import.meta.url).pathname, 'USE-CASES.md')
+		),
+	].reduce(
+		(htmlString: string, block: string) =>
+			`${htmlString} <div style="margin: 5px;">${block}</div>`,
+		''
+	);
 
 	page.setViewportSize({ width: 400, height: 800 });
 
@@ -43,6 +44,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/checkbox.png'
+		'snapshots/checkbox.png'
 	);
 });

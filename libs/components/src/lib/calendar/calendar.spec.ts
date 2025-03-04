@@ -1,11 +1,9 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Calendar } from './calendar';
 import '.';
 import '../calendar-event';
 import { getValidDateString } from './helpers/calendar.date-functions';
 import type { CalendarEventContext } from './helpers/calendar.event-context';
-import { calendarDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-calendar';
 
@@ -20,12 +18,19 @@ describe('vwc-calendar', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-calendar', async () => {
-			expect(calendarDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Calendar);
 			expect(element.datetime).toBeUndefined();
 			expect(element.startDay).toBeUndefined();
 			expect(element.locales).toBeUndefined();
 			expect(element.hour12).toBeFalsy();
+			expect(element.stickyMode).toEqual('none');
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -117,8 +122,8 @@ describe('vwc-calendar', () => {
 
 		it('should return correct day and hour from mouse clicking inside one of the columns cells', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
-			gridCell.getBoundingClientRect = jest
+			e.composedPath = vi.fn().mockReturnValue([gridCell]);
+			gridCell.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
 
@@ -132,7 +137,7 @@ describe('vwc-calendar', () => {
 			const rowHeader = element.shadowRoot?.querySelector(
 				'[role="rowheader"]:nth-child(3)'
 			) as HTMLElement;
-			rowHeader.getBoundingClientRect = jest
+			rowHeader.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 49, y: 85 });
 
@@ -145,7 +150,7 @@ describe('vwc-calendar', () => {
 				clientX: 25,
 				clientY: 174,
 			});
-			e.composedPath = jest.fn().mockReturnValue([rowHeaderTimeElement]);
+			e.composedPath = vi.fn().mockReturnValue([rowHeaderTimeElement]);
 
 			context = element.getEventContext(e);
 
@@ -163,7 +168,7 @@ describe('vwc-calendar', () => {
 				clientX: 0,
 				clientY: 0,
 			});
-			e.composedPath = jest.fn().mockReturnValue([grid]);
+			e.composedPath = vi.fn().mockReturnValue([grid]);
 
 			context = element.getEventContext(e);
 
@@ -172,7 +177,7 @@ describe('vwc-calendar', () => {
 
 		it('should throw if unsupported event passed', async () => {
 			const e = new FocusEvent('focus');
-			e.composedPath = jest.fn().mockReturnValue([gridCell]);
+			e.composedPath = vi.fn().mockReturnValue([gridCell]);
 
 			const getEventContext = () => element.getEventContext(e as MouseEvent);
 
@@ -183,7 +188,7 @@ describe('vwc-calendar', () => {
 
 		it('should throw if event is missing a target', async () => {
 			const e = new MouseEvent('click', { composed: true, clientY: 54 });
-			gridCell.getBoundingClientRect = jest
+			gridCell.getBoundingClientRect = vi
 				.fn()
 				.mockReturnValue({ height: 1175, y: 28 });
 
@@ -220,6 +225,19 @@ describe('vwc-calendar', () => {
 
 			expect(context?.day).toEqual(2);
 			expect(context?.hour).toEqual(undefined);
+		});
+	});
+
+	describe('Stick Mode', () => {
+		it(`should add class "sticky-*stick-mode*" [role="grid"]]`, async () => {
+			const stickyMode = 'all';
+			(element as any).stickyMode = stickyMode;
+			await elementUpdated(element);
+
+			const control = element.shadowRoot?.querySelector(
+				`.sticky-${stickyMode}`
+			);
+			expect(control).toBeInstanceOf(Element);
 		});
 	});
 
@@ -355,13 +373,6 @@ describe('vwc-calendar', () => {
 			expect(shadowRoot.activeElement).toEqual(
 				shadowRoot.querySelector('[role="gridcell"i]:nth-child(6)')
 			);
-		});
-	});
-
-	/* skipped because "Certain ARIA roles must contain particular children (aria-required-children)" */
-	describe('a11y', () => {
-		xit('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

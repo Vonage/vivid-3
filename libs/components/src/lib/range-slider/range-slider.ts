@@ -3,7 +3,6 @@ import {
 	nullableNumberConverter,
 	observable,
 } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -16,6 +15,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Connotation } from '../enums';
 import {
 	type FormElement,
@@ -23,7 +23,10 @@ import {
 	Localized,
 } from '../../shared/patterns';
 import { FormAssociatedRangeSlider } from './range-slider.form-associated';
-import { roundToStepValue } from './utils/roundToStepValue';
+import {
+	defaultToOneConverter,
+	roundToStepValue,
+} from './utils/roundToStepValue';
 import { inverseLerp, lerp } from './utils/lerp';
 
 export type RangeSliderConnotation = Connotation.Accent | Connotation.CTA;
@@ -263,7 +266,7 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	 * HTML Attribute: step
 	 */
 	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
-	@attr({ converter: nullableNumberConverter }) step = 1;
+	@attr({ converter: defaultToOneConverter }) step = 1;
 
 	#applyStep(thumb: 'start' | 'end', direction: Direction) {
 		this.#updateValues({

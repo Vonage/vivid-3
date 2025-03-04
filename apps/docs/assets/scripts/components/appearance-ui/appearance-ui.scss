@@ -12,7 +12,7 @@
 @use '../../../../../../libs/shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
 	$appearances: filled ghost ghost-light outlined outlined-light duotone subtle
-		fieldset listitem,
+		subtle-light fieldset listitem,
 	$states: idle hover active selected checked checkedAndHover selectedAndHover
 		disabled selectedAndDisabled readonly,
 	$default: filled

@@ -1,16 +1,9 @@
-import {
-	type ElementViewTemplate,
-	html,
-	slotted,
-} from '@microsoft/fast-element';
+import { html, ref, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Menu } from './menu';
 
 const getClasses = ({
@@ -32,16 +25,7 @@ function handleEscapeKey(menu: Menu, event: KeyboardEvent) {
 	return true;
 }
 
-/**
- * The template for the Menu component.
- *
- * @param context - element definition context
- * @public
- */
-export const MenuTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ElementViewTemplate = (context: ElementDefinitionContext) => {
+export const MenuTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const anchorSlotTemplate = anchorSlotTemplateFactory();
 
@@ -56,6 +40,7 @@ export const MenuTemplate: (
 							@focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
 			${anchorSlotTemplate}
 			<${popupTag}
+				${ref('_popupEl')}
 				:placement=${(x) => x.placement}
 				:open=${(x) => x.open}
 				:anchor=${(x) => x._anchorEl}

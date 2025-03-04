@@ -1,10 +1,8 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Card } from './card';
 import '.';
-import { cardDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-card';
 const ICON_SELECTOR = 'vwc-icon';
@@ -18,10 +16,16 @@ describe('vwc-card', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-card', async () => {
-			expect(cardDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Card);
 			expect(element.icon).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -200,16 +204,6 @@ describe('vwc-card', () => {
 
 			expect(propertyValueBeforeChange).toEqual(startingDP);
 			expect(element.elevation).toEqual('16');
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.headline = 'card headline';
-			element.subtitle = 'card subtitle';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

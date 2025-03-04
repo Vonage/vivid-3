@@ -11,12 +11,12 @@ describe('getCurrentMonth', () => {
 	beforeAll(() => {
 		const mockedDate = new Date(2023, 7, 4);
 
-		jest.useFakeTimers();
-		jest.setSystemTime(mockedDate);
+		vi.useFakeTimers();
+		vi.setSystemTime(mockedDate);
 	});
 
 	afterAll(() => {
-		jest.useRealTimers();
+		vi.useRealTimers();
 	});
 
 	it('should return the current month', () => {

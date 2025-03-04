@@ -1,5 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
+import { attr, observable } from '@microsoft/fast-element';
 import {
 	arrow,
 	autoPlacement,
@@ -12,6 +11,7 @@ import {
 	size,
 } from '@floating-ui/dom';
 import type { Placement, Strategy } from '@floating-ui/dom';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export const PlacementStrategy = {
 	Flip: 'flip',
@@ -50,7 +50,7 @@ const placementStrategyMiddlewares = {
  * @slot - Default slot.
  * @internal
  */
-export class Popup extends FoundationElement {
+export class Popup extends VividElement {
 	get #middleware(): Array<any> {
 		let middleware = [
 			inline(),
@@ -79,6 +79,11 @@ export class Popup extends FoundationElement {
 
 	popupEl!: HTMLElement;
 
+	/**
+	 * @internal
+	 */
+	controlEl!: HTMLElement;
+
 	arrowEl!: HTMLElement;
 
 	/**
@@ -92,8 +97,9 @@ export class Popup extends FoundationElement {
 	})
 	open = false;
 	openChanged(_: boolean, newValue: boolean): void {
-		newValue ? this.$emit('vwc-popup:open') : this.$emit('vwc-popup:close');
-		DOM.queueUpdate(() => this.#updateAutoUpdate());
+		this.#togglePopover();
+		this.#updateAutoUpdate();
+		this.$emit(newValue ? 'vwc-popup:open' : 'vwc-popup:close');
 	}
 
 	/**
@@ -182,8 +188,16 @@ export class Popup extends FoundationElement {
 		this.#updateAutoUpdate();
 	}
 
+	/**
+	 * @internal
+	 */
+	strategyChanged() {
+		this.#togglePopover();
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
+		this.#togglePopover();
 		this.#updateAutoUpdate();
 	}
 
@@ -194,6 +208,13 @@ export class Popup extends FoundationElement {
 
 	#updateAutoUpdate() {
 		this.#cleanup?.();
+
+		if (this.open && this.controlEl) {
+			// Ensure open is synced with the control element so that popup can be measured
+			// Otherwise, position will not be computed correctly
+			this.controlEl.classList.add('open');
+		}
+
 		if (this.anchorEl && this.open && this.popupEl) {
 			this.#cleanup = autoUpdate(
 				this.anchorEl,
@@ -203,6 +224,16 @@ export class Popup extends FoundationElement {
 					animationFrame: this.animationFrame,
 				}
 			);
+		}
+	}
+
+	#togglePopover() {
+		if (this.popupEl && this.strategy === 'fixed') {
+			if (this.open) {
+				this.popupEl.showPopover();
+			} else {
+				this.popupEl.hidePopover();
+			}
 		}
 	}
 
@@ -257,8 +288,14 @@ export class Popup extends FoundationElement {
 		return this.anchor ?? null;
 	}
 
+	/**
+	 * Shows the popup.
+	 * Unlike toggling the `open` attribute, show() will ensure the popup becomes visible synchronously.
+	 */
 	show(): void {
 		this.open = true;
+		this.#togglePopover();
+		this.#updateAutoUpdate();
 	}
 
 	hide(): void {

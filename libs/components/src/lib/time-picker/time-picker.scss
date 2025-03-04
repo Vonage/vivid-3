@@ -72,9 +72,6 @@
 		inline-size: $item-inline-size;
 		list-style: none;
 
-		// Make scrollbar appearance less intrusive
-		scrollbar-width: thin;
-
 		// Hide scrollbar when not hovering
 		&:hover {
 			overflow-y: auto;

@@ -1,25 +1,15 @@
 import { html } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { Divider } from './divider';
+import { type Divider, DividerRole } from './divider';
 
 const getClasses = ({ orientation }: Divider) =>
 	classNames('base', [`${orientation}`, Boolean(orientation)]);
 
-/**
- * The template for the Divider component.
- *
- * @public
- */
-export const DividerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Divider> = () => html` <span
+const getAriaOrientation = ({ role, orientation }: Divider) =>
+	role === DividerRole.presentation ? null : orientation;
+
+export const DividerTemplate = html<Divider>` <span
 	class="${getClasses}"
-	orientation="${(x) => x.orientation}"
+	aria-orientation="${getAriaOrientation}"
 	role="${(x) => x.role}"
 ></span>`;

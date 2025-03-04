@@ -1,12 +1,19 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
+import { TabPanel } from '../tab-panel/tab-panel.ts';
 import { Tabs } from './tabs';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
 describe('vwc-tabs', () => {
+	function getActiveIndicator() {
+		return element.shadowRoot?.querySelector(
+			'.active-indicator'
+		) as HTMLElement;
+	}
+
 	const originalResizeObserver = global.ResizeObserver;
 	let resizeObserver: any;
 
@@ -25,10 +32,10 @@ describe('vwc-tabs', () => {
 			observe(target: HTMLElement) {
 				this.observer = target;
 			}
-			disconnect = jest.fn(() => {
+			disconnect = vi.fn(() => {
 				this.observer = null;
 			});
-			unobserve = jest.fn();
+			unobserve = vi.fn();
 			// Simulate resize event
 			triggerResize() {
 				if (this.observer) {
@@ -48,16 +55,22 @@ describe('vwc-tabs', () => {
 				left: 146,
 			} as DOMRect;
 		};
-		window.HTMLElement.prototype.scrollIntoView = jest.fn();
-		window.HTMLElement.prototype.scrollTo = jest.fn();
+		window.HTMLElement.prototype.scrollIntoView = vi.fn();
+		window.HTMLElement.prototype.scrollTo = vi.fn();
 	});
 
 	afterAll(() => {
 		global.ResizeObserver = originalResizeObserver;
 	});
 
-	async function setFixture(activeid: string | null = 'apps'): Promise<Tabs> {
-		return (await fixture(`<${COMPONENT_TAG} ${
+	let element: Tabs;
+
+	async function setupFixture(template: string) {
+		element = (await fixture(template)) as Tabs;
+	}
+
+	async function setFixtureWithActiveId(activeid: string | null = 'apps') {
+		await setupFixture(`<${COMPONENT_TAG} ${
 			activeid ? `activeid="${activeid}"` : ''
 		}>
 		<vwc-tab label="Appetizers" id="apps"></vwc-tab>
@@ -88,12 +101,11 @@ describe('vwc-tabs', () => {
 				<li>Limoncello and Ice Cream with Biscotti</li>
 			</ol>
 		</vwc-tab-panel>
-		</${COMPONENT_TAG}>`)) as Tabs;
+		</${COMPONENT_TAG}>`);
 	}
-	let element: Tabs;
 
 	beforeEach(async () => {
-		element = await setFixture('apps');
+		await setFixtureWithActiveId('apps');
 	});
 
 	describe('basic', () => {
@@ -103,6 +115,13 @@ describe('vwc-tabs', () => {
 			expect(element.activeid).toEqual('apps');
 			expect(element.activetab).toBeTruthy();
 			expect(element.gutters).toBeFalsy();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -120,16 +139,37 @@ describe('vwc-tabs', () => {
 		});
 	});
 
+	describe('tabs layout', () => {
+		it('should set class "layout-align-start" on base by default', async () => {
+			expect(
+				getBaseElement(element).classList.contains('layout-align-start')
+			).toBeTruthy();
+		});
+
+		it('should set class "layout-stretch" on base when set to stretch', async () => {
+			element.tabsLayout = 'stretch';
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element).classList.contains('layout-stretch')
+			).toBeTruthy();
+		});
+	});
+
 	describe('scroll shadow', () => {
 		let scrollWrapper: HTMLElement;
 		let shadowWrapper: HTMLElement;
 
 		function setScrollWidth(value: number) {
-			jest.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(value);
+			vi.spyOn(scrollWrapper, 'scrollWidth', 'get').mockReturnValue(value);
 		}
 
 		function setClientWidth(value: number) {
-			jest.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(value);
+			vi.spyOn(scrollWrapper, 'clientWidth', 'get').mockReturnValue(value);
+		}
+
+		async function dispatchScrollEvent() {
+			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await elementUpdated(element);
 		}
 
 		beforeEach(function () {
@@ -147,32 +187,32 @@ describe('vwc-tabs', () => {
 		it('should remove class "start-scroll" if scroll position is 0', async () => {
 			shadowWrapper.classList.add('start-scroll');
 			scrollWrapper.scrollLeft = 0;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
 		});
 
 		it('should add class "start-scroll" if scroll position is bigger then 0', async () => {
 			scrollWrapper.scrollLeft = 2;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
 		});
 
 		it('should remove class "end-scroll" if scroll position is scroll-width', async () => {
 			scrollWrapper.scrollLeft = scrollWrapper.scrollWidth;
 			shadowWrapper.classList.add('end-scroll');
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
 		});
 
 		it('should add class "end-scroll" if scroll position is less then scroll-width', async () => {
 			scrollWrapper.scrollLeft = 20;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 		});
 
 		it('should add class "end-scroll + start-scroll" if scroll position is less then scroll-width and bigger then 0', async () => {
 			scrollWrapper.scrollLeft = 20;
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeTruthy();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 		});
@@ -181,7 +221,7 @@ describe('vwc-tabs', () => {
 			setScrollWidth(100);
 			setClientWidth(150);
 
-			scrollWrapper.dispatchEvent(new Event('scroll'));
+			await dispatchScrollEvent();
 			expect(shadowWrapper.classList.contains('start-scroll')).toBeFalsy();
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
 		});
@@ -219,8 +259,7 @@ describe('vwc-tabs', () => {
 
 		it('should add class "end-scroll" if client width reduces below scroll width', async () => {
 			setClientWidth(350);
-			scrollWrapper.dispatchEvent(new Event('scroll'));
-			await elementUpdated(element);
+			await dispatchScrollEvent();
 			setClientWidth(50);
 			resizeObserver.triggerResize();
 			await elementUpdated(element);
@@ -230,6 +269,34 @@ describe('vwc-tabs', () => {
 		it('should disconnect resize observer on disconnected callback', async () => {
 			element.disconnectedCallback();
 			expect(resizeObserver.disconnect).toHaveBeenCalled();
+		});
+
+		it('should prevent animation when last tab is selected and a tab is removed', async () => {
+			element.activeid = 'desserts';
+			element.showActiveIndicator = true;
+			await elementUpdated(element);
+			const activeIndicator = getActiveIndicator();
+
+			element.children[0].remove();
+			await elementUpdated(element);
+
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(false);
+		});
+
+		it('should prevent animation when last tab is selected and a its tab panel is removed', async () => {
+			element.activeid = 'desserts';
+			element.showActiveIndicator = true;
+			await elementUpdated(element);
+			const activeIndicator = getActiveIndicator();
+
+			element.querySelector('#dessertsPanel')?.remove();
+			await elementUpdated(element);
+
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(false);
 		});
 	});
 
@@ -247,39 +314,43 @@ describe('vwc-tabs', () => {
 		});
 
 		it('should set activeid property to first tab if activeid is not set', async () => {
-			const tmpElement = await setFixture(null);
-			await elementUpdated(tmpElement);
-			expect(tmpElement.activeid).toEqual('apps');
+			await setFixtureWithActiveId(null);
+			await elementUpdated(element);
+			expect(element.activeid).toEqual('apps');
 		});
 
 		describe('scrollToIndex', function () {
-			let scrollToSpy: jest.SpyInstance<void, [x: number, y: number]>;
+			let scrollToSpy: vi.SpyInstance<void, [x: number, y: number]>;
 			const scrollWidth = 1320;
 			const scrollHeight = 660;
 			beforeEach(function () {
 				const tablistWrapper = element.shadowRoot?.querySelector(
 					'.tablist-wrapper'
 				) as HTMLElement;
-				jest
-					.spyOn(tablistWrapper, 'scrollWidth', 'get')
-					.mockImplementation(() => scrollWidth);
-				jest
-					.spyOn(tablistWrapper, 'scrollHeight', 'get')
-					.mockImplementation(() => scrollHeight);
-				scrollToSpy = jest.spyOn(tablistWrapper, 'scrollTo');
+				vi.spyOn(tablistWrapper, 'scrollWidth', 'get').mockImplementation(
+					() => scrollWidth
+				);
+				vi.spyOn(tablistWrapper, 'scrollHeight', 'get').mockImplementation(
+					() => scrollHeight
+				);
+				scrollToSpy = vi.spyOn(tablistWrapper, 'scrollTo');
 			});
 
-			it('should scrollTo with 0 if index is 0', async function () {
+			it('should scrollTo with 0 if first tab becomes active', async function () {
+				element.activeid = element.tabs[1].id;
+
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
-				expect(scrollToSpy).toHaveBeenCalledWith({
+				expect(scrollToSpy).toHaveBeenLastCalledWith({
 					top: 0,
 					left: 0,
 					behavior: 'smooth',
 				});
 			});
 
-			it('should scrollTo height 0 if index is 0 and orientation vertical', async function () {
+			it('should scrollTo height 0 if first tab becomes active and orientation vertical', async function () {
+				element.activeid = element.tabs[1].id;
+
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
@@ -319,18 +390,18 @@ describe('vwc-tabs', () => {
 					const tablistWrapper = element.shadowRoot?.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
-					jest
-						.spyOn(tablistWrapper, 'offsetWidth', 'get')
-						.mockImplementation(() => scrollWidth);
+					vi.spyOn(tablistWrapper, 'offsetWidth', 'get').mockImplementation(
+						() => scrollWidth
+					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
 					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-					jest
-						.spyOn(midTab, 'offsetLeft', 'get')
-						.mockImplementation(() => offsetLeft);
-					jest
-						.spyOn(midTab, 'offsetWidth', 'get')
-						.mockImplementation(() => offsetWidth);
+					vi.spyOn(midTab, 'offsetLeft', 'get').mockImplementation(
+						() => offsetLeft
+					);
+					vi.spyOn(midTab, 'offsetWidth', 'get').mockImplementation(
+						() => offsetWidth
+					);
 					return midTab;
 				}
 
@@ -354,18 +425,18 @@ describe('vwc-tabs', () => {
 					const tablistWrapper = element.shadowRoot?.querySelector(
 						'.tablist-wrapper'
 					) as HTMLElement;
-					jest
-						.spyOn(tablistWrapper, 'offsetHeight', 'get')
-						.mockImplementation(() => scrollHeight);
+					vi.spyOn(tablistWrapper, 'offsetHeight', 'get').mockImplementation(
+						() => scrollHeight
+					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
 					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
-					jest
-						.spyOn(midTab, 'offsetTop', 'get')
-						.mockImplementation(() => offsetLeft);
-					jest
-						.spyOn(midTab, 'offsetHeight', 'get')
-						.mockImplementation(() => offsetWidth);
+					vi.spyOn(midTab, 'offsetTop', 'get').mockImplementation(
+						() => offsetLeft
+					);
+					vi.spyOn(midTab, 'offsetHeight', 'get').mockImplementation(
+						() => offsetWidth
+					);
 					return midTab;
 				}
 
@@ -440,20 +511,20 @@ describe('vwc-tabs', () => {
 			checkConnotationDoesntExistOnNonActiveTabs();
 		});
 
-		it('should reflect connotation on active tab after tabs changed', async function () {
+		it('should reflect connotation on new active tab when activeid is already set', async function () {
+			element.innerHTML = '';
+			await elementUpdated(element);
+			element.activeid = 'new-tab';
+
 			const newTab = document.createElement('vwc-tab');
+			newTab.id = 'new-tab';
 			newTab.slot = 'tab';
 			element.appendChild(newTab);
-			await elementUpdated(element);
-			checkConnotationOnActiveTab();
-			checkConnotationDoesntExistOnNonActiveTabs();
-		});
-
-		it('should reflect connotation on active tab after tab panels changed', async function () {
 			const newTabPanel = document.createElement('vwc-tab-panel');
 			newTabPanel.slot = 'tabpanel';
 			element.appendChild(newTabPanel);
 			await elementUpdated(element);
+
 			checkConnotationOnActiveTab();
 			checkConnotationDoesntExistOnNonActiveTabs();
 		});
@@ -480,11 +551,243 @@ describe('vwc-tabs', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
+	describe('adjust method', () => {
+		it('should adjust the active tab forward', async () => {
+			element.activeid = 'entrees';
+
+			element.adjust(1);
+
+			expect(element.activeid).toBe('desserts');
 		});
 
+		it('should adjust the active tab forward', async () => {
+			element.activeid = 'entrees';
+
+			element.adjust(-1);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should stay on the last tab when adjusting forward from the last tab', async () => {
+			element.activeid = 'desserts';
+
+			element.adjust(1);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should stay on the first tab when adjusting backward from the first tab', async () => {
+			element.activeid = 'apps';
+
+			element.adjust(-1);
+
+			expect(element.activeid).toBe('apps');
+		});
+	});
+
+	describe('active tab indicator', () => {
+		let activeIndicator: HTMLElement;
+		beforeEach(() => {
+			activeIndicator = getActiveIndicator();
+		});
+
+		it('should animate the active tab indicator when active tab changes', async () => {
+			Object.defineProperty(activeIndicator, 'offsetLeft', {
+				get: () => {
+					const gridColumn = activeIndicator.style['gridColumn'] || '1';
+					return parseInt(gridColumn) * 100;
+				},
+			});
+
+			element.activeid = 'entrees';
+
+			expect(activeIndicator.style['gridColumn']).toBe('');
+			expect(activeIndicator.style['transform']).toBe('translateX(100px)');
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(true);
+		});
+
+		it('should use vertical properties when orientation is vertical', async () => {
+			Object.defineProperty(activeIndicator, 'offsetTop', {
+				get: () => {
+					const gridRow = activeIndicator.style['gridRow'] || '1';
+					return parseInt(gridRow) * 100;
+				},
+			});
+
+			element.orientation = 'vertical';
+			element.activeid = 'entrees';
+
+			expect(activeIndicator.style['gridRow']).toBe('');
+			expect(activeIndicator.style['transform']).toBe('translateY(100px)');
+		});
+
+		it('should move to active tab on transitionend', async () => {
+			element.activeid = 'entrees';
+
+			activeIndicator.dispatchEvent(new Event('transitionend'));
+
+			expect(activeIndicator.style['gridColumn']).toBe('2');
+			expect(activeIndicator.style['transform']).toBe('translateX(0px)');
+		});
+
+		it('should remove activeIndicatorTransition class on transitionend', async () => {
+			element.activeid = 'entrees';
+
+			activeIndicator.dispatchEvent(new Event('transitionend'));
+
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(false);
+		});
+	});
+
+	describe('keyboard navigation', () => {
+		describe('in horizontal orientation', () => {
+			it('should activate the next tab when right arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowRight' })
+				);
+
+				expect(element.activeid).toBe('desserts');
+			});
+
+			it('should activate the previous tab when left arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+				);
+
+				expect(element.activeid).toBe('apps');
+			});
+		});
+
+		describe('in vertical orientation', () => {
+			beforeEach(() => {
+				element.orientation = 'vertical';
+			});
+
+			it('should activate the next tab when down arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowDown' })
+				);
+
+				expect(element.activeid).toBe('desserts');
+			});
+
+			it('should activate the previous tab when up arrow key is pressed', async () => {
+				element.activeid = 'entrees';
+
+				element.activetab.dispatchEvent(
+					new KeyboardEvent('keydown', { key: 'ArrowUp' })
+				);
+
+				expect(element.activeid).toBe('apps');
+			});
+		});
+
+		it('should jump over disabled tabs when navigating forward', async () => {
+			await setupFixture(`<${COMPONENT_TAG}>
+				<vwc-tab label="Appetizers" id="apps"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Entrees" id="entrees" disabled></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Desserts" id="desserts"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+			</${COMPONENT_TAG}>`);
+
+			element.activeid = 'entrees';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should jump over disabled tabs when navigating backwards', async () => {
+			await setupFixture(`<${COMPONENT_TAG}>
+				<vwc-tab label="Appetizers" id="apps"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Entrees" id="entrees" disabled></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+				<vwc-tab label="Desserts" id="desserts"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+			</${COMPONENT_TAG}>`);
+
+			element.activeid = 'desserts';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should loop around to the first tab when navigating forwards', async () => {
+			element.activeid = 'desserts';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowRight' })
+			);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should loop around to the last tab when navigating backwards', async () => {
+			element.activeid = 'apps';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'ArrowLeft' })
+			);
+
+			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should activate the first tab when home key is pressed', async () => {
+			element.activeid = 'entrees';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'Home' })
+			);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should activate the last tab when end key is pressed', async () => {
+			element.activeid = 'entrees';
+
+			element.activetab.dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'End' })
+			);
+
+			expect(element.activeid).toBe('desserts');
+		});
+	});
+
+	it("should assign random id's to tabs and panels when not provided", async () => {
+		await setupFixture(`<${COMPONENT_TAG}>
+		 	<vwc-tab label="Appetizers"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
+		</${COMPONENT_TAG}>`);
+
+		expect(element.tabs[0].id).toBeTruthy();
+		expect(element.tabpanels[0].id).toBeTruthy();
+	});
+
+	it('should initialise dynamically added tabs', async () => {
+		const newPanel = document.createElement('vwc-tab-panel') as TabPanel;
+		newPanel.id = 'new-panel';
+		element.appendChild(newPanel);
+		await elementUpdated(element);
+		const newTab = document.createElement('vwc-tab') as Tab;
+		newTab.label = 'New Tab';
+		element.appendChild(newTab);
+		await elementUpdated(element);
+
+		expect(newTab.getAttribute('aria-controls')).toBe('new-panel');
+	});
+
+	describe('a11y attributes', () => {
 		it('should set the role of tablist on the tablist div', async () => {
 			const tablist = element.shadowRoot?.querySelector('.tablist');
 			expect(tablist?.getAttribute('role')).toBe('tablist');

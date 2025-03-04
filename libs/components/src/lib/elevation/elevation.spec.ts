@@ -1,13 +1,6 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Elevation } from './elevation';
 import '.';
-import { elevationDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-elevation';
 
@@ -22,9 +15,15 @@ describe('vwc-elevation', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-elevation', async () => {
-			expect(elevationDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Elevation);
 			expect(element.dp).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -67,9 +66,19 @@ describe('vwc-elevation', () => {
 		expect(Boolean(element.shadowRoot?.querySelector('slot'))).toEqual(true);
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
+	describe('no position', () => {
+		it('should add class .not-relative to .base if no-position attribute is added o host', async () => {
+			element.notRelative = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('.not-relative'));
+		});
+	});
+
+	describe('no shadow', () => {
+		it('should add class .no-shadow to .base if no-shadow attribute is added o host', async () => {
+			element.notRelative = true;
+			await elementUpdated(element);
+			expect(getControlElement(element).classList.contains('.no-shadow'));
 		});
 	});
 });

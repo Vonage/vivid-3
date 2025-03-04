@@ -19,7 +19,8 @@
 @use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
-@import '../../shared/patterns/chevron';
+@use '../../shared/patterns/chevron' as chevron;
+@include chevron.chevron;
 
 $low-ink-color: --_low-ink-color;
 
@@ -154,7 +155,7 @@ input {
 
 ::part(popup-base) {
 	inline-size: max-content;
-	min-inline-size: 100%;
+	min-inline-size: var(#{variables.$searchable-select-fixed-width}, 100%);
 }
 
 slot[name='icon'] {

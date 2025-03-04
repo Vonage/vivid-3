@@ -4,7 +4,8 @@
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
-@import '../../shared/patterns/anchored';
+@use '../../shared/patterns/anchored' as anchored;
+@include anchored.anchored;
 
 .base {
 	display: flex;
@@ -14,9 +15,16 @@
 	gap: 8px;
 	inline-size: max-content;
 	max-block-size: var(#{variables.$menu-block-size}, 408px);
-	max-inline-size: var(#{variables.$menu-max-inline-size});
 	min-inline-size: var(#{variables.$menu-min-inline-size});
 	padding-block: 8px;
+
+	@media not all and (width >= 600px) {
+		max-inline-size: var(#{variables.$menu-max-inline-size}, 300px);
+	}
+
+	@media (width >= 600px) {
+		max-inline-size: var(#{variables.$menu-max-inline-size});
+	}
 }
 
 ::slotted(a) {

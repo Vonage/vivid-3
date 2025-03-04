@@ -1,5 +1,6 @@
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Sticky } from '../enums';
 import { CalendarEvent } from './../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
@@ -25,7 +26,7 @@ import { getEventContext } from './helpers/calendar.event-context';
  * @slot day-5 - Assign elements to corresponding day column using this slot.
  * @slot day-6 - Assign elements to corresponding day column using this slot.
  */
-export class Calendar extends FoundationElement {
+export class Calendar extends VividElement {
 	/**
 	 * The date within a week of choice.
 	 * Accepts any parameter acceptable by the `Date()` constructor.
@@ -64,6 +65,16 @@ export class Calendar extends FoundationElement {
 	 * @public
 	 */
 	@attr({ mode: 'boolean' }) hour12 = false;
+
+	/**
+	 * Sticky header and sticky column options
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: sticky-mode
+	 */
+	@attr({ attribute: 'sticky-mode', mode: 'fromView' })
+	stickyMode: Sticky = Sticky.None;
 
 	/**
 	 * @internal

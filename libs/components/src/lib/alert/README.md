@@ -1,52 +1,61 @@
-# Alert
+## Usage
 
-Alerts are meant to display short-lived important information to the user, usually at the top or bottom of the screen.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/alert';</script>
+import '@vonage/vivid/alert';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Text
+```js
+import { registerAlert } from '@vonage/vivid';
 
-Use the `text` attribute to set the alert's main text.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview 100px
-<vwc-alert text="Some important information for you" open></vwc-alert>
+registerAlert('your-prefix');
 ```
 
-### Headline
-
-Use the `headline` attribute to add a headline to your alert.
-
-- Type: `string`
-- Default: `undefined`
-
 ```html preview 100px
-<vwc-alert
-	headline="This requires your attention"
+<script type="module">
+	import { registerAlert } from '@vonage/vivid';
+	registerAlert('your-prefix');
+</script>
+
+<your-prefix-alert
 	text="Some important information for you"
 	open
-></vwc-alert>
+></your-prefix-alert>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VAlert } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VAlert text="Some important information for you" open />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Opening and Closing
 
 ### Open
 
-Use the `open` attribute to toggle the alert open state.
-
-- Type: `boolean`
-- Default: `false`
+Use the `open` attribute to toggle the Alert open state.
 
 ```html preview
 <vwc-alert text="Some important information for you"></vwc-alert>
 
 <vwc-button
 	appearance="outlined"
-	label="Show/Hide alert"
+	label="Show/Hide Alert"
 	onclick="toggleAlert()"
 ></vwc-button>
 
@@ -58,114 +67,39 @@ Use the `open` attribute to toggle the alert open state.
 </script>
 ```
 
-### Connotation
+### Timeoutms
 
-Use the `connotation` attribute to change the alert's icon and icon color.
+Use the `timeoutms` attribute to set the time in milliseconds after which the Alert will automatically close.
 
-- Type: `'accent'` | `'information'` | `'success'` | `'warning'` | `'alert'` | `'announcement'`
-- Default: `undefined`
+The default value is `0`, which means the Alert will not close automatically.
 
-Note that each connotation comes with a default icon (that you can override with the `icon` attribute).
-
-```html preview 350px
-<style>
-	vwc-select {
-		width: 160px;
-	}
-</style>
+```html preview
 <vwc-alert
 	text="Some important information for you"
-	connotation="accent"
-	open
+	timeoutms="2000"
 ></vwc-alert>
 
-<vwc-select label="Select a connotation">
-	<vwc-option value="accent" text="accent"></vwc-option>
-	<vwc-option value="success" text="success"></vwc-option>
-	<vwc-option value="warning" text="warning"></vwc-option>
-	<vwc-option value="alert" text="alert"></vwc-option>
-	<vwc-option value="information" text="information"></vwc-option>
-	<vwc-option value="announcement" text="announcement"></vwc-option>
-</vwc-select>
+<vwc-button
+	appearance="outlined"
+	label="Show an Alert for 2 seconds"
+	onclick="openAlert()"
+></vwc-button>
 
 <script>
-	select = document.querySelector('vwc-select');
 	alert = document.querySelector('vwc-alert');
-	select.addEventListener('change', (e) => {
-		alert.connotation = select.value;
-	});
+	function openAlert() {
+		alert.open = true;
+	}
 </script>
 ```
 
-### Icon
-
-Use the `icon` attribute to add an icon to your alert. Note that setting this attribute takes precedence
-over the connotation's icon, if any.
-
-- Type: `string`
-- Default: `''`
-
-```html preview 100px
-<vwc-alert
-	text="Some important information for you"
-	open
-	icon="megaphone-solid"
-></vwc-alert>
-```
-
-### Placement
-
-Use the `placement` attribute to set the location of the alert.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`
-- Default: `'bottom'`
-
-```html preview center 250px
-<style>
-	.small-alert {
-		--alert-min-inline-size: 200px;
-	}
-</style>
-<vwc-alert
-	class="small-alert"
-	placement="top-start"
-	text="top-start"
-	open
-></vwc-alert>
-<vwc-alert class="small-alert" placement="top" text="top" open></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="top-end"
-	text="top-end"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom-start"
-	text="bottom-start"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom"
-	text="bottom"
-	open
-></vwc-alert>
-<vwc-alert
-	class="small-alert"
-	placement="bottom-end"
-	text="bottom-end"
-	open
-></vwc-alert>
-```
+## Positioning
 
 ### Strategy
 
-Sets the alert as `position:static` and not `fixed`.  
-Placement will have no effect on the alert, and it will behave as an element in page flow.
+Controls the `position` of the Alert. The default is `fixed`, which will position the Alert relative to the viewport.
 
-- Type: `fixed` | `static`
-- Default: `fixed`
+When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
 
 ```html preview
 <vwc-alert
@@ -176,72 +110,21 @@ Placement will have no effect on the alert, and it will behave as an element in 
 ></vwc-alert>
 ```
 
-### Removable
-
-Use the `removable` attribute to add a close button to the alert.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 100px
-<vwc-alert text="Some important information for you" removable open></vwc-alert>
-
-<vwc-button
-	appearance="outlined"
-	label="Show alert"
-	onclick="openAlert()"
-></vwc-button>
-
-<script>
-	alert = document.querySelector('vwc-alert');
-	function openAlert() {
-		alert.open = true;
-	}
-</script>
-```
-
-### Timeoutms
-
-Use the `timeoutms` attribute to set the time after which the alert will automatically close.
-
-- Type: `number` (in milliseconds)
-- Default: `0` (stays open indefinitely)
-
-```html preview
-<vwc-alert
-	text="Some important information for you"
-	timeoutms="2000"
-></vwc-alert>
-
-<vwc-button
-	appearance="outlined"
-	label="Show an alert for 2 seconds"
-	onclick="openAlert()"
-></vwc-button>
-
-<script>
-	alert = document.querySelector('vwc-alert');
-	function openAlert() {
-		alert.open = true;
-	}
-</script>
-```
-
 ## Slots
 
 ### Main
 
-If you want to add rich content to your alert, you can use the main slot.
+If you want to add rich content to an Alert, you can use the main slot.
 
 ```html preview 100px
 <vwc-alert open>
-	<vwc-switch slot="main" label="Do not show more alerts"></vwc-switch>
+	<vwc-switch slot="main" label="Do not show more Alerts"></vwc-switch>
 </vwc-alert>
 ```
 
 ### Action Items
 
-You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the alert.
+You can add action items elements using the `action-items` slot. They will be displayed at the inline-end of the Alert.
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
@@ -256,7 +139,7 @@ You can add action items elements using the `action-items` slot. They will be di
 
 ### Icon
 
-Set the `icon` slot to add an icon to the alert.
+Set the `icon` slot to add an icon to the Alert.
 If set, the `icon` attribute is ignored.
 
 ```html preview 100px
@@ -269,9 +152,7 @@ If set, the `icon` attribute is ignored.
 
 ### Minimum inline Size
 
-Use the `--alert-min-inline-size` variable to set the alert's minimum inline size.
-
-- Default: `420px`
+Use the `--alert-min-inline-size` variable to set the Alert's minimum inline size. The default value is `420px`.
 
 ```html preview 100px
 <vwc-alert
@@ -283,10 +164,10 @@ Use the `--alert-min-inline-size` variable to set the alert's minimum inline siz
 
 ### Maximum inline Size
 
-Use the `--alert-max-inline-size` variable to set the alert's maximum inline size.
-This is helpful to prevent the alert from becoming too wide when displaying a long message.
+Use the `--alert-max-inline-size` variable to set the Alert's maximum inline size.
+This is helpful to prevent the Alert from becoming too wide when displaying a long message.
 
-- Default: `fit-content`
+The default value is `fit-content`, which allows the Alert to grow as needed.
 
 ```html preview 100px
 <vwc-alert
@@ -296,13 +177,34 @@ This is helpful to prevent the alert from becoming too wide when displaying a lo
 ></vwc-alert>
 ```
 
-## Events
+## API Reference
 
-<div class="table-wrapper">
+### Properties
 
-| Name    | Type                     | Bubbles | Composed | Description                    |
-| ------- | ------------------------ | ------- | -------- | ------------------------------ |
-| `open`  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the alert is opened |
-| `close` | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the alert is closed |
+| Name                          | Type                                                                                              | Description                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| **dismiss-button-aria-label** | `string`                                                                                          | Allows setting a custom aria-label for the dismiss button.                      |
+| **removable**                 | `boolean`                                                                                         | Adds a close button to the Alert.                                               |
+| **placement**                 | _Enum_:<br/>`top`<br/>`top-start`<br/>`top-end`<br/>`bottom`<br/>`bottom-start`<br/>`bottom-end`  | The placement of the Alert on the screen.                                       |
+| **headline**                  | `string`                                                                                          | Adds a headline to the Alert.                                                   |
+| **text**                      | `string`                                                                                          | The main text of the Alert.                                                     |
+| **icon**                      | _Enum_:<br/>`[icon-name]`                                                                         | The icon to display in the Alert. Takes precedence over the connotation's icon. |
+| **timeoutms**                 | `number`                                                                                          | Timeout after which the Alert will close.                                       |
+| **connotation**               | _Enum_:<br/>`accent`<br/>`information`<br/>`success`<br/>`warning`<br/>`announcement`<br/>`alert` | Sets an appropriate icon / icon color for the connotation.                      |
+| **strategy**                  | _Enum_:<br/>`fixed`<br/>`static`                                                                  | Controls the `position` of the Alert.                                           |
+| **open**                      | `boolean`                                                                                         | Open state of the Alert.                                                        |
 
-</div>
+### Slots
+
+| Name             | Description                                |
+| ---------------- | ------------------------------------------ |
+| **main**         | The main content of the Alert.             |
+| **action-items** | Add action items to Alert using this slot. |
+| **icon**         | Add an icon to the component.              |
+
+### Events
+
+| Name      | Type                     | Bubbles | Composed | Description                    |
+| --------- | ------------------------ | ------- | -------- | ------------------------------ |
+| **open**  | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is opened |
+| **close** | `CustomEvent<undefined>` | Yes     | Yes      | Fired when the Alert is closed |

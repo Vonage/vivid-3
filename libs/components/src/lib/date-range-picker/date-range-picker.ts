@@ -184,19 +184,13 @@ export class DateRangePicker extends DatePickerBase {
 				return;
 			}
 
-			this._presentationValue = formatPresentationDateRange(
-				{
-					start: this.start,
-					end: this.end,
-				},
-				this.locale.datePicker
-			);
 			// Set a dummy value for required validation
 			this.value = formatRange(this.start, this.end);
 		} else {
 			this.value = '';
-			this._presentationValue = '';
 		}
+
+		this._updatePresentationValue();
 
 		const dateToEnsureVisibilityOf = this.start || this.end;
 		if (dateToEnsureVisibilityOf) {
@@ -204,6 +198,23 @@ export class DateRangePicker extends DatePickerBase {
 		}
 
 		this.#updateFormValue();
+	}
+
+	/**
+	 * @internal
+	 */
+	protected override _updatePresentationValue() {
+		if (this.start && this.end) {
+			this._presentationValue = formatPresentationDateRange(
+				{
+					start: this.start,
+					end: this.end,
+				},
+				this.locale.datePicker
+			);
+		} else {
+			this._presentationValue = '';
+		}
 	}
 
 	/**

@@ -1,13 +1,6 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { SplitButton } from './split-button';
-import { splitButtonDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-split-button';
@@ -25,7 +18,6 @@ describe('vwc-split-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-split-button', async () => {
-			expect(splitButtonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(SplitButton);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -36,6 +28,13 @@ describe('vwc-split-button', () => {
 			expect(element.indicator).toBeInstanceOf(HTMLButtonElement);
 			expect(element.action).toBeInstanceOf(HTMLButtonElement);
 			expect(element.getAttribute('role')).toEqual('presentation');
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -178,7 +177,7 @@ describe('vwc-split-button', () => {
 
 	describe('action-click', () => {
 		it('should fire a non-bubbling action-click event when action button is clicked', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('action-click', spy);
 			element.action.click();
 
@@ -191,7 +190,7 @@ describe('vwc-split-button', () => {
 
 	describe('indicator-click', () => {
 		it('should fire a non-bubbling indicator-click event when indicator button is clicked', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('indicator-click', spy);
 			element.indicator.click();
 
@@ -202,14 +201,7 @@ describe('vwc-split-button', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Button label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('aria-label', function () {
 			it('should set "aria-label" on control if set on host', async function () {
 				const labelId = 'label';

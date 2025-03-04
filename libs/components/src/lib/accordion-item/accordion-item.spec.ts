@@ -1,8 +1,6 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { AccordionItem } from './accordion-item';
 import '.';
-import { accordionItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-accordion-item';
 
@@ -21,9 +19,6 @@ describe('vwc-accordion-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-accordion-item', async () => {
-			expect(accordionItemDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(AccordionItem);
 			expect(element.expanded).toBeFalsy();
 			expect(element.icon).toBeUndefined();
@@ -33,6 +28,13 @@ describe('vwc-accordion-item', () => {
 			expect(element.heading).toEqual(undefined);
 			expect(element.headinglevel).toBe(2);
 			expect(element.size).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -153,15 +155,7 @@ describe('vwc-accordion-item', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.id = 'test1';
-			element.heading = 'Accordion item heading';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should link the header button and content region using aria', async () => {
 			const TEST_ID = 'test';
 			element.id = TEST_ID;

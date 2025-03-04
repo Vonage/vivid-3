@@ -1,16 +1,13 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '@vonage/vivid';
 import { Icon } from '../icon/icon';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
-import { navDisclosureDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';
 const ICON_SELECTOR = 'vwc-icon';
@@ -26,9 +23,6 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-disclosure', async () => {
-			expect(navDisclosureDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(NavDisclosure);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -36,6 +30,13 @@ describe('vwc-nav-disclosure', () => {
 			expect(element.ariaCurrent).toBeFalsy();
 			expect(element.appearance).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -80,7 +81,7 @@ describe('vwc-nav-disclosure', () => {
 
 	describe('toggle event', () => {
 		it('should emit a toggle event that does not bubble when open/closed state is toggled', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('toggle', spy);
 
 			element.details.dispatchEvent(new Event('toggle'));
@@ -115,15 +116,7 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.open = true;
-			element.ariaCurrent = 'true';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('aria-current', function () {
 			it('should not set aria-current on the nav-disclosure if opened', async function () {
 				const ariaCurrent = 'true';

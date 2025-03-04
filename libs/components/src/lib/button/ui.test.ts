@@ -202,6 +202,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button style="width: 100px" appearance="filled" dropdown-indicator label="too small for label"></vwc-button>
 		<vwc-button appearance="filled" dropdown-indicator icon="user-line"></vwc-button>
 	</div>
+		<div style="margin: 5px;">
+		<vwc-button style="width: 200px" appearance="filled" dropdown-indicator shape="pill" label="wide"></vwc-button>
+		<vwc-button style="width: 100px" appearance="filled" dropdown-indicator shape="pill" label="too small for label"></vwc-button>
+		<vwc-button appearance="filled" dropdown-indicator shape="pill" icon="user-line"></vwc-button>
+	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance="filled" dropdown-indicator label="expanded" aria-expanded="true"></vwc-button>
 	</div>
@@ -224,6 +229,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	</div>
 		<div style="margin: 5px;">
 		<vwc-button dropdown-indicator icon="user-line"  appearance="filled" label="align-start" size="normal" style="width: 280px;"></vwc-button>
+		<vwc-button dropdown-indicator icon="user-line"  appearance="filled" label="Example of SuperLongButtonTitle" size="normal" style="width: 280px;"></vwc-button>
 		<vwc-button dropdown-indicator icon="user-line"  appearance="filled" label="keep align-center" size="normal" style="width: 280px; --button-content-alignment: center;"></vwc-button>
 	</div>
 	</div>
@@ -259,6 +265,6 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/button.png'
+		'snapshots/button.png'
 	);
 });

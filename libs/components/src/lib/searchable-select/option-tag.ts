@@ -1,11 +1,12 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr, observable } from '@microsoft/fast-element';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Shape } from '../enums';
 import { Localized } from '../../shared/patterns';
 
 export type OptionTagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
 
-export class OptionTag extends FoundationElement {
+export class OptionTag extends VividElement {
 	@attr shape?: OptionTagShape;
 	@attr label?: string;
 	@attr({ mode: 'boolean' }) removable = false;

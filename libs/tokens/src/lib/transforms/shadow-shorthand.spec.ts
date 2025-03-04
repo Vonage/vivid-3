@@ -61,6 +61,13 @@ describe('basic', () => {
 
 	it('should match if category and type comply to a shadow type', () => {
 		expect(matcher({ ...defaultToken, attributes: {} })).toEqual(false);
+		expect(
+			matcher({
+				...defaultToken,
+				type: 'boxShadow',
+				attributes: { category: 'something-with-shadow' },
+			})
+		).toEqual(true);
 		expect(matcher(token)).toEqual(true);
 	});
 });

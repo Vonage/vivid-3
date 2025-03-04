@@ -1,5 +1,96 @@
 # Changelog
 
+## [4.16.2](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.16.1...vivid-vue-v4.16.2) (2025-02-20)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.16.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.16.0...vivid-vue-v4.16.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **vue-wrappers:** fix SSR detection (VIV-000) ([#2147](https://github.com/Vonage/vivid-3/issues/2147)) ([8e2b7ce](https://github.com/Vonage/vivid-3/commit/8e2b7ce2aeb3a7c8bbb9d3f188c26c116f743fb3))
+
+## [4.16.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.15.0...vivid-vue-v4.16.0) (2025-02-14)
+
+
+### Features
+
+* **vue-wrappers:** support SSR (VIV-2333) ([#2141](https://github.com/Vonage/vivid-3/issues/2141)) ([ac9a301](https://github.com/Vonage/vivid-3/commit/ac9a30124b3553cae4d19e0d90ea89f9907e9144))
+
+## [4.15.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.14.4...vivid-vue-v4.15.0) (2025-02-13)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.14.4](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.14.3...vivid-vue-v4.14.4) (2025-02-04)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.14.3](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.14.2...vivid-vue-v4.14.3) (2025-02-04)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.14.2](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.14.1...vivid-vue-v4.14.2) (2025-01-28)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.14.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.14.0...vivid-vue-v4.14.1) (2025-01-22)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.14.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.13.0...vivid-vue-v4.14.0) (2024-12-18)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.13.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.12.1...vivid-vue-v4.13.0) (2024-12-02)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.12.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.12.0...vivid-vue-v4.12.1) (2024-11-20)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.12.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.11.0...vivid-vue-v4.12.0) (2024-11-14)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
+## [4.11.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.10.0...vivid-vue-v4.11.0) (2024-11-13)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [4.10.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.9.0...vivid-vue-v4.10.0) (2024-10-23)
 
 

@@ -1,29 +1,18 @@
 import { elements, html, slotted, when } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type { ElementDefinitionContext } from '@microsoft/fast-foundation';
-
 import { Radio } from '../radio/radio';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { RadioGroup } from './radio-group';
 
-/**
- * The template for the RadioGroup component.
- *
- * @param context - element definition context
- * @public
- */
-export const RadioGroupTemplate: (
-	context: ElementDefinitionContext
-) => ViewTemplate<RadioGroup> = (context: ElementDefinitionContext) => {
+export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 	return html<RadioGroup>`
 		<template
 			role="radiogroup"
 			aria-disabled="${(x) => x.disabled}"
 			aria-readonly="${(x) => x.readOnly}"
 			aria-orientation="${(x) => x.orientation}"
-			@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
 			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
-			@focusout="${(x, c) => x.focusOutHandler(c.event as FocusEvent)}"
+			@focusin="${(x, c) => x.focusInHandler(c.event as FocusEvent)}"
 		>
 			${when(
 				(x) => x.label,

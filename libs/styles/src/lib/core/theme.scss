@@ -1,7 +1,55 @@
 @use '../../../../..//dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 .vvd-root {
 	color-scheme: var(#{constants.$vvd-color-scheme});
 	background-color: var(#{constants.$vvd-color-canvas});
 	color: var(#{constants.$vvd-color-canvas-text});
+}
+
+.vvd-scrollbar {
+	@include scrollbar.scrollbar;
+}
+
+// using the neutral-tint elevation
+.vvd-neutral-tint-elevation {
+	--_vvd-tinted-color-surface-0dp: var(--vvd-neutral-tint-color-surface-0dp);
+	--_vvd-tinted-color-surface-2dp: var(--vvd-neutral-tint-color-surface-2dp);
+	--_vvd-tinted-color-surface-4dp: var(--vvd-neutral-tint-color-surface-4dp);
+	--_vvd-tinted-color-surface-8dp: var(--vvd-neutral-tint-color-surface-8dp);
+	--_vvd-tinted-color-surface-12dp: var(--vvd-neutral-tint-color-surface-12dp);
+	--_vvd-tinted-color-surface-16dp: var(--vvd-neutral-tint-color-surface-16dp);
+	--_vvd-tinted-color-surface-24dp: var(--vvd-neutral-tint-color-surface-24dp);
+
+	--_vvd-tinted-shadow-surface-0dp: var(--vvd-neutral-tint-shadow-surface-0dp);
+	--_vvd-tinted-shadow-surface-2dp: var(--vvd-neutral-tint-shadow-surface-2dp);
+	--_vvd-tinted-shadow-surface-4dp: var(--vvd-neutral-tint-shadow-surface-4dp);
+	--_vvd-tinted-shadow-surface-8dp: var(--vvd-neutral-tint-shadow-surface-8dp);
+	--_vvd-tinted-shadow-surface-12dp: var(
+		--vvd-neutral-tint-shadow-surface-12dp
+	);
+	--_vvd-tinted-shadow-surface-16dp: var(
+		--vvd-neutral-tint-shadow-surface-16dp
+	);
+	--_vvd-tinted-shadow-surface-24dp: var(
+		--vvd-neutral-tint-shadow-surface-24dp
+	);
+
+	> * {
+		--_vvd-tinted-color-surface-0dp: var(--vvd-color-surface-0dp);
+		--_vvd-tinted-color-surface-2dp: var(--vvd-color-surface-2dp);
+		--_vvd-tinted-color-surface-4dp: var(--vvd-color-surface-4dp);
+		--_vvd-tinted-color-surface-8dp: var(--vvd-color-surface-8dp);
+		--_vvd-tinted-color-surface-12dp: var(--vvd-color-surface-12dp);
+		--_vvd-tinted-color-surface-16dp: var(--vvd-color-surface-16dp);
+		--_vvd-tinted-color-surface-24dp: var(--vvd-color-surface-24dp);
+
+		--_vvd-tinted-shadow-surface-0dp: var(--vvd-shadow-surface-0dp);
+		--_vvd-tinted-shadow-surface-2dp: var(--vvd-shadow-surface-2dp);
+		--_vvd-tinted-shadow-surface-4dp: var(--vvd-shadow-surface-4dp);
+		--_vvd-tinted-shadow-surface-8dp: var(--vvd-shadow-surface-8dp);
+		--_vvd-tinted-shadow-surface-12dp: var(--vvd-shadow-surface-12dp);
+		--_vvd-tinted-shadow-surface-16dp: var(--vvd-shadow-surface-16dp);
+		--_vvd-tinted-shadow-surface-24dp: var(--vvd-shadow-surface-24dp);
+	}
 }

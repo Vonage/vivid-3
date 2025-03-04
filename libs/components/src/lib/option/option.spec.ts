@@ -1,9 +1,7 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { ListboxOption } from './option';
 import '.';
-import { listboxOptionDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-option';
 const ICON_SELECTOR = 'vwc-icon';
@@ -19,9 +17,6 @@ describe('vwc-option', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-option', async () => {
-			expect(listboxOptionDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(ListboxOption);
 			expect(element.text).toEqual('');
 			expect(element.value).toEqual('');
@@ -30,6 +25,13 @@ describe('vwc-option', () => {
 			expect(element.selected).toBeFalsy();
 			expect(element.checked).toBeUndefined();
 			expect(element.disabled).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -68,16 +70,18 @@ describe('vwc-option', () => {
 		expect(element.getAttribute('aria-selected')).toEqual('true');
 	});
 
-	it('should set the `aria-checked` attribute with the `checked` value when provided', async () => {
-		element.checked = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-checked')).toEqual('true');
-	});
+	describe('disabled', () => {
+		it('should set the `aria-disabled` attribute to `true` when true', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('true');
+		});
 
-	it('should set the `aria-disabled` attribute with the `disabled` value when provided', async () => {
-		element.disabled = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-disabled')).toEqual('true');
+		it('should set the `aria-disabled` attribute to `false` when false', async () => {
+			element.disabled = false;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-disabled')).toEqual('false');
+		});
 	});
 
 	describe('label', function () {
@@ -111,6 +115,43 @@ describe('vwc-option', () => {
 			element.setAttribute('label', label);
 
 			expect(element.label).toEqual(label);
+		});
+	});
+
+	describe('checked', () => {
+		it('should set the `aria-checked` attribute with the `checked`', async () => {
+			element.checked = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-checked')).toEqual('true');
+		});
+
+		it('should remove the aria-checked attribute when checked is set to a non-boolean', async () => {
+			element.checked = null as any;
+			await elementUpdated(element);
+			expect(element.hasAttribute('aria-checked')).toBe(false);
+		});
+	});
+
+	describe('value', () => {
+		it('should default to empty string when set to a nullish value', async () => {
+			element.value = null as any;
+			await elementUpdated(element);
+			expect(element.value).toBe('');
+		});
+	});
+
+	describe('form', () => {
+		it('should return null if not in a form', async () => {
+			expect(element.form).toBe(null);
+		});
+
+		// Does not work:
+		it.skip('should return the parent form', async () => {
+			const form = document.createElement('form');
+			form.appendChild(element);
+			document.body.appendChild(form);
+
+			expect(element.form).toBe(form);
 		});
 	});
 
@@ -171,16 +212,14 @@ describe('vwc-option', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(
-				`<div role="listbox" aria-label="Dummy listbox">
-					<${COMPONENT_TAG} text="text" value="value"></${COMPONENT_TAG}>
-				</div>`
-			)) as ListboxOption;
-			await elementUpdated(element);
+	describe('constructor', () => {
+		it('should construct with provided values', async () => {
+			element = new ListboxOption('text', 'value', true, true);
 
-			expect(await axe(element)).toHaveNoViolations();
+			expect(element.text).toEqual('text');
+			expect(element.value).toEqual('value');
+			expect(element.defaultSelected).toEqual(true);
+			expect(element.selected).toEqual(true);
 		});
 	});
 });

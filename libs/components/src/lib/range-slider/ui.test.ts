@@ -59,7 +59,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/range-slider.png'
+		'snapshots/range-slider.png'
 	);
 });
 
@@ -93,7 +93,7 @@ test('should show a tooltip for horizontal range slider', async ({
 	const testWrapper = await page.$('#wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/range-slider-tooltip-horizontal.png'
+		'snapshots/range-slider-tooltip-horizontal.png'
 	);
 });
 
@@ -125,7 +125,7 @@ test('should show a tooltip for vertical range slider', async ({
 	const testWrapper = await page.$('#wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/range-slider-tooltip-vertical.png'
+		'snapshots/range-slider-tooltip-vertical.png'
 	);
 });
 

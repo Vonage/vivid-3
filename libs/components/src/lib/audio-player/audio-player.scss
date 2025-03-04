@@ -15,9 +15,13 @@
 	align-items: center;
 	padding: 8px;
 	color: var(#{constants.$vvd-color-canvas-text});
-	gap: 16px;
+	gap: 8px;
 	inline-size: 100%;
 	user-select: none;
+
+	&.disabled {
+		color: var(#{constants.$vvd-color-neutral-300});
+	}
 
 	.slider {
 		flex: 1;

@@ -1,111 +1,53 @@
-# Side Drawer
+## Usage
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/side-drawer';</script>
+import '@vonage/vivid/side-drawer';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Open
+```js
+import { registerSideDrawer } from '@vonage/vivid';
 
-Use the `open` attribute to indicate whether the side drawer is open.
-You can also close the side drawer by pressing the `ESC` key.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<vwc-side-drawer open>
-	<vwc-layout gutters="small">
-		<p>Side Drawer content</p>
-	</vwc-layout>
-
-	<vwc-layout gutters="small" slot="app-content">
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-			commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-			velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-			cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-			est laborum.
-		</p>
-	</vwc-layout>
-</vwc-side-drawer>
+registerSideDrawer('your-prefix');
 ```
 
-### Modal
+```html preview 100px
+<script type="module">
+	import { registerSideDrawer } from '@vonage/vivid';
+	registerSideDrawer('your-prefix');
+</script>
 
-Use the `modal` attribute to set the side drawer's type to modal.
-Click on the `scrim` or press the `ESC` key (while drawer is focused) to close the modal side-drawer.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<vwc-side-drawer modal open>
-	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-
-	<vwc-layout gutters="small" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</vwc-layout>
-</vwc-side-drawer>
+<your-prefix-side-drawer open>
+	<p>Side Drawer</p>
+</your-prefix-side-drawer>
 ```
 
-### Alternate
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-Use `alternate` to apply an alternate color-scheme, which is in contrast with the current global theme and applies on all assigned vivid components.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<vwc-side-drawer alternate open>
-	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-
-	<vwc-layout gutters="small" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</vwc-layout>
-</vwc-side-drawer>
+```html
+<script setup lang="ts">
+	import { VSideDrawer } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VSideDrawer open />
+</template>
 ```
 
-### Trailing
-
-Use the `trailing` attribute to set the side of the drawer.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview full
-<vwc-side-drawer trailing open>
-	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-
-	<vwc-layout gutters="small" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</vwc-layout>
-</vwc-side-drawer>
-```
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
 ### Default
 
-The default slot sets assigned nodes to the side drawer itself.
+Use the `default` slot to add content to the side drawer itself.
 
 ```html preview full 150px
 <vwc-side-drawer open>
@@ -115,11 +57,12 @@ The default slot sets assigned nodes to the side drawer itself.
 
 ### App Content
 
-The `app-content` slot sets assigned nodes to the main application content, the side drawer is opened next to.
+Use the `app-content` slot for the main application content, the side drawer is opened next to.
 
 ```html preview full
 <vwc-side-drawer open>
 	<vwc-layout gutters="small" slot="app-content">
+		<h3>App Content</h3>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -127,57 +70,6 @@ The `app-content` slot sets assigned nodes to the main application content, the 
 		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
 		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	</vwc-layout>
-</vwc-side-drawer>
-```
-
-## Events
-
-<div class="table-wrapper">
-
-| Name     | Type                     | Bubbles | Composed | Description                                                                                                                                      |
-| -------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `open`   | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is opened.                                                                                                            |
-| `close`  | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is closed.                                                                                                            |
-| `cancel` | `CustomEvent<undefined>` | No      | Yes      | Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event. |
-
-</div>
-
-## CSS Variables
-
-### Application Content Offset
-
-When side drawer is opened, `--side-drawer-app-content-offset` controls the offset of the side drawer's application content from the window's edge.
-some designs may choose side-drawer to overlap the app-content, so the app-content should be offset by the side-drawer's width.
-Additionally, as the _base_ element (which represents the actual side-drawer), is styled with `position: fixed`, customizing its inline size directly will not affect the application content offset interchangeably. Hence, using this CSS custom property is mandatory to account for side-drawer inline size altercations.
-
-- Default: `280px`
-
-```html preview full 150px
-<style>
-	vwc-side-drawer {
-		--side-drawer-app-content-offset: 230px;
-	}
-
-	vwc-fab {
-		position: fixed;
-		inset: auto auto 8px 8px;
-		z-index: 2;
-	}
-</style>
-
-<vwc-side-drawer id="sidedrawer">
-	<vwc-layout slot="app-content" gutters="medium">
-		Toggle the side drawer by clicking the FAB.
-		<br />
-		Notice that the side drawer overlaps the application content.
-	</vwc-layout>
-
-	<vwc-fab
-		connotation="accent"
-		icon="menu-solid"
-		slot="app-content"
-		onclick="sidedrawer.open = !sidedrawer.open"
-	></vwc-fab>
 </vwc-side-drawer>
 ```
 
@@ -185,126 +77,78 @@ Additionally, as the _base_ element (which represents the actual side-drawer), i
 
 ### Base
 
-Select `base` part to access the component's internal _base_ element (which represents the actual side-drawer).
+Use the CSS part `base` to provide custom styling to the Side-Drawer.
 
 ```html preview full 150px
+<vwc-side-drawer open>
+	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
+</vwc-side-drawer>
+
 <style>
 	vwc-side-drawer::part(base) {
 		background-color: var(--vvd-color-neutral-50);
 	}
 </style>
-
-<vwc-side-drawer open>
-	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-</vwc-side-drawer>
 ```
 
-## Use Cases
+## CSS Variables
 
-### Collapsible Side Drawer
+### Application Content Offset
 
-```html preview full 250px
-<style>
-	vwc-fab {
-		position: fixed;
-		inset: auto auto 8px 8px;
-		z-index: 2;
-	}
-	vwc-side-drawer::part(base) {
-		transform: var(--demo-drawer-transform);
-	}
-	vwc-side-drawer {
-		--demo-drawer-transform: translateX(0);
-		--side-drawer-app-content-offset: 280px;
-	}
-	vwc-side-drawer.collapsed {
-		--demo-drawer-transform: translateX(calc(-100% + 70px));
-		--side-drawer-app-content-offset: 70px;
-	}
-</style>
+Use `--side-drawer-app-content-offset` to set a value different from `280px` to the offset of side drawer's application content.  
+This is needed if a custom width is set on the side-drawer, or if side-drawer needs to overlap content [see use-case](/components/side-drawer/use-cases/#side-drawer-overlap-content)
 
-<vwc-side-drawer id="sideDrawer" alternate open>
-	<vwc-layout gutters="small" column-basis="block">
-		<vwc-nav id="sideNav">
-			<vwc-nav-item
-				href="#"
-				text="Calls"
-				icon="call-line"
-				data-value="Calls"
-				onclick="onClick(this)"
-				aria-current="page"
-			></vwc-nav-item>
-			<vwc-nav-item
-				href="#"
-				text="Voicemail"
-				icon="voicemail-line"
-				data-value="Voicemail"
-				onclick="onClick(this)"
-			></vwc-nav-item>
-			<vwc-nav-item
-				href="#"
-				text="SMS"
-				icon="chat-line"
-				data-value="SMS"
-				onclick="onClick(this)"
-			></vwc-nav-item>
-		</vwc-nav>
-	</vwc-layout>
+```html preview full 150px
+<vwc-side-drawer class="side-drawer" open>
 	<vwc-layout slot="app-content" gutters="medium">
-		Toggle the side drawer by clicking the FAB.
+		narrow side drawer with 100px width
 	</vwc-layout>
-	<vwc-fab icon="menu-solid" slot="app-content" onclick="onToggle()"></vwc-fab>
 </vwc-side-drawer>
 
-<script>
-	function onToggle() {
-		sideDrawer.classList.toggle('collapsed');
-		const isCollapsed = sideDrawer.classList.contains('collapsed');
-
-		for (let i = 0; i < sideNav.children.length; i++) {
-			const value = sideNav.children[i].dataset.value;
-			sideNav.children[i].text = isCollapsed ? '' : value;
-			sideNav.children[i].style.alignSelf = isCollapsed ? 'flex-end' : '';
-			// There must be an aria-label on nav-items with only an icon
-			sideNav.children[i].ariaLabel = isCollapsed ? value : '';
-		}
-	}
-
-	function onClick(el) {
-		currentNavItem = document.querySelector(
-			'vwc-nav-item[aria-current="page"]'
-		);
-		currentNavItem?.removeAttribute('aria-current');
-		el.setAttribute('aria-current', 'page');
-	}
-</script>
-```
-
-### Full content height
-
-```html preview full 250px
 <style>
 	.side-drawer {
-		block-size: 100vh;
+		--side-drawer-app-content-offset: 100px;
 	}
-	.content {
-		display: flex;
-		align-items: center;
-		background-color: var(--vvd-color-information-50);
-		block-size: 100%;
-		padding: 16px;
-		box-sizing: border-box;
+	.side-drawer::part(base) {
+		inline-size: 100px;
 	}
 </style>
-<vwc-side-drawer class="side-drawer" open>
-	<vwc-layout gutters="small">Side Drawer content</vwc-layout>
-	<div class="content" slot="app-content">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</div>
-</vwc-side-drawer>
 ```
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name          | Type      | Description                               |
+| ------------- | --------- | ----------------------------------------- |
+| **alternate** | `boolean` | applies scheme alternate region           |
+| **modal**     | `boolean` | sets the side drawer's type to modal      |
+| **open**      | `boolean` | indicates whether the side drawer is open |
+| **trailing**  | `boolean` | sets the side of the side drawer          |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name            | Description                                                                             |
+| --------------- | --------------------------------------------------------------------------------------- |
+| **default**     | Sets assigned nodes to the side drawer itself.                                          |
+| **app-content** | Sets assigned nodes to the main application content, the side drawer is opened next to. |
+
+</div>
+
+### Events
+
+<div class="table-wrapper">
+
+| Name       | Type                     | Bubbles | Composed | Description                                                                                                                                      |
+| ---------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **open**   | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is opened.                                                                                                            |
+| **close**  | `CustomEvent<undefined>` | No      | Yes      | Fired when the side drawer is closed.                                                                                                            |
+| **cancel** | `CustomEvent<undefined>` | No      | Yes      | Fired when the user requests to close the side-drawer. You can prevent the side drawer from closing by calling `.preventDefault()` on the event. |
+
+</div>

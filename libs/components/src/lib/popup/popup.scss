@@ -3,6 +3,7 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../shared/src/lib/sass/mixins/resets' as resets;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 :host {
 	display: var(#{variables.$popup-display}, inline);
@@ -20,10 +21,17 @@
 
 .popup-wrapper {
 	@include resets.floating-element-reset;
+	@include scrollbar.scrollbar;
 
-	z-index: var(#{variables.$popup-z-index}, 10);
-	border-radius: #{border-radius-variables.$border-radius-normal};
-	inline-size: max-content;
+	& {
+		z-index: var(#{variables.$popup-z-index}, 10);
+		overflow: visible;
+		padding: 0;
+		border: none;
+		border-radius: #{border-radius-variables.$border-radius-normal};
+		margin: 0;
+		inline-size: max-content;
+	}
 
 	&:not(.absolute) {
 		position: fixed;

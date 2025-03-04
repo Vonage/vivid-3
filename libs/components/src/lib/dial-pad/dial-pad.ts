@@ -1,7 +1,8 @@
-import { applyMixins, FoundationElement } from '@microsoft/fast-foundation';
 import { attr } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { TextField } from '../text-field/text-field';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Base class for dial-pad
@@ -19,7 +20,7 @@ import { TextField } from '../text-field/text-field';
  *
  */
 
-export class DialPad extends FoundationElement {
+export class DialPad extends VividElement {
 	/**
 	 * @internal
 	 */

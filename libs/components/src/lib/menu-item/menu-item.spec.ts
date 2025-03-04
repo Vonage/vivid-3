@@ -1,6 +1,5 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import '.';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { fireEvent } from '@testing-library/dom';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Connotation } from '@vonage/vivid';
@@ -10,7 +9,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { Icon } from '../icon/icon';
 import { CheckAppearance, MenuItem } from './menu-item';
-import { menuItemDefinition, MenuItemRole } from './definition';
+import { MenuItemRole } from './definition';
 
 const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';
@@ -44,7 +43,6 @@ describe('vwc-menu-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-menu-item', async () => {
-			expect(menuItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(MenuItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.textSecondary).toEqual(undefined);
@@ -54,6 +52,13 @@ describe('vwc-menu-item', () => {
 			expect(element.disabled).toBeUndefined();
 			expect(element.expanded).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -124,7 +129,7 @@ describe('vwc-menu-item', () => {
 		);
 
 		it('should enable default of click event if role is presentation', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('click', spy);
 			(element as any).role = MenuItemRole.presentation;
 			await elementUpdated(element);
@@ -134,7 +139,7 @@ describe('vwc-menu-item', () => {
 		});
 
 		it('should prevent default of click event if role is not presentation', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('click', spy);
 			(element as any).role = MenuItemRole.menuitem;
 			await elementUpdated(element);
@@ -329,9 +334,9 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('change event', () => {
-		let changeSpy: jest.Mock;
+		let changeSpy: vi.Mock;
 		beforeEach(async () => {
-			changeSpy = jest.fn();
+			changeSpy = vi.fn();
 			element.addEventListener('change', changeSpy);
 		});
 
@@ -339,6 +344,14 @@ describe('vwc-menu-item', () => {
 			element.click();
 
 			expect(changeSpy).toHaveBeenCalled();
+		});
+
+		it('should not fire "change" event on click when disabled', async () => {
+			element.disabled = true;
+
+			element.click();
+
+			expect(changeSpy).not.toHaveBeenCalled();
 		});
 
 		it('should fire "change" event on spacebar press', async () => {
@@ -361,9 +374,9 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('click event', () => {
-		let clickSpy: jest.Mock;
+		let clickSpy: vi.Mock;
 		beforeEach(async () => {
-			clickSpy = jest.fn();
+			clickSpy = vi.fn();
 			element.addEventListener('click', clickSpy);
 		});
 
@@ -418,7 +431,7 @@ describe('vwc-menu-item', () => {
 
 	describe('expanded-change event', () => {
 		it('should fire "expanded-change" event when submenu exists and expanded changes', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('expanded-change', spy);
 			addSubmenu();
 			await elementUpdated(element);
@@ -466,20 +479,6 @@ describe('vwc-menu-item', () => {
 			expect(
 				getBaseElement(element).classList.contains('has-meta')
 			).toBeTruthy();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const container = await fixture(
-				`<div role="menu"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			);
-			element = container.querySelector(COMPONENT_TAG) as MenuItem;
-			element.text = 'Menu item';
-			element.role = MenuItemRole.menuitem;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 

@@ -1,6 +1,7 @@
-import { FormAssociated, FoundationElement } from '@microsoft/fast-foundation';
+import { FormAssociated } from '../../shared/foundation/form-associated/form-associated';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
-class _RangeSlider extends FoundationElement {}
+class _RangeSlider extends VividElement {}
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface _RangeSlider extends FormAssociated {}
 

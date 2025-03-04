@@ -1,5 +1,5 @@
 import { Observable } from '@microsoft/fast-element';
-import { applyMixins } from '@microsoft/fast-foundation';
+import { applyMixins } from '../foundation/utilities/apply-mixins';
 
 /**
  * Extends applyMixins to also apply observables from base classes to the derived class.

@@ -1,15 +1,12 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { type Popup } from '../popup/popup.ts';
 import { Toggletip } from './toggletip';
-import { toggletipDefinition } from './definition';
 import '../button';
 import '.';
 
@@ -33,13 +30,19 @@ describe('vwc-toggletip', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-toggletip', async () => {
-			expect(toggletipDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Toggletip);
 
 			expect(element.open).toBe(false);
 			expect(element.alternate).toBe(false);
 			expect(element.headline).toBeUndefined();
 			expect(element.placement).toBe('right');
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -110,7 +113,7 @@ describe('vwc-toggletip', () => {
 		it('should allow propgation on escape key if closed', async () => {
 			element.open = false;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -126,7 +129,7 @@ describe('vwc-toggletip', () => {
 		it('should stop propgation on escape key', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -206,18 +209,6 @@ describe('vwc-toggletip', () => {
 			await elementUpdated(element);
 
 			expect(element.shadowRoot?.querySelector('header.headline')).toBeNull();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.anchor = 'anchorButton';
-			element.open = true;
-			element.innerHTML = 'Test content';
-			element.headline = 'Headline';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

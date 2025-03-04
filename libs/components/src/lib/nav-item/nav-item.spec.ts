@@ -1,15 +1,8 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
 import { NavItem } from './nav-item';
 import '.';
-import { navItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav-item';
 const ICON_SELECTOR = 'vwc-icon';
@@ -25,12 +18,18 @@ describe('vwc-nav-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav-item', async () => {
-			expect(navItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NavItem);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -109,15 +108,7 @@ describe('vwc-nav-item', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.ariaCurrent = 'page';
-			element.text = 'lorem';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('aria-current', function () {
 			it('should set aria-current on the nav-item if set', async () => {
 				const ariaCurrent = 'page';

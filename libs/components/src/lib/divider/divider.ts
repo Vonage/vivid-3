@@ -1,12 +1,12 @@
 import { attr } from '@microsoft/fast-element';
-import { FoundationElement } from '@microsoft/fast-foundation';
 import { Orientation } from '@microsoft/fast-web-utilities';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Divider roles
  * @public
  */
-const DividerRole = {
+export const DividerRole = {
 	/**
 	 * The divider semantically separates content
 	 */
@@ -28,7 +28,7 @@ type DividerRole = typeof DividerRole[keyof typeof DividerRole];
  * @public
  * @component divider
  */
-export class Divider extends FoundationElement {
+export class Divider extends VividElement {
 	/**
 	 * The role of the element.
 	 *

@@ -1,6 +1,6 @@
-import { applyMixins } from '@microsoft/fast-foundation';
 import { customElement, FASTElement, html } from '@microsoft/fast-element';
 import { fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
+import { applyMixins } from '../foundation/utilities/apply-mixins';
 import { TrappedFocus } from './trapped-focus.ts';
 
 describe('TrappedFocus', () => {
@@ -51,7 +51,7 @@ describe('TrappedFocus', () => {
 	it('should move focus to first element and prevent default when pressing tab on last element', () => {
 		lastButton.focus();
 		const event = new KeyboardEvent('keydown', { key: 'Tab' });
-		event.preventDefault = jest.fn();
+		event.preventDefault = vi.fn();
 
 		element.dispatchEvent(event);
 
@@ -62,7 +62,7 @@ describe('TrappedFocus', () => {
 	it('should move focus to last element and prevent default when pressing shift + tab on first element', () => {
 		firstButton.focus();
 		const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true });
-		event.preventDefault = jest.fn();
+		event.preventDefault = vi.fn();
 
 		element.dispatchEvent(event);
 
@@ -73,11 +73,25 @@ describe('TrappedFocus', () => {
 	it('should not move focus or prevent default when pressing tab on another element', () => {
 		secondButton.focus();
 		const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true });
-		event.preventDefault = jest.fn();
+		event.preventDefault = vi.fn();
 
 		element.dispatchEvent(event);
 
 		expect(event.preventDefault).not.toHaveBeenCalled();
 		expect(element.shadowRoot!.activeElement).toBe(secondButton);
+	});
+
+	describe('ignoreEvent', () => {
+		it('should cause the event to be ignored', () => {
+			lastButton.focus();
+			const event = new KeyboardEvent('keydown', { key: 'Tab' });
+			event.preventDefault = vi.fn();
+
+			TrappedFocus.ignoreEvent(event);
+			element.dispatchEvent(event);
+
+			expect(event.preventDefault).not.toHaveBeenCalled();
+			expect(element.shadowRoot!.activeElement).toBe(lastButton);
+		});
 	});
 });

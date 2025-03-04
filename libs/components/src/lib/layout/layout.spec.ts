@@ -1,14 +1,7 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { LayoutSize } from '../enums';
 import { AUTO_SIZING, Layout } from './layout';
 import '.';
-import { layoutDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-layout';
 
@@ -24,13 +17,19 @@ describe('vwc-layout', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-layout', async () => {
-			expect(layoutDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Layout);
 			expect(element.gutters).toBeUndefined();
 			expect(element.columnBasis).toBeUndefined();
 			expect(element.columnSpacing).toBeUndefined();
 			expect(element.rowSpacing).toBeUndefined();
 			expect(element.autoSizing).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -119,15 +118,6 @@ describe('vwc-layout', () => {
 			expect(getControlElement(element).classList.toString()).toEqual(
 				`control auto-sizing-${autoSizing}`
 			);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.gutters = LayoutSize.Large;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

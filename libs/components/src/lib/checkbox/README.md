@@ -1,64 +1,54 @@
-# Checkbox
+## Usage
 
-Checkboxes allow users to select multiple items from a list or a set of options.
-
-All [native attributes of `<input type="checkbox">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) are supported as well as some enhancements.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/checkbox';</script>
+import '@vonage/vivid/checkbox';
 ```
 
-## Members
+or, if you need to use a unique prefix:
 
-### Label
+```js
+import { registerCheckbox } from '@vonage/vivid';
 
-Use the `label` member to set the checkbox's label.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-checkbox label="A default checkbox"></vwc-checkbox>
+registerCheckbox('your-prefix');
 ```
 
-### Checked
-
-Toggle the `checked` member to set the checkbox's on/off state. Also changes `aria-checked` value.
-
-- Type: `boolean`
-- Default: `false`
-
 ```html preview
-<vwc-checkbox checked></vwc-checkbox>
-```
-
-### Indeterminate
-
-Use the `indeterminate` member to indicate that the checkbox's is neither on nor off. It also sets `aria-checked` to "mixed". Setting `aria-checked` to "mixed" will also set `indeterminate` to true. Changing `aria-checked` from "mixed" will set indeterminate to false.
-
-- Type: `boolean`
-- Default: `false`
-
-> The indeterminate property sets or returns whether the state of a checkbox has changed.
-> Checkboxes actually has three states: true, false and indeterminate which indicates that a checkbox is neither "on" or "off".
-> This state can be used to force the user to check or uncheck the checkbox.
-> -- <cite>[w3schools][1]</cite>
-
-[1]: https://www.w3schools.com/jsref/prop_checkbox_indeterminate.asp
-
-```html preview
-<vwc-checkbox id="checkbox"></vwc-checkbox>
-<script>
-	document.getElementById('checkbox').indeterminate = true;
+<script type="module">
+	import { registerCheckbox } from '@vonage/vivid';
+	registerCheckbox('your-prefix');
 </script>
+
+<your-prefix-checkbox label="Use signed Webhooks"></your-prefix-checkbox>
 ```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VCheckbox } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VCheckbox label="Use signed Webhooks" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+Checkbox follows [the W3C specification for `<input type="checkbox">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox).
+
+## Controlling State
 
 ### Aria Checked
 
-Use the `aria-checked` attribute to set the checkbox checked state. It reflects the `checked` state as well as the `indeterminate` state with the value "mixed". "undefined" means the element does not support being checked.
-
-- Type: `'true'` | `'false'` | `'mixed'` | `'undefined'`
-- Default: `'false'`
+As an alternative to the `checked` and `indeterminate` members, you can use the `aria-checked` attribute to set the Checkbox's checked state. It reflects the `checked` state as well as the `indeterminate` state with the value "mixed".
 
 > The ariaChecked property of the Element interface reflects the value of the aria-checked attribute, which indicates the current "checked" state of checkboxes.
 > A string with one of the following values:
@@ -74,110 +64,13 @@ Use the `aria-checked` attribute to set the checkbox checked state. It reflects 
 <vwc-checkbox aria-checked="true"></vwc-checkbox>
 <vwc-checkbox aria-checked="false"></vwc-checkbox>
 <vwc-checkbox aria-checked="mixed"></vwc-checkbox>
-<vwc-checkbox aria-checked="undefined" disabled></vwc-checkbox>
-```
-
-### Connotation
-
-Use the `connotation` attribute to set the checkbox color.
-
-- Type: `'accent'` | `'cta'`
-- Default: `'accent'`
--
-
-```html preview
-<vwc-checkbox connotation="accent"></vwc-checkbox>
-<vwc-checkbox connotation="accent" checked></vwc-checkbox>
-<vwc-checkbox connotation="cta"></vwc-checkbox>
-<vwc-checkbox connotation="cta" checked></vwc-checkbox>
-```
-
-### Helper text
-
-Add the `helper-text` to add some helper text below the checkbox. If you need to add HTML to the helper text, use the `helper-text` slot.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-checkbox
-	label="A default checkbox"
-	helper-text="Helper text"
-></vwc-checkbox>
-```
-
-### Success text
-
-Add the `success-text` to add some success text below the checkbox.
-If provided, `success-text` will take precedence over errors.
-
-- Type: `string` | `undefined`
-- Default: `undefined`
-
-```html preview
-<vwc-checkbox
-	label="A default checkbox"
-	success-text="Success text"
-	checked
-></vwc-checkbox>
-```
-
-### Error text
-
-It is possible to force the checkbox error state by setting the `error-text` attribute to a custom error message.
-Note that any current error state will be overridden by `error-text` (and, if applicable, restored once it is removed).
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview
-<vwc-checkbox
-	label="A default checkbox"
-	error-text="Please pick one"
-></vwc-checkbox>
-```
-
-### Disabled
-
-Toggle the `disabled` member to disable/enable the checkbox.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-checkbox disabled></vwc-checkbox>
-<vwc-checkbox disabled checked></vwc-checkbox>
-```
-
-### Readonly
-
-Set the `readonly` member to specify a checkbox is read-only.
-A read-only checkbox cannot be modified (however it can be focused and tabbed into).
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-checkbox readonly></vwc-checkbox>
-<vwc-checkbox readonly checked></vwc-checkbox>
-```
-
-### Value
-
-Use the `value` member to set the checkbox's value.
-
-- Type: `string`
-- Default: `"on"`
-
-```html preview
-<vwc-checkbox value="my-value"></vwc-checkbox>
 ```
 
 ## Slots
 
 ### Default
 
-The default slot allows you to use rich content as the checkbox's label.
+The default slot allows you to use rich content as the Checkbox's label.
 
 ```html preview
 <vwc-checkbox error-text="You need to accept the Terms of service">
@@ -188,9 +81,9 @@ The default slot allows you to use rich content as the checkbox's label.
 </vwc-checkbox>
 ```
 
-### Helper-Text
+### Helper Text
 
-The `helper-text` slot allows you to use rich content as the checkbox's helper text.
+The `helper-text` slot allows you to use rich content as the Checkbox's helper text.
 
 ```html preview
 <style>
@@ -206,18 +99,38 @@ The `helper-text` slot allows you to use rich content as the checkbox's helper t
 </vwc-checkbox>
 ```
 
-## Events
+## API Reference
 
-<div class="table-wrapper">
+### Props
 
-| Name     | Type                     | Bubbles | Composed | Description                             |
-| -------- | ------------------------ | ------- | -------- | --------------------------------------- |
-| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
+| Name                | Type                                                       | Description                                                                                                                                                                                                                                                                                                                           |
+| ------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **success-text**    | `string`                                                   | The success text for the form element.                                                                                                                                                                                                                                                                                                |
+| **error-text**      | `string`                                                   | The error text for the form element.                                                                                                                                                                                                                                                                                                  |
+| **helper-text**     | `string`                                                   | The helper text for the form element.                                                                                                                                                                                                                                                                                                 |
+| **label**           | `string`                                                   | The label for the form element.                                                                                                                                                                                                                                                                                                       |
+| **disabled**        | `boolean`                                                  | Sets the element's disabled state. A disabled element will not be included during form submission.                                                                                                                                                                                                                                    |
+| **initial-value**   | `string`                                                   | The initial value of the form. This value sets the `value` property only when the `value` property has not been explicitly set.                                                                                                                                                                                                       |
+| **value**           | `string`                                                   | The current value of the element. This property serves as a mechanism to set the `value` property through both property assignment and the .setAttribute() method. This is useful for setting the field's value in UI libraries that bind data through the .setAttribute() API and don't support IDL attribute binding.               |
+| **name**            | `string`                                                   | The name of the element. This element's value will be surfaced during form submission under the provided name.                                                                                                                                                                                                                        |
+| **required**        | `boolean`                                                  | Require the field to be completed prior to form submission.                                                                                                                                                                                                                                                                           |
+| **default-checked** | `boolean`                                                  | Provides the default checkedness of the input element                                                                                                                                                                                                                                                                                 |
+| **checked**         | `boolean`                                                  | The current checkedness of the element. This property serves as a mechanism to set the `checked` property through both property assignment and the .setAttribute() method. This is useful for setting the field's checkedness in UI libraries that bind data through the .setAttribute() API and don't support IDL attribute binding. |
+| **aria-label**      | `string`                                                   |
+| **connotation**     | _Enum_:<br/>`accent`<br/>`cta`                             | The connotation the checklist should have.                                                                                                                                                                                                                                                                                            |
+| **aria-checked**    | _Enum_:<br/>`true`<br/>`false`<br/>`mixed`<br/>`undefined` | The current checkbox state                                                                                                                                                                                                                                                                                                            |
+| **readonly**        | `boolean`                                                  | When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly HTML attribute for more information.                                                                                                                                                          |
 
-</div>
+### Events
 
-## Accessibility
+| Name       | Type                     | Bubbles | Composed | Description                             |
+| ---------- | ------------------------ | ------- | -------- | --------------------------------------- |
+| **input**  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the checked state changes. |
 
-- If a label is not provided either through the `label` attribute or the `default` slot, then the checkbox needs an accessible label.
-- It is then the consumer's concern to add `aria-label` to the `checkbox` element.
+### Slots
+
+| Name            | Description                                                                    |
+| --------------- | ------------------------------------------------------------------------------ |
+| **default**     | The default slot allows you to use rich content as the checkbox's label.       |
+| **helper-text** | Describes how to use the checkbox. Alternative to the `helper-text` attribute. |

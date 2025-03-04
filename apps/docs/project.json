@@ -48,11 +48,9 @@
 			"dependsOn": ["buildMeta", "clean"]
 		},
 		"test": {
-			"executor": "@nx/jest:jest",
+			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-			"options": {
-				"jestConfig": "apps/docs/jest.config.ts"
-			}
+			"options": {}
 		},
 		"e2e": {
 			"executor": "nx:run-commands",

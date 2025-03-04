@@ -1,8 +1,6 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Tag } from './tag';
-import { tagDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tag';
@@ -27,13 +25,19 @@ describe('vwc-tag', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-tag', async () => {
-			expect(tagDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Tag);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -177,7 +181,7 @@ describe('vwc-tag', () => {
 		});
 
 		it('should dispatch selected-changed', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 
 			element.selected = true;
 			await elementUpdated(element);
@@ -296,7 +300,7 @@ describe('vwc-tag', () => {
 		});
 
 		it('should fire removed event', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			await toggleRemovable(element, true);
 			element.addEventListener('removed', spy);
 			element.remove();
@@ -304,14 +308,14 @@ describe('vwc-tag', () => {
 		});
 
 		it('should still show tag', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
 			expect(spy).not.toHaveBeenCalled();
 		});
 
 		it('should disable removed events after disconnected callback', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.disconnectedCallback();
 
@@ -319,37 +323,6 @@ describe('vwc-tag', () => {
 			await elementUpdated(element);
 
 			expect(spy.mock.calls.length).toEqual(0);
-		});
-	});
-
-	describe('a11y', () => {
-		describe('selectable', () => {
-			it('should pass html a11y test', async () => {
-				element.label = 'lorem';
-				element.selectable = true;
-				await elementUpdated(element);
-				const exposedHTMLString = `
-					<div role="listbox" aria-label="tag group">
-						${element.shadowRoot?.innerHTML}
-					</div>
-				`;
-
-				expect(await axe(exposedHTMLString)).toHaveNoViolations();
-			});
-		});
-
-		describe('removable', () => {
-			it('should pass html a11y test', async () => {
-				element.removable = true;
-				await elementUpdated(element);
-				const exposedHTMLString = `
-					<div role="listbox" aria-label="tag group">
-						${element.shadowRoot?.innerHTML}
-					</div>
-				`;
-
-				expect(await axe(exposedHTMLString)).toHaveNoViolations();
-			});
 		});
 	});
 });

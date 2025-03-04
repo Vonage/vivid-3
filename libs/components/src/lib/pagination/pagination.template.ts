@@ -1,4 +1,3 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
 import {
 	children,
 	elements,
@@ -7,13 +6,10 @@ import {
 	repeat,
 	when,
 } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Shape, Size } from '../enums';
 import { Button } from '../button/button';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Pagination } from './pagination';
 
 const ALLOWED_SIZES = [Size.SuperCondensed, Size.Condensed, Size.Normal];
@@ -95,17 +91,7 @@ const getPaginationButtonWidth = (value: string | number) => {
 	return `calc(var(--base-size) + ${String(value).length - 1}ch)`;
 };
 
-/**
- * The template for the Pagination component.
- *
- * @param context - element definition context
- * @public
- */
-
-export const PaginationTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Pagination> = (context) => {
+export const PaginationTemplate = (context: VividElementDefinitionContext) => {
 	const buttonTag = context.tagFor(Button);
 	const paginationButtonTemplate = paginationButtonRenderer(buttonTag);
 	return html<Pagination>`

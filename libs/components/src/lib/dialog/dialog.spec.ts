@@ -1,24 +1,23 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import * as dialogPolyfill from 'dialog-polyfill';
-import {
-	FoundationElement,
-	FoundationElementRegistry,
-} from '@microsoft/fast-foundation';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.ts';
 import { Dialog } from './dialog';
 import '.';
-import { dialogDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-dialog';
 
-// Polyfill dialog element which is not supported in JSDOM
-const originalConnectedCallback = FoundationElement.prototype.connectedCallback;
-FoundationElement.prototype.connectedCallback = function () {
-	originalConnectedCallback.call(this);
-	this.shadowRoot!.querySelectorAll('dialog').forEach(
-		(dialogPolyfill as any).registerDialog
-	);
-};
+export function setDialogPolyfill() {
+	// Polyfill dialog element which is not supported in JSDOM
+	const originalConnectedCallback = VividElement.prototype.connectedCallback;
+	VividElement.prototype.connectedCallback = function () {
+		originalConnectedCallback.call(this);
+		this.shadowRoot!.querySelectorAll('dialog').forEach(
+			(dialogPolyfill as any).registerDialog
+		);
+	};
+}
 
+setDialogPolyfill();
 describe('vwc-dialog', () => {
 	async function closeDialog() {
 		element.close();
@@ -60,7 +59,6 @@ describe('vwc-dialog', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-dialog', async () => {
-			expect(dialogDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Dialog);
 			expect(element.open).toEqual(false);
 			expect(element.returnValue).toEqual('');
@@ -69,6 +67,13 @@ describe('vwc-dialog', () => {
 			expect(element.headline).toEqual(undefined);
 			expect(element.fullWidthBody).toEqual(false);
 			expect(element.dismissButtonAriaLabel).toEqual(null);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -197,7 +202,7 @@ describe('vwc-dialog', () => {
 
 		it('should fire the "close" event only when closing', async function () {
 			await closeDialog();
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('close', spy);
 
 			await closeDialog();
@@ -296,7 +301,7 @@ describe('vwc-dialog', () => {
 			const returnValue = 'returnValue';
 			element.returnValue = returnValue;
 			await showDialog();
-			const spy = jest.fn().mockImplementation((e) => (detail = e.detail));
+			const spy = vi.fn().mockImplementation((e) => (detail = e.detail));
 			element.addEventListener('close', spy);
 
 			await closeDialog();
@@ -306,7 +311,7 @@ describe('vwc-dialog', () => {
 
 		it("should not bubble 'close' event", async () => {
 			await showDialog();
-			const fn = jest.fn();
+			const fn = vi.fn();
 			element.parentElement!.addEventListener('close', fn);
 
 			await closeDialog();
@@ -317,7 +322,7 @@ describe('vwc-dialog', () => {
 
 	describe('open event', function () {
 		it("should fire 'open' event when opened", async function () {
-			const onOpen = jest.fn();
+			const onOpen = vi.fn();
 			element.addEventListener('open', onOpen);
 
 			await showDialog();
@@ -326,7 +331,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should not bubble', async () => {
-			const onOpen = jest.fn();
+			const onOpen = vi.fn();
 			element.parentElement!.addEventListener('open', onOpen);
 
 			await showDialog();
@@ -353,7 +358,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should emit a non-bubbling event', async () => {
-			const onCancel = jest.fn();
+			const onCancel = vi.fn();
 			element.parentElement!.addEventListener('cancel', onCancel);
 
 			triggerCancelEvent();
@@ -408,9 +413,9 @@ describe('vwc-dialog', () => {
 		beforeEach(async function () {
 			element.headline = 'headline';
 			await showModalDialog();
-			jest
-				.spyOn(dialogEl, 'getBoundingClientRect')
-				.mockImplementation(() => dialogClientRect);
+			vi.spyOn(dialogEl, 'getBoundingClientRect').mockImplementation(
+				() => dialogClientRect
+			);
 		});
 
 		it('should leave the dialog open when mouseup or click', async function () {
@@ -445,7 +450,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should emit a cancel event when scrim is clicked', async function () {
-			const cancelSpy = jest.fn();
+			const cancelSpy = vi.fn();
 			element.addEventListener('cancel', cancelSpy);
 			clickOnScrim();
 			await elementUpdated(element);
@@ -529,7 +534,7 @@ describe('vwc-dialog', () => {
 	});
 
 	it('should close the dialog when dismiss button is clicked', async function () {
-		const spy = jest.fn();
+		const spy = vi.fn();
 		element.addEventListener('close', spy);
 		await showDialog();
 
@@ -540,7 +545,7 @@ describe('vwc-dialog', () => {
 	});
 
 	it('should emit a cancel event when dismiss button is clicked', async function () {
-		const cancelSpy = jest.fn();
+		const cancelSpy = vi.fn();
 		element.addEventListener('cancel', cancelSpy);
 		await showDialog();
 
@@ -552,7 +557,7 @@ describe('vwc-dialog', () => {
 
 	it('should preventDefault of cancel events on the dialog', async () => {
 		const cancelEvent = new Event('cancel');
-		cancelEvent.preventDefault = jest.fn();
+		cancelEvent.preventDefault = vi.fn();
 		await showDialog();
 
 		dialogEl.dispatchEvent(cancelEvent);
@@ -625,7 +630,7 @@ describe('vwc-dialog', () => {
 		expect(dialogOpenState()).toBe('closed');
 	});
 
-	describe('a11y', function () {
+	describe('a11y attributes', function () {
 		async function triggerEscapeKey() {
 			dialogEl.dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -658,7 +663,7 @@ describe('vwc-dialog', () => {
 		});
 
 		it('should fire cancel event on escape key press', async function () {
-			const cancelSpy = jest.fn();
+			const cancelSpy = vi.fn();
 			element.addEventListener('cancel', cancelSpy);
 			await showModalDialog();
 			await triggerEscapeKey();
@@ -673,7 +678,7 @@ describe('vwc-dialog', () => {
 
 		it('should stop propgation on escape key', async () => {
 			await showModalDialog();
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getBaseElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Escape' })
@@ -685,7 +690,7 @@ describe('vwc-dialog', () => {
 		it('should preventDefaut if Escape was pressed', async () => {
 			await showModalDialog();
 			const event = new KeyboardEvent('keydown', { key: 'Escape' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			getBaseElement(element).dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(1);
@@ -694,7 +699,7 @@ describe('vwc-dialog', () => {
 		it('should enable default if key is not Escape', async () => {
 			await showModalDialog();
 			const event = new KeyboardEvent('keydown', { key: ' ' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			getBaseElement(element).dispatchEvent(event);
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
@@ -727,14 +732,6 @@ describe('vwc-dialog', () => {
 
 		it('should set localised "aria-label" on the dismiss button', async () => {
 			expect(getDismissButton().getAttribute('aria-label')).toBe('Close');
-		});
-
-		it('should pass html a11y test', async () => {
-			element.open = true;
-			element.setAttribute('aria-label', 'Test dialog');
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

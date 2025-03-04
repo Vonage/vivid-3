@@ -1,5 +1,4 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -7,15 +6,13 @@ import {
 	listenToFormSubmission,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
-import { setLocale } from '@vonage/vivid';
+import { setLocale } from '../../shared/localization';
 import { Popup } from '../popup/popup.ts';
 import { Button } from '../button/button.ts';
 import { TextField } from '../text-field/text-field.ts';
 import enGB from '../../locales/en-GB.ts';
 import enUS from '../../locales/en-US.ts';
 import { TimePicker } from './time-picker';
-import { timePickerDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-time-picker';
@@ -40,9 +37,8 @@ describe('vwc-time-picker', () => {
 	}
 
 	const getButtonByLabel = (label: string) =>
-		element.shadowRoot!.querySelector(
-			`[aria-label="${label}"],[label="${label}"]`
-		) as Button;
+		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
+			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
 
 	const getPickerItem = (
 		type: 'hours' | 'minutes' | 'seconds' | 'meridies',
@@ -105,8 +101,14 @@ describe('vwc-time-picker', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-time-picker', async () => {
-			expect(timePickerDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TimePicker);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -349,6 +351,27 @@ describe('vwc-time-picker', () => {
 				]);
 			});
 		});
+
+		it('should update the text field when the clock is changed', async () => {
+			element.clock = '12h';
+			element.value = '13:45:00';
+			await elementUpdated(element);
+
+			element.clock = '24h';
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('13:45');
+		});
+
+		it('should update the text field when the locale is changed', async () => {
+			element.value = '13:45:00';
+			await elementUpdated(element);
+
+			setLocale(enGB);
+			await elementUpdated(element);
+
+			expect(textField.currentValue).toBe('13:45');
+		});
 	});
 
 	describe('min', () => {
@@ -561,7 +584,7 @@ describe('vwc-time-picker', () => {
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when a user enters a valid date into the text field', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			typeIntoTextField('01:45 PM');
@@ -571,7 +594,7 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should be fired when a user clicks on an item in the picker', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 			await openPopup();
 
@@ -581,7 +604,7 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should be fired if a user select a value from the picker via keyboard', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 			await openPopup();
 
@@ -596,7 +619,7 @@ describe('vwc-time-picker', () => {
 		['blur', 'focusout'],
 	])('%s event', (eventName, sourceEventName) => {
 		it(`should emit a '${eventName}' event on '${sourceEventName}'`, async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			element.dispatchEvent(new Event(sourceEventName));
@@ -935,9 +958,9 @@ describe('vwc-time-picker', () => {
 		let spy: any;
 
 		beforeEach(() => {
-			spy = jest.fn();
+			spy = vi.fn();
 			getBaseElement(element).addEventListener('keydown', spy);
-			eventSpy = jest.spyOn(KeyboardEvent.prototype, 'preventDefault');
+			eventSpy = vi.spyOn(KeyboardEvent.prototype, 'preventDefault');
 		});
 
 		afterEach(() => {
@@ -953,7 +976,7 @@ describe('vwc-time-picker', () => {
 		});
 
 		it('should allow propgation on escape key if closed', async () => {
-			const parentSpy = jest.fn();
+			const parentSpy = vi.fn();
 			element.addEventListener('keydown', parentSpy);
 			pressKey('Escape', {}, true);
 			await elementUpdated(element);
@@ -963,7 +986,7 @@ describe('vwc-time-picker', () => {
 		it('should stop propgation on escape key', async () => {
 			await openPopup();
 
-			const parentSpy = jest.fn();
+			const parentSpy = vi.fn();
 			element.addEventListener('keydown', parentSpy);
 			pressKey('Escape');
 			await elementUpdated(element);
@@ -1031,7 +1054,7 @@ describe('vwc-time-picker', () => {
 			firstFocusable.focus();
 
 			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 			element.shadowRoot!.activeElement?.dispatchEvent(event);
 
 			expect(event.preventDefault).not.toHaveBeenCalled();
@@ -1111,12 +1134,6 @@ describe('vwc-time-picker', () => {
 				expect(formDataKey).toEqual(fieldName);
 				expect(formDataValue).toEqual(fieldValue);
 			});
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

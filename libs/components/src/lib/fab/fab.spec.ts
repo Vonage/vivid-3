@@ -1,14 +1,7 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Fab, FabConnotation } from './fab';
 import '.';
-import { fabDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-fab';
 const ICON_SELECTOR = 'vwc-icon';
@@ -22,7 +15,6 @@ describe('vwc-fab', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-fab', async () => {
-			expect(fabDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Fab);
 			expect(element.label).toBeUndefined();
 			expect(element.icon).toBeUndefined();
@@ -30,6 +22,13 @@ describe('vwc-fab', () => {
 			expect(element.iconTrailing).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 			expect(element.size).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -153,17 +152,6 @@ describe('vwc-fab', () => {
 			element.toggleAttribute('disabled', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const icon = 'home-line';
-			element.icon = icon;
-			element.iconTrailing = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

@@ -11,7 +11,7 @@ import {
 	TextAreaResize,
 	TextFieldType,
 } from '@microsoft/fast-foundation';
-import { MenuItemRole, MediaSkipBy } from '@vonage/vivid';
+import { MenuItemRole, MediaSkipBy, TabsGutters, Sticky } from '@vonage/vivid';
 import { Direction, Orientation } from '@microsoft/fast-web-utilities';
 import { TypeUnion } from './types';
 
@@ -29,11 +29,13 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 	DividerRole: typeFromEnumObj(DividerRole),
 	SliderMode: typeFromEnumObj(SliderMode),
 	TabsOrientation: typeFromEnumObj(TabsOrientation),
+	TabsGutters: typeFromEnumObj(TabsGutters),
 	TextFieldType: typeFromEnumObj(TextFieldType),
 	TextAreaResize: typeFromEnumObj(TextAreaResize),
 	Orientation: typeFromEnumObj(Orientation),
 	Direction: typeFromEnumObj(Direction),
 	MediaSkipBy: typeFromEnumObj(MediaSkipBy),
+	Sticky: typeFromEnumObj(Sticky),
 
 	// Types defined by Floating UI:
 	Placement: [

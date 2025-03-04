@@ -1,17 +1,14 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
 	setProperty,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { Button } from './button';
 import '.';
-import { buttonDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-button';
 const ICON_SELECTOR = 'vwc-icon';
@@ -32,7 +29,6 @@ describe('vwc-button', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-button', async () => {
-			expect(buttonDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Button);
 			expect(element.label).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -43,6 +39,13 @@ describe('vwc-button', () => {
 			expect(element.size).toBeUndefined();
 			expect(element.ariaLabel).toBeUndefined();
 			expect(element.title).toBeNull();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -205,17 +208,35 @@ describe('vwc-button', () => {
 	});
 
 	describe('icon-only', () => {
-		it('sets correct internal icon-only style', async () => {
-			const getControlIconOnly = () =>
-				element.shadowRoot?.querySelector('.control.icon-only');
-			const controlIconOnlyBefore = getControlIconOnly();
+		it('should sets correct internal icon-only style when icon is set and label is undefined', async () => {
+			const control = element.shadowRoot?.querySelector(`.control`);
 
 			element.icon = 'home';
+			element.label = undefined;
 			await elementUpdated(element);
 
-			const controlIconOnlyAfter = getControlIconOnly();
-			expect(controlIconOnlyBefore).toBeNull();
-			expect(controlIconOnlyAfter).toBeInstanceOf(Element);
+			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+
+			element.label = 'button';
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+		});
+
+		it('should remove icon-only when drop-down-indicator is added, icon is set and label is undefined', async () => {
+			const control = element.shadowRoot?.querySelector(`.control`);
+
+			element.icon = 'home';
+			element.label = undefined;
+			element.dropdownIndicator = true;
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+
+			element.dropdownIndicator = false;
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
 		});
 
 		it('should set icon-only class if slot name="icon" is slotted', async () => {
@@ -230,6 +251,51 @@ describe('vwc-button', () => {
 			expect(
 				getControlElement(element).classList.contains('icon-only')
 			).toEqual(true);
+		});
+
+		it('should add icon-only when drop-down-indicator is added, slotted icon is set and label is undefined', async () => {
+			const control = element.shadowRoot?.querySelector(`.control`);
+
+			const slottedElement = document.createElement('span');
+			slottedElement.slot = 'icon';
+			element.appendChild(slottedElement);
+			element.label = undefined;
+			element.dropdownIndicator = true;
+
+			await elementUpdated(element);
+			expect(control?.classList.contains(`icon-only`)).toBeFalsy();
+
+			element.dropdownIndicator = false;
+			await elementUpdated(element);
+
+			expect(control?.classList.contains(`icon-only`)).toBeTruthy();
+		});
+	});
+
+	describe('type', () => {
+		it('should have type="submit" on button by default', async () => {
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('submit');
+		});
+
+		it('should set the type attribute if was set in host', async () => {
+			const type = 'button';
+			element.type = type;
+			await elementUpdated(element);
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('button');
+		});
+
+		it('should have type="submit" on the button if anything other than "reset", "button" or "submit" is provided', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} type="wrongtype" label="Button"></${COMPONENT_TAG}>`
+			)) as Button;
+			expect(
+				element.shadowRoot?.querySelector(`.control`)?.getAttribute('type')
+			).toBe('submit');
 		});
 	});
 
@@ -288,36 +354,12 @@ describe('vwc-button', () => {
 			expect(getControlElement(element).hasAttribute('title')).toEqual(false);
 		});
 	});
-	describe('a11y', function () {
+	describe('a11y attributes', function () {
 		it('should set aria-label on the button if set', async () => {
 			const ariaLabel = 'close';
 			element.ariaLabel = ariaLabel;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
-		});
-
-		it('should pass html a11y test', async () => {
-			element.label = 'Home';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		it('should pass html a11y test when anchor', async () => {
-			element.label = 'Link text';
-			element.href = '/somewhere';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('icon-only', () => {
-			it('should pass html a11y test', async () => {
-				element.icon = 'home';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
-			});
 		});
 	});
 });

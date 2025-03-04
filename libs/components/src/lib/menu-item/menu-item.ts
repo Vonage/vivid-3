@@ -1,10 +1,5 @@
-import { attr, observable } from '@microsoft/fast-element';
-import {
-	applyMixins,
-	MenuItem as FastMenuItem,
-	MenuItemRole as FastMenuItemRole,
-} from '@microsoft/fast-foundation';
-import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import { attr, DOM, observable } from '@microsoft/fast-element';
+import { Direction, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import {
 	keyArrowLeft,
 	keyArrowRight,
@@ -12,16 +7,16 @@ import {
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 import { Connotation } from '../enums';
-
-export const MenuItemRole = {
-	...FastMenuItemRole,
-	presentation: 'presentation',
-} as const;
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
+import { getDirection } from '../../shared/foundation/utilities/direction';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { MenuItemRole } from './menu-item-role';
 
 export enum CheckAppearance {
 	Normal = 'normal',
 	TickOnly = 'tick-only',
 }
+
 /**
  * Types of fab connotation.
  *
@@ -42,7 +37,186 @@ export type MenuItemConnotation = Extract<
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
  * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
-export class MenuItem extends FastMenuItem {
+export class MenuItem extends VividElement {
+	/**
+	 * The disabled state of the element.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: disabled
+	 */
+	@attr({ mode: 'boolean' })
+	disabled!: boolean;
+
+	/**
+	 * The expanded state of the element.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: expanded
+	 */
+	@attr({ mode: 'boolean' })
+	expanded!: boolean;
+
+	/**
+	 * @internal
+	 */
+	expandedChanged() {
+		if (this.$fastController.isConnected) {
+			if (this.submenu === undefined) {
+				return;
+			}
+			if (this.expanded === false) {
+				(this.submenu as Menu).collapseExpandedItem();
+			} else {
+				this.currentDirection = getDirection(this);
+			}
+			this.$emit('expanded-change', this, { bubbles: false });
+		}
+	}
+
+	/**
+	 * The role of the element.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: role
+	 */
+	@attr
+	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	override role: MenuItemRole = MenuItemRole.menuitem;
+
+	/**
+	 * The checked value of the element.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: checked
+	 */
+	@attr({ mode: 'boolean' })
+	checked!: boolean;
+
+	/**
+	 * @internal
+	 */
+	checkedChanged() {
+		if (this.$fastController.isConnected) {
+			this.$emit('change');
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	hasSubmenu = false;
+
+	/**
+	 * Track current direction to pass to the anchored region
+	 *
+	 * @internal
+	 */
+	@observable
+	currentDirection: Direction = Direction.ltr;
+
+	/**
+	 * @internal
+	 */
+	@observable
+	submenu: Element | undefined;
+
+	private observer: MutationObserver | undefined;
+
+	/**
+	 * @internal
+	 */
+	override connectedCallback(): void {
+		super.connectedCallback();
+		DOM.queueUpdate(() => {
+			this.updateSubmenu();
+		});
+
+		this.observer = new MutationObserver(this.updateSubmenu);
+	}
+
+	/**
+	 * @internal
+	 */
+	override disconnectedCallback(): void {
+		super.disconnectedCallback();
+		this.submenu = undefined;
+		if (this.observer !== undefined) {
+			this.observer.disconnect();
+			this.observer = undefined;
+		}
+	}
+
+	/**
+	 * @internal
+	 */
+	handleMenuItemClick = (e: MouseEvent): boolean => {
+		if (e.defaultPrevented || this.disabled) {
+			return false;
+		}
+
+		this.invoke();
+		return false;
+	};
+
+	/**
+	 * @internal
+	 */
+	handleMouseOver = (_: MouseEvent): boolean => {
+		if (this.disabled || !this.hasSubmenu || this.expanded) {
+			return false;
+		}
+
+		this.expanded = true;
+
+		return false;
+	};
+
+	/**
+	 * @internal
+	 */
+	handleMouseOut = (_: MouseEvent): boolean => {
+		if (!this.expanded || this.contains(document.activeElement)) {
+			return false;
+		}
+
+		this.expanded = false;
+
+		return false;
+	};
+
+	private invoke = () => {
+		if (this.disabled) {
+			return;
+		}
+
+		switch (this.role) {
+			case MenuItemRole.menuitemcheckbox:
+				this.checked = !this.checked;
+				break;
+
+			case MenuItemRole.menuitem:
+				// update submenu
+				this.updateSubmenu();
+				if (this.hasSubmenu) {
+					this.expanded = true;
+				} else {
+					this.$emit('change');
+				}
+				break;
+
+			case MenuItemRole.menuitemradio:
+				if (!this.checked) {
+					this.checked = true;
+				}
+				break;
+		}
+	};
+
 	/**
 	 * Indicates the menu item's text.
 	 *
@@ -110,12 +284,10 @@ export class MenuItem extends FastMenuItem {
 
 	constructor() {
 		super();
-		(this as any).updateSubmenu = () => this.#updateSubmenu();
 		this.addEventListener('expanded-change', this.#expandedChange);
-		(this as any).handleMenuItemKeyDown = this.#handleMenuItemKeyDown;
 	}
 
-	#updateSubmenu() {
+	private updateSubmenu() {
 		for (const submenu of this.#submenuArray) {
 			this.submenu = submenu as Menu;
 			(this.submenu as Menu).anchor = this as MenuItem;
@@ -137,7 +309,10 @@ export class MenuItem extends FastMenuItem {
 		}
 	}
 
-	#handleMenuItemKeyDown = (e: KeyboardEvent): boolean => {
+	/**
+	 * @internal
+	 */
+	handleMenuItemKeyDown = (e: KeyboardEvent): boolean => {
 		if (e.defaultPrevented) {
 			return false;
 		}
@@ -145,7 +320,7 @@ export class MenuItem extends FastMenuItem {
 		switch (e.key) {
 			case keyEnter:
 			case keySpace:
-				(this as any).invoke();
+				this.invoke();
 				if (!this.disabled) {
 					this.#emitSyntheticClick();
 				}
@@ -153,8 +328,8 @@ export class MenuItem extends FastMenuItem {
 
 			case keyArrowRight:
 				//open/focus on submenu
-				(this as any).expandAndFocus();
 				if (this.hasSubmenu) {
+					this.expanded = true;
 					this.#emitSyntheticClick();
 				}
 				return false;
@@ -162,9 +337,9 @@ export class MenuItem extends FastMenuItem {
 			case keyArrowLeft:
 				//close submenu
 				if (this.expanded) {
+					this.#emitSyntheticClick();
 					this.expanded = false;
 					this.focus();
-					this.#emitSyntheticClick();
 					return false;
 				}
 		}

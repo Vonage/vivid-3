@@ -1,14 +1,11 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { SelectableBox } from './selectable-box';
-import { selectableBoxDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-selectable-box';
@@ -26,9 +23,6 @@ describe('vwc-selectable-box', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-selectable-box', async () => {
-			expect(selectableBoxDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(SelectableBox);
 			expect(element.controlType).toBe(undefined);
 			expect(element.connotation).toBe(undefined);
@@ -36,6 +30,13 @@ describe('vwc-selectable-box', () => {
 			expect(element.clickable).toBe(false);
 			expect(element.tight).toBe(false);
 			expect(element.checked).toBe(false);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 
 		it('should render the role attribute set to "presentation"', async () => {
@@ -186,7 +187,7 @@ describe('vwc-selectable-box', () => {
 	});
 
 	describe('change event', () => {
-		const spy = jest.fn();
+		const spy = vi.fn();
 		let controlElement: any;
 
 		beforeEach(async () => {
@@ -196,7 +197,7 @@ describe('vwc-selectable-box', () => {
 		});
 
 		afterEach(() => {
-			jest.clearAllMocks();
+			vi.clearAllMocks();
 		});
 
 		describe('checkbox', () => {
@@ -419,14 +420,10 @@ describe('vwc-selectable-box', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Box 1';
 			await elementUpdated(element);
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 
 		it('should put the correct a11y attributes on the control element', async () => {
@@ -444,10 +441,6 @@ describe('vwc-selectable-box', () => {
 				)) as SelectableBox;
 			});
 
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
-			});
-
 			it('should put the correct a11y attributes on the control element', async () => {
 				const control = getControlElement(element);
 
@@ -460,10 +453,6 @@ describe('vwc-selectable-box', () => {
 			beforeEach(async () => {
 				element.clickableBox = true;
 				await elementUpdated(element);
-			});
-
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 
 			it('should render the inert attribute on the control element', async () => {
@@ -491,10 +480,6 @@ describe('vwc-selectable-box', () => {
 					element = (await fixture(
 						`<${COMPONENT_TAG} control-type="radio" aria-label="Box 1" clickable-box></${COMPONENT_TAG}>`
 					)) as SelectableBox;
-				});
-
-				it('should pass html a11y test', async () => {
-					expect(await axe(element)).toHaveNoViolations();
 				});
 
 				it('should render the inert attribute on the control element', async () => {

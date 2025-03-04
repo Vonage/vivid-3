@@ -1,12 +1,9 @@
 import { html, ref, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
+import { Icon } from '../icon/icon';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { FilePicker } from './file-picker';
 
 const getClasses = ({ size }: FilePicker) =>
@@ -15,20 +12,13 @@ const getClasses = ({ size }: FilePicker) =>
 		Boolean(size),
 	]);
 
-/**
- * The template for the FilePicker component.
- *
- * @public
- */
-export const FilePickerTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<FilePicker> = (context: ElementDefinitionContext) => {
+export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 	return html<FilePicker>`
 		${(x) => {
 			x.setButtonTag(context.tagFor(Button));
+			x.setIconTag(context.tagFor(Icon));
 		}}
-		<div class="base" aria-label="${(x) => x.label}">
+		<div class="base">
 			${when(
 				(x) => x.label,
 				html<FilePicker>`<label>${(x) => x.label}</label>`

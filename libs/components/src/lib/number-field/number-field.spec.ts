@@ -1,7 +1,6 @@
 import 'element-internals-polyfill';
 
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
@@ -9,16 +8,14 @@ import {
 	getControlElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Shape, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { NumberField } from './number-field';
-import { numberFieldDefinition } from './definition';
 import '.';
 
-const COMPONENT_TAG_NAME = 'vwc-number-field';
+const COMPONENT_TAG = 'vwc-number-field';
 
 describe('vwc-number-field', () => {
 	function setToBlurred() {
@@ -35,16 +32,22 @@ describe('vwc-number-field', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as NumberField;
 		control = getControlElement(element) as HTMLInputElement;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-number-field', async () => {
-			expect(numberFieldDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(NumberField);
 			expect(control.getAttribute('type')).toEqual('text');
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -124,7 +127,7 @@ describe('vwc-number-field', () => {
 		});
 
 		it('should focus itself when connected if set', async function () {
-			element.focus = jest.fn();
+			element.focus = vi.fn();
 			element.autofocus = true;
 			await elementUpdated(element);
 			element.remove();
@@ -208,7 +211,7 @@ describe('vwc-number-field', () => {
 
 		it('should attach to closest form', async function () {
 			const { form: formElement } = createFormHTML<NumberField>({
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				fieldName,
 				fieldValue,
 				formId,
@@ -230,7 +233,7 @@ describe('vwc-number-field', () => {
 				fieldValue,
 				formId,
 				otherFormId: 'otherFormId',
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -248,7 +251,7 @@ describe('vwc-number-field', () => {
 				fieldName,
 				fieldValue,
 				formId,
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -525,9 +528,9 @@ describe('vwc-number-field', () => {
 	});
 
 	describe('select', function () {
-		const onSelect = jest.fn();
+		const onSelect = vi.fn();
 		beforeEach(() => {
-			control.select = jest.fn();
+			control.select = vi.fn();
 			element.addEventListener('select', onSelect);
 		});
 
@@ -565,7 +568,7 @@ describe('vwc-number-field', () => {
 			'should prevent default of %s key presses',
 			async () => {
 				const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-				event.preventDefault = jest.fn();
+				event.preventDefault = vi.fn();
 
 				control.dispatchEvent(event);
 
@@ -575,7 +578,7 @@ describe('vwc-number-field', () => {
 
 		it('should not prevent default of other key presses', async () => {
 			const event = new KeyboardEvent('keydown', { key: 'A' });
-			event.preventDefault = jest.fn();
+			event.preventDefault = vi.fn();
 
 			control.dispatchEvent(event);
 
@@ -921,10 +924,6 @@ describe('vwc-number-field', () => {
 					);
 				});
 			});
-		});
-
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

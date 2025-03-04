@@ -1,14 +1,11 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
 	setProperty,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { TextAnchor, TextAnchorConnotation } from './text-anchor';
 import '.';
-import { textAnchorDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-text-anchor';
 
@@ -23,9 +20,15 @@ describe('vwc-text-anchor', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-anchor', async () => {
-			expect(textAnchorDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(TextAnchor);
 			expect(element.text).toEqual(undefined);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -162,16 +165,6 @@ describe('vwc-text-anchor', () => {
 			await setProperty(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.text = 'Link text';
-			element.href = '/somewhere';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 

@@ -11,7 +11,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const template = `
 		<style>
 			.layout {
-				max-width: 800px;
+				max-width: 760px;
 				padding: 8px;
 			}
 			.spacer {
@@ -103,7 +103,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	captions?.evaluate((element) => element.classList.add('vjs-hover'));
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/video-player.png',
+		'snapshots/video-player.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 });

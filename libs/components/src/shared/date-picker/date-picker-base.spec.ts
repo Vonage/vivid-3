@@ -14,13 +14,13 @@ import '../../lib/date-picker';
 import '../../lib/date-range-picker';
 
 // Mock current date to be 2023-08-10 for the tests
-jest.mock('./calendar/month.ts', () => ({
-	...jest.requireActual('./calendar/month.ts'),
-	getCurrentMonth: jest.fn().mockReturnValue({ month: 7, year: 2023 }),
+vi.mock('./calendar/month.ts', async () => ({
+	...(await vi.importActual('./calendar/month.ts')),
+	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
 }));
-jest.mock('./calendar/dateStr.ts', () => ({
-	...jest.requireActual('./calendar/dateStr.ts'),
-	currentDateStr: jest.fn().mockReturnValue('2023-08-10'),
+vi.mock('./calendar/dateStr.ts', async () => ({
+	...(await vi.importActual('./calendar/dateStr.ts')),
+	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
 }));
 
 /**
@@ -71,9 +71,8 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 		};
 
 		const getButtonByLabel = (label: string) =>
-			element.shadowRoot!.querySelector(
-				`[aria-label="${label}"],[label="${label}"]`
-			) as Button;
+			(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
+				element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
 
 		const getDialogTitle = () => getTitleAction().textContent!.trim();
 
@@ -290,7 +289,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			['blur', 'focusout'],
 		])('%s event', (eventName, sourceEventName) => {
 			it(`should emit a '${eventName}' event on '${sourceEventName}'`, async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
 
 				element.dispatchEvent(new Event(sourceEventName));
@@ -353,9 +352,9 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			let spy: any;
 
 			beforeEach(() => {
-				spy = jest.fn();
+				spy = vi.fn();
 				getBaseElement(element).addEventListener('keydown', spy);
-				eventSpy = jest.spyOn(KeyboardEvent.prototype, 'preventDefault');
+				eventSpy = vi.spyOn(KeyboardEvent.prototype, 'preventDefault');
 			});
 
 			afterEach(() => {
@@ -380,7 +379,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			});
 
 			it('should allow propgation on escape key if closed', async () => {
-				const parentSpy = jest.fn();
+				const parentSpy = vi.fn();
 				element.parentElement!.addEventListener('keydown', parentSpy);
 				pressKey('Escape', { composed: true }, true);
 				await elementUpdated(element);
@@ -390,7 +389,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			it('should stop propgation on escape key', async () => {
 				await openPopup();
 
-				const parentSpy = jest.fn();
+				const parentSpy = vi.fn();
 				element.parentElement!.addEventListener('keydown', parentSpy);
 				pressKey('Escape', { composed: true });
 				await elementUpdated(element);
@@ -543,7 +542,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 				getDateButton('2023-08-01').focus();
 
 				const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
-				event.preventDefault = jest.fn();
+				event.preventDefault = vi.fn();
 				getDateButton('2023-08-01').dispatchEvent(event);
 
 				expect(event.preventDefault).not.toHaveBeenCalled();
@@ -654,7 +653,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 				getMonthButton('2023-01').focus();
 
 				const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
-				event.preventDefault = jest.fn();
+				event.preventDefault = vi.fn();
 				getMonthButton('2023-01').dispatchEvent(event);
 
 				expect(event.preventDefault).not.toHaveBeenCalled();
@@ -693,7 +692,7 @@ describe.each([['vwc-date-picker'], ['vwc-date-range-picker']])(
 			});
 
 			it('should fire a clear-click event when clear button is clicked', async () => {
-				const spy = jest.fn();
+				const spy = vi.fn();
 				element.addEventListener('clear-click', spy);
 				getButtonByLabel('Clear').click();
 

@@ -1,6 +1,5 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
@@ -11,6 +10,13 @@ import { PlacementStrategy, Popup } from './popup';
 import '.';
 
 const COMPONENT_TAG = 'vwc-popup';
+
+vi.mock('@floating-ui/dom', async (getModule) => {
+	return {
+		// Allow spying on exported functions
+		...(await getModule()),
+	};
+});
 
 describe('vwc-popup', () => {
 	let element: Popup;
@@ -23,6 +29,10 @@ describe('vwc-popup', () => {
 		return anchor;
 	}
 
+	function getPopupWrapper() {
+		return element.shadowRoot?.querySelector('.popup-wrapper') as HTMLElement;
+	}
+
 	beforeEach(async () => {
 		element = (await fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`)) as Popup;
 		anchor = (await fixture(
@@ -32,29 +42,40 @@ describe('vwc-popup', () => {
 	});
 
 	afterEach(function () {
-		jest.clearAllMocks();
+		// Ensure floating-ui is cleaned up and will make no more callbacks
+		element.remove();
+		vi.clearAllTimers();
+
+		vi.restoreAllMocks();
+	});
+
+	it('should allow being created via createElement', () => {
+		// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+		// This is because only createElement performs checks for custom element constructor requirements
+		// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+		expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 	});
 
 	describe('cleanup autoUpdate', () => {
+		let cleanupMock: vi.Mock;
+		beforeEach(() => {
+			cleanupMock = vi.fn();
+			vi.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
+		});
+
 		it('should cleanup autoUpdate when element is removed', async function () {
-			const cleanupMock = jest.fn();
-			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
 			element.remove();
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 
 		it('should cleanup autoUpdate when popup is closed', async function () {
-			const cleanupMock = jest.fn();
-			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
 			element.open = false;
 			expect(cleanupMock).toHaveBeenCalled();
 		});
 
 		it('should cleanup autoUpdate when anchor is removed', async function () {
-			const cleanupMock = jest.fn();
-			jest.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
 			await setupPopupToOpenWithAnchor();
 			element.anchor = undefined;
 			expect(cleanupMock).toHaveBeenCalled();
@@ -91,16 +112,12 @@ describe('vwc-popup', () => {
 		};
 
 		beforeEach(function () {
-			jest.spyOn(floatingUI, 'computePosition');
-		});
-
-		afterEach(function () {
-			(floatingUI.computePosition as jest.MockedFunction<any>).mockRestore();
+			vi.spyOn(floatingUI, 'computePosition');
 		});
 
 		function resetPosition(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
-			(floatingUI.computePosition as jest.MockedFunction<any>).mockReturnValue(
+			(floatingUI.computePosition as vi.MockedFunction<any>).mockReturnValue(
 				Promise.resolve(computePositionResult)
 			);
 		}
@@ -123,6 +140,8 @@ describe('vwc-popup', () => {
 
 		it('should set the arrow in a position according to middleware', async function () {
 			element.arrow = true;
+			// FIXME: when removing the elementUpdate, breaks because arrowEl not available
+			await elementUpdated(element);
 			await setupPopupToOpenWithAnchor();
 			(computePositionResult.middlewareData.arrow as any) = { x: 5, y: 10 };
 			await resetPosition(false);
@@ -159,11 +178,8 @@ describe('vwc-popup', () => {
 
 	describe('open', () => {
 		beforeEach(() => {
-			jest.spyOn(floatingUI, 'autoUpdate');
-		});
-
-		afterEach(() => {
-			jest.mocked(floatingUI.autoUpdate).mockRestore();
+			vi.spyOn(floatingUI, 'autoUpdate');
+			vi.spyOn(floatingUI, 'computePosition');
 		});
 
 		it('should hide control if not set', async () => {
@@ -177,14 +193,19 @@ describe('vwc-popup', () => {
 			expect(getControlElement(element).classList).toContain('open');
 		});
 
-		it('should begin to auto update after DOM is updated', async function () {
-			element.anchor = anchor;
-			element.open = true;
-			const updateCallsBeforeDOMUpdate = jest.mocked(floatingUI.autoUpdate).mock
-				.calls.length;
-			await elementUpdated(element);
-			expect(updateCallsBeforeDOMUpdate).toBe(0);
-			expect(floatingUI.autoUpdate).toHaveBeenCalledTimes(2);
+		it('should ensure that the popup is visible when calling computePosition', async function () {
+			let popupVisibleWhenComputePositionIsCalled = false;
+			vi.mocked(floatingUI.computePosition).mockImplementationOnce(
+				(...args: [any, any, any]) => {
+					popupVisibleWhenComputePositionIsCalled =
+						getControlElement(element).classList.contains('open');
+					return floatingUI.computePosition(...args);
+				}
+			);
+
+			await setupPopupToOpenWithAnchor();
+
+			expect(popupVisibleWhenComputePositionIsCalled).toBe(true);
 		});
 	});
 
@@ -195,8 +216,20 @@ describe('vwc-popup', () => {
 			expect(element.open).toEqual(true);
 		});
 
+		it('should show the popup synchronously', async () => {
+			const popoverEl = element.shadowRoot!.querySelector(
+				'[popover]'
+			) as HTMLElement;
+			popoverEl.showPopover = vi.fn();
+
+			element.show();
+
+			expect(getControlElement(element).classList).toContain('open');
+			expect(popoverEl.showPopover).toHaveBeenCalled();
+		});
+
 		it('should fire vwc-popup:open event', async function () {
-			const spyOpen = jest.fn();
+			const spyOpen = vi.fn();
 			element.addEventListener('vwc-popup:open', spyOpen);
 
 			element.show();
@@ -216,7 +249,7 @@ describe('vwc-popup', () => {
 
 		it('should fire "vwc-popup:close" event', async function () {
 			element.open = true;
-			const spyClose = jest.fn();
+			const spyClose = vi.fn();
 			element.addEventListener('vwc-popup:close', spyClose);
 
 			element.hide();
@@ -284,11 +317,7 @@ describe('vwc-popup', () => {
 
 	describe('placementStrategy', () => {
 		beforeEach(() => {
-			jest.spyOn(floatingUI, 'computePosition');
-		});
-
-		afterEach(() => {
-			jest.mocked(floatingUI.computePosition).mockRestore();
+			vi.spyOn(floatingUI, 'computePosition');
 		});
 
 		it('should use placementStrategy to compute position', async () => {
@@ -313,7 +342,7 @@ describe('vwc-popup', () => {
 
 	describe('animationFrame', () => {
 		function resetMethodCallCount(property: any) {
-			jest.spyOn(element, property).mockReset();
+			vi.spyOn(element, property).mockReset();
 		}
 
 		async function openPopup() {
@@ -340,21 +369,18 @@ describe('vwc-popup', () => {
 				bottom: 1,
 				left: 1,
 			} as DOMRect;
-			jest
-				.spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-				.mockReturnValue({ ...clientRect, ...overrides });
+			vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+				...clientRect,
+				...overrides,
+			});
 		}
 
-		let rAFStub: any;
+		let rAFStub: vi.MockInstance;
 
 		beforeEach(async () => {
 			element.anchor = anchor;
 			await elementUpdated(element);
-			rAFStub = jest.spyOn(window, 'requestAnimationFrame');
-		});
-
-		afterEach(() => {
-			jest.mocked(window.requestAnimationFrame).mockRestore();
+			rAFStub = vi.spyOn(window, 'requestAnimationFrame');
 		});
 
 		it('should disable recursive calls to requestAnimationFrame when false', async () => {
@@ -413,14 +439,76 @@ describe('vwc-popup', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('strategy', () => {
+		it('should have `fixed` class on popover-wrapper default', async () => {
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().classList).toContain('fixed');
+		});
+
+		it('should have `absolute` class on popup-wrapper if strategy is set to absolute', async () => {
+			element.strategy = 'absolute';
+
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().classList).toContain('absolute');
+		});
+	});
+
+	describe('showPopover', () => {
+		it('should have popover attribute equal to manual by default. same as its positioned fixed by default', async () => {
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().getAttribute('popover')).toEqual('manual');
+		});
+
+		it('should not have popover attribute if strategy is absolute', async () => {
+			element.strategy = 'absolute';
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().getAttribute('popover')).toBe(null);
+		});
+
+		it('should activate showPopover when strategy is fixed and popup is opened', async () => {
+			element.strategy = 'fixed';
 			element.open = true;
 			await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
+			expect(getPopupWrapper().showPopover).toHaveBeenCalled();
 		});
 
+		it('should not activate showPopover when strategy is absolute and popup is opened', async () => {
+			element.strategy = 'absolute';
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().showPopover).not.toHaveBeenCalled();
+		});
+
+		it('should activate hidePopover when strategy is fixed and popup is closed', async () => {
+			element.strategy = 'fixed';
+			element.open = true;
+			await elementUpdated(element);
+
+			element.open = false;
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().hidePopover).toHaveBeenCalled();
+		});
+
+		it('should active showPopover when strategy is changed to fixed', async () => {
+			element.strategy = 'absolute';
+			element.open = true;
+			await elementUpdated(element);
+
+			element.strategy = 'fixed';
+			await elementUpdated(element);
+
+			expect(getPopupWrapper().showPopover).toHaveBeenCalled();
+		});
+	});
+
+	describe('a11y attributes', () => {
 		it('should set aria-hidden', async () => {
 			expect(getControlElement(element).getAttribute('aria-hidden')).toEqual(
 				'true'

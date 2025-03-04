@@ -1,10 +1,7 @@
-import {
-	Button as FastButton,
-	type FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
-import { registerFactory } from '../../shared/design-system';
-import { iconRegistries } from '../icon/definition';
-import { progressRingRegistries } from '../progress-ring/definition';
+import { iconDefinition } from '../icon/definition';
+import { progressRingDefinition } from '../progress-ring/definition';
+import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import { Button } from './button';
 import styles from './button.scss?inline';
 import { buttonTemplate as template } from './button.template';
@@ -17,31 +14,24 @@ export type {
 } from './button';
 
 /**
- *
  * @internal
  */
-export const buttonDefinition = Button.compose<FoundationElementDefinition>({
-	baseName: 'button',
-	baseClass: FastButton,
-	template: template as any,
-	styles,
-	shadowOptions: {
-		delegatesFocus: true,
-	},
-});
-
-/**
- * @internal
- */
-export const buttonRegistries = [
-	buttonDefinition(),
-	...iconRegistries,
-	...progressRingRegistries,
-];
+export const buttonDefinition = defineVividComponent(
+	'button',
+	Button,
+	template,
+	[iconDefinition, progressRingDefinition],
+	{
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	}
+);
 
 /**
  * Registers the button elements with the design system.
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerButton = registerFactory(buttonRegistries);
+export const registerButton = createRegisterFunction(buttonDefinition);

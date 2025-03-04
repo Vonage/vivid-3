@@ -25,6 +25,7 @@ You must set the `aria-label` attribute on informative icons to provide an acces
 <div class="number">
 	<vwc-icon name="fax-line" aria-label="Fax:"></vwc-icon> 0123 456 7890
 </div>
+
 <style>
 	.number {
 		display: flex;

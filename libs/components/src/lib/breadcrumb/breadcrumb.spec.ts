@@ -1,10 +1,8 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
-import { breadcrumbDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-breadcrumb';
 
@@ -28,8 +26,14 @@ describe('vwc-breadcrumb', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-breadcrumb', async () => {
-			expect(breadcrumbDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Breadcrumb);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -110,18 +114,6 @@ describe('vwc-breadcrumb', () => {
 		it('should wrap breadcrumb items in a list (role)', () => {
 			const control = getBaseElement(element);
 			expect(control.querySelector('[role="list"]')).toBeTruthy();
-		});
-
-		it('should pass html a11y test', async () => {
-			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML)
-				.join('');
-			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
-				'<slot></slot>',
-				children
-			) as string;
-
-			expect(await axe(exposedHtmlString)).toHaveNoViolations();
 		});
 	});
 });

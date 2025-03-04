@@ -3,15 +3,9 @@ import {
 	html,
 	ref,
 	slotted,
-	ViewTemplate,
 	when,
 } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Listbox } from '../listbox/listbox';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import {
@@ -21,6 +15,8 @@ import {
 import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { Select } from './select';
 
 const getStateClasses = ({
@@ -41,7 +37,6 @@ const getStateClasses = ({
 		['has-meta', Boolean(metaSlottedContent?.length)],
 		['error', Boolean(errorValidationMessage)],
 		['success', !!successText],
-		['has-meta', Boolean(metaSlottedContent?.length)],
 		['shows-placeholder', Boolean(placeholder) && !value],
 		[`size-${scale}`, Boolean(scale)]
 	);
@@ -52,7 +47,7 @@ function renderLabel() {
 	</label>`;
 }
 
-function renderPlaceholder(context: ElementDefinitionContext) {
+function renderPlaceholder(context: VividElementDefinitionContext) {
 	const optionTag = context.tagFor(ListboxOption);
 
 	return html<Select>`
@@ -61,7 +56,7 @@ function renderPlaceholder(context: ElementDefinitionContext) {
 		</${optionTag}>`;
 }
 
-function selectValue(context: ElementDefinitionContext) {
+function selectValue(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const chevronTemplate = chevronTemplateFactory(context);
 	return html<Select>` <div
@@ -88,7 +83,7 @@ function setFixedDropdownVarWidth(x: Select) {
 /**
  * @param context - element definition context
  */
-function renderControl(context: ElementDefinitionContext) {
+function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<Select>`
@@ -135,16 +130,7 @@ function ifNotFromFeedback<E extends Event>(
 	};
 }
 
-/**
- * The template for the Select component.
- *
- * @param context - element definition context
- * @public
- */
-export const SelectTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<Select> = (context: ElementDefinitionContext) => {
+export const SelectTemplate = (context: VividElementDefinitionContext) => {
 	return html<Select>`
 		<template
 			class="base"

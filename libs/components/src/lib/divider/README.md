@@ -1,92 +1,66 @@
-# Divider
+## Usage
 
-The divider component is used as a separator between content.
+<vwc-tabs>
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/divider';</script>
+import '@vonage/vivid/divider';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerDivider } from '@vonage/vivid';
+
+registerDivider('your-prefix');
 ```
 
 ```html preview
-<vwc-divider></vwc-divider>
+<script type="module">
+	import { registerDivider } from '@vonage/vivid';
+	registerDivider('your-prefix');
+</script>
+
+<your-prefix-divider></your-prefix-text-divider>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Orientation
+```html
+<script setup lang="ts">
+	import { VDivider } from '@vonage/vivid-vue';
+</script>
 
-- Type: `'horizontal'` | `'vertical'`
-- Default: `horizontal`
-
-```html preview blocks
-<vwc-divider orientation="horizontal"></vwc-divider>
-<vwc-divider orientation="vertical" style="block-size: 40px;"></vwc-divider>
+<template>
+	<VDivider />
+</template>
 ```
 
-## Accessibility
+</vwc-tab-panel>
+</vwc-tabs>
 
-A `<vwc-divider>` element is by default rendered with a role of `'separator'`.
-When using `<vwc-divider>` as a decorative element the role should be set as `'presentation'`.
+## Role
 
-[For further reading about divider foundational role & accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role)
+The `role` attribute to express the semantic value of the divider. If it is being use purely for decorative purposes, set it to `presentation`.
 
-## Use Cases
-
-### Vertical Divider
+See the [Decorative Divider](/components/divider/use-cases/#decorative-divider) use case.
 
 ```html preview
-<vwc-action-group appearance="fieldset">
-	<vwc-button icon="transfer-line"></vwc-button>
-	<vwc-divider orientation="vertical"></vwc-divider>
-	<vwc-button icon="compose-line"></vwc-button>
-</vwc-action-group>
+<vwc-divider role="presentation"></vwc-divider>
 ```
 
-### Horizontal Divider
+## API Reference
 
-```html preview
-<style>
-	vwc-card {
-		width: 400px;
-	}
+### Properties
 
-	.demo-footer {
-		display: flex;
-		column-gap: 8px;
-		justify-content: flex-end;
-	}
-</style>
+<div class="table-wrapper">
 
-<vwc-card>
-	<vwc-layout column-basis="block" gutters="small" slot="main">
-		Choose the button you like best in this card :)
+| Name            | Type                                  | Description                |
+| --------------- | ------------------------------------- | -------------------------- |
+| **orientation** | `horizontal` (default), `vertical`    | Controls the orientation   |
+| **role**        | `separator` (default), `presentation` | Controls the semantic role |
 
-		<vwc-divider></vwc-divider>
-
-		<div class="demo-footer">
-			<vwc-button label="Cancel" appearance="outlined"></vwc-button>
-			<vwc-button label="Submit" appearance="filled"></vwc-button>
-		</div>
-	</vwc-layout>
-</vwc-card>
-```
-
-### Divider as decorative element
-
-```html preview
-<style>
-	vwc-layout {
-		--layout-grid-template-columns: 1fr auto 1fr;
-	}
-
-	vwc-divider {
-		display: flex;
-		align-items: center;
-	}
-</style>
-
-<vwc-layout>
-	<vwc-divider role="presentation"></vwc-divider>
-	More Info
-	<vwc-divider role="presentation"></vwc-divider>
-</vwc-layout>
-```
+</div>

@@ -13,13 +13,17 @@ const getClasses = ({
 	orientation,
 	gutters,
 	scrollablePanel,
+	tabsLayout,
+	_actionItemsSlottedContent,
 }: Tabs) =>
 	classNames(
 		'base',
+		`layout-${tabsLayout ?? 'align-start'}`,
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`orientation-${orientation}`, Boolean(orientation)],
 		`gutters-${gutters ?? 'small'}`,
-		['scroll', Boolean(scrollablePanel)]
+		['scroll', Boolean(scrollablePanel)],
+		['has-action-items', Boolean(_actionItemsSlottedContent.length)]
 	);
 
 function setNoScrollState(
@@ -47,7 +51,7 @@ function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 }
 
 function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
-	const scrollWrapper = event.target as HTMLElement;
+	const scrollWrapper = event.currentTarget as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement as HTMLElement;
 
 	if (setNoScrollState(scrollShadow, scrollWrapper)) {
@@ -58,22 +62,17 @@ function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	addEndShadow(scrollShadow, scrollWrapper);
 }
 
-/**
- * The template for the (Tabs:class) component.
- *
- * @public
- */
-export function TabsTemplate<T extends Tabs>() {
-	return html<T>`
-		<template>
-			<div class="${getClasses}">
+export const TabsTemplate = html<Tabs>`
+	<template>
+		<div class="${getClasses}">
+			<div class="tabs">
 				<div class="scroll-shadow">
 					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
 						<div class="tablist" role="tablist" ${ref('tablist')}>
 							<slot name="tab" ${slotted('tabs')}></slot>
 							${when(
 								(x) => x.showActiveIndicator,
-								html<T>`
+								html<Tabs>`
 									<div
 										${ref('activeIndicatorRef')}
 										class="active-indicator"
@@ -83,10 +82,14 @@ export function TabsTemplate<T extends Tabs>() {
 						</div>
 					</div>
 				</div>
-				<div class="tabpanel" part="tab-panel">
-					<slot name="tabpanel" ${slotted('tabpanels')}></slot>
-				</div>
+				<slot
+					name="action-items"
+					${slotted('_actionItemsSlottedContent')}
+				></slot>
 			</div>
-		</template>
-	`;
-}
+			<div class="tabpanel" part="tab-panel">
+				<slot name="tabpanel" ${slotted('tabpanels')}></slot>
+			</div>
+		</div>
+	</template>
+`;

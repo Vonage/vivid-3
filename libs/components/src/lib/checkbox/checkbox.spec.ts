@@ -1,16 +1,13 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import { Connotation } from '../enums';
 import { Checkbox } from './checkbox';
 import '.';
-import { checkboxDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-checkbox';
 
@@ -25,7 +22,6 @@ describe('vwc-checkbox', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-checkbox', async () => {
-			expect(checkboxDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Checkbox);
 			expect(element.checked).toBeFalsy();
 			expect(element.value).toEqual('on');
@@ -34,6 +30,13 @@ describe('vwc-checkbox', () => {
 			expect(element.disabled).toBeFalsy();
 			expect(element.label).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -73,6 +76,56 @@ describe('vwc-checkbox', () => {
 				getBaseElement(element).classList.contains('checked')
 			).toBeTruthy();
 		});
+
+		it('should toggle checked when clicked', () => {
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(true);
+
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not toggle checked when clicked while disabled', () => {
+			element.disabled = true;
+
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not toggle checked when clicked while readOnly', () => {
+			element.readOnly = true;
+
+			getBaseElement(element).click();
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should toggle checked when pressing Space', () => {
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keypress', { key: ' ' })
+			);
+
+			expect(element.checked).toBe(true);
+
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keypress', { key: ' ' })
+			);
+
+			expect(element.checked).toBe(false);
+		});
+
+		it('should not toggle checked when pressing Space while readOnly', () => {
+			element.readOnly = true;
+
+			getBaseElement(element).dispatchEvent(
+				new KeyboardEvent('keypress', { key: ' ' })
+			);
+
+			expect(element.checked).toBe(false);
+		});
 	});
 
 	describe('disabled', function () {
@@ -82,6 +135,17 @@ describe('vwc-checkbox', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
+
+		it('should set aria-disabled attribute when disabled is true', async () => {
+			expect(getBaseElement(element).getAttribute('aria-disabled')).toBe(
+				'false'
+			);
+			element.disabled = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-disabled')).toBe(
+				'true'
+			);
+		});
 	});
 
 	describe('readonly', function () {
@@ -90,6 +154,19 @@ describe('vwc-checkbox', () => {
 			element.toggleAttribute('readonly', true);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.readonly')).toBeTruthy();
+		});
+	});
+
+	describe('required', function () {
+		it('should set aria-required attribute when required is true', async () => {
+			expect(getBaseElement(element).getAttribute('aria-required')).toBe(
+				'false'
+			);
+			element.required = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-required')).toBe(
+				'true'
+			);
 		});
 	});
 
@@ -209,7 +286,7 @@ describe('vwc-checkbox', () => {
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		it('should be fired when a user toggles the checkbox', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
 			getBaseElement(element).click();
@@ -236,12 +313,8 @@ describe('vwc-checkbox', () => {
 
 			const submitPromise = listenToFormSubmission(formElement);
 			formElement.requestSubmit();
-			(await submitPromise).forEach(
-				(formDataValue: any, formDataKey: string) => {
-					expect(formDataKey).toEqual(fieldName);
-					expect(formDataValue).toEqual(checked);
-				}
-			);
+			const submitResult = await submitPromise;
+			expect(submitResult.get(fieldName)).toBe(checked);
 		});
 	});
 
@@ -302,14 +375,7 @@ describe('vwc-checkbox', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Checkbox label';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		it('should not render a role attribute on the component element', async () => {
 			expect(element.getAttribute('role')).toBe(null);
 		});
@@ -327,6 +393,22 @@ describe('vwc-checkbox', () => {
 			expect(baseElement?.getAttribute('role')).toBe('checkbox');
 		});
 
+		it('should set aria-required attribute when required is true', async () => {
+			element.required = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-required')).toBe(
+				'true'
+			);
+		});
+
+		it('should set aria-readonly attribute when readOnly is true', async () => {
+			element.readOnly = true;
+			await elementUpdated(element);
+			expect(getBaseElement(element).getAttribute('aria-readonly')).toBe(
+				'true'
+			);
+		});
+
 		describe('aria-label', () => {
 			beforeEach(async () => {
 				element.ariaLabel = 'Label';
@@ -342,10 +424,6 @@ describe('vwc-checkbox', () => {
 
 				expect(baseElement?.getAttribute('role')).toBe('checkbox');
 				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			});
-
-			it('should pass html a11y test', async () => {
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

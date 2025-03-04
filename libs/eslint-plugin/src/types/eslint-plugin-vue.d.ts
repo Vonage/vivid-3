@@ -1,4 +1,4 @@
-declare module 'eslint-plugin-vue/lib/utils' {
+declare module 'eslint-plugin-vue/lib/utils/index.js' {
 	export function defineTemplateBodyVisitor(
 		context: unknown,
 		templateVisitor: {

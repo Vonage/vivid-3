@@ -1,9 +1,4 @@
 import { html, when } from '@microsoft/fast-element';
-import type { ViewTemplate } from '@microsoft/fast-element';
-import type {
-	ElementDefinitionContext,
-	FoundationElementDefinition,
-} from '@microsoft/fast-foundation';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { CalendarEvent } from './calendar-event';
 
@@ -28,16 +23,7 @@ const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {
 		.join(';');
 };
 
-/**
- * The template for the CalendarEvent component.
- *
- * @param context - element definition context
- * @public
- */
-export const CalendarEventTemplate: (
-	context: ElementDefinitionContext,
-	definition: FoundationElementDefinition
-) => ViewTemplate<CalendarEvent> = () => html` <div
+export const CalendarEventTemplate = html<CalendarEvent>` <div
 	style="${getStyles}"
 	class="${getClasses}"
 	role="button"

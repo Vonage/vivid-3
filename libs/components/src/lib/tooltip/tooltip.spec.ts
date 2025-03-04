@@ -1,17 +1,14 @@
 import {
 	ADD_TEMPLATE_TO_FIXTURE,
-	axe,
 	elementUpdated,
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
 import { fireEvent } from '@testing-library/dom';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Button } from '../button/button';
 import { Popup } from '../popup/popup.ts';
 import { Tooltip } from './tooltip';
 import '.';
-import { tooltipDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-tooltip';
 
@@ -33,12 +30,18 @@ describe('vwc-tooltip', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tooltip', async () => {
-			expect(tooltipDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Tooltip);
 			expect(element.open).toBeFalsy();
 			expect(element.anchor).toBeUndefined();
 			expect(element.placement).toBeUndefined();
 			expect(element.text).toEqual(undefined);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -77,7 +80,7 @@ describe('vwc-tooltip', () => {
 		it('should allow propgation on escape key if closed', async () => {
 			element.open = false;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -93,7 +96,7 @@ describe('vwc-tooltip', () => {
 		it('should stop propgation on escape key', async () => {
 			element.open = true;
 			await elementUpdated(element);
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 			getControlElement(element).dispatchEvent(
 				new KeyboardEvent('keydown', {
@@ -110,7 +113,7 @@ describe('vwc-tooltip', () => {
 			element.open = true;
 			await elementUpdated(element);
 			const event = new KeyboardEvent('keydown', { key: 'Escape' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
@@ -120,7 +123,7 @@ describe('vwc-tooltip', () => {
 			element.open = true;
 			await elementUpdated(element);
 			const event = new KeyboardEvent('keydown', { key: ' ' });
-			jest.spyOn(event, 'preventDefault');
+			vi.spyOn(event, 'preventDefault');
 			fireEvent(document, new KeyboardEvent('keydown', { key: 'Escape' }));
 			await elementUpdated(element);
 			expect(event.preventDefault).toBeCalledTimes(0);
@@ -160,17 +163,6 @@ describe('vwc-tooltip', () => {
 
 				expect(element.open).toBe(openState);
 			});
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.anchor = anchor;
-			element.open = true;
-			element.text = 'Tooltip text';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

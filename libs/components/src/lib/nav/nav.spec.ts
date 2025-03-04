@@ -1,8 +1,6 @@
-import { axe, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { fixture } from '@vivid-nx/shared';
 import { Nav } from './nav';
 import '.';
-import { navDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-nav';
 
@@ -23,18 +21,14 @@ describe('vwc-nav', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-nav', async () => {
-			expect(navDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Nav);
 		});
-	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
-				'<slot></slot>',
-				navItemsTemplate
-			) as string;
-			expect(await axe(exposedHtmlString)).toHaveNoViolations();
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 });

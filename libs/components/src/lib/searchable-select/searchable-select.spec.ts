@@ -1,5 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import '../option';
 import { Popup } from '../popup/popup';
@@ -8,7 +7,6 @@ import { Button } from '../button/button';
 import { Icon } from '../icon/icon.ts';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
-import { searchableSelectDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-searchable-select';
 const OPTION_TAG = 'vwc-option';
@@ -116,10 +114,14 @@ describe('vwc-searchable-select', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-searchable-select', async () => {
-			expect(searchableSelectDefinition()).toBeInstanceOf(
-				FoundationElementRegistry
-			);
 			expect(element).toBeInstanceOf(SearchableSelect);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -814,7 +816,7 @@ describe('vwc-searchable-select', () => {
 			});
 
 			it('should ignore elided option tags when pressing ArrowLeft', async () => {
-				HTMLElement.prototype.getBoundingClientRect = jest.fn(
+				HTMLElement.prototype.getBoundingClientRect = vi.fn(
 					() =>
 						({
 							width: 100,
@@ -878,7 +880,7 @@ describe('vwc-searchable-select', () => {
 					resizeObserverDisconnected = true;
 				}
 			} as any;
-			HTMLElement.prototype.getBoundingClientRect = jest.fn(function () {
+			HTMLElement.prototype.getBoundingClientRect = vi.fn(function () {
 				if (this.tagName === 'DIV') {
 					return {
 						width: currentWrapperWidth,
@@ -954,6 +956,15 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('fixedDropdown', () => {
+		function setBoundingClientRect(width: number) {
+			element.getBoundingClientRect = vi.fn().mockReturnValue({ width });
+		}
+
+		async function toggleOpenState(open = true) {
+			element.open = open;
+			await elementUpdated(element);
+		}
+
 		it('should use absolute strategy when fixedDropdown is not set', () => {
 			expect(popup.strategy).toBe('absolute');
 		});
@@ -963,6 +974,45 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			expect(popup.strategy).toBe('fixed');
+		});
+
+		it('should set --_searchable-select-fixed-width to the width of the select on open', async function () {
+			const width = 50;
+			element.fixedDropdown = true;
+			setBoundingClientRect(width);
+			await toggleOpenState(true);
+
+			expect(popup.getAttribute('style')).toEqual(
+				`--_searchable-select-fixed-width: ${width}px`
+			);
+		});
+
+		it('should round the width set to --_searchable-select-fixed-width', async function () {
+			const width = 50.5;
+			const expectedWidth = Math.round(width);
+			element.fixedDropdown = true;
+			setBoundingClientRect(width);
+			await toggleOpenState(true);
+
+			expect(popup.getAttribute('style')).toEqual(
+				`--_searchable-select-fixed-width: ${expectedWidth}px`
+			);
+		});
+
+		it('should update the width on each opening', async function () {
+			const width = 50;
+			element.fixedDropdown = true;
+
+			setBoundingClientRect(30);
+			await toggleOpenState(true);
+
+			setBoundingClientRect(width);
+			await toggleOpenState(false);
+			await toggleOpenState(true);
+
+			expect(popup.getAttribute('style')).toEqual(
+				`--_searchable-select-fixed-width: ${width}px`
+			);
 		});
 	});
 
@@ -990,9 +1040,9 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
-		let eventSpy: jest.Mock;
+		let eventSpy: vi.Mock;
 		beforeEach(async () => {
-			eventSpy = jest.fn();
+			eventSpy = vi.fn();
 			element.addEventListener(eventName, eventSpy);
 			focusInput();
 			await elementUpdated(element);
@@ -1064,13 +1114,6 @@ describe('vwc-searchable-select', () => {
 	describe('popup', () => {
 		it('should open when input is focused', async function () {
 			focusInput();
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(true);
-		});
-
-		it('should open when clicking on the fieldset', async function () {
-			fieldset.click();
 			await elementUpdated(element);
 
 			expect(popup.open).toBe(true);
@@ -1704,13 +1747,27 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
+	describe('fieldset', () => {
+		it('should focus the input when clicking on the fieldset', async function () {
+			fieldset.click();
 			await elementUpdated(element);
-			expect(await axe(element)).toHaveNoViolations();
+
+			expect(element.shadowRoot!.activeElement).toBe(input);
 		});
 
+		it('should open the popup when clicking on the fieldset when focus already has input', async function () {
+			focusInput();
+			element.open = false;
+			await elementUpdated(element);
+
+			fieldset.click();
+			await elementUpdated(element);
+
+			expect(popup.open).toBe(true);
+		});
+	});
+
+	describe('a11y attributes', () => {
 		it('should describe the visually highlighted option in an aria-live region', async () => {
 			focusInput();
 			await elementUpdated(element);

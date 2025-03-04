@@ -4,6 +4,13 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 
+:host {
+	display: block;
+	overflow: auto;
+	block-size: inherit;
+	max-block-size: inherit;
+}
+
 ol {
 	padding: 0;
 	margin: 0;
@@ -16,7 +23,7 @@ ol {
 	display: grid;
 	margin: auto;
 	grid-template-areas:
-		'. column-headers'
+		'filler column-headers'
 		'row-headers calendar';
 	grid-template-columns: min-content auto;
 	inline-size: max(100%, 500px);
@@ -39,6 +46,18 @@ ol {
 			text-transform: uppercase;
 			white-space: nowrap;
 		}
+	}
+
+	.sticky-column &,
+	.sticky-all & {
+		position: sticky;
+		z-index: 1;
+		background-color: var(
+			#{variables.$calendar-column-background-color},
+			var(#{constants.$vvd-color-canvas})
+		);
+		inset-inline-start: 0;
+		margin-inline-end: 3px;
 	}
 }
 
@@ -157,5 +176,44 @@ ol {
 				text-transform: uppercase;
 			}
 		}
+	}
+
+	.sticky-header &,
+	.sticky-all & {
+		position: sticky;
+		z-index: 1;
+		background-color: var(
+			#{variables.$calendar-header-background-color},
+			var(#{constants.$vvd-color-canvas})
+		);
+		inset-block-start: 0;
+		margin-block-end: 3px;
+	}
+}
+
+.filler {
+	background-color: transparent;
+	grid-area: filler;
+
+	.sticky-header &,
+	.sticky-all &,
+	.sticky-column & {
+		position: sticky;
+		z-index: 2;
+		background-color: var(
+			#{variables.$calendar-header-background-color},
+			var(#{constants.$vvd-color-canvas})
+		);
+		margin-block-end: 3px;
+	}
+	.sticky-column & {
+		inset-inline-start: 0;
+	}
+	.sticky-header & {
+		inset-block-start: 0;
+	}
+	.sticky-all & {
+		inset-block-start: 0;
+		inset-inline-start: 0;
 	}
 }

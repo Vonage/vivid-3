@@ -1,8 +1,10 @@
+@use 'partials/variables' as variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 @import '../../../../../node_modules/video.js/dist/video-js.css';
 
 :host {
@@ -11,17 +13,15 @@
 
 .vjs-theme-vivid {
 	$control-size: 40px;
-	$control-background-color: color-mix(
-		in srgb,
-		var(#{constants.$vvd-color-canvas-text}),
-		transparent 40%
-	);
-	$control-background-color-hover: var(#{constants.$vvd-color-canvas-text});
+	$control-background-color: variables.$video-player-canvas-opacity;
+	$control-background-color-hover: variables.$video-player-neutral-900;
+	$control-background-color-active: variables.$video-player-neutral-800;
+	$control-menu-background-color: variables.$video-player-color-surface-4dp;
 
 	position: relative;
 	overflow: hidden;
 	border-radius: #{border-radius-variables.$border-radius-normal};
-	color: var(#{constants.$vvd-color-canvas});
+	color: variables.$video-player-canvas-text;
 	container-type: inline-size;
 	font: var(#{constants.$vvd-typography-base});
 
@@ -43,9 +43,11 @@
 		}
 
 		&:hover {
-			.vjs-big-play-button {
-				background-color: $control-background-color-hover;
-			}
+			background-color: $control-background-color-hover;
+		}
+
+		&:active {
+			background-color: $control-background-color-active;
 		}
 
 		.vjs-fluid:not(.vjs-has-started) & {
@@ -91,22 +93,22 @@
 		$border: #{border-radius-variables.$border-radius-normal};
 
 		flex-wrap: wrap;
-		padding: 4px;
+		padding: 4px 4px 8px;
 		border-radius: 0 0 $border $border;
-		margin: 4px;
+		margin: 8px;
 		background-color: $control-background-color;
-		block-size: $control-size;
+		block-size: calc($control-size + 4px);
 		column-gap: 4px;
-		inline-size: calc(100% - 8px);
+		inline-size: calc(100% - 16px);
 
 		&::before {
 			position: absolute;
 			border-radius: $border $border 0 0;
 			background-color: inherit;
-			block-size: 24px;
+			block-size: 32px;
 			content: '';
 			inline-size: 100%;
-			inset-block-start: -24px;
+			inset-block-start: -32px;
 			inset-inline-start: 0;
 		}
 	}
@@ -130,15 +132,25 @@
 			background: $control-background-color-hover;
 		}
 
+		&:active {
+			background: $control-background-color-active;
+		}
+
 		> .vjs-svg-icon {
-			block-size: 18px;
+			block-size: 16px;
 			filter: none;
-			inline-size: 18px;
+			inline-size: 16px;
 		}
 	}
 
 	/* playback rates */
 	.vjs-menu {
+		@include scrollbar.scrollbar;
+
+		& {
+			#{variables.$video-player-neutral-950}: #fff;
+		}
+
 		&-button {
 			border-radius: #{border-radius-variables.$border-radius-normal};
 		}
@@ -147,9 +159,12 @@
 		}
 
 		li {
+			align-items: center;
 			justify-content: start;
 			padding: 4px 8px;
+			color: variables.$video-player-canvas-text;
 			font: var(#{constants.$vvd-typography-base});
+			min-block-size: 40px;
 			text-align: left;
 
 			&:focus-visible {
@@ -158,7 +173,14 @@
 		}
 
 		li:not(.vjs-selected, .vjs-menu-title):hover {
-			background: $control-background-color-hover;
+			background: variables.$video-player-neutral-900;
+		}
+
+		li.vjs-selected {
+			background: variables.$video-player-neutral-800;
+			&:hover {
+				color: variables.$video-player-canvas-text;
+			}
 		}
 	}
 
@@ -238,8 +260,12 @@
 
 	.vjs-menu-button-popup .vjs-menu {
 		.vjs-menu-content {
-			background-color: $control-background-color;
+			display: flex;
+			flex-direction: column;
+			background: $control-menu-background-color;
+			gap: 1px;
 			inset-block-end: 20px;
+			padding-block: 8px;
 		}
 	}
 
@@ -250,16 +276,19 @@
 
 		.vjs-volume-control {
 			border-radius: #{border-radius-variables.$border-radius-normal};
-			background-color: $control-background-color;
-			inline-size: 20px;
+			background: $control-menu-background-color;
 			inset-block-end: calc(8em + 4px);
+
+			&.vjs-volume-vertical {
+				inline-size: 32px;
+			}
 		}
 
 		&.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-vertical,
 		&.vjs-slider-active
 			.vjs-mute-control
 			~ .vjs-volume-control.vjs-volume-vertical {
-			left: -38px;
+			left: -31px;
 		}
 	}
 

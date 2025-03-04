@@ -1,15 +1,12 @@
 import {
-	axe,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	setProperty,
 } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
 import type { Icon } from '../icon/icon';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
-import { breadcrumbItemDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-breadcrumb-item';
 
@@ -23,10 +20,14 @@ describe('vwc-breadcrumb-item', () => {
 	});
 
 	it('should be initialized as a vwc-breadcrumb-item', async () => {
-		expect(breadcrumbItemDefinition()).toBeInstanceOf(
-			FoundationElementRegistry
-		);
 		expect(element).toBeInstanceOf(BreadcrumbItem);
+	});
+
+	it('should allow being created via createElement', () => {
+		// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+		// This is because only createElement performs checks for custom element constructor requirements
+		// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+		expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 	});
 
 	it('should display only icon when no prop is set', function () {
@@ -199,20 +200,6 @@ describe('vwc-breadcrumb-item', () => {
 			await setProperty(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element = (await fixture(
-				`<div role="list"><${COMPONENT_TAG}></${COMPONENT_TAG}></div>`
-			)) as BreadcrumbItem;
-
-			element.href = '#';
-			element.text = 'stam';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
 		});
 	});
 });

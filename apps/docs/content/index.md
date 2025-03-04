@@ -4,7 +4,7 @@ layout: standalone.njk
 
 <div class="welcome">
 	<div class="welcome__image">
-		<img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration" />
+		<img src="https://user-images.githubusercontent.com/10883919/189522882-968358df-ee7c-4256-b61b-550cf369a087.png" alt="Vivid components illustration" width="720" height="339" />
 	</div>
 	<div class="welcome__hero">
 		<h1 class="tight">Welcome to Vivid</h1>
@@ -13,6 +13,9 @@ layout: standalone.njk
 		<div class="welcome__buttons">
 			<vwc-button label="Vue.js" href="/getting-started/vue/" appearance="outlined" icon="vue-color" size="expanded"></vwc-button>
 			<vwc-button label="Web Components" href="/getting-started/web-components/" appearance="outlined" icon="code-line" size="expanded"></vwc-button>
+			<vwc-button href="/resources/change-process/" appearance="outlined" label="Request a new feature" size="expanded">
+				<img src="/assets/images/vivid-logo.svg" alt="Vivid Logo" style="width: 24px" slot="icon" />
+			</vwc-button>
 		</div>
 	</div>
 </div>

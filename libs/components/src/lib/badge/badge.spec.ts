@@ -1,8 +1,6 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Badge } from './badge';
-import { badgeDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-badge';
@@ -21,7 +19,6 @@ describe('vwc-badge', () => {
 
 	describe('basic', () => {
 		it('initializes as a vwc-badge', async () => {
-			expect(badgeDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Badge);
 			expect(element.text).toEqual(undefined);
 			expect(element.icon).toBeUndefined();
@@ -29,6 +26,13 @@ describe('vwc-badge', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -120,24 +124,6 @@ describe('vwc-badge', () => {
 			const baseIconOnlyAfter = getControlIconOnly();
 			expect(baseIconOnlyBefore).toBeNull();
 			expect(baseIconOnlyAfter).toBeInstanceOf(Element);
-		});
-	});
-
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.text = 'Test badge';
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('icon-only', () => {
-			it('should pass html a11y test', async () => {
-				element.icon = 'home';
-				await elementUpdated(element);
-
-				expect(await axe(element)).toHaveNoViolations();
-			});
 		});
 	});
 });

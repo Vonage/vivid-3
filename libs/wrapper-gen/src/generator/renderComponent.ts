@@ -55,6 +55,7 @@ export const renderComponent = (
 		{ name: 'ref', fromModule: vueModule },
 		{ name: 'h', fromModule: vueModule },
 		{ name: 'isVue2', fromModule: '../../utils/vue' },
+		{ name: 'handleVue3Props', fromModule: '../../utils/ssr' },
 		{ name: 'VNodeData', fromModule: vueModule },
 		{ name: componentDef.registerFunctionName, fromModule: '@vonage/vivid' },
 		{ name: 'registerComponent', fromModule: '../../utils/register' },
@@ -134,8 +135,8 @@ export const renderComponent = (
 	const renderProps = (
 		attributes: ComponentDef['attributes'],
 		syntax: 'vue2' | 'vue3'
-	) =>
-		attributes
+	) => {
+		const propsSrc = attributes
 			.map(({ name, forwardTo }) => {
 				const vueModel = componentDef.vueModels.find(
 					(model) => model.attributeName === name
@@ -169,6 +170,11 @@ export const renderComponent = (
 				return `...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`;
 			})
 			.join(',');
+		if (syntax === 'vue3') {
+			return `...handleVue3Props({${propsSrc}})`;
+		}
+		return propsSrc;
+	};
 
 	const propsV3Src = renderProps(attributes, 'vue3');
 
@@ -282,6 +288,17 @@ export const renderComponent = (
 		})
 		.join(',\n');
 
+	const renderEventType = (type: TypeUnion): string => {
+		// Event type should be a single type like `CustomEvent<undefined>`
+		if (type.length > 1) {
+			throw new Error('Multiple event types not supported');
+		}
+
+		// The event target will always be the host component. Therefore, type target accordingly to make it easier
+		// to use for consumers.
+		return `${type[0].text} & { target: ${componentDef.className}}`;
+	};
+
 	// Declare events
 	const eventDefinitionsSrc = isVue3Stub
 		? `{
@@ -289,7 +306,7 @@ export const renderComponent = (
 				.map(
 					({ name, description, type }) => `
 						${renderJsDoc(description, type)}
-						['${name}'](event: ${type.map((t) => t.text).join(' | ')}) { return true }`
+						['${name}'](event: ${renderEventType(type)}) { return true }`
 				)
 				.join(',\n')}}`
 		: `[

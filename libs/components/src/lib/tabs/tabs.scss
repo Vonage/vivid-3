@@ -1,5 +1,6 @@
 @use 'sass:map';
-@use '../tabs/partials/variables' as variables;
+@use 'partials/variables' as variables;
+@use '../tab/partials/variables' as tab-variables;
 @use 'partials/mixins' as mixins;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
@@ -17,6 +18,7 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 
 :host {
 	display: block;
@@ -27,6 +29,9 @@
 	@include connotation.connotation(tabs);
 
 	& {
+		#{variables.$tabs-tablist-gutter}: 8px;
+		#{variables.$tabs-active-indicator-stroke-width}: 2px;
+
 		display: grid;
 		box-sizing: border-box;
 	}
@@ -42,50 +47,76 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
 		max-block-size: 100%;
+	}
+}
 
-		.scroll-shadow {
-			position: relative;
-			overflow: hidden;
-			inline-size: 100%;
-			isolation: isolate;
+.scroll-shadow {
+	.base.layout-stretch & {
+		flex: 1;
+	}
 
-			&.start-scroll,
-			&.end-scroll {
-				&::before,
-				&::after {
-					position: absolute;
-					content: '';
-					inline-size: 10px;
-					inset-block: 0;
-					opacity: 0;
-					transition: opacity 0.1s;
-				}
+	.base:not(.orientation-vertical) & {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+
+		&.start-scroll,
+		&.end-scroll {
+			&::before,
+			&::after {
+				position: absolute;
+				content: '';
+				inline-size: 10px;
+				inset-block: 0;
+				opacity: 0;
+				transition: opacity 0.1s;
 			}
+		}
 
-			&.start-scroll::before {
-				z-index: 1;
-				box-shadow: inset 7px 1px 5px -3px var(--vvd-color-neutral-950);
-				inset-inline-start: 0;
-				opacity: 0.2;
-			}
+		&.start-scroll::before {
+			z-index: 1;
+			box-shadow: inset 7px 1px 5px -3px var(--vvd-color-neutral-950);
+			inset-inline-start: 0;
+			opacity: 0.2;
+		}
 
-			&.end-scroll::after {
-				box-shadow: inset -7px 1px 5px -3px var(--vvd-color-neutral-950);
-				inset-inline-end: 0;
-				opacity: 0.2;
-			}
+		&.end-scroll::after {
+			box-shadow: inset -7px 1px 5px -3px var(--vvd-color-neutral-950);
+			inset-inline-end: 0;
+			opacity: 0.2;
 		}
 	}
 }
 
-.tablist {
-	#{variables.$tabs-tablist-gutter}: 8px;
-	#{variables.$tabs-active-indicator-stroke-width}: 2px;
+.tabs {
+	display: flex;
+	overflow: hidden;
 
+	.base.orientation-vertical & {
+		flex-direction: column;
+		box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
+	}
+
+	.base.orientation-horizontal & {
+		flex-direction: row;
+		border-bottom: 1px solid var(--vvd-color-neutral-300);
+	}
+}
+
+.tablist {
 	position: relative;
 	display: grid;
 	box-sizing: border-box;
 	color: var(#{appearance.get-appearance-token(text)});
+
+	.base.layout-stretch & {
+		#{tab-variables.$tab-justify-content}: center;
+		#{variables.$tabs-tablist-column}: 1fr;
+	}
+
+	.base:not(.layout-stretch) {
+		#{variables.$tabs-tablist-column}: auto;
+	}
 
 	.base.orientation-vertical & {
 		padding: var(#{variables.$tabs-tablist-gutter});
@@ -101,29 +132,49 @@
 		justify-content: flex-start;
 		column-gap: var(#{variables.$tabs-tablist-gutter});
 		grid-auto-flow: column;
-		grid-template-columns: auto;
 		grid-template-rows: auto auto;
 		inline-size: 100%;
 		padding-inline: var(#{variables.$tabs-tablist-gutter});
 	}
 
+	.base.has-action-items.orientation-vertical & {
+		padding-block-end: 0;
+	}
+
+	.base.has-action-items:not(.orientation-vertical) & {
+		padding-inline-end: 0;
+	}
+
 	&-wrapper {
+		@include scrollbar.scrollbar;
+
 		.base:not(.orientation-vertical) & {
 			overflow: auto hidden;
 			align-self: end;
-			border-bottom: 1px solid var(--vvd-color-neutral-300);
 			inline-size: 100%;
 		}
 
 		.base.orientation-vertical & {
 			overflow: hidden auto;
 			block-size: 100%;
-			box-shadow: 1px 0 0 0 var(#{constants.$vvd-color-neutral-300});
 		}
 
 		&::-webkit-scrollbar {
 			display: none;
 		}
+	}
+}
+
+slot[name='action-items'] {
+	display: flex;
+
+	.base.has-action-items.orientation-horizontal & {
+		align-items: center;
+		margin-inline: var(#{variables.$tabs-tablist-gutter});
+	}
+
+	.base.has-action-items.orientation-vertical & {
+		margin-block: var(#{variables.$tabs-tablist-gutter});
 	}
 }
 
@@ -137,6 +188,8 @@
 
 	.base.scroll & {
 		overflow-y: auto;
+
+		@include scrollbar.scrollbar;
 	}
 
 	@include mixins.measurement(map.keys(variables.$spaces)...) using ($space) {
@@ -161,15 +214,12 @@
 	.base:not(.orientation-vertical) & {
 		position: absolute;
 		z-index: 1;
+		border-radius: #{border-radius-variables.$border-radius-condensed};
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
 		grid-column: 1 / auto;
-		inline-size: calc(
-			var(#{variables.$tabs-active-indicator-inline-size}) - 32px
-		);
+		inline-size: calc(var(#{variables.$tabs-active-indicator-inline-size}));
 		inset-block-end: 0;
 		inset-inline-start: 8px;
-		justify-self: center;
-		padding-inline: var(#{variables.$tabs-tablist-gutter});
 	}
 }
 
@@ -177,9 +227,4 @@
 	transition: transform #{variables.$tabs-active-indicator-transition-delay} ease-out
 			0s,
 		inline-size #{variables.$tabs-active-indicator-transition-delay} ease-out 0s;
-}
-
-.base:not(.orientation-vertical)
-	.active-indicator:not(.activeIndicatorTransition) {
-	opacity: 0;
 }

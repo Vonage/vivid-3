@@ -41,7 +41,45 @@ async function testAbsolutStrategy({ page }: { page: Page }) {
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/absolute-menu.png',
+		'snapshots/absolute-menu.png',
+		{ maxDiffPixelRatio: 0.01 }
+	);
+}
+
+async function testMobileInlineSize({ page }: { page: Page }) {
+	const template = `
+<style>
+			.wrapper {
+				width: 360px;
+				height: 405px;
+				position: relative;
+			}
+		</style>
+<div class="wrapper">
+ <vwc-menu open placement="bottom-start" position-strategy="absolute">
+  <vwc-menu-item text="Menu item 1 with long text that gets ellipsis"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 2 with long text that gets ellipsis"></vwc-menu-item>
+  <vwc-menu-item text="Menu item 3 with long text that gets ellipsis"></vwc-menu-item>
+ </vwc-menu>
+</div>`;
+
+	page.setViewportSize({ width: 360, height: 400 });
+
+	await loadComponents({
+		page,
+		components,
+	});
+	await loadTemplate({
+		page,
+		template,
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	await page.waitForLoadState('networkidle');
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'snapshots/mobile-menu.png',
 		{ maxDiffPixelRatio: 0.01 }
 	);
 }
@@ -85,9 +123,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/menu.png'
-	);
+	expect(await testWrapper?.screenshot()).toMatchSnapshot('snapshots/menu.png');
 });
 
 test('menu with absolute strategy', testAbsolutStrategy);
+test('menu with max-inline-size in mobile', testMobileInlineSize);

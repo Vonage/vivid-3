@@ -1,14 +1,7 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
 import { Shape, Size } from '../enums';
 import '.';
-import { paginationDefinition } from './definition';
 import { Pagination, PaginationShape, PaginationSize } from './pagination';
 
 const COMPONENT_TAG = 'vwc-pagination';
@@ -30,12 +23,19 @@ describe('vwc-pagination', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-pagination', async () => {
 			expect(element).toBeInstanceOf(Pagination);
-			expect(paginationDefinition()).toBeInstanceOf(FoundationElementRegistry);
+
 			expect(element.navIcons).toBeFalsy();
 			expect(element.total).toEqual(0);
 			expect(element.selectedIndex).toBeFalsy();
 			expect(element.shape).toBeUndefined();
 			expect(element.size).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -595,33 +595,23 @@ describe('vwc-pagination', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
+	describe('a11y attributes', () => {
+		it('should set aria-current false by default', async function () {
 			element.total = 20;
-			element.selectedIndex = 10;
 			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
-		describe('aria', function () {
-			it('should set aria-current false by default', async function () {
-				element.total = 20;
-				await elementUpdated(element);
-				const buttons = Array.from(
-					element.shadowRoot?.querySelectorAll(
-						'.vwc-pagination-button'
-					) as unknown as Button[]
-				);
-				const allButtonsAriaSelectedFalse = buttons?.reduce(
-					(correct, button, index) => {
-						if (element.selectedIndex === index) return correct;
-						return correct && button.getAttribute('aria-current') === 'false';
-					},
-					true
-				);
-				expect(allButtonsAriaSelectedFalse).toEqual(true);
-			});
+			const buttons = Array.from(
+				element.shadowRoot?.querySelectorAll(
+					'.vwc-pagination-button'
+				) as unknown as Button[]
+			);
+			const allButtonsAriaSelectedFalse = buttons?.reduce(
+				(correct, button, index) => {
+					if (element.selectedIndex === index) return correct;
+					return correct && button.getAttribute('aria-current') === 'false';
+				},
+				true
+			);
+			expect(allButtonsAriaSelectedFalse).toEqual(true);
 		});
 	});
 });

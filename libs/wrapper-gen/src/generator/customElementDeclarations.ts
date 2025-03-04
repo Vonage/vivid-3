@@ -29,9 +29,6 @@ const parseManifest = (fileName: string): schema.Declaration[] => {
 const vividDeclarations = parseManifest(
 	'../../dist/libs/components/custom-elements.json'
 );
-const fastDeclarations = parseManifest(
-	'../../node_modules/@microsoft/fast-foundation/dist/custom-elements.json'
-);
 
 const findClassDeclaration = (
 	declarations: schema.Declaration[],
@@ -146,7 +143,7 @@ and don't support IDL attribute binding.`,
 			},
 		],
 		superclass: {
-			name: 'FoundationElement',
+			name: 'VividElement',
 		},
 		customElement: true,
 	};
@@ -210,7 +207,7 @@ const resolveComponentDeclaration = (
 	if (className.startsWith('FormAssociated')) {
 		// Form associated classes (FormAssociatedButton etc.) are not exported in the manifest
 		declaration = getFastFormAssociatedDeclaration(className);
-	} else if (className === 'FoundationElement') {
+	} else if (className === 'VividElement') {
 		// This is the base class for all elements
 		declaration = BaseElementDeclaration;
 	} else {
@@ -236,23 +233,7 @@ const resolveComponentDeclaration = (
 	if (declaration.superclass) {
 		let superclassDeclaration: Declaration;
 
-		if (declaration.superclass.package === '@microsoft/fast-foundation') {
-			// Inherits from FAST
-
-			// Remove prefixes added by Vivid
-			let fastClassName = declaration.superclass.name
-				.replace('Foundation', '')
-				.replace('Fast', '')
-				.replace('FAST', '');
-			// Fix inconsistent names:
-			if (fastClassName === 'Textfield') fastClassName = 'TextField';
-			if (fastClassName === 'Element') fastClassName = 'FoundationElement';
-
-			superclassDeclaration = resolveComponentDeclaration(
-				fastDeclarations,
-				fastClassName
-			);
-		} else if (!declaration.superclass.package) {
+		if (!declaration.superclass.package) {
 			// Inherit within the same package
 			superclassDeclaration = resolveComponentDeclaration(
 				packageDeclarations,
@@ -282,6 +263,21 @@ const resolveComponentDeclaration = (
 				...superclassDeclaration._localTypeDefs,
 				...declaration._localTypeDefs,
 			};
+		}
+
+		// Apply vivid mixins
+		if (declaration.vividComponent) {
+			const mixins = extractVividMixins(className, declaration._modulePath);
+			for (const mixinName of mixins) {
+				if (!(mixinName in VividMixins)) {
+					throw new Error(`Unknown mixin ${mixinName}`);
+				}
+				declaration.attributes = inheritItems(
+					getAttributeName,
+					VividMixins[mixinName],
+					declaration.attributes
+				);
+			}
 		}
 	}
 
@@ -346,15 +342,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			name: 'error-text',
 			description: 'The error text for the form element.',
 			type: { text: 'string' },
-		},
-	],
-	DataGridCellExtension: [
-		{
-			name: 'columnDefinition',
-			description:
-				'Extends the data grid cell definition to hold more options.',
-			type: { text: 'object' },
-			fieldName: 'columnDefinition',
 		},
 	],
 	Localized: [],
@@ -453,13 +440,24 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 	],
 	TrappedFocus: [],
 	DelegatesARIATextbox: [],
+	DelegatesARIASelect: [
+		{
+			name: 'aria-controls',
+			description:
+				'See https://www.w3.org/TR/wai-aria-1.2/#combobox for more information.',
+			type: { text: 'string' },
+			fieldName: 'ariaControls',
+		},
+	],
+	DelegatesARIAListboxOption: [],
+	ARIAGlobalStatesAndProperties: [],
 };
 
 /**
  * Returns that mixins that a component uses.
  */
 export const extractVividMixins = (
-	componentName: string,
+	className: string,
 	modulePath: string
 ): string[] => {
 	const src = fs.readFileSync(getTypescriptDefinitionPath(modulePath), 'utf8');
@@ -468,9 +466,11 @@ export const extractVividMixins = (
 	for (const line of lines) {
 		// Find the line declaring the mixins looking like this:
 		// export interface ComponentName extends MixinA, MixinB {}
-		const match = line.match(/export interface (\w+) extends (.*) {/);
+		const match = line.match(
+			new RegExp(`export interface ${className} extends (.*) {`)
+		);
 		if (match) {
-			return match[2].split(',').map((m) => m.trim());
+			return match[1].split(',').map((m) => m.trim());
 		}
 	}
 
@@ -493,24 +493,7 @@ export const getClassNameOfVividComponent = (name: string): string => {
 export const getVividComponentDeclaration = (
 	name: string,
 	className: string
-): Declaration => {
-	const declaration = resolveComponentDeclaration(vividDeclarations, className);
-
-	// Apply vivid mixins
-	const mixins = extractVividMixins(name, declaration._modulePath);
-	for (const mixinName of mixins) {
-		if (!(mixinName in VividMixins)) {
-			throw new Error(`Unknown mixin ${mixinName}`);
-		}
-		declaration.attributes = inheritItems(
-			getAttributeName,
-			VividMixins[mixinName],
-			declaration.attributes
-		);
-	}
-
-	return declaration;
-};
+): Declaration => resolveComponentDeclaration(vividDeclarations, className);
 
 /**
  * Lists all public components from Vivid. E.g. 'accordion-item'.

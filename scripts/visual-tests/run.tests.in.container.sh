@@ -5,4 +5,4 @@ if [[ $1 == "--task=update" ]]; then
 fi
 
 # update with proper image name when moved
-docker run -i --name vivid-visual-tests --rm -v "$PWD:/usr/src/app" drizzt99/vonage:2.2.0 "$@"
+docker run -i --name vivid-visual-tests --rm -v "$PWD:/usr/src/app" drizzt99/vonage:2.3.0 "$@"

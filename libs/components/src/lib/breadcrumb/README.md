@@ -1,31 +1,73 @@
-# Breadcrumb
+## Usage
 
-Breadcrumbs helps users navigate through a website or web application by showing the current location within the hierarchy of pages,
-and by providing links to navigate back to pages higher in the hierarchy.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/breadcrumb';</script>
+import '@vonage/vivid/breadcrumb';
+import '@vonage/vivid/breadcrumb-item';
 ```
 
-## Use Cases
+or, if you need to use a unique prefix:
 
-### Common Usage
+```js
+import { registerBreadcrumb, registerBreadcrumbItem } from '@vonage/vivid';
+
+registerBreadcrumb('your-prefix');
+registerBreadcrumbItem('your-prefix');
+```
 
 ```html preview
-<vwc-breadcrumb>
-	<vwc-breadcrumb-item href="#" text="Breadcrumb"></vwc-breadcrumb-item>
-	<vwc-breadcrumb-item href="#" text="Breadcrumb"></vwc-breadcrumb-item>
-	<vwc-breadcrumb-item href="#" text="Breadcrumb"></vwc-breadcrumb-item>
-	<vwc-breadcrumb-item text="Breadcrumb"></vwc-breadcrumb-item>
-</vwc-breadcrumb>
+<script type="module">
+	import { registerBreadcrumb, registerBreadcrumbItem } from '@vonage/vivid';
+	registerBreadcrumb('your-prefix');
+	registerBreadcrumbItem('your-prefix');
+</script>
+
+<your-prefix-breadcrumb>
+	<your-prefix-breadcrumb-item
+		href="#"
+		text="Breadcrumb"
+	></your-prefix-breadcrumb-item>
+	<your-prefix-breadcrumb-item
+		href="#"
+		text="Breadcrumb"
+	></your-prefix-breadcrumb-item>
+	<your-prefix-breadcrumb-item
+		href="#"
+		text="Breadcrumb"
+	></your-prefix-breadcrumb-item>
+</your-prefix-breadcrumb>
 ```
 
-### Multiple hidden crumbs
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-```html preview
-<vwc-breadcrumb>
-	<vwc-breadcrumb-item text="Breadcrumb" href="#"></vwc-breadcrumb-item>
-	<vwc-breadcrumb-item text="..."></vwc-breadcrumb-item>
-	<vwc-breadcrumb-item text="Breadcrumb"></vwc-breadcrumb-item>
-</vwc-breadcrumb>
+```html
+<script setup lang="ts">
+	import { VBreadcrumb, VBreadcrumbItem } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VBreadcrumb>
+		<VBreadcrumbItem href="#" text="Breadcrumb"></VBreadcrumbItem>
+	</VBreadcrumb>
+</template>
 ```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## API Reference
+
+### Properties
+
+<div class="table-wrapper">
+
+| Name     | Type     | Description                      |
+| -------- | -------- | -------------------------------- |
+| **text** | `string` | Sets the **bradcrumn-item** text |
+| **href** | `string` | Sets the **bradcrumn-item** href |
+
+</div>

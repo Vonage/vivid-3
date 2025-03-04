@@ -1,7 +1,5 @@
-import { axe, elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { ActionGroup } from './action-group';
-import { actionGroupDefinition } from './definition';
 import '.';
 
 const COMPONENT_TAG = 'vwc-action-group';
@@ -17,13 +15,19 @@ describe('vwc-action-group', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-action-group', async () => {
-			expect(actionGroupDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(ActionGroup);
 			expect(element.shape).toEqual(undefined);
 			expect(element.appearance).toEqual(undefined);
 			expect(element.tight).toEqual(false);
 			expect(element.role).toEqual(null);
 			expect(element.ariaLabel).toEqual(null);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -51,11 +55,7 @@ describe('vwc-action-group', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('role', function () {
 			it('should be set to "group" on init', function () {
 				const role = getBaseElement(element)?.getAttribute('role');
@@ -74,18 +74,6 @@ describe('vwc-action-group', () => {
 				await elementUpdated(element);
 				const role = getBaseElement(element)?.getAttribute('role');
 				expect(role).toEqual('radiogroup');
-			});
-		});
-
-		describe('aria-label', function () {
-			it('should set "aria-label" on base if set on host', async function () {
-				const labelId = 'label';
-				element.setAttribute('aria-label', labelId);
-				await elementUpdated(element);
-				expect(getBaseElement(element).getAttribute('aria-label')).toEqual(
-					labelId
-				);
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 	});

@@ -1,23 +1,63 @@
-# Slider
+## Usage
 
-Represents a slider custom element.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/slider';</script>
+import '@vonage/vivid/slider';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerSlider } from '@vonage/vivid';
+
+registerSlider('your-prefix');
 ```
 
 ```html preview
-<vwc-slider></vwc-slider>
+<script type="module">
+	import { registerSlider } from '@vonage/vivid';
+	registerSlider('your-prefix');
+</script>
+
+<your-prefix-slider></your-prefix-slider>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Min
+```html
+<script setup lang="ts">
+	import { VSlider } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VSlider />
+</template>
+```
 
-Use `min` to set the lowest value allowed for the slider.
+</vwc-tab-panel>
+</vwc-tabs>
 
-- Type: `number`
-- Default: `0`
+## Value
+
+Set the `value` attribute to set the value of the Slider.
+
+```html preview blocks
+<vwc-slider value="3"></vwc-slider>
+```
+
+### Value Text Formatter
+
+Use the `valueTextFormatter` to generates a string for the Slider's "aria-valuetext" attribute based on the current value.  
+Use this to configure the [`pin`](/components/slider/#pin) string.
+
+## Min
+
+Use the `min` attribute to set the lowest value allowed for the Slider.  
+The default value of `min` is `0`.
 
 ```html preview blocks
 <div>
@@ -36,12 +76,10 @@ Use `min` to set the lowest value allowed for the slider.
 </script>
 ```
 
-### Max
+## Max
 
-Use `max` to set the greatest value allowed for the slider.
-
-- Type: `number`
-- Default: `10`
+Use the `max` attribute to set the highest value allowed for the Slider.  
+The default value `max` of is `10`.
 
 ```html preview blocks
 <div>
@@ -60,12 +98,10 @@ Use `max` to set the greatest value allowed for the slider.
 </script>
 ```
 
-### Step
+## Step
 
-Use `step` to set determine the granularity with which values can be incremented/decremented.
-
-- Type: `number`
-- Default: `1`
+Use the `step` attribute sets the granularity with which values can be incremented/decremented.  
+The default value of `step` is `1`.
 
 ```html preview blocks
 <div>
@@ -84,89 +120,32 @@ Use `step` to set determine the granularity with which values can be incremented
 </script>
 ```
 
-### Orientation
+## API Reference
 
-When used vertically, the slider fills the height of its container.
-
-- Type: `'horizontal'` | `'vertical'`
-- Default: `'horizontal'`
-
-```html preview center 300px
-<vwc-slider orientation="vertical"></vwc-slider>
-```
-
-### Markers
-
-Toggles markers display.  
-Markers are set according to the value of step (1 by default).
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-slider markers></vwc-slider>
-```
-
-### Connotation
-
-- Type: `'accent'` | `'cta'`
-- Default: `'accent'`
-
-```html preview blocks
-<vwc-slider connotation="cta"></vwc-slider>
-```
-
-### Pin
-
-Toggles display the value through a tooltip. Use the `valueTextFormatter` member to customize the format of the value.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview
-<vwc-slider pin></vwc-slider>
-<vwc-slider orientation="vertical" style="height: 200px" pin></vwc-slider>
-<script>
-	for (const slider of document.querySelectorAll('vwc-slider')) {
-		slider.valueTextFormatter = (value) => `${value} units`;
-	}
-</script>
-```
-
-### Disabled
-
-Toggle the `disabled` member to disable/enable the slider.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview blocks
-<vwc-slider disabled></vwc-slider>
-```
-
-### Value
-
-Use `value` to set the value of the slider.
-
-- Type: `string`
-- Default: `5`
-
-```html preview blocks
-<vwc-slider value="3"></vwc-slider>
-```
-
-## Events
+### Properties
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                                 |
-| -------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
+| Name            | Type                                    | Description                                                          |
+| --------------- | --------------------------------------- | -------------------------------------------------------------------- |
+| **connotation** | _Enum_:<br/>`accent`<br/>`cta`          | The connotation of the component                                     |
+| **disabled**    | `boolean`                               | Sets the element's disabled state                                    |
+| **markers**     | `boolean`                               | Display markers on/off                                               |
+| **max**         | `number`                                | The maximum value of the range.                                      |
+| **min**         | `number`                                | The minimum value of the range.                                      |
+| **orientation** | _Enum_:<br/>`horizontal`<br/>`vertical` | The orientation of the slider.                                       |
+| **pin**         | `boolean`                               | Show current values on the thumbs.                                   |
+| **step**        | `number`                                | Value to increment or decrement via arrow keys, mouse click or drag. |
+| **value**       | `number`                                | Set the value attribute to set the value of the slider.              |
 
 </div>
 
-## Accessibility
+### Events
 
-The slider has a `role` of `slider`, which needs an accessible label. You must provide it using `aria-label`.
+<div class="table-wrapper">
 
-Vivid automatically sets the `aria-valuetext` attribute on the slider. The attribute is read by assistive technology. You can control its format using the `valueTextFormatter` property for a more human-readable value.
+| Name       | Type                     | Bubbles | Composed | Description                                                 |
+| ---------- | ------------------------ | ------- | -------- | ----------------------------------------------------------- |
+| **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the slider value changes |
+
+</div>

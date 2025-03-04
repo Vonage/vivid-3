@@ -28,6 +28,7 @@ export enum Appearance {
 	Duotone = 'duotone',
 	Fieldset = 'fieldset',
 	Subtle = 'subtle',
+	SubtleLight = 'subtle-light',
 	Ghost = 'ghost',
 	GhostLight = 'ghost-light',
 	OutlinedLight = 'outlined-light',
@@ -89,4 +90,11 @@ export enum MediaSkipBy {
 	Five = '5',
 	Ten = '10',
 	Thirty = '30',
+}
+
+export enum Sticky {
+	None = 'none',
+	Header = 'header',
+	Column = 'column',
+	All = 'all',
 }

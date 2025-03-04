@@ -1,16 +1,9 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 
 import type { TreeView } from '../tree-view/tree-view';
 import '../tree-view';
 
-import { treeItemDefinition } from './definition';
 import { TreeItem } from './tree-item';
 import '.';
 
@@ -42,13 +35,19 @@ describe('vwc-tree-item', () => {
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-tree-item', async () => {
-			expect(treeItemDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(treeItem1).toBeInstanceOf(TreeItem);
 			expect(treeItem1.text).toBeUndefined();
 			expect(treeItem1.icon).toBeUndefined();
-			expect(treeItem1.selected).toBeUndefined();
+			expect(treeItem1.selected).toBeFalsy();
 			expect(treeItem1.expanded).toEqual(false);
-			expect(treeItem1.disabled).toBeUndefined();
+			expect(treeItem1.disabled).toBeFalsy();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -80,6 +79,11 @@ describe('vwc-tree-item', () => {
 
 			expect(getControlElement(treeItem1)?.textContent?.trim()).toEqual(text);
 		});
+	});
+
+	it('should include a role of `treeitem', async () => {
+		await elementUpdated(treeItem1);
+		expect(treeItem1.getAttribute('role')).toEqual('treeitem');
 	});
 
 	it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
@@ -147,24 +151,13 @@ describe('vwc-tree-item', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			treeItem1.text = 'Tree item 1';
-			treeItem2.text = 'Tree item 2';
-			treeItem1.selected = true;
-			treeItem2.expanded = true;
+	describe('focus-item', () => {
+		it('should focus on the element', async () => {
+			expect(treeItem1.contains(document.activeElement)).toBeFalsy();
+			TreeItem.focusItem(treeItem1);
 			await elementUpdated(treeItem1);
-			await elementUpdated(treeItem2);
 
-			const children = Array.from(element.children)
-				.map(({ shadowRoot }) => shadowRoot?.innerHTML)
-				.join('');
-			const exposedHtmlString = element.shadowRoot?.innerHTML.replace(
-				'<slot></slot>',
-				children
-			) as string;
-
-			expect(await axe(exposedHtmlString)).toHaveNoViolations();
+			expect(treeItem1.contains(document.activeElement)).toBeTruthy();
 		});
 	});
 });

@@ -4,6 +4,150 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.16.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.1...vivid-v4.16.2) (2025-02-20)
+
+
+### Bug Fixes
+
+* **searchable-select:** fixed-dropdown menu layout issue (VIV-2291) ([#2149](https://github.com/Vonage/vivid-3/issues/2149)) ([2f85b87](https://github.com/Vonage/vivid-3/commit/2f85b87aa191a71df5d761a6338cd58263672d3f))
+
+## [4.16.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.0...vivid-v4.16.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **file-picker:** set aria-label on base (VIV-2326) ([#2132](https://github.com/Vonage/vivid-3/issues/2132)) ([21e923a](https://github.com/Vonage/vivid-3/commit/21e923a61ab297df63270f237c883277c27be7a4))
+
+## [4.16.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.15.0...vivid-v4.16.0) (2025-02-14)
+
+
+### Bug Fixes
+
+* **slider, range-slider:** handle zero step (VIV-2271) ([#2134](https://github.com/Vonage/vivid-3/issues/2134)) ([6650690](https://github.com/Vonage/vivid-3/commit/6650690b09bea10567ccfcb58c84948f7d7f69a4))
+
+## [4.15.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.4...vivid-v4.15.0) (2025-02-13)
+
+
+### Features
+
+* **combobox:** helper, success & error text (VIV-2268) ([#2127](https://github.com/Vonage/vivid-3/issues/2127)) ([faa0c13](https://github.com/Vonage/vivid-3/commit/faa0c13a71d96098abf8fda554313cc69ae06e93))
+
+
+### Bug Fixes
+
+* button type defaults to submit when a wrong type is passed ([4e890b5](https://github.com/Vonage/vivid-3/commit/4e890b5468a3d2b49c1323524af2d9b5af3ffa70))
+* **button:** type defaults to submit when invalid type is passed (VIV-2297) ([#2126](https://github.com/Vonage/vivid-3/issues/2126)) ([4e890b5](https://github.com/Vonage/vivid-3/commit/4e890b5468a3d2b49c1323524af2d9b5af3ffa70))
+* **tabs:** fix connotation not updating when tab is added (VIV-2334) ([#2136](https://github.com/Vonage/vivid-3/issues/2136)) ([df47e5f](https://github.com/Vonage/vivid-3/commit/df47e5f61dbfc95da1eaf859ee799ca69c88e420))
+
+## [4.14.4](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.3...vivid-v4.14.4) (2025-02-04)
+
+
+### Bug Fixes
+
+* **icon:** fix missing icon type (VIV-2303) ([#2119](https://github.com/Vonage/vivid-3/issues/2119)) ([f54a197](https://github.com/Vonage/vivid-3/commit/f54a197ce4c186fb27bb990e722d9d450010e675))
+
+## [4.14.3](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.2...vivid-v4.14.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* **audio-player:** change slider knob design- visible on hover/focus only (VIV-1990) ([#2090](https://github.com/Vonage/vivid-3/issues/2090)) ([b1b19c4](https://github.com/Vonage/vivid-3/commit/b1b19c4395c8a4190919cbe1328bd43fb2fb4258))
+* **button:** add default type - submit, same as native (VIV-2281) ([#2111](https://github.com/Vonage/vivid-3/issues/2111)) ([7a15709](https://github.com/Vonage/vivid-3/commit/7a1570953bec1d5ca9f028e738145fe8e4ae3145))
+* **combobox:** icon attr, icon slot and meta slot (VIV-2268) ([#2099](https://github.com/Vonage/vivid-3/issues/2099)) ([642ed59](https://github.com/Vonage/vivid-3/commit/642ed599881f621786010fd9bab02c6f1aa7310d))
+* **combobox:** shape and scale (VIV-2268) ([#2095](https://github.com/Vonage/vivid-3/issues/2095)) ([de9c900](https://github.com/Vonage/vivid-3/commit/de9c9003543661a0f4cd71488516d29d0d45a88c))
+* **file-picker:** change uploaded file error message (VIV-2284) ([#2106](https://github.com/Vonage/vivid-3/issues/2106)) ([551659b](https://github.com/Vonage/vivid-3/commit/551659b0bbdfaa335326372b3776f4f853a66cb5))
+* **switch:** aria-label is correctly handled (VIV-2292) ([#2101](https://github.com/Vonage/vivid-3/issues/2101)) ([9062387](https://github.com/Vonage/vivid-3/commit/90623878ecc767249034b94abd407760d84b2dc6))
+
+## [4.14.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.1...vivid-v4.14.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **data-grid:** fix error on createElement (VIV-2289) ([#2094](https://github.com/Vonage/vivid-3/issues/2094)) ([4b17c6c](https://github.com/Vonage/vivid-3/commit/4b17c6c65ccb9ef1d53fd5aeec6569dc52b5466a))
+* **divider:** orientation attribute issue (VIV-2290) ([#2098](https://github.com/Vonage/vivid-3/issues/2098)) ([32a3df2](https://github.com/Vonage/vivid-3/commit/32a3df23b276d18eed3beb0134ae7e324d6f4c83))
+
+## [4.14.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.14.0...vivid-v4.14.1) (2025-01-22)
+
+
+### Bug Fixes
+
+* **combobox:** suppresses browser generated autocomplete on input (VIV-2273) ([#2086](https://github.com/Vonage/vivid-3/issues/2086)) ([6eda008](https://github.com/Vonage/vivid-3/commit/6eda008d3f158650ee39cb9364baa25fb1dd9282))
+* **dialog:** prevent scroll to top when opened as Modal (VIV-2248) ([#2069](https://github.com/Vonage/vivid-3/issues/2069)) ([8543e65](https://github.com/Vonage/vivid-3/commit/8543e658958ee4ecfc4c573dab938603295b4285))
+* **layout:** column basis medium and large in mobile (VIV-2049) ([#2065](https://github.com/Vonage/vivid-3/issues/2065)) ([55801dc](https://github.com/Vonage/vivid-3/commit/55801dcc2e5d5ed029aa5bde35c13974b0c2dfb8))
+* **menu:** add default value to inline-size in small screens (VIV-2006) ([#2078](https://github.com/Vonage/vivid-3/issues/2078)) ([a9e8481](https://github.com/Vonage/vivid-3/commit/a9e84814498db5c75f644d0c5086275145cbba64))
+* **radio:** radio required validation sync with spec (VIV-2265) ([#2070](https://github.com/Vonage/vivid-3/issues/2070)) ([5fb9b52](https://github.com/Vonage/vivid-3/commit/5fb9b5294dc6d4bd4f6586daece53cbde5f2df07))
+* **tabs:** shadow does not appear when removing tabs and last tab is active (VIV-2278) ([#2075](https://github.com/Vonage/vivid-3/issues/2075)) ([8b7e27c](https://github.com/Vonage/vivid-3/commit/8b7e27cb6d34ac90e4d2cd95f9a3fd94a81c7f90))
+* **video-player:** control panel design fixes (VIV-2246, VIV-2275) ([#2074](https://github.com/Vonage/vivid-3/issues/2074)) ([f031ef4](https://github.com/Vonage/vivid-3/commit/f031ef46f0083a689c8d55be35985dc1c3a2dd1c))
+* **vue-wrappers:** fix type definitions (VIV-2274) ([#2088](https://github.com/Vonage/vivid-3/issues/2088)) ([538f16c](https://github.com/Vonage/vivid-3/commit/538f16cae1ee9da65198605729dcf283ea35fe23))
+
+## [4.14.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.13.0...vivid-v4.14.0) (2024-12-18)
+
+
+### Features
+
+* **file-picker:** add styled scrollbar & fix files-list height (VIV-2236) ([#2029](https://github.com/Vonage/vivid-3/issues/2029)) ([ee96006](https://github.com/Vonage/vivid-3/commit/ee960063e8bcf8755cfe872e124cf80b70a3de3f))
+
+
+### Bug Fixes
+
+* **button:** remove class icon-only with drop-down indicator (VIV-2240) ([#2050](https://github.com/Vonage/vivid-3/issues/2050)) ([60cf096](https://github.com/Vonage/vivid-3/commit/60cf0968968511f13dfcb80d66c97b394672ddd1))
+
+## [4.13.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.12.1...vivid-v4.13.0) (2024-12-02)
+
+
+### Features
+
+* **components:** add styled scrollbar (VIV-2214) ([#2028](https://github.com/Vonage/vivid-3/issues/2028)) ([de5f2ee](https://github.com/Vonage/vivid-3/commit/de5f2eeda8f9e0bd7700eb75f43b5434f72b786c))
+* **file-picker:** custom internal error messages (VIV-1998) ([#2030](https://github.com/Vonage/vivid-3/issues/2030)) ([c1ac9a2](https://github.com/Vonage/vivid-3/commit/c1ac9a2404a3d760cca18113c7ebd8db98318a02))
+* **menu:** move focus into menu on open (VIV-2196) ([#2033](https://github.com/Vonage/vivid-3/issues/2033)) ([74134fd](https://github.com/Vonage/vivid-3/commit/74134fd47d455a5e2869bde68122e8ff947c3fd2))
+* **tabs:** add tabs-layout (VIV-2197) ([#2021](https://github.com/Vonage/vivid-3/issues/2021)) ([d46cc8d](https://github.com/Vonage/vivid-3/commit/d46cc8dbc7cf837a8f46ff174d191c0b85802aa1))
+
+
+### Bug Fixes
+
+* **button:** text-align when drop-down indicator and ellipsis (VIV-2244)  ([#2034](https://github.com/Vonage/vivid-3/issues/2034)) ([6660782](https://github.com/Vonage/vivid-3/commit/66607825e9b970305998a0f28c064a1a0ee8a65d))
+* **popup:** fix miscalculated position in certain cases (VIV-000) ([#2022](https://github.com/Vonage/vivid-3/issues/2022)) ([321436b](https://github.com/Vonage/vivid-3/commit/321436b3d8907e96eb7be96a0c3b8d4cc43f98c0))
+* **vue-wrappers:** fix type of tabs gutters (VIV-000) ([#2024](https://github.com/Vonage/vivid-3/issues/2024)) ([67ddf86](https://github.com/Vonage/vivid-3/commit/67ddf866665fd6c6a73b47f919792b91316ba007))
+
+## [4.12.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.12.0...vivid-v4.12.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* **audio-player:** change color in disable state (VIV-2221) ([#2011](https://github.com/Vonage/vivid-3/issues/2011)) ([10c1f1c](https://github.com/Vonage/vivid-3/commit/10c1f1c4714e5b287e5f8eabcd517538b417e594))
+* **searchable-select:** open when clicked (VIV-2206) ([#2015](https://github.com/Vonage/vivid-3/issues/2015)) ([91fdee9](https://github.com/Vonage/vivid-3/commit/91fdee93fcd24295419cc60f7df840074e4a35bb))
+* **time-picker, date-picker, date-range-picker:** update formatted value when format changes (VIV-2209) ([#2005](https://github.com/Vonage/vivid-3/issues/2005)) ([ed94617](https://github.com/Vonage/vivid-3/commit/ed94617abaeadcc50033e55aef144875ddbcfb38))
+* **video-player:** align menu style it menu component (VIV-2222) ([#2012](https://github.com/Vonage/vivid-3/issues/2012)) ([e419e06](https://github.com/Vonage/vivid-3/commit/e419e0641676d95beef5a8018a2861c0bdf903b0))
+
+## [4.12.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.11.0...vivid-v4.12.0) (2024-11-14)
+
+
+### Features
+
+* **popup:** add popover attribute when strategy is fixed (VIV-2181) ([#1993](https://github.com/Vonage/vivid-3/issues/1993)) ([c54fc7a](https://github.com/Vonage/vivid-3/commit/c54fc7aeaddec7269e5db6ead84d4e9fd8c453ee))
+
+
+### Bug Fixes
+
+* **button:** fix button typings (VIV-000) ([#2001](https://github.com/Vonage/vivid-3/issues/2001)) ([2495865](https://github.com/Vonage/vivid-3/commit/24958659afe40d83cd9a6deabff8323015bb4fdf))
+
+## [4.11.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.10.0...vivid-v4.11.0) (2024-11-13)
+
+
+### Features
+
+* **appearance, badge:** add subtle-light to badge (VIV-1992) ([#1954](https://github.com/Vonage/vivid-3/issues/1954)) ([ffcab5f](https://github.com/Vonage/vivid-3/commit/ffcab5f4e37522193d408fd1524220ee1315bb72))
+* **file-picker:** add single file mode (VIV-1988) ([#1974](https://github.com/Vonage/vivid-3/issues/1974)) ([352694f](https://github.com/Vonage/vivid-3/commit/352694f14ff2d6d499f783a8a34c5d9551a96c18))
+* **file-picker:** adjust styles for better user interaction (VIV-1997) ([#1980](https://github.com/Vonage/vivid-3/issues/1980)) ([f080334](https://github.com/Vonage/vivid-3/commit/f0803340def2ff97f1bcdc953e5afcc79c892a12))
+* **file-picker:** support clearing files (VIV-1995) ([#1983](https://github.com/Vonage/vivid-3/issues/1983)) ([94d6f49](https://github.com/Vonage/vivid-3/commit/94d6f49ed4d60d8e1c3b168bdb6608e3aceda5fb))
+* **tabs:** support action-items slot (VIV-2031) ([#1960](https://github.com/Vonage/vivid-3/issues/1960)) ([7058fd1](https://github.com/Vonage/vivid-3/commit/7058fd1b79452965c8dcabd6f03e2990f4edf433))
+
+
+### Bug Fixes
+
+* **button:** adds announcement connotation to button types (VIV-2203) ([#1970](https://github.com/Vonage/vivid-3/issues/1970)) ([b5854bf](https://github.com/Vonage/vivid-3/commit/b5854bf1848638344afb17ee31f0b417b2458581))
+* **checkbox:** fix indeterminate setting checked (VIV-000) ([#1998](https://github.com/Vonage/vivid-3/issues/1998)) ([800f1fe](https://github.com/Vonage/vivid-3/commit/800f1fe22381d314371693f60b53167ddd3305ff))
+
 ## [4.10.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.9.0...vivid-v4.10.0) (2024-10-23)
 
 

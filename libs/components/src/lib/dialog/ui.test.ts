@@ -128,7 +128,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.locator('#wrapper');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/dialog.png'
+		'snapshots/dialog.png'
 	);
 });
 
@@ -163,7 +163,7 @@ test('should show the the dialog as a modal when calling .showModal()', async ({
 	await page.waitForLoadState('networkidle');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/dialog-modal.png'
+		'snapshots/dialog-modal.png'
 	);
 });
 

@@ -76,7 +76,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await requests.noneInFlight((request) => request.resourceType() === 'image');
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
-		'./snapshots/file-picker.png'
+		'snapshots/file-picker.png'
 	);
 });
 

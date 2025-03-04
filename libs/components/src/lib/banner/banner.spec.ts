@@ -1,4 +1,4 @@
-import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';
@@ -41,6 +41,13 @@ describe('vwc-banner', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-banner', async () => {
 			expect(element).toBeInstanceOf(Banner);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -86,14 +93,14 @@ describe('vwc-banner', () => {
 
 	describe('remove', function () {
 		it('should fire removing event', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removing', spy);
 			element.remove();
 			expect(spy).toHaveBeenCalled();
 		});
 
 		it('should fire removed after animation end', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.remove();
 
@@ -104,7 +111,7 @@ describe('vwc-banner', () => {
 		});
 
 		it('should disable removed and removing events after disconnected callback', async function () {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('removed', spy);
 			element.addEventListener('removing', spy);
 			element.disconnectedCallback();
@@ -273,7 +280,7 @@ describe('vwc-banner', () => {
 		it('should remove the button on escape key', async function () {
 			element.removable = true;
 			element.focus();
-			jest.spyOn(element, 'remove');
+			vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect(element.remove).toHaveBeenCalled();
 		});
@@ -281,7 +288,7 @@ describe('vwc-banner', () => {
 		it('should remove the banner only on escape key', async function () {
 			element.removable = true;
 			element.focus();
-			const spy = jest.spyOn(element, 'remove');
+			const spy = vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
@@ -290,7 +297,7 @@ describe('vwc-banner', () => {
 			element.removable = true;
 			element.focus();
 			element.disconnectedCallback();
-			const spy = jest.spyOn(element, 'remove');
+			const spy = vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
@@ -298,20 +305,13 @@ describe('vwc-banner', () => {
 		it('should remove the banner only if "removable" is true', async function () {
 			element.removable = false;
 			element.focus();
-			const spy = jest.spyOn(element, 'remove');
+			const spy = vi.spyOn(element, 'remove');
 			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 			expect((spy as any).mock.calls.length).toEqual(0);
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.removable = true;
-			await elementUpdated(element);
-
-			expect(await axe(element)).toHaveNoViolations();
-		});
-
+	describe('a11y attributes', () => {
 		describe('role', function () {
 			it('should be set to "status" on init', function () {
 				const role = getBannerMessageAttribute(element, 'role');
@@ -323,7 +323,6 @@ describe('vwc-banner', () => {
 				await elementUpdated(element);
 				const role = getBannerMessageAttribute(element, 'role');
 				expect(role).toEqual('alert');
-				expect(await axe(element)).toHaveNoViolations();
 			});
 
 			it('should change role when role attribute is set', async function () {
@@ -331,7 +330,6 @@ describe('vwc-banner', () => {
 				await elementUpdated(element);
 				const role = getBannerMessageAttribute(element, 'role');
 				expect(role).toEqual('alert');
-				expect(await axe(element)).toHaveNoViolations();
 			});
 		});
 

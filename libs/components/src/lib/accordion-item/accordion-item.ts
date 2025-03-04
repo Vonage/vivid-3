@@ -1,10 +1,8 @@
-import { attr } from '@microsoft/fast-element';
-import {
-	applyMixins,
-	AccordionItem as FASTAccordionItem,
-} from '@microsoft/fast-foundation';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Size } from '../enums.js';
+import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
  * Types of accordion size.
@@ -20,7 +18,44 @@ export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
  * @slot icon - Add an icon to the component.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the button is invoked
  */
-export class AccordionItem extends FASTAccordionItem {
+export class AccordionItem extends VividElement {
+	/**
+	 * Configures the {@link https://www.w3.org/TR/wai-aria-1.1/#aria-level | level} of the
+	 * heading element.
+	 *
+	 * @defaultValue 2
+	 * @public
+	 * @remarks
+	 * HTML attribute: heading-level
+	 */
+	@attr({
+		attribute: 'heading-level',
+		mode: 'fromView',
+		converter: nullableNumberConverter,
+	})
+	headinglevel: 1 | 2 | 3 | 4 | 5 | 6 = 2;
+
+	/**
+	 * Expands or collapses the item.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML attribute: expanded
+	 */
+	@attr({ mode: 'boolean' })
+	expanded = false;
+
+	/**
+	 * The item ID
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: id
+	 */
+	@attr
+	// @ts-expect-error Type is incorrectly non-optional
+	id: string;
+
 	/**
 	 *
 	 *
@@ -54,6 +89,24 @@ export class AccordionItem extends FASTAccordionItem {
 	 * HTML Attribute: size
 	 */
 	@attr size?: AccordionItemSize;
+
+	/**
+	 * @internal
+	 */
+	// @ts-expect-error Type is incorrectly non-optional
+	expandbutton: HTMLElement;
+
+	/**
+	 * @internal
+	 */
+	clickHandler = () => {
+		this.expanded = !this.expanded;
+		this.change();
+	};
+
+	private change = (): void => {
+		this.$emit('change');
+	};
 }
 
 export interface AccordionItem extends AffixIconWithTrailing {}

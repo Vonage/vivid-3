@@ -2,13 +2,14 @@ import { readonlyPlugin } from 'cem-plugin-readonly';
 import { asyncFunctionPlugin } from 'cem-plugin-async-function';
 import { jsdocFunctionPlugin } from 'cem-plugin-jsdoc-function';
 import { jsdocExamplePlugin } from 'cem-plugin-jsdoc-example';
-import sass from 'sass';
+import * as sass from 'sass';
 import fs from 'fs';
 
 export default {
 	/** Globs to analyze */
 	globs: [
 		'libs/components/src/lib/**/*.ts',
+		'libs/components/src/shared/foundation/**/*.ts',
 		'libs/components/src/shared/date-picker/date-picker-base.ts',
 	],
 	/** Globs to exclude */

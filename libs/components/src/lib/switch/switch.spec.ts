@@ -1,29 +1,31 @@
-import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
-import { FoundationElementRegistry } from '@microsoft/fast-foundation';
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { Switch } from './switch';
 import '.';
-import { switchDefinition } from './definition';
 
 const COMPONENT_TAG = 'vwc-switch';
 
 describe('vwc-switch', () => {
 	let element: Switch;
+	let form: HTMLFormElement;
+
+	const setupFixture = async (html: string) => {
+		const fixtureElement = fixture(html) as HTMLElement;
+		if (fixtureElement instanceof HTMLFormElement)
+			form = fixtureElement as HTMLFormElement;
+		element =
+			fixtureElement instanceof Switch
+				? fixtureElement
+				: (fixtureElement.querySelector(COMPONENT_TAG) as Switch);
+		await elementUpdated(element);
+	};
 
 	beforeEach(async () => {
-		element = (await fixture(
-			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as Switch;
+		await setupFixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`);
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-switch', async () => {
-			expect(switchDefinition()).toBeInstanceOf(FoundationElementRegistry);
 			expect(element).toBeInstanceOf(Switch);
 			expect(element.name).toBeUndefined();
 			expect(element.value).toEqual('on');
@@ -33,6 +35,13 @@ describe('vwc-switch', () => {
 			expect(element.required).toEqual(false);
 			expect(element.label).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -277,14 +286,51 @@ describe('vwc-switch', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
+	describe("who's parent form has it's reset() method invoked", () => {
+		it("should set it's checked property to back to false", async () => {
+			await setupFixture(`<form><${COMPONENT_TAG}></${COMPONENT_TAG}></form>`);
 			element.checked = true;
-			element.value = 'test';
 			await elementUpdated(element);
+			form.reset();
 
-			expect(await axe(element)).toHaveNoViolations();
+			await elementUpdated(element);
+			expect(element.checked).toBe(false);
+		});
+	});
+
+	describe('a11y attributes', () => {
+		let control: HTMLElement | null;
+
+		describe('label', () => {
+			beforeEach(async () => {
+				element.label = 'Label';
+				await elementUpdated(element);
+				control = await getControlElement(element);
+			});
+
+			it('should set role to null on the host element', async () => {
+				expect(element.getAttribute('role')).toBe(null);
+			});
+
+			it('should set role to switch on the control element', async () => {
+				expect(control?.getAttribute('role')).toBe('switch');
+			});
+		});
+
+		describe('aria-label', () => {
+			beforeEach(async () => {
+				element.ariaLabel = 'Label';
+				await elementUpdated(element);
+				control = await getControlElement(element);
+			});
+
+			it('should set aria-label on control element', async () => {
+				expect(control!.getAttribute('aria-label')).toBe('Label');
+			});
+
+			it('should set role to presentation on the host', async () => {
+				expect(element.getAttribute('role')).toBe('presentation');
+			});
 		});
 	});
 });

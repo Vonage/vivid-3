@@ -1,12 +1,16 @@
 import 'element-internals-polyfill';
 
+import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import {
-	axe,
-	elementUpdated,
-	fixture,
-	getControlElement,
-} from '@vivid-nx/shared';
+	keyArrowDown,
+	keyArrowUp,
+	keyEnd,
+	keyEscape,
+	keyHome,
+	keyTab,
+} from '@microsoft/fast-web-utilities';
 import { Size } from '../enums';
+import { ListboxOption } from '../option/option.ts';
 import { Select } from './select';
 import '.';
 
@@ -16,11 +20,37 @@ const ICON_SELECTOR = 'vwc-icon';
 describe('vwc-select', () => {
 	let originalScrollIntoView: any;
 
+	/**
+	 * Get the "checked options", which are visually highlighted options in multi-select mode
+	 */
+	const getCheckedOptions = () =>
+		Array.from(
+			element.querySelectorAll('vwc-option[aria-checked="true"]')
+		) as ListboxOption[];
+
+	/**
+	 * Active option is the last checked option in multi-select mode
+	 */
+	const getActiveOption = () => {
+		const checkedOptions = getCheckedOptions();
+		if (checkedOptions.length === 0) {
+			return null;
+		} else if (checkedOptions.length === 1) {
+			return checkedOptions[0];
+		} else {
+			// We do not know which one was last checked
+			throw new Error('Unable to determine active option');
+		}
+	};
+
+	const getOption = (value: string) =>
+		element.querySelector(`vwc-option[value="${value}"]`) as ListboxOption;
+
 	let element: Select;
 
 	beforeAll(() => {
 		originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
-		HTMLElement.prototype.scrollIntoView = jest.fn();
+		HTMLElement.prototype.scrollIntoView = vi.fn();
 	});
 
 	afterAll(() => {
@@ -45,6 +75,13 @@ describe('vwc-select', () => {
 			expect(element.multiple).toEqual(undefined);
 			expect(element.selectedIndex).toEqual(-1);
 			expect(element.icon).toEqual(undefined);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -122,9 +159,9 @@ describe('vwc-select', () => {
 	describe('selectedIndex', () => {
 		beforeEach(async () => {
 			element.innerHTML = `
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2"></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
 				`;
 			await elementUpdated(element);
 		});
@@ -137,9 +174,33 @@ describe('vwc-select', () => {
 		it('should change selection when changed', async () => {
 			element.selectedIndex = 2;
 			await elementUpdated(element);
-			expect(element.selectedOptions).toEqual([
-				element.querySelector('option:nth-child(3)'),
-			]);
+			expect(element.selectedOptions).toEqual([getOption('3')]);
+		});
+
+		it('should update value when selectedIndex is set', async () => {
+			element.selectedIndex = 2;
+			await elementUpdated(element);
+			expect(element.value).toEqual('3');
+		});
+
+		it('should choose the next selectable option when selecting a disabled option', async () => {
+			getOption('2').disabled = true;
+			element.selectedIndex = 1;
+			expect(element.selectedIndex).toEqual(2);
+		});
+
+		it('should search for the next selectable option in reverse order when the new index ist smaller than the current one', async () => {
+			getOption('2').disabled = true;
+			element.selectedIndex = 2;
+			element.selectedIndex = 1;
+			expect(element.selectedIndex).toEqual(0);
+		});
+
+		it('should revert to the previous value if no selectable option can be found', async () => {
+			getOption('3').disabled = true;
+			element.selectedIndex = 1;
+			element.selectedIndex = 2;
+			expect(element.selectedIndex).toEqual(1);
 		});
 	});
 
@@ -239,17 +300,6 @@ describe('vwc-select', () => {
 	});
 
 	describe('multiple', () => {
-		it('should set multiple attribute on the element', async () => {
-			const multipleAttributeExistsWithMultipleFalse =
-				element.hasAttribute('multiple');
-
-			element.multiple = true;
-			await elementUpdated(element);
-
-			expect(multipleAttributeExistsWithMultipleFalse).toBeFalsy();
-			expect(element.hasAttribute('multiple')).toBeTruthy();
-		});
-
 		it('should leave popup open when set', async function () {
 			const popup = element.shadowRoot?.querySelector('.popup');
 
@@ -268,7 +318,7 @@ describe('vwc-select', () => {
 	});
 
 	describe('open', function () {
-		it('should set open when clicked', async () => {
+		it('should toggle open when clicked', async () => {
 			const openStateBeforeClick = element.open;
 
 			element.click();
@@ -276,6 +326,26 @@ describe('vwc-select', () => {
 
 			expect(openStateBeforeClick).toEqual(false);
 			expect(element.open).toEqual(true);
+		});
+
+		it('should not toggle open when clicked while disabled', async () => {
+			element.disabled = true;
+
+			element.click();
+
+			expect(element.open).toBe(false);
+		});
+
+		it('should not toggle open when clicking on a disabled option', async () => {
+			element.innerHTML = `
+				<vwc-option value="1" text="Option 1" disabled></vwc-option>
+			`;
+			element.open = true;
+			await elementUpdated(element);
+
+			(element.querySelector('vwc-option') as HTMLElement).click();
+
+			expect(element.open).toBe(true);
 		});
 	});
 
@@ -364,7 +434,7 @@ describe('vwc-select', () => {
 				<option value="2">2</option>
 				<option value="3">3</option>
 			`;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.addEventListener('input', spy);
 			element.open = true;
 			await elementUpdated(element);
@@ -415,7 +485,7 @@ describe('vwc-select', () => {
 		});
 
 		it('should allow propgation on escape key if not open', async () => {
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
 			element.dispatchEvent(
@@ -431,7 +501,7 @@ describe('vwc-select', () => {
 
 		it('should stop propgation on escape key if open', async () => {
 			element.open = true;
-			const spy = jest.fn();
+			const spy = vi.fn();
 			element.parentElement!.addEventListener('keydown', spy);
 
 			element.dispatchEvent(
@@ -458,8 +528,8 @@ describe('vwc-select', () => {
 				<option value="2">2</option>
 				<option value="3">3</option>
 			`;
-			const inputSpy = jest.fn();
-			const changeSpy = jest.fn();
+			const inputSpy = vi.fn();
+			const changeSpy = vi.fn();
 			element.addEventListener('input', inputSpy);
 			element.addEventListener('change', changeSpy);
 			element.open = true;
@@ -481,7 +551,11 @@ describe('vwc-select', () => {
 				<option value="3">3</option>
 			`;
 			await elementUpdated(element);
-			(MouseEvent as any).prototype.offsetX = 0;
+			Object.defineProperty(MouseEvent.prototype, 'offsetX', {
+				get() {
+					return 0;
+				},
+			});
 
 			element.dispatchEvent(new MouseEvent('mousedown'));
 			const shouldSkipFocusAfterOneMouseDown = (element as any).shouldSkipFocus;
@@ -514,7 +588,7 @@ describe('vwc-select', () => {
 
 	describe('fixed-dropdown', () => {
 		function setBoundingClientRect(width: number) {
-			element.getBoundingClientRect = jest.fn().mockReturnValue({ width });
+			element.getBoundingClientRect = vi.fn().mockReturnValue({ width });
 		}
 
 		async function toggleOpenState(open = true) {
@@ -727,6 +801,415 @@ describe('vwc-select', () => {
 		});
 	});
 
+	describe('value', function () {
+		it("should change when the selected option's value changes", async () => {
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			getOption('1').value = 'changed';
+
+			expect(element.value).toBe('changed');
+		});
+
+		it('should select an option when selected is set on it', async () => {
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2"></vwc-option>
+			`;
+			await elementUpdated(element);
+
+			getOption('2').selected = true;
+
+			expect(element.value).toBe('2');
+		});
+	});
+
+	describe('single select mode', () => {
+		beforeEach(() => {
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2"></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
+			`;
+		});
+
+		it('should ignore key presses when disabled', async () => {
+			element.disabled = true;
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
+
+			expect(element.selectedIndex).toBe(0);
+		});
+
+		it('should select the first option when pressing home', async () => {
+			element.selectedIndex = 1;
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+
+			expect(element.selectedIndex).toBe(0);
+		});
+
+		it('should select the last option when pressing end', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
+
+			expect(element.selectedIndex).toBe(2);
+		});
+
+		it('should select the next option when pressing ArrowDown', async () => {
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowDown })
+			);
+
+			expect(element.selectedIndex).toBe(1);
+		});
+
+		it('should select the previous option when pressing ArrowUp', async () => {
+			element.selectedIndex = 1;
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
+
+			expect(element.selectedIndex).toBe(0);
+		});
+
+		describe('when closed', () => {
+			it.each(['input', 'change'])(
+				`should emit %s event when selecting an option with the keyboard`,
+				async (eventName) => {
+					const eventSpy = vi.fn();
+					element.addEventListener(eventName, eventSpy);
+
+					element.focus();
+					element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
+
+					expect(eventSpy).toHaveBeenCalledTimes(1);
+				}
+			);
+		});
+
+		describe('when open', () => {
+			beforeEach(async () => {
+				element.open = true;
+				await elementUpdated(element);
+			});
+
+			it.each(['input', 'change'])(
+				`should emit %s event only once the select closes`,
+				async (eventName) => {
+					const eventSpy = vi.fn();
+					element.addEventListener(eventName, eventSpy);
+
+					element.focus();
+					element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
+
+					expect(eventSpy).toHaveBeenCalledTimes(0);
+
+					element.open = false;
+
+					expect(eventSpy).toHaveBeenCalledTimes(1);
+				}
+			);
+
+			it(`should select an option by clicking on it`, async () => {
+				getOption('3').click();
+
+				expect(element.value).toBe('3');
+			});
+
+			it(`should close after selecting an option by clicking on it`, async () => {
+				getOption('3').click();
+
+				expect(element.open).toBe(false);
+			});
+
+			it.each(['input', 'change'])(
+				`should emit %s event when selecting an option by clicking on it`,
+				async (eventName) => {
+					const eventSpy = vi.fn();
+					element.addEventListener(eventName, eventSpy);
+
+					getOption('3').click();
+
+					expect(eventSpy).toHaveBeenCalledTimes(1);
+				}
+			);
+		});
+	});
+
+	describe('multiple select mode', () => {
+		beforeEach(async () => {
+			element.multiple = true;
+			element.innerHTML = `
+				<vwc-option value="1" text="1"></vwc-option>
+				<vwc-option value="2" text="2"></vwc-option>
+				<vwc-option value="3" text="3"></vwc-option>
+			`;
+			await elementUpdated(element);
+		});
+
+		it('should initially not have an active option', () => {
+			expect(getActiveOption()).toBeNull();
+		});
+
+		it('should make an option active when clicking on it', async () => {
+			getOption('1').click();
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('1'));
+		});
+
+		it('should make first option active when pressing Home', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('1'));
+		});
+
+		it('should check all options from the active to first when pressing Shift + Home', async () => {
+			getOption('3').click();
+
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyHome, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			expect(getCheckedOptions()).toEqual([
+				getOption('1'),
+				getOption('2'),
+				getOption('3'),
+			]);
+		});
+
+		it('should make last option active when pressing End', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEnd }));
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('3'));
+		});
+
+		it('should check all options from active to last when pressing Shift + End', async () => {
+			getOption('1').click();
+
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			expect(getCheckedOptions()).toEqual([
+				getOption('1'),
+				getOption('2'),
+				getOption('3'),
+			]);
+		});
+
+		it('should make the next option active when pressing ArrowDown', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowDown })
+			);
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('2'));
+		});
+
+		it('should stay on the last option when pressing ArrowDown', async () => {
+			getOption('3').click();
+
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowDown })
+			);
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('3'));
+		});
+
+		it('should check the next option when pressing Shift + ArrowDown', async () => {
+			getOption('1').click();
+
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowDown, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			expect(getCheckedOptions()).toEqual([getOption('1'), getOption('2')]);
+		});
+
+		it('should make the previous option active when pressing ArrowUp', async () => {
+			getOption('3').click();
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('2'));
+		});
+
+		it('should stay on the first option when pressing ArrowUp', async () => {
+			getOption('1').click();
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyArrowUp }));
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('1'));
+		});
+
+		it('should check the previous option when pressing Shift + ArrowUp', async () => {
+			getOption('3').click();
+
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyArrowUp, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			expect(getCheckedOptions()).toEqual([getOption('2'), getOption('3')]);
+		});
+
+		it('should toggle the selected state of the active option when pressing space', async () => {
+			getOption('1').click();
+			await elementUpdated(element);
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+
+			expect(element.selectedOptions).toEqual([]);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+
+			expect(element.selectedOptions).toEqual([getOption('1')]);
+		});
+
+		it.each(['input', 'change'])(
+			'should emit %s event when toggling an option with the keyboard',
+			async (eventName) => {
+				const eventSpy = vi.fn();
+				element.addEventListener(eventName, eventSpy);
+
+				element.focus();
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+
+				element.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+				await elementUpdated(element);
+
+				expect(eventSpy).toHaveBeenCalledTimes(1);
+			}
+		);
+
+		it('should toggle the selected state of an option when clicking on it', () => {
+			getOption('1').click();
+			expect(element.selectedOptions).toEqual([getOption('1')]);
+
+			getOption('1').click();
+			expect(element.selectedOptions).toEqual([]);
+		});
+
+		it.each(['input', 'change'])(
+			'should emit %s event when toggling an option by clicking',
+			(eventName) => {
+				const eventSpy = vi.fn();
+				element.addEventListener(eventName, eventSpy);
+
+				getOption('1').click();
+
+				expect(eventSpy).toHaveBeenCalledTimes(1);
+			}
+		);
+
+		it('should uncheck all options on blur', async () => {
+			getOption('1').click();
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			element.blur();
+			await elementUpdated(element);
+
+			expect(getCheckedOptions()).toEqual([]);
+		});
+
+		it('should uncheck all options when multiple is changed to false', async () => {
+			getOption('1').click();
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			element.multiple = false;
+			await elementUpdated(element);
+
+			expect(getCheckedOptions()).toEqual([]);
+		});
+
+		it('should uncheck all options except the active one when pressing Escape', async () => {
+			getOption('1').click();
+			element.focus();
+			element.dispatchEvent(
+				new KeyboardEvent('keydown', { key: keyEnd, shiftKey: true })
+			);
+			await elementUpdated(element);
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyEscape }));
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(getOption('3'));
+		});
+
+		it('should ignore key presses when disabled', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyHome }));
+			await elementUpdated(element);
+
+			expect(getActiveOption()).toBe(null);
+		});
+
+		it('should scroll the active option into view when pressing Tab', async () => {
+			getOption('1').click();
+			element.focus();
+			await elementUpdated(element);
+			getOption('1').scrollIntoView = vi.fn();
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: keyTab }));
+			await elementUpdated(element);
+
+			expect(getOption('1').scrollIntoView).toHaveBeenCalledTimes(1);
+		});
+
+		it('should prevent focus when clicking on the scrollbar', () => {
+			Object.defineProperty(
+				element.shadowRoot!.querySelector('.listbox'),
+				'scrollWidth',
+				{
+					get: () => 100,
+				}
+			);
+			const mousedown = new MouseEvent('mousedown', { cancelable: true });
+			Object.defineProperty(mousedown, 'offsetX', { value: 101 });
+
+			element.dispatchEvent(mousedown);
+
+			expect(mousedown.defaultPrevented).toBe(true);
+		});
+	});
+
 	describe('feedback messages', () => {
 		it('should ignore events when triggered on feedback messages', async () => {
 			element.helperText = 'helper text';
@@ -740,18 +1223,69 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.innerHTML = `
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			`;
-			element.selectedIndex = 2;
-			element.label = 'Label';
+	describe('typeahead', () => {
+		beforeEach(async () => {
+			element = (await fixture(`<${COMPONENT_TAG}>
+				<vwc-option value="1" text="Apple"></vwc-option>
+				<vwc-option value="2" text="Ananas"></vwc-option>
+				<vwc-option value="3" text="Nectarine"></vwc-option>
+			</${COMPONENT_TAG}>`)) as Select;
+		});
+
+		it('should select the first option that starts with the typed character', async () => {
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+
+			expect(element.selectedIndex).toBe(2);
+		});
+
+		it('should select the first option that starts with multiple typed characters', async () => {
+			element.focus();
 			await elementUpdated(element);
 
-			expect(await axe(element)).toHaveNoViolations();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(1);
 		});
+
+		it('should reset the typeahead after 5 seconds of no key presses', async () => {
+			element.focus();
+			await elementUpdated(element);
+
+			vi.useFakeTimers();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+
+			vi.advanceTimersByTime(5000);
+			vi.useRealTimers();
+
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+
+			expect(element.selectedIndex).toBe(2);
+		});
+
+		it('should make options active instead of selecting them when multiple is true', async () => {
+			element.multiple = true;
+			await elementUpdated(element);
+
+			element.focus();
+			element.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' }));
+			await elementUpdated(element);
+
+			expect(element.selectedIndex).toBe(0);
+			expect(getActiveOption()?.value).toBe('3');
+		});
+	});
+
+	it('should not add non-option children to the proxy options', async () => {
+		element.innerHTML = `
+			<vwc-option value="1" text="1"></vwc-option>
+			<option value="1">1</option>
+			<div role="option">Div option</div>
+		`;
+		await elementUpdated(element);
+
+		expect(element.proxy.options.length).toBe(2);
 	});
 });

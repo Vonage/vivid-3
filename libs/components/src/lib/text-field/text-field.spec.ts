@@ -1,15 +1,13 @@
 import {
-	axe,
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getBaseElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
-import { TextFieldType } from '@microsoft/fast-foundation';
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
-import { TextField } from './text-field';
+import { TextField, TextFieldType } from './text-field';
 import '.';
 
 // Polyfill innerText for JSDOM
@@ -27,7 +25,7 @@ if (
 	});
 }
 
-const COMPONENT_TAG_NAME = 'vwc-text-field';
+const COMPONENT_TAG = 'vwc-text-field';
 
 describe('vwc-text-field', () => {
 	function setToBlurred() {
@@ -51,13 +49,20 @@ describe('vwc-text-field', () => {
 
 	beforeEach(async () => {
 		element = (await fixture(
-			`<${COMPONENT_TAG_NAME}></${COMPONENT_TAG_NAME}>`
+			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TextField;
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-field', async () => {
 			expect(element).toBeInstanceOf(TextField);
+		});
+
+		it('should allow being created via createElement', () => {
+			// createElement may fail even though indirect instantiation through innerHTML etc. succeeds
+			// This is because only createElement performs checks for custom element constructor requirements
+			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
+			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
 	});
 
@@ -192,6 +197,15 @@ describe('vwc-text-field', () => {
 			await elementUpdated(element);
 			expect(getInput()?.hasAttribute('autofocus')).toEqual(true);
 		});
+
+		it('should focus the input element when connected', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} autofocus></${COMPONENT_TAG}>`
+			)) as TextField;
+			await elementUpdated(element);
+
+			expect(document.activeElement).toEqual(getInput());
+		});
 	});
 
 	describe('inputmode', function () {
@@ -235,6 +249,14 @@ describe('vwc-text-field', () => {
 			element.list = dataListID;
 			await elementUpdated(element);
 			expect(getInput()?.getAttribute('list')).toEqual(dataListID);
+		});
+	});
+
+	describe('spellcheck', function () {
+		it('should set spellcheck attribute on the input', async function () {
+			element.spellcheck = true;
+			await elementUpdated(element);
+			expect(getInput()?.hasAttribute('spellcheck')).toBe(true);
 		});
 	});
 
@@ -292,7 +314,7 @@ describe('vwc-text-field', () => {
 
 		it('should attach to closest form', async function () {
 			const { form: formElement } = createFormHTML<TextField>({
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				fieldName,
 				fieldValue,
 				formId,
@@ -314,7 +336,7 @@ describe('vwc-text-field', () => {
 				fieldValue,
 				formId,
 				otherFormId: 'otherFormId',
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -332,7 +354,7 @@ describe('vwc-text-field', () => {
 				fieldName,
 				fieldValue,
 				formId,
-				componentTagName: COMPONENT_TAG_NAME,
+				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
@@ -596,7 +618,7 @@ describe('vwc-text-field', () => {
 	describe('focus event', function () {
 		it('should emit a non-bubbling focus event when the input receives focus', async function () {
 			const internalInput = getInput();
-			const focusSpy = jest.fn();
+			const focusSpy = vi.fn();
 			element.addEventListener('focus', focusSpy);
 			internalInput.focus();
 			expect(focusSpy).toHaveBeenCalledTimes(1);
@@ -609,7 +631,7 @@ describe('vwc-text-field', () => {
 	describe('blur event', function () {
 		it('should emit a non-bubbling blur event when the input is blurred', async function () {
 			const internalInput = getInput();
-			const blurSpy = jest.fn();
+			const blurSpy = vi.fn();
 			element.addEventListener('blur', blurSpy);
 			internalInput.focus();
 			internalInput.blur();
@@ -628,9 +650,19 @@ describe('vwc-text-field', () => {
 
 		it('should do nothing when element is unconnected', async function () {
 			const unconnectedElement = document.createElement(
-				COMPONENT_TAG_NAME
+				COMPONENT_TAG
 			) as TextField;
 			expect(() => unconnectedElement.focus()).not.toThrow();
+		});
+	});
+
+	describe('select method', function () {
+		it('should call select on the input', async function () {
+			getInput().select = vi.fn();
+
+			element.select();
+
+			expect(getInput().select).toHaveBeenCalled();
 		});
 	});
 
@@ -681,7 +713,7 @@ describe('vwc-text-field', () => {
 
 		it('should handle setting helper text while unconnected', () => {
 			const unconnectedElement = document.createElement(
-				COMPONENT_TAG_NAME
+				COMPONENT_TAG
 			) as TextField;
 
 			expect(
@@ -690,16 +722,25 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('a11y', () => {
-		it('should pass html a11y test', async () => {
-			element.label = 'Label';
-			element.value = 'Value text';
-			element.helperText = 'Helper text';
-			element.errorText = 'Error text';
-			element.charCount = true;
-			await elementUpdated(element);
+	describe('in environments without adoptedStyleSheets', () => {
+		const adoptedStyleSheetsDescriptor = Object.getOwnPropertyDescriptor(
+			document,
+			'adoptedStyleSheets'
+		)!;
+		beforeAll(() => {
+			delete (document as any).adoptedStyleSheets;
+		});
+		afterAll(() => {
+			Object.defineProperty(
+				document,
+				'adoptedStyleSheets',
+				adoptedStyleSheetsDescriptor
+			);
+		});
 
-			expect(await axe(element)).toHaveNoViolations();
+		it('should handle being connected without error', () => {
+			element = document.createElement(COMPONENT_TAG) as TextField;
+			expect(() => element.connectedCallback()).not.toThrow();
 		});
 	});
 });
