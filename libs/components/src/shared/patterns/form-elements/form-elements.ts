@@ -52,7 +52,7 @@ export class FormElementCharCount {
 export function formElements<
 	T extends { new (...args: any[]): Record<string, any> }
 >(constructor: T) {
-	class Decorated extends constructor {
+	class FormElement extends constructor {
 		@attr label?: string;
 
 		/**
@@ -116,7 +116,7 @@ export function formElements<
 		};
 	}
 
-	return Decorated;
+	return FormElement;
 }
 
 type SomeFormElement = Partial<
@@ -228,7 +228,7 @@ function getFeedbackTypeTemplate(
 export function errorText<
 	T extends { new (...args: any[]): Record<string, any> }
 >(constructor: T) {
-	class Decorated extends constructor {
+	class ErrorText extends constructor {
 		@attr({ attribute: 'error-text' }) errorText?: string;
 		#blockValidateCalls = false;
 
@@ -263,5 +263,5 @@ export function errorText<
 		}
 	}
 
-	return Decorated;
+	return ErrorText;
 }

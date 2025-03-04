@@ -1,23 +1,17 @@
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import {
-	type Anchored,
-	anchored,
-	anchorSlotTemplateFactory,
-} from './anchored.ts';
+import { Anchored, anchorSlotTemplateFactory } from './anchored';
 
-describe('anchored', () => {
+describe('Anchored', () => {
 	const _anchorElChanged = vi.fn();
 
 	@customElement({
 		name: 'anchored-element',
 		template: anchorSlotTemplateFactory(),
 	})
-	@anchored
-	class AnchoredElement extends FASTElement {
+	class AnchoredElement extends Anchored(FASTElement) {
 		_anchorElChanged = _anchorElChanged;
 	}
-	interface AnchoredElement extends Anchored {}
 
 	let anchor: HTMLElement;
 	let element: AnchoredElement;

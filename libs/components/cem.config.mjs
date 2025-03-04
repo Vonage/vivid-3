@@ -2,6 +2,10 @@ import { readonlyPlugin } from 'cem-plugin-readonly';
 import { asyncFunctionPlugin } from 'cem-plugin-async-function';
 import { jsdocFunctionPlugin } from 'cem-plugin-jsdoc-function';
 import { jsdocExamplePlugin } from 'cem-plugin-jsdoc-example';
+import {
+	isMixin,
+	extractMixinNodes,
+} from '@custom-elements-manifest/analyzer/src/utils/mixins.js';
 import * as sass from 'sass';
 import fs from 'fs';
 
@@ -10,6 +14,7 @@ export default {
 	globs: [
 		'libs/components/src/lib/**/*.ts',
 		'libs/components/src/shared/foundation/**/*.ts',
+		'libs/components/src/shared/patterns/**/*.ts',
 		'libs/components/src/shared/date-picker/date-picker-base.ts',
 	],
 	/** Globs to exclude */
@@ -21,6 +26,7 @@ export default {
 		'**/enums.ts',
 		'**/components.ts',
 		'**/helpers/*.ts',
+		'libs/components/src/shared/patterns/affix.ts', // Cannot process @attr that is @internal
 	],
 	/** Directory to output CEM to */
 	outdir: '/dist/libs/components',
@@ -106,7 +112,7 @@ export default {
 					case ts.SyntaxKind.ClassDeclaration: {
 						const className = node.name.getText();
 						const classDoc = moduleDoc.declarations.find(
-							(x) => x.name === className
+							(x) => x.kind === 'class' && x.name === className
 						);
 						if (!classDoc) {
 							return;
@@ -151,6 +157,52 @@ export default {
 								}
 							}
 						}
+					}
+				}
+			},
+		},
+		/**
+		 * This plugin makes certain features (e.g. @attr/@event/@slot) work with mixins.
+		 * The analyzer has built in support for mixins, but it is flawed: the mixin declaration is created from the inner
+		 * class when the mixin is first encountered. That means that later plugins, like the @attr decorator plugin, will
+		 * not update the mixin. However, the inner class is still present in the moduleDoc and will be updated with the
+		 * attribute. The inner class is later dropped from the manifest as it is not exported. This plugin copies the
+		 * updated declarations from the inner class to the mixin before that happens.
+		 */
+		{
+			name: 'Improve Mixin Support',
+			analyzePhase({ ts, node, moduleDoc, context }) {
+				switch (node.kind) {
+					case ts.SyntaxKind.VariableStatement:
+					case ts.SyntaxKind.FunctionDeclaration:
+						if (isMixin(node)) {
+							const { mixinFunction, mixinClass } = extractMixinNodes(node);
+							const mixinName =
+								mixinFunction?.name?.getText() ||
+								mixinFunction?.parent?.name?.getText() ||
+								mixinFunction?.declarationList?.declarations?.[0]?.name?.getText() ||
+								'';
+							// When we encounter a mixin, store the class name so that we can associate it with the mixin later
+							context.mixinClassNames = context.mixinClassNames ?? {};
+							context.mixinClassNames[mixinName] = mixinClass.name.getText();
+						}
+						break;
+				}
+			},
+			moduleLinkPhase({ moduleDoc, context }) {
+				for (const declaration of moduleDoc.declarations) {
+					if (declaration.kind === 'mixin') {
+						const mixinClassName = context.mixinClassNames[declaration.name];
+						const mixinClass = moduleDoc.declarations.find(
+							(d) => d.kind === 'class' && d.name === mixinClassName
+						);
+						Object.assign(declaration, {
+							methods: mixinClass.methods,
+							members: mixinClass.members,
+							attributes: mixinClass.attributes,
+							events: mixinClass.events,
+							slots: mixinClass.slots,
+						});
 					}
 				}
 			},
