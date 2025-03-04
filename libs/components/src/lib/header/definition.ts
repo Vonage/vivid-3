@@ -24,3 +24,5 @@ export const headerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerHeader = createRegisterFunction(headerDefinition);
+
+export { Header as VwcHeaderElement };

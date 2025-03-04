@@ -28,3 +28,5 @@ export const selectDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerSelect = createRegisterFunction(selectDefinition);
+
+export { Select as VwcSelectElement };

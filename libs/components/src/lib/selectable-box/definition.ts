@@ -30,3 +30,5 @@ export const selectableBoxDefinition = defineVividComponent(
 export const registerSelectableBox = createRegisterFunction(
 	selectableBoxDefinition
 );
+
+export { SelectableBox as VwcSelectableBoxElement };

@@ -27,3 +27,5 @@ export const cardDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerCard = createRegisterFunction(cardDefinition);
+
+export { Card as VwcCardElement };

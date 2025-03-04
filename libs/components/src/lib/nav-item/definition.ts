@@ -27,3 +27,5 @@ export const navItemDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerNavItem = createRegisterFunction(navItemDefinition);
+
+export { NavItem as VwcNavItemElement };

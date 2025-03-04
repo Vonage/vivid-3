@@ -31,3 +31,5 @@ export const layoutDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerLayout = createRegisterFunction(layoutDefinition);
+
+export { Layout as VwcLayoutElement };

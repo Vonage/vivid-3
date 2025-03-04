@@ -26,3 +26,5 @@ export const dialPadDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerDialPad = createRegisterFunction(dialPadDefinition);
+
+export { DialPad as VwcDialPadElement };

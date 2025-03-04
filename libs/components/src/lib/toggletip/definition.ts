@@ -24,3 +24,5 @@ export const toggletipDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerToggletip = createRegisterFunction(toggletipDefinition);
+
+export { Toggletip as VwcToggletipElement };

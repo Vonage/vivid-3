@@ -23,3 +23,5 @@ export const sideDrawerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerSideDrawer = createRegisterFunction(sideDrawerDefinition);
+
+export { SideDrawer as VwcSideDrawerElement };

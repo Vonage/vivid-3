@@ -35,3 +35,5 @@ export const timePickerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTimePicker = createRegisterFunction(timePickerDefinition);
+
+export { TimePicker as VwcTimePickerElement };

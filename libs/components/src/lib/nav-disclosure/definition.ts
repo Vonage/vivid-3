@@ -26,3 +26,5 @@ export const navDisclosureDefinition = defineVividComponent(
 export const registerNavDisclosure = createRegisterFunction(
 	navDisclosureDefinition
 );
+
+export { NavDisclosure as VwcNavDisclosureElement };

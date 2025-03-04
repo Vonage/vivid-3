@@ -27,3 +27,5 @@ export const bannerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerBanner = createRegisterFunction(bannerDefinition);
+
+export { Banner as VwcBannerElement };

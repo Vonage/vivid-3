@@ -32,3 +32,5 @@ export const menuDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerMenu = createRegisterFunction(menuDefinition);
+
+export { Menu as VwcMenuElement };
