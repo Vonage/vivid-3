@@ -425,8 +425,13 @@
 	},
 	{
 		"title": "Pagination",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/pagination/README.md"
+		"description": "Help users navigate forwards and backwards through a series of pages. For example, search results or guidance that’s divided into multiple pages.",
+		"variations": "./libs/components/src/lib/pagination/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/pagination/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/pagination/README.md",
+		"accessibility": "./libs/components/src/lib/pagination/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/pagination/USE-CASES.md"
 	},
 	{
 		"title": "Empty State",

@@ -1,68 +1,16 @@
-import type { ViewTemplate } from '@microsoft/fast-element';
-import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
-import { classNames } from '@microsoft/fast-web-utilities';
+import { html, ref, slotted } from '@microsoft/fast-element';
 import { Popup } from '../popup/popup';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { TimePicker } from './time-picker';
-import type { PickerOption } from './time/picker';
-
-/**
- * Renders a picker for hours/minutes/etc. using a listbox pattern.
- */
-const renderPicker = (
-	id: string,
-	getLabel: (x: TimePicker) => string,
-	getSelected: (x: TimePicker) => string | undefined,
-	setSelected: (x: TimePicker) => (value: string) => void,
-	getOptions: (x: TimePicker) => PickerOption[]
-): ViewTemplate<TimePicker> => {
-	return html<TimePicker>`
-		<ul
-			id="${id}"
-			class="picker"
-			role="listbox"
-			tabindex="0"
-			aria-label="${getLabel}"
-			aria-activedescendant="${(x) =>
-				getSelected(x) ? `${id}-${getSelected(x)}` : undefined}"
-			@keydown="${(x, c) =>
-				x._onPickerKeyDown(
-					id,
-					getOptions(x),
-					getSelected(x),
-					setSelected(x),
-					c.event as KeyboardEvent
-				)}"
-		>
-			${repeat(
-				getOptions,
-				html<PickerOption>`
-					<li
-						id="${(x) => `${id}-${x.value}`}"
-						class="${(x, c) =>
-							classNames('item', [
-								'selected',
-								getSelected(c.parent) === x.value,
-							])}"
-						role="option"
-						aria-selected="${(x, c) => getSelected(c.parent) === x.value}"
-						@click="${(x, c) =>
-							c.parent._onPickerItemClick(id, setSelected(c.parent), x.value)}"
-					>
-						${(x) => x.label}
-					</li>
-				`
-			)}
-		</ul>
-	`;
-};
+import { InlineTimePicker } from './inline-time-picker/inline-time-picker';
 
 export const TimePickerTemplate = (context: VividElementDefinitionContext) => {
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
 	const buttonTag = context.tagFor(Button);
+	const inlineTimePickerTag = context.tagFor(InlineTimePicker);
 
 	return html<TimePicker>`<div class="base" @keydown="${(x, { event }) =>
 		x._onBaseKeyDown(event as KeyboardEvent)}">
@@ -106,42 +54,20 @@ export const TimePickerTemplate = (context: VividElementDefinitionContext) => {
 				'_dialogEl'
 			)} aria-modal="true" aria-label="${(x) =>
 		x.locale.timePicker.chooseTimeLabel}">
-				<div class="time-pickers">
-					${renderPicker(
-						'hours',
-						(x) => x.locale.timePicker.hoursLabel,
-						(x) => x._selectedHour,
-						(x) => (v) => (x._selectedHour = v),
-						(x) => x._hours
-					)}
-					${renderPicker(
-						'minutes',
-						(x) => x.locale.timePicker.minutesLabel,
-						(x) => x._selectedMinute,
-						(x) => (v) => (x._selectedMinute = v),
-						(x) => x._minutes
-					)}
-					${when(
-						(x) => x._displaySeconds,
-						renderPicker(
-							'seconds',
-							(x) => x.locale.timePicker.secondsLabel,
-							(x) => x._selectedSecond,
-							(x) => (v) => (x._selectedSecond = v),
-							(x) => x._seconds
-						)
-					)}
-					${when(
-						(x) => x._use12hClock,
-						renderPicker(
-							'meridies',
-							(x) => x.locale.timePicker.meridiesLabel,
-							(x) => x._selectedMeridiem,
-							(x) => (v) => (x._selectedMeridiem = v),
-							(x) => x._meridies
-						)
-					)}
-				</div>
+				<${inlineTimePickerTag}
+					id="inline-time-picker"
+					${ref('_inlineTimePickerEl')}
+					:value="${(x) => x.value || undefined}"
+					:clock="${(x) => (x._use12hClock ? '12h' : '24h')}"
+					:min="${(x) => x.min || undefined}"
+					:max="${(x) => x.max || undefined}"
+					:minutesStep="${(x) => x.minutesStep ?? 1}"
+					:secondsStep="${(x) => x.secondsStep ?? undefined}"
+					@change="${(x, c) =>
+						x._onInlineTimePickerChange(c.event as CustomEvent<string>)}"
+					@last-column-selected="${(x) => x._onInlineTimePickerLastColumnSelected()}"
+					>
+				</${inlineTimePickerTag}>
 				<div class="footer">
 					<${buttonTag}
 						class="vwc-button"
