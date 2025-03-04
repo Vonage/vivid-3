@@ -8,7 +8,7 @@ import type { Button } from '../button/button';
 import { Tooltip } from './tooltip';
 import '.';
 
-const COMPONENT_TAG = 'a11y: vwc-tooltip';
+const COMPONENT_TAG = 'vwc-tooltip';
 
 describe('vwc-tooltip', () => {
 	let element: Tooltip;

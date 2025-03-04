@@ -91,3 +91,10 @@ export enum MediaSkipBy {
 	Ten = '10',
 	Thirty = '30',
 }
+
+export enum Sticky {
+	None = 'none',
+	Header = 'header',
+	Column = 'column',
+	All = 'all',
+}

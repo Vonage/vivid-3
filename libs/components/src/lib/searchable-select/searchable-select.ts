@@ -1064,6 +1064,24 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	override validate() {
 		super.validate(this._input ?? undefined);
 	}
+
+	/**
+	 * @internal
+	 */
+	override focus(options?: FocusOptions) {
+		this._input?.focus(options);
+	}
+
+	/**
+	 * @internal
+	 */
+	_onMouseDown(event: MouseEvent) {
+		if (!event.defaultPrevented) {
+			this._input.focus();
+			return false;
+		}
+		return true;
+	}
 }
 
 export interface SearchableSelect

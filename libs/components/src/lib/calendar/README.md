@@ -59,6 +59,59 @@ Unless provided, choice will be set according to local time preference (e.g. US 
 <vwc-calendar hour12></vwc-calendar>
 ```
 
+### Sticky Mode
+
+Set the `sticky-mode` attribute to make the days (`header`) or the time (`column`) or `both` sticky.  
+If no width or height is set on the calendar there will be no scroll, and no sticky elements.
+
+- Type: `'none'` | `'header'` | `'column'` | `'all'`
+
+```html preview
+<div class="wrapper">
+	<vwc-calendar sticky-mode="all"></vwc-calendar>
+</div>
+
+<style>
+	.wrapper {
+		display: block;
+		max-inline-size: 550px;
+		max-block-size: 550px;
+		background-color: var(--vvd-color-canvas);
+		padding: 32px;
+	}
+</style>
+```
+
+<vwc-note connotation="warning" icon="warning-line" headline="Setting Sticky-Mode to all">
+	<p>By default, sticky-mode is set to <code>none</code>. In the next breaking change it will be set to <code>all</code></p>
+	<p></p>
+</vwc-note>
+
+## CSS Variables
+
+### Calendar Column / Header Background Color
+
+When using Sticky-Mode for header or column or both, set the css-variable `--calendar-column-background-color` with background color if its other than `--vvd-color-canvas`
+
+```html preview
+<div class="wrapper">
+	<vwc-calendar sticky-mode="all"></vwc-calendar>
+</div>
+
+<style>
+	.wrapper {
+		--calendar-header-background-color: var(--vvd-color-neutral-100);
+		--calendar-column-background-color: var(--vvd-color-neutral-100);
+
+		display: block;
+		max-inline-size: 550px;
+		max-block-size: 550px;
+		background-color: var(--vvd-color-neutral-100);
+		padding: 32px;
+	}
+</style>
+```
+
 ## Slots
 
 ### Day

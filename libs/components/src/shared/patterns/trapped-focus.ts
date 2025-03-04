@@ -1,4 +1,10 @@
 export class TrappedFocus {
+	private static ignoredEvents = new WeakSet<Event>();
+
+	static ignoreEvent(event: Event) {
+		this.ignoredEvents.add(event);
+	}
+
 	/**
 	 * @returns Whether focus was trapped.
 	 * @internal
@@ -7,7 +13,7 @@ export class TrappedFocus {
 		event: KeyboardEvent,
 		getFocusableEls: () => NodeListOf<HTMLElement>
 	) {
-		if (event.key === 'Tab') {
+		if (!TrappedFocus.ignoredEvents.has(event) && event.key === 'Tab') {
 			const focusableEls = getFocusableEls();
 			const firstFocusableEl = focusableEls[0];
 			const lastFocusableEl = focusableEls[focusableEls.length - 1];

@@ -254,14 +254,24 @@
 	},
 	{
 		"title": "Menu",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/menu/README.md",
+		"description": "The Menu is an interactive element that appears in response to user actions. It typically presents a list of Menu Items (actions) relevant to the current context.",
+		"variations": "./libs/components/src/lib/menu/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/menu/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/menu/README.md",
+		"accessibility": "./libs/components/src/lib/menu/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/menu/USE-CASES.md",
 		"children": ["Menu Item"]
 	},
 	{
 		"title": "Menu Item",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/menu-item/README.md",
+		"description": "An option to appear inside a Menu.",
+		"variations": "./libs/components/src/lib/menu-item/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/menu-item/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/menu-item/README.md",
+		"accessibility": "./libs/components/src/lib/menu-item/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/menu-item/USE-CASES.md",
 		"parent": "Menu"
 	},
 	{
@@ -425,8 +435,13 @@
 	},
 	{
 		"title": "Pagination",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/pagination/README.md"
+		"description": "Help users navigate forwards and backwards through a series of pages. For example, search results or guidance that’s divided into multiple pages.",
+		"variations": "./libs/components/src/lib/pagination/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/pagination/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/pagination/README.md",
+		"accessibility": "./libs/components/src/lib/pagination/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/pagination/USE-CASES.md"
 	},
 	{
 		"title": "Empty State",
