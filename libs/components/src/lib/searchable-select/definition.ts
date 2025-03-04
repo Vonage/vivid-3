@@ -33,9 +33,6 @@ const searchableSelectDefinition = defineVividComponent(
 	[buttonDefinition, popupDefinition, iconDefinition, optionTagDefinition],
 	{
 		styles,
-		shadowOptions: {
-			delegatesFocus: true,
-		},
 	}
 );
 

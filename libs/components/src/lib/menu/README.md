@@ -1,43 +1,82 @@
-# Menu
+## Usage
 
-Menu, commonly known as a "context menu", is an element that is displayed upon user interaction. It is typically used to provide a list of actions available in the current context for a user to choose from.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/menu';</script>
+import '@vonage/vivid/menu';
+import '@vonage/vivid/menu-item';
+```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerMenu, registerMenuItem } from '@vonage/vivid';
+
+registerMenu('your-prefix');
+registerMenuItem('your-prefix');
 ```
 
 ```html preview 200px
-<vwc-menu open aria-label="Menu example" placement="bottom-end">
-	<vwc-button
+<script type="module">
+	import {
+		registerMenu,
+		registerMenuItem,
+		registerButton,
+	} from '@vonage/vivid';
+	const prefix = 'your-prefix';
+	registerMenu(prefix);
+	registerMenuItem(prefix);
+
+	registerButton(prefix);
+</script>
+
+<your-prefix-menu
+	open
+	aria-label="Menu example"
+	placement="bottom-end"
+	trigger="auto"
+>
+	<your-prefix-button
 		slot="anchor"
 		icon="more-vertical-line"
 		aria-label="Open menu"
 		appearance="outlined"
-	></vwc-button>
-	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-</vwc-menu>
+	></your-prefix-button>
+	<your-prefix-menu-item text="Menu item 1"></your-prefix-menu-item>
+	<your-prefix-menu-item text="Menu item 2"></your-prefix-menu-item>
+</your-prefix-menu>
 ```
 
-## Members
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-### Open
-
-The `open` attribute controls the visibility of the menu.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 150px
-<vwc-menu open aria-label="Menu example">
-	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-</vwc-menu>
+```html
+<script setup lang="ts">
+	import { VMenu, VMenuItem, VButton } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VMenu open ariaLabel="Menu example" placement="bottom-end">
+		<VButton
+			slot="anchor"
+			icon="more-vertical-line"
+			aria-Label="Open menu"
+			appearance="outlined"
+		/>
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+	</VMenu>
+</template>
 ```
 
-### Trigger
+</vwc-tab-panel>
+</vwc-tabs>
 
-The `trigger` attribute controls whether the menu opens and closes itself automatically.
+## Trigger
+
+The `trigger` attribute controls whether the Menu opens and closes itself automatically.
 
 - `auto` - The menu opens and closes automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
 - `legacy` (default) - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
@@ -49,10 +88,7 @@ We will change the default value of `trigger` to `auto` in a future major versio
 
 </vwc-note>
 
-- Type: `"auto" | "legacy" | "off"`
-- Default: `"legacy"`
-
-```html preview 300px
+```html preview 340px
 <vwc-menu aria-label="Menu example" trigger="auto" placement="bottom-end">
 	<vwc-button
 		slot="anchor"
@@ -65,29 +101,30 @@ We will change the default value of `trigger` to `auto` in a future major versio
 	<vwc-divider></vwc-divider>
 	<vwc-menu-item role="menuitemcheckbox" text="Option 1"></vwc-menu-item>
 	<vwc-menu-item role="menuitemcheckbox" text="Option 2"></vwc-menu-item>
+	<vwc-divider></vwc-divider>
+	<vwc-menu-item role="menuitemradio" text="Option 1"></vwc-menu-item>
+	<vwc-menu-item role="menuitemradio" text="Option 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
-### Auto Dismiss
+## Auto Dismiss
 
-Use the auto dismiss property to automatically close the menu when focus is moved away from it, i.e. by clicking outside the menu.
-
-- Type: `boolean`
-- Default: `false`
+The `auto-dismiss` attribute sets it to automatically close when focus is moved away from it, i.e. by clicking outside the menu.
 
 ```html preview 200px
 <div style="position: relative">
 	<vwc-menu
+		auto-dismiss
 		id="menu"
 		open
 		trigger="auto"
-		auto-dismiss
 		aria-label="Menu example"
 	>
 		<vwc-button
 			slot="anchor"
 			label="Toggle Menu"
 			appearance="outlined"
+			dropdown-indicator
 		></vwc-button>
 		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
@@ -95,46 +132,9 @@ Use the auto dismiss property to automatically close the menu when focus is move
 </div>
 ```
 
-### Placement
+## Position Strategy
 
-Use the `placement` attribute to control the position of the menu relative to its anchor.
-
-- Type: `'top'` | `'top-start'` | `'top-end'` | `'right'` | `'right-start'` | `'right-end'` | `'bottom'` | `'bottom-start'` | `'bottom-end'`| `'left'` | `'left-start'`| `'left-end'`
-- Default: `'bottom'`
-
-<vwc-note connotation="warning" icon="warning-line" headline="Bottom Placement at Viewport side">
-
-When the menu anchor is placed close to the start/end of the viewport, `placement` of `bottom` or `top` will not present well due to lack of space.
-
-In such cases - prefer using `bottom-start` or `end` instead.
-
-</vwc-note>
-
-```html preview 150px
-<div style="position: relative; text-align: end;">
-	<vwc-menu
-		placement="left-start"
-		open
-		trigger="auto"
-		aria-label="Menu example"
-	>
-		<vwc-button
-			slot="anchor"
-			label="Toggle Menu"
-			appearance="outlined"
-		></vwc-button>
-		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
-		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
-	</vwc-menu>
-</div>
-```
-
-### Position Strategy
-
-Add the `position-strategy` attribute to set the menu to be positioned `absolute` instead of `fixed`.
-
-- Type: `fixed` | `absolute`
-- Default: `fixed`
+The `position-strategy` attribute sets the position strategy. It can be set to `fixed` (default) or `absolute`.
 
 <vwc-note connotation="information" icon="info-solid" headline="Prefer using the default position strategy (fixed)">
 
@@ -164,19 +164,20 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 </div>
 ```
 
-### Anchor
+## Anchor
 
-It's best to use the [`anchor` slot](#anchor-1) to set the anchor, but you can also use the `anchor` member.
+<vwc-note connotation="information" icon="info-line" headline="Prefer using the anchot slot">
 
-Either set it to the `id` of the anchor element or pass the anchor element itself.
+It is recommended use the [`anchor` slot](#anchor-slot-menu) to set the anchor.
 
-- Type: `string | HTMLElement`
-- Default: `undefined`
+</vwc-note>
+
+The `anchor` attribute should be set to the `id` value of the anchor element or pass the anchor element itself.
 
 ```html preview center 200px
 <div style="position: relative">
 	<vwc-button id="button1" label="ID anchor" appearance="outlined"></vwc-button>
-	<vwc-menu anchor="button1" aria-label="ID anchor menu example">
+	<vwc-menu anchor="button1" aria-label="ID anchor menu example" auto-dismiss>
 		<vwc-menu-item text="My anchor is an ID"></vwc-menu-item>
 	</vwc-menu>
 
@@ -185,7 +186,7 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 		label="HTMLElement anchor"
 		appearance="outlined"
 	></vwc-button>
-	<vwc-menu id="menu2" aria-label="HTML element menu example">
+	<vwc-menu id="menu2" aria-label="HTML element menu example" auto-dismiss>
 		<vwc-menu-item text="My anchor is an HTMLElement"></vwc-menu-item>
 	</vwc-menu>
 </div>
@@ -198,24 +199,30 @@ Either set it to the `id` of the anchor element or pass the anchor element itsel
 </script>
 ```
 
+<vwc-note connotation="warning" icon="warning-line">
+
+**Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
+
+</vwc-note>
+
 ## Slots
 
-### Default
+### Default Slot
 
-The default slot for the menu items.
+The default slot is for the menu items.
 
-While any DOM content is permissible as a child of the menu, only `vwc-menu-item`'s and slotted content with a role of menu `item`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
+While any DOM content is permissible as a child of the Menu, only **Menu Items** and slotted content with a role of `menuitem`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
-```html preview 150px
+```html preview 130px
 <vwc-menu open aria-label="Menu example">
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
 ```
 
-### Anchor
+### Anchor Slot
 
-The menu positions itself relative to an anchor element. Place it inside the `anchor` slot of the menu.
+The Menu positions itself relative to an anchor element. Place it inside the `anchor` slot. It is recommended to use the [Button](/components/button/) component as the anchor element.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example" placement="bottom-end">
@@ -230,9 +237,9 @@ The menu positions itself relative to an anchor element. Place it inside the `an
 </vwc-menu>
 ```
 
-### Header
+### Header Slot
 
-Use the `header` slot in order to add additional content to the top of the menu.
+Use the `header` slot to add additional content to the top of the menu.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
@@ -246,9 +253,9 @@ Use the `header` slot in order to add additional content to the top of the menu.
 </vwc-menu>
 ```
 
-### Action Items
+### Action Items Slot
 
-Use the `action-items` slot to add action items to the bottom of the menu.
+The `action-items` slot allows the addition of action items (in this case, a Button) to the bottom of the Menu.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
@@ -266,12 +273,12 @@ Use the `action-items` slot to add action items to the bottom of the menu.
 
 ### Maximum Inline Size
 
-Use the `--menu-max-inline-size` variable to set the menu's inline size.
+Use the `--menu-max-inline-size` variable to set the maximum inline size.
 
 - Default: `max-content`
 
 <vwc-note connotation="information" icon="info-solid">
-<p>When setting a value to the <code>max-inline-size</code> - make sure the menu is OK in small resolutions as well. </p>
+<p>When setting a value to the <code>max-inline-size</code> - make sure the Menu is OK in small resolutions as well. </p>
 <p>In mobile, the <code>max-inline-size</code> is <code>300px</code> by default, but can be changed with the css-variable. </p>
 </vwc-note>
 
@@ -291,7 +298,7 @@ Use the `--menu-max-inline-size` variable to set the menu's inline size.
 
 ### Minimum Inline Size
 
-Use the `--menu-min-inline-size` variable to set the menu's inline size.
+Use the `--menu-min-inline-size` variable to set th minimum inline size.
 
 - Default: `auto`
 
@@ -309,7 +316,7 @@ Use the `--menu-min-inline-size` variable to set the menu's inline size.
 
 ### Menu Block Size
 
-Use the `--menu-block-size` variable to set the menu's block size.
+Use the `--menu-block-size` variable to set the block size.
 
 - Default: `408px`
 
@@ -331,150 +338,54 @@ Use the `--menu-block-size` variable to set the menu's block size.
 </vwc-menu>
 ```
 
-## Events
+## API Reference
+
+### Properties
 
 <div class="table-wrapper">
 
-| Name    | Type                     | Bubbles | Composed | Description                   |
-| ------- | ------------------------ | ------- | -------- | ----------------------------- |
-| `open`  | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is opened |
-| `close` | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is closed |
+| Name                 | Type                                                                                                                                                                    | Description                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **anchor**           | `string`, `HTMLElement`                                                                                                                                                 | `id` or the anchor element itself                                     |
+| **auto-dismiss**     | `boolean`                                                                                                                                                               | Sets the Menu to close when focus is lost                             |
+| **open**             | `boolean`                                                                                                                                                               | Sets the open state of the Menu                                       |
+| **placement**        | `left-start`, `left-center` `left-end`, `right-start`, `right-center`, `right-end`, `top-start`, `top-center`, `top-end`, `bottom-start`, `bottom-center`, `bottom-end` | Sets the desired position of the Menu relative to it's anchor element |
+| **position-stategy** | `fixed` (deafult), `absolute`                                                                                                                                           | Sets the position strategy                                            |
+| **trigger**          | `none`, `legacy` (default), `auto`                                                                                                                                      | Sets trigger method of Menu                                           |
 
 </div>
 
-## Methods
+### Slots
 
 <div class="table-wrapper">
 
-| Name                   | Returns | Description                                                                                                                                        |
-| ---------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `focus`                | `void`  | Moves focus into the Menu. If there is a child with the `autofocus` attribute, it will be focused. Otherwise, the first Menu Item will be focused. |
-| `collapseExpandedItem` | `void`  | Collapses any expanded Menu Items.                                                                                                                 |
+| Name             | Description                                                             |
+| ---------------- | ----------------------------------------------------------------------- |
+| **default**      | For Menu Item components or HTML elements with the `role` or `menuitem` |
+| **anchor**       | For the anchor element                                                  |
+| **header**       | Add content to the top of Menu                                          |
+| **action-items** | Add action items to the end of Menu                                     |
 
 </div>
 
-## Accessibility
+#### Events
 
-The Menu requires an accessible name. It is the consumer's concern to provide an `aria-label` to the Menu.
+<div class="table-wrapper">
 
-If you are using menu with the `anchor` prop, it is important to place the menu directly after the anchor element in the source code so that the correct tab order is maintained.
+| Name      | Type                     | Bubbles | Composed | Description                   |
+| --------- | ------------------------ | ------- | -------- | ----------------------------- |
+| **open**  | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is opened |
+| **close** | `CustomEvent<undefined>` | No      | Yes      | Fired when the menu is closed |
 
-The menu will set appropriate values for the `aria-haspopup` and `aria-expanded` attribute on the anchor element.
+</div>
 
-## Caveat
+### Methods
 
-Document elements display precedence is formed by the imaginary z-axis [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context), commonly by order of which elements are rendered and special properties (e.g. _z-index_).
-Menu component is a low level element, unaware of its document context, but is, in most cases, required to overlay on top of all elements.
+<div class="table-wrapper">
 
-A common practice used in apps / frameworks to promote a menu component to top other elements z-axis, is to utilise a service that dynamically appends a menu component to the end of the body element, when called for.
+| Name                     | Returns | Description                                                                                                                                        |
+| ------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **focus**                | `void`  | Moves focus into the Menu. If there is a child with the `autofocus` attribute, it will be focused. Otherwise, the first Menu Item will be focused. |
+| **collapseExpandedItem** | `void`  | Collapses any expanded Menu Items.                                                                                                                 |
 
-This helps ensure elements don't render on top of a menu undesirably.
-
-## Keyboard Interaction
-
-When anchor has focus:
-
-- `Enter` - Opens the menu.
-- `Space` - Opens the menu.
-
-When the menu has focus:
-
-- `ArrowDown` - Moves focus to the next menu item.
-- `ArrowUp` - Moves focus to the previous menu item.
-- `Home` - Moves focus to the first menu item.
-- `End` - Moves focus to the last menu item.
-- `Escape` - Closes the menu.
-
-## Focus Management
-
-When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
-
-## Use Cases
-
-### Dropdown menu with checkbox
-
-```html preview 350px
-<vwc-menu
-	placement="bottom-start"
-	open
-	trigger="auto"
-	aria-label="Menu example"
->
-	<vwc-button slot="anchor" label="Select" appearance="filled"></vwc-button>
-	<vwc-text-field
-		slot="header"
-		placeholder="Search"
-		icon="search"
-		autofocus
-	></vwc-text-field>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 3"></vwc-menu-item>
-	<vwc-button
-		slot="action-items"
-		appearance="outlined"
-		label="Close"
-	></vwc-button>
-	<vwc-button
-		slot="action-items"
-		appearance="filled"
-		label="Select"
-	></vwc-button>
-</vwc-menu>
-```
-
-### Menu Anchor
-
-```html preview 250px
-<vwc-menu placement="bottom-start" open aria-label="Menu example">
-	<vwc-button slot="anchor" icon="close-line"></vwc-button>
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<vwc-menu-item
-			role="presentation"
-			text="My Addresses"
-			icon="address-book-line"
-		></vwc-menu-item>
-	</a>
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<vwc-menu-item
-			role="presentation"
-			text="My Profile"
-			icon="profile-line"
-		></vwc-menu-item>
-	</a>
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<vwc-menu-item
-			role="presentation"
-			text="Team"
-			icon="group-line"
-		></vwc-menu-item>
-	</a>
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<vwc-menu-item
-			role="presentation"
-			text="Logout"
-			icon="quit-line"
-		></vwc-menu-item>
-	</a>
-</vwc-menu>
-```
+</div>
