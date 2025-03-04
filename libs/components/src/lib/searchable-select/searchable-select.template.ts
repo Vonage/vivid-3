@@ -124,7 +124,6 @@ function renderFieldset(context: VividElementDefinitionContext) {
 					<input
 						id="control"
 						class="control"
-						autofocus
 						autocomplete="off"
 						aria-autocomplete="list"
 						aria-expanded="${(x) => x.open}"
@@ -236,7 +235,10 @@ export const SearchableSelectTemplate = (
 	const optionTagTag = context.tagFor(OptionTag);
 
 	return html<SearchableSelect>`
-		<template :_optionTagTagName="${() => optionTagTag}">
+		<template
+			:_optionTagTagName="${() => optionTagTag}"
+			@mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"
+		>
 			<div class="control-wrapper">
 				${renderControl(context)} ${getFeedbackTemplate(context)}
 			</div>
