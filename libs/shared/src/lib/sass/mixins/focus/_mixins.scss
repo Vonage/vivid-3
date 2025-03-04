@@ -3,7 +3,7 @@
 
 @mixin focus {
 	$outline-width: 1px;
-	box-shadow: 0 0 0 3px color-mix(in srgb, var(#{constants.$vvd-color-cta-600}), transparent 88%),
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(#{constants.$vvd-color-cta-600}), transparent 88%),
 	inset 0 0 0 3px
 		var(#{variables.$focus-stroke-gap-color}, currentColor);
 	outline: $outline-width solid

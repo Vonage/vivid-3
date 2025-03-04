@@ -73,7 +73,6 @@ $gutter: 2px;
 	inline-size: $size;
 
 	.base:focus-visible & {
-		#{focus-variables.$focus-inset}: -3px;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		&::before {
@@ -81,10 +80,13 @@ $gutter: 2px;
 
 			position: absolute;
 			display: block;
-			border-radius: 2px;
-			block-size: $size;
+			border-radius: inherit;
+			block-size: calc($size + 4px);
 			content: '';
-			inline-size: $size;
+			inline-size: calc($size + 4px);
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			transform: translate(-50%, -50%);
 		}
 	}
 

@@ -207,15 +207,16 @@
 	}
 
 	&:focus-visible {
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-
 		@include focus.focus;
+		 & {
+			 #{focus-variables.$focus-stroke-gap-color}: transparent;
+			 color: var(#{constants.$vvd-color-canvas-text});
 
-		color: var(#{constants.$vvd-color-canvas-text});
+		 }
 
 		&.start,
 		&.end {
-				border-width: 3px;
+			border-width: 3px;
 		}
 	}
 

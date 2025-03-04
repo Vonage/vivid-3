@@ -19,26 +19,26 @@
 }
 
 .control {
-	border-radius: #{border-radius-variables.$border-radius-condensed};
 	font: inherit;
 
 	&:focus-visible {
+		position: relative;
+		outline: none;
 
 		&::before {
 			@include focus.focus;
+			#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 			position: absolute;
 			display: block;
-			border-radius: inherit;
-			block-size: 100%;
+			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+			block-size: calc(100% + 8px);
 			content: '';
-			inline-size: 100%;
+			inline-size: calc(100% + 8px);
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			transform: translate(-50%, -50%);
 		}
-
-
-		//@include focus.focus;
-		//#{focus-variables.$focus-stroke-gap-color}: transparent;
-		//#{focus-variables.$focus-inset}: -4px;
 	}
 
 	&:any-link {
