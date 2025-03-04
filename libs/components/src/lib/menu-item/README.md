@@ -1,242 +1,68 @@
-# Menu Item
+## Usage
+
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/menu-item';</script>
+import '@vonage/vivid/menu';
+import '@vonage/vivid/menu-item';
 ```
 
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item text="Menu item"></vwc-menu-item>
-</vwc-menu>
+or, if you need to use a unique prefix:
+
+```js
+import { registerMenu, registerMenuItem } from '@vonage/vivid';
+
+registerMenu('your-prefix');
+registerMenuItem('your-prefix');
 ```
-
-## Members
-
-### Text
-
-- Type: `string`
-- Default: `undefined`
-
-Use the `text` attribute to set the menu item's text.
-
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item text="Menu item"></vwc-menu-item>
-</vwc-menu>
-```
-
-### Secondary text
-
-- Type: `string`
-- Default: `undefined`
-
-Use the `text-secondary` attribute (or `textSecondary` property) to set the menu item's secondary text.
-
-Note: to improve readability, **avoid long text and multiple lines** where possible.
-
-```html preview 150px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		text="menu item"
-		text-secondary="secondary text"
-	></vwc-menu-item>
-</vwc-menu>
-```
-
-### Role
-
-set `role` to change the role of the menu item
-
-- Type: `'menuitem'` | `'menuitemcheckbox'` | `'menuitemradio'` | `'presentation'`
-- Default: `'menuitem'`
-
-```html preview 450px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item role="menuitem" text="Menu item 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitem" text="Menu item 2"></vwc-menu-item>
-	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2"></vwc-menu-item>
-	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemradio" text="Radio 1.1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="Radio 1.2"></vwc-menu-item>
-	<vwc-divider></vwc-divider>
-	<vwc-menu-item role="menuitemradio" text="Radio 2.1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="Radio 2.2"></vwc-menu-item>
-	<vwc-divider></vwc-divider>
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<vwc-menu-item role="presentation" text="Go to Vonage"></vwc-menu-item>
-	</a>
-</vwc-menu>
-```
-
-### Icon
-
-Use `icon` to set an icon to the nav item.
-View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
-
-Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the nav item's purpose.
-
-- Type: `string`
-- Default: `undefined`
-
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item icon="file-pdf-line" text="Export to PDF"></vwc-menu-item>
-</vwc-menu>
-```
-
-### Check trailing
-
-When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the `check-trailing` attribute to change where the checkbox / radio indicator is placed .
-
-If the `icon` attribute is present, the indicator will be trailing by default.
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 350px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		text="Checkbox 1"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		text="Checkbox 2"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		icon="image-line"
-		role="menuitemcheckbox"
-		text="Check 3"
-	></vwc-menu-item>
-	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 1"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 2"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		icon="image-line"
-		role="menuitemradio"
-		text="Radio 3"
-	></vwc-menu-item>
-</vwc-menu>
-```
-
-### Check appearance
-
-When `role` is set to `'menuitemcheckbox'` or `'menuitemradio'`, you can set the `check-appearance` attribute to change the appearance of the checkbox / radio indicator.
-
-- Type: `'normal'` | `'tick-only'`
-- Default: `'normal'`
-
-```html preview 250px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		text="Checkbox 1"
-		check-appearance="tick-only"
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		text="Checkbox 2"
-		check-appearance="tick-only"
-	></vwc-menu-item>
-	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 1"
-		check-appearance="tick-only"
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 1"
-		check-appearance="tick-only"
-	></vwc-menu-item>
-</vwc-menu>
-```
-
-### Checked
-
-The checked value of the element (if role is set to `'menuitemcheckbox'`).
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		checked
-		text="Checked Menu item"
-	></vwc-menu-item>
-</vwc-menu>
-```
-
-### Connotation
-
-Use the `connotation` attribute to set the menu-item checked color.
-
-- Type: `'accent'` | `'cta'`
-- Default: `'accent'`
 
 ```html preview 200px
-<vwc-menu open aria-label="Example menu" style="--menu-block-size: auto;">
-	<vwc-menu-item
-		role="menuitemcheckbox"
-		checked
-		text="menu item"
-		text-secondary="connotation accent"
-	></vwc-menu-item>
-	<vwc-menu-item
-		connotation="cta"
-		role="menuitemcheckbox"
-		checked
-		text="menu item"
-		text-secondary="connotation cta"
-	></vwc-menu-item>
-</vwc-menu>
+<script type="module">
+	import { registerMenu, registerMenuItem } from '@vonage/vivid';
+	const prefix = 'your-prefix';
+	registerMenu(prefix);
+	registerMenuItem(prefix);
+</script>
+
+<your-prefix-menu
+	open
+	aria-label="Menu example"
+	placement="bottom-end"
+	trigger="auto"
+>
+	<your-prefix-menu-item text="Menu item 1"></your-prefix-menu-item>
+	<your-prefix-menu-item text="Menu item 2"></your-prefix-menu-item>
+</your-prefix-menu>
 ```
 
-### Disabled
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
 
-The disabled state of the element
-
-- Type: `boolean`
-- Default: `false`
-
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item disabled text="Disabled Menu item"></vwc-menu-item>
-</vwc-menu>
+```html
+<script setup lang="ts">
+	import { VMenu, VMenuItem } from '@vonage/vivid-vue';
+</script>
+<template>
+	<VMenu open ariaLabel="Menu example" placement="bottom-end">
+		<VMenuItem text="Menu item 1" />
+		<VMenuItem text="Menu item 2" />
+	</VMenu>
+</template>
 ```
 
-<!-- ### Expanded
-
-The expanded state of the element
-
-- Type: `boolean`
-- Default: `false` -->
+</vwc-tab-panel>
+</vwc-tabs>
 
 ## Slots
 
-### meta
+### Meta Slot
 
-Assign nodes to the `meta` slot to set a badge or an additional icon.  
-Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
+Use the `meta` slot to add an element (like a badge or an additional icon).
+
+Using this slot it sets the icon, checkbox or radio to be trailing.
 
 ```html preview 200px
 <vwc-menu open aria-label="Example menu">
@@ -270,9 +96,9 @@ Slot `meta` makes icon/checkbox/radiobutton to be `trailing`.
 </vwc-menu>
 ```
 
-### trailing-meta
+### Trailing Meta Slot
 
-Assign nodes to the `trailing-meta` slot to set a badge or an additional icon.
+Use the `trailing-meta` slot to add an element (like a badge or an additional icon) to the end of Menu Item.
 
 ```html preview 170px
 <vwc-menu open aria-label="Example menu">
@@ -282,15 +108,15 @@ Assign nodes to the `trailing-meta` slot to set a badge or an additional icon.
 			slot="trailing-meta"
 			appearance="subtle"
 			connotation="cta"
-			text="new"
+			text="New"
 		></vwc-badge>
 	</vwc-menu-item>
 </vwc-menu>
 ```
 
-### Submenu
+### Submenu Slot
 
-Assign menu to the `submenu` slot to create a submenu.
+Assign a Menu to the `submenu` slot to create a submenu.
 
 ```html preview 250px
 <vwc-menu open aria-label="Example menu">
@@ -304,7 +130,17 @@ Assign menu to the `submenu` slot to create a submenu.
 	<vwc-menu-item text="Menu item 2">
 		<vwc-menu slot="submenu">
 			<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
+			<vwc-menu-item text="Menu item 2.2">
+				<vwc-menu slot="submenu">
+					<vwc-menu-item text="Menu item 2.2.1">
+						<vwc-menu slot="submenu">
+							<vwc-menu-item text="Menu item 2.2.1.1"></vwc-menu-item>
+							<vwc-menu-item text="Menu item 2.2.1.2"></vwc-menu-item>
+						</vwc-menu-item>
+					<vwc-menu-item text="Menu item 2.2.2"></vwc-menu-item>
+					<vwc-menu-item text="Menu item 2.2.3"></vwc-menu-item>
+				</vwc-menu>
+			</vwc-menu-item>
 			<vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
 		</vwc-menu>
 	</vwc-menu-item>
@@ -318,22 +154,15 @@ Assign menu to the `submenu` slot to create a submenu.
 </vwc-menu>
 ```
 
-## Events
+<vwc-note headline="Focus Management" connotation="information" icon="info-line">
 
-<div class="table-wrapper">
+When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
 
-| Name              | Type                       | Bubbles | Composed | Description                                                                                                                        |
-| ----------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `expanded-change` | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                             |
-| `change`          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked |
-
-</div>
-
-### Click
-
-Fires a click event when its role is `presentation`
+</vwc-note>
 
 ## CSS Variables
+
+### Line Clamp
 
 Line clamp by default is set to one line.
 
@@ -344,13 +173,14 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 ```html preview 200px
 <style>
-	vwc-menu {
+	.menu {
 		--text-primary-line-clamp: auto;
 		--text-secondary-line-clamp: auto;
 		--menu-max-inline-size: 200px;
 	}
 </style>
-<vwc-menu open aria-label="Example menu">
+
+<vwc-menu open aria-label="Example menu" class="menu">
 	<vwc-menu-item
 		text="primary text with long text and auto line clamp"
 		text-secondary="secondary text and auto line clamp"
@@ -358,29 +188,46 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 </vwc-menu>
 ```
 
-## Use Cases
+## API Reference
 
-### Anchored Menu Item
+### Properties
 
-To create a menu item that is anchored to a URL do the following:
+<div class="table-wrapper">
 
-1. Set the `role` attribute to `presentation` on the `vwc-menu-item`.
-2. Wrap the `vwc-menu-item` in an anchor tag.
-3. Set the `role` attribute to `menuitem` on the anchor tag.
+| Name                 | Type                                                                      | Description                                                                                                                                |
+| -------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **check-appearance** | `normal` (default), `tick-only`                                           | Sets the appearance of the check element                                                                                                   |
+| **checked**          | `boolean`                                                                 | Sets the checked state                                                                                                                     |
+| **check-trailing**   | `boolean`                                                                 | Sets the check element to appear at the end of the Menu Item                                                                               |
+| **connotation**      | `accent` (default), `cta`                                                 | Sets the connotation that appears when checked                                                                                             |
+| **disabled**         | `boolean`                                                                 | Sets the disabled state                                                                                                                    |
+| **icon**             | _Enum_:<br/>`[icon-name]`                                                 | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **role**             | `menuitem` (default), `menuitemcheckbox`, `menuitemradio`, `presentation` | Sets the role                                                                                                                              |
+| **secondary-text**   | `string`                                                                  | Give more context to the text                                                                                                              |
+| **text**             | `string`                                                                  | Text content                                                                                                                               |
 
-If you are using a framework, just wrap the menu item in any routing component/directive as done with the anchor tag.
+</div>
 
-```html preview 100px
-<vwc-menu open aria-label="Example menu">
-	<a
-		role="menuitem"
-		href="https://www.vonage.com"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<vwc-menu-item role="presentation" text="Go to Vonage" icon="vonage-solid">
-			<vwc-icon name="open-line" slot="trailing-meta" size="-5"></vwc-icon>
-		</vwc-menu-item>
-	</a>
-</vwc-menu>
-```
+### Slots
+
+<div class="table-wrapper">
+
+| Name              | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| **meta**          | For additional elements at the start of the Menu Item |
+| **submenu**       | To add Menus as sub-menus                             |
+| **trailing-meta** | For additional elements at the end of the Menu Item   |
+
+</div>
+
+### Events
+
+<div class="table-wrapper">
+
+| Name                | Type                       | Bubbles | Composed | Description                                                                                                                        |
+| ------------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                             |
+| **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked |
+| **click**           | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'click' event its `role` is `presentation`                                                                          |
+
+</div>
