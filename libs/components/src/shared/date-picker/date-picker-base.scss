@@ -114,9 +114,6 @@
 		font: var(#{constants.$vvd-typography-base});
 		margin-inline: 6px;
 
-		// Focus ring should appear on outside, otherwise there is not enough space
-		#{focus-variables.$focus-inset}: -2px;
-
 		$range-color: var(#{constants.$vvd-color-cta-200});
 		$range-light-color: var(#{constants.$vvd-color-cta-50});
 
@@ -124,6 +121,10 @@
 		&.end {
 			border: 2px solid $range-light-color;
 			background-color: $range-color;
+
+			.calendar:focus-visible & {
+				border-width: 3px;
+			}
 		}
 
 		// Use pseudo-elements to create left and right half of highlighted background
@@ -211,6 +212,11 @@
 		@include focus.focus;
 
 		color: var(#{constants.$vvd-color-canvas-text});
+
+		&.start,
+		&.end {
+				border-width: 3px;
+		}
 	}
 
 	&.current {

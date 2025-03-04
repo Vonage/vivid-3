@@ -23,9 +23,22 @@
 	font: inherit;
 
 	&:focus-visible {
-		@include focus.focus;
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-		#{focus-variables.$focus-inset}: -4px;
+
+		&::before {
+			@include focus.focus;
+
+			position: absolute;
+			display: block;
+			border-radius: inherit;
+			block-size: 100%;
+			content: '';
+			inline-size: 100%;
+		}
+
+
+		//@include focus.focus;
+		//#{focus-variables.$focus-stroke-gap-color}: transparent;
+		//#{focus-variables.$focus-inset}: -4px;
 	}
 
 	&:any-link {
