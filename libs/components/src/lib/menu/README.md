@@ -5,7 +5,8 @@
 <vwc-tab-panel>
 
 ```js
-import '@vonage/vivid/layout';
+import '@vonage/vivid/menu';
+import '@vonage/vivid/menu-item';
 ```
 
 or, if you need to use a unique prefix:
@@ -75,7 +76,7 @@ registerMenuItem('your-prefix');
 
 ## Trigger
 
-The `trigger` attribute on **Menu** controls whether the Menu opens and closes itself automatically.
+The `trigger` attribute controls whether the Menu opens and closes itself automatically.
 
 - `auto` - The menu opens and closes automatically when the anchor is clicked. It also closes itself when the user selects a menu item with a role different from `menuitemcheckbox`.
 - `legacy` (default) - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
@@ -108,7 +109,7 @@ We will change the default value of `trigger` to `auto` in a future major versio
 
 ## Auto Dismiss
 
-The `auto-dismiss` attribute on **Menu** sets it to automatically close when focus is moved away from it, i.e. by clicking outside the menu.
+The `auto-dismiss` attribute sets it to automatically close when focus is moved away from it, i.e. by clicking outside the menu.
 
 ```html preview 200px
 <div style="position: relative">
@@ -133,7 +134,7 @@ The `auto-dismiss` attribute on **Menu** sets it to automatically close when foc
 
 ## Position Strategy
 
-The `position-strategy` attribute on the **Menu** sets the position strategy. It can be set to `fixed` (default) or `absolute`.
+The `position-strategy` attribute sets the position strategy. It can be set to `fixed` (default) or `absolute`.
 
 <vwc-note connotation="information" icon="info-solid" headline="Prefer using the default position strategy (fixed)">
 
@@ -165,7 +166,7 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 
 ## Anchor
 
-<vwc-note connotation="warning" icon="warning-line" headline="Prefer using the anchot slot">
+<vwc-note connotation="information" icon="info-line" headline="Prefer using the anchot slot">
 
 It is recommended use the [`anchor` slot](#anchor-slot-menu) to set the anchor.
 
@@ -206,9 +207,9 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 
 ## Slots
 
-### Default Slot (Menu)
+### Default Slot
 
-The default slot in **Menu** is for the menu items.
+The default slot is for the menu items.
 
 While any DOM content is permissible as a child of the Menu, only **Menu Items** and slotted content with a role of `menuitem`, `menuitemcheckbox`, or `menuitemradio` will receive keyboard support.
 
@@ -219,9 +220,9 @@ While any DOM content is permissible as a child of the Menu, only **Menu Items**
 </vwc-menu>
 ```
 
-### Anchor Slot (Menu)
+### Anchor Slot
 
-The **Menu** positions itself relative to an anchor element. Place it inside the `anchor` slot of the **Menu**. It is recommended to use the [Button](/components/button/) component as the anchor element.
+The Menu positions itself relative to an anchor element. Place it inside the `anchor` slot. It is recommended to use the [Button](/components/button/) component as the anchor element.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example" placement="bottom-end">
@@ -236,9 +237,9 @@ The **Menu** positions itself relative to an anchor element. Place it inside the
 </vwc-menu>
 ```
 
-### Header Slot (Menu)
+### Header Slot
 
-Use the `header` slot in **Menu** to add additional content to the top of the menu.
+Use the `header` slot to add additional content to the top of the menu.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
@@ -252,9 +253,9 @@ Use the `header` slot in **Menu** to add additional content to the top of the me
 </vwc-menu>
 ```
 
-### Action Items Slot (Menu)
+### Action Items Slot
 
-The `action-items` slot on **Menu** allows the addition of action items (in this case, a Button) to the bottom of the Menu.
+The `action-items` slot allows the addition of action items (in this case, a Button) to the bottom of the Menu.
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example">
@@ -268,103 +269,11 @@ The `action-items` slot on **Menu** allows the addition of action items (in this
 </vwc-menu>
 ```
 
-### Meta Slot (Menu Item)
-
-Use the `meta` slot on **Menu Item** to add an element (like a badge or an additional icon).
-
-Using this slot it sets the icon, checkbox or radio to be trailing.
-
-```html preview 200px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item text="Available" role="menuitemradio">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="success"
-			shape="pill"
-			icon="check-solid"
-		></vwc-badge>
-	</vwc-menu-item>
-	<vwc-menu-item text="Away" role="menuitemradio">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="warning"
-			shape="pill"
-			icon="clock-line"
-		></vwc-badge>
-	</vwc-menu-item>
-	<vwc-menu-item text="Busy" role="menuitemradio" checked>
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="alert"
-			shape="pill"
-			icon="minus-solid"
-		></vwc-badge>
-	</vwc-menu-item>
-</vwc-menu>
-```
-
-### Trailing Meta Slot (Menu Item)
-
-se the `trailing-meta` slot on **Menu Item** to add an element (like a badge or an additional icon) to the end of Menu Item.
-
-```html preview 170px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 1"> </vwc-menu-item>
-	<vwc-menu-item role="menuitemcheckbox" text="Checkbox 2">
-		<vwc-badge
-			slot="trailing-meta"
-			appearance="subtle"
-			connotation="cta"
-			text="New"
-		></vwc-badge>
-	</vwc-menu-item>
-</vwc-menu>
-```
-
-### Submenu Slot (Menu Item)
-
-Assign a Menu to **Menu Item**'s `submenu` slot to create a submenu.
-
-```html preview 250px
-<vwc-menu open aria-label="Example menu">
-	<vwc-menu-item text="Menu item 1">
-		<vwc-menu slot="submenu">
-			<vwc-menu-item text="Menu item 1.1"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 1.2"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 1.3"></vwc-menu-item>
-		</vwc-menu>
-	</vwc-menu-item>
-	<vwc-menu-item text="Menu item 2">
-		<vwc-menu slot="submenu">
-			<vwc-menu-item text="Menu item 2.1"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 2.2"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 2.3"></vwc-menu-item>
-		</vwc-menu>
-	</vwc-menu-item>
-	<vwc-menu-item text="Menu item 3">
-		<vwc-menu slot="submenu">
-			<vwc-menu-item text="Menu item 3.1"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 3.2"></vwc-menu-item>
-			<vwc-menu-item text="Menu item 3.3"></vwc-menu-item>
-		</vwc-menu>
-	</vwc-menu-item>
-</vwc-menu>
-```
-
-<vwc-note headline="Focus Management" connotation="information" icon="info-line">
-
-When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
-
-</vwc-note>
-
 ## CSS Variables
 
 ### Maximum Inline Size
 
-Use the `--menu-max-inline-size` variable to set the **Menu**'s inline size.
+Use the `--menu-max-inline-size` variable to set the maximum inline size.
 
 - Default: `max-content`
 
@@ -389,7 +298,7 @@ Use the `--menu-max-inline-size` variable to set the **Menu**'s inline size.
 
 ### Minimum Inline Size
 
-Use the `--menu-min-inline-size` variable to set the **Menu**'s inline size.
+Use the `--menu-min-inline-size` variable to set th minimum inline size.
 
 - Default: `auto`
 
@@ -407,7 +316,7 @@ Use the `--menu-min-inline-size` variable to set the **Menu**'s inline size.
 
 ### Menu Block Size
 
-Use the `--menu-block-size` variable to set the **Menu**'s block size.
+Use the `--menu-block-size` variable to set the block size.
 
 - Default: `408px`
 
@@ -429,37 +338,9 @@ Use the `--menu-block-size` variable to set the **Menu**'s block size.
 </vwc-menu>
 ```
 
-### Line Clamp
-
-Line clamp on **Menu Item** by default is set to one line.
-
-This can be changed by setting a css-variable to a fixed number of lines or `auto`
-
-- `--text-primary-line-clamp` for the primary text.
-- `--text-secondary-line-clamp` for the secondary text.
-
-```html preview 200px
-<style>
-	.menu {
-		--text-primary-line-clamp: auto;
-		--text-secondary-line-clamp: auto;
-		--menu-max-inline-size: 200px;
-	}
-</style>
-
-<vwc-menu open aria-label="Example menu" class="menu">
-	<vwc-menu-item
-		text="primary text with long text and auto line clamp"
-		text-secondary="secondary text and auto line clamp"
-	></vwc-menu-item>
-</vwc-menu>
-```
-
 ## API Reference
 
-### Menu
-
-#### Properties
+### Properties
 
 <div class="table-wrapper">
 
@@ -474,7 +355,7 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 </div>
 
-#### Slots
+### Slots
 
 <div class="table-wrapper">
 
@@ -498,7 +379,7 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 </div>
 
-#### Methods
+### Methods
 
 <div class="table-wrapper">
 
@@ -506,47 +387,5 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 | ------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **focus**                | `void`  | Moves focus into the Menu. If there is a child with the `autofocus` attribute, it will be focused. Otherwise, the first Menu Item will be focused. |
 | **collapseExpandedItem** | `void`  | Collapses any expanded Menu Items.                                                                                                                 |
-
-</div>
-
-### Menu Item
-
-#### Properties
-
-<div class="table-wrapper">
-
-| Name                 | Type                                                                      | Description                                                                                                                                |
-| -------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **check-appearance** | `normal` (default), `tick-only`                                           | Sets the appearance of the check element                                                                                                   |
-| **checked**          | `boolean`                                                                 | Sets the checked state                                                                                                                     |
-| **check-trailing**   | `boolean`                                                                 | Sets the check element to appear at the end of the Menu Item                                                                               |
-| **connotation**      | `accent` (default), `cta`                                                 | Sets the connotation that appears when checked                                                                                             |
-| **disabled**         | `boolean`                                                                 | Sets the disabled state                                                                                                                    |
-| **icon**             | _Enum_:<br/>`[icon-name]`                                                 | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **role**             | `menuitem` (default), `menuitemcheckbox`, `menuitemradio`, `presentation` | Sets the role                                                                                                                              |
-| **secondary-text**   | `string`                                                                  | Give more context to the text                                                                                                              |
-| **text**             | `string`                                                                  | Text content                                                                                                                               |
-
-</div>
-
-#### Slots
-
-<div class="table-wrapper">
-
-| Name        | Description                                                             |
-| ----------- | ----------------------------------------------------------------------- |
-| **meta**    | For Menu Item components or HTML elements with the `role` or `menuitem` |
-| **submenu** | To add Menus as sub-menus                                               |
-
-</div>
-
-#### Events
-
-<div class="table-wrapper">
-
-| Name                | Type                       | Bubbles | Composed | Description                                                                                                                        |
-| ------------------- | -------------------------- | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                             |
-| **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked |
 
 </div>
