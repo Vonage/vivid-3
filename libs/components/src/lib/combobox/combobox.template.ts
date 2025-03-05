@@ -82,11 +82,11 @@ function renderInput(context: VividElementDefinitionContext) {
 					${ref('control')}
 				/>
 			</div>
-			<div
-				class="leading-items-wrapper"
-			>
+			<div class="leading-items-wrapper">
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-				<div @click="${(x, c) => x.chevronIconClickHandler(c.event as MouseEvent)}">
+				<div
+					@click="${(x, c) => x.chevronIconClickHandler(c.event as MouseEvent)}"
+				>
 					${chevronTemplate}
 				</div>
 			</div>
