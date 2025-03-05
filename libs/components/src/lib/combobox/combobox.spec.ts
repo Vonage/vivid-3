@@ -153,12 +153,19 @@ describe('vwc-combobox', () => {
 			expect(element.open).toBe(false);
 		});
 
-		it('should set open to false when the chevron icon is clicked', async () => {
+		it('should close the open menu when the chevron icon is clicked', async () => {
 			element.open = true;
 			clickOnChevronIcon();
 			await elementUpdated(element);
 
 			expect(element.open).toBe(false);
+		});
+
+		it('should open the closed menu when the chevron icon is clicked', async () => {
+			clickOnChevronIcon();
+			await elementUpdated(element);
+
+			expect(element.open).toBe(true);
 		});
 
 		it('should allow propgation on escape key if not open', async () => {
