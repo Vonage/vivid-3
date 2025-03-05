@@ -19,9 +19,9 @@ import {
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
+import type { Icon } from '../icon/icon';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
-import type { Icon } from '../icon/icon';
 
 export type SearchableSelectAppearance = Extract<
 	Appearance,

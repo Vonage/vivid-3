@@ -13,7 +13,6 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
-import type { Icon } from '../icon/icon';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
