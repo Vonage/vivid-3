@@ -24,7 +24,7 @@ export class RichTextEditor extends VividElement {
 	#state?: EditorState;
 	#view?: EditorView;
 
-	valueChanged(oldValue: string, newValue: string): void {
+	valueChanged(_: string, newValue: string): void {
 		if (this.#view) {
 			const parser = DOMParser.fromSchema(vividProseMirrorSchema);
 			const doc = parser.parse(new window.DOMParser().parseFromString(newValue, 'text/html').body);
