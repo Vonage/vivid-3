@@ -30,3 +30,5 @@ export const datePickerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerDatePicker = createRegisterFunction(datePickerDefinition);
+
+export { DatePicker as VwcDatePickerElement };

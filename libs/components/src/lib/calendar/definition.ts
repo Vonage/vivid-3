@@ -26,3 +26,5 @@ export const calendarDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerCalendar = createRegisterFunction(calendarDefinition);
+
+export { Calendar as VwcCalendarElement };

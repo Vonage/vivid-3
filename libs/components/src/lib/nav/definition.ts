@@ -17,3 +17,5 @@ export const navDefinition = defineVividComponent('nav', Nav, template, [], {
  * @param prefix - the prefix to use for the component name
  */
 export const registerNav = createRegisterFunction(navDefinition);
+
+export { Nav as VwcNavElement };

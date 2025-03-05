@@ -32,3 +32,5 @@ export const comboboxDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerCombobox = createRegisterFunction(comboboxDefinition);
+
+export { Combobox as VwcComboboxElement };

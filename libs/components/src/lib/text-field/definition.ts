@@ -29,3 +29,5 @@ export const textFieldDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTextField = createRegisterFunction(textFieldDefinition);
+
+export { TextField as VwcTextFieldElement };

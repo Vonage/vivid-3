@@ -27,3 +27,5 @@ export const actionGroupDefinition = defineVividComponent(
 export const registerActionGroup = createRegisterFunction(
 	actionGroupDefinition
 );
+
+export { ActionGroup as VwcActionGroupElement };

@@ -29,3 +29,5 @@ export const sliderDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerSlider = createRegisterFunction(sliderDefinition);
+
+export { Slider as VwcSliderElement };

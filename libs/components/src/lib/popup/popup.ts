@@ -45,10 +45,8 @@ const placementStrategyMiddlewares = {
 } as const;
 
 /**
- * @public
  * @component popup
  * @slot - Default slot.
- * @internal
  */
 export class Popup extends VividElement {
 	get #middleware(): Array<any> {

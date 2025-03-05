@@ -55,7 +55,10 @@
 			"executor": "@nrwl/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": ["libs/components/**/*.ts"]
+				"lintFilePatterns": [
+					"libs/components/**/*.ts",
+					"libs/components/package.json"
+				]
 			}
 		},
 		"test": {

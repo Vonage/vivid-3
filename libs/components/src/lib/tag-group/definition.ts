@@ -23,3 +23,5 @@ export const tagGroupDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTagGroup = createRegisterFunction(tagGroupDefinition);
+
+export { TagGroup as VwcTagGroupElement };

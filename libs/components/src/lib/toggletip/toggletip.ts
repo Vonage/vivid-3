@@ -1,6 +1,6 @@
 import { attr, DOM } from '@microsoft/fast-element';
 import type { Placement } from '@floating-ui/dom';
-import { type Anchored, anchored } from '../../shared/patterns/anchored';
+import { Anchored } from '../../shared/patterns/anchored';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
@@ -10,8 +10,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @slot anchor - Used to set the anchor element for the toggletip.
  * @slot action-items - The content to display in the toggletip action items.
  */
-@anchored
-export class Toggletip extends VividElement {
+export class Toggletip extends Anchored(VividElement) {
 	#ANCHOR_ARIA_LABEL_SUFFIX = ' ; Show more information';
 
 	/**
@@ -124,5 +123,3 @@ export class Toggletip extends VividElement {
 		}
 	};
 }
-
-export interface Toggletip extends Anchored {}
