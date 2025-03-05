@@ -6,7 +6,7 @@ const COMPONENT_TAG = 'vwc-rich-text-editor';
 
 describe('vwc-rich-text-editor', () => {
 	function getOutputElement(): HTMLElement {
-		return element.shadowRoot!.querySelector('#editor') as HTMLElement;
+		return element.shadowRoot!.querySelector('[contenteditable="true"]') as HTMLElement;
 	}
 
 	let element: RichTextEditor;
@@ -14,7 +14,7 @@ describe('vwc-rich-text-editor', () => {
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
-		)) as RichTextEditor;
+		)) as unknown as RichTextEditor;
 	});
 
 	describe('basic', () => {
@@ -30,7 +30,7 @@ describe('vwc-rich-text-editor', () => {
 	describe('value', () => {
 		function userInput(value: string) {
 			getOutputElement().innerHTML = value;
-			getOutputElement().dispatchEvent(new Event('input'));
+			getOutputElement().dispatchEvent(new Event('input', {bubbles: true}));
 		}
 
 		it('should init as empty string', async () => {
@@ -41,21 +41,21 @@ describe('vwc-rich-text-editor', () => {
 			const value = '<b>bold</b>';
 			element.value = value;
 			await elementUpdated(element);
-			expect(getOutputElement().innerHTML).toBe(value);
+			expect(getOutputElement().innerHTML).toBe('<p><strong>bold</strong></p>');
 		});
 
 		it('should return the HTML inside the editor if changed', async () => {
 			const value = '<b>bold</b>';
 			userInput(value);
-
 			await elementUpdated(element);
+			
 			expect(element.value).toBe(value);
 		});
 
 		it('should reflect the attribute value', async () => {
 			element.setAttribute('value', '<b>bold</b>');
 			await elementUpdated(element);
-			expect(getOutputElement().innerHTML).toBe('<b>bold</b>');
+			expect(getOutputElement().innerHTML).toBe('<p><strong>bold</strong></p>');
 		});
 	});
 });

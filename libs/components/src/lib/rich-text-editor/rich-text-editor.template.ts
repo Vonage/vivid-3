@@ -18,9 +18,9 @@ export const RichTextEditorTemplate: (
 	return html`<template class="${getClasses}">
 		<div
 			id="editor"
-			:innerHTML="${(x) => x.value}"
-			@input="${(x, c) =>
-				(x.value = (c.event.target as HTMLElement).innerHTML)}"
+			@input="${(x, c) => {
+				(x.value = (c.event.target as HTMLElement)?.innerHTML)
+			}}"
 		></div>
 	</template>`;
 };
