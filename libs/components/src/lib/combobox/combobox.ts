@@ -316,15 +316,6 @@ export class Combobox extends FormAssociatedCombobox {
 		}
 
 		if (this.open) {
-			const capturedChevron = (e.target as HTMLElement).closest(
-				`vwc-icon.chevron`
-			) as Icon | null;
-
-			if (capturedChevron) {
-				this.open = false;
-				return;
-			}
-
 			const capturedOption = (e.target as HTMLElement).closest(
 				`option,[role=option]`
 			) as ListboxOption | null;
