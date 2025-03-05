@@ -13,6 +13,7 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
+import type { Icon } from '../icon/icon';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
@@ -315,16 +316,25 @@ export class Combobox extends FormAssociatedCombobox {
 		}
 
 		if (this.open) {
-			const captured = (e.target as HTMLElement).closest(
-				`option,[role=option]`
-			) as ListboxOption | null;
+			const capturedChevron = (e.target as HTMLElement).closest(
+				`vwc-icon.chevron`
+			) as Icon | null;
 
-			if (!captured || captured.disabled) {
+			if (capturedChevron) {
+				this.open = false;
 				return;
 			}
 
-			this.selectedOptions = [captured];
-			this.control.value = captured.text;
+			const capturedOption = (e.target as HTMLElement).closest(
+				`option,[role=option]`
+			) as ListboxOption | null;
+
+			if (!capturedOption || capturedOption.disabled) {
+				return;
+			}
+
+			this.selectedOptions = [capturedOption];
+			this.control.value = capturedOption.text;
 			this.clearSelectionRange();
 			this.updateValue(true);
 		}
@@ -336,6 +346,18 @@ export class Combobox extends FormAssociatedCombobox {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Handle closing the listbox when the combobox is open and the chevron icon is clicked.
+	 *
+	 * @param e - the mouse event
+	 * @internal
+	 */
+	chevronIconClickHandler(e: MouseEvent): void {
+		if (!this.open) return;
+		e.stopPropagation();
+		this.open = false;
 	}
 
 	override connectedCallback() {

@@ -21,6 +21,7 @@ import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
+import type { Icon } from '../icon/icon';
 
 export type SearchableSelectAppearance = Extract<
 	Appearance,
@@ -1036,7 +1037,16 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 
 		if (!e.defaultPrevented) {
-			// Unless something was clicked on that handled the event, e.g. tag remove button, focus the input when clicking anywhere
+			const capturedChevron = (e.target as HTMLElement).closest(
+				`vwc-icon.chevron`
+			) as Icon | null;
+
+			if (this.open && capturedChevron) {
+				this.open = false;
+				return;
+			}
+
+			// Unless something was clicked on that handled the event, e.g. tag remove button or chevron icon, focus the input when clicking anywhere
 			this._input.focus();
 			this.open = true;
 		}

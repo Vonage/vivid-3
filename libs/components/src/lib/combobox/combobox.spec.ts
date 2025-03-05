@@ -7,6 +7,7 @@ import {
 import { Size } from '../enums';
 import type { Popup } from '../popup/popup.ts';
 import { ListboxOption } from '../option/option.ts';
+import type { Icon } from '../icon/icon';
 import { Combobox } from './combobox';
 import { ComboboxAutocomplete } from './combobox.options.ts';
 import '.';
@@ -31,6 +32,14 @@ describe('vwc-combobox', () => {
 
 	function getControl(): HTMLInputElement {
 		return element.shadowRoot!.querySelector('.control') as HTMLInputElement;
+	}
+
+	function getChevronIcon(): Icon {
+		return element.shadowRoot!.querySelector('vwc-icon.chevron') as Icon;
+	}
+
+	function clickOnChevronIcon(): void {
+		getChevronIcon().click();
 	}
 
 	const typeInput = (value: string) => {
@@ -141,6 +150,14 @@ describe('vwc-combobox', () => {
 					composed: true,
 				})
 			);
+			expect(element.open).toBe(false);
+		});
+
+		it('should set open to false when the chevron icon is clicked', async () => {
+			element.open = true;
+			clickOnChevronIcon();
+			await elementUpdated(element);
+
 			expect(element.open).toBe(false);
 		});
 

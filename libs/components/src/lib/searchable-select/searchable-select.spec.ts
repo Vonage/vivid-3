@@ -53,6 +53,9 @@ describe('vwc-searchable-select', () => {
 	const getOption = (text: string) =>
 		element.querySelector(`vwc-option[text="${text}"]`) as ListboxOption;
 
+	const getChevronIcon = () =>
+		element.shadowRoot!.querySelector('vwc-icon.chevron') as Icon;
+
 	const getTag = (label: string) =>
 		element.shadowRoot!.querySelector(
 			`vwc-option-tag[label="${label}"]`
@@ -71,6 +74,10 @@ describe('vwc-searchable-select', () => {
 
 	const clickOnOption = (text: string) => {
 		getOption(text).click();
+	};
+
+	const clickOnChevronIcon = () => {
+		(getChevronIcon() as HTMLElement).click();
 	};
 
 	const isOptionVisuallyHighlighted = (option: ListboxOption) =>
@@ -1196,6 +1203,13 @@ describe('vwc-searchable-select', () => {
 			it('should close popup when pressing Escape', async function () {
 				pressKey('Escape');
 				await elementUpdated(element);
+
+				expect(popup.open).toBe(false);
+			});
+
+			it('should close popup when clicking the chevron icon', async function () {
+				clickOnChevronIcon();
+				await elementUpdated(popup);
 
 				expect(popup.open).toBe(false);
 			});
