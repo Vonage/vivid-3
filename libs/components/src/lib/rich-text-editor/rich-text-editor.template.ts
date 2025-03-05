@@ -19,7 +19,7 @@ export const RichTextEditorTemplate: (
 		<div
 			id="editor"
 			@input="${(x, c) => {
-				(x.value = (c.event.target as HTMLElement)?.innerHTML)
+				x.value = (c.event.target as HTMLElement)?.innerHTML;
 			}}"
 		></div>
 	</template>`;

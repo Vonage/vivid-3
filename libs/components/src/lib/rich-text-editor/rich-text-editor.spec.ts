@@ -6,7 +6,9 @@ const COMPONENT_TAG = 'vwc-rich-text-editor';
 
 describe('vwc-rich-text-editor', () => {
 	function getOutputElement(): HTMLElement {
-		return element.shadowRoot!.querySelector('[contenteditable="true"]') as HTMLElement;
+		return element.shadowRoot!.querySelector(
+			'[contenteditable="true"]'
+		) as HTMLElement;
 	}
 
 	let element: RichTextEditor;
@@ -30,7 +32,7 @@ describe('vwc-rich-text-editor', () => {
 	describe('value', () => {
 		function userInput(value: string) {
 			getOutputElement().innerHTML = value;
-			getOutputElement().dispatchEvent(new Event('input', {bubbles: true}));
+			getOutputElement().dispatchEvent(new Event('input', { bubbles: true }));
 		}
 
 		it('should init as empty string', async () => {
@@ -48,7 +50,7 @@ describe('vwc-rich-text-editor', () => {
 			const value = '<b>bold</b>';
 			userInput(value);
 			await elementUpdated(element);
-			
+
 			expect(element.value).toBe(value);
 		});
 

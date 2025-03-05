@@ -1,8 +1,8 @@
 import { attr } from '@microsoft/fast-element';
-import { schema } from "prosemirror-schema-basic";
-import { EditorState } from "prosemirror-state";
-import { EditorView } from "prosemirror-view";
-import { DOMParser } from "prosemirror-model";
+import { schema } from 'prosemirror-schema-basic';
+import { EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
+import { DOMParser } from 'prosemirror-model';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 const vividProseMirrorSchema = schema;
@@ -27,8 +27,14 @@ export class RichTextEditor extends VividElement {
 	valueChanged(_: string, newValue: string): void {
 		if (this.#view) {
 			const parser = DOMParser.fromSchema(vividProseMirrorSchema);
-			const doc = parser.parse(new window.DOMParser().parseFromString(newValue, 'text/html').body);
-			const transaction = this.#state!.tr.replaceWith(0, this.#state!.doc.content.size, doc.content);
+			const doc = parser.parse(
+				new window.DOMParser().parseFromString(newValue, 'text/html').body
+			);
+			const transaction = this.#state!.tr.replaceWith(
+				0,
+				this.#state!.doc.content.size,
+				doc.content
+			);
 			this.#view!.dispatch(transaction);
 		}
 	}
@@ -44,12 +50,14 @@ export class RichTextEditor extends VividElement {
 
 	override connectedCallback(): void {
 		super.connectedCallback();
-		if (!this.#state){
+		if (!this.#state) {
 			this.#state = EditorState.create({ schema: vividProseMirrorSchema });
 		}
 
 		if (!this.#view) {
-			this.#view = new EditorView(this.#editorWrapperElement, { state: this.#state });
+			this.#view = new EditorView(this.#editorWrapperElement, {
+				state: this.#state,
+			});
 		}
 	}
 }
