@@ -1,5 +1,8 @@
 import { FASTElement } from '@microsoft/fast-element';
 
+// Replaced at build time
+declare const __PACKAGE_VERSION__: string;
+
 /**
  * Base class for all Vivid elements.
  */
