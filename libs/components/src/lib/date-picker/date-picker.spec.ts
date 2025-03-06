@@ -9,6 +9,8 @@ import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
 import { DatePicker } from './date-picker';
 import '.';
 
@@ -82,6 +84,47 @@ describe('vwc-date-picker', () => {
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
+			return {
+				firstFocusable: shadowRoot.querySelector(
+					'vwc-button[aria-label="Previous year"]'
+				)!,
+				lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+			};
+		});
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DatePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DatePicker, max: string) => {
+				element.max = max;
+			}
+		);
+	});
+
+	describe('errorText', () => {
+		it('should forward errorText to the text field', async () => {
+			element.errorText = 'errorText';
+			await elementUpdated(element);
+
+			expect(textField.errorText).toBe('errorText');
+		});
+
+		it('should have a higher priority than an internal validation error', async () => {
+			element.errorText = 'errorText';
+			await elementUpdated(element);
+
+			typeIntoTextField('x');
+
+			expect(textField.errorText).toBe('errorText');
 		});
 	});
 
@@ -249,9 +292,15 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose date"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose date');
 		});
 
 		it('should clear the date when clicking the clear button', async () => {

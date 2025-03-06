@@ -9,8 +9,10 @@ import enUS from '../../locales/en-US';
 import { TextField } from '../text-field/text-field';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
-import { DateRangePicker } from './date-range-picker';
 import '.';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
+import { DateRangePicker } from './date-range-picker';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
 
@@ -88,6 +90,47 @@ describe('vwc-date-range-picker', () => {
 			// This is because only createElement performs checks for custom element constructor requirements
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
+			return {
+				firstFocusable: shadowRoot.querySelector(
+					'vwc-button[aria-label="Previous Month"]'
+				)!,
+				lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+			};
+		});
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DateRangePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DateRangePicker, max: string) => {
+				element.max = max;
+			}
+		);
+	});
+
+	describe('errorText', () => {
+		it('should forward errorText to the text field', async () => {
+			element.errorText = 'errorText';
+			await elementUpdated(element);
+
+			expect(textField.errorText).toBe('errorText');
+		});
+
+		it('should have a higher priority than an internal validation error', async () => {
+			element.errorText = 'errorText';
+			await elementUpdated(element);
+
+			typeIntoTextField('x');
+
+			expect(textField.errorText).toBe('errorText');
 		});
 	});
 
@@ -497,9 +540,15 @@ describe('vwc-date-range-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose dates"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose dates');
 		});
 
 		it('should clear start and end date when clicking the clear button', async () => {
