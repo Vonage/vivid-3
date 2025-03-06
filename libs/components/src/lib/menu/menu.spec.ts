@@ -545,16 +545,33 @@ describe('vwc-menu', () => {
 			expect(element.open).toEqual(true);
 		});
 
-		it('should move focus into the menu when opened', async () => {
+		it('should move focus into the menu once popup is visible and positioned when set to true', async () => {
+			element.anchor = anchor;
 			element.innerHTML = `
 				<div role="menuitem" id="id1">Menu Item 1</div>
 			`;
+			const menuItem = element.querySelector('#id1') as HTMLElement;
 			await elementUpdated(element);
+			let isPositionSet = false;
+			Object.defineProperty(popup.popupEl.style, 'left', {
+				set() {
+					isPositionSet = true;
+				},
+			});
+			const popupStateWhenFocusCalled = new Promise<any>((resolve) => {
+				vi.spyOn(menuItem, 'focus').mockImplementation(() => {
+					resolve({
+						isVisible: popup.controlEl.classList.contains('open'),
+						isPositionSet,
+					});
+					HTMLElement.prototype.focus.apply(menuItem);
+				});
+			});
 
 			element.open = true;
-			await elementUpdated(element);
 
-			expect(document.activeElement).toEqual(element.querySelector('#id1'));
+			expect((await popupStateWhenFocusCalled).isVisible).toBe(true);
+			expect((await popupStateWhenFocusCalled).isPositionSet).toBe(true);
 		});
 	});
 

@@ -228,11 +228,25 @@ describe('vwc-popup', () => {
 			expect(popoverEl.showPopover).toHaveBeenCalled();
 		});
 
+		it('should wait until position has been updated before resolving', async () => {
+			element.anchor = anchor;
+			let isPositionUpdated = false;
+			Object.defineProperty(element.popupEl.style, 'left', {
+				set() {
+					isPositionUpdated = true;
+				},
+			});
+
+			await element.show();
+
+			expect(isPositionUpdated).toBe(true);
+		});
+
 		it('should fire vwc-popup:open event', async function () {
 			const spyOpen = vi.fn();
 			element.addEventListener('vwc-popup:open', spyOpen);
 
-			element.show();
+			await element.show();
 
 			expect(spyOpen).toHaveBeenCalled();
 		});

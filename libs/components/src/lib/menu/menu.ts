@@ -331,9 +331,8 @@ export class Menu extends VividElement {
 	@attr({ mode: 'boolean' }) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		if (newValue) {
-			// Ensure popup is shown so that focus can be set
-			this._popupEl?.show();
-			this.focus();
+			// Ensure popup is shown and positioned so that focus can be set
+			this._popupEl?.show().then(() => this.focus());
 		} else {
 			// TODO: Focus should be restored to the anchor element when the menu is closed
 			// However, it cannot be implemented without triggering visible focus
