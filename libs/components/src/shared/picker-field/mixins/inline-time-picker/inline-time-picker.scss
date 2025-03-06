@@ -1,20 +1,22 @@
-@use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../../shared/src/lib/sass/mixins/connotation/config' with (
+@use '../../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent,
 	$shades: primary firm faint soft dim pale,
 	$default: accent
 );
-@use '../../../../../shared/src/lib/sass/mixins/connotation' as connotation;
-@use '../../../../../shared/src/lib/sass/mixins/appearance/config' as
+@use '../../../../../../shared/src/lib/sass/mixins/connotation/index' as
+	connotation;
+@use '../../../../../../shared/src/lib/sass/mixins/appearance/config' as
 	appearance-config with (
 	$appearances: listitem,
 	$states: idle hover active selected selectedAndHover selectedAndDisabled,
 	$default: listitem
 );
-@use '../../../../../shared/src/lib/sass/mixins/appearance' as appearance;
-@use '../../../../../shared/src/lib/sass/mixins/border-radius' as
+@use '../../../../../../shared/src/lib/sass/mixins/appearance/index' as
+	appearance;
+@use '../../../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
-@use '../../../../../shared/src/lib/sass/mixins/focus' as focus;
+@use '../../../../../../shared/src/lib/sass/mixins/focus/index' as focus;
 
 :host {
 	display: inline-block;

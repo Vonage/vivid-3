@@ -7,10 +7,10 @@ import {
 	Observable,
 	volatile,
 } from '@microsoft/fast-element';
-import type { TimeStr } from '../../../lib/time-picker/time/time';
-import type { InlineTimePicker } from '../../../lib/time-picker/inline-time-picker/inline-time-picker';
+import type { TimeStr } from '../../datetime/time';
 import type { DateStr } from '../../datetime/dateStr';
 import type { AbstractConstructor, MixinType } from '../../utils/mixins';
+import type { InlineTimePicker } from './inline-time-picker/inline-time-picker';
 import type { SingleValuePickerElement } from './single-value-picker';
 
 /**
