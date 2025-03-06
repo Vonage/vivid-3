@@ -13,6 +13,7 @@ import type { DialPadLocale } from '../../lib/dial-pad/locale';
 import type { TabLocale } from '../../lib/tab/locale';
 import type { SearchableSelectLocale } from '../../lib/searchable-select/locale';
 import type { PickerFieldLocale } from '../picker-field/locale';
+import type { DateTimePickerLocale } from '../../lib/date-time-picker/locale';
 
 export interface Locale {
 	lang: string;
@@ -22,6 +23,7 @@ export interface Locale {
 	pickerField: PickerFieldLocale;
 	calendarPicker: CalendarPickerLocale;
 	timePicker: TimePickerLocale;
+	dateTimePicker: DateTimePickerLocale;
 	filePicker: FilePickerLocale;
 	audioPlayer: AudioPlayerLocale;
 	alert: AlertLocale;

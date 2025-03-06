@@ -79,33 +79,37 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 		 * The earliest date that can be selected.
 		 * @internal
 		 */
-		abstract get _minDate(): DateStr | '';
+		abstract get _resolvedMinDate(): DateStr | '';
 
 		/**
 		 * The latest date that can be selected.
 		 * @internal
 		 */
-		abstract get _maxDate(): DateStr | '';
+		abstract get _resolvedMaxDate(): DateStr | '';
 
 		/**
 		 * @internal
 		 */
 		_isDateInValidRange(date: DateStr) {
 			return (
-				(!this._minDate || compareDateStr(date, this._minDate) >= 0) &&
-				(!this._maxDate || compareDateStr(date, this._maxDate) <= 0)
+				(!this._resolvedMinDate ||
+					compareDateStr(date, this._resolvedMinDate) >= 0) &&
+				(!this._resolvedMaxDate ||
+					compareDateStr(date, this._resolvedMaxDate) <= 0)
 			);
 		}
 
 		#isMonthAfterValidRange(month: Month) {
 			return (
-				this._maxDate && compareMonths(month, monthOfDate(this._maxDate)) > 0
+				this._resolvedMaxDate &&
+				compareMonths(month, monthOfDate(this._resolvedMaxDate)) > 0
 			);
 		}
 
 		#isMonthBeforeValidRange(month: Month) {
 			return (
-				this._minDate && compareMonths(month, monthOfDate(this._minDate)) < 0
+				this._resolvedMinDate &&
+				compareMonths(month, monthOfDate(this._resolvedMinDate)) < 0
 			);
 		}
 
@@ -175,7 +179,9 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 				: this._selectedMonth.year;
 			const prevYear = currentYear - 1;
 
-			return this._minDate && prevYear < yearOfDate(this._minDate);
+			return (
+				this._resolvedMinDate && prevYear < yearOfDate(this._resolvedMinDate)
+			);
 		}
 
 		/**
@@ -202,7 +208,9 @@ export const CalendarPicker = <T extends AbstractConstructor<PickerField>>(
 				: this._selectedMonth.year;
 			const nextYear = currentYear + 1;
 
-			return this._maxDate && nextYear > yearOfDate(this._maxDate);
+			return (
+				this._resolvedMaxDate && nextYear > yearOfDate(this._resolvedMaxDate)
+			);
 		}
 
 		/**

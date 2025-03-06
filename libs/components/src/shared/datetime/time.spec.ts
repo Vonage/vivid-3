@@ -1,4 +1,5 @@
 import {
+	compareTimeStr,
 	formatTimePart,
 	hoursAs12hClock,
 	isValidTimeStr,
@@ -55,6 +56,20 @@ describe('parseTimeStr', () => {
 			seconds: 56,
 			meridiem: 'PM',
 		});
+	});
+});
+
+describe('compareTimeStr', () => {
+	it('should return -1 if a < b', () => {
+		expect(compareTimeStr('12:34:56', '12:34:57')).toBe(-1);
+	});
+
+	it('should return 1 if a > b', () => {
+		expect(compareTimeStr('12:34:57', '12:34:56')).toBe(1);
+	});
+
+	it('should return 0 if a === b', () => {
+		expect(compareTimeStr('12:34:56', '12:34:56')).toBe(0);
 	});
 });
 

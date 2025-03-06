@@ -85,6 +85,21 @@ const deDE: Locale = {
 		meridiesLabel: 'AM/PM',
 		invalidTimeError: 'Bitte geben Sie eine gültige Zeit ein.',
 	},
+	dateTimePicker: {
+		chooseDateTimeLabel: 'Datum und Uhrzeit auswählen',
+		changeDateTimeLabel: /* istanbul ignore next */ (dateTime: string) =>
+			`Datum und Uhrzeit ändern, ${dateTime}`,
+		invalidDateTimeError:
+			'Bitte geben Sie ein gültiges Datum und eine gültige Uhrzeit ein.',
+		dateBeforeMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`Das Datum muss ${minDate} oder später sein.`,
+		dateAfterMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`Das Datum muss ${maxDate} oder früher sein.`,
+		timeBeforeMinTimeError: /* istanbul ignore next */ (minTime: string) =>
+			`Die Uhrzeit muss ${minTime} oder später sein.`,
+		timeAfterMaxTimeError: /* istanbul ignore next */ (maxTime: string) =>
+			`Die Uhrzeit muss ${maxTime} oder früher sein.`,
+	},
 	filePicker: {
 		invalidFileTypeError: 'Sie können keine Dateien dieses Typs auswählen.',
 		maxFilesExceededError: 'Sie können keine weiteren Dateien auswählen.',

@@ -7,7 +7,7 @@ import type { TimePicker } from './time-picker';
 export const TimePickerTemplate = (
 	context: VividElementDefinitionContext
 ): ViewTemplate<TimePicker> => {
-	return PickerFieldTemplate(context, TimeSelectionPickerTemplate(context), {
+	return PickerFieldTemplate(context, TimeSelectionPickerTemplate(context, 6), {
 		withSeparator: true,
 		padded: false,
 	});

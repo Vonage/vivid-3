@@ -61,4 +61,7 @@ export const parseTimeStr = (timeStr: TimeStr): ParsedTimeStr => {
 	};
 };
 
+export const compareTimeStr = (a: TimeStr, b: TimeStr): number =>
+	a > b ? 1 : a < b ? -1 : 0;
+
 export const hoursAs12hClock = (hour: number) => hour % 12 || 12;
