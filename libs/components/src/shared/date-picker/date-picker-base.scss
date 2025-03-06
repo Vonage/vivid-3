@@ -210,6 +210,7 @@
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		color: var(#{constants.$vvd-color-canvas-text});
+
 		@include focus.focus;
 
 		&.start,
