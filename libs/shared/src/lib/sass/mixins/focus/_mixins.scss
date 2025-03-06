@@ -3,14 +3,11 @@
 
 @mixin focus {
 	$outline-width: 1px;
-	box-shadow: 0 0 0 4px color-mix(in srgb, var(#{constants.$vvd-color-cta-600}), transparent 88%),
-	inset 0 0 0 3px
-		var(#{variables.$focus-stroke-gap-color}, currentColor);
+	box-shadow: 0 0 0 4px
+			color-mix(in srgb, var(#{constants.$vvd-color-cta-600}), transparent 88%),
+		inset 0 0 0 3px var(#{variables.$focus-stroke-gap-color}, currentColor);
 	outline: $outline-width solid
-		var(
-			#{variables.$focus-stroke-color},
-			var(#{constants.$vvd-color-cta-500})
-		);
+		var(#{variables.$focus-stroke-color}, var(#{constants.$vvd-color-cta-500}));
 	outline-offset: calc(
 		#{-$outline-width} - var(#{variables.$focus-inset}, 0px)
 	);

@@ -208,11 +208,10 @@
 
 	&:focus-visible {
 		@include focus.focus;
-		 & {
-			 #{focus-variables.$focus-stroke-gap-color}: transparent;
-			 color: var(#{constants.$vvd-color-canvas-text});
-
-		 }
+		& {
+			#{focus-variables.$focus-stroke-gap-color}: transparent;
+			color: var(#{constants.$vvd-color-canvas-text});
+		}
 
 		&.start,
 		&.end {

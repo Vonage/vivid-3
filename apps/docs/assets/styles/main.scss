@@ -93,8 +93,9 @@ a:active {
 }
 a:focus-visible {
 	border-radius: 2px;
+	box-shadow: 0 0 0 6px
+		color-mix(in sRGB, var(--vvd-color-cta-600), transparent 88%);
 	outline: 1px solid var(--vvd-color-cta-600);
-	box-shadow: 0 0 0 6px color-mix(in srgb, var(--vvd-color-cta-600), transparent 88%);
 }
 a:visited:hover {
 	color: var(--vvd-color-information-700);
