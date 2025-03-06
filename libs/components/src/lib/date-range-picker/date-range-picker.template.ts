@@ -5,5 +5,8 @@ import { PickerFieldTemplate } from '../../shared/picker-field/picker-field.temp
 export const DateRangePickerTemplate = (
 	context: VividElementDefinitionContext
 ) => {
-	return PickerFieldTemplate(context, CalendarPickerTemplate(context));
+	return PickerFieldTemplate(context, CalendarPickerTemplate(context), {
+		withSeparator: false,
+		padded: true,
+	});
 };

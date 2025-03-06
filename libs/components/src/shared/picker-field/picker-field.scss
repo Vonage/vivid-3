@@ -1,3 +1,5 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
 :host {
 	display: inline-block;
 }
@@ -14,8 +16,11 @@
 .dialog {
 	display: inline-flex;
 	flex-direction: column;
-	padding: 12px;
-	gap: 12px;
+
+	&--padded {
+		padding: 12px;
+		gap: 12px;
+	}
 
 	.footer {
 		display: flex;
@@ -23,5 +28,9 @@
 		justify-content: flex-end;
 		padding: 8px;
 		gap: 8px;
+
+		&--with-separator {
+			border-top: 1px solid var(#{constants.$vvd-color-neutral-200});
+		}
 	}
 }

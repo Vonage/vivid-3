@@ -2,6 +2,7 @@ import {
 	createFormHTML,
 	elementUpdated,
 	fixture,
+	getActiveElementPiercingShadowRoot,
 	getBaseElement,
 	listenToFormSubmission,
 	setupDelegatesFocusPolyfill,
@@ -19,7 +20,8 @@ export const pickerFieldSpec = (
 	getFocusableElements: (shadowRoot: ShadowRoot) => {
 		firstFocusable: HTMLElement;
 		lastFocusable: HTMLElement;
-	}
+	},
+	exampleValue: string
 ) => {
 	let element: PickerField;
 	let textField: TextField;
@@ -253,6 +255,20 @@ export const pickerFieldSpec = (
 
 			expect(element.shadowRoot!.activeElement).toBe(lastFocusable);
 		});
+
+		it('should keep default of unrelated keydown event', async () => {
+			firstFocusable.focus();
+
+			const event = new KeyboardEvent('keydown', {
+				key: 'a',
+				bubbles: true,
+				composed: true,
+			});
+			event.preventDefault = vi.fn();
+			getActiveElementPiercingShadowRoot()?.dispatchEvent(event);
+
+			expect(event.preventDefault).not.toHaveBeenCalled();
+		});
 	});
 
 	describe('dialog footer', () => {
@@ -284,7 +300,7 @@ export const pickerFieldSpec = (
 	});
 
 	describe('form association', () => {
-		const fieldValue = '2020-02-02';
+		const fieldValue = exampleValue;
 		const formId = 'test-form-id';
 		const fieldName = 'test-field';
 		let formWrapper: HTMLElement;

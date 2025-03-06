@@ -94,14 +94,18 @@ describe('vwc-date-range-picker', () => {
 	});
 
 	describe('picker field', () => {
-		pickerFieldSpec(COMPONENT_TAG, (shadowRoot) => {
-			return {
-				firstFocusable: shadowRoot.querySelector(
-					'vwc-button[aria-label="Previous Month"]'
-				)!,
-				lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
-			};
-		});
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				return {
+					firstFocusable: shadowRoot.querySelector(
+						'vwc-button[aria-label="Previous Month"]'
+					)!,
+					lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+				};
+			},
+			'01/01/2021 – 01/02/2021'
+		);
 	});
 
 	describe('calendar picker', () => {

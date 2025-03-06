@@ -1,4 +1,5 @@
 import { html, ref, slotted, type ViewTemplate } from '@microsoft/fast-element';
+import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import { Popup } from '../../lib/popup/popup';
 import { TextField } from '../../lib/text-field/text-field';
@@ -7,7 +8,8 @@ import { PickerField } from './picker-field';
 
 export const PickerFieldTemplate = (
 	context: VividElementDefinitionContext,
-	popupContentTemplate: ViewTemplate
+	popupContentTemplate: ViewTemplate,
+	{ withSeparator, padded }: { withSeparator: boolean; padded: boolean }
 ) => {
 	const popupTag = context.tagFor(Popup);
 	const textFieldTag = context.tagFor(TextField);
@@ -53,11 +55,16 @@ export const PickerFieldTemplate = (
 				:anchor='${(x) => x._textFieldEl}'
 				placement='bottom-start'
 				class='popup'>
-				<div class='dialog' role='dialog' ${ref(
-					'_dialogEl'
-				)} aria-modal='true' aria-label='${(x) => x._dialogLabel}'>
+				<div class="${() =>
+					classNames('dialog', [
+						'dialog--padded',
+						padded,
+					])}" role='dialog' ${ref(
+		'_dialogEl'
+	)} aria-modal='true' aria-label='${(x) => x._dialogLabel}'>
 					${() => popupContentTemplate}
-					<div class='footer'>
+					<div class="${() =>
+						classNames('footer', ['footer--with-separator', withSeparator])}">
 						<${buttonTag}
 							tabindex='3'
 							class='vwc-button'
