@@ -25,3 +25,5 @@ export const videoPlayerDefinition = defineVividComponent(
 export const registerVideoPlayer = createRegisterFunction(
 	videoPlayerDefinition
 );
+
+export { VideoPlayer as VwcVideoPlayerElement };

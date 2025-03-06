@@ -28,3 +28,5 @@ export const filePickerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerFilePicker = createRegisterFunction(filePickerDefinition);
+
+export { FilePicker as VwcFilePickerElement };

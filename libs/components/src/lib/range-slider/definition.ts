@@ -29,3 +29,5 @@ export const rangeSliderDefinition = defineVividComponent(
 export const registerRangeSlider = createRegisterFunction(
 	rangeSliderDefinition
 );
+
+export { RangeSlider as VwcRangeSliderElement };

@@ -29,3 +29,5 @@ export const textAreaDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTextArea = createRegisterFunction(textAreaDefinition);
+
+export { TextArea as VwcTextAreaElement };

@@ -29,3 +29,5 @@ export const emptyStateDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerEmptyState = createRegisterFunction(emptyStateDefinition);
+
+export { EmptyState as VwcEmptyStateElement };

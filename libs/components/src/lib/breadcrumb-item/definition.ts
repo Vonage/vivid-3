@@ -29,3 +29,5 @@ export const breadcrumbItemDefinition = defineVividComponent(
 export const registerBreadcrumbItem = createRegisterFunction(
 	breadcrumbItemDefinition
 );
+
+export { BreadcrumbItem as VwcBreadcrumbItemElement };

@@ -16,7 +16,7 @@ export default defineConfig({
 		reporters: ['default'],
 		coverage: {
 			reporter: isCI ? ['text'] : ['text', 'html', 'clover', 'json', 'lcov'],
-			reportsDirectory: '../../coverage/libs/wrapper-gen',
+			reportsDirectory: '../../coverage/libs/vue-wrappers',
 			provider: 'v8',
 		},
 	},

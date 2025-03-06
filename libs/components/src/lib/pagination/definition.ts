@@ -26,3 +26,5 @@ export const paginationDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerPagination = createRegisterFunction(paginationDefinition);
+
+export { Pagination as VwcPaginationElement };

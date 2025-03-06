@@ -24,3 +24,5 @@ export const listboxOptionDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerOption = createRegisterFunction(listboxOptionDefinition);
+
+export { ListboxOption as VwcOptionElement };

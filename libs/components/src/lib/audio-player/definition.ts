@@ -31,3 +31,5 @@ export const audioPlayerDefinition = defineVividComponent(
 export const registerAudioPlayer = createRegisterFunction(
 	audioPlayerDefinition
 );
+
+export { AudioPlayer as VwcAudioPlayerElement };
