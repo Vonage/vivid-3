@@ -26,3 +26,5 @@ export const badgeDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerBadge = createRegisterFunction(badgeDefinition);
+
+export { Badge as VwcBadgeElement };

@@ -56,3 +56,9 @@ export const dataGridDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerDataGrid = createRegisterFunction(dataGridDefinition);
+
+export {
+	DataGrid as VwcDataGridElement,
+	DataGridRow as VwcDataGridRowElement,
+	DataGridCell as VwcDataGridCellElement,
+};

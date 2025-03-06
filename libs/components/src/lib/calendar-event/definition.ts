@@ -33,3 +33,5 @@ export const calendarEventDefinition = defineVividComponent(
 export const registerCalendarEvent = createRegisterFunction(
 	calendarEventDefinition
 );
+
+export { CalendarEvent as VwcCalendarEventElement };

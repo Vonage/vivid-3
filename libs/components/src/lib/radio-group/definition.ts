@@ -24,3 +24,5 @@ export const radioGroupDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerRadioGroup = createRegisterFunction(radioGroupDefinition);
+
+export { RadioGroup as VwcRadioGroupElement };

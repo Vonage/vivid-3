@@ -20,3 +20,5 @@ export const tabPanelDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTabPanel = createRegisterFunction(tabPanelDefinition);
+
+export { TabPanel as VwcTabPanelElement };

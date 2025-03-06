@@ -24,3 +24,5 @@ export const tooltipDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTooltip = createRegisterFunction(tooltipDefinition);
+
+export { Tooltip as VwcTooltipElement };

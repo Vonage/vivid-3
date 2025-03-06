@@ -23,3 +23,5 @@ export const radioDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerRadio = createRegisterFunction(radioDefinition);
+
+export { Radio as VwcRadioElement };

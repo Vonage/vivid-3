@@ -25,3 +25,5 @@ export const progressDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerProgress = createRegisterFunction(progressDefinition);
+
+export { Progress as VwcProgressElement };

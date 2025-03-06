@@ -30,16 +30,17 @@ const vividDeclarations = parseManifest(
 	'../../dist/libs/components/custom-elements.json'
 );
 
-const findClassDeclaration = (
+const findDeclaration = (
 	declarations: schema.Declaration[],
-	className: string
+	kind: string,
+	name: string
 ): Declaration => {
 	const declaration = declarations.find(
-		(d) => d.kind === 'class' && d.name === className
+		(d) => d.kind === kind && d.name === name
 	);
 
 	if (!declaration) {
-		throw new Error(`Could not find declaration for class ${className}`);
+		throw new Error(`Could not find declaration for ${kind} ${name}`);
 	}
 
 	return declaration as Declaration;
@@ -191,6 +192,32 @@ function inheritItems<T>(
 	];
 }
 
+function applyInheritance(
+	declaration: Declaration,
+	superclassDeclaration: Declaration
+): Declaration {
+	// Note: we don't inherit slots, as Vivid components often did not implement them
+	declaration.members = inheritItems(
+		(m) => m.name,
+		superclassDeclaration.members,
+		declaration.members
+	);
+	declaration.attributes = inheritItems(
+		getAttributeName,
+		superclassDeclaration.attributes,
+		declaration.attributes
+	);
+	declaration.events = inheritItems(
+		(m) => m.name,
+		superclassDeclaration.events,
+		declaration.events
+	);
+	declaration._localTypeDefs = {
+		...superclassDeclaration._localTypeDefs,
+		...declaration._localTypeDefs,
+	};
+}
+
 const getAttributeName = (attribute: schema.Attribute): string => {
 	const name = attribute.name || attribute.fieldName;
 	if (!name) {
@@ -199,19 +226,20 @@ const getAttributeName = (attribute: schema.Attribute): string => {
 	return name;
 };
 
-const resolveComponentDeclaration = (
+const resolveDeclaration = (
 	packageDeclarations: schema.Declaration[],
-	className: string
+	kind: string,
+	name: string
 ): Declaration => {
-	let declaration;
-	if (className.startsWith('FormAssociated')) {
+	let declaration: Declaration;
+	if (name.startsWith('FormAssociated')) {
 		// Form associated classes (FormAssociatedButton etc.) are not exported in the manifest
-		declaration = getFastFormAssociatedDeclaration(className);
-	} else if (className === 'VividElement') {
+		declaration = getFastFormAssociatedDeclaration(name);
+	} else if (name === 'VividElement') {
 		// This is the base class for all elements
 		declaration = BaseElementDeclaration;
 	} else {
-		declaration = findClassDeclaration(packageDeclarations, className);
+		declaration = findDeclaration(packageDeclarations, kind, name);
 	}
 
 	// Clone declaration to avoid modifying the original
@@ -224,7 +252,7 @@ const resolveComponentDeclaration = (
 		isVividComponentPath(declaration._modulePath)
 	) {
 		declaration._localTypeDefs = extractLocalTypeDefs(
-			className,
+			name,
 			declaration._modulePath
 		);
 	}
@@ -235,49 +263,40 @@ const resolveComponentDeclaration = (
 
 		if (!declaration.superclass.package) {
 			// Inherit within the same package
-			superclassDeclaration = resolveComponentDeclaration(
+			superclassDeclaration = resolveDeclaration(
 				packageDeclarations,
+				'class',
 				declaration.superclass.name
 			);
 		}
 
 		if (superclassDeclaration) {
-			// Inherit members, attributes, and events from the superclass
-			// Note: we don't inherit slots, as Vivid components often don't implement them
-			declaration.members = inheritItems(
-				(m) => m.name,
-				superclassDeclaration.members,
-				declaration.members
-			);
+			applyInheritance(declaration, superclassDeclaration);
+		}
+	}
+
+	// Inherit from declared mixins
+	for (const mixin of declaration.mixins ?? []) {
+		const mixinDeclaration = resolveDeclaration(
+			packageDeclarations,
+			'mixin',
+			mixin.name
+		);
+		applyInheritance(declaration, mixinDeclaration);
+	}
+
+	// Apply vivid mixins
+	if (declaration.vividComponent) {
+		const mixins = extractVividMixins(name, declaration._modulePath);
+		for (const mixinName of mixins) {
+			if (!(mixinName in VividMixins)) {
+				throw new Error(`Unknown mixin ${mixinName}`);
+			}
 			declaration.attributes = inheritItems(
 				getAttributeName,
-				superclassDeclaration.attributes,
+				VividMixins[mixinName],
 				declaration.attributes
 			);
-			declaration.events = inheritItems(
-				(m) => m.name,
-				superclassDeclaration.events,
-				declaration.events
-			);
-			declaration._localTypeDefs = {
-				...superclassDeclaration._localTypeDefs,
-				...declaration._localTypeDefs,
-			};
-		}
-
-		// Apply vivid mixins
-		if (declaration.vividComponent) {
-			const mixins = extractVividMixins(className, declaration._modulePath);
-			for (const mixinName of mixins) {
-				if (!(mixinName in VividMixins)) {
-					throw new Error(`Unknown mixin ${mixinName}`);
-				}
-				declaration.attributes = inheritItems(
-					getAttributeName,
-					VividMixins[mixinName],
-					declaration.attributes
-				);
-			}
 		}
 	}
 
@@ -345,16 +364,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 		},
 	],
 	Localized: [],
-	Anchored: [
-		{
-			name: 'anchor',
-			description: "ID or direct reference to the component's anchor element.",
-			type: {
-				text: 'string | HTMLElement',
-			},
-			fieldName: 'anchor',
-		},
-	],
 	Anchor: [
 		{
 			name: 'download',
@@ -493,7 +502,7 @@ export const getClassNameOfVividComponent = (name: string): string => {
 export const getVividComponentDeclaration = (
 	name: string,
 	className: string
-): Declaration => resolveComponentDeclaration(vividDeclarations, className);
+): Declaration => resolveDeclaration(vividDeclarations, 'class', className);
 
 /**
  * Lists all public components from Vivid. E.g. 'accordion-item'.

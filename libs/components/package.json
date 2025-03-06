@@ -37,5 +37,10 @@
 	"bugs": {
 		"url": "https://github.com/Vonage/vivid-3/issues"
 	},
-	"license": "Apache-2.0"
+	"license": "Apache-2.0",
+	"dependencies": {
+		"@floating-ui/dom": "^1.6.13",
+		"@microsoft/fast-element": "^1.14.0",
+		"@microsoft/fast-web-utilities": "^6.0.0"
+	}
 }
