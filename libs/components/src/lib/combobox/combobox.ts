@@ -344,7 +344,7 @@ export class Combobox extends FormAssociatedCombobox {
 	 * @param e - the mouse event
 	 * @internal
 	 */
-	chevronIconClickHandler(e: MouseEvent): void {
+	_chevronIconClickHandler(e: MouseEvent): void {
 		if (!this.open) return;
 		e.stopPropagation();
 		this.open = false;

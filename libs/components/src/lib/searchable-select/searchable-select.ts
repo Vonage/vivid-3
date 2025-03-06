@@ -1037,19 +1037,19 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 
 		if (!e.defaultPrevented) {
-			const capturedChevron = (e.target as HTMLElement).closest(
-				`vwc-icon.chevron`
-			) as Icon | null;
-
-			if (this.open && capturedChevron) {
-				this.open = false;
-				return;
-			}
-
 			// Unless something was clicked on that handled the event, e.g. tag remove button or chevron icon, focus the input when clicking anywhere
 			this._input.focus();
 			this.open = true;
 		}
+	}
+
+	/**
+	 * @internal
+	 */
+	_onChevronClick(e: MouseEvent) {
+		if (!this.open) return;
+		this.open = false;
+		e.stopPropagation();
 	}
 
 	override connectedCallback() {
