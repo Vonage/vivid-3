@@ -78,8 +78,9 @@ $control-border: 2px;
 	}
 
 	:host(:focus-visible) & {
-		#{focus-variables.$focus-inset}: -3px;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		position: relative;
 
 		&::before {
 			@include focus.focus;
@@ -87,9 +88,12 @@ $control-border: 2px;
 			position: absolute;
 			display: block;
 			border-radius: inherit;
-			block-size: $control-size;
+			block-size: calc($control-size + 4px);
 			content: '';
-			inline-size: $control-size;
+			inline-size: calc($control-size + 4px);
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			transform: translate(-50%, -50%);
 		}
 	}
 }
@@ -98,15 +102,4 @@ label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	cursor: pointer;
 	font: var(#{constants.$vvd-typography-base});
-}
-
-.focus-indicator {
-	#{focus-variables.$focus-inset}: -3px;
-	#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-	border-radius: #{border-radius-variables.$border-radius-full};
-
-	:host(:not(:focus-visible)) & {
-		display: none;
-	}
 }
