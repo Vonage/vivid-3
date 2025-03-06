@@ -1,4 +1,4 @@
-import type { DatePickerLocale } from '../locale.ts';
+import type { CalendarPickerLocale } from '../calendar-picker.locale.ts';
 import { buildCalendarGrid } from './calendarGrid.ts';
 
 const enUsLocale = {
@@ -15,7 +15,7 @@ const enUsLocale = {
 		shorthand: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 	},
 	firstDayOfWeek: 0,
-} as DatePickerLocale;
+} as CalendarPickerLocale;
 
 const enGbLocale = { ...enUsLocale, firstDayOfWeek: 1 };
 

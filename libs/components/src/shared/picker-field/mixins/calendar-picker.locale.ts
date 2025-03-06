@@ -1,4 +1,4 @@
-export interface DatePickerLocale {
+export interface CalendarPickerLocale {
 	months: {
 		name: string[];
 		shorthand: string[];
@@ -18,8 +18,6 @@ export interface DatePickerLocale {
 	prevMonthLabel: string;
 	nextMonthLabel: string;
 	nextYearLabel: string;
-	clearLabel: string;
-	okLabel: string;
 	invalidDateError: string;
 	invalidDateRangeError: string;
 	startDateAfterMinDateError: (minDate: string) => string;

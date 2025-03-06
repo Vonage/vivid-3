@@ -7,7 +7,11 @@ const jaJP: Locale = {
 	common: {
 		useCommaAsDecimalSeparator: false,
 	},
-	datePicker: {
+	pickerField: {
+		clearLabel: 'クリア',
+		okLabel: 'OK',
+	},
+	calendarPicker: {
 		months: {
 			name: [
 				'1月',
@@ -63,8 +67,6 @@ const jaJP: Locale = {
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
 		nextYearLabel: '翌年',
-		clearLabel: 'クリア',
-		okLabel: 'OK',
 		invalidDateError: '有効な日付を入力してください。',
 		invalidDateRangeError: '有効な日付範囲を入力してください。',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
@@ -81,8 +83,6 @@ const jaJP: Locale = {
 		minutesLabel: '分',
 		secondsLabel: '秒',
 		meridiesLabel: '午前/午後',
-		clearLabel: 'クリア',
-		okLabel: 'OK',
 		invalidTimeError: '有効な時間を入力してください。',
 	},
 	filePicker: {

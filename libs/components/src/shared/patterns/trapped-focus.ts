@@ -9,7 +9,7 @@ export class TrappedFocus {
 	 * @returns Whether focus was trapped.
 	 * @internal
 	 */
-	protected _trappedFocus(
+	_trappedFocus(
 		event: KeyboardEvent,
 		getFocusableEls: () => NodeListOf<HTMLElement>
 	) {

@@ -72,14 +72,14 @@ export const TimePickerTemplate = (context: VividElementDefinitionContext) => {
 					<${buttonTag}
 						class="vwc-button"
 						size="condensed"
-						label="${(x) => x.locale.timePicker.clearLabel}"
+						label="${(x) => x.locale.pickerField.clearLabel}"
 						@click="${(x) => x._onClearClick()}"
 					></${buttonTag}>
 					<${buttonTag}
 						class="vwc-button"
 						size="condensed"
 						appearance="filled"
-						label="${(x) => x.locale.timePicker.okLabel}"
+						label="${(x) => x.locale.pickerField.okLabel}"
 						@click="${(x) => x._onOkClick()}"
 					></${buttonTag}>
 				</div>
