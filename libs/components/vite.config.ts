@@ -56,6 +56,10 @@ function generateRollupInput() {
 
 const input = generateRollupInput();
 
+const packageVersion = JSON.parse(
+	fs.readFileSync(path.join(__dirname, 'package.json'), 'utf-8')
+).version;
+
 const isWatchMode = process.env.WATCH === 'true';
 const isCI = process.env['CI'] === 'true';
 const isA11y = process.env['A11Y'] === 'true';
@@ -148,6 +152,9 @@ export default defineConfig(() => {
 						exclude: ['**/*.md'],
 				  }
 				: null,
+		},
+		define: {
+			__PACKAGE_VERSION__: JSON.stringify(packageVersion),
 		},
 		css: {
 			preprocessorOptions: {
