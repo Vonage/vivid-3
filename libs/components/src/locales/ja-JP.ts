@@ -7,7 +7,11 @@ const jaJP: Locale = {
 	common: {
 		useCommaAsDecimalSeparator: false,
 	},
-	datePicker: {
+	pickerField: {
+		clearLabel: 'クリア',
+		okLabel: 'OK',
+	},
+	calendarPicker: {
 		months: {
 			name: [
 				'1月',
@@ -63,8 +67,6 @@ const jaJP: Locale = {
 		prevMonthLabel: '前月',
 		nextMonthLabel: '次月',
 		nextYearLabel: '翌年',
-		clearLabel: 'クリア',
-		okLabel: 'OK',
 		invalidDateError: '有効な日付を入力してください。',
 		invalidDateRangeError: '有効な日付範囲を入力してください。',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
@@ -81,9 +83,21 @@ const jaJP: Locale = {
 		minutesLabel: '分',
 		secondsLabel: '秒',
 		meridiesLabel: '午前/午後',
-		clearLabel: 'クリア',
-		okLabel: 'OK',
 		invalidTimeError: '有効な時間を入力してください。',
+	},
+	dateTimePicker: {
+		chooseDateTimeLabel: '日付と時刻を選択',
+		changeDateTimeLabel: /* istanbul ignore next */ (dateTime: string) =>
+			`日付と時刻を変更, ${dateTime}`,
+		invalidDateTimeError: '有効な日付と時刻を入力してください。',
+		dateBeforeMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`日付は${minDate}以降である必要があります。`,
+		dateAfterMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`日付は${maxDate}以前である必要があります。`,
+		timeBeforeMinTimeError: /* istanbul ignore next */ (minTime: string) =>
+			`時刻は${minTime}以降である必要があります。`,
+		timeAfterMaxTimeError: /* istanbul ignore next */ (maxTime: string) =>
+			`時刻は${maxTime}以前である必要があります。`,
 	},
 	filePicker: {
 		invalidFileTypeError: 'この種類のファイルは選択できません。',

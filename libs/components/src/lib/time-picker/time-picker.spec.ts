@@ -1,34 +1,21 @@
-import {
-	createFormHTML,
-	elementUpdated,
-	fixture,
-	getBaseElement,
-	listenToFormSubmission,
-} from '@vivid-nx/shared';
+import { createFormHTML, elementUpdated, fixture } from '@vivid-nx/shared';
 import { setLocale } from '../../shared/localization';
 import { Popup } from '../popup/popup.ts';
 import { Button } from '../button/button.ts';
 import { TextField } from '../text-field/text-field.ts';
 import enGB from '../../locales/en-GB.ts';
 import enUS from '../../locales/en-US.ts';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import type { InlineTimePicker } from '../../shared/picker-field/mixins/inline-time-picker/inline-time-picker';
 import { TimePicker } from './time-picker';
-import type { InlineTimePicker } from './inline-time-picker/inline-time-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-time-picker';
 
-const getActiveElementPiercingShadowRoot = () => {
-	let element = document.activeElement;
-	while (element?.shadowRoot) {
-		element = element.shadowRoot.activeElement;
-	}
-	return element;
-};
-
 describe('vwc-time-picker', () => {
 	let element: TimePicker;
 	let textField: TextField;
-	let clockButton: Button;
+	let pickerButton: Button;
 	let popup: Popup;
 	let inlineTimePicker: InlineTimePicker;
 
@@ -41,7 +28,7 @@ describe('vwc-time-picker', () => {
 	}
 
 	async function openPopup() {
-		clockButton.click();
+		pickerButton.click();
 		await elementUpdated(element);
 	}
 
@@ -49,23 +36,14 @@ describe('vwc-time-picker', () => {
 		(element.shadowRoot!.querySelector(`[aria-label="${label}"]`) ??
 			element.shadowRoot!.querySelector(`[label="${label}"]`)) as Button;
 
-	const pressKey = (key: string, options: KeyboardEventInit = {}) => {
-		getActiveElementPiercingShadowRoot()!.dispatchEvent(
-			new KeyboardEvent('keydown', {
-				key,
-				bubbles: true,
-				composed: true,
-				...options,
-			})
-		);
-	};
-
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TimePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
-		clockButton = element.shadowRoot!.querySelector('#clock-button') as Button;
+		pickerButton = element.shadowRoot!.querySelector(
+			'#picker-button'
+		) as Button;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
 		inlineTimePicker = element.shadowRoot!.querySelector(
 			'#inline-time-picker'
@@ -85,40 +63,17 @@ describe('vwc-time-picker', () => {
 		});
 	});
 
-	describe('label', () => {
-		it('should forward label to the text field', async () => {
-			element.label = 'label';
-			await elementUpdated(element);
-
-			expect(textField.label).toBe('label');
-		});
-	});
-
-	describe('helperText', () => {
-		it('should forward helperText to the text field', async () => {
-			element.helperText = 'helperText';
-			await elementUpdated(element);
-
-			expect(textField.helperText).toBe('helperText');
-		});
-	});
-
-	describe('disabled', () => {
-		it('should forward disabled to the text field', async () => {
-			element.disabled = true;
-			await elementUpdated(element);
-
-			expect(textField.disabled).toBe(true);
-		});
-	});
-
-	describe('readOnly', () => {
-		it('should forward readOnly to the text field', async () => {
-			element.readOnly = true;
-			await elementUpdated(element);
-
-			expect(textField.readOnly).toBe(true);
-		});
+	describe('picker field', () => {
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				return {
+					firstFocusable: shadowRoot.querySelector('#inline-time-picker')!,
+					lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+				};
+			},
+			'12:00:00'
+		);
 	});
 
 	describe('errorText', () => {
@@ -154,14 +109,14 @@ describe('vwc-time-picker', () => {
 			expect(textField.value).toBe('');
 		});
 
-		it('should update value when a user enters a valid date into the text field', async () => {
+		it('should update value when a user enters a valid time into the text field', async () => {
 			typeIntoTextField('01:45 PM');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('13:45:00');
 		});
 
-		it('should have an empty value when a user enters a invalid date into the text field', async () => {
+		it('should have an empty value when a user enters a invalid time into the text field', async () => {
 			typeIntoTextField('x');
 			await elementUpdated(element);
 
@@ -188,23 +143,6 @@ describe('vwc-time-picker', () => {
 			element.value = '';
 			await elementUpdated(element);
 			expect(inlineTimePicker.value).toBe(undefined);
-		});
-	});
-
-	describe('helper-text slot', () => {
-		it('should forward helper-text slot to the text field', async () => {
-			const slotted = document.createElement('div');
-			slotted.slot = 'helper-text';
-			slotted.innerHTML = 'content';
-			element.appendChild(slotted);
-			await elementUpdated(element);
-
-			const textFieldSlot = textField.shadowRoot?.querySelector(
-				'slot[name=helper-text]'
-			) as HTMLSlotElement;
-			const timePickerSlot =
-				textFieldSlot.assignedNodes()[0] as HTMLSlotElement;
-			expect(timePickerSlot.assignedNodes()).toEqual([slotted]);
 		});
 	});
 
@@ -347,7 +285,7 @@ describe('vwc-time-picker', () => {
 	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
-		it('should be fired when a user enters a valid date into the text field', async () => {
+		it('should be fired when a user enters a valid time into the text field', async () => {
 			const spy = vi.fn();
 			element.addEventListener(eventName, spy);
 
@@ -365,20 +303,6 @@ describe('vwc-time-picker', () => {
 			inlineTimePicker.dispatchEvent(
 				new CustomEvent('change', { detail: '12:34:56', bubbles: false })
 			);
-
-			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
-
-	describe.each([
-		['focus', 'focusin'],
-		['blur', 'focusout'],
-	])('%s event', (eventName, sourceEventName) => {
-		it(`should emit a '${eventName}' event on '${sourceEventName}'`, async () => {
-			const spy = vi.fn();
-			element.addEventListener(eventName, spy);
-
-			element.dispatchEvent(new Event(sourceEventName));
 
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
@@ -402,7 +326,7 @@ describe('vwc-time-picker', () => {
 			}
 		);
 
-		it('should show an invalid date error when an invalid time is entered', async () => {
+		it('should show an invalid time error when an invalid time is entered', async () => {
 			typeIntoTextField('invalid time');
 			textField.dispatchEvent(new Event('blur'));
 			await elementUpdated(element);
@@ -410,7 +334,7 @@ describe('vwc-time-picker', () => {
 			expect(textField.errorText).toBe('Please enter a valid time.');
 		});
 
-		it('should clear the invalid date error when a valid time is entered', async () => {
+		it('should clear the invalid time error when a valid time is entered', async () => {
 			typeIntoTextField('invalid time');
 			textField.dispatchEvent(new Event('blur'));
 			await elementUpdated(element);
@@ -432,25 +356,22 @@ describe('vwc-time-picker', () => {
 		});
 	});
 
-	describe('clock button', () => {
+	describe('picker button', () => {
+		it('should have an icon of "clock-line"', async () => {
+			expect(pickerButton.icon).toBe('clock-line');
+		});
+
 		it('should have an aria-label of "Choose time" when no time is selected', async () => {
-			expect(clockButton.getAttribute('aria-label')).toBe('Choose time');
+			expect(pickerButton.getAttribute('aria-label')).toBe('Choose time');
 		});
 
 		it('should have an aria-label of "Change time, TIME" when a time is selected', async () => {
 			element.value = '13:45:00';
 			await elementUpdated(element);
 
-			expect(clockButton.getAttribute('aria-label')).toBe(
+			expect(pickerButton.getAttribute('aria-label')).toBe(
 				'Change time, 01:45 PM'
 			);
-		});
-
-		it('should open the popup when pressed', async () => {
-			clockButton.click();
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(true);
 		});
 
 		it('should scroll selected options to the top if a time is selected', async () => {
@@ -459,109 +380,19 @@ describe('vwc-time-picker', () => {
 			await elementUpdated(element);
 			inlineTimePicker.scrollSelectedOptionsToTop = vi.fn();
 
-			clockButton.click();
+			pickerButton.click();
 			await elementUpdated(element);
 
 			expect(inlineTimePicker.scrollSelectedOptionsToTop).toHaveBeenCalledTimes(
 				1
 			);
 		});
-
-		it('should close the popup when pressed and it is already open', async () => {
-			await openPopup();
-
-			clockButton.click();
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(false);
-		});
-
-		it('should be disabled when the date picker is disabled', async () => {
-			element.disabled = true;
-			await elementUpdated(element);
-
-			expect(clockButton.disabled).toBe(true);
-		});
-
-		it('should be disabled when the date picker is readonly', async () => {
-			element.readOnly = true;
-			await elementUpdated(element);
-
-			expect(clockButton.disabled).toBe(true);
-		});
 	});
 
 	describe('popup', () => {
-		let eventSpy: any;
-		let spy: any;
-
-		beforeEach(() => {
-			spy = vi.fn();
-			getBaseElement(element).addEventListener('keydown', spy);
-			eventSpy = vi.spyOn(KeyboardEvent.prototype, 'preventDefault');
-		});
-
-		afterEach(() => {
-			eventSpy.mockRestore();
-		});
-
-		it('should close when pressing ESC', async () => {
-			await openPopup();
-
-			pressKey('Escape');
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(false);
-		});
-
-		it('should allow propagation on escape key if closed', async () => {
-			const parentSpy = vi.fn();
-			element.parentElement!.addEventListener('keydown', parentSpy);
-			textField.focus();
-
-			pressKey('Escape');
-
-			expect(parentSpy.mock.calls.length).toBe(1);
-		});
-
-		it('should stop propagation on escape key', async () => {
-			await openPopup();
-
-			const parentSpy = vi.fn();
-			element.parentElement!.addEventListener('keydown', parentSpy);
-			pressKey('Escape');
-
-			expect(parentSpy.mock.calls.length).toBe(0);
-		});
-
-		it('should prevent default if Escape was pressed', async () => {
-			await openPopup();
-
-			pressKey('Escape');
-			await elementUpdated(element);
-			const event = spy.mock.calls[0][0];
-			expect(event.preventDefault).toBeCalledTimes(1);
-		});
-
-		it('should enable default if key is not Escape', async () => {
-			await openPopup();
-
-			pressKey(' ');
-			await elementUpdated(element);
-			const event = spy.mock.calls[0][0];
-			expect(event.preventDefault).toBeCalledTimes(0);
-		});
-
-		it('should close when clicking outside the time-picker', async () => {
-			await openPopup();
-
-			document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(false);
-		});
-
 		it('should close when an option in the last picker column is selected', async () => {
+			await openPopup();
+
 			inlineTimePicker.dispatchEvent(new CustomEvent('last-column-selected'));
 			await elementUpdated(element);
 
@@ -569,57 +400,15 @@ describe('vwc-time-picker', () => {
 		});
 	});
 
-	describe('trapped focus', () => {
-		let firstFocusable: HTMLElement;
-		let lastFocusable: HTMLElement;
-
-		beforeEach(async () => {
-			await openPopup();
-			const focusable: NodeListOf<HTMLElement> =
-				element.shadowRoot!.querySelectorAll(
-					'#inline-time-picker, .dialog vwc-button'
-				);
-			firstFocusable = focusable[0];
-			lastFocusable = focusable[focusable.length - 1];
-		});
-
-		it('should move focus to first focusable element when pressing tab on the last focusable element', async () => {
-			lastFocusable.focus();
-
-			pressKey('Tab');
-
-			expect(element.shadowRoot!.activeElement).toBe(firstFocusable);
-		});
-
-		it('should move focus to last focusable element when pressing shift + tab on the first focusable element', async () => {
-			firstFocusable.focus();
-
-			pressKey('Tab', { shiftKey: true });
-
-			expect(element.shadowRoot!.activeElement).toBe(lastFocusable);
-		});
-
-		it('should keep default of unrelated keydown event', async () => {
-			firstFocusable.focus();
-
-			const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true });
-			event.preventDefault = vi.fn();
-			getActiveElementPiercingShadowRoot()?.dispatchEvent(event);
-
-			expect(event.preventDefault).not.toHaveBeenCalled();
-		});
-	});
-
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
 		});
 
-		it('should close the dialog when clicking the ok button', async () => {
-			getButtonByLabel('OK').click();
-			await elementUpdated(element);
-
-			expect(popup.open).toBe(false);
+		it('should have an accessible name of "Choose time"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose time');
 		});
 
 		it('should clear the time and close popup when clicking the clear button', async () => {
@@ -634,7 +423,7 @@ describe('vwc-time-picker', () => {
 	});
 
 	describe('form association', () => {
-		const fieldValue = '12:34:56';
+		const fieldValue = '10:10:10';
 		const formId = 'test-form-id';
 		const fieldName = 'test-field';
 		let formWrapper: HTMLElement;
@@ -648,41 +437,20 @@ describe('vwc-time-picker', () => {
 			formWrapper.remove();
 		});
 
-		it('should attach to closest form', async () => {
-			const { form: formElement } = createFormHTML<TimePicker>({
-				componentTagName: COMPONENT_TAG,
+		it('should reset the value of the custom element to default on form reset', async () => {
+			const { form: formElement, element } = createFormHTML<TimePicker>({
 				fieldName,
 				fieldValue,
 				formId,
-				formWrapper,
-			});
-
-			const submitPromise = listenToFormSubmission(formElement);
-			formElement.requestSubmit();
-
-			(await submitPromise).forEach((formDataValue, formDataKey) => {
-				expect(formDataKey).toEqual(fieldName);
-				expect(formDataValue).toEqual(fieldValue);
-			});
-		});
-
-		it('should attach to form when given form id', async () => {
-			const { otherForm } = createFormHTML<TimePicker>({
-				fieldName,
-				fieldValue,
-				formId,
-				otherFormId: 'otherFormId',
 				componentTagName: COMPONENT_TAG,
 				formWrapper,
 			});
 
-			const submitPromise = listenToFormSubmission(otherForm);
-			otherForm.requestSubmit();
+			element.value = '20:20:20';
+			formElement.reset();
+			await elementUpdated(element);
 
-			(await submitPromise).forEach((formDataValue, formDataKey) => {
-				expect(formDataKey).toEqual(fieldName);
-				expect(formDataValue).toEqual(fieldValue);
-			});
+			expect(element.value).toEqual(fieldValue);
 		});
 	});
 });

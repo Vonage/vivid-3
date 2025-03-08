@@ -1,0 +1,36 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
+:host {
+	display: inline-block;
+}
+
+.base {
+	display: inline-block;
+	inline-size: 100%;
+}
+
+.control {
+	inline-size: 100%;
+}
+
+.dialog {
+	display: inline-flex;
+	flex-direction: column;
+
+	&--padded {
+		padding: 12px;
+		gap: 12px;
+	}
+
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 8px;
+		gap: 8px;
+
+		&--with-separator {
+			border-top: 1px solid var(#{constants.$vvd-color-neutral-200});
+		}
+	}
+}

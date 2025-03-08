@@ -7,7 +7,11 @@ const enGB: Locale = {
 	common: {
 		useCommaAsDecimalSeparator: false,
 	},
-	datePicker: {
+	pickerField: {
+		clearLabel: 'Clear',
+		okLabel: 'OK',
+	},
+	calendarPicker: {
 		months: {
 			name: [
 				'January',
@@ -63,8 +67,6 @@ const enGB: Locale = {
 		prevMonthLabel: 'Previous month',
 		nextMonthLabel: 'Next month',
 		nextYearLabel: 'Next year',
-		clearLabel: 'Clear',
-		okLabel: 'OK',
 		invalidDateError: 'Please enter a valid date.',
 		invalidDateRangeError: 'Please enter a valid date range.',
 		startDateAfterMinDateError: /* istanbul ignore next */ (minDate: string) =>
@@ -81,9 +83,21 @@ const enGB: Locale = {
 		minutesLabel: 'minutes',
 		secondsLabel: 'seconds',
 		meridiesLabel: 'AM/PM',
-		clearLabel: 'Clear',
-		okLabel: 'OK',
 		invalidTimeError: 'Please enter a valid time.',
+	},
+	dateTimePicker: {
+		chooseDateTimeLabel: 'Choose date and time',
+		changeDateTimeLabel: /* istanbul ignore next */ (dateTime: string) =>
+			`Change date and time, ${dateTime}`,
+		invalidDateTimeError: 'Please enter a valid date and time.',
+		dateBeforeMinDateError: /* istanbul ignore next */ (minDate: string) =>
+			`Date must be ${minDate} or later.`,
+		dateAfterMaxDateError: /* istanbul ignore next */ (maxDate: string) =>
+			`Date must be ${maxDate} or earlier.`,
+		timeBeforeMinTimeError: /* istanbul ignore next */ (minTime: string) =>
+			`Time must be ${minTime} or later.`,
+		timeAfterMaxTimeError: /* istanbul ignore next */ (maxTime: string) =>
+			`Time must be ${maxTime} or earlier.`,
 	},
 	filePicker: {
 		invalidFileTypeError: "You can't select files of this type.",

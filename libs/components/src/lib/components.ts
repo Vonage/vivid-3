@@ -17,6 +17,7 @@ export * from './combobox/definition';
 export * from './data-grid/definition';
 export * from './date-picker/definition';
 export * from './date-range-picker/definition';
+export * from './date-time-picker/definition';
 export * from './dial-pad/definition';
 export * from './dialog/definition';
 export * from './divider/definition';

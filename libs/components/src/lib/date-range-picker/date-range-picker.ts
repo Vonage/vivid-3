@@ -3,7 +3,7 @@ import {
 	compareDateStr,
 	type DateStr,
 	isValidDateStr,
-} from '../../shared/date-picker/calendar/dateStr';
+} from '../../shared/datetime/dateStr';
 import {
 	type ErrorText,
 	errorText,
@@ -14,10 +14,12 @@ import {
 	formatPresentationDateRange,
 	formatRange,
 	parsePresentationDateRange,
-} from '../../shared/date-picker/calendar/presentationDateRange';
-import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
-import { formatPresentationDate } from '../../shared/date-picker/calendar/presentationDate';
-import type { DateRange } from '../../shared/date-picker/calendar/dateRange';
+} from '../../shared/datetime/presentationDateRange';
+import { formatPresentationDate } from '../../shared/datetime/presentationDate';
+import type { DateRange } from '../../shared/datetime/dateRange';
+import { PickerField } from '../../shared/picker-field/picker-field';
+import { CalendarPicker } from '../../shared/picker-field/mixins/calendar-picker';
+import { MinMaxCalendarPicker } from '../../shared/picker-field/mixins/min-max-calendar-picker';
 
 const isFormAssociatedTryingToSetFormValue = (
 	value: File | string | FormData | null
@@ -40,7 +42,9 @@ function isDefined<T>(value: T | null | undefined): value is T {
  */
 @errorText
 @formElements
-export class DateRangePicker extends DatePickerBase {
+export class DateRangePicker extends MinMaxCalendarPicker(
+	CalendarPicker(PickerField)
+) {
 	/**
 	 * The initial start value. This value sets the `start` property
 	 * only when the `start` property has not been explicitly set.
@@ -203,14 +207,14 @@ export class DateRangePicker extends DatePickerBase {
 	/**
 	 * @internal
 	 */
-	protected override _updatePresentationValue() {
+	override _updatePresentationValue() {
 		if (this.start && this.end) {
 			this._presentationValue = formatPresentationDateRange(
 				{
 					start: this.start,
 					end: this.end,
 				},
-				this.locale.datePicker
+				this.locale.calendarPicker
 			);
 		} else {
 			this._presentationValue = '';
@@ -236,6 +240,9 @@ export class DateRangePicker extends DatePickerBase {
 		}
 	}
 
+	/**
+	 * @internal
+	 */
 	override setFormValue = (
 		value: File | string | FormData | null,
 		state?: File | string | FormData | null
@@ -247,6 +254,9 @@ export class DateRangePicker extends DatePickerBase {
 		super.setFormValue(value, state);
 	};
 
+	/**
+	 * @internal
+	 */
 	override connectedCallback() {
 		super.connectedCallback();
 		if (!this.start) {
@@ -314,7 +324,7 @@ export class DateRangePicker extends DatePickerBase {
 	/**
 	 * @internal
 	 */
-	protected override _getSelectedDates(): DateStr[] {
+	override _getSelectedDates(): DateStr[] {
 		const dates = [];
 		if (this.start) {
 			dates.push(this.start);
@@ -347,8 +357,8 @@ export class DateRangePicker extends DatePickerBase {
 	 */
 	override get _textFieldPlaceholder() {
 		return formatRange(
-			this.locale.datePicker.dateFormatPlaceholder,
-			this.locale.datePicker.dateFormatPlaceholder
+			this.locale.calendarPicker.dateFormatPlaceholder,
+			this.locale.calendarPicker.dateFormatPlaceholder
 		);
 	}
 
@@ -369,7 +379,7 @@ export class DateRangePicker extends DatePickerBase {
 		try {
 			const { start, end } = parsePresentationDateRange(
 				this._presentationValue,
-				this.locale.datePicker
+				this.locale.calendarPicker
 			);
 			this.#updateValues({ start, end });
 		} catch (_) {
@@ -399,20 +409,20 @@ export class DateRangePicker extends DatePickerBase {
 	/**
 	 * @internal
 	 */
-	protected override _getCustomValidationError(): string | null {
+	override _getCustomValidationError(): string | null {
 		if (this._isPresentationValueInvalid()) {
-			return this.locale.datePicker.invalidDateRangeError;
+			return this.locale.calendarPicker.invalidDateRangeError;
 		}
 
 		if (this.min && this.start && compareDateStr(this.start, this.min) < 0) {
-			return this.locale.datePicker.startDateAfterMinDateError(
-				formatPresentationDate(this.min, this.locale.datePicker)
+			return this.locale.calendarPicker.startDateAfterMinDateError(
+				formatPresentationDate(this.min, this.locale.calendarPicker)
 			);
 		}
 
 		if (this.max && this.end && compareDateStr(this.end, this.max) > 0) {
-			return this.locale.datePicker.endDateBeforeMaxDateError(
-				formatPresentationDate(this.max, this.locale.datePicker)
+			return this.locale.calendarPicker.endDateBeforeMaxDateError(
+				formatPresentationDate(this.max, this.locale.calendarPicker)
 			);
 		}
 
@@ -430,7 +440,7 @@ export class DateRangePicker extends DatePickerBase {
 		try {
 			parsePresentationDateRange(
 				this._presentationValue,
-				this.locale.datePicker
+				this.locale.calendarPicker
 			);
 			return false;
 		} catch (_) {
@@ -458,20 +468,43 @@ export class DateRangePicker extends DatePickerBase {
 	 * @internal
 	 */
 	@volatile
-	get _calendarButtonLabel() {
+	get _pickerButtonLabel() {
 		if (this.start && this.end) {
-			return this.locale.datePicker.changeDatesLabel(
+			return this.locale.calendarPicker.changeDatesLabel(
 				formatPresentationDateRange(
 					{
 						start: this.start,
 						end: this.end,
 					},
-					this.locale.datePicker
+					this.locale.calendarPicker
 				)
 			);
 		} else {
-			return this.locale.datePicker.chooseDatesLabel;
+			return this.locale.calendarPicker.chooseDatesLabel;
 		}
+	}
+
+	/**
+	 * @internal
+	 */
+	get _dialogLabel() {
+		return this.locale.calendarPicker.chooseDatesLabel;
+	}
+
+	/**
+	 * @internal
+	 */
+	override _focusableElsWithinDialog() {
+		return this._dialogEl.querySelectorAll(
+			'button, .vwc-button'
+		) as NodeListOf<HTMLElement>;
+	}
+
+	/**
+	 * @internal
+	 */
+	override get _pickerButtonIcon() {
+		return 'calendar-line';
 	}
 }
 

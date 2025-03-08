@@ -3,10 +3,10 @@ import { popupDefinition } from '../popup/definition';
 import { buttonDefinition } from '../button/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
-import styles from './time-picker.scss?inline';
+import pickerFieldStyles from '../../shared/picker-field/picker-field.scss?inline';
+import { inlineTimePickerDefinition } from '../../shared/picker-field/mixins/inline-time-picker/definition';
 import { TimePicker } from './time-picker';
 import { TimePickerTemplate as template } from './time-picker.template';
-import { inlineTimePickerDefinition } from './inline-time-picker/definition';
 
 /**
  * @internal
@@ -22,7 +22,7 @@ export const timePickerDefinition = defineVividComponent(
 		inlineTimePickerDefinition,
 	],
 	{
-		styles,
+		styles: pickerFieldStyles,
 		shadowOptions: {
 			delegatesFocus: true,
 		},

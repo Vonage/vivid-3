@@ -52,3 +52,4 @@ export const axe = configureAxe({
 
 export * from './form-association';
 export * from './delegatesFocusPolyfill';
+export * from './active-element';

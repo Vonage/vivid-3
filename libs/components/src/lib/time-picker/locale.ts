@@ -6,7 +6,5 @@ export interface TimePickerLocale {
 	minutesLabel: string;
 	secondsLabel: string;
 	meridiesLabel: string;
-	clearLabel: string;
-	okLabel: string;
 	invalidTimeError: string;
 }

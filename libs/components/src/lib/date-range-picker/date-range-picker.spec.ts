@@ -9,27 +9,17 @@ import enUS from '../../locales/en-US';
 import { TextField } from '../text-field/text-field';
 import { Popup } from '../popup/popup';
 import { Button } from '../button/button';
-import { DateRangePicker } from './date-range-picker';
 import '.';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
+import { DateRangePicker } from './date-range-picker';
 
 const COMPONENT_TAG = 'vwc-date-range-picker';
-
-// Mock current date to be 2023-08-10 for the tests
-
-vi.mock('../../shared/date-picker/calendar/month.ts', async () => ({
-	...(await vi.importActual('../../shared/date-picker/calendar/month.ts')),
-	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
-}));
-
-vi.mock('../../shared/date-picker/calendar/dateStr.ts', async () => ({
-	...(await vi.importActual('../../shared/date-picker/calendar/dateStr.ts')),
-	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
-}));
 
 describe('vwc-date-range-picker', () => {
 	let element: DateRangePicker;
 	let textField: TextField;
-	let calendarButton: Button;
+	let pickerButton: Button;
 	let popup: Popup;
 	let titleAction: HTMLButtonElement;
 
@@ -58,7 +48,7 @@ describe('vwc-date-range-picker', () => {
 	}
 
 	async function openPopup() {
-		calendarButton.click();
+		pickerButton.click();
 		await elementUpdated(element);
 	}
 
@@ -67,13 +57,21 @@ describe('vwc-date-range-picker', () => {
 		await elementUpdated(element);
 	}
 
+	beforeAll(() => {
+		// Use a fixed date of 2023-08-10 for all tests
+		vi.useFakeTimers({
+			now: new Date(2023, 7, 10),
+			toFake: ['Date'],
+		});
+	});
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DateRangePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
-		calendarButton = element.shadowRoot!.querySelector(
-			'#calendar-button'
+		pickerButton = element.shadowRoot!.querySelector(
+			'#picker-button'
 		) as Button;
 		popup = element.shadowRoot!.querySelector('.popup') as Popup;
 		titleAction = element.shadowRoot!.querySelector(
@@ -93,6 +91,33 @@ describe('vwc-date-range-picker', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				return {
+					firstFocusable: shadowRoot.querySelector(
+						'vwc-button[aria-label="Previous Month"]'
+					)!,
+					lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+				};
+			},
+			'01/01/2021 – 01/02/2021'
+		);
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DateRangePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DateRangePicker, max: string) => {
+				element.max = max;
+			}
+		);
 	});
 
 	describe('errorText', () => {
@@ -372,9 +397,13 @@ describe('vwc-date-range-picker', () => {
 		});
 	});
 
-	describe('calendar button', () => {
+	describe('picker button', () => {
+		it('should have an icon of "calendar-line"', async () => {
+			expect(pickerButton.icon).toBe('calendar-line');
+		});
+
 		it('should have an aria-label of "Choose dates" when no date is selected', async () => {
-			expect(calendarButton.getAttribute('aria-label')).toBe('Choose dates');
+			expect(pickerButton.getAttribute('aria-label')).toBe('Choose dates');
 		});
 
 		it('should have an aria-label of "Change dates, DATES" when both dates are selected', async () => {
@@ -382,7 +411,7 @@ describe('vwc-date-range-picker', () => {
 			element.end = '2021-01-02';
 			await elementUpdated(element);
 
-			expect(calendarButton.getAttribute('aria-label')).toBe(
+			expect(pickerButton.getAttribute('aria-label')).toBe(
 				'Change dates, 01/01/2021 – 01/02/2021'
 			);
 		});
@@ -515,9 +544,15 @@ describe('vwc-date-range-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose dates"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose dates');
 		});
 
 		it('should clear start and end date when clicking the clear button', async () => {
@@ -554,7 +589,7 @@ describe('vwc-date-range-picker', () => {
 		});
 	});
 
-	describe('form reset', () => {
+	describe('form association', () => {
 		it('should reset the date range to initial values when the form is reset', async () => {
 			const ORIGINAL_START_DATE = '2023-08-01';
 			const ORIGINAL_END_DATE = '2023-08-10';

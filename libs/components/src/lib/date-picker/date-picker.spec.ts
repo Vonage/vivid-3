@@ -4,32 +4,22 @@ import {
 	fixture,
 	setupDelegatesFocusPolyfill,
 } from '@vivid-nx/shared';
-import enUS from '@vonage/vivid/locales/en-US';
+import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { setLocale } from '../../shared/localization';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
+import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
+import { calendarPickerSpec } from '../../shared/picker-field/mixins/calendar-picker.spec';
 import { DatePicker } from './date-picker';
 import '.';
 
 const COMPONENT_TAG = 'vwc-date-picker';
 
-// Mock current date to be 2023-08-10 for the tests
-
-vi.mock('../../shared/date-picker/calendar/month.ts', async () => ({
-	...(await vi.importActual('../../shared/date-picker/calendar/month.ts')),
-	getCurrentMonth: vi.fn().mockReturnValue({ month: 7, year: 2023 }),
-}));
-
-vi.mock('../../shared/date-picker/calendar/dateStr.ts', async () => ({
-	...(await vi.importActual('../../shared/date-picker/calendar/dateStr.ts')),
-	currentDateStr: vi.fn().mockReturnValue('2023-08-10'),
-}));
-
 describe('vwc-date-picker', () => {
 	let element: DatePicker;
 	let textField: TextField;
-	let calendarButton: Button;
+	let pickerButton: Button;
 	let titleAction: HTMLButtonElement;
 
 	const getDateButton = (date: string) =>
@@ -52,7 +42,7 @@ describe('vwc-date-picker', () => {
 	}
 
 	async function openPopup() {
-		calendarButton.click();
+		pickerButton.click();
 		await elementUpdated(element);
 	}
 
@@ -61,13 +51,21 @@ describe('vwc-date-picker', () => {
 		await elementUpdated(element);
 	}
 
+	beforeAll(() => {
+		// Use a fixed date of 2023-08-10 for all tests
+		vi.useFakeTimers({
+			now: new Date(2023, 7, 10),
+			toFake: ['Date'],
+		});
+	});
+
 	beforeEach(async () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as DatePicker;
 		textField = element.shadowRoot!.querySelector('.control') as TextField;
-		calendarButton = element.shadowRoot!.querySelector(
-			'#calendar-button'
+		pickerButton = element.shadowRoot!.querySelector(
+			'#picker-button'
 		) as Button;
 		titleAction = element.shadowRoot!.querySelector(
 			'.title-action'
@@ -87,6 +85,33 @@ describe('vwc-date-picker', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('picker field', () => {
+		pickerFieldSpec(
+			COMPONENT_TAG,
+			(shadowRoot) => {
+				return {
+					firstFocusable: shadowRoot.querySelector(
+						'vwc-button[aria-label="Previous year"]'
+					)!,
+					lastFocusable: shadowRoot.querySelector('vwc-button[label="OK"]')!,
+				};
+			},
+			'2020-02-02'
+		);
+	});
+
+	describe('calendar picker', () => {
+		calendarPickerSpec(
+			COMPONENT_TAG,
+			(element: DatePicker, min: string) => {
+				element.min = min;
+			},
+			(element: DatePicker, max: string) => {
+				element.max = max;
+			}
+		);
 	});
 
 	describe('errorText', () => {
@@ -225,16 +250,20 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
-	describe('calendar button', () => {
+	describe('picker button', () => {
+		it('should have an icon of "calendar-line"', async () => {
+			expect(pickerButton.icon).toBe('calendar-line');
+		});
+
 		it('should have an aria-label of "Choose date" when no date is selected', async () => {
-			expect(calendarButton.getAttribute('aria-label')).toBe('Choose date');
+			expect(pickerButton.getAttribute('aria-label')).toBe('Choose date');
 		});
 
 		it('should have an aria-label of "Change date, DATE" when a date is selected', async () => {
 			element.value = '2021-01-01';
 			await elementUpdated(element);
 
-			expect(calendarButton.getAttribute('aria-label')).toBe(
+			expect(pickerButton.getAttribute('aria-label')).toBe(
 				'Change date, 01/01/2021'
 			);
 		});
@@ -267,9 +296,15 @@ describe('vwc-date-picker', () => {
 		});
 	});
 
-	describe('dialog footer', () => {
+	describe('dialog', () => {
 		beforeEach(async () => {
 			await openPopup();
+		});
+
+		it('should have an accessible name of "Choose date"', () => {
+			expect(
+				element.shadowRoot!.querySelector('.dialog')!.getAttribute('aria-label')
+			).toBe('Choose date');
 		});
 
 		it('should clear the date when clicking the clear button', async () => {
