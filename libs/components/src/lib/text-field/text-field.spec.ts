@@ -9,6 +9,7 @@ import { Icon } from '../icon/icon';
 import { Size } from '../enums';
 import { TextField, TextFieldType } from './text-field';
 import '.';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 
 // Polyfill innerText for JSDOM
 if (
@@ -742,5 +743,26 @@ describe('vwc-text-field', () => {
 			element = document.createElement(COMPONENT_TAG) as TextField;
 			expect(() => element.connectedCallback()).not.toThrow();
 		});
+	});
+
+	describe('aria delegation', function () {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getInput(),
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

@@ -5,6 +5,7 @@ import {
 	setProperty,
 } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { BreadcrumbItem } from './breadcrumb-item';
 import '.';
 
@@ -87,49 +88,6 @@ describe('vwc-breadcrumb-item', () => {
 			return element.shadowRoot?.querySelector('a');
 		}
 
-		function capitalizeFirstLetter(str: string) {
-			return str.charAt(0).toUpperCase() + str.slice(1);
-		}
-
-		it('should set aria labels', async function () {
-			const ARIA_PROPS = [
-				'atomic',
-				'busy',
-				'current',
-				'details',
-				'disabled',
-				'expanded',
-				'haspopup',
-				'hidden',
-				'invalid',
-				'keyshortcuts',
-				'label',
-				'live',
-				'relevant',
-				'roledescription',
-			];
-
-			function setAriaLabelsOnElementObject() {
-				ARIA_PROPS.forEach((ariaProp) => {
-					const ariaPropOnObject = `aria${capitalizeFirstLetter(ariaProp)}`;
-					(element as any)[ariaPropOnObject] = ariaProp;
-				});
-			}
-
-			const anchorElement = getAnchorElement();
-
-			setAriaLabelsOnElementObject();
-			await elementUpdated(element);
-
-			ARIA_PROPS.forEach((ariaProp) => {
-				const ariaPropOnElement = `aria-${ariaProp}`;
-
-				expect(anchorElement?.getAttribute(ariaPropOnElement)).toEqual(
-					ariaProp
-				);
-			});
-		});
-
 		it('should set the "href" attribute', async function () {
 			const attribute = 'href';
 			const anchorElement = getAnchorElement();
@@ -200,6 +158,36 @@ describe('vwc-breadcrumb-item', () => {
 			await setProperty(element, attribute, text);
 
 			expect(anchorElement?.getAttribute(attribute)).toEqual(text);
+		});
+	});
+
+	describe('ARIA delegation', () => {
+		describe('when rendering as an anchor tag', () => {
+			beforeEach(async () => {
+				element.href = '#';
+				element.text = 'stam';
+				await elementUpdated(element);
+			});
+
+			itShouldDelegateAriaAttributes(
+				() => element,
+				() => element.shadowRoot!.querySelector('a')!,
+				[
+					'ariaAtomic',
+					'ariaBusy',
+					'ariaCurrent',
+					'ariaDisabled',
+					'ariaExpanded',
+					'ariaHasPopup',
+					'ariaHidden',
+					'ariaInvalid',
+					'ariaKeyShortcuts',
+					'ariaLabel',
+					'ariaLive',
+					'ariaRelevant',
+					'ariaRoleDescription',
+				]
+			);
 		});
 	});
 });

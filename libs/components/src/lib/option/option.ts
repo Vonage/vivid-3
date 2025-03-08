@@ -2,7 +2,6 @@ import { attr, observable, Observable } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns/aria-global';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 /**
@@ -49,23 +48,6 @@ export class ListboxOption extends VividElement {
 	checked?: boolean;
 
 	/**
-	 * Updates the ariaChecked property when the checked property changes.
-	 *
-	 * @param _ - the previous checked value
-	 * @param next - the current checked value
-	 *
-	 * @public
-	 */
-	protected checkedChanged(_: boolean | unknown, next?: boolean): void {
-		if (typeof next === 'boolean') {
-			this.ariaChecked = next ? 'true' : 'false';
-			return;
-		}
-
-		this.ariaChecked = null;
-	}
-
-	/**
 	 * The defaultSelected state of the option.
 	 * @public
 	 */
@@ -97,8 +79,6 @@ export class ListboxOption extends VividElement {
 	// @ts-expect-error Type is incorrectly non-optional
 	disabled: boolean;
 	protected disabledChanged(): void {
-		this.ariaDisabled = this.disabled ? 'true' : 'false';
-
 		if (this.proxy instanceof HTMLOptionElement) {
 			this.proxy.disabled = this.disabled;
 		}
@@ -130,8 +110,6 @@ export class ListboxOption extends VividElement {
 	@observable
 	selected: boolean = this.defaultSelected;
 	protected selectedChanged(): void {
-		this.ariaSelected = this.selected ? 'true' : 'false';
-
 		if (!this.dirtySelected) {
 			this.dirtySelected = true;
 		}
@@ -287,58 +265,5 @@ export class ListboxOption extends VividElement {
 	}
 }
 
-/**
- * States and properties relating to the ARIA `option` role.
- *
- * @public
- */
-export class DelegatesARIAListboxOption {
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-checked`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaChecked: 'true' | 'false' | string | null;
-
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-posinset`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaPosInSet: string | null;
-
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-selected`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaSelected: 'true' | 'false' | string | null;
-
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#option} for more information.
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-setsize`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaSetSize: string | null;
-}
-
-export interface DelegatesARIAListboxOption
-	extends ARIAGlobalStatesAndProperties {}
-applyMixins(DelegatesARIAListboxOption, ARIAGlobalStatesAndProperties);
-
-export interface ListboxOption
-	extends DelegatesARIAListboxOption,
-		AffixIconWithTrailing {}
-applyMixins(ListboxOption, AffixIconWithTrailing, DelegatesARIAListboxOption);
+export interface ListboxOption extends AffixIconWithTrailing {}
+applyMixins(ListboxOption, AffixIconWithTrailing);

@@ -9,7 +9,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import type { NavDisclosure } from './nav-disclosure';
 
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
-	return ariaCurrent && !open;
+	return open ? null : ariaCurrent;
 }
 
 const getClasses = ({ appearance, connotation }: NavDisclosure) =>
@@ -28,22 +28,22 @@ export const NavDisclosureTemplate = (
 	return html<NavDisclosure>`<details class="base" ${ref('details')} ?open=${(
 		x
 	) => x.open}>
-        <summary class="${getClasses}"
-			aria-label=${(x) => (x.label ? x.label : 'Toggle')}
-            role="button"
-            aria-controls="disclosure-content"
-			aria-expanded="${(x) => x.open}"
-			?aria-current=${(x) => getAriaCurrent(x.ariaCurrent, x.open)}>
-					${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
-            ${(x) => x.label}
-						<slot name="meta"></slot>
-					<${iconTag} class="toggleIcon" name=${(x) =>
+		<summary class="${getClasses}"
+						 role="button"
+						 aria-controls="disclosure-content"
+						 aria-expanded="${(x) => x.open}"
+						 aria-label=${(x) => x.ariaLabel}
+						 aria-current=${(x) => getAriaCurrent(x.ariaCurrent, x.open)}>
+			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+			${(x) => x.label}
+			<slot name="meta"></slot>
+			<${iconTag} class="toggleIcon" name=${(x) =>
 		x.open ? 'chevron-up-solid' : 'chevron-down-solid'}
-											aria-hidden="true"></${iconTag}>
-        </summary>
-        <div class="content" id="disclosure-content">
+									aria-hidden="true"></${iconTag}>
+		</summary>
+		<div class="content" id="disclosure-content">
 			<slot></slot>
 		</div>
-    </details>
+	</details>
 	`;
 };
