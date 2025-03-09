@@ -1,9 +1,6 @@
 import { attr } from '@microsoft/fast-element';
-import { schema } from 'prosemirror-schema-basic';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
-
-const vividProseMirrorSchema = schema;
 
 /**
  * @public
