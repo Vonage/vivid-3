@@ -2,6 +2,7 @@ import { EditorState } from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
+import type { RichTextEditorSelection } from '../rich-text-editor';
 
 export class ProseMirrorFacade {
 	#state?: EditorState;
@@ -36,4 +37,11 @@ export class ProseMirrorFacade {
 
 		this.#view.dispatch(transaction);
 	}
+
+    selection(): RichTextEditorSelection {
+        return {
+            start: 5,
+            end: 7
+        };
+    }
 }
