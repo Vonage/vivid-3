@@ -1,8 +1,8 @@
 import { EditorState, Selection } from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
-import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 import type { RichTextEditorSelection } from '../rich-text-editor';
+import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
 const NEGATIVE_SELECTION = {
 	start: -1,
