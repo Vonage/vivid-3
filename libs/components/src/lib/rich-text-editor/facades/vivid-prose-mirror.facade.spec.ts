@@ -82,26 +82,26 @@ describe('ProseMirrorFacade', () => {
 		});
 	});
 
-    describe('selection', () => {
-        
-        it('should return negative selection when editor is not initialized', async () => {
-            expect(facadeInstance.selection()).toEqual({start: -1, end: -1});
-        });
+	describe('selection', () => {
+		it('should return negative selection when editor is not initialized', async () => {
+			expect(facadeInstance.selection()).toEqual({ start: -1, end: -1 });
+		});
 
-        it('should return ProseMirror selection', async () => {
-            const MOCK_STATE = {
-                selection: {
-                    from: 6, to: 10
-                }
-            };
+		it('should return ProseMirror selection', async () => {
+			const MOCK_STATE = {
+				selection: {
+					from: 6,
+					to: 10,
+				},
+			};
 
-            vi.spyOn(EditorState, 'create').mockReturnValue(MOCK_STATE as any);
-            facadeInstance.init(document.createElement('div'));
+			vi.spyOn(EditorState, 'create').mockReturnValue(MOCK_STATE as any);
+			facadeInstance.init(document.createElement('div'));
 
-            expect(facadeInstance.selection()).toEqual({
-                start: 6,
-                end: 10
-            });
-        });
-    });
+			expect(facadeInstance.selection()).toEqual({
+				start: 6,
+				end: 10,
+			});
+		});
+	});
 });

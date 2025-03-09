@@ -1,6 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
-import { RichTextEditor, type RichTextEditorSelection } from './rich-text-editor';
+import {
+	RichTextEditor,
+	type RichTextEditorSelection,
+} from './rich-text-editor';
 import '.';
 
 const COMPONENT_TAG = 'vwc-rich-text-editor';
@@ -64,19 +67,23 @@ describe('vwc-rich-text-editor', () => {
 
 	describe('selection', () => {
 		it('should return undefined when editor is not defined', async () => {
-			const detachedElement = document.createElement(COMPONENT_TAG) as RichTextEditor;
+			const detachedElement = document.createElement(
+				COMPONENT_TAG
+			) as RichTextEditor;
 			expect(detachedElement.selection).toBeUndefined();
 		});
-		
+
 		it('should return the position of the place marker the facade returns', async () => {
 			const selection: RichTextEditorSelection = {
 				start: 5,
-				end: 7
+				end: 7,
 			};
 
-			vi.spyOn(ProseMirrorFacade.prototype, 'selection').mockImplementation(() => {
-				return selection;
-			});
+			vi.spyOn(ProseMirrorFacade.prototype, 'selection').mockImplementation(
+				() => {
+					return selection;
+				}
+			);
 
 			expect(element.selection).toBe(selection);
 		});
