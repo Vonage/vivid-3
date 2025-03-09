@@ -4,7 +4,7 @@ import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
 export interface RichTextEditorSelection {
 	start: number;
-	end: number;
+	end?: number;
 }
 
 /**
@@ -35,6 +35,10 @@ export class RichTextEditor extends VividElement {
 
 	get selection(): RichTextEditorSelection | undefined {
 		return this.#editor?.selection();
+	}
+
+	set selection(value: RichTextEditorSelection) {
+		this.#editor?.selection(value);
 	}
 
 	constructor() {

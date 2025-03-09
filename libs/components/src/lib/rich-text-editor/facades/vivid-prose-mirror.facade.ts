@@ -1,4 +1,4 @@
-import { EditorState, Selection } from 'prosemirror-state';
+import { EditorState, Selection, TextSelection } from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import type { RichTextEditorSelection } from '../rich-text-editor';
@@ -19,7 +19,6 @@ function convertSelectionToVividFormat({
 	};
 }
 export class ProseMirrorFacade {
-	#state?: EditorState;
 	#view?: EditorView;
 
 	init(element: HTMLElement) {
@@ -29,12 +28,12 @@ export class ProseMirrorFacade {
 			);
 		}
 
-		this.#state = EditorState.create({ schema: VVD_PROSE_MIRROR_SCHEMA });
-		this.#view = new EditorView(element, { state: this.#state });
+		const state = EditorState.create({ schema: VVD_PROSE_MIRROR_SCHEMA });
+		this.#view = new EditorView(element, { state });
 	}
 
 	replaceContent(content: string) {
-		if (!this.#state || !this.#view) {
+		if (!this.#view) {
 			throw new Error(
 				'ProseMirror was not initiated. Please use the `init` method first.'
 			);
@@ -43,18 +42,25 @@ export class ProseMirrorFacade {
 		const doc = parser.parse(
 			new window.DOMParser().parseFromString(content, 'text/html').body
 		);
-		const transaction = this.#state.tr.replaceWith(
+		const transaction = this.#view.state.tr.replaceWith(
 			0,
-			this.#state.doc.content.size,
+			this.#view.state.doc.content.size,
 			doc.content
 		);
 
 		this.#view.dispatch(transaction);
 	}
 
-	selection(): RichTextEditorSelection {
-		return !this.#state
+	selection(position?: RichTextEditorSelection): RichTextEditorSelection {
+		if (this.#view && position) {
+			const transaction = this.#view.state.tr.setSelection(
+				TextSelection.create(this.#view.state.doc, position.start, position.end)
+			);
+			this.#view.dispatch(transaction);
+		}
+
+		return !this.#view
 			? NEGATIVE_SELECTION
-			: convertSelectionToVividFormat(this.#state.selection);
+			: convertSelectionToVividFormat(this.#view.state.selection);
 	}
 }

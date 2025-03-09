@@ -87,5 +87,17 @@ describe('vwc-rich-text-editor', () => {
 
 			expect(element.selection).toBe(selection);
 		});
+
+		it('should set the selection when inserted', async () => {
+			const selectSpy = vi.spyOn(ProseMirrorFacade.prototype, 'selection');
+			element.selection = {
+				start: 5,
+				end: 7,
+			};
+			expect(selectSpy).toHaveBeenCalledWith({
+				start: 5,
+				end: 7,
+			});
+		});
 	});
 });
