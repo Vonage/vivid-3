@@ -29,7 +29,7 @@ export class ProseMirrorFacade {
             this.#state.doc.content.size,
             doc.content
         );
-        console.log(this.#view);
+        
         this.#view.dispatch(transaction);
     }
 }
