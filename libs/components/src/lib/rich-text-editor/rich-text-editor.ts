@@ -17,7 +17,7 @@ export class RichTextEditor extends VividElement {
 	@attr value?: string;
 
 	#editor?: ProseMirrorFacade;
-	
+
 	valueChanged(_: string, newValue: string): void {
 		if (this.#editor) {
 			this.#editor.replaceContent(newValue);
@@ -37,7 +37,7 @@ export class RichTextEditor extends VividElement {
 		super.connectedCallback();
 		if (!this.#editor) {
 			this.#editor = new ProseMirrorFacade();
-			this.#editor.init(this.#editorWrapperElement)
+			this.#editor.init(this.#editorWrapperElement);
 		}
 	}
 }
