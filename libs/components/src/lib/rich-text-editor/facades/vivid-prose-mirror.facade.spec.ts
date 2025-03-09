@@ -156,8 +156,8 @@ describe('ProseMirrorFacade', () => {
 			expect(facadeInstance.selection()).toEqual(initialPosition);
 		});
 
-        it('should return start and end the same number if end is not given', async () => {
-            await useOriginalEditorState();
+		it('should return start and end the same number if end is not given', async () => {
+			await useOriginalEditorState();
 			await useOriginalEditorView();
 
 			const initialPosition: RichTextEditorSelection = {
@@ -169,8 +169,8 @@ describe('ProseMirrorFacade', () => {
 			);
 
 			facadeInstance.selection(initialPosition);
-			expect(facadeInstance.selection()).toEqual({start: 3, end: 3});
-        });
+			expect(facadeInstance.selection()).toEqual({ start: 3, end: 3 });
+		});
 
 		it('should throw when range is out of editor bounds', async () => {
 			await useOriginalEditorState();
@@ -184,7 +184,9 @@ describe('ProseMirrorFacade', () => {
 				'<p>This is a pretty long text for a sample, but it should work</p>'
 			);
 
-			expect(() => facadeInstance.selection(initialPosition)).toThrowError('Position 250 out of range');
+			expect(() => facadeInstance.selection(initialPosition)).toThrowError(
+				'Position 250 out of range'
+			);
 		});
 	});
 });
