@@ -158,7 +158,7 @@
 		"vue3": "npm:vue@3.3.7"
 	},
 	"overrides": {
-		"minimist": "1.2.6",
+		"minimist": "1.2.8",
 		"path-to-regexp": "8.2.0",
 		"nconf": "0.12.1",
 		"rollup": "^4.22.4",
