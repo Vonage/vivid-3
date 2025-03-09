@@ -1,8 +1,23 @@
-import { EditorState } from 'prosemirror-state';
+import { EditorState, Selection } from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
+import type { RichTextEditorSelection } from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
+const NEGATIVE_SELECTION = {
+	start: -1,
+	end: -1,
+};
+
+function convertSelectionToVividFormat({
+	to,
+	from,
+}: Selection): RichTextEditorSelection {
+	return {
+		start: from,
+		end: to,
+	};
+}
 export class ProseMirrorFacade {
 	#state?: EditorState;
 	#view?: EditorView;
@@ -35,5 +50,11 @@ export class ProseMirrorFacade {
 		);
 
 		this.#view.dispatch(transaction);
+	}
+
+	selection(): RichTextEditorSelection {
+		return !this.#state
+			? NEGATIVE_SELECTION
+			: convertSelectionToVividFormat(this.#state.selection);
 	}
 }

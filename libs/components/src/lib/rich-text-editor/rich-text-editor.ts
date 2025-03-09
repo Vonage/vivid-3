@@ -2,6 +2,11 @@ import { attr } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
+export interface RichTextEditorSelection {
+	start: number;
+	end: number;
+}
+
 /**
  * @public
  * @component rich-text-editor
@@ -26,6 +31,10 @@ export class RichTextEditor extends VividElement {
 
 	get #editorWrapperElement(): HTMLElement {
 		return this.shadowRoot!.querySelector('#editor') as HTMLElement;
+	}
+
+	get selection(): RichTextEditorSelection | undefined {
+		return this.#editor?.selection();
 	}
 
 	constructor() {
