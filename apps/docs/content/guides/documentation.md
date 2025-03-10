@@ -67,7 +67,7 @@ You can also choose from these layout options: `full` | `blocks` | `columns` | `
 
 ## Component Pages
 
-Each component page is split into sub pages (represented in the tab like navigation at the top of the page). When a new component is added using the generator, the following documentation sub-page files are produced:
+Each component page is split into sub pages (represented in the *tab-like* navigation at the top of the page). When a new component is added using the generator, the following documentation sub-page files are produced:
 
 - **Variations**: `VARIATIONS.md`
   - Examples of the component in all possible visual states
