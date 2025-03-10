@@ -12,4 +12,3 @@ We have aligned the design of [Audio Player](/components/audio-player/) to more 
 ## Combobox Alignment With Other Form Elements
 
 We have added features such as: helper, success and error text, icon functionality, `shape`, `scale`, `meta` slot, to the [Combobox](/components/combobox/) component to bring it inline with functionality of other form elements such as Text Field.
-
