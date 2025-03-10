@@ -15,6 +15,7 @@ export default {
 		'libs/components/src/lib/**/*.ts',
 		'libs/components/src/shared/foundation/**/*.ts',
 		'libs/components/src/shared/patterns/**/*.ts',
+		'libs/components/src/shared/aria/**/*.ts',
 		'libs/components/src/shared/date-picker/date-picker-base.ts',
 	],
 	/** Globs to exclude */
