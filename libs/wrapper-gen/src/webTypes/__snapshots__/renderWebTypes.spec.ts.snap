@@ -15,8 +15,8 @@ exports[`renderWebTypes > should render web types 1`] = `
      "description": "This is an example component",
      "attributes": [
       {
-       "name": "exampleAttribute",
-       "description": "This is an example attribute",
+       "name": "exampleProp",
+       "description": "This is an example prop",
        "value": {
         "kind": "expression",
         "type": "string"
@@ -54,11 +54,11 @@ exports[`renderWebTypes > should render web types 1`] = `
        "name": "forcedDomProp",
        "value": {
         "kind": "expression",
-        "type": "string"
+        "type": "string | HTMLElement"
        }
       },
       {
-       "name": "booleanAttribute",
+       "name": "booleanProp",
        "value": {
         "kind": "expression",
         "type": "boolean"

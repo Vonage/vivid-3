@@ -1,178 +1,101 @@
-import { ComponentDef } from '../metadata/ComponentDef';
+import { ComponentDef } from '../common/ComponentDef';
 
 export const minimalComponent: ComponentDef = {
 	name: 'example-component',
 	className: 'ExampleComponent',
-	wrappedClassName: 'VExampleComponent',
 	vividModulePath:
 		'libs/components/src/lib/example-component/example-component.ts',
 	registerFunctionName: 'registerExampleComponent',
-	attributes: [],
+	props: [],
 	events: [],
 	vueModels: [],
 	methods: [],
 	slots: [],
-	localTypeDefs: {},
 };
 
 export const exampleComponent: ComponentDef = {
 	name: 'example-component',
 	className: 'ExampleComponent',
-	wrappedClassName: 'VExampleComponent',
 	vividModulePath:
 		'libs/components/src/lib/example-component/example-component.ts',
 	registerFunctionName: 'registerExampleComponent',
 	description: 'This is an example component',
-	attributes: [
+	props: [
 		{
-			name: 'example-attribute',
-			description: 'This is an example attribute',
-			forwardTo: {
-				type: 'attribute',
-				name: 'example-attribute',
-			},
-			type: [
-				{
-					text: 'string',
-					vuePropType: 'String',
-				},
-			],
+			name: 'exampleProp',
+			description: 'This is an example prop',
+			type: 'string',
+			attributeName: 'example-prop',
+			propertyName: 'exampleProp',
 		},
 		{
-			name: 'type-union',
-			forwardTo: {
-				type: 'attribute',
-				name: 'type-union',
-			},
-			type: [
-				{ text: 'string', vuePropType: 'String' },
-				{ text: 'number', vuePropType: 'Number' },
-			],
+			name: 'typeUnion',
+			type: 'string | number',
+			attributeName: 'type-union',
+			propertyName: 'typeUnion',
 		},
 		{
-			name: 'icon-type',
-			forwardTo: {
-				type: 'property',
-				name: 'iconType',
-			},
-			type: [
-				{
-					text: 'IconId',
-					vuePropType: 'String',
-					importFromModule: '../icons',
-					resolvedType: [
-						{
-							text: "'1-icon-1'",
-							vuePropType: 'String',
-						},
-						{
-							text: "'icon-2'",
-							vuePropType: 'String',
-						},
-					],
-				},
-			],
+			name: 'iconType',
+			type: 'IconId',
+			attributeName: 'icon-type',
+			propertyName: 'iconType',
 		},
 		{
 			name: 'value',
-			forwardTo: {
-				type: 'attribute',
-				name: 'value',
-			},
-			type: [
-				{
-					text: 'string',
-					vuePropType: 'String',
-				},
-			],
+			type: 'string',
+			attributeName: 'current-value',
+			propertyName: 'value',
 		},
 		{
 			name: 'start',
-			forwardTo: {
-				type: 'attribute',
-				name: 'start',
-			},
-			type: [
-				{
-					text: 'string',
-					vuePropType: 'String',
-				},
-			],
+			type: 'string',
+			attributeName: 'start',
+			propertyName: 'start',
 		},
 		{
-			name: 'forced-dom-prop',
-			forwardTo: {
-				type: 'property',
-				name: 'forcedDomProp',
-			},
-			type: [
-				{
-					text: 'string',
-					vuePropType: 'String',
-				},
-			],
+			name: 'forcedDomProp',
+			type: 'string | HTMLElement',
+			attributeName: 'forced-dom-prop',
+			propertyName: 'forcedDomProp',
 		},
 		{
-			name: 'boolean-attribute',
-			forwardTo: {
-				type: 'attribute',
-				name: 'boolean-attribute',
-				boolean: true,
-			},
-			type: [
-				{
-					text: 'boolean',
-					vuePropType: 'Boolean',
-				},
-			],
+			name: 'booleanProp',
+			type: 'boolean',
+			attributeName: 'boolean-prop',
+			propertyName: 'booleanProp',
 		},
 	],
 	events: [
 		{
 			name: 'example-event',
 			description: 'This is an example event',
-			type: [
-				{
-					text: 'string',
-					vuePropType: 'String',
-				},
-			],
+			type: 'string',
 		},
 		{
 			name: 'input',
-			type: [
-				{
-					text: 'Event',
-					vuePropType: 'Event',
-				},
-			],
+			type: 'Event',
 		},
 		{
 			name: 'input:start',
-			type: [
-				{
-					text: 'CustomEvent<{a: string | number}>',
-					vuePropType: 'CustomEvent',
-				},
-			],
+			type: 'CustomEvent<{a: string | number}>',
 		},
 	],
 	vueModels: [
 		{
 			name: 'modelValue',
-			attributeName: 'value',
+			propName: 'value',
 			eventNames: ['input'],
 			valueMapping: '(event.target as any).value',
 		},
 		{
 			name: 'sameEvent',
-			attributeName: 'example-attribute',
+			propName: 'exampleProp',
 			eventNames: ['input'],
-			valueMapping: '(event.target as any).exampleAttribute',
+			valueMapping: '(event.target as any).exampleProp',
 		},
 		{
 			name: 'start',
-			attributeName: 'start',
+			propName: 'start',
 			eventNames: ['input:start'],
 			valueMapping: '(event.target as any).start',
 		},
@@ -184,20 +107,10 @@ export const exampleComponent: ComponentDef = {
 			args: [
 				{
 					name: 'exampleArg',
-					type: [
-						{
-							text: 'string',
-							vuePropType: 'String',
-						},
-					],
+					type: 'string',
 				},
 			],
-			returnType: [
-				{
-					text: 'string',
-					vuePropType: 'String',
-				},
-			],
+			returnType: 'string',
 		},
 	],
 	slots: [
@@ -209,5 +122,4 @@ export const exampleComponent: ComponentDef = {
 			name: 'no-description',
 		},
 	],
-	localTypeDefs: {},
 };
