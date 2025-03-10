@@ -17,7 +17,7 @@
 $low-ink-color: --_low-ink-color;
 
 @include chevron.chevron;
-@include chevron.chevronClickable($low-ink-color);
+@include chevron.chevron-clickable($low-ink-color);
 
 :host {
 	position: relative;

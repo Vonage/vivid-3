@@ -15,7 +15,7 @@
 	}
 }
 
-@mixin chevronClickable($disabled-color) {
+@mixin chevron-clickable($disabled-color) {
 	.chevron {
 		:not(.disabled) & {
 			cursor: pointer;
