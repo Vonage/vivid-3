@@ -1,6 +1,7 @@
-import { EditorState } from 'prosemirror-state';
+import { EditorState, type EditorStateConfig } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import type { MockedObject } from 'vitest';
+import type { RichTextEditorSelection } from '../rich-text-editor.js';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema.ts';
 import { ProseMirrorFacade } from './vivid-prose-mirror.facade.ts';
 
@@ -9,6 +10,20 @@ vi.mock('prosemirror-view', () => ({
 }));
 
 describe('ProseMirrorFacade', () => {
+	async function useOriginalEditorView() {
+		const { EditorView: ActualEditorView } = await vi.importActual(
+			'prosemirror-view'
+		);
+		// Use the actual implementation for this test
+		vi.mocked(EditorView).mockImplementation(
+			(...args) => new (ActualEditorView as typeof EditorView)(...args)
+		);
+	}
+
+	async function useOriginalEditorState() {
+		EditorState.create.mockRestore();
+	}
+
 	function getOutputElement(element: HTMLElement): HTMLElement {
 		return element.querySelector('[contenteditable="true"]') as HTMLElement;
 	}
@@ -22,6 +37,10 @@ describe('ProseMirrorFacade', () => {
 		facadeInstance = new ProseMirrorFacade();
 	});
 
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
 	it('should be defined', async () => {
 		expect(facadeInstance instanceof ProseMirrorFacade).toBe(true);
 	});
@@ -32,10 +51,6 @@ describe('ProseMirrorFacade', () => {
 		beforeEach(async () => {
 			StateMock = {};
 			vi.spyOn(EditorState, 'create').mockReturnValue(StateMock as any);
-		});
-
-		afterEach(() => {
-			vi.restoreAllMocks();
 		});
 
 		it('should throw if first parameter is not an HTMLElement', async () => {
@@ -83,25 +98,62 @@ describe('ProseMirrorFacade', () => {
 	});
 
 	describe('selection', () => {
+		beforeEach(async () => {
+			vi.spyOn(EditorState, 'create');
+		});
 		it('should return negative selection when editor is not initialized', async () => {
 			expect(facadeInstance.selection()).toEqual({ start: -1, end: -1 });
 		});
 
 		it('should return ProseMirror selection', async () => {
+			async function setFirstSelectionInState(mockStateSelection) {
+				await useOriginalEditorState();
+				const originalCreate = EditorState.create;
+				vi.spyOn(EditorState, 'create').mockImplementation(
+					(stateInput: EditorStateConfig) => {
+						const originalState = originalCreate(stateInput);
+						originalState.selection = {
+							...originalState.selection,
+							...mockStateSelection.selection,
+						};
+						return originalState;
+					}
+				);
+			}
+
+			await useOriginalEditorView();
 			const MOCK_STATE = {
 				selection: {
 					from: 6,
 					to: 10,
 				},
 			};
+			await setFirstSelectionInState(MOCK_STATE);
 
-			vi.spyOn(EditorState, 'create').mockReturnValue(MOCK_STATE as any);
 			facadeInstance.init(document.createElement('div'));
 
 			expect(facadeInstance.selection()).toEqual({
 				start: 6,
 				end: 10,
 			});
+		});
+
+		it('should set the selected position in proseMirror', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const initialPosition: RichTextEditorSelection = {
+				start: 3,
+				end: 10,
+			};
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			facadeInstance.selection(initialPosition);
+
+			expect(facadeInstance.selection()).toEqual(initialPosition);
 		});
 	});
 });
