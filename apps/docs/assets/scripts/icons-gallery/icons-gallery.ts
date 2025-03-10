@@ -9,28 +9,16 @@ import {
 	volatile,
 } from '@microsoft/fast-element';
 import {
-	ICONS_BASE_URL as BASE_URL,
-	ICONS_VERSION as ICON_SET_VERSION,
+	IconDefinition,
+	ICONS_MANIFEST_URL,
+	IconsManifest,
+	IconTag,
 } from '@vonage/vwc-consts';
 import { Alert } from '../vivid';
 import styles from './icons-gallery.style.scss?inline';
 
-type Weight = 'solid' | 'regular';
-type Color = 'single' | 'multi';
-
-type Tag =
-	| `style_weight_${Weight}`
-	| `style_color_${Color}`
-	| `category_${string}`;
-
-interface IconDefinition {
-	id: string;
-	keyword: string[];
-	tag: Tag[];
-}
-
-const fetchIcons = async (): Promise<IconDefinition[]> =>
-	(await fetch(`${BASE_URL}/v${ICON_SET_VERSION}/manifest.json`)).json();
+const fetchIcons = async (): Promise<IconsManifest> =>
+	(await fetch(ICONS_MANIFEST_URL)).json();
 
 const matchesText = (searchString: string) => (icon: IconDefinition) =>
 	icon.id.includes(searchString) ||
@@ -61,7 +49,7 @@ class TagGroup {
 
 class TagOption {
 	@observable isSelected = false;
-	constructor(public id: Tag, public label: string) {}
+	constructor(public id: IconTag, public label: string) {}
 }
 
 const tagOptionTemplate = html<TagOption>`

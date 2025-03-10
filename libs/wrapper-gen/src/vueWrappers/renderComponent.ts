@@ -1,32 +1,13 @@
-import { ComponentDef } from '../metadata/ComponentDef';
+import { ComponentDef } from '../common/ComponentDef';
 import { kebabToCamel, kebabToPascal } from '../utils/casing';
-import { TypeUnion } from '../metadata/types';
+import { parseTypeStr, TypeResolver, TypeStr } from '../common/types';
 import { getImportPath } from '../metadata/vividPackage';
+import { vuePropTypes } from './vuePropTypes';
+import { wrappedComponentName } from './name';
+import { determinePropForwarding } from './propForwarding';
+import { Import, importsForTypes, renderImports } from './imports';
 
-type Import = {
-	name: string;
-	fromModule: string;
-};
-
-const renderImports = (imports: Import[], typeImport = false) => {
-	const importsFromModule = new Map<string, string[]>();
-	for (const { name, fromModule } of imports) {
-		if (!importsFromModule.has(fromModule)) {
-			importsFromModule.set(fromModule, []);
-		}
-		importsFromModule.get(fromModule)!.push(name);
-	}
-	return Array.from(importsFromModule.entries())
-		.map(
-			([fromModule, names]) =>
-				`import ${typeImport ? 'type ' : ''}{ ${names.join(
-					', '
-				)} } from '${fromModule}';`
-		)
-		.join('\n');
-};
-
-const renderJsDoc = (description?: string, type?: TypeUnion) => {
+const renderJsDoc = (description?: string, type?: TypeStr) => {
 	if (!description && !type) return '';
 
 	const renderedDescription = description
@@ -36,9 +17,7 @@ const renderJsDoc = (description?: string, type?: TypeUnion) => {
 				.join('\n')}`
 		: '';
 
-	const renderedType = type
-		? `\n * @type {${type.map((t) => t.text).join(' | ')}}`
-		: '';
+	const renderedType = type ? `\n * @type {${type}}` : '';
 
 	return `/**${renderedDescription}${renderedType}
  */`;
@@ -46,6 +25,7 @@ const renderJsDoc = (description?: string, type?: TypeUnion) => {
 
 export const renderComponent = (
 	componentDef: ComponentDef,
+	importedTypesResolver: TypeResolver,
 	isVue3Stub = false
 ) => {
 	const vueModule = isVue3Stub ? 'vue3' : 'vue';
@@ -61,24 +41,22 @@ export const renderComponent = (
 		{ name: 'registerComponent', fromModule: '../../utils/register' },
 	];
 
-	// Filter out attributes that are overshadowed by v-model name
-	// E.g. start model mapping to current-start attribute will overshadow start attribute (initial value)
-	const attributes = componentDef.attributes.filter(
+	// Filter out props that are overshadowed by v-model name
+	const props = componentDef.props.filter(
 		({ name }) =>
 			!componentDef.vueModels.some(
-				(model) => model.name === name && model.attributeName !== name
+				(model) => model.name === name && model.propName !== name
 			)
 	);
 
 	const declaredEvents = [...componentDef.events];
 
-	// Find v-models and their corresponding attribute and event
+	// Find v-models and their corresponding prop and event
 	const vueModels = componentDef.vueModels.map((model) => {
-		const attribute = componentDef.attributes.find(
-			(attr) => attr.name === model.attributeName
+		const prop = componentDef.props.find(
+			(prop) => prop.name === model.propName
 		);
-		if (!attribute)
-			throw new Error(`v-model attribute not found: ${model.attributeName}`);
+		if (!prop) throw new Error(`v-model prop not found: ${model.propName}`);
 		for (const eventName of model.eventNames) {
 			const event = componentDef.events.find((e) => e.name === eventName);
 			if (!event) throw new Error(`v-model event not found: ${eventName}`);
@@ -86,7 +64,7 @@ export const renderComponent = (
 
 		return {
 			...model,
-			attribute,
+			prop,
 		};
 	});
 
@@ -94,11 +72,11 @@ export const renderComponent = (
 		declaredEvents.push({
 			name: `update:${vueModel.name}`,
 			description: `Fires when the ${vueModel.name} value changes`,
-			type: vueModel.attribute.type,
+			type: vueModel.prop.type,
 		});
 	}
 
-	if (attributes.length > 0) {
+	if (props.length > 0) {
 		imports.push({ name: 'PropType', fromModule: vueModule });
 	}
 
@@ -110,18 +88,14 @@ export const renderComponent = (
 	];
 
 	// Import referenced types
-	const referencedTypes = [
-		...attributes.map((prop) => prop.type),
+	const referencesTypes = [
+		...props.map((prop) => prop.type),
 		...componentDef.events.map((event) => event.type),
 		...componentDef.methods.flatMap((method) =>
 			method.args.map((arg) => arg.type)
 		),
-	].flat();
-	for (const type of referencedTypes) {
-		if (type.importFromModule) {
-			imports.push({ name: type.text, fromModule: type.importFromModule });
-		}
-	}
+	].flatMap(parseTypeStr);
+	imports.push(...importsForTypes(referencesTypes));
 
 	if (isVue3Stub) {
 		typeImports.push({ name: 'SlotsType', fromModule: vueModule });
@@ -133,27 +107,39 @@ export const renderComponent = (
 	 * In Vue 3, we need to prefix attributes with '^' and properties with '.' to differentiate them.
 	 */
 	const renderProps = (
-		attributes: ComponentDef['attributes'],
-		syntax: 'vue2' | 'vue3'
+		props: ComponentDef['props'],
+		syntax: 'vue2-attrs' | 'vue2-domProps' | 'vue3'
 	) => {
-		const propsSrc = attributes
-			.map(({ name, forwardTo }) => {
-				const vueModel = componentDef.vueModels.find(
-					(model) => model.attributeName === name
+		const propsSrc = props
+			.flatMap((prop) => {
+				const forwardTo = determinePropForwarding(
+					prop,
+					parseTypeStr(importedTypesResolver(prop.type))
 				);
 
-				let valueToUse = `this.${kebabToCamel(name)}`;
-				if (vueModel && vueModel.name !== kebabToCamel(name)) {
+				if (
+					(syntax === 'vue2-attrs' && forwardTo.type === 'property') ||
+					(syntax === 'vue2-domProps' && forwardTo.type === 'attribute')
+				) {
+					return [];
+				}
+
+				const vueModel = componentDef.vueModels.find(
+					(model) => model.propName === prop.name
+				);
+
+				let valueToUse = `this.${prop.name}`;
+				if (vueModel && vueModel.name !== prop.name) {
 					// If there is a v-model, we will prefer the v-model value
 					valueToUse = `this.${vueModel.name} ?? ${valueToUse}`;
 				}
 
 				const nameToUse =
-					syntax === 'vue2'
-						? forwardTo.name
-						: forwardTo.type === 'attribute'
-						? `^${forwardTo.name}`
-						: `.${forwardTo.name}`;
+					syntax === 'vue3'
+						? forwardTo.type === 'attribute'
+							? `^${forwardTo.name}`
+							: `.${forwardTo.name}`
+						: forwardTo.name;
 
 				// Vue 2 and 3 differ in how they handle boolean attributes
 				// Remove false attributes in Vue 3 to make it behave like Vue 2
@@ -167,7 +153,7 @@ export const renderComponent = (
 				// Vue requires us to filter out undefined properties before passing them into the h function
 				const filter = `(${valueToUse}) !== undefined${booleanFilter}`;
 
-				return `...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`;
+				return [`...(${filter} ? {'${nameToUse}': ${valueToUse} } : {})`];
 			})
 			.join(',');
 		if (syntax === 'vue3') {
@@ -176,16 +162,10 @@ export const renderComponent = (
 		return propsSrc;
 	};
 
-	const propsV3Src = renderProps(attributes, 'vue3');
+	const propsV3Src = renderProps(props, 'vue3');
 
-	const propsV2Src = renderProps(
-		attributes.filter((a) => a.forwardTo.type === 'attribute'),
-		'vue2'
-	);
-	const domPropsV2Src = renderProps(
-		attributes.filter((a) => a.forwardTo.type === 'property'),
-		'vue2'
-	);
+	const attrsV2Src = renderProps(props, 'vue2-attrs');
+	const domPropsV2Src = renderProps(props, 'vue2-domProps');
 
 	/**
 	 * All events should be forwarded
@@ -251,9 +231,9 @@ export const renderComponent = (
 	if (namedSlotsSource)
 		imports.push({ name: 'handleNamedSlot', fromModule: '../../utils/slots' });
 
-	const renderAttributeType = (type: TypeUnion): string => {
-		const values = Array.from(new Set(type.map((t) => t.vuePropType)).values());
-		return values.length > 1 ? `[${values.join(', ')}]` : (values[0] as string);
+	const renderPropType = (type: TypeStr): string => {
+		const propTypes = vuePropTypes(importedTypesResolver(type));
+		return propTypes.length > 1 ? `[${propTypes.join(', ')}]` : propTypes[0];
 	};
 
 	/**
@@ -261,18 +241,18 @@ export const renderComponent = (
 	 * Note: All props are optional. Setting default to undefined, otherwise Vue 3 will default boolean props to false.
 	 * myProp: {type: [String, Number] as PropType<string | number>, default: undefined},
 	 */
-	const propDefinitionsSrc = attributes
-		.flatMap((attr) => {
+	const propDefinitionsSrc = props
+		.flatMap((prop) => {
 			const vueModel = componentDef.vueModels.find(
-				(model) => model.attributeName === attr.name
+				(model) => model.propName === prop.name
 			);
 
 			return [
-				attr,
-				...(vueModel && vueModel.name !== kebabToCamel(attr.name)
+				prop,
+				...(vueModel && vueModel.name !== prop.name
 					? [
 							{
-								...attr,
+								...prop,
 								name: vueModel.name,
 							},
 					  ]
@@ -282,21 +262,21 @@ export const renderComponent = (
 		.map(({ name, description, type }) => {
 			const propName = kebabToCamel(name);
 			return `${renderJsDoc(description)}
-        ${propName}: {type: ${renderAttributeType(type)} as PropType<${type
-				.map((t) => t.text)
-				.join(' | ')}>, default: undefined}`;
+        ${propName}: {type: ${renderPropType(
+				type
+			)} as PropType<${type}>, default: undefined}`;
 		})
 		.join(',\n');
 
-	const renderEventType = (type: TypeUnion): string => {
+	const renderEventType = (type: TypeStr): string => {
 		// Event type should be a single type like `CustomEvent<undefined>`
-		if (type.length > 1) {
+		if (parseTypeStr(type).length > 1) {
 			throw new Error('Multiple event types not supported');
 		}
 
 		// The event target will always be the host component. Therefore, type target accordingly to make it easier
 		// to use for consumers.
-		return `${type[0].text} & { target: ${componentDef.className}}`;
+		return `${type} & { target: ${componentDef.className}}`;
 	};
 
 	// Declare events
@@ -334,7 +314,7 @@ export const renderComponent = (
     if (isVue2) {
         return h(this.componentName, {
             ref: 'element',
-            attrs: { ${propsV2Src} },
+            attrs: { ${attrsV2Src} },
             class: 'vvd-component',
             ${domPropsV2Src ? `domProps: { ${domPropsV2Src} },` : ''}
             on: { ${eventsSrc} },
@@ -367,10 +347,8 @@ export const renderComponent = (
 				`
         ${renderJsDoc(method.description)}
         ${method.name}(${method.args
-					.map((a) => `${a.name}: ${a.type.map((t) => t.text).join(' | ')}`)
-					.join(', ')}): ${method.returnType
-					.map((t) => t.text)
-					.join(' | ')} { return (this.element as any)?.${
+					.map((a) => `${a.name}: ${a.type}`)
+					.join(', ')}): ${method.returnType}{ return (this.element as any)?.${
 					method.name
 				}(${method.args.map((a) => a.name).join(', ')}); }`
 		)
@@ -383,7 +361,7 @@ ${renderImports(typeImports, true)}
 
 ${renderJsDoc(componentDef.description)}
 export default defineComponent({
-  name: '${componentDef.wrappedClassName}',
+  name: '${wrappedComponentName(componentDef)}',
   ${vue2VModelSrc}
   props: {
     ${propDefinitionsSrc}

@@ -11,17 +11,17 @@ import {
 	Shape,
 	Size,
 } from '@vonage/vivid';
-import { TypeUnion } from './types';
+import { toTypeStr, TypeStr } from '../common/types';
 import { getTypescriptDefinitionPath } from './vividPackage';
 
 export const extractLocalTypeDefs = (
 	className: string,
 	modulePath: string
-): Record<string, TypeUnion> => {
+): Record<string, TypeStr> => {
 	const src = fs.readFileSync(getTypescriptDefinitionPath(modulePath), 'utf8');
 	const lines = src.split('\n');
 
-	const localTypeDefs: Record<string, TypeUnion> = {};
+	const localTypeDefs: Record<string, TypeStr> = {};
 
 	/**
 	 * Extract type aliases for common enum subsets like this:
@@ -68,10 +68,7 @@ export const extractLocalTypeDefs = (
 					}
 				);
 
-				localTypeDefs[typeName] = stringLiterals.map((stringLit) => ({
-					text: stringLit,
-					vuePropType: 'String',
-				}));
+				localTypeDefs[typeName] = toTypeStr(stringLiterals);
 			}
 		}
 	}

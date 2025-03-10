@@ -13,5 +13,8 @@ export const kebabToCamel = (kebab: string) =>
 export const camelToPascal = (camel: string) =>
 	camel[0].toUpperCase() + camel.slice(1);
 
+export const pascalToCamel = (pascal: string) =>
+	pascal[0].toLowerCase() + pascal.slice(1);
+
 export const camelToKebab = (camel: string) =>
 	camel.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
