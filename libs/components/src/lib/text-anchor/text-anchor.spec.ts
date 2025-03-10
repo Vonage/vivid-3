@@ -158,7 +158,7 @@ describe('vwc-text-anchor', () => {
 		});
 	});
 
-	describe('aria delegation', () => {
+	describe('ARIA delegation', () => {
 		itShouldDelegateAriaAttributes(
 			() => element,
 			() => getAnchorElement()!,

@@ -745,7 +745,7 @@ describe('vwc-text-field', () => {
 		});
 	});
 
-	describe('aria delegation', function () {
+	describe('ARIA delegation', function () {
 		itShouldDelegateAriaAttributes(
 			() => element,
 			() => getInput(),

@@ -27,7 +27,7 @@ describe('vwc-tag-group', () => {
 		});
 	});
 
-	describe('aria delegation', function () {
+	describe('ARIA delegation', function () {
 		itShouldDelegateAriaAttributes(
 			() => element,
 			() => getBaseElement(element),

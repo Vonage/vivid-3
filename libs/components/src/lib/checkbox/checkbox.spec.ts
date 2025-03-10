@@ -410,7 +410,7 @@ describe('vwc-checkbox', () => {
 			);
 		});
 
-		describe('aria delegation', () => {
+		describe('ARIA delegation', () => {
 			itShouldDelegateAriaAttributes(
 				() => element,
 				() => getBaseElement(element),

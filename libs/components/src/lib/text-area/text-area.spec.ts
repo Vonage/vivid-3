@@ -409,7 +409,7 @@ describe('vwc-text-area', () => {
 		});
 	});
 
-	describe('aria delegation', function () {
+	describe('ARIA delegation', function () {
 		itShouldDelegateAriaAttributes(
 			() => element,
 			() => getControlElement(element),
