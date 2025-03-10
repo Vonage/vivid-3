@@ -13,9 +13,11 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 @use '../../shared/patterns/chevron' as chevron;
-@include chevron.chevron;
 
 $low-ink-color: --_low-ink-color;
+
+@include chevron.chevron;
+@include chevron.chevron-clickable($low-ink-color);
 
 :host {
 	position: relative;
@@ -69,17 +71,6 @@ $low-ink-color: --_low-ink-color;
 		align-items: center;
 		gap: 8px;
 		padding-inline-end: 16px;
-	}
-}
-
-.chevron {
-	:not(.disabled) & {
-		cursor: pointer;
-	}
-
-	.disabled & {
-		color: var(#{$low-ink-color});
-		cursor: not-allowed;
 	}
 }
 

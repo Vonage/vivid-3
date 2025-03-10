@@ -20,9 +20,11 @@
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
 @use '../../shared/patterns/chevron' as chevron;
-@include chevron.chevron;
 
 $low-ink-color: --_low-ink-color;
+
+@include chevron.chevron;
+@include chevron.chevron-clickable($low-ink-color);
 
 :host(:focus-visible) {
 	outline: none;
