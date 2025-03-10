@@ -1250,6 +1250,13 @@ describe('vwc-searchable-select', () => {
 					expect(popup.open).toBe(true);
 				}
 			);
+
+			it('should open popup when clicking the chevron icon', async function () {
+				clickOnChevronIcon();
+				await elementUpdated(popup);
+
+				expect(popup.open).toBe(false);
+			});
 		});
 	});
 
