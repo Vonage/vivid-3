@@ -1031,6 +1031,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	_onFieldsetClick(e: MouseEvent) {
+		console.log('fieldset click', this.open, e);
 		if (this.disabled) {
 			return;
 		}
@@ -1046,9 +1047,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	_onChevronClick(e: MouseEvent) {
-		if (!this.open) return;
-		this.open = false;
+		console.log('chevron click', this.open, e);
 		e.stopPropagation();
+		if (!this.open) {
+			this._input.focus();
+			this.open = true;
+		} else {
+			this.open = false;
+		}
 	}
 
 	override connectedCallback() {
