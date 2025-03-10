@@ -8,6 +8,7 @@ import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
+import { getElement } from 'dropzone';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
@@ -187,7 +188,7 @@ describe('vwc-radio-group', () => {
 		});
 
 		it('should receive the value of the radio that was clicked', async () => {
-			getBaseElement(radios[1]).dispatchEvent(new MouseEvent('click'));
+			getElement(radios[1]).dispatchEvent(new MouseEvent('click'));
 			await elementUpdated(element);
 			expect(element.getAttribute('value')).toEqual('1');
 		});

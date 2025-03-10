@@ -76,7 +76,7 @@ describe('vwc-radio', () => {
 		});
 
 		const sendEventAndVerifyChecked = async (e: Event) => {
-			base.dispatchEvent(e);
+			element.dispatchEvent(e);
 			await elementUpdated(element);
 			expect(element.checked).toBeTruthy();
 		};
@@ -194,14 +194,8 @@ describe('vwc-radio', () => {
 	});
 
 	describe('a11y', () => {
-		it('should not render a role attribute on the component element', async () => {
-			expect(element.getAttribute('role')).toBe(null);
-		});
-
 		it('should render the correct a11y attributes', async () => {
-			const baseElement = getBaseElement(element);
-
-			expect(baseElement?.getAttribute('role')).toBe('radio');
+			expect(element.getAttribute('role')).toBe('radio');
 		});
 
 		describe('aria-label', () => {
@@ -211,14 +205,12 @@ describe('vwc-radio', () => {
 			});
 
 			it('should render role as presentation on the component element', async () => {
-				expect(element.getAttribute('role')).toBe('presentation');
+				expect(element.getAttribute('role')).toBe('radio');
 			});
 
 			it('should render the correct a11y attributes', async () => {
-				const baseElement = getBaseElement(element);
-
-				expect(baseElement?.getAttribute('role')).toBe('radio');
-				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
+				expect(element.getAttribute('role')).toBe('radio');
+				expect(element.getAttribute('aria-label')).toBe('Label');
 			});
 		});
 	});
