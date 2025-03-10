@@ -1,0 +1,6 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderIndex > should render a barrel file that exports all components 1`] = `
+"export { default as VExampleComponent } from './VExampleComponent';
+export { default as VExampleComponent } from './VExampleComponent';"
+`;

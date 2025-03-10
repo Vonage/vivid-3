@@ -3,80 +3,83 @@ import {
 	exampleComponent,
 	minimalComponent,
 } from '../__fixtures__/componentDefs';
+import { importedTypesResolverStub } from '../__fixtures__/importedTypes';
 
 describe('renderComponent', () => {
 	it('should render a component', () => {
-		expect(renderComponent(exampleComponent)).toMatchSnapshot();
+		expect(
+			renderComponent(exampleComponent, importedTypesResolverStub)
+		).toMatchSnapshot();
 	});
 
 	it('should render a component as a Vue 3 stub', () => {
-		expect(renderComponent(exampleComponent, true)).toMatchSnapshot();
+		expect(
+			renderComponent(exampleComponent, importedTypesResolverStub, true)
+		).toMatchSnapshot();
 	});
 
 	it('should render a minimal component', () => {
-		expect(renderComponent(minimalComponent)).toMatchSnapshot();
+		expect(
+			renderComponent(minimalComponent, importedTypesResolverStub)
+		).toMatchSnapshot();
 	});
 
 	it('should render minimal component as a Vue 3 stub', () => {
-		expect(renderComponent(minimalComponent, true)).toMatchSnapshot();
+		expect(
+			renderComponent(minimalComponent, importedTypesResolverStub, true)
+		).toMatchSnapshot();
 	});
 
 	it('should throw an error if the event for a Vue model is not found', () => {
 		expect(() =>
-			renderComponent({
-				...minimalComponent,
-				attributes: [
-					{
-						name: 'value',
-						forwardTo: {
-							type: 'attribute',
+			renderComponent(
+				{
+					...minimalComponent,
+					props: [
+						{
 							name: 'value',
+							type: 'string',
+							attributeName: 'attribute',
+							propertyName: 'value',
 						},
-						type: [
-							{
-								text: 'string',
-								vuePropType: 'String',
-							},
-						],
-					},
-				],
-				vueModels: [
-					{
-						name: 'modelValue',
-						attributeName: 'value',
-						eventNames: ['not-found'],
-						valueMapping: '(event.target as any).value',
-					},
-				],
-			})
+					],
+					vueModels: [
+						{
+							name: 'modelValue',
+							propName: 'value',
+							eventNames: ['not-found'],
+							valueMapping: '(event.target as any).value',
+						},
+					],
+				},
+				importedTypesResolverStub
+			)
 		).toThrow('v-model event not found');
 	});
 
-	it('should throw an error if the attribute for a Vue model is not found', () => {
+	it('should throw an error if the prop for a Vue model is not found', () => {
 		expect(() =>
-			renderComponent({
-				...minimalComponent,
-				events: [
-					{
-						name: 'input',
-						type: [
-							{
-								text: 'Event',
-								vuePropType: 'Event',
-							},
-						],
-					},
-				],
-				vueModels: [
-					{
-						name: 'modelValue',
-						attributeName: 'not-found',
-						eventNames: ['input'],
-						valueMapping: '(event.target as any).value',
-					},
-				],
-			})
-		).toThrow('v-model attribute not found');
+			renderComponent(
+				{
+					...minimalComponent,
+					events: [
+						{
+							name: 'input',
+							type: 'Event',
+						},
+					],
+					vueModels: [
+						{
+							name: 'modelValue',
+							propName: 'not-found',
+							eventNames: ['input'],
+							valueMapping: '(event.target as any).value',
+						},
+					],
+				},
+				importedTypesResolverStub
+			)
+		).toThrow('v-model prop not found');
 	});
 
 	it('should throw an error if the type of an event is a union', () => {
@@ -87,19 +90,11 @@ describe('renderComponent', () => {
 					events: [
 						{
 							name: 'input',
-							type: [
-								{
-									text: 'Event',
-									vuePropType: 'Event',
-								},
-								{
-									text: 'CustomEvent',
-									vuePropType: 'CustomEvent',
-								},
-							],
+							type: 'Event | CustomEvent',
 						},
 					],
 				},
+				importedTypesResolverStub,
 				true
 			)
 		).toThrow('Multiple event types not supported');

@@ -24,11 +24,11 @@ export default defineComponent({
   } : undefined,
   props: {
     /**
- * This is an example attribute
+ * This is an example prop
  */
-        exampleAttribute: {type: String as PropType<string>, default: undefined},
+        exampleProp: {type: String as PropType<string>, default: undefined},
 /**
- * This is an example attribute
+ * This is an example prop
  */
         sameEvent: {type: String as PropType<string>, default: undefined},
 
@@ -42,9 +42,9 @@ export default defineComponent({
 
         start: {type: String as PropType<string>, default: undefined},
 
-        forcedDomProp: {type: String as PropType<string>, default: undefined},
+        forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
 
-        booleanAttribute: {type: Boolean as PropType<boolean>, default: undefined}
+        booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
   },
   emits: [
 			
@@ -86,7 +86,7 @@ export default defineComponent({
         /**
  * This is an example method
  */
-        exampleMethod(exampleArg: string): string { return (this.element as any)?.exampleMethod(exampleArg); }
+        exampleMethod(exampleArg: string): string{ return (this.element as any)?.exampleMethod(exampleArg); }
 	},
 	
   setup(props, ctx) {
@@ -101,15 +101,15 @@ export default defineComponent({
     if (isVue2) {
         return h(this.componentName, {
             ref: 'element',
-            attrs: { ...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.modelValue ?? this.value) !== undefined ? {'value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanAttribute) !== undefined ? {'boolean-attribute': this.booleanAttribute } : {}) },
+            attrs: { ...((this.sameEvent ?? this.exampleProp) !== undefined ? {'example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanProp) !== undefined ? {'boolean-prop': this.booleanProp } : {}) },
             class: 'vvd-component',
-            domProps: { ...((this.iconType) !== undefined ? {'iconType': this.iconType } : {}),...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
+            domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
             on: { 'example-event': (event: Event) => {
           
           this.$emit('example-event', event);
         },'input': (event: Event) => {
           this.$emit('update:modelValue', (event.target as any).value);
-this.$emit('update:sameEvent', (event.target as any).exampleAttribute);
+this.$emit('update:sameEvent', (event.target as any).exampleProp);
           this.$emit('input', event);
         },'input:start': (event: Event) => {
           this.$emit('update:start', (event.target as any).start);
@@ -126,12 +126,12 @@ this.$emit('update:sameEvent', (event.target as any).exampleAttribute);
       return h(this.componentName, {
           ref: 'element',
           class: 'vvd-component',
-          ...handleVue3Props({...((this.sameEvent ?? this.exampleAttribute) !== undefined ? {'^example-attribute': this.sameEvent ?? this.exampleAttribute } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'.iconType': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanAttribute) !== undefined && (this.booleanAttribute) !== false ? {'^boolean-attribute': this.booleanAttribute } : {})}),'onExampleEvent': (event: Event) => {
+          ...handleVue3Props({...((this.sameEvent ?? this.exampleProp) !== undefined ? {'^example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'^icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanProp) !== undefined && (this.booleanProp) !== false ? {'^boolean-prop': this.booleanProp } : {})}),'onExampleEvent': (event: Event) => {
 					 
           this.$emit('example-event', event);
         },'onInput': (event: Event) => {
 					 this.$emit('update:modelValue', (event.target as any).value);
-this.$emit('update:sameEvent', (event.target as any).exampleAttribute);
+this.$emit('update:sameEvent', (event.target as any).exampleProp);
           this.$emit('input', event);
         },'onInput:start': (event: Event) => {
 					 this.$emit('update:start', (event.target as any).start);
@@ -175,11 +175,11 @@ export default defineComponent({
   } : undefined,
   props: {
     /**
- * This is an example attribute
+ * This is an example prop
  */
-        exampleAttribute: {type: String as PropType<string>, default: undefined},
+        exampleProp: {type: String as PropType<string>, default: undefined},
 /**
- * This is an example attribute
+ * This is an example prop
  */
         sameEvent: {type: String as PropType<string>, default: undefined},
 
@@ -193,9 +193,9 @@ export default defineComponent({
 
         start: {type: String as PropType<string>, default: undefined},
 
-        forcedDomProp: {type: String as PropType<string>, default: undefined},
+        forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
 
-        booleanAttribute: {type: Boolean as PropType<boolean>, default: undefined}
+        booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
   },
   emits: {
 			
@@ -237,7 +237,7 @@ export default defineComponent({
         /**
  * This is an example method
  */
-        exampleMethod(exampleArg: string): string { return (this.element as any)?.exampleMethod(exampleArg); }
+        exampleMethod(exampleArg: string): string{ return (this.element as any)?.exampleMethod(exampleArg); }
 	},
 	slots: Object as SlotsType<{
 		

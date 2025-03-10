@@ -1,33 +1,20 @@
-import { ComponentDef } from './ComponentDef';
+import type { ComponentDef } from '../common/ComponentDef';
 
-type DefinitionOverride = (
-	def: ComponentDef,
-	metadata: { icons: string[] }
-) => void;
+type DefinitionOverride = (def: ComponentDef) => void;
 type ComponentSpecs = [string, DefinitionOverride];
 
 export const globalDefinitionOverrides: DefinitionOverride[] = [
-	(component: ComponentDef, { icons }) => {
-		const vividIconType = [
-			{
-				text: `IconId`,
-				vuePropType: 'String',
-				importFromModule: '../icons',
-				resolvedType: icons.map((icon) => ({
-					text: `'${icon}'`,
-					vuePropType: 'String',
-				})),
-			},
-		];
+	(component: ComponentDef) => {
+		const vividIconType = 'IconId';
 
-		for (const attribute of component.attributes) {
+		for (const prop of component.props) {
 			if (
-				attribute.name === 'icon' ||
-				(component.name === 'icon' && attribute.name === 'name')
+				prop.name === 'icon' ||
+				(component.name === 'icon' && prop.name === 'name')
 			) {
-				attribute.description +=
+				prop.description +=
 					'\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/';
-				attribute.type = vividIconType;
+				prop.type = vividIconType;
 			}
 		}
 	},
@@ -37,19 +24,12 @@ export const componentOverrides: ComponentSpecs[] = [
 	[
 		'button',
 		(component) => {
-			const titleAttribute = component.attributes.find(
-				(a) => a.name === 'title'
-			);
-			if (titleAttribute!.type[0].text === 'boolean') {
-				// Workaround for an issue with the CEM analyzer, which will incorrectly mark the title attribute as boolean
-				titleAttribute!.type = [{ text: 'string', vuePropType: 'String' }];
-				titleAttribute!.forwardTo = {
-					type: 'attribute',
-					name: 'title',
-					boolean: false,
-				};
+			const titleProp = component.props.find((p) => p.name === 'title');
+			if (titleProp!.type === 'boolean') {
+				// Workaround for an issue with the CEM analyzer, which will incorrectly mark the title prop as boolean
+				titleProp!.type = 'string';
 			} else {
-				throw new Error('Title attribute not found or has incorrect type');
+				throw new Error('Title prop not found or has incorrect type');
 			}
 		},
 	],
@@ -57,11 +37,11 @@ export const componentOverrides: ComponentSpecs[] = [
 	[
 		'data-grid',
 		(component) => {
-			component.attributes.push({
+			component.props.push({
 				name: 'rowsData',
 				description: 'Array of objects representing the rows of the grid.',
-				type: [{ text: 'any[]', vuePropType: 'Array' }],
-				forwardTo: { type: 'property', name: 'rowsData' },
+				type: 'any[]',
+				propertyName: 'rowsData',
 			});
 		},
 	],
@@ -69,11 +49,11 @@ export const componentOverrides: ComponentSpecs[] = [
 	[
 		'data-grid-cell',
 		(component) => {
-			component.attributes.push({
+			component.props.push({
 				name: 'columnDefinition',
 				description: 'Object representing the column definition.',
-				type: [{ text: 'object', vuePropType: 'Object' }],
-				forwardTo: { type: 'property', name: 'columnDefinition' },
+				type: 'object',
+				propertyName: 'columnDefinition',
 			});
 		},
 	],
@@ -81,11 +61,11 @@ export const componentOverrides: ComponentSpecs[] = [
 	[
 		'searchable-select',
 		(component) => {
-			component.attributes.push({
+			component.props.push({
 				name: 'values',
 				description: 'List of selected option values.',
-				type: [{ text: 'string[]', vuePropType: 'Array' }],
-				forwardTo: { type: 'property', name: 'values' },
+				type: 'string[]',
+				propertyName: 'values',
 			});
 		},
 	],
@@ -93,11 +73,11 @@ export const componentOverrides: ComponentSpecs[] = [
 	[
 		'option',
 		(component) => {
-			component.attributes.push({
+			component.props.push({
 				name: 'value',
 				description: 'Value to be submitted as part of the form data',
-				type: [{ text: 'string', vuePropType: 'String' }],
-				forwardTo: { type: 'property', name: 'value' },
+				type: 'string',
+				propertyName: 'value',
 			});
 		},
 	],
