@@ -91,7 +91,6 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	openChanged() {
-		console.log('open changed to', this.open);
 		if (!this.open) {
 			this.#transitionHighlightedOptionTo(null);
 		}
