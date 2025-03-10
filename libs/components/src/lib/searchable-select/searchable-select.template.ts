@@ -158,10 +158,7 @@ function renderFieldset(context: VividElementDefinitionContext) {
 					tabindex="-1"
 				></${buttonTag}>`
 			)}
-			<div
-				@mousedown="${() => false}"
-				@click="${(x, c) => x._onChevronClick(c.event as MouseEvent)}"
-			>
+			<div @mousedown="${() => false}" @click="${(x) => x._onChevronClick()}">
 				${chevronTemplate}
 			</div>
 		</div>

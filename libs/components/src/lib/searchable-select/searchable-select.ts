@@ -1046,7 +1046,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	_onChevronClick(e: MouseEvent) {
+	_onChevronClick() {
 		if (this.open) {
 			this.open = false;
 			return false;
