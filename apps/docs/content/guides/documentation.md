@@ -13,7 +13,7 @@ status: underlying
   You can use an [online tool](https://capitalizemytitle.com/style/APA/) to convert text to APA title case.<br />
   Do: "Getting Started With Vivid"<br />
   Don't: "Getting started with Vivid"
-- **Refer to the design system as "Vivid"**<br /> 
+- **Refer to the design system as "Vivid"**<br />
   If you need to refer to a specific version, use "Vivid 4.x.x"<br />
   Do: Vivid, Vivid 4.x.x<br />
   Don't: VIVID, vivid, VIVID@3, vivid-3, Vivid 3
@@ -35,10 +35,10 @@ status: underlying
 
 A live code example can be added to a page using the following markdown:
 
-```
+````
 ```html preview
 <my-component></my-component>
-```
+````
 
 You can set the preview window's height by providing the height in px's:
 
@@ -67,7 +67,7 @@ You can also choose from these layout options: `full` | `blocks` | `columns` | `
 
 ## Component Pages
 
-Each component page is split into sub pages (represented in the *tab-like* navigation at the top of the page). When a new component is added using the generator, the following documentation sub-page files are produced:
+Each component page is split into sub pages (represented in the _tab-like_ navigation at the top of the page). When a new component is added using the generator, the following documentation sub-page files are produced:
 
 - **Variations**: `VARIATIONS.md`
   - Examples of the component in all possible visual states
@@ -98,20 +98,20 @@ When a new component is added using the generator, this object is added to the `
 
   // First paragraph of the page
   "description": "Brief description of the component",
-  
+
   // Variation page (required)
   "variations": "./libs/components/src/lib/my-component/VARIATIONS.md",
 
   // Guidelines page
   "guidelines": "./libs/components/src/lib/my-compponent/GUIDELINES.md",
-  
+
   // Remove guidelines page from the navigation (url is still viewable)
   "hideGuidelines": "true",
 
   // Code page (required)
   "code": "./libs/components/src/lib/my-component/README.md",
 
-  // Accessibility page 
+  // Accessibility page
   "accessibility": "./libs/components/src/lib/my-component/ACCESSIBILITY.md",
 
   // Use-Cases page
@@ -124,4 +124,3 @@ When a new component is added using the generator, this object is added to the `
   "status": "underlying"
 },
 ```
-
