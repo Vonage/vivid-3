@@ -26,6 +26,7 @@ import {
 	roundToStepValue,
 } from '../range-slider/utils/roundToStepValue';
 import { inverseLerp, lerp } from '../range-slider/utils/lerp';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedSlider } from './slider.form-associated';
 
 export type SliderConnotation = Connotation.Accent | Connotation.CTA;
@@ -50,7 +51,7 @@ export type SliderMode = typeof SliderMode[keyof typeof SliderMode];
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
  * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
-export class Slider extends FormAssociatedSlider {
+export class Slider extends DelegatesAria(FormAssociatedSlider) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 *
@@ -561,8 +562,6 @@ export class Slider extends FormAssociatedSlider {
 		);
 	}
 
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-	@attr({ attribute: 'aria-valuetext' }) ariaValuetext: string | null = null;
 	/**
 	 * Display markers on/off
 	 *

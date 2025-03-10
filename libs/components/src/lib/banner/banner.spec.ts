@@ -2,6 +2,7 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import { Connotation } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Banner } from './banner';
 import type { BannerConnotation } from './banner';
 import '.';
@@ -317,41 +318,21 @@ describe('vwc-banner', () => {
 				const role = getBannerMessageAttribute(element, 'role');
 				expect(role).toEqual('status');
 			});
-
-			it('should change role to role text', async function () {
-				element.role = 'alert';
-				await elementUpdated(element);
-				const role = getBannerMessageAttribute(element, 'role');
-				expect(role).toEqual('alert');
-			});
-
-			it('should change role when role attribute is set', async function () {
-				element.setAttribute('role', 'alert');
-				await elementUpdated(element);
-				const role = getBannerMessageAttribute(element, 'role');
-				expect(role).toEqual('alert');
-			});
 		});
 
-		describe('aria live', function () {
-			it('should be set to "live" on init', function () {
+		describe('aria-live', function () {
+			it('should be set to "polite" on init', function () {
 				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
 				expect(ariaLive).toEqual('polite');
 			});
-
-			it('should change aria-live to ariaLive text', async function () {
-				element.ariaLive = 'assertive';
-				await elementUpdated(element);
-				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-				expect(ariaLive).toEqual('assertive');
-			});
-
-			it('should change reflect aria-live inside the message', async function () {
-				element.setAttribute('aria-live', 'assertive');
-				await elementUpdated(element);
-				const ariaLive = getBannerMessageAttribute(element, 'aria-live');
-				expect(ariaLive).toEqual('assertive');
-			});
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => element.shadowRoot!.querySelector('.banner-message')!,
+			['role', 'ariaLive']
+		);
 	});
 });

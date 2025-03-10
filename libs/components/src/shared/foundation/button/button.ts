@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { attr } from '@microsoft/fast-element';
-import type { VividComponentDefinition } from '../../design-system/defineVividComponent';
-import { ARIAGlobalStatesAndProperties } from '../patterns/index';
-import { applyMixins } from '../utilities/apply-mixins';
+import { DelegatesAria } from '../../aria/delegates-aria';
 import { FormAssociatedButton } from './button.form-associated';
-
-/**
- * Button configuration options
- * @public
- */
-export type ButtonOptions = VividComponentDefinition;
 
 /**
  * A Button Custom HTML Element.
@@ -20,7 +12,7 @@ export type ButtonOptions = VividComponentDefinition;
  *
  * @public
  */
-export class VividFoundationButton extends FormAssociatedButton {
+export class VividFoundationButton extends DelegatesAria(FormAssociatedButton) {
 	/**
 	 * Determines if the element should receive document focus on page load.
 	 *
@@ -246,48 +238,3 @@ export class VividFoundationButton extends FormAssociatedButton {
 		}
 	};
 }
-
-/**
- * Includes ARIA states and properties relating to the ARIA button role
- *
- * @public
- */
-export class DelegatesARIAButton {
-	/**
-	 * See {@link https://www.w3.org/WAI/PF/aria/roles#button} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: aria-expanded
-	 */
-	@attr({ attribute: 'aria-expanded' })
-	// @ts-expect-error Type is incorrectly non-optional
-	public ariaExpanded: 'true' | 'false' | string | null;
-
-	/**
-	 * See {@link https://www.w3.org/WAI/PF/aria/roles#button} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: aria-pressed
-	 */
-	@attr({ attribute: 'aria-pressed' })
-	// @ts-expect-error Type is incorrectly non-optional
-	public ariaPressed: 'true' | 'false' | 'mixed' | string | null;
-}
-
-/**
- * Mark internal because exporting class and interface of the same name
- * confuses API documenter.
- * TODO: https://github.com/microsoft/fast/issues/3317
- * @internal
- */
-export interface DelegatesARIAButton extends ARIAGlobalStatesAndProperties {}
-applyMixins(DelegatesARIAButton, ARIAGlobalStatesAndProperties);
-
-/**
- * Mark internal because exporting class and interface of the same name
- * confuses API documenter.
- * TODO: https://github.com/microsoft/fast/issues/3317
- * @internal
- */
-export interface VividFoundationButton extends DelegatesARIAButton {}
-applyMixins(VividFoundationButton, DelegatesARIAButton);

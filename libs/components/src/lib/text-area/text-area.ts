@@ -14,7 +14,7 @@ import {
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import { DelegatesARIATextbox } from '../text-field/text-field';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedTextArea } from './text-area.form-associated';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
@@ -60,7 +60,7 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  */
 @errorText
 @formElements
-export class TextArea extends FormAssociatedTextArea {
+export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -303,12 +303,10 @@ export interface TextArea
 		ErrorText,
 		FormElementCharCount,
 		FormElementHelperText,
-		FormElementSuccessText,
-		DelegatesARIATextbox {}
+		FormElementSuccessText {}
 applyMixinsWithObservables(
 	TextArea,
 	FormElementCharCount,
 	FormElementHelperText,
-	FormElementSuccessText,
-	DelegatesARIATextbox
+	FormElementSuccessText
 );

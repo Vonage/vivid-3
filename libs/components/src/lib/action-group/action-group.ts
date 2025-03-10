@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import type { Appearance, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Types of button appearance.
@@ -24,7 +25,7 @@ export type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  * @component action-group
  * @slot - Default slot.
  */
-export class ActionGroup extends VividElement {
+export class ActionGroup extends DelegatesAria(VividElement) {
 	/**
 	 * The shape the ActionGroup should have.
 	 *
@@ -54,7 +55,4 @@ export class ActionGroup extends VividElement {
 		mode: 'boolean',
 	})
 	tight = false;
-
-	@attr() override role: string | null = null;
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 }

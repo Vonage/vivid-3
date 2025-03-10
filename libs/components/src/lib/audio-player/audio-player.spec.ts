@@ -291,7 +291,7 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(getSliderElement().value).toEqual(expectedValue);
-			expect(getSliderElement().getAttribute('ariaValuetext')).toEqual(
+			expect(getSliderElement().getAttribute('aria-valuetext')).toEqual(
 				expectedAriaValuetext
 			);
 		});

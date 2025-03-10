@@ -64,10 +64,12 @@ describe('vwc-option', () => {
 		});
 	});
 
-	it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
-		element.selected = true;
-		await elementUpdated(element);
-		expect(element.getAttribute('aria-selected')).toEqual('true');
+	describe('selected', () => {
+		it('should set the `aria-selected` attribute with the `selected` value when provided', async () => {
+			element.selected = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-selected')).toEqual('true');
+		});
 	});
 
 	describe('disabled', () => {

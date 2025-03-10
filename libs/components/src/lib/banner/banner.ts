@@ -4,6 +4,7 @@ import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 export type BannerConnotation =
 	| Connotation.Information
@@ -30,16 +31,13 @@ const defaultConnotation = (
  * @slot action-items - Add action items to banner using this slot.
  * @slot icon - Add an icon to the component.
  */
-export class Banner extends VividElement {
+export class Banner extends DelegatesAria(VividElement) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
-	@attr override role: string | null = null;
 	@attr({ attribute: 'action-href' }) actionHref: string | undefined;
 	@attr({ attribute: 'action-text' }) actionText: string | undefined;
 	@attr({ mode: 'boolean' }) removable = false;
-	// @ts-expect-error: allow uninitialized value
-	@attr({ attribute: 'aria-live' }) override ariaLive: string | null;
 	@attr() text: string | undefined;
 	@attr() connotation: BannerConnotation | undefined;
 

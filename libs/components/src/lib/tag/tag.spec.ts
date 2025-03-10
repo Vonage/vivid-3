@@ -31,6 +31,8 @@ describe('vwc-tag', () => {
 			expect(element.connotation).toBeUndefined();
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
+			expect(element.selectable).toBe(false);
+			expect(element.selected).toBe(false);
 		});
 
 		it('should allow being created via createElement', () => {
@@ -117,6 +119,15 @@ describe('vwc-tag', () => {
 				getBaseElement(element).classList.contains('disabled');
 			expect(baseElementContainsDisabledClass).toBeTruthy();
 		});
+
+		it('should reflect as aria-disabled on the base element', async () => {
+			element.disabled = true;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).getAttribute('aria-disabled')).toEqual(
+				'true'
+			);
+		});
 	});
 
 	describe('selectable', () => {
@@ -187,12 +198,24 @@ describe('vwc-tag', () => {
 			await elementUpdated(element);
 
 			element.addEventListener('selected-change', spy);
-			element.dispatchEvent(new KeyboardEvent('selected-change'));
+			element.dispatchEvent(new CustomEvent('selected-change'));
 
 			element.selected = true;
 			await elementUpdated(element);
 
 			expect(spy).toBeCalled();
+		});
+	});
+
+	describe('selected', () => {
+		it('should reflect as aria-selected on the base element when selectable is true', async () => {
+			element.selectable = true;
+			element.selected = true;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).getAttribute('aria-selected')).toEqual(
+				'true'
+			);
 		});
 	});
 

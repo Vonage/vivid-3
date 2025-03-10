@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Fab, FabConnotation } from './fab';
 import '.';
 
@@ -153,5 +154,28 @@ describe('vwc-fab', () => {
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.disabled')).toBeTruthy();
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaExpanded',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaPressed',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

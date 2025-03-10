@@ -1,6 +1,4 @@
 import { attr } from '@microsoft/fast-element';
-import { ARIAGlobalStatesAndProperties } from '../patterns/aria-global';
-import { applyMixins } from '../utilities/apply-mixins';
 
 /**
  * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element }.
@@ -91,24 +89,3 @@ export class Anchor {
 	 */
 	control: HTMLAnchorElement | undefined;
 }
-
-/**
- * Includes ARIA states and properties relating to the ARIA link role
- */
-export class DelegatesARIALink {
-	/**
-	 * See {@link https://www.w3.org/WAI/PF/aria/roles#link} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: aria-expanded
-	 */
-	@attr({ attribute: 'aria-expanded' })
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaExpanded: 'true' | 'false' | string | null;
-}
-
-export interface DelegatesARIALink extends ARIAGlobalStatesAndProperties {}
-applyMixins(DelegatesARIALink, ARIAGlobalStatesAndProperties);
-
-export interface Anchor extends DelegatesARIALink {}
-applyMixins(Anchor, DelegatesARIALink);

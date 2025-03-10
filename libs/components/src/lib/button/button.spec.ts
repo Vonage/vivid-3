@@ -7,6 +7,8 @@ import {
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import type { AriaProperty } from '../../shared/aria/delegates-aria';
 import { Button } from './button';
 import '.';
 
@@ -37,7 +39,6 @@ describe('vwc-button', () => {
 			expect(element.shape).toBeUndefined();
 			expect(element.appearance).toBeUndefined();
 			expect(element.size).toBeUndefined();
-			expect(element.ariaLabel).toBeUndefined();
 			expect(element.title).toBeNull();
 		});
 
@@ -354,12 +355,56 @@ describe('vwc-button', () => {
 			expect(getControlElement(element).hasAttribute('title')).toEqual(false);
 		});
 	});
-	describe('a11y attributes', function () {
-		it('should set aria-label on the button if set', async () => {
-			const ariaLabel = 'close';
-			element.ariaLabel = ariaLabel;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
+
+	describe('ARIA delegation', () => {
+		describe('when rendered as button', () => {
+			itShouldDelegateAriaAttributes(
+				() => element,
+				() => getControlElement(element),
+				[
+					'ariaAtomic',
+					'ariaBusy',
+					'ariaCurrent',
+					'ariaDisabled',
+					'ariaExpanded',
+					'ariaHasPopup',
+					'ariaHidden',
+					'ariaInvalid',
+					'ariaKeyShortcuts',
+					'ariaLabel',
+					'ariaLive',
+					'ariaPressed',
+					'ariaRelevant',
+					'ariaRoleDescription',
+				] as AriaProperty[]
+			);
+		});
+
+		describe('when rendered as anchor', () => {
+			beforeEach(async () => {
+				element.href = '#';
+				await elementUpdated(element);
+			});
+
+			itShouldDelegateAriaAttributes(
+				() => element,
+				() => getControlElement(element),
+				[
+					'ariaAtomic',
+					'ariaBusy',
+					'ariaCurrent',
+					'ariaDisabled',
+					'ariaExpanded',
+					'ariaHasPopup',
+					'ariaHidden',
+					'ariaInvalid',
+					'ariaKeyShortcuts',
+					'ariaLabel',
+					'ariaLive',
+					'ariaRelevant',
+					'ariaRoleDescription',
+				]
+			);
 		});
 	});
 });

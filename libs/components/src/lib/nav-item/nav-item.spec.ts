@@ -1,6 +1,7 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { NavItem } from './nav-item';
 import '.';
 
@@ -108,14 +109,25 @@ describe('vwc-nav-item', () => {
 		});
 	});
 
-	describe('a11y attributes', () => {
-		describe('aria-current', function () {
-			it('should set aria-current on the nav-item if set', async () => {
-				const ariaCurrent = 'page';
-				element.ariaCurrent = ariaCurrent;
-				await elementUpdated(element);
-				expect(element.getAttribute('aria-current')).toEqual(ariaCurrent);
-			});
-		});
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaExpanded',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

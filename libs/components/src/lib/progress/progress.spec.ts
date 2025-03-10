@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, Shape } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Progress } from './progress';
 import '.';
 
@@ -199,5 +200,13 @@ describe('vwc-progress', () => {
 			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
 			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
 	});
 });

@@ -12,6 +12,7 @@ import { Shape, Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { NumberField } from './number-field';
 import '.';
 
@@ -500,33 +501,6 @@ describe('vwc-number-field', () => {
 		});
 	});
 
-	describe('aria textbox attributes', () => {
-		it.each([
-			['aria-atomic', 'true'],
-			['aria-busy', 'false'],
-			['aria-current', 'page'],
-			['aria-details', 'testId'],
-			['aria-disabled', 'true'],
-			['aria-errormessage', 'test'],
-			['aria-haspopup', 'true'],
-			['aria-hidden', 'true'],
-			['aria-invalid', 'spelling'],
-			['aria-keyshortcuts', 'F4'],
-			['aria-label', 'Foo label'],
-			['aria-live', 'polite'],
-			['aria-relevant', 'removals'],
-			['aria-roledescription', 'slide'],
-		])(
-			'should set the `%s` attribute on the internal control when provided',
-			async (attribute, value) => {
-				element.setAttribute(attribute, value);
-				await elementUpdated(element);
-
-				expect(control.getAttribute(attribute)).toBe(value);
-			}
-		);
-	});
-
 	describe('select', function () {
 		const onSelect = vi.fn();
 		beforeEach(() => {
@@ -925,5 +899,26 @@ describe('vwc-number-field', () => {
 				});
 			});
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

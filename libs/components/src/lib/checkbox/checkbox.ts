@@ -9,6 +9,7 @@ import {
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedCheckbox } from './checkbox.form-associated';
 
 export const keySpace: ' ' = ' ' as const;
@@ -23,8 +24,6 @@ export type CheckboxConnotation = Extract<
 	Connotation.Accent | Connotation.CTA
 >;
 
-export type AriaCheckedStates = 'false' | 'true' | 'mixed' | 'undefined';
-
 /**
  * @public
  * @component checkbox
@@ -36,8 +35,7 @@ export type AriaCheckedStates = 'false' | 'true' | 'mixed' | 'undefined';
  */
 @errorText
 @formElements
-export class Checkbox extends FormAssociatedCheckbox {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+export class Checkbox extends DelegatesAria(FormAssociatedCheckbox) {
 	@attr({ attribute: 'tabindex' }) tabindex: string | null = null;
 
 	/**
@@ -48,16 +46,6 @@ export class Checkbox extends FormAssociatedCheckbox {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: CheckboxConnotation;
-
-	/**
-	 * The current checkbox state
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: aria-checked
-	 */
-	@attr({ attribute: 'aria-checked' })
-	override ariaChecked: AriaCheckedStates | null = null;
 
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.

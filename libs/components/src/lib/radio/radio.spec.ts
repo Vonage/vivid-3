@@ -6,6 +6,7 @@ import {
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Radio } from './radio';
 import '.';
 
@@ -213,13 +214,14 @@ describe('vwc-radio', () => {
 			it('should render role as presentation on the component element', async () => {
 				expect(element.getAttribute('role')).toBe('presentation');
 			});
-
-			it('should render the correct a11y attributes', async () => {
-				const baseElement = getBaseElement(element);
-
-				expect(baseElement?.getAttribute('role')).toBe('radio');
-				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			});
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
 	});
 });

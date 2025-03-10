@@ -1,6 +1,7 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import * as dialogPolyfill from 'dialog-polyfill';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.ts';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Dialog } from './dialog';
 import '.';
 
@@ -714,13 +715,6 @@ describe('vwc-dialog', () => {
 			expect(dialogEl.hasAttribute('aria-modal')).toEqual(true);
 		});
 
-		it('should set "aria-label" on base if set on host', async function () {
-			const labelId = 'label';
-			element.setAttribute('aria-label', labelId);
-			await elementUpdated(element);
-			expect(dialogEl.getAttribute('aria-label')).toEqual(labelId);
-		});
-
 		describe('dismiss-button-aria-label', () => {
 			it('should set "aria-label" on the dismiss button', async () => {
 				const labelId = 'label';
@@ -733,5 +727,13 @@ describe('vwc-dialog', () => {
 		it('should set localised "aria-label" on the dismiss button', async () => {
 			expect(getDismissButton().getAttribute('aria-label')).toBe('Close');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => dialogEl,
+			['ariaLabel']
+		);
 	});
 });

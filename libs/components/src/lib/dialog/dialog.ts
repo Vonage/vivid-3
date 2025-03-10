@@ -3,6 +3,7 @@ import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Types of icon placement
@@ -26,7 +27,7 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `(event.target as any).open`
  */
-export class Dialog extends VividElement {
+export class Dialog extends DelegatesAria(VividElement) {
 	/**
 	 * Indicates dialog's state
 	 *
@@ -41,7 +42,6 @@ export class Dialog extends VividElement {
 	@attr headline?: string;
 	@attr({ attribute: 'full-width-body', mode: 'boolean' }) fullWidthBody =
 		false;
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 	@attr({ attribute: 'dismiss-button-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;

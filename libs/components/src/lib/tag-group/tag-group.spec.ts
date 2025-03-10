@@ -1,4 +1,5 @@
-import { fixture } from '@vivid-nx/shared';
+import { fixture, getBaseElement } from '@vivid-nx/shared';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { TagGroup } from './tag-group';
 import '.';
 
@@ -24,5 +25,13 @@ describe('vwc-tag-group', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('aria delegation', function () {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
 	});
 });

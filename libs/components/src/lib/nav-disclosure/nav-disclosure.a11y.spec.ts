@@ -19,6 +19,7 @@ describe('a11y: vwc-nav-disclosure', () => {
 
 	it('should pass html a11y test', async () => {
 		element.open = true;
+		element.label = 'Label';
 		element.ariaCurrent = 'true';
 		await elementUpdated(element);
 

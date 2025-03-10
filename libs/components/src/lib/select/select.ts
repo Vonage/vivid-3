@@ -115,7 +115,7 @@ export class Select extends FormAssociatedSelect {
 	 * @internal
 	 */
 	protected activeIndexChanged(_: number | undefined, next: number): void {
-		this.ariaActiveDescendant = this.options[next]?.id ?? '';
+		this._activeDescendant = this.options[next]?.id ?? '';
 		this.focusAndScrollOptionIntoView();
 	}
 
@@ -372,7 +372,7 @@ export class Select extends FormAssociatedSelect {
 	open = false;
 
 	/**
-	 * Sets focus and synchronizes ARIA attributes when the open property changes.
+	 * Sets focus when the open property changes.
 	 *
 	 * @internal
 	 */
@@ -382,9 +382,6 @@ export class Select extends FormAssociatedSelect {
 		}
 
 		if (this.open) {
-			this.ariaControls = this.listboxId;
-			this.ariaExpanded = 'true';
-
 			this.focusAndScrollOptionIntoView();
 			this.indexWhenOpened = this.selectedIndex;
 
@@ -400,9 +397,6 @@ export class Select extends FormAssociatedSelect {
 		if (didClose && selectionChangedWhileOpen) {
 			this.updateValue(true);
 		}
-
-		this.ariaControls = '';
-		this.ariaExpanded = 'false';
 	}
 
 	/**
@@ -529,21 +523,6 @@ export class Select extends FormAssociatedSelect {
 	maxHeight = 0;
 
 	/**
-	 * Synchronize the `aria-disabled` property when the `disabled` property changes.
-	 *
-	 * @param prev - The previous disabled value
-	 * @param next - The next disabled value
-	 *
-	 * @internal
-	 */
-	override disabledChanged(prev: boolean, next: boolean) {
-		if (super.disabledChanged) {
-			super.disabledChanged(prev, next);
-		}
-		this.ariaDisabled = this.disabled ? 'true' : 'false';
-	}
-
-	/**
 	 * Handle opening and closing the listbox when the select is clicked.
 	 *
 	 * @param e - the mouse event
@@ -638,8 +617,10 @@ export class Select extends FormAssociatedSelect {
 		return this.collapsible;
 	}
 
-	override multipleChanged(prev: boolean | undefined, next: boolean) {
-		super.multipleChanged(prev, next);
+	/**
+	 * @internal
+	 */
+	multipleChanged(_: boolean | undefined, next: boolean) {
 		this.options.forEach((o) => {
 			o.checked = next ? false : undefined;
 		});
@@ -1005,34 +986,15 @@ export class Select extends FormAssociatedSelect {
 	}
 }
 
-/**
- * Includes ARIA states and properties relating to the ARIA select role.
- *
- * @public
- */
-export class DelegatesARIASelect {
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#combobox} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-controls`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaControls: string | null;
-}
-
 export interface Select
 	extends AffixIconWithTrailing,
 		FormElement,
 		FormElementHelperText,
 		ErrorText,
-		FormElementSuccessText,
-		DelegatesARIASelect {}
+		FormElementSuccessText {}
 applyMixinsWithObservables(
 	Select,
 	AffixIconWithTrailing,
 	FormElementHelperText,
-	FormElementSuccessText,
-	DelegatesARIASelect
+	FormElementSuccessText
 );

@@ -7,6 +7,7 @@ import {
 import { keySpace } from '@microsoft/fast-web-utilities';
 import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent.js';
 import type { Connotation } from '../enums.js';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedRadio } from './radio.form-associated';
 
 /**
@@ -46,9 +47,7 @@ export type RadioOptions = VividComponentDefinition & {
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @component radio
  */
-export class Radio extends FormAssociatedRadio {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-
+export class Radio extends DelegatesAria(FormAssociatedRadio) {
 	/**
 	 * Indicates the radio's label.
 	 *

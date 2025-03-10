@@ -99,6 +99,7 @@ function renderControl(context: VividElementDefinitionContext) {
 					<div class="listbox"
 						id="${(x) => x.listboxId}"
 						role="listbox"
+						aria-multiselectable="${(x) => x.multiple}"
 						?disabled="${(x) => x.disabled}"
 						?hidden="${(x) => (x.collapsible ? !x.open : false)}"
 						${ref('listbox')}>
@@ -134,14 +135,12 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 	return html<Select>`
 		<template
 			class="base"
-			aria-label="${(x) => x.ariaLabel}"
-			aria-activedescendant="${(x) => x.ariaActiveDescendant}"
-			aria-controls="${(x) => x.ariaControls}"
-			aria-disabled="${(x) => x.ariaDisabled}"
-			aria-expanded="${(x) => x.ariaExpanded}"
-			aria-haspopup="${(x) => (x.collapsible ? 'listbox' : null)}"
-			aria-multiselectable="${(x) => x.ariaMultiSelectable}"
 			role="combobox"
+			aria-haspopup="${(x) => (x.collapsible ? 'listbox' : 'false')}"
+			aria-controls="${(x) => x.listboxId}"
+			aria-expanded="${(x) => x.open}"
+			aria-disabled="${(x) => x.disabled}"
+			aria-activedescendant="${(x) => x._activeDescendant}"
 			tabindex="${(x) => (!x.disabled ? '0' : null)}"
 			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"
 			@focusin="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusinHandler(e))}"

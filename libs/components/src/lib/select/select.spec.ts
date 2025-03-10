@@ -46,6 +46,8 @@ describe('vwc-select', () => {
 	const getOption = (value: string) =>
 		element.querySelector(`vwc-option[value="${value}"]`) as ListboxOption;
 
+	const getListbox = () => element.shadowRoot!.querySelector('.listbox')!;
+
 	let element: Select;
 
 	beforeAll(() => {
@@ -237,15 +239,6 @@ describe('vwc-select', () => {
 		});
 	});
 
-	describe('ariaLabel', () => {
-		it('should reflect on the host', async function () {
-			const ariaLabel = 'label';
-			element.ariaLabel = ariaLabel;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-label')).toEqual(ariaLabel);
-		});
-	});
-
 	describe('icon', () => {
 		it('should have a icon slot', async () => {
 			expect(
@@ -315,6 +308,18 @@ describe('vwc-select', () => {
 			expect(element.shadowRoot?.querySelector('.control')).toBeFalsy();
 			expect(element.shadowRoot?.querySelector('.popup')).toBeTruthy();
 		});
+
+		it('should set aria-haspopup to false', async () => {
+			element.multiple = true;
+			await elementUpdated(element);
+			expect(element.getAttribute('aria-haspopup')).toBe('false');
+		});
+
+		it('should reflect as aria-multiselectable on the listbox', async () => {
+			element.multiple = true;
+			await elementUpdated(element);
+			expect(getListbox().getAttribute('aria-multiselectable')).toBe('true');
+		});
 	});
 
 	describe('open', function () {
@@ -346,6 +351,13 @@ describe('vwc-select', () => {
 			(element.querySelector('vwc-option') as HTMLElement).click();
 
 			expect(element.open).toBe(true);
+		});
+
+		it('should reflect as aria-expanded', async () => {
+			element.open = true;
+			await elementUpdated(element);
+
+			expect(element.getAttribute('aria-expanded')).toEqual('true');
 		});
 	});
 
@@ -1287,5 +1299,13 @@ describe('vwc-select', () => {
 		await elementUpdated(element);
 
 		expect(element.proxy.options.length).toBe(2);
+	});
+
+	describe('a11y attributes', () => {
+		it('should set aria-controls to the id of listbox', () => {
+			const uniqueListboxId = getListbox().id;
+			expect(uniqueListboxId).toBeTruthy();
+			expect(element.getAttribute('aria-controls')).toBe(uniqueListboxId);
+		});
 	});
 });

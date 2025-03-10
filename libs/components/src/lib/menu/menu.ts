@@ -12,6 +12,7 @@ import { MenuItem } from '../menu-item/menu-item';
 import type { Popup } from '../popup/popup';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { MenuItemRole, roleForMenuItem } from '../menu-item/menu-item-role';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * @public
@@ -23,7 +24,7 @@ import { MenuItemRole, roleForMenuItem } from '../menu-item/menu-item-role';
  * @event {CustomEvent<undefined>} open - Fired when the menu is opened
  * @event {CustomEvent<undefined>} close - Fired when the menu is closed
  */
-export class Menu extends Anchored(VividElement) {
+export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	/**
 	 * @internal
 	 */
@@ -284,8 +285,6 @@ export class Menu extends Anchored(VividElement) {
 		}
 	}
 
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-
 	/**
 	 * placement of the menu
 	 *
@@ -368,7 +367,7 @@ export class Menu extends Anchored(VividElement) {
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#onAnchorClick, true);
 		a.removeEventListener('focusout', this._onFocusout);
-		a.removeAttribute('aria-hasPopup');
+		a.removeAttribute('aria-haspopup');
 		a.removeAttribute('aria-expanded');
 	}
 

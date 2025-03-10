@@ -8,6 +8,7 @@ import {
 import { Connotation } from '../enums';
 import { Checkbox } from './checkbox';
 import '.';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 
 const COMPONENT_TAG = 'vwc-checkbox';
 
@@ -409,22 +410,12 @@ describe('vwc-checkbox', () => {
 			);
 		});
 
-		describe('aria-label', () => {
-			beforeEach(async () => {
-				element.ariaLabel = 'Label';
-				await elementUpdated(element);
-			});
-
-			it('should render role as presentation on the component element', async () => {
-				expect(element.getAttribute('role')).toBe('presentation');
-			});
-
-			it('should render the correct a11y attributes', async () => {
-				const baseElement = getBaseElement(element);
-
-				expect(baseElement?.getAttribute('role')).toBe('checkbox');
-				expect(baseElement?.getAttribute('aria-label')).toBe('Label');
-			});
+		describe('aria delegation', () => {
+			itShouldDelegateAriaAttributes(
+				() => element,
+				() => getBaseElement(element),
+				['ariaLabel']
+			);
 		});
 	});
 });

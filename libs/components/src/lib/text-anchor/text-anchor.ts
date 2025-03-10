@@ -4,6 +4,7 @@ import { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Anchor } from '../../shared/foundation/anchor/anchor';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Types of text anchor connotation.
@@ -29,7 +30,7 @@ export type TextAnchorAppearance = Extract<
  * @component text-anchor
  * @slot icon - Add an icon to the component.
  */
-export class TextAnchor extends VividElement {
+export class TextAnchor extends DelegatesAria(VividElement) {
 	/**
 	 * Indicates the text anchor's text.
 	 *

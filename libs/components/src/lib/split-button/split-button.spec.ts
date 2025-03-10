@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { SplitButton } from './split-button';
 import '.';
 
@@ -202,17 +203,6 @@ describe('vwc-split-button', () => {
 	});
 
 	describe('a11y attributes', () => {
-		describe('aria-label', function () {
-			it('should set "aria-label" on control if set on host', async function () {
-				const labelId = 'label';
-				element.setAttribute('aria-label', labelId);
-				await elementUpdated(element);
-				expect(getControlElement(element).getAttribute('aria-label')).toEqual(
-					labelId
-				);
-			});
-		});
-
 		describe('indicator', function () {
 			it('should have a localised "aria-label"', async function () {
 				expect(element.indicator.getAttribute('aria-label')).toBe(
@@ -230,16 +220,20 @@ describe('vwc-split-button', () => {
 			});
 		});
 
-		describe('aria-expanded', function () {
-			it('should set "aria-expanded" on indicator if set on host', async function () {
-				element.setAttribute('aria-expanded', 'true');
-				await elementUpdated(element);
+		describe('ARIA delegation to action', function () {
+			itShouldDelegateAriaAttributes(
+				() => element,
+				() => element.action,
+				['ariaLabel']
+			);
+		});
 
-				const indicator = element.shadowRoot?.querySelector(
-					'.indicator'
-				) as HTMLElement;
-				expect(indicator.getAttribute('aria-expanded')).toEqual('true');
-			});
+		describe('ARIA delegation to indicator', function () {
+			itShouldDelegateAriaAttributes(
+				() => element,
+				() => element.indicator,
+				['ariaExpanded']
+			);
 		});
 	});
 });

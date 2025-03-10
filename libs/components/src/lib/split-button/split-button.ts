@@ -4,6 +4,7 @@ import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Types of split button connotation.
@@ -54,7 +55,7 @@ export type SplitButtonSize = Extract<
  * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
  * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
  */
-export class SplitButton extends VividElement {
+export class SplitButton extends DelegatesAria(VividElement) {
 	/**
 	 * Action HTML button element
 	 *
@@ -149,10 +150,6 @@ export class SplitButton extends VividElement {
 	 * HTML Attribute: disabled
 	 */
 	@attr({ attribute: 'disabled', mode: 'boolean' }) disabled = false;
-
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-	@attr({ attribute: 'aria-expanded' }) override ariaExpanded: string | null =
-		null;
 
 	/**
 	 * Defines a string value that labels the indicator element.

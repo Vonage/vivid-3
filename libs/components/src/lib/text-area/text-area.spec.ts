@@ -6,6 +6,7 @@ import {
 	getControlElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { TextArea } from './text-area';
 import '.';
 
@@ -406,5 +407,26 @@ describe('vwc-text-area', () => {
 
 			expect(getTextarea().select).toHaveBeenCalled();
 		});
+	});
+
+	describe('aria delegation', function () {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

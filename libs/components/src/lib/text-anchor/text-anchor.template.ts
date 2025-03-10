@@ -18,7 +18,7 @@ const getClasses = ({ text, connotation, appearance }: TextAnchor) =>
 export const textAnchorTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html`<a
+	return html<TextAnchor>`<a
 		class="${getClasses}"
 		download="${(x) => x.download}"
 		href="${(x) => x.href}"
@@ -31,18 +31,16 @@ export const textAnchorTemplate = (context: VividElementDefinitionContext) => {
 		aria-atomic="${(x) => x.ariaAtomic}"
 		aria-busy="${(x) => x.ariaBusy}"
 		aria-current="${(x) => x.ariaCurrent}"
-		aria-details="${(x) => x.ariaDetails}"
 		aria-disabled="${(x) => x.ariaDisabled}"
-		aria-errormessage="${(x) => x.ariaErrormessage}"
 		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-haspopup="${(x) => x.ariaHaspopup}"
+		aria-haspopup="${(x) => x.ariaHasPopup}"
 		aria-hidden="${(x) => x.ariaHidden}"
 		aria-invalid="${(x) => x.ariaInvalid}"
-		aria-keyshortcuts="${(x) => x.ariaKeyshortcuts}"
+		aria-keyshortcuts="${(x) => x.ariaKeyShortcuts}"
 		aria-label="${(x) => x.ariaLabel}"
 		aria-live="${(x) => x.ariaLive}"
 		aria-relevant="${(x) => x.ariaRelevant}"
-		aria-roledescription="${(x) => x.ariaRoledescription}"
+		aria-roledescription="${(x) => x.ariaRoleDescription}"
 		${ref('control')}
 	>
 		${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.text}

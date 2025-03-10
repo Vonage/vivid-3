@@ -26,12 +26,10 @@ export const ListboxOptionTemplate = (
 
 	return html`
 		<template
-			aria-checked="${(x) => x.ariaChecked}"
-			aria-disabled="${(x) => x.ariaDisabled}"
-			aria-posinset="${(x) => x.ariaPosInSet}"
-			aria-selected="${(x) => x.ariaSelected}"
-			aria-setsize="${(x) => x.ariaSetSize}"
 			role="option"
+			aria-checked="${(x) => x.checked}"
+			aria-selected="${(x) => x.selected}"
+			aria-disabled="${(x) => x.disabled}"
 		>
 			<div class="${getClasses}">
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}

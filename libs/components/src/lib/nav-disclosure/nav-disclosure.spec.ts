@@ -6,6 +6,7 @@ import {
 } from '@vivid-nx/shared';
 import { Connotation } from '@vonage/vivid';
 import { Icon } from '../icon/icon';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { NavDisclosure } from './nav-disclosure';
 import '.';
 
@@ -116,26 +117,20 @@ describe('vwc-nav-disclosure', () => {
 		});
 	});
 
-	describe('a11y attributes', () => {
-		describe('aria-current', function () {
-			it('should not set aria-current on the nav-disclosure if opened', async function () {
-				const ariaCurrent = 'true';
-				element.open = true;
-				element.ariaCurrent = ariaCurrent;
-				await elementUpdated(element);
-				expect(
-					getControlElement(element).getAttribute('aria-current')
-				).toBeNull();
-			});
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			['ariaLabel', 'ariaCurrent']
+		);
 
-			it('should set aria-current on the nav-disclosure if closed', async function () {
-				const ariaCurrent = 'true';
-				element.setAttribute('aria-current', ariaCurrent);
-				await elementUpdated(element);
-				expect(
-					getControlElement(element).getAttribute('aria-current')
-				).not.toBeNull();
-			});
+		it('should not delegate aria-current when open', async function () {
+			element.open = true;
+			element.ariaCurrent = 'true';
+			await elementUpdated(element);
+			expect(
+				getControlElement(element).getAttribute('aria-current')
+			).toBeNull();
 		});
 	});
 
