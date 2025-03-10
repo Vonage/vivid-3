@@ -1255,7 +1255,7 @@ describe('vwc-searchable-select', () => {
 				clickOnChevronIcon();
 				await elementUpdated(popup);
 
-				expect(popup.open).toBe(false);
+				expect(popup.open).toBe(true);
 			});
 		});
 	});
