@@ -18,7 +18,7 @@ Use the `label` to set the **Radio Group** label.
 <vwc-radio-group label="Pick a number" name="number">
 	<vwc-radio label="number one" value="1"></vwc-radio>
 	<vwc-radio label="number two" value="2"></vwc-radio>
-	<vwc-radio label="number tree" value="3"></vwc-radio>
+	<vwc-radio label="number three" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
