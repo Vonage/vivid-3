@@ -7,9 +7,9 @@ import {
 } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { TextField, TextFieldType } from './text-field';
 import '.';
-import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 
 // Polyfill innerText for JSDOM
 if (

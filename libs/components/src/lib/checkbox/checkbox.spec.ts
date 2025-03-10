@@ -6,9 +6,9 @@ import {
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Checkbox } from './checkbox';
 import '.';
-import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 
 const COMPONENT_TAG = 'vwc-checkbox';
 
