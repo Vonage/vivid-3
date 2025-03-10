@@ -23,7 +23,7 @@
 				<ul>
 					<li><a href="/components/{{ component | componentSlug }}/" {% if ("/components/" + (component | componentSlug) + "/") == page.url %} aria-current="page" {% endif %}>Variations</a></li>
 					{% if component.hideGuidelines != "true" %}
-						<li><a href="/components/{{ component | componentSlug }}/guidelines/" {% if ("/components/" + (component | componentSlug) + "/guidelines/") == page.url %} aria-current="page" {% endif %}>Design Guidelines</a></li>
+						<li><a href="/components/{{ component | componentSlug }}/guidelines/" {% if ("/components/" + (component | componentSlug) + "/guidelines/") == page.url %} aria-current="page" {% endif %}>Guidelines</a></li>
 					{% endif %}
 					<li><a href="/components/{{ component | componentSlug }}/code/" {% if ("/components/" + (component | componentSlug) + "/code/") == page.url %} aria-current="page" {% endif %}>Code</a></li>
 					{% if component.useCases and component.hideUseCases != "true" %}
