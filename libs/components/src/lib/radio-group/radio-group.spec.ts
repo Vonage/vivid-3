@@ -8,7 +8,6 @@ import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
-import { getElement } from 'dropzone';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
