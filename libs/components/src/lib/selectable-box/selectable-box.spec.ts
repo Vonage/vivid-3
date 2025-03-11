@@ -159,10 +159,6 @@ describe('vwc-selectable-box', () => {
 				element = (await fixture(
 					`<${COMPONENT_TAG} control-type="radio" checked></${COMPONENT_TAG}>`
 				)) as SelectableBox;
-				//const control = getControlElement(element);
-				// const controlElement = element.querySelector(
-				// 	'[role="radio"]'
-				// ) as HTMLElement;
 				const controlElement = getControlElement(element);
 
 				expect(controlElement?.getAttribute('aria-checked')).toBe('true');
