@@ -1,4 +1,5 @@
 @use '../popup/partials/variables' as popup-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../text-field/partials/variables' as text-field-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
@@ -24,6 +25,12 @@ $low-ink-color: --_low-ink-color;
 	display: inline-flex;
 	flex-direction: column;
 	gap: 4px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+}
+
+:host([disabled]) {
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+	cursor: not-allowed;
 }
 
 .base {
