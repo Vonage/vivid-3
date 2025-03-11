@@ -1,7 +1,7 @@
-import { ComponentDef } from './ComponentDef';
-import { kebabToCamel, kebabToPascal } from './utils/casing';
-import { TypeUnion } from './types';
-import { getImportPath } from './vividPackage';
+import { ComponentDef } from '../metadata/ComponentDef';
+import { kebabToCamel, kebabToPascal } from '../utils/casing';
+import { TypeUnion } from '../metadata/types';
+import { getImportPath } from '../metadata/vividPackage';
 
 type Import = {
 	name: string;
