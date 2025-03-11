@@ -14,7 +14,6 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) =>
 
 export const RadioTemplate = html<Radio>`<template
 	aria-checked="${(x) => x.checked}"
-	aria-label="${(x) => x.ariaLabel}"
 	aria-disabled="${(x) => x.disabled}"
 	@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 	@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
