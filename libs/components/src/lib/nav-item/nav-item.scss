@@ -47,10 +47,15 @@
 		) {
 			background-color: var(#{connotation.get-connotation-token(primary)});
 		}
-	}
 
-	&:not([aria-current]) {
-		color: var(#{constants.$vvd-color-canvas-text});
+		&:focus-visible {
+			position: relative;
+			outline: none;
+
+			&::after {
+				@include focus.focus-in-pseudo-element;
+			}
+		}
 	}
 
 	@include connotation.connotation(nav-item);
@@ -77,8 +82,12 @@
 		padding-inline: $gutter;
 	}
 
-	&:focus-visible {
-		@include focus.focus;
+	&:not([aria-current]) {
+		color: var(#{constants.$vvd-color-canvas-text});
+
+		&:focus-visible {
+			@include focus.focus;
+		}
 	}
 
 	:host(:not([aria-current='page'])) & {
