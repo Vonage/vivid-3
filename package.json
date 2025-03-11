@@ -33,7 +33,9 @@
 		"nodemon": "^3.1.9",
 		"prosemirror-keymap": "^1.2.2",
 		"prosemirror-model": "^1.24.1",
+		"prosemirror-schema-basic": "^1.2.3",
 		"prosemirror-state": "^1.4.3",
+		"prosemirror-transform": "^1.10.3",
 		"prosemirror-view": "^1.38.0",
 		"ramda": "^0.28.0",
 		"regenerator-runtime": "^0.13.11",
@@ -156,7 +158,7 @@
 		"vue3": "npm:vue@3.3.7"
 	},
 	"overrides": {
-		"minimist": "1.2.6",
+		"minimist": "1.2.8",
 		"path-to-regexp": "8.2.0",
 		"nconf": "0.12.1",
 		"rollup": "^4.22.4",

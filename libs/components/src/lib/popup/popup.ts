@@ -217,7 +217,7 @@ export class Popup extends VividElement {
 			this.#cleanup = autoUpdate(
 				this.anchorEl,
 				this.popupEl,
-				() => this.updatePosition(),
+				this.#autoUpdateCallback,
 				{
 					animationFrame: this.animationFrame,
 				}
@@ -234,6 +234,12 @@ export class Popup extends VividElement {
 			}
 		}
 	}
+
+	#lastPositionUpdate?: Promise<void>;
+	#autoUpdateCallback = () => {
+		this.#lastPositionUpdate = this.updatePosition();
+		return this.#lastPositionUpdate;
+	};
 
 	/**
 	 * Updates popup's position
@@ -288,12 +294,11 @@ export class Popup extends VividElement {
 
 	/**
 	 * Shows the popup.
-	 * Unlike toggling the `open` attribute, show() will ensure the popup becomes visible synchronously.
+	 * Unlike toggling the `open` attribute, show() will wait for the popup to become visible and positioned correctly.
 	 */
-	show(): void {
+	show(): Promise<void> {
 		this.open = true;
-		this.#togglePopover();
-		this.#updateAutoUpdate();
+		return this.#lastPositionUpdate ?? Promise.resolve();
 	}
 
 	hide(): void {
