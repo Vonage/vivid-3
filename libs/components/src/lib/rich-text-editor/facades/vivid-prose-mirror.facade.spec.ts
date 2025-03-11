@@ -188,5 +188,30 @@ describe('ProseMirrorFacade', () => {
 				'Position 250 out of range'
 			);
 		});
+
+		it('should emit "selection-changed" event when selection is changed by the consumer', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const initialPosition: RichTextEditorSelection = {
+				start: 3,
+			};
+			const spy = vi.fn();
+			facadeInstance.addEventListener('selection-changed', spy);
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			facadeInstance.selection(initialPosition);
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('addEventListener', () => {
+		it('should accept a callback', async () => {
+			const spy = vi.fn();
+			expect(facadeInstance.addEventListener(spy)).toBeTruthy();
+		});
 	});
 });

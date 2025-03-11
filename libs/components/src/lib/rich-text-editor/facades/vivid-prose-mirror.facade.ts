@@ -63,4 +63,12 @@ export class ProseMirrorFacade {
 			? NEGATIVE_SELECTION
 			: convertSelectionToVividFormat(this.#view.state.selection);
 	}
+
+	#eventHandler = document.createElement('div');
+	addEventListener(
+		eventName: string,
+		callback: EventListenerOrEventListenerObject
+	) {
+		this.#eventHandler.addEventListener(eventName, callback);
+	}
 }
