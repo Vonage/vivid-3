@@ -1,4 +1,4 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
@@ -40,6 +40,8 @@ export class RichTextEditor extends VividElement {
 	set selection(value: RichTextEditorSelection) {
 		this.#editor?.selection(value);
 	}
+
+	@attr({converter: nullableNumberConverter, attribute: 'selection-start'}) selectionStart:number | null = null;
 
 	constructor() {
 		super();

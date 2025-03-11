@@ -65,6 +65,35 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
+	describe('selectionStart', () => {
+		it('should default to null', async () => {
+			expect(element.selectionStart).toBeNull();
+		});	
+
+		it('should reflect in the selection-start attribute', async () => {
+			element.selectionStart = 5;
+			await elementUpdated(element);
+			expect(element.getAttribute('selection-start')).toEqual('5');
+		});
+
+		it('should reflect the attribute in the property', async () => {
+			element.setAttribute('selection-start', '10');
+			await elementUpdated(element);
+			expect(element.selectionStart).toEqual(10);
+		});
+
+		it('should return null when given a non number value', async () => {
+			(element.selectionStart as any) = 'a string';
+			await elementUpdated(element);
+			expect(element.selectionStart).toBeNull();
+			expect(element.hasAttribute('selection-start')).toBe(false);
+		});
+	});
+
+	describe('selectionEnd', () => {
+		
+	});
+
 	describe('selection', () => {
 		it('should return undefined when editor is not defined', async () => {
 			const detachedElement = document.createElement(
