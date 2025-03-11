@@ -130,7 +130,7 @@ describe('vwc-rich-text-editor', () => {
 			element.selectionStart = 5;
 			await elementUpdated(element);
 
-			expect(console.warn).toHaveBeenCalledWith('Position 5 out of range');
+			expect(warnSpy).toHaveBeenCalledWith('Position 5 out of range');
 			warnSpy.mockRestore();
 		});
 	});

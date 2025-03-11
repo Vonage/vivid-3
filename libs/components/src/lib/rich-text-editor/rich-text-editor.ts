@@ -49,6 +49,7 @@ export class RichTextEditor extends VividElement {
 				end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
 			});
 		} catch (e: any) {
+			// eslint-disable-next-line no-console
 			console.warn(e.message);
 		}
 	};
