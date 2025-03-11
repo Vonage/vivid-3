@@ -33,16 +33,30 @@ export class RichTextEditor extends VividElement {
 		return this.shadowRoot!.querySelector('#editor') as HTMLElement;
 	}
 
-	get selection(): RichTextEditorSelection | undefined {
-		return this.#editor?.selection();
+	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
+	selectionStart: number | null = null;
+	selectionStartChanged() {
+		if (!this.selectionStart) {
+			return;
+		}
+		this.#editor?.selection({
+			start: this.selectionStart,
+			end: this.selectionEnd ? this.selectionEnd : this.selectionStart,
+		});
 	}
 
-	set selection(value: RichTextEditorSelection) {
-		this.#editor?.selection(value);
+	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
+	selectionEnd: number | null = null;
+	selectionEndChanged() {
+		if (!this.selectionStart) {
+			return;
+		}
+		
+		this.#editor?.selection({
+			start: this.selectionStart,
+			end: this.selectionEnd ? this.selectionEnd : this.selectionStart,
+		});
 	}
-
-	@attr({converter: nullableNumberConverter, attribute: 'selection-start'}) selectionStart:number | null = null;
-
 	constructor() {
 		super();
 		this.value = '';
