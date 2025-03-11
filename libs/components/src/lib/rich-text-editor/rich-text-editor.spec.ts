@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
@@ -5,7 +6,6 @@ import {
 	type RichTextEditorSelection,
 } from './rich-text-editor';
 import '.';
-import type { MockInstance } from 'vitest';
 
 const COMPONENT_TAG = 'vwc-rich-text-editor';
 
@@ -123,10 +123,15 @@ describe('vwc-rich-text-editor', () => {
 			});
 		});
 
-		it('should gracefully fail when entering a number out of bounds', async () => {
+		it('should gracefully fail with a warning when entering a number out of bounds', async () => {
+			const warnSpy = vi.spyOn(console, 'warn');
 			editorFacadeSelectSpy.mockRestore();
+
 			element.selectionStart = 5;
-			await expect(() => elementUpdated(element)).not.toThrow();
+			await elementUpdated(element);
+
+			expect(warnSpy).toHaveBeenCalledWith('Position 5 out of range');
+			warnSpy.mockRestore();
 		});
 	});
 
