@@ -2,7 +2,7 @@ import { renderComponent } from './renderComponent';
 import {
 	exampleComponent,
 	minimalComponent,
-} from './__fixtures__/componentDefs';
+} from '../__fixtures__/componentDefs';
 
 describe('renderComponent', () => {
 	it('should render a component', () => {
