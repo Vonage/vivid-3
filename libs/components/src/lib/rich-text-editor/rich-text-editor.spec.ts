@@ -1,7 +1,8 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
-import { RichTextEditor } from './rich-text-editor';
+import { RichTextEditor, type RichTextEditorSelection } from './rich-text-editor';
 import '.';
+import type { MockInstance } from 'vitest';
 
 const COMPONENT_TAG = 'vwc-rich-text-editor';
 
@@ -12,16 +13,22 @@ describe('vwc-rich-text-editor', () => {
 		) as HTMLElement;
 	}
 
-	const editorFacadeSelectSpy = vi.spyOn(EditorFacade.prototype, 'selection');
+	let editorFacadeSelectSpy: MockInstance<(position?: RichTextEditorSelection) => RichTextEditorSelection>;
 	let element: RichTextEditor;
-
+	
 	beforeEach(async () => {
+		editorFacadeSelectSpy = vi.spyOn(EditorFacade.prototype, 'selection');
+
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as unknown as RichTextEditor;
 
 		editorFacadeSelectSpy.mockReset();
 	});
+
+	afterEach(() => {
+		editorFacadeSelectSpy.mockRestore();
+	})
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-rich-text-editor', async () => {
@@ -110,6 +117,12 @@ describe('vwc-rich-text-editor', () => {
 				end: 15,
 			});
 		});
+
+		it('should gracefully fail when entering a number out of bounds', async () => {
+			editorFacadeSelectSpy.mockRestore();
+			element.selectionStart = 5;
+			await expect(() => elementUpdated(element)).not.toThrow();
+		});
 	});
 
 	describe('selectionEnd', () => {
@@ -174,6 +187,12 @@ describe('vwc-rich-text-editor', () => {
 				start: 1,
 				end: 5,
 			});
+		});
+
+		it('should gracefully fail when entering a number out of bounds', async () => {
+			editorFacadeSelectSpy.mockRestore();
+			element.selectionEnd = 5;
+			await expect(() => elementUpdated(element)).not.toThrow();
 		});
 	});
 });

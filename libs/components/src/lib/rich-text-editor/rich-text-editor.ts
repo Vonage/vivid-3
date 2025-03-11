@@ -39,10 +39,18 @@ export class RichTextEditor extends VividElement {
 		if (!this.selectionStart) {
 			return;
 		}
-		this.#editor?.selection({
-			start: this.selectionStart,
-			end: this.selectionEnd ? this.selectionEnd : this.selectionStart,
-		});
+		this.#updateEditorSelection();
+	}
+
+	#updateEditorSelection = () => {
+		try {
+			this.#editor?.selection({
+				start: this.selectionStart!,
+				end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
+			});
+		} catch(_) {
+
+		}
 	}
 
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
@@ -52,10 +60,7 @@ export class RichTextEditor extends VividElement {
 			this.selectionStart = 1;
 		}
 
-		this.#editor?.selection({
-			start: this.selectionStart!,
-			end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
-		});
+		this.#updateEditorSelection();
 	}
 	constructor() {
 		super();
