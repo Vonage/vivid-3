@@ -39,23 +39,15 @@ Use kebab case for slot names. Or use one of the following:
 
 ## Documentation Structure
 
-The documentation file should have the following structure:
+See the [component generator files](https://github.com/Vonage/vivid-3/tree/main/libs/nx-vivid/src/generators/component/files) for examples of the recommended page structure for each page.
 
-- `# Component Name` - name and description and code preview of the component.
+The documentation files should have the following structure:
 
-- `## Members` - all the attributes and properties of the component with code previews for each.
-
-- `## Slots` - all the slots of the component.
-
-- `## CSS Variables` - all the CSS variables of the component.
-
-- `## Events` - all the dispatched events of the component.
-
-- `## Methods` - all the methods of the component.
-
-- `## Accessibility` - explanation about aria attributes and roles.
-
-- `## Use Cases` - User examples with more vivid components.
+- `VARIATIONS.md`: **Variations** - shows all the visual states the of component
+- `README.md`: **Code** - shows technical properties and configuration options with a API Reference
+- `GUIDELINES.md`: **Guidelines** - shows do's and dont's on component usage
+- `ACCESSIBILITY.md`: **Accessibility** - show advice ono how to use the component in an accessible way
+- `USE-CASES.md`: **Use Cases** - shows examples different ways the component can be used
 
 ## Code Preview
 
