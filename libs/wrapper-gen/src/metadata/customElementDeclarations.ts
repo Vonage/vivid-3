@@ -1,8 +1,11 @@
 import * as schema from 'custom-elements-manifest';
 import * as fs from 'fs';
 import {
+	Attribute,
 	ClassDeclaration,
+	ClassMember,
 	CustomElementDeclaration,
+	Event,
 } from 'custom-elements-manifest';
 import {
 	getTypescriptDefinitionPath,
@@ -208,19 +211,19 @@ function inheritItems<T>(
 function applyInheritance(
 	declaration: Declaration,
 	superclassDeclaration: Declaration
-): Declaration {
+): void {
 	// Note: we don't inherit slots, as Vivid components often did not implement them
-	declaration.members = inheritItems(
+	declaration.members = inheritItems<ClassMember>(
 		(m) => m.name,
 		superclassDeclaration.members,
 		declaration.members
 	);
-	declaration.attributes = inheritItems(
+	declaration.attributes = inheritItems<Attribute>(
 		getAttributeName,
 		superclassDeclaration.attributes,
 		declaration.attributes
 	);
-	declaration.events = inheritItems(
+	declaration.events = inheritItems<Event>(
 		(m) => m.name,
 		superclassDeclaration.events,
 		declaration.events
@@ -300,7 +303,7 @@ const resolveDeclaration = (
 
 	// Apply vivid mixins
 	if (declaration.vividComponent) {
-		const mixins = extractVividMixins(name, declaration._modulePath);
+		const mixins = extractVividMixins(name, declaration._modulePath!);
 		for (const mixinName of mixins) {
 			if (!(mixinName in VividMixins)) {
 				throw new Error(`Unknown mixin ${mixinName}`);
