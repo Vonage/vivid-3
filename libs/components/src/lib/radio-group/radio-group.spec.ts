@@ -187,7 +187,7 @@ describe('vwc-radio-group', () => {
 		});
 
 		it('should receive the value of the radio that was clicked', async () => {
-			getElement(radios[1]).dispatchEvent(new MouseEvent('click'));
+			radios[1].dispatchEvent(new MouseEvent('click'));
 			await elementUpdated(element);
 			expect(element.getAttribute('value')).toEqual('1');
 		});
