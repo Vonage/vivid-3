@@ -1,6 +1,9 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
-import { RichTextEditor, type RichTextEditorSelection } from './rich-text-editor';
+import {
+	RichTextEditor,
+	type RichTextEditorSelection,
+} from './rich-text-editor';
 import '.';
 import type { MockInstance } from 'vitest';
 
@@ -13,9 +16,11 @@ describe('vwc-rich-text-editor', () => {
 		) as HTMLElement;
 	}
 
-	let editorFacadeSelectSpy: MockInstance<(position?: RichTextEditorSelection) => RichTextEditorSelection>;
+	let editorFacadeSelectSpy: MockInstance<
+		(position?: RichTextEditorSelection) => RichTextEditorSelection
+	>;
 	let element: RichTextEditor;
-	
+
 	beforeEach(async () => {
 		editorFacadeSelectSpy = vi.spyOn(EditorFacade.prototype, 'selection');
 
@@ -28,7 +33,7 @@ describe('vwc-rich-text-editor', () => {
 
 	afterEach(() => {
 		editorFacadeSelectSpy.mockRestore();
-	})
+	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-rich-text-editor', async () => {
