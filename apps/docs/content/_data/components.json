@@ -85,6 +85,7 @@
 	},
 	{
 		"title": "Date Time Picker",
+		"status": "alpha",
 		"page": "legacy",
 		"markdown": "./libs/components/src/lib/date-time-picker/README.md",
 		"parent": "Date Picker"
