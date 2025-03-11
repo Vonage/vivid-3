@@ -12,3 +12,16 @@
 		#{-$outline-width} - var(#{variables.$focus-inset}, 0px)
 	);
 }
+
+@mixin focus-in-pseudo-element {
+	@include focus();
+	position: absolute;
+	display: block;
+	border-radius: var(#{variables.$focus-border-radius}, inherit);
+	block-size: calc(100% + var(#{variables.$focus-block-size-addition}, 4px));
+	content: '';
+	inline-size: calc(100% + var(#{variables.$focus-block-size-addition}, 4px));
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	transform: translate(-50%, -50%);
+}

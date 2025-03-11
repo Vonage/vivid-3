@@ -1,3 +1,4 @@
 @forward 'variables' show $focus-inset, $focus-stroke-color,
-	$focus-stroke-gap-color;
+	$focus-stroke-gap-color, $focus-block-size-addition, $focus-border-radius;
 @forward 'mixins' show focus;
+@forward 'mixins' show focus-in-pseudo-element;
