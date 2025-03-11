@@ -15,7 +15,7 @@ import { extractLocalTypeDefs } from './extractLocalTypeDefs';
 import type { TypeStr } from '../common/types';
 import type { ComponentDef } from '../common/ComponentDef';
 
-type Declaration = CustomElementDeclaration &
+export type Declaration = CustomElementDeclaration &
 	ClassDeclaration & {
 		_modulePath?: string;
 		_localTypeDefs?: Record<string, TypeStr>;
