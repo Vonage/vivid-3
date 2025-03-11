@@ -51,7 +51,7 @@ export class RichTextEditor extends VividElement {
 		if (this.selectionEnd && !this.selectionStart) {
 			this.selectionStart = 1;
 		}
-		
+
 		this.#editor?.selection({
 			start: this.selectionStart!,
 			end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
