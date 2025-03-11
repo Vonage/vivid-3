@@ -8,6 +8,7 @@ import {
 import { Connotation } from '../enums';
 import { Radio } from './radio';
 import '.';
+import { getElement } from 'dropzone';
 
 const COMPONENT_TAG = 'vwc-radio';
 
@@ -106,7 +107,7 @@ describe('vwc-radio', () => {
 	it('should not prevent default of keypress other than Space', () => {
 		const event = new KeyboardEvent('keypress', { key: 'Enter' });
 		const spy = vi.spyOn(event, 'preventDefault');
-		getBaseElement(element).dispatchEvent(event);
+		getElement(element).dispatchEvent(event);
 		expect(spy).not.toHaveBeenCalled();
 	});
 
