@@ -165,5 +165,15 @@ describe('vwc-rich-text-editor', () => {
 				end: 5,
 			});
 		});
+
+		it('should set selectionStart to 1 if undefined when selectionEnd changes', async () => {
+			element.selectionEnd = 5;
+			await elementUpdated(element);
+
+			expect(editorFacadeSelectSpy).toHaveBeenCalledWith({
+				start: 1,
+				end: 5,
+			});
+		});
 	});
 });

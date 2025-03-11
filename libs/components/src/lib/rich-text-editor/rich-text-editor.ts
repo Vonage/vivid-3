@@ -48,13 +48,13 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
 	selectionEnd: number | null = null;
 	selectionEndChanged() {
-		if (!this.selectionStart) {
-			return;
+		if (this.selectionEnd && !this.selectionStart) {
+			this.selectionStart = 1;
 		}
 		
 		this.#editor?.selection({
-			start: this.selectionStart,
-			end: this.selectionEnd ? this.selectionEnd : this.selectionStart,
+			start: this.selectionStart!,
+			end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
 		});
 	}
 	constructor() {
