@@ -83,17 +83,7 @@ $control-border: 2px;
 		position: relative;
 
 		&::before {
-			@include focus.focus;
-
-			position: absolute;
-			display: block;
-			border-radius: inherit;
-			block-size: calc($control-size + 4px);
-			content: '';
-			inline-size: calc($control-size + 4px);
-			inset-block-start: 50%;
-			inset-inline-start: 50%;
-			transform: translate(-50%, -50%);
+			@include focus.focus-in-pseudo-element;
 		}
 	}
 }

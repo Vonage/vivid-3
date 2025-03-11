@@ -25,19 +25,11 @@
 		position: relative;
 		outline: none;
 
-		&::before {
-			@include focus.focus;
+		&::after {
+			@include focus.focus-in-pseudo-element;
 			#{focus-variables.$focus-stroke-gap-color}: transparent;
-
-			position: absolute;
-			display: block;
-			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
-			block-size: calc(100% + 8px);
-			content: '';
-			inline-size: calc(100% + 8px);
-			inset-block-start: 50%;
-			inset-inline-start: 50%;
-			transform: translate(-50%, -50%);
+			#{focus-variables.$focus-block-size-addition}: 8px;
+			#{focus-variables.$focus-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
 		}
 	}
 
