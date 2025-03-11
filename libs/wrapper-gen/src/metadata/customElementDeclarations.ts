@@ -1,28 +1,44 @@
 import * as schema from 'custom-elements-manifest';
 import * as fs from 'fs';
 import {
+	Attribute,
 	ClassDeclaration,
+	ClassMember,
 	CustomElementDeclaration,
+	Event,
 } from 'custom-elements-manifest';
 import {
 	getTypescriptDefinitionPath,
 	isVividComponentPath,
 } from './vividPackage';
 import { extractLocalTypeDefs } from './extractLocalTypeDefs';
+import { TypeUnion } from './types';
+import { ComponentDef } from './ComponentDef';
 
 type Declaration = CustomElementDeclaration &
-	ClassDeclaration & { _modulePath?: string };
+	ClassDeclaration & {
+		_modulePath?: string;
+		_localTypeDefs?: Record<string, TypeUnion>;
+		vividComponent?: {
+			name: string;
+			vueModels?: ComponentDef['vueModels'];
+			public?: true;
+		};
+	};
 
-const parseManifest = (fileName: string): schema.Declaration[] => {
+const parseManifest = (fileName: string): Declaration[] => {
 	const manifest: schema.Package = JSON.parse(
 		fs.readFileSync(fileName, 'utf-8')
 	);
 	return manifest.modules.flatMap(
 		(m) =>
-			m.declarations?.map((d) => ({
-				...d,
-				_modulePath: m.path,
-			})) ?? []
+			m.declarations?.map(
+				(d) =>
+					({
+						...d,
+						_modulePath: m.path,
+					} as Declaration)
+			) ?? []
 	);
 };
 
@@ -155,7 +171,7 @@ and don't support IDL attribute binding.`,
 		className === 'FormAssociatedRadio' ||
 		className === 'FormAssociatedSwitch'
 	) {
-		declaration.attributes.push(
+		declaration.attributes!.push(
 			{
 				name: 'checked',
 				description: `Provides the default checkedness of the input element`,
@@ -195,19 +211,19 @@ function inheritItems<T>(
 function applyInheritance(
 	declaration: Declaration,
 	superclassDeclaration: Declaration
-): Declaration {
+): void {
 	// Note: we don't inherit slots, as Vivid components often did not implement them
-	declaration.members = inheritItems(
+	declaration.members = inheritItems<ClassMember>(
 		(m) => m.name,
 		superclassDeclaration.members,
 		declaration.members
 	);
-	declaration.attributes = inheritItems(
+	declaration.attributes = inheritItems<Attribute>(
 		getAttributeName,
 		superclassDeclaration.attributes,
 		declaration.attributes
 	);
-	declaration.events = inheritItems(
+	declaration.events = inheritItems<Event>(
 		(m) => m.name,
 		superclassDeclaration.events,
 		declaration.events
@@ -259,7 +275,7 @@ const resolveDeclaration = (
 
 	// Inherit from superclass
 	if (declaration.superclass) {
-		let superclassDeclaration: Declaration;
+		let superclassDeclaration: Declaration | undefined;
 
 		if (!declaration.superclass.package) {
 			// Inherit within the same package
@@ -287,7 +303,7 @@ const resolveDeclaration = (
 
 	// Apply vivid mixins
 	if (declaration.vividComponent) {
-		const mixins = extractVividMixins(name, declaration._modulePath);
+		const mixins = extractVividMixins(name, declaration._modulePath!);
 		for (const mixinName of mixins) {
 			if (!(mixinName in VividMixins)) {
 				throw new Error(`Unknown mixin ${mixinName}`);
@@ -513,6 +529,6 @@ export const getPublicComponents = (): string[] => {
 		.filter(
 			(d) => d.kind === 'class' && d.vividComponent && d.vividComponent.public
 		)
-		.map((d) => d.vividComponent.name)
+		.map((d) => d.vividComponent!.name)
 		.sort();
 };

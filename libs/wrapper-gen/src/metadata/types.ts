@@ -2,7 +2,7 @@ export type TypeRef = {
 	text: string; // e.g. 'string', "'cta'", 'Date', 'HTMLElement'
 	vuePropType: string; // For vue prop type checking, e.g. 'String', 'Number'
 	importFromModule?: string;
-	resolvedType?: TypeRef; // When importFromModule is used, this may contain the actual type
+	resolvedType?: TypeUnion; // When importFromModule is used, this may contain the actual type
 };
 export type TypeUnion = TypeRef[];
 
