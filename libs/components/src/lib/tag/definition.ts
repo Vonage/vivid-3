@@ -29,3 +29,5 @@ export const tagDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTag = createRegisterFunction(tagDefinition);
+
+export { Tag as VwcTagElement };

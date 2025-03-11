@@ -8,7 +8,7 @@ import {
 const components = ['rich-text-editor'];
 
 test('should show the component', async ({ page }: { page: Page }) => {
-	const template = `<vwc-rich-text-editor></vwc-rich-text-editor>`;
+	const template = `<vwc-rich-text-editor></vwc-rich-text-editor>Tmp Text`;
 	await loadComponents({
 		page,
 		components,
@@ -21,6 +21,8 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const testWrapper = await page.$('#wrapper');
 
 	await page.waitForLoadState('networkidle');
+
+	await page.pause();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/rich-text-editor.png'

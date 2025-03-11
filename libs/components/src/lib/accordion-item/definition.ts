@@ -26,3 +26,5 @@ export const accordionItemDefinition = defineVividComponent(
 export const registerAccordionItem = createRegisterFunction(
 	accordionItemDefinition
 );
+
+export { AccordionItem as VwcAccordionItemElement };

@@ -24,4 +24,6 @@ export const menuItemDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerMenuItem = createRegisterFunction(menuItemDefinition);
+
+export { MenuItem as VwcMenuItemElement };
 export { MenuItemRole } from './menu-item-role';

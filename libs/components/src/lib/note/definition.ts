@@ -26,3 +26,5 @@ export const noteDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerNote = createRegisterFunction(noteDefinition);
+
+export { Note as VwcNoteElement };

@@ -11,10 +11,16 @@ export default defineConfig({
 
 	plugins: [nxViteTsPaths()],
 
-	// Uncomment this if you are using workers.
-	// worker: {
-	//  plugins: [ nxViteTsPaths() ],
-	// },
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
+	},
+	define: {
+		__PACKAGE_VERSION__: JSON.stringify('0.0.0'),
+	},
 
 	test: {
 		watch: false,

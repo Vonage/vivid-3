@@ -28,3 +28,5 @@ export const alertDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerAlert = createRegisterFunction(alertDefinition);
+
+export { Alert as VwcAlertElement };

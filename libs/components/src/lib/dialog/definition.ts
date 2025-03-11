@@ -28,3 +28,5 @@ export const dialogDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerDialog = createRegisterFunction(dialogDefinition);
+
+export { Dialog as VwcDialogElement };

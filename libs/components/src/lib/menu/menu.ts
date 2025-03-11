@@ -7,7 +7,7 @@ import {
 	keyEnd,
 	keyHome,
 } from '@microsoft/fast-web-utilities';
-import { type Anchored, anchored } from '../../shared/patterns/anchored';
+import { Anchored } from '../../shared/patterns/anchored';
 import { MenuItem } from '../menu-item/menu-item';
 import type { Popup } from '../popup/popup';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -23,8 +23,7 @@ import { MenuItemRole, roleForMenuItem } from '../menu-item/menu-item-role';
  * @event {CustomEvent<undefined>} open - Fired when the menu is opened
  * @event {CustomEvent<undefined>} close - Fired when the menu is closed
  */
-@anchored
-export class Menu extends VividElement {
+export class Menu extends Anchored(VividElement) {
 	/**
 	 * @internal
 	 */
@@ -331,9 +330,8 @@ export class Menu extends VividElement {
 	@attr({ mode: 'boolean' }) open = false;
 	openChanged(_: boolean, newValue: boolean): void {
 		if (newValue) {
-			// Ensure popup is shown so that focus can be set
-			this._popupEl?.show();
-			this.focus();
+			// Ensure popup is shown and positioned so that focus can be set
+			this._popupEl?.show().then(() => this.focus());
 		} else {
 			// TODO: Focus should be restored to the anchor element when the menu is closed
 			// However, it cannot be implemented without triggering visible focus
@@ -462,5 +460,3 @@ export class Menu extends VividElement {
 	 */
 	_popupEl?: Popup;
 }
-
-export interface Menu extends Anchored {}

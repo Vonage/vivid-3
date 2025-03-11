@@ -33,9 +33,6 @@ const searchableSelectDefinition = defineVividComponent(
 	[buttonDefinition, popupDefinition, iconDefinition, optionTagDefinition],
 	{
 		styles,
-		shadowOptions: {
-			delegatesFocus: true,
-		},
 	}
 );
 
@@ -47,3 +44,5 @@ const searchableSelectDefinition = defineVividComponent(
 export const registerSearchableSelect = createRegisterFunction(
 	searchableSelectDefinition
 );
+
+export { SearchableSelect as VwcSearchableSelectElement };

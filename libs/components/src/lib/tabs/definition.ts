@@ -25,3 +25,5 @@ export const tabsDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTabs = createRegisterFunction(tabsDefinition);
+
+export { Tabs as VwcTabsElement };

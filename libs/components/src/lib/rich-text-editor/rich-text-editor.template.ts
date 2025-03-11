@@ -14,5 +14,13 @@ const getClasses = (_: RichTextEditor) => classNames('control');
  */
 export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
-) => ViewTemplate<RichTextEditor> = (context: VividElementDefinitionContext) =>
-	html` <span class="${getClasses}">${context.tagFor(RichTextEditor)} </span>`;
+) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
+	return html`<template class="${getClasses}">
+		<div
+			id="editor"
+			@input="${(x, c) => {
+				x.value = (c.event.target as HTMLElement)?.innerHTML;
+			}}"
+		></div>
+	</template>`;
+};

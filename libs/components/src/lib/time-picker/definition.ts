@@ -6,6 +6,7 @@ import { defineVividComponent } from '../../shared/design-system/defineVividComp
 import styles from './time-picker.scss?inline';
 import { TimePicker } from './time-picker';
 import { TimePickerTemplate as template } from './time-picker.template';
+import { inlineTimePickerDefinition } from './inline-time-picker/definition';
 
 /**
  * @internal
@@ -14,7 +15,12 @@ export const timePickerDefinition = defineVividComponent(
 	'time-picker',
 	TimePicker,
 	template,
-	[textFieldDefinition, popupDefinition, buttonDefinition],
+	[
+		textFieldDefinition,
+		popupDefinition,
+		buttonDefinition,
+		inlineTimePickerDefinition,
+	],
 	{
 		styles,
 		shadowOptions: {
@@ -29,3 +35,5 @@ export const timePickerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTimePicker = createRegisterFunction(timePickerDefinition);
+
+export { TimePicker as VwcTimePickerElement };

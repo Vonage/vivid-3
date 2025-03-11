@@ -85,6 +85,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPassthroughCopy({
 		'assets/images': 'public/assets/images',
+		'assets/fonts': 'public/assets/fonts',
 	});
 
 	eleventyConfig.addWatchTarget('libs/components/src/lib/*/README.md');

@@ -23,3 +23,5 @@ export const dividerDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerDivider = createRegisterFunction(dividerDefinition);
+
+export { Divider as VwcDividerElement };

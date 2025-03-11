@@ -27,3 +27,5 @@ export const progressRingDefinition = defineVividComponent(
 export const registerProgressRing = createRegisterFunction(
 	progressRingDefinition
 );
+
+export { ProgressRing as VwcProgressRingElement };

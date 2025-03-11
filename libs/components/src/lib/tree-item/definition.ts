@@ -24,3 +24,5 @@ export const treeItemDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTreeItem = createRegisterFunction(treeItemDefinition);
+
+export { TreeItem as VwcTreeItemElement };

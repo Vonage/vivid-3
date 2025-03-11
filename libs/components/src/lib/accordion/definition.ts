@@ -32,3 +32,5 @@ export const accordionDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerAccordion = createRegisterFunction(accordionDefinition);
+
+export { Accordion as VwcAccordionElement };

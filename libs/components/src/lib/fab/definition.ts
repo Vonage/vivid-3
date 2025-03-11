@@ -29,3 +29,5 @@ export const fabDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerFab = createRegisterFunction(fabDefinition);
+
+export { Fab as VwcFabElement };

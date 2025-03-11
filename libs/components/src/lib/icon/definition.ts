@@ -19,3 +19,5 @@ export const iconDefinition = defineVividComponent('icon', Icon, template, [], {
  * @param prefix - the prefix to use for the component name
  */
 export const registerIcon = createRegisterFunction(iconDefinition);
+
+export { Icon as VwcIconElement };

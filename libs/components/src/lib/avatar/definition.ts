@@ -31,3 +31,5 @@ export const avatarDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerAvatar = createRegisterFunction(avatarDefinition);
+
+export { Avatar as VwcAvatarElement };

@@ -24,3 +24,5 @@ export const treeViewDefinition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const registerTreeView = createRegisterFunction(treeViewDefinition);
+
+export { TreeView as VwcTreeViewElement };

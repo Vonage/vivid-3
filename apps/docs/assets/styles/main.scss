@@ -11,7 +11,8 @@
 	font-stretch: 50% 200%;
 	font-display: block;
 	font-weight: 1 1000;
-	src: url('../fonts/SpeziaCompleteVariableUprightWeb.woff2') format('woff2');
+	src: url('/assets/fonts/SpeziaCompleteVariableUprightWeb.woff2')
+		format('woff2');
 }
 
 @font-face {
@@ -19,7 +20,7 @@
 	font-stretch: 50% 200%;
 	font-display: block;
 	font-weight: 1 1000;
-	src: url('../fonts/SpeziaMonoCompleteVariableWeb.woff2') format('woff2');
+	src: url('/assets/fonts/SpeziaMonoCompleteVariableWeb.woff2') format('woff2');
 }
 
 .vvd-root {
