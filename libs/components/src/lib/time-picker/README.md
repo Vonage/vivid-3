@@ -170,10 +170,11 @@ The `helper-text` slot allows you to use rich content as the time-picker's helpe
 
 <div class="table-wrapper">
 
-| Name     | Type                     | Bubbles | Composed | Description                                   |
-| -------- | ------------------------ | ------- | -------- | --------------------------------------------- |
-| `input`  | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the time is changed by the user. |
-| `change` | `CustomEvent<undefined>` | Yes     | Yes      | Emitted when the time is changed by the user. |
+| Name          | Type                      | Bubbles | Composed | Description                                     |
+| ------------- | ------------------------- | ------- | -------- | ----------------------------------------------- |
+| `input`       | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the time is changed by the user.   |
+| `change`      | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the time is changed by the user.   |
+| `clear-click` | `CustomEvent<undefined> ` | Yes     | Yes      | Event emitted when the clear button is clicked. |
 
 </div>
 
