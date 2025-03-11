@@ -4,6 +4,26 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.2...vivid-v4.17.0) (2025-03-10)
+
+
+### Features
+
+* **calendar:** sticky options for header & column (VIV-2217) ([#2156](https://github.com/Vonage/vivid-3/issues/2156)) ([e5cf63b](https://github.com/Vonage/vivid-3/commit/e5cf63b1551a5f54a3df9fc387c7f6a885309e40))
+* **components:** export component classes (VIV-1956) ([#2185](https://github.com/Vonage/vivid-3/issues/2185)) ([a9f8631](https://github.com/Vonage/vivid-3/commit/a9f86318ac7e0c836a298efb27151e0f79e9f592))
+* **components:** expose version number (VIV-000) ([#2192](https://github.com/Vonage/vivid-3/issues/2192)) ([49d8c23](https://github.com/Vonage/vivid-3/commit/49d8c2386c52b890374486374ec95cfdd9fa428c))
+* **rich-text-editor:** basic visual interface (VIV-2135) ([#2196](https://github.com/Vonage/vivid-3/issues/2196)) ([c922bbb](https://github.com/Vonage/vivid-3/commit/c922bbbeac16451f4729f3246c4bb866f2b437e7))
+* **rich-text-editor:** consumer can now fetch the selection via the selection interface (VIV-2386) ([#2197](https://github.com/Vonage/vivid-3/issues/2197)) ([7f755c6](https://github.com/Vonage/vivid-3/commit/7f755c638f3fc30c92e759b2f0c37201cd8fb248))
+* **rich-text-editor:** ProseMirrorFacade consumer can now set selection (VIV-2386) ([#2199](https://github.com/Vonage/vivid-3/issues/2199)) ([6a73faa](https://github.com/Vonage/vivid-3/commit/6a73faa19aa587e1f226283f639dae3a83ad772c))
+* **rich-text-editor:** value property and attribute (VIV-2378) ([#2183](https://github.com/Vonage/vivid-3/issues/2183)) ([123baf8](https://github.com/Vonage/vivid-3/commit/123baf8cf25e1dea3c7c9f0da2dc9f199874e52d))
+
+
+### Bug Fixes
+
+* **menu-item:** handle menu-item getting checked synchronously (VIV-2352) ([#2164](https://github.com/Vonage/vivid-3/issues/2164)) ([f9328d1](https://github.com/Vonage/vivid-3/commit/f9328d1d6b8342626e5b8bf199d3396180991833))
+* **menu:** fix scrolling to top on first open (VIV-2357) ([#2195](https://github.com/Vonage/vivid-3/issues/2195)) ([6885eec](https://github.com/Vonage/vivid-3/commit/6885eecd7eb727da40cb502877df99e21785631a))
+* **searchable-select:** fix component being autofocused in Chrome (VIV-2337) ([#2180](https://github.com/Vonage/vivid-3/issues/2180)) ([366baef](https://github.com/Vonage/vivid-3/commit/366baef49a721be0f4fe8ca1ca4fd4fe55287937))
+
 ## [4.16.2](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.1...vivid-v4.16.2) (2025-02-20)
 
 
