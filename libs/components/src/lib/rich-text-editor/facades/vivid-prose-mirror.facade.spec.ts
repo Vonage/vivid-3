@@ -241,4 +241,38 @@ describe('ProseMirrorFacade', () => {
 			).toBeTruthy();
 		});
 	});
+
+	describe('keyboard interaction', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+		});
+	
+		it('should handle Enter key press', async () => {
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+			facadeInstance.replaceContent('<p>123</p>');
+	
+			const event = new KeyboardEvent('keydown', { key: 'Enter' });
+			element.dispatchEvent(event);
+	
+			// Verify the expected behavior for Enter key press
+			expect(facadeInstance.selection().start).toBe(10);
+			expect(facadeInstance.selection().end).toBe(1);
+		});
+	
+		it('should handle Space key press', async () => {
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+	
+			const event = new KeyboardEvent('keydown', { key: ' ' });
+			element.dispatchEvent(event);
+			element.dispatchEvent(event);
+	
+			// Verify the expected behavior for Space key press
+			expect(facadeInstance.selection().start).toBe(2);
+			expect(facadeInstance.selection().end).toBe(2);
+		});
+	});
 });

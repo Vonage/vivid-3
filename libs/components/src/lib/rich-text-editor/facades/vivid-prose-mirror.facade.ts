@@ -8,6 +8,7 @@ import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import type { RichTextEditorSelection } from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
+import { keymap } from 'prosemirror-keymap';
 
 const NEGATIVE_SELECTION = {
 	start: -1,
@@ -53,7 +54,7 @@ export class ProseMirrorFacade {
 			);
 		}
 
-		const plugins = [createSelectionChangePlugin(this.#onSelectionChange)];
+		const plugins = [createSelectionChangePlugin(this.#onSelectionChange), keymap(baseKey)];
 		const state = EditorState.create({
 			schema: VVD_PROSE_MIRROR_SCHEMA,
 			plugins,
