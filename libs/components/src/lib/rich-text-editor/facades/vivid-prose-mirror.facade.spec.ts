@@ -65,7 +65,7 @@ describe('ProseMirrorFacade', () => {
 
 			expect(EditorState.create).toHaveBeenCalledWith({
 				schema: VVD_PROSE_MIRROR_SCHEMA,
-				plugins: expect.arrayContaining([])
+				plugins: expect.arrayContaining([]),
 			});
 			expect(EditorViewMock).toHaveBeenCalledWith(element, {
 				state: StateMock,
@@ -236,7 +236,9 @@ describe('ProseMirrorFacade', () => {
 	describe('addEventListener', () => {
 		it('should accept a callback', async () => {
 			const spy = vi.fn();
-			expect(() => facadeInstance.addEventListener('eventName', spy)).toBeTruthy();
+			expect(() =>
+				facadeInstance.addEventListener('eventName', spy)
+			).toBeTruthy();
 		});
 	});
 });

@@ -1,4 +1,9 @@
-import { EditorState, Selection, TextSelection, Plugin } from 'prosemirror-state';
+import {
+	EditorState,
+	Selection,
+	TextSelection,
+	Plugin,
+} from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import type { RichTextEditorSelection } from '../rich-text-editor';
@@ -9,18 +14,20 @@ const NEGATIVE_SELECTION = {
 	end: -1,
 };
 
-function createSelectionChangePlugin(onSelectionChange: (selection: RichTextEditorSelection) => void) {
-    return new Plugin({
-        view: () => ({
-            update: (view, prevState) => {
-                const { from, to } = view.state.selection;
-                const { from: prevFrom, to: prevTo } = prevState.selection;
-                if (from !== prevFrom || to !== prevTo) {
-                    onSelectionChange({ start: from, end: to });
-                }
-            },
-        }),
-    });
+function createSelectionChangePlugin(
+	onSelectionChange: (selection: RichTextEditorSelection) => void
+) {
+	return new Plugin({
+		view: () => ({
+			update: (view, prevState) => {
+				const { from, to } = view.state.selection;
+				const { from: prevFrom, to: prevTo } = prevState.selection;
+				if (from !== prevFrom || to !== prevTo) {
+					onSelectionChange({ start: from, end: to });
+				}
+			},
+		}),
+	});
 }
 
 function convertSelectionToVividFormat({
@@ -37,7 +44,7 @@ export class ProseMirrorFacade {
 
 	#onSelectionChange = () => {
 		this.#eventHandler.dispatchEvent(new CustomEvent('selection-changed'));
-	}
+	};
 
 	init(element: HTMLElement) {
 		if (!(element instanceof HTMLElement)) {
@@ -47,7 +54,10 @@ export class ProseMirrorFacade {
 		}
 
 		const plugins = [createSelectionChangePlugin(this.#onSelectionChange)];
-		const state = EditorState.create({ schema: VVD_PROSE_MIRROR_SCHEMA, plugins });
+		const state = EditorState.create({
+			schema: VVD_PROSE_MIRROR_SCHEMA,
+			plugins,
+		});
 		this.#view = new EditorView(element, { state });
 	}
 

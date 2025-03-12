@@ -149,7 +149,7 @@ describe('vwc-rich-text-editor', () => {
 
 			element.value = '<p>123456789</p>';
 			await elementUpdated(element);
-			
+
 			expect(element.selectionStart).toEqual('123456789'.length + 1);
 		});
 
@@ -245,7 +245,7 @@ describe('vwc-rich-text-editor', () => {
 
 			element.value = '<p>123456789</p>';
 			await elementUpdated(element);
-			
+
 			expect(element.selectionEnd).toEqual('123456789'.length + 1);
 		});
 
