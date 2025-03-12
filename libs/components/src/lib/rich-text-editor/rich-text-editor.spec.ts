@@ -62,7 +62,9 @@ describe('vwc-rich-text-editor', () => {
 		}
 
 		it('should init as empty string', async () => {
-			expect(element.value).toMatchInlineSnapshot(`"<p><br class="ProseMirror-trailingBreak"></p>"`);
+			expect(element.value).toMatchInlineSnapshot(
+				`"<p><br class="ProseMirror-trailingBreak"></p>"`
+			);
 		});
 
 		it('should display HTML inside the editor', async () => {
