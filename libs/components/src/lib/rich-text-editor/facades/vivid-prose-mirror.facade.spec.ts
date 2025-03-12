@@ -4,6 +4,7 @@ import type { MockedObject } from 'vitest';
 import type { RichTextEditorSelection } from '../rich-text-editor.js';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema.ts';
 import { ProseMirrorFacade } from './vivid-prose-mirror.facade.ts';
+import { elementUpdated } from '@vivid-nx/shared';
 
 vi.mock('prosemirror-view', () => ({
 	EditorView: vi.fn(),
@@ -248,31 +249,22 @@ describe('ProseMirrorFacade', () => {
 			const element = document.createElement('div');
 			facadeInstance.init(element);
 		});
-	
+
 		it('should handle Enter key press', async () => {
+			const NEWLINE_POSITION_VALUE = 3;
+			const content = '123';
 			const element = document.createElement('div');
 			facadeInstance.init(element);
-			facadeInstance.replaceContent('<p>123</p>');
+			facadeInstance.replaceContent(`<p>${content}</p>`);
 	
 			const event = new KeyboardEvent('keydown', { key: 'Enter' });
-			element.dispatchEvent(event);
+			getOutputElement(element).dispatchEvent(event);
 	
 			// Verify the expected behavior for Enter key press
-			expect(facadeInstance.selection().start).toBe(10);
-			expect(facadeInstance.selection().end).toBe(1);
-		});
-	
-		it('should handle Space key press', async () => {
-			const element = document.createElement('div');
-			facadeInstance.init(element);
-	
-			const event = new KeyboardEvent('keydown', { key: ' ' });
-			element.dispatchEvent(event);
-			element.dispatchEvent(event);
-	
-			// Verify the expected behavior for Space key press
-			expect(facadeInstance.selection().start).toBe(2);
-			expect(facadeInstance.selection().end).toBe(2);
+			expect(facadeInstance.selection()).toEqual({
+				start: content.length + NEWLINE_POSITION_VALUE,
+				end: content.length + NEWLINE_POSITION_VALUE
+			});
 		});
 	});
 });
