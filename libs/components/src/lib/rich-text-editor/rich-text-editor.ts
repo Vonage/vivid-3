@@ -1,10 +1,10 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
 export interface RichTextEditorSelection {
 	start: number;
-	end: number;
+	end?: number;
 }
 
 /**
@@ -33,10 +33,36 @@ export class RichTextEditor extends VividElement {
 		return this.shadowRoot!.querySelector('#editor') as HTMLElement;
 	}
 
-	get selection(): RichTextEditorSelection | undefined {
-		return this.#editor?.selection();
+	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
+	selectionStart: number | null = null;
+	selectionStartChanged() {
+		if (!this.selectionStart) {
+			return;
+		}
+		this.#updateEditorSelection();
 	}
 
+	#updateEditorSelection = () => {
+		try {
+			this.#editor?.selection({
+				start: this.selectionStart!,
+				end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
+			});
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(e.message);
+		}
+	};
+
+	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
+	selectionEnd: number | null = null;
+	selectionEndChanged() {
+		if (this.selectionEnd && !this.selectionStart) {
+			this.selectionStart = 1;
+		}
+
+		this.#updateEditorSelection();
+	}
 	constructor() {
 		super();
 		this.value = '';

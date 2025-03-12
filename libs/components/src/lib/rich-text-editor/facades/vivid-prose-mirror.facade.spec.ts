@@ -106,7 +106,7 @@ describe('ProseMirrorFacade', () => {
 		});
 
 		it('should return ProseMirror selection', async () => {
-			async function setFirstSelectionInState(mockStateSelection) {
+			async function setSelectionInState(mockStateSelection) {
 				await useOriginalEditorState();
 				const originalCreate = EditorState.create;
 				vi.spyOn(EditorState, 'create').mockImplementation(
@@ -128,7 +128,7 @@ describe('ProseMirrorFacade', () => {
 					to: 10,
 				},
 			};
-			await setFirstSelectionInState(MOCK_STATE);
+			await setSelectionInState(MOCK_STATE);
 
 			facadeInstance.init(document.createElement('div'));
 
@@ -154,6 +154,39 @@ describe('ProseMirrorFacade', () => {
 			facadeInstance.selection(initialPosition);
 
 			expect(facadeInstance.selection()).toEqual(initialPosition);
+		});
+
+		it('should return start and end the same number if end is not given', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const initialPosition: RichTextEditorSelection = {
+				start: 3,
+			};
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			facadeInstance.selection(initialPosition);
+			expect(facadeInstance.selection()).toEqual({ start: 3, end: 3 });
+		});
+
+		it('should throw when range is out of editor bounds', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const initialPosition: RichTextEditorSelection = {
+				start: 250,
+			};
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			expect(() => facadeInstance.selection(initialPosition)).toThrowError(
+				'Position 250 out of range'
+			);
 		});
 	});
 });
