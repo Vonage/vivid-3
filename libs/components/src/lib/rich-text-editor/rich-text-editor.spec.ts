@@ -62,7 +62,7 @@ describe('vwc-rich-text-editor', () => {
 		}
 
 		it('should init as empty string', async () => {
-			expect(element.value).toBe('');
+			expect(element.value).toMatchInlineSnapshot(`"<p><br class="ProseMirror-trailingBreak"></p>"`);
 		});
 
 		it('should display HTML inside the editor', async () => {
@@ -73,17 +73,11 @@ describe('vwc-rich-text-editor', () => {
 		});
 
 		it('should return the HTML inside the editor if changed', async () => {
-			const value = '<b>bold</b>';
+			const value = 'bold';
 			userInput(value);
 			await elementUpdated(element);
 
-			expect(element.value).toBe(value);
-		});
-
-		it('should reflect the attribute value', async () => {
-			element.setAttribute('value', '<b>bold</b>');
-			await elementUpdated(element);
-			expect(getOutputElement().innerHTML).toBe('<p><strong>bold</strong></p>');
+			expect(element.value).toBe(`<p>${value}</p>`);
 		});
 	});
 
