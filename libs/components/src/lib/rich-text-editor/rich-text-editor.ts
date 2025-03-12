@@ -63,16 +63,30 @@ export class RichTextEditor extends VividElement {
 
 		this.#updateEditorSelection();
 	}
+
 	constructor() {
 		super();
 		this.value = '';
 	}
+
+	#handleSelectionChange = () => {
+		if (!this.#editor!.selection()) {
+			return;
+		}
+		const { start, end } = this.#editor!.selection();
+		this.selectionStart = start;
+		this.selectionEnd = end as number;
+	};
 
 	override connectedCallback(): void {
 		super.connectedCallback();
 		if (!this.#editor) {
 			this.#editor = new ProseMirrorFacade();
 			this.#editor.init(this.#editorWrapperElement);
+			this.#editor.addEventListener(
+				'selection-changed',
+				this.#handleSelectionChange
+			);
 		}
 	}
 }

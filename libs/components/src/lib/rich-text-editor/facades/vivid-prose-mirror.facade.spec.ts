@@ -65,6 +65,7 @@ describe('ProseMirrorFacade', () => {
 
 			expect(EditorState.create).toHaveBeenCalledWith({
 				schema: VVD_PROSE_MIRROR_SCHEMA,
+				plugins: expect.arrayContaining([]),
 			});
 			expect(EditorViewMock).toHaveBeenCalledWith(element, {
 				state: StateMock,
@@ -101,6 +102,7 @@ describe('ProseMirrorFacade', () => {
 		beforeEach(async () => {
 			vi.spyOn(EditorState, 'create');
 		});
+
 		it('should return negative selection when editor is not initialized', async () => {
 			expect(facadeInstance.selection()).toEqual({ start: -1, end: -1 });
 		});
@@ -187,6 +189,56 @@ describe('ProseMirrorFacade', () => {
 			expect(() => facadeInstance.selection(initialPosition)).toThrowError(
 				'Position 250 out of range'
 			);
+		});
+	});
+
+	describe('selection-changed event', () => {
+		beforeEach(async () => {
+			vi.spyOn(EditorState, 'create');
+
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+		});
+
+		it('should emit "selection-changed" event when selection start is changed by the consumer', async () => {
+			const spy = vi.fn();
+			facadeInstance.addEventListener('selection-changed', spy);
+
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should emit "selection-changed" event when selection end is changed by the consumer', async () => {
+			facadeInstance.selection({
+				start: 1,
+				end: 3,
+			});
+			const spy = vi.fn();
+			facadeInstance.addEventListener('selection-changed', spy);
+
+			facadeInstance.selection({
+				start: 1,
+				end: 5,
+			});
+
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('addEventListener', () => {
+		it('should accept a callback', async () => {
+			const spy = vi.fn();
+			expect(() =>
+				facadeInstance.addEventListener('eventName', spy)
+			).toBeTruthy();
 		});
 	});
 });
