@@ -61,8 +61,6 @@ export class RichTextEditor extends VividElement {
 			this.selectionStart = 1;
 		}
 
-		console.log(this.selectionEnd);
-
 		this.#updateEditorSelection();
 	}
 
@@ -75,7 +73,6 @@ export class RichTextEditor extends VividElement {
 		if (!this.#editor!.selection()) {
 			return;
 		}
-		console.log(this.#editor!.selection());
 		const { start, end } = this.#editor!.selection();
 		this.selectionStart = start;
 		this.selectionEnd = end as number;

@@ -1,8 +1,8 @@
 import {
 	EditorState,
+	Plugin,
 	Selection,
 	TextSelection,
-	Plugin,
 } from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
