@@ -4,7 +4,6 @@ import type { MockedObject } from 'vitest';
 import type { RichTextEditorSelection } from '../rich-text-editor.js';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema.ts';
 import { ProseMirrorFacade } from './vivid-prose-mirror.facade.ts';
-import { elementUpdated } from '@vivid-nx/shared';
 
 vi.mock('prosemirror-view', () => ({
 	EditorView: vi.fn(),
@@ -256,14 +255,14 @@ describe('ProseMirrorFacade', () => {
 			const element = document.createElement('div');
 			facadeInstance.init(element);
 			facadeInstance.replaceContent(`<p>${content}</p>`);
-	
+
 			const event = new KeyboardEvent('keydown', { key: 'Enter' });
 			getOutputElement(element).dispatchEvent(event);
-	
+
 			// Verify the expected behavior for Enter key press
 			expect(facadeInstance.selection()).toEqual({
 				start: content.length + NEWLINE_POSITION_VALUE,
-				end: content.length + NEWLINE_POSITION_VALUE
+				end: content.length + NEWLINE_POSITION_VALUE,
 			});
 		});
 	});
