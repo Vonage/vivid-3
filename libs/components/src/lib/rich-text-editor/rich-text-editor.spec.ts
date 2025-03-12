@@ -16,6 +16,16 @@ describe('vwc-rich-text-editor', () => {
 		) as HTMLElement;
 	}
 
+	function moveMarkerToPosition(position: number) {
+		element.selectionStart = position;
+		element.selectionEnd = position;
+	}
+
+	function selectInEditor(selectionStart: number, selectionEnd: number) {
+		element.selectionStart = selectionStart;
+		element.selectionEnd = selectionEnd;
+	}
+
 	let editorFacadeSelectSpy: MockInstance<
 		(position?: RichTextEditorSelection) => RichTextEditorSelection
 	>;
@@ -133,6 +143,26 @@ describe('vwc-rich-text-editor', () => {
 			expect(warnSpy).toHaveBeenCalledWith('Position 5 out of range');
 			warnSpy.mockRestore();
 		});
+
+		it('should set selectionStart to the length of newly added input', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p>';
+			await elementUpdated(element);
+			
+			expect(element.selectionStart).toEqual('123456789'.length + 1);
+		});
+
+		it('should update when the value changes by the user', async () => {
+			editorFacadeSelectSpy.mockRestore();
+			element.value = '<p>123456789</p>';
+			await elementUpdated(element);
+
+			selectInEditor(5, 10);
+			await elementUpdated(element);
+
+			expect(element.selectionStart).toBe(5);
+		});
 	});
 
 	describe('selectionEnd', () => {
@@ -173,10 +203,10 @@ describe('vwc-rich-text-editor', () => {
 			});
 		});
 
-		it('should call the facade select method with the start value when selectionEnd changes and null', async () => {
-			element.selectionStart = 5;
-			element.selectionEnd = 5;
-
+		it('should call the facade select method with the start value when selectionEnd changes to null', async () => {
+			const selectionStart = 5;
+			const selectionEnd = 10;
+			selectInEditor(selectionStart, selectionEnd);
 			await elementUpdated(element);
 			editorFacadeSelectSpy.mockReset();
 
@@ -184,8 +214,8 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 
 			expect(editorFacadeSelectSpy).toHaveBeenCalledWith({
-				start: 5,
-				end: 5,
+				start: selectionStart,
+				end: selectionStart,
 			});
 		});
 
@@ -199,10 +229,35 @@ describe('vwc-rich-text-editor', () => {
 			});
 		});
 
-		it('should gracefully fail when entering a number out of bounds', async () => {
+		it('should gracefully fail with a warning when entering a number out of bounds', async () => {
+			const warnSpy = vi.spyOn(console, 'warn');
 			editorFacadeSelectSpy.mockRestore();
+
 			element.selectionEnd = 5;
-			await expect(() => elementUpdated(element)).not.toThrow();
+			await elementUpdated(element);
+
+			expect(warnSpy).toHaveBeenCalledWith('Position 5 out of range');
+			warnSpy.mockRestore();
+		});
+
+		it('should set selectionEnd to the length of newly added input', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p>';
+			await elementUpdated(element);
+			
+			expect(element.selectionEnd).toEqual('123456789'.length + 1);
+		});
+
+		it('should update when the value changes by the user', async () => {
+			editorFacadeSelectSpy.mockRestore();
+			element.value = '<p>123456789</p>';
+			await elementUpdated(element);
+
+			moveMarkerToPosition(5);
+			await elementUpdated(element);
+
+			expect(element.selectionEnd).toBe(5);
 		});
 	});
 });
