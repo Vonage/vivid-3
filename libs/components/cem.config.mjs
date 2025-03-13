@@ -100,61 +100,7 @@ export default {
 				}
 			},
 		},
-		/**
-		 * Adds a `vividComponent` property to the class declaration of components.
-		 */
-		{
-			name: 'vivid-component',
-			analyzePhase({ ts, node, moduleDoc, context }) {
-				switch (node.kind) {
-					case ts.SyntaxKind.ClassDeclaration: {
-						const className = node.name.getText();
-						const classDoc = moduleDoc.declarations.find(
-							(x) => x.kind === 'class' && x.name === className
-						);
-						if (!classDoc) {
-							return;
-						}
-
-						const vividComponent = {};
-
-						for (const doc of node.jsDoc ?? []) {
-							for (const tag of doc.tags ?? []) {
-								if (tag.tagName.getText() === 'component') {
-									vividComponent.name = tag.comment;
-									classDoc.vividComponent = vividComponent;
-								}
-
-								if (tag.tagName.getText() === 'vueModel') {
-									const [name, propName, eventNames, ...valueMappingParts] =
-										tag.comment.split(' ');
-									const valueMappingStr = valueMappingParts.join(' ');
-									const valueMapping = valueMappingStr.substring(
-										1,
-										valueMappingStr.length - 1
-									);
-
-									if (vividComponent.vueModels === undefined) {
-										vividComponent.vueModels = [];
-									}
-
-									vividComponent.vueModels.push({
-										name,
-										propName,
-										eventNames: eventNames.split(',').map((x) => x.trim()),
-										valueMapping,
-									});
-								}
-
-								if (tag.tagName.getText() === 'public') {
-									vividComponent.public = true;
-								}
-							}
-						}
-					}
-				}
-			},
-		},
+		plugins.vividComponentPlugin(),
 		plugins.improvedMixinSupportPlugin(),
 	],
 };
