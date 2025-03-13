@@ -75,12 +75,19 @@
 		"title": "Date Picker",
 		"page": "legacy",
 		"markdown": "./libs/components/src/lib/date-picker/README.md",
-		"children": ["Date Range Picker"]
+		"children": ["Date Range Picker", "Date Time Picker"]
 	},
 	{
 		"title": "Date Range Picker",
 		"page": "legacy",
 		"markdown": "./libs/components/src/lib/date-range-picker/README.md",
+		"parent": "Date Picker"
+	},
+	{
+		"title": "Date Time Picker",
+		"status": "alpha",
+		"page": "legacy",
+		"markdown": "./libs/components/src/lib/date-time-picker/README.md",
 		"parent": "Date Picker"
 	},
 	{
@@ -523,5 +530,15 @@
 		"code": "./libs/components/src/lib/video-player/README.md",
 		"accessibility": "./libs/components/src/lib/video-player/ACCESSIBILITY.md",
 		"status": "alpha"
+	},
+	{
+		"title": "Rich Text Editor",
+		"description": "Represents a rich-text-editor custom element.",
+		"variations": "./libs/components/src/lib/rich-text-editor/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/rich-text-editor/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/rich-text-editor/README.md",
+		"accessibility": "./libs/components/src/lib/rich-text-editor/ACCESSIBILITY.md",
+		"status": "underlying"
 	}
 ]

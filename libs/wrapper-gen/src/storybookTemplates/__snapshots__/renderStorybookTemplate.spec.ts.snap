@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderStorybookTemplate > should render a storybook template 1`] = `
+"import { VExampleComponent } from '@vonage/vivid-vue';
+
+export const argTypes = {
+  sameEvent: { type: { name: 'string', required: false }, control: 'text' },
+typeUnion: { type: { name: 'object', required: false } },
+iconType: { type: { name: 'string', required: false }, control: 'select', options: ['1-icon-1', 'icon-2']},
+modelValue: { type: { name: 'string', required: false }, control: 'text' },
+start: { type: { name: 'string', required: false }, control: 'text' },
+forcedDomProp: { type: { name: 'object', required: false } },
+booleanProp: { type: { name: 'boolean', required: false }, control: 'boolean' },
+  onExampleEvent: { action: 'example-event' },
+onInput: { action: 'input' },
+onInputStart: { action: 'input:start' },
+onUpdateModelValue: { action: 'update:modelValue' },
+onUpdateSameEvent: { action: 'update:sameEvent' },
+onUpdateStart: { action: 'update:start' },
+};
+
+export const Template = args => ({
+  components: { VExampleComponent },
+  setup() {
+    const { onExampleEvent, onInput, onInputStart, onUpdateModelValue, onUpdateSameEvent, onUpdateStart,  ...props } = args;
+    return { onExampleEvent, onInput, onInputStart, onUpdateModelValue, onUpdateSameEvent, onUpdateStart,  props };
+  },
+  template: '<VExampleComponent v-bind="props" @example-event="onExampleEvent" @input="onInput" @input:start="onInputStart" @update:modelValue="onUpdateModelValue" @update:sameEvent="onUpdateSameEvent" @update:start="onUpdateStart" />',
+});
+"
+`;

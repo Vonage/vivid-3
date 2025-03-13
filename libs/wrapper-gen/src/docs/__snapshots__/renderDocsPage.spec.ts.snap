@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderDocsPage > should render a docs page 1`] = `
+"# VExampleComponent
+
+This is an example component
+
+## Props
+
+| Name                | Type                                | Description             |
+| ------------------- | ----------------------------------- | ----------------------- |
+| **example-prop**    | \`string\`                            | This is an example prop |
+| **type-union**      | *Enum*:<br/>string<br/>number       |                         |
+| **icon-type**       | *Enum*:<br/>\`1-icon-1\`<br/>\`icon-2\` |                         |
+| **value**           | \`string\`                            |                         |
+| **start**           | \`string\`                            |                         |
+| **forced-dom-prop** | *Enum*:<br/>string<br/>HTMLElement  |                         |
+| **boolean-prop**    | \`boolean\`                           |                         |
+
+## Events
+
+| Name              | Event Type                           | Description              |
+| ----------------- | ------------------------------------ | ------------------------ |
+| **example-event** | \`string\`                             | This is an example event |
+| **input**         | \`Event\`                              |                          |
+| **input:start**   | \`CustomEvent<{a: string \\| number}>\` |                          |
+
+## Slots
+
+| Name               | Description             |
+| ------------------ | ----------------------- |
+| **example-slot**   | This is an example slot |
+| **no-description** |                         |
+
+## Methods
+
+| Name              | Type                             | Description               |
+| ----------------- | -------------------------------- | ------------------------- |
+| **exampleMethod** | \`(exampleArg: string) => string\` | This is an example method |
+"
+`;

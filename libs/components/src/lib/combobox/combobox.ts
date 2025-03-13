@@ -205,7 +205,7 @@ export class Combobox extends FormAssociatedCombobox {
 	open = false;
 
 	/**
-	 * Sets focus and synchronize ARIA attributes when the open property changes.
+	 * Sets focus when the open property changes.
 	 *
 	 * @param prev - the previous open value
 	 * @param next - the current open value
@@ -214,9 +214,6 @@ export class Combobox extends FormAssociatedCombobox {
 	 */
 	protected openChanged() {
 		if (this.open) {
-			this.ariaControls = this.listboxId;
-			this.ariaExpanded = 'true';
-
 			this.focusAndScrollOptionIntoView();
 
 			// focus is directed to the element when `open` is changed programmatically
@@ -224,9 +221,6 @@ export class Combobox extends FormAssociatedCombobox {
 
 			return;
 		}
-
-		this.ariaControls = '';
-		this.ariaExpanded = 'false';
 	}
 
 	/**
@@ -315,16 +309,16 @@ export class Combobox extends FormAssociatedCombobox {
 		}
 
 		if (this.open) {
-			const captured = (e.target as HTMLElement).closest(
+			const capturedOption = (e.target as HTMLElement).closest(
 				`option,[role=option]`
 			) as ListboxOption | null;
 
-			if (!captured || captured.disabled) {
+			if (!capturedOption || capturedOption.disabled) {
 				return;
 			}
 
-			this.selectedOptions = [captured];
-			this.control.value = captured.text;
+			this.selectedOptions = [capturedOption];
+			this.control.value = capturedOption.text;
 			this.clearSelectionRange();
 			this.updateValue(true);
 		}
@@ -338,27 +332,24 @@ export class Combobox extends FormAssociatedCombobox {
 		return true;
 	}
 
+	/**
+	 * Handle closing the listbox when the combobox is open and the chevron icon is clicked.
+	 *
+	 * @param e - the mouse event
+	 * @internal
+	 */
+	_chevronIconClickHandler(e: MouseEvent): void {
+		if (!this.open) return;
+		e.stopPropagation();
+		this.open = false;
+	}
+
 	override connectedCallback() {
 		super.connectedCallback();
 		if (this.value) {
 			this.initialValue = this.value;
 		}
 		this._popup.anchor = this._anchor;
-	}
-
-	/**
-	 * Synchronize the `aria-disabled` property when the `disabled` property changes.
-	 *
-	 * @param prev - The previous disabled value
-	 * @param next - The next disabled value
-	 *
-	 * @internal
-	 */
-	override disabledChanged(prev: boolean, next: boolean): void {
-		if (super.disabledChanged) {
-			super.disabledChanged(prev, next);
-		}
-		this.ariaDisabled = this.disabled ? 'true' : 'false';
 	}
 
 	/**

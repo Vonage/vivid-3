@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { ProgressRing } from './progress-ring';
 import '.';
 
@@ -173,7 +174,7 @@ describe('vwc-progress-ring', () => {
 		});
 	});
 
-	describe('a11y', () => {
+	describe('a11y attributes', () => {
 		beforeEach(async () => {
 			element.ariaLabel = 'Label';
 			element.min = 10;
@@ -194,5 +195,13 @@ describe('vwc-progress-ring', () => {
 			expect(baseElement?.getAttribute('aria-valuemax')).toBe('90');
 			expect(baseElement?.getAttribute('aria-valuenow')).toBe('20');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
 	});
 });

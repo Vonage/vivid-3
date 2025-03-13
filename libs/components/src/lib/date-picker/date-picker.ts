@@ -5,15 +5,16 @@ import {
 	type FormElement,
 	formElements,
 } from '../../shared/patterns';
-import { DatePickerBase } from '../../shared/date-picker/date-picker-base';
-import {
-	type DateStr,
-	isValidDateStr,
-} from '../../shared/date-picker/calendar/dateStr';
+import { type DateStr, isValidDateStr } from '../../shared/datetime/dateStr';
 import {
 	formatPresentationDate,
 	parsePresentationDate,
-} from '../../shared/date-picker/calendar/presentationDate';
+} from '../../shared/datetime/presentationDate';
+import { PickerField } from '../../shared/picker-field/picker-field';
+import { SingleValuePicker } from '../../shared/picker-field/mixins/single-value-picker';
+import { CalendarPicker } from '../../shared/picker-field/mixins/calendar-picker';
+import { MinMaxCalendarPicker } from '../../shared/picker-field/mixins/min-max-calendar-picker';
+import { SingleDatePickerMixin } from '../../shared/picker-field/mixins/single-date-picker';
 
 /**
  * Single date picker component.
@@ -27,38 +28,40 @@ import {
  */
 @errorText
 @formElements
-export class DatePicker extends DatePickerBase {
+export class DatePicker extends SingleDatePickerMixin(
+	SingleValuePicker(MinMaxCalendarPicker(CalendarPicker(PickerField)))
+) {
 	/**
 	 * @internal
 	 */
-	override valueChanged(previous: string, next: string) {
-		super.valueChanged(previous, next);
-		if (this.value) {
-			if (!isValidDateStr(this.value)) {
-				this.value = '';
-				return;
-			}
+	override _isValidValue = isValidDateStr;
 
-			this._adjustSelectedMonthToEnsureVisibilityOf(this.value);
-		}
-		this._updatePresentationValue();
+	/**
+	 * @internal
+	 */
+	override _toPresentationValue(value: DateStr) {
+		return formatPresentationDate(value, this.locale.calendarPicker);
 	}
 
-	protected override _updatePresentationValue() {
-		if (this.value) {
-			this._presentationValue = formatPresentationDate(
-				this.value,
-				this.locale.datePicker
-			);
-		} else {
-			this._presentationValue = '';
-		}
+	/**
+	 * @internal
+	 */
+	override _parsePresentationValue(presentationValue: string) {
+		return parsePresentationDate(presentationValue, this.locale.calendarPicker);
 	}
 
-	#updateValueDueToUserInteraction(newValue: DateStr) {
-		this.value = newValue;
-		this.$emit('change');
-		this.$emit('input');
+	/**
+	 * @internal
+	 */
+	override _dateValue(): DateStr | '' {
+		return this.value;
+	}
+
+	/**
+	 * @internal
+	 */
+	override _withUpdatedDate(dateStr: DateStr): DateStr | '' {
+		return dateStr;
 	}
 
 	constructor() {
@@ -70,21 +73,28 @@ export class DatePicker extends DatePickerBase {
 	 * @internal
 	 */
 	@volatile
-	get _calendarButtonLabel() {
+	get _pickerButtonLabel() {
 		if (this.value) {
-			return this.locale.datePicker.changeDateLabel(
-				formatPresentationDate(this.value, this.locale.datePicker)
+			return this.locale.calendarPicker.changeDateLabel(
+				this._toPresentationValue(this.value)
 			);
 		} else {
-			return this.locale.datePicker.chooseDateLabel;
+			return this.locale.calendarPicker.chooseDateLabel;
 		}
 	}
 
 	/**
 	 * @internal
 	 */
+	get _dialogLabel() {
+		return this.locale.calendarPicker.chooseDateLabel;
+	}
+
+	/**
+	 * @internal
+	 */
 	get _textFieldPlaceholder(): string {
-		return this.locale.datePicker.dateFormatPlaceholder;
+		return this.locale.calendarPicker.dateFormatPlaceholder;
 	}
 
 	/**
@@ -93,63 +103,20 @@ export class DatePicker extends DatePickerBase {
 	override _textFieldSize = '20';
 
 	/**
-	 * @internal
-	 */
-	_onTextFieldChange() {
-		if (this._presentationValue === '') {
-			this.#updateValueDueToUserInteraction('');
-			return;
-		}
-
-		try {
-			this.#updateValueDueToUserInteraction(
-				parsePresentationDate(this._presentationValue, this.locale.datePicker)
-			);
-		} catch (_) {
-			return;
-		}
-	}
-
-	/**
 	 * Handle selecting a date from the calendar.
 	 * @internal
 	 */
-	_onDateClick(date: DateStr) {
-		this.#updateValueDueToUserInteraction(date);
+	override _onDateClick(date: DateStr) {
+		super._onDateClick(date);
 		this._closePopup();
 	}
 
 	/**
 	 * @internal
 	 */
-	override _isDateSelected(date: DateStr) {
-		return date === this.value;
-	}
-
-	/**
-	 * @internal
-	 */
-	override _isDateAriaSelected(date: DateStr) {
-		return this._isDateSelected(date);
-	}
-
-	/**
-	 * @internal
-	 */
-	protected override _getSelectedDates(): DateStr[] {
-		const dates = [];
-		if (this.value) {
-			dates.push(this.value);
-		}
-		return dates;
-	}
-
-	/**
-	 * @internal
-	 */
-	protected override _getCustomValidationError(): string | null {
+	override _getCustomValidationError(): string | null {
 		if (this._isPresentationValueInvalid()) {
-			return this.locale.datePicker.invalidDateError;
+			return this.locale.calendarPicker.invalidDateError;
 		}
 
 		return null;
@@ -158,25 +125,17 @@ export class DatePicker extends DatePickerBase {
 	/**
 	 * @internal
 	 */
-	private _isPresentationValueInvalid() {
-		if (this._presentationValue === '') {
-			return false;
-		}
-
-		try {
-			parsePresentationDate(this._presentationValue, this.locale.datePicker);
-			return false;
-		} catch (_) {
-			return true;
-		}
+	override _focusableElsWithinDialog() {
+		return this._dialogEl.querySelectorAll(
+			'button, .vwc-button'
+		) as NodeListOf<HTMLElement>;
 	}
 
 	/**
 	 * @internal
 	 */
-	override _onClearClick() {
-		this.#updateValueDueToUserInteraction('');
-		super._onClearClick();
+	override get _pickerButtonIcon() {
+		return 'calendar-line';
 	}
 }
 

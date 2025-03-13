@@ -1,103 +1,36 @@
-import markdownTable from 'markdown-table';
-import { ComponentDef } from '../generator/ComponentDef';
-import { TypeRef, withImportsResolved } from '../generator/types';
+import * as fs from 'fs';
+import * as path from 'path';
+import { ComponentDef } from '../common/ComponentDef';
+import { renderDocPage } from './renderDocsPage';
+import { Metadata } from '../common/metadata';
+import { wrappedComponentName } from '../vueWrappers/name';
+import { makeImportedTypesResolver } from '../common/importedTypes';
+import { TypeResolver } from '../common/types';
 
-const escapeMarkdown = (text = '') => text.replace(/([<>{}])/gm, '\\$1');
+const DocsComponentsFolder = '../../apps/vue-docs/docs/components';
 
-const escapeDescription = (text: string) =>
-	escapeMarkdown(text).replace(/\n/g, ' ');
-
-const MaxEnumMembersToShow = 12;
-function generateEnumType(type: TypeRef[]) {
-	let members = type.map((t) => t.text.replace(/['"]/g, '`'));
-	if (members.length > MaxEnumMembersToShow) {
-		members = members.slice(0, MaxEnumMembersToShow);
-		members.push(`... ${type.length - MaxEnumMembersToShow} more ...`);
-	}
-	return members.join('<br/>');
-}
-
-function generateTableWithType(
-	objects: ComponentDef['attributes'] | ComponentDef['events'],
-	typeHeader = 'Type'
+function generateDocsFor(
+	component: ComponentDef,
+	importedTypesResolver: TypeResolver
 ) {
-	return markdownTable([
-		['Name', typeHeader, 'Description'],
-		...objects.map(({ name, type, description }) => {
-			const resolvedType = withImportsResolved(type);
-			return [
-				`**${name}**`,
-				(resolvedType.length === 1
-					? `\`${resolvedType[0].text}\``
-					: `*Enum*:<br/>${generateEnumType(resolvedType)}`
-				).replace(/\|/g, '\\|'),
-				escapeDescription(description),
-			];
-		}),
-	]);
+	fs.writeFileSync(
+		path.resolve(path.join(DocsComponentsFolder, `${component.name}.md`)),
+		renderDocPage(component, importedTypesResolver)
+	);
+	return [wrappedComponentName(component), `/components/${component.name}.md`];
 }
 
-function generateTable(slots: ComponentDef['slots']) {
-	return markdownTable([
-		['Name', 'Description'],
-		...slots.map(({ name, description }) => [
-			`**${name}**`,
-			escapeDescription(description),
-		]),
-	]);
-}
-
-function generateMethodsTable(methods: ComponentDef['methods']) {
-	const getTypeString = (types: TypeRef[]) =>
-		withImportsResolved(types)
-			.map((t) => t.text)
-			.join(' | ');
-	return markdownTable([
-		['Name', 'Type', 'Description'],
-		...methods.map(({ name, args, returnType, description }) => [
-			`**${name}**`,
-			`\`(${args.map(
-				({ name: argName, type }) => `${argName}: ${getTypeString(type)}`
-			)}) => ${getTypeString(returnType)}\``,
-			escapeDescription(description),
-		]),
-	]);
-}
-
-export function generateDocPageForComponent({
-	wrappedClassName,
-	description,
-	attributes,
-	events,
-	slots,
-	methods,
-}: ComponentDef): string {
-	let text = `# ${wrappedClassName}
-
-${escapeMarkdown(description)}\n`;
-	if (attributes.length > 0) {
-		text += `\n## Props
-
-${generateTableWithType(attributes)}\n`;
-	}
-
-	if (events.length > 0) {
-		text += `\n## Events
-
-${generateTableWithType(events, 'Event Type')}\n`;
-	}
-
-	if (slots.length > 0) {
-		text += `\n## Slots
-
-${generateTable(slots)}\n`;
-	}
-
-	if (methods.length > 0) {
-		text += `\n## Methods
-
-${generateMethodsTable(methods)}\n`;
-	}
-
-	return text;
+export async function generateDocs(metadata: Metadata) {
+	const importedTypesResolver = await makeImportedTypesResolver(metadata);
+	const docs = metadata.componentDefs.map((def) =>
+		generateDocsFor(def, importedTypesResolver)
+	);
+	fs.writeFileSync(
+		path.join(DocsComponentsFolder, '_index.json'),
+		JSON.stringify(
+			docs.map(([text, link]) => ({ text, link })),
+			null,
+			1
+		)
+	);
 }
