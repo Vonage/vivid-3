@@ -71,7 +71,6 @@ export class RichTextEditor extends VividElement {
 
 	constructor() {
 		super();
-		this.value = '';
 	}
 
 	#handleSelectionChange = () => {
