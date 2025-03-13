@@ -19,6 +19,7 @@
 			"@vivid-nx/styles": ["libs/styles/src/index.ts"],
 			"@vivid-nx/tokens": ["libs/tokens/src/index.ts"],
 			"@vivid-nx/wrapper-gen": ["libs/wrapper-gen/src/index.ts"],
+			"@vivid-nx/cem-analyzer-plugins": ["libs/cem-analyzer-plugins/src/index.ts"],
 			"@vonage/eslint-plugin-vivid": ["libs/eslint-plugin/src/index.ts"],
 			"@vonage/nx-vivid": ["libs/nx-vivid/src/index.ts"],
 			"@vonage/vivid": ["libs/components/src/index.ts"],
