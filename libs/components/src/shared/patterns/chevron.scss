@@ -1,6 +1,6 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
-@mixin chevron {
+@mixin chevron() {
 	.chevron {
 		display: flex;
 		flex-shrink: 0;
@@ -11,6 +11,19 @@
 		:host([aria-expanded='true']) &,
 		:host([open]) & {
 			transform: rotate(180deg);
+		}
+	}
+}
+
+@mixin chevron-clickable($disabled-color) {
+	.chevron {
+		:not(.disabled) & {
+			cursor: pointer;
+		}
+
+		.disabled & {
+			color: var(#{$disabled-color});
+			cursor: not-allowed;
 		}
 	}
 }

@@ -83,7 +83,12 @@ function renderInput(context: VividElementDefinitionContext) {
 			</div>
 			<div class="leading-items-wrapper">
 				<slot name="meta" ${slotted('metaSlottedContent')}></slot>
-				${chevronTemplate}
+				<div
+					@click="${(x, c) =>
+						x._chevronIconClickHandler(c.event as MouseEvent)}"
+				>
+					${chevronTemplate}
+				</div>
 			</div>
 		</div>
 	</div>`;
@@ -103,6 +108,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 							return x.keydownHandler(event as KeyboardEvent);
 						}}"
         >
+					<div class="control-wrapper">
 			${() => renderInput(context)}
 			<${popupTag} class="popup"
 				style="${setFixedDropdownVarWidth}"
@@ -123,6 +129,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 					</slot>
 				</div>
 			</${popupTag}>
+					</div>
 					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
 						${getFeedbackTemplate(context)}
 					</div>

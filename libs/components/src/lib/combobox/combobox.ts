@@ -309,16 +309,16 @@ export class Combobox extends FormAssociatedCombobox {
 		}
 
 		if (this.open) {
-			const captured = (e.target as HTMLElement).closest(
+			const capturedOption = (e.target as HTMLElement).closest(
 				`option,[role=option]`
 			) as ListboxOption | null;
 
-			if (!captured || captured.disabled) {
+			if (!capturedOption || capturedOption.disabled) {
 				return;
 			}
 
-			this.selectedOptions = [captured];
-			this.control.value = captured.text;
+			this.selectedOptions = [capturedOption];
+			this.control.value = capturedOption.text;
 			this.clearSelectionRange();
 			this.updateValue(true);
 		}
@@ -330,6 +330,18 @@ export class Combobox extends FormAssociatedCombobox {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Handle closing the listbox when the combobox is open and the chevron icon is clicked.
+	 *
+	 * @param e - the mouse event
+	 * @internal
+	 */
+	_chevronIconClickHandler(e: MouseEvent): void {
+		if (!this.open) return;
+		e.stopPropagation();
+		this.open = false;
 	}
 
 	override connectedCallback() {

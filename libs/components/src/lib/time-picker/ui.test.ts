@@ -72,9 +72,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			);
 	});
 
-	await page.locator('#time-picker #clock-button').click();
-	await page.locator('#time-picker-seconds #clock-button').click();
-	await page.locator('#time-picker-24h #clock-button').click();
+	await page.locator('#time-picker #picker-button').click();
+	await page.locator('#time-picker-seconds #picker-button').click();
+	await page.locator('#time-picker-24h #picker-button').click();
 
 	await page.keyboard.press('Tab');
 
@@ -100,7 +100,7 @@ test('selecting a time', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.locator('vwc-time-picker #clock-button').click();
+	await page.locator('vwc-time-picker #picker-button').click();
 
 	await page.locator('vwc-time-picker #hours-01').click();
 	await page.locator('vwc-time-picker #minutes-45').click();

@@ -1,6 +1,13 @@
-import { EditorState, Selection, TextSelection } from 'prosemirror-state';
+import {
+	EditorState,
+	Plugin,
+	Selection,
+	TextSelection,
+} from 'prosemirror-state';
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
+import { keymap } from 'prosemirror-keymap';
+import { baseKeymap } from 'prosemirror-commands';
 import type { RichTextEditorSelection } from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
@@ -8,6 +15,22 @@ const NEGATIVE_SELECTION = {
 	start: -1,
 	end: -1,
 };
+
+function createSelectionChangePlugin(
+	onSelectionChange: (selection: RichTextEditorSelection) => void
+) {
+	return new Plugin({
+		view: () => ({
+			update: (view, prevState) => {
+				const { from, to } = view.state.selection;
+				const { from: prevFrom, to: prevTo } = prevState.selection;
+				if (from !== prevFrom || to !== prevTo) {
+					onSelectionChange({ start: from, end: to });
+				}
+			},
+		}),
+	});
+}
 
 function convertSelectionToVividFormat({
 	to,
@@ -21,6 +44,10 @@ function convertSelectionToVividFormat({
 export class ProseMirrorFacade {
 	#view?: EditorView;
 
+	#onSelectionChange = () => {
+		this.#eventHandler.dispatchEvent(new CustomEvent('selection-changed'));
+	};
+
 	init(element: HTMLElement) {
 		if (!(element instanceof HTMLElement)) {
 			throw new Error(
@@ -28,7 +55,14 @@ export class ProseMirrorFacade {
 			);
 		}
 
-		const state = EditorState.create({ schema: VVD_PROSE_MIRROR_SCHEMA });
+		const plugins = [
+			createSelectionChangePlugin(this.#onSelectionChange),
+			keymap(baseKeymap),
+		];
+		const state = EditorState.create({
+			schema: VVD_PROSE_MIRROR_SCHEMA,
+			plugins,
+		});
 		this.#view = new EditorView(element, { state });
 	}
 
@@ -62,5 +96,13 @@ export class ProseMirrorFacade {
 		return !this.#view
 			? NEGATIVE_SELECTION
 			: convertSelectionToVividFormat(this.#view.state.selection);
+	}
+
+	#eventHandler = document.createElement('div');
+	addEventListener(
+		eventName: string,
+		callback: EventListenerOrEventListenerObject
+	) {
+		this.#eventHandler.addEventListener(eventName, callback);
 	}
 }
