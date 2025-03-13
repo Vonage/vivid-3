@@ -26,6 +26,14 @@ describe('vwc-rich-text-editor', () => {
 		element.selectionEnd = selectionEnd;
 	}
 
+	function spyOnOriginalFacadeSelect() {
+		editorFacadeSelectSpy.mockRestore();
+		const originalFacadeSelect = EditorFacade.prototype.selection;
+		return vi
+			.spyOn(EditorFacade.prototype, 'selection')
+			.mockImplementation(originalFacadeSelect);
+	}
+
 	let editorFacadeSelectSpy: MockInstance<
 		(position?: RichTextEditorSelection) => RichTextEditorSelection
 	>;
@@ -143,7 +151,7 @@ describe('vwc-rich-text-editor', () => {
 		it('should set selectionStart to the length of newly added input', async () => {
 			editorFacadeSelectSpy.mockRestore();
 
-			element.value = '<p>123456789</p>';
+			element.value = '123456789';
 			await elementUpdated(element);
 
 			expect(element.selectionStart).toEqual('123456789'.length + 1);
@@ -151,13 +159,27 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should update when the value changes by the user', async () => {
 			editorFacadeSelectSpy.mockRestore();
-			element.value = '<p>123456789</p>';
+			element.value = '123456789';
 			await elementUpdated(element);
 
 			selectInEditor(5, 10);
 			await elementUpdated(element);
 
 			expect(element.selectionStart).toBe(5);
+		});
+
+		it('should trigger only a single update', async () => {
+			editorFacadeSelectSpy = spyOnOriginalFacadeSelect();
+			element.value = '123456789';
+			await elementUpdated(element);
+			moveMarkerToPosition(5);
+			await elementUpdated(element);
+			editorFacadeSelectSpy.mockReset();
+
+			moveMarkerToPosition(6);
+			await elementUpdated(element);
+
+			expect(editorFacadeSelectSpy).toHaveBeenCalledOnce();
 		});
 	});
 

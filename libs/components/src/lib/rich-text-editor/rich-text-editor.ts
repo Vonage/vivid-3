@@ -37,9 +37,13 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
 	selectionStart: number | null = null;
 	selectionStartChanged() {
-		if (!this.selectionStart) {
+		if (
+			!this.selectionStart ||
+			(this.selectionEnd && this.selectionStart > this.selectionEnd)
+		) {
 			return;
 		}
+
 		this.#updateEditorSelection();
 	}
 
