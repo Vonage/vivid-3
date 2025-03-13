@@ -1,6 +1,6 @@
 # cem-analyzer-plugins
 
-This library was generated with [Nx](https://nx.dev).
+This library contains custom plugins for the CEM Analyzer.
 
 ## Running unit tests
 

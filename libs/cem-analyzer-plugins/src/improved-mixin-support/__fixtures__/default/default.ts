@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 type Constructor<T = {}> = new (...args: any[]) => T;
 type MixinType<T extends (...args: any) => any> = InstanceType<ReturnType<T>>;
 
