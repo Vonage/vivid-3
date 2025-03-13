@@ -26,6 +26,14 @@ describe('vwc-rich-text-editor', () => {
 		element.selectionEnd = selectionEnd;
 	}
 
+	function spyOnOriginalFacadeSelect() {
+		editorFacadeSelectSpy.mockRestore();
+		const originalFacadeSelect = EditorFacade.prototype.selection;
+		return vi
+			.spyOn(EditorFacade.prototype, 'selection')
+			.mockImplementation(originalFacadeSelect);
+	}
+
 	let editorFacadeSelectSpy: MockInstance<
 		(position?: RichTextEditorSelection) => RichTextEditorSelection
 	>;
@@ -62,7 +70,9 @@ describe('vwc-rich-text-editor', () => {
 		}
 
 		it('should init as empty string', async () => {
-			expect(element.value).toBe('');
+			expect(element.value).toMatchInlineSnapshot(
+				`"<p><br class="ProseMirror-trailingBreak"></p>"`
+			);
 		});
 
 		it('should display HTML inside the editor', async () => {
@@ -73,17 +83,11 @@ describe('vwc-rich-text-editor', () => {
 		});
 
 		it('should return the HTML inside the editor if changed', async () => {
-			const value = '<b>bold</b>';
+			const value = 'bold';
 			userInput(value);
 			await elementUpdated(element);
 
-			expect(element.value).toBe(value);
-		});
-
-		it('should reflect the attribute value', async () => {
-			element.setAttribute('value', '<b>bold</b>');
-			await elementUpdated(element);
-			expect(getOutputElement().innerHTML).toBe('<p><strong>bold</strong></p>');
+			expect(element.value).toBe(`<p>${value}</p>`);
 		});
 	});
 
@@ -147,7 +151,7 @@ describe('vwc-rich-text-editor', () => {
 		it('should set selectionStart to the length of newly added input', async () => {
 			editorFacadeSelectSpy.mockRestore();
 
-			element.value = '<p>123456789</p>';
+			element.value = '123456789';
 			await elementUpdated(element);
 
 			expect(element.selectionStart).toEqual('123456789'.length + 1);
@@ -155,13 +159,27 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should update when the value changes by the user', async () => {
 			editorFacadeSelectSpy.mockRestore();
-			element.value = '<p>123456789</p>';
+			element.value = '123456789';
 			await elementUpdated(element);
 
 			selectInEditor(5, 10);
 			await elementUpdated(element);
 
 			expect(element.selectionStart).toBe(5);
+		});
+
+		it('should trigger only a single update', async () => {
+			editorFacadeSelectSpy = spyOnOriginalFacadeSelect();
+			element.value = '123456789';
+			await elementUpdated(element);
+			moveMarkerToPosition(5);
+			await elementUpdated(element);
+			editorFacadeSelectSpy.mockReset();
+
+			moveMarkerToPosition(6);
+			await elementUpdated(element);
+
+			expect(editorFacadeSelectSpy).toHaveBeenCalledOnce();
 		});
 	});
 

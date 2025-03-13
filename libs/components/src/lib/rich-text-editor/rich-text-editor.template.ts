@@ -16,11 +16,6 @@ export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
 ) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
-		<div
-			id="editor"
-			@input="${(x, c) => {
-				x.value = (c.event.target as HTMLElement)?.innerHTML;
-			}}"
-		></div>
+		<div id="editor"></div>
 	</template>`;
 };

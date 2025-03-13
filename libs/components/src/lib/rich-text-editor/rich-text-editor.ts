@@ -19,15 +19,16 @@ export class RichTextEditor extends VividElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr value?: string;
+	get value(): string {
+		return this.#editorWrapperElement.firstElementChild?.innerHTML as string;
+	}
 
-	#editor?: ProseMirrorFacade;
-
-	valueChanged(_: string, newValue: string): void {
+	set value(content: string) {
 		if (this.#editor) {
-			this.#editor.replaceContent(newValue);
+			this.#editor.replaceContent(content);
 		}
 	}
+	#editor?: ProseMirrorFacade;
 
 	get #editorWrapperElement(): HTMLElement {
 		return this.shadowRoot!.querySelector('#editor') as HTMLElement;
@@ -36,9 +37,13 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
 	selectionStart: number | null = null;
 	selectionStartChanged() {
-		if (!this.selectionStart) {
+		if (
+			!this.selectionStart ||
+			(this.selectionEnd && this.selectionStart > this.selectionEnd)
+		) {
 			return;
 		}
+
 		this.#updateEditorSelection();
 	}
 
@@ -66,7 +71,6 @@ export class RichTextEditor extends VividElement {
 
 	constructor() {
 		super();
-		this.value = '';
 	}
 
 	#handleSelectionChange = () => {
