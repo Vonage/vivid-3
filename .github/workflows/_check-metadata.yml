@@ -1,0 +1,65 @@
+name: ✔️ Check Metadata
+
+on:
+  workflow_call:
+    secrets:
+      VNG_VVD_PAT:
+        required: true
+
+jobs:
+  check-metadata:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.VNG_VVD_PAT }} # Use PAT to allow the action commit to trigger CI workflow again
+          ref: ${{ github.head_ref }}
+
+      - name: Download built component metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: ./dist
+
+      - name: Check Components Metadata
+        id: diff
+        run: |
+          echo 'DIFF_CONTENT<<EOF' >> $GITHUB_OUTPUT
+          diff ./libs/components/metadata.json ./dist/metadata.json >> $GITHUB_OUTPUT || true
+          echo 'EOF' >> $GITHUB_OUTPUT
+
+          diff ./libs/components/metadata.json ./dist/metadata.json
+        continue-on-error: true
+
+      - name: Setup git config
+        if: steps.diff.outcome == 'failure'
+        run: |
+          if git log -1 --pretty=%B | grep 'Update metadata'; then
+            echo "Last commit is already a metadata update. Skipping to prevent loop."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp ./dist/metadata.json ./libs/components/metadata.json
+          git add ./libs/components/metadata.json
+          git commit -m "Update metadata"
+          git push
+
+      - uses: mshick/add-pr-comment@v2
+        if: steps.diff.outcome == 'failure'
+        with:
+          allow-repeats: 'true'
+          message: |
+            :warning: The generated metadata has changed. I have updated the metadata file for you. Please review the changes:
+
+            <details><summary>View Diff</summary>
+
+            ```diff
+            ${{ steps.diff.outputs.DIFF_CONTENT }}
+            ```
+
+            </details>

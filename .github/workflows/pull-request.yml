@@ -20,14 +20,19 @@ jobs:
     if: github.event.pull_request.draft == false
     uses: ./.github/workflows/_deps-cache.yml
 
+  build:
+    if: github.event.pull_request.draft == false
+    needs: deps-cache
+    uses: ./.github/workflows/_build.yml
+
   call-lint:
     if: github.event.pull_request.draft == false
-    needs: [deps-cache]
+    needs: deps-cache
     uses: ./.github/workflows/_lint.yml
 
   unit-tests:
     if: github.event.pull_request.draft == false
-    needs: call-lint
+    needs: deps-cache
     uses: ./.github/workflows/_unit-test.yml
     with:
       os: ubuntu-latest
@@ -43,10 +48,16 @@ jobs:
 
   call-visual-regression:
     if: github.event.pull_request.draft == false
-    needs: call-lint
+    needs: deps-cache
     uses: ./.github/workflows/_visual-regression.yml
+
+  check-metadata:
+    if: github.event.pull_request.draft == false
+    needs: build
+    uses: ./.github/workflows/_check-metadata.yml
+    secrets: inherit
 
   call-deploy-deno-preview:
     if: github.event.pull_request.draft == false
-    needs: [deps-cache]
+    needs: build
     uses: ./.github/workflows/_deploy-deno.yml
