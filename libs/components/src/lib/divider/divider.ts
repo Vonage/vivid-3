@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Divider roles
@@ -28,7 +29,7 @@ type DividerRole = typeof DividerRole[keyof typeof DividerRole];
  * @public
  * @component divider
  */
-export class Divider extends VividElement {
+export class Divider extends DelegatesAria(VividElement) {
 	/**
 	 * The role of the element.
 	 *
