@@ -534,6 +534,6 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/rich-text-editor/README.md",
 		"accessibility": "./libs/components/src/lib/rich-text-editor/ACCESSIBILITY.md",
-		"status": "alpha"
+		"status": "underlying"
 	}
 ]
