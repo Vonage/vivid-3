@@ -1,9 +1,9 @@
-name: ⑇ Lint
+name: ⚙️ Build
 
 on: workflow_call
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,11 +28,13 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Lint
-        run: npm run nx run-many -- --target=stylelint --all && npm run nx run-many -- --target=lint --all --max-warnings=0
+      - name: Build
+        run: |
+          npx nx run vue-docs:build --skip-nx-cache
+          cp libs/components/metadata.json dist/metadata.json
 
-      - name: Typecheck
-        run: npm run nx run-many -- --target=typecheck
-
-      - name: Check Formatting
-        run: npm run nx format:check -- --all
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: ./dist
+          include-hidden-files: true

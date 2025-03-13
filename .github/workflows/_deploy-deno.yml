@@ -11,28 +11,10 @@ jobs:
       contents: read # Needed to clone the repository
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/download-artifact@v4
         with:
-          node-version: 20
-          cache: 'npm'
-
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: |
-            node_modules/
-            apps/vue-docs/node_modules/
-            libs/storybook-vue2/node_modules/
-            libs/storybook-vue3/node_modules/
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Build Site
-        run: npx nx run vue-docs:build --skip-nx-cache
+          name: build
+          path: ./dist
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
