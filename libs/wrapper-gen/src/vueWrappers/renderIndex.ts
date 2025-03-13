@@ -1,8 +1,9 @@
-import { ComponentDef } from '../metadata/ComponentDef';
+import { ComponentDef } from '../common/ComponentDef';
+import { wrappedComponentName } from './name';
 
 export default function renderIndex(components: ComponentDef[]) {
 	return components
-		.map((component) => component.wrappedClassName)
+		.map((component) => wrappedComponentName(component))
 		.map(
 			(component) => `export { default as ${component} } from './${component}';`
 		)

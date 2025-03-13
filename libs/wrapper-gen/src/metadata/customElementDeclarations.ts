@@ -12,13 +12,13 @@ import {
 	isVividComponentPath,
 } from './vividPackage';
 import { extractLocalTypeDefs } from './extractLocalTypeDefs';
-import { TypeUnion } from './types';
-import { ComponentDef } from './ComponentDef';
+import type { TypeStr } from '../common/types';
+import type { ComponentDef } from '../common/ComponentDef';
 
-type Declaration = CustomElementDeclaration &
+export type Declaration = CustomElementDeclaration &
 	ClassDeclaration & {
 		_modulePath?: string;
-		_localTypeDefs?: Record<string, TypeUnion>;
+		_localTypeDefs?: Record<string, TypeStr>;
 		vividComponent?: {
 			name: string;
 			vueModels?: ComponentDef['vueModels'];
