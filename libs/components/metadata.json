@@ -1019,13 +1019,6 @@
 					"propertyName": "connotation"
 				},
 				{
-					"name": "connotation2",
-					"description": "The connotation the button should have.",
-					"type": "'accent' | 'announcement' | 'cta' | 'success' | 'alert'",
-					"attributeName": "connotation2",
-					"propertyName": "connotation2"
-				},
-				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
