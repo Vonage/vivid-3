@@ -241,4 +241,29 @@ describe('ProseMirrorFacade', () => {
 			).toBeTruthy();
 		});
 	});
+
+	describe('keyboard interaction', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+		});
+
+		it('should handle Enter key press', async () => {
+			const NEWLINE_POSITION_VALUE = 3;
+			const content = '123';
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+			facadeInstance.replaceContent(`<p>${content}</p>`);
+
+			const event = new KeyboardEvent('keydown', { key: 'Enter' });
+			getOutputElement(element).dispatchEvent(event);
+
+			// Verify the expected behavior for Enter key press
+			expect(facadeInstance.selection()).toEqual({
+				start: content.length + NEWLINE_POSITION_VALUE,
+				end: content.length + NEWLINE_POSITION_VALUE,
+			});
+		});
+	});
 });
