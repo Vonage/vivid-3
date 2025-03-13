@@ -392,8 +392,13 @@
 	},
 	{
 		"title": "Data Grid",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/data-grid/README.md"
+		"description": "Allows users to interact with data in a tabular format.",
+		"variations": "./libs/components/src/lib/data-grid/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/data-grid/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/data-grid/README.md",
+		"accessibility": "./libs/components/src/lib/data-grid/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/data-grid/USE-CASES.md"
 	},
 	{
 		"title": "Toggletip",

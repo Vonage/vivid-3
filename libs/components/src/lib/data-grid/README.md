@@ -1,89 +1,205 @@
-# Data Grid
+## Usage
 
-The data grid allows users to interact with data in a tabular format.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/data-grid';</script>
+import '@vonage/vivid/data-grid';
+import '@vonage/vivid/data-grid-row';
+import '@vonage/vivid/data-grid-cell';
 ```
 
+or, if you need to use a unique prefix:
+
+```js
+import { registerDataGrid } from '@vonage/vivid';
+
+registerDataGrid('your-prefix');
+```
+
+<vwc-note connotation="information" icon="info-line">
+
+Data Grid Row and Data Grid Cell sub-components are registered automatically in the same function.
+
+</vwc-note>
+
+<br />
+
+```html preview 270px
+<script type="module">
+	import { registerDataGrid } from '@vonage/vivid';
+	registerDataGrid('your-prefix');
+</script>
+
+<your-prefix-data-grid>
+	<your-prefix-data-grid-row>
+		<your-prefix-data-grid-cell>Data 11</your-prefix-data-grid-cell>
+		<your-prefix-data-grid-cell>Data 12</your-prefix-data-grid-cell>
+		<your-prefix-data-grid-cell>Data 13</your-prefix-data-grid-cell>
+	</your-prefix-data-grid-row>
+</your-prefix-data-grid>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VDataGrid, VDataGridRow, VDataGridCell } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDataGrid>
+		<VDataGridRow>
+			<VDataGridCell>Data 11</VDataGridCell>
+			<VDataGridCell>Data 12</VDataGridCell>
+			<VDataGridCell>Data 13</VDataGridCell>
+		</VDataGridRow>
+		<VDataGridRow>
+			<VDataGridCell>Data 21</VDataGridCell>
+			<VDataGridCell>Data 22</VDataGridCell>
+			<VDataGridCell>Data 23</VDataGridCell>
+		</VDataGridRow>
+	</VDataGrid>
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Pre-selecting Rows or Cells
+
+Use the `aria-selected` attribute to indicate that the selected state of the row or cell.
+
+<vwc-note connotation="warning" icon="warning-line">
+
+For selection functionality to work correctly, the [`selection-mode` attribute](/components/data-grid/#selection-mode) (on Data Grid) must be set to the relevant value.
+
+</vwc-note>
+
+```html preview blocks
+<vwc-data-grid selection-mode="single-row">
+	<vwc-data-grid-row class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
+			Data 1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Data 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row aria-selected="true">
+		<vwc-data-grid-cell>Data 11</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Data 12</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>Data 21</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Data 22</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+<vwc-data-grid selection-mode="single-cell">
+	<vwc-data-grid-row class="header" row-type="header">
+		<vwc-data-grid-cell cell-type="columnheader">
+			Data 1
+		</vwc-data-grid-cell>
+		<vwc-data-grid-cell cell-type="columnheader">Data 2</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell  aria-selected="true">Data 11</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Data 12</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+	<vwc-data-grid-row>
+		<vwc-data-grid-cell>Data 21</vwc-data-grid-cell>
+		<vwc-data-grid-cell>Data 22</vwc-data-grid-cell>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
+## Data Grid Row
+
+### Row Type
+
+Use the `row-type` attribute to determine the type of row:
+
+- `default` - a row of body content
+- `header` - a grid header row
+- `sticky` - a grid header row the stick to the top while body content scrolls beneath
+
+See this section on the [grid header](/components/data-grid/#grid-header).
+
+### Selected
+
+Use the `aria-selected` attribute to indicate that the selected state of the row.
+
+<vwc-note connotation="warning" icon="warning-line">
+
+For row selection functionality to work correctly, the `selection-mode` attribute (on Data Grid) must be set to `single-row` or `multi-row`.
+
+</vwc-note>
+
+
+
+## Data Grid Cell
+
+### Selected
+
+Use the `aria-selected` attribute to indicate the selected state of a cell.
+
+<vwc-note connotation="warning" icon="warning-line">
+
+For cell selection functionality to work correctly, the `selection-mode` attribute (on Data Grid) must be set to `single-cell` or `multi-cell`.
+
+</vwc-note>
+
 ```html preview
-<vwc-data-grid></vwc-data-grid>
+
+```
+
+### Sorting
+
+Use the `aria-sort` attribute on a `columnheader` cell to indicate the sortable state of a header cell.
+This will add the right chevron(s) according to the state.
+
+- `ascending` - Items are sorted in ascending order by this column. Will show one chevron pointing up.
+- `descending` - Items are sorted in descending order by this column. Will show one chevron pointing down.
+- `none` - There is no defined sort applied to the column. Will show indeterminate state with the two chevrons.
+- `other` - A sorting algorithm other than ascending or descending has been applied. Will show no hint.
+
+For more information regarding `aria-sort` you can reference [the W3C spec](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort).
+
+Note that the sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the use cases for more information.
+
+```html preview
+<vwc-data-grid>
+	<vwc-data-grid-row role="row">
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="ascending"
+			>ascending</vwc-data-grid-cell
+		>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="descending"
+			>descending</vwc-data-grid-cell
+		>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="none"
+			>none</vwc-data-grid-cell
+		>
+		<vwc-data-grid-cell cell-type="columnheader" aria-sort="other"
+			>other</vwc-data-grid-cell
+		>
+	</vwc-data-grid-row>
+</vwc-data-grid>
+```
+
+## Rows Data
+
+Use the `rowsData` property to provide the component with the data (an `array` or `objects`) to be displayed.
+If not used in conjuction with [column  defintions](#columndefinitions) (`title`), text displayed in the column headers will be the data keys of the object.
+
+```html preview
+<vwc-data-grid class="data-grid"></vwc-data-grid>
+
 <script>
-	grid = document.querySelector('vwc-data-grid');
+	grid = document.querySelector('.data-grid');
 	grid.rowsData = [
 		{ data1: 'data11', data2: 'data12' },
 		{ data1: 'data21', data2: 'data22' },
-	];
-</script>
-```
-
-## Members
-
-### Generate-header
-
-Use `generate-header` for data grid header visibility mode.
-
-- Type: `'none'` | `'default'` | `'sticky'`
-- Default: `'default'`
-
-```html preview
-<style>
-	vwc-data-grid {
-		max-block-size: 300px;
-	}
-</style>
-<vwc-select onchange="changeHeader()">
-	<vwc-option value="none" text="none"></vwc-option>
-	<vwc-option value="default" text="default"></vwc-option>
-	<vwc-option value="sticky" text="sticky"></vwc-option>
-</vwc-select>
-
-<vwc-data-grid></vwc-data-grid>
-<script>
-	function changeHeader() {
-		headerType = event.target.value;
-		grid.generateHeader = headerType;
-	}
-
-	grid = document.querySelector('vwc-data-grid');
-	grid.rowsData = [
-		{ data1: 'data111', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-		{ data1: 'data31', data2: 'data32' },
-		{ data1: 'data41', data2: 'data42' },
-		{ data1: 'data51', data2: 'data52' },
-		{ data1: 'data61', data2: 'data62' },
-	];
-</script>
-```
-
-### selectionMode
-
-- Type: `'none'` | `'single-cell'` | `'multi-cell'` | `'single-row'` | `'multi-row'`
-- Default: `'none'`
-
-Use the `selection-mode` attribute to specify the selection mode of the grid.
-
-```html preview 300px
-<vwc-select onchange="changeSelectionMode()">
-	<vwc-option value="none" text="none"></vwc-option>
-	<vwc-option value="single-cell" text="single-cell"></vwc-option>
-	<vwc-option value="multi-cell" text="multi-cell"></vwc-option>
-	<vwc-option value="single-row" text="single-row"></vwc-option>
-	<vwc-option value="multi-row" text="multi-row"></vwc-option>
-</vwc-select>
-
-<vwc-data-grid></vwc-data-grid>
-<script>
-	function changeSelectionMode() {
-		selectionMode = event.target.value;
-		grid.selectionMode = selectionMode;
-	}
-
-	grid = document.querySelector('vwc-data-grid');
-	grid.rowsData = [
-		{ data1: 'tabs', data2: 'will' },
-		{ data1: 'not', data2: 'work' },
 	];
 </script>
 ```
@@ -142,24 +258,6 @@ When true the component will not add itself to the tab queue.
 </script>
 ```
 
-### rowsData
-
-- Type: `Array`
-- Default: `[]`
-
-The data being displayed in the grid.
-
-```html preview
-<vwc-data-grid></vwc-data-grid>
-<script>
-	grid = document.querySelector('vwc-data-grid');
-	grid.rowsData = [
-		{ data1: 'data11', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-	];
-</script>
-```
-
 ### columnDefinitions
 
 - Type: [ColumnDefinition](#columndefinition)`[]`
@@ -187,33 +285,6 @@ See the [use cases](#sortable-columns) for more information.
 		{ data1: 'data11', data2: 'data12' },
 		{ data1: 'data21', data2: 'data22' },
 	];
-</script>
-```
-
-### gridTemplateColumns
-
-- Type: `string`
-- Default: `undefined`
-
-The `grid-template-columns` attribute and `gridTemplateColumns` property define the line size of every grid column.
-
-Values match the CSS grid-template-columns property.
-
-```html preview
-<style>
-	vwc-data-grid-cell {
-		text-align: center;
-		min-inline-size: 50px; /* Needed to reduce the default min-inline-size of 80px */
-	}
-</style>
-<vwc-data-grid></vwc-data-grid>
-<script>
-	grid = document.querySelector('vwc-data-grid');
-	grid.rowsData = [
-		{ data1: '#1', data2: 'data12' },
-		{ data1: '#2', data2: 'data22' },
-	];
-	grid.gridTemplateColumns = '50px 200px';
 </script>
 ```
 
