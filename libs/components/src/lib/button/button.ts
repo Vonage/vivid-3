@@ -73,6 +73,15 @@ export class Button extends VividFoundationButton {
 	 * @remarks
 	 * HTML Attribute: connotation
 	 */
+	@attr connotation2?: ButtonConnotation;
+
+	/**
+	 * The connotation the button should have.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: connotation
+	 */
 	@attr connotation?: ButtonConnotation;
 
 	/**
