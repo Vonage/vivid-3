@@ -1,5 +1,7 @@
-import { getVividComponentDeclaration } from './customElementDeclarations';
-import { CustomElement } from 'custom-elements-manifest';
+import {
+	Declaration,
+	getVividComponentDeclaration,
+} from './customElementDeclarations';
 import type * as FileSystem from 'fs';
 
 function makeMember(name: string) {
@@ -29,16 +31,7 @@ function makeAttribute(name: string, fieldName: string) {
 	};
 }
 
-const localType = [
-	{
-		text: "'rounded'",
-		vuePropType: 'String',
-	},
-	{
-		text: "'pill'",
-		vuePropType: 'String',
-	},
-];
+const localType = "'rounded' | 'pill'";
 
 function makeManifest() {
 	return {
@@ -133,7 +126,7 @@ vi.mock('fs', async () => {
 });
 
 describe('getVividComponentDeclaration', () => {
-	let declaration: CustomElement;
+	let declaration: Declaration;
 
 	beforeEach(() => {
 		declaration = getVividComponentDeclaration('', 'Accordion');
@@ -142,7 +135,7 @@ describe('getVividComponentDeclaration', () => {
 	describe('component declarations', () => {
 		it('should include attributes of the component', () => {
 			expect(
-				declaration.attributes.find(
+				declaration.attributes!.find(
 					(a: any) => a.name === 'accordion-attribute'
 				)
 			).toEqual(makeAttribute('accordion-attribute', 'accordionAttribute'));
@@ -150,48 +143,48 @@ describe('getVividComponentDeclaration', () => {
 
 		it('should include events of the component', () => {
 			expect(
-				declaration.events.find((e: any) => e.name === 'accordion-event')
+				declaration.events!.find((e: any) => e.name === 'accordion-event')
 			).toEqual(makeEvent('accordion-event'));
 		});
 
 		it('should include local type definitions of the component', () => {
-			expect(declaration._localTypeDefs['AccordionShape']).toEqual(localType);
+			expect(declaration._localTypeDefs!['AccordionShape']).toEqual(localType);
 		});
 	});
 
 	describe('parent declarations', () => {
 		it('should include attributes inherited from a superclass', () => {
 			expect(
-				declaration.attributes.find((a: any) => a.name === 'parent-attribute')
+				declaration.attributes!.find((a: any) => a.name === 'parent-attribute')
 			).toEqual(makeAttribute('parent-attribute', 'parentAttribute'));
 		});
 
 		it('should include events inherited from a superclass', () => {
 			expect(
-				declaration.events.find((e: any) => e.name === 'parent-event')
+				declaration.events!.find((e: any) => e.name === 'parent-event')
 			).toEqual(makeEvent('parent-event'));
 		});
 
 		it('should include local type definitions inherited from a superclass', () => {
-			expect(declaration._localTypeDefs['ParentShape']).toEqual(localType);
+			expect(declaration._localTypeDefs!['ParentShape']).toEqual(localType);
 		});
 	});
 
 	describe('mixin declarations', () => {
 		it('should include attributes inherited from a mixin', () => {
 			expect(
-				declaration.attributes.find((a: any) => a.name === 'mixin-attribute')
+				declaration.attributes!.find((a: any) => a.name === 'mixin-attribute')
 			).toEqual(makeAttribute('mixin-attribute', 'mixinAttribute'));
 		});
 
 		it('should include events inherited from a mixin', () => {
 			expect(
-				declaration.events.find((e: any) => e.name === 'mixin-event')
+				declaration.events!.find((e: any) => e.name === 'mixin-event')
 			).toEqual(makeEvent('mixin-event'));
 		});
 
 		it('should include local type definitions inherited from a mixin', () => {
-			expect(declaration._localTypeDefs['MixinShape']).toEqual(localType);
+			expect(declaration._localTypeDefs!['MixinShape']).toEqual(localType);
 		});
 	});
 });
