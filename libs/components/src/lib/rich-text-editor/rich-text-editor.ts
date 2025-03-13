@@ -1,10 +1,10 @@
-import { attr } from '@microsoft/fast-element';
+import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
 export interface RichTextEditorSelection {
 	start: number;
-	end: number;
+	end?: number;
 }
 
 /**
@@ -19,34 +19,78 @@ export class RichTextEditor extends VividElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	@attr value?: string;
+	get value(): string {
+		return this.#editorWrapperElement.firstElementChild?.innerHTML as string;
+	}
 
-	#editor?: ProseMirrorFacade;
-
-	valueChanged(_: string, newValue: string): void {
+	set value(content: string) {
 		if (this.#editor) {
-			this.#editor.replaceContent(newValue);
+			this.#editor.replaceContent(content);
 		}
 	}
+	#editor?: ProseMirrorFacade;
 
 	get #editorWrapperElement(): HTMLElement {
 		return this.shadowRoot!.querySelector('#editor') as HTMLElement;
 	}
 
-	get selection(): RichTextEditorSelection | undefined {
-		return this.#editor?.selection();
+	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
+	selectionStart: number | null = null;
+	selectionStartChanged() {
+		if (
+			!this.selectionStart ||
+			(this.selectionEnd && this.selectionStart > this.selectionEnd)
+		) {
+			return;
+		}
+
+		this.#updateEditorSelection();
+	}
+
+	#updateEditorSelection = () => {
+		try {
+			this.#editor?.selection({
+				start: this.selectionStart!,
+				end: this.selectionEnd ? this.selectionEnd : this.selectionStart!,
+			});
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(e.message);
+		}
+	};
+
+	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
+	selectionEnd: number | null = null;
+	selectionEndChanged() {
+		if (this.selectionEnd && !this.selectionStart) {
+			this.selectionStart = 1;
+		}
+
+		this.#updateEditorSelection();
 	}
 
 	constructor() {
 		super();
-		this.value = '';
 	}
+
+	#handleSelectionChange = () => {
+		if (!this.#editor!.selection()) {
+			return;
+		}
+		const { start, end } = this.#editor!.selection();
+		this.selectionStart = start;
+		this.selectionEnd = end as number;
+	};
 
 	override connectedCallback(): void {
 		super.connectedCallback();
 		if (!this.#editor) {
 			this.#editor = new ProseMirrorFacade();
 			this.#editor.init(this.#editorWrapperElement);
+			this.#editor.addEventListener(
+				'selection-changed',
+				this.#handleSelectionChange
+			);
 		}
 	}
 }

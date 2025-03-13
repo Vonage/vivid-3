@@ -65,6 +65,7 @@ describe('ProseMirrorFacade', () => {
 
 			expect(EditorState.create).toHaveBeenCalledWith({
 				schema: VVD_PROSE_MIRROR_SCHEMA,
+				plugins: expect.arrayContaining([]),
 			});
 			expect(EditorViewMock).toHaveBeenCalledWith(element, {
 				state: StateMock,
@@ -101,12 +102,13 @@ describe('ProseMirrorFacade', () => {
 		beforeEach(async () => {
 			vi.spyOn(EditorState, 'create');
 		});
+
 		it('should return negative selection when editor is not initialized', async () => {
 			expect(facadeInstance.selection()).toEqual({ start: -1, end: -1 });
 		});
 
 		it('should return ProseMirror selection', async () => {
-			async function setFirstSelectionInState(mockStateSelection) {
+			async function setSelectionInState(mockStateSelection) {
 				await useOriginalEditorState();
 				const originalCreate = EditorState.create;
 				vi.spyOn(EditorState, 'create').mockImplementation(
@@ -128,7 +130,7 @@ describe('ProseMirrorFacade', () => {
 					to: 10,
 				},
 			};
-			await setFirstSelectionInState(MOCK_STATE);
+			await setSelectionInState(MOCK_STATE);
 
 			facadeInstance.init(document.createElement('div'));
 
@@ -154,6 +156,114 @@ describe('ProseMirrorFacade', () => {
 			facadeInstance.selection(initialPosition);
 
 			expect(facadeInstance.selection()).toEqual(initialPosition);
+		});
+
+		it('should return start and end the same number if end is not given', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const initialPosition: RichTextEditorSelection = {
+				start: 3,
+			};
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			facadeInstance.selection(initialPosition);
+			expect(facadeInstance.selection()).toEqual({ start: 3, end: 3 });
+		});
+
+		it('should throw when range is out of editor bounds', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const initialPosition: RichTextEditorSelection = {
+				start: 250,
+			};
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			expect(() => facadeInstance.selection(initialPosition)).toThrowError(
+				'Position 250 out of range'
+			);
+		});
+	});
+
+	describe('selection-changed event', () => {
+		beforeEach(async () => {
+			vi.spyOn(EditorState, 'create');
+
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			facadeInstance.init(document.createElement('div'));
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+		});
+
+		it('should emit "selection-changed" event when selection start is changed by the consumer', async () => {
+			const spy = vi.fn();
+			facadeInstance.addEventListener('selection-changed', spy);
+
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			expect(spy).toHaveBeenCalled();
+		});
+
+		it('should emit "selection-changed" event when selection end is changed by the consumer', async () => {
+			facadeInstance.selection({
+				start: 1,
+				end: 3,
+			});
+			const spy = vi.fn();
+			facadeInstance.addEventListener('selection-changed', spy);
+
+			facadeInstance.selection({
+				start: 1,
+				end: 5,
+			});
+
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('addEventListener', () => {
+		it('should accept a callback', async () => {
+			const spy = vi.fn();
+			expect(() =>
+				facadeInstance.addEventListener('eventName', spy)
+			).toBeTruthy();
+		});
+	});
+
+	describe('keyboard interaction', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+		});
+
+		it('should handle Enter key press', async () => {
+			const NEWLINE_POSITION_VALUE = 3;
+			const content = '123';
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+			facadeInstance.replaceContent(`<p>${content}</p>`);
+
+			const event = new KeyboardEvent('keydown', { key: 'Enter' });
+			getOutputElement(element).dispatchEvent(event);
+
+			// Verify the expected behavior for Enter key press
+			expect(facadeInstance.selection()).toEqual({
+				start: content.length + NEWLINE_POSITION_VALUE,
+				end: content.length + NEWLINE_POSITION_VALUE,
+			});
 		});
 	});
 });

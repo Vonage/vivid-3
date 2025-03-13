@@ -111,6 +111,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 							return x.keydownHandler(event as KeyboardEvent);
 						}}"
         >
+					<div class="control-wrapper">
 			${() => renderInput(context)}
 			<${popupTag} class="popup"
 				style="${setFixedDropdownVarWidth}"
@@ -131,6 +132,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 					</slot>
 				</div>
 			</${popupTag}>
+					</div>
 					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
 						${getFeedbackTemplate(context)}
 					</div>
