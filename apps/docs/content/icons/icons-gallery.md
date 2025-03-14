@@ -13,6 +13,8 @@ As an example, you can use it as follows:
 <vwc-icon name="icon-name-here"></vwc-icon>
 ```
 
+Can't find the icon you need? See the [Adding new Icons](/guides/adding-new-icons/) guide.
+
 <p class="icons-gallery"><docs-icons-gallery></docs-icons-gallery></p>
 
 <style>
