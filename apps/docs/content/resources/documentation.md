@@ -1,43 +1,79 @@
 ---
-title: Documentation
-order: 7
-status: underlying
+title: Documentation Guidelines
+order: 4
 ---
 
-# Documentation
+# Documentation Guidelines
 
-## General Language Guidelines
+## Writing Style
 
-- **Use American English**<br />Do: "color"<br />Don't: "colour"
-- **Use [APA Title Case](https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case) for headings**<br />
-  You can use an [online tool](https://capitalizemytitle.com/style/APA/) to convert text to APA title case.<br />
-  Do: "Getting Started With Vivid"<br />
-  Don't: "Getting started with Vivid"
-- **Refer to the design system as "Vivid"**<br />
-  If you need to refer to a specific version, use "Vivid 4.x.x"<br />
-  Do: Vivid, Vivid 4.x.x<br />
-  Don't: VIVID, vivid, VIVID@3, vivid-3, Vivid 3
-- **Refer to other Vivid component using title case**<br />
-  Do: Searchable Select, Combobox, Date Time Picker<br />
-  Don't: Searchable select, combobox, date-time-picker
-- **Refer to other projects and tools by their official name**<br />
-  Do: CSS, GitHub, npm<br />
-  Don't: css, github, NPM
-- **Use the second person (you) to address the reader**<br />
-  Do: "You can use the `v-model` syntax to shorten this to:"<br />
-  Don't: "Authors can use the `v-model` syntax to shorten this to:"
-- **Prefer the active voice**<br />
-  Sentences in active voice are usually easier to understand.<br />
-  Do: "You must provide an aria-label attribute."<br />
-  Don't: "An aria-label attribute must be provided."
+<vwc-accordion size="condensed" expand-mode="multi">
+<vwc-accordion-item heading="Refer to the design system as Vivid">
+
+    If you need to refer to a specific version, use "Vivid x.x.x" (eg. Vivid 4.9.3)
+
+    **Do:** Vivid, Vivid x.x.x<br />**Don't:** VIVID, vivid, VIVID@3, vivid-3, Vivid 3
+
+  </vwc-accordion-item>
+  <vwc-accordion-item heading="Refer to Vivid components in title case">
+    
+    **Do:** Searchable Select, Combobox, Date Time Picker<br />**Don't:** Searchable select, combobox, date-time-picker
+
+  </vwc-accordion-item>
+  <vwc-accordion-item heading="Use title case for page headings">
+
+    Use an [online tool](https://capitalizemytitle.com/style/APA/) to convert text to APA title case.
+
+    **Do:** Getting Started With Vivid<br />**Don't:** Getting started with Vivid
+
+  </vwc-accordion-item>
+  <vwc-accordion-item heading="Keep it as simple as possible">
+
+    Don't write poetry. Don't use jargon and fancy words.
+
+    Write how you've done it in simple language, explain where to use it, and add guidance for using it again.
+
+    Be as straightforward as possible. Don't write essays; no one will read them.
+
+    People using the design system will only use the components when they fully understand the specifics.
+
+  </vwc-accordion-item>
+  <vwc-accordion-item heading="Use American English">
+    
+    **Do:** color<br />**Don't:** colour
+
+  </vwc-accordion-item>
+  <vwc-accordion-item heading="Refer to other projects and tools by their official name">
+    
+    **Do:** CSS, GitHub, npm<br />**Don't:** css, github, NPM
+
+  </vwc-accordion-item>
+  <vwc-accordion-item heading="Write using active voice">
+
+    [Active vs Passive voice](https://www.grammarly.com/blog/sentences/active-vs-passive-voice/)
+
+    **Do:** Use the label attribute to provide a visible label for the Checkbox.<br />
+    **Don't:** The label attribute is used to provide a visible label for the Checkbox.
+
+  </vwc-accordion-item>
+</vwc-accordion>
 
 ## Live Examples
+
+```html preview
+<vwc-button
+	label="Live Example"
+	appearance="filled"
+	connotation="cta"
+></vwc-button>
+```
 
 A live code example can be added to a page using the following markdown:
 
 ````
 ```html preview
 <my-component></my-component>
+```
 ````
 
 You can set the preview window's height by providing the height in px's:
@@ -48,7 +84,7 @@ You can also choose from these layout options: `full` | `blocks` | `columns` | `
 
 <code>```html preview blocks</code>
 
-## Code Example Guidelines
+## Code Example Style
 
 - **Make examples as close to real life as possible**<br />
   Eg. When demonstrating the `label` attribute;<br />

@@ -1,11 +1,11 @@
 ---
-title: Figma - Vivid Live
+title: Introducting Vivid Live (Figma)
 month: 2025-01
 ---
 
 13th January 2025
 
-# Introducing Vivid-Live: Figma Component Library
+# Introducing Vivid Live: Figma Component Library
 
 We're thrilled to announce our new Figma component library – a significant upgrade to our previous design system that takes our Vivid components to the next level. If you've been using our existing library, get ready for a transformative design experience.
 
@@ -13,7 +13,7 @@ We're thrilled to announce our new Figma component library – a significant upg
 
 Our previous Figma library served us well, but we knew we could do better. This new library isn't just an update – it's a complete reimagination of how design components should work.
 
-## What Has Changed In Vivid-Live Library?
+## What Has Changed In Vivid Live Library?
 
 ### Perfect Alignment with Our Vivid API
 
@@ -67,14 +67,14 @@ Pre-built, interconnected component setups
 - **Flexible Color Systems:** Full support for dark and light modes
 - **Unparalleled Customization:** Granular control over component design
 
-## How to use Vivid-Live
+## How to use Vivid Live
 
 ### #1 - adding the library
 
-[Vivid Live](https://www.figma.com/design/vDH2AytCxEvOulJ7olf9cS/Vivid-Live?node-id=0-1&p=f&t=UZaEYgO1lCigebt5-0) comes with 2 additional assets:
+[Vivid Live](https://www.figma.com/design/vDH2AytCxEvOulJ7olf9cS/Vivid Live?node-id=0-1&p=f&t=UZaEYgO1lCigebt5-0) comes with 2 additional assets:
 
-- [Vivid Live Tokens](https://www.figma.com/design/l7PH4EhGm3SXH9FJQBBPZG/Vivid-Live-Tokens?node-id=33646-138859&t=AZY0LVVL7Qe15zCI-1)
-- [Vivid Live Icons](https://www.figma.com/design/isdKI406usLCxZ2U8ljDrn/Vivid-Live-Icons?node-id=274-7267&t=YWWxn3L71PA9Hfuf-1)
+- [Vivid Live Tokens](https://www.figma.com/design/l7PH4EhGm3SXH9FJQBBPZG/Vivid Live-Tokens?node-id=33646-138859&t=AZY0LVVL7Qe15zCI-1)
+- [Vivid Live Icons](https://www.figma.com/design/isdKI406usLCxZ2U8ljDrn/Vivid Live-Icons?node-id=274-7267&t=YWWxn3L71PA9Hfuf-1)
 
 Make sure you are adding all 3 of them :)
 
@@ -119,7 +119,7 @@ From size to appearance to stats and text customization.
 
 ### #5 - Slots
 
-Vivid-Live is synced to the API, which means, like the actual components, it uses Slots.
+Vivid Live is synced to the API, which means, like the actual components, it uses Slots.
 For each slot you can either show / hide the slot and swap the default slot with your content.
 
 ![slot swap](../../../../assets/images/blog-images/slot-swap.png)
