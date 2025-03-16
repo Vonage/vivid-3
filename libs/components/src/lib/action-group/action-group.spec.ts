@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { ActionGroup } from './action-group';
 import '.';
 
@@ -19,8 +20,6 @@ describe('vwc-action-group', () => {
 			expect(element.shape).toEqual(undefined);
 			expect(element.appearance).toEqual(undefined);
 			expect(element.tight).toEqual(false);
-			expect(element.role).toEqual(null);
-			expect(element.ariaLabel).toEqual(null);
 		});
 
 		it('should allow being created via createElement', () => {
@@ -56,25 +55,17 @@ describe('vwc-action-group', () => {
 	});
 
 	describe('a11y attributes', () => {
-		describe('role', function () {
-			it('should be set to "group" on init', function () {
-				const role = getBaseElement(element)?.getAttribute('role');
-				expect(role).toEqual('group');
-			});
-
-			it('should change role to role radiogroup', async function () {
-				element.role = 'radiogroup';
-				await elementUpdated(element);
-				const role = getBaseElement(element)?.getAttribute('role');
-				expect(role).toEqual('radiogroup');
-			});
-
-			it('should change role when role attribute is set', async function () {
-				element.setAttribute('role', 'radiogroup');
-				await elementUpdated(element);
-				const role = getBaseElement(element)?.getAttribute('role');
-				expect(role).toEqual('radiogroup');
-			});
+		it('should set a default role "group" on the base element', function () {
+			const role = getBaseElement(element)?.getAttribute('role');
+			expect(role).toEqual('group');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['role', 'ariaLabel']
+		);
 	});
 });

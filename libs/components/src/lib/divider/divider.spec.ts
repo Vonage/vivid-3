@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Divider } from './divider';
 import '.';
 
@@ -57,12 +58,11 @@ describe('vwc-divider', () => {
 		});
 	});
 
-	describe('role', function () {
-		it('should set the role attribute on base', async function () {
-			element.toggleAttribute('roll', true);
-			await elementUpdated(element);
-
-			expect(getBaseElement(element).hasAttribute('role')).toEqual(true);
-		});
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['role']
+		);
 	});
 });

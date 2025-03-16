@@ -5,6 +5,7 @@ import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
 import { PlacementStrategy, Popup } from '../popup/popup.ts';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Slider } from './slider';
 import '.';
 
@@ -251,8 +252,8 @@ describe('vwc-slider', () => {
 			expect(getPopup()!.textContent!.trim()).toBe('5 bits');
 		});
 
-		it('should display ariaValuetext in the popup if provided', async () => {
-			element.ariaValuetext = 'value text';
+		it('should display ariaValueText in the popup if provided', async () => {
+			element.ariaValueText = 'value text';
 			await elementUpdated(element);
 
 			expect(getPopup()!.textContent!.trim()).toBe('value text');
@@ -869,7 +870,7 @@ describe('vwc-slider', () => {
 		});
 
 		it('should set the correct a11y attributes', async () => {
-			element.ariaValuetext = '5 bits';
+			element.ariaValueText = '5 bits';
 			await elementUpdated(element);
 
 			const control = getControlElement(element);
@@ -904,5 +905,13 @@ describe('vwc-slider', () => {
 				});
 			});
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			['ariaLabel']
+		);
 	});
 });

@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import type { Connotation, ConnotationDecorative, Shape } from '../enums';
 import { BaseProgress } from '../../shared/foundation/progress/base-progress';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 export type ProgressConnotation =
 	| Connotation.Accent
@@ -15,9 +16,7 @@ export type ProgressShape = Shape.Rounded | Shape.Sharp;
  * @public
  * @component progress
  */
-export class Progress extends BaseProgress {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-
+export class Progress extends DelegatesAria(BaseProgress) {
 	/**
 	 * Indicates the progress' shape.
 	 *
