@@ -80,9 +80,10 @@ Use the `selectionEnd` attribute to get or set the end point of the marker. To s
 
 <div class="table-wrapper">
 
-| Name | Description |
-| ---- | ----------- |
-|      |             |
+| Name | Type | Bubbles | Composed | Description |
+| ---- | ---- | ------- | -------- | ----------- |
+
+| **selection-changed** | `CustomEvent<undefined>` | Yes | Yes | Fires a custom 'selection-changed' event when the selection in the editor changed |
 
 </div>
 
