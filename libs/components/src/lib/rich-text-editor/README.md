@@ -80,9 +80,8 @@ Use the `selectionEnd` attribute to get or set the end point of the marker. To s
 
 <div class="table-wrapper">
 
-
-| Name       | Type                     | Bubbles | Composed | Description                                              |
-| ---------- | ------------------------ | ------- | -------- | -------------------------------------------------------- |
+| Name       | Type                     | Bubbles | Composed | Description                                                                           |
+| ---------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------- |
 | **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the element is blurred and the content was editted |
 
 </div>
