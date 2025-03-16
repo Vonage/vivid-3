@@ -15,9 +15,7 @@ import {
 	isListboxOption,
 	type ListboxOption,
 } from '../../../lib/option/option';
-import { ARIAGlobalStatesAndProperties } from '../patterns';
 import { VividElement } from '../vivid-element/vivid-element';
-import { applyMixins } from '../utilities/apply-mixins';
 
 export abstract class Listbox extends VividElement {
 	/**
@@ -395,15 +393,6 @@ export abstract class Listbox extends VividElement {
 	}
 
 	/**
-	 * Switches between single-selection and multi-selection mode.
-	 *
-	 * @internal
-	 */
-	multipleChanged(_: boolean | undefined, next: boolean): void {
-		this.ariaMultiSelectable = next ? 'true' : null;
-	}
-
-	/**
 	 * Updates the list of selected options when the `selectedIndex` changes.
 	 *
 	 * @param prev - the previous selected index value
@@ -502,6 +491,11 @@ export abstract class Listbox extends VividElement {
 	}
 
 	/**
+	 * @internal
+	 */
+	@observable _activeDescendant: string | null = null;
+
+	/**
 	 * Sets an option as selected and gives it focus.
 	 *
 	 * @public
@@ -509,7 +503,7 @@ export abstract class Listbox extends VividElement {
 	protected setSelectedOptions() {
 		if (this.options.length) {
 			this.selectedOptions = [this.options[this.selectedIndex]];
-			this.ariaActiveDescendant = this.firstSelectedOption?.id ?? '';
+			this._activeDescendant = this.firstSelectedOption?.id ?? '';
 			this.focusAndScrollOptionIntoView();
 		}
 	}
@@ -562,59 +556,3 @@ export abstract class Listbox extends VividElement {
 		}
 	}
 }
-
-/**
- * Includes ARIA states and properties relating to the ARIA listbox role
- *
- * @public
- */
-export class DelegatesARIAListbox {
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#listbox} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-activedescendant`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaActiveDescendant: string | null;
-
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#listbox} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-disabled`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaDisabled: 'true' | 'false' | string | null;
-
-	/**
-	 * See {@link https://www.w3.org/TR/wai-aria-1.2/#listbox} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-expanded`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaExpanded: 'true' | 'false' | string | null;
-
-	/**
-	 * See {@link https://w3c.github.io/aria/#listbox} for more information
-	 * @public
-	 * @remarks
-	 * HTML Attribute: `aria-multiselectable`
-	 */
-	@observable
-	// @ts-expect-error Type is incorrectly non-optional
-	ariaMultiSelectable: 'true' | 'false' | string | null;
-}
-
-export interface DelegatesARIAListbox extends ARIAGlobalStatesAndProperties {}
-applyMixins(DelegatesARIAListbox, ARIAGlobalStatesAndProperties);
-
-/**
- * @internal
- */
-export interface Listbox extends DelegatesARIAListbox {}
-applyMixins(Listbox, DelegatesARIAListbox);

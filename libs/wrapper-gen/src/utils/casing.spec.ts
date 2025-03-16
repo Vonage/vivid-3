@@ -3,6 +3,7 @@ import {
 	camelToPascal,
 	kebabToCamel,
 	kebabToPascal,
+	pascalToCamel,
 } from './casing';
 
 describe('kebabToPascal', () => {
@@ -20,6 +21,12 @@ describe('kebabToCamel', () => {
 describe('camelToPascal', () => {
 	it('should convert camel case to pascal case', () => {
 		expect(camelToPascal('camelCase')).toBe('CamelCase');
+	});
+});
+
+describe('pascalToCamel', () => {
+	it('should convert pascal case to camel case', () => {
+		expect(pascalToCamel('CamelCase')).toBe('camelCase');
 	});
 });
 

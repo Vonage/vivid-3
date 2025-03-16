@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Types of selectable-box connotation.
@@ -22,9 +23,7 @@ export type SelectableBoxControlType = 'checkbox' | 'radio';
  * @slot default - Slot for box's content.
  * @event {CustomEvent<undefined>} change - Fired when the checked state changes
  */
-export class SelectableBox extends VividElement {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
-
+export class SelectableBox extends DelegatesAria(VividElement) {
 	/**
 	 * Controls the checked state of the box
 	 *
