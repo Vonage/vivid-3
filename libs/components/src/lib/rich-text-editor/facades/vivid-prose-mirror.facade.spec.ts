@@ -35,9 +35,9 @@ describe('ProseMirrorFacade', () => {
 		EditorViewMock = vi.mocked(EditorView);
 		EditorViewMock.mockReset();
 		Object.defineProperty(EditorView.prototype, 'dom', {
-            value: document.createElement('div'),
-            writable: true,
-        });
+			value: document.createElement('div'),
+			writable: true,
+		});
 		facadeInstance = new ProseMirrorFacade();
 	});
 
@@ -251,12 +251,13 @@ describe('ProseMirrorFacade', () => {
 			facadeInstance.replaceContent(
 				'<p>This is a pretty long text for a sample, but it should work</p>'
 			);
-			
 		});
 
 		it('should prevent change event when no change was made', async () => {
 			const spy = listenToChangeEvent();
-			getOutputElement(element).dispatchEvent(new Event('blur',{ bubbles: true }));	
+			getOutputElement(element).dispatchEvent(
+				new Event('blur', { bubbles: true })
+			);
 
 			expect(spy.mock.calls.length).toBe(0);
 		});
@@ -267,8 +268,12 @@ describe('ProseMirrorFacade', () => {
 				'<p>This is a pretty long text for a sample, but it should work again</p>'
 			);
 
-			getOutputElement(element).dispatchEvent(new Event('input',{ bubbles: true }));	
-			getOutputElement(element).dispatchEvent(new Event('blur',{ bubbles: true }));	
+			getOutputElement(element).dispatchEvent(
+				new Event('input', { bubbles: true })
+			);
+			getOutputElement(element).dispatchEvent(
+				new Event('blur', { bubbles: true })
+			);
 
 			expect(spy.mock.calls.length).toBe(1);
 		});

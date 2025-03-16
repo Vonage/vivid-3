@@ -51,14 +51,14 @@ export class ProseMirrorFacade {
 
 	#handleInputEvent = () => {
 		this.#userContentChange = true;
-	}
+	};
 
 	#handleBlueEvent = () => {
 		if (!this.#userContentChange) {
 			return;
 		}
 		this.#dispatchEvent('change');
-	}
+	};
 
 	init(element: HTMLElement) {
 		if (!(element instanceof HTMLElement)) {
@@ -76,7 +76,7 @@ export class ProseMirrorFacade {
 			plugins,
 		});
 		this.#view = new EditorView(element, { state });
-		this.#view.dom.addEventListener('input', this.#handleInputEvent);		
+		this.#view.dom.addEventListener('input', this.#handleInputEvent);
 		this.#view.dom.addEventListener('blur', this.#handleBlueEvent);
 	}
 
@@ -121,6 +121,6 @@ export class ProseMirrorFacade {
 	}
 
 	#dispatchEvent = (eventName: string, detail?: any) => {
-		this.#eventHandler.dispatchEvent(new CustomEvent(eventName, { detail }))
-	}
+		this.#eventHandler.dispatchEvent(new CustomEvent(eventName, { detail }));
+	};
 }
