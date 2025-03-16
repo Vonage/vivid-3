@@ -4,6 +4,7 @@ import {
 	getControlElement,
 	setProperty,
 } from '@vivid-nx/shared';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { TextAnchor, TextAnchorConnotation } from './text-anchor';
 import '.';
 
@@ -52,49 +53,6 @@ describe('vwc-text-anchor', () => {
 	}
 
 	describe('bindings', () => {
-		function capitalizeFirstLetter(str: string) {
-			return str.charAt(0).toUpperCase() + str.slice(1);
-		}
-
-		it('should set aria labels', async function () {
-			function setAriaLabelsOnElementObject() {
-				ARIA_PROPS.forEach((ariaProp) => {
-					const ariaPropOnObject = `aria${capitalizeFirstLetter(ariaProp)}`;
-					(element as any)[ariaPropOnObject] = ariaProp;
-				});
-			}
-
-			const ARIA_PROPS = [
-				'atomic',
-				'busy',
-				'current',
-				'details',
-				'disabled',
-				'expanded',
-				'haspopup',
-				'hidden',
-				'invalid',
-				'keyshortcuts',
-				'label',
-				'live',
-				'relevant',
-				'roledescription',
-			];
-
-			const anchorElement = getAnchorElement();
-
-			setAriaLabelsOnElementObject();
-			await elementUpdated(element);
-
-			ARIA_PROPS.forEach((ariaProp) => {
-				const ariaPropOnElement = `aria-${ariaProp}`;
-
-				expect(anchorElement?.getAttribute(ariaPropOnElement)).toEqual(
-					ariaProp
-				);
-			});
-		});
-
 		it('should set the "href" attribute', async function () {
 			const attribute = 'href';
 			const anchorElement = getAnchorElement();
@@ -198,5 +156,27 @@ describe('vwc-text-anchor', () => {
 				)
 			).toBeTruthy();
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getAnchorElement()!,
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaExpanded',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

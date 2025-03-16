@@ -13,15 +13,12 @@ import {
 } from '@microsoft/fast-foundation';
 import { MenuItemRole, MediaSkipBy, TabsGutters, Sticky } from '@vonage/vivid';
 import { Direction, Orientation } from '@microsoft/fast-web-utilities';
-import { TypeUnion } from './types';
+import { toTypeStr, TypeStr } from '../common/types';
 
-const typeFromEnumObj = (enumObj: Record<string, string>): TypeUnion =>
-	Object.values(enumObj).map((value) => ({
-		text: `'${value}'`,
-		vuePropType: 'String',
-	}));
+const typeFromEnumObj = (enumObj: Record<string, string>): TypeStr =>
+	toTypeStr(Object.values(enumObj).map((value) => `'${value}'`));
 
-export const globalTypeDefs: Record<string, TypeUnion> = {
+export const globalTypeDefs: Record<string, TypeStr> = {
 	// Types defined by FAST:
 	AccordionExpandMode: typeFromEnumObj(AccordionExpandMode),
 	ComboboxAutocomplete: typeFromEnumObj(ComboboxAutocomplete),
@@ -38,154 +35,63 @@ export const globalTypeDefs: Record<string, TypeUnion> = {
 	Sticky: typeFromEnumObj(Sticky),
 
 	// Types defined by Floating UI:
-	Placement: [
-		{ text: "'top'", vuePropType: 'String' },
-		{ text: "'right'", vuePropType: 'String' },
-		{ text: "'bottom'", vuePropType: 'String' },
-		{ text: "'left'", vuePropType: 'String' },
-		{ text: "'top-start'", vuePropType: 'String' },
-		{ text: "'top-end'", vuePropType: 'String' },
-		{ text: "'right-start'", vuePropType: 'String' },
-		{ text: "'right-end'", vuePropType: 'String' },
-		{ text: "'bottom-start'", vuePropType: 'String' },
-		{ text: "'bottom-end'", vuePropType: 'String' },
-		{ text: "'left-start'", vuePropType: 'String' },
-		{ text: "'left-end'", vuePropType: 'String' },
-	],
-	Strategy: [
-		{ text: "'absolute'", vuePropType: 'String' },
-		{ text: "'fixed'", vuePropType: 'String' },
-	],
+	Placement:
+		"'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+	Strategy: "'absolute' | 'fixed'",
 
 	// Types defined by Vivid Components:
 
 	// Combobox
-	PopupPlacement: [
-		{ text: "'top'", vuePropType: 'String' },
-		{ text: "'bottom'", vuePropType: 'String' },
-	],
+	PopupPlacement: "'top' | 'bottom'",
 
 	// Dialog
-	IconPlacement: [
-		{ text: "'top'", vuePropType: 'String' },
-		{ text: "'side'", vuePropType: 'String' },
-	],
+	IconPlacement: "'top' | 'side'",
 
 	// Layout:
-	Gutters: [
-		{ text: "'small'", vuePropType: 'String' },
-		{ text: "'medium'", vuePropType: 'String' },
-		{ text: "'large'", vuePropType: 'String' },
-	],
-	ColumnSpacing: [
-		{ text: "'small'", vuePropType: 'String' },
-		{ text: "'medium'", vuePropType: 'String' },
-		{ text: "'large'", vuePropType: 'String' },
-	],
-	RowSpacing: [
-		{ text: "'small'", vuePropType: 'String' },
-		{ text: "'medium'", vuePropType: 'String' },
-		{ text: "'large'", vuePropType: 'String' },
-	],
-	ColumnBasis: [
-		{ text: "'small'", vuePropType: 'String' },
-		{ text: "'medium'", vuePropType: 'String' },
-		{ text: "'large'", vuePropType: 'String' },
-		{ text: "'block'", vuePropType: 'String' },
-	],
-	AUTO_SIZING: [
-		{ text: "'fit'", vuePropType: 'String' },
-		{ text: "'fill'", vuePropType: 'String' },
-	],
+	Gutters: "'small' | 'medium' | 'large'",
+	ColumnSpacing: "'small' | 'medium' | 'large'",
+	RowSpacing: "'small' | 'medium' | 'large'",
+	ColumnBasis: "'small' | 'medium' | 'large' | 'block'",
+	AUTO_SIZING: "'fit' | 'fill'",
 
 	// TextArea
-	TextAreaWrap: [
-		{ text: "'hard'", vuePropType: 'String' },
-		{ text: "'soft'", vuePropType: 'String' },
-		{ text: "'off'", vuePropType: 'String' },
-	],
+	TextAreaWrap: "'hard' | 'soft' | 'off'",
 
 	// DataGrid:
-	DataGridSelectionMode: [
-		{ text: "'none'", vuePropType: 'String' },
-		{ text: "'single-row'", vuePropType: 'String' },
-		{ text: "'multi-row'", vuePropType: 'String' },
-		{ text: "'single-cell'", vuePropType: 'String' },
-		{ text: "'multi-cell'", vuePropType: 'String' },
-	],
-	DataGridRowTypes: [
-		{ text: "'default'", vuePropType: 'String' },
-		{ text: "'header'", vuePropType: 'String' },
-		{ text: "'sticky-header'", vuePropType: 'String' },
-	],
-	DataGridCellTypes: [
-		{ text: "'default'", vuePropType: 'String' },
-		{ text: "'columnheader'", vuePropType: 'String' },
-		{ text: "'rowheader'", vuePropType: 'String' },
-	],
+	DataGridSelectionMode:
+		"'none' | 'single-row' | 'multi-row' | 'single-cell' | 'multi-cell'",
+	DataGridRowTypes: "'default' | 'header' | 'sticky-header'",
+	DataGridCellTypes: "'default' | 'columnheader' | 'rowheader'",
 	// Tooltip:
-	anchorType: [
-		{ text: 'string', vuePropType: 'String' },
-		{ text: 'HTMLElement', vuePropType: 'Object' },
-	],
+	anchorType: 'string | HTMLElement',
 
 	// Toggletip:
-	AnchorType: [
-		{ text: 'string', vuePropType: 'String' },
-		{ text: 'HTMLElement', vuePropType: 'Object' },
-	],
+	AnchorType: 'string | HTMLElement',
 
 	// Pagination:
-	Button: [{ text: 'HTMLButtonElement', vuePropType: 'Object' }],
-	'Button[]': [{ text: 'HTMLButtonElement[]', vuePropType: 'Array' }],
+	Button: 'HTMLButtonElement',
+	'Button[]': 'HTMLButtonElement[]',
 
 	// Alert:
-	AlertPlacement: [
-		{ text: "'top'", vuePropType: 'String' },
-		{ text: "'top-start'", vuePropType: 'String' },
-		{ text: "'top-end'", vuePropType: 'String' },
-		{ text: "'bottom'", vuePropType: 'String' },
-		{ text: "'bottom-start'", vuePropType: 'String' },
-		{ text: "'bottom-end'", vuePropType: 'String' },
-	],
-	AlertStrategy: [
-		{ text: "'fixed'", vuePropType: 'String' },
-		{ text: "'static'", vuePropType: 'String' },
-	],
+	AlertPlacement:
+		"'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'",
+	AlertStrategy: "'fixed' | 'static'",
 
 	// Data grid:
-	GenerateHeaderOptions: [
-		{ text: "'none'", vuePropType: 'String' },
-		{ text: "'default'", vuePropType: 'String' },
-		{ text: "'sticky'", vuePropType: 'String' },
-	],
+	GenerateHeaderOptions: "'none' | 'default' | 'sticky'",
 
 	// Date picker:
-	DateStr: [{ text: 'string', vuePropType: 'String' }],
+	DateStr: 'string',
 
 	// Menu item:
 	MenuItemRole: typeFromEnumObj(MenuItemRole),
-	CheckAppearance: [
-		{ text: "'normal'", vuePropType: 'String' },
-		{ text: "'tick-only'", vuePropType: 'String' },
-	],
+	CheckAppearance: "'normal' | 'tick-only'",
 
 	// Selectable box:
-	SelectableBoxControlType: [
-		{ text: "'checkbox'", vuePropType: 'String' },
-		{ text: "'radio'", vuePropType: 'String' },
-	],
+	SelectableBoxControlType: "'checkbox' | 'radio'",
 
 	// Empty-state:
-	EmptyStateIconDecoration: [
-		{ text: "'outlined'", vuePropType: 'String' },
-		{ text: "'filled'", vuePropType: 'String' },
-	],
+	EmptyStateIconDecoration: "'outlined' | 'filled'",
 
-	AriaCheckedStates: [
-		{ text: "'true'", vuePropType: 'String' },
-		{ text: "'false'", vuePropType: 'String' },
-		{ text: "'mixed'", vuePropType: 'String' },
-		{ text: "'undefined'", vuePropType: 'String' },
-	],
+	AriaCheckedStates: "'true' | 'false' | 'mixed' | 'undefined'",
 };

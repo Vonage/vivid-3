@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderIcons > should render an enum of icon names from the manifest 1`] = `
+"export enum Icon {
+   '1Icon1' = '1-icon-1',
+   'icon2' = 'icon-2',
+};
+
+export type IconId = \`\${Icon}\`;
+"
+`;

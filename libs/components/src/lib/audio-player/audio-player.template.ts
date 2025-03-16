@@ -116,7 +116,7 @@ function renderSlider(context: VividElementDefinitionContext) {
 		value="0"
 		aria-label="${(x) => x.sliderAriaLabel || x.locale.audioPlayer.sliderLabel}"
 		max="100"
-		ariaValuetext="${(x) => formatTime(x.currentTime)}"
+		aria-valuetext="${(x) => formatTime(x.currentTime)}"
 		connotation="${(x) => x.connotation}"
 		?disabled="${(x) => x.disabled || !x.duration}"
 		internal-part>
