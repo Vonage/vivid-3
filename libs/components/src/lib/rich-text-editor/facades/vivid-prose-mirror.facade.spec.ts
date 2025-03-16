@@ -1,6 +1,6 @@
 import { EditorState, type EditorStateConfig } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import type { MockedObject } from 'vitest';
+import type { Mock, MockedObject } from 'vitest';
 import type { RichTextEditorSelection } from '../rich-text-editor.js';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema.ts';
 import { ProseMirrorFacade } from './vivid-prose-mirror.facade.ts';
@@ -34,6 +34,10 @@ describe('ProseMirrorFacade', () => {
 	beforeEach(async () => {
 		EditorViewMock = vi.mocked(EditorView);
 		EditorViewMock.mockReset();
+		Object.defineProperty(EditorView.prototype, 'dom', {
+            value: document.createElement('div'),
+            writable: true,
+        });
 		facadeInstance = new ProseMirrorFacade();
 	});
 
@@ -194,9 +198,6 @@ describe('ProseMirrorFacade', () => {
 
 	describe('selection-changed event', () => {
 		beforeEach(async () => {
-			vi.spyOn(EditorState, 'create');
-
-			await useOriginalEditorState();
 			await useOriginalEditorView();
 
 			facadeInstance.init(document.createElement('div'));
@@ -230,6 +231,46 @@ describe('ProseMirrorFacade', () => {
 			});
 
 			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('change event', () => {
+		function listenToChangeEvent() {
+			spy = vi.fn();
+			facadeInstance.addEventListener('change', spy);
+			return spy;
+		}
+
+		let element: HTMLElement;
+		let spy: Mock<(...args: any[]) => any> | EventListenerOrEventListenerObject;
+
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			element = document.createElement('div');
+			facadeInstance.init(element);
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			
+		});
+
+		it('should prevent change event when no change was made', async () => {
+			const spy = listenToChangeEvent();
+			getOutputElement(element).dispatchEvent(new Event('blur',{ bubbles: true }));	
+
+			expect(spy.mock.calls.length).toBe(0);
+		});
+
+		it('should fire event after input area change', async () => {
+			const spy = listenToChangeEvent();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work again</p>'
+			);
+
+			getOutputElement(element).dispatchEvent(new Event('input',{ bubbles: true }));	
+			getOutputElement(element).dispatchEvent(new Event('blur',{ bubbles: true }));	
+
+			expect(spy.mock.calls.length).toBe(1);
 		});
 	});
 
