@@ -42,10 +42,22 @@ function convertSelectionToVividFormat({
 	};
 }
 export class ProseMirrorFacade {
+	#userContentChange = false;
 	#view?: EditorView;
 
 	#onSelectionChange = () => {
-		this.#eventHandler.dispatchEvent(new CustomEvent('selection-changed'));
+		this.#dispatchEvent('selection-changed');
+	};
+
+	#handleInputEvent = () => {
+		this.#userContentChange = true;
+	};
+
+	#handleBlueEvent = () => {
+		if (!this.#userContentChange) {
+			return;
+		}
+		this.#dispatchEvent('change');
 	};
 
 	init(element: HTMLElement) {
@@ -64,6 +76,8 @@ export class ProseMirrorFacade {
 			plugins,
 		});
 		this.#view = new EditorView(element, { state });
+		this.#view.dom.addEventListener('input', this.#handleInputEvent);
+		this.#view.dom.addEventListener('blur', this.#handleBlueEvent);
 	}
 
 	replaceContent(content: string) {
@@ -105,4 +119,8 @@ export class ProseMirrorFacade {
 	) {
 		this.#eventHandler.addEventListener(eventName, callback);
 	}
+
+	#dispatchEvent = (eventName: string, detail?: any) => {
+		this.#eventHandler.dispatchEvent(new CustomEvent(eventName, { detail }));
+	};
 }
