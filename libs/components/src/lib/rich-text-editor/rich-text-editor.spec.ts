@@ -278,4 +278,27 @@ describe('vwc-rich-text-editor', () => {
 			expect(element.selectionEnd).toBe(5);
 		});
 	});
+
+	describe('change event', () => {
+		it('should fire the change event when on facade change', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			getOutputElement().dispatchEvent(new Event('input'));
+			getOutputElement().dispatchEvent(new Event('blur'));
+
+			expect(spy).toHaveBeenCalledOnce();
+		});
+
+		it('should bubble and set to composed', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			getOutputElement().dispatchEvent(new Event('input'));
+			getOutputElement().dispatchEvent(new Event('blur'));
+
+			expect(spy.mock.calls[0][0].bubbles).toBe(true);
+			expect(spy.mock.calls[0][0].composed).toBe(true);
+		});
+	});
 });
