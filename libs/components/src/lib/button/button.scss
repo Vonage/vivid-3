@@ -207,7 +207,7 @@
 
 	/* Focus style for filled */
 	&.appearance-filled {
-		#{focus-variables.$focus-stroke-gap-color}: unset;
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
 		&:focus-visible {
 			position: relative;
