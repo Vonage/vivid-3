@@ -51,6 +51,7 @@ export class ProseMirrorFacade {
 
 	#handleInputEvent = () => {
 		this.#userContentChange = true;
+		this.#dispatchEvent('input');
 	};
 
 	#handleBlueEvent = () => {
