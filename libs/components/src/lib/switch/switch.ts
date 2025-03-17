@@ -1,6 +1,7 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import type { Connotation } from '../enums';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedSwitch } from './switch.form-associated';
 
 export type SwitchConnotation =
@@ -9,14 +10,14 @@ export type SwitchConnotation =
 	| Connotation.Announcement
 	| Connotation.Success
 	| Connotation.CTA;
+
 /**
  * @public
  * @component switch
  * @event {CustomEvent<undefined>} change - Emits a custom change event when the checked state changes
  * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
  */
-export class Switch extends FormAssociatedSwitch {
-	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
+export class Switch extends DelegatesAria(FormAssociatedSwitch) {
 	/**
 	 * Indicates the switch's label.
 	 *

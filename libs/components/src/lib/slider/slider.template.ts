@@ -45,7 +45,7 @@ export const SliderTemplate = (context: VividElementDefinitionContext) => {
 			tabindex="${(x) => (x.disabled ? null : 0)}"
 			aria-label="${(x) => x.ariaLabel}"
 			aria-valuetext="${(x) =>
-				x.ariaValuetext || x.valueTextFormatter(x.value)}"
+				x.ariaValueText || x.valueTextFormatter(x.value)}"
 			aria-valuenow="${(x) => x.value}"
 			aria-valuemin="${(x) => x.min}"
 			aria-valuemax="${(x) => x.max}"
@@ -86,7 +86,7 @@ export const SliderTemplate = (context: VividElementDefinitionContext) => {
 					aria-hidden="true"
 				>
 					<div class="tooltip">${(x) =>
-						x.ariaValuetext || x.valueTextFormatter(x.value)}</div>
+						x.ariaValueText || x.valueTextFormatter(x.value)}</div>
 				</${popupTag}>`
 				)}
 			</div>

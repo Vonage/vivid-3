@@ -1,5 +1,6 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Switch } from './switch';
 import '.';
 
@@ -299,38 +300,27 @@ describe('vwc-switch', () => {
 	});
 
 	describe('a11y attributes', () => {
-		let control: HTMLElement | null;
-
-		describe('label', () => {
-			beforeEach(async () => {
-				element.label = 'Label';
-				await elementUpdated(element);
-				control = await getControlElement(element);
-			});
-
-			it('should set role to null on the host element', async () => {
-				expect(element.getAttribute('role')).toBe(null);
-			});
-
-			it('should set role to switch on the control element', async () => {
-				expect(control?.getAttribute('role')).toBe('switch');
-			});
+		it('should set role to switch on the control element', async () => {
+			expect(getControlElement(element).getAttribute('role')).toBe('switch');
 		});
 
-		describe('aria-label', () => {
-			beforeEach(async () => {
-				element.ariaLabel = 'Label';
-				await elementUpdated(element);
-				control = await getControlElement(element);
-			});
-
-			it('should set aria-label on control element', async () => {
-				expect(control!.getAttribute('aria-label')).toBe('Label');
-			});
-
-			it('should set role to presentation on the host', async () => {
-				expect(element.getAttribute('role')).toBe('presentation');
-			});
+		it('should set role to null on the host element by default', async () => {
+			expect(element.getAttribute('role')).toBe(null);
 		});
+
+		it('should set role to presentation on the host when aria-label is set', async () => {
+			element.ariaLabel = 'Label';
+			await elementUpdated(element);
+
+			expect(element.getAttribute('role')).toBe('presentation');
+		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			['ariaLabel']
+		);
 	});
 });

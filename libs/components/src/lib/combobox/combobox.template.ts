@@ -67,10 +67,9 @@ function renderInput(context: VividElementDefinitionContext) {
 					autocomplete="off"
 					class="control"
 					aria-activedescendant="${(x) =>
-						x.open ? x.ariaActiveDescendant : null}"
+						x.open ? x._activeDescendant : null}"
 					aria-autocomplete="${(x) => x.autocomplete}"
 					aria-controls="${(x) => x.listboxId}"
-					aria-disabled="${(x) => x.ariaDisabled}"
 					aria-expanded="${(x) => x.open}"
 					aria-haspopup="listbox"
 					placeholder="${(x) => x.placeholder}"
@@ -100,8 +99,6 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<Combobox>`
         <template
-            aria-disabled="${(x) => x.ariaDisabled}"
-            autocomplete="${(x) => x.autocomplete}"
             tabindex="${(x) => (!x.disabled ? '0' : null)}"
             @click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
             @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
@@ -111,6 +108,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 							return x.keydownHandler(event as KeyboardEvent);
 						}}"
         >
+					<div class="control-wrapper">
 			${() => renderInput(context)}
 			<${popupTag} class="popup"
 				style="${setFixedDropdownVarWidth}"
@@ -131,6 +129,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 					</slot>
 				</div>
 			</${popupTag}>
+					</div>
 					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
 						${getFeedbackTemplate(context)}
 					</div>
