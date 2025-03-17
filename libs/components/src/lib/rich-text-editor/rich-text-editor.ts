@@ -80,6 +80,7 @@ export class RichTextEditor extends VividElement {
 		const { start, end } = this.#editor!.selection();
 		this.selectionStart = start;
 		this.selectionEnd = end as number;
+		this.$emit('selection-changed');
 	};
 
 	#handleChange = () => {
