@@ -56,7 +56,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.locator('#date-range-picker #calendar-button').click();
+	await page.locator('#date-range-picker #picker-button').click();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/date-range-picker.png'
@@ -81,7 +81,7 @@ test('selecting a date range', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.locator('vwc-date-range-picker #calendar-button').click();
+	await page.locator('vwc-date-range-picker #picker-button').click();
 
 	await page.getByRole('gridcell', { name: '10' }).first().click();
 	await page.getByRole('gridcell', { name: '20' }).first().click();

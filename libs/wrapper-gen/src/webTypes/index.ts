@@ -1,22 +1,20 @@
 import * as fs from 'fs';
-import { WebTypesTag } from './tags';
+import * as path from 'path';
+import { renderWebTypes } from './renderWebTypes';
+import { Metadata } from '../common/metadata';
+import { makeImportedTypesResolver } from '../common/importedTypes';
 
-export function generateWebTypesWithTags(
-	tags: WebTypesTag[]
-): Record<string, unknown> {
+const LibraryDistFolder = '../vue-wrappers';
+
+export async function generateWebTypes(metadata: Metadata) {
 	const { version } = JSON.parse(
 		fs.readFileSync('../vue-wrappers/package.json', 'utf-8')
 	);
-	return {
-		framework: 'vue',
-		name: '@vonage/vivid-vue',
-		version,
-		contributions: {
-			html: {
-				'description-markup': 'markdown',
-				'types-syntax': 'typescript',
-				tags,
-			},
-		},
-	};
+
+	const importedTypesResolver = await makeImportedTypesResolver(metadata);
+
+	fs.writeFileSync(
+		path.join(LibraryDistFolder, 'web-types.json'),
+		renderWebTypes(metadata.componentDefs, importedTypesResolver, version)
+	);
 }

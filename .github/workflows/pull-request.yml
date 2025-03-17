@@ -9,7 +9,7 @@ on:
       - ready_for_review
       - converted_to_draft
     branches:
-      - main*
+      - '**'
 
 concurrency:
   group: ci-tests-${{ github.ref }}-1

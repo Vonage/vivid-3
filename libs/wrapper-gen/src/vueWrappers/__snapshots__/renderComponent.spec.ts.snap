@@ -1,0 +1,362 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderComponent > should render a component 1`] = `
+"
+import { defineComponent, ref, h, VNodeData, PropType } from 'vue';
+import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
+import { registerExampleComponent } from '@vonage/vivid';
+import { registerComponent } from '../../utils/register';
+import { IconId } from '../icons';
+import { handleNamedSlot } from '../../utils/slots';
+import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
+
+
+/**
+ * This is an example component
+ */
+export default defineComponent({
+  name: 'VExampleComponent',
+  
+  model: isVue2 ? {
+    prop: 'modelValue',
+    event: 'update:modelValue'
+  } : undefined,
+  props: {
+    /**
+ * This is an example prop
+ */
+        exampleProp: {type: String as PropType<string>, default: undefined},
+/**
+ * This is an example prop
+ */
+        sameEvent: {type: String as PropType<string>, default: undefined},
+
+        typeUnion: {type: [String, Number] as PropType<string | number>, default: undefined},
+
+        iconType: {type: String as PropType<IconId>, default: undefined},
+
+        value: {type: String as PropType<string>, default: undefined},
+
+        modelValue: {type: String as PropType<string>, default: undefined},
+
+        start: {type: String as PropType<string>, default: undefined},
+
+        forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
+
+        booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
+  },
+  emits: [
+			
+						/**
+ * This is an example event
+ * @type {string}
+ */
+							'example-event',
+
+						/**
+ * @type {Event}
+ */
+							'input',
+
+						/**
+ * @type {CustomEvent<{a: string | number}>}
+ */
+							'input:start',
+
+						/**
+ * Fires when the modelValue value changes
+ * @type {string}
+ */
+							'update:modelValue',
+
+						/**
+ * Fires when the sameEvent value changes
+ * @type {string}
+ */
+							'update:sameEvent',
+
+						/**
+ * Fires when the start value changes
+ * @type {string}
+ */
+							'update:start'],
+  methods: {
+  	
+        /**
+ * This is an example method
+ */
+        exampleMethod(exampleArg: string): string{ return (this.element as any)?.exampleMethod(exampleArg); }
+	},
+	
+  setup(props, ctx) {
+    const componentName = registerComponent('example-component', registerExampleComponent);
+
+    const element = ref<ExampleComponent | null>(null);
+
+    return { componentName, element };
+  },
+  render() {
+    
+    if (isVue2) {
+        return h(this.componentName, {
+            ref: 'element',
+            attrs: { ...((this.sameEvent ?? this.exampleProp) !== undefined ? {'example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'start': this.start } : {}),...((this.booleanProp) !== undefined ? {'boolean-prop': this.booleanProp } : {}) },
+            class: 'vvd-component',
+            domProps: { ...((this.forcedDomProp) !== undefined ? {'forcedDomProp': this.forcedDomProp } : {}) },
+            on: { 'example-event': (event: Event) => {
+          
+          this.$emit('example-event', event);
+        },'input': (event: Event) => {
+          this.$emit('update:modelValue', (event.target as any).value);
+this.$emit('update:sameEvent', (event.target as any).exampleProp);
+          this.$emit('input', event);
+        },'input:start': (event: Event) => {
+          this.$emit('update:start', (event.target as any).start);
+          this.$emit('input:start', event);
+        } },
+        }, [
+            this.$slots.default,
+            // @slot example-slot This is an example slot
+      handleNamedSlot('example-slot', this.$slots['example-slot']),// @slot no-description 
+      handleNamedSlot('no-description', this.$slots['no-description'])
+        ]);
+      }
+      // @ts-ignore
+      return h(this.componentName, {
+          ref: 'element',
+          class: 'vvd-component',
+          ...handleVue3Props({...((this.sameEvent ?? this.exampleProp) !== undefined ? {'^example-prop': this.sameEvent ?? this.exampleProp } : {}),...((this.typeUnion) !== undefined ? {'^type-union': this.typeUnion } : {}),...((this.iconType) !== undefined ? {'^icon-type': this.iconType } : {}),...((this.modelValue ?? this.value) !== undefined ? {'^current-value': this.modelValue ?? this.value } : {}),...((this.start) !== undefined ? {'^start': this.start } : {}),...((this.forcedDomProp) !== undefined ? {'.forcedDomProp': this.forcedDomProp } : {}),...((this.booleanProp) !== undefined && (this.booleanProp) !== false ? {'^boolean-prop': this.booleanProp } : {})}),'onExampleEvent': (event: Event) => {
+					 
+          this.$emit('example-event', event);
+        },'onInput': (event: Event) => {
+					 this.$emit('update:modelValue', (event.target as any).value);
+this.$emit('update:sameEvent', (event.target as any).exampleProp);
+          this.$emit('input', event);
+        },'onInput:start': (event: Event) => {
+					 this.$emit('update:start', (event.target as any).start);
+          this.$emit('input:start', event);
+        }
+      } as unknown as VNodeData, [
+          // @ts-ignore
+          this.$slots.default && this.$slots.default(),
+          // @slot example-slot This is an example slot
+      handleNamedSlot('example-slot', this.$slots['example-slot']),// @slot no-description 
+      handleNamedSlot('no-description', this.$slots['no-description'])
+      ]);
+    
+  },
+});
+"
+`;
+
+exports[`renderComponent > should render a component as a Vue 3 stub 1`] = `
+"
+import { defineComponent, ref, h, VNodeData, PropType } from 'vue3';
+import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
+import { registerExampleComponent } from '@vonage/vivid';
+import { registerComponent } from '../../utils/register';
+import { IconId } from '../icons';
+import { handleNamedSlot } from '../../utils/slots';
+import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
+import type { SlotsType } from 'vue3';
+
+
+/**
+ * This is an example component
+ */
+export default defineComponent({
+  name: 'VExampleComponent',
+  
+  model: isVue2 ? {
+    prop: 'modelValue',
+    event: 'update:modelValue'
+  } : undefined,
+  props: {
+    /**
+ * This is an example prop
+ */
+        exampleProp: {type: String as PropType<string>, default: undefined},
+/**
+ * This is an example prop
+ */
+        sameEvent: {type: String as PropType<string>, default: undefined},
+
+        typeUnion: {type: [String, Number] as PropType<string | number>, default: undefined},
+
+        iconType: {type: String as PropType<IconId>, default: undefined},
+
+        value: {type: String as PropType<string>, default: undefined},
+
+        modelValue: {type: String as PropType<string>, default: undefined},
+
+        start: {type: String as PropType<string>, default: undefined},
+
+        forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
+
+        booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
+  },
+  emits: {
+			
+						/**
+ * This is an example event
+ * @type {string}
+ */
+						['example-event'](event: string & { target: ExampleComponent}) { return true },
+
+						/**
+ * @type {Event}
+ */
+						['input'](event: Event & { target: ExampleComponent}) { return true },
+
+						/**
+ * @type {CustomEvent<{a: string | number}>}
+ */
+						['input:start'](event: CustomEvent<{a: string | number}> & { target: ExampleComponent}) { return true },
+
+						/**
+ * Fires when the modelValue value changes
+ * @type {string}
+ */
+						['update:modelValue'](event: string & { target: ExampleComponent}) { return true },
+
+						/**
+ * Fires when the sameEvent value changes
+ * @type {string}
+ */
+						['update:sameEvent'](event: string & { target: ExampleComponent}) { return true },
+
+						/**
+ * Fires when the start value changes
+ * @type {string}
+ */
+						['update:start'](event: string & { target: ExampleComponent}) { return true }},
+  methods: {
+  	
+        /**
+ * This is an example method
+ */
+        exampleMethod(exampleArg: string): string{ return (this.element as any)?.exampleMethod(exampleArg); }
+	},
+	slots: Object as SlotsType<{
+		
+		/**
+ * This is an example slot
+ */
+		"example-slot": Record<string, never>
+
+		
+		"no-description": Record<string, never>
+	}>,
+  setup(props, ctx) {
+    const componentName = registerComponent('example-component', registerExampleComponent);
+
+    const element = ref<ExampleComponent | null>(null);
+
+    return { componentName, element };
+  },
+  render() {
+    return null;
+  },
+});
+"
+`;
+
+exports[`renderComponent > should render a minimal component 1`] = `
+"
+import { defineComponent, ref, h, VNodeData } from 'vue';
+import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
+import { registerExampleComponent } from '@vonage/vivid';
+import { registerComponent } from '../../utils/register';
+import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
+
+
+
+export default defineComponent({
+  name: 'VExampleComponent',
+  
+  props: {
+    
+  },
+  emits: [
+			],
+  methods: {
+  	
+	},
+	
+  setup(props, ctx) {
+    const componentName = registerComponent('example-component', registerExampleComponent);
+
+    const element = ref<ExampleComponent | null>(null);
+
+    return { componentName, element };
+  },
+  render() {
+    
+    if (isVue2) {
+        return h(this.componentName, {
+            ref: 'element',
+            attrs: {  },
+            class: 'vvd-component',
+            
+            on: {  },
+        }, [
+            this.$slots.default,
+            
+        ]);
+      }
+      // @ts-ignore
+      return h(this.componentName, {
+          ref: 'element',
+          class: 'vvd-component',
+          ...handleVue3Props({})
+      } as unknown as VNodeData, [
+          // @ts-ignore
+          this.$slots.default && this.$slots.default(),
+          
+      ]);
+    
+  },
+});
+"
+`;
+
+exports[`renderComponent > should render minimal component as a Vue 3 stub 1`] = `
+"
+import { defineComponent, ref, h, VNodeData } from 'vue3';
+import { isVue2 } from '../../utils/vue';
+import { handleVue3Props } from '../../utils/ssr';
+import { registerExampleComponent } from '@vonage/vivid';
+import { registerComponent } from '../../utils/register';
+import type { ExampleComponent } from '@vonage/vivid/lib/example-component/example-component';
+import type { SlotsType } from 'vue3';
+
+
+
+export default defineComponent({
+  name: 'VExampleComponent',
+  
+  props: {
+    
+  },
+  emits: {
+			},
+  methods: {
+  	
+	},
+	slots: Object as SlotsType<Record<string, never>>,
+  setup(props, ctx) {
+    const componentName = registerComponent('example-component', registerExampleComponent);
+
+    const element = ref<ExampleComponent | null>(null);
+
+    return { componentName, element };
+  },
+  render() {
+    return null;
+  },
+});
+"
+`;

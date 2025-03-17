@@ -1036,10 +1036,21 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 		}
 
 		if (!e.defaultPrevented) {
-			// Unless something was clicked on that handled the event, e.g. tag remove button, focus the input when clicking anywhere
+			// Unless something was clicked on that handled the event, e.g. tag remove button or chevron icon, focus the input when clicking anywhere
 			this._input.focus();
 			this.open = true;
 		}
+	}
+
+	/**
+	 * @internal
+	 */
+	_onChevronClick() {
+		if (this.open) {
+			this.open = false;
+			return false;
+		}
+		return true;
 	}
 
 	override connectedCallback() {

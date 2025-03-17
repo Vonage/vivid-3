@@ -1,4 +1,5 @@
 @use '../popup/partials/variables' as popup-variables;
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../text-field/partials/variables' as text-field-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus-variables;
@@ -13,15 +14,23 @@
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use 'partials/variables' as variables;
 @use '../../shared/patterns/chevron' as chevron;
-@include chevron.chevron;
 
 $low-ink-color: --_low-ink-color;
+
+@include chevron.chevron;
+@include chevron.chevron-clickable($low-ink-color);
 
 :host {
 	position: relative;
 	display: inline-flex;
 	flex-direction: column;
 	gap: 4px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+}
+
+:host([disabled]) {
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-400});
+	cursor: not-allowed;
 }
 
 .base {
@@ -69,17 +78,6 @@ $low-ink-color: --_low-ink-color;
 		align-items: center;
 		gap: 8px;
 		padding-inline-end: 16px;
-	}
-}
-
-.chevron {
-	:not(.disabled) & {
-		cursor: pointer;
-	}
-
-	.disabled & {
-		color: var(#{$low-ink-color});
-		cursor: not-allowed;
 	}
 }
 

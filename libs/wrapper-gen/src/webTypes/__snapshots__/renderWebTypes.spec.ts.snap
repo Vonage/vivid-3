@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderWebTypes > should render web types 1`] = `
+"{
+ "framework": "vue",
+ "name": "@vonage/vivid-vue",
+ "version": "1.2.3",
+ "contributions": {
+  "html": {
+   "description-markup": "markdown",
+   "types-syntax": "typescript",
+   "tags": [
+    {
+     "name": "VExampleComponent",
+     "description": "This is an example component",
+     "attributes": [
+      {
+       "name": "exampleProp",
+       "description": "This is an example prop",
+       "value": {
+        "kind": "expression",
+        "type": "string"
+       }
+      },
+      {
+       "name": "typeUnion",
+       "value": {
+        "kind": "expression",
+        "type": "string | number"
+       }
+      },
+      {
+       "name": "iconType",
+       "value": {
+        "kind": "expression",
+        "type": "'1-icon-1' | 'icon-2'"
+       }
+      },
+      {
+       "name": "value",
+       "value": {
+        "kind": "expression",
+        "type": "string"
+       }
+      },
+      {
+       "name": "start",
+       "value": {
+        "kind": "expression",
+        "type": "string"
+       }
+      },
+      {
+       "name": "forcedDomProp",
+       "value": {
+        "kind": "expression",
+        "type": "string | HTMLElement"
+       }
+      },
+      {
+       "name": "booleanProp",
+       "value": {
+        "kind": "expression",
+        "type": "boolean"
+       }
+      }
+     ],
+     "events": [],
+     "slots": [
+      {
+       "name": "example-slot",
+       "description": "This is an example slot"
+      },
+      {
+       "name": "no-description"
+      }
+     ],
+     "source": {
+      "module": "@vonage/vivid-vue",
+      "symbol": "VExampleComponent"
+     },
+     "priority": "highest"
+    }
+   ]
+  }
+ }
+}"
+`;
