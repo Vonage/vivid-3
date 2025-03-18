@@ -6,16 +6,16 @@ import { MenuBar } from './menubar.js';
 import { MenuBarTemplate as template } from './menubar.template.js';
 
 export const menuBarDefinition = defineVividComponent(
-    'menubar',
-    MenuBar,
-    template,
-    [],
-    {
-        styles,
-        shadowOptions: {
-            delegatesFocus: true,
-        },
-    }
+	'menubar',
+	MenuBar,
+	template,
+	[],
+	{
+		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
+	}
 );
 
 /**
@@ -23,6 +23,4 @@ export const menuBarDefinition = defineVividComponent(
  *
  * @param prefix - the prefix to use for the component name
  */
-export const registerMenuBar = createRegisterFunction(
-    menuBarDefinition
-);
+export const registerMenuBar = createRegisterFunction(menuBarDefinition);

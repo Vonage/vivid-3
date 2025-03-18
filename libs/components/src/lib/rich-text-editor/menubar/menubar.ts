@@ -1,5 +1,3 @@
-import { VividElement } from "../../../shared/foundation/vivid-element/vivid-element";
+import { VividElement } from '../../../shared/foundation/vivid-element/vivid-element';
 
-export class MenuBar extends VividElement {
-
-}
+export class MenuBar extends VividElement {}

@@ -13,9 +13,9 @@ const getClasses = (_: MenuBar) => classNames('control');
  * @public
  */
 export const MenuBarTemplate: (
-    context: VividElementDefinitionContext
+	context: VividElementDefinitionContext
 ) => ViewTemplate<MenuBar> = (_: VividElementDefinitionContext) => {
-    return html`<template class="${getClasses}">
-        <div id="editor"></div>
-    </template>`;
+	return html`<template class="${getClasses}">
+		<div id="editor"></div>
+	</template>`;
 };
