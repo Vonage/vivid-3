@@ -14,7 +14,7 @@ describe('menuBar', () => {
     });
 
     describe('basic', () => {
-        it('should be initialized as a vwc-rich-text-editor', async () => {
+        it('should be initialized as a vwc-menubar', async () => {
             expect(element).toBeInstanceOf(MenuBar);
         });
 
