@@ -32,6 +32,7 @@ function renderDismissButton(buttonTag: string) {
 			aria-label="${(x) =>
 				x.dismissButtonAriaLabel || x.locale.alert.dismissButtonLabel}"
 			size="condensed"
+			type="button"
 			class="dismiss-button"
 			icon="close-line"
 			@click="${(x) => (x.open = false)}">
@@ -44,17 +45,19 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='8' exportparts="vvd-theme-alternate">
-		<div
-			class="${getControlClasses}"
-			role="${(x) => (x.removable ? 'alertdialog' : 'alert')}"
-			aria-live="assertive"
-		>
-			<div part="vvd-theme-alternate" class="${getClasses}">
+		<div class="${getControlClasses}">
+			<div 
+				part="vvd-theme-alternate" 
+				class="${getClasses}" 
+				role="alert" 
+				aria-hidden="${(x) => (x.open ? 'false' : 'true')}" 
+				${(x) => (!x.open ? 'hidden' : '')}
+			>
 				${renderIcon(context)}
 				<div class="alert-text">
 					${when(
 						(x) => x.headline,
-						html`<header class="headline">${(x) => x.headline}</header>`
+						html`<div class="headline">${(x) => x.headline}</div>`
 					)}
 					${when((x) => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}
 					<slot name="main"></slot>
@@ -66,3 +69,11 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 	</${elevationTag}>
 	`;
 };
+
+// export const AlertTemplate = (context: VividElementDefinitionContext) => {
+// 	return html<Alert>`
+// 		<div role="alert">
+// 			${(x) => x.open ? x.text : null}
+// 		</div>
+// 	`;
+// };
