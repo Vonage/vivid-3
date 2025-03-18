@@ -513,7 +513,7 @@
 				}
 			};
 
-			select.addEventListener('input:searchText', (e) => {
+			select.addEventListener('input:search-text', (e) => {
 				onSearchTextChanged(e.target.searchText);
 			});
 

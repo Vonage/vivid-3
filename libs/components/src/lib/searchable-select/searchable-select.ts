@@ -50,7 +50,9 @@ const isFormAssociatedTryingToSetFormValue = (
  * @slot helper-text - Describes how to use the component. Alternative to the `helper-text` attribute.
  * @slot no-options - Message that appears when no options are available.
  * @slot no-matches - Message that appears when no options match the search query.
+ * @slot loading-options - Message that appears when no options are loading.
  * @event {CustomEvent<undefined>} input - Fired when the selected options change
+ * @event {CustomEvent<undefined>} input:search-text - Fired when the search text changes
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
  * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  * @vueModel values values input `(event.target as any).values`
@@ -251,7 +253,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	_internalSearchTextChanged(newValue: string | null, oldValue: string | null) {
 		if (oldValue !== newValue) {
 			this.#updateFilteredOptions();
-			this.$emit('input:searchText', undefined, {
+			this.$emit('input:search-text', undefined, {
 				bubbles: false,
 				composed: false,
 			});
@@ -293,7 +295,6 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	_onInputBlur(_: FocusEvent) {
-		console.log('_onInputBlur');
 		this.open = false;
 		this._internalSearchText = null;
 		this._changeDescription = '';
