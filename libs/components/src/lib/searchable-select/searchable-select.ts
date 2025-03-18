@@ -140,15 +140,6 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			return;
 		}
 
-		if (!this.multiple) {
-			if (this.values.length) {
-				this.#suppressFilter = true;
-				this._inputValue = this.#textForValue(this.values[0])!;
-			} else {
-				this._inputValue = '';
-			}
-		}
-
 		this.value = this.values.length ? this.values[0] : '';
 
 		this.#updateSelectedOnSlottedOptions();
@@ -171,6 +162,12 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateValuesWhileMaintainingOrder(newValues: string[]) {
 		const oldSet = new Set(this.values);
 		const newSet = new Set(newValues);
+		if (
+			oldSet.size === newSet.size &&
+			[...oldSet].every((v) => newSet.has(v))
+		) {
+			return;
+		}
 		this.values = [...this.values]
 			.filter((v) => newSet.has(v))
 			.concat([...newValues].filter((v) => !oldSet.has(v)));
@@ -246,27 +243,48 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	@observable _inputValue = '';
+	@observable _internalSearchText: string | null = null;
+
 	/**
 	 * @internal
 	 */
-	_inputValueChanged() {
-		this.#updateFilteredOptions();
+	_internalSearchTextChanged(newValue: string | null, oldValue: string | null) {
+		if (oldValue !== newValue) {
+			this.#updateFilteredOptions();
+			this.$emit('input:searchText', undefined, {
+				bubbles: false,
+				composed: false,
+			});
+		}
+	}
+
+	get searchText() {
+		return this._internalSearchText ?? '';
+	}
+
+	/**
+	 * @internal
+	 */
+	get _inputValue() {
+		return (
+			this._internalSearchText ??
+			(!this.multiple && this.value !== ''
+				? this.#textForValue(this.value)!
+				: '')
+		);
 	}
 
 	/**
 	 * @internal
 	 */
 	_onInputInput(event: InputEvent) {
-		this.#suppressFilter = false;
-		this._inputValue = (event.target as HTMLInputElement).value;
+		this._internalSearchText = (event.target as HTMLInputElement).value;
 	}
 
 	/**
 	 * @internal
 	 */
 	_onInputFocus(_: FocusEvent) {
-		this.#suppressFilter = true;
 		this.#updateFilteredOptions();
 		this.open = true;
 	}
@@ -275,16 +293,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	_onInputBlur(_: FocusEvent) {
+		console.log('_onInputBlur');
 		this.open = false;
-		if (this.multiple) {
-			this._inputValue = '';
-		} else {
-			if (this.values.length === 0) {
-				this._inputValue = '';
-			} else {
-				this._inputValue = this.#textForValue(this.values[0])!;
-			}
-		}
+		this._internalSearchText = null;
 		this._changeDescription = '';
 	}
 
@@ -463,6 +474,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#handleOptionInteraction(option: ListboxOption) {
 		const value = option.value;
 		let newValues: string[];
+		let shouldClearSearchText = false;
 
 		const isSelection = !this.values.includes(value);
 
@@ -472,11 +484,11 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			} else {
 				newValues = this.values.filter((option) => option !== value);
 			}
-			this._inputValue = '';
+			shouldClearSearchText = true;
 		} else {
 			if (isSelection) {
 				newValues = [value];
-				this._inputValue = option.text;
+				shouldClearSearchText = true;
 			} else {
 				newValues = [];
 			}
@@ -488,6 +500,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
 
 		this.#updateValuesThroughUserInteraction(newValues);
+		if (shouldClearSearchText) {
+			this._internalSearchText = null;
+		}
 	}
 
 	// --- Option tag icons ---
@@ -535,29 +550,36 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 */
 	@observable _filteredEnabledOptions: ListboxOption[] = [];
 
-	#suppressFilter = false;
+	@observable filterOption?: (
+		option: ListboxOption,
+		searchText: string
+	) => boolean;
+
+	@attr({
+		mode: 'boolean',
+	})
+	loading = false;
 
 	#updateFilteredOptions() {
 		const newFilteredOptions = [];
 
-		for (const option of this._slottedOptions ?? []) {
-			if (this.#suppressFilter || this._inputValue === '') {
-				option.hidden = false;
-				option._matchedRange = null;
-			} else {
-				const matchIndex = option.text
-					.toLowerCase()
-					.indexOf(this._inputValue.toLowerCase());
-				const matchedRange =
-					matchIndex === -1
-						? null
-						: { from: matchIndex, to: matchIndex + this._inputValue.length };
+		const filterOption =
+			this.filterOption ??
+			((option: ListboxOption, searchText) =>
+				option.text.toLowerCase().includes(searchText.toLowerCase()));
 
-				option.hidden = !matchedRange;
-				option._matchedRange = matchedRange;
+		for (const option of this._slottedOptions ?? []) {
+			if (this.searchText === '') {
+				option._hidden = false;
+				option._internalHighlightText = '';
+			} else {
+				const matches = filterOption(option, this.searchText);
+
+				option._hidden = !matches;
+				option._internalHighlightText = matches ? this.searchText : '';
 			}
 
-			if (!option.hidden) {
+			if (!option.hidden && !option._hidden) {
 				newFilteredOptions.push(option);
 			}
 		}

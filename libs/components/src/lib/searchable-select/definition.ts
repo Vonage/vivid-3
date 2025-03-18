@@ -9,6 +9,7 @@ import { SearchableSelect } from './searchable-select';
 import { SearchableSelectTemplate as template } from './searchable-select.template';
 import { OptionTag } from './option-tag';
 import { optionTagTemplate } from './option-tag.template';
+import { progressRingDefinition } from '../progress-ring/definition';
 
 const optionTagDefinition = defineVividComponent(
 	'option-tag',
@@ -30,7 +31,13 @@ const searchableSelectDefinition = defineVividComponent(
 	'searchable-select',
 	SearchableSelect,
 	template,
-	[buttonDefinition, popupDefinition, iconDefinition, optionTagDefinition],
+	[
+		buttonDefinition,
+		popupDefinition,
+		iconDefinition,
+		optionTagDefinition,
+		progressRingDefinition,
+	],
 	{
 		styles,
 	}

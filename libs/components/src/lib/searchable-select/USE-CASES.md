@@ -328,3 +328,281 @@
 	</vwc-layout>
 </form>
 ```
+
+## Asynchronous Option Loading
+
+```html preview 500px
+<vwc-searchable-select label="Single select">
+	<span slot="no-options">Start typing to search...</span>
+	<span slot="loading-options">Loading results...</span>
+</vwc-searchable-select>
+
+<vwc-searchable-select label="Multi select" multiple>
+	<span slot="no-options">Start typing to search...</span>
+	<span slot="loading-options">Loading results...</span>
+</vwc-searchable-select>
+
+<script>
+	// --- Utilities ---
+
+	function debounce(func, timeout) {
+		let timer;
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				func.apply(this, args);
+			}, timeout);
+		};
+	}
+
+	function shuffle(array) {
+		let currentIndex = array.length;
+		while (currentIndex !== 0) {
+			let randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex],
+				array[currentIndex],
+			];
+		}
+	}
+
+	function updateDOM(select, oldRenderedOptions, newRenderedOptions) {
+		const insertAfter = (el, after) => {
+			if (after) {
+				after.after(el);
+			} else {
+				select.appendChild(el);
+			}
+		};
+
+		let lastEl = null;
+		for (let i = 0; i < newRenderedOptions.length; i++) {
+			const newNode = newRenderedOptions[i];
+			const oldNode = oldRenderedOptions.find((o) => o.key === newNode.key);
+			const el =
+				select.querySelector(`[data-key="${newNode.key}"]`) ||
+				document.createElement('vwc-option');
+			el.dataset.key = newNode.key;
+			for (const key of Object.keys(newNode.props)) {
+				if (!oldNode || newNode.props[key] !== oldNode.props[key]) {
+					el[key] = newNode.props[key];
+				}
+			}
+			insertAfter(el, lastEl);
+			lastEl = el;
+		}
+		for (const oldNode of oldRenderedOptions) {
+			if (!newRenderedOptions.find((n) => n.key === oldNode.key)) {
+				select.querySelector(`[data-key="${oldNode.key}"]`).remove();
+			}
+		}
+	}
+
+	// ---
+
+	async function loadOptions(searchText) {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				if (searchText === 'empty') {
+					resolve([]);
+					return;
+				}
+				const results = [
+					{
+						value: `always-there`,
+						text: `I'm always there`,
+					},
+					{
+						value: `${encodeURIComponent(searchText)}-value-1`,
+						text: `Example ${searchText} Option 1`,
+					},
+					{
+						value: `${encodeURIComponent(searchText)}-value-2`,
+						text: `Example ${searchText} Option 2`,
+					},
+					{
+						value: `${encodeURIComponent(searchText)}-value-3`,
+						text: `Example ${searchText} Option 3`,
+					},
+				];
+				shuffle(results); // Randomize order
+				resolve(results);
+			}, 1000);
+		});
+	}
+
+	window.customElements.whenDefined('vwc-searchable-select').then(() => {
+		document.querySelectorAll('vwc-searchable-select').forEach((select) => {
+			// Disable built-in filtering
+			select.filterOption = (o) => true;
+
+			// State
+			let componentState = {
+				selectedOptions: [],
+				currentSearchResults: [],
+				currentQueryText: '',
+			};
+
+			function MyComponent(state) {
+				const retainedOptions = state.selectedOptions.filter(
+					(s) => !state.currentSearchResults.some((o) => o.value === s.value)
+				);
+				return [
+					// Need to render options that are selected but no longer in the current search results
+					...retainedOptions.map((option) => {
+						return {
+							key: option.value,
+							props: {
+								value: option.value,
+								text: option.text,
+								highlightText: '',
+								hidden: true, // But hide them from the dropdown
+							},
+						};
+					}),
+					...state.currentSearchResults.map((option) => {
+						return {
+							key: option.value,
+							props: {
+								value: option.value,
+								text: option.text,
+								highlightText: state.currentQueryText, // Use the search text that the search was performed with
+								hidden: false,
+							},
+						};
+					}),
+				];
+			}
+
+			let previousRenderedOptions = [];
+			const updateState = (newState) => {
+				componentState = newState;
+				const newRenderedOptions = MyComponent(componentState);
+				updateDOM(select, previousRenderedOptions, newRenderedOptions);
+				previousRenderedOptions = newRenderedOptions;
+			};
+
+			let latestQueryString = null;
+			const debouncedSearch = debounce(async (queryString) => {
+				latestQueryString = queryString;
+				const newResults = await loadOptions(queryString);
+				if (latestQueryString !== queryString) {
+					return;
+				}
+				select.loading = false;
+				updateState({
+					...componentState,
+					currentSearchResults: newResults,
+					currentQueryText: queryString,
+				});
+			}, 1000);
+
+			const onSearchTextChanged = (newSearchText) => {
+				if (newSearchText === '') {
+					latestQueryString = '';
+					select.loading = false;
+					updateState({
+						...componentState,
+						currentSearchResults: [],
+						currentQueryText: '',
+					});
+				} else {
+					select.loading = true;
+					debouncedSearch(newSearchText);
+				}
+			};
+
+			select.addEventListener('input:searchText', (e) => {
+				onSearchTextChanged(e.target.searchText);
+			});
+
+			select.addEventListener('input', (e) => {
+				updateState({
+					...componentState,
+					selectedOptions: e.target.values.map(
+						(v) =>
+							componentState.currentSearchResults.find((o) => o.value === v) ||
+							componentState.selectedOptions.find((o) => o.value === v)
+					),
+				});
+			});
+		});
+	});
+</script>
+```
+
+### filterOption
+
+`filterOption` can be set to override the filtering logic.
+If the function always returns `true`, filtering is effectively disabled.
+
+```html preview 250px
+<vwc-searchable-select>
+	<vwc-option
+		icon="flag-afghanistan"
+		value="AF"
+		text="Afghanistan"
+	></vwc-option>
+	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
+	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+</vwc-searchable-select>
+
+<script>
+	customElements.whenDefined('vwc-searchable-select').then(() => {
+		document.querySelector('vwc-searchable-select').filterOption = (o) => true;
+	});
+</script>
+```
+
+### Loading
+
+`loading` will show the component in a loading state.
+If there are no options, the component will show the `loading-options` state.
+
+```html preview 150px
+<vwc-searchable-select loading>
+	<span slot="loading-options">Loading results...</span>
+</vwc-searchable-select>
+```
+
+### Search Text
+
+The readOnly `searchText` property returns the current search text.
+
+The `input:searchText` event is fired when the search text changes.
+
+```html preview 150px
+<div>Search text: <span id="search-text"></div>
+<vwc-searchable-select></vwc-searchable-select>
+
+<script>
+	customElements.whenDefined('vwc-searchable-select').then(() => {
+		document.querySelector('vwc-searchable-select').addEventListener('input:searchText', (e) => {
+			document.querySelector('#search-text').innerText = e.target.searchText;
+		});
+	});
+</script>
+```
+
+### Option Highlight
+
+The `highlight-text` prop on Option sets the highlighted text. When set it will override the default highlight logic.
+
+```html preview 150px
+<vwc-searchable-select>
+	<vwc-option value="AF" text="Afghanistan" highlight-text="ghani"></vwc-option>
+</vwc-searchable-select>
+```
+
+### Option Hidden
+
+Setting `hidden` on Option will hide the option in the dropdown.
+
+```html preview 150px
+<vwc-searchable-select multiple>
+	<vwc-option value="AF" text="Afghanistan" selected hidden></vwc-option>
+	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
+	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+</vwc-searchable-select>
+```

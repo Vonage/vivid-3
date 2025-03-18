@@ -1,4 +1,9 @@
-import { attr, observable, Observable } from '@microsoft/fast-element';
+import {
+	attr,
+	observable,
+	Observable,
+	volatile,
+} from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
@@ -215,6 +220,15 @@ export class ListboxOption extends VividElement {
 	 */
 	@observable _displayCheckmark = false;
 
+	@observable _internalHighlightText = '';
+
+	@attr({ attribute: 'highlight-text' }) highlightText?: string;
+
+	@volatile
+	get _highlightTextToUse() {
+		return this.highlightText ?? this._internalHighlightText;
+	}
+
 	/**
 	 * Range of text that should be highlighted as matching a search query.
 	 * From is inclusive, to is exclusive.
@@ -225,9 +239,26 @@ export class ListboxOption extends VividElement {
 	/**
 	 * @internal
 	 */
+	@volatile
 	get _matchedRangeSafe() {
-		return this._matchedRange ?? { from: 0, to: 0 };
+		if (this._highlightTextToUse) {
+			const matchIndex = this.text
+				.toLowerCase()
+				.indexOf(this._highlightTextToUse.toLowerCase());
+			return matchIndex === -1
+				? { from: 0, to: 0 }
+				: {
+						from: matchIndex,
+						to: matchIndex + this._highlightTextToUse.length,
+				  };
+		}
+		return { from: 0, to: 0 };
 	}
+
+	/**
+	 * @internal
+	 */
+	@observable _hidden = false;
 
 	constructor(
 		text?: string,
