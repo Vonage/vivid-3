@@ -5,7 +5,6 @@ import {
 	observable,
 } from '@microsoft/fast-element';
 import { memoizeWith } from 'ramda';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
@@ -20,7 +19,7 @@ import {
 import { generateRandomId } from '../../shared/utils/randomId';
 import { Reflector } from '../../shared/utils/Reflector';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import { ARIAGlobalStatesAndProperties } from '../../shared/foundation/patterns';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedTextField } from './text-field.form-associated';
 
 export type TextFieldAppearance = Extract<
@@ -124,7 +123,7 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  */
 @errorText
 @formElements
-export class TextField extends FormAssociatedTextField {
+export class TextField extends DelegatesAria(FormAssociatedTextField) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -484,17 +483,16 @@ export class TextField extends FormAssociatedTextField {
 		this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
 		this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
 		this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
-		this.#reflectToInput.attribute('ariaDetails', 'aria-details');
 		this.#reflectToInput.attribute('ariaDisabled', 'aria-disabled');
-		this.#reflectToInput.attribute('ariaHaspopup', 'aria-haspopup');
+		this.#reflectToInput.attribute('ariaHasPopup', 'aria-haspopup');
 		this.#reflectToInput.attribute('ariaHidden', 'aria-hidden');
 		this.#reflectToInput.attribute('ariaInvalid', 'aria-invalid');
-		this.#reflectToInput.attribute('ariaKeyshortcuts', 'aria-keyshortcuts');
+		this.#reflectToInput.attribute('ariaKeyShortcuts', 'aria-keyshortcuts');
 		this.#reflectToInput.attribute('ariaLabel', 'aria-label');
 		this.#reflectToInput.attribute('ariaLive', 'aria-live');
 		this.#reflectToInput.attribute('ariaRelevant', 'aria-relevant');
 		this.#reflectToInput.attribute(
-			'ariaRoledescription',
+			'ariaRoleDescription',
 			'aria-roledescription'
 		);
 		this.#reflectToInput.property('value', 'value', true);
@@ -576,29 +574,17 @@ export class TextField extends FormAssociatedTextField {
 	}
 }
 
-/**
- * Includes ARIA states and properties relating to the ARIA textbox role
- *
- * @public
- */
-export class DelegatesARIATextbox {}
-
-export interface DelegatesARIATextbox extends ARIAGlobalStatesAndProperties {}
-applyMixins(DelegatesARIATextbox, ARIAGlobalStatesAndProperties);
-
 export interface TextField
 	extends AffixIcon,
 		ErrorText,
 		FormElement,
 		FormElementCharCount,
 		FormElementHelperText,
-		FormElementSuccessText,
-		DelegatesARIATextbox {}
+		FormElementSuccessText {}
 applyMixinsWithObservables(
 	TextField,
 	AffixIcon,
 	FormElementCharCount,
 	FormElementHelperText,
-	FormElementSuccessText,
-	DelegatesARIATextbox
+	FormElementSuccessText
 );

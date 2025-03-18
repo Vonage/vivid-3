@@ -205,7 +205,7 @@ export class Combobox extends FormAssociatedCombobox {
 	open = false;
 
 	/**
-	 * Sets focus and synchronize ARIA attributes when the open property changes.
+	 * Sets focus when the open property changes.
 	 *
 	 * @param prev - the previous open value
 	 * @param next - the current open value
@@ -214,9 +214,6 @@ export class Combobox extends FormAssociatedCombobox {
 	 */
 	protected openChanged() {
 		if (this.open) {
-			this.ariaControls = this.listboxId;
-			this.ariaExpanded = 'true';
-
 			this.focusAndScrollOptionIntoView();
 
 			// focus is directed to the element when `open` is changed programmatically
@@ -224,9 +221,6 @@ export class Combobox extends FormAssociatedCombobox {
 
 			return;
 		}
-
-		this.ariaControls = '';
-		this.ariaExpanded = 'false';
 	}
 
 	/**
@@ -356,21 +350,6 @@ export class Combobox extends FormAssociatedCombobox {
 			this.initialValue = this.value;
 		}
 		this._popup.anchor = this._anchor;
-	}
-
-	/**
-	 * Synchronize the `aria-disabled` property when the `disabled` property changes.
-	 *
-	 * @param prev - The previous disabled value
-	 * @param next - The next disabled value
-	 *
-	 * @internal
-	 */
-	override disabledChanged(prev: boolean, next: boolean): void {
-		if (super.disabledChanged) {
-			super.disabledChanged(prev, next);
-		}
-		this.ariaDisabled = this.disabled ? 'true' : 'false';
 	}
 
 	/**

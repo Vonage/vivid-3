@@ -7,6 +7,7 @@ import {
 } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { Size } from '../enums';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { TextField, TextFieldType } from './text-field';
 import '.';
 
@@ -742,5 +743,26 @@ describe('vwc-text-field', () => {
 			element = document.createElement(COMPONENT_TAG) as TextField;
 			expect(() => element.connectedCallback()).not.toThrow();
 		});
+	});
+
+	describe('ARIA delegation', function () {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getInput(),
+			[
+				'ariaAtomic',
+				'ariaBusy',
+				'ariaCurrent',
+				'ariaDisabled',
+				'ariaHasPopup',
+				'ariaHidden',
+				'ariaInvalid',
+				'ariaKeyShortcuts',
+				'ariaLabel',
+				'ariaLive',
+				'ariaRelevant',
+				'ariaRoleDescription',
+			]
+		);
 	});
 });

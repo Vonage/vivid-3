@@ -893,5 +893,19 @@ describe('vwc-combobox', () => {
 			await elementUpdated(element);
 			expect(control.getAttribute('aria-expanded')).toBe('true');
 		});
+
+		it("should set the aria-activedescendant attribute to the selected option id when the listbox is open, but this doesn't actually work because the option is in light DOM", async () => {
+			element.innerHTML = `
+				<vwc-option value="1">1</vwc-option>
+				<vwc-option value="2" id="option-2" selected>2</vwc-option>
+				`;
+			await elementUpdated(element);
+
+			element.click();
+			await elementUpdated(element);
+
+			const control = getControlElement(element);
+			expect(control.getAttribute('aria-activedescendant')).toBe('option-2');
+		});
 	});
 });

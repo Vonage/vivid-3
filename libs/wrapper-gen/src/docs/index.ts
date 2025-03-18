@@ -1,21 +1,30 @@
-import { Metadata } from '../metadata';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ComponentDef } from '../metadata/ComponentDef';
+import { ComponentDef } from '../common/ComponentDef';
 import { renderDocPage } from './renderDocsPage';
+import { Metadata } from '../common/metadata';
+import { wrappedComponentName } from '../vueWrappers/name';
+import { makeImportedTypesResolver } from '../common/importedTypes';
+import { TypeResolver } from '../common/types';
 
 const DocsComponentsFolder = '../../apps/vue-docs/docs/components';
 
-function generateDocsFor(component: ComponentDef) {
+function generateDocsFor(
+	component: ComponentDef,
+	importedTypesResolver: TypeResolver
+) {
 	fs.writeFileSync(
 		path.resolve(path.join(DocsComponentsFolder, `${component.name}.md`)),
-		renderDocPage(component)
+		renderDocPage(component, importedTypesResolver)
 	);
-	return [component.wrappedClassName, `/components/${component.name}.md`];
+	return [wrappedComponentName(component), `/components/${component.name}.md`];
 }
 
 export async function generateDocs(metadata: Metadata) {
-	const docs = metadata.componentDefs.map(generateDocsFor);
+	const importedTypesResolver = await makeImportedTypesResolver(metadata);
+	const docs = metadata.componentDefs.map((def) =>
+		generateDocsFor(def, importedTypesResolver)
+	);
 	fs.writeFileSync(
 		path.join(DocsComponentsFolder, '_index.json'),
 		JSON.stringify(

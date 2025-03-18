@@ -1,0 +1,42 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
+#editor,
+.editor {
+	box-sizing: border-box;
+	border: 1px solid rgba(0 0 0 / 20%); // this is only for now - since there's nothing but the editor input
+	background: var(#{constants.$vvd-color-canvas});
+	background-clip: padding-box;
+	color: var(#{constants.$vvd-color-canvas-text});
+}
+
+.ProseMirror {
+	position: relative;
+	box-sizing: border-box;
+	padding: 10px 16px;
+	font: var(#{constants.$vvd-typography-base});
+	font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
+	font-variant-ligatures: none;
+	line-height: 1.2;
+	min-block-size: 120px;
+	outline: none;
+	white-space: break-spaces;
+	word-wrap: break-word;
+
+	pre {
+		white-space: pre-wrap;
+	}
+
+	p {
+		margin-bottom: 1em;
+	}
+
+	p:first-child,
+	h1:first-child,
+	h2:first-child,
+	h3:first-child,
+	h4:first-child,
+	h5:first-child,
+	h6:first-child {
+		margin-top: 10px;
+	}
+}

@@ -1,24 +1,24 @@
-import { ComponentDef } from '../metadata/ComponentDef';
-import { kebabToCamel, kebabToPascal } from '../utils/casing';
+import { ComponentDef } from '../common/ComponentDef';
+import { kebabToPascal } from '../utils/casing';
 import {
 	isNumberLiteral,
 	isStringLiteral,
+	parseTypeStr,
+	TypeResolver,
 	TypeUnion,
-	withImportsResolved,
-} from '../metadata/types';
+} from '../common/types';
+import { wrappedComponentName } from '../vueWrappers/name';
 
 const isBasicString = (type: TypeUnion) =>
-	type.length === 1 && type[0].text === 'string';
+	type.length === 1 && type[0] === 'string';
 const isBasicNumber = (type: TypeUnion) =>
-	type.length === 1 && type[0].text === 'number';
+	type.length === 1 && type[0] === 'number';
 const isBasicBoolean = (type: TypeUnion) =>
-	type.length === 1 && type[0].text === 'boolean';
+	type.length === 1 && type[0] === 'boolean';
 const isLiteralUnion = (type: TypeUnion) =>
-	type.every((t) => isStringLiteral(t.text) || isNumberLiteral(t.text));
+	type.every((t) => isStringLiteral(t) || isNumberLiteral(t));
 
-const renderArgType = (attr: ComponentDef['attributes'][0]) => {
-	const type = withImportsResolved(attr.type);
-
+const renderArgType = (type: TypeUnion) => {
 	if (isBasicString(type)) {
 		return `{ type: { name: 'string', required: false }, control: 'text' }`;
 	}
@@ -29,23 +29,31 @@ const renderArgType = (attr: ComponentDef['attributes'][0]) => {
 		return `{ type: { name: 'boolean', required: false }, control: 'boolean' }`;
 	}
 	if (isLiteralUnion(type)) {
-		return `{ type: { name: 'string', required: false }, control: 'select', options: [${type
-			.map((t) => t.text)
-			.join(', ')}]}`;
+		return `{ type: { name: 'string', required: false }, control: 'select', options: [${type.join(
+			', '
+		)}]}`;
 	}
 	return `{ type: { name: 'object', required: false } }`;
 };
 
-export const renderStorybookTemplate = (def: ComponentDef) => {
-	const propName = (attribute: string) => {
-		const vueModel = def.vueModels.find((vm) => vm.attributeName === attribute);
-		return vueModel ? vueModel.name : kebabToCamel(attribute);
+export const renderStorybookTemplate = (
+	def: ComponentDef,
+	importedTypesResolver: TypeResolver
+) => {
+	const propName = (prop: string) => {
+		const vueModel = def.vueModels.find((vm) => vm.propName === prop);
+		return vueModel ? vueModel.name : prop;
 	};
 	const eventHandlerName = (event: string) =>
 		`on${kebabToPascal(event.replaceAll(':', '-'))}`;
 
-	const argTypesSrc = def.attributes
-		.map((attr) => `${propName(attr.name)}: ${renderArgType(attr)},`)
+	const argTypesSrc = def.props
+		.map(
+			(prop) =>
+				`${propName(prop.name)}: ${renderArgType(
+					parseTypeStr(importedTypesResolver(prop.type))
+				)},`
+		)
 		.join('\n');
 
 	const events = [
@@ -63,7 +71,7 @@ export const renderStorybookTemplate = (def: ComponentDef) => {
 		.map((event) => `@${event}="${eventHandlerName(event)}"`)
 		.join(' ');
 
-	return `import { ${def.wrappedClassName} } from '@vonage/vivid-vue';
+	return `import { ${wrappedComponentName(def)} } from '@vonage/vivid-vue';
 
 export const argTypes = {
   ${argTypesSrc}
@@ -71,12 +79,14 @@ export const argTypes = {
 };
 
 export const Template = args => ({
-  components: { ${def.wrappedClassName} },
+  components: { ${wrappedComponentName(def)} },
   setup() {
     const { ${eventListSrc} ...props } = args;
     return { ${eventListSrc} props };
   },
-  template: '<${def.wrappedClassName} v-bind="props" ${eventBindingsSrc} />',
+  template: '<${wrappedComponentName(
+		def
+	)} v-bind="props" ${eventBindingsSrc} />',
 });
 `;
 };
