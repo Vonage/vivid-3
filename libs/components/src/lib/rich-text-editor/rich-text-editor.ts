@@ -80,6 +80,15 @@ export class RichTextEditor extends VividElement {
 		const { start, end } = this.#editor!.selection();
 		this.selectionStart = start;
 		this.selectionEnd = end as number;
+		this.$emit('selection-changed');
+	};
+
+	#handleChange = () => {
+		this.$emit('change');
+	};
+
+	#handleInput = () => {
+		this.$emit('input');
 	};
 
 	override connectedCallback(): void {
@@ -91,6 +100,8 @@ export class RichTextEditor extends VividElement {
 				'selection-changed',
 				this.#handleSelectionChange
 			);
+			this.#editor.addEventListener('change', this.#handleChange);
+			this.#editor.addEventListener('input', this.#handleInput);
 		}
 	}
 }
