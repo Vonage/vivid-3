@@ -66,24 +66,16 @@
 		inline-size: 100%;
 	}
 
-	&.appearance-filled {
-		#{focus-variables.$focus-stroke-gap-color}: unset;
-	}
-
-	&:focus-visible {
-		@include focus.focus;
-	}
-
-	@supports (user-select: none) {
-		user-select: none;
-	}
-
 	&:not(:disabled) {
 		cursor: pointer;
 	}
 
 	&:disabled {
 		cursor: not-allowed;
+	}
+
+	@supports (user-select: none) {
+		user-select: none;
 	}
 
 	/* Size */
@@ -211,6 +203,24 @@
 				16px
 			);
 		}
+	}
+
+	/* Focus style for filled */
+	&.appearance-filled {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		&:focus-visible {
+			position: relative;
+			outline: none;
+
+			&::after {
+				@include focus.focus-in-pseudo-element;
+			}
+		}
+	}
+
+	&:not(.appearance-filled):focus-visible {
+		@include focus.focus;
 	}
 }
 
