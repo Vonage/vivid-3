@@ -1,7 +1,8 @@
 import { execSync } from 'child_process';
 
-export function formatFiles(filesArg: string) {
-	// Run prettier first as eslint will destroy the code otherwise
+export function formatFiles(filesArg: string, lint = true) {
 	execSync(`npx prettier --write ${filesArg}`);
-	execSync(`npx eslint --fix ${filesArg}`);
+	if (lint) {
+		execSync(`npx eslint --fix ${filesArg}`);
+	}
 }

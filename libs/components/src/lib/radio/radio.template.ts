@@ -13,18 +13,14 @@ const getClasses = ({ connotation, checked, readOnly, disabled }: Radio) =>
 	);
 
 export const RadioTemplate = html<Radio>`<template
-	role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
+	aria-checked="${(x) => x.checked}"
+	aria-disabled="${(x) => x.disabled}"
+	aria-required="${(x) => x.required}"
+	@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
+	@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
+	role="radio"
 >
-	<div
-		class="${getClasses}"
-		role="radio"
-		aria-label="${(x) => x.ariaLabel}"
-		aria-checked="${(x) => x.checked}"
-		aria-required="${(x) => x.required}"
-		aria-disabled="${(x) => x.disabled}"
-		@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
-		@click="${(x, c) => x.clickHandler(c.event as MouseEvent)}"
-	>
+	<div class="${getClasses}">
 		<div class="control"></div>
 		${when(
 			(x) => x.label,
