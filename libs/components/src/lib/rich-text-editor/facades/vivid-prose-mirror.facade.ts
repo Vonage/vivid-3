@@ -49,8 +49,10 @@ export class ProseMirrorFacade {
 		this.#dispatchEvent('selection-changed');
 	};
 
-	#handleInputEvent = () => {
+	#handleInputEvent = (e: Event) => {
+		e.stopPropagation();
 		this.#userContentChange = true;
+		this.#dispatchEvent('input');
 	};
 
 	#handleBlueEvent = () => {
