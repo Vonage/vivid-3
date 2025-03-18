@@ -74,91 +74,6 @@ Data Grid Row and Data Grid Cell sub-components are registered automatically in 
 </vwc-tab-panel>
 </vwc-tabs>
 
-## Rows Data
-
-Use the `rowsData` property to provide the component with the data (an `array` or `objects`) to be displayed.
-If not used in conjuction with [column defintions](#columndefinitions) (`title`), text displayed in the column headers will be the data keys of the object.
-
-```html preview
-<vwc-data-grid class="data-grid"></vwc-data-grid>
-
-<script>
-	grid = document.querySelector('.data-grid');
-	grid.rowsData = [
-		{ data1: 'data11', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-	];
-</script>
-```
-
-### Column Definitions
-
-Use the `columnDefinitions` property to programmatically configure the column headers that are generated when using `rows-data`. See the [ColumnDefinition interface](#data-grid) for more information.
-
-```html preview
-<vwc-data-grid></vwc-data-grid>
-<script>
-	grid = document.querySelector('vwc-data-grid');
-	grid.columnDefinitions = [
-		{
-			columnDataKey: 'data1',
-			title: 'Custom Title 1',
-			sortable: true,
-			sortDirection: 'ascending',
-		},
-		{ columnDataKey: 'data2', title: 'Custom Title 2', sortable: true },
-	];
-	grid.rowsData = [
-		{ data1: 'data11', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-	];
-</script>
-```
-
-<vwc-note connotation="information" icon="info-line">
-
-The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
-
-</vwc-note>
-
-### Generate Header
-
-Use the `generate-header` property to programmatically define the type of grid header that is generated when using `rows-data`.
-
-```html preview
-<vwc-select onchange="changeHeader()">
-	<vwc-option value="default" text="default"></vwc-option>
-	<vwc-option value="sticky" text="sticky"></vwc-option>
-	<vwc-option value="none" text="none"></vwc-option>
-</vwc-select>
-
-<vwc-data-grid class="data-grid"></vwc-data-grid>
-
-<script>
-	const grid = document.querySelector('vwc-data-grid');
-
-	function changeHeader() {
-		headerType = event.target.value;
-		grid.generateHeader = headerType;
-	}
-
-	grid.rowsData = [
-		{ data1: 'data111', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-		{ data1: 'data31', data2: 'data32' },
-		{ data1: 'data41', data2: 'data42' },
-		{ data1: 'data51', data2: 'data52' },
-		{ data1: 'data61', data2: 'data62' },
-	];
-</script>
-
-<style>
-	vwc-data-grid {
-		max-block-size: 300px;
-	}
-</style>
-```
-
 ## Remove From Tab Order
 
 Use the `no-tabbing` attribute to remove the component from the tab order.
@@ -276,52 +191,6 @@ In the example below, change the value of the row / column index and then tab in
 </script>
 ```
 
-## Row, Cell and Header Cell Templates
-
-The `ViewTemplate`s used to render rows, cells and header cells can be customised using the following properties:
-
-- `rowItemTemplate`
-- `cellItemTemplate`
-- `headerCellItemTemplate`
-
-You need to use `html` from `fast-element`.
-
-```html
-<vwc-data-grid class="data-grid"></vwc-data-grid>
-<script>
-	import { html } from '@microsoft/fast-element';
-	const grid = document.querySelector('.data-grid');
-	grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
-	grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
-	grid.headerCellItemTemplate = html`<div>
-		All header cells will look like me!
-	</div>`;
-	grid.rowsData = [
-		{ data1: 'data11', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-	];
-</script>
-```
-
-## Row Element Tag
-
-- Type: `string`
-- Default: `undefined`
-
-The element tag for header row cells. If not set, the default tag `vwc-data-grid-cell` will be used.
-
-```html preview
-<vwc-data-grid></vwc-data-grid>
-<script>
-	grid = document.querySelector('vwc-data-grid');
-	grid.rowElementTag = 'div';
-	grid.rowsData = [
-		{ data1: 'data11', data2: 'data12' },
-		{ data1: 'data21', data2: 'data22' },
-	];
-</script>
-```
-
 ## Cell Click Event
 
 The `cell-click` event is fired when a cell is clicked on or when the enter or space key is pressed on a focused cell.
@@ -353,6 +222,142 @@ Event details: `{ cell, row, isHeaderCell, columnDataKey }`
 
 		clickResult.innerHTML = result;
 	});
+</script>
+```
+
+## Rows Data
+
+Use the `rowsData` property to provide the component with the data (an `array` or `objects`) to be displayed.
+If not used in conjuction with [column defintions](#columndefinitions) (`title`), text displayed in the column headers will be the data keys of the object.
+
+<vwc-note icon="warning-line" connotation="warning">
+
+The `rowsData` property provides an alternative way to populate the data grid with content.
+
+However, we recommend using the [Data Grid Row](#data-grid-row) and [Data Grid Cell](#data-grid-cell) sub-components to construct the content declaratively. This approach offers greater flexibility, allowing you to incorporate non-text-based elements such as other components or HTML elements (see [Select in grid](components/data-grid/use-cases/#select-in-a-grid) use case).
+
+</vwc-note>
+
+```html preview
+<vwc-data-grid class="data-grid"></vwc-data-grid>
+
+<script>
+	grid = document.querySelector('.data-grid');
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
+</script>
+```
+
+### Column Definitions
+
+Use the `columnDefinitions` property to programmatically configure the column headers that are generated when using `rows-data`. See the [ColumnDefinition interface](#data-grid) for more information.
+
+```html preview
+<vwc-data-grid></vwc-data-grid>
+<script>
+	grid = document.querySelector('vwc-data-grid');
+	grid.columnDefinitions = [
+		{
+			columnDataKey: 'data1',
+			title: 'Custom Title 1',
+			sortable: true,
+			sortDirection: 'ascending',
+		},
+		{ columnDataKey: 'data2', title: 'Custom Title 2', sortable: true },
+	];
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
+</script>
+```
+
+<vwc-note connotation="information" icon="info-line">
+
+The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
+
+</vwc-note>
+
+### Generate Header
+
+Use the `generate-header` property to programmatically define the type of grid header that is generated when using `rows-data`.
+
+```html preview
+<vwc-select onchange="changeHeader()">
+	<vwc-option value="default" text="default"></vwc-option>
+	<vwc-option value="sticky" text="sticky"></vwc-option>
+	<vwc-option value="none" text="none"></vwc-option>
+</vwc-select>
+
+<vwc-data-grid class="data-grid"></vwc-data-grid>
+
+<script>
+	const grid = document.querySelector('vwc-data-grid');
+
+	function changeHeader() {
+		headerType = event.target.value;
+		grid.generateHeader = headerType;
+	}
+
+	grid.rowsData = [
+		{ data1: 'data111', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+		{ data1: 'data31', data2: 'data32' },
+		{ data1: 'data41', data2: 'data42' },
+		{ data1: 'data51', data2: 'data52' },
+		{ data1: 'data61', data2: 'data62' },
+	];
+</script>
+
+<style>
+	vwc-data-grid {
+		max-block-size: 300px;
+	}
+</style>
+```
+
+### Row, Cell and Header Cell Templates
+
+The `ViewTemplate`s used to render rows, cells and header cells can be customised using the following properties:
+
+- `rowItemTemplate`
+- `cellItemTemplate`
+- `headerCellItemTemplate`
+
+You need to use `html` from `fast-element`.
+
+```html
+<vwc-data-grid class="data-grid"></vwc-data-grid>
+<script>
+	import { html } from '@microsoft/fast-element';
+	const grid = document.querySelector('.data-grid');
+	grid.rowItemTemplate = html`<div>All rows will look like me!</div>`;
+	grid.cellItemTemplate = html`<div>All cells will look like me!</div>`;
+	grid.headerCellItemTemplate = html`<div>
+		All header cells will look like me!
+	</div>`;
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
+</script>
+```
+
+### Row Element Tag
+
+Use the `rowElementTag` to set the element tag for header row cells. If not set, the default tag `vwc-data-grid-cell` will be used.
+
+```html preview
+<vwc-data-grid></vwc-data-grid>
+<script>
+	grid = document.querySelector('vwc-data-grid');
+	grid.rowElementTag = 'div';
+	grid.rowsData = [
+		{ data1: 'data11', data2: 'data12' },
+		{ data1: 'data21', data2: 'data22' },
+	];
 </script>
 ```
 
