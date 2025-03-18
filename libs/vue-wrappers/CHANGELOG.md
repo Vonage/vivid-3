@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.18.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.17.0...vivid-vue-v4.18.0) (2025-03-17)
+
+
+### Miscellaneous Chores
+
+* **vivid-vue:** Synchronize vivid versions
+
 ## [4.17.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.16.2...vivid-vue-v4.17.0) (2025-03-10)
 
 
