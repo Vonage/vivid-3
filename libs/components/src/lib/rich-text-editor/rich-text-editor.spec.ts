@@ -1,4 +1,4 @@
-import type { MockInstance } from 'vitest';
+import type { Mock, MockInstance } from 'vitest';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
@@ -276,6 +276,59 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 
 			expect(element.selectionEnd).toBe(5);
+		});
+	});
+
+	describe('change event', () => {
+		it('should fire the change event when on facade change', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			getOutputElement().dispatchEvent(new Event('input'));
+			getOutputElement().dispatchEvent(new Event('blur'));
+
+			expect(spy).toHaveBeenCalledOnce();
+		});
+
+		it('should bubble and set to composed', async () => {
+			const spy = vi.fn();
+			element.addEventListener('change', spy);
+
+			getOutputElement().dispatchEvent(new Event('input'));
+			getOutputElement().dispatchEvent(new Event('blur'));
+
+			expect(spy.mock.calls[0][0].bubbles).toBe(true);
+			expect(spy.mock.calls[0][0].composed).toBe(true);
+		});
+	});
+
+	describe('selection event', () => {
+		let selectionChangedListenerCallback: Mock<(...args: any[]) => any>;
+
+		function setSelectionChangedListener() {
+			const spy = vi.fn();
+			element.addEventListener('selection-changed', spy);
+			return spy;
+		}
+
+		function getEventObject() {
+			return selectionChangedListenerCallback.mock.calls[0][0];
+		}
+
+		beforeEach(async () => {
+			element.value = '<p>123456789</p>';
+			selectionChangedListenerCallback = setSelectionChangedListener();
+			editorFacadeSelectSpy.mockRestore();
+			moveMarkerToPosition(5);
+			await elementUpdated(element);
+		});
+		it('should set the event to bubble and composed', async () => {
+			expect(getEventObject().bubbles).toBe(true);
+			expect(getEventObject().composed).toBe(true);
+		});
+
+		it('should fire the selection-changed event when selection changes', async () => {
+			expect(selectionChangedListenerCallback).toHaveBeenCalledOnce();
 		});
 	});
 });
