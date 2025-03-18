@@ -337,7 +337,9 @@ describe('vwc-rich-text-editor', () => {
 			const spy = vi.fn();
 			element.addEventListener('input', spy);
 
-			getOutputElement().dispatchEvent(new Event('input', {bubbles: true, composed: true}));
+			getOutputElement().dispatchEvent(
+				new Event('input', { bubbles: true, composed: true })
+			);
 
 			expect(spy).toHaveBeenCalledOnce();
 		});
@@ -346,7 +348,9 @@ describe('vwc-rich-text-editor', () => {
 			const spy = vi.fn();
 			element.addEventListener('input', spy);
 
-			getOutputElement().dispatchEvent(new Event('input', {bubbles: true, composed: true}));
+			getOutputElement().dispatchEvent(
+				new Event('input', { bubbles: true, composed: true })
+			);
 
 			expect(spy.mock.calls[0][0].bubbles).toBe(true);
 			expect(spy.mock.calls[0][0].composed).toBe(true);
