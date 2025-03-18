@@ -1,5 +1,5 @@
 ---
 permalink: false
 title: Accessibility
-order: 4
+parent: Guides
 ---

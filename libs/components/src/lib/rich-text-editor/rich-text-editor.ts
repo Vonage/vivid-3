@@ -37,9 +37,13 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
 	selectionStart: number | null = null;
 	selectionStartChanged() {
-		if (!this.selectionStart) {
+		if (
+			!this.selectionStart ||
+			(this.selectionEnd && this.selectionStart > this.selectionEnd)
+		) {
 			return;
 		}
+
 		this.#updateEditorSelection();
 	}
 
@@ -67,7 +71,6 @@ export class RichTextEditor extends VividElement {
 
 	constructor() {
 		super();
-		this.value = '';
 	}
 
 	#handleSelectionChange = () => {
@@ -77,6 +80,15 @@ export class RichTextEditor extends VividElement {
 		const { start, end } = this.#editor!.selection();
 		this.selectionStart = start;
 		this.selectionEnd = end as number;
+		this.$emit('selection-changed');
+	};
+
+	#handleChange = () => {
+		this.$emit('change');
+	};
+
+	#handleInput = () => {
+		this.$emit('input');
 	};
 
 	override connectedCallback(): void {
@@ -88,6 +100,8 @@ export class RichTextEditor extends VividElement {
 				'selection-changed',
 				this.#handleSelectionChange
 			);
+			this.#editor.addEventListener('change', this.#handleChange);
+			this.#editor.addEventListener('input', this.#handleInput);
 		}
 	}
 }

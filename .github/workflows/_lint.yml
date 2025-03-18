@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: 'npm'
 
       - uses: actions/cache@v3
         id: cache
@@ -20,7 +20,9 @@ jobs:
             apps/vue-docs/node_modules/
             libs/storybook-vue2/node_modules/
             libs/storybook-vue3/node_modules/
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-cache-
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'

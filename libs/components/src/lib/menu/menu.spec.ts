@@ -13,6 +13,7 @@ import {
 import type { Button } from '../button/button';
 import type { Popup } from '../popup/popup.ts';
 import { MenuItem } from '../menu-item/menu-item.ts';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Menu } from './menu';
 import '.';
 import '../menu-item';
@@ -677,24 +678,17 @@ describe('vwc-menu', () => {
 	});
 
 	describe('a11y attributes', () => {
-		beforeEach(async () => {
-			element.open = true;
-			element.ariaLabel = 'A11y label';
-			element.innerHTML = `
-				<div role="menuitem" id="id1">Menu Item 1</div>
-				<div role="menuitem" id="id2">Menu Item 2</div>
-			`;
-			await elementUpdated(element);
-		});
-
-		it('should render the aria-label on the menu element', async () => {
-			const menu = element.shadowRoot?.querySelector('[role="menu"]');
-			expect(menu?.getAttribute('aria-label')).toBe('A11y label');
-		});
-
 		it('should render the element with a role of presentation', async () => {
 			expect(element.getAttribute('role')).toBe('presentation');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => element.shadowRoot!.querySelector('[role="menu"]')!,
+			['ariaLabel']
+		);
 	});
 
 	describe('radio items', () => {

@@ -1,6 +1,8 @@
-import { ComponentDef } from '../metadata/ComponentDef';
+import { ComponentDef } from '../common/ComponentDef';
 import { kebabToCamel } from '../utils/casing';
-import { withImportsResolved } from '../metadata/types';
+
+import { wrappedComponentName } from '../vueWrappers/name';
+import { TypeResolver } from '../common/types';
 
 export interface WebTypesCommon {
 	name: string;
@@ -25,30 +27,33 @@ export interface WebTypesTag extends WebTypesCommon {
 	priority: string;
 }
 
-export function getTagFromComponentDefinition({
-	wrappedClassName: name,
-	description,
-	attributes,
-	events,
-	slots,
-	// @ts-expect-error: FIXME: vueModel does not exist, code does not work correctly
-	vueModel,
-}: ComponentDef): WebTypesTag {
+export function getTagFromComponentDefinition(
+	componentDef: ComponentDef,
+	importedTypesResolver: TypeResolver
+): WebTypesTag {
+	const name = wrappedComponentName(componentDef);
+	const {
+		description,
+		props,
+		events,
+		slots,
+		// @ts-expect-error: FIXME: vueModel does not exist, code does not work correctly
+		vueModel,
+	} = componentDef;
+
 	return {
 		name,
 		description,
-		attributes: attributes
+		attributes: props
 			// filter out v-model prop
-			.filter((attr) => attr.name !== vueModel?.attributeName)
+			.filter((prop) => prop.name !== vueModel?.propName)
 			// eslint-disable-next-line no-shadow
-			.map((attr) => ({
-				name: kebabToCamel(attr.name),
-				description: attr.description,
+			.map((prop) => ({
+				name: kebabToCamel(prop.name),
+				description: prop.description,
 				value: {
 					kind: 'expression',
-					type: withImportsResolved(attr.type)
-						.map((t) => t.text)
-						.join(' | '),
+					type: importedTypesResolver(prop.type),
 				},
 			})),
 		events: events
