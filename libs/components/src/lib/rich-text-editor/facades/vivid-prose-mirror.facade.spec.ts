@@ -279,6 +279,23 @@ describe('ProseMirrorFacade', () => {
 		});
 	});
 
+	describe('input event', () => {
+		it('should emit an input event when user changes the content', async () => {
+			await useOriginalEditorView();
+			const element = document.createElement('div');
+			facadeInstance.init(element);
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			const spy = vi.fn();
+			facadeInstance.addEventListener('input', spy);
+			getOutputElement(element).dispatchEvent(new Event('input'));
+
+			expect(spy).toHaveBeenCalledOnce();
+		});
+	});
+
 	describe('addEventListener', () => {
 		it('should accept a callback', async () => {
 			const spy = vi.fn();
