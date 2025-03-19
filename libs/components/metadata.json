@@ -4865,6 +4865,12 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "highlightText",
+					"type": "string",
+					"attributeName": "highlight-text",
+					"propertyName": "highlightText"
+				},
+				{
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
@@ -5802,6 +5808,12 @@
 					"propertyName": "externalTags"
 				},
 				{
+					"name": "filterOptions",
+					"description": "Function to filter options.",
+					"type": "any",
+					"propertyName": "filterOptions"
+				},
+				{
 					"name": "fixedDropdown",
 					"type": "boolean",
 					"attributeName": "fixed-dropdown",
@@ -5837,6 +5849,12 @@
 					"description": "The label for the form element.",
 					"type": "string",
 					"attributeName": "label"
+				},
+				{
+					"name": "loading",
+					"type": "boolean",
+					"attributeName": "loading",
+					"propertyName": "loading"
 				},
 				{
 					"name": "maxLines",
@@ -5927,6 +5945,11 @@
 					"type": "CustomEvent<undefined>"
 				},
 				{
+					"name": "input:search-text",
+					"description": "Fired when the search text changes",
+					"type": "CustomEvent<undefined>"
+				},
+				{
 					"name": "keydown",
 					"description": "Fires when a key is pressed.",
 					"type": "KeyboardEvent"
@@ -5961,6 +5984,10 @@
 				{
 					"name": "icon",
 					"description": "Slot to add an icon to the control."
+				},
+				{
+					"name": "loading-options",
+					"description": "Message that appears when no options are loading."
 				},
 				{
 					"name": "meta",
