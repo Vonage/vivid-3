@@ -122,9 +122,10 @@ export class Pagination extends VividElement {
 	totalChanged(_: number, newValue: number) {
 		if (newValue < 0) {
 			this.total = 0;
+			return;
 		}
 
-		this.selectedIndex = 0;
+		this.#constrainSelectedIndex();
 	}
 
 	selectedIndexChanged(oldValue: number, newValue: number) {
@@ -134,6 +135,8 @@ export class Pagination extends VividElement {
 			total: this.total,
 			oldIndex: oldValue,
 		});
+
+		this.#constrainSelectedIndex();
 	}
 
 	paginationButtonsChanged(_: Button[] | undefined, newValue: Button[]) {
@@ -142,5 +145,20 @@ export class Pagination extends VividElement {
 				.shadowRoot!.querySelector('button')!
 				.setAttribute('part', 'button');
 		});
+	}
+
+	get #constrainedSelectedIndex() {
+		return Math.max(0, Math.min(this.selectedIndex ?? 0, this.total - 1));
+	}
+
+	#constrainSelectedIndex() {
+		if (this.selectedIndex !== this.#constrainedSelectedIndex) {
+			// Need to queue constraining in case total and selectedIndex are set together synchronously
+			window.queueMicrotask(() => {
+				if (this.selectedIndex !== this.#constrainedSelectedIndex) {
+					this.selectedIndex = this.#constrainedSelectedIndex;
+				}
+			});
+		}
 	}
 }
