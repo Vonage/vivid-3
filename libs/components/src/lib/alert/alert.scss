@@ -118,7 +118,3 @@ $alert-transition-delay: --transition-delay;
 		padding-inline-start: 8px;
 	}
 }
-
-[role='alert']:empty {
-	display: none;
-}
