@@ -119,7 +119,7 @@ Use the `placement` attribute to set the location of the Alert.
 Use the `removable` attribute to add a close button to the Alert.
 
 ```html preview 100px
-<vwc-alert text="Some important information for you" removable open></vwc-alert>
+<vwc-alert removable text="Some important information for you" open></vwc-alert>
 
 <vwc-button
 	appearance="outlined"

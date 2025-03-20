@@ -7,6 +7,7 @@ import {
 import type { Icon } from '../icon/icon';
 import type { Button } from '../button/button';
 import { Connotation } from '../enums';
+import { Button } from '../button/button';
 import { Alert } from './alert';
 import type { AlertConnotation } from './alert';
 import '.';
@@ -55,6 +56,7 @@ describe('vwc-alert', () => {
 			const alertHeadline = 'headline text';
 
 			element.headline = alertHeadline;
+			element.open = true;
 			await elementUpdated(element);
 			const fromProptoDOM = getHeadline();
 
@@ -81,6 +83,7 @@ describe('vwc-alert', () => {
 			const alertText = 'alert text';
 
 			element.text = alertText;
+			element.open = true;
 			await elementUpdated(element);
 			const fromProptoDOM = getText();
 
@@ -95,13 +98,14 @@ describe('vwc-alert', () => {
 	});
 
 	describe('focus', () => {
-		it('should focus when opened', async () => {
-			const spy = vi.fn();
-			const alertText: HTMLElement = element.shadowRoot?.querySelector(
-				'.alert-text'
-			) as HTMLElement;
-			alertText.focus = spy;
+		it('should focus on dismiss button when opened', async () => {
 			element.removable = true;
+			await elementUpdated(element);
+			const spy = vi.fn();
+			const closeBtn = element.shadowRoot?.querySelector(
+				'.dismiss-button'
+			) as Button;
+			closeBtn.addEventListener('focus', spy);
 
 			element.open = false;
 			await elementUpdated(element);
@@ -394,17 +398,9 @@ describe('vwc-alert', () => {
 			await elementUpdated(element);
 		});
 
-		it('should set alertdialog on the control when removable', async () => {
-			element.removable = true;
-			await elementUpdated(element);
-
-			const control = getControlElement(element);
-			expect(control.getAttribute('role')).toBe('alertdialog');
-		});
-
-		it('should set a role of alert on the control', async () => {
-			const control = getControlElement(element);
-			expect(control.getAttribute('role')).toBe('alert');
+		it('should set a role of alert on the base element', async () => {
+			const baseEl = getBaseElement(element);
+			expect(baseEl!.getAttribute('role')).toBe('alert');
 		});
 	});
 
