@@ -237,6 +237,10 @@ new Vue({
 </vwc-tab-panel>
 </vwc-tabs>
 
+#### Installing the ESLint Plugin (optional)
+
+You should also install our [ESLint Plugin](/guides/eslint-plugin/), which can catch common issues and mistakes when using Vivid Vue.
+
 ## Usage
 
 You are now ready to use the components in your application.
@@ -323,6 +327,88 @@ While the default slots work the same, the web component's named slots are mappe
 		<VButton appearance="outlined" connotation="accent" label="Outlined" />
 	</template>
 </VBanner>
+```
+
+### Using Events
+
+You can use all the events of the web component. `$event` will be the native event with improved type definitions.
+
+To access the web component itself, use `$event.currentTarget`. Avoid using `target` instead of `currentTarget` as it may not always refer to the component.
+
+```html
+<template>
+	<VPagination
+		@pagination-change="onPageChange($event.details.selectedIndex)"
+	/>
+	<VTag @selected-change="onSelectedChange($event.currentTarget.selected)" />
+</template>
+```
+
+### Accessing the Component Instance
+
+You can get a reference to the Vivid Vue component instance like any other Vue component.
+
+<vwc-tabs>
+<vwc-tab label="useTemplateRef() [Vue 3.5+]"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { useTemplateRef } from 'vue';
+	import { VAudioPlayer } from '@vonage/vivid-vue';
+	const audioPlayer = useTemplateRef('audio-player');
+</script>
+
+<template>
+	<VAudioPlayer ref="audio-player" />
+</template>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="useRef()"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { ref } from 'vue';
+	import { VAudioPlayer } from '@vonage/vivid-vue';
+	const audioPlayer = ref<InstanceType<typeof VAudioPlayer>>();
+</script>
+
+<template>
+	<VAudioPlayer ref="audioPlayer" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+#### Calling Methods
+
+The component instance will forward all methods to the web component:
+
+```ts
+audioPlayer.value?.play();
+```
+
+#### Accessing the Web Component
+
+The web component element itself is available as `element` on the instance. You should use `element` instead of Vue's built-in `$el` because it has correct type definitions.
+
+```ts
+if (audioPlayer.value?.element?.paused) {
+	// ...
+}
+```
+
+If you need the type of the web component, you can import it from the `@vonage/vivid` library:
+
+```ts
+import type { VwcAudioPlayerElement } from '@vonage/vivid';
+
+function play(element: VwcAudioPlayerElement) {
+	element.play();
+}
 ```
 
 ### Styling Components
