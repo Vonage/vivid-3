@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.18.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.18.0...vivid-v4.18.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* **rich-text-editor:** split scss to files (VIV-2392) ([#2228](https://github.com/Vonage/vivid-3/issues/2228)) ([14f6715](https://github.com/Vonage/vivid-3/commit/14f67159aa61cce1d32cfba935a67f9c3178ccaa))
+
 ## [4.18.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.17.0...vivid-v4.18.0) (2025-03-17)
 
 
