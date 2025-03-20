@@ -52,8 +52,8 @@ const isFormAssociatedTryingToSetFormValue = (
  * @slot no-matches - Message that appears when no options match the search query.
  * @event {CustomEvent<undefined>} input - Fired when the selected options change
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
- * @vueModel modelValue value input `(event.currentTarget as HTMLInputElement).value`
- * @vueModel values values input `(event.currentTarget as any).values`
+ * @vueModel modelValue value input `event.currentTarget.value`
+ * @vueModel values values input `event.currentTarget.values`
  */
 @errorText
 @formElements
