@@ -49,7 +49,7 @@ export type SliderMode = typeof SliderMode[keyof typeof SliderMode];
  * @public
  * @component slider
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
- * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value change `(event.currentTarget as HTMLInputElement).value`
  */
 export class Slider extends DelegatesAria(FormAssociatedSlider) {
 	/**

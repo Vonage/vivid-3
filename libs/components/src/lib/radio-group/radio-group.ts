@@ -17,7 +17,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @component radio-group
  * @slot - Default slot.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
- * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value change `(event.currentTarget as HTMLInputElement).value`
  */
 export class RadioGroup extends VividElement {
 	/**

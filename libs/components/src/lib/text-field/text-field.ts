@@ -119,7 +119,7 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  * @slot action-items - Used to add action items to the end of the text-field.
  * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
- * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `(event.currentTarget as HTMLInputElement).value`
  */
 @errorText
 @formElements

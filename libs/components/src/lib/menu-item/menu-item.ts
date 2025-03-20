@@ -35,7 +35,7 @@ export type MenuItemConnotation = Extract<
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
  * @event {CustomEvent<HTMLElement>} expanded-change - Fires a custom 'expanded-change' event when the expanded state changes
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
- * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
+ * @vueModel modelValue checked change `(event.currentTarget as HTMLInputElement).checked`
  */
 export class MenuItem extends VividElement {
 	/**

@@ -43,7 +43,7 @@ export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
  * @slot meta - Slot to add meta content to the combobox control.
  * @slot helper-text - Describes how to use the combobox. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value updates
- * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value change `(event.currentTarget as HTMLInputElement).value`
  */
 @errorText
 @formElements

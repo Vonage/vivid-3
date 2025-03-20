@@ -69,7 +69,7 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  * @slot helper-text - Describes how to use the number-field. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Fires a custom 'input' event when the value has changed
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value has changed
- * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `(event.currentTarget as HTMLInputElement).value`
  */
 @errorText
 @formElements
