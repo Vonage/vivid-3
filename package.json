@@ -163,6 +163,9 @@
 	"overrides": {
 		"minimist": "1.2.8",
 		"path-to-regexp": "8.2.0",
+		"express": {
+			"path-to-regexp": "0.1.12"
+		},
 		"nconf": "0.12.1",
 		"rollup": "^4.22.4",
 		"braces": "3.0.3",
