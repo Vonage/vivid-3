@@ -291,7 +291,7 @@ export const renderComponent = (
 		})
 		.join(',\n');
 
-	const renderEventDeclarationV2 = ({
+	const renderEventDeclaration = ({
 		name,
 		description,
 		type,
@@ -316,7 +316,7 @@ export const renderComponent = (
 			].join(',\n')}}`
 		: `[
 			${[...componentDef.events, ...vueModelEvents]
-				.map(renderEventDeclarationV2)
+				.map(renderEventDeclaration)
 				.join(',\n')}]`;
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
