@@ -15,7 +15,7 @@
 			],
 			"options": {
 				"commands": [
-					"cem analyze --config ./libs/components/cem.config.mjs",
+					"TSX_TSCONFIG_PATH=./libs/components/tsconfig.lib.json npx --node-options='--import tsx' cem analyze --config ./libs/components/cem.config.mjs",
 					"api-extractor run -c ./dist/libs/components/api-extractor.json"
 				],
 				"parallel": true

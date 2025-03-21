@@ -15,6 +15,9 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@vivid-nx/cem-analyzer-plugins": [
+				"libs/cem-analyzer-plugins/src/index.ts"
+			],
 			"@vivid-nx/shared": ["libs/shared/src/index.ts"],
 			"@vivid-nx/styles": ["libs/styles/src/index.ts"],
 			"@vivid-nx/tokens": ["libs/tokens/src/index.ts"],

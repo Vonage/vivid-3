@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`cssPropertiesPlugin > should produce correct results for testcase default 1`] = `
+{
+  "modules": [
+    {
+      "declarations": [
+        {
+          "cssProperties": [
+            {
+              "name": "--my-prop",
+            },
+            {
+              "description": "My Prop",
+              "name": "--my-prop-desc",
+            },
+            {
+              "default": "red",
+              "name": "--my-prop-def",
+            },
+            {
+              "default": "red",
+              "description": "My Prop",
+              "name": "--my-prop-def-desc",
+            },
+            {
+              "name": "--my-prop-alt",
+            },
+          ],
+          "customElement": true,
+          "description": "",
+          "kind": "class",
+          "name": "MyElement",
+          "superclass": {
+            "name": "HTMLElement",
+          },
+        },
+      ],
+      "exports": [
+        {
+          "declaration": {
+            "module": "my-element.ts",
+            "name": "MyElement",
+          },
+          "kind": "js",
+          "name": "MyElement",
+        },
+      ],
+      "kind": "javascript-module",
+      "path": "my-element.ts",
+    },
+    {
+      "declarations": [
+        {
+          "customElement": true,
+          "description": "",
+          "kind": "class",
+          "name": "OtherElement",
+          "superclass": {
+            "name": "HTMLElement",
+          },
+        },
+      ],
+      "exports": [
+        {
+          "declaration": {
+            "module": "other-element.ts",
+            "name": "OtherElement",
+          },
+          "kind": "js",
+          "name": "OtherElement",
+        },
+      ],
+      "kind": "javascript-module",
+      "path": "other-element.ts",
+    },
+  ],
+  "readme": "",
+  "schemaVersion": "1.0.0",
+}
+`;
