@@ -265,7 +265,7 @@ This is an example of a two-way binding implementation for a web component:
 <vwc-text-field
 	label="Search"
 	:value="searchText"
-	@input="searchText = $event.target.value"
+	@input="searchText = $event.currentTarget.value"
 />
 ```
 
@@ -331,9 +331,9 @@ While the default slots work the same, the web component's named slots are mappe
 
 ### Using Events
 
-You can use all the events of the web component. `$event` will be the native event with improved type definitions.
+When using event listeners, `$event` will refer to native event with improved type definitions.
 
-To access the web component itself, use `$event.currentTarget`. Avoid using `target` instead of `currentTarget` as it may not always refer to the component.
+To access the web component itself, use `$event.currentTarget`. Avoid using `target` instead of `currentTarget` as it may not always refer to the component itself.
 
 ```html
 <template>
@@ -346,7 +346,7 @@ To access the web component itself, use `$event.currentTarget`. Avoid using `tar
 
 ### Accessing the Component Instance
 
-You can get a reference to the Vivid Vue component instance like any other Vue component.
+You can get a reference to the Vivid Vue component instance the same way as any other Vue component.
 
 <vwc-tabs>
 <vwc-tab label="useTemplateRef() [Vue 3.5+]"></vwc-tab>
@@ -401,7 +401,7 @@ if (audioPlayer.value?.element?.paused) {
 }
 ```
 
-If you need the type of the web component, you can import it from the `@vonage/vivid` library:
+You can import the type of the web component itself from the `@vonage/vivid` library:
 
 ```ts
 import type { VwcAudioPlayerElement } from '@vonage/vivid';
