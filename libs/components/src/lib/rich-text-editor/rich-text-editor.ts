@@ -37,6 +37,9 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
 	selectionStart: number | null = null;
 	selectionStartChanged() {
+		if (this.#selectionChangedByUser) {
+			return;
+		}
 		if (
 			!this.selectionStart ||
 			(this.selectionEnd && this.selectionStart > this.selectionEnd)
@@ -62,6 +65,10 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
 	selectionEnd: number | null = null;
 	selectionEndChanged() {
+		if (this.#selectionChangedByUser) {
+			this.#selectionChangedByUser = false;
+			return;
+		}
 		if (this.selectionEnd && !this.selectionStart) {
 			this.selectionStart = 1;
 		}
@@ -73,11 +80,14 @@ export class RichTextEditor extends VividElement {
 		super();
 	}
 
+	#selectionChangedByUser = false;
+
 	#handleSelectionChange = () => {
 		if (!this.#editor!.selection()) {
 			return;
 		}
 		const { start, end } = this.#editor!.selection();
+		this.#selectionChangedByUser = true;
 		this.selectionStart = start;
 		this.selectionEnd = end as number;
 		this.$emit('selection-changed');
