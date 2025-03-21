@@ -1,7 +1,7 @@
 import { ComponentDef } from '../common/ComponentDef';
 import { kebabToCamel, kebabToPascal } from '../utils/casing';
 import { parseTypeStr, TypeResolver, TypeStr } from '../common/types';
-import { getImportPath } from '../metadata/vividPackage';
+import { getExportedClassName } from '../metadata/vividPackage';
 import { vuePropTypes } from './vuePropTypes';
 import { wrappedComponentName } from './name';
 import { determinePropForwarding } from './propForwarding';
@@ -49,8 +49,6 @@ export const renderComponent = (
 			)
 	);
 
-	const declaredEvents = [...componentDef.events];
-
 	// Find v-models and their corresponding prop and event
 	const vueModels = componentDef.vueModels.map((model) => {
 		const prop = componentDef.props.find(
@@ -68,13 +66,11 @@ export const renderComponent = (
 		};
 	});
 
-	for (const vueModel of vueModels) {
-		declaredEvents.push({
-			name: `update:${vueModel.name}`,
-			description: `Fires when the ${vueModel.name} value changes`,
-			type: vueModel.prop.type,
-		});
-	}
+	const vueModelEvents = vueModels.map((vueModel) => ({
+		name: `update:${vueModel.name}`,
+		description: `Fires when the ${vueModel.name} value changes`,
+		type: vueModel.prop.type,
+	}));
 
 	if (props.length > 0) {
 		imports.push({ name: 'PropType', fromModule: vueModule });
@@ -82,8 +78,8 @@ export const renderComponent = (
 
 	const typeImports: Import[] = [
 		{
-			name: componentDef.className,
-			fromModule: getImportPath(componentDef.vividModulePath),
+			name: getExportedClassName(componentDef.name),
+			fromModule: '@vonage/vivid',
 		},
 	];
 
@@ -167,15 +163,39 @@ export const renderComponent = (
 	const attrsV2Src = renderProps(props, 'vue2-attrs');
 	const domPropsV2Src = renderProps(props, 'vue2-domProps');
 
+	const renderEventType = (type: TypeStr, isVueModelEvent: boolean): string => {
+		// Event type should be a single type like `CustomEvent<undefined>`
+		if (parseTypeStr(type).length > 1) {
+			throw new Error('Multiple event types not supported');
+		}
+
+		if (isVueModelEvent) {
+			return type; // Vue model events use the prop's type, e.g. a `update:modelValue` will have type `string`
+		}
+
+		// The event `currentTarget` will always be the host component. Therefore, type `currentTarget` accordingly to make
+		// it easier to use for consumers.
+		// Originally we typed `target` instead, but this is not the case if the event bubbles from the light DOM, e.g. an
+		// input event bubbling from a select slotted into a text-field. We will remove the inaccurate typing in a future
+		// major version.
+		return `${type} & {
+			/**
+			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
+			 */
+			target: ${getExportedClassName(componentDef.name)},
+			currentTarget: ${getExportedClassName(componentDef.name)}
+		}`;
+	};
+
 	/**
 	 * All events should be forwarded
 	 */
 	const eventsSrc = componentDef.events
-		.map(({ name }) => {
+		.map(({ name, type }) => {
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
-			return `'${name}': (event: Event) => {
+			return `'${name}': (event: ${renderEventType(type, false)}) => {
           ${eventVueModels
 						.map(
 							(vueModel) =>
@@ -188,11 +208,14 @@ export const renderComponent = (
 		.join(',');
 
 	const eventsV3Src = componentDef.events
-		.map(({ name }) => {
+		.map(({ name, type }) => {
 			const eventVueModels = vueModels.filter((model) =>
 				model.eventNames.includes(name)
 			);
-			return `'on${kebabToPascal(name)}': (event: Event) => {
+			return `'on${kebabToPascal(name)}': (event: ${renderEventType(
+				type,
+				false
+			)}) => {
 					 ${eventVueModels
 							.map(
 								(vueModel) =>
@@ -268,34 +291,32 @@ export const renderComponent = (
 		})
 		.join(',\n');
 
-	const renderEventType = (type: TypeStr): string => {
-		// Event type should be a single type like `CustomEvent<undefined>`
-		if (parseTypeStr(type).length > 1) {
-			throw new Error('Multiple event types not supported');
-		}
+	const renderEventDeclaration = ({
+		name,
+		description,
+		type,
+	}: ComponentDef['events'][number]) =>
+		`
+					${renderJsDoc(description, type)}
+					'${name}'`;
 
-		// The event target will always be the host component. Therefore, type target accordingly to make it easier
-		// to use for consumers.
-		return `${type} & { target: ${componentDef.className}}`;
-	};
+	const renderEventDeclarationV3 =
+		(isVueModelEvent: boolean) =>
+		({ name, description, type }: ComponentDef['events'][number]) =>
+			`
+				${renderJsDoc(description, type)}
+				['${name}'](event: ${renderEventType(type, isVueModelEvent)}) { return true }`;
 
 	// Declare events
 	const eventDefinitionsSrc = isVue3Stub
 		? `{
-			${declaredEvents
-				.map(
-					({ name, description, type }) => `
-						${renderJsDoc(description, type)}
-						['${name}'](event: ${renderEventType(type)}) { return true }`
-				)
-				.join(',\n')}}`
+			${[
+				...componentDef.events.map(renderEventDeclarationV3(false)),
+				...vueModelEvents.map(renderEventDeclarationV3(true)),
+			].join(',\n')}}`
 		: `[
-			${declaredEvents
-				.map(
-					({ name, description, type }) => `
-						${renderJsDoc(description, type)}
-							'${name}'`
-				)
+			${[...componentDef.events, ...vueModelEvents]
+				.map(renderEventDeclaration)
 				.join(',\n')}]`;
 
 	// For vue2, we rename v-model prop and event to the vue3 default names
@@ -376,7 +397,9 @@ export default defineComponent({
 		componentDef.registerFunctionName
 	});
 
-    const element = ref<${componentDef.className} | null>(null);
+    const element = ref<${getExportedClassName(
+			componentDef.name
+		)} | null>(null);
 
     return { componentName, element };
   },

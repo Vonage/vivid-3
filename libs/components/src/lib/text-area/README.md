@@ -68,8 +68,8 @@ Set the `resize` attribute to control how the text area can be resized by the us
 
 <script>
 	document.querySelector('vwc-select').addEventListener('change', (e) => {
-		document.querySelector('#vwc-text-area').value = e.target.value;
-		document.querySelector('#vwc-text-area').resize = e.target.value;
+		document.querySelector('#vwc-text-area').value = e.currentTarget.value;
+		document.querySelector('#vwc-text-area').resize = e.currentTarget.value;
 	});
 </script>
 <style>

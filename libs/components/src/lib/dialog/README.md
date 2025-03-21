@@ -94,7 +94,7 @@ Use the `modal` attribute to set the dialog as Modal
 	}
 
 	document.querySelector('vwc-radio-group').addEventListener('change', (e) => {
-		dialog.modal = e.target.value === 'true';
+		dialog.modal = e.currentTarget.value === 'true';
 	});
 
 	function closeDialog() {
@@ -224,7 +224,7 @@ Often used to indicate which button the user pressed to close it.
 <script>
 	(function handleReturnValue() {
 		function handleClick(e) {
-			buttonType = e.target.label;
+			buttonType = e.currentTarget.label;
 			console.log(buttonType);
 			dialog.returnValue = buttonType;
 			dialog.open = false;

@@ -56,7 +56,7 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  * @component text-area
  * @slot helper-text - Describes how to use the text-area. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Emits a custom 'change' event when the textarea emits a change event
- * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `event.currentTarget.value`
  */
 @errorText
 @formElements

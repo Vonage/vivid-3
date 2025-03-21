@@ -18,13 +18,13 @@ The date picker is localized to the current locale. See [Localization](/guides/l
 	document
 		.querySelector('vwc-date-range-picker')
 		.addEventListener('input:start', (e) => {
-			console.log('start changed:', e.target.start);
+			console.log('start changed:', e.currentTarget.start);
 		});
 
 	document
 		.querySelector('vwc-date-range-picker')
 		.addEventListener('input:end', (e) => {
-			console.log('end changed:', e.target.end);
+			console.log('end changed:', e.currentTarget.end);
 		});
 </script>
 ```

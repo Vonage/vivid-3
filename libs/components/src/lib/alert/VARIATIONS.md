@@ -46,7 +46,7 @@ Each connotation comes with a default icon (that you can override with the `icon
 
 <script>
 	document.querySelector('vwc-select').addEventListener('change', (e) => {
-		document.querySelector('vwc-alert').connotation = e.target.value;
+		document.querySelector('vwc-alert').connotation = e.currentTarget.value;
 	});
 </script>
 ```

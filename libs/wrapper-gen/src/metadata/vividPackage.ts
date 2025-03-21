@@ -1,3 +1,5 @@
+import { kebabToPascal } from '../utils/casing';
+
 /**
  * Determines if the file path is a Vivid component.
  */
@@ -13,9 +15,7 @@ export const getTypescriptDefinitionPath = (originalFilePath: string) =>
 		.replace(/\.ts$/, '.d.ts');
 
 /**
- * Gets the import path for a component from original file path.
+ * Gets the exported class name, e.g. 'accordion-item' -> 'VwcAccordionItemElement'.
  */
-export const getImportPath = (originalFilePath: string) =>
-	originalFilePath
-		.replace(/^libs\/components\/src\//, '@vonage/vivid/')
-		.replace(/\.ts$/, '');
+export const getExportedClassName = (componentName: string) =>
+	`Vwc${kebabToPascal(componentName)}Element`;

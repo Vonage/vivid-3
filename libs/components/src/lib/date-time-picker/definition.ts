@@ -41,3 +41,5 @@ export const dateTimePickerDefinition = defineVividComponent(
 export const registerDateTimePicker = createRegisterFunction(
 	dateTimePickerDefinition
 );
+
+export { DateTimePicker as VwcDateTimePickerElement };

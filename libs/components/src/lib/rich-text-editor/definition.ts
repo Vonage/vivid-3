@@ -26,3 +26,5 @@ export const richTextEditorDefinition = defineVividComponent(
 export const registerRichTextEditor = createRegisterFunction(
 	richTextEditorDefinition
 );
+
+export { RichTextEditor as VwcRichTextEditorElement };
