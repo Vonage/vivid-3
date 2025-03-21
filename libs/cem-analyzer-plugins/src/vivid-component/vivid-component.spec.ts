@@ -8,20 +8,25 @@ import { vividComponentPlugin } from './vivid-component';
 const fixturesPath = path.join(__dirname, '__fixtures__');
 const testCases = fs.readdirSync(fixturesPath);
 
-test.each(testCases)(`Testcase %s`, async (testCase) => {
-	const moduleFiles = glob.sync(
-		path.join(fixturesPath, testCase, '/**/*.{ts,js}')
-	);
-	const modules = moduleFiles.map((moduleFile) =>
-		ts.createSourceFile(
-			'my-element.js',
-			fs.readFileSync(moduleFile, 'utf-8'),
-			ts.ScriptTarget.ES2015,
-			true
-		)
-	);
+describe('vividComponentPlugin', () => {
+	it.each(testCases)(
+		`should produce correct results for testcase %s`,
+		async (testCase) => {
+			const moduleFiles = glob.sync(
+				path.join(fixturesPath, testCase, '/**/*.{ts,js}')
+			);
+			const modules = moduleFiles.map((moduleFile) =>
+				ts.createSourceFile(
+					'my-element.js',
+					fs.readFileSync(moduleFile, 'utf-8'),
+					ts.ScriptTarget.ES2015,
+					true
+				)
+			);
 
-	expect(
-		create({ modules, plugins: [vividComponentPlugin()] })
-	).toMatchSnapshot();
+			expect(
+				create({ modules, plugins: [vividComponentPlugin()] })
+			).toMatchSnapshot();
+		}
+	);
 });

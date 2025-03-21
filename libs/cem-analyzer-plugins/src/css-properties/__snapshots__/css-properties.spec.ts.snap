@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Testcase default 1`] = `
+exports[`cssPropertiesPlugin > should produce correct results for testcase default 1`] = `
 {
   "modules": [
     {
