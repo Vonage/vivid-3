@@ -1,2 +1,14 @@
 @forward 'facades/prose-mirror';
 @forward 'prose-mirror-overrides';
+
+h2 {
+    font: var(--vvd-typography-heading-4)
+}
+
+h3 {
+    font: var(--vvd-typography-base-extended)
+}
+
+p {
+    font: var(--vvd-typography-base)
+}

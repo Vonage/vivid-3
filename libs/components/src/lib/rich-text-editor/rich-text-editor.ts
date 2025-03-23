@@ -8,7 +8,9 @@ export interface RichTextEditorSelection {
 }
 
 const RichTextEditorTextSizes = {
-	title: 'h4',
+	title: 'h2',
+	subtitle: 'h3',
+	body: 'p',
 } as const;
 
 export type RichTextEditorTextSizes = keyof typeof RichTextEditorTextSizes;

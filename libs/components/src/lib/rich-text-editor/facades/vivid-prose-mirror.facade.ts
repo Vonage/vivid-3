@@ -23,10 +23,17 @@ interface NodeDefinition {
 
 class TagToSchemaMap {
 	static [key: string]: NodeDefinition;
-	static get h4() {
+	static get h2() {
 		return {
 			type: 'heading',
-			attrs: { level: 4 },
+			attrs: { level: 2 },
+		};
+	}
+
+	static get h3() {
+		return {
+			type: 'heading',
+			attrs: { level: 3 },
 		};
 	}
 

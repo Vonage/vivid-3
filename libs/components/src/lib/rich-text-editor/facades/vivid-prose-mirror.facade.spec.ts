@@ -224,16 +224,16 @@ describe('ProseMirrorFacade', () => {
 		it('should do nothing when given the same tag', async () => {
 			const element = initViewer();
 			facadeInstance.replaceContent(
-				'<h4>This is a pretty long text for a sample, but it should work</h4>'
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
 			);
 			facadeInstance.selection({
 				start: 3,
 			});
 
-			facadeInstance.setSelectionTag('h4');
+			facadeInstance.setSelectionTag('h2');
 
 			expect(getOutputElement(element).innerHTML).toEqual(
-				'<h4>This is a pretty long text for a sample, but it should work</h4>'
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
 			);
 		});
 
@@ -246,10 +246,58 @@ describe('ProseMirrorFacade', () => {
 				start: 3,
 			});
 
-			facadeInstance.setSelectionTag('h4');
+			facadeInstance.setSelectionTag('h2');
 
 			expect(getOutputElement(element).innerHTML).toEqual(
-				'<h4>This is a pretty long text for a sample, but it should work</h4>'
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+		});
+
+		it('should change the tag to paragraph', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('p');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+		});
+
+		it('should change the tag to p', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('p');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+		});
+
+		it('should change the tag to h3', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('h3');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<h3>This is a pretty long text for a sample, but it should work</h3>'
 			);
 		});
 	});

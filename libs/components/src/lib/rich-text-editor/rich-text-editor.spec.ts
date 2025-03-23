@@ -291,7 +291,7 @@ describe('vwc-rich-text-editor', () => {
 			).not.toThrow();
 		});
 
-		it('should change the text type of current text part to h4 when size is `title`', async () => {
+		it('should change the text type of current text part to h2 when size is `title`', async () => {
 			editorFacadeSelectSpy.mockRestore();
 
 			element.value = '<p>123456789</p><p>abcdefghi</p>';
@@ -302,7 +302,35 @@ describe('vwc-rich-text-editor', () => {
 			element.setTextSize('title');
 			await elementUpdated(element);
 
-			expect(element.value).toEqual('<p>123456789</p><h4>abcdefghi</h4>');
+			expect(element.value).toEqual('<p>123456789</p><h2>abcdefghi</h2>');
+		});
+
+		it('should change the text type of current text part to h3 when size is `subtitle`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><p>abcdefghi</p>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('subtitle');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><h3>abcdefghi</h3>');
+		});
+
+		it('should change the text type of current text part to p when size is `body`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><h3>abcdefghi</h3>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('body');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><p>abcdefghi</p>');
 		});
 	});
 
