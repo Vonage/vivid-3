@@ -322,6 +322,7 @@ describe('vwc-rich-text-editor', () => {
 			moveMarkerToPosition(5);
 			await elementUpdated(element);
 		});
+
 		it('should set the event to bubble and composed', async () => {
 			expect(getEventObject().bubbles).toBe(true);
 			expect(getEventObject().composed).toBe(true);
@@ -329,6 +330,16 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should fire the selection-changed event when selection changes', async () => {
 			expect(selectionChangedListenerCallback).toHaveBeenCalledOnce();
+		});
+
+		it('should prevent call to facade select when updating values from the event', async () => {
+			editorFacadeSelectSpy = spyOnOriginalFacadeSelect();
+			editorFacadeSelectSpy.mockReset();
+			selectInEditor(4, 5);
+			await elementUpdated(element);
+			selectInEditor(3, 5);
+			await elementUpdated(element);
+			expect(editorFacadeSelectSpy).toHaveBeenCalledTimes(2);
 		});
 	});
 
