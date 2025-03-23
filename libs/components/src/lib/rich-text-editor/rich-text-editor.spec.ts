@@ -281,14 +281,12 @@ describe('vwc-rich-text-editor', () => {
 
 	describe('setTextSize', () => {
 		it('should gracefully fail with a warning when given an invalid size', async () => {
-			vi.spyOn(console, 'warn');
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
 			(element.setTextSize as any)('not a given size');
-			expect(console.warn).toHaveBeenCalledWith(
+			expect(consoleWarnSpy).toHaveBeenCalledWith(
 				'Invalid text size: not a given size'
 			);
-			expect(() =>
-				(element.setTextSize as any)('not a given size')
-			).not.toThrow();
 		});
 
 		it('should change the text type of current text part to h2 when size is `title`', async () => {
