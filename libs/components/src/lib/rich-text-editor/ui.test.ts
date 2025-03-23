@@ -4,7 +4,6 @@ import {
 	loadComponents,
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
-import type { RichTextEditor } from './rich-text-editor.js';
 
 const components = ['rich-text-editor'];
 
@@ -26,15 +25,24 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	const richTextEditor = await page.$('vwc-rich-text-editor');
 	await richTextEditor?.focus();
 	await page.keyboard.type('Title');
-	await page.evaluate((editor) => (editor as any).setTextSize('title'), richTextEditor);
+	await page.evaluate(
+		(editor) => (editor as any).setTextSize('title'),
+		richTextEditor
+	);
 	await page.keyboard.press('Enter');
 	await page.keyboard.type('Subtitle');
-	await page.evaluate((editor) => (editor as any).setTextSize('subtitle'), richTextEditor);
+	await page.evaluate(
+		(editor) => (editor as any).setTextSize('subtitle'),
+		richTextEditor
+	);
 	await page.keyboard.press('Enter');
 	await page.keyboard.type('Body');
-	await page.evaluate((editor) => (editor as any).setTextSize('body'), richTextEditor);
+	await page.evaluate(
+		(editor) => (editor as any).setTextSize('body'),
+		richTextEditor
+	);
 	await page.keyboard.press('Enter');
-		
+
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/rich-text-editor.png'
 	);
