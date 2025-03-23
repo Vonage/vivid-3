@@ -279,6 +279,33 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
+	describe('setTextSize', () => {
+		it('should gracefully fail with a warning when given an invalid size', async () => {
+			vi.spyOn(console, 'warn');
+			(element.setTextSize as any)('not a given size');
+			expect(console.warn).toHaveBeenCalledWith(
+				'Invalid text size: not a given size'
+			);
+			expect(() =>
+				(element.setTextSize as any)('not a given size')
+			).not.toThrow();
+		});
+
+		it('should change the text type of current text part to h4 when size is `title`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><p>abcdefghi</p>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('title');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><h4>abcdefghi</h4>');
+		});
+	});
+
 	describe('change event', () => {
 		it('should fire the change event when on facade change', async () => {
 			const spy = vi.fn();

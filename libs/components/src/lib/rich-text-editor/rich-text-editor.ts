@@ -7,6 +7,12 @@ export interface RichTextEditorSelection {
 	end?: number;
 }
 
+const RichTextEditorTextSizes = {
+	title: 'h4',
+} as const;
+
+export type RichTextEditorTextSizes = keyof typeof RichTextEditorTextSizes;
+
 /**
  * @public
  * @component rich-text-editor
@@ -102,6 +108,15 @@ export class RichTextEditor extends VividElement {
 			);
 			this.#editor.addEventListener('change', this.#handleChange);
 			this.#editor.addEventListener('input', this.#handleInput);
+		}
+	}
+
+	setTextSize(size: RichTextEditorTextSizes) {
+		try {
+			this.#editor?.setSelectionTag(RichTextEditorTextSizes[size]);
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(`Invalid text size: ${size}`);
 		}
 	}
 }
