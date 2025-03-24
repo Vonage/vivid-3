@@ -113,7 +113,7 @@ export class RichTextEditor extends VividElement {
 		}
 	}
 
-	setTextSize(size: RichTextEditorTextSizes) {
+	setTextSize(size: 'title' | 'subtitle' | 'body') {
 		try {
 			this.#editor?.setSelectionTag(RichTextEditorTextSizes[size]);
 		} catch (e: any) {
