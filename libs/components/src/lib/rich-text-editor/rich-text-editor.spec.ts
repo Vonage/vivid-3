@@ -279,6 +279,59 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
+	describe('setTextSize', () => {
+		it('should gracefully fail with a warning when given an invalid size', async () => {
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+			(element.setTextSize as any)('not a given size');
+			expect(consoleWarnSpy).toHaveBeenCalledWith(
+				'Invalid text size: not a given size'
+			);
+		});
+
+		it('should change the text type of current text part to h2 when size is `title`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><p>abcdefghi</p>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('title');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><h2>abcdefghi</h2>');
+		});
+
+		it('should change the text type of current text part to h3 when size is `subtitle`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><p>abcdefghi</p>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('subtitle');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><h3>abcdefghi</h3>');
+		});
+
+		it('should change the text type of current text part to p when size is `body`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><h3>abcdefghi</h3>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('body');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><p>abcdefghi</p>');
+		});
+	});
+
 	describe('change event', () => {
 		it('should fire the change event when on facade change', async () => {
 			const spy = vi.fn();

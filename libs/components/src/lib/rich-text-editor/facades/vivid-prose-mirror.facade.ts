@@ -16,6 +16,34 @@ const NEGATIVE_SELECTION = {
 	end: -1,
 };
 
+interface NodeDefinition {
+	type: string;
+	attrs: Record<string, any>;
+}
+
+class TagToSchemaMap {
+	static [key: string]: NodeDefinition;
+	static get h2() {
+		return {
+			type: 'heading',
+			attrs: { level: 2 },
+		};
+	}
+
+	static get h3() {
+		return {
+			type: 'heading',
+			attrs: { level: 3 },
+		};
+	}
+
+	static get p() {
+		return {
+			type: 'paragraph',
+			attrs: {},
+		};
+	}
+}
 function createSelectionChangePlugin(
 	onSelectionChange: (selection: RichTextEditorSelection) => void
 ) {
@@ -125,4 +153,36 @@ export class ProseMirrorFacade {
 	#dispatchEvent = (eventName: string, detail?: any) => {
 		this.#eventHandler.dispatchEvent(new CustomEvent(eventName, { detail }));
 	};
+
+	setSelectionTag(tag: string) {
+		if (!this.#view) {
+			throw new Error(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		}
+
+		const nodeDefinitions = TagToSchemaMap[tag] ?? {
+			type: tag,
+		};
+
+		const { state, dispatch } = this.#view;
+		const { from, to } = state.selection;
+		const tr = state.tr;
+
+		state.doc.nodesBetween(from, to, (node) => {
+			const nodeType = state.schema.nodes[nodeDefinitions.type];
+
+			if (!nodeType) {
+				throw new Error('Node type tag does not exist in the schema');
+			}
+
+			if (node.type === nodeType) {
+				return;
+			}
+
+			tr.setBlockType(from, to, nodeType, nodeDefinitions.attrs);
+		});
+
+		dispatch(tr);
+	}
 }
