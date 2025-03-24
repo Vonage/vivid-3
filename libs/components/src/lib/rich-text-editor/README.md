@@ -77,8 +77,30 @@ Use the `selectionEnd` attribute to get or set the end point of the marker. To s
 Use the `setTextSize` method to set the text size to three sizes: `title`, `subtitle` and `body`.
 
 ```html preview
-<vwc-rich-text-editor></vwc-rich-text-editor>
+<vwc-layout gutters="small" column-basis="block" row-spacing="small">
+	<div id="controls">
+		<vwc-button
+			appearance="filled"
+			label="Title"
+			onclick="setTextSize('title')"
+		></vwc-button>
+		<vwc-button
+			appearance="filled"
+			label="Subtitle"
+			onclick="setTextSize('subtitle')"
+		></vwc-button>
+		<vwc-button
+			appearance="filled"
+			label="Body"
+			onclick="setTextSize('body')"
+		></vwc-button>
+	</div>
+	<vwc-rich-text-editor></vwc-rich-text-editor>
+</vwc-layout>
 <script>
+	function setTextSize(size) {
+		rteComponent.setTextSize(size);
+	}
 	async function waitForEditorReady() {
 		await new Promise((res) => {
 			const interval = setInterval(() => {
