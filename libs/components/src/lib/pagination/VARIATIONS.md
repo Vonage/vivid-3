@@ -12,7 +12,7 @@ The `selected-index` attribute sets the currently selected page.
 
 <vwc-note connotation="information" icon="info-line">
 
-The value is zero-indexed. It is set to `-1` if total pages is `0`.
+The value is zero-indexed. It is set to `0` if total pages is `0`.
 
 </vwc-note>
 
