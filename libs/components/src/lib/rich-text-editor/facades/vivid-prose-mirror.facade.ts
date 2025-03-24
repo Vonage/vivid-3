@@ -83,7 +83,7 @@ export class ProseMirrorFacade {
 		this.#dispatchEvent('input');
 	};
 
-	#handleBlueEvent = () => {
+	#handleChangeEvent = () => {
 		if (!this.#userContentChange) {
 			return;
 		}
@@ -107,7 +107,7 @@ export class ProseMirrorFacade {
 		});
 		this.#view = new EditorView(element, { state });
 		this.#view.dom.addEventListener('input', this.#handleInputEvent);
-		this.#view.dom.addEventListener('blur', this.#handleBlueEvent);
+		this.#view.dom.addEventListener('blur', this.#handleChangeEvent);
 	}
 
 	replaceContent(content: string) {
