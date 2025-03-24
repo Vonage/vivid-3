@@ -53,12 +53,50 @@ The `error-text` attribute provides a custom error message. Any current error st
 
 ## Clock
 
-The Time Picker will display the time in 12h or 24h format depending on the configured locale.
+The Time Picker will display the time in 12h or 24h format depending on the [configured locale](/components/time-picker/code/#locales).
 
 Use the `clock` attribute to override this behavior.
 
 ```html preview 360px
 <vwc-time-picker label="Start time" clock="24h"></vwc-time-picker>
+```
+
+## Minutes Step
+
+Use the `minutes-step` attribute to configure the step between minutes in the time picker.
+
+```html preview 360px
+<vwc-time-picker minutes-step="15" label="Start time"></vwc-time-picker>
+```
+
+## Seconds Step
+
+Use the `seconds-step` attribute to configure the step between seconds in the time picker.
+
+<vwc-note icon="info-line" connotation="information">
+
+If not set, the time picker will not display seconds.
+
+</vwc-note>
+
+```html preview 360px
+<vwc-time-picker seconds-step="5" label="Start time"></vwc-time-picker>
+```
+
+## Min
+
+Set the `min` attribute to configure the earliest time to accept. The user will be prevented from choosing an earlier time, however it is still possible to manually enter one.
+
+```html preview 360px
+<vwc-time-picker label="Start time" min="10:00:00"></vwc-time-picker>
+```
+
+## Max
+
+Set the `max` attribute to configure the latest time to accept. The user will be prevented from choosing a later time, however it is still possible to manually enter one.
+
+```html preview 360px
+<vwc-time-picker label="Start time" max="10:00:00"></vwc-time-picker>
 ```
 
 ## Disabled
@@ -73,6 +111,6 @@ The `disabled` attribute disables the Time Picker input element.
 
 The `readonly` attribute prevents the user from changing the Time Picker input element value.
 
-```html preview 
+```html preview
 <vwc-time-picker label="Start time" readonly></vwc-time-picker>
 ```
