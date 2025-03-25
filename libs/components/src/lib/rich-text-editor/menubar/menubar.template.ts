@@ -1,7 +1,7 @@
 import { html, repeat } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
 import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
