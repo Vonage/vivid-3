@@ -4,8 +4,28 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { MenuBar } from './menubar.js';
 
+
+function notifyMenuBarChange(menuBar: MenuBar, eventName: string, payload: any): any {
+	menuBar.$emit(eventName, payload, { bubbles: false, composed: false });
+}
+
 const MENU_BAR_ITEMS: { [key: string]: ViewTemplate<any, any> } = {
-	textSize: html`<vwc-button icon="text-size-line"></vwc-button>`,
+	textSize: html`
+	<vwc-menu id="text-size" aria-label="Menu example" placement="bottom-end">
+		<vwc-button
+			slot="anchor"
+			aria-label="Open menu"
+			appearance="outlined"
+			icon="text-size-line"
+		></vwc-button>
+		<vwc-menu-item text="Title" value="title" 
+					   @click="${(_, {parent}) => notifyMenuBarChange(parent, 'text-size-selected', 'title')}"></vwc-menu-item>
+		<vwc-menu-item text="Subtitle" value="subtitle"
+					   @click="${(_, {parent}) => notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"></vwc-menu-item>
+		<vwc-menu-item text="Body" value="body"
+					   @click="${(_, {parent}) => notifyMenuBarChange(parent, 'text-size-selected', 'body')}"></vwc-menu-item>
+	</vwc-menu>
+	`,
 }
 
 const getClasses = (_: MenuBar) => classNames('control');

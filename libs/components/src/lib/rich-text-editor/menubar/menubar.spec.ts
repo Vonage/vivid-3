@@ -1,11 +1,15 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { MenuBar } from './menubar';
 import type { Menu } from '../../menu/menu';
+import { RichTextEditorTextSizes } from '../rich-text-editor';
 import '.';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
 describe('menuBar', () => {
+	function getSelectionMenu(menuItemName: string) {
+		return element.shadowRoot?.querySelector(`#${menuItemName}`) as Menu;
+	}
 	let element: MenuBar;
 
 	beforeEach(async () => {
@@ -52,24 +56,61 @@ describe('menuBar', () => {
 	});
 
 	describe('textSize', () => {
-		it('should show the text size button when adding `textSize` to the string', async () => {
+		let textSizeButton: HTMLButtonElement;
+
+		beforeEach(async () => {
 			element.setAttribute('menu-items', 'textSize');
 			await elementUpdated(element);
-
-			const textSizeButton = element.shadowRoot?.querySelector('vwc-button');
+			textSizeButton = element.shadowRoot?.querySelector('vwc-button') as HTMLButtonElement;
+		});
+		it('should show the text size button when adding `textSize` to the string', async () => {
 			expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
 		});
 
 		it('should open menu when clicked', async () => {
-			element.setAttribute('menu-items', 'textSize');
-			await elementUpdated(element);
-
-			const textSizeButton = element.shadowRoot?.querySelector('vwc-button');
-			textSizeButton?.click();
+			textSizeButton.click();
 			await elementUpdated(element);
 
 			const menu = element.shadowRoot?.querySelector('vwc-menu') as Menu;
 			expect(menu?.open).toBeTruthy();
+		});
+
+		it('should have textSize options in the menu', async () => {
+			const textSizeOptions = Object.keys(RichTextEditorTextSizes);
+			const options = getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
+
+			expect(options?.length).toEqual(textSizeOptions.length);
+			options?.forEach((optionElement, index) => {
+				expect(optionElement.getAttribute('value')).toEqual(textSizeOptions[index]);
+			});
+		});
+
+		it('should emit text-size-selected event with the selected text size when an option is clicked', async () => {
+			const spy = vi.fn();
+			element.addEventListener('text-size-selected', spy);
+			getSelectionMenu('text-size').open = true;
+			const options = getSelectionMenu('text-size').querySelectorAll('vwc-menu-item') as unknown as HTMLElement[];
+			
+			options.forEach(option => option.click());
+			await elementUpdated(element);
+			
+			expect(spy).toHaveBeenCalledTimes(options.length);
+			options.forEach((option, index) => {
+				expect(spy.mock.calls[index][0].detail).toEqual(option.getAttribute('value'));
+			});
+		});
+
+		it('should emit a non bubbling and non composed text-size-selected event', async () => {
+			const spy = vi.fn();
+			element.addEventListener('text-size-selected', spy);
+			const option = getSelectionMenu('text-size').querySelector('vwc-menu-item') as HTMLElement;
+			
+			option.click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy.mock.calls[0][0].bubbles).toBe(false);
+			expect(spy.mock.calls[0][0].composed).toBe(false);
 		});
 	});
 });
