@@ -19,7 +19,6 @@ function handleMenuBarSlotChange(
 	richTextEditor: RichTextEditor,
 	{ event }: ExecutionContext
 ) {
-	
 	const slot = event.target as HTMLSlotElement;
 	const assignedElements = slot.assignedElements({ flatten: true });
 	const menuBar = assignedElements.find((element) =>
