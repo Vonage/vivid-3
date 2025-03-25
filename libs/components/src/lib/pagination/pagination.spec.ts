@@ -26,7 +26,7 @@ describe('vwc-pagination', () => {
 
 			expect(element.navIcons).toBeFalsy();
 			expect(element.total).toEqual(0);
-			expect(element.selectedIndex).toBeFalsy();
+			expect(element.selectedIndex).toEqual(0);
 			expect(element.shape).toBeUndefined();
 			expect(element.size).toBeUndefined();
 		});
@@ -44,7 +44,7 @@ describe('vwc-pagination', () => {
 			expect(element.total).toEqual(0);
 		});
 
-		it('should set total as zero of set as negative', async () => {
+		it('should set total as zero if set as negative', async () => {
 			element.total = -10;
 			expect(element.total).toEqual(0);
 		});
@@ -136,19 +136,33 @@ describe('vwc-pagination', () => {
 	});
 
 	describe('selectedIndex', function () {
-		it('should set selectedIndex as zero after changing total', async () => {
+		it('should be initialized to 0, instead of -1 which would make more sense but we have to keep it now for backwards compatibility', async () => {
+			expect(element.selectedIndex).toEqual(0);
+		});
+
+		it('should constrain selectedIndex to the max page index', async () => {
 			element.total = 2;
-			const selectedIndexAfterFirstTotalSet = element.selectedIndex;
+			element.selectedIndex = 2;
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(1);
+		});
 
+		it('should constrain selectedIndex to the min page index', async () => {
+			element.total = 2;
+			element.selectedIndex = -1;
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(0);
+		});
+
+		it('should constrain selectedIndex to 0 when total is 0', async () => {
+			element.total = 0;
 			element.selectedIndex = 1;
-			element.total = 3;
-			const selectedIndexAfterSecondTotalSet = element.selectedIndex;
-
-			expect(selectedIndexAfterFirstTotalSet).toEqual(0);
-			expect(selectedIndexAfterSecondTotalSet).toEqual(0);
+			await elementUpdated(element);
+			expect(element.selectedIndex).toEqual(0);
 		});
 
 		it('should reflect selectedIndex attribute', async function () {
+			element.total = 20;
 			element.setAttribute('selected-index', '10');
 			await elementUpdated(element);
 			expect(element.selectedIndex).toEqual(10);
@@ -287,6 +301,72 @@ describe('vwc-pagination', () => {
 		});
 	});
 
+	describe('pagination-change event', function () {
+		describe('when setting initial values before connecting', function () {
+			it('should not fire when selectedIndex is set to its default value', async function () {
+				const pagination = document.createElement(
+					'vwc-pagination'
+				) as Pagination;
+				const listener = vi.fn();
+				pagination.addEventListener('pagination-change', listener);
+
+				pagination.total = 10;
+				pagination.selectedIndex = 0;
+				element.replaceWith(pagination);
+				await elementUpdated(pagination);
+
+				expect(listener).not.toHaveBeenCalled();
+			});
+
+			it('should not fire when selectedIndex is set to another value', async function () {
+				const pagination = document.createElement(
+					'vwc-pagination'
+				) as Pagination;
+				const listener = vi.fn();
+				pagination.addEventListener('pagination-change', listener);
+
+				pagination.total = 10;
+				pagination.selectedIndex = 1;
+				element.replaceWith(pagination);
+				await elementUpdated(pagination);
+
+				expect(listener).not.toHaveBeenCalled();
+			});
+		});
+
+		describe('when setting initial values after connecting which is what the react wrappers do', () => {
+			it('should not fire when selectedIndex is set to its default value', async function () {
+				const pagination = document.createElement(
+					'vwc-pagination'
+				) as Pagination;
+				const listener = vi.fn();
+				pagination.addEventListener('pagination-change', listener);
+
+				element.replaceWith(pagination);
+				pagination.total = 10;
+				pagination.selectedIndex = 0;
+				await elementUpdated(pagination);
+
+				expect(listener).not.toHaveBeenCalled();
+			});
+
+			it('should fire when selectedIndex is set to a different value', async function () {
+				const pagination = document.createElement(
+					'vwc-pagination'
+				) as Pagination;
+				const listener = vi.fn();
+				pagination.addEventListener('pagination-change', listener);
+
+				element.replaceWith(pagination);
+				pagination.total = 10;
+				pagination.selectedIndex = 1;
+				await elementUpdated(pagination);
+
+				expect(listener).toHaveBeenCalledOnce();
+			});
+		});
+	});
+
 	describe('click events', function () {
 		let buttons: NodeListOf<Element> | undefined;
 
@@ -297,8 +377,6 @@ describe('vwc-pagination', () => {
 			});
 		}
 		beforeEach(async function () {
-			element.selectedIndex = 1;
-
 			element.total = 20;
 			await elementUpdated(element);
 			buttons = element.shadowRoot?.querySelectorAll('.vwc-pagination-button');
@@ -321,7 +399,7 @@ describe('vwc-pagination', () => {
 			expect(element.selectedIndex).toEqual(2);
 		});
 
-		it('should fire the "change" event with the selectedIndex, total and oldIndex', async function () {
+		it('should fire the "pagination-change" event with the selectedIndex, total and oldIndex', async function () {
 			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
 			const button = buttons?.item(2);
@@ -334,7 +412,7 @@ describe('vwc-pagination', () => {
 			});
 		});
 
-		it('should prevent "change" event when selected button is clicked', async function () {
+		it('should prevent "pagination-change" event when selected button is clicked', async function () {
 			const status = { clicked: false, event: new Event('test') };
 			element.selectedIndex = 1;
 			await elementUpdated(element);
@@ -344,18 +422,11 @@ describe('vwc-pagination', () => {
 			expect(status.clicked).toEqual(false);
 		});
 
-		it('should prevent change event when "..." is clicked', async () => {
+		it('should prevent "pagination-change" event when "..." is clicked', async () => {
 			const status = { clicked: false, event: new Event('test') };
 			setEventListeners(status);
 			const dots = getControlElement(element).querySelector('.dots');
 			dots?.dispatchEvent(new MouseEvent('click'));
-			expect(status.clicked).toEqual(false);
-		});
-
-		it('should prevent change event on init', async () => {
-			const status = { clicked: false, event: new Event('test') };
-			setEventListeners(status);
-			(element as any).selectedIndexChanged(undefined);
 			expect(status.clicked).toEqual(false);
 		});
 	});

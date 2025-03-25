@@ -116,11 +116,13 @@ export default defineConfig(() => {
 					},
 				],
 			}),
-			dts({
-				entryRoot: 'src',
-				tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
-				skipDiagnostics: true,
-			}),
+			!isWatchMode
+				? dts({
+						entryRoot: 'src',
+						tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
+						skipDiagnostics: true,
+				  })
+				: undefined,
 			nxViteTsPaths(),
 		],
 		cacheDir: '../../../node_modules/.vite/components',
