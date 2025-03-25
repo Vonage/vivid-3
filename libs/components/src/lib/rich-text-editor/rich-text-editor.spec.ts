@@ -443,7 +443,6 @@ describe('vwc-rich-text-editor', () => {
 			element.appendChild(menuBar);
 			await elementUpdated(element);
 
-
 			menuBar.dispatchEvent(
 				new CustomEvent('text-size-selected', { detail: newTextSize })
 			);

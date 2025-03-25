@@ -52,7 +52,9 @@ describe('menuBar', () => {
 			element.setAttribute('menu-items', 'item1 item2');
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelectorAll('vwc-button').length).toEqual(0);
+			expect(element.shadowRoot?.querySelectorAll('vwc-button').length).toEqual(
+				0
+			);
 		});
 	});
 
@@ -62,7 +64,9 @@ describe('menuBar', () => {
 		beforeEach(async () => {
 			element.setAttribute('menu-items', 'textSize');
 			await elementUpdated(element);
-			textSizeButton = element.shadowRoot?.querySelector('vwc-button') as HTMLButtonElement;
+			textSizeButton = element.shadowRoot?.querySelector(
+				'vwc-button'
+			) as HTMLButtonElement;
 		});
 		it('should show the text size button when adding `textSize` to the string', async () => {
 			expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
@@ -80,18 +84,21 @@ describe('menuBar', () => {
 			textSizeButton.click();
 			await elementUpdated(element);
 			textSizeButton.click();
-			await elementUpdated(element);		
+			await elementUpdated(element);
 
 			expect(getSelectionMenu('text-size').open).toBeFalsy();
 		});
 
 		it('should have textSize options in the menu', async () => {
 			const textSizeOptions = Object.keys(RichTextEditorTextSizes);
-			const options = getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
+			const options =
+				getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
 
 			expect(options?.length).toEqual(textSizeOptions.length);
 			options?.forEach((optionElement, index) => {
-				expect(optionElement.getAttribute('value')).toEqual(textSizeOptions[index]);
+				expect(optionElement.getAttribute('value')).toEqual(
+					textSizeOptions[index]
+				);
 			});
 		});
 
@@ -99,22 +106,28 @@ describe('menuBar', () => {
 			const spy = vi.fn();
 			element.addEventListener('text-size-selected', spy);
 			getSelectionMenu('text-size').open = true;
-			const options = getSelectionMenu('text-size').querySelectorAll('vwc-menu-item') as unknown as HTMLElement[];
-			
-			options.forEach(option => option.click());
+			const options = getSelectionMenu('text-size').querySelectorAll(
+				'vwc-menu-item'
+			) as unknown as HTMLElement[];
+
+			options.forEach((option) => option.click());
 			await elementUpdated(element);
-			
+
 			expect(spy).toHaveBeenCalledTimes(options.length);
 			options.forEach((option, index) => {
-				expect(spy.mock.calls[index][0].detail).toEqual(option.getAttribute('value'));
+				expect(spy.mock.calls[index][0].detail).toEqual(
+					option.getAttribute('value')
+				);
 			});
 		});
 
 		it('should emit a non bubbling and non composed text-size-selected event', async () => {
 			const spy = vi.fn();
 			element.addEventListener('text-size-selected', spy);
-			const option = getSelectionMenu('text-size').querySelector('vwc-menu-item') as HTMLElement;
-			
+			const option = getSelectionMenu('text-size').querySelector(
+				'vwc-menu-item'
+			) as HTMLElement;
+
 			option.click();
 			await elementUpdated(element);
 
@@ -127,8 +140,10 @@ describe('menuBar', () => {
 			getSelectionMenu('text-size').open = true;
 			await elementUpdated(element);
 
-			const option = getSelectionMenu('text-size').querySelector('vwc-menu-item') as HTMLElement;
-			
+			const option = getSelectionMenu('text-size').querySelector(
+				'vwc-menu-item'
+			) as HTMLElement;
+
 			option.click();
 			await elementUpdated(element);
 
