@@ -5998,7 +5998,7 @@
 				},
 				{
 					"name": "loading-options",
-					"description": "Message that appears when no options are loading."
+					"description": "Message that appears there are no options to display and the component is in a loading state."
 				},
 				{
 					"name": "meta",
