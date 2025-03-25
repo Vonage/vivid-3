@@ -90,6 +90,10 @@
 
 		@include focus.focus;
 	}
+
+	&.hidden {
+		display: none;
+	}
 }
 
 .text {

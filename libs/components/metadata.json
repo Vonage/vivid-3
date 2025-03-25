@@ -4890,6 +4890,13 @@
 					"propertyName": "_label"
 				},
 				{
+					"name": "matchedText",
+					"description": "Text to highlighted as matching a search query.",
+					"type": "string",
+					"attributeName": "matched-text",
+					"propertyName": "matchedText"
+				},
+				{
 					"name": "selected",
 					"description": "The selected attribute value. This sets the initial selected value.",
 					"type": "boolean",
@@ -5839,6 +5846,13 @@
 					"attributeName": "label"
 				},
 				{
+					"name": "loading",
+					"description": "Whether the component is in a loading state.",
+					"type": "boolean",
+					"attributeName": "loading",
+					"propertyName": "loading"
+				},
+				{
 					"name": "maxLines",
 					"type": "number",
 					"attributeName": "max-lines",
@@ -5861,6 +5875,12 @@
 					"type": "boolean",
 					"attributeName": "open",
 					"propertyName": "open"
+				},
+				{
+					"name": "optionFilter",
+					"description": "Function to filter the options to display.",
+					"type": "any",
+					"propertyName": "optionFilter"
 				},
 				{
 					"name": "placeholder",
@@ -5935,6 +5955,11 @@
 					"name": "keyup",
 					"description": "Fires when a key is released.",
 					"type": "KeyboardEvent"
+				},
+				{
+					"name": "search-text-change",
+					"description": "Fired when the search text changes",
+					"type": "CustomEvent<undefined>"
 				}
 			],
 			"vueModels": [
@@ -5961,6 +5986,10 @@
 				{
 					"name": "icon",
 					"description": "Slot to add an icon to the control."
+				},
+				{
+					"name": "loading-options",
+					"description": "Message that appears when no options are loading."
 				},
 				{
 					"name": "meta",

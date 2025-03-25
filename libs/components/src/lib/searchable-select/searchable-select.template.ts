@@ -10,9 +10,10 @@ import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from '../select/select';
 import { Button } from '../button/button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { SearchableSelect } from './searchable-select';
 import { OptionTag } from './option-tag';
+import { isListboxOption } from '../option/option';
+import { ProgressRing } from '../progress-ring/progress-ring';
 
 const getStateClasses = (x: Select) =>
 	classNames(
@@ -75,6 +76,7 @@ const elidedTagTemplateFactory = (
 
 function renderFieldset(context: VividElementDefinitionContext) {
 	const buttonTag = context.tagFor(Button);
+	const progressRingTag = context.tagFor(ProgressRing);
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const chevronTemplate = chevronTemplateFactory(context);
 	const tagTemplate = tagTemplateFactory(context, (c) => c.parent);
@@ -135,7 +137,13 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						type="text"
 						?disabled="${(x) => x.disabled}"
 						:value="${(x) => x._inputValue}"
-						@input="${(x, c) => x._onInputInput(c.event as InputEvent)}"
+						@input="${(x, c) => {
+							x._onInputInput(c.event as InputEvent);
+							c.event.stopPropagation();
+						}}"
+						@change="${(_, c) => {
+							c.event.stopPropagation();
+						}}"
 						@focus="${(x, c) => x._onInputFocus(c.event as FocusEvent)}"
 						@blur="${(x, c) => x._onInputBlur(c.event as FocusEvent)}"
 						@keydown="${(x, c) => x._onInputKeydown(c.event as KeyboardEvent)}"
@@ -159,7 +167,11 @@ function renderFieldset(context: VividElementDefinitionContext) {
 				></${buttonTag}>`
 			)}
 			<div @mousedown="${() => false}" @click="${(x) => x._onChevronClick()}">
-				${chevronTemplate}
+				${when(
+					(x) => x.loading,
+					html<SearchableSelect>`<${progressRingTag} indeterminate size="-6"></${progressRingTag}>`
+				)}
+				${when((x) => !x.loading, chevronTemplate)}
 			</div>
 		</div>
 	`;
@@ -202,7 +214,7 @@ function renderControl(context: VividElementDefinitionContext) {
 					>
 						<slot
 							${slotted({
-								filter: Listbox.slottedOptionFilter as any,
+								filter: isListboxOption as any,
 								flatten: true,
 								property: '_slottedOptions',
 							})}>
@@ -211,13 +223,19 @@ function renderControl(context: VividElementDefinitionContext) {
 							(x) => x._filteredOptions.length === 0,
 							html<SearchableSelect>`<div class="empty-message">
 								${when(
-									(x) => x._inputValue === '',
+									(x) => x.loading,
+									html<SearchableSelect>`<slot name="loading-options">
+										${(x) => x.locale.searchableSelect.loadingOptionsMessage}
+									</slot>`
+								)}
+								${when(
+									(x) => !x.loading && x.searchText === '',
 									html<SearchableSelect>`<slot name="no-options">
 										${(x) => x.locale.searchableSelect.noOptionsMessage}
 									</slot>`
 								)}
 								${when(
-									(x) => x._inputValue !== '',
+									(x) => !x.loading && x.searchText !== '',
 									html<SearchableSelect>`<slot name="no-matches">
 										${(x) => x.locale.searchableSelect.noMatchesMessage}
 									</slot>`

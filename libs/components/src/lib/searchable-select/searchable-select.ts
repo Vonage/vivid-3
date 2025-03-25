@@ -50,7 +50,9 @@ const isFormAssociatedTryingToSetFormValue = (
  * @slot helper-text - Describes how to use the component. Alternative to the `helper-text` attribute.
  * @slot no-options - Message that appears when no options are available.
  * @slot no-matches - Message that appears when no options match the search query.
+ * @slot loading-options - Message that appears when no options are loading.
  * @event {CustomEvent<undefined>} input - Fired when the selected options change
+ * @event {CustomEvent<undefined>} search-text-change - Fired when the search text changes
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
  * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
  * @vueModel values values input `(event.target as any).values`
@@ -140,15 +142,6 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			return;
 		}
 
-		if (!this.multiple) {
-			if (this.values.length) {
-				this.#suppressFilter = true;
-				this._inputValue = this.#textForValue(this.values[0])!;
-			} else {
-				this._inputValue = '';
-			}
-		}
-
 		this.value = this.values.length ? this.values[0] : '';
 
 		this.#updateSelectedOnSlottedOptions();
@@ -171,6 +164,14 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateValuesWhileMaintainingOrder(newValues: string[]) {
 		const oldSet = new Set(this.values);
 		const newSet = new Set(newValues);
+		/*
+		if (
+			oldSet.size === newSet.size &&
+			[...oldSet].every((v) => newSet.has(v))
+		) {
+			return;
+		}
+*/
 		this.values = [...this.values]
 			.filter((v) => newSet.has(v))
 			.concat([...newValues].filter((v) => !oldSet.has(v)));
@@ -246,27 +247,49 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	/**
 	 * @internal
 	 */
-	@observable _inputValue = '';
+	@observable _currentSearchText: string | null = null;
+
 	/**
 	 * @internal
 	 */
-	_inputValueChanged() {
+	_currentSearchTextChanged() {
 		this.#updateFilteredOptions();
+		this.$emit('search-text-change', undefined, {
+			bubbles: false,
+			composed: false,
+		});
+	}
+
+	/**
+	 * The current search text of the component.
+	 */
+	get searchText() {
+		return this._currentSearchText ?? '';
+	}
+
+	/**
+	 * @internal
+	 */
+	get _inputValue() {
+		return (
+			this._currentSearchText ??
+			(!this.multiple && this.value !== ''
+				? this.#textForValue(this.value) ?? ''
+				: '')
+		);
 	}
 
 	/**
 	 * @internal
 	 */
 	_onInputInput(event: InputEvent) {
-		this.#suppressFilter = false;
-		this._inputValue = (event.target as HTMLInputElement).value;
+		this._currentSearchText = (event.target as HTMLInputElement).value;
 	}
 
 	/**
 	 * @internal
 	 */
 	_onInputFocus(_: FocusEvent) {
-		this.#suppressFilter = true;
 		this.#updateFilteredOptions();
 		this.open = true;
 	}
@@ -276,15 +299,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 */
 	_onInputBlur(_: FocusEvent) {
 		this.open = false;
-		if (this.multiple) {
-			this._inputValue = '';
-		} else {
-			if (this.values.length === 0) {
-				this._inputValue = '';
-			} else {
-				this._inputValue = this.#textForValue(this.values[0])!;
-			}
-		}
+		this._currentSearchText = null;
 		this._changeDescription = '';
 	}
 
@@ -463,6 +478,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#handleOptionInteraction(option: ListboxOption) {
 		const value = option.value;
 		let newValues: string[];
+		let shouldClearSearchText = false;
 
 		const isSelection = !this.values.includes(value);
 
@@ -472,11 +488,11 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			} else {
 				newValues = this.values.filter((option) => option !== value);
 			}
-			this._inputValue = '';
+			shouldClearSearchText = true;
 		} else {
 			if (isSelection) {
 				newValues = [value];
-				this._inputValue = option.text;
+				shouldClearSearchText = true;
 			} else {
 				newValues = [];
 			}
@@ -488,6 +504,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
 
 		this.#updateValuesThroughUserInteraction(newValues);
+		if (shouldClearSearchText) {
+			this._currentSearchText = null;
+		}
 	}
 
 	// --- Option tag icons ---
@@ -526,6 +545,20 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	// --- Option filtering ---
 
 	/**
+	 * Function to filter the options to display.
+	 */
+	@observable optionFilter?: (
+		option: ListboxOption,
+		searchText: string
+	) => boolean;
+	/**
+	 * @internal
+	 */
+	optionFilterChanged() {
+		this.#updateFilteredOptions();
+	}
+
+	/**
 	 * @internal
 	 */
 	@observable _filteredOptions: ListboxOption[] = [];
@@ -535,29 +568,29 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 */
 	@observable _filteredEnabledOptions: ListboxOption[] = [];
 
-	#suppressFilter = false;
+	/**
+	 * Whether the component is in a loading state.
+	 */
+	@attr({
+		mode: 'boolean',
+	})
+	loading = false;
 
 	#updateFilteredOptions() {
 		const newFilteredOptions = [];
 
+		const optionFilter =
+			this.optionFilter ??
+			((option: ListboxOption, searchText) =>
+				option.text.toLowerCase().includes(searchText.toLowerCase()));
+
 		for (const option of this._slottedOptions ?? []) {
-			if (this.#suppressFilter || this._inputValue === '') {
-				option.hidden = false;
-				option._matchedRange = null;
-			} else {
-				const matchIndex = option.text
-					.toLowerCase()
-					.indexOf(this._inputValue.toLowerCase());
-				const matchedRange =
-					matchIndex === -1
-						? null
-						: { from: matchIndex, to: matchIndex + this._inputValue.length };
+			option._vvdSearchText = this.searchText;
 
-				option.hidden = !matchedRange;
-				option._matchedRange = matchedRange;
-			}
+			const matches = !this.searchText || optionFilter(option, this.searchText);
+			option._isNotMatching = !matches;
 
-			if (!option.hidden) {
+			if (!option.hidden && matches) {
 				newFilteredOptions.push(option);
 			}
 		}
@@ -674,10 +707,7 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	}
 
 	#textForValue(value: string) {
-		const option = this._slottedOptions.find(
-			(option) => option.value === value
-		)!;
-		return option.text;
+		return this._slottedOptions?.find((option) => option.value === value)?.text;
 	}
 
 	/**
