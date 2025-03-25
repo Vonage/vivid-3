@@ -1,9 +1,8 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { MenuBar } from './menubar';
 import type { Menu } from '../../menu/menu';
 import { RichTextEditorTextSizes } from '../rich-text-editor';
+import { MenuBar } from './menubar';
 import '.';
-import type { ExecutionContext } from '@microsoft/fast-element';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
