@@ -22,7 +22,7 @@
 			"dependsOn": ["buildMetadata"],
 			"executor": "nx:run-commands",
 			"outputs": [
-				"{workspaceRoot}/libs/vue-wrappers/src/generated",
+				"{workspaceRoot}/libs/components/metadata.json",
 				"{workspaceRoot}/apps/vue-docs/docs/components",
 				"{workspaceRoot}/libs/vue-wrappers/stories/generated",
 				"{workspaceRoot}/libs/vue-wrappers/web-types.json"

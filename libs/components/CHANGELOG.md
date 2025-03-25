@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.18.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.17.0...vivid-v4.18.0) (2025-03-17)
+
+
+### Features
+
+* **combobox, searchable-select:** popup closes when chevron icon is clicked (VIV-2367) ([#2191](https://github.com/Vonage/vivid-3/issues/2191)) ([7070a79](https://github.com/Vonage/vivid-3/commit/7070a79d1f2daca31f2f4e2a8ba93cab3adf5691))
+* **date-time-picker:** add component (VIV-2338) ([#2165](https://github.com/Vonage/vivid-3/issues/2165)) ([7c4b65d](https://github.com/Vonage/vivid-3/commit/7c4b65dc4129b87774b2b31d41cc717c27d4087f))
+* **rich-text-editor:** can set selection from the component (VIV-2386) ([#2200](https://github.com/Vonage/vivid-3/issues/2200)) ([f1f04b6](https://github.com/Vonage/vivid-3/commit/f1f04b656801cf159d43caa0e7ccc77e27a19a73))
+
+
+### Bug Fixes
+
+* **combobox:** helper text color and placement (VIV-000) ([#2209](https://github.com/Vonage/vivid-3/issues/2209)) ([198da5d](https://github.com/Vonage/vivid-3/commit/198da5d576913f8404cd1dec62ee521ed0f946ba))
+* **radio, radio-group:** accessible voice announcing the group and selected radio (VIV-2047)  ([#2204](https://github.com/Vonage/vivid-3/issues/2204)) ([b336218](https://github.com/Vonage/vivid-3/commit/b336218392523fd68386a9c445f751a269eb0529))
+
 ## [4.17.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.16.2...vivid-v4.17.0) (2025-03-10)
 
 
