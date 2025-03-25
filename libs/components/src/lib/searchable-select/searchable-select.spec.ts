@@ -5,11 +5,11 @@ import userEvent, { type UserEvent } from '@testing-library/user-event';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { Button } from '../button/button';
-import { Icon } from '../icon/icon.ts';
+import { Icon } from '../icon/icon';
+import { ProgressRing } from '../progress-ring/progress-ring';
 import { VividFoundationButton } from '../../shared/foundation/button';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
-import type { ProgressRing } from '../progress-ring/progress-ring';
 
 // Workaround: Remove handleUnsupportedDelegatesFocus (which we don't need) because it breaks when used with user-event
 Object.defineProperty(

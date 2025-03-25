@@ -164,14 +164,6 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	#updateValuesWhileMaintainingOrder(newValues: string[]) {
 		const oldSet = new Set(this.values);
 		const newSet = new Set(newValues);
-		/*
-		if (
-			oldSet.size === newSet.size &&
-			[...oldSet].every((v) => newSet.has(v))
-		) {
-			return;
-		}
-*/
 		this.values = [...this.values]
 			.filter((v) => newSet.has(v))
 			.concat([...newValues].filter((v) => !oldSet.has(v)));

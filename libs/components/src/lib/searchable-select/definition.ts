@@ -1,6 +1,7 @@
 import { buttonDefinition } from '../button/definition';
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
+import { progressRingDefinition } from '../progress-ring/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './searchable-select.scss?inline';
@@ -9,7 +10,6 @@ import { SearchableSelect } from './searchable-select';
 import { SearchableSelectTemplate as template } from './searchable-select.template';
 import { OptionTag } from './option-tag';
 import { optionTagTemplate } from './option-tag.template';
-import { progressRingDefinition } from '../progress-ring/definition';
 
 const optionTagDefinition = defineVividComponent(
 	'option-tag',

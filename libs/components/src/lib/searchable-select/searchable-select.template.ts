@@ -9,11 +9,11 @@ import {
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from '../select/select';
 import { Button } from '../button/button';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import type { SearchableSelect } from './searchable-select';
-import { OptionTag } from './option-tag';
-import { isListboxOption } from '../option/option';
 import { ProgressRing } from '../progress-ring/progress-ring';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { isListboxOption } from '../option/option';
+import { OptionTag } from './option-tag';
+import type { SearchableSelect } from './searchable-select';
 
 const getStateClasses = (x: Select) =>
 	classNames(
