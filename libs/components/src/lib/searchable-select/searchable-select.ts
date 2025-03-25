@@ -50,7 +50,7 @@ const isFormAssociatedTryingToSetFormValue = (
  * @slot helper-text - Describes how to use the component. Alternative to the `helper-text` attribute.
  * @slot no-options - Message that appears when no options are available.
  * @slot no-matches - Message that appears when no options match the search query.
- * @slot loading-options - Message that appears when no options are loading.
+ * @slot loading-options - Message that appears there are no options to display and the component is in a loading state.
  * @event {CustomEvent<undefined>} input - Fired when the selected options change
  * @event {CustomEvent<undefined>} search-text-change - Fired when the search text changes
  * @event {CustomEvent<undefined>} change - Fired when the selected options change
