@@ -4,12 +4,13 @@ import styles from './menubar.scss?inline';
 
 import { MenuBar } from './menubar.js';
 import { MenuBarTemplate as template } from './menubar.template.js';
+import { buttonDefinition, menuDefinition } from '../../components';
 
 export const menuBarDefinition = defineVividComponent(
 	'menubar',
 	MenuBar,
 	template,
-	[],
+	[buttonDefinition, menuDefinition],
 	{
 		styles,
 		shadowOptions: {
