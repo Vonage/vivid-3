@@ -11,6 +11,12 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Radio } from '../radio/radio';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+// import type { ErrorText } from '../../shared/patterns';
+// import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+// import {
+// 	FormElementHelperText,
+// 	FormElementSuccessText,
+// } from '../../shared/patterns';
 
 /**
  * @public
@@ -319,3 +325,9 @@ export class RadioGroup extends VividElement {
 		}
 	};
 }
+
+// export interface RadioGroup
+// 	extends FormElementHelperText,
+// 		ErrorText,
+// 		FormElementSuccessText {}
+// applyMixinsWithObservables(FormElementHelperText, FormElementSuccessText);
