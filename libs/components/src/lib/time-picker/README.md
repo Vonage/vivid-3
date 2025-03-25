@@ -95,8 +95,8 @@ The `helper-text` slot allows you to use rich content as the time-picker's helpe
 
 <div class="table-wrapper">
 
-| Name            | Description                                      |
-| --------------- | ------------------------------------------------ |
+| Name            | Description                                       |
+| --------------- | ------------------------------------------------- |
 | **helper-text** | Add rich content as the Time Picker's helper text |
 
 </div>
