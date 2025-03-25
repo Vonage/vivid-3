@@ -4,14 +4,14 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { MenuBar } from './menubar.js';
 
-
 function notifyMenuBarChange(menuBar: MenuBar, eventName: string, payload: any): any {
 	menuBar.$emit(eventName, payload, { bubbles: false, composed: false });
+	return true;
 }
 
 const MENU_BAR_ITEMS: { [key: string]: ViewTemplate<any, any> } = {
 	textSize: html`
-	<vwc-menu id="text-size" aria-label="Menu example" placement="bottom-end">
+	<vwc-menu trigger="auto" id="text-size" aria-label="Menu example" placement="bottom-end">
 		<vwc-button
 			slot="anchor"
 			aria-label="Open menu"
@@ -33,7 +33,7 @@ const getClasses = (_: MenuBar) => classNames('control');
 const validItems = ['textSize'];
 
 function createMenuItem(item: string) {
-	return MENU_BAR_ITEMS[item] || html`<br/>`;
+	return MENU_BAR_ITEMS[item];
 }
 
 function getValidMenuItems({ menuItems }: MenuBar) {

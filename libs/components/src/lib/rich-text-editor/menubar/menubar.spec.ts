@@ -3,6 +3,7 @@ import { MenuBar } from './menubar';
 import type { Menu } from '../../menu/menu';
 import { RichTextEditorTextSizes } from '../rich-text-editor';
 import '.';
+import type { ExecutionContext } from '@microsoft/fast-element';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -75,6 +76,15 @@ describe('menuBar', () => {
 			expect(menu?.open).toBeTruthy();
 		});
 
+		it('should close menu when clicked again', async () => {
+			textSizeButton.click();
+			await elementUpdated(element);
+			textSizeButton.click();
+			await elementUpdated(element);		
+
+			expect(getSelectionMenu('text-size').open).toBeFalsy();
+		});
+
 		it('should have textSize options in the menu', async () => {
 			const textSizeOptions = Object.keys(RichTextEditorTextSizes);
 			const options = getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
@@ -111,6 +121,18 @@ describe('menuBar', () => {
 			expect(spy).toHaveBeenCalledTimes(1);
 			expect(spy.mock.calls[0][0].bubbles).toBe(false);
 			expect(spy.mock.calls[0][0].composed).toBe(false);
+		});
+
+		it('should close the menu when option is clicked', async () => {
+			getSelectionMenu('text-size').open = true;
+			await elementUpdated(element);
+
+			const option = getSelectionMenu('text-size').querySelector('vwc-menu-item') as HTMLElement;
+			
+			option.click();
+			await elementUpdated(element);
+
+			expect(getSelectionMenu('text-size').open).toBe(false);
 		});
 	});
 });
