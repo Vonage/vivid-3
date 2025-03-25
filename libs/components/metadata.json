@@ -5753,7 +5753,16 @@
 			"vueModels": [],
 			"methods": [
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
-				{ "name": "selectionStartChanged", "args": [], "returnType": "unknown" }
+				{
+					"name": "selectionStartChanged",
+					"args": [],
+					"returnType": "unknown"
+				},
+				{
+					"name": "setTextSize",
+					"args": [{ "name": "size", "type": "'title' | 'subtitle' | 'body'" }],
+					"returnType": "unknown"
+				}
 			],
 			"slots": []
 		},
