@@ -63,7 +63,7 @@ Use the `clock` attribute to override this behavior.
 
 ## Minutes Step
 
-Use the `minutes-step` attribute to configure the step between minutes in the time picker.
+Use the `minutes-step` attribute to configure the step between minutes in the Time Picker.
 
 ```html preview 360px
 <vwc-time-picker minutes-step="15" label="Start time"></vwc-time-picker>
@@ -71,11 +71,11 @@ Use the `minutes-step` attribute to configure the step between minutes in the ti
 
 ## Seconds Step
 
-Use the `seconds-step` attribute to configure the step between seconds in the time picker.
+Use the `seconds-step` attribute to configure the step between seconds in the Time Picker.
 
 <vwc-note icon="info-line" connotation="information">
 
-If not set, the time picker will not display seconds.
+If not set, the Time Picker will not display seconds.
 
 </vwc-note>
 

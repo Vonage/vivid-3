@@ -83,11 +83,11 @@ The `helper-text` slot allows you to use rich content as the time-picker's helpe
 | **label**        | `string`                          | Sets the field label                                                    |
 | **max**          | `string` (time format `hh:mm:ss`) | Sets the maximum time the user can set                                  |
 | **min**          | `string` (time format `hh:mm:ss`) | Sets the minimum time the user can set                                  |
-| **minutes-step** | `number`                          | Sets the step between minites in the time picker                        |
+| **minutes-step** | `number`                          | Sets the step between minites in the Time Picker                        |
 | **read-only**    | `boolean`                         | Sets the read onnly state                                               |
 | **required**     | `boolean`                         | Sets the field as required                                              |
-| **seconds-step** | `number`                          | Sets the step between seconds (and activate seconds) in the time picker |
-| **value**        | `string` (time format `hh:mm:ss`) | Sets the current value of the time picker                               |
+| **seconds-step** | `number`                          | Sets the step between seconds (and activate seconds) in the Time Picker |
+| **value**        | `string` (time format `hh:mm:ss`) | Sets the current value of the Time Picker                               |
 
 </div>
 
@@ -97,7 +97,7 @@ The `helper-text` slot allows you to use rich content as the time-picker's helpe
 
 | Name            | Description                                      |
 | --------------- | ------------------------------------------------ |
-| **helper-text** | Add rich content as the text-field's helper text |
+| **helper-text** | Add rich content as the Time Picker's helper text |
 
 </div>
 
