@@ -24,7 +24,8 @@ const MENU_BAR_ITEMS: { [key: string]: ViewTemplate<any, any> } = {
 			<vwc-button
 				slot="anchor"
 				aria-label="Open menu"
-				appearance="outlined"
+				size="condensed"
+				shape="rounded"
 				icon="text-size-line"
 			></vwc-button>
 			<vwc-menu-item
