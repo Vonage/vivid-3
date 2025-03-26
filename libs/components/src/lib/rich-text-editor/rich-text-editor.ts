@@ -1,7 +1,7 @@
 import {
 	attr,
-	observable,
 	nullableNumberConverter,
+	observable,
 } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
