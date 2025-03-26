@@ -1,4 +1,8 @@
-import { attr, nullableNumberConverter } from '@microsoft/fast-element';
+import {
+	attr,
+	observable,
+	nullableNumberConverter,
+} from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
@@ -131,4 +135,13 @@ export class RichTextEditor extends VividElement {
 			console.warn(`Invalid text size: ${size}`);
 		}
 	}
+
+	/**
+	 *
+	 * Slot observer:
+	 *
+	 * @internal
+	 */
+
+	@observable menuBarSlotted?: HTMLElement[];
 }

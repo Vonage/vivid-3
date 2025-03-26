@@ -1,14 +1,27 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @forward 'facades/prose-mirror';
 @forward 'prose-mirror-overrides';
 
+.menu-bar {
+	background-color:  var(#{constants.$vvd-color-neutral-50});
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 8px;
+
+	:host(.hide-menubar) & {
+		display: none;
+	}
+}
+
 h2 {
-	font: var(--vvd-typography-heading-4);
+	font: var(#{constants.$vvd-typography-heading-4});;
 }
 
 h3 {
-	font: var(--vvd-typography-base-extended);
+	font: var(#{constants.$vvd-typography-base-extended});
 }
 
 p {
-	font: var(--vvd-typography-base);
+	font: var(#{constants.$vvd-typography-base});
 }
