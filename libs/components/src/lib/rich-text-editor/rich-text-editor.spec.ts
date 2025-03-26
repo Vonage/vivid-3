@@ -420,4 +420,34 @@ describe('vwc-rich-text-editor', () => {
 			expect(spy.mock.calls[0][0].composed).toBe(true);
 		});
 	});
+
+	describe('menu-bar slot', () => {
+		it('should accept only menu-bar elements', async () => {
+			const menuBar = document.createElement('vwc-menubar');
+			const notMenuBar = document.createElement('div');
+			menuBar.slot = 'menu-bar';
+			notMenuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			element.appendChild(notMenuBar);
+			await elementUpdated(element);
+
+			expect(getComputedStyle(menuBar).display).not.toBe('none');
+			expect(getComputedStyle(notMenuBar).display).toBe('none');
+		});
+
+		it('should change text size on `text-size-selected` event from menubar', async () => {
+			const newTextSize = 'title';
+			const setTextSizeSpy = vi.spyOn(element, 'setTextSize');
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
+
+			menuBar.dispatchEvent(
+				new CustomEvent('text-size-selected', { detail: newTextSize })
+			);
+
+			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+		});
+	});
 });
