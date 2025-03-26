@@ -2,14 +2,6 @@
 @forward 'facades/prose-mirror';
 @forward 'prose-mirror-overrides';
 
-.menu-bar {
-	display: flex;
-	align-items: center;
-	padding: 8px;
-	background-color: var(#{constants.$vvd-color-neutral-50});
-	gap: 4px;
-}
-
 h2 {
 	font: var(#{constants.$vvd-typography-heading-4});
 }
