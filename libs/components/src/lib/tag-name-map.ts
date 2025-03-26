@@ -20,6 +20,7 @@ import type {
 	VwcDataGridRowElement,
 	VwcDatePickerElement,
 	VwcDateRangePickerElement,
+	VwcDateTimePickerElement,
 	VwcDialogElement,
 	VwcDialPadElement,
 	VwcDividerElement,
@@ -43,6 +44,7 @@ import type {
 	VwcRadioElement,
 	VwcRadioGroupElement,
 	VwcRangeSliderElement,
+	VwcRichTextEditorElement,
 	VwcSearchableSelectElement,
 	VwcSelectableBoxElement,
 	VwcSelectElement,
@@ -87,6 +89,7 @@ type DefaultVividTagNameMap = {
 	'vwc-data-grid-row': VwcDataGridRowElement;
 	'vwc-date-picker': VwcDatePickerElement;
 	'vwc-date-range-picker': VwcDateRangePickerElement;
+	'vwc-date-time-picker': VwcDateTimePickerElement;
 	'vwc-dialog': VwcDialogElement;
 	'vwc-dial-pad': VwcDialPadElement;
 	'vwc-divider': VwcDividerElement;
@@ -110,6 +113,7 @@ type DefaultVividTagNameMap = {
 	'vwc-radio': VwcRadioElement;
 	'vwc-radio-group': VwcRadioGroupElement;
 	'vwc-range-slider': VwcRangeSliderElement;
+	'vwc-rich-text-editor': VwcRichTextEditorElement;
 	'vwc-searchable-select': VwcSearchableSelectElement;
 	'vwc-selectable-box': VwcSelectableBoxElement;
 	'vwc-select': VwcSelectElement;
