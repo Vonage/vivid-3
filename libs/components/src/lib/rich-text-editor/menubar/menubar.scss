@@ -1,13 +1,15 @@
 @use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
+/* stylelint-disable */
 .title {
-	--_text-primary-custom-size:  var(#{constants.$vvd-typography-heading-4});
+	--_text-primary-custom-size: var(#{constants.$vvd-typography-heading-4});
 }
 
 .subtitle {
-	--_text-primary-custom-size:  var(#{constants.$vvd-typography-base-extended});
+	--_text-primary-custom-size: var(#{constants.$vvd-typography-base-extended});
 }
 
 .body {
-	--_text-primary-custom-size:  var(#{constants.$vvd-typography-base});
+	--_text-primary-custom-size: var(#{constants.$vvd-typography-base});
 }
+/* stylelint-enable */

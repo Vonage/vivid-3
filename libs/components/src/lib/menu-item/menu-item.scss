@@ -165,8 +165,9 @@
 /* Customize for Rich-Text-Editor */
 :host([internal-part]) {
 	.text-primary {
-		font: var(#{menu-item-variables.$text-primary-custom-size}, var#{constants.$vvd-typography-base});
+		font: var(
+			#{menu-item-variables.$text-primary-custom-size},
+			var#{constants.$vvd-typography-base}
+		);
 	}
 }
-
-

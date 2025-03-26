@@ -11,15 +11,15 @@
 	position: relative;
 	box-sizing: border-box;
 	padding: 10px 16px;
+	block-size: 120px; // TODO: will there be different sizes? or a custom height with css variable?
 	font: var(#{constants.$vvd-typography-base});
 	font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
 	font-variant-ligatures: none;
 	line-height: 1.2;
-	block-size: 120px; // TODO: will there be different sizes? or a custom height with css variable?
 	outline: none;
+	overflow-y: auto;
 	white-space: break-spaces;
 	word-wrap: break-word;
-	overflow-y: auto;
 
 	pre {
 		white-space: pre-wrap;

@@ -3,11 +3,11 @@
 @forward 'prose-mirror-overrides';
 
 .menu-bar {
-	background-color:  var(#{constants.$vvd-color-neutral-50});
 	display: flex;
 	align-items: center;
-	gap: 4px;
 	padding: 8px;
+	background-color: var(#{constants.$vvd-color-neutral-50});
+	gap: 4px;
 
 	:host(.hide-menubar) & {
 		display: none;
@@ -15,7 +15,7 @@
 }
 
 h2 {
-	font: var(#{constants.$vvd-typography-heading-4});;
+	font: var(#{constants.$vvd-typography-heading-4});
 }
 
 h3 {
