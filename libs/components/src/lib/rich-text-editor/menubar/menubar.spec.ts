@@ -81,6 +81,7 @@ describe('menuBar', () => {
 				'vwc-button'
 			) as HTMLButtonElement;
 		});
+
 		it('should show the text size button when adding `textSize` to the string', async () => {
 			expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
 		});
@@ -161,6 +162,54 @@ describe('menuBar', () => {
 			await elementUpdated(element);
 
 			expect(getSelectionMenu('text-size').open).toBe(false);
+		});
+	});
+
+	describe('textDecoration', () => {
+		beforeEach(async () => {
+			element.setAttribute('menu-items', 'textDecoration');
+			await elementUpdated(element);
+		});
+
+		it('should show the text decoration buttons when set', async () => {
+			const textDecorationButtons = element.shadowRoot?.querySelectorAll(
+				'vwc-button'
+			);
+
+			expect(textDecorationButtons?.length).toEqual(5);
+		});
+
+		
+		it.only('should emit text-decoration-selected event with the selected text decoration when a button is clicked', async () => {
+			const spy = vi.fn();
+			element.addEventListener('text-decoration-selected', spy);
+			const listOfDecorations = ['bold', 'italic', 'underline', 'strikethrough', 'monospace'];
+			const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
+			buttons?.forEach((button, index) => {
+				(button as any).click();
+			});
+
+			expect(spy).toHaveBeenCalledTimes(listOfDecorations.length);
+			listOfDecorations.forEach((decorationValue, index) => {
+				expect(spy.mock.calls[index][0].detail).toEqual(
+					decorationValue
+				);
+			});
+		});
+
+		it('should emit a non bubbling and non composed text-size-selected event', async () => {
+			const spy = vi.fn();
+			element.addEventListener('text-size-selected', spy);
+			const option = getSelectionMenu('text-size').querySelector(
+				'vwc-menu-item'
+			) as HTMLElement;
+
+			option.click();
+			await elementUpdated(element);
+
+			expect(spy).toHaveBeenCalledTimes(1);
+			expect(spy.mock.calls[0][0].bubbles).toBe(false);
+			expect(spy.mock.calls[0][0].composed).toBe(false);
 		});
 	});
 });
