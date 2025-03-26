@@ -2,7 +2,10 @@ import { html, repeat } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
+import { Button } from '../../button/button';
+import { Menu } from '../../menu/menu';
 import { MenuBar } from './menubar.js';
+import { MenuItem } from '../../menu-item/menu-item';
 
 function notifyMenuBarChange(
 	menuBar: MenuBar,
@@ -13,41 +16,46 @@ function notifyMenuBarChange(
 	return true;
 }
 
-const MENU_BAR_ITEMS: { [key: string]: ViewTemplate<any, any> } = {
-	textSize: html`
-		<vwc-menu
-			trigger="auto"
-			id="text-size"
-			aria-label="Menu example"
-			placement="bottom-end"
-		>
-			<vwc-button
-				slot="anchor"
-				aria-label="Open menu"
-				size="condensed"
-				shape="rounded"
-				icon="text-size-line"
-			></vwc-button>
-			<vwc-menu-item
-				text="Title"
-				value="title"
-				@click="${(_, { parent }) =>
+const MENU_BAR_ITEMS: { [key: string]: (context: VividElementDefinitionContext) => ViewTemplate<any, any> } = {
+	textSize: function (context) {
+		const buttonTag = context.tagFor(Button);
+		const menuTag = context.tagFor(Menu);
+		const menuItemTag = context.tagFor(MenuItem);
+		return html`
+			<${menuTag}
+				trigger="auto"
+				id="text-size"
+				aria-label="Menu example"
+				placement="bottom-end"
+			>
+				<${buttonTag}
+					slot="anchor"
+					aria-label="Open menu"
+					size="condensed"
+					shape="rounded"
+					icon="text-size-line"
+				></${buttonTag}>
+				<${menuItemTag}
+					text="Title"
+					value="title"
+					@click="${(_, { parent }) =>
 					notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
-			></vwc-menu-item>
-			<vwc-menu-item
-				text="Subtitle"
-				value="subtitle"
-				@click="${(_, { parent }) =>
+				></${menuItemTag}>
+				<${menuItemTag}
+					text="Subtitle"
+					value="subtitle"
+					@click="${(_, { parent }) =>
 					notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
-			></vwc-menu-item>
-			<vwc-menu-item
-				text="Body"
-				value="body"
-				@click="${(_, { parent }) =>
+				></${menuItemTag}>
+				<${menuItemTag}
+					text="Body"
+					value="body"
+					@click="${(_, { parent }) =>
 					notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
-			></vwc-menu-item>
-		</vwc-menu>
-	`,
+				></${menuItemTag}>
+			</${menuTag}>
+		`;
+	},
 };
 
 const getClasses = (_: MenuBar) => classNames('control');
@@ -64,8 +72,8 @@ function getValidMenuItems({ menuItems }: MenuBar) {
 		: [];
 }
 
-function renderMenuItems() {
-	return html<MenuBar>`${repeat(getValidMenuItems, html`${createMenuItem}`)}`;
+function renderMenuItems(context: VividElementDefinitionContext) {
+	return () => html<MenuBar>`${repeat(getValidMenuItems, html`${menuItemName => createMenuItem(menuItemName)(context)}`)}`;
 }
 
 /**
@@ -76,6 +84,6 @@ function renderMenuItems() {
  */
 export const MenuBarTemplate: (
 	context: VividElementDefinitionContext
-) => ViewTemplate<MenuBar> = (_: VividElementDefinitionContext) => {
-	return html`<template class="${getClasses}"> ${renderMenuItems} </template>`;
+) => ViewTemplate<MenuBar> = (context: VividElementDefinitionContext) => {
+	return html`<template class="${getClasses}"> ${renderMenuItems(context)} </template>`;
 };
