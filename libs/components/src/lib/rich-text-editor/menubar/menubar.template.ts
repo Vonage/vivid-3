@@ -20,27 +20,27 @@ function notifyMenuBarChange(
 const TEXT_DECORATION_ITEMS = [
 	{
 		text: 'Bold',
-		icon: 'bold',
+		icon: 'bold-line',
 		value: 'bold',
 	},
 	{
 		text: 'Italic',
-		icon: 'bold',
+		icon: 'italic-line',
 		value: 'italic',
 	},
 	{
 		text: 'Underline',
-		icon: 'bold',
+		icon: 'underline-line',
 		value: 'underline',
 	},
 	{
 		text: 'Strikethrough',
-		icon: 'bold',
+		icon: 'strikethrough-line',
 		value: 'strikethrough',
 	},
 	{
 		text: 'Monospace',
-		icon: 'bold',
+		icon: 'monospace-line',
 		value: 'monospace',
 	},
 ];
