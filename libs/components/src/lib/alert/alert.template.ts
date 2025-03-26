@@ -57,7 +57,7 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 				<div class="alert-text">
 					${when(
 						(x) => x.headline,
-						html`<div class="headline">${(x) => x.headline}</div>`
+						html`<header class="headline">${(x) => x.headline}</header>`
 					)}
 					${when((x) => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}
 					<slot name="main"></slot>
@@ -69,11 +69,3 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 	</${elevationTag}>
 	`;
 };
-
-// export const AlertTemplate = (context: VividElementDefinitionContext) => {
-// 	return html<Alert>`
-// 		<div role="alert">
-// 			${(x) => x.open ? x.text : null}
-// 		</div>
-// 	`;
-// };
