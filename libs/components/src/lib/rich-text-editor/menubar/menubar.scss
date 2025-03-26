@@ -1,12 +1,13 @@
-// menubar styles come here
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+
 vwc-menu-item[value='title'] {
-	--vvd-typography-base: var(--vvd-typography-heading-4);
+	--vvd-typography-base: var(#{constants.$vvd-typography-heading-4});
 }
 
 vwc-menu-item[value='subtitle'] {
-	--vvd-typography-base: var(--vvd-typography-base-extended);
+	--vvd-typography-base: var(#{constants.$vvd-typography-base-extended});
 }
 
 vwc-menu-item[value='base'] {
-	--vvd-typography-base: var(--vvd-typography-base);
+	--vvd-typography-base: var(#{constants.$vvd-typography-base});
 }
