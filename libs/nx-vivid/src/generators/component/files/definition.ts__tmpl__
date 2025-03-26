@@ -24,3 +24,7 @@ export const <%= camelCasedName %>Definition = defineVividComponent(
  * @param prefix - the prefix to use for the component name
  */
 export const register<%= className %> = createRegisterFunction(<%= camelCasedName %>Definition);
+
+<% if (addToExports) { %>
+export { <%= className %> as Vwc<%= className %>Element };
+<% } %>

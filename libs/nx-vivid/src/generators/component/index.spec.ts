@@ -68,21 +68,59 @@ describe(`vivid component generator`, function () {
 	});
 
 	describe('addToExports', () => {
-		const filePath = 'libs/components/src/lib/components.ts';
+		const componentFilePath = 'libs/components/src/lib/components.ts';
+		const tagNameMapFilePath = 'libs/components/src/lib/tag-name-map.ts';
 
 		it('should add the component to components.ts exports when addToExports is true', async function () {
 			options.addToExports = true;
-			tree.write(filePath, '');
+			tree.write(componentFilePath, '');
 			await vividComponentGenerator(tree, options);
-			const result = tree.read(filePath, 'utf8').trim();
+			const result = tree.read(componentFilePath, 'utf8').trim();
 			expect(result).toBe(`export * from './${options.name}/definition';`);
+		});
+
+		it('should export the component class when addToExports is true', async function () {
+			options.addToExports = true;
+			tree.write(componentFilePath, '');
+			await vividComponentGenerator(tree, options);
+			const result = tree
+				.read('libs/components/src/lib/test-component/definition.ts', 'utf8')
+				.trim();
+			expect(result).toContain(
+				'export { TestComponent as VwcTestComponentElement };'
+			);
+		});
+
+		it('should add the component to tag-name-map.ts when addToExports is true', async function () {
+			options.addToExports = true;
+			tree.write(
+				tagNameMapFilePath,
+				`import {
+	VwcButtonElement,
+} from './components';
+
+type DefaultVividTagNameMap = {
+\t'vwc-button': VwcButtonElement;
+};
+`
+			);
+			await vividComponentGenerator(tree, options);
+			const result = tree.read(tagNameMapFilePath, 'utf8').trim();
+			expect(result).toMatchInlineSnapshot(`
+				"import { VwcButtonElement, VwcTestComponentElement } from './components';
+
+				type DefaultVividTagNameMap = {
+				  'vwc-button': VwcButtonElement;
+				  'vwc-test-component': VwcTestComponentElement;
+				};"
+			`);
 		});
 
 		it('should omit the component to components.ts exports when addToExports is false', async function () {
 			options.addToExports = false;
-			tree.write(filePath, '');
+			tree.write(componentFilePath, '');
 			await vividComponentGenerator(tree, options);
-			const result = tree.read(filePath, 'utf8').trim();
+			const result = tree.read(componentFilePath, 'utf8').trim();
 			expect(result).toBe('');
 		});
 	});
