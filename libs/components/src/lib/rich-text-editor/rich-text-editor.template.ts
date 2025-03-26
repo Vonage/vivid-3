@@ -45,7 +45,7 @@ export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
 ) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
-		<div id="editor"></div>
+		<div id="editor" class="editor"></div>
 		<slot name="menu-bar" @slotchange="${handleMenuBarSlotChange}"></slot>
 	</template>`;
 };
