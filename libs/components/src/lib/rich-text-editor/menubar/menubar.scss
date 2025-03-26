@@ -1,6 +1,6 @@
 @use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
-:host() {
+:host {
 	display: flex;
 	align-items: center;
 	padding: 8px;

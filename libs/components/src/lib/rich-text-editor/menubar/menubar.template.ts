@@ -62,9 +62,11 @@ const MENU_BAR_ITEMS: {
 	},
 };
 
-const getClasses = (menuBar : MenuBar) => classNames('control', [
-	'hide-menubar', getValidMenuItems( menuBar ).length === 0,
-]);
+const getClasses = (menuBar: MenuBar) =>
+	classNames('control', [
+		'hide-menubar',
+		getValidMenuItems(menuBar).length === 0,
+	]);
 
 const validItems = ['textSize'];
 

@@ -4,8 +4,7 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { RichTextEditor, RichTextEditorTextSizes } from './rich-text-editor';
 
-const getClasses = (_: RichTextEditor) =>
-	classNames('control');
+const getClasses = (_: RichTextEditor) => classNames('control');
 
 const VALID_MENU_ELEMEMENT_SUFFIX = 'menubar';
 
@@ -47,9 +46,6 @@ export const RichTextEditorTemplate: (
 ) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
 		<div id="editor" class="editor"></div>
-		<slot
-			name="menu-bar"
-			@slotchange="${handleMenuBarSlotChange}"
-		></slot>		
+		<slot name="menu-bar" @slotchange="${handleMenuBarSlotChange}"></slot>
 	</template>`;
 };
