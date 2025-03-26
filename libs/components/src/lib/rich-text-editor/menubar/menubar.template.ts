@@ -12,7 +12,7 @@ function notifyMenuBarChange(
 	eventName: string,
 	payload: any
 ): any {
-	console.log("Emitting: ", menuBar);
+	console.log('Emitting: ', menuBar);
 	menuBar.$emit(eventName, payload, { bubbles: false, composed: false });
 	return true;
 }
@@ -102,17 +102,24 @@ const MENU_BAR_ITEMS: {
 	textDecoration: function (context) {
 		const buttonTag = context.tagFor(Button);
 		return html`
-				${repeat((_) => TEXT_DECORATION_ITEMS, html`
+			${repeat(
+				(_) => TEXT_DECORATION_ITEMS,
+				html`
 					<${buttonTag}
-						aria-label="${x => x.text}"
+						aria-label="${(x) => x.text}"
 						size="super-condensed"
 						appearance="ghost-light"
 						shape="pill"
-						icon="${x => x.icon}"
+						icon="${(x) => x.icon}"
 						@click="${(x, c) =>
-							notifyMenuBarChange(c.parentContext.parent, 'text-decoration-selected', x.value)}"')}"
+							notifyMenuBarChange(
+								c.parentContext.parent,
+								'text-decoration-selected',
+								x.value
+							)}"')}"
 					></${buttonTag}>
-				`)}
+				`
+			)}
 		`;
 	},
 };
@@ -152,7 +159,6 @@ function renderMenuItems(context: VividElementDefinitionContext) {
 export const MenuBarTemplate: (
 	context: VividElementDefinitionContext
 ) => ViewTemplate<MenuBar> = (context: VividElementDefinitionContext) => {
-	
 	return html`<template class="${getClasses}">
 		${renderMenuItems(context)}
 	</template>`;

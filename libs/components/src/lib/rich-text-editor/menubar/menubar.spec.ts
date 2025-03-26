@@ -70,7 +70,6 @@ describe('menuBar', () => {
 			expect(element.classList.contains('hide-menubar')).toBe(false);
 		});
 
-
 		describe('textSize', () => {
 			let textSizeButton: HTMLButtonElement;
 
@@ -172,9 +171,8 @@ describe('menuBar', () => {
 			});
 
 			it('should show the text decoration buttons when set', async () => {
-				const textDecorationButtons = element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				);
+				const textDecorationButtons =
+					element.shadowRoot?.querySelectorAll('vwc-button');
 
 				expect(textDecorationButtons?.length).toEqual(5);
 			});
@@ -182,7 +180,13 @@ describe('menuBar', () => {
 			it('should emit text-decoration-selected event with the selected text decoration when a button is clicked', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-decoration-selected', spy);
-				const listOfDecorations = ['bold', 'italic', 'underline', 'strikethrough', 'monospace'];
+				const listOfDecorations = [
+					'bold',
+					'italic',
+					'underline',
+					'strikethrough',
+					'monospace',
+				];
 				const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
 				buttons?.forEach((button, index) => {
 					(button as any).click();
@@ -190,16 +194,16 @@ describe('menuBar', () => {
 
 				expect(spy).toHaveBeenCalledTimes(listOfDecorations.length);
 				listOfDecorations.forEach((decorationValue, index) => {
-					expect(spy.mock.calls[index][0].detail).toEqual(
-						decorationValue
-					);
+					expect(spy.mock.calls[index][0].detail).toEqual(decorationValue);
 				});
 			});
 
 			it('should emit a non bubbling and non composed text-decoration-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-decoration-selected', spy);
-				const button = element.shadowRoot?.querySelector('vwc-button') as HTMLButtonElement;
+				const button = element.shadowRoot?.querySelector(
+					'vwc-button'
+				) as HTMLButtonElement;
 
 				button.click();
 				await elementUpdated(element);
@@ -210,7 +214,13 @@ describe('menuBar', () => {
 			});
 
 			it('should set the correct icons for the buttons', async () => {
-				const iconNames = ['bold-line', 'italic-line', 'underline-line', 'strikethrough-line', 'monospace-line'];
+				const iconNames = [
+					'bold-line',
+					'italic-line',
+					'underline-line',
+					'strikethrough-line',
+					'monospace-line',
+				];
 				const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
 				buttons?.forEach((button, index) => {
 					expect(button.getAttribute('icon')).toEqual(iconNames[index]);
@@ -218,6 +228,4 @@ describe('menuBar', () => {
 			});
 		});
 	});
-
-
 });
