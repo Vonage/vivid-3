@@ -7,7 +7,7 @@ export interface RichTextEditorSelection {
 	end?: number;
 }
 
-const RichTextEditorTextSizes = {
+export const RichTextEditorTextSizes = {
 	title: 'h2',
 	subtitle: 'h3',
 	body: 'p',
