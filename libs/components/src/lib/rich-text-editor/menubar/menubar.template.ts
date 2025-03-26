@@ -12,7 +12,6 @@ function notifyMenuBarChange(
 	eventName: string,
 	payload: any
 ): any {
-	console.log('Emitting: ', menuBar);
 	menuBar.$emit(eventName, payload, { bubbles: false, composed: false });
 	return true;
 }
