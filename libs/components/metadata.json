@@ -1734,7 +1734,7 @@
 					"name": "modelValue",
 					"propName": "checked",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).checked"
+					"valueMapping": "event.currentTarget.checked"
 				}
 			],
 			"methods": [
@@ -1926,7 +1926,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -2412,7 +2412,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [],
@@ -2582,13 +2582,13 @@
 					"name": "end",
 					"propName": "end",
 					"eventNames": ["input:end"],
-					"valueMapping": "(event.target as any).end"
+					"valueMapping": "event.currentTarget.end"
 				},
 				{
 					"name": "start",
 					"propName": "start",
 					"eventNames": ["input:start"],
-					"valueMapping": "(event.target as any).start"
+					"valueMapping": "event.currentTarget.start"
 				}
 			],
 			"methods": [],
@@ -2769,7 +2769,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [],
@@ -2926,7 +2926,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as any).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -3086,7 +3086,7 @@
 					"name": "open",
 					"propName": "open",
 					"eventNames": ["open", "close"],
-					"valueMapping": "(event.target as any).open"
+					"valueMapping": "event.currentTarget.open"
 				}
 			],
 			"methods": [
@@ -4182,7 +4182,7 @@
 					"name": "modelValue",
 					"propName": "checked",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).checked"
+					"valueMapping": "event.currentTarget.checked"
 				}
 			],
 			"methods": [],
@@ -4800,7 +4800,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -5477,7 +5477,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
@@ -5678,13 +5678,13 @@
 					"name": "end",
 					"propName": "end",
 					"eventNames": ["input:end"],
-					"valueMapping": "(event.target as any).end"
+					"valueMapping": "event.currentTarget.end"
 				},
 				{
 					"name": "start",
 					"propName": "start",
 					"eventNames": ["input:start"],
-					"valueMapping": "(event.target as any).start"
+					"valueMapping": "event.currentTarget.start"
 				}
 			],
 			"methods": [
@@ -5951,13 +5951,13 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				},
 				{
 					"name": "values",
 					"propName": "values",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as any).values"
+					"valueMapping": "event.currentTarget.values"
 				}
 			],
 			"methods": [],
@@ -6158,7 +6158,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -6556,7 +6556,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -6833,7 +6833,7 @@
 					"name": "modelValue",
 					"propName": "checked",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).checked"
+					"valueMapping": "event.currentTarget.checked"
 				}
 			],
 			"methods": [],
@@ -7509,7 +7509,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -7759,7 +7759,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -7934,7 +7934,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [],

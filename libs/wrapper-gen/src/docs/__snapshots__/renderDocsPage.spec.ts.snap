@@ -21,7 +21,7 @@ This is an example component
 
 | Name              | Event Type                           | Description              |
 | ----------------- | ------------------------------------ | ------------------------ |
-| **example-event** | \`string\`                             | This is an example event |
+| **example-event** | \`Event\`                              | This is an example event |
 | **input**         | \`Event\`                              |                          |
 | **input:start**   | \`CustomEvent<{a: string \\| number}>\` |                          |
 
