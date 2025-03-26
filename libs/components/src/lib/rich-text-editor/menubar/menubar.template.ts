@@ -4,8 +4,8 @@ import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
 import { Button } from '../../button/button';
 import { Menu } from '../../menu/menu';
-import { MenuBar } from './menubar.js';
 import { MenuItem } from '../../menu-item/menu-item';
+import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
 	menuBar: MenuBar,
