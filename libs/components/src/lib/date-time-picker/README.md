@@ -1,158 +1,116 @@
-# Date Time Picker
+## Usage
 
-The date time picker component is used to select both date and a time.
-
-Values will be stored in the format `YYYY-MM-DDTHH:MM:SS` and displayed in the configured locale. See [Localization](/guides/localization/) for more details.
-
-The date time picker is a combination of the [Date Picker](/components/date-picker/) and [Time Picker](/components/time-picker/). It supports all the same attributes and slots as the date and time pickers.
+<vwc-tabs gutters="none">
+<vwc-tab label="Web component"></vwc-tab>
+<vwc-tab-panel>
 
 ```js
-<script type="module">import '@vonage/vivid/date-time-picker';</script>
+import '@vonage/vivid/date-picker';
 ```
+
+or, if you need to use a unique prefix:
+
+```js
+import { registerDateTimePicker } from '@vonage/vivid';
+
+registerDateTimePicker('your-prefix');
+```
+
+```html preview 460px
+<script type="module">
+	import { registerDateTimePicker } from '@vonage/vivid';
+	registerDateTimePicker('your-prefix');
+</script>
+
+<your-prefix-date-time-picker
+	label="Start date and time"
+></your-prefix-date-time-picker>
+```
+
+</vwc-tab-panel>
+<vwc-tab label="Vue"></vwc-tab>
+<vwc-tab-panel>
+
+```html
+<script setup lang="ts">
+	import { VDateTimePicker } from '@vonage/vivid-vue';
+</script>
+
+<template>
+	<VDateTimePicker label="Start date and time" />
+</template>
+```
+
+</vwc-tab-panel>
+</vwc-tabs>
+
+## Locales
+
+Values will be stored in the format `YYYY-MM-DDTHH:MM:SS` and displayed in the configured locale. Use the locale switcher in the example below to see this in action.
+
+See [Localization](/guides/localization/) for more details.
 
 ```html preview locale-switcher 460px
-<vwc-date-time-picker></vwc-date-time-picker>
+<vwc-date-time-picker label="Start date and time"></vwc-date-time-picker>
 ```
 
-## Members
+## Slots
 
-### Value
+### Helper Text Slot
 
-The `value` attribute contains the currently selected date and time.
+The `helper-text` slot allows you to use rich content as the date picker's helper text.
 
-Empty string or `undefined` represent no value being selected.
-
-It will always contain a valid value in the format `YYYY-MM-DDTHH:MM:SS` when a value is selected. If the user enters an invalid value, `value` will be empty.
-
-The date time picker is time zone agnostic. You need to ensure that `value` is interpreted correctly in your application.
-
-- Type: `string` | `undefined`
-- Date format: `YYYY-MM-DDTHH:MM:SS`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	value="2023-01-01T12:00:00"
-></vwc-date-time-picker>
+```html preview 460px
+<vwc-date-time-picker label="Start date and time">
+	<span slot="helper-text">Please see our <a href="#">opening times</a>.</span>
+</vwc-date-time-picker>
 ```
 
-### Min
+## API Reference
 
-Set the `min` attribute to configure the earliest value to accept. The user will be prevented from choosing an earlier value, however it is still possible to manually enter one.
-
-- Type: `string` | `undefined`
-- Date format: `YYYY-MM-DDTHH:MM:SS`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	min="2023-06-10T09:00:00"
-	value="2023-06-10T09:00:00"
-	clock="24h"
-></vwc-date-time-picker>
-```
-
-### Min Date
-
-Set the `min-date` attribute to configure the earliest date to accept. The user will be prevented from choosing an earlier date, however it is still possible to manually enter one.
-
-The `min-date` attribute will take precedence over the `min` attribute.
-
-- Type: `string` | `undefined`
-- Date format: `YYYY-MM-DD`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	min-date="2023-06-10"
-	value="2023-06-15T12:00:00"
-	clock="24h"
-></vwc-date-time-picker>
-```
-
-### Min Time
-
-Set the `min-time` attribute to configure the earliest time to accept. The user will be prevented from choosing an earlier time, however it is still possible to manually enter one.
-
-The `min-time` attribute will take precedence over the `min` attribute.
-
-- Type: `string` | `undefined`
-- Date format: `HH:MM:SS`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	min-time="09:00:00"
-	clock="24h"
-></vwc-date-time-picker>
-```
-
-### Max
-
-Set the `max` attribute to configure the latest value to accept. The user will be prevented from choosing a later value, however it is still possible to manually enter one.
-
-- Type: `string` | `undefined`
-- Date format: `YYYY-MM-DDTHH:MM:SS`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	max="2023-06-10T17:00:00"
-	value="2023-06-10T12:00:00"
-	clock="24h"
-></vwc-date-time-picker>
-```
-
-### Max Date
-
-Set the `max-date` attribute to configure the latest date to accept. The user will be prevented from choosing a later date, however it is still possible to manually enter one.
-
-The `max-date` attribute will take precedence over the `max` attribute.
-
-- Type: `string` | `undefined`
-- Date format: `YYYY-MM-DD`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	max-date="2023-06-20"
-	value="2023-06-15T12:00:00"
-	clock="24h"
-></vwc-date-time-picker>
-```
-
-### Max Time
-
-Set the `max-time` attribute to configure the latest time to accept. The user will be prevented from choosing a later time, however it is still possible to manually enter one.
-
-The `max-time` attribute will take precedence over the `max` attribute.
-
-- Type: `string` | `undefined`
-- Date format: `HH:MM:SS`
-- Default: `undefined`
-
-```html preview locale-switcher 460px
-<vwc-date-time-picker
-	label="Select date and time"
-	max-time="17:00:00"
-	clock="24h"
-></vwc-date-time-picker>
-```
-
-## Events
+### Properties
 
 <div class="table-wrapper">
 
-| Name          | Type                      | Bubbles | Composed | Description                                     |
-| ------------- | ------------------------- | ------- | -------- | ----------------------------------------------- |
-| `input`       | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the value is changed by the user.  |
-| `change`      | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the value is changed by the user.  |
-| `clear-click` | `CustomEvent<undefined> ` | Yes     | Yes      | Event emitted when the clear button is clicked. |
+| Name             | Type                                        | Description                                                      |
+| ---------------- | ------------------------------------------- | ---------------------------------------------------------------- |
+| **clock**        | enum: `12h`, `24hr`                         | Sets time display format                                         |
+| **disabled**     | `boolean`                                   | Sets the disabled state                                          |
+| **error-text**   | `string`                                    | Sets the error text                                              |
+| **helper-text**  | `string`                                    | Sets the helper text                                             |
+| **label**        | `string`                                    | Sets the label text                                              |
+| **min**          | `string`, date format `YYYY-MM-DDTHH:MM:SS` | Sets the minimum date and time that can be selected              |
+| **min-date**     | `string`, date format `YYYY-MM-DD`          | Sets the minimum date that can be selected                       |
+| **min-time**     | `string`, time format `HH:MM:SS`            | Sets the minimum time that can be selected                       |
+| **minutes-step** | `number`                                    | Sets the step between minites                                    |
+| **max**          | `string`, date format `YYYY-MM-DDTHH:MM:SS` | Sets the maximum date and time that can be selected              |
+| **max-date**     | `string`, date format `YYYY-MM-DD`          | Sets the maximum date that can be selected                       |
+| **max-time**     | `string`, time format `HH:MM:SS`            | Sets the maximum time that can be selected                       |
+| **readonly**     | `boolean`                                   | Sets the field to be readonly                                    |
+| **required**     | `boolean`                                   | Sets the field to be required                                    |
+| **seconds-step** | `number`                                    | Sets the step between (and activates) seconds in the time picker |
+| **value**        | `string`, date format `YYYY-MM-DDTHH:MM:SS` | Sets the current date and time value                             |
+
+</div>
+
+### Slots
+
+<div class="table-wrapper">
+
+| Name            | Description                              |
+| --------------- | ---------------------------------------- |
+| **helper-text** | Add rich text for as field's helper text |
+
+</div>
+
+### Events
+
+<div class="table-wrapper">
+
+| Name            | Type                      | Bubbles | Composed | Description                                     |
+| --------------- | ------------------------- | ------- | -------- | ----------------------------------------------- |
+| **input**       | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the value is changed by the user.  |
+| **change**      | `CustomEvent<undefined>`  | Yes     | Yes      | Emitted when the value is changed by the user.  |
+| **clear-click** | `CustomEvent<undefined> ` | Yes     | Yes      | Event emitted when the clear button is clicked. |
 
 </div>
