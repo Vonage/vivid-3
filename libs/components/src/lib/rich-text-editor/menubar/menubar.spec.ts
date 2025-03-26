@@ -55,6 +55,20 @@ describe('menuBar', () => {
 				0
 			);
 		});
+
+		it('should add class hide-menubar when no valid items exist in menuItems', async () => {
+			element.setAttribute('menu-items', 'item1 item2');
+			await elementUpdated(element);
+
+			expect(element.classList.contains('hide-menubar')).toBe(true);
+		});
+
+		it('should remove class hide-menubar when valid items exist in menuItems', async () => {
+			element.setAttribute('menu-items', 'item1 item2 textSize');
+			await elementUpdated(element);
+
+			expect(element.classList.contains('hide-menubar')).toBe(false);
+		});
 	});
 
 	describe('textSize', () => {

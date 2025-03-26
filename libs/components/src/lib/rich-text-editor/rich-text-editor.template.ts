@@ -1,14 +1,11 @@
-import { html, slotted } from '@microsoft/fast-element';
+import { html } from '@microsoft/fast-element';
 import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { RichTextEditor, RichTextEditorTextSizes } from './rich-text-editor';
 
 const getClasses = (_: RichTextEditor) =>
-	classNames('control', [
-		'hide-menubar',
-		!_.menuBarSlotted || !_.menuBarSlotted.length,
-	]);
+	classNames('control');
 
 const VALID_MENU_ELEMEMENT_SUFFIX = 'menubar';
 
@@ -50,12 +47,9 @@ export const RichTextEditorTemplate: (
 ) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
 		<div id="editor" class="editor"></div>
-		<div class="menu-bar">
-			<slot
-				name="menu-bar"
-				@slotchange="${handleMenuBarSlotChange}"
-				${slotted('menuBarSlotted')}
-			></slot>
-		</div>
+		<slot
+			name="menu-bar"
+			@slotchange="${handleMenuBarSlotChange}"
+		></slot>		
 	</template>`;
 };
