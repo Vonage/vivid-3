@@ -16,7 +16,11 @@ function notifyMenuBarChange(
 	return true;
 }
 
-const MENU_BAR_ITEMS: { [key: string]: (context: VividElementDefinitionContext) => ViewTemplate<any, any> } = {
+const MENU_BAR_ITEMS: {
+	[key: string]: (
+		context: VividElementDefinitionContext
+	) => ViewTemplate<any, any>;
+} = {
 	textSize: function (context) {
 		const buttonTag = context.tagFor(Button);
 		const menuTag = context.tagFor(Menu);
@@ -39,19 +43,19 @@ const MENU_BAR_ITEMS: { [key: string]: (context: VividElementDefinitionContext) 
 					text="Title"
 					value="title"
 					@click="${(_, { parent }) =>
-					notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
+						notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Subtitle"
 					value="subtitle"
 					@click="${(_, { parent }) =>
-					notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
+						notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Body"
 					value="body"
 					@click="${(_, { parent }) =>
-					notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
+						notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
 				></${menuItemTag}>
 			</${menuTag}>
 		`;
@@ -73,7 +77,11 @@ function getValidMenuItems({ menuItems }: MenuBar) {
 }
 
 function renderMenuItems(context: VividElementDefinitionContext) {
-	return () => html<MenuBar>`${repeat(getValidMenuItems, html`${menuItemName => createMenuItem(menuItemName)(context)}`)}`;
+	return () =>
+		html<MenuBar>`${repeat(
+			getValidMenuItems,
+			html`${(menuItemName) => createMenuItem(menuItemName)(context)}`
+		)}`;
 }
 
 /**
@@ -85,5 +93,7 @@ function renderMenuItems(context: VividElementDefinitionContext) {
 export const MenuBarTemplate: (
 	context: VividElementDefinitionContext
 ) => ViewTemplate<MenuBar> = (context: VividElementDefinitionContext) => {
-	return html`<template class="${getClasses}"> ${renderMenuItems(context)} </template>`;
+	return html`<template class="${getClasses}">
+		${renderMenuItems(context)}
+	</template>`;
 };
