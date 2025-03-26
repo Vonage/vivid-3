@@ -305,8 +305,8 @@ describe('vwc-popup', () => {
 			const openStateBeforeEsc = element.open;
 			await elementUpdated(element);
 
-			const dismissButton = element.shadowRoot?.querySelector('vwc-button');
-			(dismissButton as HTMLElement).click();
+			const dismissButton = element.shadowRoot!.querySelector('vwc-button')!;
+			dismissButton.click();
 			await elementUpdated(element);
 
 			expect(openStateBeforeEsc).toEqual(true);

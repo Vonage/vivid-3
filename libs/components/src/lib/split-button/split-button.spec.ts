@@ -5,8 +5,6 @@ import { SplitButton } from './split-button';
 import '.';
 
 const COMPONENT_TAG = 'vwc-split-button';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-split-button', () => {
 	let element: SplitButton;
 
@@ -44,7 +42,7 @@ describe('vwc-split-button', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('home');
 		});
@@ -61,7 +59,7 @@ describe('vwc-split-button', () => {
 			element.splitIndicator = 'home';
 			await elementUpdated(element);
 
-			const icon = element.indicator.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.indicator.querySelector('vwc-icon')!;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('home');
 		});
