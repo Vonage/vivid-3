@@ -7,6 +7,14 @@ export interface RichTextEditorSelection {
 	end?: number;
 }
 
+const RichTextEditorTextSizes = {
+	title: 'h2',
+	subtitle: 'h3',
+	body: 'p',
+} as const;
+
+export type RichTextEditorTextSizes = keyof typeof RichTextEditorTextSizes;
+
 /**
  * @public
  * @component rich-text-editor
@@ -37,6 +45,9 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
 	selectionStart: number | null = null;
 	selectionStartChanged() {
+		if (this.#selectionChangedByUser) {
+			return;
+		}
 		if (
 			!this.selectionStart ||
 			(this.selectionEnd && this.selectionStart > this.selectionEnd)
@@ -62,6 +73,10 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
 	selectionEnd: number | null = null;
 	selectionEndChanged() {
+		if (this.#selectionChangedByUser) {
+			this.#selectionChangedByUser = false;
+			return;
+		}
 		if (this.selectionEnd && !this.selectionStart) {
 			this.selectionStart = 1;
 		}
@@ -73,11 +88,14 @@ export class RichTextEditor extends VividElement {
 		super();
 	}
 
+	#selectionChangedByUser = false;
+
 	#handleSelectionChange = () => {
 		if (!this.#editor!.selection()) {
 			return;
 		}
 		const { start, end } = this.#editor!.selection();
+		this.#selectionChangedByUser = true;
 		this.selectionStart = start;
 		this.selectionEnd = end as number;
 		this.$emit('selection-changed');
@@ -102,6 +120,15 @@ export class RichTextEditor extends VividElement {
 			);
 			this.#editor.addEventListener('change', this.#handleChange);
 			this.#editor.addEventListener('input', this.#handleInput);
+		}
+	}
+
+	setTextSize(size: 'title' | 'subtitle' | 'body') {
+		try {
+			this.#editor?.setSelectionTag(RichTextEditorTextSizes[size]);
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(`Invalid text size: ${size}`);
 		}
 	}
 }
