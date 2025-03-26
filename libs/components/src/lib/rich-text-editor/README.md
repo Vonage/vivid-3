@@ -140,6 +140,57 @@ Use the `setTextSize` method to set the text size to three sizes: `title`, `subt
 
 ## Slots
 
+### Menu Bar
+
+Set the `menu-bar` slot to show `menubar` component. See the `menubar` documentation for more details. This slot will show only `menubar` components.
+
+```html preview 250px
+<vwc-layout gutters="small" column-basis="block" row-spacing="small">
+	<vwc-rich-text-editor>
+		<vwc-menubar slot="menu-bar" menu-items="textSize"></vwc-menubar>
+	</vwc-rich-text-editor>
+</vwc-layout>
+<script>
+	function setTextSize(size) {
+		rteComponent.setTextSize(size);
+	}
+	async function waitForEditorReady() {
+		await new Promise((res) => {
+			const interval = setInterval(() => {
+				if (!rteComponent.value) return;
+				clearInterval(interval);
+				res();
+			});
+		});
+	}
+
+	async function start() {
+		await waitForEditorReady();
+		rteComponent.value = `
+			<p>Title</p>
+			<p>Sub Title</p>
+			<p>Body</p>
+		`;
+		moveMarkerToPosition(2);
+		rteComponent.setTextSize('title');
+		moveMarkerToPosition(11);
+		rteComponent.setTextSize('subtitle');
+		moveMarkerToPosition(20);
+		rteComponent.setTextSize('body');
+	}
+
+	async function moveMarkerToPosition(moveTo) {
+		rteComponent.selectionStart = moveTo;
+		await new Promise((res) => requestAnimationFrame(res));
+	}
+
+	// waiting for the component to load so using interval. A better mechanism is in the works.
+	rteComponent = document.querySelector('vwc-rich-text-editor');
+
+	start();
+</script>
+```
+
 ## CSS Variables
 
 ## Events
