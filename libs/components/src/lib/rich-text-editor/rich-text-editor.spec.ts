@@ -279,6 +279,59 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
+	describe('setTextSize', () => {
+		it('should gracefully fail with a warning when given an invalid size', async () => {
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+			(element.setTextSize as any)('not a given size');
+			expect(consoleWarnSpy).toHaveBeenCalledWith(
+				'Invalid text size: not a given size'
+			);
+		});
+
+		it('should change the text type of current text part to h2 when size is `title`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><p>abcdefghi</p>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('title');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><h2>abcdefghi</h2>');
+		});
+
+		it('should change the text type of current text part to h3 when size is `subtitle`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><p>abcdefghi</p>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('subtitle');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><h3>abcdefghi</h3>');
+		});
+
+		it('should change the text type of current text part to p when size is `body`', async () => {
+			editorFacadeSelectSpy.mockRestore();
+
+			element.value = '<p>123456789</p><h3>abcdefghi</h3>';
+			await elementUpdated(element);
+			const positionInTheSecondParagraph = 15;
+			moveMarkerToPosition(positionInTheSecondParagraph);
+
+			element.setTextSize('body');
+			await elementUpdated(element);
+
+			expect(element.value).toEqual('<p>123456789</p><p>abcdefghi</p>');
+		});
+	});
+
 	describe('change event', () => {
 		it('should fire the change event when on facade change', async () => {
 			const spy = vi.fn();
@@ -322,6 +375,7 @@ describe('vwc-rich-text-editor', () => {
 			moveMarkerToPosition(5);
 			await elementUpdated(element);
 		});
+
 		it('should set the event to bubble and composed', async () => {
 			expect(getEventObject().bubbles).toBe(true);
 			expect(getEventObject().composed).toBe(true);
@@ -329,6 +383,16 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should fire the selection-changed event when selection changes', async () => {
 			expect(selectionChangedListenerCallback).toHaveBeenCalledOnce();
+		});
+
+		it('should prevent call to facade select when updating values from the event', async () => {
+			editorFacadeSelectSpy = spyOnOriginalFacadeSelect();
+			editorFacadeSelectSpy.mockReset();
+			selectInEditor(4, 5);
+			await elementUpdated(element);
+			selectInEditor(3, 5);
+			await elementUpdated(element);
+			expect(editorFacadeSelectSpy).toHaveBeenCalledTimes(2);
 		});
 	});
 
@@ -354,6 +418,40 @@ describe('vwc-rich-text-editor', () => {
 
 			expect(spy.mock.calls[0][0].bubbles).toBe(true);
 			expect(spy.mock.calls[0][0].composed).toBe(true);
+		});
+	});
+
+	describe('menu-bar slot', () => {
+		it('should accept only the first menu-bar element', async () => {
+			const notMenuBar = document.createElement('div');
+			const menuBar = document.createElement('vwc-menubar');
+			const menuBar2 = document.createElement('vwc-menubar');
+			notMenuBar.slot = 'menu-bar';
+			menuBar.slot = 'menu-bar';
+			menuBar2.slot = 'menu-bar';
+			element.appendChild(notMenuBar);
+			element.appendChild(menuBar);
+			element.appendChild(menuBar2);
+			await elementUpdated(element);
+
+			expect(getComputedStyle(menuBar).display).not.toBe('none');
+			expect(getComputedStyle(menuBar2).display).toBe('none');
+			expect(getComputedStyle(notMenuBar).display).toBe('none');
+		});
+
+		it('should change text size on `text-size-selected` event from menubar', async () => {
+			const newTextSize = 'title';
+			const setTextSizeSpy = vi.spyOn(element, 'setTextSize');
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
+
+			menuBar.dispatchEvent(
+				new CustomEvent('text-size-selected', { detail: newTextSize })
+			);
+
+			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
 		});
 	});
 });

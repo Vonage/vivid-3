@@ -10,6 +10,12 @@ vi.mock('prosemirror-view', () => ({
 }));
 
 describe('ProseMirrorFacade', () => {
+	function initViewer() {
+		const element = document.createElement('div');
+		facadeInstance.init(element);
+		return element;
+	}
+
 	async function useOriginalEditorView() {
 		const { EditorView: ActualEditorView } = await vi.importActual(
 			'prosemirror-view'
@@ -21,7 +27,9 @@ describe('ProseMirrorFacade', () => {
 	}
 
 	async function useOriginalEditorState() {
-		EditorState.create.mockRestore();
+		if (EditorState.create.isMockFunction) {
+			EditorState.create.mockRestore();
+		}
 	}
 
 	function getOutputElement(element: HTMLElement): HTMLElement {
@@ -64,8 +72,7 @@ describe('ProseMirrorFacade', () => {
 		});
 
 		it('should use the element and state created with VIVID schema when creating the ProseMirror EditorView', async () => {
-			const element = document.createElement('div');
-			facadeInstance.init(element);
+			const element = initViewer();
 
 			expect(EditorState.create).toHaveBeenCalledWith({
 				schema: VVD_PROSE_MIRROR_SCHEMA,
@@ -95,8 +102,7 @@ describe('ProseMirrorFacade', () => {
 				(...args) => new (ActualEditorView as typeof EditorView)(...args)
 			);
 
-			const element = document.createElement('div');
-			facadeInstance.init(element);
+			const element = initViewer();
 			facadeInstance.replaceContent('<div>Hello</div>');
 			expect(getOutputElement(element).innerHTML).toBe('<p>Hello</p>');
 		});
@@ -196,6 +202,106 @@ describe('ProseMirrorFacade', () => {
 		});
 	});
 
+	describe('setSelectionTag', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		it('should throw if viewer is not initialized', async () => {
+			expect(() => facadeInstance.setSelectionTag('tag')).toThrowError(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+		it('should throw if given tag does not exist', async () => {
+			initViewer();
+			expect(() => facadeInstance.setSelectionTag('not a tag')).toThrowError(
+				'Node type tag does not exist in the schema'
+			);
+		});
+
+		it('should do nothing when given the same tag', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('h2');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+		});
+
+		it('should change the tag when given the a different tag', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('h2');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+		});
+
+		it('should change the tag to paragraph', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('p');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+		});
+
+		it('should change the tag to p', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('p');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+		});
+
+		it('should change the tag to h3', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a pretty long text for a sample, but it should work</h2>'
+			);
+			facadeInstance.selection({
+				start: 3,
+			});
+
+			facadeInstance.setSelectionTag('h3');
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				'<h3>This is a pretty long text for a sample, but it should work</h3>'
+			);
+		});
+	});
+
 	describe('selection-changed event', () => {
 		beforeEach(async () => {
 			await useOriginalEditorView();
@@ -282,8 +388,7 @@ describe('ProseMirrorFacade', () => {
 	describe('input event', () => {
 		it('should emit an input event when user changes the content', async () => {
 			await useOriginalEditorView();
-			const element = document.createElement('div');
-			facadeInstance.init(element);
+			const element = initViewer();
 			facadeInstance.replaceContent(
 				'<p>This is a pretty long text for a sample, but it should work</p>'
 			);
@@ -308,15 +413,13 @@ describe('ProseMirrorFacade', () => {
 	describe('keyboard interaction', () => {
 		beforeEach(async () => {
 			await useOriginalEditorView();
-			const element = document.createElement('div');
-			facadeInstance.init(element);
+			initViewer();
 		});
 
 		it('should handle Enter key press', async () => {
 			const NEWLINE_POSITION_VALUE = 3;
 			const content = '123';
-			const element = document.createElement('div');
-			facadeInstance.init(element);
+			const element = initViewer();
 			facadeInstance.replaceContent(`<p>${content}</p>`);
 
 			const event = new KeyboardEvent('keydown', { key: 'Enter' });

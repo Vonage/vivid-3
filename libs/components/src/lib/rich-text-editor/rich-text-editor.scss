@@ -1,2 +1,15 @@
+@use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @forward 'facades/prose-mirror';
 @forward 'prose-mirror-overrides';
+
+h2 {
+	font: var(#{constants.$vvd-typography-heading-4});
+}
+
+h3 {
+	font: var(#{constants.$vvd-typography-base-extended});
+}
+
+p {
+	font: var(#{constants.$vvd-typography-base});
+}
