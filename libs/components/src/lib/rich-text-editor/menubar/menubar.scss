@@ -1,13 +1,27 @@
 @use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
-vwc-menu-item[value='title'] {
-	--vvd-typography-base: var(#{constants.$vvd-typography-heading-4});
+:host {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	background-color: var(#{constants.$vvd-color-neutral-50});
+	gap: 4px;
+
+	.hide-menubar {
+		display: none;
+	}
 }
 
-vwc-menu-item[value='subtitle'] {
-	--vvd-typography-base: var(#{constants.$vvd-typography-base-extended});
+/* stylelint-disable */
+.title {
+	--_text-primary-custom-size: var(#{constants.$vvd-typography-heading-4});
 }
 
-vwc-menu-item[value='base'] {
-	--vvd-typography-base: var(#{constants.$vvd-typography-base});
+.subtitle {
+	--_text-primary-custom-size: var(#{constants.$vvd-typography-base-extended});
 }
+
+.body {
+	--_text-primary-custom-size: var(#{constants.$vvd-typography-base});
+}
+/* stylelint-enable */

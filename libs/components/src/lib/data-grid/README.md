@@ -122,10 +122,10 @@ Use the `no-tabbing` attribute to remove the component from the tab order.
 	const grid = document.querySelector('.data-grid');
 
 	function changeTabbing(tabbing) {
-		event.target.appearance = 'filled';
-		Array.from(event.target.parentElement.querySelectorAll('.button')).filter(
-			(x) => x !== event.target
-		)[0].appearance = null;
+		event.currentTarget.appearance = 'filled';
+		Array.from(
+			event.currentTarget.parentElement.querySelectorAll('.button')
+		).filter((x) => x !== event.currentTarget)[0].appearance = null;
 		grid.noTabbing = tabbing;
 	}
 
@@ -297,7 +297,7 @@ Use the `generate-header` property to programmatically define the type of grid h
 	const grid = document.querySelector('vwc-data-grid');
 
 	function changeHeader() {
-		headerType = event.target.value;
+		headerType = event.currentTarget.value;
 		grid.generateHeader = headerType;
 	}
 
