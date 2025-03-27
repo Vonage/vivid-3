@@ -434,7 +434,6 @@ describe('ProseMirrorFacade', () => {
 	});
 
 	describe('setSelectionDecoration()', () => {
-		
 		beforeEach(async () => {
 			await useOriginalEditorView();
 			await useOriginalEditorState();
@@ -482,9 +481,9 @@ describe('ProseMirrorFacade', () => {
 
 		it('should throw if used unsupported mark', async () => {
 			initViewer();
-			expect(() => facadeInstance.setSelectionDecoration('unSupportedMark')).toThrowError(
-				'unSupportedMark is not a supported decoration'
-			);
+			expect(() =>
+				facadeInstance.setSelectionDecoration('unSupportedMark')
+			).toThrowError('unSupportedMark is not a supported decoration');
 		});
 
 		it('should apply underline decoration to current selection when "underline" is sent', async () => {
