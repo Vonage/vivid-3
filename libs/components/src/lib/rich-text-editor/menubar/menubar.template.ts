@@ -25,7 +25,7 @@ const TEXT_DECORATION_ITEMS = [
 	{
 		text: 'Italic',
 		icon: 'italic-line',
-		value: 'italic',
+		value: 'italics',
 	},
 	{
 		text: 'Underline',

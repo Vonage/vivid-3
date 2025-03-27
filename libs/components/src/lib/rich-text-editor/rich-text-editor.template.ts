@@ -15,6 +15,13 @@ function textSizeSelectedHandler(
 	this.setTextSize(event.detail as RichTextEditorTextSizes);
 }
 
+function selectionDecorationSelectedHandler(
+	this: RichTextEditor,
+	event: CustomEvent<string>
+) {
+	this.setSelectionDecoration(event.detail as RichTextEditorTextSizes);
+}
+
 function handleMenuBarSlotChange(
 	richTextEditor: RichTextEditor,
 	{ event }: ExecutionContext
@@ -32,6 +39,10 @@ function handleMenuBarSlotChange(
 		menuBar.addEventListener(
 			'text-size-selected',
 			textSizeSelectedHandler.bind(richTextEditor) as EventListener
+		);
+		menuBar.addEventListener(
+			'text-decoration-selected',
+			selectionDecorationSelectedHandler.bind(richTextEditor) as EventListener
 		);
 	}
 }
