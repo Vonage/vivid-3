@@ -5,12 +5,13 @@ import vividComponentGenerator from './index';
 
 describe(`vivid component generator`, function () {
 	let tree: Tree;
-	const options: VividComponentGeneratorOptions = {
-		name: 'test-component',
-	};
+	let options: VividComponentGeneratorOptions;
 
 	beforeEach(() => {
 		tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
+		options = {
+			name: 'test-component',
+		};
 	});
 
 	it(`should generate files`, async function () {
@@ -91,27 +92,60 @@ describe(`vivid component generator`, function () {
 			);
 		});
 
-		it('should add the component to tag-name-map.ts when addToExports is true', async function () {
+		it('should add the component to tag-name-map.ts following sort order when addToExports is true', async function () {
+			options.name = 'b';
 			options.addToExports = true;
 			tree.write(
 				tagNameMapFilePath,
 				`import {
-	VwcButtonElement,
+	VwcAElement,
+	VwcCElement,
 } from './components';
 
 type DefaultVividTagNameMap = {
-\t'vwc-button': VwcButtonElement;
+\t'vwc-a': VwcAElement;
+\t'vwc-c': VwcCElement;
 };
 `
 			);
 			await vividComponentGenerator(tree, options);
 			const result = tree.read(tagNameMapFilePath, 'utf8').trim();
 			expect(result).toMatchInlineSnapshot(`
-				"import { VwcButtonElement, VwcTestComponentElement } from './components';
+				"import { VwcAElement, VwcBElement, VwcCElement } from './components';
 
 				type DefaultVividTagNameMap = {
-				  'vwc-button': VwcButtonElement;
-				  'vwc-test-component': VwcTestComponentElement;
+				  'vwc-a': VwcAElement;
+				  'vwc-b': VwcBElement;
+				  'vwc-c': VwcCElement;
+				};"
+			`);
+		});
+
+		it('should add the component to tag-name-map.ts when addToExports is true and it is the last element in sort order', async function () {
+			options.name = 'c';
+			options.addToExports = true;
+			tree.write(
+				tagNameMapFilePath,
+				`import {
+	VwcAElement,
+	VwcBElement,
+} from './components';
+
+type DefaultVividTagNameMap = {
+\t'vwc-a': VwcAElement;
+\t'vwc-b': VwcBElement;
+};
+`
+			);
+			await vividComponentGenerator(tree, options);
+			const result = tree.read(tagNameMapFilePath, 'utf8').trim();
+			expect(result).toMatchInlineSnapshot(`
+				"import { VwcAElement, VwcBElement, VwcCElement } from './components';
+
+				type DefaultVividTagNameMap = {
+				  'vwc-a': VwcAElement;
+				  'vwc-b': VwcBElement;
+				  'vwc-c': VwcCElement;
 				};"
 			`);
 		});
