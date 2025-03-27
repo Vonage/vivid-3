@@ -445,7 +445,7 @@ describe('ProseMirrorFacade', () => {
 			);
 		});
 
-		it('should apply bold decoration to current selection', async () => {
+		it('should apply bold decoration to current selection when "bold" is sent', async () => {
 			const element = initViewer();
 			facadeInstance.replaceContent(
 				'<p>This is a pretty long text for a sample, but it should work</p>'
@@ -459,6 +459,30 @@ describe('ProseMirrorFacade', () => {
 
 			expect(getOutputElement(element).innerHTML).toBe(
 				`<p>Th<strong>is is a</strong> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply italics decoration to current selection when "italics" is sent', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('italics');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<em>is is a</em> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should throw if used unsupported mark', async () => {
+			initViewer();
+			expect(() => facadeInstance.setSelectionDecoration('unSupportedMark')).toThrowError(
+				'unSupportedMark is not a supported decoration'
 			);
 		});
 	});

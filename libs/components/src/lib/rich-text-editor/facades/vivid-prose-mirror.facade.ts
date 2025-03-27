@@ -186,11 +186,15 @@ export class ProseMirrorFacade {
 		dispatch(tr);
 	}
 
-	setSelectionDecoration(_: string) {
+	setSelectionDecoration(decoration: string) {
 		this.#verifyViewInitiation();
 
 		const { state, dispatch } = this.#view!;
 
-		toggleMark(state.schema.marks.strong)(state, dispatch);
+		const markType = state.schema.marks[decoration === 'bold' ? 'strong' : decoration === 'italics' ? 'em' : decoration];
+		if (!markType) {
+			throw new Error(`${decoration} is not a supported decoration`);
+		}
+		toggleMark(markType)(state, dispatch);
 	}
 }
