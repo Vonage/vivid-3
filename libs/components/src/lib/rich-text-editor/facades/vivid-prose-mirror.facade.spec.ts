@@ -445,5 +445,21 @@ describe('ProseMirrorFacade', () => {
 			);
 		});
 
+		it('should apply bold decoration to current selection', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('bold');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<strong>is is a</strong> pretty long text for a sample, but it should work</p>`
+			);
+		});
 	});
 });

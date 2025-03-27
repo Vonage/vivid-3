@@ -7,7 +7,7 @@ import {
 import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
-import { baseKeymap } from 'prosemirror-commands';
+import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type { RichTextEditorSelection } from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
@@ -80,6 +80,7 @@ export class ProseMirrorFacade {
 			);
 		}
 	}
+
 	#onSelectionChange = () => {
 		this.#dispatchEvent('selection-changed');
 	};
@@ -187,5 +188,9 @@ export class ProseMirrorFacade {
 
 	setSelectionDecoration(_: string) {
 		this.#verifyViewInitiation();
+
+		const { state, dispatch } = this.#view!;
+
+		toggleMark(state.schema.marks.strong)(state, dispatch);
 	}
 }
