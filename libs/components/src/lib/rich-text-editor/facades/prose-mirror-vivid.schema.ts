@@ -1,7 +1,6 @@
 import { schema as basicSchema } from 'prosemirror-schema-basic';
 import { Schema } from 'prosemirror-model';
 
-// Define custom marks
 const customMarks = {
 	u: {
 		parseDOM: [{ tag: 'u' }],

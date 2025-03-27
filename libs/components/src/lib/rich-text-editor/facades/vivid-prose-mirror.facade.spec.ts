@@ -425,7 +425,6 @@ describe('ProseMirrorFacade', () => {
 			const event = new KeyboardEvent('keydown', { key: 'Enter' });
 			getOutputElement(element).dispatchEvent(event);
 
-			// Verify the expected behavior for Enter key press
 			expect(facadeInstance.selection()).toEqual({
 				start: content.length + NEWLINE_POSITION_VALUE,
 				end: content.length + NEWLINE_POSITION_VALUE,

@@ -5,6 +5,7 @@ import type { VividElementDefinitionContext } from '../../../shared/design-syste
 import { Button } from '../../button/button';
 import { Menu } from '../../menu/menu';
 import { MenuItem } from '../../menu-item/menu-item';
+import { Divider } from '../../divider/divider';
 import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -25,7 +26,7 @@ const TEXT_DECORATION_ITEMS = [
 	{
 		text: 'Italic',
 		icon: 'italic-line',
-		value: 'italic',
+		value: 'italics',
 	},
 	{
 		text: 'Underline',
@@ -100,7 +101,9 @@ const MENU_BAR_ITEMS: {
 	},
 	textDecoration: function (context) {
 		const buttonTag = context.tagFor(Button);
+		const dividerTag = context.tagFor(Divider);
 		return html`
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			${repeat(
 				(_) => TEXT_DECORATION_ITEMS,
 				html`
@@ -119,6 +122,7 @@ const MENU_BAR_ITEMS: {
 					></${buttonTag}>
 				`
 			)}
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
 	},
 };

@@ -182,7 +182,7 @@ describe('menuBar', () => {
 				element.addEventListener('text-decoration-selected', spy);
 				const listOfDecorations = [
 					'bold',
-					'italic',
+					'italics',
 					'underline',
 					'strikethrough',
 					'monospace',
