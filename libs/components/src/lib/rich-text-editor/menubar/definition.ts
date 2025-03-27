@@ -2,9 +2,9 @@ import { createRegisterFunction } from '../../../shared/design-system/createRegi
 import { defineVividComponent } from '../../../shared/design-system/defineVividComponent';
 import {
 	buttonDefinition,
+	dividerDefinition,
 	menuDefinition,
 	menuItemDefinition,
-	dividerDefinition,
 } from '../../components';
 import styles from './menubar.scss?inline';
 

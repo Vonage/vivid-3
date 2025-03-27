@@ -33,10 +33,10 @@ function handleMenuBarSlotChange(
 	);
 	assignedElements.forEach((element) => {
 		if (element === menuBar) {
-            (element as HTMLElement).style.removeProperty('display'); // Remove inline display style
-        } else {
-            (element as HTMLElement).style.display = 'none'; // Set display to 'none'
-        }
+			(element as HTMLElement).style.removeProperty('display'); // Remove inline display style
+		} else {
+			(element as HTMLElement).style.display = 'none'; // Set display to 'none'
+		}
 	});
 	if (menuBar) {
 		menuBar.addEventListener(
