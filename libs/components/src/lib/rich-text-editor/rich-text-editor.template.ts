@@ -32,8 +32,11 @@ function handleMenuBarSlotChange(
 		element.tagName.toLowerCase().endsWith(VALID_MENU_ELEMEMENT_SUFFIX)
 	);
 	assignedElements.forEach((element) => {
-		(element as HTMLElement).style.display =
-			element === menuBar ? 'block' : 'none';
+		if (element === menuBar) {
+            (element as HTMLElement).style.removeProperty('display'); // Remove inline display style
+        } else {
+            (element as HTMLElement).style.display = 'none'; // Set display to 'none'
+        }
 	});
 	if (menuBar) {
 		menuBar.addEventListener(

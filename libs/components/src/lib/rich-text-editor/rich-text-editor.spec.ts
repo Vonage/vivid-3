@@ -334,6 +334,15 @@ describe('vwc-rich-text-editor', () => {
 	});
 
 	describe('setSelectionDecoration()', () => {
+		it('should gracefully fail with a warning when given an invalid decoration value', async () => {
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+			(element.setSelectionDecoration as any)('unsupported-decoration');
+			expect(consoleWarnSpy).toHaveBeenCalledWith(
+				'Invalid decoration: unsupported-decoration'
+			);
+		});
+
 		it('should call facade setSelectionDecoration with the decoration parameter', async () => {
 			const setSelectionDecorationSpy = vi.spyOn(
 				EditorFacade.prototype,

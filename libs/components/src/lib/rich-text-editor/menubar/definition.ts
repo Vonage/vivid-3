@@ -4,6 +4,7 @@ import {
 	buttonDefinition,
 	menuDefinition,
 	menuItemDefinition,
+	dividerDefinition,
 } from '../../components';
 import styles from './menubar.scss?inline';
 
@@ -14,7 +15,7 @@ export const menuBarDefinition = defineVividComponent(
 	'menubar',
 	MenuBar,
 	template,
-	[buttonDefinition, menuDefinition, menuItemDefinition],
+	[buttonDefinition, menuDefinition, menuItemDefinition, dividerDefinition],
 	{
 		styles,
 		shadowOptions: {
