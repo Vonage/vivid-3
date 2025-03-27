@@ -432,4 +432,18 @@ describe('ProseMirrorFacade', () => {
 			});
 		});
 	});
+
+	describe('setSelectionDecoration()', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		it('should throw if viewer is not initialized', async () => {
+			expect(() => facadeInstance.setSelectionDecoration('bold')).toThrowError(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+	});
 });
