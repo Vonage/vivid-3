@@ -73,18 +73,10 @@ $gutter: 2px;
 	inline-size: $size;
 
 	.base:focus-visible & {
-		#{focus-variables.$focus-inset}: -3px;
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 
-		&::before {
-			@include focus.focus;
-
-			position: absolute;
-			display: block;
-			border-radius: 2px;
-			block-size: $size;
-			content: '';
-			inline-size: $size;
+		&::after {
+			@include focus.focus-in-pseudo-element;
 		}
 	}
 
