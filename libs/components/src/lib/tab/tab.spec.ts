@@ -5,8 +5,6 @@ import { Tab } from './tab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tab';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-tab', () => {
 	let element: Tab;
 
@@ -55,7 +53,7 @@ describe('vwc-tab', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});
@@ -68,7 +66,7 @@ describe('vwc-tab', () => {
 			await elementUpdated(element);
 
 			const trailingIcon = element.shadowRoot?.querySelector(
-				`.icon-trailing ${ICON_SELECTOR}`
+				`.icon-trailing vwc-icon`
 			);
 			expect(trailingIcon).toBeInstanceOf(Icon);
 		});

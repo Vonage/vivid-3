@@ -4,8 +4,6 @@ import { ListboxOption } from './option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-option';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-option', () => {
 	let element: ListboxOption;
 
@@ -46,7 +44,7 @@ describe('vwc-option', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});
