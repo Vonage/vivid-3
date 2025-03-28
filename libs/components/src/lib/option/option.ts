@@ -1,4 +1,9 @@
-import { attr, observable, Observable } from '@microsoft/fast-element';
+import {
+	attr,
+	observable,
+	Observable,
+	volatile,
+} from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
@@ -216,17 +221,48 @@ export class ListboxOption extends VividElement {
 	@observable _displayCheckmark = false;
 
 	/**
-	 * Range of text that should be highlighted as matching a search query.
+	 * Text to highlighted as matching a search query.
+	 * @remarks
+	 * HTML Attribute: matched-text
+	 */
+	@attr({ attribute: 'matched-text' }) matchedText?: string;
+
+	/**
+	 * Search text set by a parent component.
+	 * @internal
+	 */
+	@observable _vvdSearchText = '';
+
+	@volatile
+	get _hasMatchedText() {
+		return Boolean(this.matchedText ?? this._vvdSearchText);
+	}
+
+	/**
+	 * Whether the option is considered matching by a parent component.
+	 * @internal
+	 */
+	@observable _isNotMatching = false;
+
+	/**
 	 * From is inclusive, to is exclusive.
 	 * @internal
 	 */
-	@observable _matchedRange: { from: number; to: number } | null = null;
-
-	/**
-	 * @internal
-	 */
-	get _matchedRangeSafe() {
-		return this._matchedRange ?? { from: 0, to: 0 };
+	@volatile
+	get _matchedRange() {
+		const matchedText = this.matchedText ?? this._vvdSearchText;
+		if (matchedText) {
+			const matchIndex = this.text
+				.toLowerCase()
+				.indexOf(matchedText.toLowerCase());
+			return matchIndex === -1
+				? { from: 0, to: 0 }
+				: {
+						from: matchIndex,
+						to: matchIndex + matchedText.length,
+				  };
+		}
+		return { from: 0, to: 0 };
 	}
 
 	constructor(

@@ -108,6 +108,48 @@ The `open` attribute allows the Searchable Select to be opened programmatically.
 </vwc-searchable-select>
 ```
 
+## Search Text
+
+You can access the current search text through the `searchText` property and listen for changes through the `search-text-change` event.
+
+```html preview 150px
+<div>Current search text: "<span id="search-text"></span>"</div>
+<vwc-searchable-select></vwc-searchable-select>
+
+<script>
+	customElements.whenDefined('vwc-searchable-select').then(() => {
+		document
+			.querySelector('vwc-searchable-select')
+			.addEventListener('search-text-change', (e) => {
+				document.querySelector('#search-text').innerText =
+					e.currentTarget.searchText;
+			});
+	});
+</script>
+```
+
+## Option Filtering
+
+You can control option filtering by setting `optionFilter` to a custom function. For example, always returning `true` will disable filtering by always showing all options.
+
+```html preview 250px
+<vwc-searchable-select>
+	<vwc-option
+		icon="flag-afghanistan"
+		value="AF"
+		text="Afghanistan"
+	></vwc-option>
+	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
+	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+</vwc-searchable-select>
+
+<script>
+	customElements.whenDefined('vwc-searchable-select').then(() => {
+		document.querySelector('vwc-searchable-select').optionFilter = () => true;
+	});
+</script>
+```
+
 ## Slots
 
 ### Default
@@ -140,6 +182,18 @@ You can use the [Option's `tag-icon` slot](/components/option/#tag-icon) to disp
 	<vwc-option icon="flag-algeria" value="algeria" text="Algeria">
 		<vwc-icon slot="tag-icon" name="flag-algeria"></vwc-icon>
 	</vwc-option>
+</vwc-searchable-select>
+```
+
+#### Hidden Options
+
+Setting `hidden` on an Option will hide it from the dropdown while still allowing it to be a selected value.
+
+```html preview 150px
+<vwc-searchable-select multiple>
+	<vwc-option value="AF" text="Afghanistan" selected hidden></vwc-option>
+	<vwc-option value="AL" text="Albania"></vwc-option>
+	<vwc-option value="DZ" text="Algeria"></vwc-option>
 </vwc-searchable-select>
 ```
 
@@ -243,33 +297,36 @@ Use `--searchable-select-height` to set the max-height of the dropdown. The defa
 
 <div class="table-wrapper">
 
-| Name                | Type                               | Description                                                                                                                       |
-| ------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **successText**     | `string`                           | The success text for the form element.                                                                                            |
-| **errorText**       | `string`                           | The error text for the form element.                                                                                              |
-| **helperText**      | `string`                           | The helper text for the form element.                                                                                             |
-| **label**           | `string`                           | The label for the form element.                                                                                                   |
-| **icon**            | _Enum_:<br/>`[icon-name]`          | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/ |
-| **iconTrailing**    | `boolean`                          | Indicates the icon affix alignment.                                                                                               |
-| **disabled**        | `boolean`                          | Sets the element's disabled state. A disabled element will not be included during form submission.                                |
-| **name**            | `string`                           | The name of the element. This element's value will be surfaced during form submission under the provided name.                    |
-| **required**        | `boolean`                          | Require the field to be completed prior to form submission.                                                                       |
-| **appearance**      | _Enum_:<br/>`fieldset`<br/>`ghost` |                                                                                                                                   |
-| **shape**           | _Enum_:<br/>`rounded`<br/>`pill`   |                                                                                                                                   |
-| **fixedDropdown**   | `boolean`                          |                                                                                                                                   |
-| **placeholder**     | `string`                           |                                                                                                                                   |
-| **open**            | `boolean`                          |                                                                                                                                   |
-| **multiple**        | `boolean`                          |                                                                                                                                   |
-| **externalTags**    | `boolean`                          |                                                                                                                                   |
-| **maxLines**        | `number`                           |                                                                                                                                   |
-| **clearable**       | `boolean`                          | Adds a clear button to the input field that clears the selected values.                                                           |
-| **values**          | `string[]`                         | List of selected option's values in the order that they have been selected in.                                                    |
-| **value**           | `string`                           | Value of the first selected option or the empty string if no option is selected.                                                  |
-| **selectedIndex**   | `number`                           | Index of the first selected option or `-1` if no option is selected.                                                              |
-| **options**         | `ListboxOption[]`                  | Read-only collections of all options.                                                                                             |
-| **selectedOptions** | `ListboxOption[]`                  | Read-only collections of selected options.                                                                                        |
-| **initialValues**   | `string[]`                         | List of initially selected option's values. Used in case of form reset.                                                           |
-| **initialValue**    | `string`                           | Initially selected option's value. Used in case of form reset.                                                                    |
+| Name                | Type                                                        | Description                                                                                                                       |
+| ------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **successText**     | `string`                                                    | The success text for the form element.                                                                                            |
+| **errorText**       | `string`                                                    | The error text for the form element.                                                                                              |
+| **helperText**      | `string`                                                    | The helper text for the form element.                                                                                             |
+| **label**           | `string`                                                    | The label for the form element.                                                                                                   |
+| **icon**            | _Enum_:<br/>`[icon-name]`                                   | A decorative icon the custom element should have. See the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/ |
+| **iconTrailing**    | `boolean`                                                   | Indicates the icon affix alignment.                                                                                               |
+| **disabled**        | `boolean`                                                   | Sets the element's disabled state. A disabled element will not be included during form submission.                                |
+| **name**            | `string`                                                    | The name of the element. This element's value will be surfaced during form submission under the provided name.                    |
+| **required**        | `boolean`                                                   | Require the field to be completed prior to form submission.                                                                       |
+| **appearance**      | _Enum_:<br/>`fieldset`<br/>`ghost`                          |                                                                                                                                   |
+| **shape**           | _Enum_:<br/>`rounded`<br/>`pill`                            |                                                                                                                                   |
+| **fixedDropdown**   | `boolean`                                                   |                                                                                                                                   |
+| **placeholder**     | `string`                                                    |                                                                                                                                   |
+| **open**            | `boolean`                                                   |                                                                                                                                   |
+| **multiple**        | `boolean`                                                   |                                                                                                                                   |
+| **externalTags**    | `boolean`                                                   |                                                                                                                                   |
+| **maxLines**        | `number`                                                    |                                                                                                                                   |
+| **clearable**       | `boolean`                                                   | Adds a clear button to the input field that clears the selected values.                                                           |
+| **values**          | `string[]`                                                  | List of selected option's values in the order that they have been selected in.                                                    |
+| **value**           | `string`                                                    | Value of the first selected option or the empty string if no option is selected.                                                  |
+| **selectedIndex**   | `number`                                                    | Index of the first selected option or `-1` if no option is selected.                                                              |
+| **options**         | `ListboxOption[]`                                           | Read-only collections of all options.                                                                                             |
+| **selectedOptions** | `ListboxOption[]`                                           | Read-only collections of selected options.                                                                                        |
+| **initialValues**   | `string[]`                                                  | List of initially selected option's values. Used in case of form reset.                                                           |
+| **initialValue**    | `string`                                                    | Initially selected option's value. Used in case of form reset.                                                                    |
+| **loading**         | `boolean`                                                   | Whether the component is in a loading state.                                                                                      |
+| **searchText**      | `string`                                                    | Read-only property containing the current search text.                                                                            |
+| **optionFilter**    | `(option: VwcOptionElement, searchText: string) => boolean` | Function to filter the options to display.                                                                                        |
 
 </div>
 
@@ -277,10 +334,11 @@ Use `--searchable-select-height` to set the max-height of the dropdown. The defa
 
 <div class="table-wrapper">
 
-| Name       | Event Type               | Bubbles | Composed | Description                            |
-| ---------- | ------------------------ | ------- | -------- | -------------------------------------- |
-| **input**  | `CustomEvent<undefined>` | No      | Yes      | Fired when the selected options change |
-| **change** | `CustomEvent<undefined>` | No      | Yes      | Fired when the selected options change |
+| Name                   | Event Type               | Bubbles | Composed | Description                            |
+| ---------------------- | ------------------------ | ------- | -------- | -------------------------------------- |
+| **input**              | `CustomEvent<undefined>` | No      | Yes      | Fired when the selected options change |
+| **change**             | `CustomEvent<undefined>` | No      | Yes      | Fired when the selected options change |
+| **search-text-change** | `CustomEvent<undefined>` | No      | No       | Fired when the search text changes     |
 
 </div>
 
@@ -288,13 +346,14 @@ Use `--searchable-select-height` to set the max-height of the dropdown. The defa
 
 <div class="table-wrapper">
 
-| Name            | Description                                                                     |
-| --------------- | ------------------------------------------------------------------------------- |
-| **default**     | Holds the available options.                                                    |
-| **icon**        | Slot to add an icon to the control.                                             |
-| **meta**        | Slot to add meta content to the control.                                        |
-| **helper-text** | Describes how to use the component. Alternative to the `helper-text` attribute. |
-| **no-options**  | Message that appears when no options are available.                             |
-| **no-matches**  | Message that appears when no options match the search query.                    |
+| Name                | Description                                                                                   |
+| ------------------- | --------------------------------------------------------------------------------------------- |
+| **default**         | Holds the available options.                                                                  |
+| **icon**            | Slot to add an icon to the control.                                                           |
+| **meta**            | Slot to add meta content to the control.                                                      |
+| **helper-text**     | Describes how to use the component. Alternative to the `helper-text` attribute.               |
+| **no-options**      | Message that appears when no options are available.                                           |
+| **no-matches**      | Message that appears when no options match the search query.                                  |
+| **loading-options** | Message that appears there are no options to display and the component is in a loading state. |
 
 </div>
