@@ -147,7 +147,10 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 ```html preview 250px
 <vwc-layout gutters="small" column-basis="block" row-spacing="small">
 	<vwc-rich-text-editor>
-		<vwc-menubar slot="menu-bar" menu-items="textSize"></vwc-menubar>
+		<vwc-menubar
+			slot="menu-bar"
+			menu-items="textSize textDecoration"
+		></vwc-menubar>
 	</vwc-rich-text-editor>
 </vwc-layout>
 <script>
