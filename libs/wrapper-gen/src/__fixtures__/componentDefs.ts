@@ -69,7 +69,7 @@ export const exampleComponent: ComponentDef = {
 		{
 			name: 'example-event',
 			description: 'This is an example event',
-			type: 'string',
+			type: 'Event',
 		},
 		{
 			name: 'input',
@@ -85,19 +85,19 @@ export const exampleComponent: ComponentDef = {
 			name: 'modelValue',
 			propName: 'value',
 			eventNames: ['input'],
-			valueMapping: '(event.target as any).value',
+			valueMapping: 'event.currentTarget.value',
 		},
 		{
 			name: 'sameEvent',
 			propName: 'exampleProp',
 			eventNames: ['input'],
-			valueMapping: '(event.target as any).exampleProp',
+			valueMapping: 'event.currentTarget.exampleProp',
 		},
 		{
 			name: 'start',
 			propName: 'start',
 			eventNames: ['input:start'],
-			valueMapping: '(event.target as any).start',
+			valueMapping: 'event.currentTarget.start',
 		},
 	],
 	methods: [

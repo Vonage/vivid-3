@@ -31,7 +31,7 @@ export type CheckboxConnotation = Extract<
  * @slot helper-text - Describes how to use the checkbox. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Emitted when the checked state changes.
  * @event {CustomEvent<undefined>} input - Emitted when the checked state changes.
- * @vueModel modelValue checked change `(event.target as HTMLInputElement).checked`
+ * @vueModel modelValue checked change `event.currentTarget.checked`
  */
 @errorText
 @formElements

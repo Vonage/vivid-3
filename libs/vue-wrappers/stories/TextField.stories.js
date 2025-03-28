@@ -1,4 +1,10 @@
-import { VButton, VLayout, VTextField } from '@vonage/vivid-vue';
+import {
+	VButton,
+	VLayout,
+	VTextField,
+	VSelect,
+	VOption,
+} from '@vonage/vivid-vue';
 import { ref } from 'vue';
 import { argTypes, Template } from './generated/VTextField';
 
@@ -104,7 +110,7 @@ const VModelTemplate = () => ({
 	template: `<div>
     <div>
       <VTextField v-model="value" />
-    </div> 
+    </div>
     <div>v-model: {{ value }}</div>
     <div>
       <button @click="value = ''">Reset</button>
@@ -113,3 +119,37 @@ const VModelTemplate = () => ({
   </div>`,
 });
 export const VModel = VModelTemplate.bind({});
+
+const BubblingEventTemplate = () => ({
+	components: { VTextField, VSelect, VOption },
+	setup() {
+		const value = ref('');
+		const updateCount = ref(0);
+		function onModelUpdate($event) {
+			updateCount.value += 1;
+			console.log('@update:modelValue', $event);
+		}
+		const inputCount = ref(0);
+		function onInput($event) {
+			inputCount.value += 1;
+			console.log('@input', $event.target, $event.currentTarget);
+		}
+		return { value, inputCount, updateCount, onModelUpdate, onInput };
+	},
+	template: `<div>
+    <div>
+      <VTextField v-model="value" @update:modelValue="onModelUpdate" @input="onInput">
+				<template #action-items>
+					<VSelect>
+						<VOption text="Option 1" value="1"></VOption>
+						<VOption text="Option 2" value="2"></VOption>
+					</VSelect>
+				</template>
+    	</VTextField>
+    </div>
+    <div>v-model: {{ value }}</div>
+    <div>input event count: {{ inputCount }}</div>
+    <div>update:model-value event count: {{ updateCount }}</div>
+  </div>`,
+});
+export const BubblingEvent = BubblingEventTemplate.bind({});
