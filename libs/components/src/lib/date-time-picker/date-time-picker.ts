@@ -52,7 +52,7 @@ const ValidDateTimeFilter: ValueConverter = {
  * @slot helper-text - Describes how to use the date-picker. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} input - Emitted when the date is changed by the user.
  * @event {CustomEvent<undefined>} change - Emitted when the date is changed by the user.
- * @vueModel modelValue value input `(event.target as HTMLInputElement).value`
+ * @vueModel modelValue value input `event.currentTarget.value`
  */
 @errorText
 @formElements

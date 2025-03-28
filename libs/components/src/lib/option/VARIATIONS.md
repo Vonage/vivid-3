@@ -65,3 +65,23 @@ The `disabled` attribute indicates that the option is disabled and can not be se
 	}
 </style>
 ```
+
+## Matched Text
+
+The `matched-text` attribute highlights a part of text as matching a search query.
+
+```html preview
+<div class="container">
+	<vwc-option
+		matched-text="text"
+		text="Option text"
+		value="option1"
+	></vwc-option>
+</div>
+
+<style>
+	.container {
+		width: 250px;
+	}
+</style>
+```

@@ -159,6 +159,7 @@ const zhCN: Locale = {
 		clearButtonLabel: '清除',
 		noOptionsMessage: '没有选项',
 		noMatchesMessage: '未找到选项',
+		loadingOptionsMessage: '加载中...',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} 删除`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>

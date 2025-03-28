@@ -35,25 +35,35 @@ const MENU_BAR_ITEMS: {
 				<${buttonTag}
 					slot="anchor"
 					aria-label="Open menu"
-					size="condensed"
-					shape="rounded"
+					size="super-condensed"
+					appearance="ghost-light"
+					shape="pill"
 					icon="text-size-line"
 				></${buttonTag}>
 				<${menuItemTag}
 					text="Title"
 					value="title"
+					internal-part
+					class="title"
+					connotation="cta"
 					@click="${(_, { parent }) =>
 						notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Subtitle"
 					value="subtitle"
+					internal-part
+					class="subtitle"
+					connotation="cta"
 					@click="${(_, { parent }) =>
 						notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Body"
 					value="body"
+					internal-part
+					class="body"
+					connotation="cta"
 					@click="${(_, { parent }) =>
 						notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
 				></${menuItemTag}>
@@ -62,7 +72,11 @@ const MENU_BAR_ITEMS: {
 	},
 };
 
-const getClasses = (_: MenuBar) => classNames('control');
+const getClasses = (menuBar: MenuBar) =>
+	classNames('control', [
+		'hide-menubar',
+		getValidMenuItems(menuBar).length === 0,
+	]);
 
 const validItems = ['textSize'];
 

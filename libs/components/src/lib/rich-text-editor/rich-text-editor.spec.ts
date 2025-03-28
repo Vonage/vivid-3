@@ -422,16 +422,20 @@ describe('vwc-rich-text-editor', () => {
 	});
 
 	describe('menu-bar slot', () => {
-		it('should accept only menu-bar elements', async () => {
-			const menuBar = document.createElement('vwc-menubar');
+		it('should accept only the first menu-bar element', async () => {
 			const notMenuBar = document.createElement('div');
-			menuBar.slot = 'menu-bar';
+			const menuBar = document.createElement('vwc-menubar');
+			const menuBar2 = document.createElement('vwc-menubar');
 			notMenuBar.slot = 'menu-bar';
-			element.appendChild(menuBar);
+			menuBar.slot = 'menu-bar';
+			menuBar2.slot = 'menu-bar';
 			element.appendChild(notMenuBar);
+			element.appendChild(menuBar);
+			element.appendChild(menuBar2);
 			await elementUpdated(element);
 
 			expect(getComputedStyle(menuBar).display).not.toBe('none');
+			expect(getComputedStyle(menuBar2).display).toBe('none');
 			expect(getComputedStyle(notMenuBar).display).toBe('none');
 		});
 
