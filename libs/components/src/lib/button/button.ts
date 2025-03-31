@@ -2,7 +2,6 @@ import { attr } from '@microsoft/fast-element';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividFoundationButton } from '../../shared/foundation/button/button.js';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins.js';
 
 /**
  * Types of button connotation.
@@ -54,7 +53,7 @@ export type ButtonSize = Extract<
  * @component button
  * @slot icon - Add an icon to the component.
  */
-export class Button extends VividFoundationButton {
+export class Button extends AffixIconWithTrailing(VividFoundationButton) {
 	/**
 	 * Specifies extra information about the button. This information is typically used by browsers to display a tooltip.
 	 */
@@ -231,6 +230,3 @@ export class Button extends VividFoundationButton {
 		this.title = '';
 	}
 }
-
-export interface Button extends AffixIconWithTrailing {}
-applyMixins(Button, AffixIconWithTrailing);

@@ -30,7 +30,7 @@ export type TextAnchorAppearance = Extract<
  * @component text-anchor
  * @slot icon - Add an icon to the component.
  */
-export class TextAnchor extends DelegatesAria(VividElement) {
+export class TextAnchor extends AffixIcon(DelegatesAria(VividElement)) {
 	/**
 	 * Indicates the text anchor's text.
 	 *
@@ -67,5 +67,5 @@ export class TextAnchor extends DelegatesAria(VividElement) {
 	}
 }
 
-export interface TextAnchor extends AffixIcon, Anchor {}
-applyMixins(TextAnchor, AffixIcon, Anchor);
+export interface TextAnchor extends Anchor {}
+applyMixins(TextAnchor, Anchor);

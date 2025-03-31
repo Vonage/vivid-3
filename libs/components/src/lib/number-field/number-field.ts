@@ -73,8 +73,8 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  */
 @errorText
 @formElements
-export class NumberField extends Localized(
-	DelegatesAria(FormAssociatedNumberField)
+export class NumberField extends AffixIcon(
+	Localized(DelegatesAria(FormAssociatedNumberField))
 ) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -416,15 +416,13 @@ export class NumberField extends Localized(
 }
 
 export interface NumberField
-	extends AffixIcon,
-		ErrorText,
+	extends ErrorText,
 		FormElement,
 		FormElementCharCount,
 		FormElementHelperText,
 		FormElementSuccessText {}
 applyMixinsWithObservables(
 	NumberField,
-	AffixIcon,
 	FormElementCharCount,
 	FormElementHelperText,
 	FormElementSuccessText

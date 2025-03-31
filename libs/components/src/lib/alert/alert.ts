@@ -2,7 +2,6 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { AffixIcon } from '../../shared/patterns/affix';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
@@ -42,7 +41,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
  * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
  */
-export class Alert extends Localized(VividElement) {
+export class Alert extends AffixIcon(Localized(VividElement)) {
 	/**
 	 * Allows setting a custom aria-label for the dismiss button.
 	 *
@@ -83,13 +82,6 @@ export class Alert extends Localized(VividElement) {
 	 * @public
 	 */
 	@attr text?: string;
-
-	/**
-	 * The icon to display in the Alert. Takes precedence over the connotation's icon.
-	 *
-	 * @public
-	 */
-	@attr icon?: string;
 
 	/**
 	 * Timeout after which the Alert will close.
@@ -195,6 +187,3 @@ export class Alert extends Localized(VividElement) {
 		}
 	};
 }
-
-applyMixins(Alert, AffixIcon);
-export interface Alert extends AffixIcon {}

@@ -47,7 +47,7 @@ export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
  */
 @errorText
 @formElements
-export class Combobox extends FormAssociatedCombobox {
+export class Combobox extends AffixIcon(FormAssociatedCombobox) {
 	/**
 	 * The internal value property.
 	 *
@@ -697,15 +697,13 @@ export class Combobox extends FormAssociatedCombobox {
 }
 
 export interface Combobox
-	extends AffixIcon,
-		FormElement,
+	extends FormElement,
 		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText,
 		FormElement {}
 applyMixinsWithObservables(
 	Combobox,
-	AffixIcon,
 	FormElementHelperText,
 	FormElementSuccessText
 );

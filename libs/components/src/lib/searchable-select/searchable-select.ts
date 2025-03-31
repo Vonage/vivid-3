@@ -59,8 +59,8 @@ const isFormAssociatedTryingToSetFormValue = (
  */
 @errorText
 @formElements
-export class SearchableSelect extends Localized(
-	FormAssociatedSearchableSelect
+export class SearchableSelect extends AffixIconWithTrailing(
+	Localized(FormAssociatedSearchableSelect)
 ) {
 	/**
 	 * @public
@@ -1120,14 +1120,12 @@ export class SearchableSelect extends Localized(
 }
 
 export interface SearchableSelect
-	extends AffixIconWithTrailing,
-		FormElement,
+	extends FormElement,
 		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
 applyMixinsWithObservables(
 	SearchableSelect,
-	AffixIconWithTrailing,
 	FormElementHelperText,
 	FormElementSuccessText
 );
