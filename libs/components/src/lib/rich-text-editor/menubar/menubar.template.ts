@@ -7,6 +7,7 @@ import { Menu } from '../../menu/menu';
 import { MenuItem } from '../../menu-item/menu-item';
 import { Divider } from '../../divider/divider';
 import { MenuBar } from './menubar.js';
+import { Tooltip } from '../../tooltip/tooltip';
 
 function notifyMenuBarChange(
 	menuBar: MenuBar,
@@ -102,24 +103,28 @@ const MENU_BAR_ITEMS: {
 	textDecoration: function (context) {
 		const buttonTag = context.tagFor(Button);
 		const dividerTag = context.tagFor(Divider);
+		const tooltipTag = context.tagFor(Tooltip);
 		return html`
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			${repeat(
 				(_) => TEXT_DECORATION_ITEMS,
 				html`
-					<${buttonTag}
-						aria-label="${(x) => x.text}"
-						size="super-condensed"
-						appearance="ghost-light"
-						shape="pill"
-						icon="${(x) => x.icon}"
-						@click="${(x, c) =>
-							notifyMenuBarChange(
-								c.parentContext.parent,
-								'text-decoration-selected',
-								x.value
-							)}"')}"
-					></${buttonTag}>
+					<${tooltipTag} text="${(x) => x.text}" placement="top">
+						<${buttonTag}
+							slot="anchor"
+							aria-label="${(x) => x.text}"
+							size="super-condensed"
+							appearance="ghost-light"
+							shape="pill"
+							icon="${(x) => x.icon}"
+							@click="${(x, c) =>
+								notifyMenuBarChange(
+									c.parentContext.parent,
+									'text-decoration-selected',
+									x.value
+								)}"')}"
+						></${buttonTag}>
+					</${tooltipTag}>
 				`
 			)}
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>

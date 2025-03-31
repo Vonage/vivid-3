@@ -3,6 +3,7 @@ import type { Menu } from '../../menu/menu';
 import { RichTextEditorTextSizes } from '../rich-text-editor';
 import { MenuBar } from './menubar';
 import '.';
+import { Tooltip } from '../../tooltip/tooltip';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -225,6 +226,16 @@ describe('menuBar', () => {
 				buttons?.forEach((button, index) => {
 					expect(button.getAttribute('icon')).toEqual(iconNames[index]);
 				});
+			});
+
+			it('should set a tooltip for each text decoration button', async () => {
+				const buttons = element.shadowRoot?.querySelectorAll('vwc-button') as unknown as HTMLButtonElement[];
+				for (let i = 0; i < buttons.length; i++) {
+					expect(buttons[i].getAttribute('slot')).toBe('anchor');
+					expect(buttons[i].parentElement?.getAttribute('text')).toBe(buttons[i].getAttribute('aria-label'));
+					expect(buttons[i].parentElement?.getAttribute('placement')).toBe('top');
+					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);
+				}
 			});
 		});
 	});
