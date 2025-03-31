@@ -420,8 +420,13 @@
 	},
 	{
 		"title": "Time Picker",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/time-picker/README.md"
+		"description": "",
+		"variations": "./libs/components/src/lib/time-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/time-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/time-picker/README.md",
+		"accessibility": "./libs/components/src/lib/time-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/time-picker/USE-CASES.md"
 	},
 	{
 		"title": "Tree View",
