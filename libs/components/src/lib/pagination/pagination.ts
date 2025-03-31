@@ -7,13 +7,17 @@ import {
 import type { Shape, Size } from '../enums';
 import type { Button } from '../button/button';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
-export type PaginationSize = Extract<
+export type PaginationSize = ExtractFromEnum<
 	Size,
 	Size.SuperCondensed | Size.Condensed | Size.Normal
 >;
 
-export type PaginationShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type PaginationShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
 
 const MAX_DIGITS_AND_PLACEHOLDERS = 7;
 const totalConverter: ValueConverter = {

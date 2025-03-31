@@ -19,14 +19,18 @@ import {
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
 
-export type SearchableSelectAppearance = Extract<
+export type SearchableSelectAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
-export type SearchableSelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type SearchableSelectShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
 
 const TagGapPx = 8;
 const InputMinWidthPx = 100;

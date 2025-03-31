@@ -5,13 +5,14 @@ import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of split button connotation.
  *
  * @public
  */
-export type SplitButtonConnotation = Extract<
+export type SplitButtonConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.Announcement
@@ -25,7 +26,7 @@ export type SplitButtonConnotation = Extract<
  *
  * @public
  */
-export type SplitButtonAppearance = Extract<
+export type SplitButtonAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Filled | Appearance.Outlined | Appearance.Ghost
 >;
@@ -35,14 +36,17 @@ export type SplitButtonAppearance = Extract<
  *
  * @public
  */
-export type SplitButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type SplitButtonShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
 
 /**
  * Types of split button size.
  *
  * @public
  */
-export type SplitButtonSize = Extract<
+export type SplitButtonSize = ExtractFromEnum<
 	Size,
 	Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded
 >;

@@ -1,13 +1,14 @@
 import { attr } from '@microsoft/fast-element';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of avatar connotation.
  *
  * @public
  */
-export type AvatarConnotation = Extract<
+export type AvatarConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
@@ -17,7 +18,7 @@ export type AvatarConnotation = Extract<
  *
  * @public
  */
-export type AvatarAppearance = Extract<
+export type AvatarAppearance = ExtractFromEnum<
 	Appearance,
 	| Appearance.Filled
 	| Appearance.Outlined
@@ -30,7 +31,7 @@ export type AvatarAppearance = Extract<
  *
  * @public
  */
-export type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type AvatarShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 /**
  * Base class for avatar
  *
@@ -42,7 +43,7 @@ export type AvatarShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
  *
  * @public
  */
-export type AvatarSize = Extract<
+export type AvatarSize = ExtractFromEnum<
 	Size,
 	Size.Condensed | Size.Normal | Size.Expanded
 >;

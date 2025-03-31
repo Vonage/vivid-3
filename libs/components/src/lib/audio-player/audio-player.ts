@@ -6,13 +6,14 @@ import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of audio player connotation.
  *
  * @public
  */
-export type AudioPlayerConnotation = Extract<
+export type AudioPlayerConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
