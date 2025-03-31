@@ -1,7 +1,7 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
-import { Fab, FabConnotation } from './fab';
+import { Fab, type FabConnotation } from './fab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-fab';

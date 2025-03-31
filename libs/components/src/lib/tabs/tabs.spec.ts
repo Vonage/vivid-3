@@ -1,9 +1,10 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Connotation, TabsGutters } from '../enums';
 import type { Tab } from '../tab/tab';
-import { TabPanel } from '../tab-panel/tab-panel.ts';
+import { TabPanel } from '../tab-panel/tab-panel';
 import { Tabs } from './tabs';
 import '.';
+import type { MockInstance } from 'vitest';
 
 const COMPONENT_TAG = 'vwc-tabs';
 
@@ -320,7 +321,7 @@ describe('vwc-tabs', () => {
 		});
 
 		describe('scrollToIndex', function () {
-			let scrollToSpy: vi.SpyInstance<void, [x: number, y: number]>;
+			let scrollToSpy: MockInstance<(x: number, y: number) => void>;
 			const scrollWidth = 1320;
 			const scrollHeight = 660;
 			beforeEach(function () {

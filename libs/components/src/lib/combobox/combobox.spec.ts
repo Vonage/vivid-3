@@ -5,12 +5,13 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import { Size } from '../enums';
-import type { Popup } from '../popup/popup.ts';
-import { ListboxOption } from '../option/option.ts';
+import type { Popup } from '../popup/popup';
+import { ListboxOption } from '../option/option';
 import type { Icon } from '../icon/icon';
 import { Combobox } from './combobox';
-import { ComboboxAutocomplete } from './combobox.options.ts';
+import { ComboboxAutocomplete } from './combobox.options';
 import '.';
+import type { Mock } from 'vitest';
 
 const COMPONENT_TAG = 'vwc-combobox';
 const ICON_SELECTOR = 'vwc-icon';
@@ -250,7 +251,9 @@ describe('vwc-combobox', () => {
 			element.successText = 'success';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot.querySelector('.feedback-wrapper').textContent.trim()
+				element
+					.shadowRoot!.querySelector('.feedback-wrapper')!
+					.textContent!.trim()
 			).toBe('success');
 		});
 	});
@@ -266,7 +269,9 @@ describe('vwc-combobox', () => {
 			element.successText = 'error';
 			await elementUpdated(element);
 			expect(
-				element.shadowRoot.querySelector('.feedback-wrapper').textContent.trim()
+				element
+					.shadowRoot!.querySelector('.feedback-wrapper')!
+					.textContent!.trim()
 			).toBe('error');
 		});
 	});
@@ -695,7 +700,7 @@ describe('vwc-combobox', () => {
 	});
 
 	describe('when an option is selected', () => {
-		let changeSpy: vi.Mock;
+		let changeSpy: Mock;
 
 		beforeEach(async () => {
 			element.innerHTML = `

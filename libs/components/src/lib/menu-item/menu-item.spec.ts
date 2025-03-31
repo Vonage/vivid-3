@@ -7,6 +7,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
+import type { Mock } from 'vitest';
 import { Icon } from '../icon/icon';
 import { CheckAppearance, MenuItem } from './menu-item';
 import { MenuItemRole } from './definition';
@@ -66,7 +67,7 @@ describe('vwc-menu-item', () => {
 			element.icon = iconName;
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 			expect(icon.name).toEqual(iconName);
 		});
 	});
@@ -121,7 +122,7 @@ describe('vwc-menu-item', () => {
 				element.checked = checked;
 				await elementUpdated(element);
 
-				const icon = element.shadowRoot!.querySelector('vwc-icon');
+				const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 				expect(icon.name).toEqual(expectedIcon);
 			}
 		);
@@ -173,7 +174,7 @@ describe('vwc-menu-item', () => {
 				element.role = role;
 				await elementUpdated(element);
 
-				const icon = element.shadowRoot!.querySelector('vwc-icon');
+				const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 				expect(icon.name).toBe(expectedIcon);
 			}
 		);
@@ -332,7 +333,7 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('change event', () => {
-		let changeSpy: vi.Mock;
+		let changeSpy: Mock;
 		beforeEach(async () => {
 			changeSpy = vi.fn();
 			element.addEventListener('change', changeSpy);
@@ -372,7 +373,7 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('click event', () => {
-		let clickSpy: vi.Mock;
+		let clickSpy: Mock;
 		beforeEach(async () => {
 			clickSpy = vi.fn();
 			element.addEventListener('click', clickSpy);

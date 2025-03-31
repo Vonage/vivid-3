@@ -5,6 +5,7 @@ import {
 	loadTemplate,
 	useFakeTime,
 } from '../../visual-tests/visual-tests-utils.js';
+import type { DatePicker } from './date-picker.ts';
 
 const components = ['date-picker'];
 
@@ -64,7 +65,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	// Prevent clicking the month picker from closing the date picker
 	await page.evaluate(() => {
-		const datePicker = document.querySelector('#month-picker') as any;
+		const datePicker = document.querySelector('#month-picker') as DatePicker;
 		datePicker.addEventListener('click', (e) => e.stopPropagation());
 	});
 

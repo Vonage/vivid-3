@@ -1,6 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Menu } from '../../menu/menu';
 import { RichTextEditorTextSizes } from '../rich-text-editor';
+import type { Button } from '../../button/button';
 import { MenuBar } from './menubar';
 import '.';
 
@@ -72,14 +73,12 @@ describe('menuBar', () => {
 	});
 
 	describe('textSize', () => {
-		let textSizeButton: HTMLButtonElement;
+		let textSizeButton: Button;
 
 		beforeEach(async () => {
 			element.setAttribute('menu-items', 'textSize');
 			await elementUpdated(element);
-			textSizeButton = element.shadowRoot?.querySelector(
-				'vwc-button'
-			) as HTMLButtonElement;
+			textSizeButton = element.shadowRoot!.querySelector('vwc-button')!;
 		});
 		it('should show the text size button when adding `textSize` to the string', async () => {
 			expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');

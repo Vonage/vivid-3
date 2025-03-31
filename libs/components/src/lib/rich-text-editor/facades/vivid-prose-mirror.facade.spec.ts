@@ -1,9 +1,15 @@
 import { EditorState, type EditorStateConfig } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import type { Mock, MockedObject } from 'vitest';
+import type { MockedObject } from 'vitest';
 import type { RichTextEditorSelection } from '../rich-text-editor.js';
-import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema.ts';
-import { ProseMirrorFacade } from './vivid-prose-mirror.facade.ts';
+import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
+import { ProseMirrorFacade } from './vivid-prose-mirror.facade';
+
+type DeepPartial<T> = T extends object
+	? {
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
+	: T;
 
 vi.mock('prosemirror-view', () => ({
 	EditorView: vi.fn(),
@@ -27,8 +33,8 @@ describe('ProseMirrorFacade', () => {
 	}
 
 	async function useOriginalEditorState() {
-		if (EditorState.create.isMockFunction) {
-			EditorState.create.mockRestore();
+		if (vi.isMockFunction(EditorState.create)) {
+			vi.mocked(EditorState.create).mockRestore();
 		}
 	}
 
@@ -118,16 +124,13 @@ describe('ProseMirrorFacade', () => {
 		});
 
 		it('should return ProseMirror selection', async () => {
-			async function setSelectionInState(mockStateSelection) {
+			async function setSelectionInState(mockState: DeepPartial<EditorState>) {
 				await useOriginalEditorState();
 				const originalCreate = EditorState.create;
 				vi.spyOn(EditorState, 'create').mockImplementation(
 					(stateInput: EditorStateConfig) => {
 						const originalState = originalCreate(stateInput);
-						originalState.selection = {
-							...originalState.selection,
-							...mockStateSelection.selection,
-						};
+						Object.assign(originalState, mockState);
 						return originalState;
 					}
 				);
@@ -342,13 +345,12 @@ describe('ProseMirrorFacade', () => {
 
 	describe('change event', () => {
 		function listenToChangeEvent() {
-			spy = vi.fn();
+			const spy = vi.fn();
 			facadeInstance.addEventListener('change', spy);
 			return spy;
 		}
 
 		let element: HTMLElement;
-		let spy: Mock<(...args: any[]) => any> | EventListenerOrEventListenerObject;
 
 		beforeEach(async () => {
 			await useOriginalEditorView();

@@ -49,7 +49,7 @@ describe('vwc-empty-state', () => {
 		it('should allows setting the icon name with the icon attribute', async () => {
 			element.setAttribute('icon', 'user-line');
 			await elementUpdated(element);
-			const icon = element.shadowRoot!.querySelector('vwc-icon');
+			const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 			expect(icon.name).toBe('user-line');
 		});
 	});

@@ -1,5 +1,6 @@
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import type { Mock, MockInstance } from 'vitest';
 import { Anchored, anchorSlotTemplateFactory } from './anchored';
 
 describe('Anchored', () => {
@@ -129,8 +130,8 @@ describe('Anchored', () => {
 	});
 
 	describe('observer cleanup', function () {
-		let disconnectionFunc: vi.Mock;
-		let mutationObserverSpy: vi.SpyInstance;
+		let disconnectionFunc: Mock;
+		let mutationObserverSpy: MockInstance;
 		let capturedCallback: () => void;
 		beforeEach(function () {
 			const mockMutationObserver = vi.fn(function (this: any, callback) {
