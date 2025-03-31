@@ -145,14 +145,15 @@ If the option is represented as a tag in a [Searchable Select](/components/searc
 
 <div class="table-wrapper">
 
-| Name         | Type                      | Description                                                                                                                 |
-| ------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **disabled** | `boolean`                 | Sets the option to be disabled                                                                                              |
-| **icon**     | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **label**    | `string`                  | Text to be displayed instead of `text` when the option is selected                                                          |
-| **selected** | `boolean`                 | Sets the option to be selected                                                                                              |
-| **text**     | `string`                  | Sets the option's text                                                                                                      |
-| **value**    | `string`                  | Value to be submited as part of the form data                                                                               |
+| Name            | Type                      | Description                                                                                                                 |
+| --------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **disabled**    | `boolean`                 | Sets the option to be disabled                                                                                              |
+| **icon**        | _Enum_:<br/>`[icon-name]` | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **label**       | `string`                  | Text to be displayed instead of `text` when the option is selected                                                          |
+| **selected**    | `boolean`                 | Sets the option to be selected                                                                                              |
+| **text**        | `string`                  | Sets the option's text                                                                                                      |
+| **value**       | `string`                  | Value to be submited as part of the form data                                                                               |
+| **matchedText** | `string`                  | Text to highlighted as matching a search query                                                                              |
 
 </div>
 

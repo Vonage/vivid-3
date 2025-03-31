@@ -13,8 +13,6 @@ import { MenuItemRole } from './definition';
 
 const MENU_TAG = 'vwc-menu';
 const COMPONENT_TAG = 'vwc-menu-item';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-menu-item', () => {
 	let element: MenuItem;
 
@@ -68,7 +66,7 @@ describe('vwc-menu-item', () => {
 			element.icon = iconName;
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon.name).toEqual(iconName);
 		});
 	});
@@ -123,7 +121,7 @@ describe('vwc-menu-item', () => {
 				element.checked = checked;
 				await elementUpdated(element);
 
-				const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+				const icon = element.shadowRoot!.querySelector('vwc-icon');
 				expect(icon.name).toEqual(expectedIcon);
 			}
 		);
@@ -175,7 +173,7 @@ describe('vwc-menu-item', () => {
 				element.role = role;
 				await elementUpdated(element);
 
-				const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+				const icon = element.shadowRoot!.querySelector('vwc-icon');
 				expect(icon.name).toBe(expectedIcon);
 			}
 		);

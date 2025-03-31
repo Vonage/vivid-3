@@ -328,3 +328,210 @@
 	</vwc-layout>
 </form>
 ```
+
+## Asynchronous Option Loading
+
+To fetch options for the search text asynchronously you will need combine several features:
+
+Use `searchText` and the `search-text-change` event to fetch options for the search text. Set `loading` while options are being fetched.
+
+Use the `no-options` slot to indicate that options will become available when the user starts typing.
+
+As you are now handling the filtering of options yourself, you need to disable the built-in filtering logic:
+
+- Set `optionFilter` to always return `true` to show all options.
+- Set `matchedText` on the options to the search text they were fetched with.
+
+Already selected options need to stay present, even if they are no longer in the current result set. Use `hidden` to hide them in the dropdown.
+
+```html preview 500px
+<vwc-searchable-select label="Favorite fruit">
+	<span slot="no-options">Start typing to search...</span>
+</vwc-searchable-select>
+
+<vwc-searchable-select label="Favorite fruits" multiple>
+	<span slot="no-options">Start typing to search...</span>
+</vwc-searchable-select>
+
+<script>
+	const fruitsDatabase = [
+		'Apple',
+		'Banana',
+		'Cherry',
+		'Date',
+		'Elderberry',
+		'Fig',
+		'Grape',
+		'Jackfruit',
+		'Kiwi',
+		'Lemon',
+		'Mango',
+		'Nectarine',
+		'Orange',
+		'Passion fruit',
+		'Quince',
+		'Raspberry',
+		'Strawberry',
+		'Watermelon',
+	];
+
+	async function fetchOptions(searchText) {
+		return new Promise((resolve) => {
+			setTimeout(
+				() =>
+					resolve(
+						fruitsDatabase
+							.filter((fruit) =>
+								fruit.toLowerCase().includes(searchText.toLowerCase())
+							)
+							.map((fruit) => ({
+								value: fruit,
+								text: fruit,
+							}))
+					),
+				1000
+			);
+		});
+	}
+
+	window.customElements.whenDefined('vwc-searchable-select').then(() => {
+		document.querySelectorAll('vwc-searchable-select').forEach((select) => {
+			// Disable built-in filtering
+			select.optionFilter = () => true;
+
+			// State
+			let componentState = {
+				selectedOptions: [],
+				currentSearchResults: [],
+				currentSearchText: '',
+			};
+
+			function MyComponent(state) {
+				const retainedOptions = state.selectedOptions.filter(
+					(s) => !state.currentSearchResults.some((o) => o.value === s.value)
+				);
+				return [
+					// Render options that are selected but no longer in the current search results
+					...retainedOptions.map((option) => {
+						return {
+							key: option.value,
+							props: {
+								value: option.value,
+								text: option.text,
+								matchedText: '',
+								hidden: true, // But hide them from the dropdown
+							},
+						};
+					}),
+					...state.currentSearchResults.map((option) => {
+						return {
+							key: option.value,
+							props: {
+								value: option.value,
+								text: option.text,
+								matchedText: state.currentQueryText, // Use the search text that the search was performed with
+								hidden: false,
+							},
+						};
+					}),
+				];
+			}
+
+			let previousRenderedOptions = [];
+			const updateState = (newState) => {
+				componentState = newState;
+				const newRenderedOptions = MyComponent(componentState);
+				updateDOM(select, previousRenderedOptions, newRenderedOptions);
+				previousRenderedOptions = newRenderedOptions;
+			};
+
+			let latestSearchText = '';
+			const debouncedSearch = debounce(async (searchText) => {
+				const newResults = await fetchOptions(searchText);
+				if (latestSearchText !== searchText) {
+					return; // Results are no longer relevant
+				}
+				select.loading = false;
+				updateState({
+					...componentState,
+					currentSearchResults: newResults,
+					currentQueryText: searchText,
+				});
+			}, 1000);
+
+			const onSearchTextChanged = (newSearchText) => {
+				if (newSearchText === '') {
+					latestSearchText = '';
+					select.loading = false;
+					updateState({
+						...componentState,
+						currentSearchResults: [],
+						currentQueryText: '',
+					});
+				} else {
+					latestSearchText = newSearchText;
+					select.loading = true;
+					debouncedSearch(newSearchText);
+				}
+			};
+
+			select.addEventListener('search-text-change', (e) => {
+				onSearchTextChanged(e.currentTarget.searchText);
+			});
+
+			select.addEventListener('input', (e) => {
+				updateState({
+					...componentState,
+					selectedOptions: e.currentTarget.values.map(
+						(v) =>
+							componentState.currentSearchResults.find((o) => o.value === v) ||
+							componentState.selectedOptions.find((o) => o.value === v)
+					),
+				});
+			});
+		});
+	});
+
+	function debounce(func, timeout) {
+		let timer;
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				func.apply(this, args);
+			}, timeout);
+		};
+	}
+
+	function updateDOM(select, oldRenderedOptions, newRenderedOptions) {
+		const insertAfter = (afterEl, el) => {
+			if (afterEl) {
+				afterEl.after(el);
+			} else {
+				select.appendChild(el);
+			}
+		};
+
+		let lastEl = null;
+		for (let i = 0; i < newRenderedOptions.length; i++) {
+			const newNode = newRenderedOptions[i];
+			const oldNode = oldRenderedOptions.find((o) => o.key === newNode.key);
+			const el =
+				select.querySelector(`[data-key="${newNode.key}"]`) ||
+				document.createElement('vwc-option');
+			el.dataset.key = newNode.key;
+			for (const key of Object.keys(newNode.props)) {
+				if (!oldNode || newNode.props[key] !== oldNode.props[key]) {
+					el[key] = newNode.props[key];
+				}
+			}
+			insertAfter(lastEl, el);
+			lastEl = el;
+		}
+		for (const oldNode of oldRenderedOptions) {
+			if (!newRenderedOptions.find((n) => n.key === oldNode.key)) {
+				select.querySelector(`[data-key="${oldNode.key}"]`).remove();
+			}
+		}
+	}
+</script>
+```

@@ -24,7 +24,22 @@ registerDateRangePicker('your-prefix');
 
 <your-prefix-date-range-picker
 	label="Event duration"
+	class="date-range-picker"
 ></your-prefix-date-range-picker>
+
+<script>
+	document
+		.querySelector('.date-range-picker')
+		.addEventListener('input:start', (e) => {
+			console.log('start changed:', e.target.start);
+		});
+
+	document
+		.querySelector('.date-range-picker')
+		.addEventListener('input:end', (e) => {
+			console.log('end changed:', e.target.end);
+		});
+</script>
 ```
 
 </vwc-tab-panel>

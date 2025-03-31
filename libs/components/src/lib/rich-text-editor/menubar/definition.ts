@@ -1,5 +1,10 @@
 import { createRegisterFunction } from '../../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../../shared/design-system/defineVividComponent';
+import {
+	buttonDefinition,
+	menuDefinition,
+	menuItemDefinition,
+} from '../../components';
 import styles from './menubar.scss?inline';
 
 import { MenuBar } from './menubar.js';
@@ -9,7 +14,7 @@ export const menuBarDefinition = defineVividComponent(
 	'menubar',
 	MenuBar,
 	template,
-	[],
+	[buttonDefinition, menuDefinition, menuItemDefinition],
 	{
 		styles,
 		shadowOptions: {

@@ -81,7 +81,7 @@ A grid header can be provided by setting:
 <script>
 	const gridHeader = document.querySelector('.data-grid > [row-type]');
 	function changeHeader() {
-		headerType = event.target.value;
+		headerType = event.currentTarget.value;
 		gridHeader.setAttribute('row-type', headerType);
 	}
 </script>
@@ -178,7 +178,7 @@ Use the `selection-mode` attribute to specify the how cells or rows can be selec
 	const grid = document.querySelector('.data-grid');
 
 	function changeSelectionMode() {
-		selectionMode = event.target.value;
+		selectionMode = event.currentTarget.value;
 		grid.selectionMode = selectionMode;
 	}
 </script>

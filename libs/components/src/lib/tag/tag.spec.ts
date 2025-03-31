@@ -4,8 +4,6 @@ import { Tag } from './tag';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tag';
-const ICON_SELECTOR = 'vwc-icon';
-
 async function toggleRemovable(element: Tag, removable = true) {
 	element.removable = removable;
 	await elementUpdated(element);
@@ -54,7 +52,7 @@ describe('vwc-tag', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});
