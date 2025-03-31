@@ -4,6 +4,7 @@ import {
 	getBaseElement,
 	getControlElement,
 } from '@vivid-nx/shared';
+import type { Mock } from 'vitest';
 import { Size } from '../enums';
 import type { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
@@ -11,7 +12,6 @@ import type { Icon } from '../icon/icon';
 import { Combobox } from './combobox';
 import { ComboboxAutocomplete } from './combobox.options';
 import '.';
-import type { Mock } from 'vitest';
 
 const COMPONENT_TAG = 'vwc-combobox';
 const ICON_SELECTOR = 'vwc-icon';
