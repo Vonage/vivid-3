@@ -68,6 +68,7 @@
 		&::after {
 			@include focus.focus-in-pseudo-element;
 			#{focus-variables.$focus-stroke-gap-color}: transparent;
+			#{focus-variables.$focus-block-size-addition}: 6px;
 		}
 	}
 }
