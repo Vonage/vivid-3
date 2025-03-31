@@ -13,11 +13,6 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { MenuItemRole } from './menu-item-role';
 
-export enum CheckAppearance {
-	Normal = 'normal',
-	TickOnly = 'tick-only',
-}
-
 /**
  * Types of fab connotation.
  *
@@ -255,7 +250,9 @@ export class MenuItem extends VividElement {
 	 * @remarks
 	 * HTML Attribute: check-appearance
 	 */
-	@attr({ attribute: 'check-appearance' }) checkedAppearance?: CheckAppearance;
+	@attr({ attribute: 'check-appearance' }) checkedAppearance?:
+		| 'normal'
+		| 'tick-only';
 
 	/**
 	 *
