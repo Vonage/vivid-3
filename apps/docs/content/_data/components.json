@@ -73,21 +73,36 @@
 	},
 	{
 		"title": "Date Picker",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/date-picker/README.md",
+		"description": "Combines an Input and a Calendar popover to allow users to select a date.",
+		"variations": "./libs/components/src/lib/date-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/date-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/date-picker/README.md",
+		"accessibility": "./libs/components/src/lib/date-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/date-picker/USE-CASES.md",
 		"children": ["Date Range Picker", "Date Time Picker"]
 	},
 	{
 		"title": "Date Range Picker",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/date-range-picker/README.md",
+		"description": "Combines an Input and a dual Calendar popover to allow users to enter or select a date range.",
+		"variations": "./libs/components/src/lib/date-range-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/date-range-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/date-range-picker/README.md",
+		"accessibility": "./libs/components/src/lib/date-range-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/date-range-picker/USE-CASES.md",
 		"parent": "Date Picker"
 	},
 	{
 		"title": "Date Time Picker",
+		"description": "Combines an Input and a Calendar/Time Picker popover to allow users to enter or select a date and time.",
 		"status": "alpha",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/date-time-picker/README.md",
+		"variations": "./libs/components/src/lib/date-time-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/date-time-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/date-time-picker/README.md",
+		"accessibility": "./libs/components/src/lib/date-time-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/date-time-picker/USE-CASES.md",
 		"parent": "Date Picker"
 	},
 	{
@@ -420,8 +435,13 @@
 	},
 	{
 		"title": "Time Picker",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/time-picker/README.md"
+		"description": "",
+		"variations": "./libs/components/src/lib/time-picker/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/time-picker/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/time-picker/README.md",
+		"accessibility": "./libs/components/src/lib/time-picker/ACCESSIBILITY.md",
+		"useCases": "./libs/components/src/lib/time-picker/USE-CASES.md"
 	},
 	{
 		"title": "Tree View",
