@@ -25,7 +25,7 @@ export const extractLocalTypeDefs = (
 
 	/**
 	 * Extract type aliases for common enum subsets like this:
-	 * export declare type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+	 * export declare type BadgeShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 	 */
 	const enums: Record<string, Record<string, string>> = {
 		Connotation,
