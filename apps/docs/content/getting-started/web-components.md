@@ -139,6 +139,39 @@ Remember to not include the default side effect import (`import '@vonage/vivid/b
 </vwc-tab-panel>
 </vwc-tabs>
 
+### Component Types
+
+Vivid components come with type definitions. You can import the element class for each element as `Vwc<Name>Element`.
+
+```ts
+import { type VwcButtonElement } from '@vonage/vivid';
+
+function updateLabel(button: VwcButtonElement) {
+	button.label = 'Click me';
+}
+```
+
+TypeScript can automatically infer the element type when using certain DOM APIs.
+
+To enable this, create a `vivid.d.ts` file in your project with the following content:
+
+```ts
+import { type VividTagNameMap } from '@vonage/vivid';
+
+declare global {
+	interface HTMLElementTagNameMap extends VividTagNameMap<'vwc'> {}
+}
+```
+
+If you are using a custom prefix, replace `vwc` with your prefix.
+
+Now, TypeScript is able to infer the correct type:
+
+```ts
+const button = document.querySelector('vwc-button')!;
+button.label = 'Click me'; // button has VwcButtonElement type
+```
+
 ## Alternative: Using a CDN
 
 As an alternative to installing the package, you can use a content delivery network (CDN) to load the components directly in your HTML.

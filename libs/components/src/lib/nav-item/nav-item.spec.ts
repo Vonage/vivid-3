@@ -6,8 +6,6 @@ import { NavItem } from './nav-item';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav-item';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-nav-item', () => {
 	let element: NavItem;
 
@@ -45,7 +43,7 @@ describe('vwc-nav-item', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});

@@ -134,13 +134,11 @@ export class Alert extends VividElement {
 		this.#setupTimeout();
 		if (newValue) {
 			this.style.display = 'contents';
-			const alertText = this.shadowRoot!.querySelector(
-				'.alert-text'
+			const closeBtn = this.shadowRoot!.querySelector(
+				'.dismiss-button'
 			) as HTMLElement;
-			if (this.removable && alertText) {
-				alertText.setAttribute('tabindex', '0');
-				alertText.focus();
-				alertText.removeAttribute('tabindex');
+			if (this.removable && closeBtn) {
+				closeBtn.focus();
 			}
 		} else {
 			this.style.display = 'none';

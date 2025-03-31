@@ -37,8 +37,8 @@ function isDefined<T>(value: T | null | undefined): value is T {
  * @event {CustomEvent<undefined>} input:end - Event emitted when the end value changes
  * @event {CustomEvent<undefined>} input - Emitted when either the start or end value changes
  * @event {CustomEvent<undefined>} change - Emitted when either the start or end value changes
- * @vueModel start start input:start `(event.target as any).start`
- * @vueModel end end input:end `(event.target as any).end`
+ * @vueModel start start input:start `event.currentTarget.start`
+ * @vueModel end end input:end `event.currentTarget.end`
  */
 @errorText
 @formElements

@@ -5,8 +5,6 @@ import { Fab, FabConnotation } from './fab';
 import '.';
 
 const COMPONENT_TAG = 'vwc-fab';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-fab', () => {
 	let element: Fab;
 
@@ -54,7 +52,7 @@ describe('vwc-fab', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});

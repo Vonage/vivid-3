@@ -11,8 +11,6 @@ import { NavDisclosure } from './nav-disclosure';
 import '.';
 
 const COMPONENT_TAG = 'vwc-nav-disclosure';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-nav-disclosure', () => {
 	let element: NavDisclosure;
 
@@ -103,7 +101,7 @@ describe('vwc-nav-disclosure', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});

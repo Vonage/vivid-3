@@ -21,10 +21,10 @@ Buttons may be toggled. Change icon and label to indicate the state of the butto
 
 <script>
 	function toggleButton(e, { label, icon, pressedLabel, pressedIcon }) {
-		const pressed = !e.target.ariaPressed;
-		e.target.ariaPressed = pressed;
-		e.target.icon = pressed ? pressedIcon : icon;
-		e.target.label = pressed ? pressedLabel : label;
+		const pressed = !e.currentTarget.ariaPressed;
+		e.currentTarget.ariaPressed = pressed;
+		e.currentTarget.icon = pressed ? pressedIcon : icon;
+		e.currentTarget.label = pressed ? pressedLabel : label;
 	}
 
 	document.getElementById('mute').addEventListener('click', (e) => {

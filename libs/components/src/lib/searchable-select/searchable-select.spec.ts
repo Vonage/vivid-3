@@ -5,7 +5,8 @@ import userEvent, { type UserEvent } from '@testing-library/user-event';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { Button } from '../button/button';
-import { Icon } from '../icon/icon.ts';
+import { Icon } from '../icon/icon';
+import { ProgressRing } from '../progress-ring/progress-ring';
 import { VividFoundationButton } from '../../shared/foundation/button';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
@@ -54,7 +55,12 @@ describe('vwc-searchable-select', () => {
 		element.querySelector(`vwc-option[text="${text}"]`) as ListboxOption;
 
 	const getChevronIcon = () =>
-		element.shadowRoot!.querySelector('vwc-icon.chevron') as Icon;
+		element.shadowRoot!.querySelector('vwc-icon.chevron') as Icon | null;
+
+	const getProgressRing = () =>
+		element.shadowRoot!.querySelector(
+			'vwc-progress-ring'
+		) as ProgressRing | null;
 
 	const getTag = (label: string) =>
 		element.shadowRoot!.querySelector(
@@ -77,7 +83,7 @@ describe('vwc-searchable-select', () => {
 	};
 
 	const clickOnChevronIcon = () => {
-		(getChevronIcon() as HTMLElement).click();
+		getChevronIcon()!.click();
 	};
 
 	const isOptionVisuallyHighlighted = (option: ListboxOption) =>
@@ -85,10 +91,10 @@ describe('vwc-searchable-select', () => {
 
 	const getVisibleOptions = () =>
 		Array.from(
-			element.querySelectorAll(
-				'vwc-option:not([hidden])'
-			) as NodeListOf<ListboxOption>
-		).map((option) => option.text);
+			element.querySelectorAll('vwc-option') as NodeListOf<ListboxOption>
+		)
+			.filter((option) => !option.hidden && !option._isNotMatching)
+			.map((option) => option.text);
 
 	const getClearButton = () =>
 		element.shadowRoot!.querySelector('[aria-label="Clear"]') as
@@ -342,11 +348,11 @@ describe('vwc-searchable-select', () => {
 	describe('value', () => {
 		it('should use initial value to select that option', async () => {
 			await setUpFixture(`
-				<${COMPONENT_TAG} value="banana">
-					<${OPTION_TAG} value="apple" text="Apple"></${OPTION_TAG}>
-					<${OPTION_TAG} value="banana" text="Banana"></${OPTION_TAG}>
-					<${OPTION_TAG} value="cherry" text="Cherry"></${OPTION_TAG}>
-				</${COMPONENT_TAG}>
+				<vwc-searchable-select value='banana'>
+					<vwc-option value='apple' text='Apple'></vwc-option>
+					<vwc-option value='banana' text='Banana'></vwc-option>
+					<vwc-option value='cherry' text='Cherry'></vwc-option>
+				</vwc-searchable-select>
 			`);
 
 			expect(element.values).toEqual(['banana']);
@@ -1067,6 +1073,113 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
+	describe('loading', () => {
+		it('should replace the chevron with an indeterminate progress ring when true', async () => {
+			element.loading = true;
+			await elementUpdated(element);
+
+			expect(getChevronIcon()).toBe(null);
+			expect(getProgressRing()).not.toBe(null);
+			expect(getProgressRing()!.value).toBe(undefined);
+		});
+
+		it('should display the loading empty state when there are no options to display', async () => {
+			await setUpFixture(`<${COMPONENT_TAG} loading></${COMPONENT_TAG}>`);
+			focusInput();
+			await elementUpdated(element);
+
+			expect(
+				element.shadowRoot!.querySelector('.empty-message')!.textContent!.trim()
+			).toBe('Loading...');
+		});
+	});
+
+	describe('optionFilter', () => {
+		it('should default to undefined', () => {
+			expect(element.optionFilter).toBe(undefined);
+		});
+
+		it('should be called with an option and searchText', async () => {
+			element.optionFilter = vi.fn(() => false);
+			await elementUpdated(element);
+
+			focusInput();
+			typeInput('search text');
+			await elementUpdated(element);
+
+			expect(element.optionFilter).toHaveBeenCalledTimes(3);
+			expect(vi.mocked(element.optionFilter).mock.calls[0][0]).toBe(
+				getOption('Apple')
+			);
+			expect(vi.mocked(element.optionFilter).mock.calls[0][1]).toBe(
+				'search text'
+			);
+		});
+
+		it('should only display options for which it returns true', async () => {
+			element.optionFilter = (option) => option.text === 'Banana';
+			await elementUpdated(element);
+
+			focusInput();
+			typeInput('search text');
+			await elementUpdated(element);
+
+			expect(getVisibleOptions()).toEqual(['Banana']);
+		});
+
+		it('should update the filtered options when changed', async () => {
+			focusInput();
+			typeInput('search text');
+			await elementUpdated(element);
+
+			element.optionFilter = (option) => option.text === 'Banana';
+
+			expect(getVisibleOptions()).toEqual(['Banana']);
+		});
+	});
+
+	describe('searchText', () => {
+		it('should return the current input value when it is used for searching', async () => {
+			focusInput();
+			typeInput('search text');
+			await elementUpdated(element);
+
+			expect(element.searchText).toBe('search text');
+		});
+
+		it('should be empty when the input value is not used for searching', async () => {
+			getOption('Apple').selected = true;
+			await elementUpdated(element);
+
+			focusInput();
+
+			expect(element.searchText).toBe('');
+		});
+	});
+
+	describe('search-text-change', () => {
+		it('should fire when the search text changes', async () => {
+			const eventSpy = vi.fn();
+			element.addEventListener('search-text-change', eventSpy);
+			focusInput();
+			typeInput('search text');
+			await elementUpdated(element);
+
+			expect(eventSpy).toHaveBeenCalledTimes(1);
+		});
+
+		it('should be a non-bubbling and non-composed event', async () => {
+			const eventSpy = vi.fn();
+			element.addEventListener('search-text-change', eventSpy);
+			focusInput();
+			typeInput('search text');
+			await elementUpdated(element);
+
+			expect(eventSpy.mock.lastCall![0].bubbles).toBe(false);
+			expect(eventSpy.mock.lastCall![0].composed).toBe(false);
+		});
+	});
+
 	describe.each(['input', 'change'])('%s event', (eventName) => {
 		let eventSpy: vi.Mock;
 		beforeEach(async () => {
@@ -1136,6 +1249,13 @@ describe('vwc-searchable-select', () => {
 			clickOnOption('Apple');
 
 			expect(eventSpy.mock.lastCall[0].bubbles).toBe(false);
+		});
+
+		it('should stop the event from bubbling from the internal input', () => {
+			const event = new Event(eventName, { bubbles: true, composed: true });
+			input.dispatchEvent(event);
+
+			expect(eventSpy).toHaveBeenCalledTimes(0);
 		});
 	});
 
@@ -1282,7 +1402,7 @@ describe('vwc-searchable-select', () => {
 			focusInput();
 			await elementUpdated(element);
 
-			expect(getOption('Apple')._matchedRange).toEqual(null);
+			expect(getOption('Apple')._vvdSearchText).toBe('');
 		});
 
 		it('should highlight matched text of options', async function () {
@@ -1292,8 +1412,8 @@ describe('vwc-searchable-select', () => {
 			typeInput('a');
 			await elementUpdated(element);
 
-			expect(getOption('Apple')._matchedRange).toEqual({ from: 0, to: 1 });
-			expect(getOption('Banana')._matchedRange).toEqual({ from: 1, to: 2 });
+			expect(getOption('Apple')._vvdSearchText).toBe('a');
+			expect(getOption('Banana')._vvdSearchText).toBe('a');
 		});
 
 		it('should display an empty state if options are available', async function () {

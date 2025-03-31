@@ -67,6 +67,12 @@ export const componentOverrides: ComponentSpecs[] = [
 				type: 'string[]',
 				propertyName: 'values',
 			});
+			component.props.push({
+				name: 'optionFilter',
+				description: 'Function to filter the options to display.',
+				type: 'any',
+				propertyName: 'optionFilter',
+			});
 		},
 	],
 

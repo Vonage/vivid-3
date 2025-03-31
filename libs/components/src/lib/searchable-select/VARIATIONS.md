@@ -302,6 +302,20 @@ The `disabled` attribute disables the Searchable Select.
 </vwc-searchable-select>
 ```
 
+## Loading
+
+The `loading` attribute shows the component in a loading state.
+
+If there are no options to display, the component shows a loading message. It can be customized using the `loading-options` slot.
+
+See the [asynchronous option loading use-case](/components/searchable-select/use-cases/#asynchronous-option-loading) for an example of how to load options.
+
+```html preview 230px
+<vwc-searchable-select loading>
+	<span slot="loading-options">Loading results...</span>
+</vwc-searchable-select>
+```
+
 ## No Options
 
 The `no-options` slot allows you to customize the message when there are no options to choose from.

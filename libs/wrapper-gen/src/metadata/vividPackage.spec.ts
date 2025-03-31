@@ -1,5 +1,5 @@
 import {
-	getImportPath,
+	getExportedClassName,
 	getTypescriptDefinitionPath,
 	isVividComponentPath,
 } from './vividPackage';
@@ -26,10 +26,10 @@ describe('getTypescriptDefinitionPath', () => {
 	});
 });
 
-describe('getImportPath', () => {
-	it('should package import for a file', () => {
-		expect(
-			getImportPath('libs/components/src/components/button/button.ts')
-		).toBe('@vonage/vivid/components/button/button');
+describe('getExportedClassName', () => {
+	it('should return the exported class name', () => {
+		expect(getExportedClassName('accordion-item')).toBe(
+			'VwcAccordionItemElement'
+		);
 	});
 });

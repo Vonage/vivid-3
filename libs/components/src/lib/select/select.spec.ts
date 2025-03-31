@@ -348,7 +348,7 @@ describe('vwc-select', () => {
 			element.open = true;
 			await elementUpdated(element);
 
-			(element.querySelector('vwc-option') as HTMLElement).click();
+			element.querySelector('vwc-option')!.click();
 
 			expect(element.open).toBe(true);
 		});

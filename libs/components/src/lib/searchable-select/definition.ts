@@ -1,6 +1,7 @@
 import { buttonDefinition } from '../button/definition';
 import { popupDefinition } from '../popup/definition';
 import { iconDefinition } from '../icon/definition';
+import { progressRingDefinition } from '../progress-ring/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './searchable-select.scss?inline';
@@ -30,7 +31,13 @@ const searchableSelectDefinition = defineVividComponent(
 	'searchable-select',
 	SearchableSelect,
 	template,
-	[buttonDefinition, popupDefinition, iconDefinition, optionTagDefinition],
+	[
+		buttonDefinition,
+		popupDefinition,
+		iconDefinition,
+		optionTagDefinition,
+		progressRingDefinition,
+	],
 	{
 		styles,
 	}

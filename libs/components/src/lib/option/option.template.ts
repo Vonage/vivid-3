@@ -30,6 +30,7 @@ export const ListboxOptionTemplate = (
 			aria-checked="${(x) => x.checked}"
 			aria-selected="${(x) => x.selected}"
 			aria-disabled="${(x) => x.disabled}"
+			style="${(x) => (x._isNotMatching ? 'display: none' : '')}"
 		>
 			<div class="${getClasses}">
 				${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
@@ -37,16 +38,16 @@ export const ListboxOptionTemplate = (
 					(x) => x.text,
 					html<ListboxOption>`<div class="text">
 						${when(
-							(x) => x._matchedRange,
+							(x) => x._hasMatchedText,
 							html<ListboxOption>`${(x) =>
-									x.text.slice(0, x._matchedRangeSafe.from)}<span class="match"
+									x.text.slice(0, x._matchedRange.from)}<span class="match"
 									>${(x) =>
 										x.text.slice(
-											x._matchedRangeSafe.from,
-											x._matchedRangeSafe.to
+											x._matchedRange.from,
+											x._matchedRange.to
 										)}</span
 								>`
-						)}${(x) => x.text.slice(x._matchedRangeSafe.to)}
+						)}${(x) => x.text.slice(x._matchedRange.to)}
 					</div>`
 				)}
 				${when(
