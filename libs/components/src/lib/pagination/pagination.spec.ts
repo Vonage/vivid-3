@@ -559,9 +559,7 @@ describe('vwc-pagination', () => {
 			element.total = 20;
 			await elementUpdated(element);
 			const allButtons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
 			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
 				return correct && button.size === Size.SuperCondensed;
@@ -575,9 +573,7 @@ describe('vwc-pagination', () => {
 			element.size = Size.Normal;
 			await elementUpdated(element);
 			const allButtons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
 			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
 				return correct && button.size === Size.Normal;
@@ -591,9 +587,7 @@ describe('vwc-pagination', () => {
 			element.size = 'invalid-size' as PaginationSize;
 			await elementUpdated(element);
 			const allButtons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
 			const allButtonsCondensed = allButtons?.reduce((correct, button) => {
 				return correct && button.size === Size.SuperCondensed;
@@ -623,9 +617,7 @@ describe('vwc-pagination', () => {
 			element.total = 20;
 			await elementUpdated(element);
 			const allButtons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
 			const allButtonsRounded = allButtons?.reduce((correct, button) => {
 				return correct && button.shape === Shape.Rounded;
@@ -639,9 +631,7 @@ describe('vwc-pagination', () => {
 			element.shape = Shape.Pill;
 			await elementUpdated(element);
 			const allButtons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
 			const allButtonsPill = allButtons?.reduce((correct, button) => {
 				return correct && button.shape === Shape.Pill;
@@ -655,9 +645,7 @@ describe('vwc-pagination', () => {
 			element.shape = 'invalid-shape' as PaginationShape;
 			await elementUpdated(element);
 			const allButtons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('vwc-button')
 			);
 			const allButtonsRounded = allButtons?.reduce((correct, button) => {
 				return correct && button.shape === Shape.Rounded;
@@ -671,9 +659,7 @@ describe('vwc-pagination', () => {
 			element.total = 20;
 			await elementUpdated(element);
 			const buttons = Array.from(
-				element.shadowRoot?.querySelectorAll(
-					'.vwc-pagination-button'
-				) as unknown as Button[]
+				element.shadowRoot!.querySelectorAll('.vwc-pagination-button')
 			);
 			const allButtonsAriaSelectedFalse = buttons?.reduce(
 				(correct, button, index) => {

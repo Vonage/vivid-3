@@ -5,7 +5,6 @@ import { Card } from './card';
 import '.';
 
 const COMPONENT_TAG = 'vwc-card';
-const ICON_SELECTOR = 'vwc-icon';
 
 describe('vwc-card', () => {
 	let element: Card;
@@ -71,7 +70,7 @@ describe('vwc-card', () => {
 			element.icon = 'chat-line';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon.name).toEqual('chat-line');
 		});
@@ -95,7 +94,7 @@ describe('vwc-card', () => {
 
 			element.icon = 'home';
 			await elementUpdated(element);
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot!.querySelector('vwc-icon')!;
 			expect(graphicSlotElement).toBeTruthy();
 			expect(icon.parentElement).toEqual(graphicSlotElement);
 		});

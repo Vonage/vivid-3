@@ -4,8 +4,6 @@ import { ListboxOption } from './option';
 import '.';
 
 const COMPONENT_TAG = 'vwc-option';
-const ICON_SELECTOR = 'vwc-icon';
-
 describe('vwc-option', () => {
 	let element: ListboxOption;
 
@@ -46,7 +44,7 @@ describe('vwc-option', () => {
 			element.icon = 'home';
 			await elementUpdated(element);
 
-			const icon = element.shadowRoot?.querySelector(ICON_SELECTOR) as Icon;
+			const icon = element.shadowRoot?.querySelector('vwc-icon');
 			expect(icon).toBeInstanceOf(Icon);
 			expect(icon?.name).toEqual('home');
 		});
@@ -191,7 +189,7 @@ describe('vwc-option', () => {
 		});
 	});
 
-	describe('_matchedRange', () => {
+	describe('matchedText', () => {
 		const getText = () => element.shadowRoot!.querySelector('.text')!;
 		const getMatch = () => element.shadowRoot!.querySelector('.match');
 
@@ -205,12 +203,48 @@ describe('vwc-option', () => {
 			expect(getMatch()).toBe(null);
 		});
 
-		it('should mark the provided range as matched', async () => {
-			element._matchedRange = { from: 1, to: 4 };
+		it('should mark the provided text as matched', async () => {
+			element.matchedText = 'pti';
 			await elementUpdated(element);
 
 			expect(getText().textContent!.trim()).toBe('Option text');
 			expect(getMatch()!.textContent).toBe('pti');
+		});
+	});
+
+	describe('_vvdSearchText', () => {
+		const getText = () => element.shadowRoot!.querySelector('.text')!;
+		const getMatch = () => element.shadowRoot!.querySelector('.match');
+
+		beforeEach(async () => {
+			element.text = 'Option text';
+			await elementUpdated(element);
+		});
+
+		it('should mark the provided text as matched', async () => {
+			element._vvdSearchText = 'pti';
+			await elementUpdated(element);
+
+			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getMatch()!.textContent).toBe('pti');
+		});
+
+		it('should be override by matchText when both are provided', async () => {
+			element._vvdSearchText = 'tion';
+			element.matchedText = 'pti';
+			await elementUpdated(element);
+
+			expect(getText().textContent!.trim()).toBe('Option text');
+			expect(getMatch()!.textContent).toBe('pti');
+		});
+	});
+
+	describe('_isNotMatching', () => {
+		it('should hide the component when set', async () => {
+			element._isNotMatching = true;
+			await elementUpdated(element);
+
+			expect(element.style.display).toBe('none');
 		});
 	});
 

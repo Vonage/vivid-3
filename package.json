@@ -42,14 +42,14 @@
 		"regenerator-runtime": "^0.13.11",
 		"tslib": "^2.8.1",
 		"uuid": "^11.1.0",
-		"video.js": "^8.21.0"
+		"video.js": "^8.22.0"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^2.0.1",
 		"@11ty/eleventy-plugin-vite": "^4.0.0",
 		"@angular-eslint/utils": "^17.0.0",
 		"@custom-elements-manifest/analyzer": "^0.5.7",
-		"@microsoft/api-extractor": "^7.51.0",
+		"@microsoft/api-extractor": "^7.52.2",
 		"@microsoft/eslint-config-fast-dna": "^2.1.0",
 		"@nrwl/devkit": "19.6.4",
 		"@nrwl/eslint-plugin-nx": "19.6.4",
@@ -112,7 +112,7 @@
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-tsdoc": "^0.3.0",
 		"eslint-plugin-unused-imports": "^3.2.0",
-		"eslint-plugin-vue": "^9.32.0",
+		"eslint-plugin-vue": "^9.33.0",
 		"expr-eval": "^2.0.2",
 		"forever": "^4.0.3",
 		"glob": "^7.2.0",
@@ -137,7 +137,7 @@
 		"prettier": "2.7.1",
 		"rollup-plugin-copy": "^3.4.0",
 		"rollup-plugin-delete": "^2.2.0",
-		"sass": "^1.85.1",
+		"sass": "^1.86.0",
 		"slugify": "^1.6.5",
 		"style-dictionary": "^3.9.2",
 		"stylelint": "^15.11.0",
@@ -155,7 +155,7 @@
 		"vitepress": "npm:is-odd@0.1.2",
 		"vitest": "^2.1.8",
 		"vitest-axe": "^0.1.0",
-		"vitest-fetch-mock": "^0.4.4",
+		"vitest-fetch-mock": "^0.4.5",
 		"vue": "2.7.8",
 		"vue-tsc": "2.1.5",
 		"vue3": "npm:vue@3.3.7"
@@ -163,6 +163,9 @@
 	"overrides": {
 		"minimist": "1.2.8",
 		"path-to-regexp": "8.2.0",
+		"express": {
+			"path-to-regexp": "0.1.12"
+		},
 		"nconf": "0.12.1",
 		"rollup": "^4.22.4",
 		"braces": "3.0.3",
