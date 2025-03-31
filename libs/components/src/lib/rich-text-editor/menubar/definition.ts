@@ -2,6 +2,7 @@ import { createRegisterFunction } from '../../../shared/design-system/createRegi
 import { defineVividComponent } from '../../../shared/design-system/defineVividComponent';
 import {
 	buttonDefinition,
+	dividerDefinition,
 	menuDefinition,
 	menuItemDefinition,
 } from '../../components';
@@ -14,7 +15,7 @@ export const menuBarDefinition = defineVividComponent(
 	'menubar',
 	MenuBar,
 	template,
-	[buttonDefinition, menuDefinition, menuItemDefinition],
+	[buttonDefinition, menuDefinition, menuItemDefinition, dividerDefinition],
 	{
 		styles,
 		shadowOptions: {

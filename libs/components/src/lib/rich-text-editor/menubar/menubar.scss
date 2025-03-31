@@ -24,4 +24,8 @@
 .body {
 	--_text-primary-custom-size: var(#{constants.$vvd-typography-base});
 }
+
+.divider {
+	align-self: stretch;
+}
 /* stylelint-enable */
