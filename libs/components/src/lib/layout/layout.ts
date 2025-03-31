@@ -68,5 +68,5 @@ export class Layout extends VividElement {
 	 *
 	 * @public
 	 */
-	@attr({ attribute: 'auto-sizing' }) autoSizing?: AUTO_SIZING;
+	@attr({ attribute: 'auto-sizing' }) autoSizing?: 'fit' | 'fill';
 }
