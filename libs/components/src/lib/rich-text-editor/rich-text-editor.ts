@@ -131,4 +131,13 @@ export class RichTextEditor extends VividElement {
 			console.warn(`Invalid text size: ${size}`);
 		}
 	}
+
+	setSelectionDecoration(decoration: string) {
+		try {
+			this.#editor?.setSelectionDecoration(decoration);
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(`Invalid decoration: ${decoration}`);
+		}
+	}
 }
