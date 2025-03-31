@@ -12,8 +12,12 @@ import { Button } from '../button/button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { Pagination } from './pagination';
 
-const ALLOWED_SIZES = [Size.SuperCondensed, Size.Condensed, Size.Normal];
-const ALLOWED_SHAPES = [Shape.Rounded, Shape.Pill];
+const ALLOWED_SIZES: string[] = [
+	Size.SuperCondensed,
+	Size.Condensed,
+	Size.Normal,
+];
+const ALLOWED_SHAPES: string[] = [Shape.Rounded, Shape.Pill];
 
 const handleSelection = (
 	value: string | number,
