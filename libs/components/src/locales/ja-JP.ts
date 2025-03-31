@@ -159,6 +159,7 @@ const jaJP: Locale = {
 		clearButtonLabel: 'クリア',
 		noOptionsMessage: 'オプションがありません',
 		noMatchesMessage: 'オプションが見つかりません',
+		loadingOptionsMessage: '読み込み中...',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label}を削除`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>

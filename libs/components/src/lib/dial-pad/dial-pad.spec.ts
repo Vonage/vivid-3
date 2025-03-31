@@ -20,11 +20,11 @@ describe('vwc-dial-pad', () => {
 	function getDigitButtons() {
 		const digits: HTMLDivElement | null =
 			getBaseElement(element).querySelector('.digits');
-		return digits?.querySelectorAll('vwc-button') as NodeListOf<Button>;
+		return digits!.querySelectorAll('vwc-button');
 	}
 
 	function getDeleteButton() {
-		return getTextField().querySelector('vwc-button') as Button;
+		return getTextField().querySelector('vwc-button')!;
 	}
 
 	beforeEach(async () => {

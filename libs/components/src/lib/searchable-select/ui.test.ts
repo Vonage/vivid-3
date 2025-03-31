@@ -43,6 +43,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-searchable-select appearance="ghost"></vwc-searchable-select>
 				<vwc-searchable-select placeholder="Placeholder"></vwc-searchable-select>
 				<vwc-searchable-select disabled></vwc-searchable-select>
+				<vwc-searchable-select loading></vwc-searchable-select>
 				<vwc-searchable-select clearable>
 					<vwc-option value="1" text="Option 1" selected></vwc-option>
 				</vwc-searchable-select>
@@ -87,6 +88,14 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.setViewportSize({ width: 350, height: 2000 });
 
 	await page.waitForLoadState('networkidle');
+
+	await page.evaluate(() => {
+		(
+			document
+				.querySelector('vwc-searchable-select[loading]')!
+				.shadowRoot!.querySelector('vwc-progress-ring') as any
+		).value = 66;
+	});
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/searchable-select.png'

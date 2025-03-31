@@ -70,7 +70,8 @@ function normalizeOptions(
 }
 
 function createFiles(tree: Tree, options: NormalizedSchema) {
-	const { titleCasedName, camelCasedName, pascalCasedName } = options;
+	const { titleCasedName, camelCasedName, pascalCasedName, addToExports } =
+		options;
 	const { className, name, propertyName } = names(options.name);
 
 	generateFiles(tree, join(__dirname, './files'), options.projectRoot, {
@@ -86,6 +87,7 @@ function createFiles(tree: Tree, options: NormalizedSchema) {
 		strict: undefined,
 		tmpl: '',
 		offsetFromRoot: offsetFromRoot(options.projectRoot),
+		addToExports,
 	});
 }
 
@@ -99,6 +101,51 @@ function updateComponentsExports(tree: Tree, options: NormalizedSchema) {
 			lines.sort();
 			tree.write(componentsPath, lines.join('\n'));
 		}
+	}
+}
+
+function insertLineIntoSortedSection(
+	content: string,
+	relevantLineFilter: (line: string) => boolean,
+	newLine: string
+) {
+	const lines = content.split('\n');
+	const numberedLines = lines.map((line, nr) => ({ line, nr }));
+	const relevantLines = numberedLines.filter(({ line }) =>
+		relevantLineFilter(line)
+	);
+
+	const insertBeforeIndex = relevantLines.findIndex(
+		({ line }) => line > newLine
+	);
+	if (insertBeforeIndex === -1) {
+		lines[relevantLines[relevantLines.length - 1].nr] =
+			relevantLines[relevantLines.length - 1].line + '\n' + newLine;
+	} else {
+		lines[relevantLines[insertBeforeIndex].nr] =
+			newLine + '\n' + relevantLines[insertBeforeIndex].line;
+	}
+
+	return lines.join('\n');
+}
+
+function updateTagNameMap(tree: Tree, options: NormalizedSchema) {
+	const tagNameMap = `libs/components/src/lib/tag-name-map.ts`;
+	if (options.addToExports && tree.exists(tagNameMap)) {
+		const contents = tree.read(tagNameMap, 'utf8');
+
+		tree.write(
+			tagNameMap,
+			insertLineIntoSortedSection(
+				insertLineIntoSortedSection(
+					contents,
+					(line) => line.startsWith('\tVwc'),
+					`\tVwc${options.className}Element,`
+				),
+				(line) => line.startsWith("\t'vwc-"),
+				`\t'vwc-${options.name}': Vwc${options.className}Element;`
+			)
+		);
 	}
 }
 
@@ -136,6 +183,7 @@ export default async function vividComponentGenerator(
 	const options = normalizeOptions(tree, schema);
 	createFiles(tree, options);
 	updateComponentsExports(tree, options);
+	updateTagNameMap(tree, options);
 	updateDocsComponentList(tree, options);
 
 	await formatFiles(tree);

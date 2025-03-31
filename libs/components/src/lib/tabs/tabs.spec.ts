@@ -395,7 +395,7 @@ describe('vwc-tabs', () => {
 					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
-					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
+					const midTab = element.querySelectorAll('vwc-tab')[1];
 					vi.spyOn(midTab, 'offsetLeft', 'get').mockImplementation(
 						() => offsetLeft
 					);
@@ -430,7 +430,7 @@ describe('vwc-tabs', () => {
 					);
 				}
 				function setMidTab(offsetLeft: number, offsetWidth: number) {
-					const midTab = element.querySelectorAll('vwc-tab')[1] as Tab;
+					const midTab = element.querySelectorAll('vwc-tab')[1];
 					vi.spyOn(midTab, 'offsetTop', 'get').mockImplementation(
 						() => offsetLeft
 					);

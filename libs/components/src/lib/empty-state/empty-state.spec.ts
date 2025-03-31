@@ -1,5 +1,4 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
-import type { Icon } from '../icon/icon';
 import { EmptyState } from './empty-state';
 import '.';
 
@@ -50,7 +49,7 @@ describe('vwc-empty-state', () => {
 		it('should allows setting the icon name with the icon attribute', async () => {
 			element.setAttribute('icon', 'user-line');
 			await elementUpdated(element);
-			const icon = element.shadowRoot?.querySelector('vwc-icon') as Icon;
+			const icon = element.shadowRoot!.querySelector('vwc-icon');
 			expect(icon.name).toBe('user-line');
 		});
 	});
