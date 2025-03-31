@@ -52,7 +52,6 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 	ColumnSpacing: "'small' | 'medium' | 'large'",
 	RowSpacing: "'small' | 'medium' | 'large'",
 	ColumnBasis: "'small' | 'medium' | 'large' | 'block'",
-	AUTO_SIZING: "'fit' | 'fill'",
 
 	// TextArea
 	TextAreaWrap: "'hard' | 'soft' | 'off'",
@@ -85,7 +84,6 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 
 	// Menu item:
 	MenuItemRole: typeFromEnumObj(MenuItemRole),
-	CheckAppearance: "'normal' | 'tick-only'",
 
 	// Selectable box:
 	SelectableBoxControlType: "'checkbox' | 'radio'",
