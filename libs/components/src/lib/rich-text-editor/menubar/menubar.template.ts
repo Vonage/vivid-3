@@ -6,8 +6,8 @@ import { Button } from '../../button/button';
 import { Menu } from '../../menu/menu';
 import { MenuItem } from '../../menu-item/menu-item';
 import { Divider } from '../../divider/divider';
-import { MenuBar } from './menubar.js';
 import { Tooltip } from '../../tooltip/tooltip';
+import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
 	menuBar: MenuBar,

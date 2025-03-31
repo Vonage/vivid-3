@@ -16,7 +16,13 @@ export const menuBarDefinition = defineVividComponent(
 	'menubar',
 	MenuBar,
 	template,
-	[buttonDefinition, menuDefinition, menuItemDefinition, dividerDefinition, tooltipDefinition],
+	[
+		buttonDefinition,
+		menuDefinition,
+		menuItemDefinition,
+		dividerDefinition,
+		tooltipDefinition,
+	],
 	{
 		styles,
 		shadowOptions: {
