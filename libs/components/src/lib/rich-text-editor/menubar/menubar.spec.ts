@@ -168,7 +168,7 @@ describe('menuBar', () => {
 			it('should set a tooltip with the text size message', async () => {
 				const menu = getSelectionMenu('text-size');
 				const menuFocusableChild = menu.querySelector('vwc-button') as Button;
-				
+
 				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');
 				expect(menuFocusableChild.parentElement instanceof Tooltip).toBe(true);
 				expect(menuFocusableChild.parentElement?.getAttribute('text')).toBe(
@@ -177,9 +177,9 @@ describe('menuBar', () => {
 				expect(menuFocusableChild.parentElement?.getAttribute('slot')).toBe(
 					'anchor'
 				);
-				expect(menuFocusableChild.parentElement?.getAttribute('placement')).toBe(
-					'top'
-				);
+				expect(
+					menuFocusableChild.parentElement?.getAttribute('placement')
+				).toBe('top');
 			});
 		});
 

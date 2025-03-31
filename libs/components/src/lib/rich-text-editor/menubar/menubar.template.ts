@@ -80,7 +80,7 @@ const MENU_BAR_ITEMS: {
 					class="title"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-			notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
+						notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Subtitle"
@@ -89,7 +89,7 @@ const MENU_BAR_ITEMS: {
 					class="subtitle"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-			notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
+						notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Body"
@@ -98,7 +98,7 @@ const MENU_BAR_ITEMS: {
 					class="body"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-			notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
+						notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
 				></${menuItemTag}>
 			</${menuTag}>
 		`;
@@ -110,8 +110,8 @@ const MENU_BAR_ITEMS: {
 		return html`
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			${repeat(
-			(_) => TEXT_DECORATION_ITEMS,
-			html`
+				(_) => TEXT_DECORATION_ITEMS,
+				html`
 					<${tooltipTag} text="${(x) => x.text}" placement="top">
 						<${buttonTag}
 							slot="anchor"
@@ -121,15 +121,15 @@ const MENU_BAR_ITEMS: {
 							shape="pill"
 							icon="${(x) => x.icon}"
 							@click="${(x, c) =>
-					notifyMenuBarChange(
-						c.parentContext.parent,
-						'text-decoration-selected',
-						x.value
-					)}"')}"
+								notifyMenuBarChange(
+									c.parentContext.parent,
+									'text-decoration-selected',
+									x.value
+								)}"')}"
 						></${buttonTag}>
 					</${tooltipTag}>
 				`
-		)}
+			)}
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
 	},
