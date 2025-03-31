@@ -55,21 +55,24 @@ const MENU_BAR_ITEMS: {
 		const buttonTag = context.tagFor(Button);
 		const menuTag = context.tagFor(Menu);
 		const menuItemTag = context.tagFor(MenuItem);
+		const tooltipTag = context.tagFor(Tooltip);
 		return html`
 			<${menuTag}
 				trigger="auto"
 				id="text-size"
-				aria-label="Menu example"
+				aria-label="Text Size"
 				placement="bottom-end"
 			>
-				<${buttonTag}
-					slot="anchor"
-					aria-label="Open menu"
-					size="super-condensed"
-					appearance="ghost-light"
-					shape="pill"
-					icon="text-size-line"
-				></${buttonTag}>
+				<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+					<${buttonTag}
+						slot="anchor"
+						aria-label="Open menu"
+						size="super-condensed"
+						appearance="ghost-light"
+						shape="pill"
+						icon="text-size-line"
+					></${buttonTag}>
+				</${tooltipTag}>
 				<${menuItemTag}
 					text="Title"
 					value="title"
@@ -77,7 +80,7 @@ const MENU_BAR_ITEMS: {
 					class="title"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-						notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
+			notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Subtitle"
@@ -86,7 +89,7 @@ const MENU_BAR_ITEMS: {
 					class="subtitle"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-						notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
+			notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Body"
@@ -95,7 +98,7 @@ const MENU_BAR_ITEMS: {
 					class="body"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-						notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
+			notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
 				></${menuItemTag}>
 			</${menuTag}>
 		`;
@@ -107,8 +110,8 @@ const MENU_BAR_ITEMS: {
 		return html`
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			${repeat(
-				(_) => TEXT_DECORATION_ITEMS,
-				html`
+			(_) => TEXT_DECORATION_ITEMS,
+			html`
 					<${tooltipTag} text="${(x) => x.text}" placement="top">
 						<${buttonTag}
 							slot="anchor"
@@ -118,15 +121,15 @@ const MENU_BAR_ITEMS: {
 							shape="pill"
 							icon="${(x) => x.icon}"
 							@click="${(x, c) =>
-								notifyMenuBarChange(
-									c.parentContext.parent,
-									'text-decoration-selected',
-									x.value
-								)}"')}"
+					notifyMenuBarChange(
+						c.parentContext.parent,
+						'text-decoration-selected',
+						x.value
+					)}"')}"
 						></${buttonTag}>
 					</${tooltipTag}>
 				`
-			)}
+		)}
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
 	},

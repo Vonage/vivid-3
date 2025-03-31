@@ -4,6 +4,7 @@ import { RichTextEditorTextSizes } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar';
 import '.';
+import type { Button } from '../../button/button';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -79,7 +80,7 @@ describe('menuBar', () => {
 				await elementUpdated(element);
 				textSizeButton = element.shadowRoot?.querySelector(
 					'vwc-button'
-				) as HTMLButtonElement;
+				) as unknown as HTMLButtonElement;
 			});
 
 			it('should show the text size button when adding `textSize` to the string', async () => {
@@ -163,6 +164,23 @@ describe('menuBar', () => {
 
 				expect(getSelectionMenu('text-size').open).toBe(false);
 			});
+
+			it('should set a tooltip with the text size message', async () => {
+				const menu = getSelectionMenu('text-size');
+				const menuFocusableChild = menu.querySelector('vwc-button') as Button;
+				
+				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');
+				expect(menuFocusableChild.parentElement instanceof Tooltip).toBe(true);
+				expect(menuFocusableChild.parentElement?.getAttribute('text')).toBe(
+					menu.getAttribute('aria-label')
+				);
+				expect(menuFocusableChild.parentElement?.getAttribute('slot')).toBe(
+					'anchor'
+				);
+				expect(menuFocusableChild.parentElement?.getAttribute('placement')).toBe(
+					'top'
+				);
+			});
 		});
 
 		describe('textDecoration', () => {
@@ -234,13 +252,13 @@ describe('menuBar', () => {
 				) as unknown as HTMLButtonElement[];
 				for (let i = 0; i < buttons.length; i++) {
 					expect(buttons[i].getAttribute('slot')).toBe('anchor');
+					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);
 					expect(buttons[i].parentElement?.getAttribute('text')).toBe(
 						buttons[i].getAttribute('aria-label')
 					);
 					expect(buttons[i].parentElement?.getAttribute('placement')).toBe(
 						'top'
 					);
-					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);
 				}
 			});
 		});
