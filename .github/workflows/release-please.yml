@@ -84,11 +84,12 @@ jobs:
           npx nx run components:generateMeta
           npx nx run vue-wrappers:build
           npx nx run eslint-plugin:build
+          npx nx run vue-docs:build
 
       - name: upload-artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: release-artifacts
+          name: build
           path: dist/
           include-hidden-files: true
 
