@@ -2,9 +2,9 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Menu } from '../../menu/menu';
 import { RichTextEditorTextSizes } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
+import type { Button } from '../../button/button';
 import { MenuBar } from './menubar';
 import '.';
-import type { Button } from '../../button/button';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
