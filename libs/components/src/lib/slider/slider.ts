@@ -18,7 +18,6 @@ import {
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { getDirection } from '../../shared/foundation/utilities/direction';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Connotation } from '../enums';
 import { Localized } from '../../shared/patterns';
 import {
@@ -51,7 +50,7 @@ export type SliderMode = typeof SliderMode[keyof typeof SliderMode];
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the slider value changes
  * @vueModel modelValue value change `event.currentTarget.value`
  */
-export class Slider extends DelegatesAria(FormAssociatedSlider) {
+export class Slider extends Localized(DelegatesAria(FormAssociatedSlider)) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 *
@@ -646,6 +645,3 @@ export class Slider extends DelegatesAria(FormAssociatedSlider) {
 		this._hoveringOnThumb = false;
 	};
 }
-
-export interface Slider extends Localized {}
-applyMixins(Slider, Localized);

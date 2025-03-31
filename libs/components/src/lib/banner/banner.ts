@@ -31,7 +31,7 @@ const defaultConnotation = (
  * @slot action-items - Add action items to banner using this slot.
  * @slot icon - Add an icon to the component.
  */
-export class Banner extends DelegatesAria(VividElement) {
+export class Banner extends Localized(DelegatesAria(VividElement)) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
@@ -88,5 +88,4 @@ export class Banner extends DelegatesAria(VividElement) {
 
 applyMixins(Banner, AffixIcon);
 
-export interface Banner extends Localized, AffixIcon {}
-applyMixins(Banner, Localized);
+export interface Banner extends AffixIcon {}

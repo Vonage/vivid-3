@@ -42,7 +42,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
  * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
  */
-export class Alert extends VividElement {
+export class Alert extends Localized(VividElement) {
 	/**
 	 * Allows setting a custom aria-label for the dismiss button.
 	 *
@@ -197,5 +197,4 @@ export class Alert extends VividElement {
 }
 
 applyMixins(Alert, AffixIcon);
-export interface Alert extends Localized, AffixIcon {}
-applyMixins(Alert, Localized);
+export interface Alert extends AffixIcon {}

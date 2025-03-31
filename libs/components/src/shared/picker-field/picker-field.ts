@@ -16,7 +16,7 @@ import { FormAssociatedPickerField } from './picker-field.form-associated';
  * Base class for picker fields. Picker fields consist of a text field with a button that opens a popup that allows
  * picking values.
  */
-export abstract class PickerField extends FormAssociatedPickerField {
+export abstract class PickerField extends Localized(FormAssociatedPickerField) {
 	// --- Attributes ---
 
 	/**
@@ -313,13 +313,5 @@ export abstract class PickerField extends FormAssociatedPickerField {
 	}
 }
 
-export interface PickerField
-	extends Localized,
-		FormElementHelperText,
-		TrappedFocus {}
-applyMixinsWithObservables(
-	PickerField,
-	Localized,
-	FormElementHelperText,
-	TrappedFocus
-);
+export interface PickerField extends FormElementHelperText, TrappedFocus {}
+applyMixinsWithObservables(PickerField, FormElementHelperText, TrappedFocus);

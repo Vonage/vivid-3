@@ -27,7 +27,7 @@ export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
  * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
-export class Tab extends VividElement {
+export class Tab extends Localized(VividElement) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute} for more information.
 	 * @public
@@ -92,6 +92,5 @@ export class Tab extends VividElement {
 	}
 }
 
-export interface Tab extends Localized, AffixIconWithTrailing {}
+export interface Tab extends AffixIconWithTrailing {}
 applyMixins(Tab, AffixIconWithTrailing);
-applyMixins(Tab, Localized);

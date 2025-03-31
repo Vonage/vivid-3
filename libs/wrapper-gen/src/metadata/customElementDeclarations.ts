@@ -379,7 +379,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	Localized: [],
 	Anchor: [
 		{
 			name: 'download',

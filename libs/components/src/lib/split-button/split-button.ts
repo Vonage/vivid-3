@@ -55,7 +55,7 @@ export type SplitButtonSize = Extract<
  * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
  * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
  */
-export class SplitButton extends DelegatesAria(VividElement) {
+export class SplitButton extends Localized(DelegatesAria(VividElement)) {
 	/**
 	 * Action HTML button element
 	 *
@@ -164,5 +164,5 @@ export class SplitButton extends DelegatesAria(VividElement) {
 		| null = null;
 }
 
-export interface SplitButton extends AffixIcon, Localized {}
-applyMixins(SplitButton, AffixIcon, Localized);
+export interface SplitButton extends AffixIcon {}
+applyMixins(SplitButton, AffixIcon);
