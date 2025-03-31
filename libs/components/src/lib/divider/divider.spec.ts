@@ -31,7 +31,7 @@ describe('vwc-divider', () => {
 		it('should set the orientation class', async function () {
 			const base = element.shadowRoot?.querySelector('.base');
 			const orientation = 'vertical';
-			(element as any).orientation = orientation;
+			element.orientation = orientation;
 			await elementUpdated(element);
 
 			expect(base?.classList.contains(`${orientation}`)).toBeTruthy();
