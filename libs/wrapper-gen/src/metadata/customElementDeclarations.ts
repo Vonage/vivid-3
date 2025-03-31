@@ -70,16 +70,7 @@ const findDeclaration = (
 const BaseElementDeclaration: Declaration = {
 	name: 'HTMLElement',
 	kind: 'class',
-	attributes: [
-		{
-			name: 'aria-current',
-			description:
-				'Indicates the element that represents the current item within a container or set of related elements.',
-			type: {
-				text: "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-			},
-		},
-	],
+	attributes: [],
 	events: [
 		{
 			name: 'click',
