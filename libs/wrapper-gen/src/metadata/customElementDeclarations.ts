@@ -462,7 +462,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			fieldName: 'ariaExpanded',
 		},
 	],
-	TrappedFocus: [],
 	DelegatesARIATextbox: [],
 	DelegatesARIASelect: [
 		{
