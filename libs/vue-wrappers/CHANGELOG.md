@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.19.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.18.0...vivid-vue-v4.19.0) (2025-03-31)
+
+
+### Features
+
+* **vue-wrappers:** improve typings (VIV-2381) ([#2240](https://github.com/Vonage/vivid-3/issues/2240)) ([10e9628](https://github.com/Vonage/vivid-3/commit/10e9628bef6fb84354fa8cfc9d1af27505eae1ba))
+
 ## [4.18.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.17.0...vivid-vue-v4.18.0) (2025-03-17)
 
 

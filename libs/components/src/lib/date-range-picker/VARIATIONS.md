@@ -1,0 +1,96 @@
+## Labelling
+
+### Label Text
+
+The `label` attribute provides a short description of the purpose of the Date Picker.
+
+```html preview 460px
+<vwc-date-range-picker label="Event duration"></vwc-date-range-picker>
+```
+
+<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
+	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
+	<p>It will be announced by screen readers so that those users will know the purpose of the Date Range Picker.</p>
+</vwc-note>
+
+### Helper Text
+
+The `helper-text` attribute provides additional information to help the user enter the correct information.
+
+To add HTML to the helper text, use the [helper-text slot](/components/date-range-picker/code/#helper-text-slot).
+
+```html preview 460px
+<vwc-date-range-picker
+	helper-text="Select a date for the event to start"
+	label="Event duration"
+></vwc-date-range-picker>
+```
+
+## Validation Feedback
+
+### Error Text
+
+The `error-text` attribute provides a custom error message. Any current error state will be overridden by `error-text`.
+
+```html preview 460px
+<vwc-date-range-picker
+	error-text="Please select dates for the event to start and end"
+	label="Event duration"
+></vwc-date-range-picker>
+```
+
+## Start and End Values
+
+Use the `start` and `end` attributes to define the date range. If either attribute is set to an empty string or `undefined`, no date is selected.
+
+When a date is chosen, these attributes always contain a valid date in the `YYYY-MM-DD` format. If the user enters an invalid date, an error message is displayed.
+
+```html preview 460px
+<vwc-date-range-picker
+	start="2023-06-15"
+	end="2023-06-30"
+	label="Event duration"
+></vwc-date-range-picker>
+```
+
+## Min
+
+Set the `min` attribute to configure the earliest date to accept. The user will be prevented from choosing an earlier date, however it is still possible to manually enter one.
+
+```html preview 460px
+<vwc-date-range-picker
+	min="2023-06-10"
+	label="Date range"
+	start="2023-06-15"
+	end="2023-06-20"
+></vwc-date-range-picker>
+```
+
+## Max
+
+Set the `max` attribute to configure the latest date to accept. The user will be prevented from choosing an later date, however it is still possible to manually enter one.
+
+```html preview 460px
+<vwc-date-range-picker
+	max="2023-06-20"
+	label="Date range"
+	start="2023-06-10"
+	end="2023-06-15"
+></vwc-date-range-picker>
+```
+
+## Disabled
+
+Add the `disabled` attribute to disable the Date Range Picker.
+
+```html preview
+<vwc-date-range-picker disabled label="Date range"></vwc-date-range-picker>
+```
+
+## Readonly
+
+Add the `readonly` attribute to make the Date Range Picker readonly.
+
+```html preview
+<vwc-date-range-picker readonly label="Date range"></vwc-date-range-picker>
+```
