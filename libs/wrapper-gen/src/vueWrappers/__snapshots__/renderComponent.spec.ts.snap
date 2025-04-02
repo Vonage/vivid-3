@@ -8,7 +8,7 @@ import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { IconId } from '../icons';
-import { handleNamedSlot } from '../../utils/slots';
+import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 
 
@@ -136,8 +136,8 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
         }, [
             this.$slots.default,
             // @slot example-slot This is an example slot
-      handleNamedSlot('example-slot', this.$slots['example-slot']),// @slot no-description 
-      handleNamedSlot('no-description', this.$slots['no-description'])
+      handleNamedSlotV2('example-slot', this.$slots['example-slot']),// @slot no-description 
+      handleNamedSlotV2('no-description', this.$slots['no-description'])
         ]);
       }
       // @ts-ignore
@@ -177,8 +177,8 @@ this.$emit('update:sameEvent', event.currentTarget.exampleProp);
           // @ts-ignore
           this.$slots.default && this.$slots.default(),
           // @slot example-slot This is an example slot
-      handleNamedSlot('example-slot', this.$slots['example-slot']),// @slot no-description 
-      handleNamedSlot('no-description', this.$slots['no-description'])
+      handleNamedSlotV3('example-slot', this.$slots['example-slot'] as any),// @slot no-description 
+      handleNamedSlotV3('no-description', this.$slots['no-description'] as any)
       ]);
     
   },
@@ -194,7 +194,7 @@ import { handleVue3Props } from '../../utils/ssr';
 import { registerExampleComponent } from '@vonage/vivid';
 import { registerComponent } from '../../utils/register';
 import { IconId } from '../icons';
-import { handleNamedSlot } from '../../utils/slots';
+import { handleNamedSlotV2, handleNamedSlotV3 } from '../../utils/slots';
 import type { VwcExampleComponentElement } from '@vonage/vivid';
 import type { SlotsType } from 'vue3';
 

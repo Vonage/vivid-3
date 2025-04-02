@@ -48,12 +48,17 @@
 		vertical-align: middle;
 	}
 
-	&:not(.connotation-accent, .connotation-cta) {
+	&:not(.connotation-accent, .connotation-cta, .connotation-announcement) {
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
 	&:focus-visible {
-		@include focus.focus;
+		position: relative;
+		outline: none;
+
+		&::after {
+			@include focus.focus-in-pseudo-element;
+		}
 	}
 
 	@supports (user-select: none) {

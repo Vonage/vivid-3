@@ -1797,6 +1797,18 @@ describe('vwc-searchable-select', () => {
 
 			expect(isInputFocused()).toBe(true);
 		});
+
+		it('should not prevent selecting text in the input', async () => {
+			const mousedownEvent = new MouseEvent('mousedown', {
+				bubbles: true,
+				composed: true,
+				cancelable: true,
+			});
+
+			input.dispatchEvent(mousedownEvent);
+
+			expect(mousedownEvent.defaultPrevented).toBe(false);
+		});
 	});
 
 	describe('required', () => {

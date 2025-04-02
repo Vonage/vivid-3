@@ -1113,7 +1113,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	_onMouseDown(event: MouseEvent) {
-		if (!event.defaultPrevented) {
+		// event.target has been retargeted at this point
+		const originalTarget = event.composedPath()[0];
+		if (!event.defaultPrevented && originalTarget !== this._input) {
 			this._input.focus();
 			return false;
 		}
