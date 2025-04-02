@@ -78,7 +78,7 @@ describe('vwc-split-button', () => {
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
 			const connotation = 'cta';
-			(element as any).connotation = connotation;
+			element.connotation = connotation;
 			await elementUpdated(element);
 
 			expect(
@@ -92,7 +92,7 @@ describe('vwc-split-button', () => {
 	describe('shape', () => {
 		it('sets correct internal shape style', async () => {
 			const shape = 'pill';
-			(element as any).shape = shape;
+			element.shape = shape;
 			await elementUpdated(element);
 
 			expect(
@@ -104,7 +104,7 @@ describe('vwc-split-button', () => {
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
 			const appearance = 'filled';
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			expect(
@@ -118,7 +118,7 @@ describe('vwc-split-button', () => {
 	describe('size', () => {
 		it('sets correct internal size style', async () => {
 			const size = 'condensed';
-			(element as any).size = size;
+			element.size = size;
 			await elementUpdated(element);
 
 			expect(

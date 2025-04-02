@@ -3,8 +3,9 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Shape } from '../enums';
 import { Localized } from '../../shared/patterns';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
-export type OptionTagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type OptionTagShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
 export class OptionTag extends VividElement {
 	@attr shape?: OptionTagShape;

@@ -2,13 +2,14 @@ import { attr, observable } from '@microsoft/fast-element';
 
 import type { Appearance } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of avatar appearance.
  *
  * @public
  */
-export type CardAppearance = Extract<
+export type CardAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Elevated | Appearance.Ghost | Appearance.Outlined
 >;

@@ -136,7 +136,7 @@ describe('vwc-nav-disclosure', () => {
 		it('should set the appearance class on the base', async function () {
 			const appearance = 'ghost-light';
 
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			expect(

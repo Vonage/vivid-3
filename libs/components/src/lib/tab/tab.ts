@@ -4,13 +4,14 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import type { Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of tab connotation.
  *
  * @public
  */
-export type TabConnotation = Extract<
+export type TabConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
@@ -20,7 +21,7 @@ export type TabConnotation = Extract<
  *
  * @public
  */
-export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
+export type TabShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
  * @public

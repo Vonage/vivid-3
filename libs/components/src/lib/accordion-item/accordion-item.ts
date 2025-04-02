@@ -3,13 +3,17 @@ import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of accordion size.
  *
  * @public
  */
-export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type AccordionItemSize = ExtractFromEnum<
+	Size,
+	Size.Condensed | Size.Normal
+>;
 
 /**
  * @public

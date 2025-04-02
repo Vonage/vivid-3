@@ -10,6 +10,7 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedCheckbox } from './checkbox.form-associated';
 
 export const keySpace: ' ' = ' ' as const;
@@ -19,7 +20,7 @@ export const keySpace: ' ' = ' ' as const;
  *
  * @public
  */
-export type CheckboxConnotation = Extract<
+export type CheckboxConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
