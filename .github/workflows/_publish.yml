@@ -28,7 +28,7 @@ jobs:
       - name: Download Build
         uses: actions/download-artifact@v4
         with:
-          name: release-artifacts
+          name: build
           path: dist/
 
       - name: Check if version is already published
@@ -59,7 +59,7 @@ jobs:
       - name: Download Build
         uses: actions/download-artifact@v4
         with:
-          name: release-artifacts
+          name: build
           path: dist/
 
       - name: Check if version is already published
