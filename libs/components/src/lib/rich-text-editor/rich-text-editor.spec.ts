@@ -477,18 +477,20 @@ describe('vwc-rich-text-editor', () => {
 		});
 
 		it('should change text decoration on `text-decoration-selected` event from menubar', async () => {
-			const newTextSize = 'bold';
-			const setTextSizeSpy = vi.spyOn(element, 'setSelectionDecoration');
+			const newTextDecoration = 'bold';
+			const setTextDecorationSpy = vi.spyOn(element, 'setSelectionDecoration');
 			const menuBar = document.createElement('vwc-menubar');
 			menuBar.slot = 'menu-bar';
 			element.appendChild(menuBar);
 			await elementUpdated(element);
 
 			menuBar.dispatchEvent(
-				new CustomEvent('text-decoration-selected', { detail: newTextSize })
+				new CustomEvent('text-decoration-selected', { detail: newTextDecoration })
 			);
 
-			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
+		});
+		
 		it('should focus on the editable after a selection', async () => {
 			const newTextSize = 'title';
 			const menuBar = document.createElement('vwc-menubar');
@@ -507,5 +509,7 @@ describe('vwc-rich-text-editor', () => {
 		it('should keep the selection after decoration change', async () => {
 			
 		});
+
+		
 	});
 });
