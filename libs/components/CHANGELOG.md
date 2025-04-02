@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.19.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.18.0...vivid-v4.19.0) (2025-03-31)
+
+
+### Features
+
+* **components:** support HTMLElementTagNameMap (VIV-2382) ([#2247](https://github.com/Vonage/vivid-3/issues/2247)) ([9f24f11](https://github.com/Vonage/vivid-3/commit/9f24f11018d944042bda3945cb9be40dad5ff349))
+* **searchable-select:** support async option loading (VIV-2412) ([#2231](https://github.com/Vonage/vivid-3/issues/2231)) ([51d748e](https://github.com/Vonage/vivid-3/commit/51d748e1e0c9f76091d6003e97df4ab60d000630))
+* **vue-wrappers:** improve typings (VIV-2381) ([#2240](https://github.com/Vonage/vivid-3/issues/2240)) ([10e9628](https://github.com/Vonage/vivid-3/commit/10e9628bef6fb84354fa8cfc9d1af27505eae1ba))
+
+
+### Bug Fixes
+
+* **alert:** not announced correctly in screen reader (VIV-1970) ([#2235](https://github.com/Vonage/vivid-3/issues/2235)) ([e2af9d8](https://github.com/Vonage/vivid-3/commit/e2af9d81679426a4dcc86d7af4f356b9c49f490f))
+* **pagination:** fix constraining of selectedIndex (VIV-2431) ([#2236](https://github.com/Vonage/vivid-3/issues/2236)) ([18aea63](https://github.com/Vonage/vivid-3/commit/18aea639ce44640873254726afb3774638bcb900))
+* **rich-text-editor:** split scss to files (VIV-2392) ([#2228](https://github.com/Vonage/vivid-3/issues/2228)) ([14f6715](https://github.com/Vonage/vivid-3/commit/14f67159aa61cce1d32cfba935a67f9c3178ccaa))
+
 ## [4.18.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.17.0...vivid-v4.18.0) (2025-03-17)
 
 
