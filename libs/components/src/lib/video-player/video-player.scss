@@ -12,6 +12,8 @@
 }
 
 .vjs-theme-vivid {
+	#{focus-variables.$focus-stroke-gap-color}: transparent;
+
 	$control-size: 40px;
 	$control-background-color: variables.$video-player-canvas-opacity;
 	$control-background-color-hover: variables.$video-player-neutral-900;
@@ -207,6 +209,10 @@
 		.vjs-play-progress {
 			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
 		}
+
+		.vjs-progress-holder:focus-visible {
+			@include focus.focus;
+		}
 	}
 
 	.vjs-duration,
@@ -221,8 +227,13 @@
 		inset-inline: 8px auto;
 	}
 
-	.vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
-		border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+	.vjs-volume-bar.vjs-slider-vertical {
+		.vjs-volume-level {
+			border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+		}
+		&:focus-visible {
+			@include focus.focus;
+		}
 	}
 
 	.vjs-subs-caps-button,
