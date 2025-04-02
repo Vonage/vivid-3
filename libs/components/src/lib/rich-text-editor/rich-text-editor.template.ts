@@ -8,22 +8,25 @@ const getClasses = (_: RichTextEditor) => classNames('control');
 
 const VALID_MENU_ELEMEMENT_SUFFIX = 'menubar';
 
+const menuParent = (target: EventTarget | null) =>
+	(target as HTMLElement).parentElement as RichTextEditor;
+
 function textSizeSelectedHandler(
-	this: RichTextEditor,
 	event: CustomEvent<string>
 ) {
-	this.setTextSize(event.detail as RichTextEditorTextSizes);
+	menuParent(event.target).setTextSize(event.detail as RichTextEditorTextSizes);
+	menuParent(event.target).focus();
 }
 
 function selectionDecorationSelectedHandler(
-	this: RichTextEditor,
 	event: CustomEvent<string>
 ) {
-	this.setSelectionDecoration(event.detail as RichTextEditorTextSizes);
+	menuParent(event.target).setSelectionDecoration(event.detail as RichTextEditorTextSizes);
+	menuParent(event.target).focus();
 }
 
 function handleMenuBarSlotChange(
-	richTextEditor: RichTextEditor,
+	_: RichTextEditor,
 	{ event }: ExecutionContext
 ) {
 	const slot = event.target as HTMLSlotElement;
@@ -41,11 +44,11 @@ function handleMenuBarSlotChange(
 	if (menuBar) {
 		menuBar.addEventListener(
 			'text-size-selected',
-			textSizeSelectedHandler.bind(richTextEditor) as EventListener
+			textSizeSelectedHandler as EventListener
 		);
 		menuBar.addEventListener(
 			'text-decoration-selected',
-			selectionDecorationSelectedHandler.bind(richTextEditor) as EventListener
+			selectionDecorationSelectedHandler as EventListener
 		);
 	}
 }

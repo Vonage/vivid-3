@@ -140,4 +140,9 @@ export class RichTextEditor extends VividElement {
 			console.warn(`Invalid decoration: ${decoration}`);
 		}
 	}
+
+	override focus() {
+		super.focus();
+		(this.#editorWrapperElement.querySelector('[contenteditable="true"]') as HTMLElement).focus();
+	}
 }

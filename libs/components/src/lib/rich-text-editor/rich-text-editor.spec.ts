@@ -489,6 +489,23 @@ describe('vwc-rich-text-editor', () => {
 			);
 
 			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+		it('should focus on the editable after a selection', async () => {
+			const newTextSize = 'title';
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
+
+			menuBar.dispatchEvent(
+				new CustomEvent('text-size-selected', { detail: newTextSize })
+			);
+
+			expect(document.activeElement).toBe(element);
+			expect(element.shadowRoot?.activeElement).toBe(getOutputElement());
+		});
+
+		it('should keep the selection after decoration change', async () => {
+			
 		});
 	});
 });
