@@ -99,7 +99,6 @@ export class RichTextEditor extends VividElement {
 	};
 
 	override connectedCallback(): void {
-		console.log('aaaaaaa');
 		super.connectedCallback();
 		if (!this.#editor) {
 			this.#editor = new ProseMirrorFacade();
@@ -134,7 +133,11 @@ export class RichTextEditor extends VividElement {
 	override focus() {
 		super.focus();
 		setTimeout(() => {
-			(this.#editorWrapperElement.querySelector('[contenteditable="true"]') as HTMLElement).focus();
+			(
+				this.#editorWrapperElement.querySelector(
+					'[contenteditable="true"]'
+				) as HTMLElement
+			).focus();
 		}, 0);
 	}
 }

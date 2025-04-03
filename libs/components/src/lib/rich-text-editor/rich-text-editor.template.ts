@@ -11,17 +11,15 @@ const VALID_MENU_ELEMEMENT_SUFFIX = 'menubar';
 const menuParent = (target: EventTarget | null) =>
 	(target as HTMLElement).parentElement as RichTextEditor;
 
-function textSizeSelectedHandler(
-	event: CustomEvent<string>
-) {
+function textSizeSelectedHandler(event: CustomEvent<string>) {
 	menuParent(event.target).setTextSize(event.detail as RichTextEditorTextSizes);
 	menuParent(event.target).focus();
 }
 
-function selectionDecorationSelectedHandler(
-	event: CustomEvent<string>
-) {
-	menuParent(event.target).setSelectionDecoration(event.detail as RichTextEditorTextSizes);
+function selectionDecorationSelectedHandler(event: CustomEvent<string>) {
+	menuParent(event.target).setSelectionDecoration(
+		event.detail as RichTextEditorTextSizes
+	);
 	menuParent(event.target).focus();
 }
 

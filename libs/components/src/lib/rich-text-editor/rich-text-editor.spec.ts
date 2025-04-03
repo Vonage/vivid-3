@@ -485,7 +485,9 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 
 			menuBar.dispatchEvent(
-				new CustomEvent('text-decoration-selected', { detail: newTextDecoration })
+				new CustomEvent('text-decoration-selected', {
+					detail: newTextDecoration,
+				})
 			);
 
 			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
@@ -503,13 +505,12 @@ describe('vwc-rich-text-editor', () => {
 			);
 			await vi.advanceTimersToNextTimerAsync();
 			vi.useRealTimers();
-			
+
 			expect(document.activeElement).toBe(element);
 			expect(element.shadowRoot?.activeElement).toBe(getOutputElement());
 		});
 
 		it('should async focus on the editable after a textDecoration selection', async () => {
-			
 			const newTextDecoration = 'bold';
 			const menuBar = document.createElement('vwc-menubar');
 			menuBar.slot = 'menu-bar';
@@ -518,7 +519,9 @@ describe('vwc-rich-text-editor', () => {
 
 			vi.useFakeTimers();
 			menuBar.dispatchEvent(
-				new CustomEvent('text-decoration-selected', { detail: newTextDecoration })
+				new CustomEvent('text-decoration-selected', {
+					detail: newTextDecoration,
+				})
 			);
 
 			await vi.advanceTimersToNextTimerAsync();
