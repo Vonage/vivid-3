@@ -72,7 +72,7 @@ describe('vwc-tag', () => {
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
 			const connotation = 'cta';
-			(element as any).connotation = connotation;
+			element.connotation = connotation;
 			await elementUpdated(element);
 
 			const baseElementContainsConnotationClass = getBaseElement(
@@ -85,7 +85,7 @@ describe('vwc-tag', () => {
 	describe('shape', () => {
 		it('sets correct internal shape style', async () => {
 			const shape = 'pill';
-			(element as any).shape = shape;
+			element.shape = shape;
 			await elementUpdated(element);
 
 			const baseElementContainsShapeClass = getBaseElement(
@@ -98,7 +98,7 @@ describe('vwc-tag', () => {
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
 			const appearance = 'duotone';
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			const baseElementContainsAppearanceClass = getBaseElement(

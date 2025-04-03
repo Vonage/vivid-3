@@ -1,25 +1,29 @@
 import { attr } from '@microsoft/fast-element';
 import type { LayoutSize } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 export enum AUTO_SIZING {
 	Fit = 'fit',
 	Fill = 'fill',
 }
-export type Gutters = Extract<
+export type Gutters = ExtractFromEnum<
 	LayoutSize,
 	LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
 >;
-export type ColumnSpacing = Extract<
+export type ColumnSpacing = ExtractFromEnum<
 	LayoutSize,
 	LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
 >;
-export type RowSpacing = Extract<
+export type RowSpacing = ExtractFromEnum<
 	LayoutSize,
 	LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
 >;
 export type ColumnBasis =
-	| Extract<LayoutSize, LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large>
+	| ExtractFromEnum<
+			LayoutSize,
+			LayoutSize.Small | LayoutSize.Medium | LayoutSize.Large
+	  >
 	| 'block';
 
 /**
@@ -64,5 +68,5 @@ export class Layout extends VividElement {
 	 *
 	 * @public
 	 */
-	@attr({ attribute: 'auto-sizing' }) autoSizing?: AUTO_SIZING;
+	@attr({ attribute: 'auto-sizing' }) autoSizing?: 'fit' | 'fill';
 }

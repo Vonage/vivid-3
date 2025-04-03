@@ -7,6 +7,7 @@ import {
 import { keySpace } from '@microsoft/fast-web-utilities';
 import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent.js';
 import type { Connotation } from '../enums.js';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedRadio } from './radio.form-associated';
 
 /**
@@ -14,7 +15,7 @@ import { FormAssociatedRadio } from './radio.form-associated';
  *
  * @public
  */
-export type RadioConnotation = Extract<
+export type RadioConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;

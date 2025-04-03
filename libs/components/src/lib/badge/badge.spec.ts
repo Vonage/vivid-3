@@ -78,7 +78,7 @@ describe('vwc-badge', () => {
 	describe('connotation', () => {
 		it('sets correct internal connotation style', async () => {
 			const connotation = 'information';
-			(element as any).connotation = connotation;
+			element.connotation = connotation;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector(
@@ -91,7 +91,7 @@ describe('vwc-badge', () => {
 	describe('shape', () => {
 		it('sets correct internal shape style', async () => {
 			const shape = 'pill';
-			(element as any).shape = shape;
+			element.shape = shape;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector(`.base.shape-${shape}`);
@@ -102,7 +102,7 @@ describe('vwc-badge', () => {
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
 			const appearance = 'soft';
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector(

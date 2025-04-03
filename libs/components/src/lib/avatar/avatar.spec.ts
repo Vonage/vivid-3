@@ -37,7 +37,7 @@ describe('vwc-avatar', () => {
 		it('should set the appearance class on the base', async function () {
 			const appearance = 'filled';
 
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			expect(
@@ -50,7 +50,7 @@ describe('vwc-avatar', () => {
 		it('should set the shape class on the base', async function () {
 			const shape = 'pill';
 
-			(element as any).shape = shape;
+			element.shape = shape;
 			await elementUpdated(element);
 
 			expect(baseElement?.classList.contains(`shape-${shape}`)).toBeTruthy();
@@ -77,7 +77,7 @@ describe('vwc-avatar', () => {
 	describe('avatar size', function () {
 		it('sets correct internal size style', async () => {
 			const size = 'condensed';
-			(element as any).size = size;
+			element.size = size;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.base.size-${size}`);

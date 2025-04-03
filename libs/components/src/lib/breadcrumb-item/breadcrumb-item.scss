@@ -19,13 +19,18 @@
 }
 
 .control {
-	border-radius: #{border-radius-variables.$border-radius-condensed};
 	font: inherit;
 
 	&:focus-visible {
-		@include focus.focus;
-		#{focus-variables.$focus-stroke-gap-color}: transparent;
-		#{focus-variables.$focus-inset}: -4px;
+		position: relative;
+		outline: none;
+
+		&::after {
+			@include focus.focus-in-pseudo-element;
+			#{focus-variables.$focus-stroke-gap-color}: transparent;
+			#{focus-variables.$focus-block-size-addition}: 8px;
+			#{focus-variables.$focus-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		}
 	}
 
 	&:any-link {
