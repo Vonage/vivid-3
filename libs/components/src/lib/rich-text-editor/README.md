@@ -72,9 +72,9 @@ Use the `selectionEnd` attribute to get or set the end point of the marker. To s
 </script>
 ```
 
-### Set Text Size
+### Set Text Block
 
-Use the `setTextSize` method to set the text size to three sizes: `title`, `subtitle` and `body`.
+Use the `setTextBlock` method to set the text block to one of three types: `title`, `subtitle` and `body`.
 
 ```html preview
 <vwc-layout gutters="small" column-basis="block" row-spacing="small">
@@ -82,24 +82,24 @@ Use the `setTextSize` method to set the text size to three sizes: `title`, `subt
 		<vwc-button
 			appearance="filled"
 			label="Title"
-			onclick="setTextSize('title')"
+			onclick="setTextBlock('title')"
 		></vwc-button>
 		<vwc-button
 			appearance="filled"
 			label="Subtitle"
-			onclick="setTextSize('subtitle')"
+			onclick="setTextBlock('subtitle')"
 		></vwc-button>
 		<vwc-button
 			appearance="filled"
 			label="Body"
-			onclick="setTextSize('body')"
+			onclick="setTextBlock('body')"
 		></vwc-button>
 	</div>
 	<vwc-rich-text-editor></vwc-rich-text-editor>
 </vwc-layout>
 <script>
-	function setTextSize(size) {
-		rteComponent.setTextSize(size);
+	function setTextBlock(blockType) {
+		rteComponent.setTextBlock(blockType);
 	}
 	async function waitForEditorReady() {
 		await new Promise((res) => {
@@ -119,11 +119,11 @@ Use the `setTextSize` method to set the text size to three sizes: `title`, `subt
 			<p>Body</p>
 		`;
 		moveMarkerToPosition(2);
-		rteComponent.setTextSize('title');
+		rteComponent.setTextBlock('title');
 		moveMarkerToPosition(11);
-		rteComponent.setTextSize('subtitle');
+		rteComponent.setTextBlock('subtitle');
 		moveMarkerToPosition(20);
-		rteComponent.setTextSize('body');
+		rteComponent.setTextBlock('body');
 	}
 
 	async function moveMarkerToPosition(moveTo) {
@@ -154,8 +154,8 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 	</vwc-rich-text-editor>
 </vwc-layout>
 <script>
-	function setTextSize(size) {
-		rteComponent.setTextSize(size);
+	function setTextBlock(blockType) {
+		rteComponent.setTextBlock(blockType);
 	}
 	async function waitForEditorReady() {
 		await new Promise((res) => {
@@ -175,11 +175,11 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 			<p>Body</p>
 		`;
 		moveMarkerToPosition(2);
-		rteComponent.setTextSize('title');
+		rteComponent.setTextBlock('title');
 		moveMarkerToPosition(11);
-		rteComponent.setTextSize('subtitle');
+		rteComponent.setTextBlock('subtitle');
 		moveMarkerToPosition(20);
-		rteComponent.setTextSize('body');
+		rteComponent.setTextBlock('body');
 	}
 
 	async function moveMarkerToPosition(moveTo) {
@@ -214,6 +214,6 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 
 | Name            | Returns | Description                                                                                              |
 | --------------- | ------- | -------------------------------------------------------------------------------------------------------- |
-| **setTextSize** |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection |
+| **setTextBlock** |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection |
 
 </div>

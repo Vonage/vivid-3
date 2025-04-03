@@ -60,10 +60,10 @@ const MENU_BAR_ITEMS: {
 			<${menuTag}
 				trigger="auto"
 				id="text-block"
-				aria-label="Text Size"
+				aria-label="Text Block"
 				placement="bottom-end"
 			>
-				<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+				<${tooltipTag} slot="anchor" text="Text Block Type" placement="top">
 					<${buttonTag}
 						slot="anchor"
 						aria-label="Open text block menu"

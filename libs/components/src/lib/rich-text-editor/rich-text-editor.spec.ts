@@ -280,17 +280,17 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
-	describe('setTextSize()', () => {
-		it('should gracefully fail with a warning when given an invalid size', async () => {
+	describe('setTextBlock()', () => {
+		it('should gracefully fail with a warning when given an invalid block', async () => {
 			const consoleWarnSpy = vi.spyOn(console, 'warn');
 
-			(element.setTextSize as any)('not a given size');
+			(element.setTextBlock as any)('not a given block');
 			expect(consoleWarnSpy).toHaveBeenCalledWith(
-				'Invalid text size: not a given size'
+				'Invalid text block: not a given block'
 			);
 		});
 
-		it('should change the text type of current text part to h2 when size is `title`', async () => {
+		it('should change the text block of current text part to h2 when block is `title`', async () => {
 			editorFacadeSelectSpy.mockRestore();
 
 			element.value = '<p>123456789</p><p>abcdefghi</p>';
@@ -298,13 +298,13 @@ describe('vwc-rich-text-editor', () => {
 			const positionInTheSecondParagraph = 15;
 			moveMarkerToPosition(positionInTheSecondParagraph);
 
-			element.setTextSize('title');
+			element.setTextBlock('title');
 			await elementUpdated(element);
 
 			expect(element.value).toEqual('<p>123456789</p><h2>abcdefghi</h2>');
 		});
 
-		it('should change the text type of current text part to h3 when size is `subtitle`', async () => {
+		it('should change the text block of current text part to h3 when block type is `subtitle`', async () => {
 			editorFacadeSelectSpy.mockRestore();
 
 			element.value = '<p>123456789</p><p>abcdefghi</p>';
@@ -312,13 +312,13 @@ describe('vwc-rich-text-editor', () => {
 			const positionInTheSecondParagraph = 15;
 			moveMarkerToPosition(positionInTheSecondParagraph);
 
-			element.setTextSize('subtitle');
+			element.setTextBlock('subtitle');
 			await elementUpdated(element);
 
 			expect(element.value).toEqual('<p>123456789</p><h3>abcdefghi</h3>');
 		});
 
-		it('should change the text type of current text part to p when size is `body`', async () => {
+		it('should change the text block of current text part to p when block type is `body`', async () => {
 			editorFacadeSelectSpy.mockRestore();
 
 			element.value = '<p>123456789</p><h3>abcdefghi</h3>';
@@ -326,7 +326,7 @@ describe('vwc-rich-text-editor', () => {
 			const positionInTheSecondParagraph = 15;
 			moveMarkerToPosition(positionInTheSecondParagraph);
 
-			element.setTextSize('body');
+			element.setTextBlock('body');
 			await elementUpdated(element);
 
 			expect(element.value).toEqual('<p>123456789</p><p>abcdefghi</p>');
@@ -461,19 +461,19 @@ describe('vwc-rich-text-editor', () => {
 			expect(getComputedStyle(notMenuBar).display).toBe('none');
 		});
 
-		it('should change text size on `text-size-selected` event from menubar', async () => {
-			const newTextSize = 'title';
-			const setTextSizeSpy = vi.spyOn(element, 'setTextSize');
+		it('should change text block type on `text-block-selected` event from menubar', async () => {
+			const newTextBlock = 'title';
+			const setTextBlockSpy = vi.spyOn(element, 'setTextBlock');
 			const menuBar = document.createElement('vwc-menubar');
 			menuBar.slot = 'menu-bar';
 			element.appendChild(menuBar);
 			await elementUpdated(element);
 
 			menuBar.dispatchEvent(
-				new CustomEvent('text-size-selected', { detail: newTextSize })
+				new CustomEvent('text-block-selected', { detail: newTextBlock })
 			);
 
-			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+			expect(setTextBlockSpy).toHaveBeenCalledWith(newTextBlock);
 		});
 
 		it('should change text decoration on `text-decoration-selected` event from menubar', async () => {
@@ -493,15 +493,15 @@ describe('vwc-rich-text-editor', () => {
 			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
 		});
 
-		it('should focus on the editable after a textSize selection', async () => {
-			const newTextSize = 'title';
+		it('should focus on the editable after a textBlock selection', async () => {
+			const newTextBlock = 'title';
 			const menuBar = document.createElement('vwc-menubar');
 			menuBar.slot = 'menu-bar';
 			element.appendChild(menuBar);
 			await elementUpdated(element);
 			vi.useFakeTimers();
 			menuBar.dispatchEvent(
-				new CustomEvent('text-decoration-selected', { detail: newTextSize })
+				new CustomEvent('text-decoration-selected', { detail: newTextBlock })
 			);
 			await vi.advanceTimersToNextTimerAsync();
 			vi.useRealTimers();

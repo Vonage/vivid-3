@@ -11,14 +11,14 @@ const VALID_MENU_ELEMEMENT_SUFFIX = 'menubar';
 const menuParent = (target: EventTarget | null) =>
 	(target as HTMLElement).parentElement as RichTextEditor;
 
-function textSizeSelectedHandler(event: CustomEvent<string>) {
-	menuParent(event.target).setTextSize(event.detail as RichTextEditorTextSizes);
+function textBlockSelectedHandler(event: CustomEvent<string>) {
+	menuParent(event.target).setTextBlock(event.detail as RichTextEditorTextBlocks);
 	menuParent(event.target).focus();
 }
 
 function selectionDecorationSelectedHandler(event: CustomEvent<string>) {
 	menuParent(event.target).setSelectionDecoration(
-		event.detail as RichTextEditorTextSizes
+		event.detail as RichTextEditorTextBlocks
 	);
 	menuParent(event.target).focus();
 }
@@ -41,8 +41,8 @@ function handleMenuBarSlotChange(
 	});
 	if (menuBar) {
 		menuBar.addEventListener(
-			'text-size-selected',
-			textSizeSelectedHandler as EventListener
+			'text-block-selected',
+			textBlockSelectedHandler as EventListener
 		);
 		menuBar.addEventListener(
 			'text-decoration-selected',

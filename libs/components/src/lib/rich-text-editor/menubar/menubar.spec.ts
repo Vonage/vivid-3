@@ -172,7 +172,7 @@ describe('menuBar', () => {
 				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');
 				expect(menuFocusableChild.parentElement instanceof Tooltip).toBe(true);
 				expect(menuFocusableChild.parentElement?.getAttribute('text')).toBe(
-					menu.getAttribute('aria-label')
+					'Text Block Type'
 				);
 				expect(menuFocusableChild.parentElement?.getAttribute('slot')).toBe(
 					'anchor'

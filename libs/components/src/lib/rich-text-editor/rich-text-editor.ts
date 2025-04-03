@@ -112,12 +112,12 @@ export class RichTextEditor extends VividElement {
 		}
 	}
 
-	setTextSize(size: 'title' | 'subtitle' | 'body') {
+	setTextBlock(blockType: 'title' | 'subtitle' | 'body') {
 		try {
-			this.#editor?.setSelectionTag(RichTextEditorTextBlocks[size]);
+			this.#editor?.setSelectionTag(RichTextEditorTextBlocks[blockType]);
 		} catch (e: any) {
 			// eslint-disable-next-line no-console
-			console.warn(`Invalid text size: ${size}`);
+			console.warn(`Invalid text block: ${blockType}`);
 		}
 	}
 
