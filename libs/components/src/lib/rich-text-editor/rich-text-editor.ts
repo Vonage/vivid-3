@@ -7,13 +7,13 @@ export interface RichTextEditorSelection {
 	end?: number;
 }
 
-export const RichTextEditorTextSizes = {
+export const RichTextEditorTextBlocks = {
 	title: 'h2',
 	subtitle: 'h3',
 	body: 'p',
 } as const;
 
-export type RichTextEditorTextSizes = keyof typeof RichTextEditorTextSizes;
+export type RichTextEditorTextBlocks = keyof typeof RichTextEditorTextBlocks;
 
 /**
  * @public
@@ -114,7 +114,7 @@ export class RichTextEditor extends VividElement {
 
 	setTextSize(size: 'title' | 'subtitle' | 'body') {
 		try {
-			this.#editor?.setSelectionTag(RichTextEditorTextSizes[size]);
+			this.#editor?.setSelectionTag(RichTextEditorTextBlocks[size]);
 		} catch (e: any) {
 			// eslint-disable-next-line no-console
 			console.warn(`Invalid text size: ${size}`);

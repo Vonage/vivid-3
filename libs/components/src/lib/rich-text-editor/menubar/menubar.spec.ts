@@ -1,6 +1,6 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Menu } from '../../menu/menu';
-import { RichTextEditorTextSizes } from '../rich-text-editor';
+import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import type { Button } from '../../button/button';
 import { MenuBar } from './menubar';
@@ -105,7 +105,7 @@ describe('menuBar', () => {
 			});
 
 			it('should have textSize options in the menu', async () => {
-				const textSizeOptions = Object.keys(RichTextEditorTextSizes);
+				const textSizeOptions = Object.keys(RichTextEditorTextBlocks);
 				const options =
 					getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
 

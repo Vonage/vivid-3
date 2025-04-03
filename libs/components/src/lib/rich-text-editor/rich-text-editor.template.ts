@@ -2,7 +2,7 @@ import { html } from '@microsoft/fast-element';
 import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { RichTextEditor, RichTextEditorTextSizes } from './rich-text-editor';
+import { RichTextEditor, RichTextEditorTextBlocks } from './rich-text-editor';
 
 const getClasses = (_: RichTextEditor) => classNames('control');
 
