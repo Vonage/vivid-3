@@ -12,7 +12,9 @@ const menuParent = (target: EventTarget | null) =>
 	(target as HTMLElement).parentElement as RichTextEditor;
 
 function textBlockSelectedHandler(event: CustomEvent<string>) {
-	menuParent(event.target).setTextBlock(event.detail as RichTextEditorTextBlocks);
+	menuParent(event.target).setTextBlock(
+		event.detail as RichTextEditorTextBlocks
+	);
 	menuParent(event.target).focus();
 }
 

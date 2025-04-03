@@ -212,8 +212,8 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 
 <div class="table-wrapper">
 
-| Name            | Returns | Description                                                                                              |
-| --------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| Name             | Returns | Description                                                                                              |
+| ---------------- | ------- | -------------------------------------------------------------------------------------------------------- |
 | **setTextBlock** |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection |
 
 </div>
