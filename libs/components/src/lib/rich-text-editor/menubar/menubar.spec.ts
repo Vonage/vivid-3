@@ -66,29 +66,29 @@ describe('menuBar', () => {
 		});
 
 		it('should remove class hide-menubar when valid items exist in menuItems', async () => {
-			element.setAttribute('menu-items', 'item1 item2 textSize');
+			element.setAttribute('menu-items', 'item1 item2 textBlock');
 			await elementUpdated(element);
 
 			expect(element.classList.contains('hide-menubar')).toBe(false);
 		});
 
-		describe('textSize', () => {
-			let textSizeButton: HTMLButtonElement;
+		describe('textBlock', () => {
+			let textBlockButton: HTMLButtonElement;
 
 			beforeEach(async () => {
-				element.setAttribute('menu-items', 'textSize');
+				element.setAttribute('menu-items', 'textBlock');
 				await elementUpdated(element);
-				textSizeButton = element.shadowRoot?.querySelector(
+				textBlockButton = element.shadowRoot?.querySelector(
 					'vwc-button'
 				) as unknown as HTMLButtonElement;
 			});
 
-			it('should show the text size button when adding `textSize` to the string', async () => {
-				expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
+			it('should show the text block button when adding `textBlock` to the string', async () => {
+				expect(textBlockButton?.getAttribute('icon')).toEqual('text-size-line');
 			});
 
 			it('should open menu when clicked', async () => {
-				textSizeButton.click();
+				textBlockButton.click();
 				await elementUpdated(element);
 
 				const menu = element.shadowRoot?.querySelector('vwc-menu') as Menu;
@@ -96,32 +96,32 @@ describe('menuBar', () => {
 			});
 
 			it('should close menu when clicked again', async () => {
-				textSizeButton.click();
+				textBlockButton.click();
 				await elementUpdated(element);
-				textSizeButton.click();
+				textBlockButton.click();
 				await elementUpdated(element);
 
-				expect(getSelectionMenu('text-size').open).toBeFalsy();
+				expect(getSelectionMenu('text-block').open).toBeFalsy();
 			});
 
-			it('should have textSize options in the menu', async () => {
-				const textSizeOptions = Object.keys(RichTextEditorTextBlocks);
+			it('should have textBlock options in the menu', async () => {
+				const textBlockOptions = Object.keys(RichTextEditorTextBlocks);
 				const options =
-					getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
+					getSelectionMenu('text-block').querySelectorAll('vwc-menu-item');
 
-				expect(options?.length).toEqual(textSizeOptions.length);
+				expect(options?.length).toEqual(textBlockOptions.length);
 				options?.forEach((optionElement, index) => {
 					expect(optionElement.getAttribute('value')).toEqual(
-						textSizeOptions[index]
+						textBlockOptions[index]
 					);
 				});
 			});
 
-			it('should emit text-size-selected event with the selected text size when an option is clicked', async () => {
+			it('should emit text-block-selected event with the selected text block when an option is clicked', async () => {
 				const spy = vi.fn();
-				element.addEventListener('text-size-selected', spy);
-				getSelectionMenu('text-size').open = true;
-				const options = getSelectionMenu('text-size').querySelectorAll(
+				element.addEventListener('text-block-selected', spy);
+				getSelectionMenu('text-block').open = true;
+				const options = getSelectionMenu('text-block').querySelectorAll(
 					'vwc-menu-item'
 				) as unknown as HTMLElement[];
 
@@ -136,10 +136,10 @@ describe('menuBar', () => {
 				});
 			});
 
-			it('should emit a non bubbling and non composed text-size-selected event', async () => {
+			it('should emit a non bubbling and non composed text-block-selected event', async () => {
 				const spy = vi.fn();
-				element.addEventListener('text-size-selected', spy);
-				const option = getSelectionMenu('text-size').querySelector(
+				element.addEventListener('text-block-selected', spy);
+				const option = getSelectionMenu('text-block').querySelector(
 					'vwc-menu-item'
 				) as HTMLElement;
 
@@ -152,21 +152,21 @@ describe('menuBar', () => {
 			});
 
 			it('should close the menu when option is clicked', async () => {
-				getSelectionMenu('text-size').open = true;
+				getSelectionMenu('text-block').open = true;
 				await elementUpdated(element);
 
-				const option = getSelectionMenu('text-size').querySelector(
+				const option = getSelectionMenu('text-block').querySelector(
 					'vwc-menu-item'
 				) as HTMLElement;
 
 				option.click();
 				await elementUpdated(element);
 
-				expect(getSelectionMenu('text-size').open).toBe(false);
+				expect(getSelectionMenu('text-block').open).toBe(false);
 			});
 
-			it('should set a tooltip with the text size message', async () => {
-				const menu = getSelectionMenu('text-size');
+			it('should set a tooltip with the text block message', async () => {
+				const menu = getSelectionMenu('text-block');
 				const menuFocusableChild = menu.querySelector('vwc-button') as Button;
 
 				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');

@@ -51,7 +51,7 @@ const MENU_BAR_ITEMS: {
 		context: VividElementDefinitionContext
 	) => ViewTemplate<any, any>;
 } = {
-	textSize: function (context) {
+	textBlock: function (context) {
 		const buttonTag = context.tagFor(Button);
 		const menuTag = context.tagFor(Menu);
 		const menuItemTag = context.tagFor(MenuItem);
@@ -59,14 +59,14 @@ const MENU_BAR_ITEMS: {
 		return html`
 			<${menuTag}
 				trigger="auto"
-				id="text-size"
+				id="text-block"
 				aria-label="Text Size"
 				placement="bottom-end"
 			>
 				<${tooltipTag} slot="anchor" text="Text Size" placement="top">
 					<${buttonTag}
 						slot="anchor"
-						aria-label="Open text size menu"
+						aria-label="Open text block menu"
 						size="super-condensed"
 						appearance="ghost-light"
 						shape="pill"
@@ -80,7 +80,7 @@ const MENU_BAR_ITEMS: {
 					class="title"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-						notifyMenuBarChange(parent, 'text-size-selected', 'title')}"
+						notifyMenuBarChange(parent, 'text-block-selected', 'title')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Subtitle"
@@ -89,7 +89,7 @@ const MENU_BAR_ITEMS: {
 					class="subtitle"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-						notifyMenuBarChange(parent, 'text-size-selected', 'subtitle')}"
+						notifyMenuBarChange(parent, 'text-block-selected', 'subtitle')}"
 				></${menuItemTag}>
 				<${menuItemTag}
 					text="Body"
@@ -98,7 +98,7 @@ const MENU_BAR_ITEMS: {
 					class="body"
 					connotation="cta"
 					@click="${(_, { parent }) =>
-						notifyMenuBarChange(parent, 'text-size-selected', 'body')}"
+						notifyMenuBarChange(parent, 'text-block-selected', 'body')}"
 				></${menuItemTag}>
 			</${menuTag}>
 		`;
@@ -141,7 +141,7 @@ const getClasses = (menuBar: MenuBar) =>
 		getValidMenuItems(menuBar).length === 0,
 	]);
 
-const validItems = ['textSize', 'textDecoration'];
+const validItems = ['textBlock', 'textDecoration'];
 
 function createMenuItem(item: string) {
 	return MENU_BAR_ITEMS[item];
