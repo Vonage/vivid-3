@@ -5772,8 +5772,10 @@
 					"returnType": "unknown"
 				},
 				{
-					"name": "setTextSize",
-					"args": [{ "name": "size", "type": "'title' | 'subtitle' | 'body'" }],
+					"name": "setTextBlock",
+					"args": [
+						{ "name": "blockType", "type": "'title' | 'subtitle' | 'body'" }
+					],
 					"returnType": "unknown"
 				}
 			],
