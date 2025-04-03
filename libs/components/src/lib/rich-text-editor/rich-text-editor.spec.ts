@@ -485,12 +485,12 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 
 			menuBar.dispatchEvent(
-				new CustomEvent('text-decoration-selected', { detail: newTextDecoration })
+				new CustomEvent('text-decoration-selected', {
+					detail: newTextDecoration,
+				})
 			);
 
 			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
 		});
-
-		
 	});
 });
