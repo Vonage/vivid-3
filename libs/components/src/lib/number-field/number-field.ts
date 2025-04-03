@@ -19,14 +19,21 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedNumberField } from './number-field.form-associated';
 
-export type NumberFieldAppearance = Extract<
+export type NumberFieldAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
-export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-export type NumberFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type NumberFieldShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
+export type NumberFieldSize = ExtractFromEnum<
+	Size,
+	Size.Condensed | Size.Normal
+>;
 
 const STEP_DIRECTION = {
 	up: 1,

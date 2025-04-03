@@ -66,7 +66,7 @@ const MENU_BAR_ITEMS: {
 				<${tooltipTag} slot="anchor" text="Text Size" placement="top">
 					<${buttonTag}
 						slot="anchor"
-						aria-label="Open menu"
+						aria-label="Open text size menu"
 						size="super-condensed"
 						appearance="ghost-light"
 						shape="pill"

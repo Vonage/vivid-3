@@ -329,6 +329,26 @@ While the default slots work the same, the web component's named slots are mappe
 </VBanner>
 ```
 
+#### Text Nodes in Named Slots
+
+Vivid Vue will automatically wrap text nodes in the necessary `<span>` element when using named slots.
+
+**Web component**
+
+```html
+<vwc-banner text="A banner with text content">
+	<span slot="action-items">Text content</span>
+</vwc-banner>
+```
+
+**Vivid Vue**
+
+```html
+<VBanner text="A banner with text content">
+	<template #action-items>Text content</template>
+</VBanner>
+```
+
 ### Using Events
 
 When using event listeners, `$event` will refer to native event with improved type definitions.
@@ -365,7 +385,7 @@ You can get a reference to the Vivid Vue component instance the same way as any 
 ```
 
 </vwc-tab-panel>
-<vwc-tab label="useRef()"></vwc-tab>
+<vwc-tab label="ref()"></vwc-tab>
 <vwc-tab-panel>
 
 ```html
@@ -444,6 +464,27 @@ If you are using Vue Router and want to perform client-side navigation, wrap the
 <RouterLink v-slot="{ href, navigate }" to="/page" custom>
 	<VButton :href="href" label="Page" @click="navigate" />
 </RouterLink>
+```
+
+### Forwarding Slots
+
+Forwarding slots from your component to the Vivid component works as expected.
+
+```html
+<VAccordionItem>
+	<slot></slot>
+	<template #icon><slot name="icon"></slot></template>
+</VAccordionItem>
+```
+
+To forward all slots automatically, you can iterate over `$slots`.
+
+```html
+<VAccordionItem>
+	<template v-for="(_, name) in $slots" v-slot:[name]>
+		<slot :name="name" />
+	</template>
+</VAccordionItem>
 ```
 
 ## Auto-Complete

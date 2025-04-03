@@ -143,7 +143,7 @@ describe('vwc-accordion-item', () => {
 	describe('size', () => {
 		it('sets correct internal size style', async () => {
 			const size = 'condensed';
-			(element as any).size = size;
+			element.size = size;
 			await elementUpdated(element);
 
 			const accordionButton =

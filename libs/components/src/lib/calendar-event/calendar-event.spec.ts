@@ -86,7 +86,7 @@ describe('vwc-calendar-event', () => {
 
 		it('should set correct internal connotation style', async () => {
 			const connotation = 'information';
-			(element as any).connotation = connotation;
+			element.connotation = connotation;
 			await elementUpdated(element);
 
 			const base = element.shadowRoot?.querySelector(

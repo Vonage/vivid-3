@@ -130,7 +130,7 @@ describe('vwc-text-anchor', () => {
 		it('should set the appearance class on the control', async function () {
 			const appearance = 'ghost';
 
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(`.control`);
