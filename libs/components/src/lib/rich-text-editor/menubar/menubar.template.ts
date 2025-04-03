@@ -6,6 +6,7 @@ import { Button } from '../../button/button';
 import { Menu } from '../../menu/menu';
 import { MenuItem } from '../../menu-item/menu-item';
 import { Divider } from '../../divider/divider';
+import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -54,21 +55,24 @@ const MENU_BAR_ITEMS: {
 		const buttonTag = context.tagFor(Button);
 		const menuTag = context.tagFor(Menu);
 		const menuItemTag = context.tagFor(MenuItem);
+		const tooltipTag = context.tagFor(Tooltip);
 		return html`
 			<${menuTag}
 				trigger="auto"
 				id="text-size"
-				aria-label="Menu example"
+				aria-label="Text Size"
 				placement="bottom-end"
 			>
-				<${buttonTag}
-					slot="anchor"
-					aria-label="Open menu"
-					size="super-condensed"
-					appearance="ghost-light"
-					shape="pill"
-					icon="text-size-line"
-				></${buttonTag}>
+				<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+					<${buttonTag}
+						slot="anchor"
+						aria-label="Open text size menu"
+						size="super-condensed"
+						appearance="ghost-light"
+						shape="pill"
+						icon="text-size-line"
+					></${buttonTag}>
+				</${tooltipTag}>
 				<${menuItemTag}
 					text="Title"
 					value="title"
@@ -102,24 +106,28 @@ const MENU_BAR_ITEMS: {
 	textDecoration: function (context) {
 		const buttonTag = context.tagFor(Button);
 		const dividerTag = context.tagFor(Divider);
+		const tooltipTag = context.tagFor(Tooltip);
 		return html`
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			${repeat(
 				(_) => TEXT_DECORATION_ITEMS,
 				html`
-					<${buttonTag}
-						aria-label="${(x) => x.text}"
-						size="super-condensed"
-						appearance="ghost-light"
-						shape="pill"
-						icon="${(x) => x.icon}"
-						@click="${(x, c) =>
-							notifyMenuBarChange(
-								c.parentContext.parent,
-								'text-decoration-selected',
-								x.value
-							)}"')}"
-					></${buttonTag}>
+					<${tooltipTag} text="${(x) => x.text}" placement="top">
+						<${buttonTag}
+							slot="anchor"
+							aria-label="${(x) => x.text}"
+							size="super-condensed"
+							appearance="ghost-light"
+							shape="pill"
+							icon="${(x) => x.icon}"
+							@click="${(x, c) =>
+								notifyMenuBarChange(
+									c.parentContext.parent,
+									'text-decoration-selected',
+									x.value
+								)}"')}"
+						></${buttonTag}>
+					</${tooltipTag}>
 				`
 			)}
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
