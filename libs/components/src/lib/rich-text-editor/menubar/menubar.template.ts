@@ -5,6 +5,7 @@ import type { VividElementDefinitionContext } from '../../../shared/design-syste
 import { Button } from '../../button/button';
 import { Menu } from '../../menu/menu';
 import { MenuItem } from '../../menu-item/menu-item';
+import { Divider } from '../../divider/divider';
 import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -15,6 +16,34 @@ function notifyMenuBarChange(
 	menuBar.$emit(eventName, payload, { bubbles: false, composed: false });
 	return true;
 }
+
+const TEXT_DECORATION_ITEMS = [
+	{
+		text: 'Bold',
+		icon: 'bold-line',
+		value: 'bold',
+	},
+	{
+		text: 'Italic',
+		icon: 'italic-line',
+		value: 'italics',
+	},
+	{
+		text: 'Underline',
+		icon: 'underline-line',
+		value: 'underline',
+	},
+	{
+		text: 'Strikethrough',
+		icon: 'strikethrough-line',
+		value: 'strikethrough',
+	},
+	{
+		text: 'Monospace',
+		icon: 'monospace-line',
+		value: 'monospace',
+	},
+];
 
 const MENU_BAR_ITEMS: {
 	[key: string]: (
@@ -70,6 +99,32 @@ const MENU_BAR_ITEMS: {
 			</${menuTag}>
 		`;
 	},
+	textDecoration: function (context) {
+		const buttonTag = context.tagFor(Button);
+		const dividerTag = context.tagFor(Divider);
+		return html`
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			${repeat(
+				(_) => TEXT_DECORATION_ITEMS,
+				html`
+					<${buttonTag}
+						aria-label="${(x) => x.text}"
+						size="super-condensed"
+						appearance="ghost-light"
+						shape="pill"
+						icon="${(x) => x.icon}"
+						@click="${(x, c) =>
+							notifyMenuBarChange(
+								c.parentContext.parent,
+								'text-decoration-selected',
+								x.value
+							)}"')}"
+					></${buttonTag}>
+				`
+			)}
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+		`;
+	},
 };
 
 const getClasses = (menuBar: MenuBar) =>
@@ -78,7 +133,7 @@ const getClasses = (menuBar: MenuBar) =>
 		getValidMenuItems(menuBar).length === 0,
 	]);
 
-const validItems = ['textSize'];
+const validItems = ['textSize', 'textDecoration'];
 
 function createMenuItem(item: string) {
 	return MENU_BAR_ITEMS[item];
