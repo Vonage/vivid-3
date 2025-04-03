@@ -231,7 +231,7 @@ describe('vwc-calendar', () => {
 	describe('Stick Mode', () => {
 		it(`should add class "sticky-*stick-mode*" [role="grid"]]`, async () => {
 			const stickyMode = 'all';
-			(element as any).stickyMode = stickyMode;
+			element.stickyMode = stickyMode;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(

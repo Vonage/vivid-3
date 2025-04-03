@@ -10,19 +10,15 @@ import { Connotation } from '../enums';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { getDirection } from '../../shared/foundation/utilities/direction';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { MenuItemRole } from './menu-item-role';
-
-export enum CheckAppearance {
-	Normal = 'normal',
-	TickOnly = 'tick-only',
-}
 
 /**
  * Types of fab connotation.
  *
  * @public
  */
-export type MenuItemConnotation = Extract<
+export type MenuItemConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.CTA | Connotation.Accent
 >;
@@ -254,7 +250,9 @@ export class MenuItem extends VividElement {
 	 * @remarks
 	 * HTML Attribute: check-appearance
 	 */
-	@attr({ attribute: 'check-appearance' }) checkedAppearance?: CheckAppearance;
+	@attr({ attribute: 'check-appearance' }) checkedAppearance?:
+		| 'normal'
+		| 'tick-only';
 
 	/**
 	 *
