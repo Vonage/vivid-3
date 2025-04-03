@@ -38,7 +38,7 @@
 		"prosemirror-state": "^1.4.3",
 		"prosemirror-transform": "^1.10.3",
 		"prosemirror-view": "^1.38.0",
-		"ramda": "^0.28.0",
+		"ramda": "^0.30.0",
 		"regenerator-runtime": "^0.13.11",
 		"tslib": "^2.8.1",
 		"uuid": "^11.1.0",
