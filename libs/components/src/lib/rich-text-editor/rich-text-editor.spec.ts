@@ -490,26 +490,42 @@ describe('vwc-rich-text-editor', () => {
 
 			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
 		});
-		
-		it('should focus on the editable after a selection', async () => {
+
+		it('should focus on the editable after a textSize selection', async () => {
 			const newTextSize = 'title';
 			const menuBar = document.createElement('vwc-menubar');
 			menuBar.slot = 'menu-bar';
 			element.appendChild(menuBar);
 			await elementUpdated(element);
-
+			vi.useFakeTimers();
 			menuBar.dispatchEvent(
-				new CustomEvent('text-size-selected', { detail: newTextSize })
+				new CustomEvent('text-decoration-selected', { detail: newTextSize })
 			);
-
+			await vi.advanceTimersToNextTimerAsync();
+			vi.useRealTimers();
+			
 			expect(document.activeElement).toBe(element);
 			expect(element.shadowRoot?.activeElement).toBe(getOutputElement());
 		});
 
-		it('should keep the selection after decoration change', async () => {
+		it('should async focus on the editable after a textDecoration selection', async () => {
 			
-		});
+			const newTextDecoration = 'bold';
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
 
-		
+			vi.useFakeTimers();
+			menuBar.dispatchEvent(
+				new CustomEvent('text-decoration-selected', { detail: newTextDecoration })
+			);
+
+			await vi.advanceTimersToNextTimerAsync();
+			vi.useRealTimers();
+			expect(document.activeElement).toBe(element);
+			expect(element.shadowRoot?.activeElement).toBe(getOutputElement());
+			vi.useRealTimers();
+		});
 	});
 });
