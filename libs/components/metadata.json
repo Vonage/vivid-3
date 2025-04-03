@@ -5759,6 +5759,7 @@
 			],
 			"vueModels": [],
 			"methods": [
+				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",
