@@ -1,5 +1,4 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
@@ -59,7 +58,9 @@ export type SplitButtonSize = ExtractFromEnum<
  * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
  * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
  */
-export class SplitButton extends DelegatesAria(VividElement) {
+export class SplitButton extends AffixIcon(
+	Localized(DelegatesAria(VividElement))
+) {
 	/**
 	 * Action HTML button element
 	 *
@@ -128,15 +129,6 @@ export class SplitButton extends DelegatesAria(VividElement) {
 	@attr label?: string;
 
 	/**
-	 * Indicates the split button's icon.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon
-	 */
-	@attr icon?: string;
-
-	/**
 	 * Indicates the split button's icon indicator.
 	 *
 	 * @public
@@ -167,6 +159,3 @@ export class SplitButton extends DelegatesAria(VividElement) {
 		| string
 		| null = null;
 }
-
-export interface SplitButton extends AffixIcon, Localized {}
-applyMixins(SplitButton, AffixIcon, Localized);

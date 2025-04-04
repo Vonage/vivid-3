@@ -1,6 +1,5 @@
 import { html } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { TextAnchor } from '../text-anchor/text-anchor';
 
 /**
@@ -12,11 +11,8 @@ import { TextAnchor } from '../text-anchor/text-anchor';
  * @slot meta - A slot to add additional content to the nav item.
  * @slot icon - Add an icon to the component.
  */
-export class NavItem extends TextAnchor {
+export class NavItem extends AffixIcon(TextAnchor) {
 	override getBodyTemplate() {
 		return html<NavItem>`<slot name="meta"></slot>`;
 	}
 }
-
-export interface NavItem extends AffixIcon {}
-applyMixins(NavItem, AffixIcon);

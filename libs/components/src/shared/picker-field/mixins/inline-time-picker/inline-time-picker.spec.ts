@@ -1,5 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { TrappedFocus } from '../../../patterns';
+import * as TrappedFocus from '../../../patterns/trapped-focus';
 import { InlineTimePicker } from './inline-time-picker';
 import '.';
 
@@ -607,37 +607,38 @@ describe('vwc-inline-time-picker', () => {
 			});
 
 			describe('focus trap support', () => {
-				const originalIgnoreEvent = TrappedFocus.ignoreEvent;
 				beforeEach(() => {
-					TrappedFocus.ignoreEvent = vi.fn();
+					vi.spyOn(TrappedFocus, 'ignoreEventInFocusTraps');
 				});
 				afterEach(() => {
-					TrappedFocus.ignoreEvent = originalIgnoreEvent;
+					vi.restoreAllMocks();
 				});
 
-				it('should call focus trap ignoreEvent on tab keydown when focused on non-terminal picker element', () => {
+				it('should call focus trap ignoreEventInFocusTraps on tab keydown when focused on non-terminal picker element', () => {
 					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
 
 					const event = pressKey('Tab');
 
-					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledTimes(1);
-					expect(TrappedFocus.ignoreEvent).toHaveBeenCalledWith(event);
+					expect(TrappedFocus.ignoreEventInFocusTraps).toHaveBeenCalledTimes(1);
+					expect(TrappedFocus.ignoreEventInFocusTraps).toHaveBeenCalledWith(
+						event
+					);
 				});
 
-				it('should prevent call to focus trap ignoreEvent on shift + tab keydown when focused on first picker element', () => {
+				it('should prevent call to focus trap ignoreEventInFocusTraps on shift + tab keydown when focused on first picker element', () => {
 					(element.shadowRoot!.querySelector('#hours') as HTMLElement).focus();
 					pressKey('Tab', { shiftKey: true });
 
-					expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
+					expect(TrappedFocus.ignoreEventInFocusTraps).not.toHaveBeenCalled();
 				});
 
-				it('should prevent call to focus trap ignoreEvent on tab keydown when focused on last picker element', () => {
+				it('should prevent call to focus trap ignoreEventInFocusTraps on tab keydown when focused on last picker element', () => {
 					(
 						element.shadowRoot!.querySelector('#minutes') as HTMLElement
 					).focus();
 					pressKey('Tab');
 
-					expect(TrappedFocus.ignoreEvent).not.toHaveBeenCalled();
+					expect(TrappedFocus.ignoreEventInFocusTraps).not.toHaveBeenCalled();
 				});
 			});
 		});
