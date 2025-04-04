@@ -28,6 +28,25 @@ test('should show the component', async ({ page }: { page: Page }) => {
 <vwc-radio label="3" value="3"></vwc-radio>
 </vwc-radio-group>
 
+<vwc-radio-group label="Pick a number" name="number" helper-text="Helper text">
+<vwc-radio label="1" value="1"></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
+
+<vwc-radio-group label="Pick a number" name="number">
+<vwc-radio label="1" value="1"></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+<div slot="helper-text">Slotted helper text</div>
+</vwc-radio-group>
+
+<vwc-radio-group label="Pick a number" name="number" error-text="Error text">
+<vwc-radio label="1" value="1"></vwc-radio>
+<vwc-radio label="2" value="2"></vwc-radio>
+<vwc-radio label="3" value="3"></vwc-radio>
+</vwc-radio-group>
+
 <vwc-radio-group label="Pick a number" name="number" disabled>
 <vwc-radio label="1" value="1" checked></vwc-radio>
 <vwc-radio label="2" value="2"></vwc-radio>

@@ -20,9 +20,9 @@ Use the `label` to set the **Radio Group** label.
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number">
-	<vwc-radio label="number one" value="1"></vwc-radio>
-	<vwc-radio label="number two" value="2"></vwc-radio>
-	<vwc-radio label="number three" value="3"></vwc-radio>
+	<vwc-radio label="Number one" value="1"></vwc-radio>
+	<vwc-radio label="Number two" value="2"></vwc-radio>
+	<vwc-radio label="Number three" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
@@ -43,9 +43,9 @@ To add HTML to the helper text, use the [helper-text slot](/components/radio-gro
 	label="Pick a number"
 	name="number"
 >
-	<vwc-radio label="number one" value="1"></vwc-radio>
-	<vwc-radio label="number two" value="2"></vwc-radio>
-	<vwc-radio label="number three" value="3"></vwc-radio>
+	<vwc-radio label="Number one" value="1"></vwc-radio>
+	<vwc-radio label="Number two" value="2"></vwc-radio>
+	<vwc-radio label="Number three" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
@@ -59,9 +59,9 @@ The `error-text` attribute provides a custom error message.
 	label="Pick a number"
 	name="number"
 >
-	<vwc-radio label="number one" value="1"></vwc-radio>
-	<vwc-radio label="number two" value="2"></vwc-radio>
-	<vwc-radio label="number three" value="3"></vwc-radio>
+	<vwc-radio label="Number one" value="1"></vwc-radio>
+	<vwc-radio label="Number two" value="2"></vwc-radio>
+	<vwc-radio label="Number three" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
 
