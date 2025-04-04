@@ -10,6 +10,8 @@ import { wrappedComponentName } from './name';
 import { fetchIconsManifest } from '../common/icons';
 import { makeImportedTypesResolver } from '../common/importedTypes';
 import { TypeResolver } from '../common/types';
+import { renderComponentTypes } from './renderComponentTypes';
+import renderTypes from './renderTypes';
 
 const LibraryGeneratedFolder = '../vue-wrappers/src/generated';
 
@@ -32,6 +34,14 @@ function generateComponentFor(
 		),
 		renderComponent(component, importedTypesResolver, true)
 	);
+
+	fs.writeFileSync(
+		path.resolve(
+			path.join(ComponentsFolder, `${wrappedComponentName(component)}.types.ts`)
+		),
+		renderComponentTypes(component)
+	);
+
 	// eslint-disable-next-line no-console
 	console.log(`${wrappedComponentName(component)} generated.`);
 }
@@ -48,10 +58,16 @@ export async function generateVueWrappers(metadata: Metadata) {
 		generateComponentFor(component, importedTypesResolver);
 	}
 
-	// auto-generate index file for folder
+	// auto-generate index file for components
 	fs.writeFileSync(
 		path.join(ComponentsFolder, 'index.ts'),
 		renderIndex(metadata.componentDefs)
+	);
+
+	// auto-generate types
+	fs.writeFileSync(
+		path.join(LibraryGeneratedFolder, 'types.ts'),
+		renderTypes(metadata.componentDefs)
 	);
 
 	formatFiles(`${LibraryGeneratedFolder}/*`);

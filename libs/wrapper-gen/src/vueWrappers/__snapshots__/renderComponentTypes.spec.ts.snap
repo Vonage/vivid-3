@@ -1,0 +1,106 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderComponentTypes > should render a type definitions file 1`] = `
+"
+import type { VwcExampleComponentElement } from '@vonage/vivid';
+import type { IconId } from '../icons';
+
+export interface VExampleComponentEvents {
+	
+				/**
+ * This is an example event
+ */
+				'example-event': Event & {
+			/**
+			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
+			 */
+			target: VwcExampleComponentElement,
+			currentTarget: VwcExampleComponentElement
+		},
+
+				
+				'input': Event & {
+			/**
+			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
+			 */
+			target: VwcExampleComponentElement,
+			currentTarget: VwcExampleComponentElement
+		},
+
+				
+				'input:start': CustomEvent<{a: string | number}> & {
+			/**
+			 * @deprecated Target may not refer to component in some cases. Use currentTarget instead.
+			 */
+			target: VwcExampleComponentElement,
+			currentTarget: VwcExampleComponentElement
+		},
+
+				/**
+ * Fires when the modelValue value changes
+ */
+				'update:modelValue': string,
+
+				/**
+ * Fires when the sameEvent value changes
+ */
+				'update:sameEvent': string,
+
+				/**
+ * Fires when the start value changes
+ */
+				'update:start': string
+}
+
+export interface VExampleComponentProps {
+	/**
+ * This is an example prop
+ */
+        exampleProp?: string,
+/**
+ * This is an example prop
+ */
+        sameEvent?: string,
+
+        typeUnion?: string | number,
+
+        iconType?: IconId,
+
+        value?: string,
+
+        modelValue?: string,
+
+        start?: string,
+
+        forcedDomProp?: string | HTMLElement,
+
+        booleanProp?: boolean
+	
+				/**
+ * This is an example event
+ */
+				'onExampleEvent'?: (event: VExampleComponentEvents['example-event']) => void,
+
+				
+				'onInput'?: (event: VExampleComponentEvents['input']) => void,
+
+				
+				'onInput:start'?: (event: VExampleComponentEvents['input:start']) => void,
+
+				/**
+ * Fires when the modelValue value changes
+ */
+				'onUpdate:modelValue'?: (event: VExampleComponentEvents['update:modelValue']) => void,
+
+				/**
+ * Fires when the sameEvent value changes
+ */
+				'onUpdate:sameEvent'?: (event: VExampleComponentEvents['update:sameEvent']) => void,
+
+				/**
+ * Fires when the start value changes
+ */
+				'onUpdate:start'?: (event: VExampleComponentEvents['update:start']) => void
+}
+"
+`;

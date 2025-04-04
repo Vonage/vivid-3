@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderTypes > should render a files exporting all component types 1`] = `
+"
+import type { VExampleComponent } from './components';
+import type { VExampleComponentProps, VExampleComponentEvents } from './components/VExampleComponent.types';
+import type { VExampleComponent } from './components';
+import type { VExampleComponentProps, VExampleComponentEvents } from './components/VExampleComponent.types';
+import type { ComponentSlots } from '../utils/types';
+
+export type VProps = {
+	VExampleComponent: VExampleComponentProps;
+	VExampleComponent: VExampleComponentProps;
+};
+
+export type VEvents = {
+	VExampleComponent: VExampleComponentEvents;
+	VExampleComponent: VExampleComponentEvents;
+};
+
+export type VSlots = {
+	VExampleComponent: ComponentSlots<typeof VExampleComponent>;
+	VExampleComponent: ComponentSlots<typeof VExampleComponent>;
+};
+"
+`;

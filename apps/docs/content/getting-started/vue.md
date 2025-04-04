@@ -349,6 +349,17 @@ Vivid Vue will automatically wrap text nodes in the necessary `<span>` element w
 </VBanner>
 ```
 
+### Forwarding Slots
+
+You can forward slots from your component to the Vivid component:
+
+```html
+<VAccordionItem>
+	<slot></slot>
+	<template #icon><slot name="icon"></slot></template>
+</VAccordionItem>
+```
+
 ### Using Events
 
 When using event listeners, `$event` will refer to native event with improved type definitions.
@@ -357,10 +368,23 @@ To access the web component itself, use `$event.currentTarget`. Avoid using `tar
 
 ```html
 <template>
-	<VPagination
-		@pagination-change="onPageChange($event.details.selectedIndex)"
-	/>
+	<VPagination @pagination-change="onPageChange($event.detail.selectedIndex)" />
 	<VTag @selected-change="onSelectedChange($event.currentTarget.selected)" />
+</template>
+```
+
+You can also get the type of each event from `VEvents`.
+
+```html
+<script setup lang="ts">
+	import { VPagination, type VEvents } from '@vonage/vivid-vue';
+
+	const onPageChange = (event: VEvents['VPagination']['pagination-change']) => {
+		console.log('Selected index:', event.detail.selectedIndex);
+	};
+</script>
+<template>
+	<VPagination @pagination-change="onPageChange" />
 </template>
 ```
 
@@ -413,7 +437,9 @@ audioPlayer.value?.play();
 
 #### Accessing the Web Component
 
-The web component element itself is available as `element` on the instance. You should use `element` instead of Vue's built-in `$el` because it has correct type definitions.
+The web component element itself is available as `element` on the instance.
+
+Note: While the built-in `$el` can also be used to access the web component, `element` will have the appropriate type.
 
 ```ts
 if (audioPlayer.value?.element?.paused) {
@@ -421,7 +447,7 @@ if (audioPlayer.value?.element?.paused) {
 }
 ```
 
-You can import the type of the web component itself from the `@vonage/vivid` library:
+You can also import the type of the web component itself from the `@vonage/vivid` library:
 
 ```ts
 import type { VwcAudioPlayerElement } from '@vonage/vivid';
@@ -466,33 +492,42 @@ If you are using Vue Router and want to perform client-side navigation, wrap the
 </RouterLink>
 ```
 
-### Forwarding Slots
+### Types
 
-Forwarding slots from your component to the Vivid component works as expected.
+Vivid Vue comes with full type definitions. If you are using VSCode, make sure to install the [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension to get the best experience in your IDE.
 
-```html
-<VAccordionItem>
-	<slot></slot>
-	<template #icon><slot name="icon"></slot></template>
-</VAccordionItem>
+Additionally, the `VProps`, `VEvents` and `VSlots` types allow you to access the typings for each component.
+
+For example, to get the type of the `appearance` prop of the `VButton` component:
+
+```ts
+import type { VProps } from '@vonage/vivid-vue';
+
+defineProps<{
+	buttonAppearance: VProps['VButton']['appearance'];
+}>();
 ```
 
-To forward all slots automatically, you can iterate over `$slots`.
+You can use this to create a component that forwards all props, events and slots to a Vivid component while maintaining type safety (requires Vue 3.3+).
 
 ```html
-<VAccordionItem>
-	<template v-for="(_, name) in $slots" v-slot:[name]>
-		<slot :name="name" />
-	</template>
-</VAccordionItem>
+<script setup lang="ts">
+	import { VTextField, type VProps, type VSlots } from '@vonage/vivid-vue';
+
+	const props = withDefaults(defineProps<VProps['VTextField']>(), {
+		label: 'Default label',
+		shape: 'pill',
+	});
+	const slots = defineSlots<VSlots['VTextField']>();
+</script>
+<template>
+	<VTextField v-bind="props">
+		<template v-for="(_, name) in slots" v-slot:[name]>
+			<slot :name="name" />
+		</template>
+	</VTextField>
+</template>
 ```
-
-## Auto-Complete
-
-Vivid Vue supports auto-complete for components, props, slots, events and more in popular IDEs.
-
-- **IntelliJ IDEs (WebStorm, PhpStorm, etc.):** Supported out of the box.
-- **VSCode:** Install the [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension.
 
 ## Examples
 
