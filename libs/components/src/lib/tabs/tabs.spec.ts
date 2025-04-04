@@ -1,9 +1,9 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { MockInstance } from 'vitest';
-import { Connotation, TabsGutters } from '../enums';
+import { Connotation } from '../enums';
 import type { Tab } from '../tab/tab';
 import { TabPanel } from '../tab-panel/tab-panel';
-import { Tabs } from './tabs';
+import { Tabs, TabsGutters } from './tabs';
 import '.';
 
 const COMPONENT_TAG = 'vwc-tabs';
