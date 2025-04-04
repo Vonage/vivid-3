@@ -1734,7 +1734,7 @@
 					"name": "modelValue",
 					"propName": "checked",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).checked"
+					"valueMapping": "event.currentTarget.checked"
 				}
 			],
 			"methods": [
@@ -1926,7 +1926,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -2412,7 +2412,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [],
@@ -2582,13 +2582,13 @@
 					"name": "end",
 					"propName": "end",
 					"eventNames": ["input:end"],
-					"valueMapping": "(event.target as any).end"
+					"valueMapping": "event.currentTarget.end"
 				},
 				{
 					"name": "start",
 					"propName": "start",
 					"eventNames": ["input:start"],
-					"valueMapping": "(event.target as any).start"
+					"valueMapping": "event.currentTarget.start"
 				}
 			],
 			"methods": [],
@@ -2769,7 +2769,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [],
@@ -2926,7 +2926,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as any).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -3086,7 +3086,7 @@
 					"name": "open",
 					"propName": "open",
 					"eventNames": ["open", "close"],
-					"valueMapping": "(event.target as any).open"
+					"valueMapping": "event.currentTarget.open"
 				}
 			],
 			"methods": [
@@ -4182,7 +4182,7 @@
 					"name": "modelValue",
 					"propName": "checked",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).checked"
+					"valueMapping": "event.currentTarget.checked"
 				}
 			],
 			"methods": [],
@@ -4800,7 +4800,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -4888,6 +4888,13 @@
 					"type": "string",
 					"attributeName": "label",
 					"propertyName": "_label"
+				},
+				{
+					"name": "matchedText",
+					"description": "Text to highlighted as matching a search query.",
+					"type": "string",
+					"attributeName": "matched-text",
+					"propertyName": "matchedText"
 				},
 				{
 					"name": "selected",
@@ -5400,6 +5407,20 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"description": "Error message to display when the radio group is in an error state.",
+					"type": "string",
+					"attributeName": "error-text",
+					"propertyName": "errorText"
+				},
+				{
+					"name": "helperText",
+					"description": "Helper text to display when the radio group field needs extra explanation.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "label",
 					"description": "Indicates the group's label.",
 					"type": "string",
@@ -5477,11 +5498,17 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [
+				{ "name": "default", "description": "Default slot." },
+				{
+					"name": "helper-text",
+					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
+				}
+			]
 		},
 		{
 			"name": "range-slider",
@@ -5678,13 +5705,13 @@
 					"name": "end",
 					"propName": "end",
 					"eventNames": ["input:end"],
-					"valueMapping": "(event.target as any).end"
+					"valueMapping": "event.currentTarget.end"
 				},
 				{
 					"name": "start",
 					"propName": "start",
 					"eventNames": ["input:start"],
-					"valueMapping": "(event.target as any).start"
+					"valueMapping": "event.currentTarget.start"
 				}
 			],
 			"methods": [
@@ -5756,6 +5783,11 @@
 				{
 					"name": "selectionStartChanged",
 					"args": [],
+					"returnType": "unknown"
+				},
+				{
+					"name": "setSelectionDecoration",
+					"args": [{ "name": "decoration", "type": "string" }],
 					"returnType": "unknown"
 				},
 				{
@@ -5848,6 +5880,13 @@
 					"attributeName": "label"
 				},
 				{
+					"name": "loading",
+					"description": "Whether the component is in a loading state.",
+					"type": "boolean",
+					"attributeName": "loading",
+					"propertyName": "loading"
+				},
+				{
 					"name": "maxLines",
 					"type": "number",
 					"attributeName": "max-lines",
@@ -5870,6 +5909,12 @@
 					"type": "boolean",
 					"attributeName": "open",
 					"propertyName": "open"
+				},
+				{
+					"name": "optionFilter",
+					"description": "Function to filter the options to display.",
+					"type": "any",
+					"propertyName": "optionFilter"
 				},
 				{
 					"name": "placeholder",
@@ -5944,6 +5989,11 @@
 					"name": "keyup",
 					"description": "Fires when a key is released.",
 					"type": "KeyboardEvent"
+				},
+				{
+					"name": "search-text-change",
+					"description": "Fired when the search text changes",
+					"type": "CustomEvent<undefined>"
 				}
 			],
 			"vueModels": [
@@ -5951,13 +6001,13 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				},
 				{
 					"name": "values",
 					"propName": "values",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as any).values"
+					"valueMapping": "event.currentTarget.values"
 				}
 			],
 			"methods": [],
@@ -5970,6 +6020,10 @@
 				{
 					"name": "icon",
 					"description": "Slot to add an icon to the control."
+				},
+				{
+					"name": "loading-options",
+					"description": "Message that appears there are no options to display and the component is in a loading state."
 				},
 				{
 					"name": "meta",
@@ -6158,7 +6212,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -6556,7 +6610,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -6833,7 +6887,7 @@
 					"name": "modelValue",
 					"propName": "checked",
 					"eventNames": ["change"],
-					"valueMapping": "(event.target as HTMLInputElement).checked"
+					"valueMapping": "event.currentTarget.checked"
 				}
 			],
 			"methods": [],
@@ -7509,7 +7563,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -7759,7 +7813,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [
@@ -7934,7 +7988,7 @@
 					"name": "modelValue",
 					"propName": "value",
 					"eventNames": ["input"],
-					"valueMapping": "(event.target as HTMLInputElement).value"
+					"valueMapping": "event.currentTarget.value"
 				}
 			],
 			"methods": [],
