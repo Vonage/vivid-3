@@ -2,28 +2,31 @@ import { html } from '@microsoft/fast-element';
 import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { RichTextEditor, RichTextEditorTextSizes } from './rich-text-editor';
+import { RichTextEditor, RichTextEditorTextBlocks } from './rich-text-editor';
 
 const getClasses = (_: RichTextEditor) => classNames('control');
 
 const VALID_MENU_ELEMEMENT_SUFFIX = 'menubar';
 
-function textSizeSelectedHandler(
-	this: RichTextEditor,
-	event: CustomEvent<string>
-) {
-	this.setTextSize(event.detail as RichTextEditorTextSizes);
+const menuParent = (target: EventTarget | null) =>
+	(target as HTMLElement).parentElement as RichTextEditor;
+
+function textBlockSelectedHandler(event: CustomEvent<string>) {
+	menuParent(event.target).setTextBlock(
+		event.detail as RichTextEditorTextBlocks
+	);
+	menuParent(event.target).focus();
 }
 
-function selectionDecorationSelectedHandler(
-	this: RichTextEditor,
-	event: CustomEvent<string>
-) {
-	this.setSelectionDecoration(event.detail as RichTextEditorTextSizes);
+function selectionDecorationSelectedHandler(event: CustomEvent<string>) {
+	menuParent(event.target).setSelectionDecoration(
+		event.detail as RichTextEditorTextBlocks
+	);
+	menuParent(event.target).focus();
 }
 
 function handleMenuBarSlotChange(
-	richTextEditor: RichTextEditor,
+	_: RichTextEditor,
 	{ event }: ExecutionContext
 ) {
 	const slot = event.target as HTMLSlotElement;
@@ -40,12 +43,12 @@ function handleMenuBarSlotChange(
 	});
 	if (menuBar) {
 		menuBar.addEventListener(
-			'text-size-selected',
-			textSizeSelectedHandler.bind(richTextEditor) as EventListener
+			'text-block-selected',
+			textBlockSelectedHandler as EventListener
 		);
 		menuBar.addEventListener(
 			'text-decoration-selected',
-			selectionDecorationSelectedHandler.bind(richTextEditor) as EventListener
+			selectionDecorationSelectedHandler as EventListener
 		);
 	}
 }
