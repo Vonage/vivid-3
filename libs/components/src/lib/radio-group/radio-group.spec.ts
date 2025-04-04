@@ -9,6 +9,7 @@ import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
+import { get } from 'http';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
@@ -87,7 +88,7 @@ describe('vwc-radio-group', () => {
 			return element.shadowRoot?.getElementById('helper-text');
 		}
 
-		it('should display the helper text when given some', async () => {
+		it('should display the helper text when set', async () => {
 			element.helperText = 'test helper text';
 			await elementUpdated(element);
 			expect(getHelperText()?.textContent?.trim()).toBe(element.helperText);
@@ -115,6 +116,21 @@ describe('vwc-radio-group', () => {
 			element.errorText = '';
 			await elementUpdated(element);
 			expect(getHelperText()?.textContent?.trim()).toBe(element.helperText);
+		});
+
+		it('should display the helper text when passed to the helper-text slot', async () => {
+			const slotted = document.createElement('div');
+			slotted.slot = 'helper-text';
+			slotted.textContent = 'slotted';
+			element.appendChild(slotted);
+			await elementUpdated(element);
+
+			const slot = getHelperText()!.querySelector(
+				'slot'
+			) as HTMLSlotElement | null;
+			const slotText = slot!.assignedNodes()[0].textContent!.trim();
+
+			expect(slotText).toBe('slotted');
 		});
 	});
 
