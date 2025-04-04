@@ -1,13 +1,14 @@
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import type { Appearance, Connotation } from '../enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of calendar event connotation.
  *
  * @public
  */
-export type CalendarEventConnotation = Extract<
+export type CalendarEventConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.CTA
@@ -23,7 +24,7 @@ export type CalendarEventConnotation = Extract<
  *
  * @public
  */
-export type CalendarEventAppearance = Extract<
+export type CalendarEventAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Filled | Appearance.Duotone | Appearance.Subtle
 >;

@@ -37,6 +37,7 @@ describe('vwc-rich-text-editor', () => {
 	let editorFacadeSelectSpy: MockInstance<
 		(position?: RichTextEditorSelection) => RichTextEditorSelection
 	>;
+
 	let element: RichTextEditor;
 
 	beforeEach(async () => {
@@ -279,7 +280,7 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
-	describe('setTextSize', () => {
+	describe('setTextSize()', () => {
 		it('should gracefully fail with a warning when given an invalid size', async () => {
 			const consoleWarnSpy = vi.spyOn(console, 'warn');
 
@@ -329,6 +330,27 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 
 			expect(element.value).toEqual('<p>123456789</p><p>abcdefghi</p>');
+		});
+	});
+
+	describe('setSelectionDecoration()', () => {
+		it('should gracefully fail with a warning when given an invalid decoration value', async () => {
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+			(element.setSelectionDecoration as any)('unsupported-decoration');
+			expect(consoleWarnSpy).toHaveBeenCalledWith(
+				'Invalid decoration: unsupported-decoration'
+			);
+		});
+
+		it('should call facade setSelectionDecoration with the decoration parameter', async () => {
+			const setSelectionDecorationSpy = vi.spyOn(
+				EditorFacade.prototype,
+				'setSelectionDecoration'
+			);
+			const decoration = 'bold';
+			element.setSelectionDecoration(decoration);
+			expect(setSelectionDecorationSpy).toHaveBeenCalledWith(decoration);
 		});
 	});
 
@@ -452,6 +474,23 @@ describe('vwc-rich-text-editor', () => {
 			);
 
 			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+		});
+
+		it('should change text decoration on `text-decoration-selected` event from menubar', async () => {
+			const newTextDecoration = 'bold';
+			const setTextDecorationSpy = vi.spyOn(element, 'setSelectionDecoration');
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
+
+			menuBar.dispatchEvent(
+				new CustomEvent('text-decoration-selected', {
+					detail: newTextDecoration,
+				})
+			);
+
+			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
 		});
 	});
 });

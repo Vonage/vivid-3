@@ -1,15 +1,18 @@
 import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of accordion size.
  *
  * @public
  */
-export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type AccordionItemSize = ExtractFromEnum<
+	Size,
+	Size.Condensed | Size.Normal
+>;
 
 /**
  * @public
@@ -18,7 +21,7 @@ export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
  * @slot icon - Add an icon to the component.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the button is invoked
  */
-export class AccordionItem extends VividElement {
+export class AccordionItem extends AffixIconWithTrailing(VividElement) {
 	/**
 	 * Configures the {@link https://www.w3.org/TR/wai-aria-1.1/#aria-level | level} of the
 	 * heading element.
@@ -108,6 +111,3 @@ export class AccordionItem extends VividElement {
 		this.$emit('change');
 	};
 }
-
-export interface AccordionItem extends AffixIconWithTrailing {}
-applyMixins(AccordionItem, AffixIconWithTrailing);

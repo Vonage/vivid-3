@@ -15,7 +15,6 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Connotation } from '../enums';
 import {
 	type FormElement,
@@ -52,7 +51,7 @@ export type ThumbId = 'start' | 'end';
  * @vueModel end end input:end `event.currentTarget.end`
  */
 @formElements
-export class RangeSlider extends FormAssociatedRangeSlider {
+export class RangeSlider extends Localized(FormAssociatedRangeSlider) {
 	// --- Start & end values ---
 
 	#isInternalValueUpdate = false;
@@ -711,5 +710,4 @@ export class RangeSlider extends FormAssociatedRangeSlider {
 	};
 }
 
-export interface RangeSlider extends FormElement, Localized {}
-applyMixins(RangeSlider, Localized);
+export interface RangeSlider extends FormElement {}

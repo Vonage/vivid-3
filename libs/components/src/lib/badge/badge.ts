@@ -1,15 +1,15 @@
 import { attr } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of badge connotation.
  *
  * @public
  */
-export type BadgeConnotation = Extract<
+export type BadgeConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.CTA
@@ -24,7 +24,7 @@ export type BadgeConnotation = Extract<
  *
  * @public
  */
-export type BadgeAppearance = Extract<
+export type BadgeAppearance = ExtractFromEnum<
 	Appearance,
 	| Appearance.Filled
 	| Appearance.Duotone
@@ -37,14 +37,14 @@ export type BadgeAppearance = Extract<
  *
  * @public
  */
-export type BadgeShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type BadgeShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * @public
  * @component badge
  * @slot icon - Add an icon to the component.
  */
-export class Badge extends VividElement {
+export class Badge extends AffixIconWithTrailing(VividElement) {
 	/**
 	 * The connotation the badge should have.
 	 *
@@ -81,6 +81,3 @@ export class Badge extends VividElement {
 	 */
 	@attr text?: string;
 }
-
-export interface Badge extends AffixIconWithTrailing {}
-applyMixins(Badge, AffixIconWithTrailing);

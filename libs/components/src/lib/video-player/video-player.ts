@@ -1,6 +1,5 @@
 import { attr } from '@microsoft/fast-element';
 import videojs from 'video.js';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
@@ -33,7 +32,7 @@ function appendProgressBarToStart(videoPlayer: any) {
  * @event {CustomEvent<undefined>} pause - Fired when the video is paused
  * @event {CustomEvent<undefined>} ended - Fired when the video is ended
  */
-export class VideoPlayer extends VividElement {
+export class VideoPlayer extends Localized(VividElement) {
 	/**
 	 * Reference to an image which is displayed before the video is played
 	 *
@@ -246,6 +245,3 @@ export class VideoPlayer extends VividElement {
 		}
 	}
 }
-
-export interface VideoPlayer extends Localized {}
-applyMixins(VideoPlayer, Localized);

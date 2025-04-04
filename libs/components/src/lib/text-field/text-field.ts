@@ -20,15 +20,16 @@ import { generateRandomId } from '../../shared/utils/randomId';
 import { Reflector } from '../../shared/utils/Reflector';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedTextField } from './text-field.form-associated';
 
-export type TextFieldAppearance = Extract<
+export type TextFieldAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
-export type TextFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type TextFieldShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
-export type TextFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type TextFieldSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
 
 /**
  * Text field sub-types
@@ -123,7 +124,9 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  */
 @errorText
 @formElements
-export class TextField extends DelegatesAria(FormAssociatedTextField) {
+export class TextField extends AffixIcon(
+	DelegatesAria(FormAssociatedTextField)
+) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -575,15 +578,13 @@ export class TextField extends DelegatesAria(FormAssociatedTextField) {
 }
 
 export interface TextField
-	extends AffixIcon,
-		ErrorText,
+	extends ErrorText,
 		FormElement,
 		FormElementCharCount,
 		FormElementHelperText,
 		FormElementSuccessText {}
 applyMixinsWithObservables(
 	TextField,
-	AffixIcon,
 	FormElementCharCount,
 	FormElementHelperText,
 	FormElementSuccessText

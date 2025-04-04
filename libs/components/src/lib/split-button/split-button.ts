@@ -1,17 +1,17 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of split button connotation.
  *
  * @public
  */
-export type SplitButtonConnotation = Extract<
+export type SplitButtonConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.Announcement
@@ -25,7 +25,7 @@ export type SplitButtonConnotation = Extract<
  *
  * @public
  */
-export type SplitButtonAppearance = Extract<
+export type SplitButtonAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Filled | Appearance.Outlined | Appearance.Ghost
 >;
@@ -35,14 +35,17 @@ export type SplitButtonAppearance = Extract<
  *
  * @public
  */
-export type SplitButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type SplitButtonShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
 
 /**
  * Types of split button size.
  *
  * @public
  */
-export type SplitButtonSize = Extract<
+export type SplitButtonSize = ExtractFromEnum<
 	Size,
 	Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded
 >;
@@ -55,7 +58,9 @@ export type SplitButtonSize = Extract<
  * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
  * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
  */
-export class SplitButton extends DelegatesAria(VividElement) {
+export class SplitButton extends AffixIcon(
+	Localized(DelegatesAria(VividElement))
+) {
 	/**
 	 * Action HTML button element
 	 *
@@ -124,15 +129,6 @@ export class SplitButton extends DelegatesAria(VividElement) {
 	@attr label?: string;
 
 	/**
-	 * Indicates the split button's icon.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: icon
-	 */
-	@attr icon?: string;
-
-	/**
 	 * Indicates the split button's icon indicator.
 	 *
 	 * @public
@@ -163,6 +159,3 @@ export class SplitButton extends DelegatesAria(VividElement) {
 		| string
 		| null = null;
 }
-
-export interface SplitButton extends AffixIcon, Localized {}
-applyMixins(SplitButton, AffixIcon, Localized);

@@ -15,6 +15,13 @@ function textSizeSelectedHandler(
 	this.setTextSize(event.detail as RichTextEditorTextSizes);
 }
 
+function selectionDecorationSelectedHandler(
+	this: RichTextEditor,
+	event: CustomEvent<string>
+) {
+	this.setSelectionDecoration(event.detail as RichTextEditorTextSizes);
+}
+
 function handleMenuBarSlotChange(
 	richTextEditor: RichTextEditor,
 	{ event }: ExecutionContext
@@ -25,13 +32,20 @@ function handleMenuBarSlotChange(
 		element.tagName.toLowerCase().endsWith(VALID_MENU_ELEMEMENT_SUFFIX)
 	);
 	assignedElements.forEach((element) => {
-		(element as HTMLElement).style.display =
-			element === menuBar ? 'block' : 'none';
+		if (element === menuBar) {
+			(element as HTMLElement).style.removeProperty('display');
+		} else {
+			(element as HTMLElement).style.display = 'none';
+		}
 	});
 	if (menuBar) {
 		menuBar.addEventListener(
 			'text-size-selected',
 			textSizeSelectedHandler.bind(richTextEditor) as EventListener
+		);
+		menuBar.addEventListener(
+			'text-decoration-selected',
+			selectionDecorationSelectedHandler.bind(richTextEditor) as EventListener
 		);
 	}
 }

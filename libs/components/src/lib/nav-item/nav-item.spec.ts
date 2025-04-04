@@ -75,7 +75,7 @@ describe('vwc-nav-item', () => {
 		it('should set the appearance class on the control', async function () {
 			const appearance = 'ghost-light';
 
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			expect(

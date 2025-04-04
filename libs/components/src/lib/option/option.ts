@@ -5,7 +5,6 @@ import {
 	volatile,
 } from '@microsoft/fast-element';
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
@@ -30,7 +29,7 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @component option
  * @slot icon - Slot to add an icon to the option.
  */
-export class ListboxOption extends VividElement {
+export class ListboxOption extends AffixIconWithTrailing(VividElement) {
 	/**
 	 * @internal
 	 */
@@ -300,6 +299,3 @@ export class ListboxOption extends VividElement {
 		this.proxy.disabled = this.disabled;
 	}
 }
-
-export interface ListboxOption extends AffixIconWithTrailing {}
-applyMixins(ListboxOption, AffixIconWithTrailing);

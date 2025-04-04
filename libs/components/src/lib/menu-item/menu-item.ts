@@ -7,22 +7,17 @@ import {
 import { AffixIcon } from '../../shared/patterns/affix';
 import { Menu } from '../menu/menu';
 import { Connotation } from '../enums';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { getDirection } from '../../shared/foundation/utilities/direction';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { MenuItemRole } from './menu-item-role';
-
-export enum CheckAppearance {
-	Normal = 'normal',
-	TickOnly = 'tick-only',
-}
 
 /**
  * Types of fab connotation.
  *
  * @public
  */
-export type MenuItemConnotation = Extract<
+export type MenuItemConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.CTA | Connotation.Accent
 >;
@@ -37,7 +32,7 @@ export type MenuItemConnotation = Extract<
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
  * @vueModel modelValue checked change `event.currentTarget.checked`
  */
-export class MenuItem extends VividElement {
+export class MenuItem extends AffixIcon(VividElement) {
 	/**
 	 * The disabled state of the element.
 	 *
@@ -254,7 +249,9 @@ export class MenuItem extends VividElement {
 	 * @remarks
 	 * HTML Attribute: check-appearance
 	 */
-	@attr({ attribute: 'check-appearance' }) checkedAppearance?: CheckAppearance;
+	@attr({ attribute: 'check-appearance' }) checkedAppearance?:
+		| 'normal'
+		| 'tick-only';
 
 	/**
 	 *
@@ -364,7 +361,3 @@ export class MenuItem extends VividElement {
 		this.dispatchEvent(mouseEvent);
 	}
 }
-
-export interface MenuItem extends AffixIcon {}
-
-applyMixins(MenuItem, AffixIcon);

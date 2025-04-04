@@ -1,5 +1,4 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -27,7 +26,7 @@ type DismissMethod = 'escape' | 'dismiss-button' | 'light-dismiss';
  * @event {CustomEvent<undefined>} cancel - The `cancel` event fires when the user requests to close the dialog. You can prevent the dialog from closing by calling `.preventDefault()` on the event.
  * @vueModel open open open,close `event.currentTarget.open`
  */
-export class Dialog extends DelegatesAria(VividElement) {
+export class Dialog extends Localized(DelegatesAria(VividElement)) {
 	/**
 	 * Indicates dialog's state
 	 *
@@ -295,6 +294,3 @@ export class Dialog extends DelegatesAria(VividElement) {
 	 */
 	@observable actionItemsSlottedContent?: HTMLElement[];
 }
-
-export interface Dialog extends Localized {}
-applyMixins(Dialog, Localized);

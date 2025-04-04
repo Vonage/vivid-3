@@ -13,6 +13,7 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
@@ -28,12 +29,12 @@ export type PopupPlacement = 'top' | 'bottom';
  *
  * @public
  */
-export type ComboboxAppearance = Extract<
+export type ComboboxAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
-export type ComboboxShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type ComboboxShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
+export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
 
 /**
  * @public
@@ -47,7 +48,7 @@ export type ComboboxSize = Extract<Size, Size.Condensed | Size.Normal>;
  */
 @errorText
 @formElements
-export class Combobox extends FormAssociatedCombobox {
+export class Combobox extends AffixIcon(FormAssociatedCombobox) {
 	/**
 	 * The internal value property.
 	 *
@@ -697,15 +698,13 @@ export class Combobox extends FormAssociatedCombobox {
 }
 
 export interface Combobox
-	extends AffixIcon,
-		FormElement,
+	extends FormElement,
 		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText,
 		FormElement {}
 applyMixinsWithObservables(
 	Combobox,
-	AffixIcon,
 	FormElementHelperText,
 	FormElementSuccessText
 );

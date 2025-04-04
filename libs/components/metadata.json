@@ -87,13 +87,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "id",
@@ -262,7 +264,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "The icon to display in the Alert. Takes precedence over the connotation's icon.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
@@ -607,13 +609,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "shape",
@@ -703,7 +707,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "removable",
@@ -1031,13 +1036,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -1711,7 +1718,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "initialValue",
@@ -3188,13 +3196,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -3912,7 +3922,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "role",
@@ -4070,7 +4081,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "label",
@@ -4187,7 +4199,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "ping",
@@ -4300,7 +4313,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				}
 			],
 			"events": [
@@ -4405,7 +4419,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "incrementButtonAriaLabel",
@@ -4632,13 +4647,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -5488,6 +5505,11 @@
 					"returnType": "unknown"
 				},
 				{
+					"name": "setSelectionDecoration",
+					"args": [{ "name": "decoration", "type": "string" }],
+					"returnType": "unknown"
+				},
+				{
 					"name": "setTextSize",
 					"args": [{ "name": "size", "type": "'title' | 'subtitle' | 'body'" }],
 					"returnType": "unknown"
@@ -5549,13 +5571,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -5773,13 +5797,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -6335,7 +6361,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Indicates the split button's icon.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
@@ -6579,13 +6605,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "label",
@@ -6844,7 +6872,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "label",
@@ -7258,7 +7287,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "initialValue",
@@ -7805,7 +7835,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "selected",

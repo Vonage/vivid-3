@@ -135,7 +135,7 @@ describe('vwc-fab', () => {
 	describe('fab size', function () {
 		it('sets correct internal size style', async () => {
 			const size = 'expanded';
-			(element as any).size = size;
+			element.size = size;
 			await elementUpdated(element);
 
 			const control = element.shadowRoot?.querySelector(
