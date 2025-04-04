@@ -425,11 +425,115 @@ describe('ProseMirrorFacade', () => {
 			const event = new KeyboardEvent('keydown', { key: 'Enter' });
 			getOutputElement(element).dispatchEvent(event);
 
-			// Verify the expected behavior for Enter key press
 			expect(facadeInstance.selection()).toEqual({
 				start: content.length + NEWLINE_POSITION_VALUE,
 				end: content.length + NEWLINE_POSITION_VALUE,
 			});
+		});
+	});
+
+	describe('setSelectionDecoration()', () => {
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		it('should throw if viewer is not initialized', async () => {
+			expect(() => facadeInstance.setSelectionDecoration('bold')).toThrowError(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+		it('should apply bold decoration to current selection when "bold" is sent', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('bold');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<strong>is is a</strong> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply italics decoration to current selection when "italics" is sent', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('italics');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<em>is is a</em> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should throw if used unsupported mark', async () => {
+			initViewer();
+			expect(() =>
+				facadeInstance.setSelectionDecoration('unSupportedMark')
+			).toThrowError('unSupportedMark is not a supported decoration');
+		});
+
+		it('should apply underline decoration to current selection when "underline" is sent', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('underline');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<u>is is a</u> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply strikethrough decoration to current selection when "strikethrough" is sent', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('strikethrough');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<s>is is a</s> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply monospace decoration to current selection when "monospace" is sent', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('monospace');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<tt>is is a</tt> pretty long text for a sample, but it should work</p>`
+			);
 		});
 	});
 });

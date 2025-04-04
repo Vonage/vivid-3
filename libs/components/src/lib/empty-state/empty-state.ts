@@ -1,13 +1,14 @@
 import { attr, observable } from '@microsoft/fast-element';
 import type { Connotation, IconDecoration } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of empty-state connotation.
  *
  * @public
  */
-export type EmptyStateConnotation = Extract<
+export type EmptyStateConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.CTA
@@ -22,7 +23,7 @@ export type EmptyStateConnotation = Extract<
  *
  * @public
  */
-export type EmptyStateIconDecoration = Extract<
+export type EmptyStateIconDecoration = ExtractFromEnum<
 	IconDecoration,
 	IconDecoration.Filled | IconDecoration.Outlined
 >;

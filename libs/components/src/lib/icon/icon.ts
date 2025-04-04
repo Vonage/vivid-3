@@ -7,6 +7,7 @@ import {
 import type { Connotation } from '../enums';
 import { numberConverter } from '../../shared/utils/numberConverter';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { PLACEHOLDER_ICON } from './icon.placeholder';
 
 // Start displaying placeholder if waiting more than this period of time
@@ -45,7 +46,7 @@ const resolveIcon = memoizeWith(
  *
  * @public
  */
-export type IconConnotation = Extract<
+export type IconConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.CTA

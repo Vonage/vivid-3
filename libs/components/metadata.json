@@ -5783,6 +5783,11 @@
 					"returnType": "unknown"
 				},
 				{
+					"name": "setSelectionDecoration",
+					"args": [{ "name": "decoration", "type": "string" }],
+					"returnType": "unknown"
+				},
+				{
 					"name": "setTextSize",
 					"args": [{ "name": "size", "type": "'title' | 'subtitle' | 'body'" }],
 					"returnType": "unknown"

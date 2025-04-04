@@ -227,15 +227,7 @@ export const renderComponent = (
 		})
 		.join(',');
 
-	const namedSlotsSource = componentDef.slots
-		.filter((slot) => slot.name !== 'default')
-		.map(
-			(slot) => `// @slot ${slot.name} ${slot.description ?? ''}
-      handleNamedSlot('${slot.name}', this.$slots['${slot.name}'])`
-		)
-		.join(',');
-
-	const slotsSrc = isVue3Stub
+	const slotsDeclarationSrc = isVue3Stub
 		? `slots: Object as SlotsType<${
 				componentDef.slots.length
 					? `{
@@ -251,8 +243,33 @@ export const renderComponent = (
 		  }>,`
 		: '';
 
-	if (namedSlotsSource)
-		imports.push({ name: 'handleNamedSlot', fromModule: '../../utils/slots' });
+	const renderNamedSlots = (syntax: 'vue2' | 'vue3') =>
+		componentDef.slots
+			.filter((slot) => slot.name !== 'default')
+			.map(
+				(slot) => `// @slot ${slot.name} ${slot.description ?? ''}
+      ${syntax === 'vue2' ? 'handleNamedSlotV2' : 'handleNamedSlotV3'}('${
+					slot.name
+				}', this.$slots['${slot.name}']${syntax === 'vue3' ? ' as any' : ''})`
+			)
+			.join(',');
+
+	const namedSlotsV2Src = renderNamedSlots('vue2');
+	const namedSlotsV3Src = renderNamedSlots('vue3');
+
+	if (namedSlotsV2Src) {
+		imports.push({
+			name: 'handleNamedSlotV2',
+			fromModule: '../../utils/slots',
+		});
+	}
+
+	if (namedSlotsV3Src) {
+		imports.push({
+			name: 'handleNamedSlotV3',
+			fromModule: '../../utils/slots',
+		});
+	}
 
 	const renderPropType = (type: TypeStr): string => {
 		const propTypes = vuePropTypes(importedTypesResolver(type));
@@ -341,7 +358,7 @@ export const renderComponent = (
             on: { ${eventsSrc} },
         }, [
             this.$slots.default,
-            ${namedSlotsSource}
+            ${namedSlotsV2Src}
         ]);
       }
       // @ts-ignore
@@ -352,7 +369,7 @@ export const renderComponent = (
       } as unknown as VNodeData, [
           // @ts-ignore
           this.$slots.default && this.$slots.default(),
-          ${namedSlotsSource}
+          ${namedSlotsV3Src}
       ]);
     `;
 
@@ -391,7 +408,7 @@ export default defineComponent({
   methods: {
   	${methodDefinitionsSrc}
 	},
-	${slotsSrc}
+	${slotsDeclarationSrc}
   setup(props, ctx) {
     const componentName = registerComponent('${componentDef.name}', ${
 		componentDef.registerFunctionName

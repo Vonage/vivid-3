@@ -2,13 +2,17 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import type { Size } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of accordion size.
  *
  * @public
  */
-export type AccordionItemSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type AccordionItemSize = ExtractFromEnum<
+	Size,
+	Size.Condensed | Size.Normal
+>;
 
 /**
  * @public

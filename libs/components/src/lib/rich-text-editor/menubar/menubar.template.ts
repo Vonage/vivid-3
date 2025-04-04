@@ -5,6 +5,8 @@ import type { VividElementDefinitionContext } from '../../../shared/design-syste
 import { Button } from '../../button/button';
 import { Menu } from '../../menu/menu';
 import { MenuItem } from '../../menu-item/menu-item';
+import { Divider } from '../../divider/divider';
+import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -16,6 +18,34 @@ function notifyMenuBarChange(
 	return true;
 }
 
+const TEXT_DECORATION_ITEMS = [
+	{
+		text: 'Bold',
+		icon: 'bold-line',
+		value: 'bold',
+	},
+	{
+		text: 'Italic',
+		icon: 'italic-line',
+		value: 'italics',
+	},
+	{
+		text: 'Underline',
+		icon: 'underline-line',
+		value: 'underline',
+	},
+	{
+		text: 'Strikethrough',
+		icon: 'strikethrough-line',
+		value: 'strikethrough',
+	},
+	{
+		text: 'Monospace',
+		icon: 'monospace-line',
+		value: 'monospace',
+	},
+];
+
 const MENU_BAR_ITEMS: {
 	[key: string]: (
 		context: VividElementDefinitionContext
@@ -25,21 +55,24 @@ const MENU_BAR_ITEMS: {
 		const buttonTag = context.tagFor(Button);
 		const menuTag = context.tagFor(Menu);
 		const menuItemTag = context.tagFor(MenuItem);
+		const tooltipTag = context.tagFor(Tooltip);
 		return html`
 			<${menuTag}
 				trigger="auto"
 				id="text-size"
-				aria-label="Menu example"
+				aria-label="Text Size"
 				placement="bottom-end"
 			>
-				<${buttonTag}
-					slot="anchor"
-					aria-label="Open menu"
-					size="super-condensed"
-					appearance="ghost-light"
-					shape="pill"
-					icon="text-size-line"
-				></${buttonTag}>
+				<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+					<${buttonTag}
+						slot="anchor"
+						aria-label="Open text size menu"
+						size="super-condensed"
+						appearance="ghost-light"
+						shape="pill"
+						icon="text-size-line"
+					></${buttonTag}>
+				</${tooltipTag}>
 				<${menuItemTag}
 					text="Title"
 					value="title"
@@ -70,6 +103,36 @@ const MENU_BAR_ITEMS: {
 			</${menuTag}>
 		`;
 	},
+	textDecoration: function (context) {
+		const buttonTag = context.tagFor(Button);
+		const dividerTag = context.tagFor(Divider);
+		const tooltipTag = context.tagFor(Tooltip);
+		return html`
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			${repeat(
+				(_) => TEXT_DECORATION_ITEMS,
+				html`
+					<${tooltipTag} text="${(x) => x.text}" placement="top">
+						<${buttonTag}
+							slot="anchor"
+							aria-label="${(x) => x.text}"
+							size="super-condensed"
+							appearance="ghost-light"
+							shape="pill"
+							icon="${(x) => x.icon}"
+							@click="${(x, c) =>
+								notifyMenuBarChange(
+									c.parentContext.parent,
+									'text-decoration-selected',
+									x.value
+								)}"')}"
+						></${buttonTag}>
+					</${tooltipTag}>
+				`
+			)}
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+		`;
+	},
 };
 
 const getClasses = (menuBar: MenuBar) =>
@@ -78,7 +141,7 @@ const getClasses = (menuBar: MenuBar) =>
 		getValidMenuItems(menuBar).length === 0,
 	]);
 
-const validItems = ['textSize'];
+const validItems = ['textSize', 'textDecoration'];
 
 function createMenuItem(item: string) {
 	return MENU_BAR_ITEMS[item];

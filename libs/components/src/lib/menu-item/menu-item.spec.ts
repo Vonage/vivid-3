@@ -8,7 +8,7 @@ import {
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import { Icon } from '../icon/icon';
-import { CheckAppearance, MenuItem } from './menu-item';
+import { MenuItem } from './menu-item';
 import { MenuItemRole } from './definition';
 
 const MENU_TAG = 'vwc-menu';
@@ -168,7 +168,7 @@ describe('vwc-menu-item', () => {
 		])(
 			'should set a "%s" icon when checked=%s and role is %s when check-appearance is tick-only',
 			async function (expectedIcon, checked, role) {
-				element.checkedAppearance = CheckAppearance.TickOnly;
+				element.checkedAppearance = 'tick-only';
 				element.checked = checked;
 				element.role = role;
 				await elementUpdated(element);

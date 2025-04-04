@@ -5,13 +5,14 @@ import { AffixIcon } from '../../shared/patterns/affix';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Anchor } from '../../shared/foundation/anchor/anchor';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of text anchor connotation.
  *
  * @public
  */
-export type TextAnchorConnotation = Extract<
+export type TextAnchorConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
@@ -21,7 +22,7 @@ export type TextAnchorConnotation = Extract<
  *
  * @public
  */
-export type TextAnchorAppearance = Extract<
+export type TextAnchorAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Ghost | Appearance.GhostLight
 >;

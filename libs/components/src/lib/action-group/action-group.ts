@@ -2,13 +2,14 @@ import { attr } from '@microsoft/fast-element';
 import type { Appearance, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of button appearance.
  *
  * @public
  */
-export type ActionGroupAppearance = Extract<
+export type ActionGroupAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
@@ -18,7 +19,10 @@ export type ActionGroupAppearance = Extract<
  *
  * @public
  */
-export type ActionGroupShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type ActionGroupShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
 
 /**
  * @public

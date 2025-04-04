@@ -2,13 +2,14 @@ import { attr } from '@microsoft/fast-element';
 import { AffixIcon } from '../../shared/patterns/affix';
 import type { Appearance, Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of tag connotation.
  *
  * @public
  */
-export type TagConnotation = Extract<
+export type TagConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
@@ -18,7 +19,7 @@ export type TagConnotation = Extract<
  *
  * @public
  */
-export type TagAppearance = Extract<
+export type TagAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Subtle | Appearance.Duotone
 >;
@@ -28,7 +29,7 @@ export type TagAppearance = Extract<
  *
  * @public
  */
-export type TagShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type TagShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * @public

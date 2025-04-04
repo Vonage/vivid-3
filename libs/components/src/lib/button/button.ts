@@ -2,13 +2,14 @@ import { attr } from '@microsoft/fast-element';
 import type { Appearance, Connotation, Shape, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividFoundationButton } from '../../shared/foundation/button/button.js';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of button connotation.
  *
  * @public
  */
-export type ButtonConnotation = Extract<
+export type ButtonConnotation = ExtractFromEnum<
 	Connotation,
 	| Connotation.Accent
 	| Connotation.Announcement
@@ -22,7 +23,7 @@ export type ButtonConnotation = Extract<
  *
  * @public
  */
-export type ButtonAppearance = Extract<
+export type ButtonAppearance = ExtractFromEnum<
 	Appearance,
 	| Appearance.Filled
 	| Appearance.Outlined
@@ -36,14 +37,14 @@ export type ButtonAppearance = Extract<
  *
  * @public
  */
-export type ButtonShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type ButtonShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
 /**
  * Types of button size.
  *
  * @public
  */
-export type ButtonSize = Extract<
+export type ButtonSize = ExtractFromEnum<
 	Size,
 	Size.SuperCondensed | Size.Condensed | Size.Normal | Size.Expanded
 >;

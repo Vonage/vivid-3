@@ -14,6 +14,7 @@ import {
 import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { Locale } from '../../shared/localization/Locale';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -21,7 +22,7 @@ import { FormAssociatedFilePicker } from './file-picker.form-associated';
  *
  * @public
  */
-export type FilePickerSize = Extract<Size, Size.Normal | Size.Expanded>;
+export type FilePickerSize = ExtractFromEnum<Size, Size.Normal | Size.Expanded>;
 
 const isFormAssociatedTryingToSetFormValueToFakePath = (
 	value: File | string | FormData | null

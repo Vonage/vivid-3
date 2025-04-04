@@ -33,7 +33,7 @@ describe('vwc-action-group', () => {
 	describe('appearance', function () {
 		it('should set the appearance class on the base', async function () {
 			const appearance = 'fieldset';
-			(element as any).appearance = appearance;
+			element.appearance = appearance;
 			await elementUpdated(element);
 
 			expect(
@@ -45,7 +45,7 @@ describe('vwc-action-group', () => {
 	describe('shape', function () {
 		it('should set the shape class on the base', async function () {
 			const shape = 'pill';
-			(element as any).shape = shape;
+			element.shape = shape;
 			await elementUpdated(element);
 
 			expect(
