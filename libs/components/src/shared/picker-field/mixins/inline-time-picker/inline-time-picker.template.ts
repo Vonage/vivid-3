@@ -1,7 +1,7 @@
 import { html, repeat, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { scrollIntoView } from '../../../utils/scrollIntoView';
-import { TrappedFocus } from '../../../patterns';
+import { ignoreEventInFocusTraps } from '../../../patterns';
 import { type PickerOption } from './picker-option';
 import type { InlineTimePicker } from './inline-time-picker';
 import {
@@ -89,7 +89,7 @@ const onBaseKeyDown = (x: InlineTimePicker, event: KeyboardEvent) => {
 		if (x.shadowRoot!.activeElement !== terminalElement) {
 			// TrappedFocus needs to ignore events that will not move focus out of
 			// the inline time picker
-			TrappedFocus.ignoreEvent(event);
+			ignoreEventInFocusTraps(event);
 		}
 	}
 	return true;

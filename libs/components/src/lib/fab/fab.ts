@@ -1,5 +1,4 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { VividFoundationButton } from '../../shared/foundation/button';
 import type { Connotation, Size } from '../enums.js';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
@@ -30,7 +29,7 @@ export type FABSize = ExtractFromEnum<
  * @component fab
  * @slot icon - Slot to add an icon to fab.
  */
-export class Fab extends VividFoundationButton {
+export class Fab extends AffixIconWithTrailing(VividFoundationButton) {
 	/**
 	 * The connotation the fab should have.
 	 *
@@ -58,6 +57,3 @@ export class Fab extends VividFoundationButton {
 	 */
 	@attr label?: string;
 }
-
-export interface Fab extends AffixIconWithTrailing {}
-applyMixins(Fab, AffixIconWithTrailing);

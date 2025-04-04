@@ -1,13 +1,12 @@
 import { attr, observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Shape } from '../enums';
 import { Localized } from '../../shared/patterns';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 export type OptionTagShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Pill>;
 
-export class OptionTag extends VividElement {
+export class OptionTag extends Localized(VividElement) {
 	@attr shape?: OptionTagShape;
 	@attr label?: string;
 	@attr({ mode: 'boolean' }) removable = false;
@@ -20,6 +19,3 @@ export class OptionTag extends VividElement {
 		});
 	}
 }
-
-export interface OptionTag extends Localized {}
-applyMixins(OptionTag, Localized);

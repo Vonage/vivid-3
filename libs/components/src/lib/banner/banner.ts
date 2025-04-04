@@ -1,8 +1,6 @@
 import { attr, observable } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Connotation } from '../enums';
-import { Localized } from '../../shared/patterns';
-import { AffixIcon } from '../../shared/patterns/affix';
+import { AffixIcon, Localized } from '../../shared/patterns';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
@@ -31,7 +29,7 @@ const defaultConnotation = (
  * @slot action-items - Add action items to banner using this slot.
  * @slot icon - Add an icon to the component.
  */
-export class Banner extends DelegatesAria(VividElement) {
+export class Banner extends AffixIcon(Localized(DelegatesAria(VividElement))) {
 	@attr({ attribute: 'dismiss-aria-label' }) dismissButtonAriaLabel:
 		| string
 		| null = null;
@@ -85,8 +83,3 @@ export class Banner extends DelegatesAria(VividElement) {
 
 	@observable actionItemsSlottedContent?: HTMLElement[];
 }
-
-applyMixins(Banner, AffixIcon);
-
-export interface Banner extends Localized, AffixIcon {}
-applyMixins(Banner, Localized);
