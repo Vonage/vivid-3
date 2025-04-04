@@ -2,6 +2,7 @@ import {
 	elementUpdated,
 	fixture,
 	getBaseElement,
+	getControlElement,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import type { Radio } from '../radio/radio';
@@ -41,6 +42,8 @@ describe('vwc-radio-group', () => {
 			expect(element.readOnly).toBeFalsy();
 			expect(element.disabled).toBeFalsy();
 			expect(element.label).toBeUndefined();
+			expect(element.helperText).toBeUndefined();
+			expect(element.errorText).toBeUndefined();
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.getAttribute('value')).toBeNull();
 		});
@@ -64,8 +67,89 @@ describe('vwc-radio-group', () => {
 		it('should display a label when given one', async () => {
 			element.label = 'testlabel';
 			await elementUpdated(element);
-			const label = element.shadowRoot?.querySelector('label');
+			const label = element.shadowRoot?.getElementById('label');
 			expect(label?.textContent).toBe(element.label);
+		});
+
+		it('should link the label to the control element using the aria-labelledby attribute', async () => {
+			element.label = 'testlabel';
+			await elementUpdated(element);
+			const label = element.shadowRoot?.getElementById('label');
+			expect(label?.getAttribute('id')).toBe('label');
+			expect(getControlElement(element)!.getAttribute('aria-labelledby')).toBe(
+				'label'
+			);
+		});
+	});
+
+	describe('helper-text', () => {
+		function getHelperText() {
+			return element.shadowRoot?.getElementById('helper-text');
+		}
+
+		it('should display the helper text when given some', async () => {
+			element.helperText = 'test helper text';
+			await elementUpdated(element);
+			expect(getHelperText()?.textContent?.trim()).toBe(element.helperText);
+		});
+
+		it('should link the helper text to the control element using the aria-describedby attribute', async () => {
+			element.helperText = 'test helper text';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-describedby')).toBe(
+				'helper-text'
+			);
+		});
+
+		it('should not display the helper text when error text is set', async () => {
+			element.helperText = 'test helper text';
+			element.errorText = 'test error text';
+			await elementUpdated(element);
+			expect(getHelperText()).toBe(null);
+		});
+
+		it('should display the helper text when error text is removed', async () => {
+			element.helperText = 'test helper text';
+			element.errorText = 'test error text';
+			await elementUpdated(element);
+			element.errorText = '';
+			await elementUpdated(element);
+			expect(getHelperText()?.textContent?.trim()).toBe(element.helperText);
+		});
+	});
+
+	describe('error-text', () => {
+		it('should display the error text is set', async () => {
+			element.helperText = 'test error text';
+			await elementUpdated(element);
+			const errorText = element.shadowRoot?.getElementById('error-text');
+			expect(errorText?.textContent).toBe(element.errorText);
+		});
+
+		it('should set aria-invalid on the control element to true when error-text is set', async () => {
+			element.errorText = 'test error text';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+				'true'
+			);
+		});
+
+		it('should set aria-invalid on the control element to null when error-text is not set', async () => {
+			element.errorText = 'test error text';
+			await elementUpdated(element);
+			element.errorText = '';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+				null
+			);
+		});
+
+		it('should link the helper text to the control element using the aria-describedby attribute', async () => {
+			element.helperText = 'test helper text';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-describedby')).toBe(
+				'helper-text'
+			);
 		});
 	});
 

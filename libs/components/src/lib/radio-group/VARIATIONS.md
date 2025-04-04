@@ -1,4 +1,4 @@
-For Radio buttons to function correctly and be accessible they must be slotted inside Radio Group component.
+For Radio buttons to function correctly they must be slotted inside Radio Group component.
 
 ## Labelling
 
@@ -20,6 +20,45 @@ Use the `label` to set the **Radio Group** label.
 
 ```html preview
 <vwc-radio-group label="Pick a number" name="number">
+	<vwc-radio label="number one" value="1"></vwc-radio>
+	<vwc-radio label="number two" value="2"></vwc-radio>
+	<vwc-radio label="number three" value="3"></vwc-radio>
+</vwc-radio-group>
+```
+
+<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
+	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
+	<p>It will be announced by screen readers so that those users will know the purpose of the Radio Group or the Radio.</p>
+</vwc-note>
+
+### Helper Text
+
+The `helper-text` attribute provides additional information to help the user enter the correct information.
+
+To add HTML to the helper text, use the [helper-text slot](/components/radio-group/code/#helper-text-slot).
+
+```html preview
+<vwc-radio-group
+	helper-text="Please choose wisely"
+	label="Pick a number"
+	name="number"
+>
+	<vwc-radio label="number one" value="1"></vwc-radio>
+	<vwc-radio label="number two" value="2"></vwc-radio>
+	<vwc-radio label="number three" value="3"></vwc-radio>
+</vwc-radio-group>
+```
+
+### Error Text
+
+The `error-text` attribute provides a custom error message.
+
+```html preview
+<vwc-radio-group
+	error-text="This is a required field"
+	label="Pick a number"
+	name="number"
+>
 	<vwc-radio label="number one" value="1"></vwc-radio>
 	<vwc-radio label="number two" value="2"></vwc-radio>
 	<vwc-radio label="number three" value="3"></vwc-radio>
