@@ -10,7 +10,7 @@ import {
 	keyTab,
 } from '@microsoft/fast-web-utilities';
 import { Size } from '../enums';
-import { ListboxOption } from '../option/option.ts';
+import { ListboxOption } from '../option/option';
 import { Select } from './select';
 import '.';
 

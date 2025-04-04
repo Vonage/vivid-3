@@ -4,6 +4,7 @@ import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 import { MenuItem } from '../menu-item/menu-item';
+import type { Menu } from '../menu/menu';
 import { AudioPlayer } from './audio-player';
 import '.';
 
@@ -496,7 +497,7 @@ describe('vwc-audio-player', () => {
 
 	describe('playbackRates', () => {
 		function getPlaybackRatesMenuElement() {
-			return getBaseElement(element).querySelector('.playback-rates');
+			return getBaseElement(element).querySelector('.playback-rates') as Menu;
 		}
 
 		function getPlaybackRatesButton() {
@@ -592,7 +593,7 @@ describe('vwc-audio-player', () => {
 			const menuItem = getPlaybackRatesMenuElement()?.querySelector(
 				'.playback-rate'
 			) as MenuItem;
-			(getPlaybackRatesMenuElement() as any).open = true;
+			getPlaybackRatesMenuElement().open = true;
 
 			menuItem.click();
 			await elementUpdated(element);

@@ -4,6 +4,12 @@ import { MediaSkipBy } from '../enums';
 import { Localized } from '../../shared/patterns';
 import { getPlaybackRatesArray } from '../../shared/utils/playbackRates';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
+
+export type VideoPlayerMediaSkipBy = ExtractFromEnum<
+	MediaSkipBy,
+	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
+>;
 
 export const DEFAULT_PLAYBACK_RATES = '0.5, 1, 1.5, 2';
 
@@ -102,8 +108,8 @@ export class VideoPlayer extends Localized(VividElement) {
 	 * @remarks
 	 * HTML Attribute: skip-by
 	 */
-	@attr({ attribute: 'skip-by', mode: 'fromView' }) skipBy: MediaSkipBy =
-		MediaSkipBy.Ten;
+	@attr({ attribute: 'skip-by', mode: 'fromView' })
+	skipBy: VideoPlayerMediaSkipBy = MediaSkipBy.Ten;
 
 	/**
 	 * @internal

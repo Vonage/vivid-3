@@ -1,5 +1,5 @@
 import { elementUpdated, fixture, getControlElement } from '@vivid-nx/shared';
-import { NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
+import { type NavDisclosureConnotation } from '../nav-disclosure/nav-disclosure';
 import { Icon } from '../icon/icon';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { NavItem } from './nav-item';

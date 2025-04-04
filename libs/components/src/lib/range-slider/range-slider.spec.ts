@@ -4,7 +4,7 @@ import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
-import { Popup } from '../popup/popup.ts';
+import { Popup } from '../popup/popup';
 import { RangeSlider } from './range-slider';
 import '.';
 

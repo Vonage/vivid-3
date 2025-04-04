@@ -5,7 +5,7 @@ import {
 	formatDateStr,
 	isValidDateStr,
 	parseDateStr,
-} from './dateStr.ts';
+} from './dateStr';
 
 describe('formatDateStr', () => {
 	it('should format a date string', () => {

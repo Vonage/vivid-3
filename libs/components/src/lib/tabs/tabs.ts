@@ -11,7 +11,7 @@ import {
 	keyArrowLeft,
 	keyArrowRight,
 } from '@microsoft/fast-web-utilities/dist/key-codes';
-import type { Connotation, TabsGutters } from '../enums.js';
+import type { Connotation } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
@@ -27,6 +27,13 @@ export type TabsConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
+
+export const TabsGutters = {
+	None: 'none',
+	Small: 'small',
+} as const;
+
+export type TabsGutters = typeof TabsGutters[keyof typeof TabsGutters];
 
 export const TabsOrientation = {
 	vertical: 'vertical',

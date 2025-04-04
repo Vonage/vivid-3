@@ -1,5 +1,5 @@
-import type { CalendarPickerLocale } from '../calendar-picker.locale.ts';
-import { buildCalendarGrid } from './calendarGrid.ts';
+import type { CalendarPickerLocale } from '../calendar-picker.locale';
+import { buildCalendarGrid } from './calendarGrid';
 
 const enUsLocale = {
 	weekdays: {

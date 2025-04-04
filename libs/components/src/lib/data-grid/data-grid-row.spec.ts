@@ -2,7 +2,7 @@ import { html } from '@microsoft/fast-element';
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { DataGridRow } from './data-grid-row';
 import '.';
-import { DataGridCell } from './data-grid-cell.ts';
+import { DataGridCell } from './data-grid-cell';
 
 const COMPONENT_TAG = 'vwc-data-grid-row';
 

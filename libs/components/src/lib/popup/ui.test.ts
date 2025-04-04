@@ -192,32 +192,32 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await page.evaluate(() => {
 		const mainAnchor = document.querySelector('#mainTestAnchor') as HTMLElement;
 		document
-			.querySelectorAll('#mainTestAnchor ~ vwc-popup')
+			.querySelectorAll<Popup>('#mainTestAnchor ~ vwc-popup')
 			.forEach((popup: Popup) => (popup.anchor = mainAnchor));
 		const indexAnchor = document.querySelector('#anchor-index') as HTMLElement;
 		document
-			.querySelectorAll('#anchor-index ~ vwc-popup')
+			.querySelectorAll<Popup>('#anchor-index ~ vwc-popup')
 			.forEach((popup: Popup) => (popup.anchor = indexAnchor));
 		const wrappingAnchor = document.querySelector(
 			'#anchor-wrapping'
 		) as HTMLElement;
 		document
-			.querySelectorAll('#anchor-wrapping ~ vwc-popup')
+			.querySelectorAll<Popup>('#anchor-wrapping ~ vwc-popup')
 			.forEach((popup: Popup) => (popup.anchor = wrappingAnchor));
 		document
-			.querySelectorAll('#flip-tests vwc-popup')
+			.querySelectorAll<Popup>('#flip-tests vwc-popup')
 			.forEach((popup: Popup) => {
 				popup.anchor = popup.previousElementSibling as HTMLElement;
 			});
 		document
-			.querySelectorAll('#auto-placement-horizontal-tests vwc-popup')
+			.querySelectorAll<Popup>('#auto-placement-horizontal-tests vwc-popup')
 			.forEach((popup: Popup) => {
 				popup.anchor = popup.previousElementSibling as HTMLElement;
 				popup.placementStrategy = 'auto-placement-horizontal';
 				popup.open = true;
 			});
 		document
-			.querySelectorAll('#auto-placement-vertical-tests vwc-popup')
+			.querySelectorAll<Popup>('#auto-placement-vertical-tests vwc-popup')
 			.forEach((popup: Popup) => {
 				popup.anchor = popup.previousElementSibling as HTMLElement;
 				popup.placementStrategy = 'auto-placement-vertical';

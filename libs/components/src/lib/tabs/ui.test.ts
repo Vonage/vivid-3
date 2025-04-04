@@ -269,7 +269,7 @@ test('should scroll only inside tabs', async ({ page }: { page: Page }) => {
 
 	const body = await page.$('body');
 
-	const bodyScrollTop = await body.evaluate((e) => e.scrollTop);
+	const bodyScrollTop = await body!.evaluate((e) => e.scrollTop);
 
 	expect(bodyScrollTop).toEqual(0);
 });

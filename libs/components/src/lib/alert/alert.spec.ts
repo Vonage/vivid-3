@@ -5,7 +5,6 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Icon } from '../icon/icon';
-import type { Button } from '../button/button';
 import { Connotation } from '../enums';
 import { Button } from '../button/button';
 import { Alert } from './alert';

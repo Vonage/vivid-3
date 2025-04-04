@@ -1,4 +1,4 @@
-import { inverseLerp, lerp } from './lerp.ts';
+import { inverseLerp, lerp } from './lerp';
 
 describe('lerp', () => {
 	it('should return the linear interpolation between two values', () => {

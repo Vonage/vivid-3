@@ -3,7 +3,7 @@ import {
 	getMeridiesOptions,
 	getMinutesOptions,
 	getSecondsOptions,
-} from './picker-option.ts';
+} from './picker-option';
 
 describe('getHoursOptions', () => {
 	it('should return 12-hour clock options for AM', () => {

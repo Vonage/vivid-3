@@ -1,5 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import type { Mock } from 'vitest';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
@@ -369,7 +370,7 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('sort event', () => {
-		let onSortSpy: vi.Mock;
+		let onSortSpy: Mock;
 		beforeEach(async () => {
 			element.cellType = 'columnheader';
 			element.innerHTML = 'Name';
@@ -445,7 +446,7 @@ describe('vwc-data-grid-cell', () => {
 	});
 
 	describe('cell-click event', () => {
-		let onCellClickSpy: vi.Mock;
+		let onCellClickSpy: Mock;
 		let expectedDetail: object;
 		beforeEach(async () => {
 			element.cellType = 'default';

@@ -1,4 +1,4 @@
-import { getPlaybackRatesArray } from './playbackRates.ts';
+import { getPlaybackRatesArray } from './playbackRates';
 
 describe('getPlaybackRatesArray', () => {
 	it('should return an empty array if the playbackRates string is empty', () => {

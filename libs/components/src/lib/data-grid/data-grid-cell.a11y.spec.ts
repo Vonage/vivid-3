@@ -25,8 +25,8 @@ describe('a11y: vwc-data-grid-cell', () => {
 
 	it('should pass html a11y test', async () => {
 		const setParentsRoles = (element: HTMLElement) => {
-			element.parentElement.setAttribute('role', 'row');
-			element.parentElement.parentElement.setAttribute('role', 'grid');
+			element.parentElement!.setAttribute('role', 'row');
+			element.parentElement!.parentElement!.setAttribute('role', 'grid');
 		};
 
 		element.columnDefinition = {

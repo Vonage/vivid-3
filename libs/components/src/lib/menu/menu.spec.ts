@@ -11,8 +11,8 @@ import {
 	keyHome,
 } from '@microsoft/fast-web-utilities';
 import type { Button } from '../button/button';
-import type { Popup } from '../popup/popup.ts';
-import { MenuItem } from '../menu-item/menu-item.ts';
+import type { Popup } from '../popup/popup';
+import { MenuItem } from '../menu-item/menu-item';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Menu } from './menu';
 import '.';

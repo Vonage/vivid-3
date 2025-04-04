@@ -1,6 +1,7 @@
 import { attr } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { Sticky } from '../enums';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { CalendarEvent } from './../calendar-event/calendar-event';
 import {
 	ARROW_DOWN,
@@ -13,6 +14,11 @@ import {
 	type PredefindKeys,
 } from './helpers/calendar.keyboard-interactions';
 import { getEventContext } from './helpers/calendar.event-context';
+
+export type CalendarSticky = ExtractFromEnum<
+	Sticky,
+	Sticky.None | Sticky.Header | Sticky.Column | Sticky.All
+>;
 
 /**
  * @public
@@ -74,7 +80,7 @@ export class Calendar extends VividElement {
 	 * HTML Attribute: sticky-mode
 	 */
 	@attr({ attribute: 'sticky-mode', mode: 'fromView' })
-	stickyMode: Sticky = Sticky.None;
+	stickyMode: CalendarSticky = Sticky.None;
 
 	/**
 	 * @internal

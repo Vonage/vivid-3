@@ -1,8 +1,8 @@
-import { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale.ts';
+import type { CalendarPickerLocale } from '../picker-field/mixins/calendar-picker.locale';
 import {
 	formatPresentationDate,
 	parsePresentationDate,
-} from './presentationDate.ts';
+} from './presentationDate';
 
 const enUsLocale = {
 	dateFormat: 'MM/dd/yyyy',

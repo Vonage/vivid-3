@@ -17,6 +17,11 @@ export type AudioPlayerConnotation = ExtractFromEnum<
 	Connotation.Accent | Connotation.CTA
 >;
 
+export type AudioPlayerMediaSkipBy = ExtractFromEnum<
+	MediaSkipBy,
+	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
+>;
+
 export const SKIP_DIRECTIONS = {
 	FORWARD: 1,
 	BACKWARD: -1,
@@ -130,7 +135,7 @@ export class AudioPlayer extends Localized(VividElement) {
 		attribute: 'skip-by',
 		converter: validSkipByConverter,
 	})
-	skipBy?: MediaSkipBy;
+	skipBy?: AudioPlayerMediaSkipBy;
 
 	/**
 	 * Sets the available playback rates. When an empty string, no choices will be available

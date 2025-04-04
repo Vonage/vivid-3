@@ -1,4 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import type { MockInstance } from 'vitest';
 import { Radio } from './radio';
 import '.';
 
@@ -40,8 +41,8 @@ describe('vwc-radio', () => {
 		const wrapper = document.createElement('div');
 		let elementWithInternals: Radio;
 		let sibling: Radio;
-		let internalsMock: vi.SpyInstance | null = null;
-		let formAssociatedMock: vi.SpyInstance | null = null;
+		let internalsMock: MockInstance | null = null;
+		let formAssociatedMock: MockInstance | null = null;
 
 		beforeAll(async () => {
 			await import('element-internals-polyfill');

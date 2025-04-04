@@ -1,5 +1,5 @@
 import { observable } from '@microsoft/fast-element';
-import { Reflector } from './Reflector.ts';
+import { Reflector } from './Reflector';
 
 describe('Reflector', () => {
 	class SourceClass {

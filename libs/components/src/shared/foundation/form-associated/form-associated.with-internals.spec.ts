@@ -6,7 +6,7 @@ import {
 	setup,
 	TestElement,
 	ValidateTest,
-} from './form-associated.common-tests.spec.ts';
+} from './form-associated.common-tests.spec';
 
 describe('FormAssociated when ElementInternals is supported', () => {
 	formAssociatedCommonTests();

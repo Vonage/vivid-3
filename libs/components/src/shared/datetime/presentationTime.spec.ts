@@ -1,7 +1,7 @@
 import {
 	formatPresentationTime,
 	parsePresentationTime,
-} from './presentationTime.ts';
+} from './presentationTime';
 
 describe('formatPresentationTime', () => {
 	it('should format time with seconds', () => {

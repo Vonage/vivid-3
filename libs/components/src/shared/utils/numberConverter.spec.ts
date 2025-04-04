@@ -1,5 +1,5 @@
-import { ValueConverter } from '@microsoft/fast-element';
-import { numberConverter } from './numberConverter.ts';
+import { type ValueConverter } from '@microsoft/fast-element';
+import { numberConverter } from './numberConverter';
 
 class ValueConverterHarness<T> {
 	property: T | undefined;

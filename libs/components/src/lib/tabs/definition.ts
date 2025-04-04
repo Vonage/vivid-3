@@ -6,6 +6,8 @@ import styles from './tabs.scss?inline';
 import { Tabs } from './tabs';
 import { TabsTemplate as template } from './tabs.template';
 
+export { TabsGutters } from './tabs';
+
 /**
  * @internal
  */

@@ -73,14 +73,12 @@ describe('menuBar', () => {
 		});
 
 		describe('textSize', () => {
-			let textSizeButton: HTMLButtonElement;
+			let textSizeButton: Button;
 
 			beforeEach(async () => {
 				element.setAttribute('menu-items', 'textSize');
 				await elementUpdated(element);
-				textSizeButton = element.shadowRoot?.querySelector(
-					'vwc-button'
-				) as unknown as HTMLButtonElement;
+				textSizeButton = element.shadowRoot!.querySelector('vwc-button')!;
 			});
 
 			it('should show the text size button when adding `textSize` to the string', async () => {
@@ -91,7 +89,7 @@ describe('menuBar', () => {
 				textSizeButton.click();
 				await elementUpdated(element);
 
-				const menu = element.shadowRoot?.querySelector('vwc-menu') as Menu;
+				const menu = element.shadowRoot!.querySelector('vwc-menu');
 				expect(menu?.open).toBeTruthy();
 			});
 
@@ -121,9 +119,8 @@ describe('menuBar', () => {
 				const spy = vi.fn();
 				element.addEventListener('text-size-selected', spy);
 				getSelectionMenu('text-size').open = true;
-				const options = getSelectionMenu('text-size').querySelectorAll(
-					'vwc-menu-item'
-				) as unknown as HTMLElement[];
+				const options =
+					getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
 
 				options.forEach((option) => option.click());
 				await elementUpdated(element);
@@ -139,9 +136,8 @@ describe('menuBar', () => {
 			it('should emit a non bubbling and non composed text-size-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-size-selected', spy);
-				const option = getSelectionMenu('text-size').querySelector(
-					'vwc-menu-item'
-				) as HTMLElement;
+				const option =
+					getSelectionMenu('text-size').querySelector('vwc-menu-item')!;
 
 				option.click();
 				await elementUpdated(element);
@@ -155,9 +151,8 @@ describe('menuBar', () => {
 				getSelectionMenu('text-size').open = true;
 				await elementUpdated(element);
 
-				const option = getSelectionMenu('text-size').querySelector(
-					'vwc-menu-item'
-				) as HTMLElement;
+				const option =
+					getSelectionMenu('text-size').querySelector('vwc-menu-item')!;
 
 				option.click();
 				await elementUpdated(element);
@@ -167,7 +162,7 @@ describe('menuBar', () => {
 
 			it('should set a tooltip with the text size message', async () => {
 				const menu = getSelectionMenu('text-size');
-				const menuFocusableChild = menu.querySelector('vwc-button') as Button;
+				const menuFocusableChild = menu.querySelector('vwc-button')!;
 
 				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');
 				expect(menuFocusableChild.parentElement instanceof Tooltip).toBe(true);
@@ -206,9 +201,9 @@ describe('menuBar', () => {
 					'strikethrough',
 					'monospace',
 				];
-				const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
-				buttons?.forEach((button, index) => {
-					(button as any).click();
+				const buttons = element.shadowRoot!.querySelectorAll('vwc-button');
+				buttons.forEach((button) => {
+					button.click();
 				});
 
 				expect(spy).toHaveBeenCalledTimes(listOfDecorations.length);
@@ -220,9 +215,7 @@ describe('menuBar', () => {
 			it('should emit a non bubbling and non composed text-decoration-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-decoration-selected', spy);
-				const button = element.shadowRoot?.querySelector(
-					'vwc-button'
-				) as HTMLButtonElement;
+				const button = element.shadowRoot!.querySelector('vwc-button')!;
 
 				button.click();
 				await elementUpdated(element);
@@ -247,9 +240,7 @@ describe('menuBar', () => {
 			});
 
 			it('should set a tooltip for each text decoration button', async () => {
-				const buttons = element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as HTMLButtonElement[];
+				const buttons = element.shadowRoot!.querySelectorAll('vwc-button');
 				for (let i = 0; i < buttons.length; i++) {
 					expect(buttons[i].getAttribute('slot')).toBe('anchor');
 					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);

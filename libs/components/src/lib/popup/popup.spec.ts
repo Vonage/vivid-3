@@ -5,6 +5,8 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import * as floatingUI from '@floating-ui/dom';
+import type { Mock, MockInstance } from 'vitest';
+import type { ComputePositionReturn } from '@floating-ui/dom';
 import type { Button } from '../button/button';
 import { PlacementStrategy, Popup } from './popup';
 import '.';
@@ -57,7 +59,7 @@ describe('vwc-popup', () => {
 	});
 
 	describe('cleanup autoUpdate', () => {
-		let cleanupMock: vi.Mock;
+		let cleanupMock: Mock;
 		beforeEach(() => {
 			cleanupMock = vi.fn();
 			vi.spyOn(floatingUI, 'autoUpdate').mockReturnValue(cleanupMock);
@@ -117,8 +119,10 @@ describe('vwc-popup', () => {
 
 		function resetPosition(hidden = true) {
 			computePositionResult.middlewareData.hide.referenceHidden = hidden;
-			(floatingUI.computePosition as vi.MockedFunction<any>).mockReturnValue(
-				Promise.resolve(computePositionResult)
+			vi.mocked(floatingUI.computePosition).mockReturnValue(
+				Promise.resolve(
+					computePositionResult as unknown as ComputePositionReturn
+				)
 			);
 		}
 
@@ -365,7 +369,7 @@ describe('vwc-popup', () => {
 		}
 
 		function getLastFrameCallback() {
-			return rAFStub.mock.lastCall[0];
+			return rAFStub.mock.lastCall![0];
 		}
 
 		function callLastFrameCallback() {
@@ -389,7 +393,7 @@ describe('vwc-popup', () => {
 			});
 		}
 
-		let rAFStub: vi.MockInstance;
+		let rAFStub: MockInstance;
 
 		beforeEach(async () => {
 			element.anchor = anchor;

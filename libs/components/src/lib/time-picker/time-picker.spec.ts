@@ -1,10 +1,10 @@
 import { createFormHTML, elementUpdated, fixture } from '@vivid-nx/shared';
 import { setLocale } from '../../shared/localization';
-import { Popup } from '../popup/popup.ts';
-import { Button } from '../button/button.ts';
-import { TextField } from '../text-field/text-field.ts';
-import enGB from '../../locales/en-GB.ts';
-import enUS from '../../locales/en-US.ts';
+import { Popup } from '../popup/popup';
+import { Button } from '../button/button';
+import { TextField } from '../text-field/text-field';
+import enGB from '../../locales/en-GB';
+import enUS from '../../locales/en-US';
 import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
 import type { InlineTimePicker } from '../../shared/picker-field/mixins/inline-time-picker/inline-time-picker';
 import { TimePicker } from './time-picker';
