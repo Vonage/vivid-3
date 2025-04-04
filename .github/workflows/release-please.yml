@@ -20,6 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: Check tag
         id: check_tag
@@ -72,6 +73,9 @@ jobs:
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
