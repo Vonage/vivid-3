@@ -80,6 +80,10 @@ $low-ink-color: --_low-ink-color;
 		#{variables.$select-padding-inline}: calc(
 			#{size.$vvd-size-super-condensed} / 2
 		);
+
+		&:not(.shape-pill) {
+			#{variables.$select-control-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
+		}
 	}
 
 	&-wrapper {
