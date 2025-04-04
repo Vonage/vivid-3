@@ -80,6 +80,7 @@ describe('menuBar', () => {
 				await elementUpdated(element);
 				textSizeButton = element.shadowRoot!.querySelector('vwc-button')!;
 			});
+
 			it('should show the text size button when adding `textSize` to the string', async () => {
 				expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
 			});
