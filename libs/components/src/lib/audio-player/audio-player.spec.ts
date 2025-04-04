@@ -4,9 +4,9 @@ import { Button } from '../button/button';
 import { Slider } from '../slider/slider';
 import { DEFAULT_PLAYBACK_RATES } from '../video-player/video-player';
 import { MenuItem } from '../menu-item/menu-item';
+import type { Menu } from '../menu/menu';
 import { AudioPlayer } from './audio-player';
 import '.';
-import type { Menu } from '../menu/menu';
 
 const COMPONENT_TAG = 'vwc-audio-player';
 
