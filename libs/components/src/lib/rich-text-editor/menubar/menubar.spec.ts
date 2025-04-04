@@ -72,17 +72,17 @@ describe('menuBar', () => {
 			expect(element.classList.contains('hide-menubar')).toBe(false);
 		});
 
-	describe('textSize', () => {
-		let textSizeButton: Button;
+		describe('textSize', () => {
+			let textSizeButton: Button;
 
-		beforeEach(async () => {
-			element.setAttribute('menu-items', 'textSize');
-			await elementUpdated(element);
-			textSizeButton = element.shadowRoot!.querySelector('vwc-button')!;
-		});
-		it('should show the text size button when adding `textSize` to the string', async () => {
-			expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
-		});
+			beforeEach(async () => {
+				element.setAttribute('menu-items', 'textSize');
+				await elementUpdated(element);
+				textSizeButton = element.shadowRoot!.querySelector('vwc-button')!;
+			});
+			it('should show the text size button when adding `textSize` to the string', async () => {
+				expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
+			});
 
 			it('should open menu when clicked', async () => {
 				textSizeButton.click();
