@@ -9,7 +9,6 @@ import type { Radio } from '../radio/radio';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
-import { get } from 'http';
 
 const COMPONENT_TAG = 'vwc-radio-group';
 
