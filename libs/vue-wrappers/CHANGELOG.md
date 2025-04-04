@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.20.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.19.0...vivid-vue-v4.20.0) (2025-04-04)
+
+
+### Features
+
+* **vue-wrappers:** improve slot handling (VIV-2383) ([#2255](https://github.com/Vonage/vivid-3/issues/2255)) ([bd2c628](https://github.com/Vonage/vivid-3/commit/bd2c6280012891d2c16fd658eeae05e881f5fcf6))
+
 ## [4.19.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.18.0...vivid-vue-v4.19.0) (2025-03-31)
 
 
