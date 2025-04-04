@@ -5,7 +5,7 @@ import {
 	loadTemplate,
 	useFakeTime,
 } from '../../visual-tests/visual-tests-utils.js';
-import type { DatePicker } from './date-picker.ts';
+import type { DatePicker } from './date-picker';
 
 const components = ['date-picker'];
 
