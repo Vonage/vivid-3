@@ -16,6 +16,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @public
  * @component radio-group
  * @slot - Default slot.
+ * @slot helper-text - Describes how to use the text-field. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @vueModel modelValue value change `(event.target as HTMLInputElement).value`
  */
@@ -72,6 +73,29 @@ export class RadioGroup extends VividElement {
 			}
 		});
 	}
+
+	/**
+	 * Error message to display when the radio group is in an error state.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: error-text
+	 */
+	@attr({ attribute: 'error-text' }) errorText?: string;
+
+	/**
+	 * Helper text to display when the radio group field needs extra explanation.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: helper-text
+	 */
+	@attr({ attribute: 'helper-text' }) helperText?: string;
+
+	/**
+	 * @internal
+	 */
+	@observable _helperTextSlottedContent?: HTMLElement[];
 
 	/**
 	 * The name of the radio group. Setting this value will set the name value
