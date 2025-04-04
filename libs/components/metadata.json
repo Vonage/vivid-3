@@ -5176,6 +5176,20 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"description": "Error message to display when the radio group is in an error state.",
+					"type": "string",
+					"attributeName": "error-text",
+					"propertyName": "errorText"
+				},
+				{
+					"name": "helperText",
+					"description": "Helper text to display when the radio group field needs extra explanation.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "label",
 					"description": "Indicates the group's label.",
 					"type": "string",
@@ -5257,7 +5271,13 @@
 				}
 			],
 			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [
+				{ "name": "default", "description": "Default slot." },
+				{
+					"name": "helper-text",
+					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
+				}
+			]
 		},
 		{
 			"name": "range-slider",
