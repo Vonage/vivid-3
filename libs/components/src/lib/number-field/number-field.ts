@@ -19,14 +19,21 @@ import {
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedNumberField } from './number-field.form-associated';
 
-export type NumberFieldAppearance = Extract<
+export type NumberFieldAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
-export type NumberFieldShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
-export type NumberFieldSize = Extract<Size, Size.Condensed | Size.Normal>;
+export type NumberFieldShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
+export type NumberFieldSize = ExtractFromEnum<
+	Size,
+	Size.Condensed | Size.Normal
+>;
 
 const STEP_DIRECTION = {
 	up: 1,
@@ -73,7 +80,9 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  */
 @errorText
 @formElements
-export class NumberField extends DelegatesAria(FormAssociatedNumberField) {
+export class NumberField extends AffixIcon(
+	Localized(DelegatesAria(FormAssociatedNumberField))
+) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -414,17 +423,13 @@ export class NumberField extends DelegatesAria(FormAssociatedNumberField) {
 }
 
 export interface NumberField
-	extends AffixIcon,
-		ErrorText,
+	extends ErrorText,
 		FormElement,
 		FormElementCharCount,
 		FormElementHelperText,
-		FormElementSuccessText,
-		Localized {}
+		FormElementSuccessText {}
 applyMixinsWithObservables(
 	NumberField,
-	Localized,
-	AffixIcon,
 	FormElementCharCount,
 	FormElementHelperText,
 	FormElementSuccessText

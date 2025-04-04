@@ -80,10 +80,6 @@
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 	}
 
-	&.appearance-outlined {
-		#{focus-variables.$focus-inset}: -1px;
-	}
-
 	&:focus-visible {
 		@include focus.focus;
 	}

@@ -1,7 +1,6 @@
 import { customElement, FASTElement, html } from '@microsoft/fast-element';
 import { fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
-import { applyMixins } from '../foundation/utilities/apply-mixins';
-import { TrappedFocus } from './trapped-focus';
+import { ignoreEventInFocusTraps, TrappedFocus } from './trapped-focus';
 
 describe('TrappedFocus', () => {
 	@customElement({
@@ -14,7 +13,7 @@ describe('TrappedFocus', () => {
 			</template>
 		`,
 	})
-	class TestElement extends FASTElement {
+	class TestElement extends TrappedFocus(FASTElement) {
 		onKeyDown(event: KeyboardEvent) {
 			if (
 				this._trappedFocus(event, () =>
@@ -26,8 +25,6 @@ describe('TrappedFocus', () => {
 			return true;
 		}
 	}
-	interface TestElement extends TrappedFocus {}
-	applyMixins(TestElement, TrappedFocus);
 
 	let element: TestElement;
 	let firstButton: HTMLButtonElement;
@@ -81,13 +78,13 @@ describe('TrappedFocus', () => {
 		expect(element.shadowRoot!.activeElement).toBe(secondButton);
 	});
 
-	describe('ignoreEvent', () => {
+	describe('ignoreEventInFocusTraps', () => {
 		it('should cause the event to be ignored', () => {
 			lastButton.focus();
 			const event = new KeyboardEvent('keydown', { key: 'Tab' });
 			event.preventDefault = vi.fn();
 
-			TrappedFocus.ignoreEvent(event);
+			ignoreEventInFocusTraps(event);
 			element.dispatchEvent(event);
 
 			expect(event.preventDefault).not.toHaveBeenCalled();

@@ -1,16 +1,16 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { Localized } from '../../shared/patterns';
 import type { Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of tab connotation.
  *
  * @public
  */
-export type TabConnotation = Extract<
+export type TabConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
@@ -20,14 +20,14 @@ export type TabConnotation = Extract<
  *
  * @public
  */
-export type TabShape = Extract<Shape, Shape.Rounded | Shape.Sharp>;
+export type TabShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Sharp>;
 
 /**
  * @public
  * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
-export class Tab extends VividElement {
+export class Tab extends AffixIconWithTrailing(Localized(VividElement)) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute} for more information.
 	 * @public
@@ -91,7 +91,3 @@ export class Tab extends VividElement {
 		return false;
 	}
 }
-
-export interface Tab extends Localized, AffixIconWithTrailing {}
-applyMixins(Tab, AffixIconWithTrailing);
-applyMixins(Tab, Localized);

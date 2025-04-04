@@ -8,12 +8,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "expandMode",
 					"description": "Controls the expand mode of the Accordion, either allowing\nsingle or multiple item expansion.",
 					"type": "'single' | 'multi'",
@@ -70,12 +64,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "expanded",
 					"description": "Expands or collapses the item.",
 					"type": "boolean",
@@ -99,13 +87,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "id",
@@ -194,12 +184,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "shape",
 					"description": "The shape the ActionGroup should have.",
 					"type": "'rounded' | 'pill'",
@@ -258,12 +242,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "Sets an appropriate icon / icon color for the connotation.",
 					"type": "'accent' | 'information' | 'success' | 'warning' | 'announcement' | 'alert'",
@@ -286,7 +264,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "The icon to display in the Alert. Takes precedence over the connotation's icon.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
@@ -403,12 +381,6 @@
 			"registerFunctionName": "registerAudioPlayer",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "The connotation the audio-player should have.",
@@ -536,12 +508,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the avatar should have.",
 					"type": "'accent' | 'cta'",
@@ -633,12 +599,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the badge should have.",
 					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information'",
@@ -649,13 +609,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "shape",
@@ -730,12 +692,6 @@
 					"propertyName": "actionText"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"type": "'information' | 'announcement' | 'success' | 'warning' | 'alert'",
 					"attributeName": "connotation",
@@ -751,7 +707,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "removable",
@@ -814,14 +771,7 @@
 			"vividModulePath": "libs/components/src/lib/breadcrumb/breadcrumb.ts",
 			"registerFunctionName": "registerBreadcrumb",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -865,12 +815,6 @@
 			"registerFunctionName": "registerBreadcrumbItem",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaExpanded",
 					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
@@ -999,12 +943,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "autofocus",
 					"description": "Determines if the element should receive document focus on page load.",
 					"type": "boolean",
@@ -1098,13 +1036,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -1263,12 +1203,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "datetime",
 					"description": "The date within a week of choice.\nAccepts any parameter acceptable by the `Date()` constructor.",
 					"type": "Date | string",
@@ -1391,12 +1325,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the calendar event should have.",
 					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
@@ -1488,12 +1416,6 @@
 					"type": "'elevated' | 'ghost' | 'outlined'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "elevation",
@@ -1595,12 +1517,6 @@
 			"registerFunctionName": "registerCheckbox",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "checked",
 					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
@@ -1766,12 +1682,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "autocomplete",
 					"description": "The autocomplete attribute.",
 					"type": "'inline' | 'list' | 'both' | 'none'",
@@ -1808,7 +1718,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "initialValue",
@@ -1979,12 +1890,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "generateHeader",
 					"description": "Whether the grid should automatically generate a header row and its type",
 					"type": "'none' | 'default' | 'sticky'",
@@ -2078,12 +1983,6 @@
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaSelected",
 					"description": "Indicates the selected status.",
@@ -2202,12 +2101,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "ariaSelected",
 					"description": "Indicates the selected status.",
 					"type": "string",
@@ -2298,12 +2191,6 @@
 			"registerFunctionName": "registerDatePicker",
 			"description": "Single date picker component.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
@@ -2430,12 +2317,6 @@
 			"registerFunctionName": "registerDateRangePicker",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
@@ -2606,12 +2487,6 @@
 			"registerFunctionName": "registerDateTimePicker",
 			"description": "Single date picker component.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "clock",
 					"description": "Forces a 12h or 24h clock to be used.",
@@ -2788,12 +2663,6 @@
 			"description": "Base class for dial-pad",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "callActive",
 					"description": "Indicates the active state of the dial-pad.",
 					"type": "boolean",
@@ -2948,12 +2817,6 @@
 			"registerFunctionName": "registerDialog",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "dismissButtonAriaLabel",
 					"type": "string",
@@ -3125,12 +2988,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "orientation",
 					"description": "The orientation of the divider.",
 					"type": "'horizontal' | 'vertical'",
@@ -3188,12 +3045,6 @@
 			"registerFunctionName": "registerEmptyState",
 			"description": "An empty state element. Used when there is no data to display to the user.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "The connotation the empty state should have.",
@@ -3280,12 +3131,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "autofocus",
 					"description": "Determines if the element should receive document focus on page load.",
 					"type": "boolean",
@@ -3351,13 +3196,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -3465,12 +3312,6 @@
 					"type": "string",
 					"attributeName": "accept",
 					"propertyName": "accept"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "disabled",
@@ -3699,12 +3540,6 @@
 					"propertyName": "alternate"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "elevationShadow",
 					"description": "header elevation shadow",
 					"type": "boolean",
@@ -3765,12 +3600,6 @@
 			"registerFunctionName": "registerIcon",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "The connotation the icon should have.",
@@ -3837,12 +3666,6 @@
 			"registerFunctionName": "registerLayout",
 			"description": "[--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],\nminmax([the `column-basis` mapped value], 1fr))] - Controls the `grid-template-columns` of the layout.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autoSizing",
 					"description": "sets the initial preferred auto-sizing from predefined available options",
@@ -3928,12 +3751,6 @@
 					"type": "string | HTMLElement",
 					"attributeName": "anchor",
 					"propertyName": "anchor"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "autoDismiss",
@@ -4060,12 +3877,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "checkAppearance",
 					"description": "Controls the appearance of the check indicator.",
 					"type": "'normal' | 'tick-only'",
@@ -4111,7 +3922,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "role",
@@ -4207,14 +4019,7 @@
 			"vividModulePath": "libs/components/src/lib/nav/nav.ts",
 			"registerFunctionName": "registerNav",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -4266,12 +4071,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation nav-disclosure should have.",
 					"type": "'accent' | 'cta'",
@@ -4282,7 +4081,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "label",
@@ -4361,12 +4161,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "ariaExpanded",
 					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
 					"type": "'true' | 'false' | string",
@@ -4405,7 +4199,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "ping",
@@ -4502,12 +4297,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"type": "'accent' | 'information' | 'success' | 'warning' | 'announcement' | 'alert'",
 					"attributeName": "connotation",
@@ -4524,7 +4313,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				}
 			],
 			"events": [
@@ -4583,12 +4373,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "autoComplete",
 					"type": "string",
 					"attributeName": "autoComplete",
@@ -4635,7 +4419,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "incrementButtonAriaLabel",
@@ -4852,12 +4637,6 @@
 			"description": "An Option Custom HTML Element.\nImplements https://www.w3.org/TR/wai-aria-1.1/#option | ARIA option .",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "The disabled state of the option.",
 					"type": "boolean",
@@ -4868,13 +4647,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -4963,12 +4744,6 @@
 			"registerFunctionName": "registerPagination",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "navIcons",
 					"type": "boolean",
@@ -5076,12 +4851,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "Indicates the progress' connotation.",
 					"type": "'accent' | 'success' | 'alert' | 'cta' | 'pacific'",
@@ -5175,12 +4944,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"type": "'accent' | 'success' | 'alert' | 'cta'",
 					"attributeName": "connotation",
@@ -5264,12 +5027,6 @@
 			"registerFunctionName": "registerRadio",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaLabel",
 					"type": "string",
@@ -5394,12 +5151,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "Disables the radio group and child radios.",
 					"type": "boolean",
@@ -5497,12 +5248,6 @@
 			"registerFunctionName": "registerRangeSlider",
 			"description": "Base class for range-slider",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaEndLabel",
 					"description": "Aria label for the end thumb",
@@ -5707,12 +5452,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "selectionEnd",
 					"type": "number",
 					"attributeName": "selection-end",
@@ -5766,6 +5505,11 @@
 					"returnType": "unknown"
 				},
 				{
+					"name": "setSelectionDecoration",
+					"args": [{ "name": "decoration", "type": "string" }],
+					"returnType": "unknown"
+				},
+				{
 					"name": "setTextSize",
 					"args": [{ "name": "size", "type": "'title' | 'subtitle' | 'body'" }],
 					"returnType": "unknown"
@@ -5785,12 +5529,6 @@
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "clearable",
@@ -5833,13 +5571,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -6029,12 +5769,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
@@ -6063,13 +5797,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "initialValue",
@@ -6243,12 +5979,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "checked",
 					"description": "Controls the checked state of the box",
 					"type": "boolean",
@@ -6347,12 +6077,6 @@
 					"propertyName": "alternate"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "modal",
 					"description": "sets the side drawer's type to modal",
 					"type": "boolean",
@@ -6441,12 +6165,6 @@
 			"registerFunctionName": "registerSlider",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "slider connotation",
@@ -6628,12 +6346,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the split button should have.",
 					"type": "'accent' | 'announcement' | 'cta' | 'success' | 'alert'",
@@ -6649,7 +6361,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Indicates the split button's icon.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
+					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
 					"attributeName": "icon",
 					"propertyName": "icon"
@@ -6746,12 +6458,6 @@
 			"registerFunctionName": "registerSwitch",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "checked",
 					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
@@ -6876,12 +6582,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "ariaSelected",
 					"type": "string",
 					"attributeName": "aria-selected",
@@ -6905,13 +6605,15 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "iconTrailing",
 					"description": "Indicates the icon affix alignment.",
 					"type": "boolean",
-					"attributeName": "icon-trailing"
+					"attributeName": "icon-trailing",
+					"propertyName": "iconTrailing"
 				},
 				{
 					"name": "label",
@@ -6996,14 +6698,7 @@
 			"vividModulePath": "libs/components/src/lib/tab-panel/tab-panel.ts",
 			"registerFunctionName": "registerTabPanel",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -7060,12 +6755,6 @@
 					"type": "boolean",
 					"attributeName": "activeindicator",
 					"propertyName": "activeindicator"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "connotation",
@@ -7166,12 +6855,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the tag should have.",
 					"type": "'accent' | 'cta'",
@@ -7189,7 +6872,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "label",
@@ -7289,14 +6973,7 @@
 			"vividModulePath": "libs/components/src/lib/tag-group/tag-group.ts",
 			"registerFunctionName": "registerTagGroup",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -7342,12 +7019,6 @@
 			"registerFunctionName": "registerTextArea",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autofocus",
 					"description": "Indicates that this element should get focus after the page finishes loading.",
@@ -7576,12 +7247,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "autoComplete",
 					"type": "string",
 					"attributeName": "autoComplete",
@@ -7622,7 +7287,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "initialValue",
@@ -7829,12 +7495,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "clock",
 					"description": "Forces a 12h or 24h clock to be used.",
 					"type": "'12h' | '24h'",
@@ -7996,12 +7656,6 @@
 					"propertyName": "anchor"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "headline",
 					"description": "the optional title of the toggletip",
 					"type": "string",
@@ -8096,12 +7750,6 @@
 					"propertyName": "anchor"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "open",
 					"type": "boolean",
 					"attributeName": "open",
@@ -8170,12 +7818,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute for more information.",
 					"type": "boolean",
@@ -8193,7 +7835,8 @@
 					"name": "icon",
 					"description": "A decorative icon the custom element should have.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
-					"attributeName": "icon"
+					"attributeName": "icon",
+					"propertyName": "icon"
 				},
 				{
 					"name": "selected",
@@ -8271,12 +7914,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "renderCollapsedNodes",
 					"description": "/**\n When true, the control will be appear expanded by user interaction.",
 					"type": "boolean",
@@ -8329,12 +7966,6 @@
 			"registerFunctionName": "registerVideoPlayer",
 			"description": "Base class for video-player",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autoplay",
 					"description": "Allows the video will play automatically (muted)",

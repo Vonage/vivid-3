@@ -19,14 +19,18 @@ import {
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
 
-export type SearchableSelectAppearance = Extract<
+export type SearchableSelectAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Fieldset | Appearance.Ghost
 >;
-export type SearchableSelectShape = Extract<Shape, Shape.Rounded | Shape.Pill>;
+export type SearchableSelectShape = ExtractFromEnum<
+	Shape,
+	Shape.Rounded | Shape.Pill
+>;
 
 const TagGapPx = 8;
 const InputMinWidthPx = 100;
@@ -59,7 +63,9 @@ const isFormAssociatedTryingToSetFormValue = (
  */
 @errorText
 @formElements
-export class SearchableSelect extends FormAssociatedSearchableSelect {
+export class SearchableSelect extends AffixIconWithTrailing(
+	Localized(FormAssociatedSearchableSelect)
+) {
 	/**
 	 * @public
 	 * HTML Attribute: appearance
@@ -1109,7 +1115,9 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 	 * @internal
 	 */
 	_onMouseDown(event: MouseEvent) {
-		if (!event.defaultPrevented) {
+		// event.target has been retargeted at this point
+		const originalTarget = event.composedPath()[0];
+		if (!event.defaultPrevented && originalTarget !== this._input) {
 			this._input.focus();
 			return false;
 		}
@@ -1118,16 +1126,12 @@ export class SearchableSelect extends FormAssociatedSearchableSelect {
 }
 
 export interface SearchableSelect
-	extends AffixIconWithTrailing,
-		FormElement,
+	extends FormElement,
 		FormElementHelperText,
 		ErrorText,
-		FormElementSuccessText,
-		Localized {}
+		FormElementSuccessText {}
 applyMixinsWithObservables(
 	SearchableSelect,
-	AffixIconWithTrailing,
 	FormElementHelperText,
-	FormElementSuccessText,
-	Localized
+	FormElementSuccessText
 );

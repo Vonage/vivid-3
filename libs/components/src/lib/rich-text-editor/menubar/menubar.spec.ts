@@ -1,6 +1,7 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Menu } from '../../menu/menu';
 import { RichTextEditorTextSizes } from '../rich-text-editor';
+import { Tooltip } from '../../tooltip/tooltip';
 import type { Button } from '../../button/button';
 import { MenuBar } from './menubar';
 import '.';
@@ -70,7 +71,6 @@ describe('menuBar', () => {
 
 			expect(element.classList.contains('hide-menubar')).toBe(false);
 		});
-	});
 
 	describe('textSize', () => {
 		let textSizeButton: Button;
@@ -84,82 +84,180 @@ describe('menuBar', () => {
 			expect(textSizeButton?.getAttribute('icon')).toEqual('text-size-line');
 		});
 
-		it('should open menu when clicked', async () => {
-			textSizeButton.click();
-			await elementUpdated(element);
+			it('should open menu when clicked', async () => {
+				textSizeButton.click();
+				await elementUpdated(element);
 
-			const menu = element.shadowRoot?.querySelector('vwc-menu') as Menu;
-			expect(menu?.open).toBeTruthy();
-		});
+				const menu = element.shadowRoot?.querySelector('vwc-menu') as Menu;
+				expect(menu?.open).toBeTruthy();
+			});
 
-		it('should close menu when clicked again', async () => {
-			textSizeButton.click();
-			await elementUpdated(element);
-			textSizeButton.click();
-			await elementUpdated(element);
+			it('should close menu when clicked again', async () => {
+				textSizeButton.click();
+				await elementUpdated(element);
+				textSizeButton.click();
+				await elementUpdated(element);
 
-			expect(getSelectionMenu('text-size').open).toBeFalsy();
-		});
+				expect(getSelectionMenu('text-size').open).toBeFalsy();
+			});
 
-		it('should have textSize options in the menu', async () => {
-			const textSizeOptions = Object.keys(RichTextEditorTextSizes);
-			const options =
-				getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
+			it('should have textSize options in the menu', async () => {
+				const textSizeOptions = Object.keys(RichTextEditorTextSizes);
+				const options =
+					getSelectionMenu('text-size').querySelectorAll('vwc-menu-item');
 
-			expect(options?.length).toEqual(textSizeOptions.length);
-			options?.forEach((optionElement, index) => {
-				expect(optionElement.getAttribute('value')).toEqual(
-					textSizeOptions[index]
+				expect(options?.length).toEqual(textSizeOptions.length);
+				options?.forEach((optionElement, index) => {
+					expect(optionElement.getAttribute('value')).toEqual(
+						textSizeOptions[index]
+					);
+				});
+			});
+
+			it('should emit text-size-selected event with the selected text size when an option is clicked', async () => {
+				const spy = vi.fn();
+				element.addEventListener('text-size-selected', spy);
+				getSelectionMenu('text-size').open = true;
+				const options = getSelectionMenu('text-size').querySelectorAll(
+					'vwc-menu-item'
+				) as unknown as HTMLElement[];
+
+				options.forEach((option) => option.click());
+				await elementUpdated(element);
+
+				expect(spy).toHaveBeenCalledTimes(options.length);
+				options.forEach((option, index) => {
+					expect(spy.mock.calls[index][0].detail).toEqual(
+						option.getAttribute('value')
+					);
+				});
+			});
+
+			it('should emit a non bubbling and non composed text-size-selected event', async () => {
+				const spy = vi.fn();
+				element.addEventListener('text-size-selected', spy);
+				const option = getSelectionMenu('text-size').querySelector(
+					'vwc-menu-item'
+				) as HTMLElement;
+
+				option.click();
+				await elementUpdated(element);
+
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls[0][0].bubbles).toBe(false);
+				expect(spy.mock.calls[0][0].composed).toBe(false);
+			});
+
+			it('should close the menu when option is clicked', async () => {
+				getSelectionMenu('text-size').open = true;
+				await elementUpdated(element);
+
+				const option = getSelectionMenu('text-size').querySelector(
+					'vwc-menu-item'
+				) as HTMLElement;
+
+				option.click();
+				await elementUpdated(element);
+
+				expect(getSelectionMenu('text-size').open).toBe(false);
+			});
+
+			it('should set a tooltip with the text size message', async () => {
+				const menu = getSelectionMenu('text-size');
+				const menuFocusableChild = menu.querySelector('vwc-button') as Button;
+
+				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');
+				expect(menuFocusableChild.parentElement instanceof Tooltip).toBe(true);
+				expect(menuFocusableChild.parentElement?.getAttribute('text')).toBe(
+					menu.getAttribute('aria-label')
 				);
+				expect(menuFocusableChild.parentElement?.getAttribute('slot')).toBe(
+					'anchor'
+				);
+				expect(
+					menuFocusableChild.parentElement?.getAttribute('placement')
+				).toBe('top');
 			});
 		});
 
-		it('should emit text-size-selected event with the selected text size when an option is clicked', async () => {
-			const spy = vi.fn();
-			element.addEventListener('text-size-selected', spy);
-			getSelectionMenu('text-size').open = true;
-			const options = getSelectionMenu('text-size').querySelectorAll(
-				'vwc-menu-item'
-			) as unknown as HTMLElement[];
-
-			options.forEach((option) => option.click());
-			await elementUpdated(element);
-
-			expect(spy).toHaveBeenCalledTimes(options.length);
-			options.forEach((option, index) => {
-				expect(spy.mock.calls[index][0].detail).toEqual(
-					option.getAttribute('value')
-				);
+		describe('textDecoration', () => {
+			beforeEach(async () => {
+				element.setAttribute('menu-items', 'textDecoration');
+				await elementUpdated(element);
 			});
-		});
 
-		it('should emit a non bubbling and non composed text-size-selected event', async () => {
-			const spy = vi.fn();
-			element.addEventListener('text-size-selected', spy);
-			const option = getSelectionMenu('text-size').querySelector(
-				'vwc-menu-item'
-			) as HTMLElement;
+			it('should show the text decoration buttons when set', async () => {
+				const textDecorationButtons =
+					element.shadowRoot?.querySelectorAll('vwc-button');
 
-			option.click();
-			await elementUpdated(element);
+				expect(textDecorationButtons?.length).toEqual(5);
+			});
 
-			expect(spy).toHaveBeenCalledTimes(1);
-			expect(spy.mock.calls[0][0].bubbles).toBe(false);
-			expect(spy.mock.calls[0][0].composed).toBe(false);
-		});
+			it('should emit text-decoration-selected event with the selected text decoration when a button is clicked', async () => {
+				const spy = vi.fn();
+				element.addEventListener('text-decoration-selected', spy);
+				const listOfDecorations = [
+					'bold',
+					'italics',
+					'underline',
+					'strikethrough',
+					'monospace',
+				];
+				const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
+				buttons?.forEach((button, index) => {
+					(button as any).click();
+				});
 
-		it('should close the menu when option is clicked', async () => {
-			getSelectionMenu('text-size').open = true;
-			await elementUpdated(element);
+				expect(spy).toHaveBeenCalledTimes(listOfDecorations.length);
+				listOfDecorations.forEach((decorationValue, index) => {
+					expect(spy.mock.calls[index][0].detail).toEqual(decorationValue);
+				});
+			});
 
-			const option = getSelectionMenu('text-size').querySelector(
-				'vwc-menu-item'
-			) as HTMLElement;
+			it('should emit a non bubbling and non composed text-decoration-selected event', async () => {
+				const spy = vi.fn();
+				element.addEventListener('text-decoration-selected', spy);
+				const button = element.shadowRoot?.querySelector(
+					'vwc-button'
+				) as HTMLButtonElement;
 
-			option.click();
-			await elementUpdated(element);
+				button.click();
+				await elementUpdated(element);
 
-			expect(getSelectionMenu('text-size').open).toBe(false);
+				expect(spy).toHaveBeenCalledTimes(1);
+				expect(spy.mock.calls[0][0].bubbles).toBe(false);
+				expect(spy.mock.calls[0][0].composed).toBe(false);
+			});
+
+			it('should set the correct icons for the buttons', async () => {
+				const iconNames = [
+					'bold-line',
+					'italic-line',
+					'underline-line',
+					'strikethrough-line',
+					'monospace-line',
+				];
+				const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
+				buttons?.forEach((button, index) => {
+					expect(button.getAttribute('icon')).toEqual(iconNames[index]);
+				});
+			});
+
+			it('should set a tooltip for each text decoration button', async () => {
+				const buttons = element.shadowRoot?.querySelectorAll(
+					'vwc-button'
+				) as unknown as HTMLButtonElement[];
+				for (let i = 0; i < buttons.length; i++) {
+					expect(buttons[i].getAttribute('slot')).toBe('anchor');
+					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);
+					expect(buttons[i].parentElement?.getAttribute('text')).toBe(
+						buttons[i].getAttribute('aria-label')
+					);
+					expect(buttons[i].parentElement?.getAttribute('placement')).toBe(
+						'top'
+					);
+				}
+			});
 		});
 	});
 });

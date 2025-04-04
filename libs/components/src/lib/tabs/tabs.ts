@@ -13,6 +13,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Connotation, TabsGutters } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
 export const TABLIST_COLUMN = '--_tabs-tablist-column';
@@ -22,7 +23,7 @@ export const TABLIST_COLUMN = '--_tabs-tablist-column';
  *
  * @public
  */
-export type TabsConnotation = Extract<
+export type TabsConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;

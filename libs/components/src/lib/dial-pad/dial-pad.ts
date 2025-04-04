@@ -1,6 +1,5 @@
 import { attr } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { TextField } from '../text-field/text-field';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
@@ -20,7 +19,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  *
  */
 
-export class DialPad extends VividElement {
+export class DialPad extends Localized(VividElement) {
 	/**
 	 * @internal
 	 */
@@ -145,6 +144,3 @@ export class DialPad extends VividElement {
 		this.callActive ? this.$emit('end-call') : this.$emit('dial');
 	};
 }
-
-export interface DialPad extends Localized {}
-applyMixins(DialPad, Localized);

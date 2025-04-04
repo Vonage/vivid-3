@@ -1,16 +1,16 @@
 import { attr } from '@microsoft/fast-element';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Appearance, Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 /**
  * Types of nav-disclosure appearance.
  *
  * @public
  */
-export type NavDisclosureAppearance = Extract<
+export type NavDisclosureAppearance = ExtractFromEnum<
 	Appearance,
 	Appearance.Ghost | Appearance.GhostLight
 >;
@@ -20,7 +20,7 @@ export type NavDisclosureAppearance = Extract<
  *
  * @public
  */
-export type NavDisclosureConnotation = Extract<
+export type NavDisclosureConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
 >;
@@ -33,7 +33,7 @@ export type NavDisclosureConnotation = Extract<
  * @slot icon - Add an icon to the component.
  * @event {CustomEvent<undefined>} toggle - Event emitted when the nav disclosure is toggled.
  */
-export class NavDisclosure extends DelegatesAria(VividElement) {
+export class NavDisclosure extends AffixIcon(DelegatesAria(VividElement)) {
 	details!: HTMLDetailsElement;
 
 	/**
@@ -92,6 +92,3 @@ export class NavDisclosure extends DelegatesAria(VividElement) {
 		this.$emit('toggle', undefined, { bubbles: false });
 	};
 }
-
-export interface NavDisclosure extends AffixIcon {}
-applyMixins(NavDisclosure, AffixIcon);

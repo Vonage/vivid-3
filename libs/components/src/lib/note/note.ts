@@ -1,7 +1,6 @@
 import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { AffixIcon } from '../../shared/patterns';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 
 export type NoteConnotation =
@@ -17,7 +16,7 @@ export type NoteConnotation =
  * @slot - Any slotted content will appear below the headline.
  * @slot icon - Add an icon to the component.
  */
-export class Note extends VividElement {
+export class Note extends AffixIcon(VividElement) {
 	/**
 	 * Indicates the note's headline text
 	 *
@@ -28,6 +27,3 @@ export class Note extends VividElement {
 	@attr headline?: string;
 	@attr connotation?: NoteConnotation;
 }
-
-export interface Note extends AffixIcon {}
-applyMixins(Note, AffixIcon);

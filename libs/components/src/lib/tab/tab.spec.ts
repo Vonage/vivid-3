@@ -170,7 +170,7 @@ describe('vwc-tab', () => {
 		it('should set the shape class on the base', async function () {
 			const shape = 'rounded';
 
-			(element as any).shape = shape;
+			element.shape = shape;
 			await elementUpdated(element);
 
 			expect(
