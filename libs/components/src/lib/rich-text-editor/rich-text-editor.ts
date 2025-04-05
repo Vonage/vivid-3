@@ -45,9 +45,6 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-start' })
 	selectionStart: number | null = null;
 	selectionStartChanged() {
-		if (this.#selectionChangedByUser) {
-			return;
-		}
 		if (
 			!this.selectionStart ||
 			(this.selectionEnd && this.selectionStart > this.selectionEnd)
@@ -73,14 +70,9 @@ export class RichTextEditor extends VividElement {
 	@attr({ converter: nullableNumberConverter, attribute: 'selection-end' })
 	selectionEnd: number | null = null;
 	selectionEndChanged() {
-		if (this.#selectionChangedByUser) {
-			this.#selectionChangedByUser = false;
-			return;
-		}
 		if (this.selectionEnd && !this.selectionStart) {
 			this.selectionStart = 1;
 		}
-
 		this.#updateEditorSelection();
 	}
 
@@ -88,14 +80,11 @@ export class RichTextEditor extends VividElement {
 		super();
 	}
 
-	#selectionChangedByUser = false;
-
 	#handleSelectionChange = () => {
 		if (!this.#editor!.selection()) {
 			return;
 		}
 		const { start, end } = this.#editor!.selection();
-		this.#selectionChangedByUser = true;
 		this.selectionStart = start;
 		this.selectionEnd = end as number;
 		this.$emit('selection-changed');
@@ -139,5 +128,16 @@ export class RichTextEditor extends VividElement {
 			// eslint-disable-next-line no-console
 			console.warn(`Invalid decoration: ${decoration}`);
 		}
+	}
+
+	override focus() {
+		super.focus();
+		setTimeout(() => {
+			(
+				this.#editorWrapperElement.querySelector(
+					'[contenteditable="true"]'
+				) as HTMLElement
+			).focus();
+		}, 0);
 	}
 }
