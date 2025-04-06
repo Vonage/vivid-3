@@ -135,14 +135,12 @@ When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `f
 		<vwc-tab icon="playlist-line" label="Playlist"></vwc-tab>
 		<vwc-tab icon="star-line" label="Favourites"></vwc-tab>
 		<vwc-tab-panel>
-			<div class="pannel">
-				<vwc-empty-state
-					icon="error-solid"
-					headline="No results"
-					connotation="alert"
-				>
-				</vwc-empty-state>
-			</div>
+			<vwc-empty-state
+				icon="error-solid"
+				headline="No results"
+				connotation="alert"
+			>
+			</vwc-empty-state>
 		</vwc-tab-panel>
 		<vwc-tab-panel>Playlist</vwc-tab-panel>
 		<vwc-tab-panel>Favourites</vwc-tab-panel>
@@ -165,12 +163,7 @@ When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `f
 		block-size: 100%;
 	}
 
-	vwc-tabs::part(tab-panel) {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
-	.pannel {
+	.tabs::part(tab-panel) {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
