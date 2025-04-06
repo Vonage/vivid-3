@@ -121,6 +121,63 @@ In the example below, a Button is provided that adds a new Tab when clicked.
 </script>
 ```
 
+## CSS Variables
+
+### Tabs Block Size
+
+Use the `--tabs-block-size` CSS variable to set the block-size of the `base` element.  
+When using Tabs inside flex structure, setting `--tabs-block-size: 100%` with `flex:1` or with any specific block-size on Tabs will stretch the tabs to full height.
+
+```html preview full 500px
+<div class="wrapper flex">
+	<vwc-tabs scrollable-panel class="tabs">
+		<vwc-tab icon="chat-line" label="Comments"></vwc-tab>
+		<vwc-tab icon="playlist-line" label="Playlist"></vwc-tab>
+		<vwc-tab icon="star-line" label="Favourites"></vwc-tab>
+		<vwc-tab-panel>
+			<div class="pannel">
+				<vwc-empty-state
+					icon="error-solid"
+					headline="No results"
+					connotation="alert"
+				>
+				</vwc-empty-state>
+			</div>
+		</vwc-tab-panel>
+		<vwc-tab-panel>Playlist</vwc-tab-panel>
+		<vwc-tab-panel>Favourites</vwc-tab-panel>
+	</vwc-tabs>
+</div>
+
+<style>
+	body {
+		height: 100%;
+	}
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		block-size: 100%;
+	}
+
+	.tabs {
+		--tabs-block-size: 100%;
+		flex: 1;
+		block-size: 100%;
+	}
+
+	vwc-tabs::part(tab-panel) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.pannel {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+</style>
+```
+
 ## CSS Parts
 
 ### Tab Panel
