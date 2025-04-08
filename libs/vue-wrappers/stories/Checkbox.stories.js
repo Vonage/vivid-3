@@ -1,5 +1,5 @@
 import { VCheckbox, VLayout } from '@vonage/vivid-vue';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { argTypes, Template } from './generated/VCheckbox';
 
 export default {
