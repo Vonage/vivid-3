@@ -1557,6 +1557,12 @@
 					"attributeName": "helper-text"
 				},
 				{
+					"name": "indeterminate",
+					"description": "The indeterminate state of the control",
+					"type": "boolean",
+					"propertyName": "indeterminate"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
