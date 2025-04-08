@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.20.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.19.0...vivid-vue-v4.20.0) (2025-04-08)
+
+
+### Features
+
+* **vue-wrappers:** improve slot handling (VIV-2383) ([#2255](https://github.com/Vonage/vivid-3/issues/2255)) ([bd2c628](https://github.com/Vonage/vivid-3/commit/bd2c6280012891d2c16fd658eeae05e881f5fcf6))
+
+
+### Bug Fixes
+
+* **vue-wrappers:** fix missing indeterminate prop of checkbox (VIV-2557) ([#2275](https://github.com/Vonage/vivid-3/issues/2275)) ([a9ec182](https://github.com/Vonage/vivid-3/commit/a9ec1824bfa18f68dba0acfbd3930955dc109956))
+
 ## [4.19.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.18.0...vivid-vue-v4.19.0) (2025-03-31)
 
 
