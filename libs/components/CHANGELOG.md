@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.21.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.20.0...vivid-v4.21.0) (2025-04-09)
+
+
+### Features
+
+* **tabs:** add a css-var for adding block-size (VIV-2195) ([#2274](https://github.com/Vonage/vivid-3/issues/2274)) ([53e48b0](https://github.com/Vonage/vivid-3/commit/53e48b03a1f78f03014515cb84c07e3b29ecfb58))
+
 ## [4.20.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.19.0...vivid-v4.20.0) (2025-04-08)
 
 
