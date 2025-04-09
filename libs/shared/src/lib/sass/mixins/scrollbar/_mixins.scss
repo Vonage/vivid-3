@@ -28,6 +28,9 @@
 	::-webkit-scrollbar-thumb {
 		border: 0;
 		border-radius: 4px;
-		background-color: var(#{variables.$scrollbar-thumb-color});
+		background-color: var(
+			#{variables.$scrollbar-fallback-track-color},
+			var(#{variables.$scrollbar-thumb-color})
+		);
 	}
 }
