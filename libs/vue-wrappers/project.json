@@ -18,7 +18,7 @@
 		"build": {
 			"dependsOn": ["vite-build"],
 			"executor": "nx:run-commands",
-			"outputs": ["{options.outputPath}"],
+			"outputs": ["{workspaceRoot}/dist/{projectRoot}"],
 			"options": {
 				"cwd": "libs/vue-wrappers",
 				"commands": [
