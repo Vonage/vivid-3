@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.21.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.21.0...vivid-vue-v4.21.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **vue-wrappers:** fix broken typings (VIV-2560) ([#2281](https://github.com/Vonage/vivid-3/issues/2281)) ([3128518](https://github.com/Vonage/vivid-3/commit/3128518f22a3cf936c09fa77e9803ba41a796307))
+
 ## [4.21.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.20.0...vivid-vue-v4.21.0) (2025-04-09)
 
 
