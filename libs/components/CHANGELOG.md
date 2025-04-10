@@ -4,6 +4,13 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.21.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.21.0...vivid-v4.21.1) (2025-04-10)
+
+
+### Miscellaneous Chores
+
+* **vivid:** Synchronize vivid versions
+
 ## [4.21.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.20.0...vivid-v4.21.0) (2025-04-09)
 
 
