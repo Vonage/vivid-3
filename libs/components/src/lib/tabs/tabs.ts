@@ -518,7 +518,7 @@ export class Tabs extends VividElement {
 		}
 	}
 
-	get #tabListWrapper() {
+	get #tabListWrapper(): HTMLElement {
 		return this.shadowRoot!.querySelector('.tablist-wrapper') as HTMLElement;
 	}
 

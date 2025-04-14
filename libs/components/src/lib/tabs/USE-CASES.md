@@ -3,10 +3,10 @@
 The `removable` attribute on the **Tab** component can used along with the `action-items` slot on the **Tabs** component to create functionality where Tabs can be added and removed by the user.
 
 ```html preview 300px
-<vwc-tabs>
-	<vwc-tab label="Task" removable></vwc-tab>
+<vwc-tabs activeid="tab-2">
+	<vwc-tab label="Task" id="tab-1" removable></vwc-tab>
 	<vwc-tab-panel>Task content</vwc-tab-panel>
-	<vwc-tab label="Event" removable></vwc-tab>
+	<vwc-tab id="tab-2" label="Event" removable></vwc-tab>
 	<vwc-tab-panel>Event content</vwc-tab-panel>
 	<vwc-menu
 		slot="action-items"
@@ -42,10 +42,17 @@ The `removable` attribute on the **Tab** component can used along with the `acti
 	});
 
 	function addTab(name) {
+		const tabItems = document.querySelectorAll('vwc-tab');
 		const tab = document.createElement('vwc-tab');
 		tab.label = name;
+		id = 'tab-' + (tabItems.length + 1);
+		tab.id = id;
 		tab.removable = true;
-		document.querySelector('vwc-tabs').appendChild(tab);
+		const tabs = document.querySelector('vwc-tabs');
+		tabs.appendChild(tab);
+		setTimeout(() => {
+			tabs.activeid = id;
+		}, 50);
 		const tabPanel = document.createElement('vwc-tab-panel');
 		tabPanel.textContent = `${name} content`;
 		document.querySelector('vwc-tabs').appendChild(tabPanel);
