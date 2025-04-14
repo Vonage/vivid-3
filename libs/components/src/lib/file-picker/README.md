@@ -207,6 +207,7 @@ If needed, the background of the item can be changed using the `--file-picker-li
 | **error-text**    | `string`                       | Sets the element's error text                                                            |
 | **error-text**    | `string`                       | Sets the element's helper text                                                           |
 | **files**         | `File[]` (default `[]`)        | A read-only list of files that have been added to the file picker and passed validation. |
+| **rejectedFiles** | `File[]` (default `[]`)        | A read-only list of files that have been added to the file picker, but failed validation |
 | **max-file**      | `string`                       | Sets the file picker max files to upload                                                 |
 | **label**         | `string`                       | Sets the element's label                                                                 |
 | **max-file-size** | `string`                       | Sets the file picker max file size to upload                                             |

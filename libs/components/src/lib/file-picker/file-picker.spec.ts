@@ -4,13 +4,13 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import type { Button } from '../button/button';
-import { Size } from '../enums';
-import { setLocale } from '../../shared/localization';
+import '.';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
+import { setLocale } from '../../shared/localization';
+import type { Button } from '../button/button';
+import { Size } from '../enums';
 import { FilePicker } from './file-picker';
-import '.';
 
 const COMPONENT_TAG = 'vwc-file-picker';
 
@@ -58,7 +58,7 @@ describe('vwc-file-picker', () => {
 			expect(element.maxFileSize).toEqual(256);
 			expect(element.maxFiles).toBeUndefined();
 			expect(element.accept).toBeUndefined();
-			expect(element.files).toEqual([]);
+			expect([element.files, element.rejectedFiles]).toEqual([[], []]);
 			expect(element.invalidFileTypeError).toBeUndefined();
 			expect(element.maxFilesExceededError).toBeUndefined();
 			expect(element.fileTooBigError).toBeUndefined();
@@ -80,7 +80,10 @@ describe('vwc-file-picker', () => {
 			unmountedElement.accept = '.jpg';
 			unmountedElement.removeAllFiles();
 
-			expect(unmountedElement.files).toEqual([]);
+			expect([unmountedElement.files, unmountedElement.rejectedFiles]).toEqual([
+				[],
+				[],
+			]);
 			expect(() => {
 				document.body.appendChild(unmountedElement);
 				document.body.removeChild(unmountedElement);
@@ -110,14 +113,24 @@ describe('vwc-file-picker', () => {
 		});
 
 		it('should remove all files when setting value to an empty string', async function () {
+			element.maxFileSize = 1;
 			addFiles([
-				await generateFile('london.png', 1),
-				await generateFile('london.png', 1),
+				await generateFile('london-1.png', 1),
+				await generateFile('london-2.png', 1),
+				await generateFile('london-3.png', 2),
 			]);
+
+			expect([
+				element.files.length,
+				element.rejectedFiles.length,
+			]).toStrictEqual([2, 1]);
 
 			element.value = '';
 
-			expect(element.files.length).toBe(0);
+			expect([
+				element.files.length,
+				element.rejectedFiles.length,
+			]).toStrictEqual([0, 0]);
 		});
 	});
 
@@ -154,12 +167,12 @@ describe('vwc-file-picker', () => {
 			expect(getErrorMessage(0)).toBe(
 				'File size of 2MB is too big. Limit is 1MB.'
 			);
+
 			element.fileTooBigError = undefined;
 			element.removeAllFiles();
 			await elementUpdated(element);
 
 			addFiles([file]);
-
 			await elementUpdated(element);
 
 			expect(getErrorMessage(0)).toBe(
@@ -462,14 +475,48 @@ describe('vwc-file-picker', () => {
 		});
 	});
 
+	describe('rejectedFiles', function () {
+		it('should include files that have been rejected', async function () {
+			element.maxFileSize = 1;
+			const acceptableFile = await generateFile('london.png', 1);
+			const unacceptableFile = await generateFile('paris.png', 2);
+			addFiles([acceptableFile, unacceptableFile]);
+
+			expect([element.files, element.rejectedFiles]).toEqual([
+				[acceptableFile],
+				[unacceptableFile],
+			]);
+		});
+
+		it('should remove rejectedFiles when clicking remove button', async function () {
+			element.maxFileSize = 1;
+			addFiles([await generateFile('london.png', 1)]);
+
+			getRemoveButton(0).click();
+
+			expect(element.rejectedFiles.length).toEqual(0);
+		});
+	});
+
 	describe('removeAllFiles()', function () {
 		it('should remove all files', async function () {
+			element.maxFileSize = 1;
+
 			addFiles([
 				await generateFile('london.png', 1),
 				await generateFile('london.png', 1),
+				await generateFile('london.png', 2),
 			]);
+
+			expect([
+				element.files.length,
+				element.rejectedFiles.length,
+			]).toStrictEqual([2, 1]);
 			element.removeAllFiles();
-			expect(element.files.length).toEqual(0);
+			expect([
+				element.files.length,
+				element.rejectedFiles.length,
+			]).toStrictEqual([0, 0]);
 		});
 	});
 
@@ -563,24 +610,34 @@ describe('form associated vwc-file-picker', function () {
 		formWrapper.remove();
 	});
 
-	it('should reset the value and files when the form is reset', async function () {
+	it('should reset the value and all files when the form is reset', async function () {
 		const { form: formElement, element } = createFormHTML<FilePicker>({
 			fieldName: 'file',
 			formId: 'form-id',
 			componentTagName: COMPONENT_TAG,
 			formWrapper,
 		});
+		element.maxFileSize = 1;
 
-		addFiles([await generateFile('london.png', 1)]);
+		addFiles([
+			await generateFile('london-1.png', 1),
+			await generateFile('london-2.png', 2),
+		]);
 		const valueBeforeReset = element.value;
-		const numFilesBeforeReset = element.files.length;
+		const numValidFilesBeforeReset = element.files.length;
+		const numInvalidFilesBeforeReset = element.rejectedFiles.length;
 
 		formElement.reset();
 
-		expect(valueBeforeReset).toBe('C:\\fakepath\\london.png');
-		expect(numFilesBeforeReset).toBeGreaterThan(0);
+		expect(valueBeforeReset).toStrictEqual('C:\\fakepath\\london-1.png');
+		expect([
+			numValidFilesBeforeReset,
+			numInvalidFilesBeforeReset,
+		]).toStrictEqual([1, 1]);
 		expect(element.value).toBe('');
-		expect(element.files.length).toBe(0);
+		expect([element.files.length, element.rejectedFiles.length]).toStrictEqual([
+			0, 0,
+		]);
 	});
 
 	it('should update the form value when name attribute is added', async function () {
