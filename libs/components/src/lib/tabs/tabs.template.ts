@@ -30,7 +30,6 @@ function setNoScrollState(
 	scrollShadow: HTMLElement,
 	scrollWrapper: HTMLElement
 ) {
-
 	if (scrollWrapper.scrollWidth <= scrollWrapper.clientWidth) {
 		scrollShadow.classList.toggle('start-scroll', false);
 		scrollShadow.classList.toggle('end-scroll', false);
@@ -54,7 +53,6 @@ function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 function setShadowWhenScrollTabs(_: Tabs, { event }: ExecutionContext) {
 	const scrollWrapper = event.currentTarget as HTMLElement;
 	const scrollShadow = scrollWrapper!.parentElement as HTMLElement;
-
 
 	if (setNoScrollState(scrollShadow, scrollWrapper)) {
 		return;

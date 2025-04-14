@@ -224,7 +224,7 @@ describe('vwc-tabs', () => {
 			await dispatchScrollEvent();
 
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
-		})
+		});
 
 		it('should remove class "end-scroll + start-scroll" if scroll-width less or equal to wrapper', async () => {
 			setScrollWidth(100);
