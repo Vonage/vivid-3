@@ -3,7 +3,7 @@
 The `removable` attribute on the **Tab** component can used along with the `action-items` slot on the **Tabs** component to create functionality where Tabs can be added and removed by the user.
 
 ```html preview 300px
-<vwc-tabs activeid="tab-2">
+<vwc-tabs activeid="tab-1">
 	<vwc-tab label="Task" id="tab-1" removable></vwc-tab>
 	<vwc-tab-panel>Task content</vwc-tab-panel>
 	<vwc-tab id="tab-2" label="Event" removable></vwc-tab>
