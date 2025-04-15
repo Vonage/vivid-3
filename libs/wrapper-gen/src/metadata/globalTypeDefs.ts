@@ -11,7 +11,7 @@ import {
 	TextAreaResize,
 	TextFieldType,
 } from '@microsoft/fast-foundation';
-import { MenuItemRole, MediaSkipBy, TabsGutters, Sticky } from '@vonage/vivid';
+import { MenuItemRole, TabsGutters } from '@vonage/vivid';
 import { Direction, Orientation } from '@microsoft/fast-web-utilities';
 import { toTypeStr, TypeStr } from '../common/types';
 
@@ -31,8 +31,6 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 	TextAreaResize: typeFromEnumObj(TextAreaResize),
 	Orientation: typeFromEnumObj(Orientation),
 	Direction: typeFromEnumObj(Direction),
-	MediaSkipBy: typeFromEnumObj(MediaSkipBy),
-	Sticky: typeFromEnumObj(Sticky),
 
 	// Types defined by Floating UI:
 	Placement:

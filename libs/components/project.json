@@ -95,6 +95,14 @@
 			"options": {
 				"lintFilePatterns": ["libs/components/**/*.scss"]
 			}
+		},
+		"typecheck": {
+			"executor": "nx:run-commands",
+			"options": {
+				"cwd": "libs/components",
+				"commands": ["tsc -p tsconfig.spec.json --noEmit"],
+				"forwardAllArgs": false
+			}
 		}
 	}
 }

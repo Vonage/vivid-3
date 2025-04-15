@@ -1,4 +1,4 @@
-import { scrollIntoView } from './scrollIntoView.ts';
+import { scrollIntoView } from './scrollIntoView';
 
 describe('scrollIntoView', () => {
 	const setup = (

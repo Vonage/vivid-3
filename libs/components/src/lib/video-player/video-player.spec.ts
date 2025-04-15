@@ -48,7 +48,7 @@ describe('vwc-video-player', () => {
 	}
 
 	function getPosterElement() {
-		return element.shadowRoot!.querySelector('picture') as HTMLPictureElement;
+		return element.shadowRoot!.querySelector('picture')!;
 	}
 
 	describe('basic', () => {
@@ -194,9 +194,9 @@ describe('vwc-video-player', () => {
 
 			await elementUpdated(element);
 
-			const playbackRatesMenuItems = element.shadowRoot?.querySelectorAll(
+			const playbackRatesMenuItems = element.shadowRoot!.querySelectorAll(
 				'.vjs-playback-rate .vjs-menu li'
-			) as NodeListOf<Element>;
+			);
 
 			expect(playbackRatesMenuItems.length).toBe(playbackRatesArray.length);
 
