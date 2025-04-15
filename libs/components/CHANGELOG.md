@@ -4,6 +4,35 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.21.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.21.0...vivid-v4.21.1) (2025-04-10)
+
+
+### Miscellaneous Chores
+
+* **vivid:** Synchronize vivid versions
+
+## [4.21.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.20.0...vivid-v4.21.0) (2025-04-09)
+
+
+### Features
+
+* **tabs:** add a css-var for adding block-size (VIV-2195) ([#2274](https://github.com/Vonage/vivid-3/issues/2274)) ([53e48b0](https://github.com/Vonage/vivid-3/commit/53e48b03a1f78f03014515cb84c07e3b29ecfb58))
+
+## [4.20.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.19.0...vivid-v4.20.0) (2025-04-08)
+
+
+### Features
+
+* **components:** new focus style (VIV-2350) ([#2186](https://github.com/Vonage/vivid-3/issues/2186)) ([45dc79e](https://github.com/Vonage/vivid-3/commit/45dc79e71dee6ab870eab9f09656d87bc8fed433))
+* **components:** use string unions for enumerated properties (VIV-2380) ([#2257](https://github.com/Vonage/vivid-3/issues/2257)) ([6646ad3](https://github.com/Vonage/vivid-3/commit/6646ad37bdfc22d8269ddbbeb258d392cacc6e02))
+
+
+### Bug Fixes
+
+* **searchable-select:** fix text selection (VIV-2415) ([#2263](https://github.com/Vonage/vivid-3/issues/2263)) ([ec27aa6](https://github.com/Vonage/vivid-3/commit/ec27aa608290185bf6b0733b0bcfee9f78bc8416))
+* **select:** condensed border radius (VIV-2495) ([#2264](https://github.com/Vonage/vivid-3/issues/2264)) ([4159548](https://github.com/Vonage/vivid-3/commit/415954836514ae2c34d5e8ac7ba0b77430e4777e))
+* **vue-wrappers:** fix missing indeterminate prop of checkbox (VIV-2557) ([#2275](https://github.com/Vonage/vivid-3/issues/2275)) ([a9ec182](https://github.com/Vonage/vivid-3/commit/a9ec1824bfa18f68dba0acfbd3930955dc109956))
+
 ## [4.19.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.18.0...vivid-v4.19.0) (2025-03-31)
 
 

@@ -119,6 +119,6 @@ jobs:
     secrets: inherit
 
   deploy-deno:
-    needs: should-release
+    needs: build
     if: ${{ needs.should-release.outputs.should_release == 'true' }}
     uses: ./.github/workflows/_deploy-deno.yml

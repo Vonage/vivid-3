@@ -22,8 +22,7 @@ export default defineComponent({
     prop: 'modelValue',
     event: 'update:modelValue'
   } : undefined,
-  props: {
-    /**
+  props: { /**
  * This is an example prop
  */
         exampleProp: {type: String as PropType<string>, default: undefined},
@@ -45,7 +44,7 @@ export default defineComponent({
         forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
 
         booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
-  },
+			},
   emits: [
 			
 					/**
@@ -209,8 +208,7 @@ export default defineComponent({
     prop: 'modelValue',
     event: 'update:modelValue'
   } : undefined,
-  props: {
-    /**
+  props: { /**
  * This is an example prop
  */
         exampleProp: {type: String as PropType<string>, default: undefined},
@@ -232,7 +230,7 @@ export default defineComponent({
         forcedDomProp: {type: [String, HTMLElement] as PropType<string | HTMLElement>, default: undefined},
 
         booleanProp: {type: Boolean as PropType<boolean>, default: undefined}
-  },
+			},
   emits: {
 			
 				/**
@@ -331,9 +329,7 @@ import type { VwcExampleComponentElement } from '@vonage/vivid';
 export default defineComponent({
   name: 'VExampleComponent',
   
-  props: {
-    
-  },
+  
   emits: [
 			],
   methods: {
@@ -392,9 +388,7 @@ import type { SlotsType } from 'vue3';
 export default defineComponent({
   name: 'VExampleComponent',
   
-  props: {
-    
-  },
+  
   emits: {
 			},
   methods: {

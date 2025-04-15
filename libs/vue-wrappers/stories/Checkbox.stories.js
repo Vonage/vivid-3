@@ -1,5 +1,5 @@
 import { VCheckbox, VLayout } from '@vonage/vivid-vue';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { argTypes, Template } from './generated/VCheckbox';
 
 export default {
@@ -18,18 +18,7 @@ export const Label = LabelTemplate.bind({});
 
 const IndeterminateTemplate = () => ({
 	components: { VCheckbox },
-	setup() {
-		const checkbox = ref(null);
-
-		watchEffect(() => {
-			if (checkbox.value) {
-				checkbox.value.$el.indeterminate = true;
-			}
-		});
-
-		return { checkbox };
-	},
-	template: `<VCheckbox ref="checkbox" />`,
+	template: `<VCheckbox ref="checkbox" indeterminate/>`,
 });
 export const Indeterminate = IndeterminateTemplate.bind({});
 

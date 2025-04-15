@@ -1,11 +1,11 @@
 import { FASTElement, html } from '@microsoft/fast-element';
 import { fixture } from '@vivid-nx/shared';
-import { createRegisterFunction } from './createRegisterFunction.ts';
+import { createRegisterFunction } from './createRegisterFunction';
 import {
 	defineVividComponent,
-	VividComponentDefinition,
-	VividElementDefinitionContext,
-} from './defineVividComponent.ts';
+	type VividComponentDefinition,
+	type VividElementDefinitionContext,
+} from './defineVividComponent';
 
 const template = html`<div></div>`;
 

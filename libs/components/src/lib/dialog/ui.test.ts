@@ -195,7 +195,7 @@ test('should leave the dialog open on pressing ESC twice when cancel event is ca
 	await page.waitForLoadState('networkidle');
 
 	await page.evaluate(() => {
-		const dialog = document.querySelector('vwc-dialog');
+		const dialog = document.querySelector('vwc-dialog')!;
 		dialog.addEventListener('cancel', (event) => {
 			event.preventDefault();
 		});
