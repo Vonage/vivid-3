@@ -219,33 +219,37 @@ export const renderComponent = (
 	 * Declare props.
 	 * Note: All props are optional. Setting default to undefined, otherwise Vue 3 will default boolean props to false.
 	 * myProp: {type: [String, Number] as PropType<string | number>, default: undefined},
+	 * Note: When there are no props, props key needs to be omitted or the typings will break in Vue 3.
 	 */
-	const propDefinitionsSrc = props
-		.flatMap((prop) => {
-			const vueModel = componentDef.vueModels.find(
-				(model) => model.propName === prop.name
-			);
+	const propDefinitionsSrc = props.length
+		? `props: { ${props
+				.flatMap((prop) => {
+					const vueModel = componentDef.vueModels.find(
+						(model) => model.propName === prop.name
+					);
 
-			return [
-				prop,
-				...(vueModel && vueModel.name !== prop.name
-					? [
-							{
-								...prop,
-								name: vueModel.name,
-							},
-					  ]
-					: []),
-			];
-		})
-		.map(({ name, description, type }) => {
-			const propName = kebabToCamel(name);
-			return `${renderJsDoc(description)}
+					return [
+						prop,
+						...(vueModel && vueModel.name !== prop.name
+							? [
+									{
+										...prop,
+										name: vueModel.name,
+									},
+							  ]
+							: []),
+					];
+				})
+				.map(({ name, description, type }) => {
+					const propName = kebabToCamel(name);
+					return `${renderJsDoc(description)}
         ${propName}: {type: ${renderPropType(
-				type
-			)} as PropType<${type}>, default: undefined}`;
-		})
-		.join(',\n');
+						type
+					)} as PropType<${type}>, default: undefined}`;
+				})
+				.join(',\n')}
+			},`
+		: '';
 
 	const renderEventDeclaration = ({
 		name,
@@ -344,9 +348,7 @@ ${renderJsDoc(componentDef.description)}
 export default defineComponent({
   name: '${wrappedComponentName(componentDef)}',
   ${vue2VModelSrc}
-  props: {
-    ${propDefinitionsSrc}
-  },
+  ${propDefinitionsSrc}
   emits: ${eventDefinitionsSrc},
   methods: {
   	${methodDefinitionsSrc}

@@ -8,7 +8,6 @@ import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { Size } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
-import type { AriaProperty } from '../../shared/aria/delegates-aria';
 import { Button } from './button';
 import '.';
 
@@ -376,7 +375,7 @@ describe('vwc-button', () => {
 					'ariaPressed',
 					'ariaRelevant',
 					'ariaRoleDescription',
-				] as AriaProperty[]
+				]
 			);
 		});
 

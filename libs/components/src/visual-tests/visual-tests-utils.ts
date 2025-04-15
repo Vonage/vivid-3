@@ -6,8 +6,8 @@ import type { Page, Request } from '@playwright/test';
 
 const layout = (function () {
 	const layoutFactorial =
-		(...attrs) =>
-		(code) =>
+		(...attrs: any[]) =>
+		(code: string) =>
 			`
     <script type="module" src="/assets/modules/components/layout/index.js"></script>
     <vwc-layout ${attrs.join(' ')}>${code}</vwc-layout>
@@ -16,9 +16,9 @@ const layout = (function () {
 	const inline = layoutFactorial('gutters="small"');
 	const blocks = layoutFactorial('gutters="small"', 'column-basis="block"');
 	const columns = layoutFactorial('gutters="small"', 'column-basis="medium"');
-	const center = (code) => `<div class="center">${code}</div>`;
+	const center = (code: string) => `<div class="center">${code}</div>`;
 
-	const layoutFun = (code, classList) => {
+	const layoutFun = (code: string, classList: DOMTokenList) => {
 		if (classList.contains('full')) {
 			return code;
 		} else if (classList.contains('blocks')) {
@@ -48,7 +48,7 @@ export function replaceAll(str: string, find: string, replace: string) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 
-function getPreElements(html): NodeListOf<HTMLPreElement> {
+function getPreElements(html: string): NodeListOf<HTMLPreElement> {
 	const dom = new JSDOM(html);
 	return dom.window.document.querySelectorAll('pre.preview');
 }

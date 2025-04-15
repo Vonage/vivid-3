@@ -5,7 +5,7 @@ import {
 	setProperty,
 } from '@vivid-nx/shared';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
-import { TextAnchor, TextAnchorConnotation } from './text-anchor';
+import { TextAnchor, type TextAnchorConnotation } from './text-anchor';
 import '.';
 
 const COMPONENT_TAG = 'vwc-text-anchor';

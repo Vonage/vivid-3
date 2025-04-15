@@ -8,12 +8,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "expandMode",
 					"description": "Controls the expand mode of the Accordion, either allowing\nsingle or multiple item expansion.",
 					"type": "'single' | 'multi'",
@@ -69,12 +63,6 @@
 			"registerFunctionName": "registerAccordionItem",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "expanded",
 					"description": "Expands or collapses the item.",
@@ -196,12 +184,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "shape",
 					"description": "The shape the ActionGroup should have.",
 					"type": "'rounded' | 'pill'",
@@ -259,12 +241,6 @@
 			"registerFunctionName": "registerAlert",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "Sets an appropriate icon / icon color for the connotation.",
@@ -406,12 +382,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the audio-player should have.",
 					"type": "'accent' | 'cta'",
@@ -538,12 +508,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the avatar should have.",
 					"type": "'accent' | 'cta'",
@@ -633,12 +597,6 @@
 					"type": "'filled' | 'duotone' | 'subtle' | 'subtle-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "connotation",
@@ -734,12 +692,6 @@
 					"propertyName": "actionText"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"type": "'information' | 'announcement' | 'success' | 'warning' | 'alert'",
 					"attributeName": "connotation",
@@ -819,14 +771,7 @@
 			"vividModulePath": "libs/components/src/lib/breadcrumb/breadcrumb.ts",
 			"registerFunctionName": "registerBreadcrumb",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -870,12 +815,6 @@
 			"registerFunctionName": "registerBreadcrumbItem",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaExpanded",
 					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
@@ -1002,12 +941,6 @@
 					"type": "'filled' | 'outlined' | 'ghost' | 'ghost-light' | 'outlined-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "autofocus",
@@ -1270,12 +1203,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "datetime",
 					"description": "The date within a week of choice.\nAccepts any parameter acceptable by the `Date()` constructor.",
 					"type": "Date | string",
@@ -1398,12 +1325,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the calendar event should have.",
 					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
@@ -1495,12 +1416,6 @@
 					"type": "'elevated' | 'ghost' | 'outlined'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "elevation",
@@ -1603,12 +1518,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "checked",
 					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
 					"type": "boolean",
@@ -1646,6 +1555,12 @@
 					"description": "The helper text for the form element.",
 					"type": "string",
 					"attributeName": "helper-text"
+				},
+				{
+					"name": "indeterminate",
+					"description": "The indeterminate state of the control",
+					"type": "boolean",
+					"propertyName": "indeterminate"
 				},
 				{
 					"name": "initialValue",
@@ -1771,12 +1686,6 @@
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "autocomplete",
@@ -1987,12 +1896,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "generateHeader",
 					"description": "Whether the grid should automatically generate a header row and its type",
 					"type": "'none' | 'default' | 'sticky'",
@@ -2086,12 +1989,6 @@
 			"registerFunctionName": "registerDataGrid",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaSelected",
 					"description": "Indicates the selected status.",
@@ -2210,12 +2107,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "ariaSelected",
 					"description": "Indicates the selected status.",
 					"type": "string",
@@ -2306,12 +2197,6 @@
 			"registerFunctionName": "registerDatePicker",
 			"description": "Single date picker component.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
@@ -2438,12 +2323,6 @@
 			"registerFunctionName": "registerDateRangePicker",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
@@ -2614,12 +2493,6 @@
 			"registerFunctionName": "registerDateTimePicker",
 			"description": "Single date picker component.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "clock",
 					"description": "Forces a 12h or 24h clock to be used.",
@@ -2796,12 +2669,6 @@
 			"description": "Base class for dial-pad",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "callActive",
 					"description": "Indicates the active state of the dial-pad.",
 					"type": "boolean",
@@ -2956,12 +2823,6 @@
 			"registerFunctionName": "registerDialog",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "dismissButtonAriaLabel",
 					"type": "string",
@@ -3133,12 +2994,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "orientation",
 					"description": "The orientation of the divider.",
 					"type": "'horizontal' | 'vertical'",
@@ -3196,12 +3051,6 @@
 			"registerFunctionName": "registerEmptyState",
 			"description": "An empty state element. Used when there is no data to display to the user.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "The connotation the empty state should have.",
@@ -3287,12 +3136,6 @@
 			"registerFunctionName": "registerFab",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autofocus",
 					"description": "Determines if the element should receive document focus on page load.",
@@ -3475,12 +3318,6 @@
 					"type": "string",
 					"attributeName": "accept",
 					"propertyName": "accept"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "disabled",
@@ -3709,12 +3546,6 @@
 					"propertyName": "alternate"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "elevationShadow",
 					"description": "header elevation shadow",
 					"type": "boolean",
@@ -3775,12 +3606,6 @@
 			"registerFunctionName": "registerIcon",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "The connotation the icon should have.",
@@ -3847,12 +3672,6 @@
 			"registerFunctionName": "registerLayout",
 			"description": "[--layout-grid-template-columns=repeat([the `auto-sizing` mapped value],\nminmax([the `column-basis` mapped value], 1fr))] - Controls the `grid-template-columns` of the layout.",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autoSizing",
 					"description": "sets the initial preferred auto-sizing from predefined available options",
@@ -3938,12 +3757,6 @@
 					"type": "string | HTMLElement",
 					"attributeName": "anchor",
 					"propertyName": "anchor"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "autoDismiss",
@@ -4069,12 +3882,6 @@
 			"registerFunctionName": "registerMenuItem",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "checkAppearance",
 					"description": "Controls the appearance of the check indicator.",
@@ -4218,14 +4025,7 @@
 			"vividModulePath": "libs/components/src/lib/nav/nav.ts",
 			"registerFunctionName": "registerNav",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -4275,12 +4075,6 @@
 					"type": "'ghost' | 'ghost-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "connotation",
@@ -4371,12 +4165,6 @@
 					"type": "'ghost' | 'ghost-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "ariaExpanded",
@@ -4515,12 +4303,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"type": "'accent' | 'information' | 'success' | 'warning' | 'announcement' | 'alert'",
 					"attributeName": "connotation",
@@ -4595,12 +4377,6 @@
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "autoComplete",
@@ -4867,12 +4643,6 @@
 			"description": "An Option Custom HTML Element.\nImplements https://www.w3.org/TR/wai-aria-1.1/#option | ARIA option .",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "The disabled state of the option.",
 					"type": "boolean",
@@ -4981,12 +4751,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "navIcons",
 					"type": "boolean",
 					"attributeName": "nav-icons",
@@ -5093,12 +4857,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "Indicates the progress' connotation.",
 					"type": "'accent' | 'success' | 'alert' | 'cta' | 'pacific'",
@@ -5192,12 +4950,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"type": "'accent' | 'success' | 'alert' | 'cta'",
 					"attributeName": "connotation",
@@ -5281,12 +5033,6 @@
 			"registerFunctionName": "registerRadio",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaLabel",
 					"type": "string",
@@ -5411,12 +5157,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "Disables the radio group and child radios.",
 					"type": "boolean",
@@ -5514,12 +5254,6 @@
 			"registerFunctionName": "registerRangeSlider",
 			"description": "Base class for range-slider",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "ariaEndLabel",
 					"description": "Aria label for the end thumb",
@@ -5724,12 +5458,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "selectionEnd",
 					"type": "number",
 					"attributeName": "selection-end",
@@ -5807,12 +5535,6 @@
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "clearable",
@@ -6053,12 +5775,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "disabled",
 					"description": "Sets the element's disabled state. A disabled element will not be included during form submission.",
 					"type": "boolean",
@@ -6269,12 +5985,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "checked",
 					"description": "Controls the checked state of the box",
 					"type": "boolean",
@@ -6373,12 +6083,6 @@
 					"propertyName": "alternate"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "modal",
 					"description": "sets the side drawer's type to modal",
 					"type": "boolean",
@@ -6467,12 +6171,6 @@
 			"registerFunctionName": "registerSlider",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "connotation",
 					"description": "slider connotation",
@@ -6654,12 +6352,6 @@
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "connotation",
 					"description": "The connotation the split button should have.",
 					"type": "'accent' | 'announcement' | 'cta' | 'success' | 'alert'",
@@ -6772,12 +6464,6 @@
 			"registerFunctionName": "registerSwitch",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "checked",
 					"description": "The current checkedness of the element. This property serves as a mechanism\nto set the `checked` property through both property assignment and the\n.setAttribute() method. This is useful for setting the field's checkedness\nin UI libraries that bind data through the .setAttribute() API\nand don't support IDL attribute binding.",
@@ -6902,12 +6588,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "ariaSelected",
 					"type": "string",
 					"attributeName": "aria-selected",
@@ -7024,14 +6704,7 @@
 			"vividModulePath": "libs/components/src/lib/tab-panel/tab-panel.ts",
 			"registerFunctionName": "registerTabPanel",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -7088,12 +6761,6 @@
 					"type": "boolean",
 					"attributeName": "activeindicator",
 					"propertyName": "activeindicator"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "connotation",
@@ -7192,12 +6859,6 @@
 					"type": "'subtle' | 'duotone'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "connotation",
@@ -7318,14 +6979,7 @@
 			"vividModulePath": "libs/components/src/lib/tag-group/tag-group.ts",
 			"registerFunctionName": "registerTagGroup",
 			"description": "",
-			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				}
-			],
+			"props": [],
 			"events": [
 				{
 					"name": "blur",
@@ -7371,12 +7025,6 @@
 			"registerFunctionName": "registerTextArea",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autofocus",
 					"description": "Indicates that this element should get focus after the page finishes loading.",
@@ -7603,12 +7251,6 @@
 					"type": "'fieldset' | 'ghost'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
-				},
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
 				},
 				{
 					"name": "autoComplete",
@@ -7859,12 +7501,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "clock",
 					"description": "Forces a 12h or 24h clock to be used.",
 					"type": "'12h' | '24h'",
@@ -8026,12 +7662,6 @@
 					"propertyName": "anchor"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "headline",
 					"description": "the optional title of the toggletip",
 					"type": "string",
@@ -8126,12 +7756,6 @@
 					"propertyName": "anchor"
 				},
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "open",
 					"type": "boolean",
 					"attributeName": "open",
@@ -8199,12 +7823,6 @@
 			"registerFunctionName": "registerTreeItem",
 			"description": "",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "disabled",
 					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute for more information.",
@@ -8302,12 +7920,6 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
-				{
 					"name": "renderCollapsedNodes",
 					"description": "/**\n When true, the control will be appear expanded by user interaction.",
 					"type": "boolean",
@@ -8360,12 +7972,6 @@
 			"registerFunctionName": "registerVideoPlayer",
 			"description": "Base class for video-player",
 			"props": [
-				{
-					"name": "ariaCurrent",
-					"description": "Indicates the element that represents the current item within a container or set of related elements.",
-					"type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-					"attributeName": "aria-current"
-				},
 				{
 					"name": "autoplay",
 					"description": "Allows the video will play automatically (muted)",
