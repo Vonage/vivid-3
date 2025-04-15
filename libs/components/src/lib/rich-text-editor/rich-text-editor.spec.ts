@@ -501,7 +501,7 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 			vi.useFakeTimers();
 			menuBar.dispatchEvent(
-				new CustomEvent('text-decoration-selected', { detail: newTextBlock })
+				new CustomEvent('text-block-selected', { detail: newTextBlock })
 			);
 			await vi.advanceTimersToNextTimerAsync();
 			vi.useRealTimers();
