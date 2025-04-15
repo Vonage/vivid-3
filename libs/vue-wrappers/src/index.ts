@@ -9,3 +9,6 @@ export * from './generated/icons';
 
 // plugin
 export * from './plugin';
+
+// types
+export type * from './generated/types';

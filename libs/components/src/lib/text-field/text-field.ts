@@ -124,7 +124,9 @@ const installSafariWorkaroundStyle = (forElement: TextField) => {
  */
 @errorText
 @formElements
-export class TextField extends DelegatesAria(FormAssociatedTextField) {
+export class TextField extends AffixIcon(
+	DelegatesAria(FormAssociatedTextField)
+) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -576,15 +578,13 @@ export class TextField extends DelegatesAria(FormAssociatedTextField) {
 }
 
 export interface TextField
-	extends AffixIcon,
-		ErrorText,
+	extends ErrorText,
 		FormElement,
 		FormElementCharCount,
 		FormElementHelperText,
 		FormElementSuccessText {}
 applyMixinsWithObservables(
 	TextField,
-	AffixIcon,
 	FormElementCharCount,
 	FormElementHelperText,
 	FormElementSuccessText

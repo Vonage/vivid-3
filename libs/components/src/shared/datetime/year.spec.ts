@@ -1,4 +1,4 @@
-import { yearOfDate } from './year.ts';
+import { yearOfDate } from './year';
 
 describe('yearOfDate', () => {
 	it('should return the year of the given date', () => {

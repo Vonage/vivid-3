@@ -101,7 +101,7 @@ describe('vwc-badge', () => {
 
 	describe('appearance', () => {
 		it('sets correct internal appearance style', async () => {
-			const appearance = 'soft';
+			const appearance = 'subtle';
 			element.appearance = appearance;
 			await elementUpdated(element);
 

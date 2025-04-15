@@ -87,4 +87,16 @@ export const componentOverrides: ComponentSpecs[] = [
 			});
 		},
 	],
+
+	[
+		'checkbox',
+		(component) => {
+			component.props.push({
+				name: 'indeterminate',
+				description: 'The indeterminate state of the control',
+				type: 'boolean',
+				propertyName: 'indeterminate',
+			});
+		},
+	],
 ];

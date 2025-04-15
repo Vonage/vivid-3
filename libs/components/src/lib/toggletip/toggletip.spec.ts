@@ -5,7 +5,7 @@ import {
 	getControlElement,
 } from '@vivid-nx/shared';
 import type { Button } from '../button/button';
-import { type Popup } from '../popup/popup.ts';
+import { type Popup } from '../popup/popup';
 import { Toggletip } from './toggletip';
 import '../button';
 import '.';

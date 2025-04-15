@@ -21,7 +21,6 @@
 		"importHelpers": true,
 		"allowSyntheticDefaultImports": true,
 		"removeComments": true,
-		"composite": true,
 		"resolveJsonModule": true
 	},
 	"files": [],
