@@ -5,7 +5,14 @@ import {
 	loadTemplate,
 } from '../../visual-tests/visual-tests-utils.js';
 
-const components = ['tabs', 'tab', 'tab-panel', 'button', 'menu'];
+const components = [
+	'tabs',
+	'tab',
+	'tab-panel',
+	'button',
+	'menu',
+	'empty-state',
+];
 
 async function testScroll({ page }: { page: Page }) {
 	const template = `<div style="margin-inline: 16px;"><vwc-tabs style="inline-size: 300px;">
@@ -193,6 +200,35 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-tab-panel id="threePanel">Tab three content</vwc-tab-panel>
 			</vwc-tabs>
 		</div>
+		<div style="margin: 5px">
+		<style>
+			.flex-wrapper {
+			display: flex;
+			flex-direction: column;
+			block-size: 100%;
+			}
+
+			.tabs-inside-flex {
+			--tabs-block-size: 100%;
+			flex: 1;
+			block-size: 400px;
+			}
+		</style>
+		<div class="flex-wrapper">
+		<vwc-tabs scrollable-panel class="tabs-inside-flex">
+			<vwc-tab icon="chat-line" label="Comments"></vwc-tab>
+			<vwc-tab icon="playlist-line" label="Playlist"></vwc-tab>
+			<vwc-tab icon="star-line" label="Favourites"></vwc-tab>
+			<vwc-tab-panel>
+			<div class="panel">
+			<vwc-empty-state icon="error-solid" headline="No results" connotation="alert"></vwc-empty-state>
+			</div>
+			</vwc-tab-panel>
+			<vwc-tab-panel>Playlist</vwc-tab-panel>
+			<vwc-tab-panel>Favourites</vwc-tab-panel>
+		</vwc-tabs>
+</div>
+</div>
 		<div style="margin: 5px">
 			<vwc-tabs>
 				<vwc-tab label="Task" removable></vwc-tab>
