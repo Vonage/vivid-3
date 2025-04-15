@@ -47,7 +47,7 @@ describe('vwc-menu-item', () => {
 			expect(element.textSecondary).toEqual(undefined);
 			expect(element.role).toEqual('menuitem');
 			expect(element.icon).toBeUndefined();
-			expect(element.checked).toBeUndefined();
+			expect(element.checked).toBe(false);
 			expect(element.disabled).toBeUndefined();
 			expect(element.expanded).toBeUndefined();
 			expect(element.connotation).toBeUndefined();
@@ -296,39 +296,51 @@ describe('vwc-menu-item', () => {
 	});
 
 	describe('checked', () => {
-		it('should set an `aria-checked` attribute with the `checked` value when provided to a menuitemcheckbox', async () => {
-			element.role = MenuItemRole.menuitemcheckbox;
-			element.checked = true;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual('true');
-		});
-		it('should NOT set an `aria-checked` attribute when checked is provided to a menuitem', async () => {
+		describe.each(['menuitemcheckbox', 'menuitemradio'] as const)(
+			"when role is '%s'",
+			(role) => {
+				beforeEach(async () => {
+					element.role = role;
+					await elementUpdated(element);
+				});
+
+				it('should set `aria-checked` to "false" when checked is false', async () => {
+					element.checked = false;
+					await elementUpdated(element);
+					expect(element.getAttribute('aria-checked')).toEqual('false');
+				});
+
+				it('should set `aria-checked` to "true" when checked is true', async () => {
+					element.checked = true;
+					await elementUpdated(element);
+					expect(element.getAttribute('aria-checked')).toEqual('true');
+				});
+			}
+		);
+
+		it('should NOT set `aria-checked` attribute when role is menuitem', async () => {
 			element.role = MenuItemRole.menuitem;
 			element.checked = true;
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-checked')).toEqual(null);
 		});
-		it('should toggle the aria-checked attribute of checkbox item when clicked', async () => {
+
+		it('should toggle the checked value on click when role is menuitemcheckbox', async () => {
 			element.role = MenuItemRole.menuitemcheckbox;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual(null);
 			element.click();
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual('true');
+			expect(element.checked).toBe(true);
+
 			element.click();
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual('false');
+			expect(element.checked).toBe(false);
 		});
-		it('should aria-checked attribute of radio item to true when clicked', async () => {
+
+		it('should set the checked value to true on click when role is menuitemradio', async () => {
 			element.role = MenuItemRole.menuitemradio;
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual(null);
 			element.click();
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual('true');
+			expect(element.checked).toBe(true);
+
 			element.click();
-			await elementUpdated(element);
-			expect(element.getAttribute('aria-checked')).toEqual('true');
+			expect(element.checked).toBe(true);
 		});
 	});
 
