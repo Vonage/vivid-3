@@ -3,10 +3,10 @@ import type { ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
 import { Button } from '../../button/button';
-import { Menu } from '../../menu/menu';
-import { MenuItem } from '../../menu-item/menu-item';
 import { Divider } from '../../divider/divider';
 import { Tooltip } from '../../tooltip/tooltip';
+import { Select } from '../../select/select';
+import { ListboxOption } from '../../option/option';
 import { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -51,7 +51,7 @@ const MENU_BAR_ITEMS: {
 		context: VividElementDefinitionContext
 	) => ViewTemplate<any, any>;
 } = {
-	textBlock: function (context) {
+	/*textSize: function (context) {
 		const buttonTag = context.tagFor(Button);
 		const menuTag = context.tagFor(Menu);
 		const menuItemTag = context.tagFor(MenuItem);
@@ -101,6 +101,47 @@ const MENU_BAR_ITEMS: {
 						notifyMenuBarChange(parent, 'text-block-selected', 'body')}"
 				></${menuItemTag}>
 			</${menuTag}>
+		`;
+	},*/
+	textBlock: function (context) {
+		const selectTag = context.tagFor(Select);
+		const optionTag = context.tagFor(ListboxOption);
+		const tooltipTag = context.tagFor(Tooltip);
+
+		return html`
+		<${tooltipTag} text="Text Block Type" placement="top">
+			<${selectTag}
+				slot="anchor"
+				trigger="auto"
+				id="text-block"
+				aria-label="Text Block"
+				placement="bottom-end"
+				@change="${(_, { parent, event }) =>
+						notifyMenuBarChange(parent, 'text-block-selected', (event.target as HTMLSelectElement).value)}"
+			>
+				<${optionTag}
+					text="Title"
+					value="title"
+					internal-part
+					class="title"
+					connotation="cta"
+				></${optionTag}>
+				<${optionTag}
+					text="Subtitle"
+					value="subtitle"
+					internal-part
+					class="subtitle"
+					connotation="cta"
+				></${optionTag}>
+				<${optionTag}
+					text="Body"
+					value="body"
+					internal-part
+					class="body"
+					connotation="cta"
+				></${optionTag}>
+			</${selectTag}>
+		</${tooltipTag}>
 		`;
 	},
 	textDecoration: function (context) {

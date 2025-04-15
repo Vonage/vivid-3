@@ -1,5 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import type { Menu } from '../../menu/menu';
+import type { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import type { Button } from '../../button/button';
@@ -10,7 +10,7 @@ const COMPONENT_TAG = 'vwc-menubar';
 
 describe('menuBar', () => {
 	function getSelectionMenu(menuItemName: string) {
-		return element.shadowRoot?.querySelector(`#${menuItemName}`) as Menu;
+		return element.shadowRoot?.querySelector(`#${menuItemName}`) as Select;
 	}
 	let element: MenuBar;
 
@@ -73,41 +73,23 @@ describe('menuBar', () => {
 		});
 
 		describe('textBlock', () => {
+			const getOptions = () => {
+				return getSelectionMenu('text-block').querySelectorAll('vwc-option');
+			}
+
 			let textBlockButton: HTMLButtonElement;
 
 			beforeEach(async () => {
 				element.setAttribute('menu-items', 'textBlock');
 				await elementUpdated(element);
 				textBlockButton = element.shadowRoot?.querySelector(
-					'vwc-button'
+					'vwc-select'
 				) as unknown as HTMLButtonElement;
-			});
-
-			it('should show the text block button when adding `textBlock` to the string', async () => {
-				expect(textBlockButton?.getAttribute('icon')).toEqual('text-size-line');
-			});
-
-			it('should open menu when clicked', async () => {
-				textBlockButton.click();
-				await elementUpdated(element);
-
-				const menu = element.shadowRoot?.querySelector('vwc-menu') as Menu;
-				expect(menu?.open).toBeTruthy();
-			});
-
-			it('should close menu when clicked again', async () => {
-				textBlockButton.click();
-				await elementUpdated(element);
-				textBlockButton.click();
-				await elementUpdated(element);
-
-				expect(getSelectionMenu('text-block').open).toBeFalsy();
 			});
 
 			it('should have textBlock options in the menu', async () => {
 				const textBlockOptions = Object.keys(RichTextEditorTextBlocks);
-				const options =
-					getSelectionMenu('text-block').querySelectorAll('vwc-menu-item');
+				const options = getOptions();
 
 				expect(options?.length).toEqual(textBlockOptions.length);
 				options?.forEach((optionElement, index) => {
@@ -118,15 +100,19 @@ describe('menuBar', () => {
 			});
 
 			it('should emit text-block-selected event with the selected text block when an option is clicked', async () => {
+				const openMenu = () => getSelectionMenu('text-block').open = true;
 				const spy = vi.fn();
 				element.addEventListener('text-block-selected', spy);
-				getSelectionMenu('text-block').open = true;
-				const options = getSelectionMenu('text-block').querySelectorAll(
-					'vwc-menu-item'
-				) as unknown as HTMLElement[];
+				const options = getOptions();
+				getSelectionMenu('text-block').value = '';
+				
+				for (const option of options) {
+					openMenu();
+					await elementUpdated(element);
+					option.click();
+					await elementUpdated(element);
+				}
 
-				options.forEach((option) => option.click());
-				await elementUpdated(element);
 
 				expect(spy).toHaveBeenCalledTimes(options.length);
 				options.forEach((option, index) => {
@@ -136,12 +122,18 @@ describe('menuBar', () => {
 				});
 			});
 
+			async function openTextBlockMenu() {
+				getSelectionMenu('text-block').open = true;
+				await elementUpdated(element);
+			}
+
 			it('should emit a non bubbling and non composed text-block-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-block-selected', spy);
-				const option = getSelectionMenu('text-block').querySelector(
-					'vwc-menu-item'
-				) as HTMLElement;
+				await openTextBlockMenu();
+				const option = getSelectionMenu('text-block').querySelectorAll(
+					'vwc-option'
+				)[1] as HTMLElement;
 
 				option.click();
 				await elementUpdated(element);
@@ -152,11 +144,10 @@ describe('menuBar', () => {
 			});
 
 			it('should close the menu when option is clicked', async () => {
-				getSelectionMenu('text-block').open = true;
-				await elementUpdated(element);
+				await openTextBlockMenu();
 
 				const option = getSelectionMenu('text-block').querySelector(
-					'vwc-menu-item'
+					'vwc-option'
 				) as HTMLElement;
 
 				option.click();
@@ -167,18 +158,15 @@ describe('menuBar', () => {
 
 			it('should set a tooltip with the text block message', async () => {
 				const menu = getSelectionMenu('text-block');
-				const menuFocusableChild = menu.querySelector('vwc-button') as Button;
+				const tooltip  = menu.parentElement as Tooltip;
 
-				expect(menuFocusableChild.getAttribute('slot')).toBe('anchor');
-				expect(menuFocusableChild.parentElement instanceof Tooltip).toBe(true);
-				expect(menuFocusableChild.parentElement?.getAttribute('text')).toBe(
+				expect(menu.getAttribute('slot')).toBe('anchor');
+				expect(tooltip instanceof Tooltip).toBe(true);
+				expect(tooltip?.getAttribute('text')).toBe(
 					'Text Block Type'
 				);
-				expect(menuFocusableChild.parentElement?.getAttribute('slot')).toBe(
-					'anchor'
-				);
 				expect(
-					menuFocusableChild.parentElement?.getAttribute('placement')
+					tooltip.getAttribute('placement')
 				).toBe('top');
 			});
 		});

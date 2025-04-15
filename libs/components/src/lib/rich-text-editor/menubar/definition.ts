@@ -3,8 +3,8 @@ import { defineVividComponent } from '../../../shared/design-system/defineVividC
 import {
 	buttonDefinition,
 	dividerDefinition,
-	menuDefinition,
-	menuItemDefinition,
+	listboxOptionDefinition,
+	selectDefinition,
 	tooltipDefinition,
 } from '../../components';
 import styles from './menubar.scss?inline';
@@ -18,8 +18,8 @@ export const menuBarDefinition = defineVividComponent(
 	template,
 	[
 		buttonDefinition,
-		menuDefinition,
-		menuItemDefinition,
+		selectDefinition,
+		listboxOptionDefinition,
 		dividerDefinition,
 		tooltipDefinition,
 	],
