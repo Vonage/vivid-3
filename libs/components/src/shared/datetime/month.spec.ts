@@ -5,7 +5,7 @@ import {
 	getCurrentMonth,
 	monthOfDate,
 	monthToStr,
-} from './month.ts';
+} from './month';
 
 describe('getCurrentMonth', () => {
 	beforeAll(() => {

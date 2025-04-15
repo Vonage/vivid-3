@@ -1,5 +1,5 @@
-import { type CalendarPickerLocale } from '../calendar-picker.locale.ts';
-import { buildMonthPickerGrid } from './monthPickerGrid.ts';
+import { type CalendarPickerLocale } from '../calendar-picker.locale';
+import { buildMonthPickerGrid } from './monthPickerGrid';
 
 const enUsLocale = {
 	months: {

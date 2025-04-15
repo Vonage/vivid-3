@@ -89,7 +89,7 @@ export class MenuItem extends AffixIcon(VividElement) {
 	 * HTML Attribute: checked
 	 */
 	@attr({ mode: 'boolean' })
-	checked!: boolean;
+	checked = false;
 
 	/**
 	 * @internal
