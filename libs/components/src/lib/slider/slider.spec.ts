@@ -4,7 +4,7 @@ import { Connotation } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
-import { PlacementStrategy, Popup } from '../popup/popup.ts';
+import { PlacementStrategy, Popup } from '../popup/popup';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Slider } from './slider';
 import '.';
