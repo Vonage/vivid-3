@@ -26,7 +26,7 @@ function generateRollupInput() {
 	}
 
 	function getFoldersInAFolder(workingFolder = './src/lib/') {
-		const folders = [];
+		const folders: string[] = [];
 		const fullWorkingFolderPath = path.join(__dirname, workingFolder);
 		fs.readdirSync(fullWorkingFolderPath).forEach((testFolder) => {
 			if (testFolder === 'common') return;
@@ -64,109 +64,107 @@ const isWatchMode = process.env.WATCH === 'true';
 const isCI = process.env['CI'] === 'true';
 const isA11y = process.env['A11Y'] === 'true';
 
-export default defineConfig(() => {
-	return {
-		test: {
-			watch: false,
-			globals: true,
-			environment: 'jsdom',
-			include: isA11y ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
-			setupFiles: ['vitest.setup.ts'],
-			reporters: ['default'],
-			coverage: {
-				reportsDirectory: '../../coverage/libs/components',
-				provider: 'v8',
-				include: ['src/**/*.ts'],
-				exclude: ['src/**/*.spec.ts', 'src/**/*test*.ts', 'src/locales/**.*'],
-				reporter: isCI
-					? ['lcov', 'text']
-					: ['text', 'html', 'clover', 'json', 'lcov'],
-			},
-			pool: 'threads',
-			poolOptions: {
-				useAtomics: true,
-			},
+export default defineConfig({
+	test: {
+		watch: false,
+		globals: true,
+		environment: 'jsdom',
+		include: isA11y ? ['src/**/*.a11y.spec.ts'] : ['src/**/*.spec.ts'],
+		setupFiles: ['vitest.setup.ts'],
+		reporters: ['default'],
+		coverage: {
+			reportsDirectory: '../../coverage/libs/components',
+			provider: 'v8',
+			include: ['src/**/*.ts'],
+			exclude: ['src/**/*.spec.ts', 'src/**/*test*.ts', 'src/locales/**.*'],
+			reporter: isCI
+				? ['lcov', 'text']
+				: ['text', 'html', 'clover', 'json', 'lcov'],
 		},
-		plugins: [
-			viteStaticCopy({
-				targets: [
-					{
-						src: './api-extractor.json',
-						dest: '.',
-					},
-					{
-						src: './.npmignore',
-						dest: '.',
-					},
-					{
-						src: './README.md',
-						dest: '.',
-					},
-					{
-						src: '../../dist/libs/styles/tokens/**/*.css',
-						dest: './styles/tokens',
-					},
-					{
-						src: '../../dist/libs/styles/fonts/**/*.{css,woff,woff2}',
-						dest: './styles/fonts',
-					},
-					{
-						src: '../../dist/libs/styles/core/**/*.css',
-						dest: './styles/core',
-					},
-				],
-			}),
-			!isWatchMode
-				? dts({
-						entryRoot: 'src',
-						tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
-						skipDiagnostics: true,
-				  })
-				: undefined,
-			nxViteTsPaths(),
-		],
-		cacheDir: '../../../node_modules/.vite/components',
-		build: {
-			emptyOutDir: true,
-			lib: {
-				entry: input,
-				name: 'components',
-				formats: ['es', 'cjs'],
-			},
-			minify: false,
-			cssMinify: true,
-			target: 'esnext',
-			rollupOptions: {
-				input,
-				output: [
-					{
-						format: 'es',
-						chunkFileNames: 'shared/[name].js',
-					},
-					{
-						format: 'cjs',
-						chunkFileNames: 'shared/[name].cjs',
-					},
-				],
-			},
-			watch: isWatchMode
-				? {
-						exclude: ['**/*.md'],
-				  }
-				: null,
+		pool: 'threads',
+		poolOptions: {
+			useAtomics: true,
 		},
-		define: {
-			__PACKAGE_VERSION__: JSON.stringify(packageVersion),
-		},
-		css: {
-			preprocessorOptions: {
-				scss: {
-					api: 'modern-compiler',
+	},
+	plugins: [
+		viteStaticCopy({
+			targets: [
+				{
+					src: './api-extractor.json',
+					dest: '.',
 				},
+				{
+					src: './.npmignore',
+					dest: '.',
+				},
+				{
+					src: './README.md',
+					dest: '.',
+				},
+				{
+					src: '../../dist/libs/styles/tokens/**/*.css',
+					dest: './styles/tokens',
+				},
+				{
+					src: '../../dist/libs/styles/fonts/**/*.{css,woff,woff2}',
+					dest: './styles/fonts',
+				},
+				{
+					src: '../../dist/libs/styles/core/**/*.css',
+					dest: './styles/core',
+				},
+			],
+		}),
+		!isWatchMode
+			? dts({
+					entryRoot: 'src',
+					tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
+					skipDiagnostics: true,
+			  })
+			: undefined,
+		nxViteTsPaths(),
+	],
+	cacheDir: '../../../node_modules/.vite/components',
+	build: {
+		emptyOutDir: true,
+		lib: {
+			entry: input,
+			name: 'components',
+			formats: ['es', 'cjs'],
+		},
+		minify: false,
+		cssMinify: true,
+		target: 'esnext',
+		rollupOptions: {
+			input,
+			output: [
+				{
+					format: 'es',
+					chunkFileNames: 'shared/[name].js',
+				},
+				{
+					format: 'cjs',
+					chunkFileNames: 'shared/[name].cjs',
+				},
+			],
+		},
+		watch: isWatchMode
+			? {
+					exclude: ['**/*.md'],
+			  }
+			: null,
+	},
+	define: {
+		__PACKAGE_VERSION__: JSON.stringify(packageVersion),
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
 			},
 		},
-		worker: {
-			plugins: () => [nxViteTsPaths()],
-		},
-	};
+	},
+	worker: {
+		plugins: () => [nxViteTsPaths()],
+	},
 });

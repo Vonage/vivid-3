@@ -2,7 +2,6 @@ import { observable } from '@microsoft/fast-element';
 import { VividElement } from '../../../foundation/vivid-element/vivid-element';
 import { isValidTimeStr } from '../../../datetime/time';
 import { Localized } from '../../../patterns';
-import { applyMixinsWithObservables } from '../../../utils/applyMixinsWithObservables';
 import {
 	scrollToOption,
 	shouldDisplay12hClock,
@@ -15,7 +14,7 @@ import {
 	SecondsColumn,
 } from './columns';
 
-export class InlineTimePicker extends VividElement {
+export class InlineTimePicker extends Localized(VividElement) {
 	@observable value?: string;
 
 	valueChanged(_?: string, newValue?: string) {
@@ -79,6 +78,3 @@ export class InlineTimePicker extends VividElement {
 		firstFocusableElement.focus(options);
 	}
 }
-
-export interface InlineTimePicker extends Localized {}
-applyMixinsWithObservables(InlineTimePicker, Localized);

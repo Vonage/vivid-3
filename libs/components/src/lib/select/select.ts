@@ -53,7 +53,7 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  */
 @errorText
 @formElements
-export class Select extends FormAssociatedSelect {
+export class Select extends AffixIconWithTrailing(FormAssociatedSelect) {
 	/**
 	 * The index of the most recently checked option.
 	 *
@@ -988,14 +988,12 @@ export class Select extends FormAssociatedSelect {
 }
 
 export interface Select
-	extends AffixIconWithTrailing,
-		FormElement,
+	extends FormElement,
 		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
 applyMixinsWithObservables(
 	Select,
-	AffixIconWithTrailing,
 	FormElementHelperText,
 	FormElementSuccessText
 );

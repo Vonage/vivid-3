@@ -2,7 +2,6 @@
 import { attr, Observable, type ValueConverter } from '@microsoft/fast-element';
 import type { Connotation } from '../enums';
 import { MediaSkipBy } from '../enums';
-import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { Localized } from '../../shared/patterns';
 import type { Slider } from '../slider/slider';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
@@ -16,6 +15,11 @@ import type { ExtractFromEnum } from '../../shared/utils/enums';
 export type AudioPlayerConnotation = ExtractFromEnum<
 	Connotation,
 	Connotation.Accent | Connotation.CTA
+>;
+
+export type AudioPlayerMediaSkipBy = ExtractFromEnum<
+	MediaSkipBy,
+	MediaSkipBy.Zero | MediaSkipBy.Five | MediaSkipBy.Ten | MediaSkipBy.Thirty
 >;
 
 export const SKIP_DIRECTIONS = {
@@ -55,7 +59,7 @@ const validSkipByConverter: ValueConverter = {
  * @public
  * @component audio-player
  */
-export class AudioPlayer extends VividElement {
+export class AudioPlayer extends Localized(VividElement) {
 	@attr({ attribute: 'play-button-aria-label' }) playButtonAriaLabel:
 		| string
 		| null = null;
@@ -131,7 +135,7 @@ export class AudioPlayer extends VividElement {
 		attribute: 'skip-by',
 		converter: validSkipByConverter,
 	})
-	skipBy?: MediaSkipBy;
+	skipBy?: AudioPlayerMediaSkipBy;
 
 	/**
 	 * Sets the available playback rates. When an empty string, no choices will be available
@@ -261,6 +265,3 @@ export class AudioPlayer extends VividElement {
 		Observable.notify(this, 'paused');
 	};
 }
-
-export interface AudioPlayer extends Localized {}
-applyMixins(AudioPlayer, Localized);

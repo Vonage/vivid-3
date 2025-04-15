@@ -53,7 +53,7 @@ const generateFilePreviewTemplate = (
  */
 @errorText
 @formElements
-export class FilePicker extends FormAssociatedFilePicker {
+export class FilePicker extends Localized(FormAssociatedFilePicker) {
 	#dropzone?: Dropzone;
 
 	/**
@@ -424,8 +424,7 @@ export class FilePicker extends FormAssociatedFilePicker {
 
 export interface FilePicker
 	extends FormElementHelperText,
-		Localized,
 		ErrorText,
 		FormElement,
 		FormElementHelperText {}
-applyMixinsWithObservables(FilePicker, FormElementHelperText, Localized);
+applyMixinsWithObservables(FilePicker, FormElementHelperText);

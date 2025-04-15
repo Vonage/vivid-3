@@ -2,16 +2,16 @@ import 'element-internals-polyfill';
 
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
-import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables.ts';
-import { FormAssociated } from '../../foundation/form-associated/form-associated.ts';
-import { VividElement } from '../../foundation/vivid-element/vivid-element.ts';
-import { createRegisterFunction } from '../../design-system/createRegisterFunction.ts';
-import { iconDefinition } from '../../../lib/icon/definition.ts';
-import { defineVividComponent } from '../../design-system/defineVividComponent.ts';
+import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables';
+import { FormAssociated } from '../../foundation/form-associated/form-associated';
+import { VividElement } from '../../foundation/vivid-element/vivid-element';
+import { createRegisterFunction } from '../../design-system/createRegisterFunction';
+import { iconDefinition } from '../../../lib/icon/definition';
+import { defineVividComponent } from '../../design-system/defineVividComponent';
 import {
-	ErrorText,
+	type ErrorText,
 	errorText,
-	FormElement,
+	type FormElement,
 	FormElementCharCount,
 	FormElementHelperText,
 	formElements,

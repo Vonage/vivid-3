@@ -6,7 +6,7 @@ import {
 } from '@vivid-nx/shared';
 import { fireEvent } from '@testing-library/dom';
 import type { Button } from '../button/button';
-import { Popup } from '../popup/popup.ts';
+import { Popup } from '../popup/popup';
 import { Tooltip } from './tooltip';
 import '.';
 

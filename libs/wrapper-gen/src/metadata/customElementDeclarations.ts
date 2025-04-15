@@ -70,16 +70,7 @@ const findDeclaration = (
 const BaseElementDeclaration: Declaration = {
 	name: 'HTMLElement',
 	kind: 'class',
-	attributes: [
-		{
-			name: 'aria-current',
-			description:
-				'Indicates the element that represents the current item within a container or set of related elements.',
-			type: {
-				text: "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false'",
-			},
-		},
-	],
+	attributes: [],
 	events: [
 		{
 			name: 'click',
@@ -325,25 +316,6 @@ const resolveDeclaration = (
  * https://github.com/Vonage/vivid-3/tree/main/libs/components/src/shared/patterns
  */
 const VividMixins: Record<string, schema.Attribute[]> = {
-	AffixIcon: [
-		{
-			name: 'icon',
-			description: 'A decorative icon the custom element should have.',
-			type: { text: 'string' },
-		},
-	],
-	AffixIconWithTrailing: [
-		{
-			name: 'icon',
-			description: 'A decorative icon the custom element should have.',
-			type: { text: 'string' },
-		},
-		{
-			name: 'icon-trailing',
-			description: 'Indicates the icon affix alignment.',
-			type: { text: 'boolean' },
-		},
-	],
 	FormElement: [
 		{
 			name: 'label',
@@ -379,7 +351,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	Localized: [],
 	Anchor: [
 		{
 			name: 'download',
@@ -463,7 +434,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			fieldName: 'ariaExpanded',
 		},
 	],
-	TrappedFocus: [],
 	DelegatesARIATextbox: [],
 	DelegatesARIASelect: [
 		{

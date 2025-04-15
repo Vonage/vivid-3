@@ -76,14 +76,9 @@ describe('menuBar', () => {
 				return getSelectionMenu('text-block').querySelectorAll('vwc-option');
 			};
 
-			let textBlockButton: HTMLButtonElement;
-
 			beforeEach(async () => {
 				element.setAttribute('menu-items', 'textBlock');
 				await elementUpdated(element);
-				textBlockButton = element.shadowRoot?.querySelector(
-					'vwc-select'
-				) as unknown as HTMLButtonElement;
 			});
 
 			it('should have textBlock options in the menu', async () => {
@@ -188,9 +183,9 @@ describe('menuBar', () => {
 					'strikethrough',
 					'monospace',
 				];
-				const buttons = element.shadowRoot?.querySelectorAll('vwc-button');
-				buttons?.forEach((button, index) => {
-					(button as any).click();
+				const buttons = element.shadowRoot!.querySelectorAll('vwc-button');
+				buttons.forEach((button) => {
+					button.click();
 				});
 
 				expect(spy).toHaveBeenCalledTimes(listOfDecorations.length);
@@ -202,9 +197,7 @@ describe('menuBar', () => {
 			it('should emit a non bubbling and non composed text-decoration-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-decoration-selected', spy);
-				const button = element.shadowRoot?.querySelector(
-					'vwc-button'
-				) as HTMLButtonElement;
+				const button = element.shadowRoot!.querySelector('vwc-button')!;
 
 				button.click();
 				await elementUpdated(element);
@@ -229,9 +222,7 @@ describe('menuBar', () => {
 			});
 
 			it('should set a tooltip for each text decoration button', async () => {
-				const buttons = element.shadowRoot?.querySelectorAll(
-					'vwc-button'
-				) as unknown as HTMLButtonElement[];
+				const buttons = element.shadowRoot!.querySelectorAll('vwc-button');
 				for (let i = 0; i < buttons.length; i++) {
 					expect(buttons[i].getAttribute('slot')).toBe('anchor');
 					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);

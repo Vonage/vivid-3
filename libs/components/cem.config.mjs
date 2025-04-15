@@ -22,7 +22,6 @@ export default {
 		'**/enums.ts',
 		'**/components.ts',
 		'**/helpers/*.ts',
-		'libs/components/src/shared/patterns/affix.ts', // Cannot process @attr that is @internal
 	],
 	/** Directory to output CEM to */
 	outdir: '/dist/libs/components',

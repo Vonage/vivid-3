@@ -62,11 +62,6 @@ export enum LayoutSize {
 	Large = 'large',
 }
 
-export enum TabsGutters {
-	None = 'none',
-	Small = 'small',
-}
-
 export enum Position {
 	Top = 'TOP',
 	Bottom = 'BOTTOM',
