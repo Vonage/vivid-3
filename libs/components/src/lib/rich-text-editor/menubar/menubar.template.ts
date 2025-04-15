@@ -117,7 +117,11 @@ const MENU_BAR_ITEMS: {
 				aria-label="Text Block"
 				placement="bottom-end"
 				@change="${(_, { parent, event }) =>
-						notifyMenuBarChange(parent, 'text-block-selected', (event.target as HTMLSelectElement).value)}"
+					notifyMenuBarChange(
+						parent,
+						'text-block-selected',
+						(event.target as HTMLSelectElement).value
+					)}"
 			>
 				<${optionTag}
 					text="Title"

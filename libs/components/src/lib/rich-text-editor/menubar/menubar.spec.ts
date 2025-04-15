@@ -2,7 +2,6 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
-import type { Button } from '../../button/button';
 import { MenuBar } from './menubar';
 import '.';
 
@@ -75,7 +74,7 @@ describe('menuBar', () => {
 		describe('textBlock', () => {
 			const getOptions = () => {
 				return getSelectionMenu('text-block').querySelectorAll('vwc-option');
-			}
+			};
 
 			let textBlockButton: HTMLButtonElement;
 
@@ -100,19 +99,18 @@ describe('menuBar', () => {
 			});
 
 			it('should emit text-block-selected event with the selected text block when an option is clicked', async () => {
-				const openMenu = () => getSelectionMenu('text-block').open = true;
+				const openMenu = () => (getSelectionMenu('text-block').open = true);
 				const spy = vi.fn();
 				element.addEventListener('text-block-selected', spy);
 				const options = getOptions();
 				getSelectionMenu('text-block').value = '';
-				
+
 				for (const option of options) {
 					openMenu();
 					await elementUpdated(element);
 					option.click();
 					await elementUpdated(element);
 				}
-
 
 				expect(spy).toHaveBeenCalledTimes(options.length);
 				options.forEach((option, index) => {
@@ -158,16 +156,12 @@ describe('menuBar', () => {
 
 			it('should set a tooltip with the text block message', async () => {
 				const menu = getSelectionMenu('text-block');
-				const tooltip  = menu.parentElement as Tooltip;
+				const tooltip = menu.parentElement as Tooltip;
 
 				expect(menu.getAttribute('slot')).toBe('anchor');
 				expect(tooltip instanceof Tooltip).toBe(true);
-				expect(tooltip?.getAttribute('text')).toBe(
-					'Text Block Type'
-				);
-				expect(
-					tooltip.getAttribute('placement')
-				).toBe('top');
+				expect(tooltip?.getAttribute('text')).toBe('Text Block Type');
+				expect(tooltip.getAttribute('placement')).toBe('top');
 			});
 		});
 
