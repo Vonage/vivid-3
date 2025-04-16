@@ -45,7 +45,7 @@ function addStartShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 function addEndShadow(scrollShadow: HTMLElement, scrollWrapper: HTMLElement) {
 	scrollShadow.classList.toggle(
 		'end-scroll',
-		scrollWrapper.scrollLeft <
+		scrollWrapper.scrollLeft + 1 <
 			scrollWrapper.scrollWidth - scrollWrapper.clientWidth
 	);
 }
