@@ -26,19 +26,19 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await richTextEditor?.focus();
 	await page.keyboard.type('Title');
 	await page.evaluate(
-		(editor) => (editor as any).setTextSize('title'),
+		(editor) => (editor as any).setTextBlock('title'),
 		richTextEditor
 	);
 	await page.keyboard.press('Enter');
 	await page.keyboard.type('Subtitle');
 	await page.evaluate(
-		(editor) => (editor as any).setTextSize('subtitle'),
+		(editor) => (editor as any).setTextBlock('subtitle'),
 		richTextEditor
 	);
 	await page.keyboard.press('Enter');
 	await page.keyboard.type('Body');
 	await page.evaluate(
-		(editor) => (editor as any).setTextSize('body'),
+		(editor) => (editor as any).setTextBlock('body'),
 		richTextEditor
 	);
 	await page.keyboard.press('Enter');
