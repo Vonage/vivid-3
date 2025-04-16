@@ -4,6 +4,21 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.22.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.21.1...vivid-v4.22.0) (2025-04-16)
+
+
+### Features
+
+* **checkbox,radio,selectable-box:** adjustment of cta checkbox and radio unselected styles (VIV-2399) ([#2287](https://github.com/Vonage/vivid-3/issues/2287)) ([1d89a1f](https://github.com/Vonage/vivid-3/commit/1d89a1fbbc640e89cfd9dbdbaeb935a146a248cf))
+* **file-picker:** add rejectedFiles property (VIV-2556) ([#2284](https://github.com/Vonage/vivid-3/issues/2284)) ([4093bce](https://github.com/Vonage/vivid-3/commit/4093bcef5b584e88aca4aaeed58f4e1c6af322cc))
+* **icons:** updating the icon set to 4.6.5 (VIV-2492) ([#2280](https://github.com/Vonage/vivid-3/issues/2280)) ([982f6d7](https://github.com/Vonage/vivid-3/commit/982f6d7716a52f9118c877466222ba82512d5844))
+
+
+### Bug Fixes
+
+* **alert:** refine the correct spacing between dismiss icon and divider according to the current design (VIV-2561) ([#2288](https://github.com/Vonage/vivid-3/issues/2288)) ([c9e27eb](https://github.com/Vonage/vivid-3/commit/c9e27ebbee7decdccf648bd140e1ad509f2aef90))
+* **menu-item:** fix missing aria-checked (VIV-2553) ([#2272](https://github.com/Vonage/vivid-3/issues/2272)) ([aac6ffc](https://github.com/Vonage/vivid-3/commit/aac6ffcd6babb152613ea676951baaa59acb0e91))
+
 ## [4.21.1](https://github.com/Vonage/vivid-3/compare/vivid-v4.21.0...vivid-v4.21.1) (2025-04-10)
 
 
