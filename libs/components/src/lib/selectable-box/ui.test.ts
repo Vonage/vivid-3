@@ -15,10 +15,16 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<div style="margin:5px">
 			<vwc-layout gutters="small" row-spacing="small" column-basis="block">
 				<vwc-selectable-box control-type="checkbox" style="max-inline-size: 450px">
-					Checkbox control
+					Checkbox accent box
 				</vwc-selectable-box>
 				<vwc-selectable-box control-type="radio" style="max-inline-size: 450px">
-					Radio control
+					Radio accent box
+				</vwc-selectable-box>
+				<vwc-selectable-box control-type="checkbox" connotation="cta" style="max-inline-size: 450px">
+					Checkbox CTA box
+				</vwc-selectable-box>
+				<vwc-selectable-box connotation="cta" control-type="radio" style="max-inline-size: 450px">
+					Radio CTA box
 				</vwc-selectable-box>
 			</vwc-layout>
 		</div>
@@ -61,6 +67,22 @@ test('should show the component', async ({ page }: { page: Page }) => {
 					style="max-inline-size: 450px"
 				>
 					Checked radio box
+				</vwc-selectable-box>
+				<vwc-selectable-box
+					control-type="checkbox"
+					connotation="cta"
+					checked
+					style="max-inline-size: 450px"
+				>
+					Checked CTA checkbox box
+				</vwc-selectable-box>
+				<vwc-selectable-box
+					control-type="radio"
+					connotation="cta"
+					checked
+					style="max-inline-size: 450px"
+				>
+					Checked CTA radio box
 				</vwc-selectable-box>
 			</vwc-layout>
 		</div>
@@ -178,7 +200,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 
 	await page.waitForLoadState('networkidle');
 
-	await page.locator('vwc-selectable-box').nth(6).focus();
+	await page.locator('vwc-selectable-box').nth(0).focus();
 
 	expect(await testWrapper?.screenshot()).toMatchSnapshot(
 		'snapshots/selectable-box.png'

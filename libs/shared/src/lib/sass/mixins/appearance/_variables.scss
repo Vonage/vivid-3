@@ -37,7 +37,7 @@ $states-mapping: (
 		fieldset: (
 			text: var(#{constants.$vvd-color-canvas-text}),
 			fill: var(#{constants.$vvd-color-canvas}),
-			outline: var(#{connotation.get-connotation-token(intermediate)}),
+			outline: var(#{constants.$vvd-color-neutral-500}),
 		),
 		subtle: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
@@ -109,7 +109,7 @@ $states-mapping: (
 		fieldset: (
 			text: var(#{constants.$vvd-color-canvas-text}),
 			fill: var(#{constants.$vvd-color-canvas}),
-			outline: var(#{connotation.get-connotation-token(fierce)}),
+			outline: var(#{constants.$vvd-color-neutral-700}),
 		),
 		subtle: (
 			text: var(#{connotation.get-connotation-token(contrast)}),
