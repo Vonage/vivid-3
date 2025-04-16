@@ -161,6 +161,69 @@ Note: localisation will need to be handled at the application level.
 
 When setting `block-size` or `max-block-size` on the file-picker the list of the added files will have auto scroll.
 
+## Files & Rejected Files
+
+**_Files_** `files` (Read-only)
+
+**_Rejected Files_** `rejectedFiles` (Read-only)
+
+Use `files` or `rejectedFiles` to access the list of files that have been added to the file picker and passed or failed validation checks.
+
+```html preview
+<vwc-layout gutters="small" column-spacing="small">
+	<vwc-card>
+		<vwc-layout slot="main">
+			<vwc-file-picker max-file-size="1">
+				Drag & Drop file here or click to upload
+			</vwc-file-picker>
+		</vwc-layout>
+	</vwc-card>
+	<vwc-card>
+		<vwc-layout slot="main">
+			<vwc-note headline="..."></vwc-note>
+		</vwc-layout>
+	</vwc-card>
+</vwc-layout>
+<script>
+	window.addEventListener('load', function () {
+		document
+			.querySelector('vwc-file-picker')
+			.addEventListener('change', (e) => {
+				const note = document.querySelector('vwc-note');
+				note.headline = `files: ${event.target.files.length}, rejectedfiles: ${event.target.rejectedFiles.length}`;
+			});
+
+		function generateFile(fileName, sizeMb, type = 'text/plain') {
+			const sizeInBytes = sizeMb * 1024 * 1024;
+			const content = 'x'.repeat(sizeInBytes);
+			const blob = new Blob([content], { type });
+			return new File([blob], fileName, { type });
+		}
+
+		function simulateDrop(file) {
+			const dataTransfer = new DataTransfer();
+			dataTransfer.items.add(file);
+
+			const dropEvent = new DragEvent('drop', {
+				dataTransfer,
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const vwcFilePicker = document.querySelector('vwc-file-picker');
+			const dropzoneEl = vwcFilePicker.shadowRoot.querySelector('.control');
+			dropzoneEl.dispatchEvent(dropEvent);
+		}
+
+		const dummyFile1 = generateFile('dummy-image.jpg', 2, 'image/jpeg');
+		const dummyFile2 = generateFile('dummy-txt.jpg', 1, 'text/plain');
+
+		simulateDrop(dummyFile1);
+		simulateDrop(dummyFile2);
+	});
+</script>
+```
+
 ## Slots
 
 ### Default

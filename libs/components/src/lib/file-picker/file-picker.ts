@@ -2,7 +2,7 @@
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
-import type { Size } from '../enums';
+import type { Locale } from '../../shared/localization/Locale';
 import {
 	type ErrorText,
 	errorText,
@@ -11,10 +11,10 @@ import {
 	formElements,
 	Localized,
 } from '../../shared/patterns';
-import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import type { Locale } from '../../shared/localization/Locale';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import type { Button } from '../button/button';
+import type { Size } from '../enums';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
