@@ -4,15 +4,6 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { delegateAria, DelegatesAria } from './delegates-aria';
 
-import { ariaAttributeName } from './aria-mixin';
-
-describe('ariaAttributeName', () => {
-	it('should return the aria attribute name of the given aria property', () => {
-		expect(ariaAttributeName('ariaLabel')).toBe('aria-label');
-		expect(ariaAttributeName('ariaAutoComplete')).toBe('aria-autocomplete');
-	});
-});
-
 describe('DelegatesAria', () => {
 	@customElement({
 		name: 'dummy-element',
