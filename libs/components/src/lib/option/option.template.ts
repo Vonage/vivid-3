@@ -7,6 +7,7 @@ import {
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { ListboxOption } from './option';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 
 const getClasses = (x: ListboxOption) =>
 	classNames(
@@ -24,12 +25,14 @@ export const ListboxOptionTemplate = (
 	const affixIconTemplate = affixIconTemplateFactory(context);
 	const iconTag = context.tagFor(Icon);
 
-	return html`
+	return html<ListboxOption>`
 		<template
-			role="option"
-			aria-checked="${(x) => x.checked}"
-			aria-selected="${(x) => x.selected}"
-			aria-disabled="${(x) => x.disabled}"
+			${applyHostSemantics({
+				role: 'option',
+				ariaChecked: (x) => x.checked,
+				ariaSelected: (x) => x.selected,
+				ariaDisabled: (x) => x.disabled,
+			})}
 			style="${(x) => (x._isNotMatching ? 'display: none' : '')}"
 		>
 			<div class="${getClasses}">

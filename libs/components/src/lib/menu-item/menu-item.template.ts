@@ -12,6 +12,7 @@ import { menuName } from '../menu/definition';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { MenuItem } from './menu-item';
 import { MenuItemRole } from './menu-item-role';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 
 const getIndicatorIcon = (x: MenuItem) => {
 	if (x.checkedAppearance === 'tick-only') {
@@ -94,12 +95,14 @@ export const MenuItemTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<MenuItem>`
 		<template
-			role="${(x) => (x.role ? x.role : MenuItemRole.menuitem)}"
-			aria-haspopup="${(x) => (x.hasSubmenu ? 'menu' : void 0)}"
-			aria-checked="${(x) =>
-				x.role !== MenuItemRole.menuitem ? x.checked : void 0}"
-			aria-disabled="${(x) => x.disabled}"
-			aria-expanded="${(x) => x.expanded}"
+			${applyHostSemantics({
+				role: MenuItemRole.menuitem,
+				ariaHasPopup: (x) => (x.hasSubmenu ? 'menu' : void 0),
+				ariaChecked: (x) =>
+					x.role !== MenuItemRole.menuitem ? x.checked : void 0,
+				ariaDisabled: (x) => x.disabled,
+				ariaExpanded: (x) => x.expanded,
+			})}
 			@keydown="${(x, c) => x.handleMenuItemKeyDown(c.event as KeyboardEvent)}"
 			@click="${handleClick}"
 			@mouseover="${(x, c) => x.handleMouseOver(c.event as MouseEvent)}"

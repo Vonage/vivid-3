@@ -14,6 +14,7 @@ import {
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { TreeItem } from './tree-item';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 
 const getClasses = ({ disabled, selected }: TreeItem) =>
 	classNames(
@@ -42,13 +43,15 @@ export const TreeItemTemplate = (context: VividElementDefinitionContext) => {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
 	return html<TreeItem>` <template
-		role="treeitem"
 		slot="${(x) => (x.isNestedItem() ? 'item' : void 0)}"
 		tabindex="-1"
-		aria-expanded="${(x) =>
-			x.childItems && x.childItems.length > 0 ? x.expanded : void 0}"
-		aria-selected="${(x) => x.selected}"
-		aria-disabled="${(x) => x.disabled}"
+		${applyHostSemantics({
+			role: 'treeitem',
+			ariaExpanded: (x) =>
+				x.childItems && x.childItems.length > 0 ? x.expanded : void 0,
+			ariaSelected: (x) => x.selected,
+			ariaDisabled: (x) => x.disabled,
+		})}
 		@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
 		@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"
 		${children({

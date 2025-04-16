@@ -4,6 +4,7 @@ import { Popup } from '../popup/popup';
 import { anchorSlotTemplateFactory } from '../../shared/patterns/anchored';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog/index';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Menu } from './menu';
 
 const getClasses = ({
@@ -35,8 +36,7 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 	}
 
 	return html<Menu>`
-		<template role="presentation"
-							@change="${(x, c) => x._onChange(c.event)}"
+		<template @change="${(x, c) => x._onChange(c.event)}"
 							@focusout="${(x, c) => x._onFocusout(c.event as FocusEvent)}">
 			${anchorSlotTemplate}
 			<${popupTag}
@@ -55,8 +55,9 @@ export const MenuTemplate = (context: VividElementDefinitionContext) => {
 				</div>
 				<div
 					class="body"
-					role="menu"
-					aria-label="${(x) => x.ariaLabel}"
+					${delegateAria({
+						role: 'menu',
+					})}
 					@keydown="${(x, c) => x.handleMenuKeyDown(c.event as KeyboardEvent)}"
 					@focusout="${(x, c) => x.handleFocusOut(c.event as FocusEvent)}"
 				>

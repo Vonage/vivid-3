@@ -304,15 +304,15 @@ describe('vwc-switch', () => {
 			expect(getControlElement(element).getAttribute('role')).toBe('switch');
 		});
 
-		it('should set role to null on the host element by default', async () => {
-			expect(element.getAttribute('role')).toBe(null);
+		it('should set role presentation on the host element by default', async () => {
+			expect(element.getAttribute('role')).toBe('presentation');
 		});
 
-		it('should set role to presentation on the host when aria-label is set', async () => {
+		it('should remove role to presentation on the host when aria-label is set', async () => {
 			element.ariaLabel = 'Label';
 			await elementUpdated(element);
 
-			expect(element.getAttribute('role')).toBe('presentation');
+			expect(element.hasAttribute('role')).toBe(false);
 		});
 	});
 

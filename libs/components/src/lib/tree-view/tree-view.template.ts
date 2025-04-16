@@ -1,12 +1,15 @@
 import { html, ref, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { TreeView } from './tree-view';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 
 const getClasses = (_: TreeView) => classNames('control');
 
 export const TreeViewTemplate = html<TreeView>` <template
-	role="tree"
 	${ref('treeView')}
+	${applyHostSemantics({
+		role: 'tree',
+	})}
 	@keydown="${(x, c) => x.handleKeyDown(c.event as KeyboardEvent)}"
 	@focusin="${(x, c) => x.handleFocus(c.event as FocusEvent)}"
 	@focusout="${(x, c) => x.handleBlur(c.event as FocusEvent)}"

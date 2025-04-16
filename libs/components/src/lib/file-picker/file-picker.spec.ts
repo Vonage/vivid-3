@@ -9,6 +9,10 @@ import { Size } from '../enums';
 import { setLocale } from '../../shared/localization';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { FilePicker } from './file-picker';
 import '.';
 
@@ -537,6 +541,14 @@ describe('vwc-file-picker', () => {
 			});
 		}
 	);
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			allAriaPropertiesExcept([])
+		);
+	});
 
 	function getErrorMessage(forFileAtIndex: number) {
 		return element.shadowRoot

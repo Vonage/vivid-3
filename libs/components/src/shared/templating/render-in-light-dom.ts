@@ -13,10 +13,6 @@ import {
 } from '@microsoft/fast-element';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 
-/*
- * Implements a directive that renders a template in the light DOM of the element.
- */
-
 export class RenderInLightDomBehaviour<TSource extends VividElement>
 	implements Behavior, Subscriber
 {
@@ -101,6 +97,9 @@ export class RenderInLightDomDirective<
 	}
 }
 
+/**
+ * Directive to render a template into the light DOM of the host element.
+ */
 export function renderInLightDOM<TSource extends VividElement>(
 	templateOrTemplateBinding:
 		| SyntheticViewTemplate

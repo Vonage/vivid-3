@@ -9,12 +9,16 @@ import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { renderInLightDOM } from './render-in-light-dom';
 
 describe('renderInLightDom', () => {
-	class DummyElement extends VividElement {
-		@observable prop = 'Hello';
-	}
+	const DummyElement = () => {
+		class DummyElement extends VividElement {
+			@observable prop = 'Hello';
+		}
+
+		return DummyElement;
+	};
 
 	it('should render a given template in the light DOM of the element', async () => {
-		new FASTElementDefinition(DummyElement, {
+		new FASTElementDefinition(DummyElement(), {
 			template: html`
 				<div id="shadow">${(x) => x.prop}</div>
 				${renderInLightDOM(html`<div id="light">${(x) => x.prop}</div>`)}
@@ -22,7 +26,7 @@ describe('renderInLightDom', () => {
 			name: `dummy-1`,
 		}).define();
 
-		const element = fixture(`<dummy-1></dummy-1>`) as DummyElement;
+		const element = fixture(`<dummy-1></dummy-1>`);
 
 		expect(Array.from(element.children).map((c) => c.outerHTML)).toEqual([
 			'<div id="light">Hello</div>',
@@ -33,7 +37,7 @@ describe('renderInLightDom', () => {
 	});
 
 	it('should bind template bindings to the host element', async () => {
-		new FASTElementDefinition(DummyElement, {
+		new FASTElementDefinition(DummyElement(), {
 			template: html`${renderInLightDOM(html`
 				<div>${(x) => x.prop}</div>
 				${html`<div>${(x) => x.prop}</div>`}
@@ -41,7 +45,7 @@ describe('renderInLightDom', () => {
 			name: `dummy-2`,
 		}).define();
 
-		const element = fixture(`<dummy-2></dummy-2>`) as DummyElement;
+		const element = fixture(`<dummy-2></dummy-2>`);
 		const nodes = element.querySelectorAll('div')!;
 
 		expect(nodes[0].textContent).toBe('Hello');

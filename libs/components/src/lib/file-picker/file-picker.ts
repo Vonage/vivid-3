@@ -15,6 +15,7 @@ import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { Locale } from '../../shared/localization/Locale';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -53,7 +54,9 @@ const generateFilePreviewTemplate = (
  */
 @errorText
 @formElements
-export class FilePicker extends Localized(FormAssociatedFilePicker) {
+export class FilePicker extends DelegatesAria(
+	Localized(FormAssociatedFilePicker)
+) {
 	#dropzone?: Dropzone;
 
 	/**

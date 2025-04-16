@@ -2,6 +2,7 @@ import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { attr, observable } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { AffixIcon } from '../../shared/patterns/affix';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 
 /**
  * check if the item is a tree item
@@ -23,7 +24,7 @@ export function isTreeItemElement(el: Element): el is HTMLElement {
  * @event {CustomEvent<HTMLElement>} expanded-change - Fires a custom 'expanded-change' event when the expanded state changes
  * @event {CustomEvent<HTMLElement>} selected-change - Fires a custom 'selected-change' event when the selected state changes
  */
-export class TreeItem extends AffixIcon(VividElement) {
+export class TreeItem extends HostSemantics(AffixIcon(VividElement)) {
 	/**
 	 * Indicates the text's text.
 	 *

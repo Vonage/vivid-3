@@ -7,6 +7,7 @@ import {
 import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 
 /**
  * Determines if the element is a {@link (ListboxOption:class)}
@@ -29,7 +30,9 @@ export function isListboxOption(el: Element): el is ListboxOption {
  * @component option
  * @slot icon - Slot to add an icon to the option.
  */
-export class ListboxOption extends AffixIconWithTrailing(VividElement) {
+export class ListboxOption extends HostSemantics(
+	AffixIconWithTrailing(VividElement)
+) {
 	/**
 	 * @internal
 	 */
