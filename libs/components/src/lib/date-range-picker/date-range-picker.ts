@@ -383,6 +383,9 @@ export class DateRangePicker extends MinMaxCalendarPicker(
 			);
 			this.#updateValues({ start, end });
 		} catch (_) {
+			const invalidPresentationValue = this._presentationValue;
+			this.#updateValues({ start: '', end: '' });
+			this._presentationValue = invalidPresentationValue;
 			return;
 		}
 	}
