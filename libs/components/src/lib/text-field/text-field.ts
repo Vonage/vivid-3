@@ -315,7 +315,7 @@ export class TextField extends AffixIcon(
 	}
 
 	/**
-	 * @interal
+	 * @internal
 	 */
 	override valueChanged(previous: string, next: string) {
 		super.valueChanged(previous, next);
