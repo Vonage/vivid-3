@@ -68,6 +68,15 @@ export class FilePicker extends DelegatesAria(
 		return this.#dropzone?.getAcceptedFiles() ?? [];
 	}
 
+	/**
+	 * Files that have been rejected by the file picker for failing validation.
+	 *
+	 * @public
+	 */
+	get rejectedFiles(): File[] {
+		return this.#dropzone?.getRejectedFiles() ?? [];
+	}
+
 	#syncSingleFileState() {
 		if (this.singleFile) {
 			this.#dropzone?.hiddenFileInput?.removeAttribute('multiple');
