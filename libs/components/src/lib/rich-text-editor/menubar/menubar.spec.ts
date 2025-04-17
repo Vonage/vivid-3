@@ -236,4 +236,29 @@ describe('menuBar', () => {
 			});
 		});
 	});
+
+	describe('textStylesState', () => {
+		it('should update textStyleState on "selection-changed" event from parent', async () => {
+			const styles = {style1: '22', style2: '33'};
+			element.parentElement?.dispatchEvent(new CustomEvent('selection-changed', {detail: styles}));
+			await elementUpdated(element);
+
+			expect(element.textStylesState).toBe(styles);
+		});
+		
+		it('should remove update when disconnected from the DOM', async () => {
+			const styles = {style1: '22', style2: '33'};
+			element.disconnectedCallback();
+			element.parentElement?.dispatchEvent(new CustomEvent('selection-changed', {detail: styles}));
+			await elementUpdated(element);
+
+			expect(element.textStylesState).toEqual({});
+		});
+
+		it('should gracefully fail if parent does not exist', async () => {
+			element.remove();
+			expect(element.parentElement).toBeNull();
+			expect(() => element.disconnectedCallback()).not.toThrow();
+		});
+	});
 });
