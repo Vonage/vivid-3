@@ -13,8 +13,8 @@ import {
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { TreeItem } from './tree-item';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
+import { TreeItem } from './tree-item';
 
 const getClasses = ({ disabled, selected }: TreeItem) =>
 	classNames(

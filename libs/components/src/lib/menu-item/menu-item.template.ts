@@ -10,9 +10,9 @@ import { affixIconTemplateFactory } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import { menuName } from '../menu/definition';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import { MenuItem } from './menu-item';
 import { MenuItemRole } from './menu-item-role';
-import { applyHostSemantics } from '../../shared/aria/host-semantics';
 
 const getIndicatorIcon = (x: MenuItem) => {
 	if (x.checkedAppearance === 'tick-only') {

@@ -5,8 +5,8 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import type { Tab } from './tab.js';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
+import type { Tab } from './tab.js';
 
 const getClasses = ({
 	connotation,

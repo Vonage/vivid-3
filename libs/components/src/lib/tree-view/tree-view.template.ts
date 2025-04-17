@@ -1,7 +1,7 @@
 import { html, ref, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { TreeView } from './tree-view';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
+import type { TreeView } from './tree-view';
 
 const getClasses = (_: TreeView) => classNames('control');
 

@@ -6,8 +6,8 @@ import {
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import type { ListboxOption } from './option';
 import { applyHostSemantics } from '../../shared/aria/host-semantics';
+import type { ListboxOption } from './option';
 
 const getClasses = (x: ListboxOption) =>
 	classNames(
