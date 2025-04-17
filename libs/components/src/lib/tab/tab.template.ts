@@ -5,6 +5,7 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import type { Tab } from './tab.js';
 
 const getClasses = ({
@@ -47,9 +48,10 @@ export const TabTemplate = (context: VividElementDefinitionContext) => {
 	return html<Tab>`
 		<template
 			slot="tab"
-			role="tab"
-			aria-disabled="${(x) => x.disabled}"
-			aria-selected="${(x) => x.ariaSelected}"
+			${applyHostSemantics({
+				role: 'tab',
+				ariaDisabled: (x) => x.disabled,
+			})}
 			@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 		>
 			<div class="${getClasses}">

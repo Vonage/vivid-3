@@ -4,6 +4,7 @@ import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { FilePicker } from './file-picker';
 
 const getClasses = ({ size }: FilePicker) =>
@@ -27,8 +28,10 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 				${ref('control')}
 				class="${getClasses}"
 				tabindex="0"
-				role="button"
 				@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
+				${delegateAria({
+					role: 'button',
+				})}
 			>
 				<slot class="main"></slot>
 			</div>

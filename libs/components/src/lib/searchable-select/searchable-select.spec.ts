@@ -9,6 +9,10 @@ import { Button } from '../button/button';
 import { Icon } from '../icon/icon';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import { VividFoundationButton } from '../../shared/foundation/button';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
 
@@ -2030,5 +2034,17 @@ describe('vwc-searchable-select', () => {
 
 			expect(getAriaLiveRegionText()).toBe('');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => input,
+			allAriaPropertiesExcept([
+				'ariaAutoComplete',
+				'ariaHasPopup',
+				'ariaExpanded',
+			])
+		);
 	});
 });

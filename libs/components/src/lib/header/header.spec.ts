@@ -1,4 +1,8 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import type { Elevation } from './../elevation/elevation';
 import { Header } from './header';
 import '.';
@@ -62,5 +66,13 @@ describe('vwc-header', () => {
 
 			expect(container.getAttribute('part')).toEqual('vvd-theme-alternate');
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			allAriaPropertiesExcept([])
+		);
 	});
 });

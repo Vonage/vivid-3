@@ -858,7 +858,6 @@ describe('vwc-slider', () => {
 
 	describe('a11y attributes', () => {
 		beforeEach(async () => {
-			element.ariaLabel = 'Label';
 			element.min = 3;
 			element.max = 10;
 			element.value = '5';
@@ -870,6 +869,7 @@ describe('vwc-slider', () => {
 		});
 
 		it('should set the correct a11y attributes', async () => {
+			element.ariaLabel = 'Label';
 			element.ariaValueText = '5 bits';
 			await elementUpdated(element);
 

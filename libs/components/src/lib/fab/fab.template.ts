@@ -5,6 +5,7 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Fab } from './fab';
 
 const getClasses = ({
@@ -42,20 +43,7 @@ export const FabTemplate = (context: VividElementDefinitionContext) => {
 			name="${(x) => x.name}"
 			type="${(x) => x.type}"
 			value="${(x) => x.value}"
-			aria-atomic="${(x) => x.ariaAtomic}"
-			aria-busy="${(x) => x.ariaBusy}"
-			aria-current="${(x) => x.ariaCurrent}"
-			aria-disabled="${(x) => x.ariaDisabled}"
-			aria-expanded="${(x) => x.ariaExpanded}"
-			aria-haspopup="${(x) => x.ariaHasPopup}"
-			aria-hidden="${(x) => x.ariaHidden}"
-			aria-invalid="${(x) => x.ariaInvalid}"
-			aria-keyshortcuts="${(x) => x.ariaKeyShortcuts}"
-			aria-label="${(x) => x.ariaLabel}"
-			aria-live="${(x) => x.ariaLive}"
-			aria-pressed="${(x) => x.ariaPressed}"
-			aria-relevant="${(x) => x.ariaRelevant}"
-			aria-roledescription="${(x) => x.ariaRoleDescription}"
+			${delegateAria()}
 			${ref('control')}
 		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)} ${(x) => x.label}

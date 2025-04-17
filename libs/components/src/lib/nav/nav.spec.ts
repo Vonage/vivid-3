@@ -1,4 +1,8 @@
 import { fixture } from '@vivid-nx/shared';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { Nav } from './nav';
 import '.';
 
@@ -30,5 +34,13 @@ describe('vwc-nav', () => {
 			// See https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => element.shadowRoot!.querySelector('nav')!,
+			allAriaPropertiesExcept([])
+		);
 	});
 });

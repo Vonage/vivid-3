@@ -1,5 +1,6 @@
 import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Switch } from './switch';
 
 const getClasses = (_: Switch) =>
@@ -16,14 +17,15 @@ const getClasses = (_: Switch) =>
 	);
 
 export const SwitchTemplate = html<Switch>`
-	<template role="${(x) => (x.ariaLabel ? 'presentation' : null)}">
+	<template>
 		<div
 			class="${getClasses}"
-			role="switch"
-			aria-label="${(x) => x.ariaLabel}"
-			aria-checked="${(x) => x.checked}"
-			aria-disabled="${(x) => x.disabled}"
-			aria-readonly="${(x) => x.readOnly}"
+			${delegateAria({
+				role: 'switch',
+				ariaChecked: (x) => x.checked,
+				ariaDisabled: (x) => x.disabled,
+				ariaReadOnly: (x) => x.readOnly,
+			})}
 			tabindex="${(x) => (x.disabled ? null : 0)}"
 			@keypress="${(x, c) => x.keypressHandler(c.event as KeyboardEvent)}"
 			@click="${(x) => x.clickHandler()}"

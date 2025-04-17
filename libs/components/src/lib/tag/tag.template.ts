@@ -6,6 +6,7 @@ import {
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Tag } from './tag';
 
 const getClasses = ({
@@ -44,9 +45,11 @@ export const tagTemplate = (context: VividElementDefinitionContext) => {
 
 	return html<Tag>` <span
 		class="${getClasses}"
-		role="option"
-		aria-disabled="${(x) => x.disabled}"
-		aria-selected="${(x) => x.selectable}"
+		${delegateAria({
+			role: 'option',
+			ariaDisabled: (x) => x.disabled,
+			ariaSelected: (x) => x.selectable,
+		})}
 		tabindex="${(x) => (x.disabled ? null : 0)}"
 		@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
 		@click="${(x) => x.handleClick()}"

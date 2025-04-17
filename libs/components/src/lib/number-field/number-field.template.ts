@@ -5,6 +5,7 @@ import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import { Divider } from '../divider/divider';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { NumberField } from './number-field';
 
 const getStateClasses = ({
@@ -113,18 +114,7 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 						?spellcheck="${(x) => x.spellcheck}"
 						:value="${(x) => x._presentationValue}"
 						type="text"
-						aria-atomic="${(x) => x.ariaAtomic}"
-						aria-busy="${(x) => x.ariaBusy}"
-						aria-current="${(x) => x.ariaCurrent}"
-						aria-disabled="${(x) => x.ariaDisabled}"
-						aria-haspopup="${(x) => x.ariaHasPopup}"
-						aria-hidden="${(x) => x.ariaHidden}"
-						aria-invalid="${(x) => x.ariaInvalid}"
-						aria-keyshortcuts="${(x) => x.ariaKeyShortcuts}"
-						aria-label="${(x) => x.ariaLabel}"
-						aria-live="${(x) => x.ariaLive}"
-						aria-relevant="${(x) => x.ariaRelevant}"
-						aria-roledescription="${(x) => x.ariaRoleDescription}"
+						${delegateAria()}
 						${ref('control')}
 					/>
 				</div>

@@ -675,11 +675,14 @@ describe('vwc-text-field', () => {
 			const describedByTarget = element.querySelector(
 				`#${describedBy}`
 			) as HTMLElement;
-			return describedByTarget.innerText;
+			return describedByTarget.innerText.trim();
 		}
 
-		it('should use helperText value as the accessible description', () => {
+		it('should use helperText value as the accessible description', async () => {
 			element.helperText = 'Helper text';
+			await elementUpdated(element);
+			await elementUpdated(element);
+			await elementUpdated(element);
 
 			expect(getAccessibleDescription()).toBe('Helper text');
 		});

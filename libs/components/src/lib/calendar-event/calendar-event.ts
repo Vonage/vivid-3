@@ -2,6 +2,7 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import type { Appearance, Connotation } from '../enums';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * Types of calendar event connotation.
@@ -33,7 +34,7 @@ export type CalendarEventAppearance = ExtractFromEnum<
  * @public
  * @component calendar-event
  */
-export class CalendarEvent extends VividElement {
+export class CalendarEvent extends DelegatesAria(VividElement) {
 	/**
 	 * the heading of the event
 	 *

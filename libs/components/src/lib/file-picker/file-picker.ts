@@ -2,7 +2,7 @@
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
-import type { Locale } from '../../shared/localization/Locale';
+import type { Size } from '../enums';
 import {
 	type ErrorText,
 	errorText,
@@ -11,10 +11,11 @@ import {
 	formElements,
 	Localized,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import type { ExtractFromEnum } from '../../shared/utils/enums';
 import type { Button } from '../button/button';
-import type { Size } from '../enums';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import type { Locale } from '../../shared/localization/Locale';
+import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -53,7 +54,9 @@ const generateFilePreviewTemplate = (
  */
 @errorText
 @formElements
-export class FilePicker extends Localized(FormAssociatedFilePicker) {
+export class FilePicker extends DelegatesAria(
+	Localized(FormAssociatedFilePicker)
+) {
 	#dropzone?: Dropzone;
 
 	/**

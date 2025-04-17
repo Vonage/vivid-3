@@ -181,7 +181,6 @@ describe('vwc-progress', () => {
 
 	describe('a11y attributes', () => {
 		beforeEach(async () => {
-			element.ariaLabel = 'Label';
 			element.min = 10;
 			element.max = 90;
 			element.value = 20;
@@ -193,6 +192,7 @@ describe('vwc-progress', () => {
 		});
 
 		it('should set the correct a11y attributes', () => {
+			element.ariaLabel = 'Label';
 			const baseElement = getBaseElement(element);
 			expect(baseElement?.getAttribute('role')).toBe('progressbar');
 			expect(baseElement?.getAttribute('aria-label')).toBe('Label');

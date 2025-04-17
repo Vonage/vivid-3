@@ -1,5 +1,6 @@
 import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { CalendarEvent } from './calendar-event';
 
 const getClasses = ({ connotation, appearance }: CalendarEvent) =>
@@ -26,8 +27,10 @@ const getStyles = ({ start, duration, overlapCount }: CalendarEvent) => {
 export const CalendarEventTemplate = html<CalendarEvent>` <div
 	style="${getStyles}"
 	class="${getClasses}"
-	role="button"
 	tabindex="0"
+	${delegateAria({
+		role: 'button',
+	})}
 >
 	${when((x) => x.heading, html`<h2><strong>${(x) => x.heading}</strong></h2>`)}
 	${when((x) => x.description, html`<p>${(x) => x.description}</p>`)}

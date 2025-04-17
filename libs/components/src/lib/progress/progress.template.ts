@@ -1,5 +1,6 @@
 import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Progress } from './progress';
 
 const getClasses = ({ connotation, shape, reverse, paused }: Progress) =>
@@ -25,16 +26,15 @@ function indeterminate() {
 	</span>`;
 }
 
-export const ProgressTemplate = html<Progress>`<template
-	role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
->
+export const ProgressTemplate = html<Progress>`<template>
 	<div
-		role="progressbar"
-		aria-label="${(x) => x.ariaLabel}"
-		aria-valuenow="${(x) => x.value}"
-		aria-valuemin="${(x) => x.min}"
-		aria-valuemax="${(x) => x.max}"
 		class="${getClasses}"
+		${delegateAria({
+			role: 'progressbar',
+			ariaValueNow: (x) => x.value,
+			ariaValueMin: (x) => x.min,
+			ariaValueMax: (x) => x.max,
+		})}
 	>
 		<div class="progress">
 			${when((x) => typeof x.value === 'number', determinate())}

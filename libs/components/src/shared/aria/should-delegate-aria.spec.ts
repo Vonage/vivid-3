@@ -1,14 +1,31 @@
 import { elementUpdated } from '@vivid-nx/shared';
+import { type DelegatesAriaElement } from './delegates-aria';
 import {
 	ariaAttributeName,
+	ariaMixinProperties,
 	type AriaPropertyName,
-	type DelegatesAriaElement,
-} from './delegates-aria';
+} from './aria-mixin';
+
+export const allAriaPropertiesExcept = (exceptProperties: AriaPropertyName[]) =>
+	ariaMixinProperties.filter(
+		(p) => p !== 'role' && !exceptProperties.includes(p)
+	);
+
+export const itShouldDelegateAllAriaAttributes = (
+	getHost: () => DelegatesAriaElement,
+	getTarget: () => HTMLElement
+) => {
+	itShouldDelegateAriaAttributes(
+		getHost,
+		getTarget,
+		ariaMixinProperties.filter((p) => p !== 'role')
+	);
+};
 
 export const itShouldDelegateAriaAttributes = (
 	getHost: () => DelegatesAriaElement,
 	getTarget: () => HTMLElement,
-	ariaProperties: AriaPropertyName[]
+	ariaProperties: readonly AriaPropertyName[]
 ) => {
 	it.each(ariaProperties)(
 		'should delegate %s to target element',

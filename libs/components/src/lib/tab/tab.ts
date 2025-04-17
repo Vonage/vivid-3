@@ -4,6 +4,7 @@ import { Localized } from '../../shared/patterns';
 import type { Connotation, Shape } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 
 /**
  * Types of tab connotation.
@@ -27,7 +28,9 @@ export type TabShape = ExtractFromEnum<Shape, Shape.Rounded | Shape.Sharp>;
  * @component tab
  * @slot icon - Slot to add an icon to tab.
  */
-export class Tab extends AffixIconWithTrailing(Localized(VividElement)) {
+export class Tab extends HostSemantics(
+	AffixIconWithTrailing(Localized(VividElement))
+) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled | disabled HTML attribute} for more information.
 	 * @public

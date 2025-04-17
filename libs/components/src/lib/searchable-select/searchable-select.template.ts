@@ -12,6 +12,7 @@ import { Button } from '../button/button';
 import { ProgressRing } from '../progress-ring/progress-ring';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { isListboxOption } from '../option/option';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import { OptionTag } from './option-tag';
 import type { SearchableSelect } from './searchable-select';
 
@@ -127,13 +128,15 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						id="control"
 						class="control"
 						autocomplete="off"
-						aria-autocomplete="list"
-						aria-expanded="${(x) => x.open}"
-						aria-haspopup="listbox"
 						aria-controls="listbox"
+						${delegateAria({
+							role: 'combobox',
+							ariaAutoComplete: 'list',
+							ariaHasPopup: 'listbox',
+							ariaExpanded: (x) => x.open,
+						})}
 						placeholder="${(x) =>
 							x.multiple && x.values.length ? '' : x.placeholder}"
-						role="combobox"
 						type="text"
 						?disabled="${(x) => x.disabled}"
 						:value="${(x) => x._inputValue}"

@@ -17,7 +17,6 @@ import {
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
-import { Reflector } from '../../shared/utils/Reflector';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
@@ -93,7 +92,16 @@ const getSafariWorkaroundStyleSheet = memoizeWith(
 	}
 );
 
-const installSafariWorkaroundStyle = (forElement: TextField) => {
+const installSafariWorkaroundStyleIfNeeded = (
+	forElement: TextField & {
+		_isSafariWorkaroundInstalled?: boolean;
+	}
+) => {
+	if (forElement._isSafariWorkaroundInstalled) {
+		return;
+	}
+	forElement._isSafariWorkaroundInstalled = true;
+
 	const root = forElement.getRootNode() as ShadowRoot | Document;
 	const workaroundStyleSheet = getSafariWorkaroundStyleSheet();
 
@@ -307,10 +315,30 @@ export class TextField extends AffixIcon(
 	}
 
 	/**
+	 * @internal
+	 */
+	override valueChanged(previous: string, next: string) {
+		super.valueChanged(previous, next);
+		this._updateControlValueIfNeeded();
+	}
+
+	/**
 	 * A reference to the internal input element
 	 * @internal
 	 */
 	control!: HTMLInputElement;
+
+	/**
+	 * Update the controls value only if it is actually different from the actual value.
+	 * This is important as to not reset the browser's "dirtiness" flag on the input, which is used for min/maxlength
+	 * constraints.
+	 * @internal
+	 */
+	_updateControlValueIfNeeded() {
+		if (this.control && this.control.value !== this.value) {
+			this.control.value = this.value;
+		}
+	}
 
 	/**
 	 * Selects all the text in the text field
@@ -380,37 +408,6 @@ export class TextField extends AffixIcon(
 	@observable actionItemsSlottedContent?: HTMLElement[];
 	@observable leadingActionItemsSlottedContent?: HTMLElement[];
 
-	/**
-	 * @internal
-	 */
-	private _labelEl: HTMLLabelElement | null = null;
-
-	/**
-	 * @internal
-	 */
-	labelChanged() {
-		if (this._labelEl) {
-			this.#handleLabelChange(this._labelEl);
-		}
-	}
-
-	#handleLabelChange(labelEl: HTMLLabelElement) {
-		if (!this.label) {
-			labelEl.remove();
-		} else {
-			labelEl.textContent = this.label;
-			if (!labelEl.isConnected) {
-				this.appendChild(labelEl);
-			}
-		}
-	}
-
-	#reflectToInput?: Reflector<this, HTMLInputElement>;
-
-	#helperTextMirrorEl?: HTMLElement;
-
-	#helperTextSlotMutationObserver?: MutationObserver;
-
 	override connectedCallback() {
 		super.connectedCallback();
 
@@ -423,90 +420,13 @@ export class TextField extends AffixIcon(
 			});
 		}
 
-		if (!this.control) {
-			// Input and label must be created outside the shadow dom to support autofill from some password managers.
-
-			const uniqueId = this.id || generateRandomId();
-			const controlId = `vvd-text-field-control-${uniqueId}`;
-			const helperTextId = `vvd-text-field-helper-text-${uniqueId}`;
-
-			const input = document.createElement('input');
-			input.slot = '_control';
-			input.id = controlId;
-			input.className = safariWorkaroundClassName;
-			this.control = input;
-
-			input.addEventListener('input', () => {
-				this.handleTextInput();
-			});
-			input.addEventListener('change', () => {
-				this.handleChange();
-			});
-			input.addEventListener('blur', () => {
-				this.$emit('blur', undefined, { bubbles: false });
-			});
-			input.addEventListener('focus', () => {
-				this.$emit('focus', undefined, { bubbles: false });
-			});
-
-			this.appendChild(input);
-
-			const label = document.createElement('label') as HTMLLabelElement;
-			label.slot = '_label';
-			label.htmlFor = controlId;
-			this._labelEl = label;
-			this.#handleLabelChange(label);
-
-			// Helper text needs to be mirrored outside shadow DOM to be accessible to screen readers
-			// The mirror still needs to become part of the flat tree to work, so it is assigned to a hidden slot
-			this.#helperTextMirrorEl = document.createElement('div');
-			this.#helperTextMirrorEl.id = helperTextId;
-			this.#helperTextMirrorEl.slot = '_mirrored-helper-text';
-			this.#updateMirroredHelperText();
-			this.appendChild(this.#helperTextMirrorEl);
-
-			installSafariWorkaroundStyle(this);
-		}
-
-		this.#reflectToInput = new Reflector(this, this.control);
-		this.#reflectToInput.booleanAttribute('autofocus', 'autofocus');
-		this.#reflectToInput.booleanAttribute('disabled', 'disabled');
-		this.#reflectToInput.booleanAttribute('readOnly', 'readonly');
-		this.#reflectToInput.booleanAttribute('required', 'required');
-		this.#reflectToInput.booleanAttribute('spellcheck', 'spellcheck');
-		this.#reflectToInput.attribute('list', 'list');
-		this.#reflectToInput.attribute('maxlength', 'maxlength');
-		this.#reflectToInput.attribute('minlength', 'minlength');
-		this.#reflectToInput.attribute('pattern', 'pattern');
-		this.#reflectToInput.attribute('placeholder', 'placeholder');
-		this.#reflectToInput.attribute('size', 'size');
-		this.#reflectToInput.attribute('autoComplete', 'autocomplete');
-		this.#reflectToInput.attribute('type', 'type');
-		this.#reflectToInput.attribute('inputMode', 'inputmode');
-		this.#reflectToInput.attribute('ariaAtomic', 'aria-atomic');
-		this.#reflectToInput.attribute('ariaBusy', 'aria-busy');
-		this.#reflectToInput.attribute('ariaCurrent', 'aria-current');
-		this.#reflectToInput.attribute('ariaDisabled', 'aria-disabled');
-		this.#reflectToInput.attribute('ariaHasPopup', 'aria-haspopup');
-		this.#reflectToInput.attribute('ariaHidden', 'aria-hidden');
-		this.#reflectToInput.attribute('ariaInvalid', 'aria-invalid');
-		this.#reflectToInput.attribute('ariaKeyShortcuts', 'aria-keyshortcuts');
-		this.#reflectToInput.attribute('ariaLabel', 'aria-label');
-		this.#reflectToInput.attribute('ariaLive', 'aria-live');
-		this.#reflectToInput.attribute('ariaRelevant', 'aria-relevant');
-		this.#reflectToInput.attribute(
-			'ariaRoleDescription',
-			'aria-roledescription'
-		);
-		this.#reflectToInput.property('value', 'value', true);
-
+		this._updateControlValueIfNeeded();
 		this.#updateHelperTextMutationObserver();
+		installSafariWorkaroundStyleIfNeeded(this);
 	}
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
-		this.#reflectToInput!.destroy();
-		this.#reflectToInput = undefined;
 		this.#updateHelperTextMutationObserver();
 	}
 
@@ -514,12 +434,28 @@ export class TextField extends AffixIcon(
 		this.control?.focus();
 	}
 
+	#randomId = generateRandomId();
+
+	/**
+	 * @internal
+	 */
+	get _uniqueId() {
+		return this.id || this.#randomId;
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable _mirroredHelperText = '';
+
 	/**
 	 * @internal
 	 */
 	helperTextChanged() {
 		this.#updateMirroredHelperText();
 	}
+
+	#helperTextSlotMutationObserver?: MutationObserver;
 
 	/**
 	 * @internal
@@ -538,7 +474,12 @@ export class TextField extends AffixIcon(
 			 */
 			this.#helperTextSlotMutationObserver = new MutationObserver((records) => {
 				if (
-					records.some((record) => record.target !== this.#helperTextMirrorEl)
+					// Ignore updates to the mirrored helper text itself
+					records.some(
+						(record) =>
+							record.target instanceof HTMLElement &&
+							record.target.slot !== '_mirrored-helper-text'
+					)
 				) {
 					this.#updateMirroredHelperText();
 				}
@@ -562,18 +503,7 @@ export class TextField extends AffixIcon(
 				.map((node) => node.innerText)
 				.join(' ');
 		}
-		if (this.#helperTextMirrorEl) {
-			this.#helperTextMirrorEl.textContent = helperText;
-
-			if (helperText) {
-				this.control.setAttribute(
-					'aria-describedby',
-					this.#helperTextMirrorEl.id
-				);
-			} else {
-				this.control.removeAttribute('aria-describedby');
-			}
-		}
+		this._mirroredHelperText = helperText;
 	}
 }
 

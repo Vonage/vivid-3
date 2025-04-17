@@ -4,13 +4,17 @@ import {
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import '.';
-import deDE from '../../locales/de-DE';
-import enUS from '../../locales/en-US';
-import { setLocale } from '../../shared/localization';
 import type { Button } from '../button/button';
 import { Size } from '../enums';
+import { setLocale } from '../../shared/localization';
+import deDE from '../../locales/de-DE';
+import enUS from '../../locales/en-US';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { FilePicker } from './file-picker';
+import '.';
 
 const COMPONENT_TAG = 'vwc-file-picker';
 
@@ -584,6 +588,14 @@ describe('vwc-file-picker', () => {
 			});
 		}
 	);
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getControlElement(element),
+			allAriaPropertiesExcept([])
+		);
+	});
 
 	function getErrorMessage(forFileAtIndex: number) {
 		return element.shadowRoot

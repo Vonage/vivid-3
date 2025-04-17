@@ -4,6 +4,7 @@ import { Connotation } from '../enums.js';
 import { Checkbox } from '../checkbox/checkbox';
 import { Radio } from '../radio/radio';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import { SelectableBox } from './selectable-box';
 
 const getClasses = ({
@@ -31,10 +32,15 @@ function checkbox(context: VividElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(
 		(x) => x.controlType !== 'radio',
-		html`
+		html<SelectableBox>`
 		<${checkboxTag}
-			aria-label="${(x) =>
-				!x.clickableBox && !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
+			${delegateAria(
+				{
+					ariaLabel: (x) =>
+						!x.clickableBox && !x.clickable && x.ariaLabel ? x.ariaLabel : null,
+				},
+				{ onlySpecified: true }
+			)}
 			@change="${(x) => handleControlChange(x)}"
 			class="control checkbox"
 			connotation="${(x) =>
@@ -50,10 +56,15 @@ function radio(context: VividElementDefinitionContext) {
 
 	return html<SelectableBox>`${when(
 		(x) => x.controlType === 'radio',
-		html`
+		html<SelectableBox>`
 		<${radioTag}
-			aria-label="${(x) =>
-				!x.clickableBox && !x.clickable && x.ariaLabel ? x.ariaLabel : null}"
+			${delegateAria(
+				{
+					ariaLabel: (x) =>
+						!x.clickableBox && !x.clickable && x.ariaLabel ? x.ariaLabel : null,
+				},
+				{ onlySpecified: true }
+			)}
 			@change="${(x) => handleControlChange(x)}"
 			class="control radio"
 			connotation="${(x) =>
@@ -67,15 +78,16 @@ function radio(context: VividElementDefinitionContext) {
 export const SelectableBoxTemplate = (
 	context: VividElementDefinitionContext
 ) => {
-	return html<SelectableBox>`<template role="presentation">
+	return html<SelectableBox>`<template>
 		<div
 			class="${getClasses}"
 			tabindex="${(x) => (x.clickableBox || x.clickable ? '0' : null)}"
-			role="${(x) => (x.clickableBox || x.clickable ? 'button' : null)}"
-			aria-pressed="${(x) =>
-				x.clickableBox || x.clickable ? (x.checked ? 'true' : 'false') : null}"
-			aria-label="${(x) =>
-				x.clickableBox || x.clickable ? x.ariaLabel : null}"
+			${delegateAria({
+				role: (x) => (x.clickableBox || x.clickable ? 'button' : null),
+				ariaPressed: (x) =>
+					x.clickableBox || x.clickable ? (x.checked ? 'true' : 'false') : null,
+				ariaLabel: (x) => (x.clickableBox || x.clickable ? x.ariaLabel : null),
+			})}
 			@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 			@click="${(x) =>
 				x.clickableBox || x.clickable ? x._handleCheckedChange() : null}"

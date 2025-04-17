@@ -6,6 +6,7 @@ import {
 } from '../../shared/patterns/affix';
 import { Button } from '../button/button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Banner } from './banner';
 
 const getClasses = (_: Banner) =>
@@ -35,8 +36,10 @@ export const BannerTemplate = (context: VividElementDefinitionContext) => {
 					${(x) => affixIconTemplate(x.conditionedIcon, IconWrapper.Slot)}
 					<div
 						class="banner-message"
-						role="${(x) => (x.role ? x.role : 'status')}"
-						aria-live="${(x) => (x.ariaLive ? x.ariaLive : 'polite')}"
+						${delegateAria({
+							role: (x) => (x.role ? x.role : 'status'),
+							ariaLive: (x) => (x.ariaLive ? x.ariaLive : 'polite'),
+						})}
 					>
 						${(x) => x.text}
 					</div>

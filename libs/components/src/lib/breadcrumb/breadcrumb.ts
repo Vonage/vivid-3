@@ -1,13 +1,14 @@
 import { observable } from '@microsoft/fast-element';
 import { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
  * @public
  * @component breadcrumb
  * @slot - Default slot.
  */
-export class Breadcrumb extends VividElement {
+export class Breadcrumb extends DelegatesAria(VividElement) {
 	/**
 	 * @internal
 	 */

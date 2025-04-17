@@ -10,6 +10,7 @@ import { Connotation } from '../enums';
 import { getDirection } from '../../shared/foundation/utilities/direction';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 import { MenuItemRole } from './menu-item-role';
 
 /**
@@ -32,7 +33,7 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
  * @vueModel modelValue checked change `event.currentTarget.checked`
  */
-export class MenuItem extends AffixIcon(VividElement) {
+export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 	/**
 	 * The disabled state of the element.
 	 *
