@@ -349,6 +349,18 @@ describe('vwc-date-range-picker', () => {
 			expect(textField.errorText).toBe('Please enter a valid date range.');
 		});
 
+		it('should clear the values but keep invalid input when an invalid date range is entered', async () => {
+			element.start = '2021-01-21';
+			element.end = '2021-01-22';
+
+			typeIntoTextField('invalid date');
+			await elementUpdated(element);
+
+			expect(element.start).toBe('');
+			expect(element.end).toBe('');
+			expect(textField.value).toBe('invalid date');
+		});
+
 		it('should clear the error when a valid date range is entered', async () => {
 			typeIntoTextField('invalid date');
 			await elementUpdated(element);
