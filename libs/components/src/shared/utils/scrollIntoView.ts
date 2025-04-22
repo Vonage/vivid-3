@@ -63,7 +63,11 @@ function flatTreeOffsetParent(element: Element) {
 		if (!(ancestor instanceof Element)) continue;
 		const style = getComputedStyle(ancestor);
 		if (style.display === 'contents') continue;
-		if (style.position !== 'static' || style.filter !== 'none') {
+		if (
+			style.position !== 'static' ||
+			style.filter !== 'none' ||
+			style.transform !== 'none'
+		) {
 			return ancestor;
 		}
 		if (ancestor.tagName === 'BODY') return ancestor;
