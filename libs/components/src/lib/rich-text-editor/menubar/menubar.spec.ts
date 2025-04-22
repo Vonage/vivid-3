@@ -187,18 +187,18 @@ describe('menuBar', () => {
 				elementUpdated(element);
 
 				expect(menu.getAttribute('current-value')).toBe('');
-			});		
-			
-			it.only('should set event listener for text-styles-changed only once', async () => {
+			});
+
+			it('should set event listener for text-styles-changed only once', async () => {
 				const parent = element.parentElement as any;
 				parent.selectionStyles = { textBlockType: 'body' };
 				let count = 0;
-				
+
 				element.menuItems = '';
 				await elementUpdated(element);
 				element.menuItems = 'textBlock';
 				await elementUpdated(element);
-				
+
 				const menu = getSelectionMenu('text-block');
 				vi.spyOn(menu, 'setAttribute').mockImplementation((name, value) => {
 					if (name === 'current-value' && value === 'body') count++;

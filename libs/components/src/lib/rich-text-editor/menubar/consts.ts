@@ -46,18 +46,18 @@ const TEXT_DECORATION_ITEMS = [
 ];
 
 const textBlockEventHandler = (event: Event) => {
-    const customEvent = event as CustomEvent;
-    if (
-        !customEvent ||
-        !customEvent.detail ||
-        customEvent.detail.textBlockType === undefined
-    ) {
-        return;
-    }
-    const menu = customEvent.target as HTMLElement;
-    menu
-        .shadowRoot!.querySelector('#text-block')!
-        .setAttribute('current-value', customEvent.detail.textBlockType);
+	const customEvent = event as CustomEvent;
+	if (
+		!customEvent ||
+		!customEvent.detail ||
+		customEvent.detail.textBlockType === undefined
+	) {
+		return;
+	}
+	const menu = customEvent.target as HTMLElement;
+	menu
+		.shadowRoot!.querySelector('#text-block')!
+		.setAttribute('current-value', customEvent.detail.textBlockType);
 };
 
 export const MENU_BAR_ITEMS: {
@@ -68,7 +68,7 @@ export const MENU_BAR_ITEMS: {
 } = {
 	textBlock: {
 		registerStateProperty: function (menuBar: MenuBar) {
-            menuBar.removeEventListener('text-styles-changed', textBlockEventHandler);
+			menuBar.removeEventListener('text-styles-changed', textBlockEventHandler);
 			menuBar.addEventListener('text-styles-changed', textBlockEventHandler);
 		},
 		render: function (context) {
