@@ -1,5 +1,5 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import type { Select } from '../../select/select';
+import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar';
@@ -187,6 +187,27 @@ describe('menuBar', () => {
 				elementUpdated(element);
 
 				expect(menu.getAttribute('current-value')).toBe('');
+			});		
+			
+			it.only('should set event listener for text-styles-changed only once', async () => {
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textBlockType: 'body' };
+				let count = 0;
+				
+				element.menuItems = '';
+				await elementUpdated(element);
+				element.menuItems = 'textBlock';
+				await elementUpdated(element);
+				
+				const menu = getSelectionMenu('text-block');
+				vi.spyOn(menu, 'setAttribute').mockImplementation((name, value) => {
+					if (name === 'current-value' && value === 'body') count++;
+				});
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(count).toBe(1);
 			});
 		});
 
