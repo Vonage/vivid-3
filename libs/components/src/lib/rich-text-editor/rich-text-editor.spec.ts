@@ -531,4 +531,21 @@ describe('vwc-rich-text-editor', () => {
 			vi.useRealTimers();
 		});
 	});
+
+	describe('selectionStyles', () => {
+		it('should initiate as empty object', async () => {
+			const unconnectedElement = document.createElement(COMPONENT_TAG);
+			expect(unconnectedElement.selectionStyles).toEqual({});
+		});
+
+		it('should return the styles from the facade', async () => {
+			const styles = { textBlockType: 'title' };
+			vi.spyOn(
+				EditorFacade.prototype,
+				'getSelectionStyles'
+			).mockReturnValueOnce(styles);
+
+			expect(element.selectionStyles).toEqual(styles);
+		});
+	});
 });
