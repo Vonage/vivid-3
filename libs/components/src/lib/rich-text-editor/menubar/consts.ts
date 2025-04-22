@@ -79,6 +79,9 @@ export const MENU_BAR_ITEMS: {
 			return html`
 		<${tooltipTag} text="Text Block Type" placement="top">
 			<${selectTag}
+                scale="condensed"
+                shape="rounded"
+                appearance="ghost"
 				slot="anchor"
 				trigger="auto"
 				id="text-block"
