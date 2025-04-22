@@ -1948,6 +1948,17 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
+	describe('option tag connotation', () => {
+		it('should set tagConnotation of selected options on their corresponding tag', async () => {
+			element.multiple = true;
+			element.values = ['apple'];
+			getOption('Apple').tagConnotation = 'cta';
+			await elementUpdated(element);
+
+			expect(getTag('Apple').connotation).toBe('cta');
+		});
+	});
+
 	describe('option tag icon', () => {
 		let icon: Icon;
 		beforeEach(async () => {

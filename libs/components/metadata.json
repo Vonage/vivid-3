@@ -4691,6 +4691,13 @@
 					"propertyName": "selectedAttribute"
 				},
 				{
+					"name": "tagConnotation",
+					"description": "When displayed as a tag, the connotation of the tag.",
+					"type": "'accent' | 'cta'",
+					"attributeName": "tag-connotation",
+					"propertyName": "tagConnotation"
+				},
+				{
 					"name": "text",
 					"type": "string",
 					"attributeName": "text",

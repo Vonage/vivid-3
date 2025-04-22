@@ -5,12 +5,13 @@ import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { OptionTag } from './option-tag';
 
-const getClasses = ({ shape, disabled, removable }: OptionTag) =>
+const getClasses = ({ shape, connotation, disabled, removable }: OptionTag) =>
 	classNames(
 		'base',
 		['disabled', disabled],
 		['removable', removable],
-		[`shape-${shape}`, Boolean(shape)]
+		[`shape-${shape}`, Boolean(shape)],
+		[`connotation-${connotation}`, Boolean(connotation)]
 	);
 
 function renderRemoveButton(iconTag: string) {
