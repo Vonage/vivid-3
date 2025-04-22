@@ -158,6 +158,36 @@ describe('menuBar', () => {
 				expect(tooltip?.getAttribute('text')).toBe('Text Block Type');
 				expect(tooltip.getAttribute('placement')).toBe('top');
 			});
+
+			it('should set the select value to empty string by default', async () => {
+				const menu = getSelectionMenu('text-block');
+				expect(menu.getAttribute('current-value')).toEqual('');
+			});
+
+			it('should set the select value to value in the editor on parent selection-change event', async () => {
+				const menu = getSelectionMenu('text-block');
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textBlockType: 'body' };
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(menu.getAttribute('current-value')).toBe('body');
+			});
+
+			it('should clear the select value to value in the editor on parent selection-change event with empty block type', async () => {
+				const menu = getSelectionMenu('text-block');
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textBlockType: 'body' };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				parent.selectionStyles = { textBlockType: '' };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(menu.getAttribute('current-value')).toBe('');
+			});
 		});
 
 		describe('textDecoration', () => {
@@ -234,31 +264,6 @@ describe('menuBar', () => {
 					);
 				}
 			});
-		});
-	});
-
-	describe('textStylesState', () => {
-		it('should update textStyleState on "selection-changed" event from parent', async () => {
-			const styles = {style1: '22', style2: '33'};
-			element.parentElement?.dispatchEvent(new CustomEvent('selection-changed', {detail: styles}));
-			await elementUpdated(element);
-
-			expect(element.textStylesState).toBe(styles);
-		});
-		
-		it('should remove update when disconnected from the DOM', async () => {
-			const styles = {style1: '22', style2: '33'};
-			element.disconnectedCallback();
-			element.parentElement?.dispatchEvent(new CustomEvent('selection-changed', {detail: styles}));
-			await elementUpdated(element);
-
-			expect(element.textStylesState).toEqual({});
-		});
-
-		it('should gracefully fail if parent does not exist', async () => {
-			element.remove();
-			expect(element.parentElement).toBeNull();
-			expect(() => element.disconnectedCallback()).not.toThrow();
 		});
 	});
 });
