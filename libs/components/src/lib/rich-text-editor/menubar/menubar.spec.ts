@@ -4,7 +4,7 @@ import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar';
 import '.';
-import { TEXT_DECORATION_ITEMS } from './consts';
+import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -479,6 +479,18 @@ describe('menuBar', () => {
 				await elementUpdated(element);
 				expect(tooltip).toBeTruthy();
 				expect(menu.open).toBe(true);
+			});
+
+			it('should display menu items according to TEXT_SIZES', async () => {
+				const menu = getSelectionMenu('text-size');
+
+				const menuItemsElements = menu.querySelectorAll('.menubar-selector-menuitem');
+
+				expect(menuItemsElements.length).toBe(TEXT_SIZES.length);
+				TEXT_SIZES.forEach((textSize, index) => {
+					expect(menuItemsElements[index].getAttribute('text')).toEqual(textSize.text);
+					expect(menuItemsElements[index].getAttribute('value')).toEqual(textSize.value);
+				});
 			});
 		});
 	});

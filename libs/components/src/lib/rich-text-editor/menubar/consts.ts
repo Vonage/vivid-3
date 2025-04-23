@@ -7,7 +7,9 @@ import { Tooltip } from '../../tooltip/tooltip.js';
 import { Select } from '../../select/select.js';
 import { ListboxOption } from '../../option/option.js';
 import { Menu } from '../../menu/menu.js';
+import { MenuItem } from '../../menu-item/menu-item.js';
 import type { MenuBar } from './menubar.js';
+
 
 function notifyMenuBarChange(
 	menuBar: MenuBar,
@@ -43,6 +45,25 @@ export const TEXT_DECORATION_ITEMS = [
 		text: 'Monospace',
 		icon: 'monospace-line',
 		value: 'monospace',
+	},
+];
+
+export const TEXT_SIZES = [
+	{
+		text: 'Extra Large',
+		value: 'extra-large',
+	},
+	{
+		text: 'Large',
+		value: 'large',
+	},
+	{
+		text: 'Normal',
+		value: 'normal',
+	},
+	{
+		text: 'Small',
+		value: 'small',
 	},
 ];
 
@@ -190,6 +211,7 @@ export const MENU_BAR_ITEMS: {
 			const menuTag = context.tagFor(Menu);
 			const buttonTag = context.tagFor(Button);
 			const tooltipTag = context.tagFor(Tooltip);
+			const menuItemTag = context.tagFor(MenuItem);
 			return html`
                     <${menuTag}
                         trigger="auto"
@@ -207,6 +229,15 @@ export const MENU_BAR_ITEMS: {
                                 icon="text-size-line"
                             ></${buttonTag}>
 						</${tooltipTag}>
+						${repeat(_ => TEXT_SIZES, html`
+							<${menuItemTag}
+								text="${x => x.text}"
+								value="${x => x.value}"
+								internal-part
+								class="menubar-selector-menuitem title"
+								connotation="cta"
+                        ></${menuItemTag}>
+							`)}
                     </${menuTag}>
                 `;
 		},
