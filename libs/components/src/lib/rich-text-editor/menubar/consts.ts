@@ -17,7 +17,7 @@ function notifyMenuBarChange(
 	return true;
 }
 
-const TEXT_DECORATION_ITEMS = [
+export const TEXT_DECORATION_ITEMS = [
 	{
 		text: 'Bold',
 		icon: 'bold-line',
@@ -60,6 +60,29 @@ const textBlockEventHandler = (event: Event) => {
 		.setAttribute('current-value', customEvent.detail.textBlockType);
 };
 
+const textDecorationEventHandler = (event: Event) => {
+	const customEvent = event as CustomEvent;
+	if (!customEvent || !customEvent.detail) {
+		return;
+	}
+	const menu = customEvent.target as HTMLElement;
+
+	const selectionButtons = menu.shadowRoot!.querySelectorAll(
+		'#text-decoration .selection-button'
+	);
+
+	selectionButtons.forEach((button) => button.removeAttribute('active'));
+
+	customEvent.detail.textDecoration !== undefined &&
+		TEXT_DECORATION_ITEMS.forEach((menuItemConfig, index) => {
+			if (
+				customEvent.detail.textDecoration.indexOf(menuItemConfig.value) >= 0
+			) {
+				selectionButtons[index].toggleAttribute('active', true);
+			}
+		});
+};
+
 export const MENU_BAR_ITEMS: {
 	[key: string]: {
 		registerStateProperty?: (menuBar: MenuBar) => void;
@@ -68,7 +91,6 @@ export const MENU_BAR_ITEMS: {
 } = {
 	textBlock: {
 		registerStateProperty: function (menuBar: MenuBar) {
-			menuBar.removeEventListener('text-styles-changed', textBlockEventHandler);
 			menuBar.addEventListener('text-styles-changed', textBlockEventHandler);
 		},
 		render: function (context) {
@@ -122,33 +144,42 @@ export const MENU_BAR_ITEMS: {
 		},
 	},
 	textDecoration: {
+		registerStateProperty: function (menuBar) {
+			menuBar.addEventListener(
+				'text-styles-changed',
+				textDecorationEventHandler
+			);
+		},
 		render: function (context) {
 			const buttonTag = context.tagFor(Button);
 			const dividerTag = context.tagFor(Divider);
 			const tooltipTag = context.tagFor(Tooltip);
 			return html`
-			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
-			${repeat(
-				(_) => TEXT_DECORATION_ITEMS,
-				html`
-					<${tooltipTag} text="${(x) => x.text}" placement="top">
-						<${buttonTag}
-							slot="anchor"
-							aria-label="${(x) => x.text}"
-							size="super-condensed"
-							appearance="ghost-light"
-							shape="pill"
-							icon="${(x) => x.icon}"
-							@click="${(x, c) =>
-								notifyMenuBarChange(
-									c.parentContext.parent,
-									'text-decoration-selected',
-									x.value
-								)}"')}"
-						></${buttonTag}>
-					</${tooltipTag}>
+			<span id="text-decoration">
+                <${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+                ${repeat(
+									(_) => TEXT_DECORATION_ITEMS,
+									html`
+                        <${tooltipTag} text="${(x) => x.text}" placement="top">
+                            <${buttonTag}
+                                class="selection-button"
+                                slot="anchor"
+                                aria-label="${(x) => x.text}"
+                                size="super-condensed"
+                                appearance="ghost-light"
+                                shape="rounded"
+                                icon="${(x) => x.icon}"
+                                @click="${(x, c) =>
+																	notifyMenuBarChange(
+																		c.parentContext.parent,
+																		'text-decoration-selected',
+																		x.value
+																	)}"')}"
+                            ></${buttonTag}>
+                        </${tooltipTag}>
+                    </span>
 				`
-			)}
+								)}
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
 		},

@@ -108,6 +108,7 @@ export class ProseMirrorFacade {
 
 	#handleChangeEvent = () => {
 		if (!this.#userContentChange) {
+			this.#userContentChange = false;
 			return;
 		}
 		this.#dispatchEvent('change');
@@ -220,15 +221,15 @@ export class ProseMirrorFacade {
 			throw new Error(`${decoration} is not a supported decoration`);
 		}
 		toggleMark(markType)(state, dispatch);
+		this.#userContentChange = true;
+		this.#handleChangeEvent();
 	}
 
-	getSelectionStyles(): SelectionStyles {
-		this.#verifyViewInitiation();
-
+	#getSelectionBlockType() {
 		const { state } = this.#view!;
 		const { from, to } = state.selection;
-		const styles: SelectionStyles = {};
 
+		const styles: SelectionStyles = {};
 		state.doc.nodesBetween(from, to, (node) => {
 			if (node.type.name === 'heading' && node.attrs.level === 2) {
 				setTextBlockType(styles, 'title');
@@ -238,6 +239,91 @@ export class ProseMirrorFacade {
 				setTextBlockType(styles, 'body');
 			}
 		});
+		return styles.textBlockType;
+	}
+
+	#getSelectionTextDecoration() {
+		const { state } = this.#view!;
+		const { from, to, empty } = state.selection;
+
+		const decorations: string[] = [];
+		if (empty) {
+			// If the selection is a cursor (collapsed), check marks at the cursor position
+			const marks = state.doc.resolve(from).marks();
+			if (
+				state.schema.marks.strong &&
+				marks.some((mark) => mark.type === state.schema.marks.strong)
+			) {
+				decorations.push('bold');
+			}
+			if (
+				state.schema.marks.em &&
+				marks.some((mark) => mark.type === state.schema.marks.em)
+			) {
+				decorations.push('italics');
+			}
+			if (
+				state.schema.marks.u &&
+				marks.some((mark) => mark.type === state.schema.marks.u)
+			) {
+				decorations.push('underline');
+			}
+			if (
+				state.schema.marks.s &&
+				marks.some((mark) => mark.type === state.schema.marks.s)
+			) {
+				decorations.push('strikethrough');
+			}
+			if (
+				state.schema.marks.tt &&
+				marks.some((mark) => mark.type === state.schema.marks.tt)
+			) {
+				decorations.push('monospace');
+			}
+		} else {
+			// If the selection is a range, check marks across the range
+			if (
+				state.schema.marks.strong &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.strong)
+			) {
+				decorations.push('bold');
+			}
+			if (
+				state.schema.marks.em &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.em)
+			) {
+				decorations.push('italics');
+			}
+			if (
+				state.schema.marks.u &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.u)
+			) {
+				decorations.push('underline');
+			}
+			if (
+				state.schema.marks.s &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.s)
+			) {
+				decorations.push('strikethrough');
+			}
+			if (
+				state.schema.marks.tt &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.tt)
+			) {
+				decorations.push('monospace');
+			}
+		}
+
+		return decorations.length ? decorations : undefined;
+	}
+
+	getSelectionStyles(): SelectionStyles {
+		this.#verifyViewInitiation();
+
+		const styles: SelectionStyles = {};
+
+		styles.textBlockType = this.#getSelectionBlockType();
+		styles.textDecoration = this.#getSelectionTextDecoration();
 
 		return styles;
 	}

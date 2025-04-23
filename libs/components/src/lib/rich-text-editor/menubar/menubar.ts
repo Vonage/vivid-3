@@ -24,12 +24,20 @@ export class MenuBar extends VividElement {
 			'selection-changed',
 			this.#updateTextStyleState
 		);
+		this.#textEditorElement.addEventListener(
+			'change',
+			this.#updateTextStyleState
+		);
 	}
 
 	override disconnectedCallback(): void {
 		super.disconnectedCallback();
 		this.#textEditorElement?.removeEventListener(
 			'selection-changed',
+			this.#updateTextStyleState
+		);
+		this.#textEditorElement?.removeEventListener(
+			'change',
 			this.#updateTextStyleState
 		);
 	}

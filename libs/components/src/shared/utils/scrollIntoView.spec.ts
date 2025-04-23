@@ -55,8 +55,6 @@ describe('scrollIntoView', () => {
 		const component = document.createElement('div');
 		const grandParent = document.createElement('div');
 		grandParent.style.position = 'relative';
-		const transform = document.createElement('div');
-		transform.style.transform = 'translateX(0px)';
 		const contents = document.createElement('div');
 		contents.style.display = 'contents';
 		const parent = document.createElement('div');
@@ -64,8 +62,7 @@ describe('scrollIntoView', () => {
 		const element = document.createElement('div');
 		component.attachShadow({ mode: 'open' });
 		component.shadowRoot!.appendChild(grandParent);
-		grandParent.appendChild(transform);
-		transform.appendChild(contents);
+		grandParent.appendChild(contents);
 		contents.appendChild(parent);
 		parent.appendChild(document.createElement('slot'));
 		component.appendChild(element);
@@ -88,7 +85,6 @@ describe('scrollIntoView', () => {
 		document.body.append(component);
 		document.body.style.position = 'static';
 		document.body.style.filter = 'none';
-		document.body.style.transform = 'none';
 
 		scrollIntoView(element, parent, 'start');
 

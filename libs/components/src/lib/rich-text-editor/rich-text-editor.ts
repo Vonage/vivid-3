@@ -4,7 +4,7 @@ import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
 export interface SelectionStyles {
 	textBlockType?: string;
-	textDecoration?: string;
+	textDecoration?: string[];
 }
 
 export interface RichTextEditorSelection {
