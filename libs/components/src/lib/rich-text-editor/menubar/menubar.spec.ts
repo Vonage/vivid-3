@@ -492,6 +492,21 @@ describe('menuBar', () => {
 					expect(menuItemsElements[index].getAttribute('value')).toEqual(textSize.value);
 				});
 			});
+
+			it('should emit text-size-selected event with the selected value', async () => {
+				const spy = vi.fn();
+				element.addEventListener('text-size-selected', spy);
+				const menu = getSelectionMenu('text-size');
+				const menuItemsElements = menu.querySelectorAll('.menubar-selector-menuitem') as unknown as HTMLElement[];
+
+				menuItemsElements.forEach(menuItem => {
+					menuItem.click();
+				});
+
+				spy.mock.calls.forEach((call, index) => {
+					expect(call[0].detail).toBe(menuItemsElements[index].getAttribute('value'));
+				})
+			});
 		});
 	});
 });

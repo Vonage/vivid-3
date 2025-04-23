@@ -236,6 +236,8 @@ export const MENU_BAR_ITEMS: {
 								internal-part
 								class="menubar-selector-menuitem title"
 								connotation="cta"
+								@click="${(x, c) =>
+									notifyMenuBarChange(c.parentContext.parent, 'text-size-selected', x.value)}"
                         ></${menuItemTag}>
 							`)}
                     </${menuTag}>
