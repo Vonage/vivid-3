@@ -538,4 +538,72 @@ describe('ProseMirrorFacade', () => {
 			);
 		});
 	});
+
+	describe('getSelectionStyles', () => {
+		it('should throw if view is not initiated', async () => {
+			expect(() => facadeInstance.getSelectionStyles()).toThrowError(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+		it('should return the "title" text block type when selection is h2', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			facadeInstance.selection({ start: 1, end: 1 });
+			expect(facadeInstance.getSelectionStyles()).toEqual({
+				textBlockType: 'title',
+			});
+		});
+
+		it('should return the "subtitle" text block type when selection is h3', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			facadeInstance.selection({ start: 25, end: 25 });
+			expect(facadeInstance.getSelectionStyles()).toEqual({
+				textBlockType: 'subtitle',
+			});
+		});
+
+		it('should return the "body" text block type when selection is p', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			facadeInstance.selection({ start: 50, end: 50 });
+			expect(facadeInstance.getSelectionStyles()).toEqual({
+				textBlockType: 'body',
+			});
+		});
+
+		it('should return empty block type when mixed content', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			facadeInstance.selection({ start: 25, end: 50 });
+			expect(facadeInstance.getSelectionStyles()).toEqual({
+				textBlockType: '',
+			});
+		});
+	});
 });
