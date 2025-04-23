@@ -188,6 +188,8 @@ export const MENU_BAR_ITEMS: {
 	textSize: {
 		render: function (context) {
 			const menuTag = context.tagFor(Menu);
+			const buttonTag = context.tagFor(Button);
+			const tooltipTag = context.tagFor(Tooltip);
 			return html`
                     <${menuTag}
                         trigger="auto"
@@ -195,6 +197,16 @@ export const MENU_BAR_ITEMS: {
                         aria-label="Text Size"
                         placement="bottom-end"
                     >
+						<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+                            <${buttonTag}
+                                slot="anchor"
+                                aria-label="Open text size menu"
+                                size="super-condensed"
+                                appearance="ghost-light"
+                                shape="pill"
+                                icon="text-size-line"
+                            ></${buttonTag}>
+						</${tooltipTag}>
                     </${menuTag}>
                 `;
 		},

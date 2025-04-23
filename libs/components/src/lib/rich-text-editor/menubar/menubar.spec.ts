@@ -469,6 +469,17 @@ describe('menuBar', () => {
 			it('should show textSize menu', async () => {
 				expect(getSelectionMenu('text-size')).toBeTruthy();
 			});
+
+			it('should add a menu button with a tooltip', async () => {
+				const menu = getSelectionMenu('text-size');
+				const tooltip = menu.querySelector('[text="Text Size"]');
+				const button = menu.querySelector('[aria-label="Open text size menu"]') as HTMLElement;
+
+				button.click();
+				await elementUpdated(element);
+				expect(tooltip).toBeTruthy();
+				expect(menu.open).toBe(true);
+			});
 		});
 	});
 });
