@@ -8,7 +8,10 @@ import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
-import type { RichTextEditorSelection } from '../rich-text-editor';
+import type {
+	RichTextEditorSelection,
+	SelectionStyles,
+} from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
 const NEGATIVE_SELECTION = {
@@ -44,6 +47,18 @@ class TagToSchemaMap {
 		};
 	}
 }
+
+function setTextBlockType(styles: SelectionStyles, type: string) {
+	if (
+		(styles.textBlockType && styles.textBlockType !== type) ||
+		styles.textBlockType === ''
+	) {
+		styles.textBlockType = '';
+	} else {
+		styles.textBlockType = type;
+	}
+}
+
 function createSelectionChangePlugin(
 	onSelectionChange: (selection: RichTextEditorSelection) => void
 ) {
@@ -205,5 +220,25 @@ export class ProseMirrorFacade {
 			throw new Error(`${decoration} is not a supported decoration`);
 		}
 		toggleMark(markType)(state, dispatch);
+	}
+
+	getSelectionStyles(): SelectionStyles {
+		this.#verifyViewInitiation();
+
+		const { state } = this.#view!;
+		const { from, to } = state.selection;
+		const styles: SelectionStyles = {};
+
+		state.doc.nodesBetween(from, to, (node) => {
+			if (node.type.name === 'heading' && node.attrs.level === 2) {
+				setTextBlockType(styles, 'title');
+			} else if (node.type.name === 'heading' && node.attrs.level === 3) {
+				setTextBlockType(styles, 'subtitle');
+			} else if (node.type.name === 'paragraph') {
+				setTextBlockType(styles, 'body');
+			}
+		});
+
+		return styles;
 	}
 }

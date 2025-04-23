@@ -122,7 +122,7 @@ input {
 	border: none;
 	background: none;
 	block-size: 24px;
-	font: var(--vvd-typography-base);
+	font: var(#{constants.$vvd-typography-base});
 	max-inline-size: 100%;
 	min-inline-size: 100px;
 	outline: none;
@@ -151,6 +151,7 @@ input {
 	align-items: center;
 	justify-content: center;
 	color: var(#{constants.$vvd-color-neutral-300});
+	font: var(#{constants.$vvd-typography-base});
 	min-block-size: 40px;
 	text-align: center;
 }
