@@ -11,7 +11,7 @@ const getClasses = (menuBar: MenuBar) =>
 		getValidMenuItems(menuBar).length === 0,
 	]);
 
-const validItems = ['textBlock', 'textDecoration'];
+const validItems = ['textBlock', 'textDecoration', 'textSize'];
 
 function getPropertyStateRgistrationFunction(item: string) {
 	return MENU_BAR_ITEMS[item].registerStateProperty;

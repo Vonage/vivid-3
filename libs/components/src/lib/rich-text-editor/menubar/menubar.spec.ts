@@ -459,5 +459,16 @@ describe('menuBar', () => {
 				).toBe(true);
 			});
 		});
+
+		describe.only('textSize', () => {
+			beforeEach(async () => {
+				element.menuItems = 'textSize';
+				await elementUpdated(element);
+			});
+
+			it('should show textSize menu', async () => {
+				expect(getSelectionMenu('text-size')).toBeTruthy();
+			});
+		});
 	});
 });

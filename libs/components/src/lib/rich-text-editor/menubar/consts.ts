@@ -1,11 +1,12 @@
 import { html, repeat } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
-import { Button } from '../../button/button';
-import { Divider } from '../../divider/divider';
-import { Tooltip } from '../../tooltip/tooltip';
-import { Select } from '../../select/select';
-import { ListboxOption } from '../../option/option';
+import { Button } from '../../button/button.js';
+import { Divider } from '../../divider/divider.js';
+import { Tooltip } from '../../tooltip/tooltip.js';
+import { Select } from '../../select/select.js';
+import { ListboxOption } from '../../option/option.js';
+import { Menu } from '../../menu/menu.js';
 import type { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -182,6 +183,20 @@ export const MENU_BAR_ITEMS: {
 								)}
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
+		},
+	},
+	textSize: {
+		render: function (context) {
+			const menuTag = context.tagFor(Menu);
+			return html`
+                    <${menuTag}
+                        trigger="auto"
+                        id="text-size"
+                        aria-label="Text Size"
+                        placement="bottom-end"
+                    >
+                    </${menuTag}>
+                `;
 		},
 	},
 };
