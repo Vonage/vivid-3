@@ -147,6 +147,10 @@ describe('vwc-audio-player', () => {
 		});
 
 		it('should remove the time stamp when true', async function () {
+			setAudioElementDuration(60);
+			const event = new Event('loadedmetadata');
+			nativeAudioElement.dispatchEvent(event);
+			await elementUpdated(element);
 			const currentTimeClassExistsBeforeTheChange = getCurrentTimeElement();
 			const totalTimeClassExistsBeforeTheChange = getTotalTimeElement();
 
@@ -235,6 +239,19 @@ describe('vwc-audio-player', () => {
 			await elementUpdated(element);
 
 			expect(getTotalTimeElement()?.textContent).toEqual('1:00');
+		});
+
+		it('should prevent display of total time when handling streaming (duration=Infinity)', async () => {
+			setAudioElementDuration(Infinity);
+			const event = new Event('loadedmetadata');
+			nativeAudioElement.dispatchEvent(event);
+			await elementUpdated(element);
+
+			expect(
+				getBaseElement(element)
+					.querySelector('.time-stamp')
+					?.textContent?.trim()
+			).toBe('0:00');
 		});
 	});
 
