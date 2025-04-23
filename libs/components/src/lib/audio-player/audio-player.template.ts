@@ -126,8 +126,13 @@ function renderSlider(context: VividElementDefinitionContext) {
 function renderTimestamp() {
 	return html` <div class="time-stamp">
 		<span class="current-time">${(x) => formatTime(x.currentTime)}</span>
-		<span>/</span>
-		<span class="total-time">${(x) => formatTime(x.duration)}</span>
+		${when(
+			(x) => x.duration && x.duration !== Infinity,
+			html`
+				<span>/</span>
+				<span class="total-time">${(x) => formatTime(x.duration)}</span>
+			`
+		)}
 	</div>`;
 }
 
