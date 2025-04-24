@@ -7,6 +7,7 @@ pagination:
 permalink: 'components/{{ component | componentSlug }}/use-cases/'
 layout: component.njk
 eleventyComputed:
+  pageTitle: "{{ component.title }} - Use Cases"
   githubEditLink: "{{ component.useCases | githubEditLink }}"
 ---
 
