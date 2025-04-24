@@ -104,6 +104,20 @@ const textDecorationEventHandler = (event: Event) => {
 		});
 };
 
+const textSizeEventHandler = (event: Event) => {
+	const customEvent = event as CustomEvent;
+	if (!customEvent || !customEvent.detail) {
+		return;
+	}
+	const menu = customEvent.target as HTMLElement;
+	const selectionTextSize = customEvent.detail.textSize ?? 'normal';
+
+	const textSizeElements = menu.shadowRoot!.querySelectorAll('.menubar-selector-menuitem');
+	textSizeElements.forEach(textSizeElement => {
+		textSizeElement.toggleAttribute('checked', textSizeElement.getAttribute('value') === selectionTextSize);
+	});
+
+}
 export const MENU_BAR_ITEMS: {
 	[key: string]: {
 		registerStateProperty?: (menuBar: MenuBar) => void;
@@ -206,6 +220,9 @@ export const MENU_BAR_ITEMS: {
 		},
 	},
 	textSize: {
+		registerStateProperty: function(menuBar) {
+			menuBar.addEventListener('text-styles-changed', textSizeEventHandler);
+		},
 		render: function (context) {
 			const menuTag = context.tagFor(Menu);
 			const buttonTag = context.tagFor(Button);
@@ -213,6 +230,7 @@ export const MENU_BAR_ITEMS: {
 			const menuItemTag = context.tagFor(MenuItem);
 			return html`
                     <${menuTag}
+						auto-dismiss
                         trigger="auto"
                         id="text-size"
                         aria-label="Text Size"
@@ -232,10 +250,12 @@ export const MENU_BAR_ITEMS: {
 							(_) => TEXT_SIZES,
 							html`
 							<${menuItemTag}
+								check-appearance="tick-only"
+								role="menuitemcheckbox"
 								text="${(x) => x.text}"
 								value="${(x) => x.value}"
 								internal-part
-								class="menubar-selector-menuitem title"
+								class="menubar-selector-menuitem"
 								connotation="cta"
 								@click="${(x, c) =>
 									notifyMenuBarChange(

@@ -519,6 +519,17 @@ describe('menuBar', () => {
 					);
 				});
 			});
+
+			it('should set the current text size as the checked menu item', async () => {
+				const menu = getSelectionMenu('text-size');
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textSize: 'large' };
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(menu.querySelector('[checked]')?.getAttribute('value')).toBe('large');
+			});
 		});
 	});
 });

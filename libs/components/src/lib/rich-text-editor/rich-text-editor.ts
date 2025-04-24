@@ -139,7 +139,6 @@ export class RichTextEditor extends VividElement {
 	}
 
 	setSelectionTextSize(textSize: TEXT_SIZES) {
-		console.log('fffff');
 		this.#editor?.setTextSize(textSize);
 	}
 
