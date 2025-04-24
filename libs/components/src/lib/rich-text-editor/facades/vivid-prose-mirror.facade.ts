@@ -9,9 +9,9 @@ import { EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type {
+	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
 	RichTextEditorSelection,
 	SelectionStyles,
-	TEXT_SIZES,
 } from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
@@ -374,7 +374,7 @@ export class ProseMirrorFacade {
 		return styles;
 	}
 
-	setTextSize(size: TEXT_SIZES = 'normal') {
+	setTextSize(size: RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES = 'normal') {
 		this.#verifyViewInitiation();
 
 		const { state, dispatch } = this.#view!;

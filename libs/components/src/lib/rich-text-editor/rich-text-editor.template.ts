@@ -3,9 +3,9 @@ import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import {
+	type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
 	RichTextEditor,
 	RichTextEditorTextBlocks,
-	type TEXT_SIZES,
 } from './rich-text-editor';
 
 const getClasses = (_: RichTextEditor) => classNames('control');
@@ -30,7 +30,9 @@ function selectionDecorationSelectedHandler(event: CustomEvent<string>) {
 }
 
 function textSizeSelectedHandler(event: CustomEvent<string>) {
-	menuParent(event.target).setSelectionTextSize(event.detail as TEXT_SIZES);
+	menuParent(event.target).setSelectionTextSize(
+		event.detail as RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES
+	);
 	menuParent(event.target).focus();
 }
 

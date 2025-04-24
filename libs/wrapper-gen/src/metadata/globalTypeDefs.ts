@@ -93,4 +93,7 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 
 	// Option:
 	OptionTagConnotation: "'accent' | 'cta'",
+
+	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES:
+		"'extra-large' | 'large' | 'normal' | 'small'",
 };
