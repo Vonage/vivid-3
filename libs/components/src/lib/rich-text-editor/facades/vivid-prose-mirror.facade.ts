@@ -327,4 +327,21 @@ export class ProseMirrorFacade {
 
 		return styles;
 	}
+	setTextSize(size: 'extra-large' | 'large' | 'normal' | 'small' = 'normal') {
+		this.#verifyViewInitiation();
+
+		const { state, dispatch } = this.#view!;
+		const { schema, selection, tr } = state;
+		const { from, to } = selection;
+
+		const textSizeMark = schema.marks.textSize;
+
+		tr.removeMark(from, to, textSizeMark);
+
+		tr.addMark(from, to, textSizeMark.create({ size }));
+		
+		dispatch(tr.scrollIntoView());
+		this.#userContentChange = true;
+		this.#handleChangeEvent();
+	}
 }

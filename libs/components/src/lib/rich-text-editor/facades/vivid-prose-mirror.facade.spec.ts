@@ -682,4 +682,79 @@ describe('ProseMirrorFacade', () => {
 			).toBeUndefined();
 		});
 	});
+
+	describe('setTextSize', () => {
+		function setViewer() {
+			const element = initViewer();
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+			return element;
+		}
+
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		it('should throw if view is not initiated', async () => {
+			expect(() => facadeInstance.setTextSize()).toThrowError(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+		it('should apply span with font-size for extra-large text', async () => {
+			const element = setViewer();
+
+			facadeInstance.setTextSize('extra-large');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<span style="font-size: var(--vvd-typography-heading-4);">is is a</span> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply span with font-size for large text', async () => {
+			const element = setViewer();
+
+			facadeInstance.setTextSize('large');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<span style="font-size: var(--vvd-typography-base-extended);">is is a</span> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply span with font-size for normal text', async () => {
+			const element = setViewer();
+
+			facadeInstance.setTextSize('normal');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<span style="font-size: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply span with font-size for small text', async () => {
+			const element = setViewer();
+
+			facadeInstance.setTextSize('small');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<span style="font-size: var(--vvd-typography-base-condensed);">is is a</span> pretty long text for a sample, but it should work</p>`
+			);
+		});
+
+		it('should apply span with normal font size when given invalid size', async () => {
+			const element = setViewer();
+
+			facadeInstance.setTextSize('not-normal' as 'normal');
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				`<p>Th<span style="font-size: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
+			);
+		});
+	});
 });
