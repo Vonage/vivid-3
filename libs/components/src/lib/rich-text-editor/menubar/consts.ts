@@ -190,8 +190,8 @@ export const MENU_BAR_ITEMS: {
 			const dividerTag = context.tagFor(Divider);
 			const tooltipTag = context.tagFor(Tooltip);
 			return html`
-			<span id="text-decoration">
-                <${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			<span id="text-decoration">  
                 ${repeat(
 									(_) => TEXT_DECORATION_ITEMS,
 									html`
@@ -212,9 +212,9 @@ export const MENU_BAR_ITEMS: {
 																	)}"')}"
                             ></${buttonTag}>
                         </${tooltipTag}>
-                    </span>
 				`
 								)}
+								</span>
 			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
 		},
