@@ -1,10 +1,10 @@
 import { createFormHTML, elementUpdated, fixture } from '@vivid-nx/shared';
 import { setLocale } from '../../shared/localization';
-import { Popup } from '../popup/popup.ts';
-import { Button } from '../button/button.ts';
-import { TextField } from '../text-field/text-field.ts';
-import enGB from '../../locales/en-GB.ts';
-import enUS from '../../locales/en-US.ts';
+import { Popup } from '../popup/popup';
+import { Button } from '../button/button';
+import { TextField } from '../text-field/text-field';
+import enGB from '../../locales/en-GB';
+import enUS from '../../locales/en-US';
 import { pickerFieldSpec } from '../../shared/picker-field/picker-field.spec';
 import type { InlineTimePicker } from '../../shared/picker-field/mixins/inline-time-picker/inline-time-picker';
 import { TimePicker } from './time-picker';
@@ -116,11 +116,21 @@ describe('vwc-time-picker', () => {
 			expect(element.value).toBe('13:45:00');
 		});
 
-		it('should have an empty value when a user enters a invalid time into the text field', async () => {
+		it('should keep an empty value when a user enters a invalid time into the text field', async () => {
 			typeIntoTextField('x');
 			await elementUpdated(element);
 
 			expect(element.value).toBe('');
+		});
+
+		it('should clear the value but keep invalid input when a user enters a invalid time into the text field', async () => {
+			element.value = '12:34:56';
+
+			typeIntoTextField('x');
+			await elementUpdated(element);
+
+			expect(element.value).toBe('');
+			expect(textField.value).toBe('x');
 		});
 
 		it('should clear the text field when value is set to empty string', async () => {

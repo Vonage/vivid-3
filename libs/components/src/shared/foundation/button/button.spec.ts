@@ -1,8 +1,8 @@
 import { DOM } from '@microsoft/fast-element';
 import { eventClick } from '@microsoft/fast-web-utilities';
 import { fixture } from '../test-utilities/fixture';
-import { createRegisterFunction } from '../../design-system/createRegisterFunction.ts';
-import { defineVividComponent } from '../../design-system/defineVividComponent.ts';
+import { createRegisterFunction } from '../../design-system/createRegisterFunction';
+import { defineVividComponent } from '../../design-system/defineVividComponent';
 import {
 	VividFoundationButton as Button,
 	buttonTemplate as template,

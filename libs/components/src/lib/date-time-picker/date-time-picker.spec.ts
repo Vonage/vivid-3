@@ -177,11 +177,21 @@ describe('vwc-date-time-picker', () => {
 			expect(element.value).toBe('2021-01-21T12:34:56');
 		});
 
-		it('should have an empty value when a user enters a invalid date time into the text field', async () => {
+		it('should keep an empty value when a user enters a invalid date time into the text field', async () => {
 			typeIntoTextField('x');
 			await elementUpdated(element);
 
-			expect(element.value).toBeFalsy();
+			expect(element.value).toBe('');
+		});
+
+		it('should clear the value but keep invalid input when a user enters a invalid date time into the text field', async () => {
+			element.value = '2021-01-21T12:34:56';
+
+			typeIntoTextField('x');
+			await elementUpdated(element);
+
+			expect(element.value).toBe('');
+			expect(textField.currentValue).toBe('x');
 		});
 
 		it('should clear the text field when value is set to empty string', async () => {

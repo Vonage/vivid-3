@@ -10,6 +10,8 @@ import {
 	Position,
 	Shape,
 	Size,
+	MediaSkipBy,
+	Sticky,
 } from '@vonage/vivid';
 import { toTypeStr, TypeStr } from '../common/types';
 import { getTypescriptDefinitionPath } from './vividPackage';
@@ -35,6 +37,8 @@ export const extractLocalTypeDefs = (
 		LayoutSize,
 		Position,
 		AriaLive,
+		MediaSkipBy,
+		Sticky,
 	};
 	for (const [enumName, enumObj] of Object.entries(enums)) {
 		let typeName = `${className}${enumName}`;

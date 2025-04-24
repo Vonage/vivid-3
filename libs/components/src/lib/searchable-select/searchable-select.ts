@@ -697,6 +697,16 @@ export class SearchableSelect extends AffixIconWithTrailing(
 	/**
 	 * @internal
 	 */
+	_tagConnotationForValue(value: string) {
+		const option = this._slottedOptions.find(
+			(option) => option.value === value
+		)!;
+		return option.tagConnotation;
+	}
+
+	/**
+	 * @internal
+	 */
 	_isTagDisabled(value: string) {
 		const option = this._slottedOptions.find(
 			(option) => option.value === value

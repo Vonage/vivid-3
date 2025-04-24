@@ -2,6 +2,7 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import '.';
 import '../option';
 import userEvent, { type UserEvent } from '@testing-library/user-event';
+import type { Mock } from 'vitest';
 import { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import { Button } from '../button/button';
@@ -1181,7 +1182,7 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe.each(['input', 'change'])('%s event', (eventName) => {
-		let eventSpy: vi.Mock;
+		let eventSpy: Mock;
 		beforeEach(async () => {
 			eventSpy = vi.fn();
 			element.addEventListener(eventName, eventSpy);
@@ -1248,7 +1249,7 @@ describe('vwc-searchable-select', () => {
 		it('should not bubble', async () => {
 			clickOnOption('Apple');
 
-			expect(eventSpy.mock.lastCall[0].bubbles).toBe(false);
+			expect(eventSpy.mock.lastCall![0].bubbles).toBe(false);
 		});
 
 		it('should stop the event from bubbling from the internal input', () => {
@@ -1944,6 +1945,17 @@ describe('vwc-searchable-select', () => {
 			form.reset();
 
 			expect(element.values).toEqual(['apple']);
+		});
+	});
+
+	describe('option tag connotation', () => {
+		it('should set tagConnotation of selected options on their corresponding tag', async () => {
+			element.multiple = true;
+			element.values = ['apple'];
+			getOption('Apple').tagConnotation = 'cta';
+			await elementUpdated(element);
+
+			expect(getTag('Apple').connotation).toBe('cta');
 		});
 	});
 

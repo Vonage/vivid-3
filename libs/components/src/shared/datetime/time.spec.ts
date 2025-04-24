@@ -4,7 +4,7 @@ import {
 	hoursAs12hClock,
 	isValidTimeStr,
 	parseTimeStr,
-} from './time.ts';
+} from './time';
 
 describe('isValidTimeStr', () => {
 	it('should return true for a valid time string', () => {

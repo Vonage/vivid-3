@@ -45,6 +45,7 @@ const tagTemplateFactory = (
 				removable
 				:label="${(x, c) => getComponent(c)._tagLabelForValue(x)}"
 				:shape="${(_, c) => getComponent(c).shape}"
+				:connotation="${(x, c) => getComponent(c)._tagConnotationForValue(x)}"
 				?disabled="${(x, c) => getComponent(c)._isTagDisabled(x)}"
 				@remove="${(x, c) => getComponent(c)._onTagRemoved(x)}"
 				@keydown="${(_, c) => getComponent(c)._onTagKeydown(c.event as KeyboardEvent)}"

@@ -6,17 +6,17 @@ import {
 	when,
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { Popup } from '../popup/popup';
-import { ListboxOption } from '../option/option';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
-import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { Listbox } from '../../shared/foundation/listbox/listbox';
+import { ListboxOption } from '../option/option';
+import { Popup } from '../popup/popup';
 import type { Select } from './select';
 
 const getStateClasses = ({

@@ -4691,6 +4691,13 @@
 					"propertyName": "selectedAttribute"
 				},
 				{
+					"name": "tagConnotation",
+					"description": "When displayed as a tag, the connotation of the tag.",
+					"type": "'accent' | 'cta'",
+					"attributeName": "tag-connotation",
+					"propertyName": "tagConnotation"
+				},
+				{
 					"name": "text",
 					"type": "string",
 					"attributeName": "text",
@@ -5504,6 +5511,7 @@
 			],
 			"vueModels": [],
 			"methods": [
+				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",
@@ -5516,8 +5524,10 @@
 					"returnType": "unknown"
 				},
 				{
-					"name": "setTextSize",
-					"args": [{ "name": "size", "type": "'title' | 'subtitle' | 'body'" }],
+					"name": "setTextBlock",
+					"args": [
+						{ "name": "blockType", "type": "'title' | 'subtitle' | 'body'" }
+					],
 					"returnType": "unknown"
 				}
 			],
@@ -8067,5 +8077,5 @@
 			"slots": [{ "name": "default", "description": "Default slot" }]
 		}
 	],
-	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.4/manifest.json"
+	"iconsManifestUrl": "https://icon.resources.vonage.com/v4.6.5/manifest.json"
 }
