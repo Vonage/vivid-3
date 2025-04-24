@@ -7,6 +7,7 @@ pagination:
 permalink: 'components/{{ component | componentSlug }}/guidelines/'
 layout: component.njk
 eleventyComputed:
+  pageTitle: '{{ component.title }} - Guidelines'
   githubEditLink: '{{ component.guidelines | githubEditLink }}'
 ---
 
