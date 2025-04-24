@@ -187,10 +187,8 @@ export const MENU_BAR_ITEMS: {
 		},
 		render: function (context) {
 			const buttonTag = context.tagFor(Button);
-			const dividerTag = context.tagFor(Divider);
 			const tooltipTag = context.tagFor(Tooltip);
 			return html`
-			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			<span id="text-decoration">  
                 ${repeat(
 									(_) => TEXT_DECORATION_ITEMS,
@@ -215,7 +213,6 @@ export const MENU_BAR_ITEMS: {
 				`
 								)}
 								</span>
-			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 		`;
 		},
 	},
@@ -270,4 +267,12 @@ export const MENU_BAR_ITEMS: {
                 `;
 		},
 	},
+	divider: {
+		render: function(context) {
+			const dividerTag = context.tagFor(Divider);
+			return html`
+				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			`;
+		}
+	}
 };

@@ -531,5 +531,16 @@ describe('menuBar', () => {
 				expect(menu.querySelector('[checked]')?.getAttribute('value')).toBe('large');
 			});
 		});
+
+		describe('divider', () => {
+			beforeEach(async () => {
+				element.menuItems = 'divider divider';
+				await elementUpdated(element);
+			});
+
+			it('should show divider element', async () => {
+				expect(element.shadowRoot?.querySelectorAll(`.divider`).length).toBe(2);
+			});
+		});
 	});
 });
