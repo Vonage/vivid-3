@@ -27,4 +27,18 @@ describe('HostSemantics', () => {
 		expect(element.getAttribute('aria-description')).toBe('default');
 		expect(element.getAttribute('aria-label')).toBe('label');
 	});
+
+	it('should throw an error when applyHostSemantics is applied to an element that is not the host', async () => {
+		@customElement({
+			name: 'dummy-element-not-host',
+			template: html`<div ${applyHostSemantics()}></div>`,
+		})
+		class DummyElementNotHost extends HostSemantics(VividElement) {}
+
+		const element = new DummyElementNotHost();
+
+		expect(() => element.connectedCallback()).toThrow(
+			'Target element must be the same as the source element'
+		);
+	});
 });

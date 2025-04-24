@@ -36,7 +36,10 @@ export class DelegateAriaBehavior<T> implements Behavior {
 		this.isMitigationDisabled = params.disableAccessibilityMitigation;
 	}
 
+	private source: DelegatesAriaElement | null = null;
+
 	bind(source: DelegatesAriaElement) {
+		this.source = source;
 		this.bindPropertiesToTarget(source, this.boundProperties, this.target);
 		this.startForwardingPropertiesToTarget(
 			source,
@@ -46,9 +49,13 @@ export class DelegateAriaBehavior<T> implements Behavior {
 		this.mitigateAccessibilityIssues(source);
 	}
 
-	unbind(source: DelegatesAriaElement) {
-		this.releasePropertyBindings(source);
-		this.stopForwardingPropertiesToTarget(source);
+	unbind() {
+		if (this.source === null) {
+			return;
+		}
+		this.releasePropertyBindings(this.source);
+		this.stopForwardingPropertiesToTarget(this.source);
+		this.source = null;
 	}
 
 	private bindingBehaviours: AttributeBindingBehavior[] = [];

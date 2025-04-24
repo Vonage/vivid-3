@@ -73,7 +73,7 @@ describe('Reflector', () => {
 		});
 
 		it('should not set property on target if value is already the target value when skipIfEqual is set', () => {
-			reflector.property('value', 'title', true);
+			reflector.property('value', 'textContent', true);
 			const set = vi.fn();
 			Object.defineProperty(target, 'textContent', {
 				get() {

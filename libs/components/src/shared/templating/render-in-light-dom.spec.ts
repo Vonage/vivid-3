@@ -4,7 +4,7 @@ import {
 	html,
 	observable,
 } from '@microsoft/fast-element';
-import { fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { renderInLightDOM } from './render-in-light-dom';
 
@@ -50,5 +50,24 @@ describe('renderInLightDom', () => {
 
 		expect(nodes[0].textContent).toBe('Hello');
 		expect(nodes[1].textContent).toBe('Hello');
+	});
+
+	it('should be able to change templates dynamically with a binding', async () => {
+		new FASTElementDefinition(DummyElement(), {
+			template: html`${renderInLightDOM((x) =>
+				x.prop === 'Hello'
+					? html`<div>prop is Hello</div>`
+					: html`<div>prop is not Hello</div>`
+			)}`,
+			name: `dummy-3`,
+		}).define();
+
+		const element = fixture(`<dummy-3></dummy-3>`);
+		expect(element.textContent!.trim()).toBe('prop is Hello');
+
+		(element as any).prop = 'World';
+		await elementUpdated(element);
+
+		expect(element.textContent!.trim()).toBe('prop is not Hello');
 	});
 });
