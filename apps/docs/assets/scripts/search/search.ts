@@ -1,6 +1,5 @@
 import {
 	FASTElement,
-	customElement,
 	html,
 	ref,
 	css,
@@ -44,7 +43,7 @@ const loadPagefind = memoizeWith(
 		])
 );
 
-const template = html<DocsSearch>`
+const searchTemplate = html<DocsSearch>`
 	<template
 		@htmx:beforeRequest="${(x, c) => x.onBeforeRequest(c.event as CustomEvent)}"
 	>
@@ -66,51 +65,48 @@ const template = html<DocsSearch>`
 	</template>
 `;
 
-@customElement({
-	name: 'docs-search',
-	styles: css`
-		:host {
-			--pagefind-ui-text: var(--vvd-color-canvas-text);
-			--pagefind-ui-primary: var(--vvd-color-canvas-text);
-			--pagefind-ui-background: var(--vvd-color-canvas);
-			--pagefind-ui-border: var(--vvd-color-neutral-200);
-			--pagefind-ui-border-width: 1px;
-			--pagefind-ui-font: sans-serif;
-		}
+const searchStyles = css`
+	:host {
+		--pagefind-ui-text: var(--vvd-color-canvas-text);
+		--pagefind-ui-primary: var(--vvd-color-canvas-text);
+		--pagefind-ui-background: var(--vvd-color-canvas);
+		--pagefind-ui-border: var(--vvd-color-neutral-200);
+		--pagefind-ui-border-width: 1px;
+		--pagefind-ui-font: sans-serif;
+	}
 
+	vwc-dialog {
+		--dialog-min-inline-size: 768px;
+		--dialog-max-inline-size: 768px;
+	}
+
+	@media (max-width: 1024px) {
 		vwc-dialog {
-			--dialog-min-inline-size: 768px;
-			--dialog-max-inline-size: 768px;
+			--dialog-min-inline-size: 80%;
+			--dialog-max-inline-size: 95%;
 		}
+	}
+`;
 
-		@media (max-width: 1024px) {
-			vwc-dialog {
-				--dialog-min-inline-size: 80%;
-				--dialog-max-inline-size: 95%;
-			}
-		}
-	`,
-	template,
-})
 export class DocsSearch extends FASTElement {
 	dialogEl?: Dialog | null = null;
 	pagefindUI?: any;
 
-	override connectedCallback() {
+	override connectedCallback(): void {
 		super.connectedCallback();
+		this.dialogEl = this.shadowRoot?.querySelector('vwc-dialog');
 		document.addEventListener('keydown', this.#onKeydown);
+		this.dialogEl?.addEventListener('close', () => this.dialogEl?.close());
 	}
 
-	override disconnectedCallback() {
+	override disconnectedCallback(): void {
 		super.disconnectedCallback();
+		this.dialogEl?.removeEventListener('close', () => this.dialogEl?.close());
 		document.removeEventListener('keydown', this.#onKeydown);
 	}
 
 	async openSearch() {
-		this.pagefindUI?.destroy();
-		this.querySelector('#pagefind-container')?.remove();
-
-		this.dialogEl!.showModal();
+		this.dialogEl?.showModal();
 
 		await loadPagefind();
 
@@ -161,3 +157,9 @@ export class DocsSearch extends FASTElement {
 		}
 	};
 }
+
+DocsSearch.define({
+	name: 'docs-search',
+	template: searchTemplate,
+	styles: searchStyles
+});

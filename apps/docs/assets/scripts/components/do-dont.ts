@@ -1,14 +1,11 @@
 import {
 	FASTElement,
-	customElement,
 	html,
 	css,
 	attr,
 } from '@microsoft/fast-element';
 
-@customElement({
-	name: 'docs-do-dont',
-	styles: css`
+const styles = css`
 		:host {
 			display: block;
 			margin-block: 0 32px;
@@ -55,15 +52,16 @@ import {
 				gap: 32px;
 			}
 		}
-	`,
-	template: html<DocsDoDont>`
+`;
+
+const template = html<DocsDoDont>`
 		<div class="description">
 			<h3>${(x) => x.headline}</h3>
 			<slot name="description"></slot>
 		</div>
 		<div class="examples"><slot></slot></div>
-	`,
-})
+	`;
+
 export class DocsDoDont extends FASTElement {
 	@attr headline = '';
 	@attr({
@@ -77,3 +75,9 @@ export class DocsDoDont extends FASTElement {
 	})
 	noGutters = false;
 }
+
+DocsDoDont.define({
+	name: 'docs-do-dont',
+	template,
+	styles
+});

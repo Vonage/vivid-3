@@ -1,4 +1,4 @@
-import { attr, DOM, observable } from '@microsoft/fast-element';
+import { attr, observable, Updates } from '@microsoft/fast-element';
 import type { Placement, Strategy } from '@floating-ui/dom';
 import {
 	isHTMLElement,
@@ -61,7 +61,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	 */
 	override connectedCallback() {
 		super.connectedCallback();
-		DOM.queueUpdate(() => {
+		Updates.enqueue(() => {
 			// wait until children have had a chance to
 			// connect before setting/checking their props/attributes
 			this.setItems();
@@ -330,6 +330,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	openChanged(_: boolean, newValue: boolean): void {
 		if (newValue) {
 			// Ensure popup is shown and positioned so that focus can be set
+			console.log('showing popup', this._popupEl);
 			this._popupEl?.show().then(() => this.focus());
 		} else {
 			// TODO: Focus should be restored to the anchor element when the menu is closed
@@ -382,7 +383,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		}
 
 		const newValue = !this.open;
-		DOM.queueUpdate(() => (this.open = newValue));
+		Updates.enqueue(() => (this.open = newValue));
 	};
 
 	_onFocusout = (e: FocusEvent) => {

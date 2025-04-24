@@ -1,5 +1,4 @@
 import {
-	defaultExecutionContext,
 	ExecutionContext,
 	HTMLView,
 	ViewTemplate,
@@ -114,11 +113,11 @@ export async function fixture<TElement = HTMLElement>(
 	const document = options.document || globalThis.document;
 	const parent = options.parent || document.createElement('div');
 	const source = options.source || {};
-	const context = options.context || defaultExecutionContext;
+	const context = options.context || ExecutionContext.default;
 
 	if (typeof templateOrElementName === 'string') {
 		const html = `<${templateOrElementName}></${templateOrElementName}>`;
-		templateOrElementName = new ViewTemplate(html, []);
+		templateOrElementName = new ViewTemplate(html);
 	}
 
 	const view = templateOrElementName.create();

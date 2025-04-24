@@ -1,7 +1,7 @@
+import type { ExpressionNotifier } from '@microsoft/fast-element';
 import {
 	attr,
-	type BindingObserver,
-	defaultExecutionContext,
+	ExecutionContext,
 	observable,
 	Observable,
 } from '@microsoft/fast-element';
@@ -153,16 +153,19 @@ export abstract class PickerField extends TrappedFocus(
 			this._updatePresentationValue();
 		},
 	};
-	#localeChangeObserver!: BindingObserver;
+
+	#localeChangeObserver!: ExpressionNotifier;
+
 	#startObservingLocaleChanges() {
 		this.#localeChangeObserver = Observable.binding(
 			() => this.locale,
 			this.#localeChangeHandler
 		);
-		this.#localeChangeObserver.observe(this, defaultExecutionContext);
+		this.#localeChangeObserver.observe(this, ExecutionContext.default);
 	}
+
 	#stopObservingLocaleChanges() {
-		this.#localeChangeObserver.disconnect();
+		this.#localeChangeObserver.dispose();
 	}
 
 	// --- Popup ---

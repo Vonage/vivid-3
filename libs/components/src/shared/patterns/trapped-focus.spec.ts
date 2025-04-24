@@ -1,18 +1,8 @@
-import { customElement, FASTElement, html } from '@microsoft/fast-element';
+import { FASTElement, html } from '@microsoft/fast-element';
 import { fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
 import { ignoreEventInFocusTraps, TrappedFocus } from './trapped-focus';
 
 describe('TrappedFocus', () => {
-	@customElement({
-		name: 'test-element',
-		template: html`
-			<template @keydown="${(x, c) => x.onKeyDown(c.event)}">
-				<button id="first"></button>
-				<button id="second"></button>
-				<button id="third"></button>
-			</template>
-		`,
-	})
 	class TestElement extends TrappedFocus(FASTElement) {
 		onKeyDown(event: KeyboardEvent) {
 			if (
@@ -25,6 +15,17 @@ describe('TrappedFocus', () => {
 			return true;
 		}
 	}
+
+	TestElement.define({
+		name: 'test-element',
+		template: html`
+			<template @keydown="${(x, c) => x.onKeyDown(c.event)}">
+				<button id="first"></button>
+				<button id="second"></button>
+				<button id="third"></button>
+			</template>
+		`
+	});
 
 	let element: TestElement;
 	let firstButton: HTMLButtonElement;

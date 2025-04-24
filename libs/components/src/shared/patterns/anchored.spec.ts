@@ -1,4 +1,4 @@
-import { customElement, FASTElement } from '@microsoft/fast-element';
+import { FASTElement } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Mock, MockInstance } from 'vitest';
 import { Anchored, anchorSlotTemplateFactory } from './anchored';
@@ -6,13 +6,14 @@ import { Anchored, anchorSlotTemplateFactory } from './anchored';
 describe('Anchored', () => {
 	const _anchorElChanged = vi.fn();
 
-	@customElement({
-		name: 'anchored-element',
-		template: anchorSlotTemplateFactory(),
-	})
 	class AnchoredElement extends Anchored(FASTElement) {
 		_anchorElChanged = _anchorElChanged;
 	}
+
+	AnchoredElement.define({
+		name: 'anchored-element',
+		template: anchorSlotTemplateFactory()
+	});
 
 	let anchor: HTMLElement;
 	let element: AnchoredElement;

@@ -83,7 +83,8 @@ export const createRegisterFunction =
 				},
 			};
 
-			new FASTElementDefinition(type, {
+			// @ts-ignore
+			new FASTElementDefinition(type as Constructable<HTMLElement>, {
 				...componentDefinition.options,
 				template: resolve(
 					componentDefinition.template,
