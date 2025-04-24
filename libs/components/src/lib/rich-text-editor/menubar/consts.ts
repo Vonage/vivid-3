@@ -112,12 +112,16 @@ const textSizeEventHandler = (event: Event) => {
 	const menu = customEvent.target as HTMLElement;
 	const selectionTextSize = customEvent.detail.textSize ?? 'normal';
 
-	const textSizeElements = menu.shadowRoot!.querySelectorAll('.menubar-selector-menuitem');
-	textSizeElements.forEach(textSizeElement => {
-		textSizeElement.toggleAttribute('checked', textSizeElement.getAttribute('value') === selectionTextSize);
+	const textSizeElements = menu.shadowRoot!.querySelectorAll(
+		'.menubar-selector-menuitem'
+	);
+	textSizeElements.forEach((textSizeElement) => {
+		textSizeElement.toggleAttribute(
+			'checked',
+			textSizeElement.getAttribute('value') === selectionTextSize
+		);
 	});
-
-}
+};
 export const MENU_BAR_ITEMS: {
 	[key: string]: {
 		registerStateProperty?: (menuBar: MenuBar) => void;
@@ -189,10 +193,10 @@ export const MENU_BAR_ITEMS: {
 			const buttonTag = context.tagFor(Button);
 			const tooltipTag = context.tagFor(Tooltip);
 			return html`
-			<span id="text-decoration">  
-                ${repeat(
-									(_) => TEXT_DECORATION_ITEMS,
-									html`
+				<span id="text-decoration">
+					${repeat(
+						(_) => TEXT_DECORATION_ITEMS,
+						html`
                         <${tooltipTag} text="${(x) => x.text}" placement="top">
                             <${buttonTag}
                                 class="selection-button"
@@ -211,13 +215,13 @@ export const MENU_BAR_ITEMS: {
                             ></${buttonTag}>
                         </${tooltipTag}>
 				`
-								)}
-								</span>
-		`;
+					)}
+				</span>
+			`;
 		},
 	},
 	textSize: {
-		registerStateProperty: function(menuBar) {
+		registerStateProperty: function (menuBar) {
 			menuBar.addEventListener('text-styles-changed', textSizeEventHandler);
 		},
 		render: function (context) {
@@ -268,11 +272,11 @@ export const MENU_BAR_ITEMS: {
 		},
 	},
 	divider: {
-		render: function(context) {
+		render: function (context) {
 			const dividerTag = context.tagFor(Divider);
 			return html`
 				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
 			`;
-		}
-	}
+		},
+	},
 };

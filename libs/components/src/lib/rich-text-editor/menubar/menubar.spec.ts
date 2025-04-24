@@ -528,7 +528,9 @@ describe('menuBar', () => {
 				parent.dispatchEvent(new CustomEvent('selection-changed'));
 				elementUpdated(element);
 
-				expect(menu.querySelector('[checked]')?.getAttribute('value')).toBe('large');
+				expect(menu.querySelector('[checked]')?.getAttribute('value')).toBe(
+					'large'
+				);
 			});
 		});
 
