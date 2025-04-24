@@ -1,6 +1,5 @@
 import {
 	attr,
-	customElement,
 	DOM,
 	FASTElement,
 	html,
@@ -15,14 +14,15 @@ describe('The fixture helper', () => {
 		<slot></slot>
 	`;
 
-	@customElement({
-		name,
-		template,
-	})
 	class MyElement extends FASTElement {
 		/* eslint-disable-next-line */
 		@attr value = 'value';
 	}
+
+	MyElement.define({
+		name,
+		template
+	});
 
 	class MyModel {
 		@observable value = 'different value';

@@ -1,8 +1,8 @@
 import {
 	attr,
-	DOM,
 	nullableNumberConverter,
 	observable,
+	Updates,
 } from '@microsoft/fast-element';
 import { memoizeWith } from 'ramda';
 import type { Appearance, Shape, Size } from '../enums';
@@ -418,7 +418,7 @@ export class TextField extends AffixIcon(
 		this.validate();
 
 		if (this.autofocus) {
-			DOM.queueUpdate(() => {
+			Updates.enqueue(() => {
 				this.focus();
 			});
 		}

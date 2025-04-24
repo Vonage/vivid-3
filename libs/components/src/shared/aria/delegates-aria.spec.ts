@@ -1,4 +1,4 @@
-import { customElement } from '@microsoft/fast-element';
+
 import { describe } from 'vitest';
 import { elementUpdated } from '@vivid-nx/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -12,12 +12,13 @@ describe('ariaAttributeName', () => {
 });
 
 describe('DelegatesAria', () => {
-	@customElement('dummy-element')
 	class DummyElement extends DelegatesAria(VividElement) {
 		constructor() {
 			super();
 		}
 	}
+
+	DummyElement.define({ name: 'dummy-element' });
 
 	it('should initialize delegated properties to null', () => {
 		const element = document.createElement('dummy-element');

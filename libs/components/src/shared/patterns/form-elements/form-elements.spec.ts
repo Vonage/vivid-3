@@ -1,7 +1,7 @@
 import 'element-internals-polyfill';
 
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import { customElement, FASTElement } from '@microsoft/fast-element';
+import { FASTElement } from '@microsoft/fast-element';
 import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
 import { VividElement } from '../../foundation/vivid-element/vivid-element';
@@ -48,13 +48,20 @@ describe('Form Elements', function () {
 			proxy = document.createElement('input');
 		}
 
-		@customElement('form-elements-class')
 		@formElements
 		class FormElementsClass extends FormAssociatedTextField {
 			override get validationMessage() {
 				return VALIDATION_MESSAGE;
 			}
+
+			override validate() {
+				return 5;
+			}
 		}
+
+		FormElementsClass.define({
+			name: 'form-elements-class'
+		});
 
 		interface FormElementsClass extends FormElement {}
 
@@ -148,7 +155,6 @@ describe('Form Elements', function () {
 			proxy = document.createElement('input');
 		}
 
-		@customElement('error-text-class')
 		@errorText
 		@formElements
 		class ErrorTextClass extends FormAssociatedErrorTextClass {
@@ -162,6 +168,10 @@ describe('Form Elements', function () {
 
 			override setValidity = vi.fn();
 		}
+
+		ErrorTextClass.define({
+			name: 'error-text-class'
+		});
 
 		interface ErrorTextClass extends ErrorText, FormElement {}
 

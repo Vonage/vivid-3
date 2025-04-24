@@ -1,4 +1,4 @@
-import { customElement, DOM, FASTElement, html } from '@microsoft/fast-element';
+import { DOM, FASTElement, html } from '@microsoft/fast-element';
 import { fixture } from '../test-utilities/fixture';
 import { CheckableFormAssociated, FormAssociated } from './form-associated';
 
@@ -7,85 +7,84 @@ import { CheckableFormAssociated, FormAssociated } from './form-associated';
 
 const template = html` <slot></slot> `;
 
-@customElement({
-	name: 'test-element',
-	template,
-})
-export class TestElement extends FormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
+class BaseTestElement extends FASTElement {
+	proxy = document.createElement('input');
 
-		constructor() {
-			super();
-
-			this.proxy.setAttribute('type', 'text');
-		}
+	constructor() {
+		super();
+		this.proxy.setAttribute('type', 'text');
 	}
-) {}
+}
+
+BaseTestElement.define({
+	name: 'test-element',
+	template
+});
+
+export class TestElement extends FormAssociated(BaseTestElement) {}
 
 export interface TestElement extends FormAssociated {}
 
-@customElement({
-	name: 'custom-initial-value',
-	template,
-})
-export class CustomInitialValue extends FormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
+class BaseCustomInitialValue extends FASTElement {
+	proxy = document.createElement('input');
+	initialValue = 'foobar';
 
-		constructor() {
-			super();
-
-			this.proxy.setAttribute('type', 'text');
-		}
-
-		initialValue = 'foobar';
+	constructor() {
+		super();
+		this.proxy.setAttribute('type', 'text');
 	}
-) {}
+}
+
+BaseCustomInitialValue.define({
+	name: 'custom-initial-value',
+	template
+});
+
+export class CustomInitialValue extends FormAssociated(BaseCustomInitialValue) {}
 
 export interface CustomInitialValue extends FormAssociated {}
 
-@customElement({
-	name: 'validate-test',
-	template,
-})
-export class ValidateTest extends FormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
-		control = document.createElement('input');
+class BaseValidateTest extends FASTElement {
+	proxy = document.createElement('input');
+	control = document.createElement('input');
 
-		constructor() {
-			super();
-
-			this.proxy.setAttribute('type', 'text');
-			(this as any).setValidity = vi.fn();
-			Object.defineProperty(this.proxy, 'validationMessage', {
-				value: 'proxy validation message',
-			});
-			Object.defineProperty(this.control, 'validationMessage', {
-				value: 'control validation message',
-			});
-		}
+	constructor() {
+		super();
+		this.proxy.setAttribute('type', 'text');
+		(this as any).setValidity = vi.fn();
+		Object.defineProperty(this.proxy, 'validationMessage', {
+			value: 'proxy validation message',
+		});
+		Object.defineProperty(this.control, 'validationMessage', {
+			value: 'control validation message',
+		});
 	}
-) {}
+}
+
+BaseValidateTest.define({
+	name: 'validate-test',
+	template
+});
+
+export class ValidateTest extends FormAssociated(BaseValidateTest) {}
 
 export interface ValidateTest extends FormAssociated {}
 
-@customElement({
-	name: 'checkable-form-associated',
-	template,
-})
-export class Checkable extends CheckableFormAssociated(
-	class extends FASTElement {
-		proxy = document.createElement('input');
+class BaseCheckable extends FASTElement {
+	proxy = document.createElement('input');
 
-		constructor() {
-			super();
-
-			this.proxy.setAttribute('type', 'checkbox');
-		}
+	constructor() {
+		super();
+		this.proxy.setAttribute('type', 'checkbox');
 	}
-) {}
+}
+
+BaseCheckable.define({
+	name: 'checkable-form-associated',
+	template
+});
+
+export class Checkable extends CheckableFormAssociated(BaseCheckable) {}
 
 export async function setup<T = TestElement>(el = 'test-element') {
 	const { connect, disconnect, element, parent } = await fixture<T>(el);

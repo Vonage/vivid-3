@@ -40,7 +40,7 @@
 	"license": "Apache-2.0",
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.13",
-		"@microsoft/fast-element": "^1.14.0",
+		"@microsoft/fast-element": "^2.2.1",
 		"@microsoft/fast-web-utilities": "^6.0.0"
 	}
 }

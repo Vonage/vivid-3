@@ -1,11 +1,12 @@
-import { customElement, FASTElement, html } from '@microsoft/fast-element';
+import { FASTElement, html } from '@microsoft/fast-element';
 import { getActiveElementPiercingShadowRoot } from './active-element';
 
-@customElement({
-	name: 'test-component',
-	template: html`<button id="button-inside"></button>`,
-})
 class TestComponent extends FASTElement {}
+
+TestComponent.define({
+	name: 'test-component',
+	template: html`<button id="button-inside"></button>`
+});
 
 describe('getActiveElementPiercingShadowRoot', () => {
 	beforeEach(() => {

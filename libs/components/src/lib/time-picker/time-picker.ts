@@ -1,4 +1,4 @@
-import { attr, DOM, type ValueConverter } from '@microsoft/fast-element';
+import { attr, Updates, type ValueConverter } from '@microsoft/fast-element';
 import {
 	type ErrorText,
 	errorText,
@@ -179,7 +179,7 @@ export class TimePicker extends TimeSelectionPicker(
 	override _onPickerButtonClick() {
 		super._onPickerButtonClick();
 		if (this._popupOpen) {
-			DOM.processUpdates();
+			Updates.process();
 			this._focusableElsWithinDialog()[0].focus();
 		}
 	}

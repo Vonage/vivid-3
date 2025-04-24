@@ -124,11 +124,12 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
+						// TODO: 
+						// aria-label="${(x) => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}"
 						html`<${buttonTag}
                 				slot="action-items"
 								size='super-condensed'
 								icon="backspace-line"
-								aria-label="${(x) => x.deleteAriaLabel || x.locale.dialPad.deleteLabel}"
 								appearance='ghost'
 								?disabled="${(x) => x.disabled || x.callActive}"
 								@click="${(x) => deleteLastCharacter(x)}">

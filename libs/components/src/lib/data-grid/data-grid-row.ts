@@ -4,6 +4,8 @@ import {
 	type RepeatBehavior,
 	RepeatDirective,
 	type ViewTemplate,
+	normalizeBinding,
+	type HostBehavior,
 } from '@microsoft/fast-element';
 import {
 	eventFocusOut,
@@ -151,7 +153,6 @@ export class DataGridRow extends VividElement {
 	cellElements!: HTMLElement[];
 
 	private cellsRepeatBehavior: RepeatBehavior | null = null;
-	private cellsPlaceholder: Node | null = null;
 
 	/**
 	 * @internal
@@ -172,18 +173,15 @@ export class DataGridRow extends VividElement {
 		// note that row elements can be reused with a different data object
 		// as the parent grid's repeat behavior reacts to changes in the data set.
 		if (this.cellsRepeatBehavior === null) {
-			this.cellsPlaceholder = document.createComment('');
-			this.appendChild(this.cellsPlaceholder);
-
 			this.updateItemTemplate();
 
 			this.cellsRepeatBehavior = new RepeatDirective(
-				(x) => x.columnDefinitions,
-				(x) => x.activeCellItemTemplate,
+				normalizeBinding((x) => x.columnDefinitions),
+				normalizeBinding((x) => x.activeCellItemTemplate),
 				{ positioning: true }
-			).createBehavior(this.cellsPlaceholder);
-			/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-			this.$fastController.addBehaviors([this.cellsRepeatBehavior!]);
+			).createBehavior();
+
+			this.$fastController.addBehavior(this.cellsRepeatBehavior! as unknown as HostBehavior<HTMLElement>);
 		}
 
 		this.addEventListener('cell-focused', this.handleCellFocus);

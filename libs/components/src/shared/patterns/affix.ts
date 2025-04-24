@@ -1,5 +1,5 @@
-import { attr, html, observable, slotted } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
+import { attr, html, observable, slotted } from '@microsoft/fast-element';
 import { Icon } from '../../lib/icon/icon';
 import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
@@ -100,6 +100,8 @@ export const affixIconTemplateFactory: affixIconTemplateFactoryReturnType = (
 
 		const iconTemplate = html`<${iconTag} :name="${() => icon}"></${iconTag}>`;
 
+		// TODO: fix
+		console.log(iconTag, icon, slottedState, ariaHidden, iconTemplate);
 		return slottedState
 			? html`<span class="icon" aria-hidden="${() => ariaHidden}"
 					>${iconTemplate}</span

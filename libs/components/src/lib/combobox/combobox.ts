@@ -1,7 +1,5 @@
-import { attr, DOM, Observable, observable } from '@microsoft/fast-element';
+import { attr, Observable, observable, Updates } from '@microsoft/fast-element';
 import { limit, uniqueId } from '@microsoft/fast-web-utilities';
-import type { Popup } from '../popup/popup';
-import type { Appearance, Shape, Size } from '../enums';
 import {
 	AffixIcon,
 	errorText,
@@ -12,8 +10,10 @@ import {
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import type { ListboxOption } from '../option/option';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import type { Appearance, Shape, Size } from '../enums';
+import type { ListboxOption } from '../option/option';
+import type { Popup } from '../popup/popup';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
@@ -218,7 +218,7 @@ export class Combobox extends AffixIcon(FormAssociatedCombobox) {
 			this.focusAndScrollOptionIntoView();
 
 			// focus is directed to the element when `open` is changed programmatically
-			DOM.queueUpdate(() => this.focus());
+			Updates.enqueue(() => this.focus());
 
 			return;
 		}

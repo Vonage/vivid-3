@@ -1,22 +1,24 @@
 import {
-	attr,
-	DOM,
-	observable,
-	Observable,
-	RepeatBehavior,
-	RepeatDirective,
-	type ViewTemplate,
+  attr,
+  observable,
+  Observable,
+  RepeatBehavior,
+  RepeatDirective,
+  type HostBehavior,
+  Updates,
+  type ViewTemplate,
+  normalizeBinding,
 } from '@microsoft/fast-element';
 import {
-	eventFocus,
-	eventFocusOut,
-	eventKeyDown,
-	keyArrowDown,
-	keyArrowUp,
-	keyEnd,
-	keyHome,
-	keyPageDown,
-	keyPageUp,
+  eventFocus,
+  eventFocusOut,
+  eventKeyDown,
+  keyArrowDown,
+  keyArrowUp,
+  keyEnd,
+  keyHome,
+  keyPageDown,
+  keyPageUp,
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import type { DataGridCell } from './data-grid-cell';
@@ -337,7 +339,6 @@ export class DataGrid extends VividElement {
 	rowElements!: HTMLElement[];
 
 	private rowsRepeatBehavior: RepeatBehavior | null = null;
-	private rowsPlaceholder: Node | null = null;
 
 	private generatedHeader: DataGridRow | null = null;
 
@@ -361,19 +362,15 @@ export class DataGrid extends VividElement {
 			this.rowItemTemplate = this.defaultRowItemTemplate;
 		}
 
-		this.rowsPlaceholder = document.createComment('');
-		this.appendChild(this.rowsPlaceholder);
-
 		this.toggleGeneratedHeader();
 
 		this.rowsRepeatBehavior = new RepeatDirective(
-			(x) => x.rowsData,
-			(x) => x.rowItemTemplate,
+			normalizeBinding((source: DataGrid) => source.rowsData),
+			normalizeBinding((source: DataGrid) => source.rowItemTemplate),
 			{ positioning: true }
-		).createBehavior(this.rowsPlaceholder);
+		).createBehavior();
 
-		/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-		this.$fastController.addBehaviors([this.rowsRepeatBehavior!]);
+		this.$fastController.addBehavior(this.rowsRepeatBehavior! as unknown as HostBehavior<HTMLElement>);
 
 		this.addEventListener('row-focused', this.handleRowFocus);
 		this.addEventListener(eventFocus, this.handleFocus as EventListener);
@@ -384,7 +381,7 @@ export class DataGrid extends VividElement {
 		// only observe if nodes are added or removed
 		this.observer.observe(this, { childList: true });
 
-		DOM.queueUpdate(this.queueRowIndexUpdate);
+		Updates.enqueue(this.queueRowIndexUpdate);
 
 		this.#setTabIndex();
 
@@ -411,7 +408,6 @@ export class DataGrid extends VividElement {
 		// disconnect observer
 		this.observer.disconnect();
 
-		this.rowsPlaceholder = null;
 		this.generatedHeader = null;
 
 		Observable.getNotifier(this).unsubscribe(
@@ -614,7 +610,7 @@ export class DataGrid extends VividElement {
 		}
 		if (this.pendingFocusUpdate === false) {
 			this.pendingFocusUpdate = true;
-			DOM.queueUpdate(() => this.updateFocus());
+			Updates.enqueue(() => this.updateFocus());
 		}
 	}
 
@@ -675,7 +671,7 @@ export class DataGrid extends VividElement {
 	private queueRowIndexUpdate = (): void => {
 		if (!this.rowindexUpdateQueued) {
 			this.rowindexUpdateQueued = true;
-			DOM.queueUpdate(this.updateRowIndexes);
+			Updates.enqueue(this.updateRowIndexes);
 		}
 	};
 
@@ -759,7 +755,7 @@ export class DataGrid extends VividElement {
 
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
-			DOM.queueUpdate(this.#initSelections);
+			Updates.enqueue(this.#initSelections);
 			return;
 		}
 		this.#resetSelection();

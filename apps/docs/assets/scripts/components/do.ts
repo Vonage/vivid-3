@@ -1,14 +1,11 @@
 import {
 	FASTElement,
-	customElement,
 	html,
 	css,
 	attr,
 } from '@microsoft/fast-element';
 
-@customElement({
-	name: 'docs-do',
-	styles: css`
+const styles = css`
 		:host {
 			--do-dont-color: var(--vvd-color-success-500);
 
@@ -42,8 +39,9 @@ import {
 				margin-block-start: 0;
 			}
 		}
-	`,
-	template: html<DocsDo>`
+`;
+
+const template = html<DocsDo>`
 		<h3>
 			<vwc-icon
 				name="${(x) => (x.dont ? 'close-circle-line' : 'check-circle-line')}"
@@ -55,8 +53,8 @@ import {
 			<slot></slot>
 			<div>${(x) => x.caption}</div>
 		</div>
-	`,
-})
+`;
+	
 export class DocsDo extends FASTElement {
 	@attr caption = '';
 	@attr headline = '';
@@ -66,3 +64,9 @@ export class DocsDo extends FASTElement {
 	})
 	dont = false;
 }
+
+DocsDo.define({
+	name: 'docs-do',
+	template,
+	styles
+});

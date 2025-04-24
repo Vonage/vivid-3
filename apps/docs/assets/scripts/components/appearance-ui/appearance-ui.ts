@@ -1,4 +1,4 @@
-import { attr, customElement, FASTElement } from '@microsoft/fast-element';
+import { attr, FASTElement } from '@microsoft/fast-element';
 import type { Appearance } from 'vivid-bundle';
 import { AppearanceUiTemplate } from './appearance-ui.template';
 import styles from './appearance-ui.scss?inline';
@@ -22,11 +22,6 @@ export type AppearanceUIAppearance = Extract<
 	| Appearance.Listitem
 >;
 
-@customElement({
-	name: 'docs-appearance-ui',
-	template: AppearanceUiTemplate,
-	styles,
-})
 export class AppearanceUi extends FASTElement {
 	/**
 	 * The appearance.
@@ -110,4 +105,11 @@ export class AppearanceUi extends FASTElement {
 	 * HTML Attribute: text
 	 */
 	@attr text?: string;
+
 }
+
+AppearanceUi.define({
+	name: 'docs-appearance-ui',
+	template: AppearanceUiTemplate,
+	styles
+});

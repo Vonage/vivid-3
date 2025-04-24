@@ -1,5 +1,4 @@
 import {
-	customElement,
 	FASTElement,
 	html,
 	Observable,
@@ -63,10 +62,7 @@ const tagOptionTemplate = html<TagOption>`
 	></vwc-tag>
 `;
 
-@customElement({
-	name: 'docs-icons-gallery',
-	styles,
-	template: html<DocsIconsGallery>`
+const template = html<DocsIconsGallery>`
 		<div class="div-wrapper">
 			<vwc-action-group shape="pill">
 				<vwc-text-field
@@ -147,8 +143,8 @@ const tagOptionTemplate = html<TagOption>`
 				exportparts="vvd-theme-alternate"
 			></vwc-alert>
 		</div>
-	`,
-})
+	`;
+
 export class DocsIconsGallery extends FASTElement {
 	@observable icons: IconDefinition[] = [];
 	@observable categories: string[] = [];
@@ -238,3 +234,9 @@ export class DocsIconsGallery extends FASTElement {
 		this.copyAlert.open = true;
 	}
 }
+
+DocsIconsGallery.define({
+	name: 'docs-icons-gallery',
+	template,
+	styles
+});
