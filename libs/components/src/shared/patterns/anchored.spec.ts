@@ -1,6 +1,7 @@
-import { customElement, FASTElement } from '@microsoft/fast-element';
+import { customElement } from '@microsoft/fast-element';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import type { Mock, MockInstance } from 'vitest';
+import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { Anchored, anchorSlotTemplateFactory } from './anchored';
 
 describe('Anchored', () => {
@@ -10,7 +11,7 @@ describe('Anchored', () => {
 		name: 'anchored-element',
 		template: anchorSlotTemplateFactory(),
 	})
-	class AnchoredElement extends Anchored(FASTElement) {
+	class AnchoredElement extends Anchored(VividElement) {
 		_anchorElChanged = _anchorElChanged;
 	}
 
