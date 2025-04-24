@@ -11,6 +11,7 @@ import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type {
 	RichTextEditorSelection,
 	SelectionStyles,
+	TEXT_SIZES,
 } from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
@@ -373,7 +374,7 @@ export class ProseMirrorFacade {
 		return styles;
 	}
 
-	setTextSize(size: 'extra-large' | 'large' | 'normal' | 'small' = 'normal') {
+	setTextSize(size: TEXT_SIZES = 'normal') {
 		this.#verifyViewInitiation();
 
 		const { state, dispatch } = this.#view!;

@@ -149,7 +149,7 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 	<vwc-rich-text-editor>
 		<vwc-menubar
 			slot="menu-bar"
-			menu-items="textBlock textDecoration"
+			menu-items="textBlock textSize textDecoration"
 		></vwc-menubar>
 	</vwc-rich-text-editor>
 </vwc-layout>

@@ -2,6 +2,8 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
+export type TEXT_SIZES = 'extra-large' | 'large' | 'normal' | 'small';
+
 export interface SelectionStyles {
 	textBlockType?: string;
 	textDecoration?: string[];
@@ -134,6 +136,11 @@ export class RichTextEditor extends VividElement {
 			// eslint-disable-next-line no-console
 			console.warn(`Invalid decoration: ${decoration}`);
 		}
+	}
+
+	setSelectionTextSize(textSize: TEXT_SIZES) {
+		console.log('fffff');
+		this.#editor?.setTextSize(textSize);
 	}
 
 	get selectionStyles(): SelectionStyles {

@@ -493,6 +493,23 @@ describe('vwc-rich-text-editor', () => {
 			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
 		});
 
+		it('should change text size on `text-size-selected` event from menubar', async () => {
+			const newTextSize = 'large';
+			const setTextSizeSpy = vi.spyOn(element, 'setSelectionTextSize');
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
+
+			menuBar.dispatchEvent(
+				new CustomEvent('text-size-selected', {
+					detail: newTextSize,
+				})
+			);
+
+			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+		});
+
 		it('should focus on the editable after a textBlock selection', async () => {
 			const newTextBlock = 'title';
 			const menuBar = document.createElement('vwc-menubar');
@@ -546,6 +563,18 @@ describe('vwc-rich-text-editor', () => {
 			).mockReturnValueOnce(styles);
 
 			expect(element.selectionStyles).toEqual(styles);
+		});
+	});
+
+	describe('setSelectionTextSize', () => {
+		it('should call facade.setTextSize with the text size', async () => {
+			const setSelectionDecorationSpy = vi.spyOn(
+				EditorFacade.prototype,
+				'setTextSize'
+			);
+			const textSize = 'small';
+			element.setSelectionTextSize(textSize);
+			expect(setSelectionDecorationSpy).toHaveBeenCalledWith(textSize);
 		});
 	});
 });
