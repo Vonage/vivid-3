@@ -76,6 +76,9 @@ export const SingleValuePicker = <T extends AbstractConstructor<PickerField>>(
 					this._parsePresentationValue(this._presentationValue)
 				);
 			} catch (_) {
+				const invalidPresentationValue = this._presentationValue;
+				this._updateValueDueToUserInteraction('');
+				this._presentationValue = invalidPresentationValue;
 				return;
 			}
 		}

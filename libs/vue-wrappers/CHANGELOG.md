@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.0](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.21.1...vivid-vue-v4.22.0) (2025-04-22)
+
+
+### Features
+
+* **vue-wrappers:** export component typings (VIV-2384) ([#2270](https://github.com/Vonage/vivid-3/issues/2270)) ([9aea18c](https://github.com/Vonage/vivid-3/commit/9aea18cbe9db1ab84adb3b9a224fb57c32353cda))
+
 ## [4.21.1](https://github.com/Vonage/vivid-3/compare/vivid-vue-v4.21.0...vivid-vue-v4.21.1) (2025-04-10)
 
 

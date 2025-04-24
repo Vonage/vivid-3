@@ -79,6 +79,22 @@ test('should show the component', async ({ page }: { page: Page }) => {
 						<vwc-icon slot="tag-icon" name="flag-albania"></vwc-icon>
 					</vwc-option>
 				</vwc-searchable-select>
+				<vwc-searchable-select multiple>
+					<vwc-option value="accent" text="accent" selected></vwc-option>
+					<vwc-option value="cta" text="cta" tag-connotation="cta" selected></vwc-option>
+				</vwc-searchable-select>
+				<vwc-searchable-select multiple success-text="success">
+					<vwc-option value="accent" text="accent" selected></vwc-option>
+					<vwc-option value="cta" text="cta" tag-connotation="cta" selected></vwc-option>
+				</vwc-searchable-select>
+				<vwc-searchable-select multiple error-text="error">
+					<vwc-option value="accent" text="accent" selected></vwc-option>
+					<vwc-option value="cta" text="cta" tag-connotation="cta" selected></vwc-option>
+				</vwc-searchable-select>
+				<vwc-searchable-select multiple disabled>
+					<vwc-option value="accent" text="accent" selected></vwc-option>
+					<vwc-option value="cta" text="cta" tag-connotation="cta" selected></vwc-option>
+				</vwc-searchable-select>
 			</div>
 		`,
 	});

@@ -8,6 +8,7 @@ import { isHTMLElement } from '@microsoft/fast-web-utilities';
 import { AffixIconWithTrailing } from '../../shared/patterns/affix';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { HostSemantics } from '../../shared/aria/host-semantics';
+import type { OptionTagConnotation } from '../searchable-select/option-tag';
 
 /**
  * Determines if the element is a {@link (ListboxOption:class)}
@@ -266,6 +267,15 @@ export class ListboxOption extends HostSemantics(
 		}
 		return { from: 0, to: 0 };
 	}
+
+	/**
+	 * When displayed as a tag, the connotation of the tag.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: tag-connotation
+	 */
+	@attr({ attribute: 'tag-connotation' }) tagConnotation?: OptionTagConnotation;
 
 	constructor(
 		text?: string,

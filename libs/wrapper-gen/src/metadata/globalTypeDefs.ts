@@ -90,4 +90,7 @@ export const globalTypeDefs: Record<string, TypeStr> = {
 	EmptyStateIconDecoration: "'outlined' | 'filled'",
 
 	AriaCheckedStates: "'true' | 'false' | 'mixed' | 'undefined'",
+
+	// Option:
+	OptionTagConnotation: "'accent' | 'cta'",
 };

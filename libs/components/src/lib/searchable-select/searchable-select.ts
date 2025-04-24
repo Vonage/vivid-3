@@ -698,6 +698,16 @@ export class SearchableSelect extends DelegatesAria(
 	/**
 	 * @internal
 	 */
+	_tagConnotationForValue(value: string) {
+		const option = this._slottedOptions.find(
+			(option) => option.value === value
+		)!;
+		return option.tagConnotation;
+	}
+
+	/**
+	 * @internal
+	 */
 	_isTagDisabled(value: string) {
 		const option = this._slottedOptions.find(
 			(option) => option.value === value
