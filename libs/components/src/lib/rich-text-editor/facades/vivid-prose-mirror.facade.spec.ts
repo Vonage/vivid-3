@@ -537,5 +537,149 @@ describe('ProseMirrorFacade', () => {
 				`<p>Th<tt>is is a</tt> pretty long text for a sample, but it should work</p>`
 			);
 		});
+
+		it('should emit change event on changing the decoration', async () => {
+			initViewer();
+			const spy = vi.fn();
+			facadeInstance.addEventListener('change', spy);
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+			facadeInstance.selection({
+				start: 3,
+				end: 10,
+			});
+
+			facadeInstance.setSelectionDecoration('monospace');
+
+			expect(spy).toHaveBeenCalledOnce();
+		});
+	});
+
+	describe('getSelectionStyles', () => {
+		function textDecorationInMarkerPositions({
+			start,
+			end,
+		}: {
+			start: number;
+			end: number;
+		}) {
+			facadeInstance.selection({ start, end });
+			return facadeInstance.getSelectionStyles().textDecoration;
+		}
+
+		function textBlockInMarkerPositions({
+			start,
+			end,
+		}: {
+			start: number;
+			end: number;
+		}) {
+			facadeInstance.selection({ start, end });
+			return facadeInstance.getSelectionStyles().textBlockType;
+		}
+
+		async function initViewerWithContent(content: string) {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			const element = initViewer();
+			facadeInstance.replaceContent(content);
+
+			return element;
+		}
+
+		it('should throw if view is not initiated', async () => {
+			expect(() => facadeInstance.getSelectionStyles()).toThrowError(
+				'ProseMirror was not initiated. Please use the `init` method first.'
+			);
+		});
+
+		it('should return the "title" text block type when selection is h2', async () => {
+			await initViewerWithContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			expect(textBlockInMarkerPositions({ start: 1, end: 1 })).toEqual('title');
+		});
+
+		it('should return the "subtitle" text block type when selection is h3', async () => {
+			await initViewerWithContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			expect(textBlockInMarkerPositions({ start: 25, end: 25 })).toEqual(
+				'subtitle'
+			);
+		});
+
+		it('should return the "body" text block type when selection is p', async () => {
+			await initViewerWithContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			expect(textBlockInMarkerPositions({ start: 50, end: 50 })).toEqual(
+				'body'
+			);
+		});
+
+		it('should return empty block type when mixed content', async () => {
+			await initViewerWithContent(
+				'<h2>This is a title</h2><h3>This is a subtitle</h3><p>This is a body</p>'
+			);
+
+			expect(textBlockInMarkerPositions({ start: 25, end: 50 })).toEqual('');
+		});
+
+		it('should return the text decoration in the selection', async () => {
+			await initViewerWithContent(
+				'<strong>This is a title</strong><em>This is a subtitle</em><u>This is a body</u><s>1</s><tt>2<tt>'
+			);
+
+			expect(textDecorationInMarkerPositions({ start: 0, end: 50 })).toEqual([
+				'bold',
+				'italics',
+				'underline',
+				'strikethrough',
+				'monospace',
+			]);
+		});
+
+		it('should return the decoration of the marker position', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			await initViewerWithContent(
+				'<strong>This is a title</strong><em>This is a subtitle</em><u>This is a body</u><s>1</s><tt>2<tt>'
+			);
+			expect(textDecorationInMarkerPositions({ start: 5, end: 5 })).toEqual([
+				'bold',
+			]);
+			expect(textDecorationInMarkerPositions({ start: 19, end: 19 })).toEqual([
+				'italics',
+			]);
+			expect(textDecorationInMarkerPositions({ start: 40, end: 40 })).toEqual([
+				'underline',
+			]);
+			expect(textDecorationInMarkerPositions({ start: 49, end: 49 })).toEqual([
+				'strikethrough',
+			]);
+			expect(textDecorationInMarkerPositions({ start: 50, end: 50 })).toEqual([
+				'monospace',
+			]);
+		});
+
+		it('should return undefined textDecoration property when no decoration exists', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent('<p>This is a title</p>');
+			facadeInstance.selection({ start: 0, end: 5 });
+			expect(
+				textDecorationInMarkerPositions({ start: 0, end: 5 })
+			).toBeUndefined();
+		});
 	});
 });

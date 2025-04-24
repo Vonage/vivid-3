@@ -1,9 +1,10 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
-import type { Select } from '../../select/select';
+import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar';
 import '.';
+import { TEXT_DECORATION_ITEMS } from './consts';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -71,6 +72,41 @@ describe('menuBar', () => {
 			expect(element.classList.contains('hide-menubar')).toBe(false);
 		});
 
+		describe('text-styles-changed event', () => {
+			it('should emit the event on parent change event', async () => {
+				const parent = element.parentElement as HTMLElement;
+				const spy = vi.fn();
+				element.addEventListener('text-styles-changed', spy);
+				parent.dispatchEvent(new CustomEvent('change'));
+				expect(spy).toHaveBeenCalledOnce();
+			});
+
+			it('should emit the event on parent selection-changed event', async () => {
+				const parent = element.parentElement as HTMLElement;
+				const spy = vi.fn();
+				element.addEventListener('text-styles-changed', spy);
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				expect(spy).toHaveBeenCalledOnce();
+			});
+
+			it('should prevent emitting the event when not in the DOM', async () => {
+				const parent = element.parentElement as HTMLElement;
+				const spy = vi.fn();
+				element.addEventListener('text-styles-changed', spy);
+				element.disconnectedCallback();
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				expect(spy.mock.calls.length).toBe(0);
+			});
+
+			it('should prevent emitting the event when not in the DOM', async () => {
+				const parent = element.parentElement as HTMLElement;
+				const spy = vi.fn();
+				element.addEventListener('text-styles-changed', spy);
+				element.disconnectedCallback();
+				parent.dispatchEvent(new CustomEvent('change'));
+				expect(spy.mock.calls.length).toBe(0);
+			});
+		});
 		describe('textBlock', () => {
 			const getOptions = () => {
 				return getSelectionMenu('text-block').querySelectorAll('vwc-option');
@@ -158,9 +194,81 @@ describe('menuBar', () => {
 				expect(tooltip?.getAttribute('text')).toBe('Text Block Type');
 				expect(tooltip.getAttribute('placement')).toBe('top');
 			});
+
+			it('should set the select value to empty string by default', async () => {
+				const menu = getSelectionMenu('text-block');
+				expect(menu.getAttribute('current-value')).toEqual('');
+			});
+
+			it('should set the select value to value in the editor on parent selection-change event', async () => {
+				const menu = getSelectionMenu('text-block');
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textBlockType: 'body' };
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(menu.getAttribute('current-value')).toBe('body');
+			});
+
+			it('should clear the select value to value in the editor on parent selection-change event with empty block type', async () => {
+				const menu = getSelectionMenu('text-block');
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textBlockType: 'body' };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				parent.selectionStyles = { textBlockType: '' };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(menu.getAttribute('current-value')).toBe('');
+			});
+
+			it('should set event listener for text-styles-changed only once', async () => {
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textBlockType: 'body' };
+				let count = 0;
+
+				element.menuItems = '';
+				await elementUpdated(element);
+				element.menuItems = 'textBlock';
+				await elementUpdated(element);
+
+				const menu = getSelectionMenu('text-block');
+				vi.spyOn(menu, 'setAttribute').mockImplementation((name, value) => {
+					if (name === 'current-value' && value === 'body') count++;
+				});
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(count).toBe(1);
+			});
 		});
 
 		describe('textDecoration', () => {
+			const getDecorationButtons = () => {
+				const queryResult = TEXT_DECORATION_ITEMS.reduce(
+					(acc: HTMLElement[], value) => {
+						acc.push(
+							element.shadowRoot?.querySelector(
+								`[aria-label="${value.text}"]`
+							) as HTMLElement
+						);
+						return acc;
+					},
+					[]
+				);
+
+				return queryResult;
+			};
+
+			const getDecorationButton = (buttonText: string) =>
+				element.shadowRoot?.querySelector(
+					`[aria-label="${buttonText}"]`
+				) as HTMLElement;
+
 			beforeEach(async () => {
 				element.setAttribute('menu-items', 'textDecoration');
 				await elementUpdated(element);
@@ -222,7 +330,7 @@ describe('menuBar', () => {
 			});
 
 			it('should set a tooltip for each text decoration button', async () => {
-				const buttons = element.shadowRoot!.querySelectorAll('vwc-button');
+				const buttons = getDecorationButtons();
 				for (let i = 0; i < buttons.length; i++) {
 					expect(buttons[i].getAttribute('slot')).toBe('anchor');
 					expect(buttons[i].parentElement instanceof Tooltip).toBe(true);
@@ -233,6 +341,122 @@ describe('menuBar', () => {
 						'top'
 					);
 				}
+			});
+
+			it('should have no selected button by default', async () => {
+				const allButtonsIdle = getDecorationButtons().reduce(
+					(acc, button) => acc && !button.hasAttribute('active'),
+					true
+				);
+				expect(allButtonsIdle).toBe(true);
+			});
+
+			it('should set the active button value to value in the editor on parent selection-change event', async () => {
+				const underlineButton = getDecorationButton('Underline') as HTMLElement;
+				const boldButton = getDecorationButton('Bold') as HTMLElement;
+
+				const parent = element.parentElement as any;
+
+				parent.selectionStyles = { textDecoration: ['underline', 'bold'] };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(underlineButton.hasAttribute('active')).toBe(true);
+				expect(boldButton.hasAttribute('active')).toBe(true);
+			});
+
+			it('should remove active to all buttons except selected on parent selection-change event', async () => {
+				const monospaceButton = getDecorationButton('Monospace') as HTMLElement;
+
+				const parent = element.parentElement as any;
+
+				parent.selectionStyles = { textDecoration: ['bold'] };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				parent.selectionStyles = { textDecoration: ['monospace'] };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(monospaceButton.hasAttribute('active')).toBe(true);
+				expect(
+					getDecorationButtons().reduce((acc, button) => {
+						return (
+							acc &&
+							((button !== monospaceButton && !button.hasAttribute('active')) ||
+								button === monospaceButton)
+						);
+					}, true)
+				).toBe(true);
+			});
+
+			it('should clear the active button on parent selection-change event with empty block type', async () => {
+				const parent = element.parentElement as any;
+
+				parent.selectionStyles = { textDecoration: ['bold'] };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				parent.selectionStyles = { textDecoration: undefined };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(
+					getDecorationButtons().reduce((acc, button) => {
+						return acc && !button.hasAttribute('active');
+					}, true)
+				).toBe(true);
+			});
+
+			it('should set event listener for text-styles-changed only once', async () => {
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textDecoration: ['bold'] };
+
+				let count = 0;
+
+				element.setAttribute('menu-items', '');
+				await elementUpdated(element);
+				element.setAttribute('menu-items', 'textDecoration');
+				await elementUpdated(element);
+
+				const boldButton = getDecorationButton('Bold');
+
+				vi.spyOn(boldButton, 'toggleAttribute').mockImplementation(
+					(name, force) => {
+						if (name === 'active' && force) count++;
+						return !!force;
+					}
+				);
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(count).toBe(1);
+			});
+
+			it('should update decoration state on change event', async () => {
+				const monospaceButton = getDecorationButton('Monospace') as HTMLElement;
+
+				const parent = element.parentElement as any;
+
+				parent.selectionStyles = { textDecoration: ['bold'] };
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				parent.selectionStyles = { textDecoration: ['monospace'] };
+				parent.dispatchEvent(new CustomEvent('change'));
+				elementUpdated(element);
+
+				expect(monospaceButton.hasAttribute('active')).toBe(true);
+				expect(
+					getDecorationButtons().reduce((acc, button) => {
+						return (
+							acc &&
+							((button !== monospaceButton && !button.hasAttribute('active')) ||
+								button === monospaceButton)
+						);
+					}, true)
+				).toBe(true);
 			});
 		});
 	});

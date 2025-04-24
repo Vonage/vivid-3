@@ -2,6 +2,11 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
+export interface SelectionStyles {
+	textBlockType?: string;
+	textDecoration?: string[];
+}
+
 export interface RichTextEditorSelection {
 	start: number;
 	end?: number;
@@ -128,6 +133,13 @@ export class RichTextEditor extends VividElement {
 			// eslint-disable-next-line no-console
 			console.warn(`Invalid decoration: ${decoration}`);
 		}
+	}
+
+	get selectionStyles(): SelectionStyles {
+		if (!this.#editor) {
+			return {};
+		}
+		return this.#editor.getSelectionStyles();
 	}
 
 	override focus() {
