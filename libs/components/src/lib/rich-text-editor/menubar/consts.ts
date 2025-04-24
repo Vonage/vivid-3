@@ -10,7 +10,6 @@ import { Menu } from '../../menu/menu.js';
 import { MenuItem } from '../../menu-item/menu-item.js';
 import type { MenuBar } from './menubar.js';
 
-
 function notifyMenuBarChange(
 	menuBar: MenuBar,
 	eventName: string,
@@ -229,17 +228,24 @@ export const MENU_BAR_ITEMS: {
                                 icon="text-size-line"
                             ></${buttonTag}>
 						</${tooltipTag}>
-						${repeat(_ => TEXT_SIZES, html`
+						${repeat(
+							(_) => TEXT_SIZES,
+							html`
 							<${menuItemTag}
-								text="${x => x.text}"
-								value="${x => x.value}"
+								text="${(x) => x.text}"
+								value="${(x) => x.value}"
 								internal-part
 								class="menubar-selector-menuitem title"
 								connotation="cta"
 								@click="${(x, c) =>
-									notifyMenuBarChange(c.parentContext.parent, 'text-size-selected', x.value)}"
+									notifyMenuBarChange(
+										c.parentContext.parent,
+										'text-size-selected',
+										x.value
+									)}"
                         ></${menuItemTag}>
-							`)}
+							`
+						)}
                     </${menuTag}>
                 `;
 		},

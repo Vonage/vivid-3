@@ -681,6 +681,87 @@ describe('ProseMirrorFacade', () => {
 				textDecorationInMarkerPositions({ start: 0, end: 5 })
 			).toBeUndefined();
 		});
+
+		it('should return fontSize according to text font size', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent('<p>This is a title</p>');
+			facadeInstance.selection({ start: 2, end: 4 });
+			facadeInstance.setTextSize('extra-large');
+
+			expect(facadeInstance.getSelectionStyles().textSize).toBe('extra-large');
+		});
+
+		it('should return empty string if mixed sizes', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent('<p>This is a title</p>');
+			facadeInstance.selection({ start: 2, end: 4 });
+			facadeInstance.setTextSize('extra-large');
+			facadeInstance.selection({ start: 5, end: 7 });
+			facadeInstance.setTextSize('large');
+
+			facadeInstance.selection({ start: 2, end: 7 });
+
+			expect(facadeInstance.getSelectionStyles().textSize).toBe('');
+		});
+
+		it('should return text size of a single marker', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent('<p>This is a title</p>');
+			facadeInstance.selection({ start: 2, end: 4 });
+			facadeInstance.setTextSize('extra-large');
+
+			facadeInstance.selection({ start: 3, end: 3 });
+
+			expect(facadeInstance.getSelectionStyles().textSize).toBe('extra-large');
+		});
+
+		it('should return font from replaced HTML', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent(
+				'<p><span style="font: var(--vvd-typography-heading-4);">Extra-large text</span></p>'
+			);
+
+			facadeInstance.selection({ start: 3, end: 5 });
+
+			expect(facadeInstance.getSelectionStyles().textSize).toBe('extra-large');
+		});
+
+		it('should return normal font when font size is invalid', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent(
+				'<p><span style="font: var(--vvd-typography-heading-3);">Strange text</span></p>'
+			);
+
+			facadeInstance.selection({ start: 3, end: 5 });
+
+			expect(facadeInstance.getSelectionStyles().textSize).toBe('normal');
+		});
+
+		it('should return normal font size when no size applied', async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+
+			initViewer();
+			facadeInstance.replaceContent('<p>This is a title</p>');
+			facadeInstance.selection({ start: 2, end: 4 });
+
+			expect(facadeInstance.getSelectionStyles().textSize).toBe('normal');
+		});
 	});
 
 	describe('setTextSize', () => {
@@ -707,43 +788,43 @@ describe('ProseMirrorFacade', () => {
 			);
 		});
 
-		it('should apply span with font-size for extra-large text', async () => {
+		it('should apply span with font for extra-large text', async () => {
 			const element = setViewer();
 
 			facadeInstance.setTextSize('extra-large');
 
 			expect(getOutputElement(element).innerHTML).toBe(
-				`<p>Th<span style="font-size: var(--vvd-typography-heading-4);">is is a</span> pretty long text for a sample, but it should work</p>`
+				`<p>Th<span style="font: var(--vvd-typography-heading-4);">is is a</span> pretty long text for a sample, but it should work</p>`
 			);
 		});
 
-		it('should apply span with font-size for large text', async () => {
+		it('should apply span with font for large text', async () => {
 			const element = setViewer();
 
 			facadeInstance.setTextSize('large');
 
 			expect(getOutputElement(element).innerHTML).toBe(
-				`<p>Th<span style="font-size: var(--vvd-typography-base-extended);">is is a</span> pretty long text for a sample, but it should work</p>`
+				`<p>Th<span style="font: var(--vvd-typography-base-extended);">is is a</span> pretty long text for a sample, but it should work</p>`
 			);
 		});
 
-		it('should apply span with font-size for normal text', async () => {
+		it('should apply span with font for normal text', async () => {
 			const element = setViewer();
 
 			facadeInstance.setTextSize('normal');
 
 			expect(getOutputElement(element).innerHTML).toBe(
-				`<p>Th<span style="font-size: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
+				`<p>Th<span style="font: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
 			);
 		});
 
-		it('should apply span with font-size for small text', async () => {
+		it('should apply span with font for small text', async () => {
 			const element = setViewer();
 
 			facadeInstance.setTextSize('small');
 
 			expect(getOutputElement(element).innerHTML).toBe(
-				`<p>Th<span style="font-size: var(--vvd-typography-base-condensed);">is is a</span> pretty long text for a sample, but it should work</p>`
+				`<p>Th<span style="font: var(--vvd-typography-base-condensed);">is is a</span> pretty long text for a sample, but it should work</p>`
 			);
 		});
 
@@ -753,7 +834,7 @@ describe('ProseMirrorFacade', () => {
 			facadeInstance.setTextSize('not-normal' as 'normal');
 
 			expect(getOutputElement(element).innerHTML).toBe(
-				`<p>Th<span style="font-size: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
+				`<p>Th<span style="font: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
 			);
 		});
 	});

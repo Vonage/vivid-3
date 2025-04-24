@@ -460,7 +460,7 @@ describe('menuBar', () => {
 			});
 		});
 
-		describe.only('textSize', () => {
+		describe('textSize', () => {
 			beforeEach(async () => {
 				element.menuItems = 'textSize';
 				await elementUpdated(element);
@@ -473,7 +473,9 @@ describe('menuBar', () => {
 			it('should add a menu button with a tooltip', async () => {
 				const menu = getSelectionMenu('text-size');
 				const tooltip = menu.querySelector('[text="Text Size"]');
-				const button = menu.querySelector('[aria-label="Open text size menu"]') as HTMLElement;
+				const button = menu.querySelector(
+					'[aria-label="Open text size menu"]'
+				) as HTMLElement;
 
 				button.click();
 				await elementUpdated(element);
@@ -484,12 +486,18 @@ describe('menuBar', () => {
 			it('should display menu items according to TEXT_SIZES', async () => {
 				const menu = getSelectionMenu('text-size');
 
-				const menuItemsElements = menu.querySelectorAll('.menubar-selector-menuitem');
+				const menuItemsElements = menu.querySelectorAll(
+					'.menubar-selector-menuitem'
+				);
 
 				expect(menuItemsElements.length).toBe(TEXT_SIZES.length);
 				TEXT_SIZES.forEach((textSize, index) => {
-					expect(menuItemsElements[index].getAttribute('text')).toEqual(textSize.text);
-					expect(menuItemsElements[index].getAttribute('value')).toEqual(textSize.value);
+					expect(menuItemsElements[index].getAttribute('text')).toEqual(
+						textSize.text
+					);
+					expect(menuItemsElements[index].getAttribute('value')).toEqual(
+						textSize.value
+					);
 				});
 			});
 
@@ -497,15 +505,19 @@ describe('menuBar', () => {
 				const spy = vi.fn();
 				element.addEventListener('text-size-selected', spy);
 				const menu = getSelectionMenu('text-size');
-				const menuItemsElements = menu.querySelectorAll('.menubar-selector-menuitem') as unknown as HTMLElement[];
+				const menuItemsElements = menu.querySelectorAll(
+					'.menubar-selector-menuitem'
+				) as unknown as HTMLElement[];
 
-				menuItemsElements.forEach(menuItem => {
+				menuItemsElements.forEach((menuItem) => {
 					menuItem.click();
 				});
 
 				spy.mock.calls.forEach((call, index) => {
-					expect(call[0].detail).toBe(menuItemsElements[index].getAttribute('value'));
-				})
+					expect(call[0].detail).toBe(
+						menuItemsElements[index].getAttribute('value')
+					);
+				});
 			});
 		});
 	});
