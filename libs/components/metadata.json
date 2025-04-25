@@ -5524,6 +5524,16 @@
 					"returnType": "unknown"
 				},
 				{
+					"name": "setSelectionTextSize",
+					"args": [
+						{
+							"name": "textSize",
+							"type": "'extra-large' | 'large' | 'normal' | 'small'"
+						}
+					],
+					"returnType": "unknown"
+				},
+				{
 					"name": "setTextBlock",
 					"args": [
 						{ "name": "blockType", "type": "'title' | 'subtitle' | 'body'" }

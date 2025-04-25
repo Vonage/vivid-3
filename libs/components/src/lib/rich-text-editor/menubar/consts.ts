@@ -1,11 +1,13 @@
 import { html, repeat } from '@microsoft/fast-element';
 import type { ViewTemplate } from '@microsoft/fast-element';
 import type { VividElementDefinitionContext } from '../../../shared/design-system/defineVividComponent';
-import { Button } from '../../button/button';
-import { Divider } from '../../divider/divider';
-import { Tooltip } from '../../tooltip/tooltip';
-import { Select } from '../../select/select';
-import { ListboxOption } from '../../option/option';
+import { Button } from '../../button/button.js';
+import { Divider } from '../../divider/divider.js';
+import { Tooltip } from '../../tooltip/tooltip.js';
+import { Select } from '../../select/select.js';
+import { ListboxOption } from '../../option/option.js';
+import { Menu } from '../../menu/menu.js';
+import { MenuItem } from '../../menu-item/menu-item.js';
 import type { MenuBar } from './menubar.js';
 
 function notifyMenuBarChange(
@@ -42,6 +44,25 @@ export const TEXT_DECORATION_ITEMS = [
 		text: 'Monospace',
 		icon: 'monospace-line',
 		value: 'monospace',
+	},
+];
+
+export const TEXT_SIZES = [
+	{
+		text: 'Extra Large',
+		value: 'extra-large',
+	},
+	{
+		text: 'Large',
+		value: 'large',
+	},
+	{
+		text: 'Normal',
+		value: 'normal',
+	},
+	{
+		text: 'Small',
+		value: 'small',
 	},
 ];
 
@@ -83,6 +104,24 @@ const textDecorationEventHandler = (event: Event) => {
 		});
 };
 
+const textSizeEventHandler = (event: Event) => {
+	const customEvent = event as CustomEvent;
+	if (!customEvent || !customEvent.detail) {
+		return;
+	}
+	const menu = customEvent.target as HTMLElement;
+	const selectionTextSize = customEvent.detail.textSize ?? 'normal';
+
+	const textSizeElements = menu.shadowRoot!.querySelectorAll(
+		'.menubar-selector-menuitem'
+	);
+	textSizeElements.forEach((textSizeElement) => {
+		textSizeElement.toggleAttribute(
+			'checked',
+			textSizeElement.getAttribute('value') === selectionTextSize
+		);
+	});
+};
 export const MENU_BAR_ITEMS: {
 	[key: string]: {
 		registerStateProperty?: (menuBar: MenuBar) => void;
@@ -152,14 +191,12 @@ export const MENU_BAR_ITEMS: {
 		},
 		render: function (context) {
 			const buttonTag = context.tagFor(Button);
-			const dividerTag = context.tagFor(Divider);
 			const tooltipTag = context.tagFor(Tooltip);
 			return html`
-			<span id="text-decoration">
-                <${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
-                ${repeat(
-									(_) => TEXT_DECORATION_ITEMS,
-									html`
+				<span id="text-decoration">
+					${repeat(
+						(_) => TEXT_DECORATION_ITEMS,
+						html`
                         <${tooltipTag} text="${(x) => x.text}" placement="top">
                             <${buttonTag}
                                 class="selection-button"
@@ -177,11 +214,69 @@ export const MENU_BAR_ITEMS: {
 																	)}"')}"
                             ></${buttonTag}>
                         </${tooltipTag}>
-                    </span>
 				`
-								)}
-			<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
-		`;
+					)}
+				</span>
+			`;
+		},
+	},
+	textSize: {
+		registerStateProperty: function (menuBar) {
+			menuBar.addEventListener('text-styles-changed', textSizeEventHandler);
+		},
+		render: function (context) {
+			const menuTag = context.tagFor(Menu);
+			const buttonTag = context.tagFor(Button);
+			const tooltipTag = context.tagFor(Tooltip);
+			const menuItemTag = context.tagFor(MenuItem);
+			return html`
+                    <${menuTag}
+						auto-dismiss
+                        trigger="auto"
+                        id="text-size"
+                        aria-label="Text Size"
+                        placement="bottom-end"
+                    >
+						<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+                            <${buttonTag}
+                                slot="anchor"
+                                aria-label="Open text size menu"
+                                size="super-condensed"
+                                appearance="ghost-light"
+                                shape="pill"
+                                icon="text-size-line"
+                            ></${buttonTag}>
+						</${tooltipTag}>
+						${repeat(
+							(_) => TEXT_SIZES,
+							html`
+							<${menuItemTag}
+								check-appearance="tick-only"
+								role="menuitemcheckbox"
+								text="${(x) => x.text}"
+								value="${(x) => x.value}"
+								internal-part
+								class="menubar-selector-menuitem"
+								connotation="cta"
+								@click="${(x, c) =>
+									notifyMenuBarChange(
+										c.parentContext.parent,
+										'text-size-selected',
+										x.value
+									)}"
+                        ></${menuItemTag}>
+							`
+						)}
+                    </${menuTag}>
+                `;
+		},
+	},
+	divider: {
+		render: function (context) {
+			const dividerTag = context.tagFor(Divider);
+			return html`
+				<${dividerTag} class="divider" orientation="vertical"></${dividerTag}>
+			`;
 		},
 	},
 };

@@ -9,6 +9,7 @@ import { EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type {
+	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
 	RichTextEditorSelection,
 	SelectionStyles,
 } from '../rich-text-editor';
@@ -203,6 +204,8 @@ export class ProseMirrorFacade {
 	}
 
 	setSelectionDecoration(decoration: string) {
+		this.#verifyViewInitiation();
+
 		const SUPPORTED_DECORATIONS = {
 			bold: 'strong',
 			italics: 'em',
@@ -210,9 +213,6 @@ export class ProseMirrorFacade {
 			strikethrough: 's',
 			monospace: 'tt',
 		};
-
-		this.#verifyViewInitiation();
-
 		const { state, dispatch } = this.#view!;
 
 		const decorationKey = decoration as keyof typeof SUPPORTED_DECORATIONS;
@@ -317,6 +317,51 @@ export class ProseMirrorFacade {
 		return decorations.length ? decorations : undefined;
 	}
 
+	#getSelectionTextSize() {
+		const { state } = this.#view!;
+		const { from, to, empty } = state.selection;
+
+		const defaultSize = 'normal';
+
+		if (empty) {
+			const marks = state.doc.resolve(from).marks();
+			const textSizeMark = marks.find(
+				(mark) => mark.type === state.schema.marks.textSize
+			);
+			return textSizeMark ? textSizeMark.attrs.size : defaultSize;
+		} else {
+			let textSize: string | null = null;
+			let foundMixedSizes = false;
+
+			state.doc.nodesBetween(from, to, (node) => {
+				if (node.isText) {
+					const mark = node.marks.find(
+						(mark) => mark.type === state.schema.marks.textSize
+					);
+
+					if (mark) {
+						if (textSize === null) {
+							textSize = mark.attrs.size;
+						} else if (textSize !== mark.attrs.size) {
+							foundMixedSizes = true;
+							return false;
+						}
+					} else if (textSize !== null) {
+						foundMixedSizes = true;
+						return false;
+					}
+				}
+				return true;
+			});
+
+			if (foundMixedSizes) {
+				return '';
+			}
+
+			return textSize !== null ? textSize : defaultSize;
+		}
+	}
+
 	getSelectionStyles(): SelectionStyles {
 		this.#verifyViewInitiation();
 
@@ -324,7 +369,27 @@ export class ProseMirrorFacade {
 
 		styles.textBlockType = this.#getSelectionBlockType();
 		styles.textDecoration = this.#getSelectionTextDecoration();
+		styles.textSize = this.#getSelectionTextSize();
 
 		return styles;
+	}
+
+	setTextSize(size: RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES = 'normal') {
+		this.#verifyViewInitiation();
+
+		const { state, dispatch } = this.#view!;
+		const { schema, selection, tr } = state;
+		const { from, to } = selection;
+
+		const textSizeMark = schema.marks.textSize;
+
+		tr.removeMark(from, to, textSizeMark);
+
+		tr.addMark(from, to, textSizeMark.create({ size }));
+
+		// Dispatch the transaction
+		dispatch(tr.scrollIntoView());
+		this.#userContentChange = true;
+		this.#handleChangeEvent();
 	}
 }
