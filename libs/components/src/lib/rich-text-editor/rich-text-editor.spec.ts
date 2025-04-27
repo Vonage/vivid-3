@@ -625,7 +625,7 @@ describe('vwc-rich-text-editor', () => {
 			expect(element.placeholder).toBe(text);
 		});
 
-		it.only('should upadte the placeholder when the component loads', async () => {
+		it('should upadte the placeholder when the component loads', async () => {
 			const text = 'some text';
 			const div = document.createElement('div');
 			document.body.appendChild(div);
