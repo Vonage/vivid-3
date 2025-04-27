@@ -102,7 +102,24 @@ describe('ProseMirrorFacade', () => {
 			document.body.appendChild(element);
 
 			expect(getOutputElement(element).querySelector('p')?.getAttribute('data-placeholder')).toBe('Start typing...');
+		});
+	});
 
+	describe('updatePlaceholder', () => {
+		it('should throw if editor is not initialized', async () => {
+			expect(() => facadeInstance.updatePlaceholder('')).toThrow();
+		});
+
+		it('should replace the placeholder text', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const element = initViewer();
+			document.body.appendChild(element);
+
+			facadeInstance.updatePlaceholder('New placeholder text');
+
+			expect(getOutputElement(element).querySelector('p')?.getAttribute('data-placeholder')).toBe('New placeholder text');
 		});
 	});
 
@@ -157,7 +174,7 @@ describe('ProseMirrorFacade', () => {
 					to: 10,
 					$from: {
 						parent: {
-								type: {}
+							type: {}
 						}
 					}
 				},

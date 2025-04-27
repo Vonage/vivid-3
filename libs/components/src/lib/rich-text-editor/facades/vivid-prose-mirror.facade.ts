@@ -3,6 +3,7 @@ import {
 	Plugin,
 	Selection,
 	TextSelection,
+	PluginKey
 } from 'prosemirror-state';
 import { DOMParser, Node } from 'prosemirror-model';
 import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
@@ -92,8 +93,11 @@ const isEmptyParagraph = (node: Node): boolean => {
 
 const DEFAULT_TEXT_EDITOR_PLACEHOLDER = 'Start typing...';
 
+export const placeholderPluginKey = new PluginKey('placeholderPlugin');
+
 export const createPlaceholderPlugin = (placeholder = DEFAULT_TEXT_EDITOR_PLACEHOLDER) => {
 	return new Plugin({
+		key: placeholderPluginKey,
 		props: {
 			decorations(state) {
 				const { $from } = state.selection;
@@ -147,7 +151,7 @@ export class ProseMirrorFacade {
 				'ProseMirror Facade init accepts a valid HTMLElement as its first parameter'
 			);
 		}
-		
+
 		const plugins = [
 			createPlaceholderPlugin(),
 			createSelectionChangePlugin(this.#onSelectionChange),
@@ -160,6 +164,23 @@ export class ProseMirrorFacade {
 		this.#view = new EditorView(element, { state });
 		this.#view.dom.addEventListener('input', this.#handleInputEvent);
 		this.#view.dom.addEventListener('blur', this.#handleChangeEvent);
+	}
+
+	updatePlaceholder(placeholderText: string) {
+		this.#verifyViewInitiation();
+
+		const { state } = this.#view!;
+		const plugins = state.plugins.filter(
+			(plugin) => plugin !== placeholderPluginKey.get(state)
+		);
+
+		const newPlaceholderPlugin = createPlaceholderPlugin(placeholderText);
+
+		const newState = state.reconfigure({
+			plugins: [...plugins, newPlaceholderPlugin],
+		});
+
+		this.#view!.updateState(newState);
 	}
 
 	replaceContent(content: string) {
