@@ -5465,6 +5465,12 @@
 			"description": "",
 			"props": [
 				{
+					"name": "placeholder",
+					"type": "string",
+					"attributeName": "placeholder",
+					"propertyName": "placeholder"
+				},
+				{
 					"name": "selectionEnd",
 					"type": "number",
 					"attributeName": "selection-end",
@@ -5512,6 +5518,7 @@
 			"vueModels": [],
 			"methods": [
 				{ "name": "focus", "args": [], "returnType": "unknown" },
+				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",
