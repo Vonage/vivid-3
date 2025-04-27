@@ -577,4 +577,52 @@ describe('vwc-rich-text-editor', () => {
 			expect(setSelectionDecorationSpy).toHaveBeenCalledWith(textSize);
 		});
 	});
+
+	describe('placeholder', () => {
+		function getPlaceholderText() {
+			return getOutputElement()
+				.querySelector('[data-placeholder]')
+				?.getAttribute('data-placeholder');
+		}
+
+		it('should default to undefined', async () => {
+			expect(element.placeholder).toBeUndefined();
+		});
+
+		it('should have default placeholder text when not set', async () => {
+			expect(getPlaceholderText()).toBe('Start typing...');
+		});
+
+		it('should set a different placeholder text when set', async () => {
+			element.placeholder = 'some text';
+			await elementUpdated(element);
+
+			expect(getPlaceholderText()).toBe('some text');
+		});
+
+		it('should set placeholder to default when removed', async () => {
+			element.placeholder = 'some text';
+			await elementUpdated(element);
+
+			element.placeholder = undefined;
+			await elementUpdated(element);
+
+			expect(getPlaceholderText()).toBe('Start typing...');
+		});
+
+		it('should set empty placeholder when set to empty string', async () => {
+			element.placeholder = '';
+			await elementUpdated(element);
+
+			expect(getPlaceholderText()).toBe('');
+		});
+
+		it('should reflect the attribute in the property', async () => {
+			const text = 'some text';
+			element.setAttribute('placeholder', text);
+			await elementUpdated(element);
+
+			expect(element.placeholder).toBe(text);
+		});
+	});
 });

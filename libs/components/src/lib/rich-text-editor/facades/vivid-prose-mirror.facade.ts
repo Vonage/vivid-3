@@ -1,9 +1,9 @@
 import {
 	EditorState,
 	Plugin,
+	PluginKey,
 	Selection,
 	TextSelection,
-	PluginKey
 } from 'prosemirror-state';
 import { DOMParser, Node } from 'prosemirror-model';
 import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
@@ -95,7 +95,9 @@ const DEFAULT_TEXT_EDITOR_PLACEHOLDER = 'Start typing...';
 
 export const placeholderPluginKey = new PluginKey('placeholderPlugin');
 
-export const createPlaceholderPlugin = (placeholder = DEFAULT_TEXT_EDITOR_PLACEHOLDER) => {
+export const createPlaceholderPlugin = (
+	placeholder = DEFAULT_TEXT_EDITOR_PLACEHOLDER
+) => {
 	return new Plugin({
 		key: placeholderPluginKey,
 		props: {
@@ -166,7 +168,7 @@ export class ProseMirrorFacade {
 		this.#view.dom.addEventListener('blur', this.#handleChangeEvent);
 	}
 
-	updatePlaceholder(placeholderText: string) {
+	updatePlaceholder(placeholderText?: string) {
 		this.#verifyViewInitiation();
 
 		const { state } = this.#view!;

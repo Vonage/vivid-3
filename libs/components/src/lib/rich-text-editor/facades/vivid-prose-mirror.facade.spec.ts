@@ -7,12 +7,12 @@ import { ProseMirrorFacade } from './vivid-prose-mirror.facade';
 
 type DeepPartial<T> = T extends object
 	? {
-		[P in keyof T]?: DeepPartial<T[P]>;
-	}
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
 	: T;
 
 vi.mock('prosemirror-view', async () => ({
-	...await vi.importActual('prosemirror-view'),
+	...(await vi.importActual('prosemirror-view')),
 	EditorView: vi.fn(),
 }));
 
@@ -70,8 +70,8 @@ describe('ProseMirrorFacade', () => {
 		beforeEach(async () => {
 			StateMock = {
 				selection: {
-					$from: {}
-				}
+					$from: {},
+				},
 			};
 			vi.spyOn(EditorState, 'create').mockReturnValue(StateMock as any);
 		});
@@ -101,7 +101,11 @@ describe('ProseMirrorFacade', () => {
 			const element = initViewer();
 			document.body.appendChild(element);
 
-			expect(getOutputElement(element).querySelector('p')?.getAttribute('data-placeholder')).toBe('Start typing...');
+			expect(
+				getOutputElement(element)
+					.querySelector('p')
+					?.getAttribute('data-placeholder')
+			).toBe('Start typing...');
 		});
 	});
 
@@ -119,7 +123,11 @@ describe('ProseMirrorFacade', () => {
 
 			facadeInstance.updatePlaceholder('New placeholder text');
 
-			expect(getOutputElement(element).querySelector('p')?.getAttribute('data-placeholder')).toBe('New placeholder text');
+			expect(
+				getOutputElement(element)
+					.querySelector('p')
+					?.getAttribute('data-placeholder')
+			).toBe('New placeholder text');
 		});
 	});
 
@@ -174,9 +182,9 @@ describe('ProseMirrorFacade', () => {
 					to: 10,
 					$from: {
 						parent: {
-							type: {}
-						}
-					}
+							type: {},
+						},
+					},
 				},
 			};
 			await setSelectionInState(MOCK_STATE);

@@ -88,6 +88,13 @@ export class RichTextEditor extends VividElement {
 		this.#updateEditorSelection();
 	}
 
+	@attr
+	placeholder?: string;
+
+	placeholderChanged() {
+		this.#editor?.updatePlaceholder(this.placeholder);
+	}
+
 	constructor() {
 		super();
 	}

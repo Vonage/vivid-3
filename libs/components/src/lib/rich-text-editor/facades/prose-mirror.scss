@@ -365,8 +365,8 @@ img.ProseMirror-separator {
 
 .placeholder:before {
 	content: attr(data-placeholder);
-    color: #aaa;
-    font-style: italic;
-    pointer-events: none;
-    position: absolute;
+	color: #aaa;
+	font-style: italic;
+	pointer-events: none;
+	position: absolute;
 }
