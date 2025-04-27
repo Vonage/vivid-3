@@ -4,8 +4,8 @@ import {
 	Selection,
 	TextSelection,
 } from 'prosemirror-state';
-import { DOMParser } from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
+import { DOMParser, Node } from 'prosemirror-model';
+import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type {
@@ -85,6 +85,32 @@ function convertSelectionToVividFormat({
 		end: to,
 	};
 }
+
+const isEmptyParagraph = (node: Node): boolean => {
+	return node.type.name === 'paragraph' && node.nodeSize === 2;
+};
+
+const DEFAULT_TEXT_EDITOR_PLACEHOLDER = 'Start typing...';
+
+export const createPlaceholderPlugin = (placeholder = DEFAULT_TEXT_EDITOR_PLACEHOLDER) => {
+	return new Plugin({
+		props: {
+			decorations(state) {
+				const { $from } = state.selection;
+				const decorations: Decoration[] = [];
+				if (isEmptyParagraph($from.parent)) {
+					const decoration = Decoration.node($from.before(), $from.after(), {
+						'data-placeholder': placeholder,
+						class: 'placeholder',
+					});
+					decorations.push(decoration);
+				}
+				return DecorationSet.create(state.doc, decorations);
+			},
+		},
+	});
+};
+
 export class ProseMirrorFacade {
 	#userContentChange = false;
 	#view?: EditorView;
@@ -121,8 +147,9 @@ export class ProseMirrorFacade {
 				'ProseMirror Facade init accepts a valid HTMLElement as its first parameter'
 			);
 		}
-
+		
 		const plugins = [
+			createPlaceholderPlugin(),
 			createSelectionChangePlugin(this.#onSelectionChange),
 			keymap(baseKeymap),
 		];

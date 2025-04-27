@@ -70,10 +70,10 @@ describe('vwc-rich-text-editor', () => {
 			getOutputElement().dispatchEvent(new Event('input', { bubbles: true }));
 		}
 
-		it('should init as empty string', async () => {
-			expect(element.value).toMatchInlineSnapshot(
-				`"<p><br class="ProseMirror-trailingBreak"></p>"`
-			);
+		it('should init as empty paragraph', async () => {
+			const div = document.createElement('div');
+			div.innerHTML = element.value;
+			expect(div.textContent).toBe('');
 		});
 
 		it('should display HTML inside the editor', async () => {

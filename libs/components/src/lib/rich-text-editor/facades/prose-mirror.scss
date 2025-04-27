@@ -360,3 +360,13 @@ img.ProseMirror-separator {
 //.ProseMirror p { margin-bottom: 1em }
 
 /* stylelint-enable */
+
+/* Vivid ProseMirror Styles */
+
+.placeholder:before {
+	content: attr(data-placeholder);
+    color: #aaa;
+    font-style: italic;
+    pointer-events: none;
+    position: absolute;
+}
