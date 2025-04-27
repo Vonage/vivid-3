@@ -138,6 +138,16 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 </script>
 ```
 
+### Placehlder
+
+Use the `placholder` property to set and get the placeholder text in case the editor is empty.
+
+```html preview
+<vwc-rich-text-editor
+	placeholder="Custom placeholder text"
+></vwc-rich-text-editor>
+```
+
 ## Slots
 
 ### Menu Bar

@@ -624,5 +624,20 @@ describe('vwc-rich-text-editor', () => {
 
 			expect(element.placeholder).toBe(text);
 		});
+
+		it.only('should upadte the placeholder when the component loads', async () => {
+			const text = 'some text';
+			const div = document.createElement('div');
+			document.body.appendChild(div);
+			div.innerHTML = `
+				<${COMPONENT_TAG} placeholder="${text}"></${COMPONENT_TAG}>
+			`;
+
+			const newElementPlaceholderText = div.children[0].shadowRoot
+				?.querySelector('[data-placeholder]')
+				?.getAttribute('data-placeholder');
+			div.remove();
+			expect(newElementPlaceholderText).toBe(text);
+		});
 	});
 });

@@ -129,6 +129,7 @@ export class RichTextEditor extends VividElement {
 			this.#editor.addEventListener('change', this.#handleChange);
 			this.#editor.addEventListener('input', this.#handleInput);
 		}
+		this.placeholderChanged();
 	}
 
 	setTextBlock(blockType: 'title' | 'subtitle' | 'body') {
