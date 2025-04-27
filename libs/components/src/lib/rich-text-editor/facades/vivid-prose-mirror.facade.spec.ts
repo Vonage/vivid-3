@@ -64,6 +64,24 @@ describe('ProseMirrorFacade', () => {
 		expect(facadeInstance instanceof ProseMirrorFacade).toBe(true);
 	});
 
+	it('should remove placeholder when there is text', async () => {
+		await useOriginalEditorState();
+		await useOriginalEditorView();
+
+		const element = initViewer();
+		facadeInstance.replaceContent('<p>This is a block</p>');
+
+		const outputElement = getOutputElement(element);
+
+		// Simulate pressing the Enter key
+		const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true });
+		outputElement.dispatchEvent(event);
+
+		expect(
+			getOutputElement(element).querySelector('[data-placeholder]')
+		).toBeNull();
+	});
+
 	describe('init()', () => {
 		let StateMock = {};
 

@@ -104,7 +104,7 @@ export const createPlaceholderPlugin = (
 			decorations(state) {
 				const { $from } = state.selection;
 				const decorations: Decoration[] = [];
-				if (isEmptyParagraph($from.parent)) {
+				if (state.doc.childCount === 1 && isEmptyParagraph($from.parent)) {
 					const decoration = Decoration.node($from.before(), $from.after(), {
 						'data-placeholder': placeholder,
 						class: 'placeholder',
