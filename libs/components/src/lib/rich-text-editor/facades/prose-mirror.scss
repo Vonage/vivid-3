@@ -1,4 +1,5 @@
 // Comment each style that is being used in prose-mirror-overrides.scss
+@use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
 /* stylelint-disable */
 //.ProseMirror {
@@ -363,10 +364,10 @@ img.ProseMirror-separator {
 
 /* Vivid ProseMirror Styles */
 
-.placeholder:before {
-	content: attr(data-placeholder);
-	color: #aaa;
-	font-style: italic;
-	pointer-events: none;
+.placeholder::before {
 	position: absolute;
+	color: var(#{constants.$vvd-color-neutral-600});
+	content: attr(data-placeholder);
+	font: var(#{constants.$vvd-typography-base});
+	pointer-events: none;
 }
