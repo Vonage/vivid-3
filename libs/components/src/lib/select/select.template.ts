@@ -6,17 +6,18 @@ import {
 	when,
 } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
-import { Listbox } from '../../shared/foundation/listbox/listbox';
-import { getFeedbackTemplate } from '../../shared/patterns';
+import { Popup } from '../popup/popup';
+import { ListboxOption } from '../option/option';
 import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
+import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
-import { ListboxOption } from '../option/option';
-import { Popup } from '../popup/popup';
+import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
+import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Listbox } from '../../shared/foundation/listbox/listbox';
+import { applyHostSemantics } from '../../shared/aria/host-semantics';
 import type { Select } from './select';
 
 const getStateClasses = ({
@@ -135,11 +136,14 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 	return html<Select>`
 		<template
 			class="base"
-			role="combobox"
-			aria-haspopup="${(x) => (x.collapsible ? 'listbox' : 'false')}"
+			${applyHostSemantics({
+				role: 'combobox',
+				ariaLabel: (x) => x.ariaLabel ?? x.label,
+				ariaHasPopup: (x) => (x.collapsible ? 'listbox' : 'false'),
+				ariaExpanded: (x) => x.open,
+				ariaDisabled: (x) => x.disabled,
+			})}
 			aria-controls="${(x) => x.listboxId}"
-			aria-expanded="${(x) => x.open}"
-			aria-disabled="${(x) => x.disabled}"
 			aria-activedescendant="${(x) => x._activeDescendant}"
 			tabindex="${(x) => (!x.disabled ? '0' : null)}"
 			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"

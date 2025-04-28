@@ -5,6 +5,7 @@ import {
 	IconWrapper,
 } from '../../shared/patterns/affix';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { SplitButton } from './split-button';
 
 const getClasses = ({
@@ -33,7 +34,9 @@ function actionButton(context: VividElementDefinitionContext) {
 		<button
 			${ref('_action')}
 			class="control ${getClasses}"
-			aria-label="${(x) => x.ariaLabel}"
+			${delegateAria({
+				ariaExpanded: null,
+			})}
 			?disabled="${(x) => x.disabled}"
 			@click="${(x) =>
 				x.$emit('action-click', undefined, {
@@ -56,7 +59,12 @@ function indicatorButton(context: VividElementDefinitionContext) {
 			?disabled="${(x) => x.disabled}"
 			aria-label="${(x) =>
 				x.indicatorAriaLabel || x.locale.splitButton.showMoreActionsLabel}"
-			aria-expanded="${(x) => x.ariaExpanded}"
+			${delegateAria(
+				{
+					ariaExpanded: (x) => x.ariaExpanded,
+				},
+				{ onlySpecified: true }
+			)}
 			@click="${(x) =>
 				x.$emit('indicator-click', undefined, {
 					bubbles: false,
@@ -68,7 +76,7 @@ function indicatorButton(context: VividElementDefinitionContext) {
 }
 
 export const SplitButtonTemplate = (context: VividElementDefinitionContext) => {
-	return html<SplitButton>` <template role="presentation">
+	return html<SplitButton>` <template>
 		<div class="base" role="group">
 			${actionButton(context)} ${indicatorButton(context)}
 			<slot></slot>
