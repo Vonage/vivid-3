@@ -1,5 +1,6 @@
-import { customElement, FASTElement, html } from '@microsoft/fast-element';
+import { customElement, html } from '@microsoft/fast-element';
 import { fixture, setupDelegatesFocusPolyfill } from '@vivid-nx/shared';
+import { VividElement } from '../foundation/vivid-element/vivid-element';
 import { ignoreEventInFocusTraps, TrappedFocus } from './trapped-focus';
 
 describe('TrappedFocus', () => {
@@ -13,7 +14,7 @@ describe('TrappedFocus', () => {
 			</template>
 		`,
 	})
-	class TestElement extends TrappedFocus(FASTElement) {
+	class TestElement extends TrappedFocus(VividElement) {
 		onKeyDown(event: KeyboardEvent) {
 			if (
 				this._trappedFocus(event, () =>

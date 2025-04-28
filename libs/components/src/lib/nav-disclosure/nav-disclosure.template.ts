@@ -6,6 +6,7 @@ import {
 } from '../../shared/patterns/affix';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { NavDisclosure } from './nav-disclosure';
 
 function getAriaCurrent(ariaCurrent: string | null, open: boolean) {
@@ -29,11 +30,13 @@ export const NavDisclosureTemplate = (
 		x
 	) => x.open}>
 		<summary class="${getClasses}"
-						 role="button"
 						 aria-controls="disclosure-content"
-						 aria-expanded="${(x) => x.open}"
-						 aria-label=${(x) => x.ariaLabel}
-						 aria-current=${(x) => getAriaCurrent(x.ariaCurrent, x.open)}>
+						 ${delegateAria({
+								role: 'button',
+								ariaExpanded: (x) => x.open,
+								ariaCurrent: (x) => getAriaCurrent(x.ariaCurrent, x.open),
+							})}
+		>
 			${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
 			${(x) => x.label}
 			<slot name="meta"></slot>

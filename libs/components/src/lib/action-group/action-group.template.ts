@@ -1,5 +1,6 @@
 import { html } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { ActionGroup } from './action-group';
 
 const getClasses = ({ appearance, shape, tight }: ActionGroup) =>
@@ -18,8 +19,9 @@ const getClasses = ({ appearance, shape, tight }: ActionGroup) =>
  */
 export const ActionGroupTemplate = html<ActionGroup>`<div
 	class="${getClasses}"
-	role="${(x) => (x.role ? x.role : 'group')}"
-	aria-label="${(x) => x.ariaLabel}"
+	${delegateAria({
+		role: (x) => (x.role ? x.role : 'group'),
+	})}
 >
 	<slot></slot>
 </div>`;
