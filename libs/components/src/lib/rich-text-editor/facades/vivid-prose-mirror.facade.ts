@@ -65,32 +65,27 @@ function createShiftEnterKeymapPlugin() {
 		['Shift-Enter']: (state, dispatch) => {
 			const { schema } = state;
 			const br = schema.nodes.hard_break;
-			if (br) {
-				const { $from, $to } = state.selection;
-				if ($from.sameParent($to)) {
-					dispatch &&
-						dispatch(
-							state.tr.replaceSelectionWith(br.create()).scrollIntoView()
-						);
-				} else {
-					if (dispatch) {
-						const tr = state.tr;
+			const { $from, $to } = state.selection;
+			if ($from.sameParent($to)) {
+				dispatch &&
+					dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
+			} else {
+				if (dispatch) {
+					const tr = state.tr;
 
-						const lastSelectionBlock = state.doc.resolve($to.end());
+					const lastSelectionBlock = state.doc.resolve($to.end());
 
-						tr.delete(lastSelectionBlock.start(), $to.pos);
-						tr.delete($from.pos, lastSelectionBlock.start() - 1);
-						tr.insert($from.pos, br.create());
+					tr.delete(lastSelectionBlock.start(), $to.pos);
+					tr.delete($from.pos, lastSelectionBlock.start() - 1);
+					tr.insert($from.pos, br.create());
 
-						const newSelection = TextSelection.create(tr.doc, $from.pos + 1);
-						tr.setSelection(newSelection);
+					const newSelection = TextSelection.create(tr.doc, $from.pos + 1);
+					tr.setSelection(newSelection);
 
-						dispatch(tr.scrollIntoView());
-					}
+					dispatch(tr.scrollIntoView());
 				}
-
-				return true;
 			}
+			return true;
 		},
 	});
 }
