@@ -2,7 +2,11 @@ import { html } from '@microsoft/fast-element';
 import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import { RichTextEditor, RichTextEditorTextBlocks } from './rich-text-editor';
+import {
+	type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
+	RichTextEditor,
+	RichTextEditorTextBlocks,
+} from './rich-text-editor';
 
 const getClasses = (_: RichTextEditor) => classNames('control');
 
@@ -21,6 +25,13 @@ function textBlockSelectedHandler(event: CustomEvent<string>) {
 function selectionDecorationSelectedHandler(event: CustomEvent<string>) {
 	menuParent(event.target).setSelectionDecoration(
 		event.detail as RichTextEditorTextBlocks
+	);
+	menuParent(event.target).focus();
+}
+
+function textSizeSelectedHandler(event: CustomEvent<string>) {
+	menuParent(event.target).setSelectionTextSize(
+		event.detail as RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES
 	);
 	menuParent(event.target).focus();
 }
@@ -49,6 +60,10 @@ function handleMenuBarSlotChange(
 		menuBar.addEventListener(
 			'text-decoration-selected',
 			selectionDecorationSelectedHandler as EventListener
+		);
+		menuBar.addEventListener(
+			'text-size-selected',
+			textSizeSelectedHandler as EventListener
 		);
 	}
 }

@@ -493,6 +493,23 @@ describe('vwc-rich-text-editor', () => {
 			expect(setTextDecorationSpy).toHaveBeenCalledWith(newTextDecoration);
 		});
 
+		it('should change text size on `text-size-selected` event from menubar', async () => {
+			const newTextSize = 'large';
+			const setTextSizeSpy = vi.spyOn(element, 'setSelectionTextSize');
+			const menuBar = document.createElement('vwc-menubar');
+			menuBar.slot = 'menu-bar';
+			element.appendChild(menuBar);
+			await elementUpdated(element);
+
+			menuBar.dispatchEvent(
+				new CustomEvent('text-size-selected', {
+					detail: newTextSize,
+				})
+			);
+
+			expect(setTextSizeSpy).toHaveBeenCalledWith(newTextSize);
+		});
+
 		it('should focus on the editable after a textBlock selection', async () => {
 			const newTextBlock = 'title';
 			const menuBar = document.createElement('vwc-menubar');
@@ -529,6 +546,35 @@ describe('vwc-rich-text-editor', () => {
 			expect(document.activeElement).toBe(element);
 			expect(element.shadowRoot?.activeElement).toBe(getOutputElement());
 			vi.useRealTimers();
+		});
+	});
+
+	describe('selectionStyles', () => {
+		it('should initiate as empty object', async () => {
+			const unconnectedElement = document.createElement(COMPONENT_TAG);
+			expect(unconnectedElement.selectionStyles).toEqual({});
+		});
+
+		it('should return the styles from the facade', async () => {
+			const styles = { textBlockType: 'title' };
+			vi.spyOn(
+				EditorFacade.prototype,
+				'getSelectionStyles'
+			).mockReturnValueOnce(styles);
+
+			expect(element.selectionStyles).toEqual(styles);
+		});
+	});
+
+	describe('setSelectionTextSize', () => {
+		it('should call facade.setTextSize with the text size', async () => {
+			const setSelectionDecorationSpy = vi.spyOn(
+				EditorFacade.prototype,
+				'setTextSize'
+			);
+			const textSize = 'small';
+			element.setSelectionTextSize(textSize);
+			expect(setSelectionDecorationSpy).toHaveBeenCalledWith(textSize);
 		});
 	});
 });

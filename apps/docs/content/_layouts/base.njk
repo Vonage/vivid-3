@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Vivid">
     <meta name="twitter:image:alt" content="Vivid logo">
 
-    <title>Vivid</title>
+    <title>{% if title %}{{ title }} | {% endif %}Vivid</title>
     <link rel="icon" href="{{ '/assets/images/vivid-logo.svg' | url }}" type="image/svg+xml">
 
 		<style>

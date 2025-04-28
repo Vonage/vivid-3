@@ -8,7 +8,11 @@ import { DOMParser } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
-import type { RichTextEditorSelection } from '../rich-text-editor';
+import type {
+	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
+	RichTextEditorSelection,
+	SelectionStyles,
+} from '../rich-text-editor';
 import VVD_PROSE_MIRROR_SCHEMA from './prose-mirror-vivid.schema';
 
 const NEGATIVE_SELECTION = {
@@ -44,6 +48,18 @@ class TagToSchemaMap {
 		};
 	}
 }
+
+function setTextBlockType(styles: SelectionStyles, type: string) {
+	if (
+		(styles.textBlockType && styles.textBlockType !== type) ||
+		styles.textBlockType === ''
+	) {
+		styles.textBlockType = '';
+	} else {
+		styles.textBlockType = type;
+	}
+}
+
 function createSelectionChangePlugin(
 	onSelectionChange: (selection: RichTextEditorSelection) => void
 ) {
@@ -93,6 +109,7 @@ export class ProseMirrorFacade {
 
 	#handleChangeEvent = () => {
 		if (!this.#userContentChange) {
+			this.#userContentChange = false;
 			return;
 		}
 		this.#dispatchEvent('change');
@@ -187,6 +204,8 @@ export class ProseMirrorFacade {
 	}
 
 	setSelectionDecoration(decoration: string) {
+		this.#verifyViewInitiation();
+
 		const SUPPORTED_DECORATIONS = {
 			bold: 'strong',
 			italics: 'em',
@@ -194,9 +213,6 @@ export class ProseMirrorFacade {
 			strikethrough: 's',
 			monospace: 'tt',
 		};
-
-		this.#verifyViewInitiation();
-
 		const { state, dispatch } = this.#view!;
 
 		const decorationKey = decoration as keyof typeof SUPPORTED_DECORATIONS;
@@ -205,5 +221,175 @@ export class ProseMirrorFacade {
 			throw new Error(`${decoration} is not a supported decoration`);
 		}
 		toggleMark(markType)(state, dispatch);
+		this.#userContentChange = true;
+		this.#handleChangeEvent();
+	}
+
+	#getSelectionBlockType() {
+		const { state } = this.#view!;
+		const { from, to } = state.selection;
+
+		const styles: SelectionStyles = {};
+		state.doc.nodesBetween(from, to, (node) => {
+			if (node.type.name === 'heading' && node.attrs.level === 2) {
+				setTextBlockType(styles, 'title');
+			} else if (node.type.name === 'heading' && node.attrs.level === 3) {
+				setTextBlockType(styles, 'subtitle');
+			} else if (node.type.name === 'paragraph') {
+				setTextBlockType(styles, 'body');
+			}
+		});
+		return styles.textBlockType;
+	}
+
+	#getSelectionTextDecoration() {
+		const { state } = this.#view!;
+		const { from, to, empty } = state.selection;
+
+		const decorations: string[] = [];
+		if (empty) {
+			// If the selection is a cursor (collapsed), check marks at the cursor position
+			const marks = state.doc.resolve(from).marks();
+			if (
+				state.schema.marks.strong &&
+				marks.some((mark) => mark.type === state.schema.marks.strong)
+			) {
+				decorations.push('bold');
+			}
+			if (
+				state.schema.marks.em &&
+				marks.some((mark) => mark.type === state.schema.marks.em)
+			) {
+				decorations.push('italics');
+			}
+			if (
+				state.schema.marks.u &&
+				marks.some((mark) => mark.type === state.schema.marks.u)
+			) {
+				decorations.push('underline');
+			}
+			if (
+				state.schema.marks.s &&
+				marks.some((mark) => mark.type === state.schema.marks.s)
+			) {
+				decorations.push('strikethrough');
+			}
+			if (
+				state.schema.marks.tt &&
+				marks.some((mark) => mark.type === state.schema.marks.tt)
+			) {
+				decorations.push('monospace');
+			}
+		} else {
+			// If the selection is a range, check marks across the range
+			if (
+				state.schema.marks.strong &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.strong)
+			) {
+				decorations.push('bold');
+			}
+			if (
+				state.schema.marks.em &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.em)
+			) {
+				decorations.push('italics');
+			}
+			if (
+				state.schema.marks.u &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.u)
+			) {
+				decorations.push('underline');
+			}
+			if (
+				state.schema.marks.s &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.s)
+			) {
+				decorations.push('strikethrough');
+			}
+			if (
+				state.schema.marks.tt &&
+				state.doc.rangeHasMark(from, to, state.schema.marks.tt)
+			) {
+				decorations.push('monospace');
+			}
+		}
+
+		return decorations.length ? decorations : undefined;
+	}
+
+	#getSelectionTextSize() {
+		const { state } = this.#view!;
+		const { from, to, empty } = state.selection;
+
+		const defaultSize = 'normal';
+
+		if (empty) {
+			const marks = state.doc.resolve(from).marks();
+			const textSizeMark = marks.find(
+				(mark) => mark.type === state.schema.marks.textSize
+			);
+			return textSizeMark ? textSizeMark.attrs.size : defaultSize;
+		} else {
+			let textSize: string | null = null;
+			let foundMixedSizes = false;
+
+			state.doc.nodesBetween(from, to, (node) => {
+				if (node.isText) {
+					const mark = node.marks.find(
+						(mark) => mark.type === state.schema.marks.textSize
+					);
+
+					if (mark) {
+						if (textSize === null) {
+							textSize = mark.attrs.size;
+						} else if (textSize !== mark.attrs.size) {
+							foundMixedSizes = true;
+							return false;
+						}
+					} else if (textSize !== null) {
+						foundMixedSizes = true;
+						return false;
+					}
+				}
+				return true;
+			});
+
+			if (foundMixedSizes) {
+				return '';
+			}
+
+			return textSize !== null ? textSize : defaultSize;
+		}
+	}
+
+	getSelectionStyles(): SelectionStyles {
+		this.#verifyViewInitiation();
+
+		const styles: SelectionStyles = {};
+
+		styles.textBlockType = this.#getSelectionBlockType();
+		styles.textDecoration = this.#getSelectionTextDecoration();
+		styles.textSize = this.#getSelectionTextSize();
+
+		return styles;
+	}
+
+	setTextSize(size: RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES = 'normal') {
+		this.#verifyViewInitiation();
+
+		const { state, dispatch } = this.#view!;
+		const { schema, selection, tr } = state;
+		const { from, to } = selection;
+
+		const textSizeMark = schema.marks.textSize;
+
+		tr.removeMark(from, to, textSizeMark);
+
+		tr.addMark(from, to, textSizeMark.create({ size }));
+
+		// Dispatch the transaction
+		dispatch(tr.scrollIntoView());
+		this.#userContentChange = true;
+		this.#handleChangeEvent();
 	}
 }
