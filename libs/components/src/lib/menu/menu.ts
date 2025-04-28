@@ -90,7 +90,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		if (autoFocusElement instanceof HTMLElement) {
 			autoFocusElement.focus();
 		} else {
-			this.setFocus(0, 1);
+			this.setFocus(0);
 		}
 	}
 
@@ -116,19 +116,19 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		switch (e.key) {
 			case keyArrowDown:
 				// go forward one index
-				this.setFocus(this.focusIndex + 1, 1);
+				this.setFocus(this.focusIndex + 1);
 				return;
 			case keyArrowUp:
 				// go back one index
-				this.setFocus(this.focusIndex - 1, -1);
+				this.setFocus(this.focusIndex - 1);
 				return;
 			case keyEnd:
 				// set focus on last item
-				this.setFocus(this.menuItems.length - 1, -1);
+				this.setFocus(this.menuItems.length - 1);
 				return;
 			case keyHome:
 				// set focus on first item
-				this.setFocus(0, 1);
+				this.setFocus(0);
 				return;
 
 			default:
@@ -250,36 +250,32 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		return this.isMenuItemElement(el);
 	};
 
-	private setFocus(focusIndex: number, adjustment: number): void {
+	private setFocus(focusIndex: number): void {
 		if (this.menuItems === undefined) {
 			return;
 		}
 
 		while (focusIndex >= 0 && focusIndex < this.menuItems.length) {
-			const child: Element = this.menuItems[focusIndex];
+			const child: HTMLElement = this.menuItems[focusIndex];
 
-			if (this.isFocusableElement(child)) {
-				// change the previous index to -1
-				if (
-					this.focusIndex > -1 &&
-					this.menuItems.length >= this.focusIndex - 1
-				) {
-					this.menuItems[this.focusIndex].setAttribute('tabindex', '-1');
-				}
-
-				// update the focus index
-				this.focusIndex = focusIndex;
-
-				// update the tabindex of next focusable element
-				child.setAttribute('tabindex', '0');
-
-				// focus the element
-				child.focus();
-
-				break;
+			// change the previous index to -1
+			if (
+				this.focusIndex > -1 &&
+				this.menuItems.length >= this.focusIndex - 1
+			) {
+				this.menuItems[this.focusIndex].setAttribute('tabindex', '-1');
 			}
 
-			focusIndex += adjustment;
+			// update the focus index
+			this.focusIndex = focusIndex;
+
+			// update the tabindex of next focusable element
+			child.setAttribute('tabindex', '0');
+
+			// focus the element
+			child.focus();
+
+			break;
 		}
 	}
 
