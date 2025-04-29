@@ -93,12 +93,13 @@
 		z-index: 2000;
 	}
 	:host([overlap-count]) & {
-    #{focus-variables.$focus-stroke-gap-color}: var(#{constants.$vvd-color-canvas});
-  }
-  :host([overlap-count]) &:not(:focus) {
-    box-shadow: inset 0 0 0 1px var(#{constants.$vvd-color-canvas});
-  }
-
+		#{focus-variables.$focus-stroke-gap-color}: var(
+			#{constants.$vvd-color-canvas}
+		);
+	}
+	:host([overlap-count]) &:not(:focus) {
+		box-shadow: inset 0 0 0 1px var(#{constants.$vvd-color-canvas});
+	}
 }
 
 h2 {
