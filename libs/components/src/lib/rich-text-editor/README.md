@@ -138,7 +138,7 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 </script>
 ```
 
-### Placehlder
+### Placeholder
 
 Use the `placholder` property to set and get the placeholder text in case the editor is empty.
 
