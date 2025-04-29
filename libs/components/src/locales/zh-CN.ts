@@ -174,7 +174,12 @@ const zhCN: Locale = {
 	},
 	richTextEditor: {
 		textBlockType: '文本块类型',
-		textSize: '文字大小'
+		textSize: '文字大小',
+		bold: '加粗',
+		italics: '斜体',
+		underline: '下划线',
+		strikethrough: '删除线',
+		monospace: '等宽字体',
 	}
 };
 

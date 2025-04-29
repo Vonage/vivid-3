@@ -174,7 +174,12 @@ const jaJP: Locale = {
 	},
 	richTextEditor: {
 		textBlockType: 'テキストブロックタイプ',
-		textSize: '文字サイズ'
+		textSize: '文字サイズ',
+		bold: '太字',
+		italics: '斜体',
+		underline: '下線',
+		strikethrough: '取り消し線',
+		monospace: '等幅',
 	}
 };
 

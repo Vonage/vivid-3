@@ -174,7 +174,12 @@ const enUS: Locale = {
 	},
 	richTextEditor: {
 		textBlockType: 'Text Block Type',
-		textSize: 'Text Size'
+		textSize: 'Text Size',
+		bold: 'Bold',
+		italics: 'Italics',
+		underline: 'Underline',
+		strikethrough: 'Strikethrough',
+		monospace: 'Monospace',
 	}
 };
 

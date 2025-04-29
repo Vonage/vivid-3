@@ -176,7 +176,12 @@ const deDE: Locale = {
 	},
 	richTextEditor: {
 		textBlockType: 'Textblocktyp',
-		textSize: 'Textgröße'
+		textSize: 'Textgröße',
+		bold: 'Fett',
+		italics: 'Kursiv',
+		underline: 'Unterstrichen',
+		strikethrough: 'Durchgestrichen',
+		monospace: 'Monospace',
 	}
 };
 

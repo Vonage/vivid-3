@@ -197,11 +197,11 @@ export const MENU_BAR_ITEMS: {
 					${repeat(
 						(_) => TEXT_DECORATION_ITEMS,
 						html`
-                        <${tooltipTag} text="${(x) => x.text}" placement="top">
+                        <${tooltipTag} text="${(x, { parentContext: { parent }}) => parent.locale.richTextEditor[x.value]}" placement="top">
                             <${buttonTag}
                                 class="selection-button"
                                 slot="anchor"
-                                aria-label="${(x) => x.text}"
+                                aria-label="${(x, { parentContext: { parent }}) => parent.locale.richTextEditor[x.value]}"
                                 size="super-condensed"
                                 appearance="ghost-light"
                                 shape="rounded"

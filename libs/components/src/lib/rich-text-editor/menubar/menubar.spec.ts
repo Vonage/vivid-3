@@ -265,19 +265,7 @@ describe('menuBar', () => {
 
 		describe('textDecoration', () => {
 			const getDecorationButtons = () => {
-				const queryResult = TEXT_DECORATION_ITEMS.reduce(
-					(acc: HTMLElement[], value) => {
-						acc.push(
-							element.shadowRoot?.querySelector(
-								`[aria-label="${value.text}"]`
-							) as HTMLElement
-						);
-						return acc;
-					},
-					[]
-				);
-
-				return queryResult;
+				return Array.from(getSelectionMenu('text-decoration').querySelectorAll('.selection-button')) as HTMLElement[];
 			};
 
 			const getDecorationButton = (buttonText: string) =>
@@ -356,6 +344,17 @@ describe('menuBar', () => {
 					expect(buttons[i].parentElement?.getAttribute('placement')).toBe(
 						'top'
 					);
+				}
+			});
+
+			it('should set a tooltip with localized text decoration message', async () => {
+				setLocale(deDE);
+				element.setAttribute('menu-items', 'textDecoration');
+				await elementUpdated(element);
+				
+				const buttons = getDecorationButtons();
+				for (let i = 0; i < buttons.length; i++) {
+					expect(buttons[i].parentElement?.getAttribute('text')).toBe(deDE.richTextEditor[TEXT_DECORATION_ITEMS[i].value]);
 				}
 			});
 
