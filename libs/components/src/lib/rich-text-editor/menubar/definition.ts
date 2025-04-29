@@ -4,6 +4,8 @@ import {
 	buttonDefinition,
 	dividerDefinition,
 	listboxOptionDefinition,
+	menuDefinition,
+	menuItemDefinition,
 	selectDefinition,
 	tooltipDefinition,
 } from '../../components';
@@ -22,6 +24,8 @@ export const menuBarDefinition = defineVividComponent(
 		listboxOptionDefinition,
 		dividerDefinition,
 		tooltipDefinition,
+		menuDefinition,
+		menuItemDefinition,
 	],
 	{
 		styles,

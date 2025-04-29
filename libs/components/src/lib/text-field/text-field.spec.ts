@@ -675,11 +675,14 @@ describe('vwc-text-field', () => {
 			const describedByTarget = element.querySelector(
 				`#${describedBy}`
 			) as HTMLElement;
-			return describedByTarget.innerText;
+			return describedByTarget.innerText.trim();
 		}
 
-		it('should use helperText value as the accessible description', () => {
+		it('should use helperText value as the accessible description', async () => {
 			element.helperText = 'Helper text';
+			await elementUpdated(element);
+			await elementUpdated(element);
+			await elementUpdated(element);
 
 			expect(getAccessibleDescription()).toBe('Helper text');
 		});
@@ -742,6 +745,20 @@ describe('vwc-text-field', () => {
 		it('should handle being connected without error', () => {
 			element = document.createElement(COMPONENT_TAG) as TextField;
 			expect(() => element.connectedCallback()).not.toThrow();
+		});
+	});
+
+	describe('safari workaround', () => {
+		it('should install the safari workaround stylesheet only once', () => {
+			// eslint-disable-next-line compat/compat
+			expect(document.adoptedStyleSheets.length).toBe(1);
+
+			const parent = element.parentElement!;
+			element.remove();
+			parent.appendChild(element);
+
+			// eslint-disable-next-line compat/compat
+			expect(document.adoptedStyleSheets.length).toBe(1);
 		});
 	});
 

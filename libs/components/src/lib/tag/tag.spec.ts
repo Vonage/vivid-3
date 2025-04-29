@@ -1,5 +1,9 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import { Icon } from '../icon/icon';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { Tag } from './tag';
 import '.';
 
@@ -345,5 +349,13 @@ describe('vwc-tag', () => {
 
 			expect(spy.mock.calls.length).toEqual(0);
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			allAriaPropertiesExcept(['ariaDisabled', 'ariaSelected'])
+		);
 	});
 });

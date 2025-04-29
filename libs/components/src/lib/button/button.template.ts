@@ -9,6 +9,7 @@ import {
 } from '../../shared/patterns/affix';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Button, ButtonAppearance, ButtonSize } from './button';
 
 const getAppearanceClassName = (
@@ -105,21 +106,8 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		name="${(x) => x.name}"
 		type="${(x) => getButtonType(x.type)}"
 		value="${(x) => x.value}"
-		aria-atomic="${(x) => x.ariaAtomic}"
-		aria-busy="${(x) => x.ariaBusy}"
-		aria-current="${(x) => x.ariaCurrent}"
-		aria-disabled="${(x) => x.ariaDisabled}"
-		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-haspopup="${(x) => x.ariaHasPopup}"
-		aria-hidden="${(x) => x.ariaHidden}"
-		aria-invalid="${(x) => x.ariaInvalid}"
-		aria-keyshortcuts="${(x) => x.ariaKeyShortcuts}"
-		aria-label="${(x) => x.ariaLabel}"
-		aria-live="${(x) => x.ariaLive}"
-		aria-pressed="${(x) => x.ariaPressed}"
-		aria-relevant="${(x) => x.ariaRelevant}"
-		aria-roledescription="${(x) => x.ariaRoleDescription}"
 		title="${(x) => x.title}"
+		${delegateAria()}
 		${ref('control')}
 	>
 		${buttonContent(context)}
@@ -137,19 +125,7 @@ function renderAnchorContent(context: VividElementDefinitionContext) {
 		rel="${(x) => x.rel}"
 		target="${(x) => x.target}"
 		type="${(x) => x.type}"
-		aria-atomic="${(x) => x.ariaAtomic}"
-		aria-busy="${(x) => x.ariaBusy}"
-		aria-current="${(x) => x.ariaCurrent}"
-		aria-disabled="${(x) => x.ariaDisabled}"
-		aria-expanded="${(x) => x.ariaExpanded}"
-		aria-haspopup="${(x) => x.ariaHasPopup}"
-		aria-hidden="${(x) => x.ariaHidden}"
-		aria-invalid="${(x) => x.ariaInvalid}"
-		aria-keyshortcuts="${(x) => x.ariaKeyShortcuts}"
-		aria-label="${(x) => x.ariaLabel}"
-		aria-live="${(x) => x.ariaLive}"
-		aria-relevant="${(x) => x.ariaRelevant}"
-		aria-roledescription="${(x) => x.ariaRoleDescription}"
+		${delegateAria()}
 		${ref('control')}
 	>
 		${buttonContent(context)}
@@ -157,7 +133,7 @@ function renderAnchorContent(context: VividElementDefinitionContext) {
 }
 
 export const buttonTemplate = (context: VividElementDefinitionContext) => {
-	return html` <template role="presentation">
+	return html` <template>
 		${when((x) => !x.href, html<Button>`${renderButtonContent(context)}`)}
 		${when((x) => x.href, html<Button>`${renderAnchorContent(context)}`)}
 	</template>`;

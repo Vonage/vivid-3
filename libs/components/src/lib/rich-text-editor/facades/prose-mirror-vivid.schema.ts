@@ -1,5 +1,16 @@
 import { schema as basicSchema } from 'prosemirror-schema-basic';
-import { Schema } from 'prosemirror-model';
+import { Mark, Schema } from 'prosemirror-model';
+
+const TEXT_SIZES_CSS_VARIABLES = {
+	'extra-large': 'var(--vvd-typography-heading-4)',
+	large: 'var(--vvd-typography-base-extended)',
+	normal: 'var(--vvd-typography-base)',
+	small: 'var(--vvd-typography-base-condensed)',
+};
+
+const CSS_VARIABLES_TO_SIZES = Object.fromEntries(
+	Object.entries(TEXT_SIZES_CSS_VARIABLES).map(([key, value]) => [value, key])
+);
 
 const customMarks = {
 	u: {
@@ -18,6 +29,32 @@ const customMarks = {
 		parseDOM: [{ tag: 'tt' }, { tag: 'code' }],
 		toDOM() {
 			return ['tt', 0] as const;
+		},
+	},
+	textSize: {
+		attrs: { size: { default: 'normal' } },
+		parseDOM: [
+			{
+				tag: "span[style*='font']",
+				getAttrs: (node: HTMLElement) => {
+					const style = node.getAttribute('style');
+
+					const fontSize = style!
+						.match(/font:\s*([^;]+)/)?.[1]
+						?.trim() as string;
+
+					const size = CSS_VARIABLES_TO_SIZES[fontSize];
+					if (size) return { size };
+
+					return false;
+				},
+			},
+		],
+		toDOM(mark: Mark) {
+			const size = mark.attrs.size as keyof typeof TEXT_SIZES_CSS_VARIABLES;
+			const fontSize =
+				TEXT_SIZES_CSS_VARIABLES[size] || TEXT_SIZES_CSS_VARIABLES.normal;
+			return ['span', { style: `font: ${fontSize};` }, 0] as const;
 		},
 	},
 };

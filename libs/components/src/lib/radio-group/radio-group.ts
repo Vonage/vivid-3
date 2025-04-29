@@ -11,6 +11,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Radio } from '../radio/radio';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 
 /**
  * @public
@@ -19,7 +20,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @vueModel modelValue value change `event.currentTarget.value`
  */
-export class RadioGroup extends VividElement {
+export class RadioGroup extends HostSemantics(VividElement) {
 	/**
 	 * Indicates the group's label.
 	 *
