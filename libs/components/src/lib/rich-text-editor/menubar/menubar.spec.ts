@@ -7,6 +7,7 @@ import { setLocale } from '../../../shared/localization';
 import deDE from '@vonage/vivid/locales/de-DE';
 import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
 import '.';
+import enUS from '@vonage/vivid/locales/en-US';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -23,6 +24,7 @@ describe('menuBar', () => {
 	let element: MenuBar;
 
 	beforeEach(async () => {
+		setLocale(enUS);
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as unknown as MenuBar;
@@ -201,8 +203,6 @@ describe('menuBar', () => {
 
 			it('should set a tooltip with localized text block message', async () => {
 				setLocale(deDE);
-				element.setAttribute('menu-items', '');
-				await elementUpdated(element);
 				element.setAttribute('menu-items', 'textBlock');
 				await elementUpdated(element);
 				const menu = getSelectionMenu('text-block');
@@ -499,6 +499,16 @@ describe('menuBar', () => {
 				expect(menu.open).toBe(true);
 			});
 
+			it('should set a tooltip with localized text size message', async () => {
+				setLocale(deDE);
+				element.setAttribute('menu-items', 'textSize');
+				await elementUpdated(element);
+				const menu = getSelectionMenu('text-size');
+				const tooltip = menu.children[0] as Tooltip;
+
+				expect(tooltip?.getAttribute('text')).toBe(deDE.richTextEditor.textSize);
+			});
+			
 			it('should display menu items according to TEXT_SIZES', async () => {
 				const menu = getSelectionMenu('text-size');
 

@@ -237,7 +237,7 @@ export const MENU_BAR_ITEMS: {
                         aria-label="Text Size"
                         placement="bottom-end"
                     >
-						<${tooltipTag} slot="anchor" text="Text Size" placement="top">
+						<${tooltipTag} slot="anchor" text="${(_, {parent}) => parent.locale.richTextEditor.textSize }" placement="top">
                             <${buttonTag}
                                 slot="anchor"
                                 aria-label="Open text size menu"

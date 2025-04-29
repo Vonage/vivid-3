@@ -173,7 +173,8 @@ const jaJP: Locale = {
 		) => `オプション ${name} がフォーカスされました。${position}/${total}`,
 	},
 	richTextEditor: {
-		textBlockType: 'テキストブロックタイプ'
+		textBlockType: 'テキストブロックタイプ',
+		textSize: '文字サイズ'
 	}
 };
 
