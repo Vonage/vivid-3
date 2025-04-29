@@ -140,7 +140,7 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 
 ### Placeholder
 
-Use the `placholder` property to set and get the placeholder text in case the editor is empty.
+Use the `placeholder` property to set and get the placeholder text in case the editor is empty.
 
 ```html preview
 <vwc-rich-text-editor
