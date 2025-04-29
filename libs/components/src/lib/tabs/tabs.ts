@@ -1,4 +1,4 @@
-import { attr, observable } from '@microsoft/fast-element';
+import { attr, DOM, observable } from '@microsoft/fast-element';
 import {
 	keyArrowDown,
 	keyArrowUp,
@@ -16,7 +16,12 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 
 export const ACTIVE_TAB_WIDTH = '--_tabs-active-tab-inline-size';
-export const TABLIST_COLUMN = '--_tabs-tablist-column';
+
+/**
+ * In edge cases there can be no active tab.
+ * But for backwards compatibility we keep them typed as non-nullable.
+ */
+type IncorrectlyTyped = any;
 
 /**
  * Types of tabs connotation.
@@ -43,6 +48,20 @@ export const TabsOrientation = {
 export type TabsOrientation =
 	typeof TabsOrientation[keyof typeof TabsOrientation];
 
+const oppositeOrientation = (orientation: TabsOrientation) =>
+	orientation === TabsOrientation.horizontal
+		? TabsOrientation.vertical
+		: TabsOrientation.horizontal;
+const gridProperty = (orientation: TabsOrientation) =>
+	orientation === TabsOrientation.horizontal ? 'gridColumn' : 'gridRow';
+const translateProperty = (orientation: TabsOrientation) =>
+	orientation === TabsOrientation.horizontal ? 'translateX' : 'translateY';
+const offsetProperty = (orientation: TabsOrientation) =>
+	orientation === TabsOrientation.horizontal ? 'offsetLeft' : 'offsetTop';
+
+const isFocusableElement = (el: Element) =>
+	el.getAttribute('aria-disabled') !== 'true' && !el.hasAttribute('hidden');
+
 /**
  * @public
  * @component tabs
@@ -63,18 +82,67 @@ export class Tabs extends VividElement {
 	 * @internal
 	 */
 	orientationChanged(): void {
-		if (this.$fastController.isConnected) {
-			this.setTabs();
-			this.setTabPanels();
-			this.#handleActiveIndicatorPosition();
-		}
+		this._registerTabsChange();
 
-		this.#patchIndicatorStyleTransition();
-		if (!this.activeIndicatorRef) return;
-		if (this.orientation === TabsOrientation.vertical) {
-			this.activeIndicatorRef.style.removeProperty(ACTIVE_TAB_WIDTH);
+		// Once the DOM has updated, move the active indicator into new place
+		if (this.$fastController.isConnected) {
+			DOM.queueUpdate(() => this.#moveActiveIndicator(false));
 		}
 	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	tabs: HTMLElement[] = [];
+	/**
+	 * @internal
+	 */
+	tabsChanged() {
+		for (const tab of this.tabs) {
+			if (!tab.id) {
+				tab.id = `tab-${uniqueId()}`;
+			}
+			tab.addEventListener('click', this.#onTabClick);
+			tab.addEventListener('keydown', this.#onTabKeyDown);
+		}
+		this._registerTabsChange();
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	tabpanels: HTMLElement[] = [];
+	/**
+	 * @internal
+	 */
+	tabpanelsChanged() {
+		for (const panel of this.tabpanels) {
+			if (!panel.id) {
+				panel.id = `panel-${uniqueId()}`;
+			}
+		}
+		this._registerTabsChange();
+	}
+
+	/**
+	 * Tabs that are paired with a tabpanel. Ignore any excess tabs or panels.
+	 */
+	private get _pairedTabs() {
+		return this.tabs.slice(
+			0,
+			Math.min(this.tabs.length, this.tabpanels.length)
+		);
+	}
+
+	/**
+	 * Tabs that are eligible to become active.
+	 */
+	private get _validTabs() {
+		return this._pairedTabs.filter(isFocusableElement);
+	}
+
 	/**
 	 * The id of the active tab
 	 *
@@ -87,294 +155,157 @@ export class Tabs extends VividElement {
 	/**
 	 * @internal
 	 */
-	activeidChanged(oldValue: string, _: string): void {
-		if (
-			this.$fastController.isConnected &&
-			this.tabs.length <= this.tabpanels.length
-		) {
-			this.prevActiveTabIndex = this.tabs.findIndex(
-				(item: HTMLElement) => item.id === oldValue
-			);
-			this.setTabs();
-			this.setTabPanels();
-			this.#handleActiveIndicatorPosition();
-		}
-
-		this.#patchIndicatorStyleTransition();
-		this.#scrollToIndex(this.activeTabIndex);
+	activeidChanged() {
+		this._registerTabsChange();
 	}
-
-	#isLastTabSelectedAfterRemove = (
-		oldValue: HTMLElement[],
-		newValue: HTMLElement[],
-		isTab = true
-	) => {
-		return (
-			oldValue.length > newValue.length &&
-			this.activetab.id ===
-				oldValue[oldValue.length - 1].getAttribute(
-					isTab ? 'id' : 'aria-labelledby'
-				)
-		);
-	};
-
-	/**
-	 * @internal
-	 */
-	@observable
-	tabs!: HTMLElement[];
-	/**
-	 * @internal
-	 */
-	tabsChanged(oldValue: HTMLElement[], newValue: HTMLElement[]): void {
-		if (
-			this.$fastController.isConnected &&
-			this.tabs.length <= this.tabpanels.length
-		) {
-			this.tabIds = this.getTabIds();
-			this.tabpanelIds = this.getTabPanelIds();
-
-			this.setTabs();
-			this.setTabPanels();
-			this.#handleActiveIndicatorPosition(
-				!this.#isLastTabSelectedAfterRemove(oldValue, newValue)
-			);
-		}
-
-		this.#patchIndicatorStyleTransition();
-		this.#updateScrollStatus();
-	}
-
-	/**
-	 * @internal
-	 */
-	@observable
-	tabpanels!: HTMLElement[];
-
-	/**
-	 * @internal
-	 */
-	tabpanelsChanged(oldValue: HTMLElement[], newValue: HTMLElement[]): void {
-		if (
-			this.$fastController.isConnected &&
-			this.tabpanels.length <= this.tabs.length
-		) {
-			this.tabIds = this.getTabIds();
-			this.tabpanelIds = this.getTabPanelIds();
-
-			this.setTabs();
-			this.setTabPanels();
-			this.#handleActiveIndicatorPosition(
-				!this.#isLastTabSelectedAfterRemove(oldValue, newValue, false)
-			);
-		}
-
-		this.#patchIndicatorStyleTransition();
-	}
-
-	/**
-	 * Whether or not to show the active indicator
-	 * @public
-	 * @remarks
-	 * HTML Attribute: activeindicator
-	 */
-	@attr({ mode: 'boolean' })
-	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
-	activeindicator = true;
-
-	/**
-	 * @internal
-	 */
-	@observable
-	activeIndicatorRef!: HTMLElement;
-
-	/**
-	 * @internal
-	 */
-	@observable
-	showActiveIndicator = true;
 
 	/**
 	 * A reference to the active tab
 	 * @public
 	 */
-	activetab!: HTMLElement;
+	get activetab(): HTMLElement {
+		return (
+			this._validTabs.find((tab) => tab.id === this.activeid) ??
+			(null as IncorrectlyTyped)
+		);
+	}
 
-	private prevActiveTabIndex = 0;
-	private activeTabIndex = 0;
-	private tabIds: Array<string> = [];
-	private tabpanelIds: Array<string> = [];
+	#setActiveTabDueToUserInteraction(tab: HTMLElement) {
+		this.activeid = tab.id;
+		tab.focus();
+		this.$emit('change', tab);
+	}
 
-	private change = (): void => {
-		this.$emit('change', this.activetab);
-	};
+	#isTabsChangeQueued = false;
 
-	private isDisabledElement = (el: Element): el is HTMLElement => {
-		return el.getAttribute('aria-disabled') === 'true';
-	};
+	/**
+	 * Defer actual processing of changes into a microtask to wait for all DOM changes to complete. E.g. when tabs and
+	 * active id are updated at the same time.
+	 */
+	private _registerTabsChange() {
+		if (this.#isTabsChangeQueued) {
+			return;
+		}
+		this.#isTabsChangeQueued = true;
+		window.queueMicrotask(() => {
+			if (this.$fastController.isConnected) {
+				this.#handleTabsChange();
+			}
+			this.#isTabsChangeQueued = false;
+		});
+	}
 
-	private isHiddenElement = (el: Element): el is HTMLElement => {
-		return el.hasAttribute('hidden');
-	};
+	#lastActiveId: string | undefined = undefined;
 
-	private isFocusableElement = (el: Element): el is HTMLElement => {
-		return !this.isDisabledElement(el) && !this.isHiddenElement(el);
-	};
+	#handleTabsChange() {
+		const validTabs = this._validTabs;
 
-	private getActiveIndex(): number {
-		const id: string = this.activeid;
-		if (id !== undefined) {
-			return this.tabIds.indexOf(this.activeid) === -1
-				? 0
-				: this.tabIds.indexOf(this.activeid);
-		} else {
-			return 0;
+		let newActiveId: string | undefined = this.activeid;
+		if (
+			!validTabs.length ||
+			(newActiveId && !validTabs.find((t) => t.id === newActiveId))
+		) {
+			newActiveId = undefined;
+		}
+		if (!newActiveId && validTabs.length) {
+			newActiveId = validTabs[0].id;
+		}
+
+		if (this.activeid !== newActiveId) {
+			this.activeid = newActiveId as IncorrectlyTyped;
+			this.$emit('change', this.activetab);
+		}
+
+		this.#updateSlottedChildren();
+
+		if (this.activeid !== this.#lastActiveId) {
+			if (this.activetab) {
+				const shouldAnimate = this.#lastActiveId !== undefined;
+				this.#scrollToTab(this.activetab, shouldAnimate);
+				this.#moveActiveIndicator(shouldAnimate);
+			}
+			this.#lastActiveId = this.activeid;
 		}
 	}
 
-	private setTabs = (): void => {
-		const gridHorizontalProperty = 'gridColumn';
-		const gridVerticalProperty = 'gridRow';
-		const gridProperty = this.#isHorizontal()
-			? gridHorizontalProperty
-			: gridVerticalProperty;
+	/**
+	 * Updates the tabs and their panels according to the current state of the component.
+	 */
+	#updateSlottedChildren() {
+		for (const [index, tab] of this._pairedTabs.entries()) {
+			const panel = this.tabpanels[index];
 
-		this.activeTabIndex = this.getActiveIndex();
-		this.showActiveIndicator = false;
+			const isActiveTab = tab.id === this.activeid;
 
-		if (this.#isHorizontal()) {
-			this.tablist!.style.setProperty(
-				'grid-template-columns',
-				`repeat(${this.tabs.length}, var(${TABLIST_COLUMN}))`
+			tab.setAttribute('aria-selected', isActiveTab ? 'true' : 'false');
+			tab.setAttribute('aria-controls', panel.id);
+			tab.setAttribute('tabindex', isActiveTab ? '0' : '-1');
+			if (isActiveTab && this.connotation) {
+				tab.setAttribute('connotation', this.connotation);
+			} else {
+				tab.removeAttribute('connotation');
+			}
+
+			tab.classList.toggle(
+				'vertical',
+				this.orientation === TabsOrientation.vertical
 			);
-		} else {
-			this.tablist!.style.removeProperty('grid-template-columns');
-		}
 
-		this.tabs.forEach((tab: HTMLElement, index: number) => {
-			if (tab.slot === 'tab') {
-				const isActiveTab =
-					this.activeTabIndex === index && this.isFocusableElement(tab);
-				if (this.activeindicator && this.isFocusableElement(tab)) {
-					this.showActiveIndicator = true;
-				}
-				const tabId: string = this.tabIds[index];
-				const tabpanelId: string = this.tabpanelIds[index];
-				tab.setAttribute('id', tabId);
-				tab.setAttribute('aria-selected', isActiveTab ? 'true' : 'false');
-				tab.setAttribute('aria-controls', tabpanelId);
-				tab.addEventListener('click', this.handleTabClick);
-				tab.addEventListener('keydown', this.#handleTabKeyDown);
-				tab.setAttribute('tabindex', isActiveTab ? '0' : '-1');
-				if (isActiveTab) {
-					this.activetab = tab;
-					this.activeid = tabId;
-				}
-			}
+			tab.style[gridProperty(oppositeOrientation(this.orientation))] = '';
+			tab.style[gridProperty(this.orientation)] = `${index + 1}`;
 
-			// If the original property isn't emptied out,
-			// the next set will morph into a grid-area style setting that is not what we want
-			tab.style[gridHorizontalProperty] = '';
-			tab.style[gridVerticalProperty] = '';
-			tab.style[gridProperty] = `${index + 1}`;
-			!this.#isHorizontal()
-				? tab.classList.add('vertical')
-				: tab.classList.remove('vertical');
-		});
-
-		this.#updateTabsConnotation();
-	};
-
-	private setTabPanels = (): void => {
-		this.tabpanels.forEach((tabpanel: HTMLElement, index: number) => {
-			const tabId: string = this.tabIds[index];
-			const tabpanelId: string = this.tabpanelIds[index];
-			tabpanel.setAttribute('id', tabpanelId);
-			tabpanel.setAttribute('aria-labelledby', tabId);
-			this.activeTabIndex !== index
-				? tabpanel.setAttribute('hidden', '')
-				: tabpanel.removeAttribute('hidden');
-		});
-	};
-
-	private getTabIds(): Array<string> {
-		return this.tabs.map((tab: HTMLElement) => {
-			return tab.getAttribute('id') ?? `tab-${uniqueId()}`;
-		});
-	}
-
-	private getTabPanelIds(): Array<string> {
-		return this.tabpanels.map((tabPanel: HTMLElement) => {
-			return tabPanel.getAttribute('id') ?? `panel-${uniqueId()}`;
-		});
-	}
-
-	private setComponent(): void {
-		if (this.activeTabIndex !== this.prevActiveTabIndex) {
-			this.activeid = this.tabIds[this.activeTabIndex] as string;
-			this.focusTab();
-			this.change();
+			panel.setAttribute('aria-labelledby', tab.id);
+			panel.hidden = !isActiveTab;
 		}
 	}
 
-	private handleTabClick = (event: MouseEvent): void => {
+	#onTabClick = (event: MouseEvent) => {
 		const selectedTab = event.currentTarget as HTMLElement;
-		if (selectedTab.nodeType === 1 && this.isFocusableElement(selectedTab)) {
-			this.prevActiveTabIndex = this.activeTabIndex;
-			this.activeTabIndex = this.tabs.indexOf(selectedTab);
-			this.setComponent();
+		if (this._validTabs.includes(selectedTab)) {
+			this.#setActiveTabDueToUserInteraction(selectedTab);
 		}
 	};
 
-	#isHorizontal = (): boolean => {
-		return this.orientation === TabsOrientation.horizontal;
-	};
-
-	#handleTabKeyDown = (event: KeyboardEvent): void => {
-		if (this.#isHorizontal()) {
-			switch (event.key) {
-				case keyArrowLeft:
-					event.preventDefault();
-					this.adjustBackward(event);
-					break;
-				case keyArrowRight:
-					event.preventDefault();
-					this.adjustForward(event);
-					break;
-			}
-		} else {
-			switch (event.key) {
-				case keyArrowUp:
-					event.preventDefault();
-					this.adjustBackward(event);
-					break;
-				case keyArrowDown:
-					event.preventDefault();
-					this.adjustForward(event);
-					break;
-			}
+	#onTabKeyDown = (event: KeyboardEvent) => {
+		const tabs = this._validTabs;
+		const activeTab = this.activetab;
+		if (!activeTab) {
+			return;
 		}
-		switch (event.key) {
-			case keyHome:
-				event.preventDefault();
-				this.adjust(-this.activeTabIndex);
-				break;
-			case keyEnd:
-				event.preventDefault();
-				this.adjust(this.tabs.length - this.activeTabIndex - 1);
-				break;
+
+		const [arrowKeyPrev, arrowKeyNext] =
+			this.orientation === TabsOrientation.horizontal
+				? [keyArrowLeft, keyArrowRight]
+				: [keyArrowUp, keyArrowDown];
+
+		const keyToNextTab = {
+			[arrowKeyPrev]: () =>
+				tabs[(tabs.indexOf(activeTab) - 1 + tabs.length) % tabs.length],
+			[arrowKeyNext]: () => tabs[(tabs.indexOf(activeTab) + 1) % tabs.length],
+			[keyHome]: () => tabs[0],
+			[keyEnd]: () => tabs[tabs.length - 1],
+		};
+
+		if (keyToNextTab[event.key]) {
+			event.preventDefault();
+			this.#setActiveTabDueToUserInteraction(keyToNextTab[event.key]());
 		}
 	};
 
 	/**
-	 * The adjust method for FASTTabs
+	 * Adjusts the active index by numerical increments.
+	 * Only enabled tabs are considered.
 	 * @public
 	 * @remarks
-	 * This method allows the active index to be adjusted by numerical increments
 	 */
 	adjust(adjustment: number): void {
-		const focusableTabs = this.tabs.filter((t) => this.isFocusableElement(t));
-		const currentActiveTabIndex = focusableTabs.indexOf(this.activetab);
+		const focusableTabs = this._validTabs;
+		const currentActiveTabIndex = focusableTabs.findIndex(
+			(t) => t.id === this.activeid
+		);
+		if (currentActiveTabIndex === -1) {
+			return;
+		}
 
 		const nextTabIndex = limit(
 			0,
@@ -382,48 +313,69 @@ export class Tabs extends VividElement {
 			currentActiveTabIndex + adjustment
 		);
 
-		// the index of the next focusable tab within the context of all available tabs
-		const nextIndex = this.tabs.indexOf(focusableTabs[nextTabIndex]);
+		this.#setActiveTabDueToUserInteraction(focusableTabs[nextTabIndex]);
+	}
 
-		if (nextIndex > -1) {
-			this.#moveToTabByIndex(this.tabs, nextIndex);
+	/**
+	 * @internal
+	 */
+	@observable
+	activeIndicatorRef!: HTMLElement;
+
+	#isTransitioningTransform = false;
+
+	/**
+	 * @internal
+	 */
+	_onActiveIndicatorTransitionend(event: TransitionEvent) {
+		if (event.propertyName === 'transform') {
+			this.#isTransitioningTransform = false;
 		}
 	}
 
-	private adjustForward = (_: KeyboardEvent): void => {
-		this.#moveToNextTab(1);
-	};
+	#cancelAnimationIfNeeded() {
+		this.#isTransitioningTransform = false;
+		this.activeIndicatorRef.classList.remove('activeIndicatorTransition');
+	}
 
-	private adjustBackward = (_: KeyboardEvent): void => {
-		this.#moveToNextTab(-1);
-	};
+	#moveActiveIndicator(shouldAnimate: boolean) {
+		const activeTabIndex = this._pairedTabs.findIndex(
+			(tab) => tab.id === this.activeid
+		);
+		if (activeTabIndex === -1) {
+			return;
+		}
 
-	#moveToNextTab(direction: 1 | -1) {
-		const activeIndex = this.tabs.indexOf(this.activetab);
+		const indicatorEl = this.activeIndicatorRef;
 
-		for (let offset = 1; offset < this.tabs.length; offset++) {
-			const index =
-				(activeIndex + direction * offset + this.tabs.length) %
-				this.tabs.length;
+		const currentOffset = indicatorEl[offsetProperty(this.orientation)];
 
-			if (this.isFocusableElement(this.tabs[index])) {
-				this.#moveToTabByIndex(this.tabs, index);
-				break;
+		// Temporary move indicator to measure target offset
+		indicatorEl.style[gridProperty(this.orientation)] = `${activeTabIndex + 1}`;
+		const targetOffset = indicatorEl[offsetProperty(this.orientation)];
+		indicatorEl.style[gridProperty(this.orientation)] = '';
+
+		const relativeOffset = targetOffset - currentOffset;
+
+		const currentTransform = indicatorEl.style.transform;
+		const targetTransform = `${translateProperty(
+			this.orientation
+		)}(${relativeOffset}px)`;
+
+		if (shouldAnimate) {
+			indicatorEl.classList.add('activeIndicatorTransition');
+			if (currentTransform !== targetTransform) {
+				this.#isTransitioningTransform = true;
 			}
+		} else {
+			this.#cancelAnimationIfNeeded();
 		}
-	}
 
-	#moveToTabByIndex = (group: HTMLElement[], index: number) => {
-		const tab: HTMLElement = group[index] as HTMLElement;
-		this.activetab = tab;
-		this.prevActiveTabIndex = this.activeTabIndex;
-		this.activeTabIndex = index;
-		tab.focus();
-		this.setComponent();
-	};
-
-	private focusTab(): void {
-		this.tabs[this.activeTabIndex].focus();
+		indicatorEl.style.transform = targetTransform;
+		indicatorEl.style.setProperty(
+			ACTIVE_TAB_WIDTH,
+			this.tabs[activeTabIndex].getBoundingClientRect().width + 'px'
+		);
 	}
 
 	@observable tablist?: HTMLElement;
@@ -435,6 +387,12 @@ export class Tabs extends VividElement {
 	 * HTML Attribute: connotation
 	 */
 	@attr connotation?: TabsConnotation;
+	/**
+	 * @internal
+	 */
+	connotationChanged() {
+		this._registerTabsChange();
+	}
 
 	/**
 	 * sets the initial preferred margin from predefined available options
@@ -459,79 +417,43 @@ export class Tabs extends VividElement {
 	 */
 	@attr({ attribute: 'tabs-layout' }) tabsLayout?: 'align-start' | 'stretch';
 
-	/**
-	 * @internal
-	 */
-	connotationChanged() {
-		this.#updateTabsConnotation();
-	}
-
 	#updateScrollStatus() {
-		this.tablist!.parentElement!.dispatchEvent!(new Event('scroll'));
+		// Trigger scroll shadow evaluation
+		this.#tabListScrollWrapper.dispatchEvent!(new Event('scroll'));
 	}
 
-	get #shouldMoveIndicator() {
-		return !(
-			!this.activetab ||
-			!this.activeIndicatorRef ||
-			this.orientation === TabsOrientation.vertical ||
-			!this.showActiveIndicator
-		);
-	}
-
-	#patchIndicatorStyleTransition() {
-		if (!this.#shouldMoveIndicator) {
-			return;
-		}
-
-		const width = this.activetab.getBoundingClientRect().width;
-		this.activeIndicatorRef.style.setProperty(ACTIVE_TAB_WIDTH, `${width}px`);
-	}
+	#resizeObserver?: ResizeObserver;
 
 	override connectedCallback() {
 		super.connectedCallback();
 
-		this.tabIds = this.getTabIds();
-		this.tabpanelIds = this.getTabPanelIds();
-		this.activeTabIndex = this.getActiveIndex();
+		this._registerTabsChange();
 
 		requestAnimationFrame(() => this.#updateScrollStatus());
 
-		const scrollWrapper = this.tablist!.parentElement as HTMLElement;
 		this.#resizeObserver = new ResizeObserver(() => {
+			this.#moveActiveIndicator(this.#isTransitioningTransform);
 			this.#updateScrollStatus();
-			this.#patchIndicatorStyleTransition();
 		});
-
-		this.#resizeObserver!.observe(scrollWrapper);
+		this.#resizeObserver!.observe(this.#tabListScrollWrapper);
+		this.#resizeObserver!.observe(this.tablist!);
 	}
-
-	#resizeObserver?: ResizeObserver;
 
 	override disconnectedCallback() {
 		super.disconnectedCallback();
 		this.#resizeObserver!.disconnect();
 	}
 
-	#updateTabsConnotation() {
-		if (this.tabs) {
-			this.tabs.forEach((tab) => {
-				if (tab.getAttribute('aria-selected') === 'true') {
-					tab.setAttribute('connotation', this.connotation as string);
-				} else {
-					tab.removeAttribute('connotation');
-				}
-			});
-		}
-	}
-
 	get #tabListWrapper(): HTMLElement {
 		return this.shadowRoot!.querySelector('.tablist-wrapper') as HTMLElement;
 	}
 
-	#scrollToIndex(index: number) {
-		const tab = this.tabs?.[index];
-		if (!tab) return;
+	get #tabListScrollWrapper(): HTMLElement {
+		return this.tablist!.parentElement!;
+	}
+
+	#scrollToTab(tab: HTMLElement, shouldAnimate = true) {
+		const index = this.tabs.findIndex((t) => t === tab);
 		let left = 0;
 		let top = 0;
 		if (this.orientation === TabsOrientation.vertical) {
@@ -556,7 +478,11 @@ export class Tabs extends VividElement {
 			}
 		}
 
-		this.#tabListWrapper.scrollTo({ top, left, behavior: 'smooth' });
+		this.#tabListWrapper.scrollTo({
+			top,
+			left,
+			behavior: shouldAnimate ? 'smooth' : 'instant',
+		});
 	}
 
 	/**
@@ -564,55 +490,14 @@ export class Tabs extends VividElement {
 	 */
 	@observable _actionItemsSlottedContent: HTMLElement[] = [];
 
-	#getGridProperty() {
-		return this.#isHorizontal() ? 'gridColumn' : 'gridRow';
-	}
-
-	#getTranslateProperty() {
-		return this.#isHorizontal() ? 'translateX' : 'translateY';
-	}
-
-	#handleActiveIndicatorPosition(animate = true) {
-		if (this.showActiveIndicator && this.activeindicator) {
-			this.#animateActiveIndicator(animate);
-		}
-	}
-
-	#animateActiveIndicator(animate: boolean) {
-		const offsetProperty = this.#isHorizontal() ? 'offsetLeft' : 'offsetTop';
-
-		const currentOffset = this.activeIndicatorRef[offsetProperty];
-		const currentGridValue =
-			this.activeIndicatorRef.style[this.#getGridProperty()];
-
-		// Temporary move indicator to measure target offset
-		this.activeIndicatorRef.style[this.#getGridProperty()] = `${
-			this.activeTabIndex + 1
-		}`;
-		const targetOffset = this.activeIndicatorRef[offsetProperty];
-		this.activeIndicatorRef.style[this.#getGridProperty()] = currentGridValue;
-
-		const relativeOffset = targetOffset - currentOffset;
-		this.activeIndicatorRef.style.transform = `${this.#getTranslateProperty()}(${relativeOffset}px)`;
-		if (animate) {
-			this.activeIndicatorRef.classList.add('activeIndicatorTransition');
-		} else {
-			this.activeIndicatorRef.classList.remove('activeIndicatorTransition');
-		}
-	}
-
 	/**
-	 * @internal
+	 * Deprecated attribute. It has no effect.
+	 * @deprecated
+	 * @public
+	 * @remarks
+	 * HTML Attribute: activeindicator
 	 */
-	activeIndicatorRefChanged() {
-		this.activeIndicatorRef.addEventListener('transitionend', () => {
-			// Move indicator onto the active tab
-			this.activeIndicatorRef.style[this.#getGridProperty()] = `${
-				this.activeTabIndex + 1
-			}`;
-			this.activeIndicatorRef.style.transform = `${this.#getTranslateProperty()}(0px)`;
-
-			this.activeIndicatorRef.classList.remove('activeIndicatorTransition');
-		});
-	}
+	@attr({ mode: 'boolean' })
+	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	activeindicator = true;
 }

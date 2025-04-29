@@ -1,10 +1,4 @@
-import {
-	ExecutionContext,
-	html,
-	ref,
-	slotted,
-	when,
-} from '@microsoft/fast-element';
+import { ExecutionContext, html, ref, slotted } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { Tabs } from './tabs.js';
 
@@ -70,15 +64,14 @@ export const TabsTemplate = html<Tabs>`
 					<div class="tablist-wrapper" @scroll="${setShadowWhenScrollTabs}">
 						<div class="tablist" role="tablist" ${ref('tablist')}>
 							<slot name="tab" ${slotted('tabs')}></slot>
-							${when(
-								(x) => x.showActiveIndicator,
-								html<Tabs>`
-									<div
-										${ref('activeIndicatorRef')}
-										class="active-indicator"
-									></div>
-								`
-							)}
+							<div
+								${ref('activeIndicatorRef')}
+								class="active-indicator"
+								@transitionend="${(x, c) =>
+									x._onActiveIndicatorTransitionend(
+										c.event as TransitionEvent
+									)}"
+							></div>
 						</div>
 					</div>
 				</div>

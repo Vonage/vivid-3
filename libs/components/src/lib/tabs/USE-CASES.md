@@ -42,20 +42,17 @@ The `removable` attribute on the **Tab** component can used along with the `acti
 	});
 
 	function addTab(name) {
-		const tabItems = document.querySelectorAll('vwc-tab');
 		const tab = document.createElement('vwc-tab');
 		tab.label = name;
-		id = 'tab-' + (tabItems.length + 1);
+		const id = `tab-${Math.random()}`;
 		tab.id = id;
 		tab.removable = true;
 		const tabs = document.querySelector('vwc-tabs');
 		tabs.appendChild(tab);
-		setTimeout(() => {
-			tabs.activeid = id;
-		}, 50);
 		const tabPanel = document.createElement('vwc-tab-panel');
 		tabPanel.textContent = `${name} content`;
-		document.querySelector('vwc-tabs').appendChild(tabPanel);
+		tabs.appendChild(tabPanel);
+		tabs.activeid = id;
 	}
 </script>
 ```

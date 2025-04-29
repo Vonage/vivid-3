@@ -107,6 +107,7 @@
 .tablist {
 	position: relative;
 	display: grid;
+	overflow: hidden;
 	box-sizing: border-box;
 	color: var(#{appearance.get-appearance-token(text)});
 
@@ -121,10 +122,12 @@
 
 	.base.orientation-vertical & {
 		padding: var(#{variables.$tabs-tablist-gutter});
+		block-size: fit-content;
 		grid-row: 1 / 2;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto;
 		inline-size: 100%;
+		min-block-size: 100%;
 		place-self: flex-start end;
 		row-gap: var(#{variables.$tabs-tablist-gutter});
 	}
@@ -132,9 +135,11 @@
 	.base:not(.orientation-vertical) & {
 		justify-content: flex-start;
 		column-gap: var(#{variables.$tabs-tablist-gutter});
+		grid-auto-columns: var(#{variables.$tabs-tablist-column});
 		grid-auto-flow: column;
 		grid-template-rows: auto auto;
-		inline-size: 100%;
+		inline-size: fit-content;
+		min-inline-size: 100%;
 		padding-inline: var(#{variables.$tabs-tablist-gutter});
 	}
 
@@ -208,7 +213,7 @@ slot[name='action-items'] {
 		align-self: center;
 		border-radius: #{border-radius-variables.$border-radius-condensed};
 		block-size: 80%;
-		grid-area: 1 / 1 / auto / auto;
+		grid-area: 1 / 1;
 		inline-size: var(#{variables.$tabs-active-indicator-stroke-width});
 	}
 
@@ -217,7 +222,7 @@ slot[name='action-items'] {
 		z-index: 1;
 		border-radius: #{border-radius-variables.$border-radius-condensed};
 		block-size: var(#{variables.$tabs-active-indicator-stroke-width});
-		grid-column: 1 / auto;
+		grid-area: 2 / 1;
 		inline-size: calc(var(#{variables.$tabs-active-indicator-inline-size}));
 		inset-block-end: 0;
 		inset-inline-start: 8px;

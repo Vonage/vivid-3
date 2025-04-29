@@ -15,6 +15,14 @@ describe('vwc-tabs', () => {
 		) as HTMLElement;
 	}
 
+	class TransitionEvent extends Event {
+		constructor(type: string, eventInitDict?: TransitionEventInit) {
+			super(type, eventInitDict);
+			this.propertyName = eventInitDict?.propertyName || '';
+		}
+		propertyName: string;
+	}
+
 	const originalResizeObserver = global.ResizeObserver;
 	let resizeObserver: any;
 
@@ -243,19 +251,26 @@ describe('vwc-tabs', () => {
 
 		it('should remove class "end-scroll" if number of slotted tabs reduced scroll-wrapper width bellow client-width', async () => {
 			await elementUpdated(element);
-			setScrollWidth(50);
-			const tab: Tab = document.createElement('vwc-tab') as Tab;
+
+			const tab = document.createElement('vwc-tab');
 			element.appendChild(tab);
+			setScrollWidth(50);
+			resizeObserver.triggerResize();
 			await elementUpdated(element);
+
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeFalsy();
 		});
 
 		it('should add class "end-scroll" if number of slotted tabs increased scroll-wrapper width above client-width', async () => {
+			setScrollWidth(50);
 			await elementUpdated(element);
-			setScrollWidth(500);
-			const tab: Tab = document.createElement('vwc-tab') as Tab;
+
+			const tab = document.createElement('vwc-tab');
 			element.appendChild(tab);
 			await elementUpdated(element);
+			setScrollWidth(500);
+			resizeObserver.triggerResize();
+
 			expect(shadowWrapper.classList.contains('end-scroll')).toBeTruthy();
 		});
 
@@ -280,53 +295,41 @@ describe('vwc-tabs', () => {
 			element.disconnectedCallback();
 			expect(resizeObserver.disconnect).toHaveBeenCalled();
 		});
-
-		it('should prevent animation when last tab is selected and a tab is removed', async () => {
-			element.activeid = 'desserts';
-			element.showActiveIndicator = true;
-			await elementUpdated(element);
-			const activeIndicator = getActiveIndicator();
-
-			element.children[0].remove();
-			await elementUpdated(element);
-
-			expect(
-				activeIndicator.classList.contains('activeIndicatorTransition')
-			).toBe(false);
-		});
-
-		it('should prevent animation when last tab is selected and a its tab panel is removed', async () => {
-			element.activeid = 'desserts';
-			element.showActiveIndicator = true;
-			await elementUpdated(element);
-			const activeIndicator = getActiveIndicator();
-
-			element.querySelector('#dessertsPanel')?.remove();
-			await elementUpdated(element);
-
-			expect(
-				activeIndicator.classList.contains('activeIndicatorTransition')
-			).toBe(false);
-		});
 	});
 
 	describe('activeid', () => {
-		it('should set activeid property', async () => {
-			const activeid = 'entrees';
-			const tab: Tab = element.querySelector('#' + activeid) as Tab;
-
-			expect((tab as Tab).ariaSelected).toEqual('false');
-			element.activeid = activeid;
-
-			await elementUpdated(element);
-
-			expect((tab as Tab).ariaSelected).toEqual('true');
-		});
-
-		it('should set activeid property to first tab if activeid is not set', async () => {
+		it('should be initialized to first tab', async () => {
 			await setFixtureWithActiveId(null);
 			await elementUpdated(element);
 			expect(element.activeid).toEqual('apps');
+		});
+
+		it('should set the active tab', async () => {
+			const tab = element.querySelector('#entrees') as Tab;
+			expect(tab.ariaSelected).toEqual('false');
+
+			element.activeid = 'entrees';
+			await elementUpdated(element);
+
+			expect(tab.ariaSelected).toEqual('true');
+		});
+
+		it('should be reset when set to a tab that does not exist', async () => {
+			element.activeid = 'does-not-exist';
+			await elementUpdated(element);
+
+			expect(element.activeid).toBe('apps');
+		});
+
+		it('should be reset when set to a tab that is disabled', async () => {
+			const tab = element.querySelector('#entrees') as Tab;
+			tab.disabled = true;
+			await elementUpdated(element);
+
+			element.activeid = 'entrees';
+			await elementUpdated(element);
+
+			expect(element.activeid).toBe('apps');
 		});
 
 		describe('scrollToIndex', function () {
@@ -348,6 +351,7 @@ describe('vwc-tabs', () => {
 
 			it('should scrollTo with 0 if first tab becomes active', async function () {
 				element.activeid = element.tabs[1].id;
+				await elementUpdated(element);
 
 				element.activeid = element.tabs[0].id;
 				await elementUpdated(element);
@@ -360,6 +364,7 @@ describe('vwc-tabs', () => {
 
 			it('should scrollTo height 0 if first tab becomes active and orientation vertical', async function () {
 				element.activeid = element.tabs[1].id;
+				await elementUpdated(element);
 
 				element.orientation = 'vertical';
 				element.activeid = element.tabs[0].id;
@@ -549,15 +554,12 @@ describe('vwc-tabs', () => {
 	});
 
 	describe('activetab', () => {
-		it('should set activetab property', async () => {
-			const tab: Tab = element.querySelector('#entrees') as Tab;
-
-			expect(element.activetab).not.toEqual(tab);
+		it('should be the active tab element', async () => {
+			const tab = element.querySelector('#entrees') as Tab;
 			tab.click();
-			element.activetab = tab;
 			await elementUpdated(element);
 
-			expect(element.activetab).toEqual(tab);
+			expect(element.activetab).toBe(tab);
 		});
 	});
 
@@ -593,6 +595,13 @@ describe('vwc-tabs', () => {
 
 			expect(element.activeid).toBe('apps');
 		});
+
+		it('should do nothing if there is no active tab', async () => {
+			element.innerHTML = '';
+			await elementUpdated(element);
+
+			expect(() => element.adjust(1)).not.toThrow();
+		});
 	});
 
 	describe('active tab indicator', () => {
@@ -610,6 +619,7 @@ describe('vwc-tabs', () => {
 			});
 
 			element.activeid = 'entrees';
+			await elementUpdated(element);
 
 			expect(activeIndicator.style['gridColumn']).toBe('');
 			expect(activeIndicator.style['transform']).toBe('translateX(100px)');
@@ -628,28 +638,53 @@ describe('vwc-tabs', () => {
 
 			element.orientation = 'vertical';
 			element.activeid = 'entrees';
+			await elementUpdated(element);
 
 			expect(activeIndicator.style['gridRow']).toBe('');
 			expect(activeIndicator.style['transform']).toBe('translateY(100px)');
 		});
 
-		it('should move to active tab on transitionend', async () => {
+		it('should update the activeIndicator position on tab size changes without animation', async () => {
+			let offsetUnit = 100;
+			Object.defineProperty(activeIndicator, 'offsetLeft', {
+				get: () => {
+					const gridColumn = activeIndicator.style['gridColumn'] || '1';
+					return parseInt(gridColumn) * offsetUnit;
+				},
+			});
 			element.activeid = 'entrees';
+			await elementUpdated(element);
+			activeIndicator.dispatchEvent(
+				new TransitionEvent('transitionend', { propertyName: 'transform' })
+			);
 
-			activeIndicator.dispatchEvent(new Event('transitionend'));
+			offsetUnit = 200;
+			resizeObserver.triggerResize();
 
-			expect(activeIndicator.style['gridColumn']).toBe('2');
-			expect(activeIndicator.style['transform']).toBe('translateX(0px)');
-		});
-
-		it('should remove activeIndicatorTransition class on transitionend', async () => {
-			element.activeid = 'entrees';
-
-			activeIndicator.dispatchEvent(new Event('transitionend'));
-
+			expect(activeIndicator.style['transform']).toBe('translateX(200px)');
 			expect(
 				activeIndicator.classList.contains('activeIndicatorTransition')
 			).toBe(false);
+		});
+
+		it('should update an in progress animation of activeIndicator position on tab size changes', async () => {
+			let offsetUnit = 100;
+			Object.defineProperty(activeIndicator, 'offsetLeft', {
+				get: () => {
+					const gridColumn = activeIndicator.style['gridColumn'] || '1';
+					return parseInt(gridColumn) * offsetUnit;
+				},
+			});
+			element.activeid = 'entrees';
+			await elementUpdated(element);
+
+			offsetUnit = 200;
+			resizeObserver.triggerResize();
+
+			expect(activeIndicator.style['transform']).toBe('translateX(200px)');
+			expect(
+				activeIndicator.classList.contains('activeIndicatorTransition')
+			).toBe(true);
 		});
 	});
 
@@ -709,7 +744,7 @@ describe('vwc-tabs', () => {
 				<vwc-tab label="Desserts" id="desserts"></vwc-tab><vwc-tab-panel></vwc-tab-panel>
 			</${COMPONENT_TAG}>`);
 
-			element.activeid = 'entrees';
+			element.activeid = 'apps';
 
 			element.activetab.dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'ArrowRight' })
@@ -772,6 +807,17 @@ describe('vwc-tabs', () => {
 			);
 
 			expect(element.activeid).toBe('desserts');
+		});
+
+		it('should do nothing if there are no active tabs', async () => {
+			element.innerHTML = '<vwc-tab id="invalid"></vwc-tab>';
+			await elementUpdated(element);
+
+			element
+				.querySelector('vwc-tab')!
+				.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+
+			expect(element.activeid).toBe(undefined);
 		});
 	});
 
