@@ -70,10 +70,10 @@ describe('vwc-rich-text-editor', () => {
 			getOutputElement().dispatchEvent(new Event('input', { bubbles: true }));
 		}
 
-		it('should init as empty string', async () => {
-			expect(element.value).toMatchInlineSnapshot(
-				`"<p><br class="ProseMirror-trailingBreak"></p>"`
-			);
+		it('should init as empty paragraph', async () => {
+			const div = document.createElement('div');
+			div.innerHTML = element.value;
+			expect(div.textContent).toBe('');
 		});
 
 		it('should display HTML inside the editor', async () => {
@@ -575,6 +575,69 @@ describe('vwc-rich-text-editor', () => {
 			const textSize = 'small';
 			element.setSelectionTextSize(textSize);
 			expect(setSelectionDecorationSpy).toHaveBeenCalledWith(textSize);
+		});
+	});
+
+	describe('placeholder', () => {
+		function getPlaceholderText() {
+			return getOutputElement()
+				.querySelector('[data-placeholder]')
+				?.getAttribute('data-placeholder');
+		}
+
+		it('should default to undefined', async () => {
+			expect(element.placeholder).toBeUndefined();
+		});
+
+		it('should have default placeholder text when not set', async () => {
+			expect(getPlaceholderText()).toBe('Start typing...');
+		});
+
+		it('should set a different placeholder text when set', async () => {
+			element.placeholder = 'some text';
+			await elementUpdated(element);
+
+			expect(getPlaceholderText()).toBe('some text');
+		});
+
+		it('should set placeholder to default when removed', async () => {
+			element.placeholder = 'some text';
+			await elementUpdated(element);
+
+			element.placeholder = undefined;
+			await elementUpdated(element);
+
+			expect(getPlaceholderText()).toBe('Start typing...');
+		});
+
+		it('should set empty placeholder when set to empty string', async () => {
+			element.placeholder = '';
+			await elementUpdated(element);
+
+			expect(getPlaceholderText()).toBe('');
+		});
+
+		it('should reflect the attribute in the property', async () => {
+			const text = 'some text';
+			element.setAttribute('placeholder', text);
+			await elementUpdated(element);
+
+			expect(element.placeholder).toBe(text);
+		});
+
+		it('should upadte the placeholder when the component loads', async () => {
+			const text = 'some text';
+			const div = document.createElement('div');
+			document.body.appendChild(div);
+			div.innerHTML = `
+				<${COMPONENT_TAG} placeholder="${text}"></${COMPONENT_TAG}>
+			`;
+
+			const newElementPlaceholderText = div.children[0].shadowRoot
+				?.querySelector('[data-placeholder]')
+				?.getAttribute('data-placeholder');
+			div.remove();
+			expect(newElementPlaceholderText).toBe(text);
 		});
 	});
 });
