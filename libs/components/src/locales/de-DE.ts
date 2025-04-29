@@ -174,6 +174,9 @@ const deDE: Locale = {
 			total: number
 		) => `Option ${name} fokussiert, ${position} von ${total}.`,
 	},
+	richTextEditor: {
+		textBlockType: 'Textblocktyp'
+	}
 };
 
 export default deDE;

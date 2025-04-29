@@ -138,7 +138,7 @@ export const MENU_BAR_ITEMS: {
 			const tooltipTag = context.tagFor(Tooltip);
 
 			return html`
-		<${tooltipTag} text="Text Block Type" placement="top">
+		<${tooltipTag} text="${(_, {parent}) => parent.locale.richTextEditor.textBlockType}" placement="top">
 			<${selectTag}
                 scale="condensed"
                 shape="rounded"

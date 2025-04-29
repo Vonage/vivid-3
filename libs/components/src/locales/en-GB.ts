@@ -172,6 +172,9 @@ const enGB: Locale = {
 			total: number
 		) => `Option ${name} focused, ${position} of ${total}.`,
 	},
+	richTextEditor: {
+		textBlockType: 'Text Block Type'
+	}
 };
 
 export default enGB;

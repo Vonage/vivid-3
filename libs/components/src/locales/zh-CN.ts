@@ -172,6 +172,9 @@ const zhCN: Locale = {
 			total: number
 		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
 	},
+	richTextEditor: {
+		textBlockType: '文本块类型'
+	}
 };
 
 export default zhCN;

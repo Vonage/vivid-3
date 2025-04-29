@@ -3,15 +3,23 @@ import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar';
-import '.';
+import { setLocale } from '../../../shared/localization';
+import deDE from '@vonage/vivid/locales/de-DE';
 import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
+import '.';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
 describe('menuBar', () => {
+	async function openTextBlockMenu() {
+		getSelectionMenu('text-block').open = true;
+		await elementUpdated(element);
+	}
+
 	function getSelectionMenu(menuItemName: string) {
 		return element.shadowRoot?.querySelector(`#${menuItemName}`) as Select;
 	}
+
 	let element: MenuBar;
 
 	beforeEach(async () => {
@@ -107,6 +115,7 @@ describe('menuBar', () => {
 				expect(spy.mock.calls.length).toBe(0);
 			});
 		});
+
 		describe('textBlock', () => {
 			const getOptions = () => {
 				return getSelectionMenu('text-block').querySelectorAll('vwc-option');
@@ -151,11 +160,6 @@ describe('menuBar', () => {
 				});
 			});
 
-			async function openTextBlockMenu() {
-				getSelectionMenu('text-block').open = true;
-				await elementUpdated(element);
-			}
-
 			it('should emit a non bubbling and non composed text-block-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-block-selected', spy);
@@ -193,6 +197,18 @@ describe('menuBar', () => {
 				expect(tooltip instanceof Tooltip).toBe(true);
 				expect(tooltip?.getAttribute('text')).toBe('Text Block Type');
 				expect(tooltip.getAttribute('placement')).toBe('top');
+			});
+
+			it('should set a tooltip with localized text block message', async () => {
+				setLocale(deDE);
+				element.setAttribute('menu-items', '');
+				await elementUpdated(element);
+				element.setAttribute('menu-items', 'textBlock');
+				await elementUpdated(element);
+				const menu = getSelectionMenu('text-block');
+				const tooltip = menu.parentElement as Tooltip;
+
+				expect(tooltip?.getAttribute('text')).toBe(deDE.richTextEditor.textBlockType);
 			});
 
 			it('should set the select value to empty string by default', async () => {
@@ -543,6 +559,13 @@ describe('menuBar', () => {
 			it('should show divider element', async () => {
 				expect(element.shadowRoot?.querySelectorAll(`.divider`).length).toBe(2);
 			});
+		});
+	});
+
+	describe('locale', () => {
+		it('should replace tooltip strings with locale values', async () => {
+			setLocale(deDE);
+
 		});
 	});
 });
