@@ -255,7 +255,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 			return;
 		}
 
-		while (focusIndex >= 0 && focusIndex < this.menuItems.length) {
+		if (focusIndex >= 0 && focusIndex < this.menuItems.length) {
 			const child: HTMLElement = this.menuItems[focusIndex];
 
 			// change the previous index to -1
@@ -274,8 +274,6 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 
 			// focus the element
 			child.focus();
-
-			break;
 		}
 	}
 
