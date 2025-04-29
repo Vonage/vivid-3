@@ -1,4 +1,8 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { CalendarEvent } from './calendar-event';
 import '.';
 
@@ -94,5 +98,13 @@ describe('vwc-calendar-event', () => {
 			);
 			expect(base).toBeInstanceOf(Element);
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			allAriaPropertiesExcept([])
+		);
 	});
 });

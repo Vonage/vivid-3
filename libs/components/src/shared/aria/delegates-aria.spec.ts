@@ -1,46 +1,60 @@
-import { customElement } from '@microsoft/fast-element';
+import { customElement, html, observable } from '@microsoft/fast-element';
 import { describe } from 'vitest';
-import { elementUpdated } from '@vivid-nx/shared';
+import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
-import { ariaAttributeName, DelegatesAria } from './delegates-aria';
-
-describe('ariaAttributeName', () => {
-	it('should return the aria attribute name of the given aria property', () => {
-		expect(ariaAttributeName('ariaLabel')).toBe('aria-label');
-		expect(ariaAttributeName('ariaAutoComplete')).toBe('aria-autocomplete');
-	});
-});
+import { delegateAria, DelegatesAria } from './delegates-aria';
 
 describe('DelegatesAria', () => {
-	@customElement('dummy-element')
+	@customElement({
+		name: 'dummy-element',
+		template: html`<div
+			${delegateAria({
+				ariaDescription: 'default',
+				ariaLabel: (x) => x.label,
+			})}
+		></div>`,
+	})
 	class DummyElement extends DelegatesAria(VividElement) {
-		constructor() {
-			super();
-		}
+		@observable label = '';
 	}
 
-	it('should initialize delegated properties to null', () => {
-		const element = document.createElement('dummy-element');
-		expect(element).toBeInstanceOf(DummyElement);
-		expect(element.getAttribute('aria-label')).toBeNull();
-		expect(element.ariaLabel).toBeNull();
-	});
+	const getDelegateTarget = (element: DummyElement) =>
+		element.shadowRoot!.querySelector('div')!;
 
-	it('should set the corresponding attribute when a delegated property is set', async () => {
-		const element = document.createElement('dummy-element');
+	it('should bind specified values to the target element', async () => {
+		const element = fixture(`<dummy-element></dummy-element>`) as DummyElement;
+		element.label = 'label';
 
-		element.ariaLabel = 'label';
 		await elementUpdated(element);
 
-		expect(element.getAttribute('aria-label')).toBe('label');
+		expect(getDelegateTarget(element).getAttribute('aria-description')).toBe(
+			'default'
+		);
+		expect(getDelegateTarget(element).getAttribute('aria-label')).toBe('label');
 	});
 
-	it('should set the corresponding property when a delegated attribute is set', async () => {
-		const element = document.createElement('dummy-element');
+	it('should not override bound values', async () => {
+		const element = fixture(`<dummy-element></dummy-element>`) as DummyElement;
+		element.label = 'label';
+		element.ariaDescription = 'overridden';
+		element.ariaLabel = 'overridden';
 
-		element.setAttribute('aria-label', 'label');
 		await elementUpdated(element);
 
-		expect(element.ariaLabel).toBe('label');
+		expect(getDelegateTarget(element).getAttribute('aria-description')).toBe(
+			'default'
+		);
+		expect(getDelegateTarget(element).getAttribute('aria-label')).toBe('label');
+	});
+
+	it('should forward all other ARIA attributes to the target element', async () => {
+		const element = fixture(`<dummy-element></dummy-element>`) as DummyElement;
+		element.ariaCurrent = 'true';
+
+		await elementUpdated(element);
+
+		expect(getDelegateTarget(element).getAttribute('aria-current')).toBe(
+			'true'
+		);
 	});
 });

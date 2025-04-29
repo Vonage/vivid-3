@@ -4,6 +4,7 @@ import { Elevation } from '../elevation/elevation';
 import { Icon } from '../icon/icon';
 import { Button } from '../button/button';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Dialog } from './dialog';
 
 const getClasses = ({
@@ -60,8 +61,9 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 		<dialog class="${getClasses}"
 				@keydown="${(x, c) => x._onKeyDown(c.event as KeyboardEvent)}"
 				@cancel="${(_, c) => c.event.preventDefault()}"
-				aria-label="${(x) => x.ariaLabel}"
-				?aria-modal="${(x) => x._openedAsModal}"
+				${delegateAria({
+					ariaModal: (x) => String(x._openedAsModal),
+				})}
 		>
 			<slot name="main">
 				<div class="main-wrapper">

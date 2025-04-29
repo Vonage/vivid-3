@@ -12,6 +12,7 @@ import {
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element.js';
 import { isTreeItemElement, TreeItem } from '../tree-item/tree-item.js';
+import { HostSemantics } from '../../shared/aria/host-semantics';
 
 export function getDisplayedNodes(
 	rootNode: HTMLElement,
@@ -43,7 +44,7 @@ export function getDisplayedNodes(
  * @component tree-view
  * @slot - Default slot.
  */
-export class TreeView extends VividElement {
+export class TreeView extends HostSemantics(VividElement) {
 	/**
    /**
 	 * When true, the control will be appear expanded by user interaction.

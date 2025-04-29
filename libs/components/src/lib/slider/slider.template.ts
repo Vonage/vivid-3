@@ -2,6 +2,7 @@ import { html, ref, when } from '@microsoft/fast-element';
 import { classNames, Orientation } from '@microsoft/fast-web-utilities';
 import { PlacementStrategy, Popup } from '../popup/popup';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Slider } from './slider';
 
 const getClasses = ({ disabled, connotation }: Slider) =>
@@ -36,22 +37,21 @@ export const SliderTemplate = (context: VividElementDefinitionContext) => {
 
 	/* eslint-disable @typescript-eslint/indent */
 	return html<Slider>`<template
-		role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
 		@focusin="${(x) => x._onFocusIn()}"
 		@focusout="${(x) => x._onFocusOut()}"
 	>
 		<div
-			role="slider"
 			tabindex="${(x) => (x.disabled ? null : 0)}"
-			aria-label="${(x) => x.ariaLabel}"
-			aria-valuetext="${(x) =>
-				x.ariaValueText || x.valueTextFormatter(x.value)}"
-			aria-valuenow="${(x) => x.value}"
-			aria-valuemin="${(x) => x.min}"
-			aria-valuemax="${(x) => x.max}"
-			aria-disabled="${(x) => (x.disabled ? true : void 0)}"
-			aria-orientation="${(x) => x.orientation}"
 			class="${getClasses} ${(x) => x.orientation}"
+			${delegateAria({
+				role: 'slider',
+				ariaValueText: (x) => x.ariaValueText || x.valueTextFormatter(x.value),
+				ariaValueNow: (x) => x.value,
+				ariaValueMin: (x) => x.min,
+				ariaValueMax: (x) => x.max,
+				ariaDisabled: (x) => (x.disabled ? 'true' : null),
+				ariaOrientation: (x) => x.orientation,
+			})}
 		>
 			<div class="positioning-region">
 				<div ${ref('track')} class="track">
