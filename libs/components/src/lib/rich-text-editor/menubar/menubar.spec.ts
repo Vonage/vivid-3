@@ -1,13 +1,13 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import deDE from '@vonage/vivid/locales/de-DE';
+import enUS from '@vonage/vivid/locales/en-US';
 import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
-import { MenuBar } from './menubar';
 import { setLocale } from '../../../shared/localization';
-import deDE from '@vonage/vivid/locales/de-DE';
+import { MenuBar } from './menubar';
 import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
 import '.';
-import enUS from '@vonage/vivid/locales/en-US';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -208,7 +208,9 @@ describe('menuBar', () => {
 				const menu = getSelectionMenu('text-block');
 				const tooltip = menu.parentElement as Tooltip;
 
-				expect(tooltip?.getAttribute('text')).toBe(deDE.richTextEditor.textBlockType);
+				expect(tooltip?.getAttribute('text')).toBe(
+					deDE.richTextEditor.textBlockType
+				);
 			});
 
 			it('should set the select value to empty string by default', async () => {
@@ -265,7 +267,11 @@ describe('menuBar', () => {
 
 		describe('textDecoration', () => {
 			const getDecorationButtons = () => {
-				return Array.from(getSelectionMenu('text-decoration').querySelectorAll('.selection-button')) as HTMLElement[];
+				return Array.from(
+					getSelectionMenu('text-decoration').querySelectorAll(
+						'.selection-button'
+					)
+				) as HTMLElement[];
 			};
 
 			const getDecorationButton = (buttonText: string) =>
@@ -351,10 +357,12 @@ describe('menuBar', () => {
 				setLocale(deDE);
 				element.setAttribute('menu-items', 'textDecoration');
 				await elementUpdated(element);
-				
+
 				const buttons = getDecorationButtons();
 				for (let i = 0; i < buttons.length; i++) {
-					expect(buttons[i].parentElement?.getAttribute('text')).toBe(deDE.richTextEditor[TEXT_DECORATION_ITEMS[i].value]);
+					expect(buttons[i].parentElement?.getAttribute('text')).toBe(
+						deDE.richTextEditor[TEXT_DECORATION_ITEMS[i].value]
+					);
 				}
 			});
 
@@ -505,9 +513,11 @@ describe('menuBar', () => {
 				const menu = getSelectionMenu('text-size');
 				const tooltip = menu.children[0] as Tooltip;
 
-				expect(tooltip?.getAttribute('text')).toBe(deDE.richTextEditor.textSize);
+				expect(tooltip?.getAttribute('text')).toBe(
+					deDE.richTextEditor.textSize
+				);
 			});
-			
+
 			it('should display menu items according to TEXT_SIZES', async () => {
 				const menu = getSelectionMenu('text-size');
 
@@ -574,7 +584,6 @@ describe('menuBar', () => {
 	describe('locale', () => {
 		it('should replace tooltip strings with locale values', async () => {
 			setLocale(deDE);
-
 		});
 	});
 });

@@ -138,7 +138,8 @@ export const MENU_BAR_ITEMS: {
 			const tooltipTag = context.tagFor(Tooltip);
 
 			return html`
-		<${tooltipTag} text="${(_, {parent}) => parent.locale.richTextEditor.textBlockType}" placement="top">
+		<${tooltipTag} text="${(_, { parent }) =>
+				parent.locale.richTextEditor.textBlockType}" placement="top">
 			<${selectTag}
                 scale="condensed"
                 shape="rounded"
@@ -197,11 +198,17 @@ export const MENU_BAR_ITEMS: {
 					${repeat(
 						(_) => TEXT_DECORATION_ITEMS,
 						html`
-                        <${tooltipTag} text="${(x, { parentContext: { parent }}) => parent.locale.richTextEditor[x.value]}" placement="top">
+                        <${tooltipTag} text="${(
+							x,
+							{ parentContext: { parent } }
+						) => parent.locale.richTextEditor[x.value]}" placement="top">
                             <${buttonTag}
                                 class="selection-button"
                                 slot="anchor"
-                                aria-label="${(x, { parentContext: { parent }}) => parent.locale.richTextEditor[x.value]}"
+                                aria-label="${(
+																	x,
+																	{ parentContext: { parent } }
+																) => parent.locale.richTextEditor[x.value]}"
                                 size="super-condensed"
                                 appearance="ghost-light"
                                 shape="rounded"
@@ -237,7 +244,8 @@ export const MENU_BAR_ITEMS: {
                         aria-label="Text Size"
                         placement="bottom-end"
                     >
-						<${tooltipTag} slot="anchor" text="${(_, {parent}) => parent.locale.richTextEditor.textSize }" placement="top">
+						<${tooltipTag} slot="anchor" text="${(_, { parent }) =>
+				parent.locale.richTextEditor.textSize}" placement="top">
                             <${buttonTag}
                                 slot="anchor"
                                 aria-label="Open text size menu"

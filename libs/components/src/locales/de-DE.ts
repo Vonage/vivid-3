@@ -182,7 +182,7 @@ const deDE: Locale = {
 		underline: 'Unterstrichen',
 		strikethrough: 'Durchgestrichen',
 		monospace: 'Monospace',
-	}
+	},
 };
 
 export default deDE;

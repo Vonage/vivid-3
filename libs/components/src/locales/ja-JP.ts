@@ -180,7 +180,7 @@ const jaJP: Locale = {
 		underline: '下線',
 		strikethrough: '取り消し線',
 		monospace: '等幅',
-	}
+	},
 };
 
 export default jaJP;

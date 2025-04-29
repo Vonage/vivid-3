@@ -180,7 +180,7 @@ const zhCN: Locale = {
 		underline: '下划线',
 		strikethrough: '删除线',
 		monospace: '等宽字体',
-	}
+	},
 };
 
 export default zhCN;

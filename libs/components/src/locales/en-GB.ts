@@ -180,7 +180,7 @@ const enGB: Locale = {
 		underline: 'Underline',
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
-	}
+	},
 };
 
 export default enGB;
