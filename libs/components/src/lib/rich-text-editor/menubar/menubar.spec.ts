@@ -361,7 +361,7 @@ describe('menuBar', () => {
 				const buttons = getDecorationButtons();
 				for (let i = 0; i < buttons.length; i++) {
 					expect(buttons[i].parentElement?.getAttribute('text')).toBe(
-						deDE.richTextEditor[TEXT_DECORATION_ITEMS[i].value]
+						(deDE.richTextEditor as any)[TEXT_DECORATION_ITEMS[i].value]
 					);
 				}
 			});
