@@ -54,7 +54,6 @@
 		"description": "Buttons trigger an action, such as submitting a form, closing a dialog, or navigating to a new page.",
 		"variations": "./libs/components/src/lib/button/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/button/GUIDELINES.md",
-		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/button/README.md",
 		"accessibility": "./libs/components/src/lib/button/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/button/USE-CASES.md"
@@ -339,7 +338,6 @@
 	},
 	{
 		"title": "Searchable Select",
-		"status": "alpha",
 		"description": "Searchable Select allows users to select one or multiple items from a list of options. It provides a search input field to filter the options.",
 		"variations": "./libs/components/src/lib/searchable-select/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/searchable-select/GUIDELINES.md",
@@ -504,8 +502,7 @@
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/range-slider/README.md",
 		"accessibility": "./libs/components/src/lib/range-slider/ACCESSIBILITY.md",
-		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md",
-		"status": "alpha"
+		"useCases": "./libs/components/src/lib/range-slider/USE-CASES.md"
 	},
 	{
 		"title": "Split Button",
@@ -548,8 +545,7 @@
 		"guidelines": "./libs/components/src/lib/video-player/GUIDELINES.md",
 		"hideGuidelines": "true",
 		"code": "./libs/components/src/lib/video-player/README.md",
-		"accessibility": "./libs/components/src/lib/video-player/ACCESSIBILITY.md",
-		"status": "alpha"
+		"accessibility": "./libs/components/src/lib/video-player/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Rich Text Editor",

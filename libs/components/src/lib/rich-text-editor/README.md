@@ -50,7 +50,7 @@ Use the `selectionStart` attribute to get or set the starting point of the marke
 </script>
 ```
 
-### Selectio End
+### Selection End
 
 Use the `selectionEnd` attribute to get or set the end point of the marker. To set the marker without selection, set `selectionStart` and `selectionEnd` to the same value.
 
@@ -138,6 +138,16 @@ Use the `setTextBlock` method to set the text block to one of three types: `titl
 </script>
 ```
 
+### Placeholder
+
+Use the `placeholder` property to set and get the placeholder text in case the editor is empty.
+
+```html preview
+<vwc-rich-text-editor
+	placeholder="Custom placeholder text"
+></vwc-rich-text-editor>
+```
+
 ## Slots
 
 ### Menu Bar
@@ -200,11 +210,11 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 
 <div class="table-wrapper">
 
-| Name                  | Type                     | Bubbles | Composed | Description                                                                           |
-| --------------------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------- |
-| **input**             | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the content was editted by the user                 |
-| **change**            | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the element is blurred and the content was editted |
-| **selection-changed** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'selection-changed' event when the selection in the editor changed     |
+| Name                  | Type                     | Bubbles | Composed | Description                                                                          |
+| --------------------- | ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------ |
+| **input**             | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'input' event when the content was edited by the user                 |
+| **change**            | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the element is blurred and the content was edited |
+| **selection-changed** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'selection-changed' event when the selection in the editor changes    |
 
 </div>
 
