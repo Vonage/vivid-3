@@ -11,7 +11,8 @@ type DeepPartial<T> = T extends object
 	  }
 	: T;
 
-vi.mock('prosemirror-view', () => ({
+vi.mock('prosemirror-view', async () => ({
+	...(await vi.importActual('prosemirror-view')),
 	EditorView: vi.fn(),
 }));
 
@@ -63,11 +64,33 @@ describe('ProseMirrorFacade', () => {
 		expect(facadeInstance instanceof ProseMirrorFacade).toBe(true);
 	});
 
+	it('should remove placeholder when there is text', async () => {
+		await useOriginalEditorState();
+		await useOriginalEditorView();
+
+		const element = initViewer();
+		facadeInstance.replaceContent('<p>This is a block</p>');
+
+		const outputElement = getOutputElement(element);
+
+		// Simulate pressing the Enter key
+		const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true });
+		outputElement.dispatchEvent(event);
+
+		expect(
+			getOutputElement(element).querySelector('[data-placeholder]')
+		).toBeNull();
+	});
+
 	describe('init()', () => {
 		let StateMock = {};
 
 		beforeEach(async () => {
-			StateMock = {};
+			StateMock = {
+				selection: {
+					$from: {},
+				},
+			};
 			vi.spyOn(EditorState, 'create').mockReturnValue(StateMock as any);
 		});
 
@@ -88,6 +111,42 @@ describe('ProseMirrorFacade', () => {
 				state: StateMock,
 			});
 		});
+
+		it('should set default placeholder text', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const element = initViewer();
+			document.body.appendChild(element);
+
+			expect(
+				getOutputElement(element)
+					.querySelector('p')
+					?.getAttribute('data-placeholder')
+			).toBe('Start typing...');
+		});
+	});
+
+	describe('updatePlaceholder', () => {
+		it('should throw if editor is not initialized', async () => {
+			expect(() => facadeInstance.updatePlaceholder('')).toThrow();
+		});
+
+		it('should replace the placeholder text', async () => {
+			await useOriginalEditorState();
+			await useOriginalEditorView();
+
+			const element = initViewer();
+			document.body.appendChild(element);
+
+			facadeInstance.updatePlaceholder('New placeholder text');
+
+			expect(
+				getOutputElement(element)
+					.querySelector('p')
+					?.getAttribute('data-placeholder')
+			).toBe('New placeholder text');
+		});
 	});
 
 	describe('replaceContent()', () => {
@@ -98,12 +157,10 @@ describe('ProseMirrorFacade', () => {
 		});
 
 		it('should replace the content in the editor HTML', async () => {
-			// Import the actual module
 			const { EditorView: ActualEditorView } = await vi.importActual(
 				'prosemirror-view'
 			);
 
-			// Use the actual implementation for this test
 			vi.mocked(EditorView).mockImplementation(
 				(...args) => new (ActualEditorView as typeof EditorView)(...args)
 			);
@@ -141,6 +198,11 @@ describe('ProseMirrorFacade', () => {
 				selection: {
 					from: 6,
 					to: 10,
+					$from: {
+						parent: {
+							type: {},
+						},
+					},
 				},
 			};
 			await setSelectionInState(MOCK_STATE);

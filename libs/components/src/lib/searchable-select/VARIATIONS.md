@@ -280,7 +280,12 @@ The `tag-connotation` of Option attribute sets the connotation of the tags.
 ```html preview 270px
 <vwc-searchable-select multiple>
 	<vwc-option value="accent" text="accent" selected></vwc-option>
-	<vwc-option tag-connotation="cta" value="cta" text="cta"></vwc-option>
+	<vwc-option
+		tag-connotation="cta"
+		value="cta"
+		text="cta"
+		selected
+	></vwc-option>
 </vwc-searchable-select>
 ```
 
