@@ -46,7 +46,7 @@ order: 2
   </vwc-data-grid-row>
   <vwc-data-grid-row>
     <vwc-data-grid-cell>
-      <a href="https://jira.vonage.com/browse/VIV-2506">Internation Phone Number Field</a>
+      <a href="https://jira.vonage.com/browse/VIV-2506">International Phone Number Field</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
     <vwc-data-grid-cell></vwc-data-grid-cell>
