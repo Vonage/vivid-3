@@ -480,8 +480,7 @@ describe('ProseMirrorFacade', () => {
 			initViewer();
 		});
 
-		it('should handle Enter key press', async () => {
-			const NEWLINE_POSITION_VALUE = 3;
+		it('should add a new block on Enter key press', async () => {
 			const content = '123';
 			const element = initViewer();
 			facadeInstance.replaceContent(`<p>${content}</p>`);
@@ -489,10 +488,44 @@ describe('ProseMirrorFacade', () => {
 			const event = new KeyboardEvent('keydown', { key: 'Enter' });
 			getOutputElement(element).dispatchEvent(event);
 
-			expect(facadeInstance.selection()).toEqual({
-				start: content.length + NEWLINE_POSITION_VALUE,
-				end: content.length + NEWLINE_POSITION_VALUE,
+			expect(getOutputElement(element).querySelectorAll('p').length).toBe(2);
+		});
+
+		it('should add a new line in the same block when hitting shift+enter', async () => {
+			const content = '123';
+			const element = initViewer();
+			facadeInstance.replaceContent(`<p>${content}</p>`);
+
+			const event = new KeyboardEvent('keydown', {
+				key: 'Enter',
+				shiftKey: true,
 			});
+			getOutputElement(element).dispatchEvent(event);
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				'<p>123<br><br class="ProseMirror-trailingBreak"></p>'
+			);
+			expect(facadeInstance.selection()).toEqual({ start: 5, end: 5 });
+		});
+
+		it('should remove the selection and add a new line at beginning of selection on Shift+Enter', async () => {
+			const content = '<p>123456</p><p>789</p>';
+			const element = initViewer();
+			facadeInstance.replaceContent(`${content}`);
+
+			facadeInstance.selection({ start: 4, end: 11 });
+
+			const event = new KeyboardEvent('keydown', {
+				key: 'Enter',
+				shiftKey: true,
+				bubbles: true,
+			});
+			getOutputElement(element).dispatchEvent(event);
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				'<p>123<br><br class="ProseMirror-trailingBreak"></p><p>9</p>'
+			);
+			expect(facadeInstance.selection()).toEqual({ start: 5, end: 5 });
 		});
 	});
 
