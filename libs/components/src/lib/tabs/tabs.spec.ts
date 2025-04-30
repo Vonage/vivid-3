@@ -667,7 +667,7 @@ describe('vwc-tabs', () => {
 			).toBe(false);
 		});
 
-		it('should update an in progress animation of activeIndicator position on tab size changes', async () => {
+		it('should update an in progress animation of activeIndicator position on tab bar size changes', async () => {
 			let offsetUnit = 100;
 			Object.defineProperty(activeIndicator, 'offsetLeft', {
 				get: () => {
@@ -685,6 +685,23 @@ describe('vwc-tabs', () => {
 			expect(
 				activeIndicator.classList.contains('activeIndicatorTransition')
 			).toBe(true);
+		});
+
+		it('should update the activeIndicator position when tabs are added or removed', async () => {
+			Object.defineProperty(activeIndicator, 'offsetLeft', {
+				get: () => {
+					const gridColumn = activeIndicator.style['gridColumn'] || '1';
+					return parseInt(gridColumn) * 100;
+				},
+			});
+			element.activeid = 'desserts';
+			await elementUpdated(element);
+			expect(activeIndicator.style['transform']).toBe('translateX(200px)');
+
+			document.querySelector('#entrees')!.remove();
+			await elementUpdated(element);
+
+			expect(activeIndicator.style['transform']).toBe('translateX(100px)');
 		});
 	});
 

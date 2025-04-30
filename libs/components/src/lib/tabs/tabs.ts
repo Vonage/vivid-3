@@ -225,6 +225,9 @@ export class Tabs extends VividElement {
 				this.#moveActiveIndicator(shouldAnimate);
 			}
 			this.#lastActiveId = this.activeid;
+		} else {
+			// Changes in tabs affect position without triggering resize in stretch layout
+			this.#moveActiveIndicator(this.#isTransitioningTransform);
 		}
 	}
 
