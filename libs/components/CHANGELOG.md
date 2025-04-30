@@ -4,6 +4,22 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.23.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.22.0...vivid-v4.23.0) (2025-04-30)
+
+
+### Features
+
+* **audio player:** handle Infinity duration (VIV-2569) ([#2297](https://github.com/Vonage/vivid-3/issues/2297)) ([0963431](https://github.com/Vonage/vivid-3/commit/0963431b132878b13fb87e77352cd043fff5b32c))
+* **components:** forward all ARIA attributes (VIV-2432) ([#2289](https://github.com/Vonage/vivid-3/issues/2289)) ([15ca28f](https://github.com/Vonage/vivid-3/commit/15ca28f079c0eee40cde4911d51bba3db5670427))
+
+
+### Bug Fixes
+
+* **menu:** error when no menu item children (VIV-2568) ([#2302](https://github.com/Vonage/vivid-3/issues/2302)) ([05f99e3](https://github.com/Vonage/vivid-3/commit/05f99e305548efe00dfa933978e4aea0af88909d))
+* **option:** updates focus state color (VIV-2570) ([#2306](https://github.com/Vonage/vivid-3/issues/2306)) ([c755068](https://github.com/Vonage/vivid-3/commit/c7550680b2f0ee43e29cee5c8247154c5cf94b56))
+* **searchable-select:** fix error when parent uses transform (VIV-2417) ([#2294](https://github.com/Vonage/vivid-3/issues/2294)) ([602335d](https://github.com/Vonage/vivid-3/commit/602335d3506d26cc3641acc987261f658d7e4205))
+* updates focus state color for option ([c755068](https://github.com/Vonage/vivid-3/commit/c7550680b2f0ee43e29cee5c8247154c5cf94b56))
+
 ## [4.22.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.21.1...vivid-v4.22.0) (2025-04-22)
 
 
