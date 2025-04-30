@@ -1,9 +1,19 @@
-This rule forbids the usage of the `value` and `checked` attributes of Vivid input elements. The attributes should not be used because of inconsistent behaviour between different versions of Vue:
+This rule helps with migrating from Vivid 3 by forbidding the usage of the `value` and `checked` attributes of Vivid input elements.
+
+In Vivid 3, they behaved inconsistently between Vue versions:
 
 - Vue 2: Sets the initial value.
 - Vue 3: Sets the current value.
 
-Instead, use `modelValue` to set the current value or `initialValue` or `defaultChecked` to set the initial value.
+Since Vivid 4, [the attributes always set the current value](/guides/v4-release-migration/#vue-wrappers).
+
+To make sure that the intent of the code is clear across all Vivid and Vue versions, use `modelValue` to set the current value or `initialValue` or `defaultChecked` to set the initial value.
+
+You can [configure the rule](/guides/eslint-plugin/#customizing-rules) to provide an automatic fix by setting the `replaceWith` option to either `"modelValue"` or `"initialValue"`.
+
+```
+"@vonage/vivid/no-value-attribute": ["error", { "replaceWith": "modelValue" }]
+```
 
 #### Example
 

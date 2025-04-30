@@ -9,6 +9,23 @@ const ruleTester = new RuleTester({
 	},
 });
 
+const varyFixByOptions = (
+	baseCaseOptions: {
+		annotatedSource: string;
+		message: string;
+	},
+	fixVariations: Array<{
+		options?: unknown[];
+		fixedSource?: string;
+	}>
+) =>
+	fixVariations.map((fixVariation) =>
+		convertAnnotatedSourceToFailureCase({
+			...baseCaseOptions,
+			...fixVariation,
+		})
+	);
+
 ruleTester.run('no-value-attribute', noValueAttribute, {
 	valid: [
 		`<template><VTextField :model-value="value" /></template>`,
@@ -18,37 +35,105 @@ ruleTester.run('no-value-attribute', noValueAttribute, {
 		`<template><VNonVivid :checked="value" /></template>`,
 	],
 	invalid: [
-		convertAnnotatedSourceToFailureCase({
-			annotatedSource: `
-				<template><VTextField :value="value" /></template>
-				                       ~~~~~
-			`,
-			message:
-				'Do not use `value`. Use `modelValue` to set the current value or `initialValue` to set the initial value.',
-		}),
-		convertAnnotatedSourceToFailureCase({
-			annotatedSource: `
-				<template><VTextField value="value" /></template>
-				                      ~~~~~
-			`,
-			message:
-				'Do not use `value`. Use `modelValue` to set the current value or `initialValue` to set the initial value.',
-		}),
-		convertAnnotatedSourceToFailureCase({
-			annotatedSource: `
-				<template><VCheckbox :checked="value" /></template>
-				                      ~~~~~~~
-			`,
-			message:
-				'Do not use `checked`. Use `modelValue` to set the current value or `defaultChecked` to set the initial value.',
-		}),
-		convertAnnotatedSourceToFailureCase({
-			annotatedSource: `
-				<template><VCheckbox checked /></template>
-				                     ~~~~~~~
-			`,
-			message:
-				'Do not use `checked`. Use `modelValue` to set the current value or `defaultChecked` to set the initial value.',
-		}),
+		...varyFixByOptions(
+			{
+				annotatedSource: `
+					<template><VTextField :value="value" /></template>
+					                       ~~~~~
+				`,
+				message:
+					'Do not use `value`. Use `modelValue` to set the current value or `initialValue` to set the initial value.',
+			},
+			[
+				{},
+				{
+					options: [{ replaceWith: 'modelValue' }],
+					fixedSource: `
+					<template><VTextField :model-value="value" /></template>
+				`,
+				},
+				{
+					options: [{ replaceWith: 'initialValue' }],
+					fixedSource: `
+					<template><VTextField :initial-value="value" /></template>
+				`,
+				},
+			]
+		),
+		...varyFixByOptions(
+			{
+				annotatedSource: `
+					<template><VTextField value="value" /></template>
+					                      ~~~~~
+				`,
+				message:
+					'Do not use `value`. Use `modelValue` to set the current value or `initialValue` to set the initial value.',
+			},
+			[
+				{},
+				{
+					options: [{ replaceWith: 'modelValue' }],
+					fixedSource: `
+					<template><VTextField model-value="value" /></template>
+				`,
+				},
+				{
+					options: [{ replaceWith: 'initialValue' }],
+					fixedSource: `
+					<template><VTextField initial-value="value" /></template>
+				`,
+				},
+			]
+		),
+		...varyFixByOptions(
+			{
+				annotatedSource: `
+					<template><VCheckbox :checked="value" /></template>
+					                      ~~~~~~~
+				`,
+				message:
+					'Do not use `checked`. Use `modelValue` to set the current value or `defaultChecked` to set the initial value.',
+			},
+			[
+				{},
+				{
+					options: [{ replaceWith: 'modelValue' }],
+					fixedSource: `
+					<template><VCheckbox :model-value="value" /></template>
+				`,
+				},
+				{
+					options: [{ replaceWith: 'initialValue' }],
+					fixedSource: `
+					<template><VCheckbox :default-checked="value" /></template>
+				`,
+				},
+			]
+		),
+		...varyFixByOptions(
+			{
+				annotatedSource: `
+					<template><VCheckbox checked /></template>
+					                     ~~~~~~~
+				`,
+				message:
+					'Do not use `checked`. Use `modelValue` to set the current value or `defaultChecked` to set the initial value.',
+			},
+			[
+				{},
+				{
+					options: [{ replaceWith: 'modelValue' }],
+					fixedSource: `
+					<template><VCheckbox model-value /></template>
+				`,
+				},
+				{
+					options: [{ replaceWith: 'initialValue' }],
+					fixedSource: `
+					<template><VCheckbox default-checked /></template>
+				`,
+				},
+			]
+		),
 	],
 });
