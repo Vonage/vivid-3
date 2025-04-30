@@ -1,7 +1,14 @@
 import { elements, html, slotted } from '@microsoft/fast-element';
+import { delegateAria } from '../../shared/aria/delegates-aria';
+import type { Breadcrumb } from './breadcrumb';
 
-export const breadcrumbTemplate = html`
-	<nav aria-label="breadcrumbs" class="base">
+export const breadcrumbTemplate = html<Breadcrumb>`
+	<nav
+		class="base"
+		${delegateAria({
+			ariaLabel: (x) => x.ariaLabel || 'breadcrumbs',
+		})}
+	>
 		<div role="list" class="list">
 			<slot
 				${slotted({

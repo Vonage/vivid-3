@@ -2,9 +2,16 @@ import { attr, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
+export type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES =
+	| 'extra-large'
+	| 'large'
+	| 'normal'
+	| 'small';
+
 export interface SelectionStyles {
 	textBlockType?: string;
 	textDecoration?: string[];
+	textSize?: string;
 }
 
 export interface RichTextEditorSelection {
@@ -81,6 +88,13 @@ export class RichTextEditor extends VividElement {
 		this.#updateEditorSelection();
 	}
 
+	@attr
+	placeholder?: string;
+
+	placeholderChanged() {
+		this.#editor?.updatePlaceholder(this.placeholder);
+	}
+
 	constructor() {
 		super();
 	}
@@ -115,6 +129,7 @@ export class RichTextEditor extends VividElement {
 			this.#editor.addEventListener('change', this.#handleChange);
 			this.#editor.addEventListener('input', this.#handleInput);
 		}
+		this.placeholderChanged();
 	}
 
 	setTextBlock(blockType: 'title' | 'subtitle' | 'body') {
@@ -133,6 +148,10 @@ export class RichTextEditor extends VividElement {
 			// eslint-disable-next-line no-console
 			console.warn(`Invalid decoration: ${decoration}`);
 		}
+	}
+
+	setSelectionTextSize(textSize: RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES) {
+		this.#editor?.setTextSize(textSize);
 	}
 
 	get selectionStyles(): SelectionStyles {

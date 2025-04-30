@@ -20,6 +20,7 @@ import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithOb
 import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
 
@@ -63,8 +64,8 @@ const isFormAssociatedTryingToSetFormValue = (
  */
 @errorText
 @formElements
-export class SearchableSelect extends AffixIconWithTrailing(
-	Localized(FormAssociatedSearchableSelect)
+export class SearchableSelect extends DelegatesAria(
+	AffixIconWithTrailing(Localized(FormAssociatedSearchableSelect))
 ) {
 	/**
 	 * @public

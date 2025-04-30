@@ -84,7 +84,7 @@
 
 	:host([aria-checked='true']) & {
 		#{focus-variables.$focus-stroke-color}: var(
-			#{constants.$vvd-color-neutral-500}
+			#{constants.$vvd-color-cta-500}
 		);
 		#{focus-variables.$focus-stroke-gap-color}: transparent;
 

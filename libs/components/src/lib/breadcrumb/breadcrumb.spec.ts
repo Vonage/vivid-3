@@ -1,5 +1,9 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { BreadcrumbItem } from '../breadcrumb-item/breadcrumb-item';
+import {
+	allAriaPropertiesExcept,
+	itShouldDelegateAriaAttributes,
+} from '../../shared/aria/should-delegate-aria.spec';
 import { Breadcrumb } from './breadcrumb';
 import '../breadcrumb-item';
 import '.';
@@ -106,7 +110,7 @@ describe('vwc-breadcrumb', () => {
 			});
 		});
 
-		it('should have a base element with an aria-label of "breadcrumbs"', () => {
+		it('should have a base element with a default aria-label of "breadcrumbs"', () => {
 			const control = getBaseElement(element);
 			expect(control.getAttribute('aria-label')).toBe('breadcrumbs');
 		});
@@ -115,5 +119,13 @@ describe('vwc-breadcrumb', () => {
 			const control = getBaseElement(element);
 			expect(control.querySelector('[role="list"]')).toBeTruthy();
 		});
+	});
+
+	describe('ARIA delegation', () => {
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			allAriaPropertiesExcept([])
+		);
 	});
 });

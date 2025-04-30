@@ -4,7 +4,7 @@ import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
 import { MenuBar } from './menubar';
 import '.';
-import { TEXT_DECORATION_ITEMS } from './consts';
+import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
@@ -457,6 +457,91 @@ describe('menuBar', () => {
 						);
 					}, true)
 				).toBe(true);
+			});
+		});
+
+		describe('textSize', () => {
+			beforeEach(async () => {
+				element.menuItems = 'textSize';
+				await elementUpdated(element);
+			});
+
+			it('should show textSize menu', async () => {
+				expect(getSelectionMenu('text-size')).toBeTruthy();
+			});
+
+			it('should add a menu button with a tooltip', async () => {
+				const menu = getSelectionMenu('text-size');
+				const tooltip = menu.querySelector('[text="Text Size"]');
+				const button = menu.querySelector(
+					'[aria-label="Open text size menu"]'
+				) as HTMLElement;
+
+				button.click();
+				await elementUpdated(element);
+				expect(tooltip).toBeTruthy();
+				expect(menu.open).toBe(true);
+			});
+
+			it('should display menu items according to TEXT_SIZES', async () => {
+				const menu = getSelectionMenu('text-size');
+
+				const menuItemsElements = menu.querySelectorAll(
+					'.menubar-selector-menuitem'
+				);
+
+				expect(menuItemsElements.length).toBe(TEXT_SIZES.length);
+				TEXT_SIZES.forEach((textSize, index) => {
+					expect(menuItemsElements[index].getAttribute('text')).toEqual(
+						textSize.text
+					);
+					expect(menuItemsElements[index].getAttribute('value')).toEqual(
+						textSize.value
+					);
+				});
+			});
+
+			it('should emit text-size-selected event with the selected value', async () => {
+				const spy = vi.fn();
+				element.addEventListener('text-size-selected', spy);
+				const menu = getSelectionMenu('text-size');
+				const menuItemsElements = menu.querySelectorAll(
+					'.menubar-selector-menuitem'
+				) as unknown as HTMLElement[];
+
+				menuItemsElements.forEach((menuItem) => {
+					menuItem.click();
+				});
+
+				spy.mock.calls.forEach((call, index) => {
+					expect(call[0].detail).toBe(
+						menuItemsElements[index].getAttribute('value')
+					);
+				});
+			});
+
+			it('should set the current text size as the checked menu item', async () => {
+				const menu = getSelectionMenu('text-size');
+				const parent = element.parentElement as any;
+				parent.selectionStyles = { textSize: 'large' };
+
+				parent.dispatchEvent(new CustomEvent('selection-changed'));
+				elementUpdated(element);
+
+				expect(menu.querySelector('[checked]')?.getAttribute('value')).toBe(
+					'large'
+				);
+			});
+		});
+
+		describe('divider', () => {
+			beforeEach(async () => {
+				element.menuItems = 'divider divider';
+				await elementUpdated(element);
+			});
+
+			it('should show divider element', async () => {
+				expect(element.shadowRoot?.querySelectorAll(`.divider`).length).toBe(2);
 			});
 		});
 	});

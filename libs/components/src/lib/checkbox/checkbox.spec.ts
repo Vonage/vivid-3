@@ -377,10 +377,6 @@ describe('vwc-checkbox', () => {
 	});
 
 	describe('a11y attributes', () => {
-		it('should not render a role attribute on the component element', async () => {
-			expect(element.getAttribute('role')).toBe(null);
-		});
-
 		it('should render a tabindex on the base element when passed', async () => {
 			element.tabindex = '-1';
 			await elementUpdated(element);

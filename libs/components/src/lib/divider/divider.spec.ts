@@ -17,6 +17,7 @@ describe('vwc-divider', () => {
 	describe('basic', () => {
 		it('should be initialized as a vwc-divider', async () => {
 			expect(element).toBeInstanceOf(Divider);
+			expect(element.role).toBe('separator');
 		});
 
 		it('should allow being created via createElement', () => {
@@ -55,6 +56,15 @@ describe('vwc-divider', () => {
 			await elementUpdated(element);
 
 			expect(base?.getAttribute('aria-orientation')).toBe(null);
+		});
+	});
+
+	describe('a11y attributes', () => {
+		it('should keep default role of separator when role is removed', async () => {
+			(element as any).role = undefined;
+			await elementUpdated(element);
+
+			expect(getBaseElement(element).getAttribute('role')).toEqual('separator');
 		});
 	});
 

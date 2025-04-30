@@ -1,5 +1,6 @@
 import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { ProgressRing } from './progress-ring';
 
 const getClasses = ({ connotation, size, paused }: ProgressRing) =>
@@ -11,16 +12,15 @@ const getClasses = ({ connotation, size, paused }: ProgressRing) =>
 	);
 const progressSegments = 44;
 
-export const ProgressRingTemplate = html<ProgressRing>`<template
-	role="${(x) => (x.ariaLabel ? 'presentation' : null)}"
->
+export const ProgressRingTemplate = html<ProgressRing>`<template>
 	<div
-		role="progressbar"
-		aria-label="${(x) => x.ariaLabel}"
-		aria-valuenow="${(x) => x.value}"
-		aria-valuemin="${(x) => x.min}"
-		aria-valuemax="${(x) => x.max}"
 		class="${(x) => (x.paused ? 'paused' : '')} ${getClasses}"
+		${delegateAria({
+			role: 'progressbar',
+			ariaValueNow: (x) => x.value,
+			ariaValueMin: (x) => x.min,
+			ariaValueMax: (x) => x.max,
+		})}
 	>
 		${when(
 			(x) => typeof x.value === 'number',
