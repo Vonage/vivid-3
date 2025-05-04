@@ -88,7 +88,7 @@ function createEnterKeymapPlugin() {
 			}
 			return true;
 		},
-		'Enter': (state, dispatch) => {
+		Enter: (state, dispatch) => {
 			const { schema } = state;
 			const paragraph = schema.nodes.paragraph;
 			const { $from, empty } = state.selection;
@@ -105,7 +105,7 @@ function createEnterKeymapPlugin() {
 			if (marks.length > 0) {
 				const newParaStart = $from.pos + 1;
 
-				const zeroWidthSpace = "\u200B";
+				const zeroWidthSpace = '\u200B';
 				const content = schema.text(zeroWidthSpace, marks);
 
 				tr.insert(newParaStart, content);
@@ -115,7 +115,7 @@ function createEnterKeymapPlugin() {
 
 			dispatch && dispatch(tr.scrollIntoView());
 			return true;
-		}
+		},
 	});
 }
 

@@ -7,8 +7,8 @@ import { ProseMirrorFacade } from './vivid-prose-mirror.facade';
 
 type DeepPartial<T> = T extends object
 	? {
-		[P in keyof T]?: DeepPartial<T[P]>;
-	}
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
 	: T;
 
 vi.mock('prosemirror-view', async () => ({
@@ -475,7 +475,11 @@ describe('ProseMirrorFacade', () => {
 	});
 
 	describe('keyboard interaction', () => {
-		function dispatchEditorKeyboardEvent(element: HTMLElement, key: string, shiftKey = false) {
+		function dispatchEditorKeyboardEvent(
+			element: HTMLElement,
+			key: string,
+			shiftKey = false
+		) {
 			const event = new KeyboardEvent('keydown', { key, shiftKey });
 			getOutputElement(element).dispatchEvent(event);
 		}
@@ -510,37 +514,37 @@ describe('ProseMirrorFacade', () => {
 
 			const postSubTitleStyles = facadeInstance.getSelectionStyles();
 			expect(postTitleStyles).toEqual({
-				"textBlockType": "body",
-				"textDecoration": undefined,
-				"textSize": "normal",
+				textBlockType: 'body',
+				textDecoration: undefined,
+				textSize: 'normal',
 			});
 			expect(postSubTitleStyles).toEqual({
-				"textBlockType": "body",
-				"textDecoration": undefined,
-				"textSize": "normal",
+				textBlockType: 'body',
+				textDecoration: undefined,
+				textSize: 'normal',
 			});
 		});
 
 		it('should add paragraph with same style of former paragraph after enter press', async () => {
 			const element = initViewer();
 			facadeInstance.replaceContent(`<p>123</p>`);
-			
+
 			facadeInstance.selection({ start: 2, end: 4 });
 			facadeInstance.setTextSize('large');
 			facadeInstance.setSelectionDecoration('underline');
-		
+
 			const firstParagraphStyles = facadeInstance.getSelectionStyles();
-			
+
 			facadeInstance.selection({ start: 4, end: 4 });
-			
+
 			dispatchEditorKeyboardEvent(element, 'Enter');
-			
+
 			facadeInstance.selection({ start: 6, end: 6 });
-			
+
 			expect(firstParagraphStyles).toEqual({
-				"textBlockType": "body",
-				"textDecoration": ['underline'],
-				"textSize": "large",
+				textBlockType: 'body',
+				textDecoration: ['underline'],
+				textSize: 'large',
 			});
 			expect(facadeInstance.getSelectionStyles()).toEqual(firstParagraphStyles);
 		});
