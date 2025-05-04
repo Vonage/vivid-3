@@ -61,7 +61,7 @@ function setTextBlockType(styles: SelectionStyles, type: string) {
 	}
 }
 
-function createShiftEnterKeymapPlugin() {
+function createEnterKeymapPlugin() {
 	return keymap({
 		['Shift-Enter']: (state, dispatch) => {
 			const { schema } = state;
@@ -88,6 +88,34 @@ function createShiftEnterKeymapPlugin() {
 			}
 			return true;
 		},
+		'Enter': (state, dispatch) => {
+			const { schema } = state;
+			const paragraph = schema.nodes.paragraph;
+			const { $from, empty } = state.selection;
+
+			if (!empty || $from.parent.type !== paragraph) {
+				return false;
+			}
+
+			const tr = state.tr;
+
+			const marks = $from.marks();
+			tr.split($from.pos);
+
+			if (marks.length > 0) {
+				const newParaStart = $from.pos + 1;
+
+				const zeroWidthSpace = "\u200B";
+				const content = schema.text(zeroWidthSpace, marks);
+
+				tr.insert(newParaStart, content);
+
+				tr.setSelection(TextSelection.create(tr.doc, newParaStart + 1));
+			}
+
+			dispatch && dispatch(tr.scrollIntoView());
+			return true;
+		}
 	});
 }
 
@@ -187,7 +215,7 @@ export class ProseMirrorFacade {
 		const plugins = [
 			createPlaceholderPlugin(),
 			createSelectionChangePlugin(this.#onSelectionChange),
-			createShiftEnterKeymapPlugin(),
+			createEnterKeymapPlugin(),
 			keymap(baseKeymap),
 		];
 		const state = EditorState.create({
