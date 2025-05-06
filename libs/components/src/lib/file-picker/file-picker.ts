@@ -2,7 +2,8 @@
 import { attr } from '@microsoft/fast-element';
 import type { DropzoneFile } from 'dropzone';
 import Dropzone from 'dropzone';
-import type { Size } from '../enums';
+import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { Locale } from '../../shared/localization/Locale';
 import {
 	type ErrorText,
 	errorText,
@@ -11,11 +12,10 @@ import {
 	formElements,
 	Localized,
 } from '../../shared/patterns';
-import type { Button } from '../button/button';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
-import type { Locale } from '../../shared/localization/Locale';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
-import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { Button } from '../button/button';
+import type { Size } from '../enums';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -375,6 +375,8 @@ export class FilePicker extends DelegatesAria(
 		}
 		this.$emit('change');
 		this.#updateFormValue();
+		this.validate();
+
 		requestAnimationFrame(() => this.#syncSingleFileState());
 	}
 
@@ -410,7 +412,20 @@ export class FilePicker extends DelegatesAria(
 		super.setFormValue(value, state);
 	};
 
+	#getCustomValidationError(): string | null {
+		if (this.rejectedFiles.length > 0) {
+			return this.locale.filePicker.invalidFilesError;
+		}
+
+		return null;
+	}
+
+	/** {@inheritDoc (FormAssociated:interface).validate} */
 	override validate(): void {
+		if (this.proxy) {
+			this.proxy.setCustomValidity(this.#getCustomValidationError() ?? '');
+		}
+
 		super.validate(this.control);
 	}
 

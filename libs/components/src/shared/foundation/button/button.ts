@@ -231,9 +231,12 @@ export class VividFoundationButton extends DelegatesAria(FormAssociatedButton) {
 				!window.ShadowRoot.prototype.hasOwnProperty('delegatesFocus') &&
 				this.$fastController.definition.shadowOptions.delegatesFocus
 			) {
-				this.focus = () => {
-					this.control.focus();
-				};
+				Object.defineProperty(this, 'focus', {
+					value: () => {
+						this.control.focus();
+					},
+					configurable: true,
+				});
 			}
 		}
 	};
