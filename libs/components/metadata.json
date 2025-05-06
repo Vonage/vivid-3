@@ -3522,7 +3522,12 @@
 					"returnType": "unknown"
 				},
 				{ "name": "singleFileChanged", "args": [], "returnType": "unknown" },
-				{ "name": "validate", "args": [], "returnType": "void" }
+				{
+					"name": "validate",
+					"description": "{@inheritDoc (FormAssociated:interface).validate}",
+					"args": [],
+					"returnType": "void"
+				}
 			],
 			"slots": [
 				{
