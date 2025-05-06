@@ -33,7 +33,7 @@ function renderLabel() {
 function renderSelectionCount() {
 	return html<SearchableSelect>`
 		<span id="selection-count" class="selection-count" aria-live="polite"
-			>(${(x) => (x.values ? x.values.length : 0)}/${(x) => x.maxItems})</span
+			>(${(x) => x.values.length}/${(x) => x.maxItems})</span
 		>
 	`;
 }
@@ -200,13 +200,18 @@ function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
-		<div>
-			${when((x) => x.label, renderLabel())}
-			${when(
-				(x) => x.multiple && x.maxItems && x.maxItems >= 1,
-				renderSelectionCount()
-			)}
-		</div>
+		${when(
+			(x) => x.label || (x.multiple && x.maxItems),
+			html<SearchableSelect>`
+				<div>
+					${when((x) => x.label, renderLabel())}
+					${when(
+						(x) => x.multiple && x.maxItems && x.maxItems >= 1,
+						renderSelectionCount()
+					)}
+				</div>
+			`
+		)}
 		<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
 			${(x) => x._changeDescription}
 		</span>
