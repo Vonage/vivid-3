@@ -1,11 +1,11 @@
-This rule helps with migrating from Vivid 3 by forbidding the usage of the `value` and `checked` attributes of Vivid input elements.
+This rule helps with migrating from Vivid 3.x.x by forbidding the usage of the `value` and `checked` attributes of Vivid input elements.
 
 In Vivid 3, they behaved inconsistently between Vue versions:
 
 - Vue 2: Sets the initial value.
 - Vue 3: Sets the current value.
 
-Since Vivid 4, [the attributes always set the current value](/guides/v4-release-migration/#vue-wrappers).
+Since Vivid 4.0.0, [the attributes always set the current value](/guides/v4-release-migration/#vue-wrappers).
 
 To make sure that the intent of the code is clear across all Vivid and Vue versions, use `modelValue` to set the current value or `initialValue` or `defaultChecked` to set the initial value.
 
