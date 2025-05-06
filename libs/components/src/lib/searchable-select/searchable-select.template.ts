@@ -32,9 +32,15 @@ function renderLabel() {
 }
 function renderSelectionCount() {
 	return html<SearchableSelect>`
-		<span id="selection-count" class="selection-count" aria-live="polite"
-			>(${(x) => x.values.length}/${(x) => x.maxItems})</span
-		>
+		<span id="selection-count" class="selection-count" aria-live="polite">
+			<span aria-hidden="true"
+				>(${(x) => `${x.values.length}/${x.maxItems}`})</span
+			>
+			<span class="visually-hidden"
+				>${(x) =>
+					`${x.values.length} ${x.locale.searchableSelect.ofSelectedMessage} ${x.maxItems} ${x.locale.searchableSelect.totalSelectedMessage}`}</span
+			>
+		</span>
 	`;
 }
 
@@ -137,6 +143,10 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						class="control"
 						autocomplete="off"
 						aria-controls="listbox"
+						aria-describedby="${(x) =>
+							x.multiple && x.maxItems && x.maxItems >= 1
+								? 'selection-count'
+								: null}"
 						${delegateAria({
 							role: 'combobox',
 							ariaAutoComplete: 'list',

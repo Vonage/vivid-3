@@ -162,6 +162,8 @@ const deDE: Locale = {
 		noOptionsMessage: 'Keine Optionen',
 		noMatchesMessage: 'Keine Optionen gefunden',
 		loadingOptionsMessage: 'Laden...',
+		ofSelectedMessage: 'von',
+		totalSelectedMessage: 'ausgewählt',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} entfernen`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>

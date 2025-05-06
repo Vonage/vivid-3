@@ -160,6 +160,8 @@ const jaJP: Locale = {
 		noOptionsMessage: 'オプションがありません',
 		noMatchesMessage: 'オプションが見つかりません',
 		loadingOptionsMessage: '読み込み中...',
+		ofSelectedMessage: '件中',
+		totalSelectedMessage: '件を選択',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label}を削除`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>

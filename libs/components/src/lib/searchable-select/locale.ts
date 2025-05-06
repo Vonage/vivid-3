@@ -3,6 +3,8 @@ export interface SearchableSelectLocale {
 	noOptionsMessage: string;
 	noMatchesMessage: string;
 	loadingOptionsMessage: string;
+	ofSelectedMessage: string;
+	totalSelectedMessage: string;
 	removeTagButtonLabel: (label: string) => string;
 	optionSelectedMessage: (name: string) => string;
 	optionDeselectedMessage: (name: string) => string;
