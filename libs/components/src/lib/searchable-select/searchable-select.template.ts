@@ -30,6 +30,13 @@ function renderLabel() {
 		<label for="control" class="label" id="label"> ${(x) => x.label} </label>
 	`;
 }
+function renderSelectionCount() {
+	return html<SearchableSelect>`
+		<span id="selection-count" class="selection-count" aria-live="polite"
+			>(${(x) => (x.values ? x.values.length : 0)}/${(x) => x.maxItems})</span
+		>
+	`;
+}
 
 const tagTemplateFactory = (
 	context: VividElementDefinitionContext,
@@ -193,7 +200,13 @@ function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
-		${when((x) => x.label, renderLabel())}
+		<div>
+			${when((x) => x.label, renderLabel())}
+			${when(
+				(x) => x.multiple && x.maxItems && x.maxItems >= 1,
+				renderSelectionCount()
+			)}
+		</div>
 		<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
 			${(x) => x._changeDescription}
 		</span>

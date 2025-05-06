@@ -2047,6 +2047,33 @@ describe('vwc-searchable-select', () => {
 		});
 	});
 
+	describe('maxItems', () => {
+		const getSelectionCount = () =>
+			element.shadowRoot?.querySelector('.selection-count');
+
+		it('should not display selection counter if maxItems is not set', async function () {
+			expect(getSelectionCount()).toBe(null);
+		});
+
+		it('should display selection counter if maxItems is set', async function () {
+			element.multiple = true;
+			element.maxItems = 2;
+			await elementUpdated(element);
+			expect(getSelectionCount()!.textContent).toBe('(0/2)');
+
+			await selectOption('Apple');
+			expect(getSelectionCount()!.textContent).toBe('(1/2)');
+		});
+
+		it('remaining items should be disabled if maxItems limit is reached', async function () {
+			element.multiple = true;
+			element.maxItems = 2;
+			await selectOption('Banana');
+			await selectOption('Apple');
+			expect(getOption('Cherry').disabled).toBe(true);
+		});
+	});
+
 	describe('ARIA delegation', () => {
 		itShouldDelegateAriaAttributes(
 			() => element,

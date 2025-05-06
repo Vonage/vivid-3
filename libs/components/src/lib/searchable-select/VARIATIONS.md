@@ -216,6 +216,34 @@ This controls the maximum number of lines of tags to display. When the limit wou
 </vwc-searchable-select>
 ```
 
+### Max Items
+
+This controls the maximum number of items that user can select. When the limit would be reached, the remaining options will be disabled.
+
+```html preview 270px
+<vwc-searchable-select multiple label="Countries" max-items="3">
+	<vwc-option
+		icon="flag-afghanistan"
+		value="afghanistan"
+		text="Afghanistan"
+	></vwc-option>
+	<vwc-option icon="flag-albania" value="albania" text="Albania"></vwc-option>
+	<vwc-option icon="flag-algeria" value="algeria" text="Algeria"></vwc-option>
+	<vwc-option
+		icon="flag-argentina"
+		value="argentina"
+		text="Argentina"
+	></vwc-option>
+	<vwc-option icon="flag-armenia" value="armenia" text="Armenia"></vwc-option>
+	<vwc-option icon="flag-aruba" value="aruba" text="Aruba"></vwc-option>
+	<vwc-option
+		icon="flag-australia"
+		value="australia"
+		text="Australia"
+	></vwc-option>
+</vwc-searchable-select>
+```
+
 ### External Tags
 
 When set, the selected tags will not be displayed inside the component.

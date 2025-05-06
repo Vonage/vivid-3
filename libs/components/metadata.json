@@ -5641,6 +5641,13 @@
 					"propertyName": "maxLines"
 				},
 				{
+					"name": "maxItems",
+					"description": "Specifies the maximum number of items the user can select.",
+					"type": "number",
+					"attributeName": "max-items",
+					"propertyName": "maxItems"
+				},
+				{
 					"name": "multiple",
 					"type": "boolean",
 					"attributeName": "multiple",

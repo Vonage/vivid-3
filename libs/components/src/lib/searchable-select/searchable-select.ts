@@ -124,6 +124,13 @@ export class SearchableSelect extends DelegatesAria(
 	@attr({ attribute: 'max-lines', converter: nullableNumberConverter })
 	maxLines: number | null = null;
 
+	/**
+	 * @public
+	 * HTML Attribute: max-items
+	 */
+	@attr({ attribute: 'max-items', converter: nullableNumberConverter })
+	maxItems: number | null = null;
+
 	// --- Values ---
 
 	/**
@@ -151,6 +158,7 @@ export class SearchableSelect extends DelegatesAria(
 
 		this.value = this.values.length ? this.values[0] : '';
 
+		this.#updateSelectionLimit();
 		this.#updateSelectedOnSlottedOptions();
 		if (this.$fastController.isConnected) {
 			this.#updateTagLayout();
@@ -426,6 +434,7 @@ export class SearchableSelect extends DelegatesAria(
 		this._areOptionsInitialized = true;
 
 		if (oldValue) {
+			this._slottedDisabledOptions = [];
 			for (const option of oldValue) {
 				const notifier = Observable.getNotifier(option);
 				notifier.unsubscribe(this.#slottedOptionsChangeHandler, 'selected');
@@ -450,6 +459,9 @@ export class SearchableSelect extends DelegatesAria(
 				this.values.includes(option.value)
 			) {
 				values.push(option.value);
+			}
+			if (option.disabled) {
+				this._slottedDisabledOptions.push(option);
 			}
 		}
 
@@ -995,6 +1007,40 @@ export class SearchableSelect extends DelegatesAria(
 				.filter((option) => option.disabled)
 				.map((option) => option.value)
 		);
+	}
+
+	// --- Max items ---
+
+	/**
+	 * @internal
+	 */
+	@observable _slottedDisabledOptions: ListboxOption[] = [];
+
+	#updateSelectionLimit() {
+		if (
+			!this.multiple ||
+			typeof this.maxItems !== 'number' ||
+			this.maxItems <= 0
+		) {
+			return;
+		}
+
+		// Filter out options that are disabled by default
+		const options = this._slottedOptions.filter(
+			(option) => !this._slottedDisabledOptions.includes(option)
+		);
+		if (this.values.length >= this.maxItems) {
+			const unselectedOptions = options.filter(
+				(option) => !this.selectedOptions.includes(option)
+			);
+			for (const option of unselectedOptions) {
+				option.disabled = true;
+			}
+		} else {
+			for (const option of options) {
+				option.disabled = false;
+			}
+		}
 	}
 
 	// --- Form handling ---
