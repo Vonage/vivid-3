@@ -172,6 +172,15 @@ const zhCN: Locale = {
 			total: number
 		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
 	},
+	richTextEditor: {
+		textBlockType: '文本块类型',
+		textSize: '文字大小',
+		bold: '加粗',
+		italics: '斜体',
+		underline: '下划线',
+		strikethrough: '删除线',
+		monospace: '等宽字体',
+	},
 };
 
 export default zhCN;

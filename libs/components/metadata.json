@@ -6784,7 +6784,7 @@
 				},
 				{
 					"name": "activeindicator",
-					"description": "Whether or not to show the active indicator",
+					"description": "Deprecated attribute. It has no effect.",
 					"type": "boolean",
 					"attributeName": "activeindicator",
 					"propertyName": "activeindicator"
@@ -6866,7 +6866,7 @@
 			"methods": [
 				{
 					"name": "adjust",
-					"description": "The adjust method for FASTTabs",
+					"description": "Adjusts the active index by numerical increments.\nOnly enabled tabs are considered.",
 					"args": [{ "name": "adjustment", "type": "number" }],
 					"returnType": "void"
 				}
