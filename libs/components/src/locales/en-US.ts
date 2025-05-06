@@ -172,6 +172,15 @@ const enUS: Locale = {
 			total: number
 		) => `Option ${name} focused, ${position} of ${total}.`,
 	},
+	richTextEditor: {
+		textBlockType: 'Text Block Type',
+		textSize: 'Text Size',
+		bold: 'Bold',
+		italics: 'Italics',
+		underline: 'Underline',
+		strikethrough: 'Strikethrough',
+		monospace: 'Monospace',
+	},
 };
 
 export default enUS;
