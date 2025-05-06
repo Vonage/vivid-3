@@ -174,6 +174,15 @@ const deDE: Locale = {
 			total: number
 		) => `Option ${name} fokussiert, ${position} von ${total}.`,
 	},
+	richTextEditor: {
+		textBlockType: 'Textblocktyp',
+		textSize: 'Textgröße',
+		bold: 'Fett',
+		italics: 'Kursiv',
+		underline: 'Unterstrichen',
+		strikethrough: 'Durchgestrichen',
+		monospace: 'Monospace',
+	},
 };
 
 export default deDE;

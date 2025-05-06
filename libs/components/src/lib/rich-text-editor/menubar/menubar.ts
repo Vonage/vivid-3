@@ -1,8 +1,9 @@
 import { attr } from '@microsoft/fast-element';
 import { VividElement } from '../../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../../shared/patterns';
 import type { RichTextEditor } from '../rich-text-editor';
 
-export class MenuBar extends VividElement {
+export class MenuBar extends Localized(VividElement) {
 	@attr({ attribute: 'menu-items' })
 	menuItems?: string;
 
