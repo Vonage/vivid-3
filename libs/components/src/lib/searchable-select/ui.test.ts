@@ -71,6 +71,9 @@ test('should show the component', async ({ page }: { page: Page }) => {
 				<vwc-searchable-select max-lines="3" multiple>
 					${genOptions(30)}
 				</vwc-searchable-select>
+				<vwc-searchable-select label="label" max-items="5" multiple>
+					<vwc-option value="1" text="Option 1" selected></vwc-option>
+				</vwc-searchable-select>
 				<vwc-searchable-select multiple>
 					<vwc-option value="afghanistan" text="Afghanistan" selected>
 						<vwc-icon slot="tag-icon" name="flag-afghanistan"></vwc-icon>
