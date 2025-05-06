@@ -105,6 +105,8 @@ const zhCN: Locale = {
 		fileTooBigError:
 			'文件太大 ({{filesize}}MiB)。最大文件大小: {{maxFilesize}}MiB。',
 		removeFileLabel: '删除文件',
+		invalidFilesError:
+			'所选的一个或多个文件无效。请仅上传大小限制内的有效文件类型。',
 	},
 	audioPlayer: {
 		playButtonLabel: '草創',

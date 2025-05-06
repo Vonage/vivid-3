@@ -105,6 +105,8 @@ const jaJP: Locale = {
 		fileTooBigError:
 			'ファイルが大きすぎます ({{filesize}}MiB)。最大ファイルサイズ: {{maxFilesize}}MiB。',
 		removeFileLabel: 'ファイルを削除',
+		invalidFilesError:
+			'選択したファイルの1つ以上が無効です。サイズ制限以下の有効なファイル形式のみをアップロードしてください。',
 	},
 	audioPlayer: {
 		playButtonLabel: '開始',

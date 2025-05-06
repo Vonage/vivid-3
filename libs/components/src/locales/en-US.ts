@@ -105,6 +105,8 @@ const enUS: Locale = {
 		fileTooBigError:
 			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Remove file',
+		invalidFilesError:
+			'One or more selected files are invalid. Please, upload only valid file types under the size limit.',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Play',
