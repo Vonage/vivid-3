@@ -22,6 +22,7 @@ We’ve now [implemented this](/components/searchable-select/#tag-connotation): 
 We’ve improved TypeScript support for our Vue wrappers! You’ll now get better type inference when accessing component instances and handling events—making integration smoother and safer.
 
 Learn more:
+
 - [Using Events](/getting-started/vue/#using-events)
 - [Accessing the Component Instance](/getting-started/vue/#accessing-the-component-instance)
 
