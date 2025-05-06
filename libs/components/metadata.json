@@ -5635,17 +5635,16 @@
 					"propertyName": "loading"
 				},
 				{
+					"name": "maxItems",
+					"type": "number",
+					"attributeName": "max-items",
+					"propertyName": "maxItems"
+				},
+				{
 					"name": "maxLines",
 					"type": "number",
 					"attributeName": "max-lines",
 					"propertyName": "maxLines"
-				},
-				{
-					"name": "maxItems",
-					"description": "Specifies the maximum number of items the user can select.",
-					"type": "number",
-					"attributeName": "max-items",
-					"propertyName": "maxItems"
 				},
 				{
 					"name": "multiple",
