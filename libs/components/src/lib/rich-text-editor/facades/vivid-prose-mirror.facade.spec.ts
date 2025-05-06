@@ -475,24 +475,106 @@ describe('ProseMirrorFacade', () => {
 	});
 
 	describe('keyboard interaction', () => {
+		function dispatchEditorKeyboardEvent(
+			element: HTMLElement,
+			key: string,
+			shiftKey = false
+		) {
+			const event = new KeyboardEvent('keydown', { key, shiftKey });
+			getOutputElement(element).dispatchEvent(event);
+		}
 		beforeEach(async () => {
 			await useOriginalEditorView();
 			initViewer();
 		});
 
-		it('should handle Enter key press', async () => {
-			const NEWLINE_POSITION_VALUE = 3;
+		it('should add a new block on Enter key press', async () => {
 			const content = '123';
 			const element = initViewer();
 			facadeInstance.replaceContent(`<p>${content}</p>`);
 
-			const event = new KeyboardEvent('keydown', { key: 'Enter' });
-			getOutputElement(element).dispatchEvent(event);
+			dispatchEditorKeyboardEvent(element, 'Enter');
 
-			expect(facadeInstance.selection()).toEqual({
-				start: content.length + NEWLINE_POSITION_VALUE,
-				end: content.length + NEWLINE_POSITION_VALUE,
+			expect(getOutputElement(element).querySelectorAll('p').length).toBe(2);
+		});
+
+		it('should create a blank paragraph on enter press when in a different block', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(`<p>123</p>`);
+			facadeInstance.setSelectionTag('h2');
+
+			dispatchEditorKeyboardEvent(element, 'Enter');
+			const postTitleStyles = facadeInstance.getSelectionStyles();
+
+			facadeInstance.selection({ start: 3, end: 3 });
+			facadeInstance.setSelectionTag('h3');
+			facadeInstance.selection({ start: 4, end: 4 });
+
+			dispatchEditorKeyboardEvent(element, 'Enter');
+
+			const postSubTitleStyles = facadeInstance.getSelectionStyles();
+			expect(postTitleStyles).toEqual({
+				textBlockType: 'body',
+				textDecoration: undefined,
+				textSize: 'normal',
 			});
+			expect(postSubTitleStyles).toEqual({
+				textBlockType: 'body',
+				textDecoration: undefined,
+				textSize: 'normal',
+			});
+		});
+
+		it('should add paragraph with same style of former paragraph after enter press', async () => {
+			const element = initViewer();
+			facadeInstance.replaceContent(`<p>123</p>`);
+
+			facadeInstance.selection({ start: 2, end: 4 });
+			facadeInstance.setTextSize('large');
+			facadeInstance.setSelectionDecoration('underline');
+
+			const firstParagraphStyles = facadeInstance.getSelectionStyles();
+
+			facadeInstance.selection({ start: 4, end: 4 });
+
+			dispatchEditorKeyboardEvent(element, 'Enter');
+
+			facadeInstance.selection({ start: 6, end: 6 });
+
+			expect(firstParagraphStyles).toEqual({
+				textBlockType: 'body',
+				textDecoration: ['underline'],
+				textSize: 'large',
+			});
+			expect(facadeInstance.getSelectionStyles()).toEqual(firstParagraphStyles);
+		});
+
+		it('should add a new line in the same block when hitting shift+enter', async () => {
+			const content = '123';
+			const element = initViewer();
+			facadeInstance.replaceContent(`<p>${content}</p>`);
+
+			dispatchEditorKeyboardEvent(element, 'Enter', true);
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				'<p>123<br><br class="ProseMirror-trailingBreak"></p>'
+			);
+			expect(facadeInstance.selection()).toEqual({ start: 5, end: 5 });
+		});
+
+		it('should remove the selection and add a new line at beginning of selection on Shift+Enter', async () => {
+			const content = '<p>123456</p><p>789</p>';
+			const element = initViewer();
+			facadeInstance.replaceContent(`${content}`);
+
+			facadeInstance.selection({ start: 4, end: 11 });
+
+			dispatchEditorKeyboardEvent(element, 'Enter', true);
+
+			expect(getOutputElement(element).innerHTML).toBe(
+				'<p>123<br><br class="ProseMirror-trailingBreak"></p><p>9</p>'
+			);
+			expect(facadeInstance.selection()).toEqual({ start: 5, end: 5 });
 		});
 	});
 

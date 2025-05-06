@@ -1,20 +1,30 @@
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import deDE from '@vonage/vivid/locales/de-DE';
+import enUS from '@vonage/vivid/locales/en-US';
 import { Select } from '../../select/select';
 import { RichTextEditorTextBlocks } from '../rich-text-editor';
 import { Tooltip } from '../../tooltip/tooltip';
+import { setLocale } from '../../../shared/localization';
 import { MenuBar } from './menubar';
-import '.';
 import { TEXT_DECORATION_ITEMS, TEXT_SIZES } from './consts';
+import '.';
 
 const COMPONENT_TAG = 'vwc-menubar';
 
 describe('menuBar', () => {
+	async function openTextBlockMenu() {
+		getSelectionMenu('text-block').open = true;
+		await elementUpdated(element);
+	}
+
 	function getSelectionMenu(menuItemName: string) {
 		return element.shadowRoot?.querySelector(`#${menuItemName}`) as Select;
 	}
+
 	let element: MenuBar;
 
 	beforeEach(async () => {
+		setLocale(enUS);
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as unknown as MenuBar;
@@ -107,6 +117,7 @@ describe('menuBar', () => {
 				expect(spy.mock.calls.length).toBe(0);
 			});
 		});
+
 		describe('textBlock', () => {
 			const getOptions = () => {
 				return getSelectionMenu('text-block').querySelectorAll('vwc-option');
@@ -151,11 +162,6 @@ describe('menuBar', () => {
 				});
 			});
 
-			async function openTextBlockMenu() {
-				getSelectionMenu('text-block').open = true;
-				await elementUpdated(element);
-			}
-
 			it('should emit a non bubbling and non composed text-block-selected event', async () => {
 				const spy = vi.fn();
 				element.addEventListener('text-block-selected', spy);
@@ -193,6 +199,18 @@ describe('menuBar', () => {
 				expect(tooltip instanceof Tooltip).toBe(true);
 				expect(tooltip?.getAttribute('text')).toBe('Text Block Type');
 				expect(tooltip.getAttribute('placement')).toBe('top');
+			});
+
+			it('should set a tooltip with localized text block message', async () => {
+				setLocale(deDE);
+				element.setAttribute('menu-items', 'textBlock');
+				await elementUpdated(element);
+				const menu = getSelectionMenu('text-block');
+				const tooltip = menu.parentElement as Tooltip;
+
+				expect(tooltip?.getAttribute('text')).toBe(
+					deDE.richTextEditor.textBlockType
+				);
 			});
 
 			it('should set the select value to empty string by default', async () => {
@@ -249,19 +267,11 @@ describe('menuBar', () => {
 
 		describe('textDecoration', () => {
 			const getDecorationButtons = () => {
-				const queryResult = TEXT_DECORATION_ITEMS.reduce(
-					(acc: HTMLElement[], value) => {
-						acc.push(
-							element.shadowRoot?.querySelector(
-								`[aria-label="${value.text}"]`
-							) as HTMLElement
-						);
-						return acc;
-					},
-					[]
-				);
-
-				return queryResult;
+				return Array.from(
+					getSelectionMenu('text-decoration').querySelectorAll(
+						'.selection-button'
+					)
+				) as HTMLElement[];
 			};
 
 			const getDecorationButton = (buttonText: string) =>
@@ -339,6 +349,19 @@ describe('menuBar', () => {
 					);
 					expect(buttons[i].parentElement?.getAttribute('placement')).toBe(
 						'top'
+					);
+				}
+			});
+
+			it('should set a tooltip with localized text decoration message', async () => {
+				setLocale(deDE);
+				element.setAttribute('menu-items', 'textDecoration');
+				await elementUpdated(element);
+
+				const buttons = getDecorationButtons();
+				for (let i = 0; i < buttons.length; i++) {
+					expect(buttons[i].parentElement?.getAttribute('text')).toBe(
+						(deDE.richTextEditor as any)[TEXT_DECORATION_ITEMS[i].value]
 					);
 				}
 			});
@@ -483,6 +506,18 @@ describe('menuBar', () => {
 				expect(menu.open).toBe(true);
 			});
 
+			it('should set a tooltip with localized text size message', async () => {
+				setLocale(deDE);
+				element.setAttribute('menu-items', 'textSize');
+				await elementUpdated(element);
+				const menu = getSelectionMenu('text-size');
+				const tooltip = menu.children[0] as Tooltip;
+
+				expect(tooltip?.getAttribute('text')).toBe(
+					deDE.richTextEditor.textSize
+				);
+			});
+
 			it('should display menu items according to TEXT_SIZES', async () => {
 				const menu = getSelectionMenu('text-size');
 
@@ -543,6 +578,12 @@ describe('menuBar', () => {
 			it('should show divider element', async () => {
 				expect(element.shadowRoot?.querySelectorAll(`.divider`).length).toBe(2);
 			});
+		});
+	});
+
+	describe('locale', () => {
+		it('should replace tooltip strings with locale values', async () => {
+			setLocale(deDE);
 		});
 	});
 });

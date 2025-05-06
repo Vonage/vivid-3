@@ -61,6 +61,64 @@ function setTextBlockType(styles: SelectionStyles, type: string) {
 	}
 }
 
+function createEnterKeymapPlugin() {
+	return keymap({
+		['Shift-Enter']: (state, dispatch) => {
+			const { schema } = state;
+			const br = schema.nodes.hard_break;
+			const { $from, $to } = state.selection;
+			if ($from.sameParent($to)) {
+				dispatch &&
+					dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
+			} else {
+				if (dispatch) {
+					const tr = state.tr;
+
+					const lastSelectionBlock = state.doc.resolve($to.end());
+
+					tr.delete(lastSelectionBlock.start(), $to.pos);
+					tr.delete($from.pos, lastSelectionBlock.start() - 1);
+					tr.insert($from.pos, br.create());
+
+					const newSelection = TextSelection.create(tr.doc, $from.pos + 1);
+					tr.setSelection(newSelection);
+
+					dispatch(tr.scrollIntoView());
+				}
+			}
+			return true;
+		},
+		Enter: (state, dispatch) => {
+			const { schema } = state;
+			const paragraph = schema.nodes.paragraph;
+			const { $from, empty } = state.selection;
+
+			if (!empty || $from.parent.type !== paragraph) {
+				return false;
+			}
+
+			const tr = state.tr;
+
+			const marks = $from.marks();
+			tr.split($from.pos);
+
+			if (marks.length > 0) {
+				const newParaStart = $from.pos + 1;
+
+				const zeroWidthSpace = '\u200B';
+				const content = schema.text(zeroWidthSpace, marks);
+
+				tr.insert(newParaStart, content);
+
+				tr.setSelection(TextSelection.create(tr.doc, newParaStart + 1));
+			}
+
+			dispatch && dispatch(tr.scrollIntoView());
+			return true;
+		},
+	});
+}
+
 function createSelectionChangePlugin(
 	onSelectionChange: (selection: RichTextEditorSelection) => void
 ) {
@@ -157,6 +215,7 @@ export class ProseMirrorFacade {
 		const plugins = [
 			createPlaceholderPlugin(),
 			createSelectionChangePlugin(this.#onSelectionChange),
+			createEnterKeymapPlugin(),
 			keymap(baseKeymap),
 		];
 		const state = EditorState.create({
