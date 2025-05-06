@@ -174,6 +174,15 @@ const jaJP: Locale = {
 			total: number
 		) => `オプション ${name} がフォーカスされました。${position}/${total}`,
 	},
+	richTextEditor: {
+		textBlockType: 'テキストブロックタイプ',
+		textSize: '文字サイズ',
+		bold: '太字',
+		italics: '斜体',
+		underline: '下線',
+		strikethrough: '取り消し線',
+		monospace: '等幅',
+	},
 };
 
 export default jaJP;

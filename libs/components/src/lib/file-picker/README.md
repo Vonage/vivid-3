@@ -167,7 +167,7 @@ When setting `block-size` or `max-block-size` on the file-picker the list of the
 
 **_Rejected Files_** `rejectedFiles` (Read-only)
 
-Use `files` or `rejectedFiles` to access the list of files that have been added to the file picker and passed or failed validation checks.
+Use `files` or `rejectedFiles` to access the list of files that have been added to the File Picker and passed or failed validation checks.
 
 ```html preview
 <form method="post" enctype="multipart/form-data">
