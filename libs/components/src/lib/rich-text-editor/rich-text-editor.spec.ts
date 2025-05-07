@@ -641,10 +641,13 @@ describe('vwc-rich-text-editor', () => {
 		});
 	});
 
-	describe.only('attachments slot', () => {
-
+	describe('attachments slot', () => {
 		it('should default with class "hidden" to attachments wrapper if no slotted items', async () => {
-			expect(element.shadowRoot?.querySelector('#attachments-wrapper')?.classList.contains('hidden')).toBe(true);
+			expect(
+				element.shadowRoot
+					?.querySelector('#attachments-wrapper')
+					?.classList.contains('hidden')
+			).toBe(true);
 		});
 
 		it('should remove class "hidden" from attachments wrapper if slotted items exist', async () => {
@@ -652,7 +655,11 @@ describe('vwc-rich-text-editor', () => {
 			div.slot = 'attachments';
 			element.appendChild(div);
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('#attachments-wrapper')?.classList.contains('hidden')).toBe(false);
+			expect(
+				element.shadowRoot
+					?.querySelector('#attachments-wrapper')
+					?.classList.contains('hidden')
+			).toBe(false);
 		});
 
 		it('should add class "hidden" from attachments wrapper if slotted items are removed', async () => {
@@ -661,7 +668,11 @@ describe('vwc-rich-text-editor', () => {
 			element.appendChild(div);
 			div.remove();
 			await elementUpdated(element);
-			expect(element.shadowRoot?.querySelector('#attachments-wrapper')?.classList.contains('hidden')).toBe(true);
+			expect(
+				element.shadowRoot
+					?.querySelector('#attachments-wrapper')
+					?.classList.contains('hidden')
+			).toBe(true);
 		});
 	});
 });

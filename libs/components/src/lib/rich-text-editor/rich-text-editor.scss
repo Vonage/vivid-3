@@ -22,14 +22,14 @@ p {
 #editor {
 	@include scrollbar.scrollbar;
 
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	position: relative;
-    overflow-y: auto;
-    block-size: 100%;
+	block-size: 100%;
+	overflow-y: auto;
 }
 
-[contenteditable="true"] {
+[contenteditable='true'] {
 	overflow: unset;
 	block-size: unset;
 }

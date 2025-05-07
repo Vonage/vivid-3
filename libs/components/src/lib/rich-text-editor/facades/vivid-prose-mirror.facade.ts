@@ -5,7 +5,7 @@ import {
 	Selection,
 	TextSelection,
 } from 'prosemirror-state';
-import { DOMParser, DOMSerializer, Node } from 'prosemirror-model';
+import { DOMParser, Node } from 'prosemirror-model';
 import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
@@ -503,6 +503,6 @@ export class ProseMirrorFacade {
 	}
 
 	getValue(): string {
-		return this.#view!.dom.innerHTML;		
+		return this.#view!.dom.innerHTML;
 	}
 }

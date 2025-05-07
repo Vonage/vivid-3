@@ -1,11 +1,11 @@
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { dividerDefinition } from '../components';
 import styles from './rich-text-editor.scss?inline';
 
 import { menuBarDefinition } from './menubar/definition';
 import { RichTextEditor } from './rich-text-editor';
 import { RichTextEditorTemplate as template } from './rich-text-editor.template';
-import { dividerDefinition } from '../components';
 
 export const richTextEditorDefinition = defineVividComponent(
 	'rich-text-editor',

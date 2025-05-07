@@ -2,12 +2,12 @@ import { html } from '@microsoft/fast-element';
 import type { ExecutionContext, ViewTemplate } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { Divider } from '../divider/divider';
 import {
 	type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
 	RichTextEditor,
 	RichTextEditorTextBlocks,
 } from './rich-text-editor';
-import { Divider } from '../divider/divider';
 
 const getClasses = (_: RichTextEditor) => classNames('control');
 
@@ -37,9 +37,15 @@ function textSizeSelectedHandler(event: CustomEvent<string>) {
 	menuParent(event.target).focus();
 }
 
-function handleAttachmentsSlotChange(_: RichTextEditor, { event }: ExecutionContext) {
+function handleAttachmentsSlotChange(
+	_: RichTextEditor,
+	{ event }: ExecutionContext
+) {
 	const slotElement = event.target as HTMLSlotElement;
-	slotElement.parentElement?.classList.toggle('hidden', slotElement.assignedElements().length < 1)
+	slotElement.parentElement?.classList.toggle(
+		'hidden',
+		slotElement.assignedElements().length < 1
+	);
 }
 
 function handleMenuBarSlotChange(
@@ -81,7 +87,9 @@ function handleMenuBarSlotChange(
  */
 export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
-) => ViewTemplate<RichTextEditor> = (context: VividElementDefinitionContext) => {
+) => ViewTemplate<RichTextEditor> = (
+	context: VividElementDefinitionContext
+) => {
 	const dividerTag = context.tagFor(Divider);
 	return html`<template class="${getClasses}">
 		<div id="editor" class="editor">

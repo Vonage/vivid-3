@@ -7,8 +7,8 @@ import { ProseMirrorFacade } from './vivid-prose-mirror.facade';
 
 type DeepPartial<T> = T extends object
 	? {
-		[P in keyof T]?: DeepPartial<T[P]>;
-	}
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
 	: T;
 
 vi.mock('prosemirror-view', async () => ({
@@ -997,7 +997,9 @@ describe('ProseMirrorFacade', () => {
 		it('should return empty value', async () => {
 			const element = setViewer();
 
-			expect(getOutputElement(element).innerHTML).toEqual(facadeInstance.getValue());
+			expect(getOutputElement(element).innerHTML).toEqual(
+				facadeInstance.getValue()
+			);
 		});
 
 		it('should return the content', async () => {
@@ -1007,7 +1009,9 @@ describe('ProseMirrorFacade', () => {
 				'<p>This is a pretty long text for a sample, but it should work</p>'
 			);
 
-			expect(getOutputElement(element).innerHTML).toEqual(facadeInstance.getValue());
+			expect(getOutputElement(element).innerHTML).toEqual(
+				facadeInstance.getValue()
+			);
 		});
 	});
 });
