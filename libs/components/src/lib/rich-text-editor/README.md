@@ -212,6 +212,11 @@ Set a component in the `attachments` slot to show them inside the editor area.
 <style>
 	vwc-rich-text-editor {
 		block-size: 200px;
+
+		>div {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 
 	#scroll-to-attachments {
@@ -229,6 +234,16 @@ Set a component in the `attachments` slot to show them inside the editor area.
 	<vwc-rich-text-editor>
 		<div slot="attachments">
 			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
 		</div>
 	</vwc-rich-text-editor>
 	<vwc-button
@@ -241,7 +256,9 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 <script>
 	function scrollToAttachments() {
-		slottedElement.scrollIntoView();
+		const editor = rteComponent.shadowRoot.querySelector('#editor');
+		const textArea = rteComponent.shadowRoot.querySelector('[contenteditable="true"]');
+		editor.scrollTop = textArea.getBoundingClientRect().height - editor.getBoundingClientRect().height + 32;
 	}
 
 	async function waitForEditorReady() {
@@ -270,7 +287,7 @@ Set a component in the `attachments` slot to show them inside the editor area.
 	rteComponent = document.querySelector('vwc-rich-text-editor');
 
 	// Observe visibility of the attachments slot
-	const observer = new IntersectionObserver(
+	observer = new IntersectionObserver(
 		(entries) => {
 			const entry = entries[0];
 			document
@@ -282,7 +299,7 @@ Set a component in the `attachments` slot to show them inside the editor area.
 			threshold: 0.1,
 		}
 	);
-	const slottedElement = rteComponent.querySelector('[slot="attachments"]');
+	slottedElement = rteComponent.querySelector('[slot="attachments"]');
 	observer.observe(slottedElement);
 	start();
 </script>
