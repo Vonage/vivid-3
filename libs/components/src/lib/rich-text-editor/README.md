@@ -321,8 +321,11 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 <div class="table-wrapper">
 
-| Name             | Returns | Description                                                                                              |
-| ---------------- | ------- | -------------------------------------------------------------------------------------------------------- |
-| **setTextBlock** |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection |
+| Name                       | Returns | Description                                                                                                                                                                                             |
+| -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection                                                                                                |
+| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough` and `monospace`) and applies it to the current selection in the editor. If the decoration type is invalid, it logs a warning. |
+| **setSelectionTextSize**   |         | Accepts a text size (`extra-large`, `large`, `normal`, or `small`) and applies it to the current selection in the editor.                                                                               |
+| **scrollToAttachments**    |         | Accepts `pixelsAddition` which defaults to 0 and scrolls to the top of the attachments area plus the `pixelsAddition` value.                                                                            |
 
 </div>
