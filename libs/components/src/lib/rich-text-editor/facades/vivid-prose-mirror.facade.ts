@@ -5,7 +5,7 @@ import {
 	Selection,
 	TextSelection,
 } from 'prosemirror-state';
-import { DOMParser, Node } from 'prosemirror-model';
+import { DOMParser, DOMSerializer, Node } from 'prosemirror-model';
 import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
@@ -500,5 +500,9 @@ export class ProseMirrorFacade {
 		dispatch(tr.scrollIntoView());
 		this.#userContentChange = true;
 		this.#handleChangeEvent();
+	}
+
+	getValue(): string {
+		return this.#view!.dom.innerHTML;		
 	}
 }

@@ -7,8 +7,8 @@ import { ProseMirrorFacade } from './vivid-prose-mirror.facade';
 
 type DeepPartial<T> = T extends object
 	? {
-			[P in keyof T]?: DeepPartial<T[P]>;
-	  }
+		[P in keyof T]?: DeepPartial<T[P]>;
+	}
 	: T;
 
 vi.mock('prosemirror-view', async () => ({
@@ -980,6 +980,34 @@ describe('ProseMirrorFacade', () => {
 			expect(getOutputElement(element).innerHTML).toBe(
 				`<p>Th<span style="font: var(--vvd-typography-base);">is is a</span> pretty long text for a sample, but it should work</p>`
 			);
+		});
+	});
+
+	describe('getContent', () => {
+		function setViewer() {
+			const element = initViewer();
+			return element;
+		}
+
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		it('should return empty value', async () => {
+			const element = setViewer();
+
+			expect(getOutputElement(element).innerHTML).toEqual(facadeInstance.getValue());
+		});
+
+		it('should return the content', async () => {
+			const element = setViewer();
+
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			expect(getOutputElement(element).innerHTML).toEqual(facadeInstance.getValue());
 		});
 	});
 });
