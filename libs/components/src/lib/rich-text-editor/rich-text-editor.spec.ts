@@ -675,4 +675,60 @@ describe('vwc-rich-text-editor', () => {
 			).toBe(true);
 		});
 	});
+
+	describe('scrollToAttachments()', () => {
+		let editorBoundsSpy: MockInstance<() => DOMRect>,
+			editableAreaBoundsSpy: MockInstance<() => DOMRect>;
+
+		function getEditorElement() {
+			return element.shadowRoot?.querySelector('#editor') as HTMLElement;
+		}
+		beforeEach(async () => {
+			const editableAreaElement = getOutputElement();
+			const editorElement = getEditorElement();
+
+			editorBoundsSpy = vi
+				.spyOn(editorElement, 'getBoundingClientRect')
+				.mockReturnValue({
+					height: 30,
+				} as DOMRect);
+			editableAreaBoundsSpy = vi
+				.spyOn(editableAreaElement, 'getBoundingClientRect')
+				.mockReturnValue({
+					height: 200,
+				} as DOMRect);
+		});
+
+		afterEach(() => {
+			editorBoundsSpy.mockRestore();
+			editableAreaBoundsSpy.mockRestore();
+		});
+		it('should allow consumer to set the editor scrolTop to where the attachments element is visible', async () => {
+			const editorElement = getEditorElement();
+			element.scrollToAttachments();
+			await elementUpdated(element);
+
+			expect(editorElement.scrollTop).toBe(170);
+		});
+
+		it('should set the scrollTop value async', async () => {
+			const editorElement = getEditorElement();
+
+			element.scrollToAttachments();
+			const scrollTopValueAfterMethodCall = editorElement.scrollTop;
+			await elementUpdated(element);
+			const scrollTopValueAfterAsyncQueue = editorElement.scrollTop;
+
+			expect(scrollTopValueAfterMethodCall).toBe(0);
+			expect(scrollTopValueAfterAsyncQueue).toBe(170);
+		});
+
+		it('should set the scrollTop with additional pixels when given in parameters', async () => {
+			const editorElement = getEditorElement();
+			element.scrollToAttachments(10);
+			await elementUpdated(element);
+
+			expect(editorElement.scrollTop).toBe(180);
+		});
+	});
 });

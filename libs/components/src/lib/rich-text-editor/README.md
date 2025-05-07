@@ -213,7 +213,7 @@ Set a component in the `attachments` slot to show them inside the editor area.
 	vwc-rich-text-editor {
 		block-size: 200px;
 
-		>div {
+		> div {
 			display: flex;
 			flex-direction: column;
 		}
@@ -256,9 +256,7 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 <script>
 	function scrollToAttachments() {
-		const editor = rteComponent.shadowRoot.querySelector('#editor');
-		const textArea = rteComponent.shadowRoot.querySelector('[contenteditable="true"]');
-		editor.scrollTop = textArea.getBoundingClientRect().height - editor.getBoundingClientRect().height + 32;
+		rteComponent.scrollToAttachments(32);
 	}
 
 	async function waitForEditorReady() {
