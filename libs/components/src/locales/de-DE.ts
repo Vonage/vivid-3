@@ -106,6 +106,8 @@ const deDE: Locale = {
 		fileTooBigError:
 			'Die Datei ist zu groß ({{filesize}}MiB). Maximale Dateigröße: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Datei entfernen',
+		invalidFilesError:
+			'Eine oder mehrere ausgewählte Dateien sind ungültig. Bitte laden Sie nur gültige Dateitypen innerhalb der Größenbeschränkung hoch.',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Abspielen',

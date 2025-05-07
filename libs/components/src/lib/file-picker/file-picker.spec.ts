@@ -1,20 +1,21 @@
+import userEvent from '@testing-library/user-event';
 import {
 	createFormHTML,
 	elementUpdated,
 	fixture,
 	getControlElement,
 } from '@vivid-nx/shared';
-import type { Button } from '../button/button';
-import { Size } from '../enums';
-import { setLocale } from '../../shared/localization';
+import '.';
 import deDE from '../../locales/de-DE';
 import enUS from '../../locales/en-US';
 import {
 	allAriaPropertiesExcept,
 	itShouldDelegateAriaAttributes,
 } from '../../shared/aria/should-delegate-aria.spec';
+import { setLocale } from '../../shared/localization';
+import type { Button } from '../button/button';
+import { Size } from '../enums';
 import { FilePicker } from './file-picker';
-import '.';
 
 const COMPONENT_TAG = 'vwc-file-picker';
 
@@ -40,6 +41,14 @@ function addFiles(files: File[]) {
 	hiddenInput.dispatchEvent(new Event('change'));
 }
 
+function removeFileAtTop(index = 0) {
+	const button = document
+		.querySelector(COMPONENT_TAG)
+		?.shadowRoot?.querySelectorAll('vwc-button')[index] as Button;
+
+	button?.click();
+}
+
 describe('vwc-file-picker', () => {
 	let element: FilePicker;
 
@@ -51,6 +60,10 @@ describe('vwc-file-picker', () => {
 
 	afterEach(() => {
 		element.remove();
+	});
+
+	afterAll(() => {
+		setLocale(enUS);
 	});
 
 	describe('basic', () => {
@@ -620,6 +633,65 @@ describe('form associated vwc-file-picker', function () {
 
 	afterEach(function () {
 		formWrapper.remove();
+	});
+
+	function getFormAssociatedErrorMessage(element: FilePicker) {
+		return element.shadowRoot
+			?.querySelector('.message.error-message')
+			?.textContent?.trim();
+	}
+
+	it('should show custom error message when files are rejected', async () => {
+		const {
+			form: formElement,
+			element,
+			button,
+		} = createFormHTML<FilePicker>({
+			formId: 'form-id',
+			fieldName: 'file',
+			componentTagName: COMPONENT_TAG,
+			formWrapper,
+		});
+		element.accept = '.txt';
+		element.maxFileSize = 1;
+
+		const submitHandler = vi.fn();
+		formElement.addEventListener('submit', submitHandler);
+
+		// Try to add a PDF file (wrong type)
+		addFiles([await generateFile('test.pdf', 0.5, 'application/pdf')]);
+		// simulate form submission
+		await userEvent.click(button as Element);
+		await elementUpdated(element);
+
+		expect(getFormAssociatedErrorMessage(element)).toBe(
+			'One or more selected files are invalid. Please, upload only valid file types under the size limit.'
+		);
+		expect(submitHandler).toHaveBeenCalledTimes(0);
+
+		// Try to add a file that's too big
+		const bigFile = await generateFile('test.txt', 2);
+		addFiles([bigFile]);
+		await userEvent.click(button as Element);
+		await elementUpdated(element);
+
+		expect(getFormAssociatedErrorMessage(element)).toBe(
+			'One or more selected files are invalid. Please, upload only valid file types under the size limit.'
+		);
+		expect(submitHandler).toHaveBeenCalledTimes(0);
+
+		removeFileAtTop();
+		removeFileAtTop();
+
+		// Add a valid file
+		const validFile = await generateFile('valid.txt', 0.5);
+		addFiles([validFile]);
+		await userEvent.click(button as Element);
+		await elementUpdated(element);
+
+		// Check that validation message is cleared
+		expect(element.proxy.validationMessage).toBe('');
+		expect(submitHandler).toHaveBeenCalledTimes(1);
 	});
 
 	it('should reset the value and all files when the form is reset', async function () {
