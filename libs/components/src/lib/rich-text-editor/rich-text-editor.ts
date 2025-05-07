@@ -39,8 +39,8 @@ export class RichTextEditor extends VividElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	get value(): string {
-		return this.#editorWrapperElement.firstElementChild?.innerHTML as string;
+	get value(): string | undefined {
+		return this.#editor?.getValue();
 	}
 
 	set value(content: string) {

@@ -204,6 +204,57 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 </script>
 ```
 
+### Attachments
+
+Set a component in the `attachments` slot to show them inside the editor area. 
+
+```html preview 250px
+<style>
+  vwc-rich-text-editor {
+	block-size: 200px;
+  }
+</style>
+<vwc-layout gutters="small" column-basis="block" row-spacing="small">
+	<vwc-rich-text-editor>
+		<div
+			slot="attachments"
+		>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+		</div>
+	</vwc-rich-text-editor>
+</vwc-layout>
+
+
+<script>
+	async function waitForEditorReady() {
+		await new Promise((res) => {
+			const interval = setInterval(() => {
+				if (!rteComponent.value) return;
+				clearInterval(interval);
+				res();
+			});
+		});
+	}
+
+	async function start() {
+		await waitForEditorReady();
+		rteComponent.value = `
+			<p>Technically sound</p><p>everlasting peace</p><p>no matter what you do</p><p>I'll stay around with you</p><p>and noone ever dared</p><p>to hook my piece of ware</p><p>no matter how it goes</p><p>the matter usually blows</p>
+		`;
+	}
+
+	async function moveMarkerToPosition(moveTo) {
+		rteComponent.selectionStart = moveTo;
+		await new Promise((res) => requestAnimationFrame(res));
+	}
+
+	// waiting for the component to load so using interval. A better mechanism is in the works.
+	rteComponent = document.querySelector('vwc-rich-text-editor');
+
+	start();
+</script>
+```
+
 ## CSS Variables
 
 ## Events

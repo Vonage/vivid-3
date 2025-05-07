@@ -640,4 +640,28 @@ describe('vwc-rich-text-editor', () => {
 			expect(newElementPlaceholderText).toBe(text);
 		});
 	});
+
+	describe.only('attachments slot', () => {
+
+		it('should default with class "hidden" to attachments wrapper if no slotted items', async () => {
+			expect(element.shadowRoot?.querySelector('#attachments-wrapper')?.classList.contains('hidden')).toBe(true);
+		});
+
+		it('should remove class "hidden" from attachments wrapper if slotted items exist', async () => {
+			const div = document.createElement('div');
+			div.slot = 'attachments';
+			element.appendChild(div);
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('#attachments-wrapper')?.classList.contains('hidden')).toBe(false);
+		});
+
+		it('should add class "hidden" from attachments wrapper if slotted items are removed', async () => {
+			const div = document.createElement('div');
+			div.slot = 'attachments';
+			element.appendChild(div);
+			div.remove();
+			await elementUpdated(element);
+			expect(element.shadowRoot?.querySelector('#attachments-wrapper')?.classList.contains('hidden')).toBe(true);
+		});
+	});
 });

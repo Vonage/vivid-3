@@ -1,3 +1,4 @@
+@use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @forward 'facades/prose-mirror';
 @forward 'prose-mirror-overrides';
@@ -12,4 +13,35 @@ h3 {
 
 p {
 	font: var(#{constants.$vvd-typography-base});
+}
+
+:host {
+	display: block;
+}
+
+#editor {
+	@include scrollbar.scrollbar;
+
+	display: flex;
+	flex-direction: column;
+	position: relative;
+    overflow-y: auto;
+    block-size: 100%;
+}
+
+[contenteditable="true"] {
+	overflow: unset;
+	block-size: unset;
+}
+
+#attachments-wrapper {
+	order: 1;
+
+	.divider {
+		padding: 0 12px;
+	}
+}
+
+.hidden {
+	display: none;
 }
