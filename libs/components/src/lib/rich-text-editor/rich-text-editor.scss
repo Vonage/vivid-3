@@ -22,11 +22,13 @@ p {
 #editor {
 	@include scrollbar.scrollbar;
 
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	block-size: 100%;
-	overflow-y: auto;
+	& {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		block-size: 100%;
+		overflow-y: auto;
+	}
 }
 
 [contenteditable='true'] {
