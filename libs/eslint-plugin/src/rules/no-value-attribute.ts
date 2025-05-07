@@ -3,6 +3,7 @@ import type { Rule } from 'eslint';
 import { normalizeTag } from '../utils/components';
 import { ComponentMetadata } from '../utils/ComponentMetadata';
 import { getAttributes } from '../utils/attributes';
+import { camelToKebab } from '../utils/casing';
 
 const componentsWithValueAttributes = new ComponentMetadata<{
 	valueAttr: string;
@@ -75,9 +76,22 @@ export const noValueAttribute: Rule.RuleModule = {
 		docs: {
 			description: 'Do not use the value (or checked) attribute.',
 		},
-		schema: [],
+		fixable: 'code',
+		schema: [
+			{
+				type: 'object',
+				properties: {
+					replaceWith: {
+						enum: ['modelValue', 'initialValue'],
+					},
+				},
+				additionalProperties: false,
+			},
+		],
 	},
 	create(context) {
+		const replaceWith = context.options[0]?.replaceWith ?? null;
+
 		return utils.defineTemplateBodyVisitor(context, {
 			VElement(node) {
 				componentsWithValueAttributes.forTag(
@@ -93,6 +107,20 @@ export const noValueAttribute: Rule.RuleModule = {
 							context.report({
 								loc: valueAttributeUsage.node.loc,
 								message: `Do not use \`${valueAttr}\`. Use \`modelValue\` to set the current value or \`${initialValueAttr}\` to set the initial value.`,
+								...(replaceWith
+									? {
+											fix(fixer) {
+												return fixer.replaceText(
+													valueAttributeUsage.node,
+													camelToKebab(
+														replaceWith === 'initialValue'
+															? initialValueAttr
+															: 'modelValue'
+													)
+												);
+											},
+									  }
+									: {}),
 							});
 						}
 					}
