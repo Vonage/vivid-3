@@ -5524,6 +5524,11 @@
 			"methods": [
 				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "scrollToAttachments",
+					"args": [{ "name": "additionalPixels", "type": "unknown" }],
+					"returnType": "unknown"
+				},
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",
