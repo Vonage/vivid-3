@@ -72,7 +72,7 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should init as empty paragraph', async () => {
 			const div = document.createElement('div');
-			div.innerHTML = element.value;
+			div.innerHTML = element.value as string;
 			expect(div.textContent).toBe('');
 		});
 
