@@ -4,17 +4,17 @@
 
 The `label` attribute provides a short description of the purpose of the Combobox.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.
+</vwc-note>
+
 ```html preview 270px
 <vwc-combobox label="Search for something">
 	<vwc-option text="First Option"></vwc-option>
 	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
-
-<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
-	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
-	<p>It will be announced by screen readers so that those users will know the purpose of the Combobox.</p>
-</vwc-note>
 
 ### Helper Text
 
@@ -47,16 +47,16 @@ To add HTML to the helper text, use the [helper-text slot](/components/combobox/
 
 The `placeholder` attribute provides some text to be displayed when no option has been Combobox.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
+</vwc-note>
+
 ```html preview 270px
 <vwc-combobox placeholder="placeholder" label="Combobox with placeholder">
 	<vwc-option text="First Option"></vwc-option>
 	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
-
-<vwc-note connotation="warning" icon="warning-line" headline="Placeholder text should not be used as a label">
-	<p>Using <code>placeholder</code> text to label the Combobox harms accessibility and user experience. The <code>label</code> text is visually and programmatically associated with its corresponding form control.</p>
-</vwc-note>
 
 ## Validation Feedback
 
