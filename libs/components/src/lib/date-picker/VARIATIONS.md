@@ -4,14 +4,14 @@
 
 The `label` attribute provides a short description of the purpose of the Date Picker.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.
+</vwc-note>
+
 ```html preview 460px
 <vwc-date-picker label="Start date"></vwc-date-picker>
 ```
-
-<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
-	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
-	<p>It will be announced by screen readers so that those users will know the purpose of the Date Picker.</p>
-</vwc-note>
 
 ### Helper Text
 
