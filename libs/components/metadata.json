@@ -5646,6 +5646,12 @@
 					"propertyName": "maxLines"
 				},
 				{
+					"name": "maxSelected",
+					"type": "number",
+					"attributeName": "max-selected",
+					"propertyName": "maxSelected"
+				},
+				{
 					"name": "multiple",
 					"type": "boolean",
 					"attributeName": "multiple",

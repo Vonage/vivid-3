@@ -173,6 +173,10 @@ const zhCN: Locale = {
 			position: number,
 			total: number
 		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `已选择 ${limit} 个中的 ${total} 个。`,
 	},
 	richTextEditor: {
 		textBlockType: '文本块类型',
