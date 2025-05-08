@@ -504,11 +504,21 @@ export class SearchableSelect extends DelegatesAria(
 			this.open = false;
 		}
 
-		this._changeDescription = isSelection
+		this.#updateValuesThroughUserInteraction(newValues);
+
+		const optionMessage = isSelection
 			? this.locale.searchableSelect.optionSelectedMessage(option.text)
 			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
+		const maxSelectedMessage =
+			this.multiple && this.maxSelected && this.maxSelected >= 1
+				? this.locale.searchableSelect.maxSelectedMessage(
+						this.values.length,
+						this.maxSelected!
+				  )
+				: '';
 
-		this.#updateValuesThroughUserInteraction(newValues);
+		this._changeDescription = `${optionMessage} ${maxSelectedMessage}`;
+
 		if (shouldClearSearchText) {
 			this._currentSearchText = null;
 		}
@@ -1048,15 +1058,6 @@ export class SearchableSelect extends DelegatesAria(
 			for (const option of options) {
 				option.disabled = false;
 			}
-		}
-
-		// Update aria live region with selection status
-		const maxSelectedMessage = this.locale.searchableSelect.maxSelectedMessage(
-			this.values.length,
-			this.maxSelected
-		);
-		if (!this._changeDescription.includes(maxSelectedMessage)) {
-			this._changeDescription += ` ${maxSelectedMessage}`;
 		}
 	}
 
