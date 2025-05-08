@@ -4,6 +4,12 @@
 
 The `label` attribute provides a short description of the purpose of the Searchable Select.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.
+	 
+</vwc-note>
+
 ```html preview 270px
 <vwc-searchable-select label="Country">
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
@@ -11,14 +17,6 @@ The `label` attribute provides a short description of the purpose of the Searcha
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
 </vwc-searchable-select>
 ```
-
-<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
-
-If you can not use the visible `label`, provide it using the `aria-label` attribute.
-
-It will be announced by screen readers so that those users will know the purpose of the Searchable Select.
-
-</vwc-note>
 
 ### Helper Text
 
@@ -42,6 +40,10 @@ To add HTML to the helper text, use the [helper-text slot](/components/searchabl
 
 The `placeholder` attribute provides some text to be displayed when no option has been selected.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
+</vwc-note>
+
 ```html preview 230px
 <vwc-searchable-select label="Country" placeholder="Select a country...">
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
@@ -58,12 +60,6 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
 </vwc-searchable-select>
 ```
-
-<vwc-note connotation="warning" icon="warning-line" headline="Placeholder text should not be used as a label">
-
-Using `placeholder` text to label the Searchable Select harms accessibility and user experience. The `label` text is visually and programmatically associated with its corresponding form control.
-
-</vwc-note>
 
 ## Validation Feedback
 

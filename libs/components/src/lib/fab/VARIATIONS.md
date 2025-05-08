@@ -11,10 +11,10 @@ The `label` attribute controls Fab's label text.
 The `connotation` attribute controls the purpose of the Fab, expressed in its colors.
 
 ```html preview
-<vwc-fab icon="plus-line"></vwc-fab>
-<vwc-fab icon="plus-line" connotation="accent"></vwc-fab>
-<vwc-fab icon="plus-line" connotation="cta"></vwc-fab>
-<vwc-fab icon="plus-line" connotation="announcement"></vwc-fab>
+<vwc-fab icon="plus-line" label="Add default"></vwc-fab>
+<vwc-fab icon="plus-line" label="Add accent" connotation="accent"></vwc-fab>
+<vwc-fab icon="plus-line" label="Add CTA" connotation="cta"></vwc-fab>
+<vwc-fab icon="plus-line" label="Add announcement" connotation="announcement"></vwc-fab>
 ```
 
 ## Icons
@@ -32,8 +32,14 @@ Custom icons can be provided using the [icon slot](/components/fab/code/#icon-sl
 
 If the `label` is omitted, the Fab will be displayed as an _icon-only_ Fab.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+
+</vwc-note>
+
 ```html preview
-<vwc-fab icon="check-line" aria-label="icon"></vwc-fab>
+<vwc-fab icon="check-line" aria-label="Icon only"></vwc-fab>
 ```
 
 ## Size

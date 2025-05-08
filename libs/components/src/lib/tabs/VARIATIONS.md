@@ -21,6 +21,12 @@ The `icon` attribute on the **Tab** component displays an icon from the [icon li
 
 Custom icons can be provided using the [icon slot](/components/tabs/code/#icon-slot).
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+
+</vwc-note>
+
 ```html preview full
 <vwc-tabs>
 	<vwc-tab icon="chat-line" label="Comments"></vwc-tab>
@@ -31,10 +37,6 @@ Custom icons can be provided using the [icon slot](/components/tabs/code/#icon-s
 	<vwc-tab-panel>Favourites</vwc-tab-panel>
 </vwc-tabs>
 ```
-
-<vwc-note connotation="warning" icon="warning-line" headline="Icons without labels">
-	<p>It is bad UX to hide content that is essential for users to complete their tasks.<br />But, if a <code>label</code> is not supplied, be sure to provide an <code>aria-label</code> which will be announced by a screen reader.</p>
-</vwc-note>
 
 ### Icon Trailing
 
@@ -119,7 +121,7 @@ The `shape` attribute on the **Tab** component controls the style of the backgro
 ```
 
 <vwc-note connotation="information" icon="info-line">
-	<p>The `shape` variations should not be used in the tab set of tabs. The example above is for demonstration purposes only.</p>
+	<p>The <code>shape</code> variations should not be used in the tab set of tabs. The example above is for demonstration purposes only.</p>
 </vwc-note>
 
 ## Orientation
