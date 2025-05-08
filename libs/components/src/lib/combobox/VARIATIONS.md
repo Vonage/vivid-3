@@ -7,7 +7,6 @@ The `label` attribute provides a short description of the purpose of the Combobo
 <vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
 
 If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.
-	 
 </vwc-note>
 
 ```html preview 270px
@@ -58,7 +57,6 @@ The `placeholder` attribute provides some text to be displayed when no option ha
 	<vwc-option text="Second Option"></vwc-option>
 </vwc-combobox>
 ```
-
 
 ## Validation Feedback
 

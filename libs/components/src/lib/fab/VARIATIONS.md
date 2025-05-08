@@ -14,7 +14,11 @@ The `connotation` attribute controls the purpose of the Fab, expressed in its co
 <vwc-fab icon="plus-line" label="Add default"></vwc-fab>
 <vwc-fab icon="plus-line" label="Add accent" connotation="accent"></vwc-fab>
 <vwc-fab icon="plus-line" label="Add CTA" connotation="cta"></vwc-fab>
-<vwc-fab icon="plus-line" label="Add announcement" connotation="announcement"></vwc-fab>
+<vwc-fab
+	icon="plus-line"
+	label="Add announcement"
+	connotation="announcement"
+></vwc-fab>
 ```
 
 ## Icons
