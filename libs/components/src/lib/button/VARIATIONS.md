@@ -200,6 +200,12 @@ Custom icons can be provided using the [icon slot](/components/button/code/#icon
 
 If the `label` is omitted, the button will be displayed as an _icon-only_ button.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+
+</vwc-note>
+
 ```html preview 72px
 <vwc-tooltip text="Send Message" placement="right-start">
 	<vwc-button
