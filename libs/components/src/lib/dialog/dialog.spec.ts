@@ -141,11 +141,12 @@ describe('vwc-dialog', () => {
 
 	describe('subtitle', function () {
 		it('should render the subtitle if is set', async function () {
-			const contentElementWhenUndefined = dialogEl.querySelector('.subtitle');
+			const contentElementWhenUndefined =
+				dialogEl.querySelector('.text .subtitle');
 			const content = 'This is the dialog subtitle!';
 			element.subtitle = content;
 			await elementUpdated(element);
-			const contentElement = dialogEl.querySelector('.subtitle');
+			const contentElement = dialogEl.querySelector('.text .subtitle');
 			expect(contentElementWhenUndefined).toBeNull();
 			expect(contentElement).toBeTruthy();
 			expect(contentElement?.textContent?.trim()).toEqual(content);
@@ -154,12 +155,13 @@ describe('vwc-dialog', () => {
 
 	describe('headline', function () {
 		it('should render the header area when content is set', async function () {
-			const headlineElementWhenUndefined = dialogEl.querySelector('.headline');
+			const headlineElementWhenUndefined =
+				dialogEl.querySelector('.text .headline');
 			const content = 'This is the header!';
 
 			element.headline = content;
 			await elementUpdated(element);
-			const headlineElement = dialogEl.querySelector('.headline');
+			const headlineElement = dialogEl.querySelector('.text .headline');
 
 			expect(headlineElementWhenUndefined).toBeNull();
 			expect(headlineElement).toBeTruthy();

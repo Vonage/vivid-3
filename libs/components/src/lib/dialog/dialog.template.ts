@@ -71,8 +71,14 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 							<slot name="graphic">
 								${when((x) => x.icon, icon(iconTag))}
 							</slot>
-							${when((x) => x.headline, headline())}
-							${when((x) => x.subtitle, subtitle())}
+							${when(
+								(x) => x.headline || x.subtitle,
+								() =>
+									html` <div class="text">
+										${when((x) => x.headline, headline())}
+										${when((x) => x.subtitle, subtitle())}
+									</div>`
+							)}
 							${when((x) => x._showDismissButton, renderDismissButton(buttonTag))}
 					</div>
 					<div class="body ${(x) => (x.fullWidthBody ? 'full-width' : '')}" >
