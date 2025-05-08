@@ -105,6 +105,8 @@ const zhCN: Locale = {
 		fileTooBigError:
 			'文件太大 ({{filesize}}MiB)。最大文件大小: {{maxFilesize}}MiB。',
 		removeFileLabel: '删除文件',
+		invalidFilesError:
+			'所选的一个或多个文件无效。请仅上传大小限制内的有效文件类型。',
 	},
 	audioPlayer: {
 		playButtonLabel: '草創',
@@ -175,6 +177,15 @@ const zhCN: Locale = {
 			total: number,
 			limit: number
 		) => `已选择 ${limit} 个中的 ${total} 个。`,
+	},
+	richTextEditor: {
+		textBlockType: '文本块类型',
+		textSize: '文字大小',
+		bold: '加粗',
+		italics: '斜体',
+		underline: '下划线',
+		strikethrough: '删除线',
+		monospace: '等宽字体',
 	},
 };
 

@@ -105,6 +105,8 @@ const enGB: Locale = {
 		fileTooBigError:
 			'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Remove file',
+		invalidFilesError:
+			'One or more selected files are invalid. Please upload only valid file types under the size limit.',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Play',
@@ -175,6 +177,15 @@ const enGB: Locale = {
 			total: number,
 			limit: number
 		) => `${total} of ${limit} selected.`,
+	},
+	richTextEditor: {
+		textBlockType: 'Text Block Type',
+		textSize: 'Text Size',
+		bold: 'Bold',
+		italics: 'Italics',
+		underline: 'Underline',
+		strikethrough: 'Strikethrough',
+		monospace: 'Monospace',
 	},
 };
 
