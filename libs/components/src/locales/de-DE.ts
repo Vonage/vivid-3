@@ -162,8 +162,6 @@ const deDE: Locale = {
 		noOptionsMessage: 'Keine Optionen',
 		noMatchesMessage: 'Keine Optionen gefunden',
 		loadingOptionsMessage: 'Laden...',
-		ofSelectedMessage: 'von',
-		totalSelectedMessage: 'ausgewählt',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} entfernen`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
@@ -175,6 +173,10 @@ const deDE: Locale = {
 			position: number,
 			total: number
 		) => `Option ${name} fokussiert, ${position} von ${total}.`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `${total} von ${limit} ausgewählt.`,
 	},
 };
 

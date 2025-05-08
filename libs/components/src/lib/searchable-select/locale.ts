@@ -3,8 +3,6 @@ export interface SearchableSelectLocale {
 	noOptionsMessage: string;
 	noMatchesMessage: string;
 	loadingOptionsMessage: string;
-	ofSelectedMessage: string;
-	totalSelectedMessage: string;
 	removeTagButtonLabel: (label: string) => string;
 	optionSelectedMessage: (name: string) => string;
 	optionDeselectedMessage: (name: string) => string;
@@ -13,4 +11,5 @@ export interface SearchableSelectLocale {
 		position: number,
 		total: number
 	) => string;
+	maxSelectedMessage: (total: number, limit: number) => string;
 }

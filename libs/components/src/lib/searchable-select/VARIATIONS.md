@@ -216,12 +216,12 @@ This controls the maximum number of lines of tags to display. When the limit wou
 </vwc-searchable-select>
 ```
 
-### Max Items
+### Max Selected
 
-This controls the maximum number of items that user can select. When the limit would be reached, the remaining options will be disabled.
+This controls the maximum number of items that user can select. Once the limit is reached, the remaining options will be disabled.
 
 ```html preview 270px
-<vwc-searchable-select multiple label="Countries" max-items="3">
+<vwc-searchable-select multiple label="Countries" max-selected="3">
 	<vwc-option
 		icon="flag-afghanistan"
 		value="afghanistan"

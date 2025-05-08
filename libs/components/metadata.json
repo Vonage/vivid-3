@@ -5635,10 +5635,10 @@
 					"propertyName": "loading"
 				},
 				{
-					"name": "maxItems",
+					"name": "maxSelected",
 					"type": "number",
-					"attributeName": "max-items",
-					"propertyName": "maxItems"
+					"attributeName": "max-selected",
+					"propertyName": "maxSelected"
 				},
 				{
 					"name": "maxLines",

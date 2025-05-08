@@ -2057,20 +2057,23 @@ describe('vwc-searchable-select', () => {
 
 		it('should display selection counter if maxItems is set', async function () {
 			element.multiple = true;
-			element.maxItems = 2;
+			element.maxSelected = 2;
 			await elementUpdated(element);
-			expect(getSelectionCount()!.firstElementChild?.textContent).toBe('(0/2)');
+			expect(getSelectionCount()!.textContent?.trim()).toBe('(0/2)');
 
 			await selectOption('Apple');
-			expect(getSelectionCount()!.firstElementChild?.textContent).toBe('(1/2)');
+			expect(getSelectionCount()!.textContent?.trim()).toBe('(1/2)');
 		});
 
 		it('remaining items should be disabled if maxItems limit is reached', async function () {
 			element.multiple = true;
-			element.maxItems = 2;
+			element.maxSelected = 2;
 			await selectOption('Banana');
 			await selectOption('Apple');
 			expect(getOption('Cherry').disabled).toBe(true);
+
+			await selectOption('Apple');
+			expect(getOption('Cherry').disabled).toBe(false);
 		});
 	});
 

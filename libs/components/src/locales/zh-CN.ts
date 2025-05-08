@@ -160,8 +160,6 @@ const zhCN: Locale = {
 		noOptionsMessage: '没有选项',
 		noMatchesMessage: '未找到选项',
 		loadingOptionsMessage: '加载中...',
-		ofSelectedMessage: '个中的',
-		totalSelectedMessage: '已选择',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`${label} 删除`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
@@ -173,6 +171,10 @@ const zhCN: Locale = {
 			position: number,
 			total: number
 		) => `选项 ${name} 已聚焦, ${position} 的 ${total}。`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `已选择 ${limit} 个中的 ${total} 个。`,
 	},
 };
 

@@ -32,15 +32,16 @@ function renderLabel() {
 }
 function renderSelectionCount() {
 	return html<SearchableSelect>`
-		<span id="selection-count" class="selection-count" aria-live="polite">
-			<span aria-hidden="true"
-				>(${(x) => `${x.values.length}/${x.maxItems}`})</span
-			>
-			<span class="visually-hidden"
-				>${(x) =>
-					`${x.values.length} ${x.locale.searchableSelect.ofSelectedMessage} ${x.maxItems} ${x.locale.searchableSelect.totalSelectedMessage}`}</span
-			>
-		</span>
+		<span
+			id="selection-count"
+			class="selection-count"
+			aria-label="${(x) =>
+				x.locale.searchableSelect.maxSelectedMessage(
+					x.values.length,
+					x.maxSelected!
+				)}"
+			>(${(x) => `${x.values.length}/${x.maxSelected}`})</span
+		>
 	`;
 }
 
@@ -144,7 +145,7 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						autocomplete="off"
 						aria-controls="listbox"
 						aria-describedby="${(x) =>
-							x.multiple && x.maxItems && x.maxItems >= 1
+							x.multiple && x.maxSelected && x.maxSelected >= 1
 								? 'selection-count'
 								: null}"
 						${delegateAria({
@@ -211,12 +212,12 @@ function renderControl(context: VividElementDefinitionContext) {
 
 	return html<SearchableSelect>`
 		${when(
-			(x) => x.label || (x.multiple && x.maxItems),
+			(x) => x.label || (x.multiple && x.maxSelected && x.maxSelected >= 1),
 			html<SearchableSelect>`
 				<div>
 					${when((x) => x.label, renderLabel())}
 					${when(
-						(x) => x.multiple && x.maxItems && x.maxItems >= 1,
+						(x) => x.multiple && x.maxSelected && x.maxSelected >= 1,
 						renderSelectionCount()
 					)}
 				</div>

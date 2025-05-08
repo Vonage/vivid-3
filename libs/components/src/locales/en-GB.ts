@@ -160,8 +160,6 @@ const enGB: Locale = {
 		noOptionsMessage: 'No options',
 		noMatchesMessage: 'No options found',
 		loadingOptionsMessage: 'Loading...',
-		ofSelectedMessage: 'of',
-		totalSelectedMessage: 'selected',
 		removeTagButtonLabel: /* istanbul ignore next */ (label: string) =>
 			`Remove ${label}`,
 		optionSelectedMessage: /* istanbul ignore next */ (name: string) =>
@@ -173,6 +171,10 @@ const enGB: Locale = {
 			position: number,
 			total: number
 		) => `Option ${name} focused, ${position} of ${total}.`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `${total} of ${limit} selected.`,
 	},
 };
 

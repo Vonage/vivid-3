@@ -124,13 +124,6 @@ export class SearchableSelect extends DelegatesAria(
 	@attr({ attribute: 'max-lines', converter: nullableNumberConverter })
 	maxLines: number | null = null;
 
-	/**
-	 * @public
-	 * HTML Attribute: max-items
-	 */
-	@attr({ attribute: 'max-items', converter: nullableNumberConverter })
-	maxItems: number | null = null;
-
 	// --- Values ---
 
 	/**
@@ -467,6 +460,7 @@ export class SearchableSelect extends DelegatesAria(
 
 		this.#updateValuesWhileMaintainingOrder(values);
 		this.#updateFilteredOptions();
+		this.#updateSelectionLimit();
 	}
 
 	#slottedOptionsChangeHandler = {
@@ -1009,7 +1003,21 @@ export class SearchableSelect extends DelegatesAria(
 		);
 	}
 
-	// --- Max items ---
+	// --- Max selected ---
+
+	/**
+	 * @public
+	 * HTML Attribute: max-selected
+	 */
+	@attr({ attribute: 'max-selected', converter: nullableNumberConverter })
+	maxSelected: number | null = null;
+
+	/**
+	 * @internal
+	 */
+	maxSelectedChanged() {
+		this.#updateSelectionLimit();
+	}
 
 	/**
 	 * @internal
@@ -1019,8 +1027,8 @@ export class SearchableSelect extends DelegatesAria(
 	#updateSelectionLimit() {
 		if (
 			!this.multiple ||
-			typeof this.maxItems !== 'number' ||
-			this.maxItems <= 0
+			typeof this.maxSelected !== 'number' ||
+			this.maxSelected <= 0
 		) {
 			return;
 		}
@@ -1029,7 +1037,7 @@ export class SearchableSelect extends DelegatesAria(
 		const options = this._slottedOptions.filter(
 			(option) => !this._slottedDisabledOptions.includes(option)
 		);
-		if (this.values.length >= this.maxItems) {
+		if (this.values.length >= this.maxSelected) {
 			const unselectedOptions = options.filter(
 				(option) => !this.selectedOptions.includes(option)
 			);
@@ -1040,6 +1048,15 @@ export class SearchableSelect extends DelegatesAria(
 			for (const option of options) {
 				option.disabled = false;
 			}
+		}
+
+		// Update aria live region with selection status
+		const maxSelectedMessage = this.locale.searchableSelect.maxSelectedMessage(
+			this.values.length,
+			this.maxSelected
+		);
+		if (!this._changeDescription.includes(maxSelectedMessage)) {
+			this._changeDescription += ` ${maxSelectedMessage}`;
 		}
 	}
 
