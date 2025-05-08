@@ -5635,16 +5635,16 @@
 					"propertyName": "loading"
 				},
 				{
-					"name": "maxSelected",
-					"type": "number",
-					"attributeName": "max-selected",
-					"propertyName": "maxSelected"
-				},
-				{
 					"name": "maxLines",
 					"type": "number",
 					"attributeName": "max-lines",
 					"propertyName": "maxLines"
+				},
+				{
+					"name": "maxSelected",
+					"type": "number",
+					"attributeName": "max-selected",
+					"propertyName": "maxSelected"
 				},
 				{
 					"name": "multiple",
