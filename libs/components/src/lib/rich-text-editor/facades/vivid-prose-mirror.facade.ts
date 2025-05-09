@@ -501,4 +501,8 @@ export class ProseMirrorFacade {
 		this.#userContentChange = true;
 		this.#handleChangeEvent();
 	}
+
+	getValue(): string {
+		return this.#view!.dom.innerHTML;
+	}
 }

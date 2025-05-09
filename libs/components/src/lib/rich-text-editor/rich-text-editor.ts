@@ -1,4 +1,4 @@
-import { attr, nullableNumberConverter } from '@microsoft/fast-element';
+import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
@@ -39,8 +39,8 @@ export class RichTextEditor extends VividElement {
 	 * @remarks
 	 * HTML Attribute: value
 	 */
-	get value(): string {
-		return this.#editorWrapperElement.firstElementChild?.innerHTML as string;
+	get value(): string | undefined {
+		return this.#editor?.getValue();
 	}
 
 	set value(content: string) {
@@ -164,11 +164,22 @@ export class RichTextEditor extends VividElement {
 	override focus() {
 		super.focus();
 		setTimeout(() => {
-			(
-				this.#editorWrapperElement.querySelector(
-					'[contenteditable="true"]'
-				) as HTMLElement
-			).focus();
+			this.#editableAreaElement.focus();
 		}, 0);
+	}
+
+	get #editableAreaElement(): HTMLElement {
+		return this.#editorWrapperElement.querySelector(
+			'[contenteditable="true"]'
+		) as HTMLElement;
+	}
+
+	scrollToAttachments(additionalPixels = 0) {
+		DOM.queueUpdate(() => {
+			this.#editorWrapperElement.scrollTop =
+				this.#editableAreaElement.getBoundingClientRect().height -
+				this.#editorWrapperElement.getBoundingClientRect().height +
+				additionalPixels;
+		});
 	}
 }
