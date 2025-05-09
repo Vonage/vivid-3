@@ -5,7 +5,9 @@
 The `label` attribute provides a short description of the purpose of the Select.
 
 <vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
-<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users. </p>
+
+If a visible label can't be used, provide one using the `aria-label` attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.
+
 </vwc-note>
 
 ```html preview 270px
