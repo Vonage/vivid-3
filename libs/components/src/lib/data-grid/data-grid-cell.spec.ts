@@ -303,6 +303,14 @@ describe('vwc-data-grid-cell', () => {
 			element.ariaSort = 'none';
 		});
 
+		it('should have a button role when sorting is enabled', async function () {
+			element.setAttribute('aria-sort', 'none');
+			await elementUpdated(element);
+			const baseElement = element.shadowRoot?.querySelector('.base');
+
+			expect(baseElement?.role).toEqual('button');
+		});
+
 		it('should show sort-solid icon in the header when "none" is set', async function () {
 			element.setAttribute('aria-sort', 'none');
 			await elementUpdated(element);

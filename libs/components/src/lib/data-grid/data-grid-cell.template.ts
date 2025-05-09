@@ -58,7 +58,10 @@ export const DataGridCellTemplate = (
 			@click="${(x) => x._handleInteraction()}"
 			@keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
 		>
-			<div class="base">
+			<div
+				class="base"
+				role="${(x) => (shouldShowSortIcons(x) ? 'button' : undefined)}"
+			>
 				<slot></slot>
 				${(_) => renderSortIcons(context)}
 			</div>
