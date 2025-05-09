@@ -2,10 +2,12 @@ export const convertAnnotatedSourceToFailureCase = ({
 	annotatedSource,
 	fixedSource,
 	message,
+	options,
 }: {
 	annotatedSource: string;
 	fixedSource?: string;
 	message: string;
+	options?: unknown[];
 }) => {
 	const annotatedSourceLines = annotatedSource.replace(/\t/g, '  ').split('\n');
 	const line = annotatedSourceLines.findIndex((line) => line.includes('~'));
@@ -16,6 +18,7 @@ export const convertAnnotatedSourceToFailureCase = ({
 	annotatedSourceLines.splice(line, 1);
 
 	return {
+		...(options && { options }),
 		code: annotatedSourceLines.join('\n'),
 		...(fixedSource && { output: fixedSource.replace(/\t/g, '  ') }),
 		errors: [

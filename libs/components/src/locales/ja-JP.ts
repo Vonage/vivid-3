@@ -105,6 +105,8 @@ const jaJP: Locale = {
 		fileTooBigError:
 			'ファイルが大きすぎます ({{filesize}}MiB)。最大ファイルサイズ: {{maxFilesize}}MiB。',
 		removeFileLabel: 'ファイルを削除',
+		invalidFilesError:
+			'選択したファイルの1つ以上が無効です。サイズ制限以下の有効なファイル形式のみをアップロードしてください。',
 	},
 	audioPlayer: {
 		playButtonLabel: '開始',
@@ -171,7 +173,19 @@ const jaJP: Locale = {
 			position: number,
 			total: number
 		) => `オプション ${name} がフォーカスされました。${position}/${total}`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `${limit}件中${total}件を選択。`,
+	},
+	richTextEditor: {
+		textBlockType: 'テキストブロックタイプ',
+		textSize: '文字サイズ',
+		bold: '太字',
+		italics: '斜体',
+		underline: '下線',
+		strikethrough: '取り消し線',
+		monospace: '等幅',
 	},
 };
-
 export default jaJP;

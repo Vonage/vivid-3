@@ -151,6 +151,7 @@ export class SearchableSelect extends DelegatesAria(
 
 		this.value = this.values.length ? this.values[0] : '';
 
+		this.#updateSelectionLimit();
 		this.#updateSelectedOnSlottedOptions();
 		if (this.$fastController.isConnected) {
 			this.#updateTagLayout();
@@ -426,6 +427,7 @@ export class SearchableSelect extends DelegatesAria(
 		this._areOptionsInitialized = true;
 
 		if (oldValue) {
+			this._slottedDisabledOptions = [];
 			for (const option of oldValue) {
 				const notifier = Observable.getNotifier(option);
 				notifier.unsubscribe(this.#slottedOptionsChangeHandler, 'selected');
@@ -451,10 +453,14 @@ export class SearchableSelect extends DelegatesAria(
 			) {
 				values.push(option.value);
 			}
+			if (option.disabled) {
+				this._slottedDisabledOptions.push(option);
+			}
 		}
 
 		this.#updateValuesWhileMaintainingOrder(values);
 		this.#updateFilteredOptions();
+		this.#updateSelectionLimit();
 	}
 
 	#slottedOptionsChangeHandler = {
@@ -498,11 +504,21 @@ export class SearchableSelect extends DelegatesAria(
 			this.open = false;
 		}
 
-		this._changeDescription = isSelection
+		this.#updateValuesThroughUserInteraction(newValues);
+
+		const optionMessage = isSelection
 			? this.locale.searchableSelect.optionSelectedMessage(option.text)
 			: this.locale.searchableSelect.optionDeselectedMessage(option.text);
+		const maxSelectedMessage =
+			this.multiple && this.maxSelected && this.maxSelected >= 1
+				? this.locale.searchableSelect.maxSelectedMessage(
+						this.values.length,
+						this.maxSelected!
+				  )
+				: '';
 
-		this.#updateValuesThroughUserInteraction(newValues);
+		this._changeDescription = `${optionMessage} ${maxSelectedMessage}`;
+
 		if (shouldClearSearchText) {
 			this._currentSearchText = null;
 		}
@@ -995,6 +1011,54 @@ export class SearchableSelect extends DelegatesAria(
 				.filter((option) => option.disabled)
 				.map((option) => option.value)
 		);
+	}
+
+	// --- Max selected ---
+
+	/**
+	 * @public
+	 * HTML Attribute: max-selected
+	 */
+	@attr({ attribute: 'max-selected', converter: nullableNumberConverter })
+	maxSelected: number | null = null;
+
+	/**
+	 * @internal
+	 */
+	maxSelectedChanged() {
+		this.#updateSelectionLimit();
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable _slottedDisabledOptions: ListboxOption[] = [];
+
+	#updateSelectionLimit() {
+		if (
+			!this.multiple ||
+			typeof this.maxSelected !== 'number' ||
+			this.maxSelected <= 0
+		) {
+			return;
+		}
+
+		// Filter out options that are disabled by default
+		const options = this._slottedOptions.filter(
+			(option) => !this._slottedDisabledOptions.includes(option)
+		);
+		if (this.values.length >= this.maxSelected) {
+			const unselectedOptions = options.filter(
+				(option) => !this.selectedOptions.includes(option)
+			);
+			for (const option of unselectedOptions) {
+				option.disabled = true;
+			}
+		} else {
+			for (const option of options) {
+				option.disabled = false;
+			}
+		}
 	}
 
 	// --- Form handling ---

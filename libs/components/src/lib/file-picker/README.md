@@ -167,23 +167,45 @@ When setting `block-size` or `max-block-size` on the file-picker the list of the
 
 **_Rejected Files_** `rejectedFiles` (Read-only)
 
-Use `files` or `rejectedFiles` to access the list of files that have been added to the file picker and passed or failed validation checks.
+Use `files` or `rejectedFiles` to access the list of files that have been added to the File Picker and passed or failed validation checks.
 
 ```html preview
-<vwc-layout gutters="small" column-spacing="small">
-	<vwc-card>
-		<vwc-layout slot="main">
-			<vwc-file-picker max-file-size="1">
-				Drag & Drop file here or click to upload
-			</vwc-file-picker>
-		</vwc-layout>
-	</vwc-card>
-	<vwc-card>
-		<vwc-layout slot="main">
-			<vwc-note headline="..."></vwc-note>
-		</vwc-layout>
-	</vwc-card>
-</vwc-layout>
+<form method="post" enctype="multipart/form-data">
+	<vwc-layout>
+		<vwc-card>
+			<vwc-layout slot="main" gutters="small">
+				<vwc-file-picker
+					name="files"
+					label="Pick files"
+					max-file-size="1"
+					max-files-exceeded-error="Only 2 files allowed"
+					helper-text="Maximum of 2 files"
+					max-files="2"
+					required
+				>
+					Drag & Drop or click to upload
+				</vwc-file-picker>
+				<div class="buttons">
+					<vwc-button
+						label="Reset"
+						type="reset"
+						appearance="outlined"
+					></vwc-button>
+					<vwc-button
+						label="Submit"
+						appearance="filled"
+						type="submit"
+					></vwc-button>
+				</div>
+			</vwc-layout>
+		</vwc-card>
+		<vwc-card>
+			<vwc-layout slot="main" gutters="small">
+				<vwc-note headline="..."></vwc-note>
+			</vwc-layout>
+		</vwc-card>
+	</vwc-layout>
+</form>
 <script>
 	window.addEventListener('load', function () {
 		document
@@ -192,6 +214,10 @@ Use `files` or `rejectedFiles` to access the list of files that have been added 
 				const note = document.querySelector('vwc-note');
 				note.headline = `files: ${event.target.files.length}, rejectedfiles: ${event.target.rejectedFiles.length}`;
 			});
+
+		document.querySelector('form').addEventListener('submit', (e) => {
+			e.preventDefault();
+		});
 
 		function generateFile(fileName, sizeMb, type = 'text/plain') {
 			const sizeInBytes = sizeMb * 1024 * 1024;

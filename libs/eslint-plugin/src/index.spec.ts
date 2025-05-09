@@ -107,7 +107,21 @@ describe('eslint-plugin', () => {
                   "docs": {
                     "description": "Do not use the value (or checked) attribute.",
                   },
-                  "schema": [],
+                  "fixable": "code",
+                  "schema": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "replaceWith": {
+                          "enum": [
+                            "modelValue",
+                            "initialValue",
+                          ],
+                        },
+                      },
+                      "type": "object",
+                    },
+                  ],
                   "type": "problem",
                 },
               },
