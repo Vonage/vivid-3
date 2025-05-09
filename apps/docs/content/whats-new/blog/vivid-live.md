@@ -3,7 +3,7 @@ title: Introducting Vivid Live (Figma)
 month: 2025-01
 ---
 
-13th January 2025
+13th January 2025 - Rachel Tannenbaum
 
 # Introducing Vivid Live: Figma Component Library
 
