@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.4.0...eslint-plugin-v1.5.0) (2025-05-09)
+
+
+### Features
+
+* **eslint-plugin:** add autofix option to no-value-attribute rule (VIV-2389) ([#2311](https://github.com/Vonage/vivid-3/issues/2311)) ([a8d295d](https://github.com/Vonage/vivid-3/commit/a8d295d73a5444147b4c01c40788accd50c21397))
+
 ## [1.4.0](https://github.com/Vonage/vivid-3/compare/eslint-plugin-v1.3.0...eslint-plugin-v1.4.0) (2025-01-22)
 
 
