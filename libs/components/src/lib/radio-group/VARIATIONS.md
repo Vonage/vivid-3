@@ -15,9 +15,7 @@ Use the `label` attribute to provide a visible label for the [**Radio**](/compon
 Use the `label` to set the **Radio Group** label.
 
 <vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
-
-If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.
-
+<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
 ```html preview
