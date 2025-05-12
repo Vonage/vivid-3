@@ -39,6 +39,12 @@ function subtitle() {
 	return html<Dialog>` <div class="subtitle">${(x) => x.subtitle}</div> `;
 }
 
+function renderHeaderText() {
+	return html<Dialog>`
+		<div class="header-text">${headline()} ${subtitle()}</div>
+	`;
+}
+
 function renderDismissButton(buttonTag: string) {
 	return html<Dialog>`
 	<${buttonTag}
@@ -71,8 +77,9 @@ export const DialogTemplate = (context: VividElementDefinitionContext) => {
 							<slot name="graphic">
 								${when((x) => x.icon, icon(iconTag))}
 							</slot>
-							${when((x) => x.headline, headline())}
-							${when((x) => x.subtitle, subtitle())}
+							${when((x) => x.headline && x.subtitle, renderHeaderText())}
+							${when((x) => x.headline && !x.subtitle, headline())}
+							${when((x) => x.subtitle && !x.headline, subtitle())}
 							${when((x) => x._showDismissButton, renderDismissButton(buttonTag))}
 					</div>
 					<div class="body ${(x) => (x.fullWidthBody ? 'full-width' : '')}" >

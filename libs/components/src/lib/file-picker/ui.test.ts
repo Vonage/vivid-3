@@ -71,6 +71,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	await addFile(page, 'tooBig.png', 100000, 'image/png');
 	await addFile(page, 'wrongType.exe', 100, 'application/x-msdownload');
 
+	// blur show error
+	await page.mouse.click(0, 0);
+
+	await page.keyboard.press('Tab');
+
 	// Wait for icons to load
 	await atLeastOneImageWasRequested;
 	await requests.noneInFlight((request) => request.resourceType() === 'image');

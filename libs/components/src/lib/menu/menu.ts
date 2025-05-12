@@ -43,7 +43,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		}
 	}
 
-	private menuItems: Element[] | undefined;
+	private menuItems: HTMLElement[] | undefined;
 
 	private expandedItem: MenuItem | null = null;
 
@@ -90,7 +90,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		if (autoFocusElement instanceof HTMLElement) {
 			autoFocusElement.focus();
 		} else {
-			this.setFocus(0, 1);
+			this.setFocus(0);
 		}
 	}
 
@@ -116,19 +116,19 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		switch (e.key) {
 			case keyArrowDown:
 				// go forward one index
-				this.setFocus(this.focusIndex + 1, 1);
+				this.setFocus(this.focusIndex + 1);
 				return;
 			case keyArrowUp:
 				// go back one index
-				this.setFocus(this.focusIndex - 1, -1);
+				this.setFocus(this.focusIndex - 1);
 				return;
 			case keyEnd:
 				// set focus on last item
-				this.setFocus(this.menuItems.length - 1, -1);
+				this.setFocus(this.menuItems.length - 1);
 				return;
 			case keyHome:
 				// set focus on first item
-				this.setFocus(0, 1);
+				this.setFocus(0);
 				return;
 
 			default:
@@ -207,16 +207,14 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		const newItems = this.domChildren();
 
 		this.removeItemListeners();
-		this.menuItems = newItems;
-
-		const menuItems = this.menuItems.filter(this.isMenuItemElement);
+		this.menuItems = newItems.filter(this.isMenuItemElement);
 
 		// if our focus index is not -1 we have items
-		if (menuItems.length) {
+		if (this.menuItems.length) {
 			this.focusIndex = 0;
 		}
 
-		menuItems.forEach((item: HTMLElement, index: number) => {
+		this.menuItems.forEach((item: HTMLElement, index: number) => {
 			item.setAttribute('tabindex', index === 0 ? '0' : '-1');
 			item.addEventListener('expanded-change', this.handleExpandedChanged);
 			item.addEventListener('focus', this.handleItemFocus);
@@ -252,36 +250,30 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		return this.isMenuItemElement(el);
 	};
 
-	private setFocus(focusIndex: number, adjustment: number): void {
+	private setFocus(focusIndex: number): void {
 		if (this.menuItems === undefined) {
 			return;
 		}
 
-		while (focusIndex >= 0 && focusIndex < this.menuItems.length) {
-			const child: Element = this.menuItems[focusIndex];
+		if (focusIndex >= 0 && focusIndex < this.menuItems.length) {
+			const child: HTMLElement = this.menuItems[focusIndex];
 
-			if (this.isFocusableElement(child)) {
-				// change the previous index to -1
-				if (
-					this.focusIndex > -1 &&
-					this.menuItems.length >= this.focusIndex - 1
-				) {
-					this.menuItems[this.focusIndex].setAttribute('tabindex', '-1');
-				}
-
-				// update the focus index
-				this.focusIndex = focusIndex;
-
-				// update the tabindex of next focusable element
-				child.setAttribute('tabindex', '0');
-
-				// focus the element
-				child.focus();
-
-				break;
+			// change the previous index to -1
+			if (
+				this.focusIndex > -1 &&
+				this.menuItems.length >= this.focusIndex - 1
+			) {
+				this.menuItems[this.focusIndex].setAttribute('tabindex', '-1');
 			}
 
-			focusIndex += adjustment;
+			// update the focus index
+			this.focusIndex = focusIndex;
+
+			// update the tabindex of next focusable element
+			child.setAttribute('tabindex', '0');
+
+			// focus the element
+			child.focus();
 		}
 	}
 
@@ -410,8 +402,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 			this.open = false;
 		}
 
+		const domChildren = this.domChildren();
 		const changedMenuItem = e.target as MenuItem;
-		const changeItemIndex = this.menuItems!.indexOf(changedMenuItem);
+		const changeItemIndex = domChildren.indexOf(changedMenuItem);
 
 		if (changeItemIndex === -1) {
 			return;
@@ -420,7 +413,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		if (changedMenuItem.role === 'menuitemradio' && changedMenuItem.checked) {
 			// Uncheck all other radio boxes
 			for (let i = changeItemIndex - 1; i >= 0; --i) {
-				const item = this.menuItems![i];
+				const item = domChildren[i];
 				const role: string | null = item.getAttribute('role');
 				if (role === MenuItemRole.menuitemradio) {
 					(item as MenuItem).checked = false;
@@ -429,9 +422,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 					break;
 				}
 			}
-			const maxIndex = this.menuItems!.length - 1;
+			const maxIndex = domChildren.length - 1;
 			for (let i = changeItemIndex + 1; i <= maxIndex; ++i) {
-				const item = this.menuItems![i];
+				const item = domChildren[i];
 				const role = item.getAttribute('role');
 				if (role === MenuItemRole.menuitemradio) {
 					(item as MenuItem).checked = false;

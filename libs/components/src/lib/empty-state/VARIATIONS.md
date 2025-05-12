@@ -11,6 +11,12 @@ Use the `headline` attribute add a headline to the empty state.
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which can be displayed as a decoration to the Empty State.  
 Custom icons can be provided using the [Graphic Slot](/components/empty-state/code/#graphic-slot).
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+
+</vwc-note>
+
 ```html preview
 <vwc-empty-state icon="search-line"></vwc-empty-state>
 ```

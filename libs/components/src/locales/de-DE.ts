@@ -106,6 +106,8 @@ const deDE: Locale = {
 		fileTooBigError:
 			'Die Datei ist zu groß ({{filesize}}MiB). Maximale Dateigröße: {{maxFilesize}}MiB.',
 		removeFileLabel: 'Datei entfernen',
+		invalidFilesError:
+			'Eine oder mehrere ausgewählte Dateien sind ungültig. Bitte laden Sie nur gültige Dateitypen innerhalb der Größenbeschränkung hoch.',
 	},
 	audioPlayer: {
 		playButtonLabel: 'Abspielen',
@@ -173,6 +175,19 @@ const deDE: Locale = {
 			position: number,
 			total: number
 		) => `Option ${name} fokussiert, ${position} von ${total}.`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `${total} von ${limit} ausgewählt.`,
+	},
+	richTextEditor: {
+		textBlockType: 'Textblocktyp',
+		textSize: 'Textgröße',
+		bold: 'Fett',
+		italics: 'Kursiv',
+		underline: 'Unterstrichen',
+		strikethrough: 'Durchgestrichen',
+		monospace: 'Monospace',
 	},
 };
 

@@ -1904,7 +1904,7 @@
 				},
 				{
 					"name": "gridTemplateColumns",
-					"description": "String that gets applied to the the css gridTemplateColumns attribute of child rows",
+					"description": "String that gets applied to the css gridTemplateColumns attribute of child rows",
 					"type": "string",
 					"attributeName": "grid-template-columns",
 					"propertyName": "gridTemplateColumns"
@@ -3522,7 +3522,12 @@
 					"returnType": "unknown"
 				},
 				{ "name": "singleFileChanged", "args": [], "returnType": "unknown" },
-				{ "name": "validate", "args": [], "returnType": "void" }
+				{
+					"name": "validate",
+					"description": "{@inheritDoc (FormAssociated:interface).validate}",
+					"args": [],
+					"returnType": "void"
+				}
 			],
 			"slots": [
 				{
@@ -5465,6 +5470,12 @@
 			"description": "",
 			"props": [
 				{
+					"name": "placeholder",
+					"type": "string",
+					"attributeName": "placeholder",
+					"propertyName": "placeholder"
+				},
+				{
 					"name": "selectionEnd",
 					"type": "number",
 					"attributeName": "selection-end",
@@ -5512,6 +5523,7 @@
 			"vueModels": [],
 			"methods": [
 				{ "name": "focus", "args": [], "returnType": "unknown" },
+				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",
@@ -5632,6 +5644,12 @@
 					"type": "number",
 					"attributeName": "max-lines",
 					"propertyName": "maxLines"
+				},
+				{
+					"name": "maxSelected",
+					"type": "number",
+					"attributeName": "max-selected",
+					"propertyName": "maxSelected"
 				},
 				{
 					"name": "multiple",
@@ -6777,7 +6795,7 @@
 				},
 				{
 					"name": "activeindicator",
-					"description": "Whether or not to show the active indicator",
+					"description": "Deprecated attribute. It has no effect.",
 					"type": "boolean",
 					"attributeName": "activeindicator",
 					"propertyName": "activeindicator"
@@ -6859,7 +6877,7 @@
 			"methods": [
 				{
 					"name": "adjust",
-					"description": "The adjust method for FASTTabs",
+					"description": "Adjusts the active index by numerical increments.\nOnly enabled tabs are considered.",
 					"args": [{ "name": "adjustment", "type": "number" }],
 					"returnType": "void"
 				}

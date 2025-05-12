@@ -8,6 +8,7 @@ describe('a11y: vwc-tabs', () => {
 	let element: Tabs;
 
 	beforeAll(async () => {
+		window.HTMLElement.prototype.scrollTo = vi.fn();
 		await customElements.whenDefined(COMPONENT_TAG);
 	});
 
