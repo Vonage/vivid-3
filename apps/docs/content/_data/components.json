@@ -535,8 +535,13 @@
 	},
 	{
 		"title": "Dial Pad",
-		"page": "legacy",
-		"markdown": "./libs/components/src/lib/dial-pad/README.md"
+		"description": "Dial Pad allows users to enter or dial phone numbers.",
+		"markdown": "./libs/components/src/lib/dial-pad/README.md",
+		"variations": "./libs/components/src/lib/dial-pad/VARIATIONS.md",
+		"guidelines": "./libs/components/src/lib/dial-pad/GUIDELINES.md",
+		"hideGuidelines": "true",
+		"code": "./libs/components/src/lib/dial-pad/README.md",
+		"accessibility": "./libs/components/src/lib/dial-pad/ACCESSIBILITY.md"
 	},
 	{
 		"title": "Video Player",
