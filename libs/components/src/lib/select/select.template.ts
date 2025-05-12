@@ -43,7 +43,11 @@ const getStateClasses = ({
 	);
 
 function renderLabel() {
-	return html<Select>` <label for="control" class="label" id="label">
+	return html<Select>` <label
+		for="${(x) => (x.multiple ? null : 'control')}"
+		class="label"
+		id="label"
+	>
 		${(x) => x.label}
 	</label>`;
 }
@@ -101,6 +105,9 @@ function renderControl(context: VividElementDefinitionContext) {
 						id="${(x) => x.listboxId}"
 						role="listbox"
 						aria-multiselectable="${(x) => x.multiple}"
+						aria-label="${(x) =>
+							x.multiple && !x.label && x.ariaLabel ? x.ariaLabel : null}"
+						aria-labelledby="${(x) => (x.multiple && x.label ? 'label' : null)}"
 						?disabled="${(x) => x.disabled}"
 						?hidden="${(x) => (x.collapsible ? !x.open : false)}"
 						${ref('listbox')}>
