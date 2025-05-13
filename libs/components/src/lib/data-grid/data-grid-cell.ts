@@ -139,7 +139,7 @@ export class DataGridCell extends VividElement {
 		this.updateCellView();
 		this.updateCellStyle();
 
-		// this.ariaSelectedChanged(null, this.ariaSelected);
+		this.ariaSelectedChanged(null, this.ariaSelected);
 	}
 
 	/**
