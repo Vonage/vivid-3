@@ -4,6 +4,23 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.24.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.23.0...vivid-v4.24.0) (2025-05-12)
+
+
+### Features
+
+* **searchable-select:** add max-items attribute (VIV-2404) ([#2316](https://github.com/Vonage/vivid-3/issues/2316)) ([e1b9a9e](https://github.com/Vonage/vivid-3/commit/e1b9a9e2700de22297565d1a5b8b3ce6be68c78c))
+
+
+### Bug Fixes
+
+* **data-grid-cell:** add button role announcement for screen readers (VIV-2606) ([#2325](https://github.com/Vonage/vivid-3/issues/2325)) ([9e3f1d4](https://github.com/Vonage/vivid-3/commit/9e3f1d46b3ab6eb59ab86fc729ee7388d5a4d4db))
+* **dialog:** subtitle misalignment when non-dismissible (VIV-2612) ([#2322](https://github.com/Vonage/vivid-3/issues/2322)) ([982c3a6](https://github.com/Vonage/vivid-3/commit/982c3a6ec76fd0f3214921123b246fdb5f8f159a))
+* **file-picker:** set error validity  with  rejected files (VIV-2434) ([#2309](https://github.com/Vonage/vivid-3/issues/2309)) ([25b9b8d](https://github.com/Vonage/vivid-3/commit/25b9b8dfa84639a472e0eb9adb9f05bdeeb40da4))
+* **select:** announce label in multiple version when using screen reader (VIV-2613) ([#2324](https://github.com/Vonage/vivid-3/issues/2324)) ([e0ca7f9](https://github.com/Vonage/vivid-3/commit/e0ca7f9ebce543ff59f328cef7e8da024b6f73c6))
+* **switch:** fix dot placement issue (VIV-2614) ([#2327](https://github.com/Vonage/vivid-3/issues/2327)) ([0f07bb8](https://github.com/Vonage/vivid-3/commit/0f07bb897635d575022d343c9e6726c748514151))
+* **tabs:** scroll shadow shown incorrectly when tab is removed (VIV-2279) ([#2285](https://github.com/Vonage/vivid-3/issues/2285)) ([3630651](https://github.com/Vonage/vivid-3/commit/36306511ad9ce0fa35ba21000ceeb307cdfe3361))
+
 ## [4.23.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.22.0...vivid-v4.23.0) (2025-04-30)
 
 
