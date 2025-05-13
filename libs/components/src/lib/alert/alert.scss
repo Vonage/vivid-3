@@ -92,6 +92,7 @@ $alert-transition-delay: --transition-delay;
 		.headline {
 			font: var(#{constants.$vvd-typography-base-bold});
 			margin-block-end: 4px;
+			margin-block-start: 0;
 		}
 
 		.main-text {
