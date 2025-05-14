@@ -8,6 +8,15 @@ import { keySpace } from '@microsoft/fast-web-utilities';
 import type { VividComponentDefinition } from '../../shared/design-system/defineVividComponent.js';
 import type { Connotation } from '../enums.js';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import {
+	errorText,
+	type ErrorText,
+	type FormElement,
+	FormElementHelperText,
+	formElements,
+	FormElementSuccessText,
+} from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables.js';
 import { FormAssociatedRadio } from './radio.form-associated';
 
 /**
@@ -47,6 +56,8 @@ export type RadioOptions = VividComponentDefinition & {
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @component radio
  */
+@formElements
+@errorText
 export class Radio extends FormAssociatedRadio {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
@@ -57,7 +68,7 @@ export class Radio extends FormAssociatedRadio {
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr label?: string;
+	// @attr label?: string;
 
 	/**
 	 * The connotation the radioButton should have.
@@ -199,3 +210,15 @@ export class Radio extends FormAssociatedRadio {
 		}
 	}
 }
+
+export interface Radio
+	extends ErrorText,
+		FormElement,
+		FormElementHelperText,
+		FormElementSuccessText {}
+
+applyMixinsWithObservables(
+	Radio,
+	FormElementHelperText,
+	FormElementSuccessText
+);

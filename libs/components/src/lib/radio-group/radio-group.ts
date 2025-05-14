@@ -11,7 +11,11 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Radio } from '../radio/radio';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { HostSemantics } from '../../shared/aria/host-semantics';
+import {
+	FormElementHelperText,
+	FormElementSuccessText,
+} from '../../shared/patterns';
+import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 /**
  * @public
@@ -21,15 +25,37 @@ import { HostSemantics } from '../../shared/aria/host-semantics';
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @vueModel modelValue value change `event.currentTarget.value`
  */
-export class RadioGroup extends HostSemantics(VividElement) {
+export class RadioGroup extends VividElement {
 	/**
-	 * Indicates the group's label.
+	 * The label for the radio group
 	 *
 	 * @public
 	 * @remarks
 	 * HTML Attribute: label
 	 */
-	@attr label?: string;
+	@attr label!: string;
+
+	/**
+	 * When true, the radio group and all its radio buttons will be required
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: required
+	 */
+	@attr({ attribute: 'required', mode: 'boolean' })
+	required!: boolean;
+	/**
+	 * @internal
+	 */
+	requiredChanged(): void {
+		this.slottedRadioButtons?.forEach((radio) => {
+			if (this.required) {
+				radio.required = true;
+			} else {
+				radio.required = false;
+			}
+		});
+	}
 
 	/**
 	 * When true, the child radios will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -44,7 +70,7 @@ export class RadioGroup extends HostSemantics(VividElement) {
 	 * @internal
 	 */
 	readOnlyChanged() {
-		this.slottedRadioButtons.forEach((radio) => {
+		this.slottedRadioButtons?.forEach((radio) => {
 			if (this.readOnly) {
 				radio.readOnly = true;
 			} else {
@@ -66,7 +92,7 @@ export class RadioGroup extends HostSemantics(VividElement) {
 	 * @internal
 	 */
 	disabledChanged() {
-		this.slottedRadioButtons.forEach((radio) => {
+		this.slottedRadioButtons?.forEach((radio) => {
 			if (this.disabled) {
 				radio.disabled = true;
 			} else {
@@ -74,29 +100,6 @@ export class RadioGroup extends HostSemantics(VividElement) {
 			}
 		});
 	}
-
-	/**
-	 * Error message to display when the radio group is in an error state.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: error-text
-	 */
-	@attr({ attribute: 'error-text' }) errorText?: string;
-
-	/**
-	 * Helper text to display when the radio group field needs extra explanation.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: helper-text
-	 */
-	@attr({ attribute: 'helper-text' }) helperText?: string;
-
-	/**
-	 * @internal
-	 */
-	@observable _helperTextSlottedContent?: HTMLElement[];
 
 	/**
 	 * The name of the radio group. Setting this value will set the name value
@@ -108,7 +111,7 @@ export class RadioGroup extends HostSemantics(VividElement) {
 	 */
 	@attr name!: string;
 	nameChanged(): void {
-		this.slottedRadioButtons.forEach((radio) => {
+		this.slottedRadioButtons?.forEach((radio) => {
 			radio.setAttribute('name', this.name);
 		});
 	}
@@ -121,16 +124,42 @@ export class RadioGroup extends HostSemantics(VividElement) {
 	 * HTML Attribute: value
 	 */
 	@attr value!: string;
+
 	/**
 	 * @internal
 	 */
 	valueChanged(): void {
-		this.slottedRadioButtons.forEach((radio) => {
+		this.slottedRadioButtons?.forEach((radio) => {
 			if (radio.value === this.value) {
 				radio.checked = true;
 			}
 		});
 		this.$emit('change');
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable errorValidationMessage = '';
+
+	/**
+	 * @internal
+	 */
+	handleSlotChange(): void {
+		if (this.errorText) {
+			this.slottedRadioButtons?.forEach((radio) => {
+				radio.errorText = this.errorText;
+			});
+		}
+	}
+
+	@attr({ attribute: 'error-text' }) errorText!: string;
+	errorTextChanged(_: string, newErrorText: string | undefined): void {
+		if (newErrorText) {
+			this.errorValidationMessage = newErrorText;
+		} else {
+			this.errorValidationMessage = '';
+		}
 	}
 
 	/**
@@ -151,7 +180,7 @@ export class RadioGroup extends HostSemantics(VividElement) {
 	slottedRadioButtons: Radio[] = [];
 
 	get #focusableRadioButtons() {
-		return this.slottedRadioButtons.filter((radio) => !radio.disabled);
+		return this.slottedRadioButtons?.filter((radio) => !radio.disabled);
 	}
 
 	/**
@@ -176,16 +205,26 @@ export class RadioGroup extends HostSemantics(VividElement) {
 	}
 
 	override disconnectedCallback() {
-		this.slottedRadioButtons.forEach((radio) => {
+		this.slottedRadioButtons?.forEach((radio) => {
 			radio.removeEventListener(
 				'change',
 				this.radioChangeHandler as EventListener
 			);
+			radio.removeEventListener(
+				'invalid',
+				this.radioErrorHandler as EventListener
+			);
 		});
 	}
 
+	private radioErrorHandler = (e: Event): void => {
+		const radio = e.target as Radio;
+		this.errorValidationMessage = radio.errorValidationMessage || '';
+	};
+
 	private setupRadioButtons(): void {
 		let foundMatchingVal = false;
+
 		for (const radio of this.slottedRadioButtons) {
 			if (this.name !== undefined) {
 				radio.setAttribute('name', this.name);
@@ -199,6 +238,10 @@ export class RadioGroup extends HostSemantics(VividElement) {
 				radio.readOnly = true;
 			}
 
+			if (this.required) {
+				radio.required = true;
+			}
+
 			if (this.value && this.value === radio.value) {
 				radio.checked = true;
 				this.#setTabRovingTarget(radio);
@@ -210,10 +253,14 @@ export class RadioGroup extends HostSemantics(VividElement) {
 				'change',
 				this.radioChangeHandler as EventListener
 			);
+			radio.addEventListener(
+				'invalid',
+				this.radioErrorHandler as EventListener
+			);
 		}
 
-		if (this.value === undefined && this.slottedRadioButtons.length > 0) {
-			const checkedRadios = this.slottedRadioButtons.filter((radio: Radio) =>
+		if (this.value === undefined && this.slottedRadioButtons?.length > 0) {
+			const checkedRadios = this.slottedRadioButtons?.filter((radio: Radio) =>
 				radio.hasAttribute('checked')
 			);
 			if (checkedRadios.length > 0 && !foundMatchingVal) {
@@ -230,7 +277,7 @@ export class RadioGroup extends HostSemantics(VividElement) {
 		const changedRadio = e.target as Radio;
 
 		if (changedRadio.checked) {
-			this.slottedRadioButtons.forEach((radio) => {
+			this.slottedRadioButtons?.forEach((radio) => {
 				if (radio !== changedRadio) {
 					radio.checked = false;
 				}
@@ -344,3 +391,13 @@ export class RadioGroup extends HostSemantics(VividElement) {
 		}
 	};
 }
+
+export interface RadioGroup
+	extends FormElementHelperText,
+		FormElementSuccessText {}
+
+applyMixinsWithObservables(
+	RadioGroup,
+	FormElementHelperText,
+	FormElementSuccessText
+);

@@ -5218,6 +5218,12 @@
 					"propertyName": "readOnly"
 				},
 				{
+					"name": "required",
+					"description": "Require the radio-group to be completed prior to form submission.",
+					"type": "boolean",
+					"attributeName": "required"
+				},
+				{
 					"name": "value",
 					"description": "The value of the checked radio",
 					"type": "string",

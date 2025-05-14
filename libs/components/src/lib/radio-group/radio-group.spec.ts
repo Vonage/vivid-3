@@ -3,6 +3,7 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
+	getMessage,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import type { Radio } from '../radio/radio';
@@ -83,14 +84,10 @@ describe('vwc-radio-group', () => {
 	});
 
 	describe('helper-text', () => {
-		function getHelperText() {
-			return element.shadowRoot?.getElementById('helper-text');
-		}
-
 		it('should display the helper text when set', async () => {
 			element.helperText = 'test helper text';
 			await elementUpdated(element);
-			expect(getHelperText()?.textContent?.trim()).toBe(element.helperText);
+			expect(getMessage(element, 'helper')).toBe(element.helperText);
 		});
 
 		it('should link the helper text to the control element using the aria-describedby attribute', async () => {
@@ -105,7 +102,7 @@ describe('vwc-radio-group', () => {
 			element.helperText = 'test helper text';
 			element.errorText = 'test error text';
 			await elementUpdated(element);
-			expect(getHelperText()).toBe(null);
+			expect(getMessage(element, 'helper')).toBe(null);
 		});
 
 		it('should display the helper text when error text is removed', async () => {
@@ -114,7 +111,7 @@ describe('vwc-radio-group', () => {
 			await elementUpdated(element);
 			element.errorText = '';
 			await elementUpdated(element);
-			expect(getHelperText()?.textContent?.trim()).toBe(element.helperText);
+			expect(getMessage(element, 'helper')).toBe(element.helperText);
 		});
 
 		it('should display the helper text when passed to the helper-text slot', async () => {
@@ -124,10 +121,10 @@ describe('vwc-radio-group', () => {
 			element.appendChild(slotted);
 			await elementUpdated(element);
 
-			const slot = getHelperText()!.querySelector(
-				'slot'
-			) as HTMLSlotElement | null;
-			const slotText = slot!.assignedNodes()[0].textContent!.trim();
+			const textFieldSlot = element.shadowRoot?.querySelector(
+				'slot[name=helper-text]'
+			) as HTMLSlotElement;
+			const slotText = textFieldSlot.assignedNodes()[0].textContent!.trim();
 
 			expect(slotText).toBe('slotted');
 		});

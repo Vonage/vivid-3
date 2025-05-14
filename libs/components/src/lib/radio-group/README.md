@@ -129,13 +129,16 @@ Use the `helper-text` slot on Radio Group to add rich text to provide additional
 
 <div class="table-wrapper">
 
-| Name            | Type                            | Description                           |
-| --------------- | ------------------------------- | ------------------------------------- |
-| **checked**     | `boolean`                       | Sets the radio to be checked          |
-| **connotation** | Enum: `accent` (default), `cta` | Whether the input element is disabled |
-| **disabled**    | `boolean`                       | Whether the input element is disabled |
-| **label**       | `string`                        | Label of the the Radio                |
-| **value**       | `string`                        | Set the radio's value.                |
+| Name            | Type                            | Description                                  |
+| --------------- | ------------------------------- | -------------------------------------------- |
+| **checked**     | `boolean`                       | Sets the radio to be checked                 |
+| **connotation** | Enum: `accent` (default), `cta` | The connotation the radio-group should have. |
+| **error-text**  | `string`                        | The error text for the form element.         |
+| **helper-text** | `string`                        | The helper text for the form element.        |
+| **disabled**    | `boolean`                       | Whether the radio-group is disabled          |
+| **required**    | `boolean`                       | Whether the radio-group is required          |
+| **label**       | `string`                        | Label of the the Radio                       |
+| **value**       | `string`                        | Set the radio's value.                       |
 
 </div>
 

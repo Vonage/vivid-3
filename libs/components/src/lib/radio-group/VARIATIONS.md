@@ -27,8 +27,7 @@ Use the `label` to set the **Radio Group** label.
 ```
 
 <vwc-note connotation="information" icon="info-line" headline="Accessibility note">
-	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
-	<p>It will be announced by screen readers so that those users will know the purpose of the Radio Group or the Radio.</p>
+	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute. It will be announced by screen readers so that those users will know the purpose of the Radio Group or the Radio.</p>
 </vwc-note>
 
 ### Helper Text

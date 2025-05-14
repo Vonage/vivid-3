@@ -41,6 +41,21 @@ export async function setProperty<T extends Element, P extends keyof T>(
 	await elementUpdated(element);
 }
 
+export const getMessage = (element: Element, type: string) => {
+	const messageEl = element.shadowRoot!.querySelector(
+		`.${type}-message.message--visible:not(.sr-only)`
+	);
+	if (!messageEl) {
+		return null;
+	}
+	const slot = messageEl.querySelector('slot') as HTMLSlotElement | null;
+	if (slot && slot.assignedNodes().length > 0) {
+		return slot.assignedNodes()[0].textContent!.trim();
+	} else {
+		return messageEl.textContent!.trim();
+	}
+};
+
 export const axe = configureAxe({
 	rules: {
 		// color contrast doesn't work in this env

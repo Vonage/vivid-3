@@ -23,8 +23,3 @@ label {
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
 }
-
-.message {
-	margin-block-start: 4px;
-	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
-}
