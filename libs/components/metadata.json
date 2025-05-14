@@ -5079,6 +5079,18 @@
 					"attributeName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"description": "The error text for the form element.",
+					"type": "string",
+					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "The helper text for the form element.",
+					"type": "string",
+					"attributeName": "helper-text"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
@@ -5087,10 +5099,9 @@
 				},
 				{
 					"name": "label",
-					"description": "Indicates the radio's label.",
+					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label",
-					"propertyName": "label"
+					"attributeName": "label"
 				},
 				{
 					"name": "name",
@@ -5111,6 +5122,12 @@
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
 					"attributeName": "required"
+				},
+				{
+					"name": "successText",
+					"description": "The success text for the form element.",
+					"type": "string",
+					"attributeName": "success-text"
 				},
 				{
 					"name": "value",
@@ -5177,21 +5194,19 @@
 				},
 				{
 					"name": "errorText",
-					"description": "Error message to display when the radio group is in an error state.",
 					"type": "string",
 					"attributeName": "error-text",
 					"propertyName": "errorText"
 				},
 				{
 					"name": "helperText",
-					"description": "Helper text to display when the radio group field needs extra explanation.",
+					"description": "The helper text for the form element.",
 					"type": "string",
-					"attributeName": "helper-text",
-					"propertyName": "helperText"
+					"attributeName": "helper-text"
 				},
 				{
 					"name": "label",
-					"description": "Indicates the group's label.",
+					"description": "The label for the radio group",
 					"type": "string",
 					"attributeName": "label",
 					"propertyName": "label"
@@ -5219,9 +5234,16 @@
 				},
 				{
 					"name": "required",
-					"description": "Require the radio-group to be completed prior to form submission.",
+					"description": "When true, the radio group and all its radio buttons will be required",
 					"type": "boolean",
-					"attributeName": "required"
+					"attributeName": "required",
+					"propertyName": "required"
+				},
+				{
+					"name": "successText",
+					"description": "The success text for the form element.",
+					"type": "string",
+					"attributeName": "success-text"
 				},
 				{
 					"name": "value",
@@ -5276,7 +5298,17 @@
 					"valueMapping": "event.currentTarget.value"
 				}
 			],
-			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
+			"methods": [
+				{
+					"name": "errorTextChanged",
+					"args": [
+						{ "name": "_", "type": "string" },
+						{ "name": "newErrorText", "type": "string | undefined" }
+					],
+					"returnType": "void"
+				},
+				{ "name": "nameChanged", "args": [], "returnType": "void" }
+			],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
 				{
