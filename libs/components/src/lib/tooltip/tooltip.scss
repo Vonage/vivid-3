@@ -12,6 +12,7 @@
 
 .tooltip {
 	width: var(#{variables.$tooltip-inline-size}, auto);
+	box-sizing: border-box;
 	padding: 8px 12px;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base-bold});
