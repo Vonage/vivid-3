@@ -7,8 +7,8 @@ import {
 import type { Icon } from '../icon/icon';
 import { Connotation } from '../enums';
 import { Button } from '../button/button';
-import { Alert } from './alert';
 import type { AlertConnotation } from './alert';
+import { Alert } from './alert';
 import '.';
 
 const COMPONENT_TAG = 'vwc-alert';
@@ -395,6 +395,13 @@ describe('vwc-alert', () => {
 			element.open = true;
 			element.connotation = Connotation.Alert;
 			await elementUpdated(element);
+		});
+
+		it("should announce alert's headline.", async () => {
+			const baseEl = getBaseElement(element);
+
+			const headline = baseEl.querySelector('.headline');
+			expect(headline?.tagName).toEqual('H2');
 		});
 
 		it('should set a role of alert on the base element', async () => {

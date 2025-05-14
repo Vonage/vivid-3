@@ -386,7 +386,7 @@ Use the main slot to fully override a Dialog's predefined template with your own
 <vwc-dialog open>
 	<vwc-layout slot="main" column-basis="block" gutters="medium">
 		Use main slot for your own layout and content
-	</dvwc-layout>
+	</vwc-layout>
 </vwc-dialog>
 ```
 
