@@ -561,5 +561,12 @@
 		"code": "./libs/components/src/lib/rich-text-editor/README.md",
 		"accessibility": "./libs/components/src/lib/rich-text-editor/ACCESSIBILITY.md",
 		"status": "underlying"
+	},
+	{
+		"title": "Visually Hidden",
+		"description": "Hides content while keeping it available to assistive technology",
+		"variations": "./libs/components/src/lib/visually-hidden/VARIATIONS.md",
+		"code": "./libs/components/src/lib/visually-hidden/README.md",
+		"status": "underlying"
 	}
 ]
