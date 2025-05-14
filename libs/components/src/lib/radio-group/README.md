@@ -58,6 +58,38 @@ Use the `value` attribute to set the Radio's value.
 <vwc-radio value="my-value" label="one"></vwc-radio>
 ```
 
+## Required
+
+Use the `required` attribute to set define whether a response to the Radio Group must be provided in order to submit a form.
+
+Below, the Radio Field is marked as `required` and is validated when the `form` is submitted.
+
+```html preview 365px
+<form method="post" action="">
+	<vwc-layout column-spacing="small" column-basis="block">
+		<vwc-radio-group orientation="vertical" name="chosenValue" required>
+			<vwc-radio label="option 1" value="1"></vwc-radio>
+			<vwc-radio label="option 2" value="2"></vwc-radio>
+			<vwc-radio label="option 3" value="3"></vwc-radio>
+		</vwc-radio-group>
+		<div class="buttons">
+			<vwc-button label="Reset" appearance="outlined" type="reset"></vwc-button>
+			<vwc-button label="Submit" appearance="filled" type="submit"></vwc-button>
+		</div>
+	</vwc-layout>
+</form>
+
+<style>
+	.buttons {
+		display: flex;
+		gap: 12px;
+	}
+	form {
+		max-inline-size: 300px;
+	}
+</style>
+```
+
 ## Slots
 
 ### Helper Text Slot
@@ -83,6 +115,32 @@ Use the `helper-text` slot on Radio Group to add rich text to provide additional
 </vwc-radio-group>
 ```
 
+## Methods
+
+### Check Validity
+
+You can use the `checkValidity()` method on one of the Radio's to validate it.
+Below, the Radio Group is `required` but it has no checked options. `checkValidity` was called which triggered the validation.
+
+```html preview
+<vwc-radio-group
+	orientation="vertical"
+	name="chosenValue"
+	required
+	label="Pick an option"
+>
+	<vwc-radio label="option 1" value="1"></vwc-radio>
+	<vwc-radio label="option 2" value="2"></vwc-radio>
+	<vwc-radio label="option 3" value="3"></vwc-radio>
+</vwc-radio-group>
+
+<script>
+	window.onload = () => {
+		document.querySelector('vwc-radio[name="chosenValue"]').checkValidity();
+	};
+</script>
+```
+
 ## API Reference
 
 ### Radio Group
@@ -99,6 +157,7 @@ Use the `helper-text` slot on Radio Group to add rich text to provide additional
 | **label**       | `string`                           | Label of the the Radio Group            |
 | **orientation** | `horizontal` (default), `vertical` | Sets axis on which the tabs are aligned |
 | **readonly**    | `boolean`                          | The value is not editable               |
+| **required**    | `boolean`                          | Sets the required state                 |
 
 </div>
 
@@ -120,6 +179,16 @@ Use the `helper-text` slot on Radio Group to add rich text to provide additional
 | Name       | Type                     | Bubbles | Composed | Description                                          |
 | ---------- | ------------------------ | ------- | -------- | ---------------------------------------------------- |
 | **change** | `CustomEvent<undefined>` | Yes     | Yes      | Fires a custom 'change' event when the value changes |
+
+</div>
+
+#### Methods
+
+<div class="table-wrapper">
+
+| Name              | Description                                                                                                                   |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **checkValidity** | Returns `true` if the element passes validity checks; otherwise, returns `false` and fires an `invalid` event at the element. |
 
 </div>
 
