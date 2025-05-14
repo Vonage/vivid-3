@@ -272,7 +272,8 @@ slot[name='icon'] {
 	position: absolute;
 
 	& + .text {
-		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
 	}
 }
 
