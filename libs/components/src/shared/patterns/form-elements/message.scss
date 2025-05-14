@@ -32,7 +32,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&-icon {
-		font-size: 16px;
+		font-size: 14px;
 
 		.success-message & {
 			color: var(#{constants.$vvd-color-success-500});

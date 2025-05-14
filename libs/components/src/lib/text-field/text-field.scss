@@ -36,14 +36,15 @@ $low-ink-color: --_low-ink-color;
 
 	& {
 		#{variables.$text-field-gutter-start}: calc(
-			#{size.$vvd-size-normal} / 2.5
-		); // default of 16px
+			#{size.$vvd-size-super-condensed} / 2
+		); // default of 12px
 		#{variables.$text-field-gutter-end}: calc(
-			#{size.$vvd-size-normal} / 2.5
-		); // default of 16px
+			#{size.$vvd-size-super-condensed} / 2
+		); // default of 12px
+		#{variables.$text-field-icon-gutter}: 8px;
 		#{variables.$text-field-icon-size}: calc(
-			#{size.$vvd-size-normal} / 2
-		); // default of 20px
+			#{size.$vvd-size-condensed} / 2
+		); // default of 16px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-normal};
 		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-normal};
 		#{variables.$text-field-pill-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};
@@ -61,9 +62,12 @@ $low-ink-color: --_low-ink-color;
 		#{variables.$text-field-gutter-end}: calc(
 			#{size.$vvd-size-super-condensed} / 2
 		); // default of 12px
+		#{variables.$text-field-icon-gutter}: calc(
+			#{size.$vvd-size-super-condensed} / 2
+		); // default of 12px
 		#{variables.$text-field-icon-size}: calc(
-			#{size.$vvd-size-condensed} / 2
-		); // default of 16px
+			#{size.$vvd-size-super-condensed} / 2
+		); // default of 12px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-condensed};
 		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-semi-condensed};
 	}
@@ -208,7 +212,7 @@ $low-ink-color: --_low-ink-color;
 	.has-icon &::slotted(input) {
 		padding-inline-start: calc(
 			var(#{variables.$text-field-icon-size}) +
-				var(#{variables.$text-field-gutter-start}) * 2
+				var(#{variables.$text-field-gutter-start}) * 1.75
 		) !important;
 	}
 }
