@@ -302,19 +302,19 @@ The `pending` attribute triggers the pending state, which indicates that the act
 	<vwc-button
 		icon="compose-line"
 		appearance="filled"
-		label="Pending"
+		label="Loading..."
 		pending
 	></vwc-button>
 	<vwc-button
 		icon="compose-line"
 		appearance="outlined"
-		label="Pending"
+		label="Loading..."
 		pending
 	></vwc-button>
 	<vwc-button
 		icon="compose-line"
 		appearance="ghost"
-		label="Pending"
+		label="Loading..."
 		pending
 	></vwc-button>
 </div>
