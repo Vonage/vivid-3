@@ -208,6 +208,40 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 
 ## Events
 
+### file-drop
+
+```html preview 250px
+<vwc-layout gutters="small" column-basis="block" row-spacing="small">
+	<vwc-rich-text-editor>
+		<vwc-menubar
+			slot="menu-bar"
+			menu-items="textBlock textSize divider textDecoration divider"
+		></vwc-menubar>
+	</vwc-rich-text-editor>
+</vwc-layout>
+<script>
+	const rteComponent = document.querySelector('vwc-rich-text-editor');
+	async function waitForEditorReady() {
+		await new Promise((res) => {
+			const interval = setInterval(() => {
+				if (!rteComponent.value) return;
+				clearInterval(interval);
+				res();
+			});
+		});
+	}
+
+	async function start() {
+		await waitForEditorReady();
+		rteComponent.addEventListener('file-drop', (event) =>
+			console.log(event.detail)
+		);
+	}
+
+	start();
+</script>
+```
+
 <div class="table-wrapper">
 
 | Name                  | Type                     | Bubbles | Composed | Description                                                                          |
