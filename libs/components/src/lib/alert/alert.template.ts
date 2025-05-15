@@ -46,19 +46,16 @@ export const AlertTemplate = (context: VividElementDefinitionContext) => {
 	return html<Alert>`
 	<${elevationTag} class="elevation" dp='8' exportparts="vvd-theme-alternate">
 		<div class="${getControlClasses}">
-			<div 
-				part="vvd-theme-alternate" 
-				class="${getClasses}" 
-				role="alert" 
-				aria-hidden="${(x) => (x.open ? 'false' : 'true')}" 
+			<div
+				part="vvd-theme-alternate"
+				class="${getClasses}"
+				role="alert"
+				aria-hidden="${(x) => (x.open ? 'false' : 'true')}"
 				${(x) => (!x.open ? 'hidden' : '')}
 			>
 				${renderIcon(context)}
 				<div class="alert-text">
-					${when(
-						(x) => x.headline,
-						html`<header class="headline">${(x) => x.headline}</header>`
-					)}
+					${when((x) => x.headline, html`<h2 class="headline">${(x) => x.headline}</h2>`)}
 					${when((x) => x.text, html`<div class="main-text">${(x) => x.text}</div>`)}
 					<slot name="main"></slot>
 				</div>

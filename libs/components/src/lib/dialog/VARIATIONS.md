@@ -13,7 +13,7 @@ Use the `headline` attribute to set the dialog's headline.
 Use the `subtitle` attribute to set the dialog's subtitle.
 
 ```html preview 230px
-<vwc-dialog subtitle="subtitle content" open></vwc-dialog>
+<vwc-dialog headline="Headline" subtitle="Subtitle" open></vwc-dialog>
 ```
 
 ## Icons

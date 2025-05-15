@@ -52,6 +52,11 @@ $low-ink-color: --_low-ink-color;
 	font: var(#{constants.$vvd-typography-base});
 }
 
+.selection-count {
+	color: var(#{$low-ink-color});
+	font: var(#{constants.$vvd-typography-base});
+}
+
 .fieldset {
 	@include connotation.connotation(searchable-select);
 	@include appearance.appearance;

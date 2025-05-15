@@ -173,6 +173,10 @@ const jaJP: Locale = {
 			position: number,
 			total: number
 		) => `オプション ${name} がフォーカスされました。${position}/${total}`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `${limit}件中${total}件を選択。`,
 	},
 	richTextEditor: {
 		textBlockType: 'テキストブロックタイプ',
@@ -184,5 +188,4 @@ const jaJP: Locale = {
 		monospace: '等幅',
 	},
 };
-
 export default jaJP;

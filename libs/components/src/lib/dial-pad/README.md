@@ -22,7 +22,7 @@ registerDialPad('your-prefix');
 	registerDialPad('your-prefix');
 </script>
 
-<your-prefix-dial-pad></your-prefix-text-dial-pad>
+<your-prefix-dial-pad></your-prefix-dial-pad>
 ```
 
 </vwc-tab-panel>

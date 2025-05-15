@@ -1904,7 +1904,7 @@
 				},
 				{
 					"name": "gridTemplateColumns",
-					"description": "String that gets applied to the the css gridTemplateColumns attribute of child rows",
+					"description": "String that gets applied to the css gridTemplateColumns attribute of child rows",
 					"type": "string",
 					"attributeName": "grid-template-columns",
 					"propertyName": "gridTemplateColumns"
@@ -5649,6 +5649,12 @@
 					"type": "number",
 					"attributeName": "max-lines",
 					"propertyName": "maxLines"
+				},
+				{
+					"name": "maxSelected",
+					"type": "number",
+					"attributeName": "max-selected",
+					"propertyName": "maxSelected"
 				},
 				{
 					"name": "multiple",

@@ -14,6 +14,10 @@ Use the `label` attribute to provide a visible label for the [**Radio**](/compon
 
 Use the `label` to set the **Radio Group** label.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
+</vwc-note>
+
 ```html preview
 <vwc-radio-group label="Pick a number" name="number">
 	<vwc-radio label="number one" value="1"></vwc-radio>
@@ -21,11 +25,6 @@ Use the `label` to set the **Radio Group** label.
 	<vwc-radio label="number three" value="3"></vwc-radio>
 </vwc-radio-group>
 ```
-
-<vwc-note connotation="information" icon="info-line" headline="Accessibility note">
-	<p>If you can not use the visible <code>label</code>, provide it using the <code>aria-label</code> attribute.</p>
-	<p>It will be announced by screen readers so that those users will know the purpose of the Radio Group or the Radio.</p>
-</vwc-note>
 
 ## Orientation
 
@@ -71,10 +70,6 @@ Use the `connotation` attribute to set the **Radio** color.
 ### Checked
 
 Use the `checked` on the **Radio** to mark the radio as selected.
-
-<vwc-note connotation="warning" icon="warning-line">
-  If more than one item are checked only the last item will be checked, since radio is for a single selection
-</vwc-note>
 
 ```html preview
 <vwc-radio-group label="who is checked?">

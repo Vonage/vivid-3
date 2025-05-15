@@ -92,7 +92,7 @@
 		order: 2;
 	}
 
-	:host(:not([check-appearance], [aria-checked='true'], [disabled])) & {
+	:host(:not([check-appearance], [checked], [disabled])) & {
 		color: var(#{constants.$vvd-color-neutral-500});
 	}
 }

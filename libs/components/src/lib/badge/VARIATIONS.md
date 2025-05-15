@@ -147,9 +147,9 @@ Custom icons can be provided using the [icon slot](/components/badge/code/#icon-
 
 If the `label` is omitted, the badge will be displayed as an _icon-only_ badge.
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
 
-An icon on its own doesn't make a discernible text. An <code>aria-label</code> should be provided to ensure that the user can understand the badge.
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
 
 </vwc-note>
 

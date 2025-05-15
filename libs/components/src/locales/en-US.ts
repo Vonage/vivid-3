@@ -173,6 +173,10 @@ const enUS: Locale = {
 			position: number,
 			total: number
 		) => `Option ${name} focused, ${position} of ${total}.`,
+		maxSelectedMessage: /* istanbul ignore next */ (
+			total: number,
+			limit: number
+		) => `${total} of ${limit} selected.`,
 	},
 	richTextEditor: {
 		textBlockType: 'Text Block Type',

@@ -179,7 +179,7 @@ export class DataGrid extends VividElement {
 	}
 
 	/**
-	 * String that gets applied to the the css gridTemplateColumns attribute of child rows
+	 * String that gets applied to the css gridTemplateColumns attribute of child rows
 	 *
 	 * @public
 	 * @remarks
