@@ -640,4 +640,31 @@ describe('vwc-rich-text-editor', () => {
 			expect(newElementPlaceholderText).toBe(text);
 		});
 	});
+
+	describe('file-drop event', () => {
+		it('should fire "file-drop" event when file is dropped file drop and process files', async () => {
+			const editor = element.shadowRoot!.querySelector('#editor') as HTMLElement;
+			const file = new File(['file-content'], 'test.txt', { type: 'text/plain' });
+
+			const dataTransfer = {
+				files: [file],
+				types: ['Files'],
+				getData: () => '',
+			} as unknown as DataTransfer;
+
+			const dropEvent = new Event('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+			Object.defineProperty(dropEvent, 'dataTransfer', {
+				value: dataTransfer,
+			});
+
+			const spy = vi.fn();
+			element.addEventListener('file-drop', spy);
+			editor.dispatchEvent(dropEvent);
+
+			expect(spy.mock.calls[0][0].detail).toEqual(dataTransfer.files);
+		});
+	});
 });

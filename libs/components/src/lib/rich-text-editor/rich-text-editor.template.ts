@@ -77,7 +77,9 @@ export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
 ) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
-		<div id="editor" class="editor"></div>
+		<div id="editor" 
+			 class="editor"
+			 @drop="${(x, {event}) => x.dispatchEvent(new CustomEvent('file-drop', {detail: event.dataTransfer.files}))}"></div>
 		<slot name="menu-bar" @slotchange="${handleMenuBarSlotChange}"></slot>
 	</template>`;
 };
