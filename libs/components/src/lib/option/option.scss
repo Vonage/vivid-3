@@ -82,7 +82,7 @@
 		); // 16px
 	}
 
-	:host([aria-checked='true']) & {
+	&.active {
 		#{focus-variables.$focus-stroke-color}: var(
 			#{constants.$vvd-color-cta-500}
 		);

@@ -11,4 +11,5 @@ export interface SearchableSelectLocale {
 		position: number,
 		total: number
 	) => string;
+	maxSelectedMessage: (total: number, limit: number) => string;
 }

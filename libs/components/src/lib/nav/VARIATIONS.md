@@ -45,6 +45,12 @@ Custom icons can be provided using the [icon slot](/components/navigation/code/#
 
 If the `text` is omitted, the **`Nav Item`** will be displayed as an icon-only Nav Item.
 
+<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+
+When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
+
+</vwc-note>
+
 ```html preview 250px
 <vwc-nav>
 	<vwc-nav-item href="#" icon="profile" aria-label="Account"></vwc-nav-item>
@@ -57,10 +63,6 @@ If the `text` is omitted, the **`Nav Item`** will be displayed as an icon-only N
 	<vwc-nav-item href="#" icon="edit-line" aria-label="Edit"></vwc-nav-item>
 </vwc-nav>
 ```
-
-<vwc-note connotation="warning" icon="warning-line" headline="Icons without labels">
-	<p>It is bad UX to hide content that is essential for users to complete their tasks.<br />But, if a <code>text</code> or <code>label</code>is not supplied, be sure to provide an <code>aria-label</code> which will be announced by a screen reader.</p>
-</vwc-note>
 
 ## Appearance
 

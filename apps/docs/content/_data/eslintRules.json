@@ -26,5 +26,9 @@
 	{
 		"name": "no-current-value-attribute",
 		"markdown": "./libs/eslint-plugin/src/rules/no-current-value-attribute.md"
+	},
+	{
+		"name": "no-idref-aria-attribute",
+		"markdown": "./libs/eslint-plugin/src/rules/no-idref-aria-attribute.md"
 	}
 ]

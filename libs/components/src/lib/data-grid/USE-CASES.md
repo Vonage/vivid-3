@@ -288,3 +288,131 @@ You can add and remove rows dynamically by manipulating the `rowsData`.
 	}
 </style>
 ```
+
+## Selectable cells and rows
+
+Data grid supports selecting cells and rows by setting `selection-mode` attribute to one of `single-row`, `multi-row`, `single-cell` or `multi-cell`. If you want to turn off selection, set it to `none` or remove the attribute.
+
+### Single row
+
+```html preview
+<vwc-data-grid
+	selection-mode="single-row"
+	id="data-grid-selection-single-row"
+></vwc-data-grid>
+<script>
+	const grid = document.getElementById('data-grid-selection-single-row');
+
+	grid.rowsData = [
+		{
+			id: 1,
+			firstName: 'Bearnard',
+			lastName: 'McCrudden',
+		},
+		{
+			id: 2,
+			firstName: 'Hewet',
+			lastName: 'Luxen',
+		},
+		{
+			id: 3,
+			firstName: 'Rurik',
+			lastName: 'Van Waadenburg',
+		},
+	];
+</script>
+```
+
+### Multiple rows
+
+Use a control / command key to select multiple rows.
+
+```html preview
+<vwc-data-grid
+	selection-mode="multi-row"
+	id="data-grid-selection-multi-row"
+></vwc-data-grid>
+<script>
+	const grid = document.getElementById('data-grid-selection-multi-row');
+
+	grid.rowsData = [
+		{
+			id: 1,
+			first_name: 'Gussy',
+			last_name: 'Waszczykowski',
+		},
+		{
+			id: 2,
+			first_name: 'Joseito',
+			last_name: 'Laxe',
+		},
+		{
+			id: 3,
+			first_name: 'Ryann',
+			last_name: 'Enrietto',
+		},
+	];
+</script>
+```
+
+### Single cell
+
+```html preview
+<vwc-data-grid
+	selection-mode="single-cell"
+	id="data-grid-selection-single-cell"
+></vwc-data-grid>
+<script>
+	const grid = document.getElementById('data-grid-selection-single-cell');
+
+	grid.rowsData = [
+		{
+			id: 1,
+			first_name: 'Roman',
+			last_name: 'Cossem',
+		},
+		{
+			id: 2,
+			first_name: 'Mac',
+			last_name: 'Cawkwell',
+		},
+		{
+			id: 3,
+			first_name: 'Goddart',
+			last_name: 'Hemphall',
+		},
+	];
+</script>
+```
+
+### Multiple cells
+
+Use a control / command key to select multiple rows.
+
+```html preview
+<vwc-data-grid
+	selection-mode="multi-cell"
+	id="data-grid-selection-multi-cell"
+></vwc-data-grid>
+<script>
+	const grid = document.getElementById('data-grid-selection-multi-cell');
+
+	grid.rowsData = [
+		{
+			id: 1,
+			first_name: 'Haydon',
+			last_name: 'Patrone',
+		},
+		{
+			id: 2,
+			first_name: 'Corella',
+			last_name: 'Northrop',
+		},
+		{
+			id: 3,
+			first_name: 'Jorie',
+			last_name: 'Gosnoll',
+		},
+	];
+</script>
+```

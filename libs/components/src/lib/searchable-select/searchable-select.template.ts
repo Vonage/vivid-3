@@ -30,6 +30,20 @@ function renderLabel() {
 		<label for="control" class="label" id="label"> ${(x) => x.label} </label>
 	`;
 }
+function renderSelectionCount() {
+	return html<SearchableSelect>`
+		<span
+			id="selection-count"
+			class="selection-count"
+			aria-label="${(x) =>
+				x.locale.searchableSelect.maxSelectedMessage(
+					x.values.length,
+					x.maxSelected!
+				)}"
+			>(${(x) => `${x.values.length}/${x.maxSelected}`})</span
+		>
+	`;
+}
 
 const tagTemplateFactory = (
 	context: VividElementDefinitionContext,
@@ -130,6 +144,10 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						class="control"
 						autocomplete="off"
 						aria-controls="listbox"
+						aria-describedby="${(x) =>
+							x.multiple && x.maxSelected && x.maxSelected >= 1
+								? 'selection-count'
+								: null}"
 						${delegateAria({
 							role: 'combobox',
 							ariaAutoComplete: 'list',
@@ -193,7 +211,18 @@ function renderControl(context: VividElementDefinitionContext) {
 	const popupTag = context.tagFor(Popup);
 
 	return html<SearchableSelect>`
-		${when((x) => x.label, renderLabel())}
+		${when(
+			(x) => x.label || (x.multiple && x.maxSelected && x.maxSelected >= 1),
+			html<SearchableSelect>`
+				<div>
+					${when((x) => x.label, renderLabel())}
+					${when(
+						(x) => x.multiple && x.maxSelected && x.maxSelected >= 1,
+						renderSelectionCount()
+					)}
+				</div>
+			`
+		)}
 		<span aria-live="assertive" aria-relevant="text" class="visually-hidden">
 			${(x) => x._changeDescription}
 		</span>

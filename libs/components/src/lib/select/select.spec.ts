@@ -237,6 +237,14 @@ describe('vwc-select', () => {
 			await elementUpdated(element);
 			expect(element.getAttribute('aria-label')).toEqual(ariaLabelText);
 		});
+
+		it('should not set for attribute on label element when it is multiple version', async function () {
+			element.multiple = true;
+			element.label = 'label';
+			await elementUpdated(element);
+			const labelElement = element.shadowRoot?.querySelector('label');
+			expect(labelElement?.getAttribute('for')).toBeNull();
+		});
 	});
 
 	describe('icon', () => {
@@ -1306,6 +1314,23 @@ describe('vwc-select', () => {
 			const uniqueListboxId = getListbox().id;
 			expect(uniqueListboxId).toBeTruthy();
 			expect(element.getAttribute('aria-controls')).toBe(uniqueListboxId);
+		});
+
+		it('should set aria-labelledby on the listbox of multiple version', async () => {
+			element.multiple = true;
+			element.label = 'label';
+			await elementUpdated(element);
+			const listbox = getListbox();
+			expect(listbox.getAttribute('aria-labelledby')).toBe('label');
+		});
+
+		it('should set aria-label on the listbox of multiple version when label is not present', async () => {
+			element.multiple = true;
+			element.ariaLabel = 'label';
+			await elementUpdated(element);
+			const listbox = getListbox();
+			expect(listbox.getAttribute('aria-labelledby')).toBeNull();
+			expect(listbox.getAttribute('aria-label')).toBe('label');
 		});
 	});
 });

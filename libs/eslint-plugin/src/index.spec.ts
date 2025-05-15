@@ -15,6 +15,7 @@ describe('eslint-plugin', () => {
                     "@vonage/vivid/no-anchor-attribute": "error",
                     "@vonage/vivid/no-current-value-attribute": "error",
                     "@vonage/vivid/no-deprecated-apis": "error",
+                    "@vonage/vivid/no-idref-aria-attribute": "error",
                     "@vonage/vivid/no-inaccessible-events": "error",
                     "@vonage/vivid/no-slot-attribute": "error",
                     "@vonage/vivid/no-value-attribute": "error",
@@ -30,6 +31,7 @@ describe('eslint-plugin', () => {
                   "@vonage/vivid/no-anchor-attribute": "error",
                   "@vonage/vivid/no-current-value-attribute": "error",
                   "@vonage/vivid/no-deprecated-apis": "error",
+                  "@vonage/vivid/no-idref-aria-attribute": "error",
                   "@vonage/vivid/no-inaccessible-events": "error",
                   "@vonage/vivid/no-slot-attribute": "error",
                   "@vonage/vivid/no-value-attribute": "error",
@@ -76,6 +78,19 @@ describe('eslint-plugin', () => {
                     "description": "Do not use deprecated APIs.",
                   },
                   "fixable": "code",
+                  "schema": [],
+                  "type": "problem",
+                },
+              },
+              "no-idref-aria-attribute": {
+                "create": [Function],
+                "meta": {
+                  "docs": {
+                    "description": "Do not use IDREF ARIA attributes on components.",
+                  },
+                  "messages": {
+                    "noIdrefAriaAttribute": "IDREF ARIA attributes (like {{attribute}}) should not be used on components that delegate ARIA attributes, as they will not work correctly with shadow DOM.",
+                  },
                   "schema": [],
                   "type": "problem",
                 },
