@@ -35,7 +35,7 @@ export const ToggletipTemplate = (context: VividElementDefinitionContext) => {
 			<div class="content-wrapper">
 				${when((x) => x.headline, html`<h2 class="headline">${(x) => x.headline}</h2>`)}
 				<slot></slot>
-				<footer class="action-items"><slot name="action-items"></slot></footer>
+				<div class="action-items"><slot name="action-items"></slot></div>
 			</div>
 		</${popup}>
 	`;
