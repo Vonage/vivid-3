@@ -983,7 +983,7 @@ describe('ProseMirrorFacade', () => {
 		});
 	});
 
-	describe('getContent', () => {
+	describe('getValue', () => {
 		function setViewer() {
 			const element = initViewer();
 			return element;
