@@ -67,6 +67,12 @@ function handleMenuBarSlotChange(
 		);
 	}
 }
+
+function handleFileDrop(x: RichTextEditor, { event }: { event: DragEvent }) {
+	x.dispatchEvent(
+		new CustomEvent('file-drop', { detail: event.dataTransfer!.files })
+	);
+}
 /**
  * The template for the RichTextEditor component.
  *
@@ -77,9 +83,7 @@ export const RichTextEditorTemplate: (
 	context: VividElementDefinitionContext
 ) => ViewTemplate<RichTextEditor> = (_: VividElementDefinitionContext) => {
 	return html`<template class="${getClasses}">
-		<div id="editor" 
-			 class="editor"
-			 @drop="${(x, {event}) => x.dispatchEvent(new CustomEvent('file-drop', {detail: event.dataTransfer.files}))}"></div>
+		<div id="editor" class="editor" @drop="${handleFileDrop}"></div>
 		<slot name="menu-bar" @slotchange="${handleMenuBarSlotChange}"></slot>
 	</template>`;
 };

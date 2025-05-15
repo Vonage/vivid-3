@@ -642,12 +642,12 @@ describe('vwc-rich-text-editor', () => {
 	});
 
 	describe('file-drop event', () => {
-		it('should fire "file-drop" event when file is dropped file drop and process files', async () => {
-			const editor = element.shadowRoot!.querySelector('#editor') as HTMLElement;
-			const file = new File(['file-content'], 'test.txt', { type: 'text/plain' });
-
+		const FILES = [
+			new File(['file-content'], 'test.txt', { type: 'text/plain' }),
+		];
+		function createDropEvent(files = FILES) {
 			const dataTransfer = {
-				files: [file],
+				files,
 				types: ['Files'],
 				getData: () => '',
 			} as unknown as DataTransfer;
@@ -656,15 +656,23 @@ describe('vwc-rich-text-editor', () => {
 				bubbles: true,
 				cancelable: true,
 			});
-			Object.defineProperty(dropEvent, 'dataTransfer', {
-				value: dataTransfer,
-			});
 
+			(dropEvent as any).dataTransfer = dataTransfer;
+
+			return dropEvent;
+		}
+
+		it('should fire "file-drop" event when file is dropped file drop and process files', async () => {
+			const editor = element.shadowRoot!.querySelector(
+				'#editor'
+			) as HTMLElement;
 			const spy = vi.fn();
 			element.addEventListener('file-drop', spy);
+			const dropEvent = createDropEvent(FILES);
+
 			editor.dispatchEvent(dropEvent);
 
-			expect(spy.mock.calls[0][0].detail).toEqual(dataTransfer.files);
+			expect(spy.mock.calls[0][0].detail).toEqual(FILES);
 		});
 	});
 });
