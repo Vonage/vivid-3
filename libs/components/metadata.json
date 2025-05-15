@@ -5240,12 +5240,6 @@
 					"propertyName": "required"
 				},
 				{
-					"name": "successText",
-					"description": "The success text for the form element.",
-					"type": "string",
-					"attributeName": "success-text"
-				},
-				{
 					"name": "value",
 					"description": "The value of the checked radio",
 					"type": "string",
