@@ -25,7 +25,7 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 				})}
 				aria-labelledby="label"
 				aria-describedby="helper-text"
-				aria-invalid="${(x) => (x.errorText ? 'true' : null)}"
+				aria-invalid="${(x) => (x.errorText ? 'true' : 'false')}"
 				aria-errormessage="error-text"
 				class="control positioning-region ${(x) =>
 					x.orientation === Orientation.horizontal ? 'horizontal' : 'vertical'}"

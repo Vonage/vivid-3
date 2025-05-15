@@ -47,6 +47,7 @@ describe('vwc-radio-group', () => {
 			expect(element.errorText).toBeUndefined();
 			expect(element.orientation).toEqual('horizontal');
 			expect(element.getAttribute('value')).toBeNull();
+			expect(element.slottedRadioButtons.length).toEqual(3);
 		});
 
 		it('should allow being created via createElement', () => {
@@ -132,13 +133,21 @@ describe('vwc-radio-group', () => {
 
 	describe('error-text', () => {
 		it('should display the error text is set', async () => {
-			element.helperText = 'test error text';
+			element.errorText = 'test error text';
+			element.appendChild(document.createElement('vwc-radio'));
 			await elementUpdated(element);
-			const errorText = element.shadowRoot?.getElementById('error-text');
-			expect(errorText?.textContent).toBe(element.errorText);
+
+			expect(getMessage(element, 'error')).toBe('test error text');
+			expect(element.slottedRadioButtons.length).toEqual(4);
 		});
 
 		it('should set aria-invalid on the control element to true when error-text is set', async () => {
+			element.errorText = '';
+			await elementUpdated(element);
+			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
+				'false'
+			);
+
 			element.errorText = 'test error text';
 			await elementUpdated(element);
 			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
@@ -146,22 +155,12 @@ describe('vwc-radio-group', () => {
 			);
 		});
 
-		it('should set aria-invalid on the control element to null when error-text is not set', async () => {
+		it('should link the error-text to the control element using the aria-errormessage attribute', async () => {
 			element.errorText = 'test error text';
 			await elementUpdated(element);
-			element.errorText = '';
-			await elementUpdated(element);
-			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
-				null
-			);
-		});
-
-		it('should link the helper text to the control element using the aria-describedby attribute', async () => {
-			element.helperText = 'test helper text';
-			await elementUpdated(element);
-			expect(getControlElement(element)!.getAttribute('aria-describedby')).toBe(
-				'helper-text'
-			);
+			expect(
+				getControlElement(element)!.getAttribute('aria-errormessage')
+			).toBe('error-text');
 		});
 	});
 
@@ -207,6 +206,36 @@ describe('vwc-radio-group', () => {
 			`);
 			expect(
 				radios.every((r) => r.getAttribute('disabled') === '')
+			).toBeTruthy();
+		});
+	});
+
+	describe('required', () => {
+		it('should set all radio buttons it contains to required when set to required', async () => {
+			element.setAttribute('required', '');
+			await elementUpdated(element);
+			expect(
+				radios.every((r) => r.getAttribute('required') === '')
+			).toBeTruthy();
+		});
+
+		it('should remove required from all radio buttons it contains when required is removed', async () => {
+			element.setAttribute('required', '');
+			element.removeAttribute('required');
+			await elementUpdated(element);
+			expect(radios.every((r) => !r.hasAttribute('required'))).toBeTruthy();
+		});
+
+		it('should set required on all radio buttons it contains if required is initially set', async () => {
+			await setupFixture(`
+				<${COMPONENT_TAG} required>
+					<vwc-radio value="0" label="one"></vwc-radio>
+					<vwc-radio value="1" label="two"></vwc-radio>
+					<vwc-radio value="2" label="three"></vwc-radio>
+				</${COMPONENT_TAG}>
+			`);
+			expect(
+				radios.every((r) => r.getAttribute('required') === '')
 			).toBeTruthy();
 		});
 	});
@@ -547,6 +576,10 @@ describe('vwc-radio-group', () => {
 
 			element.name = 'chosenValue';
 			radios[2].checked = true;
+
+			radios[0].dispatchEvent(
+				new Event('invalid', { bubbles: true, composed: true })
+			);
 
 			const submitPromise = listenToFormSubmission(form);
 			form.requestSubmit();

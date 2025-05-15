@@ -1,9 +1,4 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
-@use '../../../../../dist/libs/tokens/scss/size.variables' as size;
-@use '../../shared/patterns/form-elements/message.scss';
-
-$low-ink-color: --_low-ink-color;
-$gutter: 2px;
 
 .positioning-region {
 	display: flex;

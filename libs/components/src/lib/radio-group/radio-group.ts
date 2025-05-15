@@ -11,10 +11,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Radio } from '../radio/radio';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import {
-	FormElementHelperText,
-	FormElementSuccessText,
-} from '../../shared/patterns';
+import { FormElementHelperText } from '../../shared/patterns';
 import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 
 /**
@@ -92,7 +89,7 @@ export class RadioGroup extends VividElement {
 	 * @internal
 	 */
 	disabledChanged() {
-		this.slottedRadioButtons?.forEach((radio) => {
+		this.slottedRadioButtons?.forEach((radio: Radio) => {
 			if (this.disabled) {
 				radio.disabled = true;
 			} else {
@@ -392,12 +389,6 @@ export class RadioGroup extends VividElement {
 	};
 }
 
-export interface RadioGroup
-	extends FormElementHelperText,
-		FormElementSuccessText {}
+export interface RadioGroup extends FormElementHelperText {}
 
-applyMixinsWithObservables(
-	RadioGroup,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixinsWithObservables(RadioGroup, FormElementHelperText);

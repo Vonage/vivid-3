@@ -1,6 +1,8 @@
 import { configureAxe } from 'vitest-axe';
 
-export const elementUpdated = async (element: Element | HTMLElement) => {
+export const elementUpdated = async <T extends Element | HTMLElement>(
+	element: T
+) => {
 	return new Promise((resolve) =>
 		requestAnimationFrame(() => resolve(element))
 	);

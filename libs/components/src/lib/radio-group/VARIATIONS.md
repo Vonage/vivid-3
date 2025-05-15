@@ -50,7 +50,7 @@ The `error-text` attribute provides a custom error message.
 
 ```html preview
 <vwc-radio-group
-	error-text="This is a required field"
+	error-text="Please, select one of the options"
 	label="Pick a number"
 	name="number"
 >

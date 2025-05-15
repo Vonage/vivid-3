@@ -34,6 +34,7 @@ export class FormAssociatedRadio extends CheckableFormAssociated(_Radio) {
 	#validateValueMissingWithSiblings = (): void => {
 		const siblings = this.#radioSiblings;
 		const group = this.#radioGroup;
+
 		if (siblings && siblings.length > 1) {
 			const isSiblingChecked = siblings.some((x: _Radio) => x.checked);
 			if (isSiblingChecked) {

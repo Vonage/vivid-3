@@ -62,15 +62,6 @@ export class Radio extends FormAssociatedRadio {
 	@attr({ attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
 	/**
-	 * Indicates the radio's label.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: label
-	 */
-	// @attr label?: string;
-
-	/**
 	 * The connotation the radioButton should have.
 	 *
 	 * @public
