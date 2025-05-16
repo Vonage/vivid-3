@@ -5085,12 +5085,6 @@
 					"attributeName": "error-text"
 				},
 				{
-					"name": "helperText",
-					"description": "The helper text for the form element.",
-					"type": "string",
-					"attributeName": "helper-text"
-				},
-				{
 					"name": "initialValue",
 					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
@@ -5122,12 +5116,6 @@
 					"description": "Require the field to be completed prior to form submission.",
 					"type": "boolean",
 					"attributeName": "required"
-				},
-				{
-					"name": "successText",
-					"description": "The success text for the form element.",
-					"type": "string",
-					"attributeName": "success-text"
 				},
 				{
 					"name": "value",
