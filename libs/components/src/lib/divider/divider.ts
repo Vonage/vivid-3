@@ -33,7 +33,7 @@ type DividerRole = typeof DividerRole[keyof typeof DividerRole];
  */
 export class Divider extends DelegatesAria(VividElement) {
 	/**
-	 * The role of the element.
+	 * The role of the element. This property will be removed
 	 *
 	 * @deprecated This property will be deprecated, as divider shouldn't be announced by screen readers. Please update your usages.
 	 * @public
