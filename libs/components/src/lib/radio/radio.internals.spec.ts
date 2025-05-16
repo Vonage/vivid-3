@@ -1,18 +1,37 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated } from '@vivid-nx/shared';
 import type { MockInstance } from 'vitest';
+import type { RadioGroup } from '../radio-group/radio-group';
 import { Radio } from './radio';
 import '.';
 
 const COMPONENT_TAG = 'vwc-radio';
+const RADIO_GROUP_COMPONENT_TAG = 'vwc-radio-group';
+
+const setupFixture = async (
+	wrapper: HTMLElement,
+	options?: { insideRadioGroup?: boolean }
+) => {
+	const { insideRadioGroup = false } = options || {};
+	let elementWithInternals: Radio = document.createElement(COMPONENT_TAG);
+	let sibling: Radio = document.createElement(COMPONENT_TAG);
+	let radioGroup: RadioGroup | null = null;
+
+	if (insideRadioGroup) {
+		radioGroup = document.createElement(RADIO_GROUP_COMPONENT_TAG);
+		elementWithInternals = radioGroup.appendChild(elementWithInternals);
+		sibling = radioGroup.appendChild(sibling);
+		wrapper.appendChild(radioGroup);
+	} else {
+		wrapper.appendChild(elementWithInternals);
+		wrapper.appendChild(sibling);
+	}
+
+	await elementUpdated(elementWithInternals);
+
+	return { wrapper, elementWithInternals, sibling, radioGroup };
+};
 
 describe('vwc-radio', () => {
-	let element: Radio;
-
-	beforeEach(async () => {
-		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Radio;
-		await elementUpdated(element);
-	});
-
 	describe('require with internals', () => {
 		function mockElementInternals() {
 			function addElementInternals(this: Radio) {
@@ -39,8 +58,7 @@ describe('vwc-radio', () => {
 
 		const InternalsMap = new WeakMap();
 		const wrapper = document.createElement('div');
-		let elementWithInternals: Radio;
-		let sibling: Radio;
+		wrapper.id = 'wrapper';
 		let internalsMock: MockInstance | null = null;
 		let formAssociatedMock: MockInstance | null = null;
 
@@ -62,11 +80,6 @@ describe('vwc-radio', () => {
 		beforeEach(async () => {
 			mockFormAssociated();
 			mockElementInternals();
-			elementWithInternals = document.createElement(COMPONENT_TAG) as Radio;
-			sibling = document.createElement(COMPONENT_TAG) as Radio;
-			wrapper.appendChild(elementWithInternals);
-			wrapper.appendChild(sibling);
-			await elementUpdated(elementWithInternals);
 		});
 
 		afterEach(() => {
@@ -74,7 +87,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should sync validity from siblings in same group and name when all unchecked', async () => {
-			sibling = document.createElement(COMPONENT_TAG) as Radio;
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = elementWithInternals.name = 'test';
 			sibling.required = elementWithInternals.required = true;
 
@@ -84,6 +97,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should sync validity with siblings in same group and name when checked', async () => {
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = elementWithInternals.name = 'test';
 			sibling.required = elementWithInternals.required = true;
 			sibling.checked = true;
@@ -93,6 +107,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should set the correct valueMissing validity when added to the DOM with valid group', async () => {
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = elementWithInternals.name = 'test';
 			sibling.required = elementWithInternals.required = true;
 			elementWithInternals.checked = true;
@@ -103,6 +118,7 @@ describe('vwc-radio', () => {
 		});
 
 		it("should sync siblings' validity.valueMissing when added as checked", async () => {
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = elementWithInternals.name = 'test';
 			sibling.required = elementWithInternals.required = true;
 			sibling.checked = true;
@@ -113,6 +129,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should sync values when name changes to that of siblings', async () => {
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = 'not-test';
 			elementWithInternals.name = 'test';
 			sibling.required = elementWithInternals.required = true;
@@ -131,6 +148,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should validate valueMissing on a single radio only when required is set', async () => {
+			const { elementWithInternals } = await setupFixture(wrapper);
 			elementWithInternals.name = 'test';
 			elementWithInternals.required = false;
 
@@ -140,6 +158,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should validate valueMissing on radio-group only when required is set', async () => {
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = 'test';
 			elementWithInternals.name = 'test';
 			sibling.required = elementWithInternals.required = false;
@@ -151,6 +170,7 @@ describe('vwc-radio', () => {
 		});
 
 		it('should validate valueMissing when required is set on at least one sibling', async () => {
+			const { sibling, elementWithInternals } = await setupFixture(wrapper);
 			sibling.name = elementWithInternals.name = 'test';
 
 			sibling.required = false;
@@ -162,6 +182,42 @@ describe('vwc-radio', () => {
 
 			expect(elementWithInternals.validity.valueMissing).toBe(false);
 			expect(sibling.validity.valueMissing).toBe(false);
+		});
+
+		describe('inside the radio-group', () => {
+			it('should sync the validation inside the radio-group', async () => {
+				const { sibling, elementWithInternals, radioGroup } =
+					await setupFixture(wrapper, { insideRadioGroup: true });
+				radioGroup?.setAttribute('required', '');
+				radioGroup?.setAttribute('name', 'test');
+				sibling.name = elementWithInternals.name = 'test';
+
+				sibling.required = false;
+				sibling.checked = true;
+				elementWithInternals.required = true;
+				await elementUpdated(elementWithInternals);
+
+				sibling.checked = true;
+				await elementUpdated(elementWithInternals);
+
+				expect(elementWithInternals.validity.valueMissing).toBe(false);
+				expect(sibling.validity.valueMissing).toBe(false);
+			});
+
+			it('should set the correct valueMissing validity when added to the DOM with valid group', async () => {
+				const { sibling, elementWithInternals, radioGroup } =
+					await setupFixture(wrapper, { insideRadioGroup: true });
+				radioGroup?.setAttribute('required', '');
+				radioGroup?.setAttribute('name', 'test');
+
+				sibling.name = elementWithInternals.name = 'test';
+				sibling.required = elementWithInternals.required = true;
+				elementWithInternals.checked = true;
+
+				await elementUpdated(elementWithInternals);
+
+				expect(sibling.validity.valueMissing).toBe(false);
+			});
 		});
 	});
 });
