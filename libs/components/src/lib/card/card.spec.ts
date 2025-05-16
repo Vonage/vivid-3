@@ -1,6 +1,12 @@
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import {
+	elementUpdated,
+	fixture,
+	getBaseElement,
+	setProperty,
+} from '@vivid-nx/shared';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
+import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import { Card } from './card';
 import '.';
 
@@ -204,5 +210,66 @@ describe('vwc-card', () => {
 			expect(propertyValueBeforeChange).toEqual(startingDP);
 			expect(element.elevation).toEqual('16');
 		});
+	});
+
+	describe('clickable card: card as a link', () => {
+		beforeEach(async () => {
+			await setProperty(element, 'href', 'https://vivid.deno.dev');
+		});
+
+		it('should render a card with href attribute as anchor element', async function () {
+			expect(getBaseElement(element)?.tagName).toEqual('A');
+		});
+
+		describe.each([
+			'href',
+			'hreflang',
+			'download',
+			'ping',
+			'referrerpolicy',
+			'rel',
+			'target',
+			'type',
+		] as const)('%s attribute', (attribute) => {
+			it('should be forwarded to the anchor element', async () => {
+				const text = 'link';
+				await setProperty(element, attribute, text);
+
+				expect(
+					element.shadowRoot?.querySelector('a')?.getAttribute(attribute)
+				).toEqual(text);
+			});
+		});
+
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
+	});
+
+	describe('clickable card: card as a button', () => {
+		beforeEach(async () => {
+			await setProperty(element, 'clickableCard', true);
+		});
+
+		it('should render a card with clickable-card attribute as a button', async function () {
+			expect(getBaseElement(element)?.tagName).toEqual('BUTTON');
+		});
+
+		it('should set a type of a button to "button" as default', async function () {
+			expect(getBaseElement(element)?.getAttribute('type')).toEqual('button');
+		});
+
+		it('should allow user to set their own button type', async function () {
+			await setProperty(element, 'type', 'submit');
+			expect(getBaseElement(element)?.getAttribute('type')).toEqual('submit');
+		});
+
+		itShouldDelegateAriaAttributes(
+			() => element,
+			() => getBaseElement(element),
+			['ariaLabel']
+		);
 	});
 });

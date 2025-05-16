@@ -1,9 +1,10 @@
-import { html, slotted, when } from '@microsoft/fast-element';
+import { html, slotted, ViewTemplate, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Appearance } from '../enums';
 import { Icon } from '../icon/icon';
 import { Elevation } from '../elevation/elevation';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { Card } from './card';
 
 const getClasses = (_: Card) =>
@@ -39,12 +40,12 @@ function headerContent() {
  header
  */
 function renderHeader(iconTag: string) {
-	return html<Card>` <header class="header">
+	return html<Card>` <div class="header">
 		<slot name="graphic" ${slotted('graphicSlottedContent')}
 			>${when((x) => x.icon, renderHeaderIcon(iconTag))}</slot
 		>
 		${when((x) => x.headline || x.subtitle, headerContent())}
-	</header>`;
+	</div>`;
 }
 
 function shouldHideHeader(card: Card) {
@@ -65,28 +66,67 @@ function text() {
 	return html` <div class="text">${(x) => x.text}</div> `;
 }
 
+function renderAnchorElement(content: ViewTemplate<Card>) {
+	return html<Card>` <a
+		class="${getClasses}"
+		download="${(x) => x.download}"
+		href="${(x) => x.href}"
+		hreflang="${(x) => x.hreflang}"
+		ping="${(x) => x.ping}"
+		referrerpolicy="${(x) => x.referrerpolicy}"
+		rel="${(x) => x.rel}"
+		target="${(x) => x.target}"
+		type="${(x) => x.type}"
+		${delegateAria()}
+	>
+		${content}
+	</a>`;
+}
+
+function renderButtonElement(content: ViewTemplate<Card>) {
+	return html<Card>`<button
+		class="${getClasses}"
+		type="${(x) => x.type ?? 'button'}"
+		${delegateAria()}
+	>
+		${content}
+	</button>`;
+}
+
+function renderCardBaseElement(x: Card, content: ViewTemplate<Card>) {
+	if (x.href) {
+		return renderAnchorElement(content);
+	} else if (x.clickableCard) {
+		return renderButtonElement(content);
+	} else {
+		return html`<div class="${getClasses}">${content}</div>`;
+	}
+}
+
 function renderCardContent(context: VividElementDefinitionContext) {
 	const iconTag = context.tagFor(Icon);
 
 	return html`
-		<div class="${getClasses}">
-			<div class="wrapper">
-				<div class="vwc-card-media">
-					<slot name="media"></slot>
-				</div>
-				<slot name="main">
-					<div class="main-content">
-						<div class="header-wrapper">
-							${renderHeader(iconTag)} ${renderMetaSlot()}
-						</div>
-						${when((x) => x.text, text())}
+		${(x) =>
+			renderCardBaseElement(
+				x,
+				html`<div class="wrapper">
+					<div class="vwc-card-media">
+						<slot name="media"></slot>
 					</div>
-				</slot>
-				<div class="footer">
-					<slot name="footer" ${slotted('footerSlottedContent')}></slot>
-				</div>
-			</div>
-		</div>
+					<slot name="main">
+						<div class="main-content">
+							<div class="header-wrapper">
+								${renderHeader(iconTag)} ${renderMetaSlot()}
+							</div>
+							${when((x) => x.text, text())}
+						</div>
+					</slot>
+					<div class="footer">
+						<slot name="footer" ${slotted('footerSlottedContent')}></slot>
+					</div>
+				</div> `
+			)}
 	`;
 }
 

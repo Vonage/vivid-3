@@ -204,3 +204,7 @@ You can slot a card with `appearance="ghost"` inside selectable box
 	}
 </style>
 ```
+
+<vwc-note connotation="warning" icon="warning-line" headline="Do not use clickable cards inside selectable box">
+You should not use the `href` or `clickable-card` attributes when slotting a card within the selectable box.
+</vwc-note>
