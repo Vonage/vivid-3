@@ -164,6 +164,7 @@ export interface Checkbox
 		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
+
 applyMixinsWithObservables(
 	Checkbox,
 	FormElementHelperText,

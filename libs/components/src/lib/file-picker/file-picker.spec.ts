@@ -690,7 +690,7 @@ describe('form associated vwc-file-picker', function () {
 		await elementUpdated(element);
 
 		// Check that validation message is cleared
-		expect(element.proxy.validationMessage).toBe('');
+		expect(getFormAssociatedErrorMessage(element)).toBe('');
 		expect(submitHandler).toHaveBeenCalledTimes(1);
 	});
 

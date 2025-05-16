@@ -22,7 +22,7 @@ registerSlider('your-prefix');
 	registerSlider('your-prefix');
 </script>
 
-<your-prefix-slider></your-prefix-slider>
+<your-prefix-slider aria-label="Your slider"></your-prefix-slider>
 ```
 
 </vwc-tab-panel>
@@ -34,7 +34,7 @@ registerSlider('your-prefix');
 	import { VSlider } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VSlider />
+	<VSlider aria-label="Vue Slider" />
 </template>
 ```
 
@@ -46,7 +46,7 @@ registerSlider('your-prefix');
 Set the `value` attribute to set the value of the Slider.
 
 ```html preview blocks
-<vwc-slider value="3"></vwc-slider>
+<vwc-slider aria-label="Slider with the value attribute" value="3"></vwc-slider>
 ```
 
 ### Value Text Formatter
@@ -61,7 +61,11 @@ The default value of `min` is `0`.
 
 ```html preview blocks
 <div>
-	<vwc-slider id="slider" min="-5"></vwc-slider>
+	<vwc-slider
+		aria-label="Slider with the min attribute"
+		id="slider"
+		min="-5"
+	></vwc-slider>
 </div>
 <div>
 	Current value:
@@ -83,7 +87,11 @@ The default value `max` of is `10`.
 
 ```html preview blocks
 <div>
-	<vwc-slider id="slider" max="100"></vwc-slider>
+	<vwc-slider
+		aria-label="Slider with the max attribute"
+		id="slider"
+		max="100"
+	></vwc-slider>
 </div>
 <div>
 	Current value:
@@ -105,7 +113,11 @@ The default value of `step` is `1`.
 
 ```html preview blocks
 <div>
-	<vwc-slider id="slider" step="0.5"></vwc-slider>
+	<vwc-slider
+		aria-label="Slider with the step attribute"
+		id="slider"
+		step="0.5"
+	></vwc-slider>
 </div>
 <div>
 	Current value:
