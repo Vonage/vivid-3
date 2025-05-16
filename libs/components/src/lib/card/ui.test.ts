@@ -12,7 +12,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 			<style>
 				#wrapper {
 					width: 1000px;
-					height: 2800px;
+					height: 2900px;
 					padding: 12px;
 				}
 				.wrapper-div {
@@ -371,9 +371,25 @@ font-size: 40px;
 </style>
 </div>
 
+<div class="wrapper-div">
+<vwc-card 
+id="card-link" 
+href="/example" 
+headline="Vivid Card Component" 
+subtitle="Extra text below the card headline"
+>
+</vwc-card>
+<vwc-card 
+id="card-button" 
+clickable-card 
+headline="Vivid Clickable Card (Button)" 
+subtitle="Extra text below the card headline"
+>
+</vwc-card>
+</div>
 `;
 
-	page.setViewportSize({ width: 1000, height: 2800 });
+	page.setViewportSize({ width: 1000, height: 2900 });
 
 	await loadComponents({
 		page,
@@ -385,6 +401,12 @@ font-size: 40px;
 	});
 
 	const testWrapper = await page.$('#wrapper');
+
+	const linkCard = await page.$('#card-link');
+	await linkCard?.hover();
+
+	const focusedCardEl = await page.$('#card-button .base');
+	await focusedCardEl?.focus();
 
 	await page.waitForLoadState('networkidle');
 

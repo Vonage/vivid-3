@@ -2,6 +2,20 @@
 @use 'partials/card-variables' as card-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
+	$connotations: cta,
+	$shades: primary primary-text primary-increment faint soft,
+	$default: cta
+);
+@use '../../../../shared/src/lib/sass/mixins/connotation' as connotation;
+@use '../../../../shared/src/lib/sass/mixins/appearance/config' as
+	appearance-config with (
+	$appearances: ghost,
+	$states: idle hover active,
+	$default: ghost
+);
+@use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
+@use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 
 :host {
 	display: flex;
@@ -11,6 +25,23 @@
 	border-radius: #{border-radius-variables.$border-radius-normal};
 	inline-size: 100%;
 	text-align: start;
+	& {
+		padding: 0;
+		border: 0 none;
+		outline: none;
+		text-decoration: none;
+	}
+	&:is(button, a) {
+		&:not(:disabled) {
+			cursor: pointer;
+		}
+		&:disabled {
+			cursor: not-allowed;
+		}
+		&:focus-visible {
+			@include focus.focus;
+		}
+	}
 }
 
 .wrapper {
@@ -20,6 +51,12 @@
 	border-radius: inherit;
 	block-size: 100%;
 	color: var(#{constants.$vvd-color-canvas-text});
+
+	@include appearance.appearance;
+	@include connotation.connotation(card);
+	.base:is(button, a):hover > & {
+		background-color: var(#{appearance.get-appearance-token(fill)});
+	}
 }
 
 .main-content {
