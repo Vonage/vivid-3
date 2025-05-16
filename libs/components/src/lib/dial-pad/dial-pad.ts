@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import { Localized } from '../../shared/patterns';
 import { TextField } from '../text-field/text-field';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import type { Button } from '../button/button';
 
 /**
  * Base class for dial-pad
@@ -23,7 +24,7 @@ export class DialPad extends Localized(VividElement) {
 	/**
 	 * @internal
 	 */
-	_textFieldEl!: TextField;
+	_textFieldEl: TextField | null = null;
 
 	/**
 	 * Indicates the helper-text's text.
@@ -143,4 +144,28 @@ export class DialPad extends Localized(VividElement) {
 	_onDial = () => {
 		this.callActive ? this.$emit('end-call') : this.$emit('dial');
 	};
+
+	/**
+	 * Indicates that this element should get focus after the page finishes loading.
+	 * @public
+	 * @remarks
+	 * HTML Attribute: autofocus
+	 */
+	@attr({ mode: 'boolean' })
+	override autofocus = false;
+
+	/**
+	 * Moves focus into the diapl-pad.
+	 *
+	 * @public
+	 */
+	override focus(): void {
+		if (this.disabled) return;
+
+		const digitBtns =
+			this.shadowRoot?.querySelectorAll<Button>('.digits .digit-btn');
+		// focus either the text field or the first digit button
+		const firstFocusableEl = this._textFieldEl || digitBtns?.[0];
+		firstFocusableEl?.focus();
+	}
 }
