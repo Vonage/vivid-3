@@ -45,9 +45,6 @@
 }
 
 .wrapper {
-	@include appearance.appearance;
-	@include connotation.connotation(card);
-
 	display: flex;
 	overflow: hidden;
 	flex-flow: column;
@@ -55,6 +52,8 @@
 	block-size: 100%;
 	color: var(#{constants.$vvd-color-canvas-text});
 
+	@include appearance.appearance;
+	@include connotation.connotation(card);
 	.base:is(button, a):hover > & {
 		background-color: var(#{appearance.get-appearance-token(fill)});
 	}
