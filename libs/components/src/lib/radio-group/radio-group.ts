@@ -151,6 +151,9 @@ export class RadioGroup extends VividElement {
 	}
 
 	@attr({ attribute: 'error-text' }) errorText!: string;
+	/**
+	 * @internal
+	 */
 	errorTextChanged(_: string, newErrorText: string | undefined): void {
 		if (newErrorText) {
 			this.errorValidationMessage = newErrorText;
