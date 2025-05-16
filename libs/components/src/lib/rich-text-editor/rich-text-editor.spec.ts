@@ -731,4 +731,39 @@ describe('vwc-rich-text-editor', () => {
 			expect(editorElement.scrollTop).toBe(180);
 		});
 	});
+
+	describe('file-drop event', () => {
+		const FILES = [
+			new File(['file-content'], 'test.txt', { type: 'text/plain' }),
+		];
+		function createDropEvent(files = FILES) {
+			const dataTransfer = {
+				files,
+				types: ['Files'],
+				getData: () => '',
+			} as unknown as DataTransfer;
+
+			const dropEvent = new Event('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			(dropEvent as any).dataTransfer = dataTransfer;
+
+			return dropEvent;
+		}
+
+		it('should fire "file-drop" event when file is dropped file drop and process files', async () => {
+			const editor = element.shadowRoot!.querySelector(
+				'#editor'
+			) as HTMLElement;
+			const spy = vi.fn();
+			element.addEventListener('file-drop', spy);
+			const dropEvent = createDropEvent(FILES);
+
+			editor.dispatchEvent(dropEvent);
+
+			expect(spy.mock.calls[0][0].detail).toEqual(FILES);
+		});
+	});
 });
