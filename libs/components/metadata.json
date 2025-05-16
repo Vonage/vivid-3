@@ -5292,17 +5292,7 @@
 					"valueMapping": "event.currentTarget.value"
 				}
 			],
-			"methods": [
-				{
-					"name": "errorTextChanged",
-					"args": [
-						{ "name": "_", "type": "string" },
-						{ "name": "newErrorText", "type": "string | undefined" }
-					],
-					"returnType": "void"
-				},
-				{ "name": "nameChanged", "args": [], "returnType": "void" }
-			],
+			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
 				{
