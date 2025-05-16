@@ -17,6 +17,9 @@ export const dialPadDefinition = defineVividComponent(
 	[buttonDefinition, textFieldDefinition, iconDefinition],
 	{
 		styles,
+		shadowOptions: {
+			delegatesFocus: true,
+		},
 	}
 );
 
