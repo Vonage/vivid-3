@@ -3002,7 +3002,7 @@
 				},
 				{
 					"name": "role",
-					"description": "The role of the element.",
+					"description": "The role of the element. This property will be removed",
 					"type": "'separator' | 'presentation'",
 					"attributeName": "role",
 					"propertyName": "role"
