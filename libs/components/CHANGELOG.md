@@ -4,6 +4,19 @@ This log was last generated on Thu, 26 Jan 2023 14:40:25 GMT and should not be m
 
 <!-- Start content -->
 
+## [4.25.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.24.0...vivid-v4.25.0) (2025-05-16)
+
+
+### Features
+
+* **radio-group:** adds helper and error text (VIV-2398) ([#2269](https://github.com/Vonage/vivid-3/issues/2269)) ([06acbc6](https://github.com/Vonage/vivid-3/commit/06acbc639315be1347dbac4540226080a53ae7ff))
+
+
+### Bug Fixes
+
+* **alert:** announce alert's title to SR (VIV-2615) ([#2332](https://github.com/Vonage/vivid-3/issues/2332)) ([38659fb](https://github.com/Vonage/vivid-3/commit/38659fbe3f224c1260459aed9af854d7a5b4b715))
+* **tooltip, toggletip:** semantic improvements (VIV-2631) ([#2337](https://github.com/Vonage/vivid-3/issues/2337)) ([46f782d](https://github.com/Vonage/vivid-3/commit/46f782d67d9514028c86a140076f35338e666b6d))
+
 ## [4.24.0](https://github.com/Vonage/vivid-3/compare/vivid-v4.23.0...vivid-v4.24.0) (2025-05-12)
 
 
