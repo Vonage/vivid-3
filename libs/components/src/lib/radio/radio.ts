@@ -12,11 +12,8 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementHelperText,
 	formElements,
-	FormElementSuccessText,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables.js';
 import { FormAssociatedRadio } from './radio.form-associated';
 
 /**
@@ -202,14 +199,4 @@ export class Radio extends FormAssociatedRadio {
 	}
 }
 
-export interface Radio
-	extends ErrorText,
-		FormElement,
-		FormElementHelperText,
-		FormElementSuccessText {}
-
-applyMixinsWithObservables(
-	Radio,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+export interface Radio extends ErrorText, FormElement {}
