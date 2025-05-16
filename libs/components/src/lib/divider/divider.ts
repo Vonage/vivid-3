@@ -4,6 +4,7 @@ import { VividElement } from '../../shared/foundation/vivid-element/vivid-elemen
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
+ * @deprecated This will be removed along with the divider's role attribute
  * Divider roles
  * @public
  */
@@ -20,6 +21,7 @@ export const DividerRole = {
 } as const;
 
 /**
+ * @deprecated This will be removed along with the divider's role attribute
  * The types for Divider roles
  * @public
  */
@@ -33,6 +35,7 @@ export class Divider extends DelegatesAria(VividElement) {
 	/**
 	 * The role of the element.
 	 *
+	 * @deprecated This property will be deprecated, as divider shouldn't be announced by screen readers. Please update your usages.
 	 * @public
 	 * @remarks
 	 * HTML Attribute: role
