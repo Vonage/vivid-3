@@ -5,6 +5,7 @@
 @use '../../../../shared/src/lib/sass/mixins/elevation' as elevation;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/icon-size' as icon-size-variables;
 @use '../../../../shared/src/lib/sass/mixins/focus' as focus;
 @use '../../../../shared/src/lib/sass/mixins/resets' as resets;
 @use '../../../../shared/src/lib/sass/mixins/scrollbar' as scrollbar;
@@ -76,11 +77,11 @@ $dialog-space-size: 24px;
 		grid-template-rows: auto auto auto;
 
 		.icon {
-			font-size: #{size.$vvd-size-condensed};
+			font-size: #{icon-size-variables.$icon-size-expanded};
 			grid-column: 1/2;
 			grid-row: 1/2;
 			line-height: 1;
-			margin-block-end: #{size.$vvd-size-super-condensed};
+			margin-block-end: calc(#{size.$vvd-size-super-condensed} / 2);
 		}
 	}
 

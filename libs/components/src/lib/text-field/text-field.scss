@@ -19,6 +19,7 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+@use '../../../../shared/src/lib/sass/mixins/icon-size' as icon-size-variables;
 
 $low-ink-color: --_low-ink-color;
 
@@ -42,9 +43,7 @@ $low-ink-color: --_low-ink-color;
 			#{size.$vvd-size-super-condensed} / 2
 		); // default of 12px
 		#{variables.$text-field-icon-gutter}: 8px;
-		#{variables.$text-field-icon-size}: calc(
-			#{size.$vvd-size-condensed} / 2
-		); // default of 16px
+		#{variables.$text-field-icon-size}: #{icon-size-variables.$icon-size-condensed}; // default of 16px
 		#{variables.$text-field-block-size}: #{size.$vvd-size-normal};
 		#{variables.$text-field-border-radius}: #{border-radius-variables.$border-radius-normal};
 		#{variables.$text-field-pill-border-radius}: #{border-radius-variables.$border-radius-extra-expanded};

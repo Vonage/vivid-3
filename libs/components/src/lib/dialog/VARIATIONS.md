@@ -25,7 +25,7 @@ To add custom icons or to postfix icons, use the [graphic slot](/components/dial
 <vwc-dialog icon="info" headline="Dialog's Icon" open></vwc-dialog>
 ```
 
-### Icon-placement
+### Icon Placement
 
 The `icon-placement` attribute specifies where the dialog's icon should appear (relative to the headline).
 
@@ -35,7 +35,7 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 		<vwc-dialog
 			icon-placement="side"
 			icon="info"
-			headline="Side Icon Placemnet"
+			headline="Side Icon Placement"
 			subtitle="side is default"
 			open
 		></vwc-dialog>
@@ -44,7 +44,7 @@ The `icon-placement` attribute specifies where the dialog's icon should appear (
 		<vwc-dialog
 			icon-placement="top"
 			icon="info"
-			headline="Top Icon Placemnet"
+			headline="Top Icon Placement"
 			subtitle="top is another option"
 			open
 		></vwc-dialog>

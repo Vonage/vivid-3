@@ -17,8 +17,10 @@
 );
 @use '../../../../shared/src/lib/sass/mixins/appearance' as appearance;
 @use '../../../../../dist/libs/tokens/scss/size.variables' as size;
+
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/icon-size' as icon-size-variables;
 
 .control {
 	@include connotation.connotation(nav-disclosure);
@@ -35,8 +37,8 @@
 
 	& {
 		$min-block-size: #{size.$vvd-size-normal};
-		$gap: 12px;
-		$gutter: 16px;
+		$gap: 8px;
+		$gutter: 12px;
 
 		display: flex;
 		box-sizing: border-box;
@@ -84,11 +86,12 @@
 
 	.toggleIcon {
 		margin-inline-start: auto;
+		font-size: #{icon-size-variables.$icon-size-condensed};
 	}
 }
 
 slot[name='icon'] {
-	font-size: 20px;
+	font-size: #{icon-size-variables.$icon-size-condensed};
 	line-height: 1;
 }
 

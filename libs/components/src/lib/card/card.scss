@@ -2,6 +2,7 @@
 @use 'partials/card-variables' as card-variables;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/icon-size' as icon-size-variables;
 
 :host {
 	display: flex;
@@ -96,7 +97,7 @@
 }
 
 .icon {
-	font-size: 20px;
+	font-size: #{icon-size-variables.$icon-size-normal};
 }
 
 ::slotted([slot='meta'i]) {
