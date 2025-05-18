@@ -98,9 +98,7 @@ export const RichTextEditorTemplate: (
 ) => {
 	const dividerTag = context.tagFor(Divider);
 	return html`<template class="${getClasses}">
-		<div id="editor" class="editor" @drop="${handleFileDrop}"></div>
-		<slot name="menu-bar" @slotchange="${handleMenuBarSlotChange}"></slot>
-		<div id="editor" class="editor">
+		<div id="editor" class="editor" @drop="${handleFileDrop}">
 			<div id="attachments-wrapper" class="hidden">
 				<${dividerTag} class="divider"></${dividerTag}>
 				<slot name="attachments"
