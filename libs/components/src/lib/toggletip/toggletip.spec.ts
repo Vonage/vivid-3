@@ -18,6 +18,8 @@ describe('vwc-toggletip', () => {
 	let popup: Popup;
 	let anchor: Button;
 
+	const getHeadline = () => element.shadowRoot!.querySelector('.headline');
+
 	beforeEach(async () => {
 		element = fixture(`<${COMPONENT_TAG}></${COMPONENT_TAG}>`) as Toggletip;
 		popup = getControlElement(element) as Popup;
@@ -195,11 +197,7 @@ describe('vwc-toggletip', () => {
 			element.headline = 'A title!';
 			await elementUpdated(element);
 
-			expect(
-				element.shadowRoot
-					?.querySelector('header.headline')
-					?.textContent?.trim()
-			).toEqual(element.headline);
+			expect(getHeadline()?.textContent?.trim()).toEqual(element.headline);
 		});
 
 		it('should remove headline element when headline is undefined', async () => {
@@ -208,7 +206,7 @@ describe('vwc-toggletip', () => {
 			element.headline = undefined;
 			await elementUpdated(element);
 
-			expect(element.shadowRoot?.querySelector('header.headline')).toBeNull();
+			expect(getHeadline()).toBeNull();
 		});
 	});
 });

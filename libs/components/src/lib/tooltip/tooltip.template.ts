@@ -25,10 +25,8 @@ ${anchorSlotTemplate}
 		}
 	}}"
   exportparts="vvd-theme-alternate">
-  <div class="tooltip" role="tooltip">
-    <header part="vvd-theme-alternate" class="tooltip-header">
-      <div class="tooltip-text">${(x) => x.text}</div>
-    </header>
+  <div part="vvd-theme-alternate" class="tooltip" role="tooltip">
+		${(x) => x.text}
   </div>
 </${popupTag}>`;
 };
