@@ -187,6 +187,9 @@ const enGB: Locale = {
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
 	},
+	button: {
+		pendingLabel: 'Loading...',
+	},
 };
 
 export default enGB;
