@@ -62,7 +62,7 @@ Use the `href` attribute to change the card wrapper to a link. When doing so, al
 
 ### Card as a Button
 
-Setting the `clickable-card` attribute switches the card wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the `click` event. Updating the [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type) is possible with a `type` attribute.
+Setting the `clickable-card` attribute switches the card wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the `click` event.
 
 ```html preview
 <vwc-card
@@ -236,23 +236,22 @@ The number of lines is controlled by css variable `--subtitle-line-clamp`.
 
 <div class="table-wrapper">
 
-| Name               | Type                                                      | Description                                                            |
-| ------------------ | --------------------------------------------------------- | ---------------------------------------------------------------------- |
-| **appearance**     | `elevated` (default), `outlined`, `ghost`                 | Sets the element's appearance.                                         |
-| **elevation**      | `2`, `4` (default), `8`, `12`, `16`, `24`                 | Sets the element's elevation.                                          |
-| **headline**       | `string`                                                  | Sets the element's headline.                                           |
-| **icon**           | `string`                                                  | Sets the element's icon.                                               |
-| **subtitle**       | `string`                                                  | Sets the element's subtitle.                                           |
-| **text**           | `string`                                                  | Sets the element's text.                                               |
-| **clickable-card** | `boolean`                                                 | Indicates whether card should be a `<button>`.                         |
-| **type**           | _Enum_:<br/>`submit`<br/>`reset`<br/>`button`             | Indicates type of a `<button>` element when **clickable-card** is set. |
-| **href**           | `string`                                                  | Sets the element's href, changes card tag to `<a>` .                   |
-| **download**       | `string`                                                  | Sets the element's download.                                           |
-| **hreflang**       | `string`                                                  | Sets the element's hreflang.                                           |
-| **ping**           | `string`                                                  | Sets the element's ping.                                               |
-| **referrerpolicy** | `string`                                                  | Sets the element's referrerpolicy.                                     |
-| **rel**            | `string`                                                  | Sets the element's rel.                                                |
-| **target**         | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | Sets the target's rel.                                                 |
+| Name               | Type                                                      | Description                                          |
+| ------------------ | --------------------------------------------------------- | ---------------------------------------------------- |
+| **appearance**     | `elevated` (default), `outlined`, `ghost`                 | Sets the element's appearance.                       |
+| **elevation**      | `2`, `4` (default), `8`, `12`, `16`, `24`                 | Sets the element's elevation.                        |
+| **headline**       | `string`                                                  | Sets the element's headline.                         |
+| **icon**           | `string`                                                  | Sets the element's icon.                             |
+| **subtitle**       | `string`                                                  | Sets the element's subtitle.                         |
+| **text**           | `string`                                                  | Sets the element's text.                             |
+| **clickable-card** | `boolean`                                                 | Indicates whether card should be a `<button>`.       |
+| **href**           | `string`                                                  | Sets the element's href, changes card tag to `<a>` . |
+| **download**       | `string`                                                  | Sets the element's download.                         |
+| **hreflang**       | `string`                                                  | Sets the element's hreflang.                         |
+| **ping**           | `string`                                                  | Sets the element's ping.                             |
+| **referrerpolicy** | `string`                                                  | Sets the element's referrerpolicy.                   |
+| **rel**            | `string`                                                  | Sets the element's rel.                              |
+| **target**         | _Enum_:<br/>`_self`<br/>`_blank`<br/>`_parent`<br/>`_top` | Sets the target's rel.                               |
 
 </div>
 

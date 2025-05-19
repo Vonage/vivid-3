@@ -229,7 +229,6 @@ describe('vwc-card', () => {
 			'referrerpolicy',
 			'rel',
 			'target',
-			'type',
 		] as const)('%s attribute', (attribute) => {
 			it('should be forwarded to the anchor element', async () => {
 				const text = 'link';
@@ -255,15 +254,7 @@ describe('vwc-card', () => {
 
 		it('should render a card with clickable-card attribute as a button', async function () {
 			expect(getBaseElement(element)?.tagName).toEqual('BUTTON');
-		});
-
-		it('should set a type of a button to "button" as default', async function () {
 			expect(getBaseElement(element)?.getAttribute('type')).toEqual('button');
-		});
-
-		it('should allow user to set their own button type', async function () {
-			await setProperty(element, 'type', 'submit');
-			expect(getBaseElement(element)?.getAttribute('type')).toEqual('submit');
 		});
 
 		itShouldDelegateAriaAttributes(

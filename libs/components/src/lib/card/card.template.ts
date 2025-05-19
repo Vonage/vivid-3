@@ -76,7 +76,6 @@ function renderAnchorElement(content: ViewTemplate<Card>) {
 		referrerpolicy="${(x) => x.referrerpolicy}"
 		rel="${(x) => x.rel}"
 		target="${(x) => x.target}"
-		type="${(x) => x.type}"
 		${delegateAria()}
 	>
 		${content}
@@ -86,7 +85,7 @@ function renderAnchorElement(content: ViewTemplate<Card>) {
 function renderButtonElement(content: ViewTemplate<Card>) {
 	return html<Card>`<button
 		class="${getClasses}"
-		type="${(x) => x.type ?? 'button'}"
+		type="button"
 		${delegateAria()}
 	>
 		${content}
