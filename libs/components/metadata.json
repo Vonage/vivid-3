@@ -5079,6 +5079,12 @@
 					"attributeName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"description": "The error text for the form element.",
+					"type": "string",
+					"attributeName": "error-text"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
@@ -5087,10 +5093,9 @@
 				},
 				{
 					"name": "label",
-					"description": "Indicates the radio's label.",
+					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label",
-					"propertyName": "label"
+					"attributeName": "label"
 				},
 				{
 					"name": "name",
@@ -5176,8 +5181,20 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"type": "string",
+					"attributeName": "error-text",
+					"propertyName": "errorText"
+				},
+				{
+					"name": "helperText",
+					"description": "The helper text for the form element.",
+					"type": "string",
+					"attributeName": "helper-text"
+				},
+				{
 					"name": "label",
-					"description": "Indicates the group's label.",
+					"description": "The label for the radio group",
 					"type": "string",
 					"attributeName": "label",
 					"propertyName": "label"
@@ -5202,6 +5219,13 @@
 					"type": "boolean",
 					"attributeName": "readonly",
 					"propertyName": "readOnly"
+				},
+				{
+					"name": "required",
+					"description": "When true, the radio group and all its radio buttons will be required",
+					"type": "boolean",
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "value",
@@ -5257,7 +5281,13 @@
 				}
 			],
 			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [
+				{ "name": "default", "description": "Default slot." },
+				{
+					"name": "helper-text",
+					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
+				}
+			]
 		},
 		{
 			"name": "range-slider",
@@ -5524,6 +5554,11 @@
 			"methods": [
 				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "scrollToAttachments",
+					"args": [{ "name": "additionalPixels", "type": "unknown" }],
+					"returnType": "unknown"
+				},
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",

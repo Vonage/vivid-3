@@ -982,4 +982,36 @@ describe('ProseMirrorFacade', () => {
 			);
 		});
 	});
+
+	describe('getValue', () => {
+		function setViewer() {
+			const element = initViewer();
+			return element;
+		}
+
+		beforeEach(async () => {
+			await useOriginalEditorView();
+			await useOriginalEditorState();
+		});
+
+		it('should return empty value', async () => {
+			const element = setViewer();
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				facadeInstance.getValue()
+			);
+		});
+
+		it('should return the content', async () => {
+			const element = setViewer();
+
+			facadeInstance.replaceContent(
+				'<p>This is a pretty long text for a sample, but it should work</p>'
+			);
+
+			expect(getOutputElement(element).innerHTML).toEqual(
+				facadeInstance.getValue()
+			);
+		});
+	});
 });

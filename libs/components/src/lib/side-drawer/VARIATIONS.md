@@ -39,15 +39,16 @@ Use the `modal` attribute to set the side drawer's type to modal.
 			velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
 			cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
 			est laborum.
-			<vwc-fab
-				class="fab"
-				connotation="accent"
-				icon="menu-solid"
-				onclick="sidedrawer.open = !sidedrawer.open"
-			></vwc-fab>
 		</div>
 	</vwc-layout>
 </vwc-side-drawer>
+<vwc-fab
+	aria-label="Toggle side drawer"
+	class="fab"
+	connotation="accent"
+	icon="menu-solid"
+	onclick="sidedrawer.open = !sidedrawer.open"
+></vwc-fab>
 
 <style>
 	.content {
