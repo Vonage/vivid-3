@@ -1,6 +1,5 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -24,18 +23,21 @@ export const FilePickerTemplate = (context: VividElementDefinitionContext) => {
 				(x) => x.label,
 				html<FilePicker>`<label>${(x) => x.label}</label>`
 			)}
-			<div
-				${ref('control')}
-				class="${getClasses}"
-				tabindex="0"
-				@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
-				${delegateAria({
-					role: 'button',
-				})}
-			>
-				<slot class="main"></slot>
+			<div class="control-wrapper">
+				<div
+					${ref('control')}
+					class="${getClasses}"
+					tabindex="0"
+					@keydown="${(x, c) => x.handleKeydown(c.event as KeyboardEvent)}"
+					aria-describedby="${(x) => x._feedbackDescribedBy}"
+					${delegateAria({
+						role: 'button',
+					})}
+				>
+					<slot class="main"></slot>
+				</div>
+				${(x) => x._getFeedbackTemplate(context)}
 			</div>
-			${getFeedbackTemplate(context)}
 			<div class="preview-list"></div>
 		</div>
 	`;

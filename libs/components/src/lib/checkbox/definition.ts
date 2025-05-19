@@ -1,6 +1,7 @@
 import { iconDefinition } from '../icon/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './checkbox.scss?inline';
 import { Checkbox } from './checkbox';
 import { CheckboxTemplate as template } from './checkbox.template';
@@ -12,7 +13,7 @@ export const checkboxDefinition = defineVividComponent(
 	'checkbox',
 	Checkbox,
 	template,
-	[iconDefinition],
+	[iconDefinition, feedbackMessageDefinition],
 	{
 		styles,
 		shadowOptions: {

@@ -637,7 +637,7 @@ describe('form associated vwc-file-picker', function () {
 
 	function getFormAssociatedErrorMessage(element: FilePicker) {
 		return element.shadowRoot
-			?.querySelector('.message.error-message')
+			?.querySelector('vwc-feedback-message')
 			?.textContent?.trim();
 	}
 

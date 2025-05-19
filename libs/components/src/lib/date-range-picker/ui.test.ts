@@ -185,7 +185,7 @@ test.describe('constraints validation', async () => {
 
 		await expect(
 			page.locator('vwc-date-range-picker .error-message')
-		).not.toHaveClass(/sr-only/);
+		).toBeVisible();
 	});
 
 	test('should hide a validation error after resetting the form', async ({
@@ -206,6 +206,6 @@ test.describe('constraints validation', async () => {
 
 		await expect(
 			page.locator('vwc-date-range-picker .error-message')
-		).toHaveClass(/sr-only/);
+		).not.toBeVisible();
 	});
 });

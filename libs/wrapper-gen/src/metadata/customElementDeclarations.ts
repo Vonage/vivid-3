@@ -323,13 +323,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	FormElementHelperText: [
-		{
-			name: 'helper-text',
-			description: 'The helper text for the form element.',
-			type: { text: 'string' },
-		},
-	],
 	FormElementSuccessText: [
 		{
 			name: 'success-text',

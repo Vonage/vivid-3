@@ -2,6 +2,7 @@ import { iconDefinition } from '../icon/definition';
 import { buttonDefinition } from '../button/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './file-picker.scss?inline';
 import { FilePicker } from './file-picker';
 import { FilePickerTemplate as template } from './file-picker.template';
@@ -13,7 +14,7 @@ export const filePickerDefinition = defineVividComponent(
 	'file-picker',
 	FilePicker,
 	template,
-	[iconDefinition, buttonDefinition],
+	[iconDefinition, buttonDefinition, feedbackMessageDefinition],
 	{
 		styles,
 		shadowOptions: {

@@ -1735,7 +1735,7 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			await simulateClick(
-				element.shadowRoot!.querySelector('.helper-message')!
+				element.shadowRoot!.querySelector('vwc-feedback-message')!
 			);
 
 			expect(isInputFocused()).toBe(true);

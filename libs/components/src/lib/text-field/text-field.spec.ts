@@ -669,13 +669,20 @@ describe('vwc-text-field', () => {
 
 	describe('accessible helper text', function () {
 		function getAccessibleDescription() {
-			const describedBy = element
-				.querySelector('input[slot="_control"]')!
-				.getAttribute('aria-describedby');
-			const describedByTarget = element.querySelector(
-				`#${describedBy}`
-			) as HTMLElement;
-			return describedByTarget.innerText.trim();
+			const describedBy =
+				element
+					.querySelector('input[slot="_control"]')!
+					.getAttribute('aria-describedby') ?? '';
+			const describedByTargets = element.querySelectorAll<HTMLElement>(
+				`${describedBy
+					.split(' ')
+					.map((t) => `#${t}`)
+					.join(',')}`
+			);
+			return Array.from(describedByTargets)
+				.map((t) => t.innerText.trim())
+				.join(' ')
+				.trim();
 		}
 
 		it('should use helperText value as the accessible description', async () => {
