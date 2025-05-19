@@ -47,3 +47,47 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		'snapshots/rich-text-editor.png'
 	);
 });
+
+test('should show text area and attachments slot with the same scroll', async ({ page }: { page: Page }) => {
+	async function isActuallyVisible() {
+		const attachmentsBox = await attachments!.boundingBox();
+		const scrollBox = await scrollContainer!.boundingBox();
+
+		const attachmentsBottom = attachmentsBox!.y + attachmentsBox!.height;
+		const scrollTop = scrollBox!.y;
+		const scrollBottom = scrollBox!.y + scrollBox!.height;
+
+		return attachmentsBottom <= scrollBottom && attachmentsBox!.y >= scrollTop;
+	}
+	const template = `
+        <vwc-rich-text-editor style="height:300px; display:block;">
+            <div slot="attachments" id="test-attachments" style="height:60px; background:#eee;">Attachments Area</div>
+        </vwc-rich-text-editor>
+    `;
+	await loadComponents({ page, components });
+	await loadTemplate({ page, template });
+
+	await page.waitForLoadState('networkidle');
+
+	const rte = await page.$('vwc-rich-text-editor');
+	const shadow = await rte!.evaluateHandle((el) => (el as any).shadowRoot);
+
+	await rte?.evaluate((el: any) => {
+		el.value = Array(50).fill('<p>Line</p>').join('');
+	});
+
+	const testWrapper = await page.$('#wrapper');
+
+	const scrollContainer = await shadow.$('#editor');
+	const attachments = await shadow.$('#attachments-wrapper');
+
+	const isVisibleBeforeScroll = await isActuallyVisible();
+	await scrollContainer?.evaluate((el: HTMLElement) => { el.scrollTop = el.scrollHeight; });
+
+	const isVisibleAfterScroll = await isActuallyVisible();
+
+	expect(isVisibleBeforeScroll).toBe(false);
+	expect(isVisibleAfterScroll).toBe(true);
+
+	expect(await testWrapper?.screenshot()).toMatchSnapshot('rich-text-editor-scroll-attachments.png');
+});
