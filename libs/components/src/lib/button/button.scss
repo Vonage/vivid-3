@@ -272,8 +272,7 @@ slot[name='icon'] {
 	position: absolute;
 
 	& + .text {
-		opacity: 0;
-		pointer-events: none;
+		visibility: hidden;
 	}
 }
 
@@ -281,4 +280,14 @@ slot[name='icon'] {
 	.pending {
 		order: 1;
 	}
+}
+
+.sr-only {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
 }
