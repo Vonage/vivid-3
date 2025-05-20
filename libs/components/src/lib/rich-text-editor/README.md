@@ -204,6 +204,105 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 </script>
 ```
 
+### Attachments
+
+Set a component in the `attachments` slot to show them inside the editor area.
+
+```html preview 250px
+<style>
+	vwc-rich-text-editor {
+		block-size: 200px;
+
+		> div {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	#scroll-to-attachments {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		z-index: 1000;
+	}
+
+	.hidden {
+		display: none;
+	}
+</style>
+<vwc-layout gutters="small" column-basis="block" row-spacing="small">
+	<vwc-rich-text-editor>
+		<div slot="attachments">
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+			<vwc-button label="Imagine I am a file atatchment"></vwc-button>
+		</div>
+	</vwc-rich-text-editor>
+	<vwc-button
+		id="scroll-to-attachments"
+		hidden
+		onclick="scrollToAttachments()"
+		label="Scroll to Attachments"
+	></vwc-button>
+</vwc-layout>
+
+<script>
+	function scrollToAttachments() {
+		rteComponent.scrollToAttachments(32);
+	}
+
+	async function waitForEditorReady() {
+		await new Promise((res) => {
+			const interval = setInterval(() => {
+				if (!rteComponent.value) return;
+				clearInterval(interval);
+				res();
+			});
+		});
+	}
+
+	async function start() {
+		await waitForEditorReady();
+		console.log('adding value');
+		rteComponent.value = `
+			<p>Technically sound</p><p>everlasting peace</p><p>no matter what you do</p><p>I'll stay around with you</p><p>and noone ever dared</p><p>to hook my piece of ware</p><p>no matter how it goes</p><p>the matter usually blows</p>
+		`;
+	}
+
+	async function moveMarkerToPosition(moveTo) {
+		rteComponent.selectionStart = moveTo;
+		await new Promise((res) => requestAnimationFrame(res));
+	}
+
+	rteComponent = document.querySelector('vwc-rich-text-editor');
+
+	// Observe visibility of the attachments slot
+	observer = new IntersectionObserver(
+		(entries) => {
+			const entry = entries[0];
+			document
+				.querySelector('#scroll-to-attachments')
+				.classList.toggle('hidden', entry.isIntersecting);
+		},
+		{
+			root: null,
+			threshold: 0.1,
+		}
+	);
+	slottedElement = rteComponent.querySelector('[slot="attachments"]');
+	observer.observe(slottedElement);
+	start();
+</script>
+```
+
 ## CSS Variables
 
 ## Events
@@ -222,8 +321,11 @@ Set the `menu-bar` slot to show `menubar` component. See the `menubar` documenta
 
 <div class="table-wrapper">
 
-| Name             | Returns | Description                                                                                              |
-| ---------------- | ------- | -------------------------------------------------------------------------------------------------------- |
-| **setTextBlock** |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection |
+| Name                       | Returns | Description                                                                                                                                                                                             |
+| -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **setTextBlock**           |         | Accepts `title`, `subtitle` and `body` and changes the text node that holds the current marker/selection                                                                                                |
+| **setSelectionDecoration** |         | Accepts a decoration type (`bold`, `italic`, `underline`, `strikethrough` and `monospace`) and applies it to the current selection in the editor. If the decoration type is invalid, it logs a warning. |
+| **setSelectionTextSize**   |         | Accepts a text size (`extra-large`, `large`, `normal`, or `small`) and applies it to the current selection in the editor.                                                                               |
+| **scrollToAttachments**    |         | Accepts `pixelsAddition` which defaults to 0 and scrolls to the top of the attachments area plus the `pixelsAddition` value.                                                                            |
 
 </div>

@@ -32,14 +32,14 @@ const getClasses = ({
 function renderDismissButton(context: VividElementDefinitionContext) {
 	const affixIconTemplate = affixIconTemplateFactory(context);
 
-	return html<Tab>` <span
+	return html<Tab>`<button
 		aria-label="${(x) => x.locale.tab.dismissButtonLabel}"
 		class="close"
 		id="close-btn"
 		@click="${(x, c) => x._handleCloseClick(c.event)}"
 	>
 		${() => affixIconTemplate('close-line', IconWrapper.Span)}
-	</span>`;
+	</button>`;
 }
 
 export const TabTemplate = (context: VividElementDefinitionContext) => {

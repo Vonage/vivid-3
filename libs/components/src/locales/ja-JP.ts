@@ -187,5 +187,8 @@ const jaJP: Locale = {
 		strikethrough: '取り消し線',
 		monospace: '等幅',
 	},
+	button: {
+		pendingLabel: '読み込み中',
+	},
 };
 export default jaJP;

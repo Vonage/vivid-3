@@ -187,6 +187,9 @@ const zhCN: Locale = {
 		strikethrough: '删除线',
 		monospace: '等宽字体',
 	},
+	button: {
+		pendingLabel: '加载中',
+	},
 };
 
 export default zhCN;

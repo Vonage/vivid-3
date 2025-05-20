@@ -67,7 +67,7 @@ function renderIconOrPending(
 			[Size.Normal]: '-5',
 			[Size.Expanded]: '-4',
 		};
-		return html`<span class="icon pending"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
+		return html`<span class="icon pending" aria-hidden="true"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
 	} else {
 		const affixIconTemplate = affixIconTemplateFactory(context);
 		return affixIconTemplate(icon, IconWrapper.Slot);
@@ -86,8 +86,14 @@ const buttonContent = (context: VividElementDefinitionContext) => {
 			${(x) => renderIconOrPending(context, x.icon, x.pending, x.size)}
 			${when(
 				(x) => x.label,
-				html`<span class="text" role="presentation">${(x) => x.label}</span>`
+				html`<span class="text" aria-hidden="true">${(x) => x.label}</span>`
 			)}
+			<span class="sr-only"
+				>${(x) =>
+					x.pending
+						? x.locale.button.pendingLabel
+						: x.label ?? x.ariaLabel}</span
+			>
 		</span>
 		${when((x) => x.dropdownIndicator, chevronTemplate)}`;
 };
@@ -107,7 +113,9 @@ function renderButtonContent(context: VividElementDefinitionContext) {
 		type="${(x) => getButtonType(x.type)}"
 		value="${(x) => x.value}"
 		title="${(x) => x.title}"
-		${delegateAria()}
+		${delegateAria({
+			ariaLabel: null,
+		})}
 		${ref('control')}
 	>
 		${buttonContent(context)}
@@ -125,7 +133,9 @@ function renderAnchorContent(context: VividElementDefinitionContext) {
 		rel="${(x) => x.rel}"
 		target="${(x) => x.target}"
 		type="${(x) => x.type}"
-		${delegateAria()}
+		${delegateAria({
+			ariaLabel: null,
+		})}
 		${ref('control')}
 	>
 		${buttonContent(context)}
