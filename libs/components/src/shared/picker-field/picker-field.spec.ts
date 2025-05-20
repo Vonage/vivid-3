@@ -10,6 +10,10 @@ import {
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import type { Popup } from '../../lib/popup/popup';
+import {
+	itShouldHaveErrorTextFeedback,
+	itShouldHaveHelperTextFeedback,
+} from '../feedback/should-display-feedback.spec';
 import type { PickerField } from './picker-field';
 
 /**
@@ -71,15 +75,6 @@ export const pickerFieldSpec = (
 		});
 	});
 
-	describe('helperText', () => {
-		it('should forward helperText to the text field', async () => {
-			element.helperText = 'helperText';
-			await elementUpdated(element);
-
-			expect(textField.helperText).toBe('helperText');
-		});
-	});
-
 	describe('disabled', () => {
 		it('should forward disabled to the text field', async () => {
 			element.disabled = true;
@@ -109,22 +104,6 @@ export const pickerFieldSpec = (
 			element.dispatchEvent(new Event(sourceEventName));
 
 			expect(spy).toHaveBeenCalledTimes(1);
-		});
-	});
-
-	describe('helper-text slot', () => {
-		it('should forward helper-text slot to the text field', async () => {
-			const slotted = document.createElement('div');
-			slotted.slot = 'helper-text';
-			slotted.innerHTML = 'content';
-			element.appendChild(slotted);
-			await elementUpdated(element);
-
-			const textFieldSlot = textField.shadowRoot?.querySelector(
-				'slot[name=helper-text]'
-			) as HTMLSlotElement;
-			const pickerSlot = textFieldSlot.assignedNodes()[0] as HTMLSlotElement;
-			expect(pickerSlot.assignedNodes()).toEqual([slotted]);
 		});
 	});
 
@@ -347,5 +326,16 @@ export const pickerFieldSpec = (
 				expect(formDataValue).toEqual(fieldValue);
 			});
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldHaveHelperTextFeedback(
+			() => element,
+			() => textField.querySelector('input[slot=_control]')!
+		);
+		itShouldHaveErrorTextFeedback(
+			() => element as any,
+			() => textField.querySelector('input[slot=_control]')!
+		);
 	});
 };

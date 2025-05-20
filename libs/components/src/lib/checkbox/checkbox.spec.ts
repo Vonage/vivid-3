@@ -7,6 +7,11 @@ import {
 } from '@vivid-nx/shared';
 import { Connotation } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldHaveErrorTextFeedback,
+	itShouldHaveHelperTextFeedback,
+	itShouldHaveSuccessTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { Checkbox } from './checkbox';
 import '.';
 
@@ -374,6 +379,21 @@ describe('vwc-checkbox', () => {
 
 			expect(baseElementClasses).not.toContain('hide-label');
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldHaveHelperTextFeedback(
+			() => element,
+			() => getBaseElement(element)
+		);
+		itShouldHaveSuccessTextFeedback(
+			() => element,
+			() => getBaseElement(element)
+		);
+		itShouldHaveErrorTextFeedback(
+			() => element,
+			() => getBaseElement(element)
+		);
 	});
 
 	describe('a11y attributes', () => {

@@ -1,20 +1,15 @@
 import { attr, html, observable, slotted } from '@microsoft/fast-element';
-import type { Constructor } from '../utils/mixins';
+import type { Constructor, MixinType } from '../utils/mixins';
 import type { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { VividElementDefinitionContext } from '../design-system/defineVividComponent';
 import { renderInLightDOM } from '../templating/render-in-light-dom';
-import type { FormAssociated } from '../foundation/form-associated/form-associated';
 import { generateRandomId } from '../utils/randomId';
 import { FeedbackMessage, type FeedbackType } from './feedback-message';
-
-type FormAssociatedElement = VividElement & FormAssociated;
 
 /**
  * Mixin for elements that display a feedback message.
  */
-export const WithFeedback = <T extends Constructor<FormAssociatedElement>>(
-	Base: T
-) => {
+export const WithFeedback = <T extends Constructor<VividElement>>(Base: T) => {
 	class ElementWithFeedback extends Base {
 		/**
 		 * Provides additional information to help the user enter the correct information.
@@ -94,13 +89,13 @@ export const WithFeedback = <T extends Constructor<FormAssociatedElement>>(
 	return ElementWithFeedback;
 };
 
+export type ElementWithFeedback = MixinType<typeof WithFeedback>;
+
 /**
  * Like WithFeedback but renders the feedback message in light DOM.
  * This is needed if the control is in light DOM so that the describedby relation works.
  */
-export const WithLightDOMFeedback = <
-	T extends Constructor<FormAssociatedElement>
->(
+export const WithLightDOMFeedback = <T extends Constructor<VividElement>>(
 	Base: T
 ) => {
 	const randomFeedbackId = () => `vvd-feedback-${generateRandomId()}`;

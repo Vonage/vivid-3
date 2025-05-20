@@ -1,4 +1,4 @@
-import { html, observable, ViewTemplate, when } from '@microsoft/fast-element';
+import { attr, html, ViewTemplate, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { iconDefinition } from '../../lib/icon/definition';
 import { Icon } from '../../lib/icon/icon';
@@ -19,7 +19,8 @@ export type FeedbackType = 'none' | 'helper' | 'error' | 'success';
  * Renders a feedback message of the given type. When type='none', nothing is rendered.
  */
 export class FeedbackMessage extends Localized(VividElement) {
-	@observable type: FeedbackType = 'none';
+	// eslint-disable-next-line @nrwl/nx/workspace/no-attribute-default-value
+	@attr type: FeedbackType = 'none';
 }
 
 function iconTemplate(

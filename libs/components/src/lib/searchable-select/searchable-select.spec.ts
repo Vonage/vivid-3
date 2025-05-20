@@ -13,6 +13,11 @@ import {
 	allAriaPropertiesExcept,
 	itShouldDelegateAriaAttributes,
 } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldHaveErrorTextFeedback,
+	itShouldHaveHelperTextFeedback,
+	itShouldHaveSuccessTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
 
@@ -2075,6 +2080,21 @@ describe('vwc-searchable-select', () => {
 			await selectOption('Apple');
 			expect(getOption('Cherry').disabled).toBe(false);
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldHaveHelperTextFeedback(
+			() => element,
+			() => input
+		);
+		itShouldHaveSuccessTextFeedback(
+			() => element,
+			() => input
+		);
+		itShouldHaveErrorTextFeedback(
+			() => element,
+			() => input
+		);
 	});
 
 	describe('ARIA delegation', () => {

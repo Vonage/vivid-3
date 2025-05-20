@@ -6,19 +6,11 @@ import {
 	defineVividComponent,
 	type VividElementDefinitionContext,
 } from '../design-system/defineVividComponent';
-import { FormAssociated } from '../foundation/form-associated/form-associated';
 import { createRegisterFunction } from '../design-system/createRegisterFunction';
-import type { Constructor } from '../utils/mixins';
 import { WithFeedback, WithLightDOMFeedback } from './mixins';
 import { FeedbackMessage, feedbackMessageDefinition } from './feedback-message';
 
-class FormAssociatedElement extends FormAssociated(VividElement) {
-	proxy = document.createElement('input');
-}
-
-class BaseElement extends (FormAssociatedElement as unknown as Constructor<
-	VividElement & FormAssociated
->) {
+class BaseElement extends VividElement {
 	@observable errorValidationMessage?: string;
 	@observable successText?: string;
 }

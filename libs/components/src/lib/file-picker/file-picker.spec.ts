@@ -15,6 +15,10 @@ import {
 import { setLocale } from '../../shared/localization';
 import type { Button } from '../button/button';
 import { Size } from '../enums';
+import {
+	itShouldHaveErrorTextFeedback,
+	itShouldHaveHelperTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { FilePicker } from './file-picker';
 
 const COMPONENT_TAG = 'vwc-file-picker';
@@ -60,9 +64,6 @@ describe('vwc-file-picker', () => {
 
 	afterEach(() => {
 		element.remove();
-	});
-
-	afterAll(() => {
 		setLocale(enUS);
 	});
 
@@ -601,6 +602,11 @@ describe('vwc-file-picker', () => {
 			});
 		}
 	);
+
+	describe('feedback messages', () => {
+		itShouldHaveHelperTextFeedback(() => element);
+		itShouldHaveErrorTextFeedback(() => element);
+	});
 
 	describe('ARIA delegation', () => {
 		itShouldDelegateAriaAttributes(

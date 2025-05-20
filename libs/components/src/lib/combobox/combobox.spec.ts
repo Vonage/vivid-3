@@ -9,6 +9,11 @@ import { Size } from '../enums';
 import type { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import type { Icon } from '../icon/icon';
+import {
+	itShouldHaveErrorTextFeedback,
+	itShouldHaveHelperTextFeedback,
+	itShouldHaveSuccessTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { Combobox } from './combobox';
 import { ComboboxAutocomplete } from './combobox.options';
 import '.';
@@ -248,15 +253,6 @@ describe('vwc-combobox', () => {
 				getBaseElement(element).classList.contains('success')
 			).toBeTruthy();
 		});
-		it('should add the success text to feedback element when successText is set', async function () {
-			element.successText = 'success';
-			await elementUpdated(element);
-			expect(
-				element
-					.shadowRoot!.querySelector('.feedback-wrapper')!
-					.textContent!.trim()
-			).toBe('success');
-		});
 	});
 
 	describe('error text', () => {
@@ -264,16 +260,6 @@ describe('vwc-combobox', () => {
 			element.errorText = 'error';
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('error')).toBeTruthy();
-		});
-
-		it('should add the error text to feedback element when errorText is set', async function () {
-			element.successText = 'error';
-			await elementUpdated(element);
-			expect(
-				element
-					.shadowRoot!.querySelector('.feedback-wrapper')!
-					.textContent!.trim()
-			).toBe('error');
 		});
 	});
 
@@ -870,6 +856,12 @@ describe('vwc-combobox', () => {
 
 			expect(element.open).toBe(true);
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldHaveHelperTextFeedback(() => element);
+		itShouldHaveSuccessTextFeedback(() => element);
+		itShouldHaveErrorTextFeedback(() => element);
 	});
 
 	describe('a11y attributes', () => {

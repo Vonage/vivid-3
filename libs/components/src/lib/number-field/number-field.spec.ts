@@ -13,6 +13,11 @@ import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldHaveErrorTextFeedback,
+	itShouldHaveHelperTextFeedback,
+	itShouldHaveSuccessTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { NumberField } from './number-field';
 import '.';
 
@@ -899,6 +904,12 @@ describe('vwc-number-field', () => {
 				});
 			});
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldHaveHelperTextFeedback(() => element);
+		itShouldHaveSuccessTextFeedback(() => element);
+		itShouldHaveErrorTextFeedback(() => element);
 	});
 
 	describe('ARIA delegation', () => {
