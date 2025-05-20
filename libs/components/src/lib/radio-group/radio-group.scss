@@ -8,13 +8,18 @@
 	&.vertical {
 		flex-direction: column;
 	}
-
-	label + & {
-		margin-block-start: 8px;
-	}
 }
 
-label {
+fieldset {
+	display: block;
+	padding: 0;
+	border: none;
+	margin: 0;
+}
+
+legend {
+	padding: 0;
 	color: var(#{constants.$vvd-color-canvas-text});
 	font: var(#{constants.$vvd-typography-base});
+	margin-block-end: 8px;
 }
