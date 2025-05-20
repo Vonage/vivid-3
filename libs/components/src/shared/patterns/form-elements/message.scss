@@ -1,4 +1,6 @@
 @use '../../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
+@use '../../../../../shared/src/lib/sass/mixins/icon-size.scss' as
+	icon-size-variables;
 
 $low-ink-color: --_low-ink-color;
 
@@ -32,7 +34,7 @@ $low-ink-color: --_low-ink-color;
 	}
 
 	&-icon {
-		font-size: 14px;
+		font-size: #{icon-size-variables.$icon-size-extra-condensed};
 
 		.success-message & {
 			color: var(#{constants.$vvd-color-success-500});

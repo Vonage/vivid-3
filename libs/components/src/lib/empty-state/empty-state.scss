@@ -2,6 +2,8 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 @use '../../../../shared/src/lib/sass/mixins/border-radius' as
 	border-radius-variables;
+@use '../../../../shared/src/lib/sass/mixins/icon-size' as
+	icon-size-variables;
 @use '../../../../shared/src/lib/sass/mixins/connotation/config' with (
 	$connotations: accent cta success alert warning information announcement,
 	$shades: firm-all dim faint,
@@ -21,7 +23,7 @@
 		#{variables.$empty-state-icon-background}: var(
 			#{connotation.get-connotation-token(faint)}
 		);
-		#{variables.$empty-state-icon-font-size}: 52px;
+		#{variables.$empty-state-icon-font-size}: #{icon-size-variables.$icon-size-super-expanded};
 
 		display: flex;
 		box-sizing: border-box;
