@@ -1,22 +1,14 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture, getMessage } from '@vivid-nx/shared';
+import { fixture } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
-import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
-import { VividElement } from '../../foundation/vivid-element/vivid-element';
-import { createRegisterFunction } from '../../design-system/createRegisterFunction';
-import { iconDefinition } from '../../../lib/icon/definition';
-import { defineVividComponent } from '../../design-system/defineVividComponent';
 import {
 	type ErrorText,
 	errorText,
 	type FormElement,
 	FormElementCharCount,
-	FormElementHelperText,
 	formElements,
-	FormElementSuccessText,
-	getFeedbackTemplate,
 } from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
@@ -215,106 +207,6 @@ describe('Form Elements', function () {
 			instance.validate();
 
 			expect(baseValidate).toHaveBeenCalled();
-		});
-	});
-});
-
-describe('getFeedbackTemplate', () => {
-	@errorText
-	@formElements
-	class Feedback extends FormAssociated(VividElement) {
-		proxy = document.createElement('input');
-	}
-
-	interface Feedback
-		extends FormElementHelperText,
-			FormElementSuccessText,
-			FormElement,
-			ErrorText,
-			FormAssociated {}
-
-	applyMixinsWithObservables(
-		Feedback,
-		FormElementHelperText,
-		FormElementSuccessText
-	);
-
-	const feedbackDef = defineVividComponent(
-		'feedback',
-		Feedback,
-		getFeedbackTemplate,
-		[iconDefinition],
-		{}
-	);
-	createRegisterFunction(feedbackDef)('test');
-
-	let element: Feedback;
-	beforeEach(async () => {
-		element = (await fixture('<test-feedback></test-feedback>')) as Feedback;
-	});
-
-	describe('helper text', () => {
-		it('should show helper text when property is set', async () => {
-			element.helperText = 'helper text';
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'helper')).toBe('helper text');
-		});
-
-		it('should allow setting helper text via slot', async () => {
-			const helperText = document.createElement('span');
-			helperText.slot = 'helper-text';
-			helperText.textContent = 'helper text';
-			element.appendChild(helperText);
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'helper')).toBe('helper text');
-		});
-	});
-
-	describe('error text', () => {
-		it('should show validation error when the field is invalid', async () => {
-			element.dirtyValue = true;
-			element.dispatchEvent(new Event('blur'));
-			element.proxy.setCustomValidity('error text');
-			element.validate();
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'error')).toBe('error text');
-		});
-
-		it('should show error text when property is set', async () => {
-			element.errorText = 'error text';
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'error')).toBe('error text');
-		});
-
-		it('should hide helper text when set', async () => {
-			element.helperText = 'helper text';
-			element.errorText = 'error text';
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'helper')).toBe(null);
-		});
-	});
-
-	describe('success text', () => {
-		it('should show success text when set', async () => {
-			element.successText = 'success text';
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'success')).toBe('success text');
-		});
-
-		it('should hide error and helper text when set', async () => {
-			element.helperText = 'helper text';
-			element.errorText = 'error text';
-			element.successText = 'success text';
-			await elementUpdated(element);
-
-			expect(getMessage(element, 'helper')).toBe(null);
-			expect(getMessage(element, 'error')).toBe(null);
 		});
 	});
 });

@@ -1,7 +1,6 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Shape } from '../enums';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import { Button } from '../button/button';
 import { Divider } from '../divider/divider';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -114,13 +113,14 @@ export const NumberFieldTemplate = (context: VividElementDefinitionContext) => {
 						?spellcheck="${(x) => x.spellcheck}"
 						:value="${(x) => x._presentationValue}"
 						type="text"
+						aria-describedby="${(x) => x._feedbackDescribedBy}"
 						${delegateAria()}
 						${ref('control')}
 					/>
 				</div>
 				${() => numberControlButtons(context)}
 			</div>
-			${getFeedbackTemplate(context)}
+			${(x) => x._getFeedbackTemplate(context)}
 		</div>
 	`;
 };
