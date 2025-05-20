@@ -93,7 +93,7 @@ export class Card extends DelegatesAria(VividElement) {
 	@attr type?: string;
 
 	/**
-	 * Indicates the button's href.
+	 * Indicates the card's href.
 	 *
 	 * @public
 	 * @remarks
@@ -147,7 +147,7 @@ export class Card extends DelegatesAria(VividElement) {
 	@attr rel?: string;
 
 	/**
-	 * Indicates the target's rel.
+	 * Indicates the card's target.
 	 *
 	 * @public
 	 * @remarks
