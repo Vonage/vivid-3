@@ -187,6 +187,9 @@ const enUS: Locale = {
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
 	},
+	button: {
+		pendingLabel: 'Loading...',
+	},
 };
 
 export default enUS;

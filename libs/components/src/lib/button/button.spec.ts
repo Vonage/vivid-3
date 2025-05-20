@@ -150,7 +150,7 @@ describe('vwc-button', () => {
 			element.label = label;
 			await elementUpdated(element);
 
-			const control = element.shadowRoot?.querySelector('.control');
+			const control = element.shadowRoot?.querySelector('.control .text');
 			expect(control?.textContent?.trim()).toEqual(label);
 		});
 	});
@@ -370,7 +370,6 @@ describe('vwc-button', () => {
 					'ariaHidden',
 					'ariaInvalid',
 					'ariaKeyShortcuts',
-					'ariaLabel',
 					'ariaLive',
 					'ariaPressed',
 					'ariaRelevant',
@@ -398,7 +397,6 @@ describe('vwc-button', () => {
 					'ariaHidden',
 					'ariaInvalid',
 					'ariaKeyShortcuts',
-					'ariaLabel',
 					'ariaLive',
 					'ariaRelevant',
 					'ariaRoleDescription',

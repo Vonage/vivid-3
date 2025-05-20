@@ -1,6 +1,6 @@
 import 'element-internals-polyfill';
 
-import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { elementUpdated, fixture, getMessage } from '@vivid-nx/shared';
 import { customElement, FASTElement } from '@microsoft/fast-element';
 import { applyMixinsWithObservables } from '../../utils/applyMixinsWithObservables';
 import { FormAssociated } from '../../foundation/form-associated/form-associated';
@@ -253,27 +253,12 @@ describe('getFeedbackTemplate', () => {
 		element = (await fixture('<test-feedback></test-feedback>')) as Feedback;
 	});
 
-	const getMessage = (type: string) => {
-		const messageEl = element.shadowRoot!.querySelector(
-			`.${type}-message.message--visible:not(.sr-only)`
-		);
-		if (!messageEl) {
-			return null;
-		}
-		const slot = messageEl.querySelector('slot') as HTMLSlotElement | null;
-		if (slot && slot.assignedNodes().length > 0) {
-			return slot.assignedNodes()[0].textContent!.trim();
-		} else {
-			return messageEl.textContent!.trim();
-		}
-	};
-
 	describe('helper text', () => {
 		it('should show helper text when property is set', async () => {
 			element.helperText = 'helper text';
 			await elementUpdated(element);
 
-			expect(getMessage('helper')).toBe('helper text');
+			expect(getMessage(element, 'helper')).toBe('helper text');
 		});
 
 		it('should allow setting helper text via slot', async () => {
@@ -283,7 +268,7 @@ describe('getFeedbackTemplate', () => {
 			element.appendChild(helperText);
 			await elementUpdated(element);
 
-			expect(getMessage('helper')).toBe('helper text');
+			expect(getMessage(element, 'helper')).toBe('helper text');
 		});
 	});
 
@@ -295,14 +280,14 @@ describe('getFeedbackTemplate', () => {
 			element.validate();
 			await elementUpdated(element);
 
-			expect(getMessage('error')).toBe('error text');
+			expect(getMessage(element, 'error')).toBe('error text');
 		});
 
 		it('should show error text when property is set', async () => {
 			element.errorText = 'error text';
 			await elementUpdated(element);
 
-			expect(getMessage('error')).toBe('error text');
+			expect(getMessage(element, 'error')).toBe('error text');
 		});
 
 		it('should hide helper text when set', async () => {
@@ -310,7 +295,7 @@ describe('getFeedbackTemplate', () => {
 			element.errorText = 'error text';
 			await elementUpdated(element);
 
-			expect(getMessage('helper')).toBe(null);
+			expect(getMessage(element, 'helper')).toBe(null);
 		});
 	});
 
@@ -319,7 +304,7 @@ describe('getFeedbackTemplate', () => {
 			element.successText = 'success text';
 			await elementUpdated(element);
 
-			expect(getMessage('success')).toBe('success text');
+			expect(getMessage(element, 'success')).toBe('success text');
 		});
 
 		it('should hide error and helper text when set', async () => {
@@ -328,8 +313,8 @@ describe('getFeedbackTemplate', () => {
 			element.successText = 'success text';
 			await elementUpdated(element);
 
-			expect(getMessage('helper')).toBe(null);
-			expect(getMessage('error')).toBe(null);
+			expect(getMessage(element, 'helper')).toBe(null);
+			expect(getMessage(element, 'error')).toBe(null);
 		});
 	});
 });

@@ -61,18 +61,18 @@ export function formElements<
 		 */
 		@observable errorValidationMessage = '';
 
-		#forceErrorDisplay = false;
-		#hasBeenTouched = false;
+		forceErrorDisplay = false;
+		hasBeenTouched = false;
 
 		constructor(...args: any[]) {
 			super(...args);
 			(this as unknown as HTMLElement).addEventListener('blur', () => {
-				this.#hasBeenTouched = true;
-				this.#forceErrorDisplay = false;
+				this.hasBeenTouched = true;
+				this.forceErrorDisplay = false;
 				this.validate();
 			});
 			(this as unknown as HTMLElement).addEventListener('focus', () => {
-				this.#hasBeenTouched = false;
+				this.hasBeenTouched = false;
 			});
 			this.addEventListener('invalid', () => {
 				this.proxy.dispatchEvent(new Event('invalid'));
@@ -85,7 +85,7 @@ export function formElements<
 		}
 
 		#handleInvalidEvent = () => {
-			this.#forceErrorDisplay = true;
+			this.forceErrorDisplay = true;
 			this.validate();
 		};
 
@@ -95,7 +95,7 @@ export function formElements<
 		}
 
 		formResetCallback() {
-			this.#forceErrorDisplay = false;
+			this.forceErrorDisplay = false;
 
 			super.formResetCallback();
 
@@ -104,16 +104,16 @@ export function formElements<
 			this.validate();
 		}
 
-		validate = () => {
+		validate() {
 			super.validate();
 
 			const shouldShowValidationError =
-				this.#forceErrorDisplay || (this.#hasBeenTouched && this.dirtyValue);
+				this.forceErrorDisplay || (this.hasBeenTouched && this.dirtyValue);
 
 			this.errorValidationMessage = shouldShowValidationError
 				? this.validationMessage
 				: '';
-		};
+		}
 	}
 
 	return FormElement;
@@ -230,6 +230,14 @@ export function errorText<
 >(constructor: T) {
 	class ErrorText extends constructor {
 		@attr({ attribute: 'error-text' }) errorText?: string;
+		errorTextChanged(_: string, newErrorText: string | undefined) {
+			if (newErrorText) {
+				this.#forceCustomError(newErrorText);
+			} else {
+				this.#clearCustomErrorAndRevalidate();
+			}
+		}
+
 		#blockValidateCalls = false;
 
 		constructor(...args: any[]) {
@@ -238,14 +246,6 @@ export function errorText<
 			this.validate = () => {
 				if (!this.#blockValidateCalls) this._validate();
 			};
-		}
-
-		errorTextChanged(_: string, newErrorText: string | undefined) {
-			if (newErrorText) {
-				this.#forceCustomError(newErrorText);
-			} else {
-				this.#clearCustomErrorAndRevalidate();
-			}
 		}
 
 		#forceCustomError(errorMessage: string) {

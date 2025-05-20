@@ -36,6 +36,7 @@
 		icon="menu-solid"
 		slot="app-content"
 		onclick="onToggle()"
+		aria-label="Toggle Side Drawer"
 	></vwc-fab>
 </vwc-side-drawer>
 
