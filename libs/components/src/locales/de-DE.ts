@@ -189,6 +189,9 @@ const deDE: Locale = {
 		strikethrough: 'Durchgestrichen',
 		monospace: 'Monospace',
 	},
+	button: {
+		pendingLabel: 'Laden...',
+	},
 };
 
 export default deDE;

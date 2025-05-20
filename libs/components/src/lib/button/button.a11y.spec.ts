@@ -35,7 +35,7 @@ describe('a11y: vwc-button', () => {
 	describe('icon-only', () => {
 		it('should pass html a11y test', async () => {
 			element.icon = 'home';
-			element.ariaLabel = 'Home';
+			element.ariaLabel = 'Back to homepage';
 			await elementUpdated(element);
 
 			expect(await axe(element)).toHaveNoViolations();
