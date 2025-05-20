@@ -5269,9 +5269,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "label",
