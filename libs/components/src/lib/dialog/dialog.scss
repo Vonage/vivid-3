@@ -155,10 +155,12 @@ $dialog-space-size: 24px;
 }
 
 .headline {
+	margin: 0;
 	font: var(#{constants.$vvd-typography-heading-4});
 }
 
 .subtitle {
+	margin: 0;
 	font: var(#{constants.$vvd-typography-base});
 }
 
