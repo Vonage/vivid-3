@@ -3074,7 +3074,6 @@
 				},
 				{
 					"name": "iconDecoration",
-					"description": "DEPRECATED: outlined is now the default and only icon decoration.",
 					"type": "'outlined' | 'filled'",
 					"attributeName": "icon-decoration",
 					"propertyName": "iconDecoration"
