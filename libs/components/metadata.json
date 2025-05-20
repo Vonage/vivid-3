@@ -3074,7 +3074,6 @@
 				},
 				{
 					"name": "iconDecoration",
-					"description": "option to a new design for the icon circle",
 					"type": "'outlined' | 'filled'",
 					"attributeName": "icon-decoration",
 					"propertyName": "iconDecoration"
