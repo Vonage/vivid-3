@@ -32,11 +32,11 @@ function icon(iconTag: string) {
 }
 
 function headline() {
-	return html<Dialog>` <div class="headline">${(x) => x.headline}</div> `;
+	return html<Dialog>` <h2 class="headline">${(x) => x.headline}</h2> `;
 }
 
 function subtitle() {
-	return html<Dialog>` <div class="subtitle">${(x) => x.subtitle}</div> `;
+	return html<Dialog>` <h3 class="subtitle">${(x) => x.subtitle}</h3> `;
 }
 
 function renderHeaderText() {
