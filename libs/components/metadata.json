@@ -1507,13 +1507,6 @@
 					"type": "string",
 					"attributeName": "text",
 					"propertyName": "text"
-				},
-				{
-					"name": "type",
-					"description": "Type of a <button> element.",
-					"type": "string",
-					"attributeName": "type",
-					"propertyName": "type"
 				}
 			],
 			"events": [
