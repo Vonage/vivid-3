@@ -109,11 +109,20 @@ slot[name='icon'] {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: none;
+	border-radius: #{border-radius-variables.$border-radius-semi-condensed};
+	background: transparent;
 	block-size: 24px;
 	inline-size: 24px;
 	inset-block-start: 50%;
 	inset-inline-end: 4px;
 	transform: translateY(-50%);
+
+	&:focus-visible {
+		#{focus-variables.$focus-stroke-gap-color}: transparent;
+
+		@include focus.focus;
+	}
 
 	vwc-icon {
 		font-size: 12px;
