@@ -1447,7 +1447,7 @@
 				},
 				{
 					"name": "href",
-					"description": "Indicates the button's href.",
+					"description": "Indicates the card's href.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
@@ -1496,7 +1496,7 @@
 				},
 				{
 					"name": "target",
-					"description": "Indicates the target's rel.",
+					"description": "Indicates the card's target.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
