@@ -71,7 +71,7 @@ describe('vwc-radio-group', () => {
 			const legend = fieldset?.querySelector('legend');
 
 			expect(fieldset).not.toBeFalsy();
-			expect(legend).not.toBeFalsy();
+			expect(legend).toBeTruthy();
 		});
 	});
 
