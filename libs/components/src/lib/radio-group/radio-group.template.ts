@@ -12,11 +12,7 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 			@keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
 			@focusin="${(x, c) => x.focusInHandler(c.event as FocusEvent)}"
 		>
-			${when(
-				(x) => x.label,
-				html<RadioGroup>`<label id="label">${(x) => x.label}</label>`
-			)}
-			<div
+			<fieldset
 				${delegateAria({
 					role: 'radiogroup',
 					ariaDisabled: (x) => x.disabled,
@@ -30,6 +26,10 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 				class="control positioning-region ${(x) =>
 					x.orientation === Orientation.horizontal ? 'horizontal' : 'vertical'}"
 			>
+				${when(
+					(x) => x.label,
+					html<RadioGroup>`<legend id="label">${(x) => x.label}</legend>`
+				)}
 				<slot
 					${slotted({
 						property: 'slottedRadioButtons',
@@ -37,7 +37,7 @@ export const RadioGroupTemplate = (context: VividElementDefinitionContext) => {
 					})}
 					@slotchange="${(x) => x.handleSlotChange()}"
 				></slot>
-			</div>
+			</fieldset>
 			${getFeedbackTemplate(context)}
 		</template>
 	`;
