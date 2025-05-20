@@ -49,19 +49,10 @@ export const WithFeedback = <T extends Constructor<VividElement>>(Base: T) => {
 				| undefined;
 			const successText = (this as any).successText as string | undefined;
 
-if (successText) return { type: 'success', message: successText };
-
-if (errorText) return { type: 'error', message: errorText };
-
-if (helperText) return { type: 'helper', message: helperText };
-
-return { type: 'none', message: '' };
-				? { type: 'success', message: successText }
-				: errorText
-				? { type: 'error', message: errorText }
-				: helperText
-				? { type: 'helper', message: helperText }
-				: { type: 'none', message: '' };
+			if (successText) return { type: 'success', message: successText };
+			if (errorText) return { type: 'error', message: errorText };
+			if (helperText) return { type: 'helper', message: helperText };
+			return { type: 'none', message: '' };
 		}
 
 		/**
