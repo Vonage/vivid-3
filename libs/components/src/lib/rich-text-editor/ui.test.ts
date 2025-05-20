@@ -48,7 +48,11 @@ test('should show the component', async ({ page }: { page: Page }) => {
 	);
 });
 
-test('should show text area and attachments slot with the same scroll', async ({ page }: { page: Page }) => {
+test('should show text area and attachments slot with the same scroll', async ({
+	page,
+}: {
+	page: Page;
+}) => {
 	async function isActuallyVisible() {
 		const attachmentsBox = await attachments!.boundingBox();
 		const scrollBox = await scrollContainer!.boundingBox();
@@ -82,12 +86,16 @@ test('should show text area and attachments slot with the same scroll', async ({
 	const attachments = await shadow.$('#attachments-wrapper');
 
 	const isVisibleBeforeScroll = await isActuallyVisible();
-	await scrollContainer?.evaluate((el: HTMLElement) => { el.scrollTop = el.scrollHeight; });
+	await scrollContainer?.evaluate((el: HTMLElement) => {
+		el.scrollTop = el.scrollHeight;
+	});
 
 	const isVisibleAfterScroll = await isActuallyVisible();
 
 	expect(isVisibleBeforeScroll).toBe(false);
 	expect(isVisibleAfterScroll).toBe(true);
 
-	expect(await testWrapper?.screenshot()).toMatchSnapshot('rich-text-editor-scroll-attachments.png');
+	expect(await testWrapper?.screenshot()).toMatchSnapshot(
+		'rich-text-editor-scroll-attachments.png'
+	);
 });
