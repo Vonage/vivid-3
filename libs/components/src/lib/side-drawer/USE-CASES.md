@@ -32,6 +32,7 @@
 		Toggle the side drawer by clicking the FAB.
 	</vwc-layout>
 	<vwc-fab
+		aria-label="Toggle Side Drawer"
 		class="vwc-fab"
 		icon="menu-solid"
 		slot="app-content"
@@ -123,6 +124,7 @@
 	</vwc-layout>
 
 	<vwc-fab
+		aria-label="Toggle Side Drawer"
 		class="vwc-fab"
 		connotation="accent"
 		icon="menu-solid"

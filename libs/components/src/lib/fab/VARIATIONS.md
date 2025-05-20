@@ -43,7 +43,7 @@ When an element has no visible text, provide an accessible name using the <nobr>
 </vwc-note>
 
 ```html preview
-<vwc-fab icon="check-line" aria-label="Icon only"></vwc-fab>
+<vwc-fab icon="check-line" aria-label="Icon only FAB button"></vwc-fab>
 ```
 
 ## Size

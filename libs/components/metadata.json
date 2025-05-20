@@ -1418,6 +1418,20 @@
 					"propertyName": "appearance"
 				},
 				{
+					"name": "clickableCard",
+					"description": "Indicates whether card should be a clickable <button> element.",
+					"type": "boolean",
+					"attributeName": "clickable-card",
+					"propertyName": "clickableCard"
+				},
+				{
+					"name": "download",
+					"description": "Indicates the card's download.",
+					"type": "string",
+					"attributeName": "download",
+					"propertyName": "download"
+				},
+				{
 					"name": "elevation",
 					"description": "card elevation dp",
 					"type": "0 | 2 | 4 | 8 | 12 | 16 | 24",
@@ -1432,6 +1446,20 @@
 					"propertyName": "headline"
 				},
 				{
+					"name": "href",
+					"description": "Indicates the card's href.",
+					"type": "string",
+					"attributeName": "href",
+					"propertyName": "href"
+				},
+				{
+					"name": "hreflang",
+					"description": "Indicates the card's hreflang.",
+					"type": "string",
+					"attributeName": "hreflang",
+					"propertyName": "hreflang"
+				},
+				{
 					"name": "icon",
 					"description": "card header icon\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
@@ -1439,11 +1467,39 @@
 					"propertyName": "icon"
 				},
 				{
+					"name": "ping",
+					"description": "Indicates the card's ping.",
+					"type": "string",
+					"attributeName": "ping",
+					"propertyName": "ping"
+				},
+				{
+					"name": "referrerpolicy",
+					"description": "Indicates the card's referrerpolicy.",
+					"type": "string",
+					"attributeName": "referrerpolicy",
+					"propertyName": "referrerpolicy"
+				},
+				{
+					"name": "rel",
+					"description": "Indicates the card's rel.",
+					"type": "string",
+					"attributeName": "rel",
+					"propertyName": "rel"
+				},
+				{
 					"name": "subtitle",
 					"description": "the text of the card sub-heading\naccepts string",
 					"type": "string",
 					"attributeName": "subtitle",
 					"propertyName": "subtitle"
+				},
+				{
+					"name": "target",
+					"description": "Indicates the card's target.",
+					"type": "'_self' | '_blank' | '_parent' | '_top'",
+					"attributeName": "target",
+					"propertyName": "target"
 				},
 				{
 					"name": "text",
@@ -5079,6 +5135,12 @@
 					"attributeName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"description": "The error text for the form element.",
+					"type": "string",
+					"attributeName": "error-text"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the form. This value sets the `value` property\nonly when the `value` property has not been explicitly set.",
 					"type": "string",
@@ -5087,10 +5149,9 @@
 				},
 				{
 					"name": "label",
-					"description": "Indicates the radio's label.",
+					"description": "The label for the form element.",
 					"type": "string",
-					"attributeName": "label",
-					"propertyName": "label"
+					"attributeName": "label"
 				},
 				{
 					"name": "name",
@@ -5176,8 +5237,20 @@
 					"propertyName": "disabled"
 				},
 				{
+					"name": "errorText",
+					"type": "string",
+					"attributeName": "error-text",
+					"propertyName": "errorText"
+				},
+				{
+					"name": "helperText",
+					"description": "The helper text for the form element.",
+					"type": "string",
+					"attributeName": "helper-text"
+				},
+				{
 					"name": "label",
-					"description": "Indicates the group's label.",
+					"description": "The label for the radio group",
 					"type": "string",
 					"attributeName": "label",
 					"propertyName": "label"
@@ -5202,6 +5275,13 @@
 					"type": "boolean",
 					"attributeName": "readonly",
 					"propertyName": "readOnly"
+				},
+				{
+					"name": "required",
+					"description": "When true, the radio group and all its radio buttons will be required",
+					"type": "boolean",
+					"attributeName": "required",
+					"propertyName": "required"
 				},
 				{
 					"name": "value",
@@ -5257,7 +5337,13 @@
 				}
 			],
 			"methods": [{ "name": "nameChanged", "args": [], "returnType": "void" }],
-			"slots": [{ "name": "default", "description": "Default slot." }]
+			"slots": [
+				{ "name": "default", "description": "Default slot." },
+				{
+					"name": "helper-text",
+					"description": "Describes how to use the text-field. Alternative to the `helper-text` attribute."
+				}
+			]
 		},
 		{
 			"name": "range-slider",
@@ -5524,6 +5610,11 @@
 			"methods": [
 				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
+				{
+					"name": "scrollToAttachments",
+					"args": [{ "name": "additionalPixels", "type": "unknown" }],
+					"returnType": "unknown"
+				},
 				{ "name": "selectionEndChanged", "args": [], "returnType": "unknown" },
 				{
 					"name": "selectionStartChanged",

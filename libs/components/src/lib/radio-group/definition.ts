@@ -1,4 +1,5 @@
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
+import { iconDefinition } from '../icon/definition';
 import { radioDefinition } from '../radio/definition';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
 import styles from './radio-group.scss?inline';
@@ -12,7 +13,7 @@ export const radioGroupDefinition = defineVividComponent(
 	'radio-group',
 	RadioGroup,
 	template,
-	[radioDefinition],
+	[iconDefinition, radioDefinition],
 	{
 		styles,
 	}
