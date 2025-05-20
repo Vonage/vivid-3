@@ -119,7 +119,7 @@ test.describe('radio-group', () => {
 				'vwc-radio-group vwc-feedback-message[type="error"]'
 			);
 
-			// await expect(errorMsg).toBeVisible();
+			await expect(errorMsg).toBeVisible();
 			await expect(errorMsg).toContainText(/select one of these options/i);
 		});
 	});

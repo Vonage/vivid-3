@@ -8,9 +8,10 @@ import {
 import { Connotation } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
-	itShouldHaveSuccessTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { Checkbox } from './checkbox';
 import '.';
@@ -382,15 +383,19 @@ describe('vwc-checkbox', () => {
 	});
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(
+		itShouldDisplayHelperTextFeedback(
 			() => element,
 			() => getBaseElement(element)
 		);
-		itShouldHaveSuccessTextFeedback(
+		itShouldDisplaySuccessTextFeedback(
 			() => element,
 			() => getBaseElement(element)
 		);
-		itShouldHaveErrorTextFeedback(
+		itShouldDisplayErrorTextFeedback(
+			() => element,
+			() => getBaseElement(element)
+		);
+		itShouldDisplayValidationErrorFeedback(
 			() => element,
 			() => getBaseElement(element)
 		);

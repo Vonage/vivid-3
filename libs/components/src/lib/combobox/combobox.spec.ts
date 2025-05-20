@@ -10,9 +10,10 @@ import type { Popup } from '../popup/popup';
 import { ListboxOption } from '../option/option';
 import type { Icon } from '../icon/icon';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
-	itShouldHaveSuccessTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { Combobox } from './combobox';
 import { ComboboxAutocomplete } from './combobox.options';
@@ -859,9 +860,10 @@ describe('vwc-combobox', () => {
 	});
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(() => element);
-		itShouldHaveSuccessTextFeedback(() => element);
-		itShouldHaveErrorTextFeedback(() => element);
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplaySuccessTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayValidationErrorFeedback(() => element);
 	});
 
 	describe('a11y attributes', () => {

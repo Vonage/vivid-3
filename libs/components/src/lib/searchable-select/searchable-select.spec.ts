@@ -14,9 +14,10 @@ import {
 	itShouldDelegateAriaAttributes,
 } from '../../shared/aria/should-delegate-aria.spec';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
-	itShouldHaveSuccessTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
@@ -2083,15 +2084,19 @@ describe('vwc-searchable-select', () => {
 	});
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(
+		itShouldDisplayHelperTextFeedback(
 			() => element,
 			() => input
 		);
-		itShouldHaveSuccessTextFeedback(
+		itShouldDisplaySuccessTextFeedback(
 			() => element,
 			() => input
 		);
-		itShouldHaveErrorTextFeedback(
+		itShouldDisplayErrorTextFeedback(
+			() => element,
+			() => input
+		);
+		itShouldDisplayValidationErrorFeedback(
 			() => element,
 			() => input
 		);

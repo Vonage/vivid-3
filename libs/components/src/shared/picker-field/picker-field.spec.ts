@@ -11,8 +11,9 @@ import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import type { Popup } from '../../lib/popup/popup';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
 } from '../feedback/should-display-feedback.spec';
 import type { PickerField } from './picker-field';
 
@@ -329,11 +330,15 @@ export const pickerFieldSpec = (
 	});
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(
+		itShouldDisplayHelperTextFeedback(
 			() => element,
 			() => textField.querySelector('input[slot=_control]')!
 		);
-		itShouldHaveErrorTextFeedback(
+		itShouldDisplayErrorTextFeedback(
+			() => element as any,
+			() => textField.querySelector('input[slot=_control]')!
+		);
+		itShouldDisplayValidationErrorFeedback(
 			() => element as any,
 			() => textField.querySelector('input[slot=_control]')!
 		);

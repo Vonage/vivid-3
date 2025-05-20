@@ -9,9 +9,10 @@ import { Icon } from '../icon/icon';
 import { Size } from '../enums';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
-	itShouldHaveSuccessTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { TextField, TextFieldType } from './text-field';
 import '.';
@@ -518,48 +519,10 @@ describe('vwc-text-field', () => {
 
 	describe('errorText', function () {
 		const forcedErrorMessage = 'BAD!';
-
-		it('should force the input in custom error mode', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
-		});
-
 		it('should add the error class', async function () {
 			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
-		});
-
-		it('should display the given error message', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			const errorElement = element.shadowRoot?.querySelector('.error-message');
-			expect(errorElement).toBeDefined();
-		});
-
-		it('should replace/restore the current error state, if any, when set/removed', async function () {
-			element.pattern = '123';
-			element.value = 'abc';
-			setToBlurred();
-			await elementUpdated(element);
-
-			const originalValidationMessage = element.validationMessage;
-
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			const validationMessageWithErrorText = element.validationMessage;
-
-			element.errorText = '';
-			await elementUpdated(element);
-			const validationMessageAfterErrorTextRemove = element.validationMessage;
-
-			expect(originalValidationMessage).not.toBe('');
-			expect(validationMessageWithErrorText).toBe(forcedErrorMessage);
-			expect(validationMessageAfterErrorTextRemove).toBe(
-				originalValidationMessage
-			);
 		});
 	});
 
@@ -709,15 +672,19 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(
+		itShouldDisplayHelperTextFeedback(
 			() => element,
 			() => getInput()
 		);
-		itShouldHaveSuccessTextFeedback(
+		itShouldDisplaySuccessTextFeedback(
 			() => element,
 			() => getInput()
 		);
-		itShouldHaveErrorTextFeedback(
+		itShouldDisplayErrorTextFeedback(
+			() => element,
+			() => getInput()
+		);
+		itShouldDisplayValidationErrorFeedback(
 			() => element,
 			() => getInput()
 		);

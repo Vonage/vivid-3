@@ -7,8 +7,8 @@ import {
 } from '@vivid-nx/shared';
 import type { Radio } from '../radio/radio';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { RadioGroup } from './radio-group';
 import '../radio';
@@ -538,7 +538,7 @@ describe('vwc-radio-group', () => {
 	});
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(() => element);
-		itShouldHaveErrorTextFeedback(() => element);
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
 	});
 });

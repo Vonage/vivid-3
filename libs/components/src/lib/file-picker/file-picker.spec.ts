@@ -16,8 +16,9 @@ import { setLocale } from '../../shared/localization';
 import type { Button } from '../button/button';
 import { Size } from '../enums';
 import {
-	itShouldHaveErrorTextFeedback,
-	itShouldHaveHelperTextFeedback,
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
 } from '../../shared/feedback/should-display-feedback.spec';
 import { FilePicker } from './file-picker';
 
@@ -604,8 +605,9 @@ describe('vwc-file-picker', () => {
 	);
 
 	describe('feedback messages', () => {
-		itShouldHaveHelperTextFeedback(() => element);
-		itShouldHaveErrorTextFeedback(() => element);
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayValidationErrorFeedback(() => element);
 	});
 
 	describe('ARIA delegation', () => {
