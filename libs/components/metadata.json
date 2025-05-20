@@ -627,6 +627,13 @@
 					"propertyName": "shape"
 				},
 				{
+					"name": "size",
+					"description": "The size the badge should have.",
+					"type": "'normal' | 'expanded'",
+					"attributeName": "size",
+					"propertyName": "size"
+				},
+				{
 					"name": "text",
 					"description": "Indicates the badge's text.",
 					"type": "string",
