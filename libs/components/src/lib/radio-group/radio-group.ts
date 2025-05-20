@@ -11,8 +11,7 @@ import {
 } from '@microsoft/fast-web-utilities/dist/key-codes';
 import type { Radio } from '../radio/radio';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { FormElementHelperText } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
+import { WithFeedback } from '../../shared/feedback/mixins';
 
 /**
  * @public
@@ -22,7 +21,7 @@ import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithOb
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value changes
  * @vueModel modelValue value change `event.currentTarget.value`
  */
-export class RadioGroup extends VividElement {
+export class RadioGroup extends WithFeedback(VividElement) {
 	/**
 	 * The label for the radio group
 	 *
@@ -391,7 +390,3 @@ export class RadioGroup extends VividElement {
 		}
 	};
 }
-
-export interface RadioGroup extends FormElementHelperText {}
-
-applyMixinsWithObservables(RadioGroup, FormElementHelperText);

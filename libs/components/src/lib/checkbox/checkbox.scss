@@ -25,8 +25,8 @@ $gutter: 2px;
 :host {
 	display: inline-flex;
 	flex-direction: column;
-	vertical-align: middle;
 	gap: 4px;
+	vertical-align: middle;
 	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
 :host([disabled]) {
