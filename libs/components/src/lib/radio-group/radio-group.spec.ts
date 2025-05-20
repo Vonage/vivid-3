@@ -63,6 +63,16 @@ describe('vwc-radio-group', () => {
 			expect(radios[1].getAttribute('tabindex')).toBe('-1');
 			expect(radios[2].getAttribute('tabindex')).toBe('-1');
 		});
+
+		it('should use fieldset with proper legend description', async () => {
+			element.label = 'test label';
+			await elementUpdated(element);
+			const fieldset = element.shadowRoot?.querySelector('fieldset');
+			const legend = fieldset?.querySelector('legend');
+
+			expect(fieldset).toBeTruthy();
+			expect(legend).toBeTruthy();
+		});
 	});
 
 	describe('label', () => {
@@ -71,16 +81,6 @@ describe('vwc-radio-group', () => {
 			await elementUpdated(element);
 			const label = element.shadowRoot?.getElementById('label');
 			expect(label?.textContent).toBe(element.label);
-		});
-
-		it('should link the label to the control element using the aria-labelledby attribute', async () => {
-			element.label = 'testlabel';
-			await elementUpdated(element);
-			const label = element.shadowRoot?.getElementById('label');
-			expect(label?.getAttribute('id')).toBe('label');
-			expect(getControlElement(element)!.getAttribute('aria-labelledby')).toBe(
-				'label'
-			);
 		});
 	});
 

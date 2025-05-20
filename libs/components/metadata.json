@@ -1418,6 +1418,20 @@
 					"propertyName": "appearance"
 				},
 				{
+					"name": "clickableCard",
+					"description": "Indicates whether card should be a clickable <button> element.",
+					"type": "boolean",
+					"attributeName": "clickable-card",
+					"propertyName": "clickableCard"
+				},
+				{
+					"name": "download",
+					"description": "Indicates the card's download.",
+					"type": "string",
+					"attributeName": "download",
+					"propertyName": "download"
+				},
+				{
 					"name": "elevation",
 					"description": "card elevation dp",
 					"type": "0 | 2 | 4 | 8 | 12 | 16 | 24",
@@ -1432,6 +1446,20 @@
 					"propertyName": "headline"
 				},
 				{
+					"name": "href",
+					"description": "Indicates the card's href.",
+					"type": "string",
+					"attributeName": "href",
+					"propertyName": "href"
+				},
+				{
+					"name": "hreflang",
+					"description": "Indicates the card's hreflang.",
+					"type": "string",
+					"attributeName": "hreflang",
+					"propertyName": "hreflang"
+				},
+				{
 					"name": "icon",
 					"description": "card header icon\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
@@ -1439,11 +1467,39 @@
 					"propertyName": "icon"
 				},
 				{
+					"name": "ping",
+					"description": "Indicates the card's ping.",
+					"type": "string",
+					"attributeName": "ping",
+					"propertyName": "ping"
+				},
+				{
+					"name": "referrerpolicy",
+					"description": "Indicates the card's referrerpolicy.",
+					"type": "string",
+					"attributeName": "referrerpolicy",
+					"propertyName": "referrerpolicy"
+				},
+				{
+					"name": "rel",
+					"description": "Indicates the card's rel.",
+					"type": "string",
+					"attributeName": "rel",
+					"propertyName": "rel"
+				},
+				{
 					"name": "subtitle",
 					"description": "the text of the card sub-heading\naccepts string",
 					"type": "string",
 					"attributeName": "subtitle",
 					"propertyName": "subtitle"
+				},
+				{
+					"name": "target",
+					"description": "Indicates the card's target.",
+					"type": "'_self' | '_blank' | '_parent' | '_top'",
+					"attributeName": "target",
+					"propertyName": "target"
 				},
 				{
 					"name": "text",
