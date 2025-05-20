@@ -70,7 +70,7 @@ describe('vwc-radio-group', () => {
 			const fieldset = element.shadowRoot?.querySelector('fieldset');
 			const legend = fieldset?.querySelector('legend');
 
-			expect(fieldset).not.toBeFalsy();
+			expect(fieldset).toBeTruthy();
 			expect(legend).toBeTruthy();
 		});
 	});
