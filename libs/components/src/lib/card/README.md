@@ -60,6 +60,12 @@ Use the `href` attribute to change the card wrapper to a link. When doing so, al
 </vwc-card>
 ```
 
+<vwc-note icon="vue-color" connotation="information" headline="Usage With Vue Router">
+
+See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for more information on how to integrate with Vue Router.
+
+</vwc-note>
+
 ### Card as a Button
 
 Setting the `clickable-card` attribute switches the card wrapper to a `<button>`, allowing you to trigger programmatic actions e.g. using the `click` event.

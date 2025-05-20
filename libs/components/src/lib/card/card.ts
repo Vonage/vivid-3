@@ -84,15 +84,6 @@ export class Card extends DelegatesAria(VividElement) {
 	clickableCard = false;
 
 	/**
-	 * Type of a <button> element.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: type
-	 */
-	@attr type?: string;
-
-	/**
 	 * Indicates the card's href.
 	 *
 	 * @public
