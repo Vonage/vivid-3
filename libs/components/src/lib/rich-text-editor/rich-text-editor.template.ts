@@ -106,14 +106,17 @@ export const RichTextEditorTemplate: (
 ) => ViewTemplate<RichTextEditor> = (
 	context: VividElementDefinitionContext
 ) => {
-	const dividerTag = context.tagFor(Divider);
-	return html`<template class="${getClasses}">
+		const dividerTag = context.tagFor(Divider);
+		return html`<template class="${getClasses}">
 		<div id="editor" 
 		     class="editor" 
 			 @drop="${handleFileDrop}"
 			 @dragenter="${handleDragEnter}"
 			 @dragleave="${handleDragEnter}"
 			 >
+			 <div class="drag-overlay">
+				Drag&Drop files here
+			</div>
 			<div id="attachments-wrapper" class="hidden">
 				<${dividerTag} class="divider"></${dividerTag}>
 				<slot name="attachments"
@@ -124,4 +127,4 @@ export const RichTextEditorTemplate: (
 		<slot name="menu-bar" 
 			  @slotchange="${handleMenuBarSlotChange}"></slot>
 	</template>`;
-};
+	};
