@@ -120,24 +120,6 @@ describe('vwc-date-range-picker', () => {
 		);
 	});
 
-	describe('errorText', () => {
-		it('should forward errorText to the text field', async () => {
-			element.errorText = 'errorText';
-			await elementUpdated(element);
-
-			expect(textField.errorText).toBe('errorText');
-		});
-
-		it('should have a higher priority than an internal validation error', async () => {
-			element.errorText = 'errorText';
-			await elementUpdated(element);
-
-			typeIntoTextField('x');
-
-			expect(textField.errorText).toBe('errorText');
-		});
-	});
-
 	describe('start', () => {
 		it('should set the start date', async () => {
 			element.start = '2021-01-10';

@@ -1,11 +1,7 @@
 import { html, ref, repeat, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { Popup } from '../popup/popup';
-import {
-	affixIconTemplateFactory,
-	getFeedbackTemplate,
-	IconWrapper,
-} from '../../shared/patterns';
+import { affixIconTemplateFactory, IconWrapper } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import type { Select } from '../select/select';
 import { Button } from '../button/button';
@@ -144,7 +140,7 @@ function renderFieldset(context: VividElementDefinitionContext) {
 						class="control"
 						autocomplete="off"
 						aria-controls="listbox"
-						aria-describedby="${(x) =>
+						aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
 							x.multiple && x.maxSelected && x.maxSelected >= 1
 								? 'selection-count'
 								: null}"
@@ -293,7 +289,7 @@ export const SearchableSelectTemplate = (
 			@mousedown="${(x, c) => x._onMouseDown(c.event as MouseEvent)}"
 		>
 			<div class="control-wrapper">
-				${renderControl(context)} ${getFeedbackTemplate(context)}
+				${renderControl(context)} ${(x) => x._getFeedbackTemplate(context)}
 			</div>
 		</template>
 	`;

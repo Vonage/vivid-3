@@ -12,14 +12,14 @@ import {
 	errorText,
 	type FormElement,
 	FormElementCharCount,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedTextField } from './text-field.form-associated';
 
 export type TextFieldAppearance = ExtractFromEnum<
@@ -132,8 +132,8 @@ const installSafariWorkaroundStyleIfNeeded = (
  */
 @errorText
 @formElements
-export class TextField extends AffixIcon(
-	DelegatesAria(FormAssociatedTextField)
+export class TextField extends WithLightDOMFeedback(
+	AffixIcon(DelegatesAria(FormAssociatedTextField))
 ) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -421,13 +421,7 @@ export class TextField extends AffixIcon(
 		}
 
 		this._updateControlValueIfNeeded();
-		this.#updateHelperTextMutationObserver();
 		installSafariWorkaroundStyleIfNeeded(this);
-	}
-
-	override disconnectedCallback() {
-		super.disconnectedCallback();
-		this.#updateHelperTextMutationObserver();
 	}
 
 	override focus() {
@@ -442,80 +436,11 @@ export class TextField extends AffixIcon(
 	get _uniqueId() {
 		return this.id || this.#randomId;
 	}
-
-	/**
-	 * @internal
-	 */
-	@observable _mirroredHelperText = '';
-
-	/**
-	 * @internal
-	 */
-	helperTextChanged() {
-		this.#updateMirroredHelperText();
-	}
-
-	#helperTextSlotMutationObserver?: MutationObserver;
-
-	/**
-	 * @internal
-	 */
-	_helperTextSlottedContentChanged() {
-		this.#updateMirroredHelperText();
-		this.#updateHelperTextMutationObserver();
-	}
-
-	#updateHelperTextMutationObserver() {
-		const usesHelperTextSlot = this._helperTextSlottedContent!.length;
-		const shouldHaveMutationObserver = usesHelperTextSlot && this.isConnected;
-		if (shouldHaveMutationObserver && !this.#helperTextSlotMutationObserver) {
-			/**
-			 * Mutation observer to update the helper text when the slotted content changes
-			 */
-			this.#helperTextSlotMutationObserver = new MutationObserver((records) => {
-				if (
-					// Ignore updates to the mirrored helper text itself
-					records.some(
-						(record) =>
-							record.target instanceof HTMLElement &&
-							record.target.slot !== '_mirrored-helper-text'
-					)
-				) {
-					this.#updateMirroredHelperText();
-				}
-			});
-			this.#helperTextSlotMutationObserver.observe(this, {
-				subtree: true,
-				childList: true,
-				characterData: true,
-			});
-		}
-		if (!shouldHaveMutationObserver && this.#helperTextSlotMutationObserver) {
-			this.#helperTextSlotMutationObserver.disconnect();
-			this.#helperTextSlotMutationObserver = undefined;
-		}
-	}
-
-	#updateMirroredHelperText() {
-		let helperText = this.helperText ?? '';
-		if (this._helperTextSlottedContent?.length) {
-			helperText = this._helperTextSlottedContent
-				.map((node) => node.innerText)
-				.join(' ');
-		}
-		this._mirroredHelperText = helperText;
-	}
 }
 
 export interface TextField
 	extends ErrorText,
 		FormElement,
 		FormElementCharCount,
-		FormElementHelperText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	TextField,
-	FormElementCharCount,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(TextField, FormElementCharCount, FormElementSuccessText);

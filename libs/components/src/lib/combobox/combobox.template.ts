@@ -4,7 +4,6 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import { Popup } from '../popup/popup';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -72,6 +71,7 @@ function renderInput(context: VividElementDefinitionContext) {
 					aria-controls="${(x) => x.listboxId}"
 					aria-expanded="${(x) => x.open}"
 					aria-haspopup="listbox"
+					aria-describedby="${(x) => x._feedbackDescribedBy}"
 					placeholder="${(x) => x.placeholder}"
 					role="combobox"
 					type="text"
@@ -131,7 +131,7 @@ export const comboboxTemplate = (context: VividElementDefinitionContext) => {
 			</${popupTag}>
 					</div>
 					<div class="feedback-wrapper" @click="${(_, c) => c.event.stopPropagation()}">
-						${getFeedbackTemplate(context)}
+						${(x) => x._getFeedbackTemplate(context)}
 					</div>
         </template>
 		`;

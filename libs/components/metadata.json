@@ -1608,9 +1608,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "indeterminate",
@@ -1772,9 +1773,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -2266,6 +2268,13 @@
 					"attributeName": "error-text"
 				},
 				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the date-picker.",
 					"type": "string",
@@ -2397,6 +2406,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialEnd",
@@ -2567,6 +2583,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -3395,9 +3418,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -4477,9 +4501,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -5243,9 +5268,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "label",
@@ -5691,9 +5717,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -5923,9 +5950,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -7194,9 +7222,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -7413,9 +7442,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -7646,6 +7676,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",

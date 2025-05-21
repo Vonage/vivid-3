@@ -1,5 +1,14 @@
 @use '../../../../../dist/libs/tokens/scss/tokens.constants' as constants;
 
+$low-ink-color: --_low-ink-color;
+
+.base {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+}
+
 .positioning-region {
 	display: flex;
 	flex-wrap: wrap;

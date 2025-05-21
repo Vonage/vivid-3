@@ -3,6 +3,7 @@ import { iconDefinition } from '../icon/definition';
 import { listboxOptionDefinition } from '../option/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './select.scss?inline';
 import { Select } from './select';
 import { SelectTemplate as template } from './select.template';
@@ -16,7 +17,12 @@ export const selectDefinition = defineVividComponent(
 	'select',
 	Select,
 	template,
-	[popupDefinition, iconDefinition, listboxOptionDefinition],
+	[
+		popupDefinition,
+		iconDefinition,
+		listboxOptionDefinition,
+		feedbackMessageDefinition,
+	],
 	{
 		styles,
 	}
