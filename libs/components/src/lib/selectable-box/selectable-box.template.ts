@@ -12,15 +12,14 @@ const getClasses = ({
 	tight,
 	checked,
 	clickableBox,
-	clickable,
 }: SelectableBox) =>
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
 		['tight', tight],
 		['selected', checked],
-		['clickable', clickableBox || clickable],
-		['readonly', !clickableBox && !clickable]
+		['clickable', clickableBox],
+		['readonly', !clickableBox]
 	);
 
 function handleControlChange(x: SelectableBox) {
@@ -37,7 +36,7 @@ function checkbox(context: VividElementDefinitionContext) {
 			${delegateAria(
 				{
 					ariaLabel: (x) =>
-						!x.clickableBox && !x.clickable && x.ariaLabel ? x.ariaLabel : null,
+						!x.clickableBox && x.ariaLabel ? x.ariaLabel : null,
 				},
 				{ onlySpecified: true }
 			)}
@@ -46,7 +45,7 @@ function checkbox(context: VividElementDefinitionContext) {
 			connotation="${(x) =>
 				x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${(x) => x.checked}"
-			inert="${(x) => (x.clickableBox || x.clickable ? true : null)}"
+			inert="${(x) => (x.clickableBox ? true : null)}"
 		></${checkboxTag}>`
 	)} `;
 }
@@ -61,7 +60,7 @@ function radio(context: VividElementDefinitionContext) {
 			${delegateAria(
 				{
 					ariaLabel: (x) =>
-						!x.clickableBox && !x.clickable && x.ariaLabel ? x.ariaLabel : null,
+						!x.clickableBox && x.ariaLabel ? x.ariaLabel : null,
 				},
 				{ onlySpecified: true }
 			)}
@@ -70,7 +69,7 @@ function radio(context: VividElementDefinitionContext) {
 			connotation="${(x) =>
 				x.connotation === 'cta' ? Connotation.CTA : Connotation.Accent}"
 			:checked="${(x) => x.checked}"
-			inert="${(x) => (x.clickableBox || x.clickable ? true : null)}"
+			inert="${(x) => (x.clickableBox ? true : null)}"
 		></${radioTag}>`
 	)} `;
 }
@@ -81,16 +80,16 @@ export const SelectableBoxTemplate = (
 	return html<SelectableBox>`<template>
 		<div
 			class="${getClasses}"
-			tabindex="${(x) => (x.clickableBox || x.clickable ? '0' : null)}"
+			tabindex="${(x) => (x.clickableBox ? '0' : null)}"
 			${delegateAria({
-				role: (x) => (x.clickableBox || x.clickable ? 'button' : null),
+				role: (x) => (x.clickableBox ? 'button' : null),
 				ariaPressed: (x) =>
-					x.clickableBox || x.clickable ? (x.checked ? 'true' : 'false') : null,
-				ariaLabel: (x) => (x.clickableBox || x.clickable ? x.ariaLabel : null),
+					x.clickableBox ? (x.checked ? 'true' : 'false') : null,
+				ariaLabel: (x) => (x.clickableBox ? x.ariaLabel : null),
 			})}
 			@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
 			@click="${(x) =>
-				x.clickableBox || x.clickable ? x._handleCheckedChange() : null}"
+				x.clickableBox ? x._handleCheckedChange() : null}"
 		>
 			${checkbox(context)} ${radio(context)}
 			<slot></slot>

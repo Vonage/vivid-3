@@ -2,6 +2,7 @@ import { attr } from '@microsoft/fast-element';
 import type { Connotation } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { replaces } from '../../shared/deprecation/replaced-props';
 
 /**
  * Types of selectable-box connotation.
@@ -33,8 +34,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	@attr({ mode: 'boolean' }) checked = false;
 
 	/**
-	 * DEPRECATED: Replaced by the clickable-box prop
-	 *
+	 * @deprecated Renamed to clickable-box. Use clickable-box instead.
 	 * @public
 	 * HTML Attribute: clickable
 	 */
@@ -46,7 +46,12 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	 * @public
 	 * HTML Attribute: clickable-box
 	 */
-	@attr({ attribute: 'clickable-box', mode: 'boolean' }) clickableBox = false;
+	@replaces<boolean>({
+		deprecatedPropertyName: 'clickable',
+		fromDeprecated: (a) => a,
+	})
+	@attr({ attribute: 'clickable-box', mode: 'boolean' })
+	clickableBox = false;
 
 	/**
 	 * The connotation the selectable box should have.
@@ -80,7 +85,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	_handleCheckedChange() {
 		if (this.controlType === 'radio' && this.checked) return;
 		this.checked = !this.checked;
-		if (this.clickableBox || this.clickable) this.$emit('change');
+		if (this.clickableBox) this.$emit('change');
 	}
 
 	/**
@@ -89,7 +94,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	_handleKeydown(event: KeyboardEvent) {
 		if (
 			(event.code === 'Space' || event.code === 'Enter') &&
-			(this.clickableBox || this.clickable)
+			this.clickableBox
 		)
 			return this._handleCheckedChange();
 		return true;
