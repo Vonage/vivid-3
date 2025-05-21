@@ -2755,6 +2755,13 @@
 			"description": "Base class for dial-pad",
 			"props": [
 				{
+					"name": "autofocus",
+					"description": "Indicates that this element should get focus after the page finishes loading.",
+					"type": "boolean",
+					"attributeName": "autofocus",
+					"propertyName": "autofocus"
+				},
+				{
 					"name": "callActive",
 					"description": "Indicates the active state of the dial-pad.",
 					"type": "boolean",
@@ -2891,6 +2898,12 @@
 				}
 			],
 			"methods": [
+				{
+					"name": "focus",
+					"description": "Moves focus into the diapl-pad.",
+					"args": [],
+					"returnType": "void"
+				},
 				{
 					"name": "valueChanged",
 					"args": [
