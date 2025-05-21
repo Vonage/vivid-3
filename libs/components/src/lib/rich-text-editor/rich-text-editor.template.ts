@@ -89,7 +89,7 @@ function handleFileDrop(x: RichTextEditor, { event }: { event: DragEvent }) {
 
 function handleDragEnter(_: RichTextEditor, { event }: { event: DragEvent }) {
 	const editorWrapperElement = event.currentTarget as HTMLElement;
-	
+
 	editorWrapperElement.classList.toggle(
 		'drag-over',
 		event.type === 'dragenter'
@@ -106,8 +106,8 @@ export const RichTextEditorTemplate: (
 ) => ViewTemplate<RichTextEditor> = (
 	context: VividElementDefinitionContext
 ) => {
-		const dividerTag = context.tagFor(Divider);
-		return html`<template class="${getClasses}">
+	const dividerTag = context.tagFor(Divider);
+	return html`<template class="${getClasses}">
 		<div id="editor" 
 		     class="editor" 
 			 @drop="${handleFileDrop}"
@@ -127,4 +127,4 @@ export const RichTextEditorTemplate: (
 		<slot name="menu-bar" 
 			  @slotchange="${handleMenuBarSlotChange}"></slot>
 	</template>`;
-	};
+};

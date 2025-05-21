@@ -49,20 +49,20 @@ p {
 }
 
 .drag-overlay {
-    position: absolute;
-    inset: 0;
+	position: absolute;
+	z-index: 10;
 	display: none;
-    justify-content: center;
-    align-items: center;
-    background: var(#{constants.$vvd-color-cta-100});
-    border: 1px dashed var(#{constants.$vvd-color-cta-400});
-    border-radius: 8px;
+	align-items: center;
+	justify-content: center;
+	border: 1px dashed var(#{constants.$vvd-color-cta-400});
+	border-radius: 8px;
+	background: var(#{constants.$vvd-color-cta-100});
 	font: var(#{constants.$vvd-typography-base});
-    pointer-events: none;
-    z-index: 10;
-    transition: opacity 0.2s;
+	inset: 0;
+	pointer-events: none;
+	transition: opacity 0.2s;
 }
 
-.drag-over .drag-overlay{
+.drag-over .drag-overlay {
 	display: flex;
 }
