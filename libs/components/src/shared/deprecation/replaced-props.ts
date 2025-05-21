@@ -9,11 +9,11 @@ import type { Constructor } from '../utils/mixins';
 /*
  * Handling of props that deprecate other props in a backwards compatible way.
  * When the old prop is set, the new prop is set so that any code can just work with the new API.
- * Optionally, changes to the new prop can be reflected back to the prop. This allows automatically migrating code
+ * Optionally, changes to the new prop can be reflected back to the old prop. This allows automatically migrating code
  * without worrying about breaking code depending on the old prop.
  */
 
-export type ReplacedPropConfiguration<PropertyT, DeprecatedT> = {
+type ReplacedPropConfiguration<PropertyT, DeprecatedT> = {
 	newPropertyName: string;
 	deprecatedPropertyName: string;
 	/// Converts the deprecated value to the new value.
@@ -22,7 +22,7 @@ export type ReplacedPropConfiguration<PropertyT, DeprecatedT> = {
 	toDeprecated?: (v: PropertyT) => DeprecatedT;
 };
 
-export const locateReplacedPropMetadata =
+const locateReplacedPropMetadata =
 	createMetadataLocator<ReplacedPropConfiguration<any, any>>();
 
 /**
@@ -65,9 +65,8 @@ export const ReplacedPropHandling = <T extends Constructor<FASTElement>>(
 			const changeCouldBeFromNew = (source: any) =>
 				newDirty &&
 				replacedProp.toDeprecated &&
-				replacedProp.toDeprecated(
-					source[replacedProp.newPropertyName]
-				) === source[replacedProp.deprecatedPropertyName];
+				replacedProp.toDeprecated(source[replacedProp.newPropertyName]) ===
+					source[replacedProp.deprecatedPropertyName];
 
 			const subscriber: Subscriber = {
 				handleChange(source: any, propertyName: string) {
@@ -82,9 +81,7 @@ export const ReplacedPropHandling = <T extends Constructor<FASTElement>>(
 						}
 
 						source[replacedProp.deprecatedPropertyName] =
-							replacedProp.toDeprecated(
-								source[replacedProp.newPropertyName]
-							);
+							replacedProp.toDeprecated(source[replacedProp.newPropertyName]);
 					}
 					if (propertyName === replacedProp.deprecatedPropertyName) {
 						deprecatedDirty = true;
@@ -93,10 +90,9 @@ export const ReplacedPropHandling = <T extends Constructor<FASTElement>>(
 							return;
 						}
 
-						source[replacedProp.newPropertyName] =
-							replacedProp.fromDeprecated(
-								source[replacedProp.deprecatedPropertyName]
-							);
+						source[replacedProp.newPropertyName] = replacedProp.fromDeprecated(
+							source[replacedProp.deprecatedPropertyName]
+						);
 					}
 				},
 			};
@@ -110,9 +106,7 @@ export const ReplacedPropHandling = <T extends Constructor<FASTElement>>(
 		constructor(...args: any[]) {
 			super(...args);
 
-			for (const replacedProp of locateReplacedPropMetadata(
-				this.constructor
-			)) {
+			for (const replacedProp of locateReplacedPropMetadata(this.constructor)) {
 				this.#handleReplacedProp(replacedProp);
 			}
 		}

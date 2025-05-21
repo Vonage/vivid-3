@@ -88,8 +88,7 @@ export const SelectableBoxTemplate = (
 				ariaLabel: (x) => (x.clickableBox ? x.ariaLabel : null),
 			})}
 			@keydown="${(x, c) => x._handleKeydown(c.event as KeyboardEvent)}"
-			@click="${(x) =>
-				x.clickableBox ? x._handleCheckedChange() : null}"
+			@click="${(x) => (x.clickableBox ? x._handleCheckedChange() : null)}"
 		>
 			${checkbox(context)} ${radio(context)}
 			<slot></slot>

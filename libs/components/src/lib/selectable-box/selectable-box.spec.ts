@@ -50,9 +50,7 @@ describe('vwc-selectable-box', () => {
 			await elementUpdated(element);
 
 			expect(
-				baseElement?.classList?.contains(
-					`connotation-${Connotation.CTA}`
-				)
+				baseElement?.classList?.contains(`connotation-${Connotation.CTA}`)
 			).toBe(true);
 		});
 
@@ -152,9 +150,7 @@ describe('vwc-selectable-box', () => {
 				)) as SelectableBox;
 				const controlElement = getControlElement(element);
 
-				expect(controlElement?.getAttribute('aria-checked')).toBe(
-					'true'
-				);
+				expect(controlElement?.getAttribute('aria-checked')).toBe('true');
 			});
 		});
 	});
@@ -218,10 +214,7 @@ describe('vwc-selectable-box', () => {
 			describe('keyboard (not clickable)', () => {
 				it('should not emit the change event with Space keypress', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: 'Space',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: 'Space' })
 					);
 
 					expect(spy).not.toHaveBeenCalled();
@@ -230,10 +223,7 @@ describe('vwc-selectable-box', () => {
 
 				it('should not emit the change event with Enter keypress', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: 'Enter',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: 'Enter' })
 					);
 
 					expect(spy).not.toHaveBeenCalled();
@@ -275,10 +265,7 @@ describe('vwc-selectable-box', () => {
 			describe('keyboard (not clickable)', () => {
 				it('should not emit the change event with Space keypress', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: 'Space',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: 'Space' })
 					);
 
 					expect(spy).not.toHaveBeenCalled();
@@ -287,10 +274,7 @@ describe('vwc-selectable-box', () => {
 
 				it('should not emit the change event with Enter keypress', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: 'Enter',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: 'Enter' })
 					);
 
 					expect(spy).not.toHaveBeenCalled();
@@ -335,10 +319,7 @@ describe('vwc-selectable-box', () => {
 			describe('keyboard', () => {
 				it('should emit the change event when the checked state changes with Space keypress', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: 'Space',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: 'Space' })
 					);
 
 					expect(spy).toHaveBeenCalled();
@@ -347,10 +328,7 @@ describe('vwc-selectable-box', () => {
 
 				it('should emit the change event when the checked state changes with Enter keypress', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: 'Enter',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: 'Enter' })
 					);
 
 					expect(spy).toHaveBeenCalled();
@@ -359,10 +337,7 @@ describe('vwc-selectable-box', () => {
 
 				it('should not emit the change event another key is pressed', async () => {
 					baseElement.dispatchEvent(
-						new KeyboardEvent('keydown', {
-							composed: true,
-							code: '65',
-						})
+						new KeyboardEvent('keydown', { composed: true, code: '65' })
 					);
 
 					expect(spy).not.toHaveBeenCalled();

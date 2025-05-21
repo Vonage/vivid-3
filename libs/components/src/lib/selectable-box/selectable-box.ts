@@ -48,7 +48,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	 */
 	@replaces<boolean>({
 		deprecatedPropertyName: 'clickable',
-		fromDeprecated: (a) => a,
+		fromDeprecated: (v) => v,
 	})
 	@attr({ attribute: 'clickable-box', mode: 'boolean' })
 	clickableBox = false;
@@ -92,10 +92,7 @@ export class SelectableBox extends DelegatesAria(VividElement) {
 	 * @internal
 	 */
 	_handleKeydown(event: KeyboardEvent) {
-		if (
-			(event.code === 'Space' || event.code === 'Enter') &&
-			this.clickableBox
-		)
+		if ((event.code === 'Space' || event.code === 'Enter') && this.clickableBox)
 			return this._handleCheckedChange();
 		return true;
 	}
