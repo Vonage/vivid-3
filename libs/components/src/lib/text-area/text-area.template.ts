@@ -1,6 +1,5 @@
 import { html, ref, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { TextArea } from './text-area';
@@ -61,13 +60,14 @@ export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 				?disabled="${(x) => x.disabled}"
 				?required="${(x) => x.required}"
 				?spellcheck="${(x) => x.spellcheck}"
+				aria-describedby="${(x) => x._feedbackDescribedBy}"
 				${delegateAria()}
 				@input="${(x) => x.handleTextInput()}"
 				@change="${(x) => x.handleChange()}"
 				${ref('control')}
 			>
 			</textarea>
-			${getFeedbackTemplate(context)}
+			${(x) => x._getFeedbackTemplate(context)}
 		</div>
 	`;
 };
