@@ -53,6 +53,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-badge text="with icon slot" appearance="filled">
 			<vwc-icon slot="icon" name="check-circle-solid" connotation="success"></vwc-icon>
 		</vwc-badge>
+		<vwc-badge text='Expanded size' size="expanded"></vwc-badge>
 	</div>`;
 	page.setViewportSize({ width: 520, height: 200 });
 
