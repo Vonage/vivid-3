@@ -84,6 +84,16 @@ function handleFileDrop(x: RichTextEditor, { event }: { event: DragEvent }) {
 	x.dispatchEvent(
 		new CustomEvent('file-drop', { detail: event.dataTransfer!.files })
 	);
+	handleDragEnter(x, { event });
+}
+
+function handleDragEnter(_: RichTextEditor, { event }: { event: DragEvent }) {
+	const editorWrapperElement = event.currentTarget as HTMLElement;
+	
+	editorWrapperElement.classList.toggle(
+		'drag-over',
+		event.type === 'dragenter'
+	);
 }
 /**
  * The template for the RichTextEditor component.
@@ -98,7 +108,12 @@ export const RichTextEditorTemplate: (
 ) => {
 	const dividerTag = context.tagFor(Divider);
 	return html`<template class="${getClasses}">
-		<div id="editor" class="editor" @drop="${handleFileDrop}">
+		<div id="editor" 
+		     class="editor" 
+			 @drop="${handleFileDrop}"
+			 @dragenter="${handleDragEnter}"
+			 @dragleave="${handleDragEnter}"
+			 >
 			<div id="attachments-wrapper" class="hidden">
 				<${dividerTag} class="divider"></${dividerTag}>
 				<slot name="attachments"

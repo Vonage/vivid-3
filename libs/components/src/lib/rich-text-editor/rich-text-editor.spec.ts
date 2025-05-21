@@ -10,6 +10,10 @@ import '.';
 const COMPONENT_TAG = 'vwc-rich-text-editor';
 
 describe('vwc-rich-text-editor', () => {
+	function getEditorElement() {
+		return element.shadowRoot?.querySelector('#editor') as HTMLElement;
+	}
+
 	function getOutputElement(): HTMLElement {
 		return element.shadowRoot!.querySelector(
 			'[contenteditable="true"]'
@@ -61,6 +65,61 @@ describe('vwc-rich-text-editor', () => {
 
 		it('should allow being created via createElement', () => {
 			expect(() => document.createElement(COMPONENT_TAG)).not.toThrow();
+		});
+
+		it('should set drag-over class when user drags something over the editor area', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			editor.dispatchEvent(dragEnterEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(true);
+		});
+
+		it('should remove drag-over class when user exits the drag area', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const dragLeaveEvent = new Event('dragleave', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			editor.dispatchEvent(dragEnterEvent);
+			editor.dispatchEvent(dragLeaveEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(false);
+		});
+
+		it('should remove drag-over class when user drops the file', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const dropEvent = new Event('drop', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			(dropEvent as any).dataTransfer = {};
+			editor.dispatchEvent(dragEnterEvent);
+			editor.dispatchEvent(dropEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(false);
 		});
 	});
 
@@ -680,9 +739,6 @@ describe('vwc-rich-text-editor', () => {
 		let editorBoundsSpy: MockInstance<() => DOMRect>,
 			editableAreaBoundsSpy: MockInstance<() => DOMRect>;
 
-		function getEditorElement() {
-			return element.shadowRoot?.querySelector('#editor') as HTMLElement;
-		}
 		beforeEach(async () => {
 			const editableAreaElement = getOutputElement();
 			const editorElement = getEditorElement();
@@ -754,9 +810,7 @@ describe('vwc-rich-text-editor', () => {
 		}
 
 		it('should fire "file-drop" event when file is dropped file drop and process files', async () => {
-			const editor = element.shadowRoot!.querySelector(
-				'#editor'
-			) as HTMLElement;
+			const editor = getEditorElement();
 			const spy = vi.fn();
 			element.addEventListener('file-drop', spy);
 			const dropEvent = createDropEvent(FILES);
