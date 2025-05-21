@@ -192,6 +192,10 @@ const deDE: Locale = {
 	button: {
 		pendingLabel: 'Laden...',
 	},
+	feedbackMessage: {
+		errorIconText: 'Fehler:',
+		successIconText: 'Erfolg:',
+	},
 };
 
 export default deDE;

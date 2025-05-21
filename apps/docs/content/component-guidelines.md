@@ -1,7 +1,7 @@
 ---
 tags: components
 pagination:
-  data: componentsNew
+  data: componentGuidelines
   size: 1
   alias: component
 permalink: 'components/{{ component | componentSlug }}/guidelines/'

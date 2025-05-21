@@ -13,6 +13,12 @@ import { setLocale } from '../../shared/localization';
 import enUS from '../../locales/en-US';
 import deDE from '../../locales/de-DE';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { NumberField } from './number-field';
 import '.';
 
@@ -818,48 +824,10 @@ describe('vwc-number-field', () => {
 	describe('errorText', function () {
 		const forcedErrorMessage = 'BAD!';
 
-		it('should force the input in custom error mode', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			expect(element.validationMessage).toBe(forcedErrorMessage);
-			expect(element.validity.valid).toBeFalsy();
-		});
-
 		it('should add the error class', async function () {
 			element.errorText = forcedErrorMessage;
 			await elementUpdated(element);
 			expect(getBaseElement(element).classList.contains('error')).toEqual(true);
-		});
-
-		it('should display the given error message', async function () {
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-			const errorElement = element.shadowRoot?.querySelector('.error-message');
-			expect(errorElement).toBeDefined();
-		});
-
-		it('should restore the native error state when removed', async function () {
-			let initialErrorMessage = '';
-
-			element.max = 123;
-			typeInput('124');
-			setToBlurred();
-			await elementUpdated(element);
-
-			initialErrorMessage = element.validationMessage;
-
-			element.errorText = forcedErrorMessage;
-			await elementUpdated(element);
-
-			const errorTextMessage = element.validationMessage;
-
-			element.errorText = '';
-			await elementUpdated(element);
-
-			const errorMessageAfterRemovalOfErrorText = element.validationMessage;
-			expect(initialErrorMessage).not.toBe('');
-			expect(errorTextMessage).toBe(forcedErrorMessage);
-			expect(errorMessageAfterRemovalOfErrorText).toBe(initialErrorMessage);
 		});
 	});
 
@@ -899,6 +867,13 @@ describe('vwc-number-field', () => {
 				});
 			});
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplaySuccessTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayValidationErrorFeedback(() => element);
 	});
 
 	describe('ARIA delegation', () => {

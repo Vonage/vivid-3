@@ -25,7 +25,9 @@ $gutter: 2px;
 :host {
 	display: inline-flex;
 	flex-direction: column;
+	gap: 4px;
 	vertical-align: middle;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
 :host([disabled]) {
 	cursor: not-allowed;
@@ -118,9 +120,4 @@ label {
 .icon {
 	font-size: calc(#{$size} * 0.6);
 	line-height: 1;
-}
-
-.message {
-	margin-block-start: 4px;
-	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }

@@ -1,19 +1,10 @@
-import { attr, html, observable, slotted, when } from '@microsoft/fast-element';
-import { classNames } from '@microsoft/fast-web-utilities';
-import { Icon } from '../../../lib/icon/icon';
-import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
-import messageStyles from './message.scss?inline';
+import { attr, observable } from '@microsoft/fast-element';
 
 export interface FormElement {
 	errorValidationMessage: string;
 	label: string;
 	userValid: boolean;
 	dirtyValue: boolean;
-}
-
-export interface FormElementHelperText {
-	helperText?: string;
-	_helperTextSlottedContent?: HTMLElement[];
 }
 
 export interface FormElementSuccessText {
@@ -26,15 +17,6 @@ export interface FormElementCharCount {
 
 export interface ErrorText {
 	errorText: string;
-}
-
-export class FormElementHelperText {
-	@attr({ attribute: 'helper-text' }) helperText?: string;
-
-	/**
-	 * @internal
-	 */
-	@observable _helperTextSlottedContent?: HTMLElement[];
 }
 
 export class FormElementSuccessText {
@@ -117,112 +99,6 @@ export function formElements<
 	}
 
 	return FormElement;
-}
-
-type SomeFormElement = Partial<
-	FormElement & FormElementHelperText & FormElementSuccessText & ErrorText
->;
-
-type FeedbackConfig = {
-	iconType?: string;
-	className: string;
-	messageProperty: 'errorValidationMessage' | 'helperText' | 'successText';
-	slot?: {
-		name: string;
-		slottedContentProperty: '_helperTextSlottedContent';
-	};
-	role: 'status' | 'none';
-};
-const feedback: Record<string, FeedbackConfig> = {
-	helper: {
-		messageProperty: 'helperText',
-		className: 'helper',
-		slot: {
-			name: 'helper-text',
-			slottedContentProperty: '_helperTextSlottedContent',
-		},
-		role: 'none',
-	},
-	error: {
-		messageProperty: 'errorValidationMessage',
-		className: 'error',
-		iconType: 'info-line',
-		role: 'status',
-	},
-	success: {
-		messageProperty: 'successText',
-		className: 'success',
-		iconType: 'check-circle-line',
-		role: 'none',
-	},
-};
-
-const isFeedbackAvailable = (config: FeedbackConfig, x: SomeFormElement) =>
-	Boolean(
-		x[config.messageProperty] ||
-			(config.slot && x[config.slot.slottedContentProperty]?.length)
-	);
-
-export function getFeedbackTemplate(context: VividElementDefinitionContext) {
-	return html<SomeFormElement>`
-		<style>
-			${messageStyles}
-		</style>
-		${getFeedbackTypeTemplate(
-			context,
-			feedback.helper,
-			(x) =>
-				isFeedbackAvailable(feedback.helper, x) &&
-				!isFeedbackAvailable(feedback.error, x) &&
-				!isFeedbackAvailable(feedback.success, x)
-		)}
-		${getFeedbackTypeTemplate(
-			context,
-			feedback.error,
-			(x) =>
-				isFeedbackAvailable(feedback.error, x) &&
-				!isFeedbackAvailable(feedback.success, x)
-		)}
-		${getFeedbackTypeTemplate(context, feedback.success, (x) =>
-			isFeedbackAvailable(feedback.success, x)
-		)}
-	`;
-}
-
-function getFeedbackTypeTemplate(
-	context: VividElementDefinitionContext,
-	config: FeedbackConfig,
-	shouldShow: (x: SomeFormElement) => boolean
-) {
-	const iconTag = context.tagFor(Icon);
-
-	const messageTemplate = html<SomeFormElement>`${(x) =>
-		x[config.messageProperty]}`;
-	const innerTemplate = config.slot
-		? html<SomeFormElement>`<slot
-				name="${config.slot.name}"
-				${slotted(config.slot.slottedContentProperty)}
-				>${messageTemplate}</slot
-		  >`
-		: messageTemplate;
-
-	return html<SomeFormElement>`<div
-		class="${(x) =>
-			classNames(
-				'message',
-				`${config.className}-message`,
-				['message--visible', config.role === 'status' || shouldShow(x)],
-				['sr-only', !shouldShow(x)]
-			)}"
-		role="${config.role}"
-		aria-atomic="false"
-	>
-		${when(
-			(x) => shouldShow(x) && config.iconType,
-			html`<${iconTag} class="message-icon" name="${config.iconType!}"></${iconTag}>`
-		)}
-		<span class="message-text">${innerTemplate}</span>
-	</div>`;
 }
 
 export function errorText<
