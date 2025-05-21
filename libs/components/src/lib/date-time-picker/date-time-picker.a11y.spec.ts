@@ -25,6 +25,7 @@ describe('a11y: vwc-date-time-picker', () => {
 	});
 
 	it('should pass html a11y test', async () => {
+		element.label = 'Label';
 		element.value = '2012-12-12T12:12:12';
 		await elementUpdated(element);
 

@@ -402,9 +402,7 @@ describe('vwc-select', () => {
 		}
 
 		const visibleErrorMessage = () =>
-			(
-				element.shadowRoot!.querySelector('.error-message') as HTMLElement
-			).textContent!.trim();
+			element.querySelector('vwc-feedback-message')!.textContent!.trim();
 
 		it('should hide error message when pristine', async function () {
 			setValidityToError();
@@ -1235,9 +1233,11 @@ describe('vwc-select', () => {
 			element.helperText = 'helper text';
 			await elementUpdated(element);
 
-			element
-				.shadowRoot!.querySelector('.helper-message')!
-				.dispatchEvent(new Event('click', { bubbles: true, composed: true }));
+			(
+				element
+					.querySelector('vwc-feedback-message')!
+					.shadowRoot!.querySelector(`.${'helper'}-message`) as HTMLElement
+			).dispatchEvent(new Event('click', { bubbles: true, composed: true }));
 
 			expect(element.open).toBe(false);
 		});

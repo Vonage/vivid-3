@@ -3,10 +3,13 @@ import {
 	fixture,
 	getBaseElement,
 	getControlElement,
-	getMessage,
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import type { Radio } from '../radio/radio';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { RadioGroup } from './radio-group';
 import '../radio';
 import '.';
@@ -63,6 +66,16 @@ describe('vwc-radio-group', () => {
 			expect(radios[1].getAttribute('tabindex')).toBe('-1');
 			expect(radios[2].getAttribute('tabindex')).toBe('-1');
 		});
+
+		it('should use fieldset with proper legend description', async () => {
+			element.label = 'test label';
+			await elementUpdated(element);
+			const fieldset = element.shadowRoot?.querySelector('fieldset');
+			const legend = fieldset?.querySelector('legend');
+
+			expect(fieldset).toBeTruthy();
+			expect(legend).toBeTruthy();
+		});
 	});
 
 	describe('label', () => {
@@ -72,73 +85,16 @@ describe('vwc-radio-group', () => {
 			const label = element.shadowRoot?.getElementById('label');
 			expect(label?.textContent).toBe(element.label);
 		});
-
-		it('should link the label to the control element using the aria-labelledby attribute', async () => {
-			element.label = 'testlabel';
-			await elementUpdated(element);
-			const label = element.shadowRoot?.getElementById('label');
-			expect(label?.getAttribute('id')).toBe('label');
-			expect(getControlElement(element)!.getAttribute('aria-labelledby')).toBe(
-				'label'
-			);
-		});
-	});
-
-	describe('helper-text', () => {
-		it('should display the helper text when set', async () => {
-			element.helperText = 'test helper text';
-			await elementUpdated(element);
-			expect(getMessage(element, 'helper')).toBe(element.helperText);
-		});
-
-		it('should link the helper text to the control element using the aria-describedby attribute', async () => {
-			element.helperText = 'test helper text';
-			await elementUpdated(element);
-			expect(getControlElement(element)!.getAttribute('aria-describedby')).toBe(
-				'helper-text'
-			);
-		});
-
-		it('should not display the helper text when error text is set', async () => {
-			element.helperText = 'test helper text';
-			element.errorText = 'test error text';
-			await elementUpdated(element);
-			expect(getMessage(element, 'helper')).toBe(null);
-		});
-
-		it('should display the helper text when error text is removed', async () => {
-			element.helperText = 'test helper text';
-			element.errorText = 'test error text';
-			await elementUpdated(element);
-			element.errorText = '';
-			await elementUpdated(element);
-			expect(getMessage(element, 'helper')).toBe(element.helperText);
-		});
-
-		it('should display the helper text when passed to the helper-text slot', async () => {
-			const slotted = document.createElement('div');
-			slotted.slot = 'helper-text';
-			slotted.textContent = 'slotted';
-			element.appendChild(slotted);
-			await elementUpdated(element);
-
-			const textFieldSlot = element.shadowRoot?.querySelector(
-				'slot[name=helper-text]'
-			) as HTMLSlotElement;
-			const slotText = textFieldSlot.assignedNodes()[0].textContent!.trim();
-
-			expect(slotText).toBe('slotted');
-		});
 	});
 
 	describe('error-text', () => {
-		it('should display the error text is set', async () => {
-			element.errorText = 'test error text';
+		it('should set the error-text on all slotted radio buttons', async () => {
+			element.errorText = 'error text';
+			await elementUpdated(element);
 			element.appendChild(document.createElement('vwc-radio'));
 			await elementUpdated(element);
 
-			expect(getMessage(element, 'error')).toBe('test error text');
-			expect(element.slottedRadioButtons.length).toEqual(4);
+			expect(radios.every((r) => r.errorText === 'error text')).toBe(true);
 		});
 
 		it('should set aria-invalid on the control element to true when error-text is set', async () => {
@@ -153,14 +109,6 @@ describe('vwc-radio-group', () => {
 			expect(getControlElement(element)!.getAttribute('aria-invalid')).toBe(
 				'true'
 			);
-		});
-
-		it('should link the error-text to the control element using the aria-errormessage attribute', async () => {
-			element.errorText = 'test error text';
-			await elementUpdated(element);
-			expect(
-				getControlElement(element)!.getAttribute('aria-errormessage')
-			).toBe('error-text');
 		});
 	});
 
@@ -571,8 +519,8 @@ describe('vwc-radio-group', () => {
 		it('should behave as a radio group in a form', async () => {
 			const form = document.createElement('form');
 			form.onsubmit = () => false;
+			element.parentElement!.replaceChildren(form);
 			form.appendChild(element);
-			document.body.replaceChildren(form);
 
 			element.name = 'chosenValue';
 			radios[2].checked = true;
@@ -587,5 +535,10 @@ describe('vwc-radio-group', () => {
 
 			expect(result.get(element.name)).toEqual('2');
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
 	});
 });

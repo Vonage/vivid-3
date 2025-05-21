@@ -8,16 +8,16 @@ import {
 import type { TextField } from '../../lib/text-field/text-field';
 import type { Button } from '../../lib/button/button';
 import { handleEscapeKeyAndStopPropogation } from '../dialog';
-import { FormElementHelperText, Localized, TrappedFocus } from '../patterns';
-import { applyMixinsWithObservables } from '../utils/applyMixinsWithObservables';
+import { Localized, TrappedFocus } from '../patterns';
+import { WithFeedback } from '../feedback/mixins';
 import { FormAssociatedPickerField } from './picker-field.form-associated';
 
 /**
  * Base class for picker fields. Picker fields consist of a text field with a button that opens a popup that allows
  * picking values.
  */
-export abstract class PickerField extends TrappedFocus(
-	Localized(FormAssociatedPickerField)
+export abstract class PickerField extends WithFeedback(
+	TrappedFocus(Localized(FormAssociatedPickerField))
 ) {
 	// --- Attributes ---
 
@@ -314,6 +314,3 @@ export abstract class PickerField extends TrappedFocus(
 		this.$emit('clear-click');
 	}
 }
-
-export interface PickerField extends FormElementHelperText {}
-applyMixinsWithObservables(PickerField, FormElementHelperText);
