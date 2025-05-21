@@ -13,6 +13,12 @@ import {
 	allAriaPropertiesExcept,
 	itShouldDelegateAriaAttributes,
 } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { OptionTag } from './option-tag';
 import { SearchableSelect } from './searchable-select';
 
@@ -1735,7 +1741,7 @@ describe('vwc-searchable-select', () => {
 			await elementUpdated(element);
 
 			await simulateClick(
-				element.shadowRoot!.querySelector('.helper-message')!
+				element.shadowRoot!.querySelector('vwc-feedback-message')!
 			);
 
 			expect(isInputFocused()).toBe(true);
@@ -2075,6 +2081,25 @@ describe('vwc-searchable-select', () => {
 			await selectOption('Apple');
 			expect(getOption('Cherry').disabled).toBe(false);
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(
+			() => element,
+			() => input
+		);
+		itShouldDisplaySuccessTextFeedback(
+			() => element,
+			() => input
+		);
+		itShouldDisplayErrorTextFeedback(
+			() => element,
+			() => input
+		);
+		itShouldDisplayValidationErrorFeedback(
+			() => element,
+			() => input
+		);
 	});
 
 	describe('ARIA delegation', () => {

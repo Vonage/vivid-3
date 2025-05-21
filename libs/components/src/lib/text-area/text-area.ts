@@ -8,13 +8,13 @@ import {
 	type ErrorText,
 	type FormElement,
 	FormElementCharCount,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { WithFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedTextArea } from './text-area.form-associated';
 
 export type TextAreaWrap = 'hard' | 'soft' | 'off';
@@ -60,7 +60,9 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
  */
 @errorText
 @formElements
-export class TextArea extends DelegatesAria(FormAssociatedTextArea) {
+export class TextArea extends WithFeedback(
+	DelegatesAria(FormAssociatedTextArea)
+) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
 	 * @public
@@ -302,11 +304,5 @@ export interface TextArea
 	extends FormElement,
 		ErrorText,
 		FormElementCharCount,
-		FormElementHelperText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	TextArea,
-	FormElementCharCount,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(TextArea, FormElementCharCount, FormElementSuccessText);

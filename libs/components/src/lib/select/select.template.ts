@@ -12,7 +12,6 @@ import {
 	affixIconTemplateFactory,
 	IconWrapper,
 } from '../../shared/patterns/affix';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import { chevronTemplateFactory } from '../../shared/patterns/chevron';
 import { handleEscapeKeyAndStopPropogation } from '../../shared/dialog';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
@@ -152,6 +151,7 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 			})}
 			aria-controls="${(x) => x.listboxId}"
 			aria-activedescendant="${(x) => x._activeDescendant}"
+			aria-describedby="${(x) => x._feedbackDescribedBy}"
 			tabindex="${(x) => (!x.disabled ? '0' : null)}"
 			@click="${ifNotFromFeedback<MouseEvent>((x, e) => x.clickHandler(e))}"
 			@focusin="${ifNotFromFeedback<FocusEvent>((x, e) => x.focusinHandler(e))}"
@@ -168,7 +168,7 @@ export const SelectTemplate = (context: VividElementDefinitionContext) => {
 		>
 			${renderControl(context)}
 			<div class="feedback-wrapper" ${ref('_feedbackWrapper')}>
-				${getFeedbackTemplate(context)}
+				${(x) => x._getFeedbackTemplate(context)}
 			</div>
 		</template>
 	`;

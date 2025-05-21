@@ -104,7 +104,7 @@ function deleteLastCharacter(dialPad: DialPad) {
 	dialPad.$emit('input');
 	dialPad.$emit('change');
 	if (dialPad.value === '') {
-		dialPad._textFieldEl.focus();
+		dialPad._textFieldEl?.focus();
 	}
 }
 
@@ -121,6 +121,7 @@ function renderTextField(textFieldTag: string, buttonTag: string) {
 			@change="${syncFieldAndPadValues}"
 			@focus="${stopPropagation}"
 			@blur="${stopPropagation}"
+			?autofocus="${(x) => x.autofocus}"
 			>
          ${when(
 						(x) => x.value && x.value.length && x.value.length > 0,
@@ -162,6 +163,8 @@ function renderDigits(buttonTag: string, iconTag: string) {
 					  label="${(x) => (x.label === '&nbsp;' ? '\u00A0' : x.label)}"
 					  size='condensed'
 					  class="digit-btn"
+						?autofocus="${(_, c) =>
+							c.parent.autofocus && c.parent.noInput && c.index === 0}"
 					  aria-label="${(x, c) => c.parent.locale.dialPad[x.ariaLabel]}"
 					  ?disabled="${(_, c) => c.parent.disabled}"
 					  @click="${onDigitClick}">
@@ -169,7 +172,10 @@ function renderDigits(buttonTag: string, iconTag: string) {
 									name="${(x) => x.icon}"
 									class="digit-btn-num"></${iconTag}>
 					</${buttonTag}>
-		`
+		`,
+			{
+				positioning: true,
+			}
 		)}
 	`;
 }

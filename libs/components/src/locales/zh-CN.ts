@@ -190,6 +190,10 @@ const zhCN: Locale = {
 	button: {
 		pendingLabel: '加载中',
 	},
+	feedbackMessage: {
+		errorIconText: '错误:',
+		successIconText: '成功:',
+	},
 };
 
 export default zhCN;

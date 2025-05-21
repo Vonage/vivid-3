@@ -1,14 +1,12 @@
 import { html, ref, slotted, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { affixIconTemplateFactory } from '../../shared/patterns/affix';
-import { getFeedbackTemplate } from '../../shared/patterns';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { renderInLightDOM } from '../../shared/templating/render-in-light-dom';
 import { delegateAria } from '../../shared/aria/delegates-aria';
 import type { TextField } from './text-field';
 
 const getControlId = (id: string) => `vvd-text-field-control-${id}`;
-const getHelperTextId = (id: string) => `vvd-text-field-helper-text-${id}`;
 
 const getStateClasses = ({
 	errorValidationMessage,
@@ -107,8 +105,7 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 							autocomplete="${(x) => x.autoComplete}"
 							type="${(x) => x.type}"
 							inputmode="${(x) => x.inputMode}"
-							aria-describedby="${(x) =>
-								x._mirroredHelperText ? getHelperTextId(x._uniqueId) : null}"
+							aria-describedby="${(x) => x._feedbackDescribedBy}"
 							value="${(x) => x.initialValue}"
 							${delegateAria()}
 							${ref('control')}
@@ -122,16 +119,7 @@ export const TextfieldTemplate = (context: VividElementDefinitionContext) => {
 					></slot>
 				</div>
 			</div>
-			${getFeedbackTemplate(context)}
+			${(x) => x._getFeedbackTemplate(context)}
 		</div>
-		<slot name="_mirrored-helper-text"></slot>
-		${renderInLightDOM(html<TextField>`
-			<div
-				id="${(x) => getHelperTextId(x._uniqueId)}"
-				slot="_mirrored-helper-text"
-			>
-				${(x) => x._mirroredHelperText}
-			</div>
-		`)}
 	`;
 };

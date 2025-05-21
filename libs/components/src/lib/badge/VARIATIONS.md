@@ -121,6 +121,15 @@ Use the `shape` attribute to change the badge's edges.
 <vwc-badge text="pill" shape="pill"></vwc-badge>
 ```
 
+## Size
+
+The `size` attribute controls the size of the badge.
+
+```html preview
+<vwc-badge text="normal" size="normal"></vwc-badge>
+<vwc-badge text="expanded" size="expanded"></vwc-badge>
+```
+
 ## Icon
 
 The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
