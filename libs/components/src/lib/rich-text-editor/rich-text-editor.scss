@@ -59,7 +59,7 @@ p {
 	background: var(#{constants.$vvd-color-cta-100});
 	font: var(#{constants.$vvd-typography-base});
 	inset: 0;
-	opacity: .8;
+	opacity: 0.8;
 	pointer-events: none;
 	transition: opacity 0.2s;
 }
