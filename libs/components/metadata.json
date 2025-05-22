@@ -166,7 +166,10 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -370,7 +373,10 @@
 					"name": "action-items",
 					"description": "Add action items to the Alert using this slot."
 				},
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{ "name": "main", "description": "The main content of the Alert." }
 			]
 		},
@@ -676,7 +682,10 @@
 			"vueModels": [],
 			"methods": [],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -769,7 +778,10 @@
 					"name": "action-items",
 					"description": "Add action items to banner using this slot."
 				},
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -1199,7 +1211,10 @@
 				}
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -1945,7 +1960,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Slot to add an icon to the combobox control."
+					"description": "The preferred way to add an icon to the combobox control."
 				},
 				{
 					"name": "meta",
@@ -3400,7 +3415,10 @@
 				}
 			],
 			"slots": [
-				{ "name": "icon", "description": "Slot to add an icon to fab." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -4249,7 +4267,10 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{
 					"name": "meta",
 					"description": "A slot to add additional content to the nav disclosure."
@@ -4392,7 +4413,10 @@
 				{ "name": "getBodyTemplate", "args": [], "returnType": "unknown" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{
 					"name": "meta",
 					"description": "A slot to add additional content to the nav item."
@@ -4466,7 +4490,10 @@
 					"name": "default",
 					"description": "Any slotted content will appear below the headline."
 				},
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -4852,7 +4879,10 @@
 				{ "name": "initialValueChanged", "args": [], "returnType": "void" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Slot to add an icon to the option." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -5915,7 +5945,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Slot to add an icon to the control."
+					"description": "The preferred way to add an icon to the control."
 				},
 				{
 					"name": "loading-options",
@@ -6145,7 +6175,7 @@
 				},
 				{
 					"name": "icon",
-					"description": "Slot to add an icon to the select control."
+					"description": "The preferred way to add an icon to the select control."
 				},
 				{
 					"name": "meta",
@@ -6630,7 +6660,10 @@
 			"methods": [],
 			"slots": [
 				{ "name": "default", "description": "Default slot." },
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -6871,7 +6904,10 @@
 				}
 			],
 			"slots": [
-				{ "name": "icon", "description": "Slot to add an icon to tab." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -7146,7 +7182,10 @@
 				{ "name": "remove", "args": [], "returnType": "void" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." }
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				}
 			]
 		},
 		{
@@ -8093,7 +8132,10 @@
 				{ "name": "selectedChanged", "args": [], "returnType": "void" }
 			],
 			"slots": [
-				{ "name": "icon", "description": "Add an icon to the component." },
+				{
+					"name": "icon",
+					"description": "The preferred way to add an icon to the component."
+				},
 				{ "name": "item", "description": "To specify a child tree item." }
 			]
 		},
