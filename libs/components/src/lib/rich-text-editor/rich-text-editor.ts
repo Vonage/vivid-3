@@ -2,6 +2,12 @@ import { attr, DOM, nullableNumberConverter } from '@microsoft/fast-element';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
 import { ProseMirrorFacade } from './facades/vivid-prose-mirror.facade';
 
+export interface InlineImageProps {
+	file: File;
+	position?: number;
+	alt?: string;
+}
+
 export type RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES =
 	| 'extra-large'
 	| 'large'
@@ -181,5 +187,9 @@ export class RichTextEditor extends VividElement {
 				this.#editorWrapperElement.getBoundingClientRect().height +
 				additionalPixels;
 		});
+	}
+
+	async addInlineImage(imageProps: InlineImageProps) {
+		await this.#editor!.addInlineImage(imageProps);
 	}
 }

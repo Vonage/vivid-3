@@ -3,6 +3,7 @@ import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
 	RichTextEditor,
+	type InlineImageProps,
 	type RichTextEditorSelection,
 } from './rich-text-editor';
 import '.';
@@ -784,6 +785,7 @@ describe('vwc-rich-text-editor', () => {
 			editorBoundsSpy.mockRestore();
 			editableAreaBoundsSpy.mockRestore();
 		});
+
 		it('should allow consumer to set the editor scrolTop to where the attachments element is visible', async () => {
 			const editorElement = getEditorElement();
 			element.scrollToAttachments();
@@ -843,6 +845,18 @@ describe('vwc-rich-text-editor', () => {
 			editor.dispatchEvent(dropEvent);
 
 			expect(spy.mock.calls[0][0].detail).toEqual(FILES);
+		});
+	});
+
+	describe('addInlineImage()', () => {
+		it('should call facade addInlineImage with given parameters', async () => {
+			const input = { file: {}, position: 5, alt: 'alt text' } as InlineImageProps;
+			const editorFacadeAddInlineImageSpy = vi
+				.spyOn(EditorFacade.prototype, 'addInlineImage')
+				.mockResolvedValue(undefined);
+			await element.addInlineImage(input);
+
+			expect(editorFacadeAddInlineImageSpy).toHaveBeenCalledWith(input);
 		});
 	});
 });

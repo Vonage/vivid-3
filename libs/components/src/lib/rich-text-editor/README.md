@@ -332,9 +332,14 @@ Set a component in the `attachments` slot to show them inside the editor area.
 
 	async function start() {
 		await waitForEditorReady();
-		rteComponent.addEventListener('file-drop', (event) =>
-			console.log(event.detail)
-		);
+		rteComponent.addEventListener('file-drop', (event) => {
+			console.log(event.detail);
+			rteComponent.addInlineImage({
+				file: event.detail[0],
+				position: 3,
+				alt: 'this is a test inline image',
+			});
+		});
 	}
 
 	start();
