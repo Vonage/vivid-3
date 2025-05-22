@@ -11,6 +11,7 @@ const getClasses = ({
 	connotation,
 	appearance,
 	shape,
+	size,
 	iconTrailing,
 	text,
 	icon,
@@ -20,6 +21,7 @@ const getClasses = ({
 		[`connotation-${connotation}`, Boolean(connotation)],
 		[`appearance-${appearance}`, Boolean(appearance)],
 		[`shape-${shape}`, Boolean(shape)],
+		[`size-${size}`, Boolean(size)],
 		['icon-trailing', iconTrailing],
 		['icon-only', !text && Boolean(icon)]
 	);

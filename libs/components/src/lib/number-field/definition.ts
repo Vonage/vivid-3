@@ -3,6 +3,7 @@ import { dividerDefinition } from '../divider/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { iconDefinition } from '../icon/definition';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './number-field.scss?inline';
 import { NumberField } from './number-field';
 import { NumberFieldTemplate as template } from './number-field.template';
@@ -16,7 +17,12 @@ export const numberFieldDefinition = defineVividComponent(
 	'number-field',
 	NumberField,
 	template,
-	[buttonDefinition, dividerDefinition, iconDefinition],
+	[
+		buttonDefinition,
+		dividerDefinition,
+		iconDefinition,
+		feedbackMessageDefinition,
+	],
 	{
 		styles,
 		shadowOptions: {

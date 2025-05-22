@@ -12,14 +12,14 @@ import {
 	type ErrorText,
 	type FormElement,
 	FormElementCharCount,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 	Localized,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { WithFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedNumberField } from './number-field.form-associated';
 
 export type NumberFieldAppearance = ExtractFromEnum<
@@ -80,8 +80,8 @@ const validNumber = /^-?((\d*\.\d+)|(\d+))$/;
  */
 @errorText
 @formElements
-export class NumberField extends AffixIcon(
-	Localized(DelegatesAria(FormAssociatedNumberField))
+export class NumberField extends WithFeedback(
+	AffixIcon(Localized(DelegatesAria(FormAssociatedNumberField)))
 ) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -426,11 +426,5 @@ export interface NumberField
 	extends ErrorText,
 		FormElement,
 		FormElementCharCount,
-		FormElementHelperText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	NumberField,
-	FormElementCharCount,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(NumberField, FormElementCharCount, FormElementSuccessText);

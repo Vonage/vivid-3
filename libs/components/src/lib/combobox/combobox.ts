@@ -7,13 +7,13 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
+import { WithFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedCombobox } from './combobox.form-associated';
 import { ComboboxAutocomplete } from './combobox.options';
 
@@ -48,7 +48,7 @@ export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  */
 @errorText
 @formElements
-export class Combobox extends AffixIcon(FormAssociatedCombobox) {
+export class Combobox extends WithFeedback(AffixIcon(FormAssociatedCombobox)) {
 	/**
 	 * The internal value property.
 	 *
@@ -699,12 +699,7 @@ export class Combobox extends AffixIcon(FormAssociatedCombobox) {
 
 export interface Combobox
 	extends FormElement,
-		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText,
 		FormElement {}
-applyMixinsWithObservables(
-	Combobox,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(Combobox, FormElementSuccessText);

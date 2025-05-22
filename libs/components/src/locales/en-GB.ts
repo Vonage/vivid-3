@@ -190,6 +190,10 @@ const enGB: Locale = {
 	button: {
 		pendingLabel: 'Loading...',
 	},
+	feedbackMessage: {
+		errorIconText: 'Error:',
+		successIconText: 'Success:',
+	},
 };
 
 export default enGB;

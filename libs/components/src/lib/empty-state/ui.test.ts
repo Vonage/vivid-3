@@ -52,55 +52,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		connotation="warning"
 		>No results</vwc-empty-state>
 </div>
-		<div class="wrapper-div" style="inline-size: 800px;">
-<vwc-empty-state
-icon-decoration="outlined"
-icon="search-line"
-headline="Accent connotation"
->
-No results
-</vwc-empty-state>
-<vwc-empty-state
-icon-decoration="outlined"
-icon="check-solid"
-headline="Success connotation"
-connotation="success"
->
-No results
-</vwc-empty-state>
-<vwc-empty-state
-icon-decoration="outlined"
-icon="error-solid"
-headline="Alert connotation"
-connotation="alert"
->
-No results
-</vwc-empty-state>
-<vwc-empty-state
-icon-decoration="outlined"
-icon="sparkles-solid"
-headline="Cta connotation"
-connotation="cta"
->
-No results
-</vwc-empty-state>
-<vwc-empty-state
-icon-decoration="outlined"
-icon="envelope-solid"
-headline="Information connotation"
-connotation="information"
->
-No results
-</vwc-empty-state>
-<vwc-empty-state
-icon-decoration="outlined"
-icon="warning-solid"
-headline="Warning connotation"
-connotation="warning"
->
-No results
-</vwc-empty-state>
-</div>
+
 		<div class="wrapper-div" style="grid-template-columns: repeat(2, 1fr);">
 			<vwc-empty-state headline="No results found">
 			<svg

@@ -112,6 +112,17 @@ describe('vwc-badge', () => {
 		});
 	});
 
+	describe('size', () => {
+		it('sets correct internal size style', async () => {
+			const size = 'expanded';
+			element.size = size;
+			await elementUpdated(element);
+
+			const base = element.shadowRoot?.querySelector(`.base.size-${size}`);
+			expect(base).toBeInstanceOf(Element);
+		});
+	});
+
 	describe('icon-only', () => {
 		it('sets correct internal icon-only style', async () => {
 			const getControlIconOnly = () =>

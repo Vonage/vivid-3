@@ -7,6 +7,12 @@ import {
 	listenToFormSubmission,
 } from '@vivid-nx/shared';
 import { itShouldDelegateAriaAttributes } from '../../shared/aria/should-delegate-aria.spec';
+import {
+	itShouldDisplayErrorTextFeedback,
+	itShouldDisplayHelperTextFeedback,
+	itShouldDisplaySuccessTextFeedback,
+	itShouldDisplayValidationErrorFeedback,
+} from '../../shared/feedback/should-display-feedback.spec';
 import { TextArea } from './text-area';
 import '.';
 
@@ -407,6 +413,13 @@ describe('vwc-text-area', () => {
 
 			expect(getTextarea().select).toHaveBeenCalled();
 		});
+	});
+
+	describe('feedback messages', () => {
+		itShouldDisplayHelperTextFeedback(() => element);
+		itShouldDisplaySuccessTextFeedback(() => element);
+		itShouldDisplayErrorTextFeedback(() => element);
+		itShouldDisplayValidationErrorFeedback(() => element);
 	});
 
 	describe('ARIA delegation', function () {

@@ -627,6 +627,13 @@
 					"propertyName": "shape"
 				},
 				{
+					"name": "size",
+					"description": "The size the badge should have.",
+					"type": "'normal' | 'expanded'",
+					"attributeName": "size",
+					"propertyName": "size"
+				},
+				{
 					"name": "text",
 					"description": "Indicates the badge's text.",
 					"type": "string",
@@ -1608,9 +1615,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "indeterminate",
@@ -1772,9 +1780,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -2266,6 +2275,13 @@
 					"attributeName": "error-text"
 				},
 				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the date-picker.",
 					"type": "string",
@@ -2397,6 +2413,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialEnd",
@@ -2569,6 +2592,13 @@
 					"attributeName": "error-text"
 				},
 				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
+				},
+				{
 					"name": "initialValue",
 					"description": "The initial value of the date-picker.",
 					"type": "string",
@@ -2725,6 +2755,13 @@
 			"description": "Base class for dial-pad",
 			"props": [
 				{
+					"name": "autofocus",
+					"description": "Indicates that this element should get focus after the page finishes loading.",
+					"type": "boolean",
+					"attributeName": "autofocus",
+					"propertyName": "autofocus"
+				},
+				{
 					"name": "callActive",
 					"description": "Indicates the active state of the dial-pad.",
 					"type": "boolean",
@@ -2861,6 +2898,12 @@
 				}
 			],
 			"methods": [
+				{
+					"name": "focus",
+					"description": "Moves focus into the diapl-pad.",
+					"args": [],
+					"returnType": "void"
+				},
 				{
 					"name": "valueChanged",
 					"args": [
@@ -3130,7 +3173,6 @@
 				},
 				{
 					"name": "iconDecoration",
-					"description": "option to a new design for the icon circle",
 					"type": "'outlined' | 'filled'",
 					"attributeName": "icon-decoration",
 					"propertyName": "iconDecoration"
@@ -3396,9 +3438,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -3995,7 +4038,7 @@
 				{
 					"name": "role",
 					"description": "The role of the element.",
-					"type": "'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'presentation'",
+					"type": "'menuitem' | 'menuitemcheckbox' | 'checkbox' | 'menuitemradio' | 'radio' | 'presentation'",
 					"attributeName": "role",
 					"propertyName": "role"
 				},
@@ -4022,7 +4065,7 @@
 				},
 				{
 					"name": "change",
-					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked",
+					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `checkbox`, `menuitemradio`, `radio`, or `menuitem` is invoked",
 					"type": "CustomEvent<undefined>"
 				},
 				{
@@ -4478,9 +4521,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -5244,9 +5288,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "label",
@@ -5692,9 +5737,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -5924,9 +5970,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -7195,9 +7242,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",
@@ -7414,9 +7462,10 @@
 				},
 				{
 					"name": "helperText",
-					"description": "The helper text for the form element.",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
 					"type": "string",
-					"attributeName": "helper-text"
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "icon",
@@ -7647,6 +7696,13 @@
 					"description": "The error text for the form element.",
 					"type": "string",
 					"attributeName": "error-text"
+				},
+				{
+					"name": "helperText",
+					"description": "Provides additional information to help the user enter the correct information.\nTo add HTML to the helper text, use the helper-text slot instead.",
+					"type": "string",
+					"attributeName": "helper-text",
+					"propertyName": "helperText"
 				},
 				{
 					"name": "initialValue",

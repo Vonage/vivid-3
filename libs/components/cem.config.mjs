@@ -11,6 +11,7 @@ export default {
 		'libs/components/src/shared/foundation/**/*.ts',
 		'libs/components/src/shared/patterns/**/*.ts',
 		'libs/components/src/shared/aria/**/*.ts',
+		'libs/components/src/shared/feedback/**/*.ts',
 		'libs/components/src/shared/picker-field/**/*.ts',
 	],
 	/** Globs to exclude */
