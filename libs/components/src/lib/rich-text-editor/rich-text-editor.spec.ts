@@ -2,7 +2,7 @@ import type { Mock, MockInstance } from 'vitest';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
-	type InlineImageProps,
+	type RichTextEditorInlineImageProps,
 	RichTextEditor,
 	type RichTextEditorSelection,
 } from './rich-text-editor';
@@ -854,7 +854,7 @@ describe('vwc-rich-text-editor', () => {
 				file: {},
 				position: 5,
 				alt: 'alt text',
-			} as InlineImageProps;
+			} as RichTextEditorInlineImageProps;
 			const editorFacadeAddInlineImageSpy = vi
 				.spyOn(EditorFacade.prototype, 'addInlineImage')
 				.mockResolvedValue(undefined);

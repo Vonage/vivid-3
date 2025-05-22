@@ -10,7 +10,7 @@ import { Decoration, DecorationSet, EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type {
-	InlineImageProps,
+	RichTextEditorInlineImageProps,
 	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
 	RichTextEditorSelection,
 	SelectionStyles,
@@ -511,7 +511,7 @@ export class ProseMirrorFacade {
 		file,
 		position,
 		alt,
-	}: InlineImageProps): Promise<void> {
+	}: RichTextEditorInlineImageProps): Promise<void> {
 		this.#verifyViewInitiation();
 
 		const reader = new FileReader();

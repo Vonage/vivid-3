@@ -4,7 +4,10 @@ import { dividerDefinition } from '../components';
 import styles from './rich-text-editor.scss?inline';
 
 import { menuBarDefinition } from './menubar/definition';
-import { RichTextEditor } from './rich-text-editor';
+import {
+	RichTextEditor,
+	type RichTextEditorInlineImageProps,
+} from './rich-text-editor';
 import { RichTextEditorTemplate as template } from './rich-text-editor.template';
 
 export const richTextEditorDefinition = defineVividComponent(
@@ -29,4 +32,4 @@ export const registerRichTextEditor = createRegisterFunction(
 	richTextEditorDefinition
 );
 
-export { RichTextEditor as VwcRichTextEditorElement };
+export { RichTextEditor as VwcRichTextEditorElement, type RichTextEditorInlineImageProps };
