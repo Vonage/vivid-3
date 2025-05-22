@@ -194,6 +194,10 @@ export class RichTextEditor extends VividElement {
 		position?: number;
 		alt?: string;
 	}) {
-		await this.#editor!.addInlineImage(imageProps);
+		try {
+			await this.#editor!.addInlineImage(imageProps);
+		} catch (e: any) {
+			console.warn(e.message);
+		}
 	}
 }

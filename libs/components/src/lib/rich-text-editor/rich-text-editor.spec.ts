@@ -849,6 +849,22 @@ describe('vwc-rich-text-editor', () => {
 	});
 
 	describe('addInlineImage()', () => {
+		it('should gracefully fail if facade fails', async () => {
+			const input = {
+				file: {},
+				position: 5,
+				alt: 'alt text',
+			} as RichTextEditorInlineImageProps;
+
+			vi.spyOn(EditorFacade.prototype, 'addInlineImage').mockRejectedValueOnce({
+				message: 'Error',
+			});
+			const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+			await expect(element.addInlineImage(input)).resolves.toBeUndefined();
+			expect(consoleWarnSpy).toHaveBeenCalledWith('Error');
+		});
+
 		it('should call facade addInlineImage with given parameters', async () => {
 			const input = {
 				file: {},
@@ -857,7 +873,7 @@ describe('vwc-rich-text-editor', () => {
 			} as RichTextEditorInlineImageProps;
 			const editorFacadeAddInlineImageSpy = vi
 				.spyOn(EditorFacade.prototype, 'addInlineImage')
-				.mockResolvedValue(undefined);
+				.mockResolvedValueOnce(undefined);
 			await element.addInlineImage(input);
 
 			expect(editorFacadeAddInlineImageSpy).toHaveBeenCalledWith(input);
