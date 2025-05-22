@@ -1027,7 +1027,9 @@ describe('ProseMirrorFacade', () => {
 
 		it('should throw if view is not initiated', async () => {
 			const image = createImageFile();
-			await expect(facadeInstance.addInlineImage({file: image})).rejects.toThrow(
+			await expect(
+				facadeInstance.addInlineImage({ file: image })
+			).rejects.toThrow(
 				'ProseMirror was not initiated. Please use the `init` method first.'
 			);
 		});
