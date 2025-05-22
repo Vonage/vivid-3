@@ -197,6 +197,7 @@ export class RichTextEditor extends VividElement {
 		try {
 			await this.#editor!.addInlineImage(imageProps);
 		} catch (e: any) {
+			// eslint-disable-next-line no-console
 			console.warn(e.message);
 		}
 	}
