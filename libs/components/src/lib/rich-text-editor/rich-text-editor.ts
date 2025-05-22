@@ -189,7 +189,11 @@ export class RichTextEditor extends VividElement {
 		});
 	}
 
-	async addInlineImage(imageProps: RichTextEditorInlineImageProps) {
+	async addInlineImage(imageProps: {
+		file: File;
+		position?: number;
+		alt?: string;
+	}) {
 		await this.#editor!.addInlineImage(imageProps);
 	}
 }
