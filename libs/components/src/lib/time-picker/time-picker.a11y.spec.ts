@@ -1,4 +1,4 @@
-import { axe, fixture } from '@vivid-nx/shared';
+import { axe, elementUpdated, fixture } from '@vivid-nx/shared';
 import { TimePicker } from './time-picker';
 import '.';
 
@@ -18,6 +18,9 @@ describe('a11y: vwc-time-picker', () => {
 	});
 
 	it('should pass html a11y test', async () => {
+		element.label = 'Label';
+		await elementUpdated(element);
+
 		expect(await axe(element)).toHaveNoViolations();
 	});
 });

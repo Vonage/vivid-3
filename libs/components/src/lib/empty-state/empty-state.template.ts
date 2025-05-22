@@ -4,15 +4,10 @@ import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { EmptyState } from './empty-state';
 
-const getClasses = ({
-	connotation,
-	iconDecoration,
-	slottedActionItems,
-}: EmptyState) =>
+const getClasses = ({ connotation, slottedActionItems }: EmptyState) =>
 	classNames(
 		'base',
 		[`connotation-${connotation}`, Boolean(connotation)],
-		[`icon-decoration-${iconDecoration}`, Boolean(iconDecoration)],
 		['no-actions', slottedActionItems?.length === 0]
 	);
 

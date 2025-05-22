@@ -76,24 +76,6 @@ describe('vwc-time-picker', () => {
 		);
 	});
 
-	describe('errorText', () => {
-		it('should forward errorText to the text field', async () => {
-			element.errorText = 'errorText';
-			await elementUpdated(element);
-
-			expect(textField.errorText).toBe('errorText');
-		});
-
-		it('should have a higher priority than an internal validation error', async () => {
-			element.errorText = 'errorText';
-			await elementUpdated(element);
-
-			typeIntoTextField('x');
-
-			expect(textField.errorText).toBe('errorText');
-		});
-	});
-
 	describe('value', () => {
 		it('should display a formatted version of value in the text field', async () => {
 			element.value = '13:45:00';

@@ -190,6 +190,10 @@ const enUS: Locale = {
 	button: {
 		pendingLabel: 'Loading...',
 	},
+	feedbackMessage: {
+		errorIconText: 'Error:',
+		successIconText: 'Success:',
+	},
 };
 
 export default enUS;

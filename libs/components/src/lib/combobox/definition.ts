@@ -4,6 +4,7 @@ import { listboxOptionDefinition } from '../option/definition';
 import textFieldStyles from '../text-field/text-field.scss?inline';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './combobox.scss?inline';
 import { Combobox } from './combobox';
 import { comboboxTemplate as template } from './combobox.template';
@@ -17,7 +18,12 @@ export const comboboxDefinition = defineVividComponent(
 	'combobox',
 	Combobox,
 	template,
-	[iconDefinition, popupDefinition, listboxOptionDefinition],
+	[
+		iconDefinition,
+		popupDefinition,
+		listboxOptionDefinition,
+		feedbackMessageDefinition,
+	],
 	{
 		styles: [textFieldStyles, styles],
 		shadowOptions: {

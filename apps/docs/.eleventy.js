@@ -121,8 +121,18 @@ module.exports = function (eleventyConfig) {
 	);
 
 	eleventyConfig.addGlobalData(
+		'componentGuidelines',
+		components.filter((c) => c.guidelines)
+	);
+
+	eleventyConfig.addGlobalData(
 		'componentUseCases',
 		components.filter((c) => c.useCases)
+	);
+
+	eleventyConfig.addGlobalData(
+		'componentAccessibility',
+		components.filter((c) => c.accessibility)
 	);
 
 	eleventyConfig.addGlobalData(

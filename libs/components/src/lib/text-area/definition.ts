@@ -1,6 +1,6 @@
-import { iconDefinition } from '../icon/definition';
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { feedbackMessageDefinition } from '../../shared/feedback/feedback-message';
 import styles from './text-area.scss?inline';
 import { TextArea } from './text-area';
 import { TextAreaTemplate as template } from './text-area.template';
@@ -14,7 +14,7 @@ export const textAreaDefinition = defineVividComponent(
 	'text-area',
 	TextArea,
 	template,
-	[iconDefinition],
+	[feedbackMessageDefinition],
 	{
 		styles,
 		shadowOptions: {

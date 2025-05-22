@@ -22,16 +22,16 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
 import type { Appearance, Shape, Size } from '../enums';
 import type { ListboxOption } from '../option/option';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import { Listbox } from '../../shared/foundation/listbox/listbox';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { HostSemantics } from '../../shared/aria/host-semantics';
+import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedSelect } from './select.form-associated';
 
 export type SelectAppearance = ExtractFromEnum<
@@ -54,8 +54,8 @@ export type SelectSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  */
 @errorText
 @formElements
-export class Select extends HostSemantics(
-	AffixIconWithTrailing(FormAssociatedSelect)
+export class Select extends WithLightDOMFeedback(
+	HostSemantics(AffixIconWithTrailing(FormAssociatedSelect))
 ) {
 	/**
 	 * The index of the most recently checked option.
@@ -992,11 +992,6 @@ export class Select extends HostSemantics(
 
 export interface Select
 	extends FormElement,
-		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	Select,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(Select, FormElementSuccessText);

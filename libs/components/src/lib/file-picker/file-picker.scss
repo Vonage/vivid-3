@@ -19,6 +19,15 @@ $low-ink-color: --_low-ink-color;
 	flex-direction: column;
 	block-size: inherit;
 	max-block-size: inherit;
+	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
+}
+
+.control-wrapper {
+	display: flex;
+	flex-direction: column;
+	block-size: inherit;
+	gap: 4px;
+	max-block-size: inherit;
 }
 
 .control {
@@ -126,11 +135,6 @@ $low-ink-color: --_low-ink-color;
 		grid-column: 2 / -1;
 		grid-row: 1 / -1;
 	}
-}
-
-.message {
-	margin-block-start: 4px;
-	#{$low-ink-color}: var(#{constants.$vvd-color-neutral-600});
 }
 
 .preview-list {
