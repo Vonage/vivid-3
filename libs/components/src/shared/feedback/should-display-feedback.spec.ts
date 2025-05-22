@@ -9,12 +9,6 @@ import type { FormAssociated } from '../foundation/form-associated/form-associat
 import type { ElementWithFeedback } from './mixins';
 import type { FeedbackMessage, FeedbackType } from './feedback-message';
 
-export const getIconLabel = (element: Element) => {
-	const icon = deepQuerySelectorAll<FeedbackMessage>(element, `.icon`)[0];
-	if (!icon) return '';
-	return icon.getAttribute('label');
-};
-
 export const getMessage = (element: Element, type: FeedbackType) =>
 	cleanWhitespace(
 		deepQuerySelectorAll<FeedbackMessage>(
@@ -80,9 +74,8 @@ export const itShouldDisplaySuccessTextFeedback = (
 		getElement().successText = 'success text';
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Success:');
-		expect(getMessage(getElement(), 'success')).toBe('success text');
-		expect(resolveAccessibleDescription(getControl())).toBe('success text');
+		expect(getMessage(getElement(), 'success')).toBe('Success: success text');
+		expect(resolveAccessibleDescription(getControl())).toBe('Success: success text');
 	});
 
 	it('should display success text over helper and error text', async () => {
@@ -91,8 +84,7 @@ export const itShouldDisplaySuccessTextFeedback = (
 		getElement().successText = 'success text';
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Success:');
-		expect(getMessage(getElement(), 'success')).toBe('success text');
+		expect(getMessage(getElement(), 'success')).toBe('Success: success text');
 	});
 };
 
@@ -104,9 +96,8 @@ export const itShouldDisplayErrorTextFeedback = (
 		getElement().errorText = 'error text';
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Error:');
-		expect(getMessage(getElement(), 'error')).toBe('error text');
-		expect(resolveAccessibleDescription(getControl())).toBe('error text');
+		expect(getMessage(getElement(), 'error')).toBe('Error: error text');
+		expect(resolveAccessibleDescription(getControl())).toBe('Error: error text');
 	});
 
 	it('should display error text over helper text', async () => {
@@ -114,8 +105,7 @@ export const itShouldDisplayErrorTextFeedback = (
 		getElement().errorText = 'error text';
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Error:');
-		expect(getMessage(getElement(), 'error')).toBe('error text');
+		expect(getMessage(getElement(), 'error')).toBe('Error: error text');
 	});
 };
 
@@ -139,9 +129,8 @@ export const itShouldDisplayValidationErrorFeedback = (
 		setValidationError('validation error');
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Error:');
-		expect(getMessage(getElement(), 'error')).toBe('validation error');
-		expect(resolveAccessibleDescription(getControl())).toBe('validation error');
+		expect(getMessage(getElement(), 'error')).toBe('Error: validation error');
+		expect(resolveAccessibleDescription(getControl())).toBe('Error: validation error');
 	});
 
 	it('should display error text over validation error if both are present', async () => {
