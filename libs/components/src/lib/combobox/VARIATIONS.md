@@ -4,7 +4,8 @@
 
 The `label` attribute provides a short description of the purpose of the Combobox.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
@@ -46,8 +47,10 @@ To add HTML to the helper text, use the [helper-text slot](/components/combobox/
 
 The `placeholder` attribute provides some text to be displayed when no option has been Combobox.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
-	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
+<vwc-note connotation="information"headline="Accessibility Tip">
+<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+
+<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
 ```html preview 270px
@@ -109,9 +112,8 @@ The `error-text` attribute provides a custom error message. Any current error st
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Combobox element.
-
-To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot) provided.
+To add icons, use the `icon` [slot](/components/combobox/code/#icon-slot) provided.\
+The `icon`(_deprecated_) attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Combobox element.
 
 ```html preview 270px
 <vwc-combobox
@@ -126,30 +128,18 @@ To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot)
 		name="flag-united-states"
 		label="United States +1"
 	></vwc-icon>
-	<vwc-option
-		value="1"
-		text="United States"
-		label="+1"
-		icon="flag-united-states"
-	></vwc-option>
-	<vwc-option
-		value="44"
-		text="United Kingdom"
-		label="+44"
-		icon="flag-united-kingdom"
-	></vwc-option>
-	<vwc-option
-		value="49"
-		text="Germany"
-		label="+49"
-		icon="flag-germany"
-	></vwc-option>
-	<vwc-option
-		value="355"
-		text="Albania"
-		label="+355"
-		icon="flag-albania"
-	></vwc-option>
+	<vwc-option value="1" text="United States" label="+1">
+		<vwc-icon name="flag-united-states" slot="icon"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="44" text="United Kingdom" label="+44">
+		<vwc-icon name="flag-united-kingdom" slot="icon"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="49" text="Germany" label="+49">
+		<vwc-icon name="flag-germany" slot="icon"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="355" text="Albania" label="+355">
+		<vwc-icon name="flag-albania" slot="icon"></vwc-icon>
+	</vwc-option>
 </vwc-combobox>
 
 <script>
@@ -199,7 +189,8 @@ Use `condensed` in situations when space is limited, for example, inside a Data 
 </style>
 ```
 
-<vwc-note connotation="information" icon="info-line" headline="Scale instead of Size">
+<vwc-note connotation="information" headline="Scale instead of Size">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	<p>The reason for using <code>scale</code> for form elements and not <code>size</code> (as used in other components such as Button), is that <code>size</code> is a HTML attribute that can be used on <code>input</code> elements (and also Text Field) to control the width of the input.</p>
 </vwc-note>
 

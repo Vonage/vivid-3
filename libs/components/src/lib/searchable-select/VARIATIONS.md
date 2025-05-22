@@ -4,8 +4,9 @@
 
 The `label` attribute provides a short description of the purpose of the Searchable Select.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
-<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
+	<p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
 ```html preview 270px
@@ -38,7 +39,8 @@ To add HTML to the helper text, use the [helper-text slot](/components/searchabl
 
 The `placeholder` attribute provides some text to be displayed when no option has been selected.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
@@ -95,12 +97,11 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Searchable Select element.
-
-To add custom icons, use the `icon` [slot](/components/searchable-select/code/#icon-slot) provided.
+To add icons, use the `icon` [slot](/components/searchable-select/code/#icon-slot) provided or `icon`_(deprecated)_ attribute from the [icon library](/icons/icons-gallery). It prefixes the Searchable Select element.
 
 ```html preview 230px
-<vwc-searchable-select label="Country" icon="globe-line">
+<vwc-searchable-select label="Country">
+	<vwc-icon name="globe-line" slot="icon"></vwc-icon>
 	<vwc-option value="AF" text="Afghanistan"></vwc-option>
 	<vwc-option value="AL" text="Albania"></vwc-option>
 	<vwc-option value="DZ" text="Algeria"></vwc-option>
@@ -149,13 +150,15 @@ The `multiple` attribute allows the user to select more than one option.
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries">
-	<vwc-option
-		icon="flag-afghanistan"
-		value="AF"
-		text="Afghanistan"
-	></vwc-option>
-	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
-	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+	<vwc-option value="AF" text="Afghanistan">
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="AL" text="Albania">
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="DZ" text="Algeria">
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
 </vwc-searchable-select>
 ```
 
@@ -165,48 +168,27 @@ This controls the maximum number of lines of tags to display. When the limit wou
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" max-lines="2">
-	<vwc-option
-		icon="flag-afghanistan"
-		value="afghanistan"
-		text="Afghanistan"
-		selected
-	></vwc-option>
-	<vwc-option
-		icon="flag-albania"
-		value="albania"
-		text="Albania"
-		selected
-	></vwc-option>
-	<vwc-option
-		icon="flag-algeria"
-		value="algeria"
-		text="Algeria"
-		selected
-	></vwc-option>
-	<vwc-option
-		icon="flag-argentina"
-		value="argentina"
-		text="Argentina"
-		selected
-	></vwc-option>
-	<vwc-option
-		icon="flag-armenia"
-		value="armenia"
-		text="Armenia"
-		selected
-	></vwc-option>
-	<vwc-option
-		icon="flag-aruba"
-		value="aruba"
-		text="Aruba"
-		selected
-	></vwc-option>
-	<vwc-option
-		icon="flag-australia"
-		value="australia"
-		text="Australia"
-		selected
-	></vwc-option>
+	<vwc-option value="afghanistan" text="Afghanistan" selected>
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="albania" text="Albania" selected>
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="algeria" text="Algeria" selected>
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="argentina" text="Argentina" selected>
+		<vwc-icon slot="icon" name="flag-argentina"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="armenia" text="Armenia" selected>
+		<vwc-icon slot="icon" name="flag-armenia"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="aruba" text="Aruba" selected>
+		<vwc-icon slot="icon" name="flag-aruba"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="australia" text="Australia" selected>
+		<vwc-icon slot="icon" name="flag-australia"></vwc-icon>
+	</vwc-option>
 </vwc-searchable-select>
 ```
 
@@ -216,25 +198,25 @@ This controls the maximum number of items that user can select. Once the limit i
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" max-selected="3">
-	<vwc-option
-		icon="flag-afghanistan"
-		value="afghanistan"
-		text="Afghanistan"
-	></vwc-option>
-	<vwc-option icon="flag-albania" value="albania" text="Albania"></vwc-option>
-	<vwc-option icon="flag-algeria" value="algeria" text="Algeria"></vwc-option>
-	<vwc-option
-		icon="flag-argentina"
-		value="argentina"
-		text="Argentina"
-	></vwc-option>
-	<vwc-option icon="flag-armenia" value="armenia" text="Armenia"></vwc-option>
-	<vwc-option icon="flag-aruba" value="aruba" text="Aruba"></vwc-option>
-	<vwc-option
-		icon="flag-australia"
-		value="australia"
-		text="Australia"
-	></vwc-option>
+	<vwc-option value="afghanistan" text="Afghanistan">
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="albania" text="Albania">
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="algeria" text="Algeria">
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="argentina" text="Argentina"> </vwc-option>
+	<vwc-option value="armenia" text="Armenia">
+		<vwc-icon slot="icon" name="flag-armenia"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="aruba" text="Aruba">
+		<vwc-icon slot="icon" name="flag-aruba"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="australia" text="Australia">
+		<vwc-icon slot="icon" name="flag-australia"></vwc-icon>
+	</vwc-option>
 </vwc-searchable-select>
 ```
 
@@ -244,13 +226,15 @@ When set, the selected tags will not be displayed inside the component.
 
 ```html preview 230px
 <vwc-searchable-select external-tags multiple label="Countries" clearable>
-	<vwc-option
-		icon="flag-afghanistan"
-		value="AF"
-		text="Afghanistan"
-	></vwc-option>
-	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
-	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+	<vwc-option value="AF" text="Afghanistan">
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="AL" text="Albania">
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="DZ" text="Algeria">
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
 </vwc-searchable-select>
 <vwc-searchable-select external-tags multiple label="Company Type" clearable>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>
@@ -317,13 +301,15 @@ Adds a clear button to the input field, which clears the selected value(s) when 
 
 ```html preview 270px
 <vwc-searchable-select multiple label="Countries" clearable>
-	<vwc-option
-		icon="flag-afghanistan"
-		value="AF"
-		text="Afghanistan"
-	></vwc-option>
-	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
-	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+	<vwc-option value="AF" text="Afghanistan">
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="AL" text="Albania">
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="DZ" text="Algeria">
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
 </vwc-searchable-select>
 ```
 

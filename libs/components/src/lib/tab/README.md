@@ -24,7 +24,7 @@ Add a `label` attribute to add label to the tab.
 
 ### Icon
 
-Use `icon` to set an icon to the tab.
+Use [icon slot](/components/tab/code/#icon-slot) or `icon`_(deprecated)_ attribute to set an icon to the tab.
 View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the tab's context.
@@ -34,7 +34,9 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 
 ```html preview
 <vwc-tabs>
-	<vwc-tab icon="chat-line" aria-label="tab" id="tab"></vwc-tab>
+	<vwc-tab aria-label="tab" id="tab">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-tab>
 	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
@@ -46,11 +48,15 @@ Use `icon-trailing` to place the icon after the label.
 
 ```html preview
 <vwc-tabs>
-	<vwc-tab icon="chat-line" label="Tab" id="tab"></vwc-tab>
+	<vwc-tab label="Tab" id="tab">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-tab>
 	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 <vwc-tabs>
-	<vwc-tab icon-trailing icon="chat-line" label="Tab" id="tab"></vwc-tab>
+	<vwc-tab icon-trailing label="Tab" id="tab">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-tab>
 	<vwc-tab-panel id="tab" slot="tabpanel"></vwc-tab-panel>
 </vwc-tabs>
 ```
@@ -103,7 +109,8 @@ Clicking the close button or pressing the `DELETE` key when focussed on the tab 
 </script>
 ```
 
-<vwc-note connotation="warning" icon="warning-line">
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 	<p>Triggering the <code>close</code> event does not automatically close the tab and tab panel. This needs to be handled in the consuming application as in the example below.</p>
 	<p>The consuming application must also handle whether the user can close all the tabs or not.</p>
 </vwc-note>
@@ -133,7 +140,7 @@ The disabled state of the element.
 ### Icon
 
 Set the `icon` slot to show an icon in the tab.
-If set, the `icon` attribute is ignored.
+If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview
 <vwc-tabs>
