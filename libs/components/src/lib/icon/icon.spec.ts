@@ -177,6 +177,44 @@ describe('icon', function () {
 		});
 	});
 
+	describe('label', function () {
+		it('should default to undefined', async function () {
+			expect(element.label).toEqual(undefined);
+		});
+
+		describe('when label is not set', function () {
+			it('should set aria-hidden to true on the control element when label is undefined', async function () {
+				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(true);
+			});
+
+			it('should set aria-hidden to true on the control element when label is empty', async function () {
+				element.label = ' ';
+				await elementUpdated(element);
+				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(true);
+			});
+
+			it('should render an empty label element', async function () {
+				const labelElement = getControlElement(element).querySelector('.label');
+				expect(labelElement?.textContent).toBe('');
+			});
+		});
+
+		describe('when label is set', function () {
+			it('should set aria-hidden to false on the control element when label is set', async function () {
+				element.label = 'test';
+				await elementUpdated(element);
+				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(false);
+			});
+
+			it('should render the label element containing the label text', async function () {
+				element.label = 'test';
+				await elementUpdated(element);
+				const labelElement = getControlElement(element).querySelector('.label');
+				expect(labelElement?.textContent).toBe('test');
+			});
+		});
+	});
+
 	describe('size', function () {
 		it('should default to no size class', async function () {
 			expect(getControlElement(element).className).not.toContain('size-');

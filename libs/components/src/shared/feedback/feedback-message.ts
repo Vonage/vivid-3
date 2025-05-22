@@ -2,7 +2,6 @@ import { attr, html, ViewTemplate, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import { iconDefinition } from '../../lib/icon/definition';
 import { Icon } from '../../lib/icon/icon';
-import { VisuallyHidden } from '../../lib/visually-hidden/visually-hidden';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import {
 	defineVividComponent,
@@ -29,11 +28,8 @@ function iconTemplate(
 	textI18nKey: keyof FeedbackMessageLocale
 ) {
 	const iconTag = context.tagFor(Icon);
-	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
-
-	return html`<${iconTag} class="icon" name="${icon}" aria-hidden="true"></${iconTag}><${visuallyHiddenTag}>${(
-		x
-	) => x.locale.feedbackMessage[textI18nKey]}</${visuallyHiddenTag}>`;
+	
+	return html`<${iconTag} class="icon" name="${icon}" label="${(x) => x.locale.feedbackMessage[textI18nKey]}"></${iconTag}>`;
 }
 
 function iconForType(

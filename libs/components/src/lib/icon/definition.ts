@@ -1,5 +1,6 @@
 import { createRegisterFunction } from '../../shared/design-system/createRegisterFunction';
 import { defineVividComponent } from '../../shared/design-system/defineVividComponent';
+import { visuallyHiddenDefinition } from '../visually-hidden/definition';
 import styles from './icon.scss?inline';
 import { Icon } from './icon';
 import { iconTemplate as template } from './icon.template';
@@ -9,7 +10,7 @@ export type { IconConnotation } from './icon';
 /**
  * @internal
  */
-export const iconDefinition = defineVividComponent('icon', Icon, template, [], {
+export const iconDefinition = defineVividComponent('icon', Icon, template, [visuallyHiddenDefinition], {
 	styles,
 });
 

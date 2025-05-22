@@ -22,7 +22,7 @@ registerIcon('your-prefix');
 	registerIcon('your-prefix');
 </script>
 
-<your-prefix-icon name="close-line" aria-hidden="true"></your-prefix-icon>
+<your-prefix-icon name="close-line"></your-prefix-icon>
 ```
 
 </vwc-tab-panel>
@@ -34,19 +34,35 @@ registerIcon('your-prefix');
 	import { VIcon } from '@vonage/vivid-vue';
 </script>
 <template>
-	<VIcon name="close-line" aria-hidden="true" />
+	<VIcon name="close-line" />
 </template>
 ```
 
 </vwc-tab-panel>
 </vwc-tabs>
 
+## Label
+
+Use the `label` attribute to provide the Icon with a descriptive label so that it's meaning can be conveyed to screen reader users. 
+
+See the [Accessibility section](/components/icon/accessibility/) for more information.
+
+<vwc-note icon="accessibility-line" connotation="information" headline="Accessibility note">
+
+The `label` attribute was added as an alternative to using the `aria-label` attribute. It is preferable because using `aria-label` on non-interactive elements (like Icon) idoes not work consistantly across screen readers.
+
+</vwc-note>
+
+```html preview
+<vwc-icon label="Close dialog" name="close-line" class="small-icon"></vwc-icon>
+```
+
 ## Custom Size
 
 If the component is used without a `size`, it will use the current `font-size` value.
 
 ```html preview
-<vwc-icon name="close-line" class="small-icon" aria-hidden="true"></vwc-icon>
+<vwc-icon name="close-line" class="small-icon"></vwc-icon>
 30px
 
 <style>

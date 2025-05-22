@@ -124,7 +124,7 @@ To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot)
 		slot="icon"
 		id="icon"
 		name="flag-united-states"
-		aria-label="United States +1"
+		label="United States +1"
 	></vwc-icon>
 	<vwc-option
 		value="1"
