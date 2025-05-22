@@ -157,7 +157,7 @@ To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot)
 	const icon = document.getElementById('icon');
 	combobox?.addEventListener('change', (e) => {
 		icon.name = combobox.selectedOptions[0].icon;
-		icon.ariaLabel =
+		icon.label =
 			combobox.selectedOptions[0].text +
 			' ' +
 			combobox.selectedOptions[0].value;
