@@ -35,7 +35,7 @@ Use the `shape` attribute to change the tag's edges.
 
 ### Icon
 
-Use `icon` to set an icon to the tag.
+Use `icon` slot or`icon`_(deprecated)_ attribute to set an icon to the tag.
 View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 - Type: `string`
@@ -43,7 +43,9 @@ View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 ```html preview
 <vwc-tag-group>
-	<vwc-tag label="icon" icon="pin-line"></vwc-tag>
+	<vwc-tag label="icon">
+		<vwc-icon slot="icon" name="pin-line"></vwc-icon>
+	</vwc-tag>
 </vwc-tag-group>
 ```
 

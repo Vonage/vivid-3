@@ -31,9 +31,9 @@
 <vwc-split-button
 	id="splitButton"
 	appearance="filled"
-	icon="compose-line"
 	aria-label="Write a new message"
 >
+	<vwc-icon slot="icon" name="compose-line"></vwc-icon>
 	<vwc-tooltip id="tooltip" text="Write a new message"></vwc-tooltip>
 </vwc-split-button>
 

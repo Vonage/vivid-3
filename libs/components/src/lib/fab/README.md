@@ -22,7 +22,9 @@ registerFab('your-prefix');
 	registerFab('your-prefix');
 </script>
 
-<your-prefix-fab aria-label="More Actions" icon="plus-line"></your-prefix-fab>
+<your-prefix-fab aria-label="More Actions">
+	<your-prefix-icon slot="icon" name="plus-line"></your-prefix-icon>
+</your-prefix-fab>
 ```
 
 </vwc-tab-panel>
@@ -45,7 +47,7 @@ registerFab('your-prefix');
 
 ### Icon Slot
 
-Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
+Use the `icon` slot to customise icons. If set, the icon _(deprecated)_ attribute is ignored.
 
 ```html preview
 <vwc-fab icon="thumbs-up-line" size="normal" label="ask-vivid">
@@ -184,6 +186,9 @@ Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 		</svg>
 	</vwc-icon>
 </vwc-fab>
+<vwc-fab size="normal" label="like">
+	<vwc-icon slot="icon" name="thumbs-up-line"></vwc-icon>
+</vwc-fab>
 ```
 
 ## API Reference
@@ -192,14 +197,14 @@ Use the `icon` slot to customise icons. If set, the icon attribute is ignored.
 
 <div class="table-wrapper">
 
-| Name              | Type                                                       | Description                                                                                                                                |
-| ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **icon**          | _Enum_:<br/>`[icon-name]`                                  | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **icon-trailing** | `boolean`                                                  | Indicates the icon affix alignment.                                                                                                        |
-| **disabled**      | `boolean`                                                  | Sets the element's disabled state. A disabled element will not be included during form submission.                                         |
-| **connotation**   | Enum:`undefined` (default), `accent`, `cta`, `announcment` | The connotation the Fab should have.                                                                                                       |
-| **size**          | Enum: `condensed`, `normal` (default), `expanded`          | The size the Fab should have.                                                                                                              |
-| **label**         | `string`                                                   | Indicates the Fab's label.                                                                                                                 |
+| Name                                   | Type                                                       | Description                                                                                                                                |
+| -------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`                                  | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **icon-trailing**                      | `boolean`                                                  | Indicates the icon affix alignment.                                                                                                        |
+| **disabled**                           | `boolean`                                                  | Sets the element's disabled state. A disabled element will not be included during form submission.                                         |
+| **connotation**                        | Enum:`undefined` (default), `accent`, `cta`, `announcment` | The connotation the Fab should have.                                                                                                       |
+| **size**                               | Enum: `condensed`, `normal` (default), `expanded`          | The size the Fab should have.                                                                                                              |
+| **label**                              | `string`                                                   | Indicates the Fab's label.                                                                                                                 |
 
 </div>
 
