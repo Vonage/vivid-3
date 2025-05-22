@@ -32,4 +32,7 @@ export const registerRichTextEditor = createRegisterFunction(
 	richTextEditorDefinition
 );
 
-export { RichTextEditor as VwcRichTextEditorElement, type RichTextEditorInlineImageProps };
+export {
+	RichTextEditor as VwcRichTextEditorElement,
+	type RichTextEditorInlineImageProps,
+};
