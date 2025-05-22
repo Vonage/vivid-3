@@ -52,7 +52,7 @@ export type ButtonSize = ExtractFromEnum<
 /**
  * @public
  * @component button
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Button extends AffixIconWithTrailing(
 	Localized(VividFoundationButton)

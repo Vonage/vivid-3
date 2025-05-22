@@ -37,7 +37,7 @@ export type AlertStrategy = 'fixed' | 'static';
  * @component alert
  * @slot main - The main content of the Alert.
  * @slot action-items - Add action items to the Alert using this slot.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} open - Fired when the Alert is opened
  * @event {CustomEvent<undefined>} close - Fired when the Alert is closed
  */
@@ -96,7 +96,7 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 
 	/**
 	 * Sets an appropriate icon / icon color for the connotation.
-	 *
+	 * @deprecated Use the icon slot instead. This attribute will be removed in a future version.
 	 * @public
 	 */
 	@attr connotation?: AlertConnotation;
