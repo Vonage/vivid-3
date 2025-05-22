@@ -2,8 +2,8 @@ import type { Mock, MockInstance } from 'vitest';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
-	RichTextEditor,
 	type InlineImageProps,
+	RichTextEditor,
 	type RichTextEditorSelection,
 } from './rich-text-editor';
 import '.';
