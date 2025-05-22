@@ -14,7 +14,7 @@ The Menu Item can be given extra context using the `text-secondary` attribute.
 
 <vwc-note connotation="information" icon="info-line">
 
-	To improve readability, **avoid long text and multiple lines** where possible.
+    To improve readability, **avoid long text and multiple lines** where possible.
 
 </vwc-note>
 
@@ -56,14 +56,8 @@ The default value is `menuitem`. See the [API Reference](/component/menu/code/#m
 	<vwc-menu-item role="menuitem" text="menuitem 1"></vwc-menu-item>
 	<vwc-menu-item role="menuitem" text="menuitem 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		role="checkbox"
-		text="menuitemcheckbox 1"
-	></vwc-menu-item>
-	<vwc-menu-item
-		role="checkbox"
-		text="menuitemcheckbox 2"
-	></vwc-menu-item>
+	<vwc-menu-item role="checkbox" text="menuitemcheckbox 1"></vwc-menu-item>
+	<vwc-menu-item role="checkbox" text="menuitemcheckbox 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<vwc-menu-item role="radio" text="menuitemradio 1"></vwc-menu-item>
 	<vwc-menu-item role="radio" text="menuitemradio 2"></vwc-menu-item>
@@ -111,11 +105,7 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 		text="Checkbox 3"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
-	<vwc-menu-item
-		role="radio"
-		text="Radio 1"
-		check-trailing
-	></vwc-menu-item>
+	<vwc-menu-item role="radio" text="Radio 1" check-trailing></vwc-menu-item>
 	<vwc-menu-item role="radio" text="Radio 2" check-trailing></vwc-menu-item>
 	<vwc-menu-item icon="image-line" role="radio" text="Radio 3"></vwc-menu-item>
 </vwc-menu>
