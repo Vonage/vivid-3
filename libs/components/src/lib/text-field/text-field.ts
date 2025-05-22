@@ -11,7 +11,6 @@ import {
 	type ErrorText,
 	errorText,
 	type FormElement,
-	FormElementCharCount,
 	formElements,
 	FormElementSuccessText,
 } from '../../shared/patterns';
@@ -20,6 +19,7 @@ import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
+import { WithCharCount } from '../../shared/char-count';
 import { FormAssociatedTextField } from './text-field.form-associated';
 
 export type TextFieldAppearance = ExtractFromEnum<
@@ -133,7 +133,7 @@ const installSafariWorkaroundStyleIfNeeded = (
 @errorText
 @formElements
 export class TextField extends WithLightDOMFeedback(
-	AffixIcon(DelegatesAria(FormAssociatedTextField))
+	AffixIcon(WithCharCount(DelegatesAria(FormAssociatedTextField)))
 ) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -227,14 +227,6 @@ export class TextField extends WithLightDOMFeedback(
 	}
 
 	/**
-	 * The maximum number of characters a user can enter.
-	 * @public
-	 * @remarks
-	 * HTMLAttribute: maxlength
-	 */
-	@attr({ converter: nullableNumberConverter })
-	maxlength!: number;
-	/**
 	 * @internal
 	 */
 	maxlengthChanged(): void {
@@ -320,6 +312,9 @@ export class TextField extends WithLightDOMFeedback(
 	override valueChanged(previous: string, next: string) {
 		super.valueChanged(previous, next);
 		this._updateControlValueIfNeeded();
+		if (this.charCount && this.maxlength) {
+			this._updateCharCountRemaining();
+		}
 	}
 
 	/**
@@ -422,6 +417,10 @@ export class TextField extends WithLightDOMFeedback(
 
 		this._updateControlValueIfNeeded();
 		installSafariWorkaroundStyleIfNeeded(this);
+
+		if (this.charCount && this.maxlength) {
+			this._renderCharCountRemaining();
+		}
 	}
 
 	override focus() {
@@ -441,6 +440,5 @@ export class TextField extends WithLightDOMFeedback(
 export interface TextField
 	extends ErrorText,
 		FormElement,
-		FormElementCharCount,
 		FormElementSuccessText {}
-applyMixins(TextField, FormElementCharCount, FormElementSuccessText);
+applyMixins(TextField, FormElementSuccessText);

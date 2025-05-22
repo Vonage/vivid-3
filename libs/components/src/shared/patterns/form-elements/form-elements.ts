@@ -11,24 +11,12 @@ export interface FormElementSuccessText {
 	successText?: string;
 }
 
-export interface FormElementCharCount {
-	charCount: boolean;
-}
-
 export interface ErrorText {
 	errorText: string;
 }
 
 export class FormElementSuccessText {
 	@attr({ attribute: 'success-text' }) successText?: string;
-}
-
-export class FormElementCharCount {
-	@attr({
-		attribute: 'char-count',
-		mode: 'boolean',
-	})
-	charCount = false;
 }
 
 export function formElements<

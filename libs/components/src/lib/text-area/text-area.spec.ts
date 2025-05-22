@@ -37,11 +37,16 @@ describe('vwc-text-area', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TextArea;
+		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+	});
+
+	afterEach(function () {
+		vi.useRealTimers();
 	});
 
 	describe('basic', () => {
 		it('should be initialized as a vwc-text-area', async () => {
-			expect(element.charCount).toBe(undefined);
+			expect(element.charCount).toBe(false);
 			expect(element.cols).toBe(20);
 			expect(element.dirtyValue).toBe(false);
 			expect(element.disabled).toBe(false);
@@ -106,11 +111,30 @@ describe('vwc-text-area', () => {
 		it('should render count with 0 if value is not set', async function () {
 			element.charCount = true;
 			element.maxlength = 20;
-			const expectedString = '0 / 20';
+
 			await elementUpdated(element);
+
+			const expectedString = '0 / 20';
+			const expectedDescription = 'You can enter up to 20 characters';
+			const expectedMessage = 'You have 20 characters remaining';
+
 			expect(
-				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+				element.shadowRoot
+					?.querySelector('.char-count>span:first-of-type')
+					?.textContent?.trim()
 			).toEqual(expectedString);
+			expect(
+				element.shadowRoot
+					?.querySelector('.char-count #char-count-description')
+					?.textContent?.trim()
+			).toEqual(expectedDescription);
+			setTimeout(() => {
+				expect(
+					element.shadowRoot
+						?.querySelector('.char-count #char-count-remaining')
+						?.textContent?.trim()
+				).toEqual(expectedMessage);
+			}, 1000);
 		});
 
 		it('should render count according to value and max', async function () {
@@ -118,10 +142,21 @@ describe('vwc-text-area', () => {
 			element.maxlength = 20;
 			element.value = '12345';
 			const expectedString = '5 / 20';
+			const expectedMessage = 'You have 15 characters remaining';
 			await elementUpdated(element);
+
 			expect(
-				element.shadowRoot?.querySelector('.char-count')?.textContent?.trim()
+				element.shadowRoot
+					?.querySelector('.char-count>span')
+					?.textContent?.trim()
 			).toEqual(expectedString);
+			setTimeout(() => {
+				expect(
+					element.shadowRoot
+						?.querySelector('.char-count #char-count-remaining')
+						?.textContent?.trim()
+				).toEqual(expectedMessage);
+			}, 1000);
 		});
 	});
 

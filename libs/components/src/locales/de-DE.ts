@@ -196,6 +196,12 @@ const deDE: Locale = {
 		errorIconText: 'Fehler:',
 		successIconText: 'Erfolg:',
 	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`Sie können bis zu ${limit} Zeichen eingeben`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`Du hast noch ${total} Zeichen übrig`,
+	},
 };
 
 export default deDE;
