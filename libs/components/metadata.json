@@ -4038,7 +4038,7 @@
 				{
 					"name": "role",
 					"description": "The role of the element.",
-					"type": "'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'presentation'",
+					"type": "'menuitem' | 'menuitemcheckbox' | 'checkbox' | 'menuitemradio' | 'radio' | 'presentation'",
 					"attributeName": "role",
 					"propertyName": "role"
 				},
@@ -4065,7 +4065,7 @@
 				},
 				{
 					"name": "change",
-					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked",
+					"description": "Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `checkbox`, `menuitemradio`, `radio`, or `menuitem` is invoked",
 					"type": "CustomEvent<undefined>"
 				},
 				{
