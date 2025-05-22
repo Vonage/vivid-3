@@ -850,7 +850,11 @@ describe('vwc-rich-text-editor', () => {
 
 	describe('addInlineImage()', () => {
 		it('should call facade addInlineImage with given parameters', async () => {
-			const input = { file: {}, position: 5, alt: 'alt text' } as InlineImageProps;
+			const input = {
+				file: {},
+				position: 5,
+				alt: 'alt text',
+			} as InlineImageProps;
 			const editorFacadeAddInlineImageSpy = vi
 				.spyOn(EditorFacade.prototype, 'addInlineImage')
 				.mockResolvedValue(undefined);
