@@ -5654,6 +5654,16 @@
 			],
 			"vueModels": [],
 			"methods": [
+				{
+					"name": "addInlineImage",
+					"args": [
+						{
+							"name": "imageProps",
+							"type": "{\n\t\tfile: File;\n\t\tposition?: number;\n\t\talt?: string;\n\t}"
+						}
+					],
+					"returnType": "unknown"
+				},
 				{ "name": "focus", "args": [], "returnType": "unknown" },
 				{ "name": "placeholderChanged", "args": [], "returnType": "unknown" },
 				{

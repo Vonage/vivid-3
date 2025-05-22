@@ -19,6 +19,12 @@ export interface RichTextEditorSelection {
 	end?: number;
 }
 
+export interface RichTextEditorInlineImageProps {
+	file: File;
+	position?: number;
+	alt?: string;
+}
+
 export const RichTextEditorTextBlocks = {
 	title: 'h2',
 	subtitle: 'h3',
@@ -181,5 +187,18 @@ export class RichTextEditor extends VividElement {
 				this.#editorWrapperElement.getBoundingClientRect().height +
 				additionalPixels;
 		});
+	}
+
+	async addInlineImage(imageProps: {
+		file: File;
+		position?: number;
+		alt?: string;
+	}) {
+		try {
+			await this.#editor!.addInlineImage(imageProps);
+		} catch (e: any) {
+			// eslint-disable-next-line no-console
+			console.warn(e.message);
+		}
 	}
 }
