@@ -14,7 +14,7 @@ export type NoteConnotation =
  * @public
  * @component note
  * @slot - Any slotted content will appear below the headline.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class Note extends AffixIcon(VividElement) {
 	/**
