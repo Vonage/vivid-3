@@ -43,7 +43,7 @@ registerIcon('your-prefix');
 
 ## Label
 
-Use the `label` attribute to provide the Icon with a descriptive label so that it's meaning can be conveyed to screen reader users. 
+Use the `label` attribute to provide the Icon with a descriptive label so that it's meaning can be conveyed to screen reader users.
 
 See the [Accessibility section](/components/icon/accessibility/) for more information.
 

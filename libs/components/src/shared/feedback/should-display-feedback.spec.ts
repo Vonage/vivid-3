@@ -10,15 +10,13 @@ import type { ElementWithFeedback } from './mixins';
 import type { FeedbackMessage, FeedbackType } from './feedback-message';
 
 export const getIconLabel = (element: Element) => {
-	const icon = deepQuerySelectorAll<FeedbackMessage>(
-		element,
-		`.icon`
-	)[0];
+	const icon = deepQuerySelectorAll<FeedbackMessage>(element, `.icon`)[0];
 	if (!icon) return '';
 	return icon.getAttribute('label');
 };
 
-export const getMessage = (element: Element, type: FeedbackType) => cleanWhitespace(
+export const getMessage = (element: Element, type: FeedbackType) =>
+	cleanWhitespace(
 		deepQuerySelectorAll<FeedbackMessage>(
 			element,
 			`vwc-feedback-message[type="${type}"]`
@@ -84,9 +82,7 @@ export const itShouldDisplaySuccessTextFeedback = (
 
 		expect(getIconLabel(getElement())).toBe('Success:');
 		expect(getMessage(getElement(), 'success')).toBe('success text');
-		expect(resolveAccessibleDescription(getControl())).toBe(
-			'success text'
-		);
+		expect(resolveAccessibleDescription(getControl())).toBe('success text');
 	});
 
 	it('should display success text over helper and error text', async () => {
@@ -95,7 +91,7 @@ export const itShouldDisplaySuccessTextFeedback = (
 		getElement().successText = 'success text';
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Success:');	
+		expect(getIconLabel(getElement())).toBe('Success:');
 		expect(getMessage(getElement(), 'success')).toBe('success text');
 	});
 };
@@ -110,9 +106,7 @@ export const itShouldDisplayErrorTextFeedback = (
 
 		expect(getIconLabel(getElement())).toBe('Error:');
 		expect(getMessage(getElement(), 'error')).toBe('error text');
-		expect(resolveAccessibleDescription(getControl())).toBe(
-			'error text'
-		);
+		expect(resolveAccessibleDescription(getControl())).toBe('error text');
 	});
 
 	it('should display error text over helper text', async () => {
@@ -120,7 +114,7 @@ export const itShouldDisplayErrorTextFeedback = (
 		getElement().errorText = 'error text';
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Error:');	
+		expect(getIconLabel(getElement())).toBe('Error:');
 		expect(getMessage(getElement(), 'error')).toBe('error text');
 	});
 };
@@ -145,11 +139,9 @@ export const itShouldDisplayValidationErrorFeedback = (
 		setValidationError('validation error');
 		await elementUpdated(getElement());
 
-		expect(getIconLabel(getElement())).toBe('Error:');	
+		expect(getIconLabel(getElement())).toBe('Error:');
 		expect(getMessage(getElement(), 'error')).toBe('validation error');
-		expect(resolveAccessibleDescription(getControl())).toBe(
-			'validation error'
-		);
+		expect(resolveAccessibleDescription(getControl())).toBe('validation error');
 	});
 
 	it('should display error text over validation error if both are present', async () => {

@@ -8,8 +8,7 @@ You must set the `label` attribute on informative icons to provide an accessible
 
 ```html preview
 <div class="number">
-	<vwc-icon name="telephone-line" label="Telephone:"></vwc-icon> 0123 456
-	7890
+	<vwc-icon name="telephone-line" label="Telephone:"></vwc-icon> 0123 456 7890
 </div>
 <div class="number">
 	<vwc-icon name="fax-line" label="Fax:"></vwc-icon> 0123 456 7890
@@ -30,10 +29,7 @@ You must set the `label` attribute on informative icons to provide an accessible
 There is no need to provide the Icon with a `label` as the icon's meaning is already described by the visible text. When `label` is not provided, the `aria-hidden` is set to `true` automatically, so there is no need for you to set it.
 
 ```html preview
-<p>
-	<vwc-icon name="flag-united-states"></vwc-icon> United
-	States
-</p>
+<p><vwc-icon name="flag-united-states"></vwc-icon> United States</p>
 ```
 
 ## Best Practices

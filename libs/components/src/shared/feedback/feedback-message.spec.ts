@@ -15,7 +15,8 @@ describe('vwc-feedback-message', () => {
 	const getIcon = () =>
 		element.shadowRoot!.querySelector('.icon') as Icon | null;
 
-	const getMessageText = () =>[getMessage(), ...getMessage().querySelector('slot')!.assignedNodes()]
+	const getMessageText = () =>
+		[getMessage(), ...getMessage().querySelector('slot')!.assignedNodes()]
 			.map((n) => n.textContent!.trim())
 			.join(' ')
 			.trim();
@@ -70,7 +71,7 @@ describe('vwc-feedback-message', () => {
 			expect(getMessage().classList).toContain('error-message');
 			expect(getIcon()!.name).toBe('info-line');
 			expect(getIcon()!.label).toBe('Error:');
-			
+
 			expect(getMessageText()).toBe(`Some message`);
 		});
 

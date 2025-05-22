@@ -28,8 +28,9 @@ function iconTemplate(
 	textI18nKey: keyof FeedbackMessageLocale
 ) {
 	const iconTag = context.tagFor(Icon);
-	
-	return html`<${iconTag} class="icon" name="${icon}" label="${(x) => x.locale.feedbackMessage[textI18nKey]}"></${iconTag}>`;
+
+	return html`<${iconTag} class="icon" name="${icon}" label="${(x) =>
+		x.locale.feedbackMessage[textI18nKey]}"></${iconTag}>`;
 }
 
 function iconForType(

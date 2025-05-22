@@ -1,7 +1,7 @@
 import { html, when } from '@microsoft/fast-element';
 import { classNames } from '@microsoft/fast-web-utilities';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
-import  { VisuallyHidden } from '../visually-hidden/visually-hidden';
+import { VisuallyHidden } from '../visually-hidden/visually-hidden';
 import type { Icon } from './icon';
 
 const getClasses = ({ connotation, size }: Icon) =>
@@ -11,11 +11,12 @@ const getClasses = ({ connotation, size }: Icon) =>
 		[`size-${size}`, typeof size === 'number']
 	);
 
-export const iconTemplate  = (context: VividElementDefinitionContext) => {
+export const iconTemplate = (context: VividElementDefinitionContext) => {
 	const visuallyHiddenTag = context.tagFor(VisuallyHidden);
 	const isDecorative = (x: Icon) => !x.label || x.label.trim().length === 0;
 	return html<Icon>`
-		<figure class="${getClasses}" ?aria-hidden="${(x) => isDecorative(x)}" ?aria-busy="${(x) => !x.iconLoaded}">
+		<figure class="${getClasses}" ?aria-hidden="${(x) =>
+		isDecorative(x)}" ?aria-busy="${(x) => !x.iconLoaded}">
 			<slot>
 				${when(
 					(x) => !x.iconLoaded,
@@ -29,4 +30,4 @@ export const iconTemplate  = (context: VividElementDefinitionContext) => {
 			<${visuallyHiddenTag} class="label">${(x) => x.label}</${visuallyHiddenTag}>
 		</figure>
 	`;
-}
+};

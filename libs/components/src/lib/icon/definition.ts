@@ -10,9 +10,15 @@ export type { IconConnotation } from './icon';
 /**
  * @internal
  */
-export const iconDefinition = defineVividComponent('icon', Icon, template, [visuallyHiddenDefinition], {
-	styles,
-});
+export const iconDefinition = defineVividComponent(
+	'icon',
+	Icon,
+	template,
+	[visuallyHiddenDefinition],
+	{
+		styles,
+	}
+);
 
 /**
  * Registers the icon component & its prerequisite components with the design system.

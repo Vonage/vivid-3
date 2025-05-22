@@ -184,13 +184,17 @@ describe('icon', function () {
 
 		describe('when label is not set', function () {
 			it('should set aria-hidden to true on the control element when label is undefined', async function () {
-				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(true);
+				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(
+					true
+				);
 			});
 
 			it('should set aria-hidden to true on the control element when label is empty', async function () {
 				element.label = ' ';
 				await elementUpdated(element);
-				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(true);
+				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(
+					true
+				);
 			});
 
 			it('should render an empty label element', async function () {
@@ -203,7 +207,9 @@ describe('icon', function () {
 			it('should set aria-hidden to false on the control element when label is set', async function () {
 				element.label = 'test';
 				await elementUpdated(element);
-				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(false);
+				expect(getControlElement(element).hasAttribute('aria-hidden')).toBe(
+					false
+				);
 			});
 
 			it('should render the label element containing the label text', async function () {
