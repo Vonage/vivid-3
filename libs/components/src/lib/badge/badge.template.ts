@@ -8,6 +8,7 @@ import type { VividElementDefinitionContext } from '../../shared/design-system/d
 import type { Badge } from './badge';
 
 const getClasses = ({
+	iconSlottedContent,
 	connotation,
 	appearance,
 	shape,
@@ -23,7 +24,10 @@ const getClasses = ({
 		[`shape-${shape}`, Boolean(shape)],
 		[`size-${size}`, Boolean(size)],
 		['icon-trailing', iconTrailing],
-		['icon-only', !text && Boolean(icon)]
+		[
+			'icon-only',
+			!text && (Boolean(icon) || Boolean(iconSlottedContent?.length)),
+		]
 	);
 
 export const badgeTemplate = (context: VividElementDefinitionContext) => {
