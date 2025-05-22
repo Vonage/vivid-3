@@ -75,7 +75,9 @@ export const itShouldDisplaySuccessTextFeedback = (
 		await elementUpdated(getElement());
 
 		expect(getMessage(getElement(), 'success')).toBe('Success: success text');
-		expect(resolveAccessibleDescription(getControl())).toBe('Success: success text');
+		expect(resolveAccessibleDescription(getControl())).toBe(
+			'Success: success text'
+		);
 	});
 
 	it('should display success text over helper and error text', async () => {
@@ -97,7 +99,9 @@ export const itShouldDisplayErrorTextFeedback = (
 		await elementUpdated(getElement());
 
 		expect(getMessage(getElement(), 'error')).toBe('Error: error text');
-		expect(resolveAccessibleDescription(getControl())).toBe('Error: error text');
+		expect(resolveAccessibleDescription(getControl())).toBe(
+			'Error: error text'
+		);
 	});
 
 	it('should display error text over helper text', async () => {
@@ -130,7 +134,9 @@ export const itShouldDisplayValidationErrorFeedback = (
 		await elementUpdated(getElement());
 
 		expect(getMessage(getElement(), 'error')).toBe('Error: validation error');
-		expect(resolveAccessibleDescription(getControl())).toBe('Error: validation error');
+		expect(resolveAccessibleDescription(getControl())).toBe(
+			'Error: validation error'
+		);
 	});
 
 	it('should display error text over validation error if both are present', async () => {
