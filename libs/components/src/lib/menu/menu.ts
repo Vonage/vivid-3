@@ -11,7 +11,7 @@ import { Anchored } from '../../shared/patterns/anchored';
 import { MenuItem } from '../menu-item/menu-item';
 import type { Popup } from '../popup/popup';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
-import { MenuItemRole, roleForMenuItem } from '../menu-item/menu-item-role';
+import { MenuItemRole } from '../menu-item/menu-item-role';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 
 /**
@@ -54,7 +54,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 	private focusIndex = -1;
 
 	private static focusableElementRoles: { [key: string]: string } =
-		roleForMenuItem;
+		MenuItemRole;
 
 	/**
 	 * @internal
@@ -396,7 +396,9 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 
 		const clickedOnNonCheckboxMenuItem =
 			e.target instanceof HTMLElement &&
-			(e.target.role === 'menuitem' || e.target.role === 'menuitemradio');
+			(e.target.role === MenuItemRole.menuitem ||
+				e.target.role === MenuItemRole.menuitemradio ||
+				e.target.role === MenuItemRole.radio);
 
 		if (this.#triggerBehaviour === 'auto' && clickedOnNonCheckboxMenuItem) {
 			this.open = false;
@@ -410,12 +412,19 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 			return;
 		}
 
-		if (changedMenuItem.role === 'menuitemradio' && changedMenuItem.checked) {
+		if (
+			(changedMenuItem.role === MenuItemRole.menuitemradio ||
+				changedMenuItem.role === MenuItemRole.radio) &&
+			changedMenuItem.checked
+		) {
 			// Uncheck all other radio boxes
 			for (let i = changeItemIndex - 1; i >= 0; --i) {
 				const item = domChildren[i];
 				const role: string | null = item.getAttribute('role');
-				if (role === MenuItemRole.menuitemradio) {
+				if (
+					role === MenuItemRole.menuitemradio ||
+					role === MenuItemRole.radio
+				) {
 					(item as MenuItem).checked = false;
 				}
 				if (role === 'separator') {
@@ -426,7 +435,10 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 			for (let i = changeItemIndex + 1; i <= maxIndex; ++i) {
 				const item = domChildren[i];
 				const role = item.getAttribute('role');
-				if (role === MenuItemRole.menuitemradio) {
+				if (
+					role === MenuItemRole.menuitemradio ||
+					role === MenuItemRole.radio
+				) {
 					(item as MenuItem).checked = false;
 				}
 				if (role === 'separator') {

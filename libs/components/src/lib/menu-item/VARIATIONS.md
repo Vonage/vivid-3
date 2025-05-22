@@ -41,6 +41,13 @@ View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 ## Role
 
+<vwc-note connotation="warning" icon="warning-line">
+
+    Even though `menuitemradio` and `menuitemcheckbox` roles are valid roles documented in WAI-ARIA 1.2, they are not read properly by the screen readers.
+    Therefore it is recommended to use `checkbox` role instead of `menuitemcheckbox` and `radio` role instead of `menuitemradio` role.
+
+</vwc-note>
+
 The `role` attribute sets the role.
 The default value is `menuitem`. See the [API Reference](/component/menu/code/#menu-item) for all possibile values.
 
@@ -59,7 +66,7 @@ The default value is `menuitem`. See the [API Reference](/component/menu/code/#m
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<vwc-menu-item role="menuitemradio" text="menuitemradio 1"></vwc-menu-item>
-	<vwc-menu-item role="menuitemradio" text="menuitemradio 2"></vwc-menu-item>
+	<vwc-menu-item role="radio" text="menuitemradio 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
 	<a
 		role="menuitem"
@@ -94,13 +101,13 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 		check-trailing
 	></vwc-menu-item>
 	<vwc-menu-item
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 2"
 		check-trailing
 	></vwc-menu-item>
 	<vwc-menu-item
 		icon="image-line"
-		role="menuitemcheckbox"
+		role="checkbox"
 		text="Checkbox 3"
 	></vwc-menu-item>
 	<vwc-divider></vwc-divider>
@@ -109,16 +116,8 @@ If the `icon` attribute is present, the indicator will be trailing by default.
 		text="Radio 1"
 		check-trailing
 	></vwc-menu-item>
-	<vwc-menu-item
-		role="menuitemradio"
-		text="Radio 2"
-		check-trailing
-	></vwc-menu-item>
-	<vwc-menu-item
-		icon="image-line"
-		role="menuitemradio"
-		text="Radio 3"
-	></vwc-menu-item>
+	<vwc-menu-item role="radio" text="Radio 2" check-trailing></vwc-menu-item>
+	<vwc-menu-item icon="image-line" role="radio" text="Radio 3"></vwc-menu-item>
 </vwc-menu>
 ```
 
