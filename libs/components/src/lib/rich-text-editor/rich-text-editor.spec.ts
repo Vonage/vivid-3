@@ -121,6 +121,31 @@ describe('vwc-rich-text-editor', () => {
 
 			expect(editor.classList.contains('drag-over')).toBe(false);
 		});
+
+		it('should leave drag-over class when user drag-leaves to a child element', async () => {
+			const editor = getEditorElement();
+
+			const dragEnterEvent = new Event('dragenter', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const dragLeaveEvent = new Event('dragleave', {
+				bubbles: true,
+				cancelable: true,
+			});
+
+			const child = editor.children[0];
+			Object.defineProperty(dragLeaveEvent, 'relatedTarget', {
+				value: child,
+			});
+
+			editor.dispatchEvent(dragEnterEvent);
+			editor.dispatchEvent(dragLeaveEvent);
+			await elementUpdated(element);
+
+			expect(editor.classList.contains('drag-over')).toBe(true);
+		});
 	});
 
 	describe('value', () => {

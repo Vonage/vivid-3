@@ -84,16 +84,21 @@ function handleFileDrop(x: RichTextEditor, { event }: { event: DragEvent }) {
 	x.dispatchEvent(
 		new CustomEvent('file-drop', { detail: event.dataTransfer!.files })
 	);
-	handleDragEnter(x, { event });
+	handleDragLeave(x, { event });
 }
 
 function handleDragEnter(_: RichTextEditor, { event }: { event: DragEvent }) {
 	const editorWrapperElement = event.currentTarget as HTMLElement;
 
-	editorWrapperElement.classList.toggle(
-		'drag-over',
-		event.type === 'dragenter'
-	);
+	editorWrapperElement.classList.toggle('drag-over', true);
+}
+
+function handleDragLeave(_: RichTextEditor, { event }: { event: DragEvent }) {
+	const editorWrapperElement = event.currentTarget as HTMLElement;
+
+	if (!editorWrapperElement.contains(event.relatedTarget as Node)) {
+		editorWrapperElement.classList.remove('drag-over');
+	}
 }
 /**
  * The template for the RichTextEditor component.
@@ -112,7 +117,7 @@ export const RichTextEditorTemplate: (
 		     class="editor" 
 			 @drop="${handleFileDrop}"
 			 @dragenter="${handleDragEnter}"
-			 @dragleave="${handleDragEnter}"
+			 @dragleave="${handleDragLeave}"
 			 >
 			 <div class="drag-overlay">
 				Drag&Drop files here
