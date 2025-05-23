@@ -77,66 +77,8 @@ Set the `connotation` attribute to change the Empty State's connotation.
 </style>
 ```
 
-## Icon-decoration
+<vwc-note connotation="warning" icon="warning-line" headline="Deprecated Prop: icon-decoration">
 
-Use the `icon-decoration` attribute to change the design of the icon circle from `filled` (default) to `outlined`.
+The `icon-decoration` prop is deprecated (as of 05/25). The `outlined` appearance has replaced the `filled` as the default and only variant. Using `icon-decoration` will not cause any errors but will not have any effect on the display of the compopnent. `icon-decoration` will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
 
-```html preview 300px
-<div class="wrapper">
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="search-line"
-		headline="Accent connotation"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="check-solid"
-		headline="Success connotation"
-		connotation="success"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="error-solid"
-		headline="Alert connotation"
-		connotation="alert"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="sparkles-solid"
-		headline="Cta connotation"
-		connotation="cta"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="envelope-solid"
-		headline="Information connotation"
-		connotation="information"
-	>
-		No results
-	</vwc-empty-state>
-	<vwc-empty-state
-		icon-decoration="outlined"
-		icon="warning-solid"
-		headline="Warning connotation"
-		connotation="warning"
-	>
-		No results
-	</vwc-empty-state>
-</div>
-<style>
-	.wrapper {
-		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		gap: 8px;
-		align-items: flex-start;
-	}
-</style>
-```
+</vwc-note>

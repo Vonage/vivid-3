@@ -1,4 +1,5 @@
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
+import { DOM } from '@microsoft/fast-element';
 import { TextField } from '../text-field/text-field';
 import { Button } from '../button/button';
 import { DialPad } from './dial-pad';
@@ -9,22 +10,41 @@ const COMPONENT_TAG = 'vwc-dial-pad';
 describe('vwc-dial-pad', () => {
 	let element: DialPad;
 
-	function getTextField() {
-		return getBaseElement(element).querySelector('.phone-field') as TextField;
+	function getTextField(component: HTMLElement) {
+		return getBaseElement(component).querySelector('.phone-field') as TextField;
 	}
 
-	function getCallButton() {
-		return getBaseElement(element).querySelector('.call-btn') as Button;
+	function getInput(component: HTMLElement) {
+		return getTextField(component).querySelector(
+			'input[slot=_control]'
+		) as HTMLInputElement;
 	}
 
-	function getDigitButtons() {
+	function getCallButton(component: HTMLElement) {
+		return getBaseElement(component).querySelector('.call-btn') as Button;
+	}
+
+	function getDigitButtons(component: HTMLElement) {
 		const digits: HTMLDivElement | null =
-			getBaseElement(element).querySelector('.digits');
+			getBaseElement(component).querySelector('.digits');
 		return digits!.querySelectorAll('vwc-button');
 	}
 
-	function getDeleteButton() {
-		return getTextField().querySelector('vwc-button')!;
+	function getDeleteButton(component: HTMLElement) {
+		return getTextField(component).querySelector('vwc-button')!;
+	}
+
+	async function setValue(value: string) {
+		element.value = value;
+		await DOM.nextUpdate();
+	}
+
+	function getActiveElement(root: ShadowRoot | Document = document) {
+		const activeEl = root.activeElement;
+		if (activeEl && activeEl.shadowRoot) {
+			return getActiveElement(activeEl.shadowRoot);
+		}
+		return activeEl;
 	}
 
 	beforeEach(async () => {
@@ -42,6 +62,7 @@ describe('vwc-dial-pad', () => {
 			expect(element.pending).toBeFalsy();
 			expect(element.callActive).toBeFalsy();
 			expect(element.noCall).toBeFalsy();
+			expect(element.autofocus).toBeFalsy();
 			expect(element.callButtonLabel).toBeNull();
 			expect(element.endCallButtonLabel).toBeNull();
 		});
@@ -56,35 +77,35 @@ describe('vwc-dial-pad', () => {
 
 	describe('text-field', function () {
 		it('should set text field in dial pad', async function () {
-			expect(getTextField()).not.toBeNull();
+			expect(getTextField(element)).not.toBeNull();
 		});
 
 		it('should set value in text field when has value attribute', async function () {
 			const value = '123';
 			await setValue(value);
-			expect(getTextField().value).toEqual(value);
+			expect(getTextField(element).value).toEqual(value);
 		});
 
 		it('should set helperText in text field when has helper-text attribute', async function () {
 			const helperText = '123';
 			element.helperText = helperText;
-			await elementUpdated(element);
-			expect(getTextField().helperText).toEqual(helperText);
+			await DOM.nextUpdate();
+			expect(getTextField(element).helperText).toEqual(helperText);
 		});
 
 		it('should set placeholder in text field when has placeholder attribute', async function () {
 			const placeholder = '123';
 			element.placeholder = placeholder;
-			await elementUpdated(element);
-			expect(getTextField().placeholder).toEqual(placeholder);
+			await DOM.nextUpdate();
+			expect(getTextField(element).placeholder).toEqual(placeholder);
 		});
 
 		it('should activate number buttons when input event is fired a number for 200ms', async function () {
-			const digitButton = getDigitButtons()[3];
+			const digitButton = getDigitButtons(element)[3];
 			const activeStateBeforeTyping = digitButton.active;
 			vi.useFakeTimers();
 
-			getTextField().dispatchEvent(
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: digitButton.value })
 			);
 			const activeStateAfterTyping = digitButton.active;
@@ -98,11 +119,11 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should activate * buttons when input event is fired a * for 200ms', async function () {
-			const digitButton = getDigitButtons()[9];
+			const digitButton = getDigitButtons(element)[9];
 			const activeStateBeforeTyping = digitButton.active;
 			vi.useFakeTimers();
 
-			getTextField().dispatchEvent(
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: digitButton.value })
 			);
 			const activeStateAfterTyping = digitButton.active;
@@ -116,11 +137,11 @@ describe('vwc-dial-pad', () => {
 		});
 
 		it('should activate # buttons when input event is fired a # for 200ms', async function () {
-			const digitButton = getDigitButtons()[11];
+			const digitButton = getDigitButtons(element)[11];
 			const activeStateBeforeTyping = digitButton.active;
 			vi.useFakeTimers();
 
-			getTextField().dispatchEvent(
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: digitButton.value })
 			);
 			const activeStateAfterTyping = digitButton.active;
@@ -135,12 +156,16 @@ describe('vwc-dial-pad', () => {
 
 		it('should ignore input with unsupported keys', async function () {
 			function areAllDigitButtonsFalse() {
-				return Array.from(getDigitButtons()).every((b) => b.active === false);
+				return Array.from(getDigitButtons(element)).every(
+					(b) => b.active === false
+				);
 			}
 
 			const allDigitButtonsFlaseBefore = areAllDigitButtonsFalse();
 
-			getTextField().dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+			getTextField(element).dispatchEvent(
+				new KeyboardEvent('keydown', { key: 'a' })
+			);
 			elementUpdated(element);
 
 			expect(allDigitButtonsFlaseBefore).toBe(true);
@@ -148,20 +173,15 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
-	async function setValue(value: string) {
-		element.value = value;
-		await elementUpdated(element);
-	}
-
 	describe('delete', function () {
 		async function clickDeleteButton() {
-			getDeleteButton().click();
-			await elementUpdated(element);
+			getDeleteButton(element).click();
+			await DOM.nextUpdate();
 		}
 
 		it('should show delete button when text field has value', async function () {
 			await setValue('123');
-			expect(getDeleteButton()).not.toBeNull();
+			expect(getDeleteButton(element)).not.toBeNull();
 		});
 
 		it('should remove last character from text field when clicked on delete button', async function () {
@@ -169,7 +189,7 @@ describe('vwc-dial-pad', () => {
 
 			await clickDeleteButton();
 
-			expect(getTextField().value).toEqual('12');
+			expect(getTextField(element).value).toEqual('12');
 		});
 
 		it('should emit a change event', async () => {
@@ -215,8 +235,8 @@ describe('vwc-dial-pad', () => {
 		it('should fire dial event when clicked on call button', async function () {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
-			await elementUpdated(element);
-			getCallButton().click();
+			await DOM.nextUpdate();
+			getCallButton(element).click();
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
@@ -224,8 +244,8 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.pending = true;
-			await elementUpdated(element);
-			getTextField().dispatchEvent(
+			await DOM.nextUpdate();
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
@@ -235,8 +255,8 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.disabled = true;
-			await elementUpdated(element);
-			getTextField().dispatchEvent(
+			await DOM.nextUpdate();
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
@@ -246,8 +266,8 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.callActive = true;
-			await elementUpdated(element);
-			getTextField().dispatchEvent(
+			await DOM.nextUpdate();
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
@@ -257,8 +277,8 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			element.noCall = true;
-			await elementUpdated(element);
-			getTextField().dispatchEvent(
+			await DOM.nextUpdate();
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
@@ -267,8 +287,8 @@ describe('vwc-dial-pad', () => {
 		it('should not fire dial event when enter is pressed on text field and value is empty', async function () {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
-			await elementUpdated(element);
-			getTextField().dispatchEvent(
+			await DOM.nextUpdate();
+			getTextField(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
@@ -278,7 +298,7 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			await setValue('123');
-			const input: HTMLInputElement = getTextField().querySelector(
+			const input: HTMLInputElement = getTextField(element).querySelector(
 				'input'
 			) as HTMLInputElement;
 			input.dispatchEvent(
@@ -295,7 +315,7 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('dial', spy);
 			await setValue('123');
-			getCallButton().click();
+			getCallButton(element).click();
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 
@@ -303,7 +323,7 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			await setValue('123');
 			element.addEventListener('dial', spy);
-			getDeleteButton().dispatchEvent(
+			getDeleteButton(element).dispatchEvent(
 				new KeyboardEvent('keydown', { key: 'Enter' })
 			);
 			expect(spy).toHaveBeenCalledTimes(0);
@@ -313,15 +333,15 @@ describe('vwc-dial-pad', () => {
 			const spy = vi.fn();
 			element.addEventListener('end-call', spy);
 			element.callActive = true;
-			await elementUpdated(element);
-			getCallButton().click();
+			await DOM.nextUpdate();
+			getCallButton(element).click();
 			expect(spy).toHaveBeenCalledTimes(1);
 		});
 	});
 
 	describe('events', () => {
 		function dispatchEvent(eventType: string) {
-			getTextField().dispatchEvent(
+			getTextField(element).dispatchEvent(
 				new InputEvent(eventType, { bubbles: true, composed: true })
 			);
 		}
@@ -333,7 +353,7 @@ describe('vwc-dial-pad', () => {
 
 				element.value = '123';
 				dispatchEvent(eventName);
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
@@ -343,11 +363,11 @@ describe('vwc-dial-pad', () => {
 			it('should fire when user clicks the dial pad buttons', async () => {
 				const spy = vi.fn();
 				element.addEventListener(eventName, spy);
-				getDigitButtons().forEach((button) => {
+				getDigitButtons(element).forEach((button) => {
 					button.click();
 				});
 
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 				expect(spy).toHaveBeenCalledTimes(12);
 			});
 		}
@@ -358,9 +378,9 @@ describe('vwc-dial-pad', () => {
 				element.addEventListener(eventName, spy);
 
 				element.value = '123';
-				getTextField().value = '55';
+				getTextField(element).value = '55';
 				dispatchEvent(eventName);
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(element.value).toBe('55');
 			});
@@ -370,8 +390,8 @@ describe('vwc-dial-pad', () => {
 			it('should fire keypad-click event when a keypad button is clicked', async function () {
 				const spy = vi.fn();
 				element.addEventListener('keypad-click', spy);
-				await elementUpdated(element);
-				getDigitButtons().forEach((button) => {
+				await DOM.nextUpdate();
+				getDigitButtons(element).forEach((button) => {
 					button.click();
 				});
 				expect(spy).toHaveBeenCalledTimes(12);
@@ -380,8 +400,8 @@ describe('vwc-dial-pad', () => {
 			it('should fire keypad-click event with the button which was clicked', async function () {
 				const spy = vi.fn();
 				element.addEventListener('keypad-click', spy);
-				await elementUpdated(element);
-				getDigitButtons().forEach((button) => {
+				await DOM.nextUpdate();
+				getDigitButtons(element).forEach((button) => {
 					button.click();
 					expect(spy).toHaveBeenCalledWith(
 						expect.objectContaining({ detail: button })
@@ -390,23 +410,23 @@ describe('vwc-dial-pad', () => {
 			});
 
 			it('should set value in text field when clicked on keypad', async function () {
-				await elementUpdated(element);
-				getDigitButtons().forEach((button) => {
+				await DOM.nextUpdate();
+				getDigitButtons(element).forEach((button) => {
 					button.click();
 				});
-				await elementUpdated(element);
-				expect(getTextField().value).toEqual('123456789*0#');
+				await DOM.nextUpdate();
+				expect(getTextField(element).value).toEqual('123456789*0#');
 			});
 
 			it('should prevent focus and blur events on subsequent keypad buttons', async () => {
 				const spy = vi.fn();
 				element.addEventListener('focus', spy);
 				element.addEventListener('blur', spy);
-				getDigitButtons().forEach((button) => {
+				getDigitButtons(element).forEach((button) => {
 					button.focus();
 					button.blur();
 				});
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 				expect(spy).toHaveBeenCalledTimes(1);
 			});
 		});
@@ -419,7 +439,7 @@ describe('vwc-dial-pad', () => {
 
 				element.value = '123';
 				dispatchEvent(eventName);
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(spy).toHaveBeenCalledTimes(0);
 			});
@@ -433,7 +453,7 @@ describe('vwc-dial-pad', () => {
 
 				element.value = '123';
 				dispatchEvent(eventName);
-				await elementUpdated(element);
+				await DOM.nextUpdate();
 
 				expect(spy).toHaveBeenCalledTimes(0);
 			});
@@ -454,23 +474,69 @@ describe('vwc-dial-pad', () => {
 		});
 	});
 
+	describe('Methods', () => {
+		describe('focus', function () {
+			it('should set the focus on the text field', async function () {
+				element.focus();
+				await DOM.nextUpdate();
+
+				const activeElement = getActiveElement();
+
+				expect(activeElement).toEqual(getInput(element));
+			});
+
+			it('should prevent calling focus when disabled', async function () {
+				element = (await fixture(
+					`<${COMPONENT_TAG} disabled></${COMPONENT_TAG}>`
+				)) as DialPad;
+
+				const inputTextFocusSpy = vi.fn();
+				element.addEventListener('focus', inputTextFocusSpy);
+
+				element.focus();
+				await DOM.nextUpdate();
+
+				expect(inputTextFocusSpy).not.toHaveBeenCalled();
+			});
+
+			describe("with 'no-input' attribute", function () {
+				it('should set the focus on the first digit button', async function () {
+					element = (await fixture(
+						`<${COMPONENT_TAG} no-input></${COMPONENT_TAG}>`
+					)) as DialPad;
+
+					element.focus();
+					await DOM.nextUpdate();
+
+					const activeElement = getActiveElement();
+
+					const digitBtns = getDigitButtons(element);
+					const firstDigitBtnEl =
+						digitBtns[0]?.shadowRoot?.querySelector('button');
+
+					expect(activeElement).toEqual(firstDigitBtnEl);
+				});
+			});
+		});
+	});
+
 	describe('disabled', function () {
 		it('should set text field disabled when has disabled attribute', async function () {
 			element.disabled = true;
-			await elementUpdated(element);
-			expect(getTextField().disabled).toEqual(true);
+			await DOM.nextUpdate();
+			expect(getTextField(element).disabled).toEqual(true);
 		});
 
 		it('should set call button disabled when has disabled attribute', async function () {
 			element.disabled = true;
-			await elementUpdated(element);
-			expect(getCallButton().disabled).toEqual(true);
+			await DOM.nextUpdate();
+			expect(getCallButton(element).disabled).toEqual(true);
 		});
 
 		it('should set digit buttons disabled when has disabled attribute', async function () {
 			element.disabled = true;
-			await elementUpdated(element);
-			getDigitButtons().forEach((button) => {
+			await DOM.nextUpdate();
+			getDigitButtons(element).forEach((button) => {
 				expect(button.disabled).toEqual(true);
 			});
 		});
@@ -478,53 +544,53 @@ describe('vwc-dial-pad', () => {
 		it('should set delete button disabled when has disabled attribute', async function () {
 			element.disabled = true;
 			await setValue('123');
-			expect(getDeleteButton().disabled).toEqual(true);
+			expect(getDeleteButton(element).disabled).toEqual(true);
 		});
 	});
 
 	describe('active', function () {
 		it('should change call button connotation to "alert" when active', async function () {
 			element.callActive = true;
-			expect(getCallButton().connotation).toEqual('cta');
-			await elementUpdated(element);
-			expect(getCallButton().connotation).toEqual('alert');
+			expect(getCallButton(element).connotation).toEqual('cta');
+			await DOM.nextUpdate();
+			expect(getCallButton(element).connotation).toEqual('alert');
 		});
 
 		it('should change call buttons label when active', async function () {
 			element.callActive = true;
-			expect(getCallButton().label).toEqual('Call');
-			await elementUpdated(element);
-			expect(getCallButton().label).toEqual('End call');
+			expect(getCallButton(element).label).toEqual('Call');
+			await DOM.nextUpdate();
+			expect(getCallButton(element).label).toEqual('End call');
 		});
 
 		it('should set the delete button to be disabled', async function () {
 			element.callActive = true;
 			await setValue('123');
-			expect(getDeleteButton().disabled).toBe(true);
+			expect(getDeleteButton(element).disabled).toBe(true);
 		});
 	});
 
 	describe('noCall', function () {
 		it('should remove call button when has no-call attribute', async function () {
 			element.noCall = true;
-			await elementUpdated(element);
-			expect(getCallButton()).toBeNull();
+			await DOM.nextUpdate();
+			expect(getCallButton(element)).toBeNull();
 		});
 	});
 
 	describe('noInput', function () {
 		it('should remove text field when has no-input attribute', async function () {
 			element.noInput = true;
-			await elementUpdated(element);
-			expect(getTextField()).toBeNull();
+			await DOM.nextUpdate();
+			expect(getTextField(element)).toBeNull();
 		});
 	});
 
 	describe('pending', function () {
 		it('should set call button pending when has pending attribute', async function () {
 			element.pending = true;
-			await elementUpdated(element);
-			expect(getCallButton().pending).toEqual(true);
+			await DOM.nextUpdate();
+			expect(getCallButton(element).pending).toEqual(true);
 		});
 	});
 
@@ -532,16 +598,86 @@ describe('vwc-dial-pad', () => {
 		it('should set call button label when has call-button-label attribute', async function () {
 			const label = '123';
 			element.callButtonLabel = label;
-			await elementUpdated(element);
-			expect(getCallButton().label).toEqual(label);
+			await DOM.nextUpdate();
+			expect(getCallButton(element).label).toEqual(label);
 		});
 
 		it('should set call button label when has end-call-button-label attribute', async function () {
 			const label = '123';
 			element.callActive = true;
 			element.endCallButtonLabel = label;
-			await elementUpdated(element);
-			expect(getCallButton().label).toEqual(label);
+			await DOM.nextUpdate();
+			expect(getCallButton(element).label).toEqual(label);
+		});
+	});
+
+	describe('autofocus', function () {
+		it('should set autofocus on the input element', async function () {
+			const textField = getTextField(element);
+			const inputEl = getInput(element);
+
+			expect(textField.hasAttribute('autofocus')).toEqual(false);
+			expect(inputEl.hasAttribute('autofocus')).toEqual(false);
+
+			element.autofocus = true;
+			await DOM.nextUpdate();
+
+			expect(textField.hasAttribute('autofocus')).toEqual(true);
+			expect(inputEl.hasAttribute('autofocus')).toEqual(true);
+		});
+
+		it('should focus the input element when connected', async () => {
+			element = (await fixture(
+				`<${COMPONENT_TAG} autofocus></${COMPONENT_TAG}>`
+			)) as DialPad;
+			await DOM.nextUpdate();
+
+			const activeElement = getActiveElement();
+
+			expect(activeElement).toEqual(getInput(element));
+		});
+
+		describe("dial-pad has 'no-input' attribute", function () {
+			it('should set autofocus on the first digit button', async function () {
+				const digitBtns = getDigitButtons(element);
+
+				element.setAttribute('no-input', '');
+				await DOM.nextUpdate();
+
+				expect(getTextField(element)).toBeNull();
+				expect(
+					Array.from(digitBtns).every((btn) => btn.autofocus === undefined)
+				).toEqual(true);
+
+				element.setAttribute('autofocus', '');
+				await DOM.nextUpdate();
+
+				expect(digitBtns[0].autofocus).toEqual(true);
+				expect(
+					digitBtns[0]?.shadowRoot?.querySelector('button')?.autofocus
+				).toEqual(true);
+				expect(
+					Array.from(digitBtns)
+						.slice(1)
+						.every((btn) => btn.autofocus === undefined)
+				).toEqual(true);
+			});
+
+			it('should focus the first digit button element when connected', async () => {
+				element = (await fixture(
+					`<${COMPONENT_TAG} autofocus no-input></${COMPONENT_TAG}>`
+				)) as DialPad;
+				await DOM.nextUpdate();
+
+				const digitBtns = getDigitButtons(element);
+
+				const firstDigitBtnEl =
+					digitBtns[0]?.shadowRoot?.querySelector('button');
+				await DOM.nextUpdate();
+				const activeElement = getActiveElement();
+
+				expect(activeElement).toEqual(firstDigitBtnEl);
+			});
 		});
 	});
 });

@@ -8,7 +8,7 @@
 		transform: rotate(0);
 		transition: transform 0.2s;
 
-		:host([aria-expanded='true']) &,
+		:host([data-expanded='true']) &,
 		:host([open]) & {
 			transform: rotate(180deg);
 		}
