@@ -27,17 +27,17 @@ By default, the secondard action is given a locallized `aria-label` of "Show mor
 
 ### Default Action Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/) for the default action.
-
-Custom icons can be provided using the [icon slot](/components/button/code/#icon-slot).
+Icons can be provided using the [icon slot](/components/button/code/#icon-slot) or
+the `icon`_(deprecated)_ attribute([icon library](/icons/icons-gallery/)) to display an icon for the default action.
 
 ```html preview
 <vwc-split-button
-	icon="compose-line"
 	appearance="filled"
 	aria-label="Send Message"
 	indicator-aria-label="More actions"
-></vwc-split-button>
+>
+	<vwc-icon slot="icon" name="compose-line"></vwc-icon>
+</vwc-split-button>
 ```
 
 ### Split Indicator Icon

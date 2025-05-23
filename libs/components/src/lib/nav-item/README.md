@@ -38,7 +38,7 @@ Use `href` to set the URL that the nav item links to.
 
 ### Icon
 
-Use `icon` to set an icon to the nav item.
+Use `icon` slot or `icon`_(deprecated)_ attribute to set an icon to the nav item.
 View list of available icon at the [vivid icons gallery](/icons/icons-gallery/).
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the nav item's purpose.
@@ -48,8 +48,12 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item href="#" icon="profile" text="Account"></vwc-nav-item>
-	<vwc-nav-item href="#" icon="profile" aria-label="Account"></vwc-nav-item>
+	<vwc-nav-item href="#" icon="profile" text="Account">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
+	<vwc-nav-item href="#" icon="profile" aria-label="Account">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -75,19 +79,18 @@ Set the `appearance` attribute to change the nav-item's appearance.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item
-		appearance="ghost-light"
-		href="#"
-		icon="profile"
-		text="Account"
-	></vwc-nav-item>
+	<vwc-nav-item appearance="ghost-light" href="#" icon="profile" text="Account">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
 	<vwc-nav-item
 		appearance="ghost-light"
 		href="#"
 		aria-current="page"
 		icon="gear-line"
 		text="Settings"
-	></vwc-nav-item>
+	>
+		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
+	</vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -106,7 +109,9 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		href="#"
 		icon="profile"
 		text="Account"
-	></vwc-nav-item>
+	>
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
+	</vwc-nav-item>
 	<vwc-nav-item
 		appearance="ghost-light"
 		connotation="cta"
@@ -114,7 +119,9 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		aria-current="page"
 		icon="gear-line"
 		text="Settings"
-	></vwc-nav-item>
+	>
+		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
+	</vwc-nav-item>
 </vwc-nav>
 ```
 
@@ -141,7 +148,7 @@ Use the `meta` slot to add additional content to the nav item.
 ### Icon
 
 Set the `icon` slot to show an icon before the nav-item's text.
-If set, the `icon` attribute is ignored.
+If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview
 <vwc-nav>

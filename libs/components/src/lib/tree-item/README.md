@@ -22,7 +22,7 @@ Read more about [vwc-tree-view](/components/tree-view/).
 
 ### Icon
 
-Use `icon` to set an icon to the tree item.
+Use [icon slot](/components/tree-item/#icon-1) or `icon`_(deprecated)_ attribute to set an icon to the tree item.
 Check out the [vivid icons gallery](/icons/icons-gallery/) for a list of available icons.
 
 Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `title` must be provided to ensure that the user can understand the tree item's purpose.
@@ -32,7 +32,9 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 
 ```html preview
 <vwc-tree-view>
-	<vwc-tree-item text="Tree Item" icon="chat-line"></vwc-tree-item>
+	<vwc-tree-item text="Tree Item">
+		<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+	</vwc-tree-item>
 </vwc-tree-view>
 ```
 

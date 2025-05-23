@@ -29,7 +29,7 @@ export type TextAnchorAppearance = ExtractFromEnum<
 
 /**
  * @component text-anchor
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  */
 export class TextAnchor extends AffixIcon(DelegatesAria(VividElement)) {
 	/**

@@ -4,19 +4,12 @@ Buttons may be toggled. Change icon and label to indicate the state of the butto
 
 ```html preview center 72px
 <div class="container">
-	<vwc-button
-		id="mute"
-		icon="mic-mute-solid"
-		appearance="filled"
-		label="Unmute"
-		aria-pressed="true"
-	></vwc-button>
-	<vwc-button
-		id="favorite"
-		icon="star-line"
-		appearance="filled"
-		label="Favorite"
-	></vwc-button>
+	<vwc-button id="mute" appearance="filled" label="Unmute" aria-pressed="true">
+		<vwc-icon slot="icon" name="mic-mute-solid"></vwc-icon>
+	</vwc-button>
+	<vwc-button id="favorite" appearance="filled" label="Favorite">
+		<vwc-icon slot="icon" name="star-line"></vwc-icon>
+	</vwc-button>
 </div>
 
 <script>
@@ -55,7 +48,8 @@ Buttons may be toggled. Change icon and label to indicate the state of the butto
 </style>
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 
 Use the `aria-pressed` attribute to indicate the state of the button to assistive technologies.
 
@@ -89,7 +83,8 @@ A button's width can be easily customised by attaching styles to the button comp
 </style>
 ```
 
-<vwc-note connotation="warning" icon="warning-line" headline="Use custom width buttons with caution">
+<vwc-note connotation="warning" headline="Use custom width buttons with caution">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
 When there is not enough space for the `label` text, the content will be truncated as in the example above.
 
@@ -110,38 +105,30 @@ Toolbars can be created using ghost buttons contained inside an [action-group](/
 
 	<vwc-action-group role="region" aria-label="Text formatting">
 		<vwc-tooltip text="Bold" placement="bottom-start">
-			<vwc-button
-				icon="bold-solid"
-				onclick="onClick(event)"
-				slot="anchor"
-				size="condensed"
-			></vwc-button>
+			<vwc-button onclick="onClick(event)" slot="anchor" size="condensed">
+				<vwc-icon slot="icon" name="bold-solid"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Italic">
 			<vwc-button
 				aria-pressed="true"
 				slot="anchor"
-				icon="italic-solid"
 				size="condensed"
 				appearance="filled"
 				onclick="onClick(event)"
-			></vwc-button>
+			>
+				<vwc-icon slot="icon" name="italic-solid"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Underline">
-			<vwc-button
-				icon="underline-solid"
-				onclick="onClick(event)"
-				size="condensed"
-				slot="anchor"
-			></vwc-button>
+			<vwc-button onclick="onClick(event)" size="condensed" slot="anchor">
+				<vwc-icon slot="icon" name="underline-solid"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 		<vwc-tooltip text="Strikethrough" placement="bottom-end">
-			<vwc-button
-				icon="strikethrough-solid"
-				size="condensed"
-				onclick="onClick(event)"
-				slot="anchor"
-			></vwc-button>
+			<vwc-button size="condensed" onclick="onClick(event)" slot="anchor">
+				<vwc-icon slot="icon" name="strikethrough-solid"></vwc-icon>
+			</vwc-button>
 		</vwc-tooltip>
 	</vwc-action-group>
 </div>

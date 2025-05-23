@@ -18,7 +18,7 @@ export type AccordionItemSize = ExtractFromEnum<
  * @public
  * @component accordion-item
  * @slot - Default slot.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the button is invoked
  */
 export class AccordionItem extends AffixIconWithTrailing(VividElement) {

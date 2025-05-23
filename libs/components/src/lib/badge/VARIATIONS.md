@@ -132,40 +132,32 @@ The `size` attribute controls the size of the badge.
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
+Custom icons can be provided using the [icon slot](/components/badge/code/#icon-slot). It can be displayed on the leading (default) or trailing side (`icon-trailing`) of the badge.
 
-Custom icons can be provided using the [icon slot](/components/badge/code/#icon-slot).
+The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/),
 
 ```html preview
-<vwc-badge
-	icon="message-sent-line"
-	appearance="filled"
-	text="icon leading (default)"
-	shape="pill"
-></vwc-badge>
-<vwc-badge
-	icon-trailing
-	icon="message-sent-line"
-	appearance="filled"
-	text="icon trailing"
-	shape="pill"
-></vwc-badge>
+<vwc-badge appearance="filled" text="icon leading (default)" shape="pill">
+	<vwc-icon slot="icon" name="message-sent-line"></vwc-icon>
+</vwc-badge>
+<vwc-badge icon-trailing appearance="filled" text="icon trailing" shape="pill">
+	<vwc-icon slot="icon" name="message-sent-line"></vwc-icon>
+</vwc-badge>
 ```
 
 ### Icon Only
 
 If the `label` is omitted, the badge will be displayed as an _icon-only_ badge.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
 When an element has no visible text, provide an accessible name using the <nobr><code>aria-label</code></nobr>attribute. This ensures screen reader users can understand the element’s purpose, even when it's represented only by an icon or visual styling.
 
 </vwc-note>
 
 ```html preview
-<vwc-badge
-	icon="check-line"
-	aria-label="checked"
-	appearance="filled"
-></vwc-badge>
+<vwc-badge aria-label="checked" appearance="filled">
+	<vwc-icon slot="icon" name="check-line"></vwc-icon>
+</vwc-badge>
 ```

@@ -49,11 +49,12 @@ You can toggle the nav-disclosure by using the `open` attribute.
 - Default: `''`
 
 Nav disclosure label can be prefixed by a decorative icon.
-Use the `icon` attribute to add an icon.
+Use the `icon` slot or the `icon`_(deprecated)_ attribute to add an icon.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-disclosure label="1st level item" icon="profile">
+	<vwc-nav-disclosure label="1st level item">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
 	<vwc-nav></vwc-nav>
@@ -66,7 +67,8 @@ If label is not applied.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-disclosure icon="profile">
+	<vwc-nav-disclosure>
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item href="#" text="2nd level item"></vwc-nav-item>
 	</vwc-nav-disclosure>
 	<vwc-nav></vwc-nav>
@@ -83,7 +85,8 @@ Only when the navigation disclosure is closed the `aria-current` will be set.
 
 ```html preview 150px
 <vwc-nav>
-	<vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
+	<vwc-nav-disclosure label="1st level item" aria-current="true">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item
 			href="#"
 			text="2nd level item"
@@ -105,9 +108,9 @@ Set the `appearance` attribute to change the nav disclosure's appearance.
 	<vwc-nav-disclosure
 		appearance="ghost-light"
 		label="1st level item"
-		icon="profile"
 		aria-current="true"
 	>
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item
 			appearance="ghost-light"
 			href="#"
@@ -131,9 +134,9 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 		appearance="ghost-light"
 		connotation="cta"
 		label="1st level item"
-		icon="profile"
 		aria-current="true"
 	>
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item
 			appearance="ghost-light"
 			connotation="cta"
@@ -160,7 +163,7 @@ Set the `connotation` attribute to change the nav disclosure's connotation.
 ### Icon
 
 Set the `icon` slot to show an icon before the nav-disclosure's label.
-If set, the `icon` attribute is ignored.
+If set, the `icon`_(deprecated)_ attribute is ignored.
 
 ```html preview
 <vwc-nav>
@@ -182,7 +185,8 @@ Use the `meta` slot to add additional content to the nav-disclosure.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-disclosure label="1st level item" icon="profile">
+	<vwc-nav-disclosure label="1st level item">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-badge
 			slot="meta"
 			text="beta"

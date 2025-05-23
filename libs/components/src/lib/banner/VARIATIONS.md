@@ -35,21 +35,21 @@ The `connotation` attribute controls the purpose of the banner, expressed in its
 ></vwc-banner>
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 The Banner icon, if not specifically set, defaults to a connotation-associated icon.
 
 </vwc-note>
 
 ## Icon
 
-The `icon` attribute displays an icon from the [icon library](/icons/icons-gallery/), which prefixes the Banner's text.
-To add custom icons or to postfix icons, use the [icon slot](/components/banner/code/#icon-slot).
+To add custom icons or to postfix icons, use the [icon slot](/components/banner/code/#icon-slot).\
+The `icon`_(deprecated)_ attribute displays an icon from the [icon library](/icons/icons-gallery/), which prefixes the Banner's text.
 
 ```html preview full
-<vwc-banner
-	icon="home-line"
-	text="Banner with icon set by icon attribute"
-></vwc-banner>
+<vwc-banner text="Banner with icon set by icon attribute">
+	<vwc-icon slot="icon" name="home-line"></vwc-icon>
+</vwc-banner>
 ```
 
 ## Removable
