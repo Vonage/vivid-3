@@ -3718,6 +3718,13 @@
 					"propertyName": "connotation"
 				},
 				{
+					"name": "label",
+					"description": "Provides a (screen reader only) descriptive label for the icon.",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
+				},
+				{
 					"name": "name",
 					"description": "Indicates which icon to resolve.\nSee the Vivid Icon Gallery for available icons: https://icons.vivid.vonage.com/",
 					"type": "IconId",
