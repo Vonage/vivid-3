@@ -15,13 +15,21 @@ module.exports =
 
 		if (lang === 'html') {
 			if (additionalOptions.includes('preview')) {
-				return `${createCodeExample(token.content, additionalOptions)}\n`;
+				return `${createCodeExample({
+					code: token.content,
+					options: additionalOptions,
+					url: env.page.url,
+				})}\n`;
 			}
 
 			if (
 				additionalOptions.some((option) => option.includes('variables-preview'))
 			) {
-				return `${createVariablePreview(token.content, additionalOptions)}\n`;
+				return `${createVariablePreview({
+					code: token.content,
+					options: additionalOptions,
+					url: env.page.url,
+				})}\n`;
 			}
 		}
 
