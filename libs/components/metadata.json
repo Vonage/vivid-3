@@ -4496,12 +4496,6 @@
 					"propertyName": "autofocus"
 				},
 				{
-					"name": "charCount",
-					"description": "Whether to show the character count.",
-					"type": "boolean",
-					"attributeName": "char-count"
-				},
-				{
 					"name": "decrementButtonAriaLabel",
 					"type": "string",
 					"attributeName": "decrement-button-aria-label",
@@ -7202,24 +7196,11 @@
 			"description": "",
 			"props": [
 				{
-					"name": "autofocus",
-					"description": "Indicates that this element should get focus after the page finishes loading.",
-					"type": "boolean",
-					"attributeName": "autofocus",
-					"propertyName": "autofocus"
-				},
-				{
 					"name": "charCount",
-					"description": "Whether to show the character count.",
+					"description": "Use in combination with `maxlength` to display a character count",
 					"type": "boolean",
-					"attributeName": "char-count"
-				},
-				{
-					"name": "cols",
-					"description": "Sizes the element horizontally by a number of character columns.",
-					"type": "number",
-					"attributeName": "cols",
-					"propertyName": "cols"
+					"attributeName": "char-count",
+					"propertyName": "charCount"
 				},
 				{
 					"name": "disabled",
@@ -7275,13 +7256,6 @@
 					"propertyName": "maxlength"
 				},
 				{
-					"name": "minlength",
-					"description": "The minimum number of characters a user can enter.",
-					"type": "number",
-					"attributeName": "minlength",
-					"propertyName": "minlength"
-				},
-				{
 					"name": "name",
 					"description": "The name of the element.",
 					"type": "string",
@@ -7298,7 +7272,42 @@
 				{
 					"name": "readOnly",
 					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
-					"type": "boolean",
+					"type": "number",
+					"attributeName": "readOnly",
+					"propertyName": "readOnly"
+				},
+				{
+					"name": "readOnly",
+					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
+					"type": "number",
+					"attributeName": "readOnly",
+					"propertyName": "readOnly"
+				},
+				{
+					"name": "readOnly",
+					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
+					"type": "number",
+					"attributeName": "readOnly",
+					"propertyName": "readOnly"
+				},
+				{
+					"name": "readOnly",
+					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
+					"type": "number",
+					"attributeName": "readOnly",
+					"propertyName": "readOnly"
+				},
+				{
+					"name": "readOnly",
+					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
+					"type": "number",
+					"attributeName": "readOnly",
+					"propertyName": "readOnly"
+				},
+				{
+					"name": "readOnly",
+					"description": "When true, the control will be immutable by user interaction. See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute for more information.",
+					"type": "number",
 					"attributeName": "readOnly",
 					"propertyName": "readOnly"
 				},
@@ -7314,20 +7323,6 @@
 					"type": "'none' | 'both' | 'horizontal' | 'vertical'",
 					"attributeName": "resize",
 					"propertyName": "resize"
-				},
-				{
-					"name": "rows",
-					"description": "Sizes the element vertically by a number of character rows.",
-					"type": "number",
-					"attributeName": "rows",
-					"propertyName": "rows"
-				},
-				{
-					"name": "spellcheck",
-					"description": "Sets if the element is eligible for spell checking\nbut the UA.",
-					"type": "boolean",
-					"attributeName": "spellcheck",
-					"propertyName": "spellcheck"
 				},
 				{
 					"name": "successText",
@@ -7438,15 +7433,37 @@
 				{
 					"name": "autofocus",
 					"description": "Indicates that this element should get focus after the page finishes loading. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautofocus | autofocus HTML attribute for more information.",
-					"type": "boolean",
+					"type": "number",
+					"attributeName": "autofocus",
+					"propertyName": "autofocus"
+				},
+				{
+					"name": "autofocus",
+					"description": "Indicates that this element should get focus after the page finishes loading. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautofocus | autofocus HTML attribute for more information.",
+					"type": "number",
+					"attributeName": "autofocus",
+					"propertyName": "autofocus"
+				},
+				{
+					"name": "autofocus",
+					"description": "Indicates that this element should get focus after the page finishes loading. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautofocus | autofocus HTML attribute for more information.",
+					"type": "number",
+					"attributeName": "autofocus",
+					"propertyName": "autofocus"
+				},
+				{
+					"name": "autofocus",
+					"description": "Indicates that this element should get focus after the page finishes loading. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefautofocus | autofocus HTML attribute for more information.",
+					"type": "number",
 					"attributeName": "autofocus",
 					"propertyName": "autofocus"
 				},
 				{
 					"name": "charCount",
-					"description": "Whether to show the character count.",
+					"description": "Use in combination with `maxlength` to display a character count",
 					"type": "boolean",
-					"attributeName": "char-count"
+					"attributeName": "char-count",
+					"propertyName": "charCount"
 				},
 				{
 					"name": "disabled",
@@ -7509,13 +7526,6 @@
 					"propertyName": "maxlength"
 				},
 				{
-					"name": "minlength",
-					"description": "The minimum number of characters a user can enter.",
-					"type": "number",
-					"attributeName": "minlength",
-					"propertyName": "minlength"
-				},
-				{
 					"name": "name",
 					"description": "The name of the element. This element's value will be surfaced during form submission under the provided name.",
 					"type": "string",
@@ -7560,20 +7570,6 @@
 					"type": "'rounded' | 'pill'",
 					"attributeName": "shape",
 					"propertyName": "shape"
-				},
-				{
-					"name": "size",
-					"description": "Sets the width of the element to a specified number of characters.",
-					"type": "number",
-					"attributeName": "size",
-					"propertyName": "size"
-				},
-				{
-					"name": "spellcheck",
-					"description": "Controls whether or not to enable spell checking for the input field, or if the default spell checking configuration should be used.",
-					"type": "boolean",
-					"attributeName": "spellcheck",
-					"propertyName": "spellcheck"
 				},
 				{
 					"name": "successText",

@@ -13,13 +13,13 @@ import {
 	type FormElement,
 	formElements,
 	FormElementSuccessText,
+	WithCharCount,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { WithLightDOMFeedback } from '../../shared/feedback/mixins';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
-import { WithCharCount } from '../../shared/char-count';
 import { FormAssociatedTextField } from './text-field.form-associated';
 
 export type TextFieldAppearance = ExtractFromEnum<

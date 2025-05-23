@@ -9,11 +9,11 @@ import {
 	type FormElement,
 	formElements,
 	FormElementSuccessText,
+	WithCharCount,
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
 import { WithFeedback } from '../../shared/feedback/mixins';
-import { WithCharCount } from '../../shared/char-count';
 import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedTextArea } from './text-area.form-associated';
 

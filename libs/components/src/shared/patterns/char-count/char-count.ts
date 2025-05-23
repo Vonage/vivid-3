@@ -4,11 +4,11 @@ import {
 	nullableNumberConverter,
 	ref,
 } from '@microsoft/fast-element';
-import { VividElement } from '../foundation/vivid-element/vivid-element';
-import type { Constructor, MixinType } from '../utils/mixins';
-import { Localized } from '../patterns';
-import { VisuallyHidden } from '../../lib/visually-hidden/visually-hidden';
-import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
+import { VividElement } from '../../foundation/vivid-element/vivid-element';
+import type { Constructor, MixinType } from '../../utils/mixins';
+import { VisuallyHidden } from '../../../lib/visually-hidden/visually-hidden';
+import type { VividElementDefinitionContext } from '../../design-system/defineVividComponent';
+import { Localized } from '../localized';
 
 /**
  * Mixin for elements that can display a character count
