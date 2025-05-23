@@ -72,6 +72,7 @@ If set, the icon attribute is ignored.
 | **icon-trailing** | `string`                                                                                           | Sets icon as trailing        |
 | **appearance**    | Enum\_:<br/>`filled` (default), `duotone`, `subtle`, `subtle-light`                                | Sets the badge appearance    |
 | **shape**         | Enum\_:<br/>`rounded` (default), `pill`                                                            | Sets the badge border-radius |
+| **size**          | Enum\_:<br/>`normal` (default), `expanded`                                                         | Sets the badge size          |
 
 </div>
 
