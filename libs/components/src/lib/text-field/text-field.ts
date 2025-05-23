@@ -11,9 +11,9 @@ import {
 	type ErrorText,
 	errorText,
 	type FormElement,
-	FormElementCharCount,
 	formElements,
 	FormElementSuccessText,
+	WithCharCount,
 } from '../../shared/patterns';
 import { generateRandomId } from '../../shared/utils/randomId';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
@@ -133,7 +133,7 @@ const installSafariWorkaroundStyleIfNeeded = (
 @errorText
 @formElements
 export class TextField extends WithLightDOMFeedback(
-	AffixIcon(DelegatesAria(FormAssociatedTextField))
+	AffixIcon(WithCharCount(DelegatesAria(FormAssociatedTextField)))
 ) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -233,7 +233,7 @@ export class TextField extends WithLightDOMFeedback(
 	 * HTMLAttribute: maxlength
 	 */
 	@attr({ converter: nullableNumberConverter })
-	maxlength!: number;
+	override maxlength!: number;
 	/**
 	 * @internal
 	 */
@@ -320,6 +320,9 @@ export class TextField extends WithLightDOMFeedback(
 	override valueChanged(previous: string, next: string) {
 		super.valueChanged(previous, next);
 		this._updateControlValueIfNeeded();
+		if (this.charCount && this.maxlength) {
+			this._updateCharCountRemaining();
+		}
 	}
 
 	/**
@@ -422,6 +425,8 @@ export class TextField extends WithLightDOMFeedback(
 
 		this._updateControlValueIfNeeded();
 		installSafariWorkaroundStyleIfNeeded(this);
+
+		this._renderCharCountRemaining();
 	}
 
 	override focus() {
@@ -441,6 +446,5 @@ export class TextField extends WithLightDOMFeedback(
 export interface TextField
 	extends ErrorText,
 		FormElement,
-		FormElementCharCount,
 		FormElementSuccessText {}
-applyMixins(TextField, FormElementCharCount, FormElementSuccessText);
+applyMixins(TextField, FormElementSuccessText);

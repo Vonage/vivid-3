@@ -7,20 +7,12 @@ import {
 	type ErrorText,
 	errorText,
 	type FormElement,
-	FormElementCharCount,
 	formElements,
 } from './form-elements';
 
 const VALIDATION_MESSAGE = 'Validation Message';
 
 describe('Form Elements', function () {
-	describe('FormElementCharCount', () => {
-		it('should set charCount to false on init', async () => {
-			const instance = new FormElementCharCount();
-			expect(instance.charCount).toEqual(false);
-		});
-	});
-
 	describe('formElements mixin', function () {
 		function enableValidation() {
 			dispatchBlurEvent();

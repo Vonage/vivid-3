@@ -11,7 +11,6 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementCharCount,
 	formElements,
 	FormElementSuccessText,
 	Localized,
@@ -425,6 +424,5 @@ export class NumberField extends WithFeedback(
 export interface NumberField
 	extends ErrorText,
 		FormElement,
-		FormElementCharCount,
 		FormElementSuccessText {}
-applyMixins(NumberField, FormElementCharCount, FormElementSuccessText);
+applyMixins(NumberField, FormElementSuccessText);

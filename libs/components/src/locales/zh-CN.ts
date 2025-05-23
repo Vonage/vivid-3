@@ -194,6 +194,12 @@ const zhCN: Locale = {
 		errorIconText: '错误:',
 		successIconText: '成功:',
 	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`您最多可以输入 ${limit} 个字符`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`您还剩 ${total} 个字符`,
+	},
 };
 
 export default zhCN;

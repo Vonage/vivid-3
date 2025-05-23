@@ -31,18 +31,13 @@ function renderLabel() {
 	</label>`;
 }
 
-function renderCharCount() {
-	return html<TextArea>`
-		<span class="char-count"
-			>${(x) => (x.value ? x.value.length : 0)} / ${(x) => x.maxlength}</span
-		>
-	`;
-}
-
 export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 	return html`
 		<div class="${getClasses}">
-			${when((x) => x.charCount && x.maxlength, renderCharCount())}
+			${when(
+				(x) => x.charCount && x.maxlength,
+				(x) => x._getCharCountTemplate(context)
+			)}
 			${when((x) => x.label, renderLabel())}
 			<textarea
 				class="control"
@@ -60,7 +55,8 @@ export const TextAreaTemplate = (context: VividElementDefinitionContext) => {
 				?disabled="${(x) => x.disabled}"
 				?required="${(x) => x.required}"
 				?spellcheck="${(x) => x.spellcheck}"
-				aria-describedby="${(x) => x._feedbackDescribedBy}"
+				aria-describedby="${(x) => x._feedbackDescribedBy} ${(x) =>
+					x.charCount && x.maxlength ? x._charCountDescribedBy : null}"
 				${delegateAria()}
 				@input="${(x) => x.handleTextInput()}"
 				@change="${(x) => x.handleChange()}"

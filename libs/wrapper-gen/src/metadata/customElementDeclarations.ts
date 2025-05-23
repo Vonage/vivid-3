@@ -330,13 +330,6 @@ const VividMixins: Record<string, schema.Attribute[]> = {
 			type: { text: 'string' },
 		},
 	],
-	FormElementCharCount: [
-		{
-			name: 'char-count',
-			description: 'Whether to show the character count.',
-			type: { text: 'boolean' },
-		},
-	],
 	ErrorText: [
 		{
 			name: 'error-text',
