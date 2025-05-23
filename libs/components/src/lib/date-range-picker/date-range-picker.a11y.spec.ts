@@ -25,6 +25,7 @@ describe('a11y: vwc-date-range-picker', () => {
 	});
 
 	it('should pass html a11y test', async () => {
+		element.label = 'Label';
 		element.start = '2012-12-12';
 		element.end = '2012-12-13';
 		await elementUpdated(element);

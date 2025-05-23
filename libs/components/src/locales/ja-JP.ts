@@ -190,5 +190,9 @@ const jaJP: Locale = {
 	button: {
 		pendingLabel: '読み込み中',
 	},
+	feedbackMessage: {
+		errorIconText: 'エラー:',
+		successIconText: '成功:',
+	},
 };
 export default jaJP;

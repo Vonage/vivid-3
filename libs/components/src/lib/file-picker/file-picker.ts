@@ -8,14 +8,13 @@ import {
 	type ErrorText,
 	errorText,
 	type FormElement,
-	FormElementHelperText,
 	formElements,
 	Localized,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import type { Button } from '../button/button';
 import type { Size } from '../enums';
+import { WithFeedback } from '../../shared/feedback/mixins';
 import { FormAssociatedFilePicker } from './file-picker.form-associated';
 
 /**
@@ -54,8 +53,8 @@ const generateFilePreviewTemplate = (
  */
 @errorText
 @formElements
-export class FilePicker extends DelegatesAria(
-	Localized(FormAssociatedFilePicker)
+export class FilePicker extends WithFeedback(
+	DelegatesAria(Localized(FormAssociatedFilePicker))
 ) {
 	#dropzone?: Dropzone;
 
@@ -449,9 +448,4 @@ export class FilePicker extends DelegatesAria(
 	}
 }
 
-export interface FilePicker
-	extends FormElementHelperText,
-		ErrorText,
-		FormElement,
-		FormElementHelperText {}
-applyMixinsWithObservables(FilePicker, FormElementHelperText);
+export interface FilePicker extends ErrorText, FormElement {}

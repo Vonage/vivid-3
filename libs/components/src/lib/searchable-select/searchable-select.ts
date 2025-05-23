@@ -11,16 +11,16 @@ import {
 	type ErrorText,
 	errorText,
 	type FormElement,
-	FormElementHelperText,
 	formElements,
 	FormElementSuccessText,
 	Localized,
 } from '../../shared/patterns';
-import { applyMixinsWithObservables } from '../../shared/utils/applyMixinsWithObservables';
 import type { ListboxOption } from '../option/option';
 import { scrollIntoView } from '../../shared/utils/scrollIntoView';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import { WithFeedback } from '../../shared/feedback/mixins';
+import { applyMixins } from '../../shared/foundation/utilities/apply-mixins';
 import { FormAssociatedSearchableSelect } from './searchable-select.form-associated';
 import type { OptionTag } from './option-tag';
 
@@ -64,8 +64,10 @@ const isFormAssociatedTryingToSetFormValue = (
  */
 @errorText
 @formElements
-export class SearchableSelect extends DelegatesAria(
-	AffixIconWithTrailing(Localized(FormAssociatedSearchableSelect))
+export class SearchableSelect extends WithFeedback(
+	DelegatesAria(
+		AffixIconWithTrailing(Localized(FormAssociatedSearchableSelect))
+	)
 ) {
 	/**
 	 * @public
@@ -1202,11 +1204,6 @@ export class SearchableSelect extends DelegatesAria(
 
 export interface SearchableSelect
 	extends FormElement,
-		FormElementHelperText,
 		ErrorText,
 		FormElementSuccessText {}
-applyMixinsWithObservables(
-	SearchableSelect,
-	FormElementHelperText,
-	FormElementSuccessText
-);
+applyMixins(SearchableSelect, FormElementSuccessText);
