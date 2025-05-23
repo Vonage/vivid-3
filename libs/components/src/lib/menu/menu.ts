@@ -354,6 +354,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 
 	#updateAnchor(a: HTMLElement) {
 		a.setAttribute('aria-expanded', this.open.toString());
+		a.setAttribute('data-expanded', this.open.toString());
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
@@ -361,6 +362,7 @@ export class Menu extends Anchored(DelegatesAria(VividElement)) {
 		a.removeEventListener('focusout', this._onFocusout);
 		a.removeAttribute('aria-haspopup');
 		a.removeAttribute('aria-expanded');
+		a.removeAttribute('data-expanded');
 	}
 
 	#onAnchorClick = () => {
