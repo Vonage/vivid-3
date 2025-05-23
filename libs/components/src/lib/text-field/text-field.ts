@@ -418,9 +418,7 @@ export class TextField extends WithLightDOMFeedback(
 		this._updateControlValueIfNeeded();
 		installSafariWorkaroundStyleIfNeeded(this);
 
-		if (this.charCount && this.maxlength) {
-			this._renderCharCountRemaining();
-		}
+		this._renderCharCountRemaining();
 	}
 
 	override focus() {

@@ -58,11 +58,6 @@ describe('vwc-text-field', () => {
 		element = (await fixture(
 			`<${COMPONENT_TAG}></${COMPONENT_TAG}>`
 		)) as TextField;
-		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
-	});
-
-	afterEach(function () {
-		vi.useRealTimers();
 	});
 
 	describe('basic', () => {
@@ -154,29 +149,32 @@ describe('vwc-text-field', () => {
 	});
 
 	describe('char-count', function () {
-		it('should render char-count if attribute char-count and max-length are set', async function () {
+		beforeEach(() => {
 			element.charCount = true;
+			vi.useFakeTimers();
+		});
+
+		afterEach(() => vi.useRealTimers());
+
+		it('should render char-count if attribute char-count and max-length are set', async function () {
 			element.maxlength = 20;
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeTruthy();
 		});
 
 		it('should remove char count if max-length is not set', async function () {
-			element.charCount = true;
 			element.toggleAttribute('max-length', false);
 			await elementUpdated(element);
 			expect(element.shadowRoot?.querySelector('.char-count')).toBeNull();
 		});
 
 		it('should render count with 0 if value is not set', async function () {
-			element.charCount = true;
 			element.maxlength = 20;
 
 			await elementUpdated(element);
 
 			const expectedString = '0 / 20';
 			const expectedDescription = 'You can enter up to 20 characters';
-			const expectedMessage = 'You have 20 characters remaining';
 
 			expect(
 				element.shadowRoot
@@ -188,37 +186,42 @@ describe('vwc-text-field', () => {
 					?.querySelector('.char-count #char-count-description')
 					?.textContent?.trim()
 			).toEqual(expectedDescription);
-			setTimeout(() => {
-				expect(
-					element.shadowRoot
-						?.querySelector('.char-count #char-count-remaining')
-						?.textContent?.trim()
-				).toEqual(expectedMessage);
-			}, 1000);
 		});
 
 		it('should render count according to value and max', async function () {
-			element.charCount = true;
 			element.maxlength = 20;
 			element.value = '12345';
 
 			await elementUpdated(element);
-
 			const expectedString = '5 / 20';
-			const expectedMessage = 'You have 15 characters remaining';
 
 			expect(
 				element.shadowRoot
 					?.querySelector('.char-count>span')
 					?.textContent?.trim()
 			).toEqual(expectedString);
-			setTimeout(() => {
-				expect(
-					element.shadowRoot
-						?.querySelector('.char-count #char-count-remaining')
-						?.textContent?.trim()
-				).toEqual(expectedMessage);
-			}, 1000);
+		});
+
+		it('should update screen reader text with debounce', async function () {
+			element.maxlength = 20;
+			element.value = '12345';
+
+			await elementUpdated(element);
+
+			const spyClearTimeout = vi.spyOn(globalThis, 'clearTimeout');
+
+			element._updateCharCountRemaining();
+			vi.advanceTimersByTime(1000);
+
+			const expectedMessage = 'You have 15 characters remaining';
+			expect(
+				element.shadowRoot
+					?.querySelector('.char-count #char-count-remaining')
+					?.textContent?.trim()
+			).toEqual(expectedMessage);
+
+			expect(spyClearTimeout).toHaveBeenCalled();
+			spyClearTimeout.mockRestore();
 		});
 	});
 

@@ -62,6 +62,9 @@ export const WithCharCount = <T extends Constructor<VividElement>>(Base: T) => {
 		 * @internal
 		 */
 		_renderCharCountRemaining = () => {
+			if (!this.charCount || !this.maxlength) {
+				return;
+			}
 			this.charCountRemaining.textContent =
 				this.locale.charCount.charactersRemainingMessage(
 					this.maxlength - this.value.length

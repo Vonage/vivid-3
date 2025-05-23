@@ -293,9 +293,7 @@ export class TextArea extends WithFeedback(
 		super.connectedCallback();
 		this.#reflectToTextArea = new Reflector(this, this.control);
 		this.#reflectToTextArea.property('value', 'value', true);
-		if (this.charCount && this.maxlength) {
-			this._renderCharCountRemaining();
-		}
+		this._renderCharCountRemaining();
 	}
 
 	override disconnectedCallback() {
