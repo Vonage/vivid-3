@@ -194,17 +194,17 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 <div class="table-wrapper">
 
-| Name                 | Type                                                              | Description                                                                                                                                |
-| -------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **check-appearance** | `normal` (default), `tick-only`                                   | Sets the appearance of the check element                                                                                                   |
-| **checked**          | `boolean`                                                         | Sets the checked state                                                                                                                     |
-| **check-trailing**   | `boolean`                                                         | Sets the check element to appear at the end of the Menu Item                                                                               |
-| **connotation**      | `accent` (default), `cta`                                         | Sets the connotation that appears when checked                                                                                             |
-| **disabled**         | `boolean`                                                         | Sets the disabled state                                                                                                                    |
-| **icon**             | _Enum_:<br/>`[icon-name]`                                         | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **role**             | `menuitem` (default), `checkbox`, `menuitemradio`, `presentation` | Sets the role                                                                                                                              |
-| **secondary-text**   | `string`                                                          | Give more context to the text                                                                                                              |
-| **text**             | `string`                                                          | Text content                                                                                                                               |
+| Name                 | Type                                                                                           | Description                                                                                                                                |
+| -------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **check-appearance** | `normal` (default), `tick-only`                                                                | Sets the appearance of the check element                                                                                                   |
+| **checked**          | `boolean`                                                                                      | Sets the checked state                                                                                                                     |
+| **check-trailing**   | `boolean`                                                                                      | Sets the check element to appear at the end of the Menu Item                                                                               |
+| **connotation**      | `accent` (default), `cta`                                                                      | Sets the connotation that appears when checked                                                                                             |
+| **disabled**         | `boolean`                                                                                      | Sets the disabled state                                                                                                                    |
+| **icon**             | _Enum_:<br/>`[icon-name]`                                                                      | A decorative icon the custom element should have. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **role**             | `menuitem` (default), `checkbox`, `menuitemcheckbox`, `radio`, `menuitemradio`, `presentation` | Sets the role                                                                                                                              |
+| **secondary-text**   | `string`                                                                                       | Give more context to the text                                                                                                              |
+| **text**             | `string`                                                                                       | Text content                                                                                                                               |
 
 </div>
 
@@ -224,10 +224,10 @@ This can be changed by setting a css-variable to a fixed number of lines or `aut
 
 <div class="table-wrapper">
 
-| Name                | Type                       | Bubbles | Composed | Description                                                                                                                |
-| ------------------- | -------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                     |
-| **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `checkbox`, `menuitemradio`, or `menuitem` is invoked |
-| **click**           | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'click' event its `role` is `presentation`                                                                  |
+| Name                | Type                       | Bubbles | Composed | Description                                                                                                                                              |
+| ------------------- | -------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **expanded-change** | `CustomEvent<HTMLElement>` | No      | Yes      | Fires a custom 'expanded-change' event when the expanded state changes                                                                                   |
+| **change**          | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'change' event when a non-submenu item with a role of `checkbox`, `menuitemcheckboxe`, `radio`, `menuitemradio`, or `menuitem` is invoked |
+| **click**           | `CustomEvent<undefined>`   | No      | Yes      | Fires a custom 'click' event its `role` is `presentation`                                                                                                |
 
 </div>
