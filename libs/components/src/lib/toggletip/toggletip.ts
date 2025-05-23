@@ -88,12 +88,15 @@ export class Toggletip extends Anchored(VividElement) {
 
 	#updateAnchor(a: HTMLElement) {
 		a.setAttribute('aria-expanded', this.open.toString());
+		a.setAttribute('data-expanded', this.open.toString());
 	}
 
 	#cleanupAnchor(a: HTMLElement) {
 		a.removeEventListener('click', this.#openIfClosed, true);
 		if (a.ariaLabel)
 			a.ariaLabel = a.ariaLabel.replace(this.#ANCHOR_ARIA_LABEL_SUFFIX, '');
+		a.removeAttribute('aria-expanded');
+		a.removeAttribute('data-expanded');
 	}
 
 	#openIfClosed = () => {
