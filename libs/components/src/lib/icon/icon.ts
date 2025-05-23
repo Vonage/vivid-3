@@ -92,6 +92,15 @@ export class Icon extends VividElement {
 	@observable _svg?: string;
 	@observable iconLoaded = false;
 	/**
+	 * Provides a (screen reader only) descriptive label for the icon.
+	 *
+	 * @public
+	 * @remarks
+	 * HTML Attribute: name
+	 */
+	@attr label?: string;
+
+	/**
 	 * Indicates which icon to resolve.
 	 *
 	 * @public
