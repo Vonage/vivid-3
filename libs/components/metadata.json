@@ -7204,7 +7204,7 @@
 				},
 				{
 					"name": "charCount",
-					"description": "Use in combination with `maxlength` to display a character count",
+					"description": "Use in combination with `maxlength` to display a character count.",
 					"type": "boolean",
 					"attributeName": "char-count",
 					"propertyName": "charCount"
@@ -7439,7 +7439,7 @@
 				},
 				{
 					"name": "charCount",
-					"description": "Use in combination with `maxlength` to display a character count",
+					"description": "Use in combination with `maxlength` to display a character count.",
 					"type": "boolean",
 					"attributeName": "char-count",
 					"propertyName": "charCount"

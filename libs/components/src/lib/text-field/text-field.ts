@@ -227,6 +227,14 @@ export class TextField extends WithLightDOMFeedback(
 	}
 
 	/**
+	 * The maximum number of characters a user can enter.
+	 * @public
+	 * @remarks
+	 * HTMLAttribute: maxlength
+	 */
+	@attr({ converter: nullableNumberConverter })
+	override maxlength!: number;
+	/**
 	 * @internal
 	 */
 	maxlengthChanged(): void {

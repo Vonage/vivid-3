@@ -1,9 +1,4 @@
-import {
-	attr,
-	html,
-	nullableNumberConverter,
-	ref,
-} from '@microsoft/fast-element';
+import { attr, html, ref } from '@microsoft/fast-element';
 import { VividElement } from '../../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../../utils/mixins';
 import { VisuallyHidden } from '../../../lib/visually-hidden/visually-hidden';
@@ -16,11 +11,12 @@ import { Localized } from '../localized';
 export const WithCharCount = <T extends Constructor<VividElement>>(Base: T) => {
 	class ElementWithCharCount extends Localized(Base) {
 		value!: string;
+		maxlength!: number;
 
 		/**
-		 * Use in combination with `maxlength` to display a character count
-		 *
+		 * Use in combination with `maxlength` to display a character count.
 		 * @public
+		 * @remarks
 		 * HTML Attribute: char-count
 		 */
 		@attr({
@@ -28,15 +24,6 @@ export const WithCharCount = <T extends Constructor<VividElement>>(Base: T) => {
 			mode: 'boolean',
 		})
 		charCount = false;
-
-		/**
-		 * The maximum number of characters a user can enter.
-		 * @public
-		 * @remarks
-		 * HTMLAttribute: maxlength
-		 */
-		@attr({ converter: nullableNumberConverter })
-		maxlength!: number;
 
 		/**
 		 * A reference to the internal character count indicator,
