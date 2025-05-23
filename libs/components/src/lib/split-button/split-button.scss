@@ -44,7 +44,7 @@
 			map.merge(
 				appearance.$state-aspect-selectors,
 				(
-					active: ':active, [aria-expanded="true"]',
+					active: ':active, [data-expanded="true"]',
 				)
 			)
 		)
