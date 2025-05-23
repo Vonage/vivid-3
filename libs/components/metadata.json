@@ -6176,7 +6176,6 @@
 				},
 				{
 					"name": "clickable",
-					"description": "DEPRECATED: Replaced by the clickable-box prop",
 					"type": "boolean",
 					"attributeName": "clickable",
 					"propertyName": "clickable"
