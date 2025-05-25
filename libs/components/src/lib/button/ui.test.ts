@@ -141,7 +141,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		</vwc-button>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-button label="Expanded" aria-expanded="true"></vwc-button>
+		<vwc-button label="Expanded" data-expanded="true" aria-expanded="true"></vwc-button>
 		<vwc-button label="Active" active></vwc-button>
 	</div>
 	<div style="margin: 5px;">
@@ -208,7 +208,7 @@ test('should show the component', async ({ page }: { page: Page }) => {
 		<vwc-button appearance="filled" dropdown-indicator shape="pill" icon="user-line"></vwc-button>
 	</div>
 	<div style="margin: 5px;">
-		<vwc-button appearance="filled" dropdown-indicator label="expanded" aria-expanded="true"></vwc-button>
+		<vwc-button appearance="filled" dropdown-indicator label="expanded" data-expanded="true" aria-expanded="true"></vwc-button>
 	</div>
 	<div style="margin: 5px;">
 		<vwc-button appearance="filled" dropdown-indicator icon="user-line" label="stacked" stacked></vwc-button>

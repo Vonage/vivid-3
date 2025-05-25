@@ -462,10 +462,11 @@ describe('vwc-menu', () => {
 			['false', false],
 			['true', true],
 		])(
-			'should set aria-expanded=%s on the anchor element when open is %s',
+			'should set aria-expanded=%s and data-expanded=%s on the anchor element when open is %s',
 			async (expectedValue, isOpen) => {
 				element.open = isOpen;
 				expect(anchor.getAttribute('aria-expanded')).toBe(expectedValue);
+				expect(anchor.getAttribute('data-expanded')).toBe(expectedValue);
 			}
 		);
 
@@ -485,8 +486,9 @@ describe('vwc-menu', () => {
 				expect(anchor.hasAttribute('aria-haspopup')).toBe(false);
 			});
 
-			it('should remove aria-expanded from anchor element', async () => {
+			it('should remove aria-expanded and data-expanded from anchor element', async () => {
 				expect(anchor.hasAttribute('aria-expanded')).toBe(false);
+				expect(anchor.hasAttribute('data-expanded')).toBe(false);
 			});
 
 			it('should no longer open when anchor is clicked', async () => {

@@ -3173,7 +3173,6 @@
 				},
 				{
 					"name": "iconDecoration",
-					"description": "option to a new design for the icon circle",
 					"type": "'outlined' | 'filled'",
 					"attributeName": "icon-decoration",
 					"propertyName": "iconDecoration"
@@ -3717,6 +3716,13 @@
 					"type": "'accent' | 'cta' | 'success' | 'alert' | 'warning' | 'information' | 'announcement'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
+				},
+				{
+					"name": "label",
+					"description": "Provides a (screen reader only) descriptive label for the icon.",
+					"type": "string",
+					"attributeName": "label",
+					"propertyName": "label"
 				},
 				{
 					"name": "name",
