@@ -96,7 +96,6 @@ export class Alert extends AffixIcon(Localized(VividElement)) {
 
 	/**
 	 * Sets an appropriate icon / icon color for the connotation.
-	 * @deprecated Use the icon slot instead. This attribute will be removed in a future version.
 	 * @public
 	 */
 	@attr connotation?: AlertConnotation;

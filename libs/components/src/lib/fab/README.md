@@ -50,7 +50,7 @@ registerFab('your-prefix');
 Use the `icon` slot to customise icons. If set, the icon _(deprecated)_ attribute is ignored.
 
 ```html preview
-<vwc-fab icon="thumbs-up-line" size="normal" label="ask-vivid">
+<vwc-fab size="normal" label="ask-vivid">
 	<vwc-icon slot="icon">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

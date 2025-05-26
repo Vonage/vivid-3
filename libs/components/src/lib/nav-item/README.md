@@ -48,10 +48,10 @@ Note: Icon, by its own, doesn't make a discernible text. An `aria-label` or `tit
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item href="#" icon="profile" text="Account">
+	<vwc-nav-item href="#" text="Account">
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 	</vwc-nav-item>
-	<vwc-nav-item href="#" icon="profile" aria-label="Account">
+	<vwc-nav-item href="#" aria-label="Account">
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 	</vwc-nav-item>
 </vwc-nav>
@@ -79,14 +79,13 @@ Set the `appearance` attribute to change the nav-item's appearance.
 
 ```html preview
 <vwc-nav>
-	<vwc-nav-item appearance="ghost-light" href="#" icon="profile" text="Account">
+	<vwc-nav-item appearance="ghost-light" href="#" text="Account">
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
 	</vwc-nav-item>
 	<vwc-nav-item
 		appearance="ghost-light"
 		href="#"
 		aria-current="page"
-		icon="gear-line"
 		text="Settings"
 	>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
@@ -107,7 +106,6 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		appearance="ghost-light"
 		connotation="cta"
 		href="#"
-		icon="profile"
 		text="Account"
 	>
 		<vwc-icon slot="icon" name="profile"></vwc-icon>
@@ -117,7 +115,6 @@ Set the `connotation` attribute to change the nav-item's connotation.
 		connotation="cta"
 		href="#"
 		aria-current="page"
-		icon="gear-line"
 		text="Settings"
 	>
 		<vwc-icon slot="icon" name="gear-line"></vwc-icon>
