@@ -194,5 +194,10 @@ const jaJP: Locale = {
 		errorIconText: 'エラー:',
 		successIconText: '成功:',
 	},
+	dataGrid: {
+		cell: {
+			selected: '選択済み',
+		},
+	},
 };
 export default jaJP;

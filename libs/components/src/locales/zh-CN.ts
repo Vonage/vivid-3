@@ -194,6 +194,11 @@ const zhCN: Locale = {
 		errorIconText: '错误:',
 		successIconText: '成功:',
 	},
+	dataGrid: {
+		cell: {
+			selected: '已选择',
+		},
+	},
 };
 
 export default zhCN;

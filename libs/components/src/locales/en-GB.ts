@@ -194,6 +194,11 @@ const enGB: Locale = {
 		errorIconText: 'Error:',
 		successIconText: 'Success:',
 	},
+	dataGrid: {
+		cell: {
+			selected: 'Selected',
+		},
+	},
 };
 
 export default enGB;

@@ -194,6 +194,11 @@ const enUS: Locale = {
 		errorIconText: 'Error:',
 		successIconText: 'Success:',
 	},
+	dataGrid: {
+		cell: {
+			selected: 'Selected',
+		},
+	},
 };
 
 export default enUS;

@@ -196,6 +196,11 @@ const deDE: Locale = {
 		errorIconText: 'Fehler:',
 		successIconText: 'Erfolg:',
 	},
+	dataGrid: {
+		cell: {
+			selected: 'Ausgewählt',
+		},
+	},
 };
 
 export default deDE;
