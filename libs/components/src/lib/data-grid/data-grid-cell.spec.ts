@@ -1,10 +1,10 @@
 import { html } from '@microsoft/fast-element';
 import { elementUpdated, fixture, getBaseElement } from '@vivid-nx/shared';
 import type { Mock } from 'vitest';
+import { currentLocale } from '../../shared/localization';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
-import { currentLocale } from '../../shared/localization';
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
 const ICON_TAG = 'vwc-icon';
