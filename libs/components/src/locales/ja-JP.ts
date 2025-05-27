@@ -194,6 +194,12 @@ const jaJP: Locale = {
 		errorIconText: 'エラー:',
 		successIconText: '成功:',
 	},
+	charCount: {
+		charactersLimitMessage: /* istanbul ignore next */ (limit: number) =>
+			`最大${limit}文字まで入力できます`,
+		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
+			`残り${total}文字`,
+	},
 	dataGrid: {
 		cell: {
 			selected: '選択済み',

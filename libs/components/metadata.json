@@ -4503,12 +4503,6 @@
 					"propertyName": "autofocus"
 				},
 				{
-					"name": "charCount",
-					"description": "Whether to show the character count.",
-					"type": "boolean",
-					"attributeName": "char-count"
-				},
-				{
 					"name": "decrementButtonAriaLabel",
 					"type": "string",
 					"attributeName": "decrement-button-aria-label",
@@ -7227,9 +7221,10 @@
 				},
 				{
 					"name": "charCount",
-					"description": "Whether to show the character count.",
+					"description": "Use in combination with `maxlength` to display a character count.",
 					"type": "boolean",
-					"attributeName": "char-count"
+					"attributeName": "char-count",
+					"propertyName": "charCount"
 				},
 				{
 					"name": "cols",
@@ -7461,9 +7456,10 @@
 				},
 				{
 					"name": "charCount",
-					"description": "Whether to show the character count.",
+					"description": "Use in combination with `maxlength` to display a character count.",
 					"type": "boolean",
-					"attributeName": "char-count"
+					"attributeName": "char-count",
+					"propertyName": "charCount"
 				},
 				{
 					"name": "disabled",
