@@ -151,13 +151,13 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(treeItem1);
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute('aria-selected')).toEqual('true');
+			expect(treeItem1.selected).toBe(true);
 
 			treeItem2.click();
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute('aria-selected')).toEqual('false');
-			expect(treeItem2.getAttribute('aria-selected')).toEqual('true');
+			expect(treeItem1.selected).toBe(false);
+			expect(treeItem2.selected).toBe(true);
 		});
 
 		it('should deselect a selected item when clicked', async () => {
@@ -165,12 +165,12 @@ describe('vwc-tree-view', () => {
 			await elementUpdated(treeItem1);
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute('aria-selected')).toEqual('true');
+			expect(treeItem1.selected).toBe(true);
 
 			treeItem1.click();
 			await elementUpdated(element);
 
-			expect(treeItem1.getAttribute('aria-selected')).toEqual('false');
+			expect(treeItem1.selected).toBe(false);
 		});
 
 		it('should dispatch selected-changed', async () => {
@@ -329,7 +329,7 @@ describe('vwc-tree-view', () => {
 			);
 			await elementUpdated(treeItem1);
 
-			expect(treeItem1.getAttribute('aria-selected')).toEqual('true');
+			expect(treeItem1.selected).toBe(true);
 		});
 
 		it('should return true if the key press is not one the trigger an action', async () => {
