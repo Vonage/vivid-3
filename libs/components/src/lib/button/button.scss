@@ -268,7 +268,7 @@ slot[name='icon'] {
 	}
 }
 
-:host(:not([icon])) .pending {
+.pending-no-icon {
 	position: absolute;
 
 	& + .text {
