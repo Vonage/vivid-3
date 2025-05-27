@@ -186,6 +186,7 @@ const enUS: Locale = {
 		underline: 'Underline',
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
+		dragAndDropFilesHere: 'Drag&Drop files here',
 	},
 	button: {
 		pendingLabel: 'Loading...',

@@ -186,6 +186,7 @@ const jaJP: Locale = {
 		underline: '下線',
 		strikethrough: '取り消し線',
 		monospace: '等幅',
+		dragAndDropFilesHere: 'ここにファイルをドラッグ＆ドロップ',
 	},
 	button: {
 		pendingLabel: '読み込み中',
