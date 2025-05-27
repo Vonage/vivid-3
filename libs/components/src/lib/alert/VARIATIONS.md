@@ -70,6 +70,13 @@ Setting this attribute takes precedence over the connotation's icon, if any.
 </vwc-alert>
 ```
 
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
+
 ### Placement
 
 Use the `placement` attribute to set the location of the Alert.

@@ -144,6 +144,13 @@ Set the `icon` slot to add an icon to the Alert. If set, the `icon`(_deprecated_
 </vwc-alert>
 ```
 
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
+
 ## CSS Variables
 
 ### Minimum inline Size
