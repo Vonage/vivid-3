@@ -104,15 +104,18 @@ Here's an example of sorting when building the grid manually:
 
 	renderData();
 
-	grid.addEventListener('sort', (e) => {
-		console.log(e.detail);
-		e.target.ariaSort =
-			e.detail.sortDirection === 'ascending'
-				? 'descending'
-				: e.detail.sortDirection === 'descending'
-				? 'none'
-				: 'ascending';
-		renderData(e.target.ariaSort);
+	grid.addEventListener('sort', (event) => {
+		const {detail, target} = event
+		console.log(detail);
+		if (detail.sortDirection === 'ascending') {
+			target.sortDirection = 'descending';
+		} else if (e.detail.sortDirection === 'descending') {
+			target.sortDirection = 'none';
+		} else {
+			target.sortDirection = 'ascending';
+		}
+		console.log('e')
+		renderData(e.target.sortDirection);
 	});
 </script>
 ```

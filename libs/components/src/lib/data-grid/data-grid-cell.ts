@@ -46,7 +46,7 @@ const defaultHeaderCellContentsTemplate: ViewTemplate<DataGridCell> = html`
  * @public
  * @component data-grid-cell
  * @slot - Default slot.
- * @event {CustomEvent<{columnDataKey: string, ariaSort: string | null}>} sort - Event that fires when a sortable column header is clicked
+ * @event {CustomEvent<{columnDataKey: string, ariaSort: string | null, sortDirection: string | null}>} sort - Event that fires when a sortable column header is clicked
  * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
  * @event {CustomEvent<HTMLElement>} cell-focused - Fires a custom 'cell-focused' event when focus is on the cell or its contents
  */
@@ -276,6 +276,14 @@ export class DataGridCell extends VividElement {
 	private updateCellView(): void {
 		this.disconnectCellView();
 
+		if (!this.columnDefinition?.sortable) {
+			this.sortDirection = undefined;
+		} else if (this.columnDefinition.sortDirection) {
+			this.sortDirection = this.columnDefinition.sortDirection;
+		} else {
+			this.sortDirection = DataGridCellSortStates.none;
+		}
+
 		if (this.columnDefinition === null) {
 			return;
 		}
@@ -339,7 +347,7 @@ export class DataGridCell extends VividElement {
 	/**
 	 * Indicates the selected status.
 	 *
-	 * @deprecated
+	 * @deprecated For setting selected state, please use `selected` property instead.
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
@@ -358,10 +366,43 @@ export class DataGridCell extends VividElement {
 	/**
 	 * Indicates the sort status.
 	 *
+	 * @deprecated To set the sorting visual style please use `sortDirection` property.
 	 * @public
 	 * HTML Attribute: aria-sort
 	 */
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
+
+	ariaSortChanged(
+		_oldValue: DataGridCellSortStates,
+		newValue: DataGridCellSortStates
+	) {
+		if (newValue === null) {
+			this.sortDirection = undefined;
+			return;
+		}
+
+		this.sortDirection = newValue;
+	}
+
+	/**
+	 * Sets the sorting direction.
+	 *
+	 * @public
+	 * HTML Attribute: sort-direction
+	 */
+	@attr({ attribute: 'sort-direction' }) sortDirection?: DataGridCellSortStates;
+
+	sortDirectionChanged(
+		_oldValue: DataGridCellSortStates | undefined,
+		newValue: DataGridCellSortStates | undefined
+	) {
+		if (newValue === undefined) {
+			this.ariaSort = null;
+			return;
+		}
+
+		this.ariaSort = newValue;
+	}
 
 	#getColumnDataKey() {
 		return this.columnDefinition && this.columnDefinition.columnDataKey
@@ -374,12 +415,16 @@ export class DataGridCell extends VividElement {
 	 */
 	_handleInteraction(): boolean {
 		const isHeaderCell = this.cellType === 'columnheader';
-		const isSortable = isHeaderCell && this.ariaSort !== null;
+		const isSortable = isHeaderCell && !!this.sortDirection;
 
 		if (isSortable) {
 			this.$emit('sort', {
 				columnDataKey: this.#getColumnDataKey(),
-				sortDirection: this.ariaSort,
+				/**
+				 * @deprecated - Please use `sortDirection` property instead.
+				 */
+				ariaSort: this.sortDirection,
+				sortDirection: this.sortDirection,
 			});
 		}
 

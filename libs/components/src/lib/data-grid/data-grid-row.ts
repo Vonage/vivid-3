@@ -295,6 +295,11 @@ export class DataGridRow extends VividElement {
 	selected?: boolean = false;
 
 	selectedChanged(_oldValue: boolean, newValue: boolean) {
+		if (newValue === undefined) {
+			this.ariaSelected = null;
+			return;
+		}
+
 		this.ariaSelected = newValue.toString();
 	}
 }

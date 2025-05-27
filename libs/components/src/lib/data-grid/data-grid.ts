@@ -877,6 +877,7 @@ export class DataGrid extends VividElement {
 	};
 
 	#initSelections = () => {
+		console.log('e');
 		if (
 			this.selectionMode === DataGridSelectionMode.singleCell ||
 			this.selectionMode === DataGridSelectionMode.multiCell

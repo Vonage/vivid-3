@@ -6,27 +6,25 @@ import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
 import type { DataGridCell } from './data-grid-cell';
 
 function shouldShowSortIcons(x: DataGridCell): boolean {
-	if (x.columnDefinition) {
-		x.ariaSort = !x.columnDefinition.sortable
-			? null
-			: x.columnDefinition.sortDirection
-			? x.columnDefinition.sortDirection
-			: DataGridCellSortStates.none;
-	}
 	return (
 		x.cellType === 'columnheader' &&
-		x.ariaSort !== null &&
-		x.ariaSort !== DataGridCellSortStates.other
+		x.sortDirection !== undefined &&
+		x.sortDirection !== DataGridCellSortStates.other
 	);
 }
 
 function getSortIcon<T extends DataGridCell>(x: T): string {
-	return x.ariaSort === DataGridCellSortStates.ascending
-		? 'sort-asc-solid'
-		: x.ariaSort === DataGridCellSortStates.descending
-		? 'sort-desc-solid'
-		: 'sort-solid';
+	if (x.sortDirection === DataGridCellSortStates.ascending) {
+		return 'sort-asc-solid';
+	}
+
+	if (x.sortDirection === DataGridCellSortStates.descending) {
+		return 'sort-desc-solid';
+	}
+
+	return 'sort-solid';
 }
+
 function renderSortIcons<T extends DataGridCell>(
 	c: VividElementDefinitionContext
 ) {
