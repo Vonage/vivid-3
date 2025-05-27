@@ -138,8 +138,6 @@ export class DataGridCell extends VividElement {
 
 		this.updateCellView();
 		this.updateCellStyle();
-
-		this.ariaSelectedChanged(null, this.ariaSelected);
 	}
 
 	/**
@@ -327,13 +325,35 @@ export class DataGridCell extends VividElement {
 	};
 
 	/**
+	 * Reflects selected state of the row
+	 *
+	 * @public
+	 */
+	@attr({ mode: 'boolean' })
+	selected?: boolean = false;
+
+	selectedChanged(_oldValue: boolean, newValue: boolean) {
+		this.ariaSelected = newValue.toString();
+	}
+
+	/**
 	 * Indicates the selected status.
 	 *
+	 * @deprecated
 	 * @public
 	 * HTML Attribute: aria-selected
 	 */
 	@attr({ attribute: 'aria-selected', mode: 'fromView' })
 	override ariaSelected: string | null = null;
+
+	ariaSelectedChanged(_: string | null, selectedState: string | null) {
+		if (selectedState === null) {
+			this.selected = undefined;
+			return;
+		}
+
+		this.selected = selectedState === 'true';
+	}
 
 	/**
 	 * Indicates the sort status.
@@ -342,13 +362,6 @@ export class DataGridCell extends VividElement {
 	 * HTML Attribute: aria-sort
 	 */
 	@attr({ attribute: 'aria-sort' }) override ariaSort: string | null = null;
-
-	ariaSelectedChanged(_: string | null, selectedState: string | null) {
-		this.shadowRoot!.querySelector('.base')?.classList.toggle(
-			'selected',
-			selectedState === 'true'
-		);
-	}
 
 	#getColumnDataKey() {
 		return this.columnDefinition && this.columnDefinition.columnDataKey

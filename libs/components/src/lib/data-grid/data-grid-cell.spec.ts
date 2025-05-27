@@ -262,6 +262,9 @@ describe('vwc-data-grid-cell', () => {
 		});
 	});
 
+	/**
+	 * @deprecated
+	 */
 	describe('aria-selected', function () {
 		it('should init without aria-selected', async () => {
 			expect(element.hasAttribute('aria-selected')).toEqual(false);
@@ -290,6 +293,69 @@ describe('vwc-data-grid-cell', () => {
 			await elementUpdated(element);
 
 			element.setAttribute('aria-selected', 'false');
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element)?.classList.contains('selected')
+			).toBeFalsy();
+		});
+	});
+
+	describe('selected', function () {
+		it('should init without selected', async () => {
+			expect(element.selected).toEqual(false);
+		});
+
+		it('should not set aria-selected attribute by default.', async () => {
+			await elementUpdated(element);
+			const ariaSelectedAttribute = element.hasAttribute('aria-selected');
+
+			expect(ariaSelectedAttribute).toEqual(false);
+		});
+
+		it('should reflect true value in aria-selected attribute', async () => {
+			element.selected = true;
+			await elementUpdated(element);
+
+			const ariaSelectedAttribute = element.getAttribute('aria-selected');
+
+			expect(ariaSelectedAttribute).toEqual('true');
+		});
+
+		it('should reflect false value in aria-selected attribute', async () => {
+			element.selected = true;
+			await elementUpdated(element);
+
+			element.selected = false;
+			await elementUpdated(element);
+
+			const ariaSelectedAttribute = element.getAttribute('aria-selected');
+
+			expect(ariaSelectedAttribute).toEqual('false');
+		});
+
+		it('should set selected class on base when selected true on init', async () => {
+			const newElement = (await fixture(
+				`<${COMPONENT_TAG} selected></${COMPONENT_TAG}>`
+			)) as DataGridCell;
+			await elementUpdated(newElement);
+			expect(
+				getBaseElement(newElement)?.classList.contains('selected')
+			).toBeTruthy();
+		});
+
+		it('should set selected class on base when aria-selected true', async () => {
+			element.setAttribute('selected', '');
+			await elementUpdated(element);
+			expect(
+				getBaseElement(element)?.classList.contains('selected')
+			).toBeTruthy();
+		});
+
+		it('should remove selected class on base when aria-selected is not true', async function () {
+			element.setAttribute('selected', '');
+			await elementUpdated(element);
+
+			element.removeAttribute('selected');
 			await elementUpdated(element);
 			expect(
 				getBaseElement(element)?.classList.contains('selected')

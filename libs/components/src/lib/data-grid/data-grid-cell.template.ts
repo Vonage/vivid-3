@@ -1,5 +1,5 @@
 import { html, when } from '@microsoft/fast-element';
-import { keyEnter, keySpace } from '@microsoft/fast-web-utilities';
+import { classNames, keyEnter, keySpace } from '@microsoft/fast-web-utilities';
 import { Icon } from '../icon/icon';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import { DataGridCellRole, DataGridCellSortStates } from './data-grid.options';
@@ -51,6 +51,8 @@ function handleKeyDown<T extends DataGridCell>(x: T, e: KeyboardEvent) {
 export const DataGridCellTemplate = (
 	context: VividElementDefinitionContext
 ) => {
+	const getBaseClasses = (x: DataGridCell) =>
+		classNames('base', ['selected', !!x.selected]);
 	return html<DataGridCell>`
 		<template
 			tabindex="-1"
@@ -59,7 +61,7 @@ export const DataGridCellTemplate = (
 			@keydown="${(x, c) => handleKeyDown(x, c.event as KeyboardEvent)}"
 		>
 			<div
-				class="base"
+				class="${getBaseClasses}"
 				role="${(x) => (shouldShowSortIcons(x) ? 'button' : undefined)}"
 			>
 				<slot></slot>
