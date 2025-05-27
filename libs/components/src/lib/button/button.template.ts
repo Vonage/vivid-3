@@ -67,7 +67,17 @@ function renderIconOrPending(
 			[Size.Normal]: '-5',
 			[Size.Expanded]: '-4',
 		};
-		return html`<span class="icon pending" aria-hidden="true"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
+
+		const getClassName = (x: Button) => {
+			const slottedIconElement = x.querySelector('[slot="icon"]');
+
+			return classNames('icon', 'pending', [
+				'pending-no-icon',
+				!(icon || slottedIconElement),
+			]);
+		};
+
+		return html`<span class="${getClassName}" aria-hidden="true"><${progressTag} size="${progressSize[size]}"></${progressTag}></span>`;
 	} else {
 		const affixIconTemplate = affixIconTemplateFactory(context);
 		return affixIconTemplate(icon, IconWrapper.Slot);

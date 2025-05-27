@@ -40,7 +40,7 @@ export type ComboboxSize = ExtractFromEnum<Size, Size.Condensed | Size.Normal>;
  * @public
  * @component combobox
  * @slot - Default slot.
- * @slot icon - Slot to add an icon to the combobox control.
+ * @slot icon - The preferred way to add an icon to the combobox control.
  * @slot meta - Slot to add meta content to the combobox control.
  * @slot helper-text - Describes how to use the combobox. Alternative to the `helper-text` attribute.
  * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when the value updates
