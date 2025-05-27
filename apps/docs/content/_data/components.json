@@ -567,6 +567,8 @@
 		"description": "Hides content while keeping it available to assistive technology",
 		"variations": "./libs/components/src/lib/visually-hidden/VARIATIONS.md",
 		"code": "./libs/components/src/lib/visually-hidden/README.md",
+		"hideGuidelines": "true",
+		"hideAccessibility": "true",
 		"status": "underlying"
 	}
 ]

@@ -7,9 +7,9 @@ import {
 	errorText,
 	type ErrorText,
 	type FormElement,
-	FormElementCharCount,
 	formElements,
 	FormElementSuccessText,
+	WithCharCount,
 } from '../../shared/patterns';
 import { Reflector } from '../../shared/utils/Reflector';
 import { DelegatesAria } from '../../shared/aria/delegates-aria';
@@ -61,7 +61,7 @@ export type TextAreaResize = typeof TextAreaResize[keyof typeof TextAreaResize];
 @errorText
 @formElements
 export class TextArea extends WithFeedback(
-	DelegatesAria(FormAssociatedTextArea)
+	WithCharCount(DelegatesAria(FormAssociatedTextArea))
 ) {
 	/**
 	 * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
@@ -148,8 +148,8 @@ export class TextArea extends WithFeedback(
 	 * HTMLAttribute: maxlength
 	 */
 	@attr({ converter: nullableNumberConverter })
-	// @ts-expect-error Type is incorrectly non-optional
-	maxlength: number;
+	override maxlength!: number;
+
 	/**
 	 * @internal
 	 */
@@ -256,6 +256,16 @@ export class TextArea extends WithFeedback(
 	/**
 	 * @internal
 	 */
+	override valueChanged(previous: string, next: string) {
+		super.valueChanged(previous, next);
+		if (this.charCount && this.maxlength) {
+			this._updateCharCountRemaining();
+		}
+	}
+
+	/**
+	 * @internal
+	 */
 	handleTextInput = (): void => {
 		this.value = this.control.value;
 	};
@@ -292,6 +302,7 @@ export class TextArea extends WithFeedback(
 		super.connectedCallback();
 		this.#reflectToTextArea = new Reflector(this, this.control);
 		this.#reflectToTextArea.property('value', 'value', true);
+		this._renderCharCountRemaining();
 	}
 
 	override disconnectedCallback() {
@@ -303,6 +314,5 @@ export class TextArea extends WithFeedback(
 export interface TextArea
 	extends FormElement,
 		ErrorText,
-		FormElementCharCount,
 		FormElementSuccessText {}
-applyMixins(TextArea, FormElementCharCount, FormElementSuccessText);
+applyMixins(TextArea, FormElementSuccessText);
