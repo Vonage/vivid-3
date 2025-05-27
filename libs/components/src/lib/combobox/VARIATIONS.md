@@ -120,6 +120,12 @@ To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot)
 	class="country-code"
 	id="country-code"
 >
+	<vwc-icon
+		slot="icon"
+		id="icon"
+		name="flag-united-states"
+		label="United States +1"
+	></vwc-icon>
 	<vwc-option
 		value="1"
 		text="United States"
@@ -148,8 +154,13 @@ To add custom icons, use the `icon` [slot](/components/combobox/code/#icon-slot)
 
 <script>
 	const combobox = document.getElementById('country-code');
+	const icon = document.getElementById('icon');
 	combobox?.addEventListener('change', (e) => {
-		combobox.icon = combobox.selectedOptions[0].icon;
+		icon.name = combobox.selectedOptions[0].icon;
+		icon.label =
+			combobox.selectedOptions[0].text +
+			' ' +
+			combobox.selectedOptions[0].value;
 	});
 </script>
 ```

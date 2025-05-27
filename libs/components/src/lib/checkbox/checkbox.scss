@@ -83,7 +83,7 @@ $gutter: 2px;
 	}
 
 	.base.error:not(.checked) & {
-		background-color: var(#{constants.$vvd-color-alert-50});
+		background-color: var(#{constants.$vvd-color-canvas});
 		box-shadow: inset 0 0 0 2px var(#{constants.$vvd-color-alert-500});
 	}
 }
