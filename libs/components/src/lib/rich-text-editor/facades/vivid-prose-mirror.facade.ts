@@ -11,6 +11,7 @@ import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, toggleMark } from 'prosemirror-commands';
 import type {
 	RICH_TEXT_EDITOR_MENUBAR_TEXT_SIZES,
+	RichTextEditorInlineImageProps,
 	RichTextEditorSelection,
 	SelectionStyles,
 } from '../rich-text-editor';
@@ -504,5 +505,33 @@ export class ProseMirrorFacade {
 
 	getValue(): string {
 		return this.#view!.dom.innerHTML;
+	}
+
+	async addInlineImage({
+		file,
+		position,
+		alt,
+	}: RichTextEditorInlineImageProps): Promise<void> {
+		this.#verifyViewInitiation();
+
+		const reader = new FileReader();
+		const src: string = await new Promise((resolve, reject) => {
+			reader.onload = () => resolve(reader.result as string);
+			reader.onerror = reject;
+			reader.readAsDataURL(file);
+		});
+
+		const { state, dispatch } = this.#view!;
+		const { schema } = state;
+		const imageAlt = alt ?? `inline image from file ${file.name}`;
+		const imageNode = schema.nodes.image.create({ src, alt: imageAlt });
+
+		let insertPos = position;
+		if (typeof insertPos !== 'number') {
+			insertPos = state.selection.from;
+		}
+
+		const tr = state.tr.insert(insertPos, imageNode);
+		dispatch(tr.scrollIntoView());
 	}
 }

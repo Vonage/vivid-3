@@ -47,3 +47,23 @@ p {
 .hidden {
 	display: none;
 }
+
+.drag-overlay {
+	position: absolute;
+	z-index: 10;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	border: 1px dashed var(#{constants.$vvd-color-cta-400});
+	border-radius: 8px;
+	background: var(#{constants.$vvd-color-cta-100});
+	font: var(#{constants.$vvd-typography-base});
+	inset: 0;
+	opacity: 0.8;
+	pointer-events: none;
+	transition: opacity 0.2s;
+}
+
+.drag-over .drag-overlay {
+	display: flex;
+}
