@@ -4,6 +4,7 @@ import type { Mock } from 'vitest';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridCellSortStates } from './data-grid.options';
 import '.';
+import { currentLocale } from '../../shared/localization';
 
 const COMPONENT_TAG = 'vwc-data-grid-cell';
 const ICON_TAG = 'vwc-icon';
@@ -294,6 +295,31 @@ describe('vwc-data-grid-cell', () => {
 			expect(
 				getBaseElement(element)?.classList.contains('selected')
 			).toBeFalsy();
+		});
+
+		it('should add visually-hidden description that the cell is selected', async () => {
+			element.setAttribute('aria-selected', 'true');
+			await elementUpdated(element);
+
+			const visuallyHiddenElement = element.shadowRoot?.querySelector(
+				'vwc-visually-hidden'
+			);
+
+			expect(visuallyHiddenElement).toBeTruthy();
+			expect(visuallyHiddenElement?.textContent).toEqual(
+				currentLocale.locale.dataGrid.cell.selected
+			);
+		});
+
+		it('visually-hidden should be removed when cell is not selected.', async () => {
+			element.setAttribute('aria-selected', 'false');
+			await elementUpdated(element);
+
+			const visuallyHiddenElement = element.shadowRoot?.querySelector(
+				'vwc-visually-hidden'
+			);
+
+			expect(visuallyHiddenElement).toBeFalsy();
 		});
 	});
 
