@@ -1,4 +1,10 @@
-import { attr, html, ref, ViewTemplate } from '@microsoft/fast-element';
+import {
+	attr,
+	html,
+	ref,
+	type TemplateValue,
+	ViewTemplate,
+} from '@microsoft/fast-element';
 import { VividElement } from '../foundation/vivid-element/vivid-element';
 import type { Constructor, MixinType } from '../utils/mixins';
 import { delegateAria, DelegatesAria } from '../aria/delegates-aria';
@@ -84,12 +90,11 @@ export const Linkable = <T extends Constructor<VividElement>>(Base: T) => {
 		 */
 		_renderLinkElement = <T extends LinkableElement>(
 			content: ViewTemplate<T>,
-			cssClass?: string | ((el: T) => string),
+			cssClass: TemplateValue<T>,
 			boundAriaProperties?: BoundAriaProperties<unknown>
 		) => {
 			return html<T>`<a
-				class="${(x) =>
-					typeof cssClass === 'function' ? cssClass(x) : cssClass}"
+				class="${cssClass}"
 				download="${(x) => x.download}"
 				href="${(x) => x.href}"
 				hreflang="${(x) => x.hreflang}"
