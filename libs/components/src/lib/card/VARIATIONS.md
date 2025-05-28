@@ -38,10 +38,11 @@ To add custom icons or to postfix icons, use the [graphic slot](/components/card
 
 ```html preview
 <vwc-card
-	icon="chat-line"
 	headline="Vivid Card Component"
 	subtitle="Extra text below the card headline"
-></vwc-card>
+>
+	<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+</vwc-card>
 ```
 
 <vwc-note connotation="warning" headline="Deprecated Prop: icon">

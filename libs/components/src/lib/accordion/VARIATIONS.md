@@ -13,7 +13,8 @@ Use the `heading` attribute on **Accordion Item** to set the heading text.
 </vwc-accordion>
 ```
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
     To ensure [accessible heading levels](/components/accordion/accessibility/#heading-levels) use the [`heading-level` attribute](/components/accordion/code/#heading-level).
 

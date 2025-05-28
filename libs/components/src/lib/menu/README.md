@@ -24,10 +24,12 @@ registerMenuItem('your-prefix');
 		registerMenu,
 		registerMenuItem,
 		registerButton,
+		registerIcon,
 	} from '@vonage/vivid';
 	const prefix = 'your-prefix';
 	registerMenu(prefix);
 	registerMenuItem(prefix);
+	registerIcon(prefix);
 
 	registerButton(prefix);
 </script>
@@ -40,10 +42,11 @@ registerMenuItem('your-prefix');
 >
 	<your-prefix-button
 		slot="anchor"
-		icon="more-vertical-line"
 		aria-label="Open menu"
 		appearance="outlined"
-	></your-prefix-button>
+	>
+		<your-prefix-icon slot="icon" name="more-vertical-line"></your-prefix-icon>
+	</your-prefix-button>
 	<your-prefix-menu-item text="Menu item 1"></your-prefix-menu-item>
 	<your-prefix-menu-item text="Menu item 2"></your-prefix-menu-item>
 </your-prefix-menu>
@@ -82,7 +85,8 @@ The `trigger` attribute controls whether the Menu opens and closes itself automa
 - `legacy` (default) - The menu opens automatically when the anchor is clicked. This value is not recommended and only exists for backwards compatibility.
 - `off` - The menu does not open or close automatically.
 
-<vwc-note connotation="information" icon="info-solid" headline="Change Announcement">
+<vwc-note connotation="information" headline="Change Announcement">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 
 We will change the default value of `trigger` to `auto` in a future major version of Vivid to make this the default behaviour.
 
@@ -90,12 +94,9 @@ We will change the default value of `trigger` to `auto` in a future major versio
 
 ```html preview 340px
 <vwc-menu aria-label="Menu example" trigger="auto" placement="bottom-end">
-	<vwc-button
-		slot="anchor"
-		icon="more-vertical-line"
-		aria-label="Open menu"
-		appearance="outlined"
-	></vwc-button>
+	<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
+		<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
+	</vwc-button>
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	<vwc-divider></vwc-divider>
@@ -136,7 +137,8 @@ The `auto-dismiss` attribute sets it to automatically close when focus is moved 
 
 The `position-strategy` attribute sets the position strategy. It can be set to `fixed` (default) or `absolute`.
 
-<vwc-note connotation="information" icon="info-solid" headline="Prefer using the default position strategy (fixed)">
+<vwc-note connotation="information" headline="Prefer using the default position strategy (fixed)">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 
 In vivid version 4.12.0, popover attribute was added to menu, using the power of <a href="https://developer.mozilla.org/en-US/docs/Glossary/Top_layer">top-layer</a>, eliminating the effect of change in the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">containing block</a>.
 
@@ -152,12 +154,9 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 		aria-label="Menu example"
 		placement="bottom-end"
 	>
-		<vwc-button
-			slot="anchor"
-			icon="more-vertical-line"
-			aria-label="Open menu"
-			appearance="outlined"
-		></vwc-button>
+		<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
+			<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
+		</vwc-button>
 		<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 		<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 	</vwc-menu>
@@ -166,7 +165,8 @@ In vivid version 4.12.0, popover attribute was added to menu, using the power of
 
 ## Anchor
 
-<vwc-note connotation="information" icon="info-line" headline="Prefer using the anchot slot">
+<vwc-note connotation="information" headline="Prefer using the anchot slot">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 
 It is recommended use the [`anchor` slot](#anchor-slot-menu) to set the anchor.
 
@@ -199,7 +199,8 @@ The `anchor` attribute should be set to the `id` value of the anchor element or 
 </script>
 ```
 
-<vwc-note connotation="warning" icon="warning-line">
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
 **Pay attention to the source order** the components to ensure they can be operated logically using only a keyboard.
 
@@ -226,12 +227,9 @@ The Menu positions itself relative to an anchor element. Place it inside the `an
 
 ```html preview 200px
 <vwc-menu open aria-label="Menu example" placement="bottom-end">
-	<vwc-button
-		slot="anchor"
-		icon="more-vertical-line"
-		aria-label="Open menu"
-		appearance="outlined"
-	></vwc-button>
+	<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
+		<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
+	</vwc-button>
 	<vwc-menu-item text="Menu item 1"></vwc-menu-item>
 	<vwc-menu-item text="Menu item 2"></vwc-menu-item>
 </vwc-menu>
@@ -277,9 +275,10 @@ Use the `--menu-max-inline-size` variable to set the maximum inline size.
 
 - Default: `max-content`
 
-<vwc-note connotation="information" icon="info-solid">
-<p>When setting a value to the <code>max-inline-size</code> - make sure the Menu is OK in small resolutions as well. </p>
-<p>In mobile, the <code>max-inline-size</code> is <code>300px</code> by default, but can be changed with the css-variable. </p>
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
+	<p>When setting a value to the <code>max-inline-size</code> - make sure the Menu is OK in small resolutions as well. </p>
+	<p>In mobile, the <code>max-inline-size</code> is <code>300px</code> by default, but can be changed with the css-variable. </p>
 </vwc-note>
 
 ```html preview 150px

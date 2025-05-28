@@ -12,7 +12,8 @@ The `text` attribute sets the text content.
 
 The Menu Item can be given extra context using the `text-secondary` attribute.
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 
     To improve readability, **avoid long text and multiple lines** where possible.
 
@@ -88,7 +89,8 @@ The default value is `menuitem`. See the [API Reference](/component/menu/code/#m
 
 When the `role` attribute is set to `menuitemcheckbox`, `menuitemradio`, `checkbox` or `radio` the `check-trailing` attribute places the checkbox / radio indicator at the end of the Menu Item.
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 
 If the `icon` attribute is present, the indicator will be trailing by default.
 

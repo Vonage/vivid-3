@@ -116,12 +116,7 @@ To add icons, use the `icon` [slot](/components/combobox/code/#icon-slot) provid
 The `icon`(_deprecated_) attribute displays an icon from the [icon library](/icons/icons-gallery), which prefixes the Combobox element.
 
 ```html preview 270px
-<vwc-combobox
-	label="Country code"
-	icon="flag-united-states"
-	class="country-code"
-	id="country-code"
->
+<vwc-combobox label="Country code" class="country-code" id="country-code">
 	<vwc-icon
 		slot="icon"
 		id="icon"
