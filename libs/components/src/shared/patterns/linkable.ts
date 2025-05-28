@@ -99,7 +99,7 @@ export const Linkable = <T extends Constructor<VividElement>>(Base: T) => {
 				target="${(x) => x.target}"
 				type="${(x) => x.type}"
 				${ref('control')}
-				${delegateAria?.call(this, boundAriaProperties)}
+				${delegateAria(boundAriaProperties)}
 			>
 				${content}
 			</a>`;
