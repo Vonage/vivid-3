@@ -541,7 +541,7 @@ By default, header cells will not wrap text (`nowrap`), while data cells will wr
 <div class="table-wrapper">
 
 | Name           | Type                                                                                               | Bubbles | Composed | Description                                                                   |
-| -------------- |----------------------------------------------------------------------------------------------------| ------- | -------- | ----------------------------------------------------------------------------- |
+| -------------- | -------------------------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------- |
 | `cell-focused` | `CustomEvent<HTMLElement>`                                                                         | Yes     | Yes      | Fires a custom 'cell-focused' event when focus is on the cell or its contents |
 | `sort`         | `CustomEvent<{columnDataKey: string, ariaSort: string \| null, sortDirection: string \| null}>`    | Yes     | Yes      | Event that fires when a sortable column header is clicked                     |
 | `cell-click`   | `CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>` | Yes     | Yes      | Event that fires when a cell is clicked                                       |

@@ -105,7 +105,7 @@ Here's an example of sorting when building the grid manually:
 	renderData();
 
 	grid.addEventListener('sort', (event) => {
-		const {detail, target} = event
+		const { detail, target } = event;
 		console.log(detail);
 		if (detail.sortDirection === 'ascending') {
 			target.sortDirection = 'descending';
