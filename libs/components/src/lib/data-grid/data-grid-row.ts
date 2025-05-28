@@ -286,6 +286,33 @@ export class DataGridRow extends VividElement {
 	@attr({ attribute: 'aria-selected' })
 	override ariaSelected: string | null = null;
 
+	ariaSelectedChanged(_oldValue: string | null, newValue: string | null) {
+		this.selectable = newValue !== null;
+		this.selected = newValue === 'true';
+	}
+
+	/**
+	 *
+	 * @private
+	 */
+	private calculateAriaSelectedValue() {
+		if (this.selectable && this.selected) return 'true';
+
+		if (this.selectable && !this.selected) return 'false';
+
+		return null;
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	selectable = false;
+
+	selectableChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
+	}
+
 	/**
 	 * Reflects selected state of the row
 	 *
@@ -294,12 +321,7 @@ export class DataGridRow extends VividElement {
 	@attr({ mode: 'boolean' })
 	selected?: boolean = false;
 
-	selectedChanged(_oldValue: boolean, newValue: boolean) {
-		if (newValue === undefined) {
-			this.ariaSelected = null;
-			return;
-		}
-
-		this.ariaSelected = newValue.toString();
+	selectedChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
 	}
 }

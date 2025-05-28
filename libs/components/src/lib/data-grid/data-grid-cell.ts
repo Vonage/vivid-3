@@ -333,15 +333,37 @@ export class DataGridCell extends VividElement {
 	};
 
 	/**
+	 *
+	 * @private
+	 */
+	private calculateAriaSelectedValue() {
+		if (this.selectable && this.selected) return 'true';
+
+		if (this.selectable && !this.selected) return 'false';
+
+		return null;
+	}
+
+	/**
+	 * @internal
+	 */
+	@observable
+	selectable = false;
+
+	selectableChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
+	}
+
+	/**
 	 * Reflects selected state of the row
 	 *
 	 * @public
 	 */
 	@attr({ mode: 'boolean' })
-	selected?: boolean = false;
+	selected = false;
 
-	selectedChanged(_oldValue: boolean, newValue: boolean) {
-		this.ariaSelected = newValue.toString();
+	selectedChanged() {
+		this.ariaSelected = this.calculateAriaSelectedValue();
 	}
 
 	/**
@@ -354,13 +376,9 @@ export class DataGridCell extends VividElement {
 	@attr({ attribute: 'aria-selected', mode: 'fromView' })
 	override ariaSelected: string | null = null;
 
-	ariaSelectedChanged(_: string | null, selectedState: string | null) {
-		if (selectedState === null) {
-			this.selected = undefined;
-			return;
-		}
-
-		this.selected = selectedState === 'true';
+	ariaSelectedChanged(_: string | null, newValue: string | null) {
+		this.selectable = newValue !== null;
+		this.selected = newValue === 'true';
 	}
 
 	/**

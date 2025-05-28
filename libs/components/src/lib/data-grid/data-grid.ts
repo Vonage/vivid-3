@@ -19,6 +19,8 @@ import {
 	keyPageUp,
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { nestedChildrenOfType } from '../../shared/utils/nested-children-of-type';
+import { directChildrenOfType } from '../../shared/utils/children-of-type';
 import { DataGridCell } from './data-grid-cell';
 import { DataGridRow } from './data-grid-row';
 import { DataGridRowTypes, GenerateHeaderOptions } from './data-grid.options';
@@ -729,7 +731,7 @@ export class DataGrid extends VividElement {
 		_oldValue: HTMLElement[],
 		_newValue: HTMLElement[]
 	) {
-		this.#initSelections();
+		this.resetSelection();
 	}
 
 	/**
@@ -757,10 +759,10 @@ export class DataGrid extends VividElement {
 
 	selectionModeChanged(oldValue: DataGridSelectionMode) {
 		if (oldValue === undefined) {
-			DOM.queueUpdate(this.#initSelections);
+			DOM.queueUpdate(this.resetSelection);
 			return;
 		}
-		this.#resetSelection();
+		this.resetSelection(true);
 	}
 
 	#handleKeypress = (e: KeyboardEvent): void => {
@@ -803,7 +805,7 @@ export class DataGrid extends VividElement {
 			cell.selected = !this.#selectedCells.includes(cell);
 		} else {
 			const cacheTargetSelection = cell.selected;
-			this.#resetSelection();
+			this.resetSelection(true);
 			cell.selected = !cacheTargetSelection;
 		}
 	};
@@ -822,7 +824,7 @@ export class DataGrid extends VividElement {
 			row.selected = !this.#selectedRows.includes(row);
 		} else {
 			const cacheTargetSelection = row.selected;
-			this.#resetSelection();
+			this.resetSelection(true);
 			row.selected = !cacheTargetSelection;
 		}
 	};
@@ -843,78 +845,45 @@ export class DataGrid extends VividElement {
 		},
 	};
 
-	#resetSelection = () => {
+	private resetSelection = (clear = false) => {
+		const cells = nestedChildrenOfType(this, DataGridCell);
+		const rows = directChildrenOfType(this, DataGridRow);
+
 		if (
 			this.selectionMode === DataGridSelectionMode.singleCell ||
 			this.selectionMode === DataGridSelectionMode.multiCell
 		) {
-			(
-				Array.from(this.querySelectorAll('[role="gridcell"]')) as DataGridCell[]
-			).forEach((cell) => (cell.selected = false));
-			(
-				Array.from(this.querySelectorAll('[role="row"]')) as DataGridRow[]
-			).forEach((row) => (row.selected = undefined));
-		}
-		if (this.selectionMode === DataGridSelectionMode.none) {
-			(
-				Array.from(this.querySelectorAll('[role="gridcell"]')) as DataGridCell[]
-			).forEach((cell) => (cell.selected = undefined));
-			(
-				Array.from(this.querySelectorAll('[role="row"]')) as DataGridRow[]
-			).forEach((row) => (row.selected = undefined));
-		}
-		if (
-			this.selectionMode === DataGridSelectionMode.singleRow ||
-			this.selectionMode === DataGridSelectionMode.multiRow
-		) {
-			(
-				Array.from(this.querySelectorAll('[role="gridcell"]')) as DataGridCell[]
-			).forEach((cell) => (cell.selected = undefined));
-			(
-				Array.from(this.querySelectorAll('[role="row"]')) as DataGridRow[]
-			).forEach((row) => (row.selected = false));
-		}
-	};
+			for (const cell of cells) {
+				cell.selectable = true;
+				cell.selected = clear ? false : cell.selected || false;
+			}
 
-	#initSelections = () => {
-		console.log('e');
-		if (
-			this.selectionMode === DataGridSelectionMode.singleCell ||
-			this.selectionMode === DataGridSelectionMode.multiCell
-		) {
-			(
-				Array.from(this.querySelectorAll('[role="gridcell"]')) as DataGridCell[]
-			).forEach((cell) => {
-				if (cell.selected !== undefined) {
-					cell.selected = false;
-				}
-			});
-			(
-				Array.from(this.querySelectorAll('[role="row"]')) as DataGridRow[]
-			).forEach((row) => (row.selected = undefined));
+			for (const row of rows) {
+				row.selectable = false;
+				row.selected = false;
+			}
 		}
 
 		if (this.selectionMode === DataGridSelectionMode.none) {
-			(
-				Array.from(this.querySelectorAll('[role="gridcell"]')) as DataGridCell[]
-			).forEach((cell) => (cell.selected = undefined));
-			(
-				Array.from(this.querySelectorAll('[role="row"]')) as DataGridRow[]
-			).forEach((row) => (row.selected = undefined));
+			for (const element of [...cells, ...rows]) {
+				element.selectable = false;
+				element.selected = false;
+			}
 		}
 
 		if (
 			this.selectionMode === DataGridSelectionMode.singleRow ||
 			this.selectionMode === DataGridSelectionMode.multiRow
 		) {
-			(
-				Array.from(this.querySelectorAll('[role="gridcell"]')) as DataGridCell[]
-			).forEach((cell) => (cell.selected = undefined));
-			(
-				Array.from(this.querySelectorAll('[role="row"]')) as DataGridRow[]
-			).forEach((row) =>
-				row.selected !== undefined ? (row.selected = false) : null
-			);
+			for (const cell of cells) {
+				cell.selectable = false;
+				cell.selected = false;
+			}
+
+			for (const row of rows) {
+				row.selectable = true;
+				row.selected = clear ? false : row.selected || false;
+			}
 		}
 	};
 

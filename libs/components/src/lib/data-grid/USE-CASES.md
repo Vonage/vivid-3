@@ -114,7 +114,6 @@ Here's an example of sorting when building the grid manually:
 		} else {
 			target.sortDirection = 'ascending';
 		}
-		console.log('e')
 		renderData(e.target.sortDirection);
 	});
 </script>
