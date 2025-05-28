@@ -57,9 +57,15 @@ Nodes assigned to `action-items` slot will be set at the end of the Header.
 
 ```html preview full
 <vwc-header>
-	<vwc-button slot="action-items" icon="twitter-mono"></vwc-button>
-	<vwc-button slot="action-items" icon="facebook-mono"></vwc-button>
-	<vwc-button slot="action-items" icon="heart-solid"></vwc-button>
+	<vwc-button slot="action-items">
+		<vwc-icon slot="icon" name="twitter-mono"></vwc-icon>
+	</vwc-button>
+	<vwc-button slot="action-items">
+		<vwc-icon slot="icon" name="facebook-mono"></vwc-icon>
+	</vwc-button>
+	<vwc-button slot="action-items">
+		<vwc-icon slot="icon" name="heart-solid"></vwc-icon>
+	</vwc-button>
 </vwc-header>
 ```
 

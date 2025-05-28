@@ -60,7 +60,8 @@ Use the `href` attribute to change the card wrapper to a link. When doing so, al
 </vwc-card>
 ```
 
-<vwc-note icon="vue-color" connotation="information" headline="Usage With Vue Router">
+<vwc-note connotation="information" headline="Usage With Vue Router">
+	<vwc-icon slot="icon" name="vue-color"></vwc-icon>
 
 See [Client-Side Navigation](/getting-started/vue/#client-side-navigation) for more information on how to integrate with Vue Router.
 
@@ -88,7 +89,8 @@ Setting the `clickable-card` attribute switches the card wrapper to a `<button>`
 </script>
 ```
 
-<vwc-note connotation="warning" icon="warning-line" headline="Do not nest any interactive elements within clickable cards">
+<vwc-note connotation="warning" headline="Do not nest any interactive elements within clickable cards">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 The HTML specification does not allow one interactive element to be nested within another. Therefore, you should not use any links or buttons inside slots when using the `href` or `clickable-card` attributes.
 </vwc-note>
 
@@ -148,12 +150,9 @@ The meta slot is for action content in the card header.
 >
 	<div slot="meta">
 		<vwc-menu aria-label="Card options" placement="bottom-start" trigger="auto">
-			<vwc-button
-				slot="anchor"
-				icon="more-vertical-line"
-				aria-label="Open menu"
-				appearance="outlined"
-			></vwc-button>
+			<vwc-button slot="anchor" aria-label="Open menu" appearance="outlined">
+				<vwc-icon slot="icon" name="more-vertical-line"></vwc-icon>
+			</vwc-button>
 			<vwc-menu-item text="save card"></vwc-menu-item>
 			<vwc-menu-item text="remove card"></vwc-menu-item>
 		</vwc-menu>
@@ -172,13 +171,9 @@ By default - items inside footer slot are aligned to the end.
 	headline="Card with Footer Slot"
 	subtitle="Extra text below the card headline"
 >
-	<vwc-button
-		slot="footer"
-		icon="arrow-bold-right-line"
-		shape="pill"
-		label="Action"
-		appearance="outlined"
-	></vwc-button>
+	<vwc-button slot="footer" shape="pill" label="Action" appearance="outlined">
+		<vwc-icon slot="icon" name="arrow-bold-right-line"></vwc-icon>
+	</vwc-button>
 </vwc-card>
 ```
 

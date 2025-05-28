@@ -1,7 +1,26 @@
 import { html } from '@microsoft/fast-element';
-import { textAnchorTemplate } from '../text-anchor/text-anchor.template';
+import { classNames } from '@microsoft/fast-web-utilities';
+import {
+	affixIconTemplateFactory,
+	IconWrapper,
+} from '../../shared/patterns/affix';
 import type { VividElementDefinitionContext } from '../../shared/design-system/defineVividComponent';
 import type { NavItem } from './nav-item';
 
-export const NavItemTemplate = (context: VividElementDefinitionContext) =>
-	html<NavItem>` ${textAnchorTemplate(context)} `;
+const getClasses = ({ text, connotation, appearance }: NavItem) =>
+	classNames(
+		'control',
+		['icon-only', !text],
+		[`connotation-${connotation}`, Boolean(connotation)],
+		[`appearance-${appearance}`, Boolean(appearance)]
+	);
+
+export const NavItemTemplate = (context: VividElementDefinitionContext) => {
+	const affixIconTemplate = affixIconTemplateFactory(context);
+	return html<NavItem>`${(x) =>
+		x._renderLinkElement(
+			html`${(x) => affixIconTemplate(x.icon, IconWrapper.Slot)}
+				${(x) => x.text} <slot name="meta"></slot>`,
+			getClasses
+		)}`;
+};

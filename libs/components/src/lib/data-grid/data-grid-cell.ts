@@ -14,6 +14,7 @@ import {
 	keyFunction2,
 } from '@microsoft/fast-web-utilities';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Localized } from '../../shared/patterns';
 import { DataGridCellSortStates, DataGridCellTypes } from './data-grid.options';
 import type { ColumnDefinition } from './data-grid';
 
@@ -50,7 +51,7 @@ const defaultHeaderCellContentsTemplate: ViewTemplate<DataGridCell> = html`
  * @event {CustomEvent<{cell: HTMLElement, row: HTMLElement, isHeaderCell: boolean, columnDataKey: string}>} cell-click - Event that fires when a cell is clicked
  * @event {CustomEvent<HTMLElement>} cell-focused - Fires a custom 'cell-focused' event when focus is on the cell or its contents
  */
-export class DataGridCell extends VividElement {
+export class DataGridCell extends Localized(VividElement) {
 	/**
 	 * The type of cell
 	 *

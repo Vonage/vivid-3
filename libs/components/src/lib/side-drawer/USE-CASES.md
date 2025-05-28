@@ -7,25 +7,28 @@
 			<vwc-nav-item
 				href="#"
 				text="Calls"
-				icon="call-line"
 				data-value="Calls"
 				onclick="onClick(this)"
 				aria-current="page"
-			></vwc-nav-item>
+			>
+				<vwc-icon slot="icon" name="call-line"></vwc-icon>
+			</vwc-nav-item>
 			<vwc-nav-item
 				href="#"
 				text="Voicemail"
-				icon="voicemail-line"
 				data-value="Voicemail"
 				onclick="onClick(this)"
-			></vwc-nav-item>
+			>
+				<vwc-icon slot="icon" name="voicemail-line"></vwc-icon>
+			</vwc-nav-item>
 			<vwc-nav-item
 				href="#"
 				text="SMS"
-				icon="chat-line"
 				data-value="SMS"
 				onclick="onClick(this)"
-			></vwc-nav-item>
+			>
+				<vwc-icon slot="icon" name="chat-line"></vwc-icon>
+			</vwc-nav-item>
 		</vwc-nav>
 	</vwc-layout>
 	<vwc-layout slot="app-content" gutters="medium">
@@ -34,10 +37,11 @@
 	<vwc-fab
 		aria-label="Toggle Side Drawer"
 		class="vwc-fab"
-		icon="menu-solid"
 		slot="app-content"
 		onclick="onToggle()"
-	></vwc-fab>
+	>
+		<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
+	</vwc-fab>
 </vwc-side-drawer>
 
 <script>
@@ -127,10 +131,11 @@
 		aria-label="Toggle Side Drawer"
 		class="vwc-fab"
 		connotation="accent"
-		icon="menu-solid"
 		slot="app-content"
 		onclick="sidedrawer.open = !sidedrawer.open"
-	></vwc-fab>
+	>
+		<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
+	</vwc-fab>
 </vwc-side-drawer>
 
 <style>

@@ -289,7 +289,7 @@
 		"description": "An option to appear inside a Menu.",
 		"variations": "./libs/components/src/lib/menu-item/VARIATIONS.md",
 		"guidelines": "./libs/components/src/lib/menu-item/GUIDELINES.md",
-		"hideGuidelines": "true",
+		"hideGuidelines": "false",
 		"code": "./libs/components/src/lib/menu-item/README.md",
 		"accessibility": "./libs/components/src/lib/menu-item/ACCESSIBILITY.md",
 		"useCases": "./libs/components/src/lib/menu-item/USE-CASES.md",

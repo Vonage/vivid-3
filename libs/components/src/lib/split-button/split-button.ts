@@ -54,7 +54,7 @@ export type SplitButtonSize = ExtractFromEnum<
  * @public
  * @component split-button
  * @slot - Default slot.
- * @slot icon - Add an icon to the component.
+ * @slot icon - The preferred way to add an icon to the component.
  * @event {CustomEvent<undefined>} action-click - Event emitted when the action button is clicked
  * @event {CustomEvent<undefined>} indicator-click - Event emitted when the indicator button is clicked
  */

@@ -27,7 +27,8 @@ The markers are set by the value of [`step`](/components/slider/code/#step).
 The `orientation` attribute controls which axis the Slider is aligned.  
 Below is an example of vertical alignment.
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+<vwc-icon name="info-line" slot="icon"></vwc-icon>
 <p>When used vertically, the Slider fits the height of its container.</p>
 </vwc-note>
 

@@ -66,22 +66,6 @@ function text() {
 	return html` <div class="text">${(x) => x.text}</div> `;
 }
 
-function renderAnchorElement(content: ViewTemplate<Card>) {
-	return html<Card>` <a
-		class="${getClasses}"
-		download="${(x) => x.download}"
-		href="${(x) => x.href}"
-		hreflang="${(x) => x.hreflang}"
-		ping="${(x) => x.ping}"
-		referrerpolicy="${(x) => x.referrerpolicy}"
-		rel="${(x) => x.rel}"
-		target="${(x) => x.target}"
-		${delegateAria()}
-	>
-		${content}
-	</a>`;
-}
-
 function renderButtonElement(content: ViewTemplate<Card>) {
 	return html<Card>`<button
 		class="${getClasses}"
@@ -94,7 +78,7 @@ function renderButtonElement(content: ViewTemplate<Card>) {
 
 function renderCardBaseElement(x: Card, content: ViewTemplate<Card>) {
 	if (x.href) {
-		return renderAnchorElement(content);
+		return x._renderLinkElement(content, getClasses);
 	} else if (x.clickableCard) {
 		return renderButtonElement(content);
 	} else {

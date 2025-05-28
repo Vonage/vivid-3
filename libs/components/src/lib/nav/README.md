@@ -96,7 +96,8 @@ Only when the **Nav Disclosure** is closed the `aria-current` will be set.
 
 ```html preview 150px
 <vwc-nav>
-	<vwc-nav-disclosure label="1st level item" icon="profile" aria-current="true">
+	<vwc-nav-disclosure label="1st level item" aria-current="true">
+		<vwc-icon slot="icon" name="profile"></vwc-icon>
 		<vwc-nav-item
 			href="#"
 			text="2nd level item"

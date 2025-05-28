@@ -53,8 +53,9 @@
 			appearance="filled"
 			connotation="success"
 			shape="pill"
-			icon="check-solid"
-		></vwc-badge>
+		>
+			<vwc-icon slot="icon" name="check-solid"></vwc-icon>
+		</vwc-badge>
 	</vwc-menu-item>
 	<vwc-menu-item text="Away">
 		<vwc-badge
@@ -62,17 +63,14 @@
 			appearance="filled"
 			connotation="warning"
 			shape="pill"
-			icon="clock-line"
-		></vwc-badge>
+		>
+			<vwc-icon slot="icon" name="clock-line"></vwc-icon>
+		</vwc-badge>
 	</vwc-menu-item>
 	<vwc-menu-item text="Busy">
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="alert"
-			shape="pill"
-			icon="minus-solid"
-		></vwc-badge>
+		<vwc-badge slot="meta" appearance="filled" connotation="alert" shape="pill">
+			<vwc-icon slot="icon" name="minus-solid"></vwc-icon>
+		</vwc-badge>
 	</vwc-menu-item>
 </vwc-menu>
 

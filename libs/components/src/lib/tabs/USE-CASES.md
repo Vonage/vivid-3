@@ -14,12 +14,9 @@ The `removable` attribute on the **Tab** component can used along with the `acti
 		auto-dismiss
 		placement="bottom-end"
 	>
-		<vwc-button
-			slot="anchor"
-			icon="plus-line"
-			shape="pill"
-			size="condensed"
-		></vwc-button>
+		<vwc-button slot="anchor" shape="pill" size="condensed">
+			<vwc-icon slot="icon" name="plus-line"></vwc-icon>
+		</vwc-button>
 		<vwc-menu-item text="New Task" onclick="addTab('Task')"></vwc-menu-item>
 		<vwc-menu-item text="New Event" onclick="addTab('Event')"></vwc-menu-item>
 	</vwc-menu>

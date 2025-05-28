@@ -6,4 +6,5 @@ export interface RichTextEditorLocale {
 	underline: string;
 	strikethrough: string;
 	monospace: string;
+	dragAndDropFilesHere: string;
 }

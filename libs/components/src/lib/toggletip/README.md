@@ -18,18 +18,20 @@ registerToggletip('your-prefix');
 
 ```html preview
 <script type="module">
-	import { registerToggletip, registerButton } from '@vonage/vivid';
+	import {
+		registerToggletip,
+		registerButton,
+		registerIcon,
+	} from '@vonage/vivid';
 	registerToggletip('your-prefix');
 	registerButton('your-prefix');
+	registerIcon('your-prefix');
 </script>
 
 <your-prefix-toggletip placement="right">
-	<your-prefix-button
-		slot="anchor"
-		icon="help-line"
-		shape="pill"
-		appearance="filled"
-	></your-prefix-button>
+	<your-prefix-button slot="anchor" shape="pill" appearance="filled">
+		<your-prefix-icon slot="icon" name="help-line"></your-prefix-icon>
+	</your-prefix-button>
 	I'm a Toggletip
 </your-prefix-toggletip>
 ```
@@ -59,12 +61,9 @@ The `open` attribute controls the open state of the Toggletip.
 
 ```html preview center 100px
 <vwc-toggletip open>
-	<vwc-button
-		slot="anchor"
-		icon="help-line"
-		shape="pill"
-		appearance="filled"
-	></vwc-button>
+	<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-icon slot="icon" name="help-line"></vwc-icon>
+	</vwc-button>
 	I'm open by default
 </vwc-toggletip>
 ```
@@ -75,22 +74,16 @@ It's best to use the [`anchor` slot](#anchor-slot) to set the anchor, but you ca
 
 ```html preview center 150px
 <div class="wrapper">
-	<vwc-button
-		id="button"
-		icon="help-line"
-		appearance="filled"
-		shape="pill"
-	></vwc-button>
+	<vwc-button id="button" appearance="filled" shape="pill">
+		<vwc-icon slot="icon" name="help-line"></vwc-icon>
+	</vwc-button>
 	<vwc-toggletip anchor="button" placement="left"
 		>I'm a Toggletip</vwc-toggletip
 	>
 
-	<vwc-button
-		id="button2"
-		icon="help-line"
-		appearance="filled"
-		shape="pill"
-	></vwc-button>
+	<vwc-button id="button2" appearance="filled" shape="pill">
+		<vwc-icon slot="icon" name="help-line"></vwc-icon>
+	</vwc-button>
 	<vwc-toggletip id="toggletip2">My anchor is an HTMLElement</vwc-toggletip>
 </div>
 
@@ -117,7 +110,8 @@ Use default slot to add content to the Toggletip.
 
 Toggletips need to be anchored to an element. Place the anchor element inside the `anchor` slot of the Toggletip.
 
-<vwc-note connotation="warning" icon="warning-line">
+<vwc-note connotation="warning">
+<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
 The anchor element must be clickable and in most cases, will be a button displaying an information glyph as in the example below.
 
@@ -125,12 +119,9 @@ The anchor element must be clickable and in most cases, will be a button display
 
 ```html preview center 150px
 <vwc-toggletip>
-	<vwc-button
-		slot="anchor"
-		icon="help-line"
-		shape="pill"
-		appearance="filled"
-	></vwc-button>
+	<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-icon slot="icon" name="help-line"></vwc-icon>
+	</vwc-button>
 	I'm a Toggletip
 </vwc-toggletip>
 ```
@@ -141,12 +132,9 @@ You can add action items elements (Buttons) using the `action-items` slot. They 
 
 ```html preview 150px
 <vwc-toggletip open placement="right-start">
-	<vwc-button
-		slot="anchor"
-		icon="help-line"
-		shape="pill"
-		appearance="filled"
-	></vwc-button>
+	<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-icon slot="icon" name="help-line"></vwc-icon>
+	</vwc-button>
 	This is a Toggletip with action items
 	<vwc-button
 		appearance="outlined"
@@ -173,12 +161,9 @@ The `--toggletip-max-inline-size` variable sets the toggletip's max inline size.
 
 ```html preview center 250px
 <vwc-toggletip class="toggletip" placement="top">
-	<vwc-button
-		slot="anchor"
-		icon="help-line"
-		shape="pill"
-		appearance="filled"
-	></vwc-button>
+	<vwc-button slot="anchor" shape="pill" appearance="filled">
+		<vwc-icon slot="icon" name="help-line"></vwc-icon>
+	</vwc-button>
 	Turn on to receive notifications for important updates and alerts directly to
 	your email or mobile device.
 </vwc-toggletip>

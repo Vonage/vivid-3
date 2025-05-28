@@ -46,9 +46,10 @@ Use the `modal` attribute to set the side drawer's type to modal.
 	aria-label="Toggle side drawer"
 	class="fab"
 	connotation="accent"
-	icon="menu-solid"
 	onclick="sidedrawer.open = !sidedrawer.open"
-></vwc-fab>
+>
+	<vwc-icon slot="icon" name="menu-solid"></vwc-icon>
+</vwc-fab>
 
 <style>
 	.content {

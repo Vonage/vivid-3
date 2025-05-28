@@ -1,8 +1,8 @@
 import { attr, observable } from '@microsoft/fast-element';
-import type { Appearance } from '../enums.js';
 import { VividElement } from '../../shared/foundation/vivid-element/vivid-element';
+import { Linkable } from '../../shared/patterns/linkable';
 import type { ExtractFromEnum } from '../../shared/utils/enums';
-import { DelegatesAria } from '../../shared/aria/delegates-aria';
+import type { Appearance } from '../enums.js';
 
 /**
  * Types of card appearance.
@@ -24,7 +24,7 @@ export type CardAppearance = ExtractFromEnum<
  * @slot main - Assign nodes to main slot to fully override a card's predefined flow and style with your own.
  */
 
-export class Card extends DelegatesAria(VividElement) {
+export class Card extends Linkable(VividElement) {
 	/**
 	 * The appearance the card should have.
 	 *
@@ -82,69 +82,6 @@ export class Card extends DelegatesAria(VividElement) {
 		attribute: 'clickable-card',
 	})
 	clickableCard = false;
-
-	/**
-	 * Indicates the card's href.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: href
-	 */
-	@attr href?: string;
-
-	/**
-	 * Indicates the card's download.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: download
-	 */
-	@attr download?: string;
-
-	/**
-	 * Indicates the card's hreflang.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: hreflang
-	 */
-	@attr hreflang?: string;
-
-	/**
-	 * Indicates the card's ping.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: ping
-	 */
-	@attr ping?: string;
-
-	/**
-	 * Indicates the card's referrerpolicy.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: referrerpolicy
-	 */
-	@attr referrerpolicy?: string;
-
-	/**
-	 * Indicates the card's rel.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: rel
-	 */
-	@attr rel?: string;
-
-	/**
-	 * Indicates the card's target.
-	 *
-	 * @public
-	 * @remarks
-	 * HTML Attribute: target
-	 */
-	@attr target?: '_self' | '_blank' | '_parent' | '_top';
 
 	/**
 	 *

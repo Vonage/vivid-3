@@ -24,13 +24,15 @@ When set, the selected Tags are displayed outside of Searchable Select component
 
 ```html preview 250px
 <vwc-searchable-select external-tags multiple label="Countries" clearable>
-	<vwc-option
-		icon="flag-afghanistan"
-		value="AF"
-		text="Afghanistan"
-	></vwc-option>
-	<vwc-option icon="flag-albania" value="AL" text="Albania"></vwc-option>
-	<vwc-option icon="flag-algeria" value="DZ" text="Algeria"></vwc-option>
+	<vwc-option value="AF" text="Afghanistan">
+		<vwc-icon slot="icon" name="flag-afghanistan"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="AL" text="Albania">
+		<vwc-icon slot="icon" name="flag-albania"></vwc-icon>
+	</vwc-option>
+	<vwc-option value="DZ" text="Algeria">
+		<vwc-icon slot="icon" name="flag-algeria"></vwc-icon>
+	</vwc-option>
 </vwc-searchable-select>
 <vwc-searchable-select external-tags multiple label="Company Type" clearable>
 	<vwc-option value="ngo" text="Non-Governmental Organization"></vwc-option>

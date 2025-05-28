@@ -47,7 +47,8 @@ Use the `label` attribute to provide the Icon with a descriptive label so that i
 
 See the [Accessibility section](/components/icon/accessibility/) for more information.
 
-<vwc-note icon="accessibility-line" connotation="information" headline="Accessibility note">
+<vwc-note connotation="information" headline="Accessibility note">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 
 The `label` attribute was added as an alternative to using the `aria-label` attribute. It is preferable because using `aria-label` on non-interactive elements (like Icon) idoes not work consistantly across screen readers.
 

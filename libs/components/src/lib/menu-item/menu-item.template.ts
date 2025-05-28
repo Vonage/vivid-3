@@ -20,7 +20,9 @@ const getIndicatorIcon = (x: MenuItem) => {
 	}
 
 	const iconType =
-		x.role === MenuItemRole.menuitemcheckbox ? 'checkbox' : 'radio';
+		x.role === MenuItemRole.menuitemcheckbox || x.role === MenuItemRole.checkbox
+			? 'checkbox'
+			: 'radio';
 	const iconStatus = x.checked ? 'checked' : 'unchecked';
 	return `${iconType}-${iconStatus}-2-line`;
 };
@@ -46,7 +48,9 @@ const getClasses = ({
 			role !== MenuItemRole.menuitem && (checkTrailing || Boolean(icon)),
 		],
 		['item-checkbox', role === MenuItemRole.menuitemcheckbox],
+		['item-checkbox', role === MenuItemRole.checkbox],
 		['item-radio', role === MenuItemRole.menuitemradio],
+		['item-radio', role === MenuItemRole.radio],
 		['two-lines', Boolean(text?.length) && Boolean(textSecondary?.length)],
 		['has-meta', Boolean(metaSlottedContent?.length)]
 	);
@@ -67,7 +71,9 @@ function checkIndicator(context: VividElementDefinitionContext) {
 	return html<MenuItem>`${when(
 		(x) =>
 			x.role === MenuItemRole.menuitemcheckbox ||
-			x.role === MenuItemRole.menuitemradio,
+			x.role === MenuItemRole.checkbox ||
+			x.role === MenuItemRole.menuitemradio ||
+			x.role === MenuItemRole.radio,
 		html`<span class="action"><${iconTag} class="icon" name="${(x) =>
 			getIndicatorIcon(x)}"></${iconTag}></span>`
 	)}`;

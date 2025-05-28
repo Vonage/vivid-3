@@ -30,7 +30,7 @@ export type MenuItemConnotation = ExtractFromEnum<
  * @slot trailing-meta - Assign nodes to the `meta` slot to set a badge or an additional icon.
  * @slot submenu - Assign a Menu to the `submenu` slot to add a submenu.
  * @event {CustomEvent<HTMLElement>} expanded-change - Fires a custom 'expanded-change' event when the expanded state changes
- * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `menuitemradio`, or `menuitem` is invoked
+ * @event {CustomEvent<undefined>} change - Fires a custom 'change' event when a non-submenu item with a role of `menuitemcheckbox`, `checkbox`, `menuitemradio`, `radio`, or `menuitem` is invoked
  * @vueModel modelValue checked change `event.currentTarget.checked`
  */
 export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
@@ -191,6 +191,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 		}
 
 		switch (this.role) {
+			case MenuItemRole.checkbox:
 			case MenuItemRole.menuitemcheckbox:
 				this.checked = !this.checked;
 				break;
@@ -205,6 +206,7 @@ export class MenuItem extends HostSemantics(AffixIcon(VividElement)) {
 				}
 				break;
 
+			case MenuItemRole.radio:
 			case MenuItemRole.menuitemradio:
 				if (!this.checked) {
 					this.checked = true;

@@ -228,20 +228,20 @@ Use `--combobox-height` to customize the `max-height` of the dropdown.
 
 <div class="table-wrapper">
 
-| Name                | Type                            | Description                                                                                                                 |
-| ------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **appearance**      | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
-| **disabled**        | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
-| **fixed-dropdown**  | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
-| **icon**            | _Enum_:<br/>`[icon-name]`       | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
-| **label**           | `string`                        | Sets the element's label                                                                                                    |
-| **open**            | `boolean`                       | Sets the element's menu to be open                                                                                          |
-| **options**         | `Option[]`                      | A read-only list of options.                                                                                                |
-| **placeholder**     | `string`                        | Sets the text to be displayed when no option is selected                                                                    |
-| **scale**           | `normal` (default), `condensed` | Sets the display size of the input element                                                                                  |
-| **shape**           | `rounded` (default), `pill`     | Sets the shape of the combobox element                                                                                      |
-| **selectedOptions** | `Option[]`                      | A read-only collection of the selected options.                                                                             |
-| **selectedIndex**   | `number`                        | The index of the selected option or -1 if no option is selected.                                                            |
+| Name                                   | Type                            | Description                                                                                                                 |
+| -------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **appearance**                         | `fieldset` (default), `ghost`   | Sets the element's appearance                                                                                               |
+| **disabled**                           | `boolean`                       | Sets the element's disabled state. A disabled element will not be included during form submission.                          |
+| **fixed-dropdown**                     | `boolean`                       | Sets the position strategy of the dropdown to fixed                                                                         |
+| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`       | A decorative icon for the element. See the [Vivid Icon Gallery](/icons/icons-gallery/) for available icons and `icon-name`s |
+| **label**                              | `string`                        | Sets the element's label                                                                                                    |
+| **open**                               | `boolean`                       | Sets the element's menu to be open                                                                                          |
+| **options**                            | `Option[]`                      | A read-only list of options.                                                                                                |
+| **placeholder**                        | `string`                        | Sets the text to be displayed when no option is selected                                                                    |
+| **scale**                              | `normal` (default), `condensed` | Sets the display size of the input element                                                                                  |
+| **shape**                              | `rounded` (default), `pill`     | Sets the shape of the combobox element                                                                                      |
+| **selectedOptions**                    | `Option[]`                      | A read-only collection of the selected options.                                                                             |
+| **selectedIndex**                      | `number`                        | The index of the selected option or -1 if no option is selected.                                                            |
 
 </div>
 

@@ -39,11 +39,9 @@
 
 ```html preview 250px
 <vwc-menu placement="bottom-start" open aria-label="Menu example">
-	<vwc-button
-		slot="anchor"
-		icon="close-line"
-		aria-label="Close menu"
-	></vwc-button>
+	<vwc-button slot="anchor" aria-label="Close menu">
+		<vwc-icon slot="icon" name="close-line"></vwc-icon>
+	</vwc-button>
 	<a
 		role="menuitem"
 		href="https://www.vonage.com"

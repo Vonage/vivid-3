@@ -62,19 +62,17 @@ The `condensed` Text Field is useful when used inside other components (inside [
 				<vwc-number-field label="Wanted quantity"></vwc-number-field>
 			</vwc-data-grid-cell>
 			<vwc-data-grid-cell class="controls">
+				<vwc-button appearance="outlined" size="condensed" aria-label="Edit">
+					<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+				</vwc-button>
 				<vwc-button
 					appearance="outlined"
 					size="condensed"
-					icon="edit-line"
-					aria-label="Edit"
-				></vwc-button>
-				<vwc-button
-					appearance="outlined"
-					size="condensed"
-					icon="delete-line"
 					aria-label="Delete"
 					connotation="alert"
-				></vwc-button>
+				>
+					<vwc-icon slot="icon" name="delete-line"></vwc-icon>
+				</vwc-button>
 			</vwc-data-grid-cell>
 		</vwc-data-grid-row>
 	</vwc-data-grid>

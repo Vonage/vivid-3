@@ -186,6 +186,7 @@ const enUS: Locale = {
 		underline: 'Underline',
 		strikethrough: 'Strikethrough',
 		monospace: 'Monospace',
+		dragAndDropFilesHere: 'Drag&Drop files here',
 	},
 	button: {
 		pendingLabel: 'Loading...',
@@ -199,6 +200,11 @@ const enUS: Locale = {
 			`You can enter up to ${limit} characters`,
 		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
 			`You have ${total} characters remaining`,
+	},
+	dataGrid: {
+		cell: {
+			selected: 'Selected',
+		},
 	},
 };
 

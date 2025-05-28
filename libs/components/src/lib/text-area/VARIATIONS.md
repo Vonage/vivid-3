@@ -4,7 +4,8 @@
 
 The `label` attribute provides a short description of the purpose of the Text Area.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
@@ -29,7 +30,8 @@ To add HTML to the helper text, use the [helper-text slot](/components/text-area
 
 The `placeholder` attribute provides an example of the type of input the user needs to enter.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+	<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 	<p>Avoid using <code>placeholder</code> text as a substitute for a label. Placeholder text is not a reliable label—it disappears when users type and is not always announced by screen readers. Use a <code>label</code> element to ensure the Combobox is both visually and programmatically associated with a descriptive label.</p>
 </vwc-note>
 
@@ -89,7 +91,9 @@ The `success-text` attribute provides a custom success message. Any current erro
 
 Use the `rows` attribute to set the number of visible rows of text in the Text Area.
 
-<vwc-note icon="info-line" connotation="information">Each addition line added 20px - the font size + line height.
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
+	Each addition line added 20px - the font size + line height.
 </vwc-note>
 
 ```html preview

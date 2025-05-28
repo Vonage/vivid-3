@@ -41,13 +41,9 @@ It's bad for UX and accessibility.<br />[The problem with placeholders](https://
 <div class="container">
 	<vwc-text-field label="Password" type="password"></vwc-text-field>
 	<vwc-toggletip placement="bottom">
-		<vwc-button
-			icon="info-line"
-			slot="anchor"
-			shape="pill"
-			size="condensed"
-			class="tooltip-btn"
-		></vwc-button>
+		<vwc-button slot="anchor" shape="pill" size="condensed" class="tooltip-btn">
+			<vwc-icon slot="icon" name="info-line"></vwc-icon>
+		</vwc-button>
 		Must be at least six chars and contain both letters and numbers
 	</vwc-toggletip>
 </div>
@@ -99,16 +95,18 @@ The `condensed` Text Field is useful when used inside other components (inside [
 				<vwc-button
 					appearance="outlined"
 					size="condensed"
-					icon="edit-line"
 					aria-label="Edit"
-				></vwc-button>
+				>
+					<vwc-icon slot="icon" name="edit-line"></vwc-icon>
+				</vwc-button>
 				<vwc-button
 					appearance="outlined"
 					size="condensed"
-					icon="delete-line"
 					aria-label="Delete"
 					connotation="alert"
-				></vwc-button>
+				>
+					<vwc-icon slot="icon" name="delete-line"></vwc-icon>
+				</vwc-button>
 			</vwc-data-grid-cell>
 		</vwc-data-grid-row>
 	</vwc-data-grid>

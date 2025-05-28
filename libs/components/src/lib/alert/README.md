@@ -102,12 +102,9 @@ Controls the `position` of the Alert. The default is `fixed`, which will positio
 When set to `static`, placement will have no effect, and the Alert will behave as an element in page flow.
 
 ```html preview
-<vwc-alert
-	strategy="static"
-	text="Alert with position static"
-	open
-	icon="megaphone-solid"
-></vwc-alert>
+<vwc-alert strategy="static" text="Alert with position static" open>
+	<vwc-icon slot="icon" name="megaphone-solid"></vwc-icon>
+</vwc-alert>
 ```
 
 ## Slots
@@ -139,14 +136,20 @@ You can add action items elements using the `action-items` slot. They will be di
 
 ### Icon
 
-Set the `icon` slot to add an icon to the Alert.
-If set, the `icon` attribute is ignored.
+Set the `icon` slot to add an icon to the Alert. If set, the `icon`(_deprecated_) attribute is ignored.
 
 ```html preview 100px
 <vwc-alert text="Some important information for you" open>
 	<vwc-icon slot="icon" name="megaphone-solid" connotation="cta"></vwc-icon>
 </vwc-alert>
 ```
+
+<vwc-note connotation="warning" headline="Deprecated Prop: icon">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
+
+The `icon` prop is deprecated (as of 05/25) and directly replaced with `icon` slot. `icon` is still functional in the component but will be removed in a future major release. This will be communicated when it's removal becomes a release candidate at the end of the support period.
+
+</vwc-note>
 
 ## CSS Variables
 
@@ -181,18 +184,18 @@ The default value is `fit-content`, which allows the Alert to grow as needed.
 
 ### Properties
 
-| Name                          | Type                                                                                              | Description                                                                     |
-| ----------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| **dismiss-button-aria-label** | `string`                                                                                          | Allows setting a custom aria-label for the dismiss button.                      |
-| **removable**                 | `boolean`                                                                                         | Adds a close button to the Alert.                                               |
-| **placement**                 | _Enum_:<br/>`top`<br/>`top-start`<br/>`top-end`<br/>`bottom`<br/>`bottom-start`<br/>`bottom-end`  | The placement of the Alert on the screen.                                       |
-| **headline**                  | `string`                                                                                          | Adds a headline to the Alert.                                                   |
-| **text**                      | `string`                                                                                          | The main text of the Alert.                                                     |
-| **icon**                      | _Enum_:<br/>`[icon-name]`                                                                         | The icon to display in the Alert. Takes precedence over the connotation's icon. |
-| **timeoutms**                 | `number`                                                                                          | Timeout after which the Alert will close.                                       |
-| **connotation**               | _Enum_:<br/>`accent`<br/>`information`<br/>`success`<br/>`warning`<br/>`announcement`<br/>`alert` | Sets an appropriate icon / icon color for the connotation.                      |
-| **strategy**                  | _Enum_:<br/>`fixed`<br/>`static`                                                                  | Controls the `position` of the Alert.                                           |
-| **open**                      | `boolean`                                                                                         | Open state of the Alert.                                                        |
+| Name                                   | Type                                                                                              | Description                                                                     |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| **dismiss-button-aria-label**          | `string`                                                                                          | Allows setting a custom aria-label for the dismiss button.                      |
+| **removable**                          | `boolean`                                                                                         | Adds a close button to the Alert.                                               |
+| **placement**                          | _Enum_:<br/>`top`<br/>`top-start`<br/>`top-end`<br/>`bottom`<br/>`bottom-start`<br/>`bottom-end`  | The placement of the Alert on the screen.                                       |
+| **headline**                           | `string`                                                                                          | Adds a headline to the Alert.                                                   |
+| **text**                               | `string`                                                                                          | The main text of the Alert.                                                     |
+| _(deprecated as of 05/25)_<br>**icon** | _Enum_:<br/>`[icon-name]`                                                                         | The icon to display in the Alert. Takes precedence over the connotation's icon. |
+| **timeoutms**                          | `number`                                                                                          | Timeout after which the Alert will close.                                       |
+| **connotation**                        | _Enum_:<br/>`accent`<br/>`information`<br/>`success`<br/>`warning`<br/>`announcement`<br/>`alert` | Sets an appropriate icon / icon color for the connotation.                      |
+| **strategy**                           | _Enum_:<br/>`fixed`<br/>`static`                                                                  | Controls the `position` of the Alert.                                           |
+| **open**                               | `boolean`                                                                                         | Open state of the Alert.                                                        |
 
 ### Slots
 

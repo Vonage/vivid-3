@@ -120,7 +120,7 @@ export const RichTextEditorTemplate: (
 			 @dragleave="${handleDragLeave}"
 			 >
 			 <div class="drag-overlay">
-				Drag&Drop files here
+				${(x) => x.locale.richTextEditor.dragAndDropFilesHere}
 			</div>
 			<div id="attachments-wrapper" class="hidden">
 				<${dividerTag} class="divider"></${dividerTag}>

@@ -1,5 +1,7 @@
 import type { Mock, MockInstance } from 'vitest';
+import deDE from '@vonage/vivid/locales/de-DE';
 import { elementUpdated, fixture } from '@vivid-nx/shared';
+import { setLocale } from '../../shared/localization';
 import { ProseMirrorFacade as EditorFacade } from './facades/vivid-prose-mirror.facade';
 import {
 	RichTextEditor,
@@ -146,6 +148,19 @@ describe('vwc-rich-text-editor', () => {
 			await elementUpdated(element);
 
 			expect(editor.classList.contains('drag-over')).toBe(true);
+		});
+
+		it('should replace drag and drop string with locale values', async () => {
+			const dragOverlay = getEditorElement().querySelector(
+				'.drag-overlay'
+			) as HTMLElement;
+
+			setLocale(deDE);
+			await elementUpdated(element);
+
+			expect(dragOverlay.textContent?.trim()).toBe(
+				deDE.richTextEditor.dragAndDropFilesHere
+			);
 		});
 	});
 

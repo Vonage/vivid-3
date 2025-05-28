@@ -5,11 +5,8 @@
 <docs-do>
 
 ```html preview example
-<vwc-banner
-	text="Use Vivid in Your Design"
-	icon="sparkles-solid"
-	connotation="announcement"
->
+<vwc-banner text="Use Vivid in Your Design" connotation="announcement">
+	<vwc-icon slot="icon" name="sparkles-solid"></vwc-icon>
 	<vwc-button
 		slot="action-items"
 		size="condensed"
@@ -19,9 +16,9 @@
 		appearance="filled"
 		connotation="accent"
 		label="Start Using Vivid Components Now"
-		icon="chevron-right-line"
 		icon-trailing
-	></vwc-button
+	>
+		<vwc-icon slot="icon" name="chevron-right-line"></vwc-icon> </vwc-button
 ></vwc-banner>
 ```
 
@@ -32,9 +29,9 @@
 ```html preview example
 <vwc-banner
 	text="Use Vivid in Your Design in all of your design. Fill for designers and for developers as well"
-	icon="sparkles-solid"
 	connotation="announcement"
 >
+	<vwc-icon slot="icon" name="sparkles-solid"></vwc-icon>
 	<vwc-button
 		slot="action-items"
 		size="condensed"
@@ -44,10 +41,11 @@
 		appearance="filled"
 		connotation="accent"
 		label="Start Now"
-		icon="chevron-right-line"
 		icon-trailing
-	></vwc-button
-></vwc-banner>
+	>
+		<vwc-icon slot="icon" name="chevron-right-line"></vwc-icon>
+	</vwc-button>
+</vwc-banner>
 ```
 
 </docs-do>

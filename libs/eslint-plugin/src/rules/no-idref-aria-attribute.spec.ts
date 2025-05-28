@@ -78,9 +78,6 @@ ruleTester.run('no-idref-aria-attribute', noIdrefAriaAttribute, {
 			code: '<template><VSlider aria-label="slider"></VSlider></template>',
 		},
 		{
-			code: '<template><VTextAnchor aria-label="anchor"></VTextAnchor></template>',
-		},
-		{
 			code: '<template><VSplitButton aria-label="split button"></VSplitButton></template>',
 		},
 		{
