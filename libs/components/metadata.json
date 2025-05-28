@@ -823,57 +823,50 @@
 			"description": "",
 			"props": [
 				{
-					"name": "ariaExpanded",
-					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
-					"type": "'true' | 'false' | string",
-					"attributeName": "aria-expanded",
-					"propertyName": "ariaExpanded"
-				},
-				{
 					"name": "download",
-					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
 				},
 				{
 					"name": "href",
-					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
 				},
 				{
 					"name": "ping",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
 				},
 				{
 					"name": "target",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
@@ -886,7 +879,7 @@
 				},
 				{
 					"name": "type",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "type",
 					"propertyName": "type"
@@ -971,7 +964,7 @@
 				},
 				{
 					"name": "download",
-					"description": "Indicates the button's download.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
@@ -1027,14 +1020,14 @@
 				},
 				{
 					"name": "href",
-					"description": "Indicates the button's href.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Indicates the button's hreflang.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
@@ -1082,21 +1075,21 @@
 				},
 				{
 					"name": "ping",
-					"description": "Indicates the button's ping.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "Indicates the button's referrerpolicy.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "Indicates the button's rel.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
@@ -1130,7 +1123,7 @@
 				},
 				{
 					"name": "target",
-					"description": "Indicates the target's rel.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
@@ -1144,7 +1137,7 @@
 				},
 				{
 					"name": "type",
-					"description": "The button type.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'submit' | 'reset' | 'button'",
 					"attributeName": "type",
 					"propertyName": "type"
@@ -1433,7 +1426,7 @@
 				},
 				{
 					"name": "download",
-					"description": "Indicates the card's download.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
@@ -1454,14 +1447,14 @@
 				},
 				{
 					"name": "href",
-					"description": "Indicates the card's href.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Indicates the card's hreflang.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
@@ -1475,21 +1468,21 @@
 				},
 				{
 					"name": "ping",
-					"description": "Indicates the card's ping.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "Indicates the card's referrerpolicy.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "Indicates the card's rel.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
@@ -1503,7 +1496,7 @@
 				},
 				{
 					"name": "target",
-					"description": "Indicates the card's target.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
@@ -1514,6 +1507,13 @@
 					"type": "string",
 					"attributeName": "text",
 					"propertyName": "text"
+				},
+				{
+					"name": "type",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
+					"type": "string",
+					"attributeName": "type",
+					"propertyName": "type"
 				}
 			],
 			"events": [
@@ -4272,42 +4272,35 @@
 			"props": [
 				{
 					"name": "appearance",
-					"description": "The appearance Text-Anchor should have.",
+					"description": "Sets the nav item's appearance",
 					"type": "'ghost' | 'ghost-light'",
 					"attributeName": "appearance",
 					"propertyName": "appearance"
 				},
 				{
-					"name": "ariaExpanded",
-					"description": "See https://www.w3.org/WAI/PF/aria/roles#link for more information",
-					"type": "'true' | 'false' | string",
-					"attributeName": "aria-expanded",
-					"propertyName": "ariaExpanded"
-				},
-				{
 					"name": "connotation",
-					"description": "The connotation Text-Anchor should have.",
+					"description": "Sets the connotation color of the selected nav item",
 					"type": "'accent' | 'cta'",
 					"attributeName": "connotation",
 					"propertyName": "connotation"
 				},
 				{
 					"name": "download",
-					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "download",
 					"propertyName": "download"
 				},
 				{
 					"name": "href",
-					"description": "Prompts the user to save the linked URL. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "The URL the hyperlink references. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "href",
 					"propertyName": "href"
 				},
 				{
 					"name": "hreflang",
-					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "Hints at the language of the referenced resource. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "hreflang",
 					"propertyName": "hreflang"
@@ -4321,42 +4314,42 @@
 				},
 				{
 					"name": "ping",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "ping",
 					"propertyName": "ping"
 				},
 				{
 					"name": "referrerpolicy",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "referrerpolicy",
 					"propertyName": "referrerpolicy"
 				},
 				{
 					"name": "rel",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "rel",
 					"propertyName": "rel"
 				},
 				{
 					"name": "target",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "'_self' | '_blank' | '_parent' | '_top'",
 					"attributeName": "target",
 					"propertyName": "target"
 				},
 				{
 					"name": "text",
-					"description": "Indicates the text anchor's text.",
+					"description": "Text of the nav item",
 					"type": "string",
 					"attributeName": "text",
 					"propertyName": "text"
 				},
 				{
 					"name": "type",
-					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element for more information.",
+					"description": "See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a | <a> element  for more information.",
 					"type": "string",
 					"attributeName": "type",
 					"propertyName": "type"
@@ -4395,9 +4388,7 @@
 				}
 			],
 			"vueModels": [],
-			"methods": [
-				{ "name": "getBodyTemplate", "args": [], "returnType": "unknown" }
-			],
+			"methods": [],
 			"slots": [
 				{ "name": "icon", "description": "Add an icon to the component." },
 				{
