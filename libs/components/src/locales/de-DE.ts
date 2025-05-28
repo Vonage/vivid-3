@@ -202,6 +202,11 @@ const deDE: Locale = {
 		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
 			`Du hast noch ${total} Zeichen übrig`,
 	},
+	dataGrid: {
+		cell: {
+			selected: 'Ausgewählt',
+		},
+	},
 };
 
 export default deDE;

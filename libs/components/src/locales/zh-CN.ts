@@ -200,6 +200,11 @@ const zhCN: Locale = {
 		charactersRemainingMessage: /* istanbul ignore next */ (total: number) =>
 			`您还剩 ${total} 个字符`,
 	},
+	dataGrid: {
+		cell: {
+			selected: '已选择',
+		},
+	},
 };
 
 export default zhCN;
