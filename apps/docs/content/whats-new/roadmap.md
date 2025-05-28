@@ -79,10 +79,14 @@ order: 2
       <a href="/components/calendar/">Calendar enhancements</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://docs.google.com/document/d/12IfWRU77mGrYrDo9eu2PyXWpBibLqYIoNOESkUkZ3Cw/edit?tab=t.0"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" connotation="success" href="https://docs.google.com/document/d/12IfWRU77mGrYrDo9eu2PyXWpBibLqYIoNOESkUkZ3Cw/edit?tab=t.0">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" connotation="success">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       Expected Q2 2025
@@ -93,10 +97,14 @@ order: 2
       <a href="/components/rich-text-editor/code/">Rich Text Editor</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://docs.google.com/document/d/18Y2-LNwyOzTQ8a2FqYmPx3w-ofWjRstVyMx_9e7Z6vg/edit?tab=t.0#heading=h.8z0p4ep2y9ul"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" connotation="success" href="https://docs.google.com/document/d/18Y2-LNwyOzTQ8a2FqYmPx3w-ofWjRstVyMx_9e7Z6vg/edit?tab=t.0#heading=h.8z0p4ep2y9ul">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://www.figma.com/design/MecZdrBIj3v6JabIwvBkYX/Rich-text-editor?node-id=6-13392&p=f&t=UaZrrH1kCQbzKgID-0"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" connotation="success" href="https://www.figma.com/design/MecZdrBIj3v6JabIwvBkYX/Rich-text-editor?node-id=6-13392&p=f&t=UaZrrH1kCQbzKgID-0">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
       Expected Q2 2025 (Phase 1)
@@ -107,13 +115,19 @@ order: 2
       <a href="/components/date-time-picker/">Date Time Picker</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" connotation="success" href="https://jira.vonage.com/browse/VIV-2073">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" connotation="success" href="https://jira.vonage.com/browse/VIV-2073"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" connotation="success" href="https://jira.vonage.com/browse/VIV-2073">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Awaiting AT" icon="more-horizontal-line" appearance="ghost-light" href="/components/date-time-picker/" connotation="success"></vwc-button>
+      <vwc-button label="Awaiting AT" appearance="ghost-light" href="/components/date-time-picker/" connotation="success">
+        <vwc-icon slot="icon" name="more-horizontal-line"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -121,13 +135,19 @@ order: 2
       <a href="/components/searchable-select">Searchable Select</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" href="https://confluence.vonage.com/display/VIVID/Multi-select+combobox+research" connotation="success">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" href="https://www.figma.com/design/Zau4yNbnfBCBT53FZDoLr2/%C2%A0Multiselect-Combobox?node-id=1-3&t=c5CHXRHGC946vCQu-0" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" href="https://www.figma.com/design/Zau4yNbnfBCBT53FZDoLr2/%C2%A0Multiselect-Combobox?node-id=1-3&t=c5CHXRHGC946vCQu-0" connotation="success">\
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="more-horizontal-line" appearance="ghost-light" href="/components/searchable-select" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" href="/components/searchable-select" connotation="success">
+        <vwc-icon slot="icon" name="more-horizontal-line"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -135,13 +155,19 @@ order: 2
       <a href="/components/range-slider/">Range Slider</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" target="_blank" appearance="ghost-light" href="https://confluence.vonage.com/display/VIVID/Range+slider" icon="check" connotation="success"></vwc-button>
+      <vwc-button label="Done" target="_blank" appearance="ghost-light" href="https://confluence.vonage.com/display/VIVID/Range+slider" connotation="success">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-    <vwc-button label="Done" target="_blank" appearance="ghost-light" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" icon="check" connotation="success"></vwc-button>
+    <vwc-button label="Done" target="_blank" appearance="ghost-light" href="https://www.figma.com/file/JJNgZvt1qf3ydYmOwbE3Jg/Vivid-UI-Kit---3.0-WIP?type=design&node-id=31345%3A96328&mode=design&t=QNhBeU12Gu7dtS7N-1" connotation="success">
+      <vwc-icon slot="icon" name="check"></vwc-icon>
+    </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" appearance="ghost-light" icon="more-horizontal-line" href="/components/range-slider/" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" href="/components/range-slider/" connotation="success">
+        <vwc-icon slot="icon" name="more-horizontal-line"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
   <vwc-data-grid-row>
@@ -149,13 +175,19 @@ order: 2
       <a href="/components/video-player/">Video Player</a>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" target="_blank" icon="check" href="https://confluence.vonage.com/display/VIVID/Video+player" connotation="success"></vwc-button>
+      <vwc-button label="Done"  appearance="ghost-light" target="_blank" href="https://confluence.vonage.com/display/VIVID/Video+player" connotation="success">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" icon="check" appearance="ghost-light" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=23%3A13702&mode=design&t=PGI1aODhsHS1YDhV-1" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" target="_blank" href="https://www.figma.com/file/tWEyQlBY6cBymajaJPLSy0/Vivid-3.0-WIP-Drafts?type=design&node-id=23%3A13702&mode=design&t=PGI1aODhsHS1YDhV-1" connotation="success">
+        <vwc-icon slot="icon" name="check"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
     <vwc-data-grid-cell>
-      <vwc-button label="Done" appearance="ghost-light" icon="more-horizontal-line" href="/components/video-player/" connotation="success"></vwc-button>
+      <vwc-button label="Done" appearance="ghost-light" href="/components/video-player/" connotation="success">
+        <vwc-icon slot="icon" name="more-horizontal-line"></vwc-icon>
+      </vwc-button>
     </vwc-data-grid-cell>
   </vwc-data-grid-row>
 </vwc-data-grid>

@@ -17,7 +17,8 @@ Use the [Data Grid Row](/components/data-grid/code/#data-grid-row) and [Data Gri
 </vwc-data-grid>
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 
 Content can also be passed to the Data Grid programically using the [`rowsData` property](/components/data-grid/code/#rows-data).
 
@@ -188,7 +189,8 @@ Use the `selection-mode` attribute to specify the how cells or rows can be selec
 
 Use the `aria-selected` attribute to indicate that the selected state of the row or cell.
 
-<vwc-note connotation="warning" icon="warning-line">
+<vwc-note connotation="warning">
+	<vwc-icon slot="icon" name="warning-line"></vwc-icon>
 
 For selection functionality to work correctly, the [`selection-mode` attribute](/components/data-grid/#selection-mode) (on Data Grid) must be set to the relevant value.
 
@@ -237,7 +239,8 @@ This will add the right chevron(s) according to the state.
 
 For more information regarding `aria-sort` you can reference [the W3C spec](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort).
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 
 The sortable feature doesn't actually sort the data, it only changes the visual representation of the column header. See the [sorting use case](/components/data-grid/use-cases/#sortable-columns) for more information.
 

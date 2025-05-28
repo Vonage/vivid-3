@@ -141,7 +141,8 @@ Use the `size` attribute to select the icon's size from a set of predefined valu
 </style>
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information" >
+	<vwc-icon name="info-line" slot="icon"></vwc-icon>
 	<p>Icon size will be affected by the <code>--vvd-size-density</code> variable.</p>
 </vwc-note>
 

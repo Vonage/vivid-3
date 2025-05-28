@@ -21,8 +21,9 @@ The markers are set by the value of [`step`](/components/range-slider/code/#step
 The `orientation` attribute controls which axis the Range Slider is aligned.  
 Below is an example of vertical alignment.
 
-<vwc-note connotation="information" icon="info-line">
-<p>When used vertically, the range slider fits the height of its container.</p>
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
+	<p>When used vertically, the range slider fits the height of its container.</p>
 </vwc-note>
 
 ```html preview center 300px

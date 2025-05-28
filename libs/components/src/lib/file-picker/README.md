@@ -68,7 +68,8 @@ If the user tries to upload more files than the maximum number of files, the fil
 </vwc-file-picker>
 ```
 
-<vwc-note connotation="information" icon="info-line">
+<vwc-note connotation="information">
+	<vwc-icon slot="icon" name="info-line"></vwc-icon>
 	<p>Don't use this for single file uploads (with <code>max-files="1"</code>). Use the <a href="#single-file"><code>single-file</code> attribute</a> instead.</p>
 </vwc-note>
 

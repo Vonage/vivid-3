@@ -72,8 +72,9 @@ Using this slot it sets the icon, checkbox or radio to be trailing.
 			appearance="filled"
 			connotation="success"
 			shape="pill"
-			icon="check-solid"
-		></vwc-badge>
+		>
+			<vwc-icon slot="icon" name="check-solid"></vwc-icon>
+		</vwc-badge>
 	</vwc-menu-item>
 	<vwc-menu-item text="Away" role="menuitemradio">
 		<vwc-badge
@@ -81,17 +82,14 @@ Using this slot it sets the icon, checkbox or radio to be trailing.
 			appearance="filled"
 			connotation="warning"
 			shape="pill"
-			icon="clock-line"
-		></vwc-badge>
+		>
+			<vwc-icon slot="icon" name="clock-line"></vwc-icon>
+		</vwc-badge>
 	</vwc-menu-item>
 	<vwc-menu-item text="Busy" role="menuitemradio" checked>
-		<vwc-badge
-			slot="meta"
-			appearance="filled"
-			connotation="alert"
-			shape="pill"
-			icon="minus-solid"
-		></vwc-badge>
+		<vwc-badge slot="meta" appearance="filled" connotation="alert" shape="pill">
+			<vwc-icon slot="icon" name="minus-solid"></vwc-icon>
+		</vwc-badge>
 	</vwc-menu-item>
 </vwc-menu>
 ```
@@ -154,7 +152,8 @@ Assign a Menu to the `submenu` slot to create a submenu.
 </vwc-menu>
 ```
 
-<vwc-note headline="Focus Management" connotation="information" icon="info-line">
+<vwc-note headline="Focus Management" connotation="information">
+	<vwc-icon slot="icon" name="info-solid"></vwc-icon>
 
 When the Menu opens or `.focus()` is called, focus moves to the first Menu Item by default. If there is a child with the `autofocus` attribute, it will be focused instead.
 

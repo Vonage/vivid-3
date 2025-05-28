@@ -2,7 +2,8 @@
 
 The `label` attribute adds a label to the Switch.
 
-<vwc-note connotation="information" icon="accessibility-line" headline="Accessibility Tip">
+<vwc-note connotation="information" headline="Accessibility Tip">
+<vwc-icon slot="icon" name="accessibility-line"></vwc-icon>
 <p>If a visible label can't be used, provide one using the <nobr><code>aria-label</code></nobr> attribute. This ensures screen readers announce the purpose of the element, making it accessible to all users.</p>
 </vwc-note>
 
